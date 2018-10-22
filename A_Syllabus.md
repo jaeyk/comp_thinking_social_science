@@ -19,29 +19,29 @@ The course is currently divided into four main sections. In the first section, s
 
 ### Instructor
 
-Rachel Bernhard
-
-rbernhard@berkeley.edu
-
-### Section Assistant
-
 Jae Yeon Kim
 
 jaeyeonkim@berkeley.edu
 
+### Section Assistant
+
+Julia Christensen
+
+jbchristensen@berkeley.edu
+
 ### Time 
 
-Lecture: Tuesday 4-6P
+Lecture: Monday 10am - 12pm ([Dwinelle](https://www.google.com/maps/place/Dwinelle+Hall,+Berkeley,+CA+94704/@37.8707044,-122.2627458,17z/data=!3m1!4b1!4m5!3m4!1s0x80857c26625762f5:0xc5fa3349de95df50!8m2!3d37.8707002!4d-122.2605518) 209)
 
-Section: Wednesday 5-7P
+Section: Wednesday 4pm - 6pm ([Barrows](https://www.google.com/maps/place/Barrows+Hall/@37.8700364,-122.2601828,17z/data=!3m1!4b1!4m5!3m4!1s0x80857c25938066c3:0x73f82f3646d8e0bd!8m2!3d37.8700322!4d-122.2579888) 791)
 
 ### Location
 
-791 Barrows
+TBD
 
 ### Office Hours
 
-By appointment with Jae Yeon Kim (email or bCourses to set up), 715 Barrows.
+By appointment with Julia Christensen (email or bCourses to set up), 715 Barrows.
 
 ### bCourses
 
@@ -49,7 +49,7 @@ We will use bCourses for communication (announcements and questions) and turning
 
 ### GitHub
 
-All course materials will be posted on Github at https://github.com/ribernhard/PS239T, including class notes, code demonstrations, sample data, and assignments. Students are required to use GitHub for their final projects, which will be publically available, unless they have special considerations (e.g. proprietary data). 
+All course materials will be posted on Github at https://github.com/jaeyk/PS239T, including class notes, code demonstrations, sample data, and assignments. Students are required to use GitHub for their final projects, which will be publically available, unless they have special considerations (e.g. proprietary data). 
 
 ### Accessibility
 
@@ -115,7 +115,7 @@ See [B_Install.md](B_Install.md) for more information.
 
 ### Books and Other Resources
 
-There are no official textbooks for this class. Readings will be light, and posted as part of the weekly homework assignments on bCourses. For the semester, we will have access to all of Datacamp's premium course materials (thank you Datacamp!). 
+There are no official textbooks for this class. For those interested in advcanced subjects, please see [references.md](references.md). For those interested in project managemet and efficient programming, please see [style_guides.md](style_guides.md). Note that these references will be updated throughout the semester. For this course, we will have access to all of Datacamp's premium course materials (thank you Datacamp!). 
 
 ## Curriculum Outline / Schedule
 
@@ -133,7 +133,7 @@ The schedule is subject to change based on the class's rate of progress.
 * **Mar. 20/21:** Intro to Python
 * **Mar. 27/28:** SPRING BREAK [no class]
 [Note: final presentations occur in lieu of regular section in April]
-* **Apr. 3/4:** Text Analysis in Python (guest lecture by Fiona Shen-Bayh, Political Science) 
+* **Apr. 3/4:** Text Analysis in R (guest lecture by [Marla Stuart](https://bids.berkeley.edu/people/marla-stuart), Social Work & BIDS Data Science Fellow) 
 * **Apr. 10/11:** Text Analysis in R
-* **Apr. 17/18:** Intro to Machine Learning (guest lecture by Chris Kennedy, Biostatistics)
+* **Apr. 17/18:** Intro to Machine Learning (guest lecture by [Chris Kennedy](https://bids.berkeley.edu/people/chris-kennedy), Biostats & BIDS Data Science Fellow)
 * **Apr. 24/25:** Wrap-up: Frontiers in Computational Methods
