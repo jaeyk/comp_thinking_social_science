@@ -9,4 +9,4 @@ Please note that materials are still in development, and will be changing.
 
 ## Contact
 
-Instructor: Rachel Bernhard: rbernhard@berkeley.edu
+Instructor: Jae Yeon Kim: jaeyeonkim@berkeley.edu
