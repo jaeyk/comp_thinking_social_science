@@ -12,6 +12,8 @@ Grolemund, G. and Wickham, H. (2017). [R for Data Science](http://r4ds.had.co.nz
 
 ## Automated text analysis
 
+Silge, J. and Robinson, D. (2018). [Text Mining with R](https://www.tidytextmining.com/index.html). O'Reily Media, Inc.
+
 Jurafsky, Dan, and James H. Martin. Forthcoming. [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/)
 
 Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). Political analysis, 21(3), 267-297.
