@@ -10,6 +10,10 @@
 
 ## Programming efficiency (style guides)
 
+[Literate programming](http://www.literateprogramming.com/index.html)
+
+- Writing a paper and codes is not fundamentally different. At some point, both of them should be able to be understood and used by some other people aside from the authors.
+
 [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml)
 
 [The tidyverse style guide](http://style.tidyverse.org/) by Hadley Wickham
