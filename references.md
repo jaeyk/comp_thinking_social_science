@@ -11,6 +11,7 @@ Gillespie, C. and Lovelace, R. (2017). [Efficienct R Programming](https://csgill
 
 Grolemund, G. and Wickham, H. (2017). [R for Data Science](http://r4ds.had.co.nz/). O'Reilly Media, Inc.
 
+Wickham, H. (2015). [R Packages](http://r-pkgs.had.co.nz/). O'Reily Media, Inc.
 
 ## Automated text analysis
 
