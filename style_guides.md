@@ -4,6 +4,8 @@
 
 [Project management with RStudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/) by  Software Carpentry
 
+- Make using R project as part of your regular practice in R coding.
+
 [Version Control with Git](https://swcarpentry.github.io/git-novice/) by Software Carpentry
 
 ## Programming efficiency (style guides)
