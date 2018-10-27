@@ -9,4 +9,4 @@ Please note that materials are still in development, and will be changing.
 
 ## Contact
 
-Instructor: Jae Yeon Kim: jaeyeonkim@berkeley.edu
+Instructor: [Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
