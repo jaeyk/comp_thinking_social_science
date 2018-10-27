@@ -18,6 +18,8 @@ Wickham, H. (2015). [R Packages](http://r-pkgs.had.co.nz/). O'Reily Media, Inc.
 
 Grolemund, G. (2014). [Hands-On Programming with R](https://proquest.safaribooksonline.com/9781449359089). O'Reily Media, Inc.
 
+Wickham, H. (2014). [R Packages](http://adv-r.had.co.nz/). Chapman & Hall’s R Series.
+
 ## Automated text analysis
 
 Silge, J. and Robinson, D. (2018). [Text Mining with R](https://www.tidytextmining.com/index.html). O'Reily Media, Inc.
