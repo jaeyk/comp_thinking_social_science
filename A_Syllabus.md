@@ -121,19 +121,19 @@ There are no official textbooks for this class. For those interested in advcance
 
 The schedule is subject to change based on the class's rate of progress. 
 
-* **Jan. 16/17:** Introduction and Setup ("Installfest")
-* **Jan. 23/24:** Git and Bash
-* **Jan. 30/31:** Data Structure in R
-* **Feb. 6/7:** Data Analysis in R 
-* **Feb. 13/14:** Data Visualization in R
-* **Feb. 20/21:** APIs
-* **Feb. 27/28:** HTML/CSS/Javascript
-* **Mar. 6/7:** Webscraping
-* **Mar. 13/14:** Qualtrics/MTurk
-* **Mar. 20/21:** Intro to Python
-* **Mar. 27/28:** SPRING BREAK [no class]
+* **Jan. 16:** Introduction and Setup ("Installfest")
+* **Jan. 21/23:** Git and Bash
+* **Jan. 28/30:** Data Structure in R
+* **Feb. 4/6:** Data Analysis in R 
+* **Feb. 11/13:** Data Visualization in R
+* **Feb. 18/20:** APIs
+* **Feb. 25/27:** HTML/CSS/Javascript
+* **Mar. 4/6:** Webscraping
+* **Mar. 11/13:** Qualtrics/MTurk
+* **Mar. 18/20:** Intro to Python
+* **Mar. 25/27:** SPRING BREAK [no class]
 [Note: final presentations occur in lieu of regular section in April]
-* **Apr. 3/4:** Text Analysis in R (guest lecture by [Marla Stuart](https://bids.berkeley.edu/people/marla-stuart), Social Work & BIDS Data Science Fellow) 
-* **Apr. 10/11:** Text Analysis in R
-* **Apr. 17/18:** Intro to Machine Learning (guest lecture by [Chris Kennedy](https://bids.berkeley.edu/people/chris-kennedy), Biostats & BIDS Data Science Fellow)
-* **Apr. 24/25:** Wrap-up: Frontiers in Computational Methods
+* **Apr. 1/3:** Text Analysis in R (guest lecture by [Marla Stuart](https://bids.berkeley.edu/people/marla-stuart), Social Work & BIDS Data Science Fellow) 
+* **Apr. 8/10:** Text Analysis in R
+* **Apr. 15/17:** Intro to Machine Learning (guest lecture by [Chris Kennedy](https://bids.berkeley.edu/people/chris-kennedy), Biostats & BIDS Data Science Fellow)
+* **Apr. 22/24:** Wrap-up: Frontiers in Computational Methods
