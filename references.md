@@ -42,4 +42,8 @@ Goodfellow, I., Bengio, Y., & Courville, A. Forthcoming. [Deep Learning](http://
 
 Pustejovsky, J., & Stubbs, A. (2012). [Natural Language Annotation for Machine Learning](https://proquest.safaribooksonline.com/book/programming/machine-learning/9781449332693). O'Reilly Media, Inc.
 
+## Algorithms 
+
+Steele, B. Chandler, J. and Reddy, S. (2016). [Algorithms for Data Science](https://link.springer.com/book/10.1007%2F978-3-319-45797-0). Springer, Cham 
+
 
