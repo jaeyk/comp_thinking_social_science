@@ -34,6 +34,8 @@ Friedman, J., Hastie, T., & Tibshirani, R. (2017). [The Elements of Statistical 
 
 Bishop, C. (2006). [Pattern Recognition and Machine Learning](https://www.springer.com/us/book/9780387310732). New York, NY, USA:: Springer series in statistics.
 
+Breiman, L. (2001). [Random forests. Machine learning](https://link.springer.com/content/pdf/10.1023/A:1010933404324.pdf), 45(1), 5-32.
+
 Goodfellow, I., Bengio, Y., & Courville, A. Forthcoming. [Deep Learning](http://www.deeplearningbook.org/lecture_slides.html). MIT Press.
 
 Pustejovsky, J., & Stubbs, A. (2012). [Natural Language Annotation for Machine Learning](https://proquest.safaribooksonline.com/book/programming/machine-learning/9781449332693). O'Reilly Media, Inc.
