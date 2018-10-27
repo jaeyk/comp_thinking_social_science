@@ -11,7 +11,7 @@ Gillespie, C. and Lovelace, R. (2017). [Efficienct R Programming](https://csgill
 
 Grolemund, G. and Wickham, H. (2017). [R for Data Science](http://r4ds.had.co.nz/). O'Reilly Media, Inc.
 
-- The book is accessible and also provides a strong foundation in R and programming in general. I strongly agree with their claim that "writing code is similar in many ways to writing prose".
+- The book is accessible but also provides a strong foundation in R and programming in general. I strongly agree with their claim that "writing code is similar in many ways to writing prose".
 - Getting the pipe (%>%), functions, data structures, and iteration right yields a huge increasing return. 
 
 Wickham, H. (2015). [R Packages](http://r-pkgs.had.co.nz/). O'Reily Media, Inc.
