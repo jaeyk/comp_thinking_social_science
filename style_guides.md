@@ -21,3 +21,7 @@
 [The tidyverse style guide](http://style.tidyverse.org/) by Hadley Wickham
 
 [Google Python Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md)
+
+## General subjects 
+
+[The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/) by Kieran Healy 
