@@ -8,9 +8,12 @@
 
 [Version Control with Git](https://swcarpentry.github.io/git-novice/) by Software Carpentry
 
+[Initial steps toward reproducible research](https://kbroman.org/steps2rr/) by Karl Broman
+
+[The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/) by Kieran Healy 
+
+
 ## Programming efficiency (style guides)
-
-
 
 [Google's R style guide](https://google.github.io/styleguide/Rguide.xml)
 
@@ -20,18 +23,17 @@
 
 [Google Python Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md)
 
+
 ## Other stuff 
+
+[Don't repeat yourself](http://web.archive.org/web/20131204221336/http://programmer.97things.oreilly.com/wiki/index.php/Don%27t_Repeat_Yourself)
+- There are fundamentals. And there are principles.
 
 [A survey on literate programming](http://www.literateprogramming.com/index.html)
 
 - Writing a paper and code are not fundamentally different. They are all about logic and communications.
 
 [Literate programming](http://www.literateprogramming.com/knuthweb.pdf) by [Donald E. Knuth](https://en.wikipedia.org/wiki/Donald_Knuth) (he also created the TeX computer typesetting system) 
-
-[Don't repeat yourself](http://web.archive.org/web/20131204221336/http://programmer.97things.oreilly.com/wiki/index.php/Don%27t_Repeat_Yourself)
-- There are fundamentals. And there are principles.
-
-[The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/) by Kieran Healy 
 
 [How to include an SVG image in LATEX](http://ctan.math.illinois.edu/info/svg-inkscape/InkscapePDFLaTeX.pdf) by Johan B. C. Engelen
 
