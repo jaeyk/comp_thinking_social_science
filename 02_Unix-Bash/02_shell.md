@@ -5,7 +5,7 @@
 > *   Explain how the shell relates to the keyboard, the screen, the operating system, and users' programs.
 > *   Explain when and why command-line interfaces should be used instead of graphical interfaces. 
 
-### 1. Computer-Human Interfaces
+### 1. Human-Computer Interfaces
 
 At a high level, computers do four things:
 
