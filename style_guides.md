@@ -14,7 +14,9 @@
 
 - Writing a paper and codes are not fundamentally different. At some point, both of them should be able to be understood and used by some other people aside from the authors.
 
-[Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml)
+[Google's R style guide](https://google.github.io/styleguide/Rguide.xml)
+
+[R code style guide](http://r-pkgs.had.co.nz/r.html) by Hadley Wickham 
 
 [The tidyverse style guide](http://style.tidyverse.org/) by Hadley Wickham
 
