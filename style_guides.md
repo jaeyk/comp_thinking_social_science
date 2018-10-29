@@ -12,7 +12,7 @@
 
 [Literate programming](http://www.literateprogramming.com/index.html)
 
-- Writing a paper and codes are not fundamentally different. They are all about logic and communications.
+- Writing a paper and code are not fundamentally different. They are all about logic and communications.
 
 [Google's R style guide](https://google.github.io/styleguide/Rguide.xml)
 
