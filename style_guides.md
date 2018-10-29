@@ -22,6 +22,10 @@
 
 [Google Python Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md)
 
-## General subjects 
+## Other stuff 
 
 [The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/) by Kieran Healy 
+
+[How to include an SVG image in LATEX](http://ctan.math.illinois.edu/info/svg-inkscape/InkscapePDFLaTeX.pdf) by Johan B. C. Engelen
+
+- SVG looks much better than PNG, and other image formats (NEVER try JPEG). If you need a clear image in your papers or presentations, this format is the best. 
