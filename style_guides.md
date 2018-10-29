@@ -22,9 +22,11 @@
 
 ## Other stuff 
 
-[Literate programming](http://www.literateprogramming.com/index.html)
+[A survey on literate programming](http://www.literateprogramming.com/index.html)
 
 - Writing a paper and code are not fundamentally different. They are all about logic and communications.
+
+[Literate programming](http://www.literateprogramming.com/knuthweb.pdf) by [Donald E. Knuth](https://en.wikipedia.org/wiki/Donald_Knuth) (he also created the TeX computer typesetting system) 
 
 [Don't repeat yourself](http://web.archive.org/web/20131204221336/http://programmer.97things.oreilly.com/wiki/index.php/Don%27t_Repeat_Yourself)
 - There are fundamentals. And there are principles.
