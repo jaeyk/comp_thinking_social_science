@@ -28,4 +28,4 @@
 
 [How to include an SVG image in LATEX](http://ctan.math.illinois.edu/info/svg-inkscape/InkscapePDFLaTeX.pdf) by Johan B. C. Engelen
 
-- SVG looks much better than PNG, and other image formats (NEVER try JPEG). If you need a clear image in your papers or presentations, this format is the best. 
+- SVG provides a much better image than PNG, and other image formats (NEVER try JPEG). If you need a clear image in your papers or presentations, consider this option. 
