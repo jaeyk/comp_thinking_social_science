@@ -115,7 +115,7 @@ See [B_Install.md](B_Install.md) for more information.
 
 ### Books and Other Resources
 
-There are no official textbooks for this class. For those interested in advcanced subjects, please see [references.md](references.md). For those interested in project managemet and efficient programming, please see [style_guides.md](style_guides.md). Note that these references will be updated throughout the semester. For the semester, we will have access to all of Datacamp's premium course materials (many thanks to Datacamp!).
+There are no official textbooks for this class. For those interested in advcanced subjects, please see [the references](references.md). For those interested in project managemet and efficient programming, please see [the style guides](style_guides.md). Note that these references will be updated throughout the semester. For the semester, we will have access to all of Datacamp's premium course materials (many thanks to Datacamp!).
 
 ## Curriculum Outline / Schedule
 
