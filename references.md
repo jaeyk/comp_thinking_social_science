@@ -1,6 +1,6 @@
 # References 
 
-Here's a list of books and papers related to PS239T that I found useful. 
+Here's a list of books and papers related to PS239T that I found useful.
 
 
 ## R
