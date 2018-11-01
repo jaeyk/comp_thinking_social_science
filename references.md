@@ -25,6 +25,8 @@ Silge, J. and Robinson, D. (2018). [Text Mining with R](https://www.tidytextmini
 
 Jurafsky, Dan, and James H. Martin. Forthcoming. [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/)
 
+Chang, J., Gerrish, S., Wang, C., Boyd-Graber, J. L., & Blei, D. M. (2009). [Reading tea leaves: How humans interpret topic models. In Advances in neural information processing systems (pp. 288-296)](http://papers.nips.cc/paper/3700-reading-tea-leaves-how-humans-interpret-topic-models.pdf).
+
 Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). Political analysis, 21(3), 267-297.
 
 Roberts, M. (2017). [Slides on structural topic modeling](http://ica-cm.org/wp-content/uploads/2017/05/roberts_topicmodels_combo.pdf)
