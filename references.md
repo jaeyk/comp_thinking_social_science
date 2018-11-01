@@ -27,7 +27,8 @@ Jurafsky, Dan, and James H. Martin. Forthcoming. [Speech and Language Processing
 
 Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). Political analysis, 21(3), 267-297.
 
-Egami, N., Fong, C. J., Grimmer, J., Roberts, M. E., & Stewart, B. M. (2018). [How to make causal inferences using texts.](https://scholar.princeton.edu/sites/default/files/bstewart/files/ais.pdf). Working paper.
+Roberts, M. (2017). [Slides on structural topic modeling](http://ica-cm.org/wp-content/uploads/2017/05/roberts_topicmodels_combo.pdf)
+
 
 ## Machine Learning 
 
