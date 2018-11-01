@@ -15,6 +15,10 @@ Grolemund, G. (2014). [Hands-On Programming with R](https://proquest.safaribooks
 
 Wickham, H. (2014). [R Packages](http://adv-r.had.co.nz/). Chapman & Hall’s R Series.
 
+## Python
+
+Downey, B. A. (2012). [Think Python: How to Think Like a Computer Scientist](http://www.greenteapress.com/thinkpython/thinkpython.pdf). Green Tea Press.
+
 ## Automated text analysis
 
 Silge, J. and Robinson, D. (2018). [Text Mining with R](https://www.tidytextmining.com/index.html). O'Reily Media, Inc.
