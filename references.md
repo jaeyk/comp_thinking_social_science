@@ -7,11 +7,7 @@ Here's a list of books and papers related to PS239T that I found useful.
 
 Gillespie, C. and Lovelace, R. (2017). [Efficienct R Programming](https://csgillespie.github.io/efficientR/). O'Reilly Media, Inc.
 
-- If you don't have time to read the entire book, then read at laest ch.4 Efficient work flow. 
-
 Grolemund, G. and Wickham, H. (2017). [R for Data Science](http://r4ds.had.co.nz/). O'Reilly Media, Inc.
-
-- The book is accessible but also provides a strong foundation in R and programming in general. I strongly agree with their claim that "writing code is similar in many ways to writing prose".
 
 Wickham, H. (2015). [R Packages](http://r-pkgs.had.co.nz/). O'Reily Media, Inc.
 
