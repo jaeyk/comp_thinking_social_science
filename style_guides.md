@@ -4,8 +4,6 @@
 
 [Project management with RStudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/) by  Software Carpentry
 
-- Make using R project as part of your regular R practice.
-
 [Version Control with Git](https://swcarpentry.github.io/git-novice/) by Software Carpentry
 
 [Initial steps toward reproducible research](https://kbroman.org/steps2rr/) by Karl Broman
@@ -27,14 +25,7 @@
 ## Other stuff 
 
 [Don't repeat yourself](http://web.archive.org/web/20131204221336/http://programmer.97things.oreilly.com/wiki/index.php/Don%27t_Repeat_Yourself)
-- There are fundamentals. And there are principles.
 
 [A survey on literate programming](http://www.literateprogramming.com/index.html)
 
-- Writing a paper and code are not fundamentally different. They are all about logic and communications.
-
 [Literate programming](http://www.literateprogramming.com/knuthweb.pdf) by [Donald E. Knuth](https://en.wikipedia.org/wiki/Donald_Knuth) (he also created the TeX computer typesetting system) 
-
-[How to include an SVG image in LaTeX](http://ctan.math.illinois.edu/info/svg-inkscape/InkscapePDFLaTeX.pdf) by Johan B. C. Engelen
-
-- SVG provides a much better image resolution than PNG, and other image formats do (NEVER try JPEG). If you need a clear image in your papers or presentations, consider this option. 
