@@ -1,6 +1,6 @@
 # References 
 
-Here's a list of books and papers related to PS239T that I found useful.
+Here's a list of books, papers, and other resources related to PS239T that I found useful.
 
 
 ## R
@@ -14,6 +14,8 @@ Wickham, H. (2015). [R Packages](http://r-pkgs.had.co.nz/). O'Reily Media, Inc.
 Grolemund, G. (2014). [Hands-On Programming with R](https://proquest.safaribooksonline.com/9781449359089). O'Reily Media, Inc.
 
 Wickham, H. (2014). [R Packages](http://adv-r.had.co.nz/). Chapman & Hall’s R Series.
+
+[University of Cincinatti Business Analytics R Programming Guide](https://uc-r.github.io/). 
 
 
 ## Python
