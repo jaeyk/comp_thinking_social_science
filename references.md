@@ -15,9 +15,11 @@ Grolemund, G. (2014). [Hands-On Programming with R](https://proquest.safaribooks
 
 Wickham, H. (2014). [R Packages](http://adv-r.had.co.nz/). Chapman & Hall’s R Series.
 
+
 ## Python
 
 Downey, B. A. (2012). [Think Python: How to Think Like a Computer Scientist](http://www.greenteapress.com/thinkpython/thinkpython.pdf). Green Tea Press.
+
 
 ## Automated text analysis
 
@@ -34,6 +36,8 @@ Roberts, M. (2017). [Slides on structural topic modeling](http://ica-cm.org/wp-c
 
 ## Machine Learning 
 
+James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). [An introduction to statistical learning with Applications in R](http://www-bcf.usc.edu/~gareth/ISL/). New York: springer.
+
 Friedman, J., Hastie, T., & Tibshirani, R. (2017). [The Elements of Statistical Learning: Data Mining, Inference, and Prediction](https://web.stanford.edu/~hastie/ElemStatLearn/). New York, NY, USA:: Springer series in statistics.
 
 Bishop, C. (2006). [Pattern Recognition and Machine Learning](https://www.springer.com/us/book/9780387310732). New York, NY, USA:: Springer series in statistics.
@@ -45,6 +49,7 @@ Breiman, L. (2001). [Statistical modeling: The two cultures (with comments and a
 Goodfellow, I., Bengio, Y., & Courville, A. Forthcoming. [Deep Learning](http://www.deeplearningbook.org/lecture_slides.html). MIT Press.
 
 Pustejovsky, J., & Stubbs, A. (2012). [Natural Language Annotation for Machine Learning](https://proquest.safaribooksonline.com/book/programming/machine-learning/9781449332693). O'Reilly Media, Inc.
+
 
 ## Algorithms 
 
