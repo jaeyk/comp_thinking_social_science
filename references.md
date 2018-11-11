@@ -22,6 +22,10 @@ Wickham, H. (2014). [R Packages](http://adv-r.had.co.nz/). Chapman & Hall’s R 
 
 Downey, B. A. (2012). [Think Python: How to Think Like a Computer Scientist](http://www.greenteapress.com/thinkpython/thinkpython.pdf). Green Tea Press.
 
+## Data visualization
+
+Healy, K. Forthcoming. [Data Visualization
+A practical introduction](https://socviz.co/). Princeton University Press.
 
 ## Automated text analysis
 
