@@ -13,14 +13,21 @@
 
 ## Programming efficiency (style guides)
 
+### R
 [Google's R style guide](https://google.github.io/styleguide/Rguide.xml)
 
 [R code style guide](http://r-pkgs.had.co.nz/r.html) by Hadley Wickham 
 
 [The tidyverse style guide](http://style.tidyverse.org/) by Hadley Wickham
 
+### Python
 [Google Python Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md)
 
+[Code Style](https://docs.python-guide.org/writing/style/#zen-of-python) by the Hitchhiker's Guide to Python
+
+## Programming pedagogy (also applied to self-learners)
+
+[Teach the tidyverse to beginners](http://varianceexplained.org/r/teach-tidyverse/) by David Robinson
 
 ## Other stuff 
 
@@ -30,4 +37,4 @@
 
 [Literate programming](http://www.literateprogramming.com/knuthweb.pdf) by [Donald E. Knuth](https://en.wikipedia.org/wiki/Donald_Knuth) (the creator of the TeX computer typesetting system) 
 
-[Teach the tidyverse to beginners](http://varianceexplained.org/r/teach-tidyverse/) by David Robinson
+[Zen of Python](https://en.wikipedia.org/wiki/Zen_of_Python)
