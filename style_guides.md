@@ -25,7 +25,7 @@
 
 [Code Style](https://docs.python-guide.org/writing/style/#zen-of-python) by the Hitchhiker's Guide to Python
 
-## Programming pedagogy (also applied to self-learners)
+## Programming pedagogy (also applicable to self-learners)
 
 [Teach the tidyverse to beginners](http://varianceexplained.org/r/teach-tidyverse/) by David Robinson
 
