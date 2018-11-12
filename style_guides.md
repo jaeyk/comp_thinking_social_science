@@ -29,3 +29,5 @@
 [A survey on literate programming](http://www.literateprogramming.com/index.html)
 
 [Literate programming](http://www.literateprogramming.com/knuthweb.pdf) by [Donald E. Knuth](https://en.wikipedia.org/wiki/Donald_Knuth) (the creator of the TeX computer typesetting system) 
+
+[Teach the tidyverse to beginners](http://varianceexplained.org/r/teach-tidyverse/) by David Robinson
