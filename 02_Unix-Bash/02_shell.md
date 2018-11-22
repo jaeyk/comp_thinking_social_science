@@ -26,7 +26,7 @@ to distinguish it from the **graphical user interface**, or GUI, that most peopl
 The heart of a CLI is a **read-evaluate-print loop**, or REPL: when the user types a command and then presses the enter (or return) key, the computer reads it, executes it, and prints its output. The user then types another command,
 and so on until the user logs off.
 
-The key point is this: 
+The key point is [this](https://medium.com/@charlie.b.ohara/the-linux-command-line-9d6ee43641aa): 
 >graphical user interfaces make easy tasks easy, while command line interfaces make difficult tasks possible.
 
 ### 3. The Shell
