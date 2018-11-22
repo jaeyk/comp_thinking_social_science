@@ -2,7 +2,9 @@
 title: "One-Dimensional Data in R"
 author: "PS239T"
 date: "Spring 2018"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 # Intro to Data Structures

@@ -1,8 +1,10 @@
 ---
-title: "More Advanced Programming in R: Lecture Notes"
+title: 'More Advanced Programming in R: Lecture Notes'
 author: "PS239T"
 date: "Spring 2018"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 We've already learned about types in R. Now let's discuss some more advanced programming in R - namely:

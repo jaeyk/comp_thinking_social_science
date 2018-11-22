@@ -2,7 +2,9 @@
 title: "Data Visualization"
 author: "PS239T"
 date: "Fall 2016"
-output: slidy_presentation
+output:
+  beamer_presentation: default
+  slidy_presentation: default
 ---
 
 ## Atomic Types

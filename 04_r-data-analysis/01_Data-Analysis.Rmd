@@ -1,8 +1,11 @@
 ---
-title: "Data Analysis in R: Lecture Notes"
+title: 'Data Analysis in R: Lecture Notes'
 author: "PS239T"
 date: "Spring 2018"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
 ---
 
 For most applied research, conducting data analysis in R involves the following core tasks: 
