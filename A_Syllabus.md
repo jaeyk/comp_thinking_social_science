@@ -122,7 +122,7 @@ There are no official textbooks for this class. Please see [the references](refe
 The schedule is subject to change based on the class's rate of progress. 
 
 * **Jan. 16:** Introduction and Setup ("Installfest")
-* **Jan. 21/23:** Git and Bash
+* **Jan. 21/23:** Git and Bash 
 * **Jan. 28/30:** Data Structure in R
 * **Feb. 4/6:** Data Analysis in R 
 * **Feb. 11/13:** Data Visualization in R
