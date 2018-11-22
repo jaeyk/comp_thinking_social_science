@@ -27,9 +27,13 @@ Downey, B. A. (2012). [Think Python: How to Think Like a Computer Scientist](htt
 Healy, K. Forthcoming. [Data Visualization
 A practical introduction](https://socviz.co/). Princeton University Press.
 
-## Automated text analysis
+## Automated text analysis (some overalps with machine learning)
 
 Silge, J. and Robinson, D. (2018). [Text Mining with R](https://www.tidytextmining.com/index.html). O'Reily Media, Inc.
+
+Goldberg, Y. (2017). [Neural Network Methods for Natural Language Processing: Synthesis Lectures on Human Language Technologies](https://www.morganclaypool.com/doi/10.2200/S00762ED1V01Y201703HLT037). Morgan and Claypool Publishers.
+
+Manning, C., & Schütze, H. (1999). [Foundations of Statistical Natural Language Processing](https://nlp.stanford.edu/fsnlp/). MIT Press.
 
 Jurafsky, Dan, and James H. Martin. Forthcoming. [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/)
 
@@ -47,6 +51,8 @@ James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). [An introduction to 
 Friedman, J., Hastie, T., & Tibshirani, R. (2017). [The Elements of Statistical Learning: Data Mining, Inference, and Prediction](https://web.stanford.edu/~hastie/ElemStatLearn/). New York, NY, USA:: Springer series in statistics.
 
 Bishop, C. (2006). [Pattern Recognition and Machine Learning](https://www.springer.com/us/book/9780387310732). New York, NY, USA:: Springer series in statistics.
+
+Chollet, F., & Allaire J. J. (2018). [Deep Learning with R](https://www.manning.com/books/deep-learning-with-r). Manning Publications.
 
 Breiman, L. (2001). [Random forests. Machine learning](https://link.springer.com/content/pdf/10.1023/A:1010933404324.pdf), 45(1), 5-32.
 
