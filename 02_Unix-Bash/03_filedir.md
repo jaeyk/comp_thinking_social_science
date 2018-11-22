@@ -250,7 +250,7 @@ As you can see, it also displays another special directory that's just called `.
 > `/home/oski/elsewhere`.
 
 ### 4. Tab Completion
-If she is in her home directory, Rachel can see what files she has on her `Desktop` using the command:
+If you are in you home directory, you can see what files you have on your `Desktop` using the command:
 
 ```shell
 $ ls ~/Desktop
@@ -283,7 +283,7 @@ This is called **tab completion**, and we will see it in many other tools as we 
 #### Challenge 1
 
 1. Change your working directory to the place where you want to clone the `PS239T` materials. 
-2. type `git clone https://github.com/ribernhard/PS239T.git` 
+2. type `git clone https://github.com/jaeyk/PS239T.git` 
 3. `cd` into the `PS239T/02_Unix-Bash` sub-directory.
 2. list the files in the directory
 
