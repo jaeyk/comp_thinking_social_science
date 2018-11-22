@@ -11,7 +11,7 @@
 > *   Demonstrate the use of tab completion, and explain its advantages.
 
 
-### 1. Home Directories
+### 1. File System Organization
 
 Next, let's find out where we are by running a command called `pwd` (**print working directory**).
 
