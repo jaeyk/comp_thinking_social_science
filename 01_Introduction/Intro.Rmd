@@ -53,7 +53,45 @@ ggplot(data_science_trends$interest_over_time, aes(date, hits)) +
 - But it takes some **efforts** to take advantages of these new tools. 
     - You need to learn how to code **a little bit**. 
     - However, leanring on your own is inefficient. 
-    - More important, you can get bad habits.
+    - More important, you can get **bad** habits.
+
+---
+
+* The following examples are adapted from https://style.tidyverse.org 
+
+```{r, eval = FALSE, echo = TRUE}
+
+# Good 
+fit_models.R
+
+if (y < 0 && debug) {
+  message("y is negative")
+}
+
+# Bad
+fit models.R
+
+if (y < 0 && debug)
+message("Y is negative")
+
+```
+
+--- 
+
+```{r, eval = FALSE, echo = TRUE}
+
+# Good 
+do_something_very_complicated(
+  something = "that",
+  requires = many,
+  arguments = "some of which may be long"
+)
+
+# Bad 
+do_something_very_complicated("that", requires, many, arguments,
+                              "some of which may be long"
+                              )
+```
 
 ---
 
