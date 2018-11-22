@@ -17,7 +17,7 @@ Next, let's find out where we are by running a command called `pwd` (which stand
 
 At any moment, our **current working directory** is our current default directory, i.e., the directory that the computer assumes we want to run commands in  unless we explicitly specify something else.
 
-Here, the computer's response is `/home/oski` (on Rachel's system, `/Users/rachel`), which is the **home directory**:
+Here, the computer's response is `/home/oski`, which is the **home directory**:
 
 ```shell
 $ pwd
@@ -71,7 +71,7 @@ We know that our current working directory `/home/oski` is stored inside `/home`
 
 ### 2. Listing
 
-Let's see what's in Rachel's home directory by running `ls`, which stands for "listing":
+Let's see what's in your home directory by running `ls`, which stands for "listing":
 
 ```shell
 $ ls
@@ -97,10 +97,6 @@ Documents		Movies			anaconda
 Downloads		Music			file.txt
 ```
 
-Here,
-we can see that Rachel's version of `/home/oski` contains 15 **sub-directories**.
-The names that don't have trailing slashes, like `file.txt` are plain old files.
-
 And note that there is a space between `ls` and `-F`: without it, the shell thinks we're trying to run a command called `ls-F`, which doesn't exist.
 
 > #### What's In A Name?
@@ -123,7 +119,7 @@ And note that there is a space between `ls` and `-F`: without it, the shell thin
 > cause the operating system to try to open it with a music player
 > when someone double-clicks it.
 
-Now let's take a look at what's in Rachel's `Desktop` directory by running `ls -F data`, i.e., the command `ls` with the **arguments** `-F` and `PS239T`. The second argument --- the one *without* a leading dash --- tells `ls` that
+Now let's take a look at what's in your `Desktop` directory by running `ls -F data`, i.e., the command `ls` with the **arguments** `-F` and `PS239T`. The second argument --- the one *without* a leading dash --- tells `ls` that
 we want a listing of the files in something other than our current working directory:
 
 ```shell
