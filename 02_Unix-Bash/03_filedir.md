@@ -13,7 +13,7 @@
 
 ### 1. Home Directories
 
-Next, let's find out where we are by running a command called `pwd` (which stands for "print working directory").
+Next, let's find out where we are by running a command called `pwd` (**print working directory**).
 
 At any moment, our **current working directory** is our current default directory, i.e., the directory that the computer assumes we want to run commands in  unless we explicitly specify something else.
 
@@ -71,7 +71,7 @@ We know that our current working directory `/home/oski` is stored inside `/home`
 
 ### 2. Listing
 
-Let's see what's in your home directory by running `ls`, which stands for "listing":
+Let's see what's in your home directory by running `ls` (**list files and directories):
 
 ```shell
 $ ls
@@ -176,7 +176,7 @@ Downloads		Music			file.txt
 
 ### 3. Moving Around
 
-We can use `cd` followed by a directory name to change our working directory. `cd` stands for "change directory", which is a bit misleading: the command doesn't change the directory, it changes the shell's idea of what directory we are in.
+We can use `cd` (**change directory**) followed by a directory name to change our working directory. 
 
 ```shell
 $ cd Desktop
