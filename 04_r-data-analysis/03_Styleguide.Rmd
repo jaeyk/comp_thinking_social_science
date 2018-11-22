@@ -1,0 +1,174 @@
+---
+title: "Style Guide"
+output:
+  pdf_document: default
+  html_notebook: default
+author: "Jae Yeon Kim"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+```{r}
+# Most of contents here are adapted from https://style.tidyverse.org 
+```
+
+
+# Five rules
+
+- Write code as if you're writing a paper.
+
+- Organize files. 
+
+- Comment religiously. 
+
+- Reuse functions. 
+
+- Do version control. 
+
+
+# Files 
+
+```{r, eval= FALSE}
+# Good
+fit_models.R
+
+# Bad
+fit models.R
+```
+
+- When naming files:
+    - Don't use speccial characters.
+    - Don't capitalize.
+    - Numbering them if files should be run in an order.
+    
+# Syntax 
+
+## Objects 
+
+```{r, eval = FALSE}
+# Good 
+day_one
+    
+# Bad 
+DayOne
+```
+
+- When naming objects:
+    - Don't use speccial characters.
+    - Don't capitalize.
+    - Numbering them if files should be run in an order.
+
+## Functions 
+
+```{r, eval = FALSE}
+# Good 
+run_rdd 
+
+# Bad 
+rdd
+```
+
+- When naming objects:
+    - Don't use speccial characters.
+    - Don't capitalize.
+    - Use verbs instead of nouns.
+    
+## Spacing 
+
+```{r, eval = FALSE}
+# Good
+x[, 1] 
+
+mean(x, na.rm = TRUE) 
+
+if (debug) show(x) 
+
+function(x) {}
+
+height <- (feet * 12) + inches
+
+sqrt(x^2 + y^2)
+
+# Bad
+x[,1]
+
+mean (x, na.rm = TRUE)
+
+if(debug) show(x)
+
+function(x){}
+
+height <- (feet*12) + inches
+
+sqrt(x ^ 2 + y ^ 2)
+```
+
+## Indenting 
+
+```{r eval= FALSE}
+# Good
+if (y < 0 && debug) {
+  message("y is negative")
+}
+
+# Bad
+if (y < 0 && debug)
+message("Y is negative")
+```
+
+## Long lines
+
+```{r, eval = FALSE}
+# Good
+do_something_very_complicated(
+  something = "that",
+  requires = many,
+  arguments = "some of which may be long"
+)
+
+# Bad
+do_something_very_complicated("that", requires, many, arguments,
+                              "some of which may be long"
+                              )
+```
+
+## Comments 
+
+- Use comments for findings and analysis decisions. 
+- Show your code; Do not try to explain your code by comments.
+
+# Functions 
+
+```{r, eval = FALSE}
+# Good
+add_row()
+
+# Bad
+row_adder()
+```
+
+## Comments 
+
+- Inside functions, use comments to explain **why**
+
+# Pipes 
+
+```{r, eval = FALSE}
+# Good
+iris %>%
+  group_by(Species) %>%
+  summarize_if(is.numeric, mean) %>%
+  ungroup() %>%
+  gather(measure, value, -Species) %>%
+  arrange(value)
+
+# Bad
+iris %>% group_by(Species) %>% summarize_all(mean) %>%
+ungroup %>% gather(measure, value, -Species) %>%
+arrange(value)
+
+```
+
+# Additional tips 
+
+- Use styler package in R to learn how to format your code to according to the style guide above
+

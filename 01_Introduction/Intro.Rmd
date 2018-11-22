@@ -1,0 +1,165 @@
+---
+title: "Introduction to Computational Tools and Techniques in Social Science"
+author: "Jae Yeon Kim"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+   beamer_presentation:
+     toc: no
+#     slide_level: 2
+     fig_caption: false
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+
+knitr::opts_chunk$set(echo = FALSE)
+
+# install packages 
+library(ggplot2)
+library(gtrendsR)
+library(png)
+
+```
+
+# Motivation 
+```{r pressure}
+# create an object for data science google trend results
+data_science_trends <- gtrends("data science")
+
+ggplot(data_science_trends$interest_over_time, aes(date, hits)) +
+  geom_line() +
+  geom_point() +
+  ggtitle("Global search popularity for 'data science'") 
+```
+
+---
+
+- Why should we care?
+- Yes, big data is a trend. 
+- But being good at computational tools and techniques has more immediate benefits. 
+- It can make your life **easy** and **organized**.
+    - Don't repeat yourself: AUTOMATE!
+    
+---
+
+- In addiiton, there are new tools for 
+    - Data collection (e.g., APIs, webscraping)
+    - Analysis (e.g., machine learning)
+    - Visualization (e.g., maps, social networks)
+- In sum, you can do cool stuff.
+
+---
+
+- But it takes some **efforts** to take advantages of these new tools. 
+    - You need to learn how to code **a little bit**. 
+    - However, leanring on your own is inefficient. 
+    - More important, you can get bad habits.
+
+---
+
+# Objectives
+
+- Tasting a wide range of computational tools 
+- Getting programming fundamentals right
+    - Concepts
+    - Techniques 
+- Learning by doing
+    - Learning from your own trials and erros 
+    - Learning from others 
+
+--- 
+
+![Hadley Wickham quote](/home/jae/Pictures/Screenshot from 2018-10-27 22-04-11.png){width=400px}
+
+---
+
+- Coding is similar to **cooking**.
+    - So many different cuisines (programming languages).
+    - But there are fudamentals. 
+        - Ingredients (data)
+        - Techniques (logic)
+        - Recipes (workflow)
+    
+---
+
+- Bad habits are **bad**.
+    - Rule 1. Thou shall comment.
+    - Rule 2. Thou shall reuse functions (no copy and paste).
+    - Rule 3. Thou shall practice version control (no final_final_final.Rmd)
+
+---
+
+- **Learn to learn**
+- Specifically, we are going to learn:
+    - Navigate and operate effectively in a UNIX environment 
+    - Master basic Git and Github workflows 
+    - Write, execute, and debug R code for data cleaning, statistical analysis, data visualization and machine learning 
+    - Parse HTML, CSS, and Javascript for the purposes of using tools like APIs, webscraping, and Qualtrics 
+    - Write, execute, and debug R/Python code for text analysis, as well as other computing tasks 
+
+--- 
+
+- **Don't expect** you become:
+    - A software programmer (we covere only a tip of the iceberg)
+    - Get all the answers you need
+- We focus on learning **how to learn**.
+
+---
+
+# Practical examples 
+
+![Turning html documents into a dataset](/home/jae/Pictures/Screenshot from 2018-10-27 22-47-43.png){width=400px}
+
+---
+
+- Using Excel: 
+    - 3 mins for copying, pasting, and reorganizing one article 
+    - 80,000 newspaper articles 
+    - Taking **4,000** hours or **166 days**
+
+---
+
+- Using python: 
+    - A few hours for coding 
+    - Less than 5 mins for creating the dataset 
+    - Also, the code is reusable.
+    
+![Using python beautifulsoup](/home/jae/Pictures/Python_approach.png)
+---
+
+
+# Previous final projects by students 
+![Digital Refugee Project](/home/jae/Pictures/Laura_Melissa.png){width=400px}
+
+---
+
+# Focus on best practice
+
+- Good habits are **good**.
+    - Commenting serves you and many other people.
+    - Reusing functions provides opportunities to learn and clean up your mess.
+    - Practicing version control is how we become a mature researcher and a coder. 
+        
+---
+
+# Class 
+
+- Participation (25%)
+    - Be kind and nice to each other. We're all leanring (especially me).
+- Homework (50%)
+    - Every week. 
+    - Learning how to code is like learning how to drive.
+- Final project (25%)
+    - Feasibility is your friend. Late Feb proposal, April presentations.
+
+---
+
+# Logistics
+- Learning by doing 
+- Pair-programming on in-class challenges 
+- Section is required. 
+- Julia Christensen is a technical assistant to the course.
+
+# Special thanks 
+- Rochelle Terman (University of Chicago)
+- Rachel Bernhard (University of Oxford, UC Davis)
