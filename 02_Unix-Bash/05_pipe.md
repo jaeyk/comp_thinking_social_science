@@ -127,7 +127,7 @@ $ sort -n lengths | head -1
    70 africa49.txt
 ```
 
-The vertical bar between the two commands is called a **pipe**. It tells the shell that we want to use the output of the command on the left as the input to the command on the right. The computer might create a temporary file if it needs to, or copy data from one program to the other in memory, or something else entirely; we don't have to know or care.
+The vertical bar between the two commands is called a **pipe**. It tells the shell that we want to use the output of the command on the left as the input to the command on the right. Simlyt put, it connects multiple commands together. The computer might create a temporary file if it needs to, or copy data from one program to the other in memory, or something else entirely; we don't have to know or care.
 
 We can use another pipe to send the output of `wc` directly to `sort`, which then sends its output to `head`:
 
