@@ -1,4 +1,4 @@
-# The Unix Shell: 4. Creating Things
+# The Unix Shell: 4. Manipulating Things
 
 > ### Learning Objectives
 >
