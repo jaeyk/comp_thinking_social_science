@@ -3,10 +3,16 @@ title: "Introduction to Computational Tools and Techniques in Social Science"
 author: "Jae Yeon Kim"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-   beamer_presentation:
-     toc: no
-#     slide_level: 2
-     fig_caption: false
+  beamer_presentation:
+    fig_caption: no
+    latex_engine: xelatex
+    toc: no
+  slidy_presentation: default
+header-includes:
+- \usepackage{array}
+- \usepackage{multicol}
+- \usepackage{fontspec}
+fontsize: 15pt
 ---
 
 ```{r setup, include=FALSE}
