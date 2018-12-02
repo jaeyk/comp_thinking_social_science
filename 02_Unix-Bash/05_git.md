@@ -19,7 +19,11 @@ According to [Github Guides](https://guides.github.com), a versin control system
 
 Git is a case of a [distributed version control system](https://en.wikipedia.org/wiki/Distributed_version_control), common in open source and commercial software development. Meaning, it works very transparently. Developers have great control over a project. 
 
+The following images, from [git-scm.com](git-scm.com), show how a centralized and decentralized VCS works differently. 
+
 ![Centralized version control system](https://git-scm.com/book/en/v2/images/centralized.png)
+
+![Decentralized version control system](https://git-scm.com/book/en/v2/images/distributed.png)
 
 ### 2. Setup 
 
