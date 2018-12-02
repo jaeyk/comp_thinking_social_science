@@ -68,7 +68,7 @@ These feautre show how Git works as a version control system.
 If you edited files or added new ones, then you need to update your repository. In Git terms, this action is called committing changes. 
 
 ```{shell}
-$ git add . # update every change. 
+$ git add . # update every change. In Git terms, you're staging. 
 $ git commit -m "your comment" # your comment for the commit. 
 $ git push origin master # commit the change. 
 ```
@@ -119,3 +119,22 @@ $ git checkout new_features
 You can see the newly created branch by typing **git branch**.
 
 In short, branching makes Git [works like](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics) a mini filesystem.
+
+### 7. Collbaorations 
+
+Two options. 
+
+* Sharing a repository (private project).
+* Fork and pull (open source project). 
+        * The one who maintains the repositoriry becomes the maintainer. 
+        * The others can [fork](https://help.github.com/articles/about-forks/), make changes, and even [pull](https://help.github.com/articles/about-pull-requests/) them back.
+
+### 8. Other stuff 
+
+```{shell}
+$ git status # show the status of changes 
+$ git branch $ show the branch being worked on locally
+$ git merge $ merge branches 
+```
+
+For more Git exercises, check out [https://gitexercises.fracz.com/](https://gitexercises.fracz.com/).
