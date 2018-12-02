@@ -69,6 +69,7 @@ If you edited files or added new ones, then you need to update your repository. 
 
 ```{shell}
 $ git add . # update every change. In Git terms, you're staging. 
+$ git add file_name # or stage a specific file.
 $ git commit -m "your comment" # your comment for the commit. 
 $ git push origin master # commit the change. 
 ```
