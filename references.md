@@ -4,7 +4,7 @@ Here's a list of books, papers, and other resources related to PS239T that I fou
 
 ## Git 
 
-Chacon, S. and Straub, B. (2014). [Git Pro book]. Apress.
+Chacon, S. and Straub, B. (2014). [Git Pro book](https://git-scm.com/book/en/v2). Apress.
 
 ## R
 
