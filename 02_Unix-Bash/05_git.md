@@ -1,6 +1,6 @@
 # The Unix Shell: 5. Git basics 
 
-> * The following contents are adapted from [git-fundamentals workshop materials](https://github.com/dlab-berkeley/git-fundamentals/blob/master/0-1_introduction.md) prepared by Dillon Niederhut at D-Lab and other resources from [https://git-scm.com](https://git-scm.com). 
+> * The following contents are adapted from [git-fundamentals workshop materials](https://github.com/dlab-berkeley/git-fundamentals/blob/master/0-1_introduction.md) prepared by Dillon Niederhut at D-Lab and other resources from [Pro Git](https://git-scm.com) by Scott Chacon and Ben Straub. 
 > * Learn what is a version control system and what is Git
 > * Learn how to use Git  
 >   * How to setup your Git account on your local machine 
@@ -22,7 +22,7 @@ Git is a case of a [distributed version control system](https://en.wikipedia.org
 
 * If you're curious about how the Intenret works, learn one of the key ideas of the Internet: [end-to-end principle](https://en.wikipedia.org/wiki/End-to-end_principle). This also explains why [net neutrality](https://en.wikipedia.org/wiki/Net_neutrality) matters. 
 
-The following images, from [git-scm.com](git-scm.com), show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS (e.g., Git, Mercurial, Bazzar or Darcs) works differently. 
+The following images, from [Pro Git](git-scm.com), show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS (e.g., Git, Mercurial, Bazzar or Darcs) works differently. 
 
 ![Centralized version control system](https://git-scm.com/book/en/v2/images/centralized.png)
 
@@ -107,7 +107,7 @@ $ git fetch origin master
 
 ### 6. Branching 
 
-It's an advanced feature of Git's version control system that allows developers to "diverge from the main line of development and continue to do work without messing with that main line" according to [git-scm.com](https://git-scm.com/book/en/v1/Git-Branching). 
+It's an advanced feature of Git's version control system that allows developers to "diverge from the main line of development and continue to do work without messing with that main line" according to [Scott Chacon and Ben Straub](https://git-scm.com/book/en/v1/Git-Branching). 
 
 If you start working on a new feature, then create a new branch. 
 
