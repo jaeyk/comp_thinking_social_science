@@ -137,8 +137,8 @@ In short, branching makes Git [works like](https://git-scm.com/book/en/v2/Gettin
 
 Two options. 
 
-* Sharing a repository (private project).
-* Fork and pull (open source project). 
+* Sharing a repository (suitable for a private project).
+* Fork and pull (suitable for an open source project). 
         * The one who maintains the repositoriry becomes the maintainer. 
         * The others can [fork](https://help.github.com/articles/about-forks/), make changes, and even [pull](https://help.github.com/articles/about-pull-requests/) them back.
 
