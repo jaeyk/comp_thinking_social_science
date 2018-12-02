@@ -73,6 +73,11 @@ $ git add file_name # or stage a specific file.
 $ git commit -m "your comment" # your comment for the commit. 
 $ git push origin master # commit the change. 
 ```
+Another image from [Pro Git](https://git-scm.com/about/staging-area) well illustrates this process.
+
+![Git Workflow](https://git-scm.com/images/about/index1@2x.png)
+
+Figure 3. Staging and committing in Git.
 
 #### 4.1. Other useful commands for version control 
 
