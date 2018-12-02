@@ -17,6 +17,8 @@ According to [Github Guides](https://guides.github.com), a versin control system
 * When were the changes made?
 * Why were changes needed?
 
+Git is a case of a distributed version control system, common in open source and commercial software development.
+
 ### 2. Setup 
 
 We'll start with telling git who you are.
