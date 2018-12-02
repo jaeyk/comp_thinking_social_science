@@ -1,8 +1,8 @@
 # The Unix Shell: 5. Git basics 
 
 > * The following contents are adapted from [git-fundamentals workshop materials](https://github.com/dlab-berkeley/git-fundamentals/blob/master/0-1_introduction.md) prepared by Dillon Niederhut at D-Lab. 
-> * Learn how to use git  
->   * How to setup your git account on your local machine 
+> * Learn how to use Git  
+>   * How to setup your Git account on your local machine 
 >   * How to make a repository
 >   * How to commit changes 
 >   * How to push and pull (fetch)
@@ -33,7 +33,7 @@ Figure 2. Decentralized VCS.
 
 ### 2. Setup 
 
-We'll start with telling git who you are.
+We'll start with telling Git who you are.
 
 ```shell
 $ git config --global user.name "Firstname Lastname"
@@ -52,19 +52,19 @@ $ cd code_exercise
 $ git init 
 ```
 
-Alternatively, you can create a git repository via github and then clone it on your local machine. 
+Alternatively, you can create a Git repository via Github and then clone it on your local machine. 
 
 ```{shell}
 $ git clone /path/to/repository
 ```
 
-If you're unfamiliar with basic git commands, then please refer to [this git cheet sheet](http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf).
+If you're unfamiliar with basic Git commands, then please refer to [this Git cheet sheet](http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf).
 
 ### 4. Commit changes 
 
-This feautre shows how git works as a version control system. 
+These feautre show how Git works as a version control system. 
 
-If you edited files or added new ones, then you need to update your repository. In git language, this action is called committing changes. 
+If you edited files or added new ones, then you need to update your repository. In Git terms, this action is called committing changes. 
 
 ```{shell}
 $ git add . # update every change. 
@@ -82,7 +82,7 @@ $ git checkout the commit hash (e.g., a5e556) file name (fruit_list.txt) # to re
 
 ### 5. Push and pull (or fetch)
 
-This feature shows how git works as a collaboration tool. 
+These features show how Git works as a collaboration tool. 
 
 If you have not already done, let's clone PS239T directory on your clocal machine.
 
@@ -96,9 +96,9 @@ Then, let's learn more about the repository.
 $ git remote -v 
 ```
 
-Previously, we learned how to send your data save in the local machine to the remote (the github server). You can do that by editing or creating files, commiting, and then typing **git push**. 
+Previously, we learned how to send your data save in the local machine to the remote (the Github server). You can do that by editing or creating files, commiting, and then typing **git push**. 
 
-Instead, if you want to update your local data with the remote data, then you can type git pull origin (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, git retrieves the data and merge it into your local data.
+Instead, if you want to update your local data with the remote data, then you can type **git pull origin** (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.
 
 ```{shell}
 $ git fetch origin master
@@ -116,3 +116,5 @@ $ git checkout new_features
 ```
 
 You can see the newly created branch by typing **git branch**.
+
+In short, branching makes Git [works like](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics) a mini filesystem.
