@@ -71,7 +71,7 @@ If you edited files or added new ones, then you need to update your repository. 
 $ git add . # update every change. In Git terms, you're staging. 
 $ git add file_name # or stage a specific file.
 $ git commit -m "your comment" # your comment for the commit. 
-$ git push origin master # commit the change. 
+$ git push origin master # commit the change. Origin is a defaul name given to a server by Git. 
 ```
 Another image from [Pro Git](https://git-scm.com/about/staging-area) well illustrates this process.
 
@@ -108,7 +108,7 @@ Previously, we learned how to send your data save in the local machine to the re
 Instead, if you want to update your local data with the remote data, then you can type **git pull origin** (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.
 
 ```{shell}
-$ git fetch origin master
+$ git fetch origin
 ```
 
 ### 6. Branching 
