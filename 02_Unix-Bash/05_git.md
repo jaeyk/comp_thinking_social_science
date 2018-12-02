@@ -85,6 +85,13 @@ Figure 3. Staging and committing in Git.
 $ git diff # to see what changed (e.g., inside a file)
 $ git log # to track who committed what
 $ git checkout the commit hash (e.g., a5e556) file name (fruit_list.txt) # to recover old files 
+$ git revert 1q84 # revert to the previous commit 
+```
+#### 4.2. Doing other than adding 
+
+```{shell}
+$ git rm file_name # remove 
+$ git mv old_file_name new_file_name # rename a file 
 ```
 
 ### 5. Push and pull (or fetch)
@@ -141,6 +148,8 @@ Two options.
 $ git status # show the status of changes 
 $ git branch $ show the branch being worked on locally
 $ git merge $ merge branches 
+$ git reset --hard $ restore the pristine version
+$ git commit -a -m "additional backup" # to save the state again
 ```
 
 For more Git exercises, check out [https://gitexercises.fracz.com/](https://gitexercises.fracz.com/).
