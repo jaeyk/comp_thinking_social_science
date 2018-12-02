@@ -21,7 +21,7 @@ Git is a case of a [distributed version control system](https://en.wikipedia.org
 
 * If you're curious about how the Intenret works, learn one of the key ideas of the Internet: [end-to-end principle](https://en.wikipedia.org/wiki/End-to-end_principle). This also explains why [net neutrality](https://en.wikipedia.org/wiki/Net_neutrality) matters. 
 
-The following images, from [git-scm.com](git-scm.com), show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS works differently. 
+The following images, from [git-scm.com](git-scm.com), show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS (e.g., Git, Mercurial, Bazzar or Darcs) works differently. 
 
 ![Centralized version control system](https://git-scm.com/book/en/v2/images/centralized.png)
 
