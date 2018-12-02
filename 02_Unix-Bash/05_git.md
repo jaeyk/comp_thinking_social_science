@@ -79,7 +79,7 @@ Another image from [Pro Git](https://git-scm.com/about/staging-area) well illust
 
 Figure 3. Staging and committing in Git.
 
-#### 4.1. Other useful commands for version control 
+#### 4.1. Other useful commands for tracking history
 
 ```{shell}
 $ git diff # to see what changed (e.g., inside a file)
@@ -144,3 +144,5 @@ $ git merge $ merge branches
 ```
 
 For more Git exercises, check out [https://gitexercises.fracz.com/](https://gitexercises.fracz.com/).
+
+For more informatin on Git, check out [the following resources](https://git-scm.com/doc/ext). 
