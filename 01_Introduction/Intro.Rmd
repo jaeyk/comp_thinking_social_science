@@ -111,10 +111,6 @@ do_something_very_complicated("that", requires, many, arguments,
     - Learning from your own trials and erros 
     - Learning from others 
 
---- 
-
-![Hadley Wickham quote](/home/jae/Pictures/Screenshot from 2018-10-27 22-04-11.png){width=400px}
-
 ---
 
 - Coding is similar to **cooking**.
@@ -147,14 +143,10 @@ do_something_very_complicated("that", requires, many, arguments,
     - A software programmer (we covere only a tip of the iceberg)
     - Get all the answers you need
 - We focus on learning **how to learn**.
+    - Programming is one endless Google Search (aka "Rochelle's Law")
 
 ---
 
-# Practical examples 
-
-![Turning html documents into a dataset](/home/jae/Pictures/Screenshot from 2018-10-27 22-47-43.png){width=400px}
-
----
 
 - Using Excel: 
     - 3 mins for copying, pasting, and reorganizing one article 
