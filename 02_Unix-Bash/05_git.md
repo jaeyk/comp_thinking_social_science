@@ -19,7 +19,7 @@ According to [Github Guides](https://guides.github.com), a versin control system
 
 Git is a case of a [distributed version control system](https://en.wikipedia.org/wiki/Distributed_version_control), common in open source and commercial software development. Everyone knows what's going on with respect to a proejct they are working on. Like the Internet, even if the main server is down, collaborations can continue. 
 
-* If you're curious about how the Intenret works, learn one of the key ideas of the Internet: [end-to-end principle](https://en.wikipedia.org/wiki/End-to-end_principle). This also explaisn why [net neutrality](https://en.wikipedia.org/wiki/Net_neutrality) matters. 
+* If you're curious about how the Intenret works, learn one of the key ideas of the Internet: [end-to-end principle](https://en.wikipedia.org/wiki/End-to-end_principle). This also explains why [net neutrality](https://en.wikipedia.org/wiki/Net_neutrality) matters. 
 
 The following images, from [git-scm.com](git-scm.com), show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS works differently. 
 
