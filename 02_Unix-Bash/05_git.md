@@ -21,10 +21,12 @@ Git is a case of a [distributed version control system](https://en.wikipedia.org
 
 The following images, from [git-scm.com](git-scm.com), show how a centralized and decentralized VCS works differently. 
 
-![Centralized version control system](https://git-scm.com/book/en/v2/images/centralized.png)
+![Centralized version control system](https://git-scm.com/book/en/v2/images/centralized.png =250x250)
+
 Figure 1. Centralized VCS.
 
-![Decentralized version control system](https://git-scm.com/book/en/v2/images/distributed.png)
+![Decentralized version control system](https://git-scm.com/book/en/v2/images/distributed.png =250x250)
+
 Figure 2. Decentralized VCS.
 
 ### 2. Setup 
