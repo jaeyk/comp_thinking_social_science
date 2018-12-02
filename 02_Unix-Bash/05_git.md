@@ -19,6 +19,8 @@ According to [Github Guides](https://guides.github.com), a versin control system
 
 Git is a case of a [distributed version control system](https://en.wikipedia.org/wiki/Distributed_version_control), common in open source and commercial software development. Meaning, it works very transparently. Developers have great control over a project. 
 
+![Centralized version control system](https://git-scm.com/book/en/v2/images/centralized.png)
+
 ### 2. Setup 
 
 We'll start with telling git who you are.
@@ -26,8 +28,6 @@ We'll start with telling git who you are.
 ```shell
 $ git config --global user.name "Firstname Lastname"
 $ git config --global user.email username@company.extension
-$ ./configure.sh
-$ git start
 ```
 ### 3. Making a repository 
 
