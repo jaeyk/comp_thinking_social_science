@@ -28,6 +28,10 @@ The default shell is usually Bash, but if your machine is set up differently you
 ## 2. Git
 Git is a version control system that lets you track who made changes to what when and has options for easily updating a shared or public version of your code on github.com. You will need a supported web browser (current versions of Chrome, Firefox or Safari, or Internet Explorer version 9 or above).
 
+#### Github account 
+
+I highly recommend to create your [github](https://github.com/) account.
+
 #### Windows
 
 Git should be installed on your computer as part of your Bash install (described above).

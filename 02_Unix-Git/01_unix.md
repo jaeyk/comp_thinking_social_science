@@ -37,13 +37,9 @@ OSX *is* Unix: A version called Darwin, based on [BSD](https://en.wikipedia.org/
 * Secure shell and secure copy for working over networks 
 * The C and FORTRAN compilers (in the Xcode toolset)
 
-OSX is probably the best-designed commercial Unix variant for consumer use in operation today.
-
 ### Unix v. Linux
 
 Linux is a [free and open source](https://en.wikipedia.org/wiki/Free_and_open-source_software) Unix-like operating system. It is the leading operating system on servers and other big iron systems such as mainframe computers and supercomputers, but is used on only around 1% of personal computers. Typically, Linux is packaged in a form known as *Linux distribution* such as the one in [Ubuntu](http://www.ubuntu.com/about/about-ubuntu).
-
-
 
 ## 2. Key Components of Unix 
 

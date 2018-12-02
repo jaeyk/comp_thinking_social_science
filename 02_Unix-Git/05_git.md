@@ -1,22 +1,46 @@
 # The Unix Shell: 5. Git basics 
 
-> * The following contents are adapted from [git-fundamentals workshop materials](https://github.com/dlab-berkeley/git-fundamentals/blob/master/0-1_introduction.md) prepared by Dillon Niederhut at D-Lab. 
-> * Learn how to use git  
->   * How to setup your git account on your local machine 
+> * The following contents are adapted from [git-fundamentals workshop materials](https://github.com/dlab-berkeley/git-fundamentals/blob/master/0-1_introduction.md) prepared by Dillon Niederhut at D-Lab and other resources from [Pro Git](https://git-scm.com) by Scott Chacon and Ben Straub. 
+> * Learn what is a version control system and what is Git
+> * Learn how to use Git  
+>   * How to setup your Git account on your local machine 
 >   * How to make a repository
 >   * How to commit changes 
 >   * How to push and pull (fetch)
 >   * How to branch (at least know about this conceptually) 
 
-### 1. Setup 
+### 1. Version control system 
 
-We'll start with telling git who you are.
+According to [Github Guides](https://guides.github.com), a versin control system "tracks the history of changes as people and teams collaborate on projects together". It helps to track the following information:
+
+* Which changes were made?
+* Who made the changes?
+* When were the changes made?
+* Why were changes needed?
+
+Git is a case of a [distributed version control system](https://en.wikipedia.org/wiki/Distributed_version_control), common in open source and commercial software development. This is no surprising given that Git [was originally created](https://lkml.org/lkml/2005/4/6/121) to deal with Linux kernal development. 
+
+* If you're curious about how the Intenret works, learn one of the key ideas of the Internet: [end-to-end principle](https://en.wikipedia.org/wiki/End-to-end_principle). This also explains why [net neutrality](https://en.wikipedia.org/wiki/Net_neutrality) matters. 
+
+The following images, from [Pro Git](git-scm.com), show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS (e.g., Git, Mercurial, Bazzar or Darcs) works differently. 
+
+![Centralized version control system](https://git-scm.com/book/en/v2/images/centralized.png)
+
+Figure 1. Centralized VCS.
+
+![Decentralized version control system](https://git-scm.com/book/en/v2/images/distributed.png)
+
+Figure 2. Decentralized VCS.
+
+### 2. Setup 
+
+We'll start with telling Git who you are.
 
 ```shell
 $ git config --global user.name "Firstname Lastname"
 $ git config --global user.email username@company.extension
 ```
-### 2. Making a repository 
+### 3. Making a repository 
 
 Create a new directory and move to it. 
 
@@ -29,37 +53,50 @@ $ cd code_exercise
 $ git init 
 ```
 
-Alternatively, you can create a git repository via github and then clone it on your local machine. 
+Alternatively, you can create a Git repository via Github and then clone it on your local machine. 
 
 ```{shell}
 $ git clone /path/to/repository
 ```
 
-If you're unfamiliar with basic git commands, then please refer to [this git cheet sheet](http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf).
+If you're unfamiliar with basic Git commands, then please refer to [this Git cheet sheet](http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf).
 
-### 3. Commit changes 
+### 4. Commit changes 
 
-This feautre shows how git works as a version control system. 
+These feautre show how Git works as a version control system. 
 
-If you edited files or added new ones, then you need to update your repository. In git language, this action is called committing changes. 
+If you edited files or added new ones, then you need to update your repository. In Git terms, this action is called committing changes. 
 
 ```{shell}
-$ git add . # update every change. 
+$ git add . # update every change. In Git terms, you're staging. 
+$ git add file_name # or stage a specific file.
 $ git commit -m "your comment" # your comment for the commit. 
-$ git push origin master # commit the change. 
+$ git push origin master # commit the change. Origin is a defaul name given to a server by Git. 
 ```
+Another image from [Pro Git](https://git-scm.com/about/staging-area) well illustrates this process.
 
-#### 3.1. Other useful commands for version control 
+![Git Workflow](https://git-scm.com/images/about/index1@2x.png)
+
+Figure 3. Staging and committing in Git.
+
+#### 4.1. Other useful commands for tracking history
 
 ```{shell}
 $ git diff # to see what changed (e.g., inside a file)
 $ git log # to track who committed what
 $ git checkout the commit hash (e.g., a5e556) file name (fruit_list.txt) # to recover old files 
+$ git revert 1q84 # revert to the previous commit 
+```
+#### 4.2. Doing other than adding 
+
+```{shell}
+$ git rm file_name # remove 
+$ git mv old_file_name new_file_name # rename a file 
 ```
 
-### 4. Push and pull (or fetch)
+### 5. Push and pull (or fetch)
 
-This feature shows how git works as a collaboration tool. 
+These features show how Git works as a collaboration tool. 
 
 If you have not already done, let's clone PS239T directory on your clocal machine.
 
@@ -73,19 +110,19 @@ Then, let's learn more about the repository.
 $ git remote -v 
 ```
 
-Previously, we learned how to send your data save in the local machine to the remote (the github server). You can do that by editing or creating files, commiting, and then typing **git push**. 
+Previously, we learned how to send your data save in the local machine to the remote (the Github server). You can do that by editing or creating files, commiting, and then typing **git push**. 
 
-Instead, if you want to update your local data with the remote data, then you can type git pull origin (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, git retrieves the data and merge it into your local data.
+Instead, if you want to update your local data with the remote data, then you can type **git pull origin** (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.
 
 ```{shell}
-$ git fetch origin master
+$ git fetch origin
 ```
 
-### 5. Branching 
+### 6. Branching 
 
-It's an advanced feature of Git's version control system that allows developers to "diverge from the main line of development and continue to do work without messing with that main line" according to [the official git documentations](https://git-scm.com/book/en/v1/Git-Branching). 
+It's an advanced feature of Git's version control system that allows developers to "diverge from the main line of development and continue to do work without messing with that main line" according to [Scott Chacon and Ben Straub](https://git-scm.com/book/en/v1/Git-Branching). 
 
-Simply put, if you start working on a new feature, then create a new branch. 
+If you start working on a new feature, then create a new branch. 
 
 ```{shell}
 $ git branch new_features
@@ -93,3 +130,28 @@ $ git checkout new_features
 ```
 
 You can see the newly created branch by typing **git branch**.
+
+In short, branching makes Git [works like](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics) a mini filesystem.
+
+### 7. Collbaorations 
+
+Two options. 
+
+* Sharing a repository (suitable for a private project).
+* Fork and pull (suitable for an open source project). 
+        * The one who maintains the repositoriry becomes the maintainer. 
+        * The others can [fork](https://help.github.com/articles/about-forks/), make changes, and even [pull](https://help.github.com/articles/about-pull-requests/) them back.
+
+### 8. Other stuff 
+
+```{shell}
+$ git status # show the status of changes 
+$ git branch $ show the branch being worked on locally
+$ git merge $ merge branches 
+$ git reset --hard $ restore the pristine version
+$ git commit -a -m "additional backup" # to save the state again
+```
+
+For more Git exercises, check out [https://gitexercises.fracz.com/](https://gitexercises.fracz.com/).
+
+For more informatin on Git, check out [the following resources](https://git-scm.com/doc/ext). 
