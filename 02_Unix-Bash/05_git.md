@@ -85,7 +85,7 @@ $ git fetch origin master
 
 It's an advanced feature of Git's version control system that allows developers to "diverge from the main line of development and continue to do work without messing with that main line" according to [the official git documentations](https://git-scm.com/book/en/v1/Git-Branching). 
 
-Simply put, if you start working on a new feature, then create a new branch. 
+If you start working on a new feature, then create a new branch. 
 
 ```{shell}
 $ git branch new_features
