@@ -17,7 +17,7 @@ According to [Github Guides](https://guides.github.com), a versin control system
 * When were the changes made?
 * Why were changes needed?
 
-Git is a case of a distributed version control system, common in open source and commercial software development.
+Git is a case of a [distributed version control system](https://en.wikipedia.org/wiki/Distributed_version_control), common in open source and commercial software development. Meaning, it works very transparently. Developers have great control over a project. 
 
 ### 2. Setup 
 
