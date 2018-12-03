@@ -36,6 +36,8 @@ A practical introduction](https://socviz.co/). Princeton University Press.
 
 Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). Political analysis, 21(3), 267-297.
 
+Grimmer, J. (2014). [Measuring Representational Style in the House: The Tea Party, Obama and Legislators’ Changing Expressed Priorities](https://pdfs.semanticscholar.org/90a4/d3ee0429ddfdbf0534cf150743f334245c22.pdf)
+
 Chang, J., Gerrish, S., Wang, C., Boyd-Graber, J. L., & Blei, D. M. (2009). [Reading tea leaves: How humans interpret topic models. In Advances in neural information processing systems (pp. 288-296)](http://papers.nips.cc/paper/3700-reading-tea-leaves-how-humans-interpret-topic-models.pdf).
 
 Bird, S., Klein, E., & Loper, E. (2009). [Natural language processing with Python: analyzing text with the natural language toolkit](https://www.nltk.org/book/). O'Reilly Media, Inc.
