@@ -50,6 +50,8 @@ Koehn, P. (2009). [Statistical machine translation](http://statmt.org/). Cambrid
 
 Goldberg, Y. (2017). [Neural Network Methods for Natural Language Processing: Synthesis Lectures on Human Language Technologies](https://www.morganclaypool.com/doi/10.2200/S00762ED1V01Y201703HLT037). Morgan and Claypool Publishers.
 
+Bengfort, B., Ojeda, T., and Bilbro, R. (2018). [Applied Text Analysis with Python: Enabling Language-Aware Data Products with Machine Learning](http://shop.oreilly.com/product/0636920052555.do), O'Reily Media, Inc.
+
 Silge, J. and Robinson, D. (2018). [Text Mining with R](https://www.tidytextmining.com/index.html). O'Reily Media, Inc.
 
 Roberts, M. (2017). [Slides on structural topic modeling](http://ica-cm.org/wp-content/uploads/2017/05/roberts_topicmodels_combo.pdf)
