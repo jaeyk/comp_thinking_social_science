@@ -32,6 +32,8 @@ Figure 1. Centralized VCS.
 
 Figure 2. Decentralized VCS.
 
+For more information on the varities of version control systems, please read [Petr Baudis's review](https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf) on that subject.
+
 ### 2. Setup 
 
 We'll start with telling Git who you are.
@@ -152,6 +154,6 @@ $ git reset --hard $ restore the pristine version
 $ git commit -a -m "additional backup" # to save the state again
 ```
 
-For more Git exercises, check out [https://gitexercises.fracz.com/](https://gitexercises.fracz.com/).
+For more Git exercises, please check out [https://gitexercises.fracz.com/](https://gitexercises.fracz.com/).
 
-For more informatin on Git, check out [the following resources](https://git-scm.com/doc/ext). 
+For more informatin on Git, please check out [the following resources](https://git-scm.com/doc/ext). 
