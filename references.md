@@ -12,7 +12,9 @@ Gillespie, C. and Lovelace, R. (2017). [Efficienct R Programming](https://csgill
 
 Grolemund, G. and Wickham, H. (2017). [R for Data Science](http://r4ds.had.co.nz/). O'Reilly Media, Inc.
 
-Wickham, H. (2015). [R Packages](http://r-pkgs.had.co.nz/). O'Reily Media, Inc.
+Wickham, H. (2015). [R Packages](http://r-pkgs.had.co.nz/). 
+
+Media, Inc.
 
 Grolemund, G. (2014). [Hands-On Programming with R](https://proquest.safaribooksonline.com/9781449359089). O'Reily Media, Inc.
 
@@ -32,17 +34,19 @@ A practical introduction](https://socviz.co/). Princeton University Press.
 
 ## Automated text analysis (some overalps with machine learning)
 
-Silge, J. and Robinson, D. (2018). [Text Mining with R](https://www.tidytextmining.com/index.html). O'Reily Media, Inc.
+Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). Political analysis, 21(3), 267-297.
 
-Goldberg, Y. (2017). [Neural Network Methods for Natural Language Processing: Synthesis Lectures on Human Language Technologies](https://www.morganclaypool.com/doi/10.2200/S00762ED1V01Y201703HLT037). Morgan and Claypool Publishers.
+Chang, J., Gerrish, S., Wang, C., Boyd-Graber, J. L., & Blei, D. M. (2009). [Reading tea leaves: How humans interpret topic models. In Advances in neural information processing systems (pp. 288-296)](http://papers.nips.cc/paper/3700-reading-tea-leaves-how-humans-interpret-topic-models.pdf).
+
+Bird, S., Klein, E., & Loper, E. (2009). [Natural language processing with Python: analyzing text with the natural language toolkit](https://www.nltk.org/book/). O'Reilly Media, Inc.
 
 Manning, C., & Schütze, H. (1999). [Foundations of Statistical Natural Language Processing](https://nlp.stanford.edu/fsnlp/). MIT Press.
 
 Jurafsky, Dan, and James H. Martin. Forthcoming. [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/)
 
-Chang, J., Gerrish, S., Wang, C., Boyd-Graber, J. L., & Blei, D. M. (2009). [Reading tea leaves: How humans interpret topic models. In Advances in neural information processing systems (pp. 288-296)](http://papers.nips.cc/paper/3700-reading-tea-leaves-how-humans-interpret-topic-models.pdf).
+Goldberg, Y. (2017). [Neural Network Methods for Natural Language Processing: Synthesis Lectures on Human Language Technologies](https://www.morganclaypool.com/doi/10.2200/S00762ED1V01Y201703HLT037). Morgan and Claypool Publishers.
 
-Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). Political analysis, 21(3), 267-297.
+Silge, J. and Robinson, D. (2018). [Text Mining with R](https://www.tidytextmining.com/index.html). O'Reily Media, Inc.
 
 Roberts, M. (2017). [Slides on structural topic modeling](http://ica-cm.org/wp-content/uploads/2017/05/roberts_topicmodels_combo.pdf)
 
