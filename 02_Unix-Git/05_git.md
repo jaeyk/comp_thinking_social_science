@@ -11,7 +11,7 @@
 
 ### 1. Version control system 
 
-According to [Github Guides](https://guides.github.com), a versin control system "tracks the history of changes as people and teams collaborate on projects together". It helps to track the following information:
+According to [Github Guides](https://guides.github.com), a versin control system "tracks the history of changes as people and teams collaborate on projects together". Specifically, it helps to track the following information:
 
 * Which changes were made?
 * Who made the changes?
