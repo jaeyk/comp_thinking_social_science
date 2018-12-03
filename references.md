@@ -32,7 +32,7 @@ Downey, B. A. (2012). [Think Python: How to Think Like a Computer Scientist](htt
 Healy, K. Forthcoming. [Data Visualization
 A practical introduction](https://socviz.co/). Princeton University Press.
 
-## Automated text analysis (some overalps with machine learning)
+## Text analysis (some overalps with machine learning)
 
 Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). Political analysis, 21(3), 267-297.
 
