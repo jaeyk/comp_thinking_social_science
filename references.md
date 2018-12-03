@@ -44,6 +44,8 @@ Manning, C., & Schütze, H. (1999). [Foundations of Statistical Natural Language
 
 Jurafsky, Dan, and James H. Martin. Forthcoming. [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/)
 
+Koehn, P. (2009). [Statistical machine translation](http://statmt.org/). Cambridge University Press.
+
 Goldberg, Y. (2017). [Neural Network Methods for Natural Language Processing: Synthesis Lectures on Human Language Technologies](https://www.morganclaypool.com/doi/10.2200/S00762ED1V01Y201703HLT037). Morgan and Claypool Publishers.
 
 Silge, J. and Robinson, D. (2018). [Text Mining with R](https://www.tidytextmining.com/index.html). O'Reily Media, Inc.
