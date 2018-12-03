@@ -1,6 +1,6 @@
 # The Unix Shell: 5. Git basics 
 
-> * The following contents are adapted from [git-fundamentals workshop materials](https://github.com/dlab-berkeley/git-fundamentals/blob/master/0-1_introduction.md) prepared by Dillon Niederhut at D-Lab and other resources from [Pro Git](https://git-scm.com) by Scott Chacon and Ben Straub. 
+> * The following contents are adapted from [the git-fundamentals workshop materials](https://github.com/dlab-berkeley/git-fundamentals/blob/master/0-1_introduction.md) prepared by Dillon Niederhut at D-Lab and other resources from [Pro Git](https://git-scm.com) by Scott Chacon and Ben Straub. 
 > * Learn what is a version control system and what is Git
 > * Learn how to use Git  
 >   * How to setup your Git account on your local machine 
