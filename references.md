@@ -27,6 +27,10 @@ Wickham, H. (2014). [R Packages](http://adv-r.had.co.nz/). Chapman & Hall’s R 
 
 Downey, B. A. (2012). [Think Python: How to Think Like a Computer Scientist](http://www.greenteapress.com/thinkpython/thinkpython.pdf). Green Tea Press.
 
+## Web Scraping 
+
+Boeing, G., & Waddell, P. (2017). [New insights into rental housing markets across the United States: Web scraping and analyzing craigslist rental listings](https://journals.sagepub.com/doi/abs/10.1177/0739456X16664789). Journal of Planning Education and Research, 37(4), 457-476.
+
 ## Data visualization
 
 Healy, K. Forthcoming. [Data Visualization
