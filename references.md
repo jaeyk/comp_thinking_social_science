@@ -85,6 +85,8 @@ Grimmer, J. (2014). [Measuring Representational Style in the House: The Tea Part
 
 King, G., Pan, J., & Roberts, M. E. (2013). [How censorship in China allows government criticism but silences collective expression](https://www.cambridge.org/core/journals/american-political-science-review/article/how-censorship-in-china-allows-government-criticism-but-silences-collective-expression/C7EF4A9C9D59425C2D09D83742C1FE00). American Political Science Review, 107(2), 326-343.
 
+O'Connor, B., Balasubramanyan, R., Routledge, B. R., & Smith, N. A. (2010). [From tweets to polls: Linking text sentiment to public opinion time series](https://www.aaai.org/ocs/index.php/ICWSM/ICWSM10/paper/viewFile/1536/1842). ICWSM, 11(122-129), 1-2.
+
 Quinn, K. M., Monroe, B. L., Colaresi, M., Crespin, M. H., & Radev, D. R. (2010). [How to analyze political attention with minimal assumptions and costs](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1540-5907.2009.00427.x). American Journal of Political Science, 54(1), 209-228.
 
 Monroe, B. L., Colaresi, M. P., & Quinn, K. M. (2008). [Fightin'words: Lexical feature selection and evaluation for identifying the content of political conflict](https://www.cambridge.org/core/journals/political-analysis/article/fightin-words-lexical-feature-selection-and-evaluation-for-identifying-the-content-of-political-conflict/81B3703230D21620B81EB6E2266C7A66). Political Analysis, 16(4), 372-403.
