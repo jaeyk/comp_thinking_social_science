@@ -29,6 +29,8 @@ Downey, B. A. (2012). [Think Python: How to Think Like a Computer Scientist](htt
 
 ## Web Scraping 
 
+Mitchell, R. (2015). [Web Scraping with Python: Collecting More Data from the Modern Web](http://shop.oreilly.com/product/0636920034391.do). O'Reilly Media, Inc.
+
 Boeing, G., & Waddell, P. (2017). [New insights into rental housing markets across the United States: Web scraping and analyzing craigslist rental listings](https://journals.sagepub.com/doi/abs/10.1177/0739456X16664789). Journal of Planning Education and Research, 37(4), 457-476.
 
 ## Data visualization
