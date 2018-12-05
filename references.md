@@ -69,6 +69,8 @@ Enke, B. (2018). [Moral values and voting: Trump and beyond (No. w24268)](https:
 
 Draka, M. and Schwartz, C. [How Polarized are Citizens? Measuring Ideology from the Ground-Up](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3154431). Working paper. 
 
+Catalinac, A. (2016). [From pork to policy: The rise of programmatic campaigning in Japanese elections](https://www.journals.uchicago.edu/doi/pdfplus/10.1086/683073). The Journal of Politics, 78(1), 1-18.
+
 Gentzkow, M., Shapiro, J. M., & Taddy, M. (2016). [Measuring polarization in high-dimensional data: Method and application to congressional speech (No. w22423)](https://www.nber.org/papers/w22423). National Bureau of Economic Research.
 
 Grimmer, J. (2014). [Measuring Representational Style in the House: The Tea Party, Obama and Legislators’ Changing Expressed Priorities](https://pdfs.semanticscholar.org/90a4/d3ee0429ddfdbf0534cf150743f334245c22.pdf)
