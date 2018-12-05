@@ -34,6 +34,8 @@ A practical introduction](https://socviz.co/). Princeton University Press.
 
 ## Text analysis (some overalps with machine learning)
 
+### Theory 
+
 Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). Political analysis, 21(3), 267-297.
 
 Grimmer, J. (2014). [Measuring Representational Style in the House: The Tea Party, Obama and Legislators’ Changing Expressed Priorities](https://pdfs.semanticscholar.org/90a4/d3ee0429ddfdbf0534cf150743f334245c22.pdf)
@@ -56,6 +58,15 @@ Silge, J. and Robinson, D. (2018). [Text Mining with R](https://www.tidytextmini
 
 Roberts, M. (2017). [Slides on structural topic modeling](http://ica-cm.org/wp-content/uploads/2017/05/roberts_topicmodels_combo.pdf)
 
+### Applications 
+
+Enke, B. (2018). [Moral values and voting: Trump and beyond (No. w24268)](https://www.nber.org/papers/w24268). National Bureau of Economic Research.
+
+Gentzkow, M., Shapiro, J. M., & Taddy, M. (2016). [Measuring polarization in high-dimensional data: Method and application to congressional speech (No. w22423)](https://www.nber.org/papers/w22423). National Bureau of Economic Research.
+
+Quinn, K. M., Monroe, B. L., Colaresi, M., Crespin, M. H., & Radev, D. R. (2010). [How to analyze political attention with minimal assumptions and costs](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1540-5907.2009.00427.x). American Journal of Political Science, 54(1), 209-228.
+
+Monroe, B. L., Colaresi, M. P., & Quinn, K. M. (2008). [Fightin'words: Lexical feature selection and evaluation for identifying the content of political conflict](https://www.cambridge.org/core/journals/political-analysis/article/fightin-words-lexical-feature-selection-and-evaluation-for-identifying-the-content-of-political-conflict/81B3703230D21620B81EB6E2266C7A66). Political Analysis, 16(4), 372-403.
 
 ## Machine Learning 
 
