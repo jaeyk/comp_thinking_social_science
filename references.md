@@ -36,9 +36,7 @@ A practical introduction](https://socviz.co/). Princeton University Press.
 
 ### Theory 
 
-Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). Political analysis, 21(3), 267-297.
-
-Grimmer, J. (2014). [Measuring Representational Style in the House: The Tea Party, Obama and Legislators’ Changing Expressed Priorities](https://pdfs.semanticscholar.org/90a4/d3ee0429ddfdbf0534cf150743f334245c22.pdf)
+#### Books 
 
 Chang, J., Gerrish, S., Wang, C., Boyd-Graber, J. L., & Blei, D. M. (2009). [Reading tea leaves: How humans interpret topic models. In Advances in neural information processing systems (pp. 288-296)](http://papers.nips.cc/paper/3700-reading-tea-leaves-how-humans-interpret-topic-models.pdf).
 
@@ -46,7 +44,7 @@ Bird, S., Klein, E., & Loper, E. (2009). [Natural language processing with Pytho
 
 Manning, C., & Schütze, H. (1999). [Foundations of Statistical Natural Language Processing](https://nlp.stanford.edu/fsnlp/). MIT Press.
 
-Jurafsky, Dan, and James H. Martin. Forthcoming. [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/)
+Jurafsky, Dan, and J. H. Martin. Forthcoming. [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/)
 
 Koehn, P. (2009). [Statistical machine translation](http://statmt.org/). Cambridge University Press.
 
@@ -56,13 +54,24 @@ Bengfort, B., Ojeda, T., and Bilbro, R. (2018). [Applied Text Analysis with Pyth
 
 Silge, J. and Robinson, D. (2018). [Text Mining with R](https://www.tidytextmining.com/index.html). O'Reily Media, Inc.
 
+#### Papers 
+
+Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). Political analysis, 21(3), 267-297.
+
+
+#### Online materials 
+
 Roberts, M. (2017). [Slides on structural topic modeling](http://ica-cm.org/wp-content/uploads/2017/05/roberts_topicmodels_combo.pdf)
 
 ### Applications 
 
 Enke, B. (2018). [Moral values and voting: Trump and beyond (No. w24268)](https://www.nber.org/papers/w24268). National Bureau of Economic Research.
 
+Draka, M. and Schwartz, C. [How Polarized are Citizens? Measuring Ideology from the Ground-Up](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3154431). Working paper. 
+
 Gentzkow, M., Shapiro, J. M., & Taddy, M. (2016). [Measuring polarization in high-dimensional data: Method and application to congressional speech (No. w22423)](https://www.nber.org/papers/w22423). National Bureau of Economic Research.
+
+Grimmer, J. (2014). [Measuring Representational Style in the House: The Tea Party, Obama and Legislators’ Changing Expressed Priorities](https://pdfs.semanticscholar.org/90a4/d3ee0429ddfdbf0534cf150743f334245c22.pdf)
 
 Quinn, K. M., Monroe, B. L., Colaresi, M., Crespin, M. H., & Radev, D. R. (2010). [How to analyze political attention with minimal assumptions and costs](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1540-5907.2009.00427.x). American Journal of Political Science, 54(1), 209-228.
 
