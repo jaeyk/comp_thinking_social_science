@@ -27,6 +27,12 @@ library(png)
 
 ```
 
+# About me
+
+- Substantially, interested in historical comparative approaches to the study of race, ethnicity, and politics 
+- Methodologically, interested in using natural language processing and text analysis as a way of creating new data in race scholarship
+- Also, a former tech industry person married to an engineer
+
 # Motivation 
 ```{r pressure}
 # create an object for data science google trend results
@@ -48,7 +54,7 @@ ggplot(data_science_trends$interest_over_time, aes(date, hits)) +
     
 ---
 
-- In addiiton, there are new tools for 
+- In addition, there are new tools for 
     - Data collection (e.g., APIs, webscraping)
     - Analysis (e.g., machine learning)
     - Visualization (e.g., maps, social networks)
@@ -58,7 +64,7 @@ ggplot(data_science_trends$interest_over_time, aes(date, hits)) +
 
 - But it takes some **efforts** to take advantages of these new tools. 
     - You need to learn how to code **a little bit**. 
-    - However, leanring on your own is inefficient. 
+    - However, learning on your own is inefficient. 
     - More important, you can get **bad** habits.
 
 ---
@@ -108,14 +114,14 @@ do_something_very_complicated("that", requires, many, arguments,
     - Concepts
     - Techniques 
 - Learning by doing
-    - Learning from your own trials and erros 
-    - Learning from others 
+    - Learning from your own MANY trials and errs 
+    - Learning from others (please, do Google search before asking me) 
 
 ---
 
 - Coding is similar to **cooking**.
     - So many different cuisines (programming languages).
-    - But there are fudamentals. 
+    - But there are fundamentals. 
         - Ingredients (data)
         - Techniques (logic)
         - Recipes (workflow)
@@ -125,23 +131,23 @@ do_something_very_complicated("that", requires, many, arguments,
 - Bad habits are **bad**.
     - Rule 1. Thou shall comment.
     - Rule 2. Thou shall reuse functions (no copy and paste).
-    - Rule 3. Thou shall practice version control (no final_final_final.Rmd)
+    - Rule 3. Thou shall practice version control (no final_final_final.Rmd).
 
 ---
 
 - **Learn to learn**
 - Specifically, we are going to learn:
-    - Navigate and operate effectively in a UNIX environment 
-    - Master basic Git and Github workflows 
-    - Write, execute, and debug R code for data cleaning, statistical analysis, data visualization and machine learning 
-    - Parse HTML, CSS, and Javascript for the purposes of using tools like APIs, webscraping, and Qualtrics 
-    - Write, execute, and debug R/Python code for text analysis, as well as other computing tasks 
+    - How to use the command line in a UNIX environment 
+    - How to use Git to do version control 
+    - How ch use R to clean, wrangle, analyze, and visualize data (with a focus on Wickham's tidy data principles) 
+    - How to use R/Python to parse HTML, CSS, and Javascript for webscraping and (a bit of) Qualtrics (by Julia) 
+    - How to use R/Python to do text analysis and machine learning (guest lectures by two Berkeley Institute for Data Science fellows)
 
 --- 
 
-- **Don't expect** you become:
-    - A software programmer (we covere only a tip of the iceberg)
-    - Get all the answers you need
+- **Don't expect**
+    - Becoming a data scientist within one semester 
+    - I can answer all of your questions 
 - We focus on learning **how to learn**.
     - Programming is one endless Google Search (aka "Rochelle's Law")
 
@@ -181,7 +187,7 @@ do_something_very_complicated("that", requires, many, arguments,
 # Class 
 
 - Participation (25%)
-    - Be kind and nice to each other. We're all leanring (especially me).
+    - Be nice to each other. We're all learning (especially me).
 - Homework (50%)
     - Every week. 
     - Learning how to code is like learning how to drive.
@@ -191,11 +197,12 @@ do_something_very_complicated("that", requires, many, arguments,
 ---
 
 # Logistics
-- Learning by doing 
-- Pair-programming on in-class challenges 
-- Section is required. 
+- Learning by doing
+- Pair-programming on in-class challenges
+- Section is required
 - Julia Christensen is a technical assistant to the course.
 
 # Special thanks 
-- Rochelle Terman (University of Chicago)
-- Rachel Bernhard (University of Oxford, UC Davis)
+- Laura Stoker (University of Berkeley, California) for supporting this course at its initial developmental stage
+- Rochelle Terman (University of Chicago) for creating this course
+- Rachel Bernhard (University of Oxford, UC Davis) for continuing this course
