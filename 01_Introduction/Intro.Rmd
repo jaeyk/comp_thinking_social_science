@@ -147,7 +147,7 @@ do_something_very_complicated("that", requires, many, arguments,
 
 - **Don't expect**
     - Becoming a data scientist within one semester 
-    - I can answer all of your questions 
+    - I can answer all of your questions. 
 - We focus on learning **how to learn**.
     - Programming is one endless Google Search (aka "Rochelle's Law")
 
