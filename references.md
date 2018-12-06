@@ -60,9 +60,13 @@ Silge, J. and Robinson, D. (2018). [Text Mining with R](https://www.tidytextmini
 
 #### Papers 
 
-Gentzkow, M., Kelly, B. T., & Taddy, M. (2017). [Text as data](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf) (No. w23276). National Bureau of Economic Research.
+Gentzkow, M., Kelly, B. T., & Taddy, M. (2017). [Text as data](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf) (No. w23276). *National Bureau of Economic Research*.
 
-Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). Political analysis, 21(3), 267-297.
+King, G., Lam, P., & Roberts, M. E. (2017). [Computer‐Assisted Keyword and Document Set Discovery from Unstructured Text](https://onlinelibrary.wiley.com/doi/abs/10.1111/ajps.12291). *American Journal of Political Science*, *61*(4), 971-988.
+
+Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). *Political analysis*, 21(3), 267-297.
+
+Grimmer, J. (2010). [A Bayesian hierarchical topic model for political texts: Measuring expressed agendas in Senate press releases](https://www.cambridge.org/core/journals/political-analysis/article/bayesian-hierarchical-topic-model-for-political-texts-measuring-expressed-agendas-in-senate-press-releases/74F30D05C220DB198F21FF5127EB7205). *Political Analysis*, *18*(1), 1-35.
 
 Chang, J., Gerrish, S., Wang, C., Boyd-Graber, J. L., & Blei, D. M. (2009). [Reading tea leaves: How humans interpret topic models. In Advances in neural information processing systems (pp. 288-296)](http://papers.nips.cc/paper/3700-reading-tea-leaves-how-humans-interpret-topic-models.pdf).
 
@@ -74,23 +78,27 @@ Roberts, M. (2017). [Slides on structural topic modeling](http://ica-cm.org/wp-c
 
 ### Applications 
 
-Enke, B. (2018). [Moral values and voting: Trump and beyond (No. w24268)](https://www.nber.org/papers/w24268). National Bureau of Economic Research.
+Enke, B. (2018). [Moral values and voting: Trump and beyond (No. w24268)](https://www.nber.org/papers/w24268). *National Bureau of Economic Research*.
 
-Draka, M. and Schwartz, C. [How Polarized are Citizens? Measuring Ideology from the Ground-Up](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3154431). Working paper. 
+Draka, M. and Schwartz, C. [How Polarized are Citizens? Measuring Ideology from the Ground-Up](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3154431). *Working paper*. 
 
-Catalinac, A. (2016). [From pork to policy: The rise of programmatic campaigning in Japanese elections](https://www.journals.uchicago.edu/doi/pdfplus/10.1086/683073). The Journal of Politics, 78(1), 1-18.
+Catalinac, A. (2016). [From pork to policy: The rise of programmatic campaigning in Japanese elections](https://www.journals.uchicago.edu/doi/pdfplus/10.1086/683073). *The Journal of Politics*, 78(1), 1-18.
 
-Gentzkow, M., Shapiro, J. M., & Taddy, M. (2016). [Measuring polarization in high-dimensional data: Method and application to congressional speech (No. w22423)](https://www.nber.org/papers/w22423). National Bureau of Economic Research.
+Gentzkow, M., Shapiro, J. M., & Taddy, M. (2016). [Measuring polarization in high-dimensional data: Method and application to congressional speech (No. w22423)](https://www.nber.org/papers/w22423). *National Bureau of Economic Research*.
 
 Grimmer, J. (2014). [Measuring Representational Style in the House: The Tea Party, Obama and Legislators’ Changing Expressed Priorities](https://pdfs.semanticscholar.org/90a4/d3ee0429ddfdbf0534cf150743f334245c22.pdf)
 
-King, G., Pan, J., & Roberts, M. E. (2013). [How censorship in China allows government criticism but silences collective expression](https://www.cambridge.org/core/journals/american-political-science-review/article/how-censorship-in-china-allows-government-criticism-but-silences-collective-expression/C7EF4A9C9D59425C2D09D83742C1FE00). American Political Science Review, 107(2), 326-343.
+King, G., Pan, J., & Roberts, M. E. (2013). [How censorship in China allows government criticism but silences collective expression](https://www.cambridge.org/core/journals/american-political-science-review/article/how-censorship-in-china-allows-government-criticism-but-silences-collective-expression/C7EF4A9C9D59425C2D09D83742C1FE00). *American Political Science Review*, 107(2), 326-343.
 
-O'Connor, B., Balasubramanyan, R., Routledge, B. R., & Smith, N. A. (2010). [From tweets to polls: Linking text sentiment to public opinion time series](https://www.aaai.org/ocs/index.php/ICWSM/ICWSM10/paper/viewFile/1536/1842). ICWSM, 11(122-129), 1-2.
+Pauwels, T. (2011). [Measuring populism: A quantitative text analysis of party literature in Belgium](https://www.tandfonline.com/doi/abs/10.1080/17457289.2011.539483?casa_token=I2HtE24DhXgAAAAA:9sr82L6aVcY_ApSscDCWqpcLjUa4-E_zG_lrGQoXrE1ugvnrOj9AEyRMqElHHyFxTtrAZUE1k8-Rmg). *Journal of Elections, Public Opinion and Parties*, *21*(1), 97-119.
 
-Quinn, K. M., Monroe, B. L., Colaresi, M., Crespin, M. H., & Radev, D. R. (2010). [How to analyze political attention with minimal assumptions and costs](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1540-5907.2009.00427.x). American Journal of Political Science, 54(1), 209-228.
+O’Connor, B., Bamman, D., & Smith, N. A. (2011). [Computational text analysis for social science: Model assumptions and complexity](http://www.cs.cmu.edu/~nasmith/papers/oconnor+bamman+smith.nips-ws11.pdf). *Public Health*, *41*(42), 43.
 
-Monroe, B. L., Colaresi, M. P., & Quinn, K. M. (2008). [Fightin'words: Lexical feature selection and evaluation for identifying the content of political conflict](https://www.cambridge.org/core/journals/political-analysis/article/fightin-words-lexical-feature-selection-and-evaluation-for-identifying-the-content-of-political-conflict/81B3703230D21620B81EB6E2266C7A66). Political Analysis, 16(4), 372-403.
+O'Connor, B., Balasubramanyan, R., Routledge, B. R., & Smith, N. A. (2010). [From tweets to polls: Linking text sentiment to public opinion time series](https://www.aaai.org/ocs/index.php/ICWSM/ICWSM10/paper/viewFile/1536/1842). *ICWSM*, 11(122-129), 1-2.
+
+Quinn, K. M., Monroe, B. L., Colaresi, M., Crespin, M. H., & Radev, D. R. (2010). [How to analyze political attention with minimal assumptions and costs](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1540-5907.2009.00427.x). *American Journal of Political Science*, 54(1), 209-228.
+
+Monroe, B. L., Colaresi, M. P., & Quinn, K. M. (2008). [Fightin'words: Lexical feature selection and evaluation for identifying the content of political conflict](https://www.cambridge.org/core/journals/political-analysis/article/fightin-words-lexical-feature-selection-and-evaluation-for-identifying-the-content-of-political-conflict/81B3703230D21620B81EB6E2266C7A66). *Political Analysis*, 16(4), 372-403.
 
 ## Machine Learning 
 
