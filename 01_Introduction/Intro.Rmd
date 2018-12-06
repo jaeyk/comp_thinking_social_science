@@ -203,6 +203,6 @@ do_something_very_complicated("that", requires, many, arguments,
 - Julia Christensen is a technical assistant to the course.
 
 # Special thanks 
-- Laura Stoker (University of Berkeley, California) for supporting this course at its initial developmental stage
-- Rochelle Terman (University of Chicago) for creating this course
-- Rachel Bernhard (University of Oxford, UC Davis) for continuing this course
+- Laura Stoker (UC Berkeley) for supporting this course at its initial developmental stage
+- Rochelle Terman (Chicago) for creating this course
+- Rachel Bernhard (Oxford, UC Davis) for continuing this course
