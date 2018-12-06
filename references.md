@@ -100,6 +100,8 @@ Quinn, K. M., Monroe, B. L., Colaresi, M., Crespin, M. H., & Radev, D. R. (2010)
 
 Monroe, B. L., Colaresi, M. P., & Quinn, K. M. (2008). [Fightin'words: Lexical feature selection and evaluation for identifying the content of political conflict](https://www.cambridge.org/core/journals/political-analysis/article/fightin-words-lexical-feature-selection-and-evaluation-for-identifying-the-content-of-political-conflict/81B3703230D21620B81EB6E2266C7A66). *Political Analysis*, 16(4), 372-403.
 
+Laver, M., Benoit, K., & Garry, J. (2003). [Extracting policy positions from political texts using words as data](https://www.cambridge.org/core/journals/american-political-science-review/article/extracting-policy-positions-from-political-texts-using-words-as-data/4F4676E80A79E01EAAB88EF3F2D1B733). *American Political Science Review*, 97(2), 311-331.
+
 ## Machine Learning 
 
 James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). [An introduction to statistical learning with Applications in R](http://www-bcf.usc.edu/~gareth/ISL/). New York: springer.
