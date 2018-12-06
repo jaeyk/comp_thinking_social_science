@@ -66,6 +66,7 @@ Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of
 
 Chang, J., Gerrish, S., Wang, C., Boyd-Graber, J. L., & Blei, D. M. (2009). [Reading tea leaves: How humans interpret topic models. In Advances in neural information processing systems (pp. 288-296)](http://papers.nips.cc/paper/3700-reading-tea-leaves-how-humans-interpret-topic-models.pdf).
 
+Zhang, Y., & Wallace, B. (2015). [A sensitivity analysis of (and practitioners' guide to) convolutional neural networks for sentence classification](https://arxiv.org/abs/1510.03820). arXiv preprint arXiv:1510.03820.
 
 #### Online materials 
 
