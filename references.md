@@ -99,6 +99,8 @@ Calafiore, G. C., El Ghaoui, L., Preziosi, A., & Russo, L. (2017). [Topic analys
 
 Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). *Political analysis*, 21(3), 267-297.
 
+Mimno, D., Wallach, H. M., Talley, E., Leenders, M., & McCallum, A. (2011, July). [Optimizing semantic coherence in topic models](https://dl.acm.org/citation.cfm?id=2145462). In Proceedings of the conference on empirical methods in natural language processing (pp. 262-272). Association for Computational Linguistics.
+
 Grimmer, J. (2010). [A Bayesian hierarchical topic model for political texts: Measuring expressed agendas in Senate press releases](https://www.cambridge.org/core/journals/political-analysis/article/bayesian-hierarchical-topic-model-for-political-texts-measuring-expressed-agendas-in-senate-press-releases/74F30D05C220DB198F21FF5127EB7205). *Political Analysis*, *18*(1), 1-35.
 
 Chang, J., Gerrish, S., Wang, C., Boyd-Graber, J. L., & Blei, D. M. (2009). [Reading tea leaves: How humans interpret topic models. In Advances in neural information processing systems (pp. 288-296)](http://papers.nips.cc/paper/3700-reading-tea-leaves-how-humans-interpret-topic-models.pdf).
