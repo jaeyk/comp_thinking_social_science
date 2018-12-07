@@ -2,7 +2,15 @@
 
 Here's a list of books, papers, and other resources related to PS239T that I found useful.
 
-## Git 
+## Unix and Git 
+
+### Unix 
+
+Ward, B. (2014). [How Linux Works](https://nostarch.com/howlinuxworks2). No Starch.
+
+Bradnam, K., & Korf, I. (2012). [UNIX and Perl to the rescue!: a field guide for the life sciences (and other data-rich pursuits)](https://www.cambridge.org/us/academic/subjects/life-sciences/genomics-bioinformatics-and-systems-biology/unix-and-perl-rescue-field-guide-life-sciences-and-other-data-rich-pursuits?format=PB&isbn=9780521169820). Cambridge University Press.
+
+### Git
 
 Chacon, S. and Straub, B. (2014). [Git Pro book](https://git-scm.com/book/en/v2). Apress.
 
@@ -14,11 +22,13 @@ Gillespie, C. and Lovelace, R. (2017). [Efficienct R Programming](https://csgill
 
 Grolemund, G. and Wickham, H. (2017). [R for Data Science](http://r4ds.had.co.nz/). O'Reilly Media, Inc.
 
-Wickham, H. (2015). [R Packages](http://r-pkgs.had.co.nz/). 
-
-Media, Inc.
+Wickham, H. (2015). [R Packages](http://r-pkgs.had.co.nz/). O'Reilly Media, Inc.
 
 Grolemund, G. (2014). [Hands-On Programming with R](https://proquest.safaribooksonline.com/9781449359089). O'Reily Media, Inc.
+
+Matloff, N. (2011). [The art of R programming: A tour of statistical software design](https://nostarch.com/artofr.htm). No Starch Press.
+
+Spector, P. (2008). [Data manipulation with R](https://www.springer.com/us/book/9780387747309). Springer Science & Business Media.
 
 ### Papers 
 
@@ -46,6 +56,8 @@ Healy, K. Forthcoming. [Data Visualization
 A practical introduction](https://socviz.co/). Princeton University Press.
 
 Wickham, H. (2016). [ggplot2: elegant graphics for data analysis](https://www.springer.com/us/book/9780387981413). Springer.
+
+Chang, W. (2012). [R graphics cookbook: practical recipes for visualizing data](http://shop.oreilly.com/product/0636920023135.do). O'Reilly Media, Inc.
 
 ## Text analysis (some overalps with machine learning)
 
