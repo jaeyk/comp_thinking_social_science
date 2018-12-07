@@ -4,6 +4,8 @@ Here's a list of books, papers, and other resources related to PS239T that I fou
 
 ## Computational social science 
 
+Alvarez, R. M. (Ed.). (2016). [Computational social science](https://www.cambridge.org/core/books/computational-social-science/FB97BD1704D957183899DE120BEE2E4B). Cambridge University Press.
+
 Gitelman, L. (Ed.). (2013). [Raw data is an oxymoron](http://raley.english.ucsb.edu/wp-content/Engl800/RawData-excerpts.pdf). MIT Press.
 
 Boyd, D., & Crawford, K. (2012). [Critical questions for big data: Provocations for a cultural, technological, and scholarly phenomenon](https://www.tandfonline.com/doi/abs/10.1080/1369118X.2012.678878). Information, communication & society, 15(5), 662-679.
