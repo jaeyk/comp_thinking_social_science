@@ -8,9 +8,11 @@ Alvarez, R. M. (Ed.). (2016). [Computational social science](https://www.cambrid
 
 Gitelman, L. (Ed.). (2013). [Raw data is an oxymoron](http://raley.english.ucsb.edu/wp-content/Engl800/RawData-excerpts.pdf). MIT Press.
 
-Boyd, D., & Crawford, K. (2012). [Critical questions for big data: Provocations for a cultural, technological, and scholarly phenomenon](https://www.tandfonline.com/doi/abs/10.1080/1369118X.2012.678878). Information, communication & society, 15(5), 662-679.
+Elish, M. C., & boyd, D. (2018). [Situating methods in the magic of Big Data and AI](https://www.tandfonline.com/doi/abs/10.1080/03637751.2017.1375130). *Communication Monographs*, 85(1), 57-80.
 
-Lazer, D. et al. (2009). [Life in the network: the coming age of computational social science](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2745217/). Science (New York, NY), 323(5915), 721.
+boyd, D., & Crawford, K. (2012). [Critical questions for big data: Provocations for a cultural, technological, and scholarly phenomenon](https://www.tandfonline.com/doi/abs/10.1080/1369118X.2012.678878). *Information, communication & society*, 15(5), 662-679.
+
+Lazer, D. et al. (2009). [Life in the network: the coming age of computational social science](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2745217/). *Science*, 323(5915), 721.
 
 ## Unix and Git 
 
@@ -36,17 +38,15 @@ Wickham, H. (2015). [R Packages](http://r-pkgs.had.co.nz/). O'Reilly Media, Inc.
 
 Grolemund, G. (2014). [Hands-On Programming with R](https://proquest.safaribooksonline.com/9781449359089). O'Reily Media, Inc.
 
+Wickham, H. (2014). [R Packages](http://adv-r.had.co.nz/). Chapman & Hall’s R Series.
+
 Matloff, N. (2011). [The art of R programming: A tour of statistical software design](https://nostarch.com/artofr.htm). No Starch Press.
 
 Spector, P. (2008). [Data manipulation with R](https://www.springer.com/us/book/9780387747309). Springer Science & Business Media.
 
 ### Papers 
 
-Wickham, H. (2014). [Tidy data](https://img1.wsimg.com/blobby/go/48119c9a-d3e2-49bc-a380-883861a5de98/downloads/1ceacuvb9_987654.pdf). Journal of Statistical Software, 59(10), 1-23.
-
-Wickham, H. (2014). [R Packages](http://adv-r.had.co.nz/). Chapman & Hall’s R Series.
-
-[University of Cincinatti Business Analytics R Programming Guide](https://uc-r.github.io/). 
+Wickham, H. (2014). [Tidy data](https://img1.wsimg.com/blobby/go/48119c9a-d3e2-49bc-a380-883861a5de98/downloads/1ceacuvb9_987654.pdf). *Journal of Statistical Software*, 59(10), 1-23.
 
 ## Python
 
