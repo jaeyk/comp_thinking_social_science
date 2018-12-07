@@ -99,6 +99,8 @@ Enke, B. (2018). [Moral values and voting: Trump and beyond (No. w24268)](https:
 
 Draka, M. and Schwartz, C. [How Polarized are Citizens? Measuring Ideology from the Ground-Up](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3154431). *Working paper*. 
 
+Terman, R. (2017). [Islamophobia and Media Portrayals of Muslim Women: A Computational Text Analysis of US News Coverage](https://academic.oup.com/isq/article/61/3/489/4609692). International Studies Quarterly, 61(3), 489-502.
+
 Catalinac, A. (2016). [From pork to policy: The rise of programmatic campaigning in Japanese elections](https://www.journals.uchicago.edu/doi/pdfplus/10.1086/683073). *The Journal of Politics*, 78(1), 1-18.
 
 Gentzkow, M., Shapiro, J. M., & Taddy, M. (2016). [Measuring polarization in high-dimensional data: Method and application to congressional speech (No. w22423)](https://www.nber.org/papers/w22423). *National Bureau of Economic Research*.
