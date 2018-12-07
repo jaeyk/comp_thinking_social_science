@@ -8,6 +8,8 @@ Chacon, S. and Straub, B. (2014). [Git Pro book](https://git-scm.com/book/en/v2)
 
 ## R
 
+### Books
+
 Gillespie, C. and Lovelace, R. (2017). [Efficienct R Programming](https://csgillespie.github.io/efficientR/). O'Reilly Media, Inc.
 
 Grolemund, G. and Wickham, H. (2017). [R for Data Science](http://r4ds.had.co.nz/). O'Reilly Media, Inc.
@@ -18,14 +20,19 @@ Media, Inc.
 
 Grolemund, G. (2014). [Hands-On Programming with R](https://proquest.safaribooksonline.com/9781449359089). O'Reily Media, Inc.
 
+### Papers 
+
+Wickham, H. (2014). [Tidy data](https://img1.wsimg.com/blobby/go/48119c9a-d3e2-49bc-a380-883861a5de98/downloads/1ceacuvb9_987654.pdf). Journal of Statistical Software, 59(10), 1-23.
+
 Wickham, H. (2014). [R Packages](http://adv-r.had.co.nz/). Chapman & Hall’s R Series.
 
 [University of Cincinatti Business Analytics R Programming Guide](https://uc-r.github.io/). 
 
-
 ## Python
 
 Downey, B. A. (2012). [Think Python: How to Think Like a Computer Scientist](http://www.greenteapress.com/thinkpython/thinkpython.pdf). Green Tea Press.
+
+McKinney, W. (2010, June). [Data structures for statistical computing in python](https://pdfs.semanticscholar.org/f6da/c1c52d3b07c993fe52513b8964f86e8fe381.pdf). In Proceedings of the 9th Python in Science Conference (Vol. 445, pp. 51-56).
 
 ## Web Scraping 
 
@@ -37,6 +44,8 @@ Boeing, G., & Waddell, P. (2017). [New insights into rental housing markets acro
 
 Healy, K. Forthcoming. [Data Visualization
 A practical introduction](https://socviz.co/). Princeton University Press.
+
+Wickham, H. (2016). [ggplot2: elegant graphics for data analysis](https://www.springer.com/us/book/9780387981413). Springer.
 
 ## Text analysis (some overalps with machine learning)
 
