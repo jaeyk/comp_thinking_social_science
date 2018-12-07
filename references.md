@@ -93,10 +93,6 @@ Chang, J., Gerrish, S., Wang, C., Boyd-Graber, J. L., & Blei, D. M. (2009). [Rea
 
 Zhang, Y., & Wallace, B. (2015). [A sensitivity analysis of (and practitioners' guide to) convolutional neural networks for sentence classification](https://arxiv.org/abs/1510.03820). arXiv preprint arXiv:1510.03820.
 
-#### Online materials 
-
-Roberts, M. (2017). [Slides on structural topic modeling](http://ica-cm.org/wp-content/uploads/2017/05/roberts_topicmodels_combo.pdf)
-
 ### Applications 
 
 Enke, B. (2018). [Moral values and voting: Trump and beyond (No. w24268)](https://www.nber.org/papers/w24268). *National Bureau of Economic Research*.
