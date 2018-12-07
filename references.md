@@ -123,6 +123,8 @@ Laver, M., Benoit, K., & Garry, J. (2003). [Extracting policy positions from pol
 
 ## Machine Learning 
 
+### Books
+
 James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). [An introduction to statistical learning with Applications in R](http://www-bcf.usc.edu/~gareth/ISL/). New York: springer.
 
 Friedman, J., Hastie, T., & Tibshirani, R. (2017). [The Elements of Statistical Learning: Data Mining, Inference, and Prediction](https://web.stanford.edu/~hastie/ElemStatLearn/). New York, NY, USA:: Springer series in statistics.
@@ -131,14 +133,15 @@ Bishop, C. (2006). [Pattern Recognition and Machine Learning](https://www.spring
 
 Chollet, F., & Allaire J. J. (2018). [Deep Learning with R](https://www.manning.com/books/deep-learning-with-r). Manning Publications.
 
-Breiman, L. (2001). [Random forests. Machine learning](https://link.springer.com/content/pdf/10.1023/A:1010933404324.pdf), 45(1), 5-32.
-
-Breiman, L. (2001). [Statistical modeling: The two cultures (with comments and a rejoinder by the author)](https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726). Statistical science, 16(3), 199-231.
-
 Goodfellow, I., Bengio, Y., & Courville, A. Forthcoming. [Deep Learning](http://www.deeplearningbook.org/lecture_slides.html). MIT Press.
 
 Pustejovsky, J., & Stubbs, A. (2012). [Natural Language Annotation for Machine Learning](https://proquest.safaribooksonline.com/book/programming/machine-learning/9781449332693). O'Reilly Media, Inc.
 
+### Papers
+
+Breiman, L. (2001). [Random forests. Machine learning](https://link.springer.com/content/pdf/10.1023/A:1010933404324.pdf), 45(1), 5-32.
+
+Breiman, L. (2001). [Statistical modeling: The two cultures (with comments and a rejoinder by the author)](https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726). Statistical science, 16(3), 199-231.
 
 ## Algorithms 
 
