@@ -2,6 +2,16 @@
 
 Here's a list of books, papers, and other resources related to PS239T that I found useful.
 
+## Computational social science 
+
+Alvarez, R. M. (Ed.). (2016). [Computational social science](https://www.cambridge.org/core/books/computational-social-science/FB97BD1704D957183899DE120BEE2E4B). Cambridge University Press.
+
+Gitelman, L. (Ed.). (2013). [Raw data is an oxymoron](http://raley.english.ucsb.edu/wp-content/Engl800/RawData-excerpts.pdf). MIT Press.
+
+Boyd, D., & Crawford, K. (2012). [Critical questions for big data: Provocations for a cultural, technological, and scholarly phenomenon](https://www.tandfonline.com/doi/abs/10.1080/1369118X.2012.678878). Information, communication & society, 15(5), 662-679.
+
+Lazer, D. et al. (2009). [Life in the network: the coming age of computational social science](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2745217/). Science (New York, NY), 323(5915), 721.
+
 ## Unix and Git 
 
 ### Unix 
@@ -93,15 +103,13 @@ Chang, J., Gerrish, S., Wang, C., Boyd-Graber, J. L., & Blei, D. M. (2009). [Rea
 
 Zhang, Y., & Wallace, B. (2015). [A sensitivity analysis of (and practitioners' guide to) convolutional neural networks for sentence classification](https://arxiv.org/abs/1510.03820). arXiv preprint arXiv:1510.03820.
 
-#### Online materials 
-
-Roberts, M. (2017). [Slides on structural topic modeling](http://ica-cm.org/wp-content/uploads/2017/05/roberts_topicmodels_combo.pdf)
-
 ### Applications 
 
 Enke, B. (2018). [Moral values and voting: Trump and beyond (No. w24268)](https://www.nber.org/papers/w24268). *National Bureau of Economic Research*.
 
 Draka, M. and Schwartz, C. [How Polarized are Citizens? Measuring Ideology from the Ground-Up](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3154431). *Working paper*. 
+
+Terman, R. (2017). [Islamophobia and Media Portrayals of Muslim Women: A Computational Text Analysis of US News Coverage](https://academic.oup.com/isq/article/61/3/489/4609692). International Studies Quarterly, 61(3), 489-502.
 
 Catalinac, A. (2016). [From pork to policy: The rise of programmatic campaigning in Japanese elections](https://www.journals.uchicago.edu/doi/pdfplus/10.1086/683073). *The Journal of Politics*, 78(1), 1-18.
 
@@ -125,6 +133,8 @@ Laver, M., Benoit, K., & Garry, J. (2003). [Extracting policy positions from pol
 
 ## Machine Learning 
 
+### Books
+
 James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). [An introduction to statistical learning with Applications in R](http://www-bcf.usc.edu/~gareth/ISL/). New York: springer.
 
 Friedman, J., Hastie, T., & Tibshirani, R. (2017). [The Elements of Statistical Learning: Data Mining, Inference, and Prediction](https://web.stanford.edu/~hastie/ElemStatLearn/). New York, NY, USA:: Springer series in statistics.
@@ -133,14 +143,17 @@ Bishop, C. (2006). [Pattern Recognition and Machine Learning](https://www.spring
 
 Chollet, F., & Allaire J. J. (2018). [Deep Learning with R](https://www.manning.com/books/deep-learning-with-r). Manning Publications.
 
-Breiman, L. (2001). [Random forests. Machine learning](https://link.springer.com/content/pdf/10.1023/A:1010933404324.pdf), 45(1), 5-32.
-
-Breiman, L. (2001). [Statistical modeling: The two cultures (with comments and a rejoinder by the author)](https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726). Statistical science, 16(3), 199-231.
-
 Goodfellow, I., Bengio, Y., & Courville, A. Forthcoming. [Deep Learning](http://www.deeplearningbook.org/lecture_slides.html). MIT Press.
+
+Flach, P. (2012). [Machine learning: the art and science of algorithms that make sense of data](https://www.cambridge.org/core/books/machine-learning/621D3E616DF879E494B094CC93ED36A4). Cambridge University Press.
 
 Pustejovsky, J., & Stubbs, A. (2012). [Natural Language Annotation for Machine Learning](https://proquest.safaribooksonline.com/book/programming/machine-learning/9781449332693). O'Reilly Media, Inc.
 
+### Papers
+
+Breiman, L. (2001). [Random forests. Machine learning](https://link.springer.com/content/pdf/10.1023/A:1010933404324.pdf), 45(1), 5-32.
+
+Breiman, L. (2001). [Statistical modeling: The two cultures (with comments and a rejoinder by the author)](https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726). Statistical science, 16(3), 199-231.
 
 ## Algorithms 
 

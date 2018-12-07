@@ -38,3 +38,5 @@
 [Literate programming](http://www.literateprogramming.com/knuthweb.pdf) by [Donald E. Knuth](https://en.wikipedia.org/wiki/Donald_Knuth) (the creator of the TeX computer typesetting system) 
 
 [Zen of Python](https://en.wikipedia.org/wiki/Zen_of_Python)
+
+[How to Share Data with a Statistician](https://github.com/jtleek/datasharing) by [Jeff Leek](http://jtleek.com/) 
