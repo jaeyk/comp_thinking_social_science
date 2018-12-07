@@ -1,0 +1,124 @@
+---
+title: "Tidy data"
+author: "PS239T"
+date: "Spring 2019"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+* I adapted the following content from Wickham's R data science book (2017) chapter: https://r4ds.had.co.nz/tidy-data.html and his earlier paper (2014) published in Journal of Statistical Software: http://www.jstatsoft.org/v59/i10/paper.
+
+* Wickham created so many essential packages used in R for data science. For more information, please see the following website: http://hadley.nz/
+
+# 1. What's tidy principles 
+
+## 1. The dataset: strucure (physical layout) + semantics (meaning)
+
+### 1.1. Data structure 
+
+* rows and columns 
+
+### 1.2. Data semantics
+
+* variables > values (numbers or strings)
+
+## 2. Tidy tada: "provide a standard way to organize data values within a dataset"
+
+### 2.1 Tidy principles 
+
+* 1. Each variable forms a column.
+* 2. Each observation forms a row.
+* 3. Each type of observational unit forms a table.
+
+```{r}
+
+# load library
+library(tidyverse) 
+
+# tidy data example 
+table1
+
+```
+
+Practically, this approach is good because you're going to have consistency in the format of data across all the projects you're working on. Also, tidy data works well with key packages (e.g., dplyr, ggplot2) in R.
+
+Computationally, this approach is good for vectorized programming because "different variables from the same observation are always paired".
+
+## 3. Messay datasets 
+
+### 3.1. Signs of messay datasets 
+
+* 1. Column headers are values, not variable names.
+* 2. Multiple variables are not stored in one column.
+* 3. Variables are stored in both rows and columns.
+* 4. Multiple types of observational units are stored in the same table.
+* 5. A single observational unit is stored in multiple tables.
+
+## 4. Tody tools 
+
+Either input or output or both of them can be messy. Tidy tools can fix these problems. 
+
+### 4.1. Manipulation
+
+* Filter
+* Transform
+* Aggregate
+* Sort 
+
+#### 4.1.1. Gather (from wide to long)
+
+```{r}
+
+table4a
+
+# from long to wide 
+table4a %>%
+  gather('1999', '2000', key = "year", value = "population")
+
+# save the file 
+table4a_wide <- table4a %>%
+  gather('1999', '2000', key = "year", value = "population") 
+
+```
+
+#### 4.1.2. Spread (from wide to long)
+
+```{r}
+
+table4a_wide %>%
+  spread(key = "year", value = "population")
+
+```
+
+#### 4.1.3. Separate (split one into many columns)
+
+```{r}
+
+table3
+
+table3 %>% 
+  separate(rate, into = c("cases" , "population"))
+
+table3_separated <- table3 %>% 
+  separate(rate, into = c("cases" , "population"))
+
+```
+
+
+#### 4.1.4. Unite (multiple coulmns into one column)
+
+```{r}
+
+table3_separated %>%
+  unite(rate, cases, population)
+
+```
+
+### 4.2. Visualization
+
+Will be covered in the future session.
+
+### 4.3. Modeling 
+
+Will not be extensively covered in this course.
