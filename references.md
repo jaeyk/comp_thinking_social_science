@@ -2,6 +2,15 @@
 
 Here's a list of books, papers, and other resources related to PS239T that I found useful.
 
+## Computational social science 
+
+Underwood, T. (2015). [Seven ways humanists are using computers to understand text](https://tedunderwood.com/2015/06/04/seven-ways-humanists-are-using-computers-to-understand-text/). *Blog post*.
+
+Gitelman, L. (Ed.). (2013). [Raw data is an oxymoron](http://raley.english.ucsb.edu/wp-content/Engl800/RawData-excerpts.pdf). MIT Press.
+
+Lazer, D. et al. (2009). [Life in the network: the coming age of computational social science](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2745217/). Science (New York, NY), 323(5915), 721.
+
+
 ## Unix and Git 
 
 ### Unix 
@@ -134,6 +143,8 @@ Bishop, C. (2006). [Pattern Recognition and Machine Learning](https://www.spring
 Chollet, F., & Allaire J. J. (2018). [Deep Learning with R](https://www.manning.com/books/deep-learning-with-r). Manning Publications.
 
 Goodfellow, I., Bengio, Y., & Courville, A. Forthcoming. [Deep Learning](http://www.deeplearningbook.org/lecture_slides.html). MIT Press.
+
+Flach, P. (2012). [Machine learning: the art and science of algorithms that make sense of data](https://www.cambridge.org/core/books/machine-learning/621D3E616DF879E494B094CC93ED36A4). Cambridge University Press.
 
 Pustejovsky, J., & Stubbs, A. (2012). [Natural Language Annotation for Machine Learning](https://proquest.safaribooksonline.com/book/programming/machine-learning/9781449332693). O'Reilly Media, Inc.
 
