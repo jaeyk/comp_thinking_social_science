@@ -4,8 +4,6 @@ Here's a list of books, papers, and other resources related to PS239T that I fou
 
 ## Computational social science 
 
-Underwood, T. (2015). [Seven ways humanists are using computers to understand text](https://tedunderwood.com/2015/06/04/seven-ways-humanists-are-using-computers-to-understand-text/). *Blog post*.
-
 Gitelman, L. (Ed.). (2013). [Raw data is an oxymoron](http://raley.english.ucsb.edu/wp-content/Engl800/RawData-excerpts.pdf). MIT Press.
 
 Boyd, D., & Crawford, K. (2012). [Critical questions for big data: Provocations for a cultural, technological, and scholarly phenomenon](https://www.tandfonline.com/doi/abs/10.1080/1369118X.2012.678878). Information, communication & society, 15(5), 662-679.
