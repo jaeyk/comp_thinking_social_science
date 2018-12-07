@@ -95,6 +95,8 @@ Gentzkow, M., Kelly, B. T., & Taddy, M. (2017). [Text as data](https://web.stanf
 
 King, G., Lam, P., & Roberts, M. E. (2017). [Computer‐Assisted Keyword and Document Set Discovery from Unstructured Text](https://onlinelibrary.wiley.com/doi/abs/10.1111/ajps.12291). *American Journal of Political Science*, *61*(4), 971-988.
 
+Calafiore, G. C., El Ghaoui, L., Preziosi, A., & Russo, L. (2017). [Topic analysis in news via sparse learning: a case study on the 2016 US Presidential Elections](https://people.eecs.berkeley.edu/~elghaoui/pdffiles/IFAC_Elections_2017.pdf). IFAC-PapersOnLine, 50(1), 13593-13598.
+
 Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). *Political analysis*, 21(3), 267-297.
 
 Grimmer, J. (2010). [A Bayesian hierarchical topic model for political texts: Measuring expressed agendas in Senate press releases](https://www.cambridge.org/core/journals/political-analysis/article/bayesian-hierarchical-topic-model-for-political-texts-measuring-expressed-agendas-in-senate-press-releases/74F30D05C220DB198F21FF5127EB7205). *Political Analysis*, *18*(1), 1-35.
