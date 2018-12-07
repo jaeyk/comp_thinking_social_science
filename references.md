@@ -109,6 +109,8 @@ Zhang, Y., & Wallace, B. (2015). [A sensitivity analysis of (and practitioners' 
 
 ### Applications 
 
+Kim, S. E. (2018). [Media bias against foreign firms as a veiled trade barrier: Evidence from Chinese newspapers](https://www.cambridge.org/core/journals/american-political-science-review/article/media-bias-against-foreign-firms-as-a-veiled-trade-barrier-evidence-from-chinese-newspapers/0D8802C90C2D690985FFAC39EDB9B29E). *American Political Science Review*, 1-17.
+
 Enke, B. (2018). [Moral values and voting: Trump and beyond (No. w24268)](https://www.nber.org/papers/w24268). *National Bureau of Economic Research*.
 
 Draka, M. and Schwartz, C. [How Polarized are Citizens? Measuring Ideology from the Ground-Up](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3154431). *Working paper*. 
