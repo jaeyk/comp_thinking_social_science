@@ -39,4 +39,4 @@
 
 [Zen of Python](https://en.wikipedia.org/wiki/Zen_of_Python)
 
-[How to Share Data with a Statistician](https://github.com/jtleek/datasharing) by Jeff Leek 
+[How to Share Data with a Statistician](https://github.com/jtleek/datasharing) by [Jeff Leek](http://jtleek.com/) 
