@@ -2,6 +2,14 @@
 
 Here's a list of books, papers, and other resources related to PS239T that I found useful.
 
+## Basic Computer Science 
+
+Sedgewick, R., & Wayne, K. (2016). [Computer science: An interdisciplinary approach](https://www.amazon.com/gp/product/B01H916DHG/ref=oh_aui_d_detailpage_o01_?ie=UTF8&psc=1). Addison-Wesley Professional.
+
+Sedgewick, R., & Wayne, K. (2011). [Algorithms](https://www.amazon.com/gp/product/B004P8J1NA/ref=oh_aui_d_detailpage_o00_?ie=UTF8&psc=1). Addison-Wesley Professional.
+
+Calafiore, G. C., & El Ghaoui, L. (2014). [Optimization models](https://www.amazon.com/gp/product/B00LB6BB1O/ref=oh_aui_d_detailpage_o02_?ie=UTF8&psc=1). Cambridge university press.
+
 ## Computational social science 
 
 Alvarez, R. M. (Ed.). (2016). [Computational social science](https://www.cambridge.org/core/books/computational-social-science/FB97BD1704D957183899DE120BEE2E4B). Cambridge University Press.
