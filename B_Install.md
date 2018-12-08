@@ -30,7 +30,7 @@ Git is a version control system that lets you track who made changes to what whe
 
 #### Github account 
 
-I highly recommend to create your [github](https://github.com/) account.
+I highly recommend to create your [github](https://github.com/) account. Also, seriously consider signing up for [the GitHub Student Developer Pack](https://education.github.com/pack/join). You can use an advanced git account either for free or discounted price. 
 
 #### Windows
 
