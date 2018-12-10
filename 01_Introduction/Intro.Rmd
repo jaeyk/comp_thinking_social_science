@@ -27,42 +27,48 @@ library(png)
 
 ```
 
-# About me
-
-- Substantially, interested in historical comparative approaches to the study of race, ethnicity, and politics 
-- Methodologically, interested in using natural language processing and text analysis as a way of creating new data in race scholarship
-- Also, a former tech industry person married to an engineer
-
 # Motivation 
 ```{r pressure}
+
 # create an object for data science google trend results
+
 data_science_trends <- gtrends("data science")
 
 ggplot(data_science_trends$interest_over_time, aes(date, hits)) +
   geom_line() +
   geom_point() +
   ggtitle("Global search popularity for 'data science'") 
+
 ```
 
 ---
 
 - Why should we care?
-- Yes, big data is a trend. 
-- But being good at computational tools and techniques has more immediate benefits. 
-- It can make your life **easy** and **organized**.
-    - Don't repeat yourself: AUTOMATE!
-    
----
-
-- In addition, there are new tools for 
+- Yes, big data (or machine learning) is a trend. 
+- But computational tools and techniques are much broader and fundamental to how we research:
     - Data collection (e.g., APIs, webscraping)
-    - Analysis (e.g., machine learning)
+    - Analysis (e.g., text analysis, machine learning)
     - Visualization (e.g., maps, social networks)
-- In sum, you can do cool stuff.
+
+--- 
+
+- Using Excel: 
+    - 3 mins for copying, pasting, and reorganizing one article 
+    - 80,000 newspaper articles 
+    - Taking **4,000** hours or **166 days**
 
 ---
 
-- But it takes some **efforts** to take advantages of these new tools. 
+- Using python: 
+    - A few hours for coding 
+    - Less than 5 mins for creating the dataset 
+    - Also, the code is reusable.
+    
+![Using python beautifulsoup](/home/jae/Pictures/Python_approach.png)
+
+---
+
+- Yet it takes some **efforts** to take advantages of these new tools. 
     - You need to learn how to code **a little bit**. 
     - However, learning on your own is inefficient. 
     - More important, you can get **bad** habits.
@@ -107,15 +113,10 @@ do_something_very_complicated("that", requires, many, arguments,
 
 ---
 
-# Objectives
-
-- Tasting a wide range of computational tools 
-- Getting programming fundamentals right
-    - Concepts
-    - Techniques 
-- Learning by doing
-    - Learning from your own MANY trials and errs 
-    - Learning from others (please, do Google search before asking me) 
+- Three commandments
+    - Thou shall comment.
+    - Thou shall reuse functions (no copy and paste).
+    - Thou shall practice version control (no final_final_final.Rmd).
 
 ---
 
@@ -125,25 +126,20 @@ do_something_very_complicated("that", requires, many, arguments,
         - Ingredients (data)
         - Techniques (logic)
         - Recipes (workflow)
-    
----
-
-- Bad habits are **bad**.
-    - Rule 1. Thou shall comment.
-    - Rule 2. Thou shall reuse functions (no copy and paste).
-    - Rule 3. Thou shall practice version control (no final_final_final.Rmd).
 
 ---
 
-- **Learn to learn**
-- Specifically, we are going to learn:
-    - How to use the command line in a UNIX environment 
-    - How to use Git to do version control 
-    - How ch use R to clean, wrangle, analyze, and visualize data (with a focus on Wickham's tidy data principles) 
-    - How to use R/Python to parse HTML, CSS, and Javascript for webscraping and (a bit of) Qualtrics (by Julia) 
-    - How to use R/Python to do text analysis and machine learning (guest lectures by two Berkeley Institute for Data Science fellows)
+# Objectives
 
---- 
+- Tasting a wide range of computational tools 
+- Getting programming fundamentals right
+    - Concepts
+    - Techniques 
+- Learning by doing
+    - Learning from your own MANY trials and errors 
+    - Learning from others (please, do Google search before asking me) 
+
+---
 
 - **Don't expect**
     - Becoming a data scientist within one semester 
@@ -153,35 +149,41 @@ do_something_very_complicated("that", requires, many, arguments,
 
 ---
 
+# Syllabus
 
-- Using Excel: 
-    - 3 mins for copying, pasting, and reorganizing one article 
-    - 80,000 newspaper articles 
-    - Taking **4,000** hours or **166 days**
+- Introduction
+    - Jan. 16: Introduction and Setup ("Installfest")
+- Version control 
+    - Jan. 21/23: Unix, Bash, and Git
+- R and Python fundamentals 
+    - Jan. 28/30: Data Structure in R
+    - Feb. 4/6: Data Analysis in R
+    - Feb. 11/13: Data Visualization in R
+    - Feb. 18/20: Intro to Python
 
 ---
 
-- Using python: 
-    - A few hours for coding 
-    - Less than 5 mins for creating the dataset 
-    - Also, the code is reusable.
-    
-![Using python beautifulsoup](/home/jae/Pictures/Python_approach.png)
+- Online data collection 
+    - Feb. 25/27: Webscraping (project proposal draft due)
+    - Mar. 4/6: APIs
+    - Mar. 11/13: HTML/CSS/Javascript
+    - Mar. 18/20: Online Sampling, Survey, and Field Experiments
+- Mar. 25/27: SPRING BREAK (final project proposal due)
+
 ---
 
+- Machine Learning and text analysis
+    - Apr. 1/3: Text Analysis in R (guest lecture by Marla Stuart, Social Work & BIDS Data Science Fellow)
+    - Apr. 8/10: Machine Learning and Text Analysis
+    - Apr. 15/17: Supervised Machine Learning in R (guest lecture by Chris Kennedy, Biostats & BIDS Data Science Fellow)
+- Review
+    - Apr. 22/24: Wrap-up: Frontiers in Computational Methods (project demo)
+
+---
 
 # Previous final projects by students 
 ![Digital Refugee Project](/home/jae/Pictures/Laura_Melissa.png){width=400px}
 
----
-
-# Focus on best practice
-
-- Good habits are **good**.
-    - Commenting serves you and many other people.
-    - Reusing functions provides opportunities to learn and clean up your mess.
-    - Practicing version control is how we become a mature researcher and a coder. 
-        
 ---
 
 # Class 
@@ -197,12 +199,14 @@ do_something_very_complicated("that", requires, many, arguments,
 ---
 
 # Logistics
+
 - Learning by doing
-- Pair-programming on in-class challenges
+    - Pair-programming on in-class challenges
 - Section is required
 - Julia Christensen is a technical assistant to the course.
 
+---
+
 # Special thanks 
-- Laura Stoker (UC Berkeley) for supporting this course at its initial developmental stage
-- Rochelle Terman (Chicago) for creating this course
-- Rachel Bernhard (Oxford, UC Davis) for continuing this course
+- Rochelle Terman (Chicago)
+- Rachel Bernhard (Oxford, UC Davis)
