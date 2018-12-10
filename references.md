@@ -2,15 +2,25 @@
 
 Here's a list of books, papers, and other resources related to PS239T that I found useful.
 
+## Basic Computer Science 
+
+Sedgewick, R., & Wayne, K. (2016). [Computer science: An interdisciplinary approach](https://www.amazon.com/gp/product/B01H916DHG/ref=oh_aui_d_detailpage_o01_?ie=UTF8&psc=1). Addison-Wesley Professional.
+
+Sedgewick, R., & Wayne, K. (2011). [Algorithms](https://www.amazon.com/gp/product/B004P8J1NA/ref=oh_aui_d_detailpage_o00_?ie=UTF8&psc=1). Addison-Wesley Professional.
+
+Calafiore, G. C., & El Ghaoui, L. (2014). [Optimization models](https://www.amazon.com/gp/product/B00LB6BB1O/ref=oh_aui_d_detailpage_o02_?ie=UTF8&psc=1). Cambridge university press.
+
 ## Computational social science 
 
 Alvarez, R. M. (Ed.). (2016). [Computational social science](https://www.cambridge.org/core/books/computational-social-science/FB97BD1704D957183899DE120BEE2E4B). Cambridge University Press.
 
 Gitelman, L. (Ed.). (2013). [Raw data is an oxymoron](http://raley.english.ucsb.edu/wp-content/Engl800/RawData-excerpts.pdf). MIT Press.
 
-Boyd, D., & Crawford, K. (2012). [Critical questions for big data: Provocations for a cultural, technological, and scholarly phenomenon](https://www.tandfonline.com/doi/abs/10.1080/1369118X.2012.678878). Information, communication & society, 15(5), 662-679.
+Elish, M. C., & boyd, D. (2018). [Situating methods in the magic of Big Data and AI](https://www.tandfonline.com/doi/abs/10.1080/03637751.2017.1375130). *Communication Monographs*, 85(1), 57-80.
 
-Lazer, D. et al. (2009). [Life in the network: the coming age of computational social science](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2745217/). Science (New York, NY), 323(5915), 721.
+boyd, D., & Crawford, K. (2012). [Critical questions for big data: Provocations for a cultural, technological, and scholarly phenomenon](https://www.tandfonline.com/doi/abs/10.1080/1369118X.2012.678878). *Information, communication & society*, 15(5), 662-679.
+
+Lazer, D. et al. (2009). [Life in the network: the coming age of computational social science](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2745217/). *Science*, 323(5915), 721.
 
 ## Unix and Git 
 
@@ -36,17 +46,15 @@ Wickham, H. (2015). [R Packages](http://r-pkgs.had.co.nz/). O'Reilly Media, Inc.
 
 Grolemund, G. (2014). [Hands-On Programming with R](https://proquest.safaribooksonline.com/9781449359089). O'Reily Media, Inc.
 
+Wickham, H. (2014). [R Packages](http://adv-r.had.co.nz/). Chapman & Hall’s R Series.
+
 Matloff, N. (2011). [The art of R programming: A tour of statistical software design](https://nostarch.com/artofr.htm). No Starch Press.
 
 Spector, P. (2008). [Data manipulation with R](https://www.springer.com/us/book/9780387747309). Springer Science & Business Media.
 
 ### Papers 
 
-Wickham, H. (2014). [Tidy data](https://img1.wsimg.com/blobby/go/48119c9a-d3e2-49bc-a380-883861a5de98/downloads/1ceacuvb9_987654.pdf). Journal of Statistical Software, 59(10), 1-23.
-
-Wickham, H. (2014). [R Packages](http://adv-r.had.co.nz/). Chapman & Hall’s R Series.
-
-[University of Cincinatti Business Analytics R Programming Guide](https://uc-r.github.io/). 
+Wickham, H. (2014). [Tidy data](https://img1.wsimg.com/blobby/go/48119c9a-d3e2-49bc-a380-883861a5de98/downloads/1ceacuvb9_987654.pdf). *Journal of Statistical Software*, 59(10), 1-23.
 
 ## Python
 
@@ -95,7 +103,11 @@ Gentzkow, M., Kelly, B. T., & Taddy, M. (2017). [Text as data](https://web.stanf
 
 King, G., Lam, P., & Roberts, M. E. (2017). [Computer‐Assisted Keyword and Document Set Discovery from Unstructured Text](https://onlinelibrary.wiley.com/doi/abs/10.1111/ajps.12291). *American Journal of Political Science*, *61*(4), 971-988.
 
+Calafiore, G. C., El Ghaoui, L., Preziosi, A., & Russo, L. (2017). [Topic analysis in news via sparse learning: a case study on the 2016 US Presidential Elections](https://people.eecs.berkeley.edu/~elghaoui/pdffiles/IFAC_Elections_2017.pdf). IFAC-PapersOnLine, 50(1), 13593-13598.
+
 Grimmer, J., & Stewart, B. M. (2013). [Text as data: The promise and pitfalls of automatic content analysis methods for political texts](https://www.cambridge.org/core/journals/political-analysis/article/text-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-texts/F7AAC8B2909441603FEB25C156448F20). *Political analysis*, 21(3), 267-297.
+
+Mimno, D., Wallach, H. M., Talley, E., Leenders, M., & McCallum, A. (2011, July). [Optimizing semantic coherence in topic models](https://dl.acm.org/citation.cfm?id=2145462). In Proceedings of the conference on empirical methods in natural language processing (pp. 262-272). Association for Computational Linguistics.
 
 Grimmer, J. (2010). [A Bayesian hierarchical topic model for political texts: Measuring expressed agendas in Senate press releases](https://www.cambridge.org/core/journals/political-analysis/article/bayesian-hierarchical-topic-model-for-political-texts-measuring-expressed-agendas-in-senate-press-releases/74F30D05C220DB198F21FF5127EB7205). *Political Analysis*, *18*(1), 1-35.
 
@@ -104,6 +116,8 @@ Chang, J., Gerrish, S., Wang, C., Boyd-Graber, J. L., & Blei, D. M. (2009). [Rea
 Zhang, Y., & Wallace, B. (2015). [A sensitivity analysis of (and practitioners' guide to) convolutional neural networks for sentence classification](https://arxiv.org/abs/1510.03820). arXiv preprint arXiv:1510.03820.
 
 ### Applications 
+
+Kim, S. E. (2018). [Media bias against foreign firms as a veiled trade barrier: Evidence from Chinese newspapers](https://www.cambridge.org/core/journals/american-political-science-review/article/media-bias-against-foreign-firms-as-a-veiled-trade-barrier-evidence-from-chinese-newspapers/0D8802C90C2D690985FFAC39EDB9B29E). *American Political Science Review*, 1-17.
 
 Enke, B. (2018). [Moral values and voting: Trump and beyond (No. w24268)](https://www.nber.org/papers/w24268). *National Bureau of Economic Research*.
 
