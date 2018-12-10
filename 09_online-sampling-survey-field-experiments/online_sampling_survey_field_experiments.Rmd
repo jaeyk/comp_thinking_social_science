@@ -1,0 +1,69 @@
+---
+title: "Online Field Experiments"
+author: "Jae Yeon Kim"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  beamer_presentation:
+    fig_caption: no
+    latex_engine: xelatex
+    toc: no
+  slidy_presentation: default
+header-includes:
+- \usepackage{array}
+- \usepackage{multicol}
+- \usepackage{fontspec}
+fontsize: 15pt
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+
+knitr::opts_chunk$set(echo = FALSE)
+
+# install packages 
+library(ggplot2)
+library(gtrendsR)
+library(png)
+
+```
+
+---
+
+# Online Field Experiments 
+
+* "Onilne" survey and lab experiments: web technology is used for recruitment and sampling and that's it.
+
+* Online field experiments: "experiments that leverage platforms or systems that already exist on the Internet to study motivations and behaviors of individuals, organizations, and even governments".
+
+* "The treatments and outcome of online field experiments are often native to the online setting." (Muise and Pan 2018, 2-5)
+
+---
+
+## Cases
+
+![Experiment on Facebook](/home/jae/Pictures/facebook-experiment-abstract.png){width=400px}
+
+---
+
+![Experiment on Facebook](/home/jae/Pictures/facebook-experiment-design.png){width=400px}
+
+---
+
+![Experiment on Facebook](/home/jae/Pictures/facebook-experiment-effect.png){width=400px}
+
+---
+
+![Online Field Experiment in China](/home/jae/Pictures/AJPS-china-chen-et-al.png){width=400px}
+
+---
+
+### Specifics 
+
+- Question: measuring the authoritarian government responsiveness
+- Platform: county-level government websites (identified by the web-crawling scripts)
+- Unit of analysis: county
+- N: 2,103
+- Randomization and treatment: the authors randomly assigned message types to county websites.
+    - Treatment: 1) proxying collective action potential and 2) the threat of tattling to higher-level authorities , and party loyalty
+    - Control
+- Outcomes: 1) whether the message received a response, 2) how many days took to get it, 3) content of the response
