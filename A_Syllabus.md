@@ -115,25 +115,25 @@ See [B_Install.md](B_Install.md) for more information.
 
 ### Books and Other Resources
 
-There are no official textbooks for this class. Please see [the references](references.md) for advanced subjects and [the style guides](style_guides.md) for project managemet and efficient programming. Note that these references will be updated throughout the semester. For the semester, we will have access to all of Datacamp's premium course materials (many thanks to Datacamp!).
+There are no official textbooks for this class. Please see [the references](references.md) for advanced subjects and [the style guides](style_guides.md) for efficient programming and project management. Note that these references will be updated throughout the semester. For the semester, we will have access to all of Datacamp's premium course materials (many thanks to Datacamp!).
 
 ## Curriculum Outline / Schedule
 
 The schedule is subject to change based on the class's rate of progress. 
 
 * **Jan. 16:** Introduction and Setup ("Installfest")
-* **Jan. 21/23:** Git and Bash 
+* **Jan. 21/23:** Unix, Bash, and Git
 * **Jan. 28/30:** Data Structure in R
 * **Feb. 4/6:** Data Analysis in R 
 * **Feb. 11/13:** Data Visualization in R
-* **Feb. 18/20:** APIs
-* **Feb. 25/27:** HTML/CSS/Javascript
-* **Mar. 4/6:** Webscraping
-* **Mar. 11/13:** Qualtrics/MTurk
-* **Mar. 18/20:** Intro to Python
+* **Feb. 18/20:** Intro to Python
+* **Feb. 25/27:** Webscraping 
+* **Mar. 4/6:** APIs
+* **Mar. 11/13:** HTML/CSS/Javascript
+* **Mar. 18/20:** Online Sampling, Survey, and Field Experiments   
 * **Mar. 25/27:** SPRING BREAK [no class]
 [Note: final presentations occur in lieu of regular section in April]
 * **Apr. 1/3:** Text Analysis in R (guest lecture by [Marla Stuart](https://bids.berkeley.edu/people/marla-stuart), Social Work & BIDS Data Science Fellow) 
-* **Apr. 8/10:** Text Analysis in R
-* **Apr. 15/17:** Intro to Machine Learning (guest lecture by [Chris Kennedy](https://bids.berkeley.edu/people/chris-kennedy), Biostats & BIDS Data Science Fellow)
+* **Apr. 8/10:** Machine Learning and Text Analysis
+* **Apr. 15/17:** Supervised Machine Learning in R (guest lecture by [Chris Kennedy](https://bids.berkeley.edu/people/chris-kennedy), Biostats & BIDS Data Science Fellow)
 * **Apr. 22/24:** Wrap-up: Frontiers in Computational Methods
