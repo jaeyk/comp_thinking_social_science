@@ -40,3 +40,5 @@
 [Zen of Python](https://en.wikipedia.org/wiki/Zen_of_Python)
 
 [How to Share Data with a Statistician](https://github.com/jtleek/datasharing) by [Jeff Leek](http://jtleek.com/) 
+
+[Jupyter, Mathematica, and the Future of the Research Paper](https://paulromer.net/jupyter-mathematica-and-the-future-of-the-research-paper/) by Paul Romer 
