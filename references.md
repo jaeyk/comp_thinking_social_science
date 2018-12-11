@@ -171,8 +171,5 @@ Breiman, L. (2001). [Random forests. Machine learning](https://link.springer.com
 
 Breiman, L. (2001). [Statistical modeling: The two cultures (with comments and a rejoinder by the author)](https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726). Statistical science, 16(3), 199-231.
 
-## Algorithms 
-
-Steele, B. Chandler, J. and Reddy, S. (2016). [Algorithms for Data Science](https://link.springer.com/book/10.1007%2F978-3-319-45797-0). Springer, Cham 
 
 
