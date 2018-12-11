@@ -60,6 +60,8 @@ Wickham, H. (2014). [Tidy data](https://img1.wsimg.com/blobby/go/48119c9a-d3e2-4
 
 Downey, B. A. (2012). [Think Python: How to Think Like a Computer Scientist](http://www.greenteapress.com/thinkpython/thinkpython.pdf). Green Tea Press.
 
+McKinney, W. (2012). [Python for data analysis: Data wrangling with Pandas, NumPy, and IPython](https://proquest.safaribooksonline.com/book/programming/python/9781491957653). O'Reilly Media, Inc.
+
 McKinney, W. (2010, June). [Data structures for statistical computing in python](https://pdfs.semanticscholar.org/f6da/c1c52d3b07c993fe52513b8964f86e8fe381.pdf). In Proceedings of the 9th Python in Science Conference (Vol. 445, pp. 51-56).
 
 ## Web Scraping 
