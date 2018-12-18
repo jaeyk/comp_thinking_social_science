@@ -153,6 +153,8 @@ Laver, M., Benoit, K., & Garry, J. (2003). [Extracting policy positions from pol
 
 James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). [An introduction to statistical learning with Applications in R](http://www-bcf.usc.edu/~gareth/ISL/). New York: springer.
 
+Bühlmann, P., & Van De Geer, S. (2011). [Statistics for high-dimensional data: methods, theory and applications](https://www.springer.com/us/book/9783642201912). Springer Science & Business Media.
+
 Friedman, J., Hastie, T., & Tibshirani, R. (2017). [The Elements of Statistical Learning: Data Mining, Inference, and Prediction](https://web.stanford.edu/~hastie/ElemStatLearn/). New York, NY, USA:: Springer series in statistics.
 
 Bishop, C. (2006). [Pattern Recognition and Machine Learning](https://www.springer.com/us/book/9780387310732). New York, NY, USA:: Springer series in statistics.
