@@ -92,6 +92,10 @@ This course will be using a Jupyter Notebook to interact with Python.  The bit o
 
 Jupyter Notebooks are included in the Anaconda distribution. Notebook files have the extension ".ipynb" to distinguish them from plain-text Python programs.
 
+**Fun facts:**
+
+- Jupyter notebook (previously, IPython project) was developed by [Fernando Pérez](https://bids.berkeley.edu/people/fernando-perez), an assistant professor in Statistics at UC Berkeley, in 2001.
+
 To start a notebook server, simply type
 
 ~~~bash
