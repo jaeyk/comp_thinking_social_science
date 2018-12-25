@@ -16,7 +16,8 @@ pacman::p_load(
   ggplot2, 
   tidyverse,
   ggthemes,
-  ggrepel
+  ggrepel,
+  broom
 )
 
 ```
@@ -272,7 +273,8 @@ p + geom_line(aes(group = country), color = "gray70") +
   facet_wrap(~continent, ncol = 5) + # for single categorical variable; for multiple categorical variables use facet_grid()
   labs(x = "Year",
        y = "GDP per capita",
-       title = "GDP per capita on Five continents")
+       title = "GDP per capita on Five continents") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
 ## Use pipes to summarize data
@@ -322,7 +324,7 @@ gapminder %>%
             lifeExp_mean = mean(lifeExp)) %>%
   ggplot(aes(x = country, y = lifeExp_mean)) +
   geom_boxplot() +
-    labs(x = "Year",
+    labs(x = "Country",
        y = "Life expectancy",
        title = "Life expectancy in Europe") +
   coord_flip()
@@ -334,7 +336,7 @@ gapminder %>%
             lifeExp_mean = mean(lifeExp)) %>%
   ggplot(aes(x = reorder(country, lifeExp_mean), y = lifeExp_mean)) +
   geom_boxplot() +
-    labs(x = "Year",
+    labs(x = "Country",
        y = "Life expectancy",
        title = "Life expectancy in Europe") +
   coord_flip()
@@ -346,7 +348,7 @@ gapminder %>%
             lifeExp_mean = mean(lifeExp)) %>%
   ggplot(aes(x = reorder(country, -lifeExp_mean), y = lifeExp_mean)) +
   geom_boxplot() +
-    labs(x = "Year",
+    labs(x = "Country",
        y = "Life expectancy",
        title = "Life expectancy in Europe") +
   coord_flip()
@@ -366,6 +368,35 @@ gapminder %>%
   scale_x_log10() +
   facet_grid(~continent)
 ```
+
+## Ploting models 
+
+```{r}
+
+# regression model
+out <-lm(formula = lifeExp ~ gdpPercap + pop + continent, 
+          data = gapminder)
+
+# estimates 
+out_comp <- tidy(out)
+
+p <- out_comp %>%
+  ggplot(aes(x = term, y = estimate))
+
+p + geom_point() +
+  coord_flip() +
+  theme_bw()
+
+# plus confidence intervals 
+out_conf <- tidy(out, conf.int = TRUE)
+
+p <- out_conf %>%
+  ggplot(aes(x = reorder(term, estimate), y = estimate, ymin = conf.low, ymax = conf.high))
+
+p + geom_pointrange() + coord_flip() + labs(x = "", y = "OLS Estimate") +
+  theme_bw()
+```
+
 
 
 

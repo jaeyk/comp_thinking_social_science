@@ -134,6 +134,6 @@ The schedule is subject to change based on the class's rate of progress.
 * **Mar. 25/27:** SPRING BREAK [no class]
 [Note: final presentations occur in lieu of regular section in April]
 * **Apr. 1/3:** Text Analysis in R (guest lecture by [Marla Stuart](https://bids.berkeley.edu/people/marla-stuart), Social Work & BIDS Data Science Fellow) 
-* **Apr. 8/10:** Machine Learning and Text Analysis
+* **Apr. 8/10:** Unsupervised Machine Learning in R
 * **Apr. 15/17:** Supervised Machine Learning in R (guest lecture by [Chris Kennedy](https://bids.berkeley.edu/people/chris-kennedy), Biostats & BIDS Data Science Fellow)
 * **Apr. 22/24:** Wrap-up: Frontiers in Computational Methods
