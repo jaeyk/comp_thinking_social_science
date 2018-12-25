@@ -281,7 +281,7 @@ p + geom_line(aes(group = country), color = "gray70") +
 
 gapminder %>%
   group_by(continent, year) %>%
-  summarize(pop_mean = mean(pop),
+  summarize(gdp_mean = mean(gdpPercap),
             lifeExp_mean = mean(lifeExp)) %>%
   ggplot(aes(x = year, y = lifeExp_mean, color = continent)) +
   geom_point() +
@@ -292,7 +292,7 @@ gapminder %>%
 gapminder %>%
   filter(continent == "Europe") %>%
   group_by(country, year) %>%
-  summarize(pop_mean = mean(pop),
+  summarize(gdp_mean = mean(gdpPercap),
             lifeExp_mean = mean(lifeExp)) %>%
   ggplot(aes(x = year, y = lifeExp_mean, color = country)) +
   geom_point() +
@@ -303,7 +303,7 @@ gapminder %>%
 gapminder %>%
   filter(continent == "Europe") %>%
   group_by(country, year) %>%
-  summarize(pop_mean = mean(pop),
+  summarize(gdp_mean = mean(gdpPercap),
             lifeExp_mean = mean(lifeExp)) %>%
   ggplot(aes(x = year, y = lifeExp_mean)) +
   geom_point() +
@@ -318,7 +318,7 @@ gapminder %>%
 gapminder %>%
   filter(continent == "Europe") %>%
   group_by(country, year) %>%
-  summarize(pop_mean = mean(pop),
+  summarize(gdp_mean = mean(gdpPercap),
             lifeExp_mean = mean(lifeExp)) %>%
   ggplot(aes(x = country, y = lifeExp_mean)) +
   geom_boxplot() +
@@ -330,7 +330,7 @@ gapminder %>%
 gapminder %>%
   filter(continent == "Europe") %>%
   group_by(country, year) %>%
-  summarize(pop_mean = mean(pop),
+  summarize(gdp_mean = mean(gdpPercap),
             lifeExp_mean = mean(lifeExp)) %>%
   ggplot(aes(x = reorder(country, lifeExp_mean), y = lifeExp_mean)) +
   geom_boxplot() +
@@ -342,7 +342,7 @@ gapminder %>%
 gapminder %>%
   filter(continent == "Europe") %>%
   group_by(country, year) %>%
-  summarize(pop_mean = mean(pop),
+  summarize(gdp_mean = mean(gdpPercap),
             lifeExp_mean = mean(lifeExp)) %>%
   ggplot(aes(x = reorder(country, -lifeExp_mean), y = lifeExp_mean)) +
   geom_boxplot() +
@@ -356,14 +356,15 @@ gapminder %>%
 
 ```{r}
 gapminder %>%
-  filter(continent == "Americas") %>%
+  filter(continent == "Asia" | continent == "Americas") %>%
   group_by(continent, country) %>%
-  summarize(pop_mean = mean(pop),
+  summarize(gdp_mean = mean(gdpPercap),
             lifeExp_mean = mean(lifeExp)) %>%
-  ggplot(aes(x = pop_mean, y = lifeExp_mean)) +
+  ggplot(aes(x = gdp_mean, y = lifeExp_mean)) +
   geom_point() +
   geom_text(aes(label = country)) +
-  scale_x_log10()
+  scale_x_log10() +
+  facet_grid(~continent)
 ```
 
 
