@@ -1,0 +1,375 @@
+---
+title: "Data visualization with ggplot2"
+author: "Jae Yeon Kim"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+
+# install packages 
+
+pacman::p_load(
+  ggplot2, 
+  tidyverse,
+  ggthemes,
+  ggrepel
+)
+
+```
+
+# Motivation 
+
+- The following material is adapted from Kieran Healy's wonderful book (2018) on [data visualization](https://socviz.co/). 
+- Why should we care?
+- Sometimes, pictures are better tools than words in 1) exploring, 2) understanding, and 3) explaining data.
+
+## Anscombe's quartet
+
+```{r}
+
+# data 
+anscombe 
+
+```
+
+```{r}
+
+# correlation 
+cor(anscombe)[c(1:4),c(5:8)]
+
+```
+
+```{r}
+
+# plot
+anscombe %>%
+  gather(x_name, x_value, x1:x4) %>%
+  gather(y_name, y_value, y1:y4) %>%
+  ggplot(aes(x = x_value, y = y_value)) +
+           geom_point() +
+           facet_grid(x_name ~ y_name) +
+  theme_bw()
+```
+
+# ggplot2 basics 
+
+- Workflow: 
+  1. Tidy data 
+  2. Mapping 
+  3. Geom 
+  4. Cor_ordinates and scales 
+  5. Labels and guides
+  6. Themes
+  7. Save files 
+
+## Tidy data 
+
+- We covered tiday data in the previous sessions. 
+
+```{r, echo=FALSE}
+# load library 
+library(gapminder)
+
+gapminder
+```
+
+What is the difference between typeof and class?
+
+```{r}
+typeof(gapminder)
+
+class(gapminder)
+```
+
+## Mapping and Geom
+
+- ggplot tells what is your data 
+
+- aes (aesthetic mappings or aesthetics) tells what is your variables of interests in the data
+
+- geom_ tlles the type of plot you are going to use 
+
+### Basic aes (x , y)
+
+```{r}
+p <- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap, y = lifeExp))
+
+p + geom_point()
+
+p + geom_point() + geom_smooth()
+```
+
+### Advanced aes (size, color)
+
+- There's also fill argument (mostly used in geom_bar()). 
+
+- The property size/color/fill represents... 
+
+```{r}
+ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap, y = lifeExp,
+                          size = pop)) +
+  geom_point()
+```
+
+```{r}
+ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap, y = lifeExp,
+                          size = pop,
+                          color = continent)) +
+  geom_point()
+
+# try red instead of "red"
+ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap, y = lifeExp,
+                          size = pop,
+                          color = "red")) + 
+  geom_point()
+```
+
+```{r}
+p + geom_point() + 
+  geom_smooth()
+
+p + geom_point(alpha = 0.3) + # alpha controls transparency
+  geom_smooth(color = "red", se = FALSE, size = 2)
+```
+
+
+## Co-ordinates and scales 
+
+```{r}
+
+p + geom_point() +
+  coord_flip() # coord_type
+```
+
+```{r}
+
+p + geom_point() +
+  scale_x_log10() # scale_mapping_type
+
+p + geom_point() +
+  geom_smooth(method = "lm") +
+  scale_x_log10()
+
+p + geom_point() +
+  geom_smooth(method = "lm") +
+  scale_x_log10()
+```
+
+## Labels and guides 
+```{r}
+p + geom_point(alpha = 0.3) +
+  geom_smooth(method = "gam", color = "red") +
+  scale_x_log10(labels = scales::dollar) +
+  labs( x = "log GDP",
+        y = "Life Expectancy",
+        title = "A Gapminder Plot",
+        subtitle = "Data points are country-years",
+        caption = "Source: Gapminder")
+```
+
+```{r}
+ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap, y = lifeExp,
+                          color = continent)) + 
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "gam", color = "red") +
+  scale_x_log10(labels = scales::dollar) +
+  labs( x = "log GDP",
+        y = "Life Expectancy",
+        title = "A Gapminder Plot",
+        subtitle = "Data points are country-years",
+        caption = "Source: Gapminder")
+
+ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap, y = lifeExp,
+                          color = continent,
+                          fill = continent)) + 
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "gam", color = "red") +
+  scale_x_log10(labels = scales::dollar) +
+  labs( x = "log GDP",
+        y = "Life Expectancy",
+        title = "A Gapminder Plot",
+        subtitle = "Data points are country-years",
+        caption = "Source: Gapminder")
+```
+
+6. Themes
+```{r}
+p + geom_point(alpha = 0.3) +
+  geom_smooth(method = "gam", color = "red") +
+  scale_x_log10(labels = scales::dollar) +
+  labs( x = "log GDP",
+        y = "Life Expectancy",
+        title = "A Gapminder Plot",
+        subtitle = "Data points are country-years",
+        caption = "Source: Gapminder") +
+  theme_economist()
+```
+
+## Save files 
+
+- I highly recommned to save your file in a subdirectory named output or figures or something like that.
+
+```{r}
+figure_example <- p + geom_point(alpha = 0.3) +
+  geom_smooth(method = "gam", color = "red") +
+  scale_x_log10(labels = scales::dollar) +
+  labs( x = "log GDP",
+        y = "Life Expectancy",
+        title = "A Gapminder Plot",
+        subtitle = "Data points are country-years",
+        caption = "Source: Gapminder") +
+  theme_economist()
+
+ggsave(filename = "figure_example.png", plot = figure_example)
+
+ggsave(filename = "figure_example_modified.png", plot = figure_example,
+       height = 8,
+       width = 10,
+       units = "in")
+
+```
+
+# ggplot2 intermediates 
+
+## Grouping and facetting 
+
+- Can you guess what's wrong?
+
+```{r}
+p <- ggplot(gapminder, aes(x = year, y = gdpPercap)) 
+
+p + geom_point()
+
+p + geom_line() 
+```
+
+```{r}
+gapminder
+```
+
+- Use grouping and facetting to clarify 
+
+```{r}
+p <- ggplot(gapminder, aes(x = year, y = gdpPercap)) 
+
+p + geom_line(aes(group = country)) # group by 
+
+p + geom_line(aes(group = country)) + facet_wrap(~continent) # facetting 
+
+p + geom_line(aes(group = country), color = "gray70") +
+  geom_smooth(size = 1.1, method = "loess", se = FALSE) +
+  scale_y_log10(labels = scales::dollar) +
+  facet_wrap(~continent, ncol = 5) + # for single categorical variable; for multiple categorical variables use facet_grid()
+  labs(x = "Year",
+       y = "GDP per capita",
+       title = "GDP per capita on Five continents")
+```
+
+## Use pipes to summarize data
+
+```{r}
+
+gapminder %>%
+  group_by(continent, year) %>%
+  summarize(pop_mean = mean(pop),
+            lifeExp_mean = mean(lifeExp)) %>%
+  ggplot(aes(x = year, y = lifeExp_mean, color = continent)) +
+  geom_point() +
+    labs(x = "Year",
+       y = "Life expectancy",
+       title = "Life expectancy on Five continents")
+
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(pop_mean = mean(pop),
+            lifeExp_mean = mean(lifeExp)) %>%
+  ggplot(aes(x = year, y = lifeExp_mean, color = country)) +
+  geom_point() +
+    labs(x = "Year",
+       y = "Life expectancy",
+       title = "Life expectancy in Europe")
+
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(pop_mean = mean(pop),
+            lifeExp_mean = mean(lifeExp)) %>%
+  ggplot(aes(x = year, y = lifeExp_mean)) +
+  geom_point() +
+    labs(x = "Year",
+       y = "Life expectancy",
+       title = "Life expectancy in Europe") +
+  facet_wrap(~country)
+
+```
+
+```{r}
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(pop_mean = mean(pop),
+            lifeExp_mean = mean(lifeExp)) %>%
+  ggplot(aes(x = country, y = lifeExp_mean)) +
+  geom_boxplot() +
+    labs(x = "Year",
+       y = "Life expectancy",
+       title = "Life expectancy in Europe") +
+  coord_flip()
+
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(pop_mean = mean(pop),
+            lifeExp_mean = mean(lifeExp)) %>%
+  ggplot(aes(x = reorder(country, lifeExp_mean), y = lifeExp_mean)) +
+  geom_boxplot() +
+    labs(x = "Year",
+       y = "Life expectancy",
+       title = "Life expectancy in Europe") +
+  coord_flip()
+
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(pop_mean = mean(pop),
+            lifeExp_mean = mean(lifeExp)) %>%
+  ggplot(aes(x = reorder(country, -lifeExp_mean), y = lifeExp_mean)) +
+  geom_boxplot() +
+    labs(x = "Year",
+       y = "Life expectancy",
+       title = "Life expectancy in Europe") +
+  coord_flip()
+```
+
+## Plotting text
+
+```{r}
+gapminder %>%
+  filter(continent == "Americas") %>%
+  group_by(continent, country) %>%
+  summarize(pop_mean = mean(pop),
+            lifeExp_mean = mean(lifeExp)) %>%
+  ggplot(aes(x = pop_mean, y = lifeExp_mean)) +
+  geom_point() +
+  geom_text(aes(label = country)) +
+  scale_x_log10()
+```
+
+
+
+
+
+
+
+
