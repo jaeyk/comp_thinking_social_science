@@ -58,6 +58,8 @@ Wickham, H. (2014). [Tidy data](https://img1.wsimg.com/blobby/go/48119c9a-d3e2-4
 
 ## Python
 
+VanderPlas, J. (2016). [Python data science handbook: essential tools for working with data](https://jakevdp.github.io/PythonDataScienceHandbook/). O'Reilly Media, Inc.
+
 Downey, B. A. (2012). [Think Python: How to Think Like a Computer Scientist](http://www.greenteapress.com/thinkpython/thinkpython.pdf). Green Tea Press.
 
 McKinney, W. (2012). [Python for data analysis: Data wrangling with Pandas, NumPy, and IPython](https://proquest.safaribooksonline.com/book/programming/python/9781491957653). O'Reilly Media, Inc.
