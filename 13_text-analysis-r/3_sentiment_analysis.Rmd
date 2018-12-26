@@ -1,0 +1,221 @@
+---
+title: "Tidy text in R"
+author: "Jae Yeon Kim"
+date: "Spring 2018"
+output: html_document
+---
+
+The material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge.
+
+# Setup
+```{r}
+
+rm(list=ls())
+
+require(tm) # for text mining
+library(tidyverse) # for tidyverse
+library(tidytext) # for tidy text analysis
+library(quanteda) # for text analysis and examples
+```
+
+# Corpus
+
+A corpus is a collection of texts (raw strings, often called "documents") annotated with meta data (e.g., author, date, source)
+
+In this unit, we firs play with Martin Luther King Jr's "I have a dream" speech.
+
+# Tidytext 
+
+## Create a corpus 
+
+```{r}
+# load MLK speech
+
+MLK <- readLines("http://www.sthda.com/sthda/RDoc/example-files/martin-luther-king-i-have-a-dream-speech.txt")
+
+MLK[1:10]
+
+```
+
+## Tidy text
+
+- tibble is a class of data frame in the dplyr and tibble packages.
+- It's better than built-in data frame since it does not convert strings to factors.
+
+```{r}
+
+# tidy text
+MLK_df <- data_frame(line = 1:length(MLK), text = MLK) 
+
+# see data
+MLK_df
+
+# see class
+class(MLK_df) 
+
+```
+
+- In the end, you need to figure out how to represent text data in a numerical way.
+- And how to reduce dimensions of such text data.
+
+## Tokenize 
+
+Let's deal with a more complicated data. From now on, we use the US presidential inaugural address texts from quanteda package.
+
+- For unnest_tokens, word is a token output and text is a text input.
+- The function also strips punctuation, and converts the tokens to lower case. (Check to_lower argument.)
+
+```{r}
+# load data 
+inaug <- tidy(data_corpus_inaugural)
+
+inaug %>%
+  group_by(President) %>%
+  unnest_tokens(word, text)
+```
+
+N-gram is a consecutive sequence of words.
+
+```{r}
+# no filtered
+inaug %>%
+  filter(Year > 1945) %>%
+  group_by(President) %>%
+  unnest_tokens(bigram, text, token = "ngrams", n = 2) %>%
+  count(bigram, sort = TRUE)
+
+# filtered
+inaug_filtered <- inaug %>%
+  filter(Year > 1945) %>%
+  group_by(President) %>%
+  unnest_tokens(bigram, text, token = "ngrams", n = 2) %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word) 
+
+## count
+inaug_filtered %>%
+  unite(bigram, word1, word2, sep = " ") %>%
+  count(bigram, sort = TRUE)
+
+## count with filter
+inaug_filtered %>%
+  filter(word2 == "government") %>%
+  count(President, word2, sort = TRUE)
+
+```
+
+## Stop words 
+
+- Remove common words (something like "the") not useful for the analysis
+- These words are technically called [stop words](https://en.wikipedia.org/wiki/Stop_words) in natural language processing.
+
+```{r}
+MLK_df %>%
+  unnest_tokens(word, text) %>%
+  count(word, sort = TRUE)
+```
+
+
+```{r}
+# load stopwords dataset
+data(stopwords) 
+
+# apply stopwords
+MLK_df %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words) %>%  
+  count(word, sort = TRUE)
+```
+
+
+- Now, visualize the results.
+
+```{r}
+MLK_df %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words) %>%  
+  count(word, sort = TRUE) %>%
+  filter(n > 2) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(x = word,  y = n)) +
+  geom_col() +
+  coord_flip()
+```
+
+## tf-idf
+
+- TF indicates a term frequency.
+- IDF indicates a term's inverse document frequency.
+- if-idf multiples the term frequency and the inverse document frequency.
+- IDF decreases the weight for common words and increases the weight for less common words. 
+
+We are going to see how IDF works with an actual example.
+
+```{r}
+# words 
+inaug_words <- inaug %>%
+  filter(Year > 1945) %>%
+  unnest_tokens(word, text) %>%
+  count(President, word, sort = TRUE) %>%
+  ungroup() # to return to nongrouped data
+
+# total words
+inaug_total <- inaug_words %>%
+  group_by(President) %>%
+  summarize(total = sum(n))
+
+# merge
+inaug_words <- left_join(inaug_words, inaug_total)
+
+inaug_words
+```
+
+Note that the plot below proves Zipf's law: the frequency that a word appears is inversely proportional to its rank.
+
+```{r}
+
+# plot the distribution of n/total
+ggplot(data = inaug_words, aes(n/total, fill = President)) +
+  geom_histogram(show.legend = FALSE) +
+  facet_wrap(~President, ncol = 5, scales = "free_y")
+
+
+```
+
+```{r}
+inaug_words %>% 
+  group_by(President) %>%
+  mutate(rank = row_number(), 
+         term_frequency = n/total) %>%
+  ggplot(aes(x = rank, y = term_frequency, color = President)) +
+    geom_line(size = 1.1, alpha = 0.8, show.legend = FALSE) +
+    scale_x_log10() +
+    scale_y_log10() +
+    labs(x = "Rank",
+         y = "Term Frequency")
+```
+
+We have an intuition now. Then, let's actually play with a tf-idf dataframe.
+
+```{r}
+# tf_idf
+inaug_words <- inaug_words %>%
+  bind_tf_idf(word, President, n)
+
+# visualize 
+inaug_words %>%
+  arrange(desc(tf_idf)) %>%
+  mutate(word = factor(word, levels = rev(unique(word)))) %>%
+  group_by(President) %>%
+  top_n(10) %>%
+  ungroup %>% 
+  ggplot(aes(word, tf_idf, fill = President)) +
+    geom_col(show.legend = FALSE) +
+    labs(x = NULL, y = "tf-idf") +
+    facet_wrap(~President, ncol = 3, scales = "free") +
+    coord_flip()
+
+```
+
+

@@ -120,12 +120,14 @@ do_something_very_complicated("that", requires, many, arguments,
 
 ---
 
-- Coding is similar to **cooking**.
+- Programming is similar to **cooking**.
     - So many different cuisines (programming languages).
     - But there are fundamentals. 
         - Ingredients (data)
         - Techniques (logic)
         - Recipes (workflow)
+    - Though programming is different from cooking, because it requires much more precision.
+    - Basically, you learn how to talk to a computer and make the computer do what you want.
 
 ---
 
@@ -153,7 +155,7 @@ do_something_very_complicated("that", requires, many, arguments,
 
 - Introduction
     - Jan. 16: Introduction and Setup ("Installfest")
-- Version control 
+- Version control
     - Jan. 21/23: Unix, Bash, and Git
 - R and Python fundamentals 
     - Jan. 28/30: Data Structure in R
@@ -172,9 +174,9 @@ do_something_very_complicated("that", requires, many, arguments,
 
 ---
 
-- Machine Learning and text analysis
+- Text analysis and machine learning
     - Apr. 1/3: Text Analysis in R (guest lecture by Marla Stuart, Social Work & BIDS Data Science Fellow)
-    - Apr. 8/10: Machine Learning and Text Analysis
+    - Apr. 8/10: Unsueprvised Machine Learning in R
     - Apr. 15/17: Supervised Machine Learning in R (guest lecture by Chris Kennedy, Biostats & BIDS Data Science Fellow)
 - Review
     - Apr. 22/24: Wrap-up: Frontiers in Computational Methods (project demo)
@@ -192,7 +194,7 @@ do_something_very_complicated("that", requires, many, arguments,
     - Be nice to each other. We're all learning (especially me).
 - Homework (50%)
     - Every week. 
-    - Learning how to code is like learning how to drive.
+    - Practice, practice, and practice.
 - Final project (25%)
     - Feasibility is your friend. Late Feb proposal, April presentations.
 
@@ -208,5 +210,6 @@ do_something_very_complicated("that", requires, many, arguments,
 ---
 
 # Special thanks 
+- Laura Stoker (UC Berkeley)
 - Rochelle Terman (Chicago)
 - Rachel Bernhard (Oxford, UC Davis)
