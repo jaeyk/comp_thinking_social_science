@@ -218,7 +218,7 @@ p + geom_point(alpha = 0.3) +
 
 ## Save files 
 
-- I highly recommned to save your file in a subdirectory named output or figures or something like that.
+- I highly recommend to save your file in a subdirectory named output or figures or something like that.
 
 ```{r}
 figure_example <- p + geom_point(alpha = 0.3) +
