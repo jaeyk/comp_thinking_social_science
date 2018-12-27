@@ -1,0 +1,6 @@
+---
+title: "Document term frequency in R"
+author: "Jae Yeon Kim"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
