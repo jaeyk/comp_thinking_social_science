@@ -5,7 +5,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: html_document
 ---
 
-The following material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge.
+The following material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge and David Robinson.
 
 # Setup
 ```{r}

@@ -5,7 +5,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: html_document
 ---
 
-The following material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge as well as [stm package manual](https://cran.r-project.org/web/packages/stm/vignettes/stmVignette.pdf) by Margaret E. Roberts, Brandon M. Stewart, and Dustin Tingley, and [stm tutorial](https://juliasilge.com/blog/evaluating-stm/) by again Julia Silge.
+The following material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge and David Robinson as well as [stm package manual](https://cran.r-project.org/web/packages/stm/vignettes/stmVignette.pdf) by Margaret E. Roberts, Brandon M. Stewart, and Dustin Tingley, and [stm tutorial](https://juliasilge.com/blog/evaluating-stm/) by again Julia Silge.
 
 We touched on this concept briefly when we discussed tf-idf in the earlier session. It's time for us now to dive into the analysis of word and document frequency more deeply. Then, we move onto the topic analysis.
 
@@ -23,6 +23,7 @@ library(wordcloud) # for wordcloud
 library(stringr) # for string manipulation
 library(gutenbergr) #  for text data
 library(stm) # for topic modeling
+library(drlib)
 
 # load data 
 inaug <- tidy(data_corpus_inaugural)
@@ -87,6 +88,7 @@ There are several metrics to assess the performance of topic models: the held-ou
 
 ```{r}
 
+# plot the relationship between exclusivity and coherence
 storage$results %>%
   select(K, exclus, semcoh) %>%
   mutate(K = as.factor(K)) %>%
@@ -96,7 +98,61 @@ storage$results %>%
        y = "Exclusivity",
        title = "Comparing exclusivity and semantic coherence")
 
+# look at the other metrics as well
+storage$results %>%
+  gather(metrics, value, heldout, residual, semcoh, exclus) %>%
+  ggplot(aes(x = K, y = value)) +
+  geom_point(size = 3, alpha = 0.3) +
+  geom_line(size = 1) +
+  facet_wrap(~metrics, scales = "free_y") +
+  labs(title = "Diagnostic Values by Number of Topics",
+       x = "Number of Topics (K)",
+       y = "Value") +
+  guides(col=guide_legend(ncol=2))
+
+# let's stick to 10
+topic_model <- stm(inaug_dfm$documents, inaug_dfm$vocab, K = 5, prevalence =~ Year+ President,
+                        max.em.its = 75, data = inaug_dfm$meta, init.type="Spectral",
+                        seed = 1234567,
+                        verbose  =TRUE)
+
 ```
 
 
-## Plot the results
+## Explore the results 
+```{r}
+
+# plot
+plot(topic_model)
+
+# find relevant articles 
+findThoughts(topic_model, texts = inaug$text, topics = 3)$docs[[1]]
+```
+
+## Explore the results with ggplot2
+```{r}
+
+# tidy  
+tidy_text <- tidy(topic_model)
+
+tidy_text
+
+# top terms
+tidy_text %>%
+    group_by(topic) %>%
+    top_n(10, beta) %>%
+    ungroup() %>%
+    mutate(topic = paste0(topic),
+           term = drlib::reorder_within(term, beta, topic)) %>%
+    ggplot(aes(term, beta, fill = as.factor(topic))) +
+    geom_col(alpha = 0.8, show.legend = FALSE) +
+    facet_wrap(~ topic, scales = "free_y") +
+    coord_flip() +
+    scale_x_reordered() +
+    labs(x = NULL, y = "Expected topic proportion",
+         title = "Top 10 topics by prevalence",
+         subtitle = "Highest word probabilities for each topic")+
+    scale_y_continuous(labels = scales::percent)
+```
+
+
