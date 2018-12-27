@@ -1,0 +1,159 @@
+---
+title: "Dictionary methods in R"
+author: "Jae Yeon Kim"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+The following material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge.
+
+# Setup
+```{r}
+
+rm(list=ls())
+
+# load packages
+require(tm) # for text mining
+library(tidyverse) # for tidyverse
+library(tidytext) # for tidy text analysis
+library(quanteda) # for text analysis and examples
+library(wordcloud) # for wordcloud
+library(stringr) # for string manipulation
+library(reshape2)
+
+# load data 
+inaug <- tidy(data_corpus_inaugural)
+```
+
+# Sentiments 
+
+- These sentiment lexicons are from [AFINN](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) from [Finn Arup Nielson](http://people.compute.dtu.dk/faan/), [Bing](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html) from [Bing Liu](https://www.cs.uic.edu/~liub/) and collaborators, and [NRC](http://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm) from [Saif Mohammad](http://saifmohammad.com/) and [Peter Turney](https://www.apperceptual.com/).
+
+- NRC lexicons, and the Bing lexicons are measured using categorical variables and the AFINN lexicons are based on a -5 to 5 scale.
+
+- These lexicons are validated by either crowdsourcing or the authors or both of them. Basically, this is a case of a dictionary method in which a dictionary is about sentiments.
+
+```{r}
+# example
+sentiments %>%
+  group_by(sentiment) %>%
+  filter(sentiment == "trust")
+
+# call a sentiment lexicon 
+get_sentiments("nrc")
+```
+
+# Sentiment analysis
+
+## Plot
+
+```{r}
+
+# apply to the data 
+
+
+## AFINN
+inaug %>%
+  filter(Year > 1945) %>%
+  unnest_tokens(word, text) %>%
+  inner_join(get_sentiments("afinn")) %>%
+  count(President, Year, score) %>%
+  ggplot(aes(x = score, y = n, col)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(President ~ Year, scale = "free_y") +
+  coord_flip()
+
+## NRC
+inaug %>%
+  filter(Year > 1945) %>%
+  unnest_tokens(word, text) %>%
+  inner_join(get_sentiments("nrc")) %>%
+  count(President, Year, sentiment) %>%
+  ggplot(aes(x = sentiment, y = n, col)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(President ~ Year, scale = "free_y") +
+  coord_flip()
+
+## Bing
+inaug %>%
+  filter(Year > 1945) %>%
+  unnest_tokens(word, text) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(President, Year, sentiment) %>%
+  ggplot(aes(x = sentiment, y = n, col)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(President ~ Year, scale = "free_y") +
+  coord_flip()
+```
+
+## Count
+
+- What's going on here? Let's count most frequent words associated with positive and negative sentiments using the Bing lexicons.
+
+```{r}
+## Bing
+inaug %>%
+  filter(Year > 1945) %>%
+  unnest_tokens(word, text) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE)
+```
+
+## Wordcloud
+
+- Frankly, not a big fan of this visualization method. But can be useful for the data exploration.
+
+```{r}
+
+# without sentiment analysis
+inaug %>%
+  filter(Year > 1945) %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words) %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 100))
+
+# with sentiment analysis
+inaug %>%
+  filter(Year > 1945) %>%
+  unnest_tokens(word, text) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  reshape2::acast(word ~ sentiment, value.var = "n", fill = 0) %>% # turn the dataframe into a matrix
+  comparison.cloud(colors = c("red", "blue"),
+                   max.words = 100)
+
+```
+
+## Creating your own dictionary 
+
+```{r}
+# create your own dictionary
+race_dictionary <- data.frame(word = c("african", "negro", "black", "asian", "oriental", "latino", "hispanic", "nonwhite"), category = c("Afircan Americans", "African Americans", "African Americans", "Asian Americans", "Asian Americans", "Latinx", "Latinx", "People of Color"))
+
+class_dictionary <- data.frame(word = c("inequality","poverty","growth"), category = c("Distribution","Distribution","Growth"))
+# dictionary-based analysis
+  
+## race
+inaug %>%
+  unnest_tokens(word, text) %>%
+  inner_join(race_dictionary) %>%
+  count(President, Year, category) %>%
+  ggplot(aes(x = category, y = n, col)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(President ~ Year, scale = "free_y") +
+  coord_flip()
+  
+## class
+inaug %>%
+  unnest_tokens(word, text) %>%
+  inner_join(class_dictionary) %>%
+  count(President, Year, category) %>%
+  ggplot(aes(x = category, y = n, col)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(President ~ Year, scale = "free_y") +
+  coord_flip()
+```
+
+
+

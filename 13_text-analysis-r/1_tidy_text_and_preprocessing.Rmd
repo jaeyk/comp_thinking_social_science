@@ -1,11 +1,11 @@
 ---
-title: "Tidy text in R"
+title: "Tidy text and preprocessing in R"
 author: "Jae Yeon Kim"
-date: "Spring 2018"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: html_document
 ---
 
-The material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge.
+The following material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge.
 
 # Setup
 ```{r}
@@ -22,7 +22,7 @@ library(quanteda) # for text analysis and examples
 
 A corpus is a collection of texts (raw strings, often called "documents") annotated with meta data (e.g., author, date, source)
 
-In this unit, we firs play with Martin Luther King Jr's "I have a dream" speech.
+For this exercise, we play with Martin Luther King Jr's "I have a dream" speech.
 
 # Tidytext 
 
@@ -55,15 +55,24 @@ class(MLK_df)
 
 ```
 
+# Preprocessing 
+
 - In the end, you need to figure out how to represent text data in a numerical way.
-- And how to reduce dimensions of such text data.
+- And how to reduce dimensions of such text data by 
+    - 1) tokenizing and using n-grams, 
+    - 2) removing noise (e.g., html tags), and 
+    - 3) [normalizing](https://en.wikipedia.org/wiki/Text_normalization) (e.g., stop words, [stemming and lemmatization](https://nlp.stanford.edu/IR-book/html/htmledition/stemming-and-lemmatization-1.html)). 
+- In this unit, we focus on 1) and 3). For noise removing, you might need to learn how to do string manipulations by using [regular expressions](https://www.regular-expressions.info/) in R.
 
-## Tokenize 
+## Tokenizing
 
-Let's deal with a more complicated data. From now on, we use the US presidential inaugural address texts from quanteda package.
+[Tokenizing](https://nlp.stanford.edu/IR-book/html/htmledition/tokenization-1.html) splits longer strings into smaller pieces (called 'tokens'). 
+
+From now on, we use the US presidential inaugural address texts from quanteda package to have experience with complicated data.
 
 - For unnest_tokens, word is a token output and text is a text input.
-- The function also strips punctuation, and converts the tokens to lower case. (Check to_lower argument.)
+- The function also strips punctuation, and converts the tokens to lower case. (Check to_lower argument.). This is nice because we want words not uninteresting characters like punctuation.
+- Also, note that tokenizing is language specific. We only deal with English text data here.
 
 ```{r}
 # load data 
@@ -74,6 +83,7 @@ inaug %>%
   unnest_tokens(word, text)
 ```
 
+## Using N-grmas
 N-gram is a consecutive sequence of words.
 
 ```{r}
@@ -105,7 +115,8 @@ inaug_filtered %>%
 
 ```
 
-## Stop words 
+## Normalizing
+### Stop words 
 
 - Remove common words (something like "the") not useful for the analysis
 - These words are technically called [stop words](https://en.wikipedia.org/wiki/Stop_words) in natural language processing.
@@ -143,7 +154,7 @@ MLK_df %>%
   coord_flip()
 ```
 
-## tf-idf
+### tf-idf
 
 - TF indicates a term frequency.
 - IDF indicates a term's inverse document frequency.
@@ -171,7 +182,8 @@ inaug_words <- left_join(inaug_words, inaug_total)
 inaug_words
 ```
 
-Note that the plot below proves Zipf's law: the frequency that a word appears is inversely proportional to its rank.
+Note that the plot below proves Zipf's law: the frequency that a word appears is inversely proportional to its rank. As we learn later, this insight is key to understanding how topic modeling works. In most cases, we need only a few number of topics because important words are rare.
+
 
 ```{r}
 
@@ -195,8 +207,6 @@ inaug_words %>%
     labs(x = "Rank",
          y = "Term Frequency")
 ```
-
-We have an intuition now. Then, let's actually play with a tf-idf dataframe.
 
 ```{r}
 # tf_idf
