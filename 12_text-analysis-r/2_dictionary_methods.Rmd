@@ -29,7 +29,7 @@ inaug <- tidy(data_corpus_inaugural)
 
 - These sentiment lexicons are from [AFINN](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) from [Finn Arup Nielson](http://people.compute.dtu.dk/faan/), [Bing](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html) from [Bing Liu](https://www.cs.uic.edu/~liub/) and collaborators, and [NRC](http://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm) from [Saif Mohammad](http://saifmohammad.com/) and [Peter Turney](https://www.apperceptual.com/).
 
-- NRC lexicons, and the Bing lexicons are measured using categorical variables and the AFINN lexicons are based on a -5 to 5 scale.
+- NRC lexicons, and the Bing lexicons are measured using categorical variables and the AFINN lexicons are based on a scale of -5 to 5.
 
 - These lexicons are validated by either crowdsourcing or the authors or both of them. Basically, this is a case of a dictionary method in which a dictionary is about sentiments.
 
