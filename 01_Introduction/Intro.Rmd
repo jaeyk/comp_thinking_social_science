@@ -44,11 +44,16 @@ ggplot(data_science_trends$interest_over_time, aes(date, hits)) +
 ---
 
 - Why should we care?
-- Yes, big data (or machine learning) is a trend. 
-- But computational tools and techniques are much broader and fundamental to how we research:
+- Yes, big data (or data science, or machine learning) is a trend. 
+- But computational tools and techniques are much broader and fundamental to how we work:
     - Data collection (e.g., APIs, webscraping)
     - Analysis (e.g., text analysis, machine learning)
     - Visualization (e.g., maps, social networks)
+
+--- 
+
+- For things you've done, computational tools and techniques can help you do these tasks better with much less time and efforts. For a researcher, learning computational tools is very much like eating more nutritious foods or doing regular workouts. 
+- For things you've never done, computational tools and techniques can open a new window of opportunities. For example, think about web scraping, or machine learning.
 
 --- 
 
