@@ -52,7 +52,7 @@ ggplot(data_science_trends$interest_over_time, aes(date, hits)) +
 
 --- 
 
-- For things you've done, computational tools and techniques can help you do these tasks better with much less time and efforts. For a researcher, learning computational tools is very much like eating more nutritious foods or doing regular workouts. 
+- For things you've done, computational tools and techniques can help you do these tasks better with much less time and efforts. For a researcher, learning computational methods is equivalent to eating more nutritious foods or doing regular workouts. 
 - For things you've never done, computational tools and techniques can open a new window of opportunities. For example, think about web scraping, or machine learning.
 
 --- 
