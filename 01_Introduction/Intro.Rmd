@@ -53,7 +53,7 @@ ggplot(data_science_trends$interest_over_time, aes(date, hits)) +
 --- 
 
 - For things you've done, computational tools and techniques can help you do these tasks better with much less time and efforts. For a researcher, learning computational methods is equivalent to eating more nutritious foods or doing regular workouts. 
-- For things you've never done, computational tools and techniques can open a new window of opportunities. For example, think about web scraping, or machine learning.
+- For things you've never done, computational tools and techniques can open a new window of opportunities.
 
 --- 
 
@@ -171,9 +171,9 @@ do_something_very_complicated("that", requires, many, arguments,
 ---
 
 - Online data collection 
-    - Feb. 25/27: Webscraping (project proposal draft due)
+    - Feb. 25/27: HTML/CSS/Javascript (project proposal draft due)
     - Mar. 4/6: APIs
-    - Mar. 11/13: HTML/CSS/Javascript
+    - Mar. 11/13: Web scraping (guest lecture by Jaren Haber, Sociology & Computational Text Analysis Working Group)
     - Mar. 18/20: Online Sampling, Survey, and Field Experiments
 - Mar. 25/27: SPRING BREAK (final project proposal due)
 
