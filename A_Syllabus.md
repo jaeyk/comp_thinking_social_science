@@ -127,9 +127,9 @@ The schedule is subject to change based on the class's rate of progress.
 * **Feb. 4/6:** Data Analysis in R 
 * **Feb. 11/13:** Data Visualization in R
 * **Feb. 18/20:** Intro to Python
-* **Feb. 25/27:** Webscraping 
+* **Feb. 25/27:** HTML/CSS/Javascript 
 * **Mar. 4/6:** APIs
-* **Mar. 11/13:** HTML/CSS/Javascript
+* **Mar. 11/13:** Web scraping (guest lecture by [Jaren Haber](http://dlab.berkeley.edu/people/jaren-haber), Sociology and Computational Text Analysis Working Group)
 * **Mar. 18/20:** Online Sampling, Survey, and Field Experiments   
 * **Mar. 25/27:** SPRING BREAK [no class]
 [Note: final presentations occur in lieu of regular section in April]
