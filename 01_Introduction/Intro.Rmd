@@ -184,7 +184,7 @@ do_something_very_complicated("that", requires, many, arguments,
     - Apr. 8/10: Unsueprvised Machine Learning in R
     - Apr. 15/17: Supervised Machine Learning in R (guest lecture by Chris Kennedy, Biostats & BIDS Data Science Fellow)
 - Review
-    - Apr. 22/24: Wrap-up: Frontiers in Computational Methods (project demo)
+    - Apr. 22/24: Wrap-up and Package Development in R
 
 ---
 
