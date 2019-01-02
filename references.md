@@ -72,6 +72,8 @@ McKinney, W. (2010, June). [Data structures for statistical computing in python]
 
 Mitchell, R. (2015). [Web Scraping with Python: Collecting More Data from the Modern Web](http://shop.oreilly.com/product/0636920034391.do). O'Reilly Media, Inc.
 
+Nolan, D., & Lang, D. T. (2014). [*XML and web technologies for data sciences with R*](XML and Web Technologies for Data Sciences with R). New York and Heidelberg: Springer.
+
 Boeing, G., & Waddell, P. (2017). [New insights into rental housing markets across the United States: Web scraping and analyzing craigslist rental listings](https://journals.sagepub.com/doi/abs/10.1177/0739456X16664789). Journal of Planning Education and Research, 37(4), 457-476.
 
 ## Data visualization
