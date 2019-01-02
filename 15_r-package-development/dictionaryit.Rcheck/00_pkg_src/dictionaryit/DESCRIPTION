@@ -1,0 +1,11 @@
+Package: dictionaryit
+Version: 0.1
+Date: 2019-01-01
+Title: Dictionary It
+Description: Running a Dictionary Analysis
+Author: Jae Yeon Kim <jaeyeonkim@berkely.edu>
+Maintainer: Jae Yeon Kim <jaeyeonkim@berkeley.edu>
+RoxygenNote: 6.1.1
+Roxygen: list(markdown = TRUE)
+NeedsCompilation: no
+Packaged: 2019-01-02 05:02:04 UTC; jae
