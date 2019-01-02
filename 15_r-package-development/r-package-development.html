@@ -1657,8 +1657,8 @@ $(document).ready(function () {
 <div id="motivation" class="section level2">
 <h2>Motivation</h2>
 <ul>
-<li>So far, we have used R a lot. I hope you find it useful, though perhaps it may not be very accessible especially at the earlier stage. R has evolved into the current powerful form thanks to its committed and passionate open source community members. Writing a package can be your way of giving something back to this wonderful community.</li>
-<li>Moreover, like I wrote earlier, writing a package is the best way to learn best practices. In other words, if you carefully follow best practices, it’s not very difficult to write a package. Don’t write a package for a package’s sake. You can do better by saving functions you often used for your own projects and revising them from time to time. Also, if you manage your project using some version control systems, preferably Git, and closely document the process you’re developing your code, you’re almost ready to be a R developer.</li>
+<li>So far, we have used R a lot. R has evolved into the current powerful form thanks to its committed and passionate open source community members. Writing a package can be your way of giving something back to this wonderful community.</li>
+<li>Moreover, writing a package is the best way to learn best practices. In other words, if you carefully follow best practices, it’s not very difficult to write a package. Don’t write a package for a package’s sake. You can do better by saving functions you often used for your own projects and revising them from time to time. Also, if you manage your project using some version control systems, preferably Git, and closely document the process you’re developing your code, you’re almost ready to be a R developer.</li>
 </ul>
 <p>Let’s install and load some packages for R package development.</p>
 <pre class="r"><code>rm(list = ls()) # clean the global environment
@@ -1674,8 +1674,8 @@ require(devtools) # for package development </code></pre>
 <li>Create R script files and save them into a subdirectory named R.</li>
 <li>Create a text file named DESCRIPTION (basically, it’s a README file.) containing the following:</li>
 </ol>
-<p>In this unit, I created dictionaryit.r file and saved it into Code subdirectory and also created DESCRIPTION.text for the hypothetical package I’m developing.</p>
-<p>The minimum information needs to be put in DESCRIPTION.txt is as follows:</p>
+<p>In this unit, I created dictionaryit.r file and saved it into R subdirectory and also created DESCRIPTION.text for the hypothetical package I’m developing.</p>
+<p>DESCRIPTION file should contain at least the following information:</p>
 <pre><code>Package: the one word package name (1st line)
 Version: the version control number (2nd line)</code></pre>
 <p><strong>Tips</strong></p>
@@ -1749,7 +1749,7 @@ build(&quot;/home/jae/PS239T/15_r-package-development/dictionaryit&quot;)</code>
 <h2>Adding more information</h2>
 <div id="description.txt" class="section level3">
 <h3>DESCRIPTION.txt</h3>
-<p>DESCRIPTION is an overstatement at this point. We should add more information to make it more useful for potential users. The file should contain the following information to be proper. Also, you should not make any break between lines.</p>
+<p>We should add more information to DESCRIPTION to make it more useful for potential users. The file should contain the following information to be proper.</p>
 <pre><code>Package: the one word package name 
 Version: the version number 
 Date: YYYY-MM-DD
@@ -1761,7 +1761,7 @@ License: license of your choice </code></pre>
 <h4>Software licenses</h4>
 <p>If you want to license your package, you have several options.</p>
 <ul>
-<li>No Creative Commons (CCL is for contents.); except CC0 which indicates public domain. In other words, if you publish lecture notes and want to make it be used freely (free not in free beer but in freedom), then use CC0.</li>
+<li>No Creative Commons License (CCL is for contents.); except CC0 which indicates public domain. In other words, if you publish lecture notes and want to make it be used freely (free not in free beer but in freedom), then use CC0.</li>
 <li>GPL-3 (GNU General Public Licenses). It’s a conventional license in the free software world. As a member of <strong>open source</strong> R community, you should consider this seriously. For more information, see the official document about <a href="https://www.gnu.org/copyleft/gpl.html">GPL-3</a>.</li>
 <li>MIT License: Since R only takes MIT license as a template, you need to include a LICENSE file in your package directory.</li>
 </ul>

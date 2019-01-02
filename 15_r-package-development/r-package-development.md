@@ -1,0 +1,228 @@
+---
+title: "Writing your own R package"
+author: "Jae Yeon Kim"
+output:
+  html_document:
+    df_print: paged
+    keep_md: yes
+  pdf_document: default
+---
+
+Writing your own R package is the best way to learn best practices. 
+
+**Best practices**
+
+1. Documentation
+2. Reusing functions 
+3. Version control 
+
+This unit followed the structure of [Karl Broman's tutorial](https://kbroman.org/pkg_primer/) and added contents from Wickham's book titled [R packages](http://r-pkgs.had.co.nz/).
+
+## Motivation 
+
+- So far, we have used R a lot. I hope you find it useful, though perhaps it may not be very accessible especially at the earlier stage. R has evolved into the current powerful form thanks to its committed and passionate open source community members. Writing a package can be your way of giving something back to this wonderful community. 
+- Moreover, like I wrote earlier, writing a package is the best way to learn best practices. In other words, if you carefully follow best practices, it's not very difficult to write a package. Don't write a package for a package's sake. You can do better by saving functions you often used for your own projects and revising them from time to time. Also, if you manage your project using some version control systems, preferably Git, and closely document the process you're developing your code, you're almost ready to be a R developer. 
+
+Let's install and load some packages for R package development.
+
+
+```r
+rm(list = ls()) # clean the global environment
+require(devtools) # for package development 
+```
+
+```
+## Loading required package: devtools
+```
+
+```r
+require(roxygen2) # for documentation
+```
+
+```
+## Loading required package: roxygen2
+```
+
+## The definition of minimum R package
+
+**Workflow**
+
+1. Create R script files and save them into a subdirectory named R. 
+2. Create a text file named DESCRIPTION (basically, it's a README file.) containing the following:
+
+In this unit, I created dictionaryit.r file and saved it into Code subdirectory and also created DESCRIPTION.text for the hypothetical package I'm developing. 
+
+The minimum information needs to be put in DESCRIPTION.txt is as follows:
+
+    Package: the one word package name (1st line)
+    Version: the version control number (2nd line)
+
+**Tips**
+
+1. Write many specific R scripts rather than one big R script that contains everything.
+2. You can also use R project to manage your package development. 
+    - Create the r file which has your functions.
+    - Go to File < New Project < New Director < R Package
+    - Name your package 
+    - The source file is your r files.
+3. Even if you did not create the package directory using R project, you should consider associate your package directory with a project to manage your development process more smoothly. Most packages have bundled files, so you need to have a system that can connect all of these all the time. R project exactly does that.
+
+This is a minimum version package. You're still missing documentation and many others. Also, note that package components such as R have naming conventions. R subdirectory for R code, DESCRIPTION text file for package metadata, NAMESPACE text file for namespace, man subdirectory for object documentation, data subdirectory for data, and so on.
+
+## Building and installing R package 
+
+### Built-in way
+
+1. Open Bash
+2. Go to the directory which contains the package subdirectory where you've saved your R scripts along with DESCRIPTION file.
+3. Type 
+
+    R CMD build whatever the package directory name
+
+The command creates "packagename_versionnumber.tar.gz." The CMD command allows "the invocation of various various tools" not indented to be called directly (for more information, see the following [Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) document). In our case, the command created "dictionaryit_0.1.tar.gz"
+
+Now, you can share this package with your friends using the file. 
+
+If your friend wants to install the package, they can do so by typing the following command.
+
+    R CMD INSTALL the created file name
+
+**Challenge**
+
+1. Save some functions you used in your projects as r script files. 
+2. Create a package directory and put these r script files into a subdirectory of the package directory.
+3. Create DESCRIPTION.text using the correct format.
+4. Build the package. 
+
+### Devtools way 
+
+Fortunately, there's even an easier way to do this. build() function from devtools package does the work. 
+
+
+```r
+# then type build()
+build("/home/jae/PS239T/15_r-package-development/dictionaryit")
+```
+
+```
+##      checking for file ‘/home/jae/PS239T/15_r-package-development/dictionaryit/DESCRIPTION’ ...  ✔  checking for file ‘/home/jae/PS239T/15_r-package-development/dictionaryit/DESCRIPTION’
+##   ─  preparing ‘dictionaryit’:
+##      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
+##   ─  checking for LF line-endings in source and make files and shell scripts
+##   ─  checking for empty or unneeded directories
+## ─  building ‘dictionaryit_0.1.tar.gz’
+##      
+## 
+```
+
+```
+## [1] "/home/jae/PS239T/15_r-package-development/dictionaryit_0.1.tar.gz"
+```
+
+## Adding more information
+
+### DESCRIPTION.txt
+
+We should add more information to DESCRIPTION to make it more useful for potential users. The file should contain the following information to be proper. 
+
+    Package: the one word package name 
+    Version: the version number 
+    Date: YYYY-MM-DD
+    Title: the full package name 
+    Author: the author <email address>
+    Maintainer: the maintainer <email address>
+    License: license of your choice 
+
+#### Software licenses
+
+If you want to license your package, you have several options.
+
+- No Creative Commons (CCL is for contents.); except CC0 which indicates public domain. In other words, if you publish lecture notes and want to make it be used freely (free not in free beer but in freedom), then use CC0.
+- GPL-3 (GNU General Public Licenses). It's a conventional license in the free software world. As a member of **open source** R community, you should consider this seriously. For more information, see the official document about [GPL-3](https://www.gnu.org/copyleft/gpl.html). 
+- MIT License: Since R only takes MIT license as a template, you need to include a LICENSE file in your package directory. 
+
+### A namespace file 
+
+[Namespace](https://en.wikipedia.org/wiki/Namespace) is like a traffic control system on a highway. Without it, functions would conflict each other. For your reference, file system or DNS (domain name system) are also other cases of namespace.
+
+1. Create a text file named NAMESPACE in the same directory where you saved DESCRIPTION.txt
+2. Then add the followings to the file.
+
+    # Export all names 
+    exportPattern(".")
+
+### Writing documentation
+
+Traditionally, to write documentations you need to create a subdirectory named "man" (manual) then create a special R documentation format file (.Rd) per each function within that subdirectory. This is a hassle to deal with.
+
+Roxygen2 provides documentation much easier.
+
+- Instead of $#$ use $#'$
+- For documenting function arguments, use $@$param arguent_name 
+- For documenting function returns, use $@$return some outputs 
+- For exporting functions to the namespace, use $@$export 
+
+
+```r
+#' Combining a Dataframe with Dictionary Counts
+#'
+#' @param data the data input 
+#' @param string_vector the dictionary object 
+#'
+#' @return the combined dataframe with the dictionary counts as a new column to it
+#'
+#' @export 
+```
+
+Then, use document() function in devtools. If you go to man subdirectory, you can see that the new .Rd file is created. IF you open the Rd file, you can see a LaTeX like document.
+
+
+```r
+document("/home/jae/PS239T/15_r-package-development/dictionaryit")
+```
+
+```
+## Updating dictionaryit documentation
+```
+
+```
+## Warning: roxygen2 requires Encoding: UTF-8
+```
+
+```
+## Loading dictionaryit
+```
+
+```
+## Warning: The existing 'NAMESPACE' file was not generated by roxygen2, and
+## will not be overwritten.
+```
+
+
+## Checking 
+
+The package now should look proper. Let's check whether it really does. Go to the directory that contains the package directory in the command line and type:
+
+    R CMD check dictionary_0.1.tar.gz
+
+Also, note that you can autocomplete the above file name by using TAB. The result should show that the package looks good except licensing.
+
+## Putting it on Github
+
+**Workflow**
+
+1. Go to your package directory 
+2. Initialize the directory with git init 
+3. Push everything in the directory with git add .
+4. Make comments on your commit with git commit -m "your comments"
+5. Create new git repository 
+6. Connect your local repository to the GitHub one with "git remote add origin the URL of the git repository"
+7. Push everything to the GitHub with git push -u origin master
+
+At this stage, your package is now in public view. You can add and edit a README file (in Markdown format) to your git repository. But this is for GitHub users to get more information about your package. R will ignore this information.
+
+## Getting it on CRAN
+
+CRAN stands for the Comprehensive R Archive Network. If you get your package on CRAN, R users can directly download your package from the R's main repository. Also, it means you need to run through extensive tests to see your package running well.
+
+Here's [the submission information](https://cran.r-project.org/web/packages/policies.html) for sending your package to CRAN.
