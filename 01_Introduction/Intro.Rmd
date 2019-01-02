@@ -52,8 +52,9 @@ ggplot(data_science_trends$interest_over_time, aes(date, hits)) +
 
 --- 
 
-- For things you've done, computational tools and techniques can help you do these tasks better with much less time and efforts. For a researcher, learning computational methods is equivalent to eating more nutritious foods or doing regular workouts. 
-- For things you've never done, computational tools and techniques can open a new window of opportunities.
+- Computational tools and techniques 
+    - can automate things you've done before. 
+    - can collect, analyze, and visualize data in a new way.
 
 --- 
 
@@ -131,8 +132,7 @@ do_something_very_complicated("that", requires, many, arguments,
         - Ingredients (data)
         - Techniques (logic)
         - Recipes (workflow)
-    - Though programming is different from cooking, because it requires much more precision.
-    - Basically, you learn how to talk to a computer and make the computer do what you want.
+    - Though programming is also different from cooking, because it requires much more precision.
 
 ---
 
@@ -144,7 +144,12 @@ do_something_very_complicated("that", requires, many, arguments,
     - Techniques 
 - Learning by doing
     - Learning from your own MANY trials and errors 
-    - Learning from others (please, do Google search before asking me) 
+    - Learning from others  
+
+---
+
+- Writing code like writing an essay
+- Managing project like developing a package
 
 ---
 
@@ -175,7 +180,7 @@ do_something_very_complicated("that", requires, many, arguments,
     - Mar. 4/6: APIs
     - Mar. 11/13: Web scraping (guest lecture by Jaren Haber, Sociology & Computational Text Analysis Working Group)
     - Mar. 18/20: Online Sampling, Survey, and Field Experiments
-- Mar. 25/27: SPRING BREAK (final project proposal due)
+    - Mar. 25/27: SPRING BREAK (final project proposal due)
 
 ---
 
