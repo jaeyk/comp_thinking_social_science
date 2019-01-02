@@ -1675,20 +1675,20 @@ require(devtools) # for package development </code></pre>
 <li>Create a text file named DESCRIPTION (basically, it’s a README file.) containing the following:</li>
 </ol>
 <p>In this unit, I created dictionaryit.r file and saved it into R subdirectory and also created DESCRIPTION.text for the hypothetical package I’m developing.</p>
-<p>DESCRIPTION file should contain at least the following information:</p>
+<p>Your DESCRIPTION file should contain at least the following information:</p>
 <pre><code>Package: the one word package name (1st line)
 Version: the version control number (2nd line)</code></pre>
 <p><strong>Tips</strong></p>
 <ol style="list-style-type: decimal">
 <li>Write many specific R scripts rather than one big R script that contains everything.</li>
-<li>You can also use R project to manage your package development.
+<li>You can also use <strong>R project</strong> to manage your package development.
 <ul>
 <li>Create the r file which has your functions.</li>
 <li>Go to File &lt; New Project &lt; New Director &lt; R Package</li>
 <li>Name your package</li>
 <li>The source file is your r files.</li>
 </ul></li>
-<li>Even if you did not create the package directory using R project, you should consider associate your package directory with a project to manage your development process more smoothly. Most packages have bundled files, so you need to have a system that can connect all of these all the time. R project exactly does that.</li>
+<li>Even if you did not create the package directory using R project, you should consider associate your package directory with a project to make your development process more smooth. Most packages have bundled files, so you need to have a system that can connect all of these all the time. R project exactly does that.</li>
 </ol>
 <p>This is a minimum version package. You’re still missing documentation and many others. Also, note that package components such as R have naming conventions. R subdirectory for R code, DESCRIPTION text file for package metadata, NAMESPACE text file for namespace, man subdirectory for object documentation, data subdirectory for data, and so on.</p>
 </div>
@@ -1698,7 +1698,7 @@ Version: the version control number (2nd line)</code></pre>
 <h3>Built-in way</h3>
 <ol style="list-style-type: decimal">
 <li>Open Bash</li>
-<li>Go to the directory which contains the package subdirectory where you’ve saved your R scripts along with DESCRIPTION file.</li>
+<li>Go to the directory which contains the package subdirectory where you’ve saved your R scripts along with your DESCRIPTION file.</li>
 <li><p>Type</p>
 <p>R CMD build whatever the package directory name</p></li>
 </ol>
@@ -1747,9 +1747,15 @@ build(&quot;/home/jae/PS239T/15_r-package-development/dictionaryit&quot;)</code>
 </div>
 <div id="adding-more-information" class="section level2">
 <h2>Adding more information</h2>
+<p>Now we enrich documentation to make the package more useful. When you do so, remember Matt Denny’s following words of wisdom:</p>
+<ol style="list-style-type: decimal">
+<li>Be verbose – write more than you think you need</li>
+<li>Give simple examples – if you go to stackoverflow, you can see that people talk about minimum working examples. Stick to minimums. Light, fast, but illustrating.</li>
+<li>Give clear names – give good names to your package and functions. This is something also Wickham stressed in his book.</li>
+</ol>
 <div id="description.txt" class="section level3">
 <h3>DESCRIPTION.txt</h3>
-<p>We should add more information to DESCRIPTION to make it more useful for potential users. The file should contain the following information to be proper.</p>
+<p>We should add more information to your DESCRIPTION file to make it more useful for potential users. The file should contain the following information to be proper.</p>
 <pre><code>Package: the one word package name 
 Version: the version number 
 Date: YYYY-MM-DD
@@ -1766,12 +1772,19 @@ License: license of your choice </code></pre>
 <li>MIT License: Since R only takes MIT license as a template, you need to include a LICENSE file in your package directory.</li>
 </ul>
 </div>
+<div id="section" class="section level4">
+<h4></h4>
+<p>The other information that can and actually should be included in your DESCRIPTION file is dependencies. If some parts of your code include functions from other packages, then it’s wise to check their depdencies. You can do that with</p>
+<pre><code>devtools::use_package(&quot;package name&quot;)</code></pre>
+<p>Then, add that information to your DESCRIPTION file.</p>
+<pre><code>Depends: dependencies information</code></pre>
+</div>
 </div>
 <div id="a-namespace-file" class="section level3">
 <h3>A namespace file</h3>
 <p><a href="https://en.wikipedia.org/wiki/Namespace">Namespace</a> is like a traffic control system on a highway. Without it, functions would conflict each other. For your reference, file system or DNS (domain name system) are also other cases of namespace.</p>
 <ol style="list-style-type: decimal">
-<li>Create a text file named NAMESPACE in the same directory where you saved DESCRIPTION.txt</li>
+<li>Create a text file named NAMESPACE in the same directory where you saved your DESCRIPTION.txt</li>
 <li><p>Then add the followings to the file.</p>
 <p># Export all names exportPattern(“.”)</p></li>
 </ol>
@@ -1827,6 +1840,12 @@ License: license of your choice </code></pre>
 <h2>Getting it on CRAN</h2>
 <p>CRAN stands for the Comprehensive R Archive Network. If you get your package on CRAN, R users can directly download your package from the R’s main repository. Also, it means you need to run through extensive tests to see your package running well.</p>
 <p>Here’s <a href="https://cran.r-project.org/web/packages/policies.html">the submission information</a> for sending your package to CRAN.</p>
+</div>
+<div id="further-readings" class="section level2">
+<h2>Further readings</h2>
+<ul>
+<li>If you’re into writing pacakges, then read Wickham’s book on <a href="http://r-pkgs.had.co.nz/">R packges</a> and spend some time wiht <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">Writing R Extensions</a> the R package development bible.</li>
+</ul>
 </div>
 
 
