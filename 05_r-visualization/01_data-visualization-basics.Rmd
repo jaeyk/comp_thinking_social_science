@@ -1,5 +1,5 @@
 ---
-title: "Data visualization with ggplot2"
+title: "Data visualization basics"
 author: "Jae Yeon Kim"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
@@ -30,6 +30,7 @@ pacman::p_load(
 
 ## Anscombe's quartet
 
+[Anscombe](https://en.wikipedia.org/wiki/Frank_Anscombe)'s quarter comprises four datasets, which are so alike in terms of their descriptive statistics but quite different when presented graphically.
 ```{r}
 
 # data 
@@ -53,7 +54,10 @@ anscombe %>%
   ggplot(aes(x = x_value, y = y_value)) +
            geom_point() +
            facet_grid(x_name ~ y_name) +
-  theme_bw()
+  theme_bw() +
+  labs(x = "X values",
+       y = "Y values",
+       title = "Anscombe's quartet")
 ```
 
 # ggplot2 basics 
@@ -239,169 +243,3 @@ ggsave(filename = "figure_example_modified.png", plot = figure_example,
        units = "in")
 
 ```
-
-# ggplot2 intermediates 
-
-## Grouping and facetting 
-
-- Can you guess what's wrong?
-
-```{r}
-p <- ggplot(gapminder, aes(x = year, y = gdpPercap)) 
-
-p + geom_point()
-
-p + geom_line() 
-```
-
-```{r}
-gapminder
-```
-
-- Use grouping and facetting to clarify 
-
-```{r}
-p <- ggplot(gapminder, aes(x = year, y = gdpPercap)) 
-
-p + geom_line(aes(group = country)) # group by 
-
-p + geom_line(aes(group = country)) + facet_wrap(~continent) # facetting 
-
-p + geom_line(aes(group = country), color = "gray70") +
-  geom_smooth(size = 1.1, method = "loess", se = FALSE) +
-  scale_y_log10(labels = scales::dollar) +
-  facet_wrap(~continent, ncol = 5) + # for single categorical variable; for multiple categorical variables use facet_grid()
-  labs(x = "Year",
-       y = "GDP per capita",
-       title = "GDP per capita on Five continents") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
-```
-
-## Use pipes to summarize data
-
-```{r}
-
-gapminder %>%
-  group_by(continent, year) %>%
-  summarize(gdp_mean = mean(gdpPercap),
-            lifeExp_mean = mean(lifeExp)) %>%
-  ggplot(aes(x = year, y = lifeExp_mean, color = continent)) +
-  geom_point() +
-    labs(x = "Year",
-       y = "Life expectancy",
-       title = "Life expectancy on Five continents")
-
-gapminder %>%
-  filter(continent == "Europe") %>%
-  group_by(country, year) %>%
-  summarize(gdp_mean = mean(gdpPercap),
-            lifeExp_mean = mean(lifeExp)) %>%
-  ggplot(aes(x = year, y = lifeExp_mean, color = country)) +
-  geom_point() +
-    labs(x = "Year",
-       y = "Life expectancy",
-       title = "Life expectancy in Europe")
-
-gapminder %>%
-  filter(continent == "Europe") %>%
-  group_by(country, year) %>%
-  summarize(gdp_mean = mean(gdpPercap),
-            lifeExp_mean = mean(lifeExp)) %>%
-  ggplot(aes(x = year, y = lifeExp_mean)) +
-  geom_point() +
-    labs(x = "Year",
-       y = "Life expectancy",
-       title = "Life expectancy in Europe") +
-  facet_wrap(~country)
-
-```
-
-```{r}
-gapminder %>%
-  filter(continent == "Europe") %>%
-  group_by(country, year) %>%
-  summarize(gdp_mean = mean(gdpPercap),
-            lifeExp_mean = mean(lifeExp)) %>%
-  ggplot(aes(x = country, y = lifeExp_mean)) +
-  geom_boxplot() +
-    labs(x = "Country",
-       y = "Life expectancy",
-       title = "Life expectancy in Europe") +
-  coord_flip()
-
-gapminder %>%
-  filter(continent == "Europe") %>%
-  group_by(country, year) %>%
-  summarize(gdp_mean = mean(gdpPercap),
-            lifeExp_mean = mean(lifeExp)) %>%
-  ggplot(aes(x = reorder(country, lifeExp_mean), y = lifeExp_mean)) +
-  geom_boxplot() +
-    labs(x = "Country",
-       y = "Life expectancy",
-       title = "Life expectancy in Europe") +
-  coord_flip()
-
-gapminder %>%
-  filter(continent == "Europe") %>%
-  group_by(country, year) %>%
-  summarize(gdp_mean = mean(gdpPercap),
-            lifeExp_mean = mean(lifeExp)) %>%
-  ggplot(aes(x = reorder(country, -lifeExp_mean), y = lifeExp_mean)) +
-  geom_boxplot() +
-    labs(x = "Country",
-       y = "Life expectancy",
-       title = "Life expectancy in Europe") +
-  coord_flip()
-```
-
-## Plotting text
-
-```{r}
-gapminder %>%
-  filter(continent == "Asia" | continent == "Americas") %>%
-  group_by(continent, country) %>%
-  summarize(gdp_mean = mean(gdpPercap),
-            lifeExp_mean = mean(lifeExp)) %>%
-  ggplot(aes(x = gdp_mean, y = lifeExp_mean)) +
-  geom_point() +
-  geom_text(aes(label = country)) +
-  scale_x_log10() +
-  facet_grid(~continent)
-```
-
-## Ploting models 
-
-```{r}
-
-# regression model
-out <-lm(formula = lifeExp ~ gdpPercap + pop + continent, 
-          data = gapminder)
-
-# estimates 
-out_comp <- tidy(out)
-
-p <- out_comp %>%
-  ggplot(aes(x = term, y = estimate))
-
-p + geom_point() +
-  coord_flip() +
-  theme_bw()
-
-# plus confidence intervals 
-out_conf <- tidy(out, conf.int = TRUE)
-
-p <- out_conf %>%
-  ggplot(aes(x = reorder(term, estimate), y = estimate, ymin = conf.low, ymax = conf.high))
-
-p + geom_pointrange() + coord_flip() + labs(x = "", y = "OLS Estimate") +
-  theme_bw()
-```
-
-
-
-
-
-
-
-
-
