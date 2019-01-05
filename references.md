@@ -50,6 +50,8 @@ Wickham, H. (2014). [R Packages](http://adv-r.had.co.nz/). Chapman & Hall’s R 
 
 Matloff, N. (2011). [The art of R programming: A tour of statistical software design](https://nostarch.com/artofr.htm). No Starch Press.
 
+Chambers, J. (2008). [Software for data analysis: programming with R](https://link.springer.com/book/10.1007%2F978-0-387-75936-4). Springer Science & Business Media.
+
 Spector, P. (2008). [Data manipulation with R](https://www.springer.com/us/book/9780387747309). Springer Science & Business Media.
 
 ### Papers 
