@@ -16,7 +16,11 @@ An operating system is a suite of programs which make the computer work. It is a
 
 ### Unix
 
-UNIX is an operating system which was first developed in the 1960s, and has been under constant development ever since. 
+UNIX is an operating system which was first developed by AT & T employees at Bell Labs (1969-1971).  Bell Labs canceled the project (MULTICS) but was continued by the employees worked in a smaller scale. The new project was named UNICS (Uniplexed Information and Computation System) and then renamed UNIX. Due to [the anti-trust issue](https://en.wikipedia.org/wiki/Breakup_of_the_Bell_System), AT & T gave away UNIX in 1975. Berkeley is one of the main places where UNIX was developed. The Berkeley Software Distribution (BSD), one of the branches of UNIX came out it 1977.
+
+From Mac OS X to Linux, many of current operation systems are some versions of UNIX. 
+
+For more information on the history of UNIX, see [this link](https://docs.google.com/presentation/d/1kKt9V6rom55hU6SJ2_3nGluobjtScptlnJV9YFe6Jz4/pub?start=false&loop=false&delayms=3000&slide=id.g163c5ae2ce_0_17).
 
 ![Unix history](https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Unix_history-simple.svg/1200px-Unix_history-simple.svg.png)
 
