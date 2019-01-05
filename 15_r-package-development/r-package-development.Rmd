@@ -15,12 +15,26 @@ Writing your own R package is the best way to learn best practices.
 2. Reusing functions 
 3. Version control 
 
-This unit followed the structure of [Karl Broman's tutorial](https://kbroman.org/pkg_primer/) and added contents from Wickham's book titled [R packages](http://r-pkgs.had.co.nz/).
+This unit followed the structure of [Karl Broman's tutorial](https://kbroman.org/pkg_primer/) and added contents from Wickham's book titled [R packages](http://r-pkgs.had.co.nz/) and [Leisch's tutorial](https://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf).
 
 ## Motivation 
 
 - So far, we have used R a lot. R has evolved into the current powerful form thanks to its committed and passionate open source community members. Writing a package can be your way of giving something back to this wonderful community. 
 - Moreover, writing a package is the best way to learn best practices. In other words, if you carefully follow best practices, it's not very difficult to write a package. Don't write a package for a package's sake. You can do better by saving functions you often used for your own projects and revising them from time to time. Also, if you manage your project using some version control systems, preferably Git, and closely document the process you're developing your code, you're almost ready to be a R developer. 
+
+## Terms
+
+The following definitions are from [here](https://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf).
+
+- Package: "An extension of the R base system with code, data, and documentation in standardized format"
+
+- Library: "A directory containing installed packages"
+
+- Repository: "A website providing packages for installation"
+
+- Source: "The origianl version of a package with human-readable text and code"
+
+- Binary: "A compiled version of a package with computer-readable text and code, may work only on a specific platform"
 
 Let's install and load some packages for R package development.
 
@@ -200,4 +214,4 @@ Here's [the submission information](https://cran.r-project.org/web/packages/poli
 
 ## Further readings 
 
-- If you're into writing pacakges, then read Wickham's book on [R packges](http://r-pkgs.had.co.nz/) and spend some time wiht [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html) the R package development bible.
+- If you're into writing pacakges, then read Wickham's book on [R packges](http://r-pkgs.had.co.nz/) and study [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html) the R package development bible and [Software for Data Analysis](https://link.springer.com/book/10.1007%2F978-0-387-75936-4) by John Chambers the mastermind behind R (to be precise S) language.
