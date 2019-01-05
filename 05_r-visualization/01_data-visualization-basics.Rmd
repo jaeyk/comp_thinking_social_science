@@ -64,7 +64,15 @@ anscombe %>%
 
 - the grammar of graphics 
 
-    - 
+    - data
+    - aesthetic attributes (color, shape, size)
+    - geometric objects (poitns, lines, bars)
+    - stats (summary stats)
+    - scales (map values in he data space)
+    - coord (data coordinates)
+    - facet (facetting specifications)
+    
+No worries for new terms. We're going to learn them by actually plotting. 
 
 - Workflow: 
 

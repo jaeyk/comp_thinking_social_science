@@ -72,6 +72,20 @@ rm(list = ls())
 library(stats)
 ```
 
+**Tips**
+
+If you have multiple packages to install, then please consier using pacman package. The following is the example. First, you install pacman. Then, you load several libraries by using p_load method.
+
+```{r, eval = FALSE}
+install.packages("pacman")
+
+pacman::p_load(
+  dplyr, 
+  broom
+)
+```
+
+
 ## 4. Basic Syntax
 
 **Comments**
@@ -93,6 +107,7 @@ experiment<-"current vs. voltage"
 Variable names can only contain letters, numbers, the underscore character, and (unlike Python) the period character. Whereas an object name like ```myobject.thing``` would point to the subclass or method ```thing``` of ```myobject``` in Python, R treats ```myobject.thing``` as its own entity. 
 
 **Printing**
+
 In R, the contents of an object can be printed by either simply executing the the object name or calling the ```print()``` function.
 
 ```{r, error=FALSE}

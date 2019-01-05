@@ -7,6 +7,7 @@ output:
     fig_caption: no
     latex_engine: xelatex
     toc: no
+  ioslides_presentation: default
   slidy_presentation: default
 header-includes:
 - \usepackage{array}
@@ -50,10 +51,14 @@ ggplot(data_science_trends$interest_over_time, aes(date, hits)) +
     - Analysis (e.g., text analysis, machine learning)
     - Visualization (e.g., maps, social networks)
 
+---  
+
+![Ph.D. life](/home/jae/Pictures/phd_life.png)
+
 --- 
 
 - Computational tools and techniques 
-    - can automate things you've done before. 
+    - can automate things you've done before.  
     - can collect, analyze, and visualize data in a new way.
 
 --- 
