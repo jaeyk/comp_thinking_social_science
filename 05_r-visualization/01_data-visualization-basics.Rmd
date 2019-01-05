@@ -24,8 +24,8 @@ pacman::p_load(
 
 # Motivation 
 
-- The following material is adapted from Kieran Healy's wonderful book (2018) on [data visualization](https://socviz.co/). 
-- Why should we care?
+- The following material is adapted from Kieran Healy's wonderful book (2018) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful on [ggplot2](https://link.springer.com/content/pdf/10.1007%2F978-0-387-98141-3.pdf). 
+- Why should we care data visualization? Put differently, why should we learn the grammar of statistical graphics?
 - Sometimes, pictures are better tools than words in 1) exploring, 2) understanding, and 3) explaining data.
 
 ## Anscombe's quartet
@@ -62,14 +62,19 @@ anscombe %>%
 
 # ggplot2 basics 
 
+- the grammar of graphics 
+
+    - 
+
 - Workflow: 
-  1. Tidy data 
-  2. Mapping 
-  3. Geom 
-  4. Cor_ordinates and scales 
-  5. Labels and guides
-  6. Themes
-  7. Save files 
+
+    1. Tidy data 
+    2. Mapping 
+    3. Geom 
+    4. Cor_ordinates and scales 
+    5. Labels and guides
+    6. Themes
+    7. Save files 
 
 ## Tidy data 
 

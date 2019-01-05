@@ -25,7 +25,7 @@ pacman::p_load(
 
 # Motivation 
 
-- The following material is adapted from Kieran Healy's wonderful book (2018) on [data visualization](https://socviz.co/). 
+- The following material is adapted from Kieran Healy's wonderful book (2018) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful on [ggplot2](https://link.springer.com/content/pdf/10.1007%2F978-0-387-98141-3.pdf). 
 
 # ggplot2 intermediates 
 
