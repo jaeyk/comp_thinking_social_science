@@ -109,7 +109,7 @@ The software needed for the course is as follows:
 
 This requires a computer that can handle all this software. Almost any Mac will do the job. Most Windows machines are fine too if they have enough space and memory.
 
-You must have all the software downloaded and installed PRIOR to the first day of class. If there are issues with installation on your machine, please contact the section assistant, Jae Yeon Kim, for assistance. 
+You must have all the software downloaded and installed PRIOR to the first day of class. If there are issues with installation on your machine, please contact the section assistant, Julia Christensen, for assistance. 
 
 See [B_Install.md](B_Install.md) for more information. 
 
