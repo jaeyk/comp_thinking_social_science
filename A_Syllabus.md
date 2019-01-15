@@ -121,19 +121,19 @@ There are no official textbooks for this class. Please see [the references](refe
 
 The schedule is subject to change based on the class's rate of progress. 
 
-* **Jan. 16:** Introduction and Setup ("Installfest")
-* **Jan. 21/23:** Unix, Bash, and Git
-* **Jan. 28/30:** Data Structure in R
-* **Feb. 4/6:** Data Analysis in R 
-* **Feb. 11/13:** Data Visualization in R
-* **Feb. 18/20:** Intro to Python
-* **Feb. 25/27:** HTML/CSS/Javascript 
-* **Mar. 4/6:** APIs
-* **Mar. 11/13:** Web scraping (guest lecture by [Jaren Haber](http://dlab.berkeley.edu/people/jaren-haber), Sociology & Computational Text Analysis Working Group)
-* **Mar. 18/20:** Online Sampling, Survey, and Field Experiments   
-* **Mar. 25/27:** SPRING BREAK [no class]
+* **Jan. 23:** Introduction and Setup ("Installfest")
+* **Jan. 28/30:** Unix, Bash, and Git
+* **Jan. 4/6:** Data Structure in R
+* **Feb. 11/13:** Data Analysis in R 
+* **Feb. 18/20:** Data Visualization in R
+* **Feb. 25/27:** Intro to Python
+* **Mar. 4/6:** HTML/CSS/Javascript 
+* **Mar. 11/13:** APIs
+* **Mar. 18/20:** Web scraping (guest lecture by [Jaren Haber](http://dlab.berkeley.edu/people/jaren-haber), Sociology & Computational Text Analysis Working Group)
+* **Mar. 25/27:** Online Sampling, Survey, and Field Experiments   
+* **Apr. 1/3:** SPRING BREAK [no class]
 [Note: final presentations occur in lieu of regular section in April]
-* **Apr. 1/3:** Text Analysis in R (guest lecture by [Marla Stuart](https://bids.berkeley.edu/people/marla-stuart), Social Work & BIDS Data Science Fellow) 
-* **Apr. 8/10:** Unsupervised Machine Learning in R
-* **Apr. 15/17:** Supervised Machine Learning in R (guest lecture by [Chris Kennedy](https://bids.berkeley.edu/people/chris-kennedy), Biostats & BIDS Data Science Fellow)
-* **Apr. 22/24:** Wrap-up and Package Development in R
+* **Apr. 8/10:** Text Analysis in R (guest lecture by [Marla Stuart](https://bids.berkeley.edu/people/marla-stuart), Social Work & BIDS Data Science Fellow) 
+* **Apr. 15/17:** Unsupervised Machine Learning in R
+* **Apr. 22/24:** Supervised Machine Learning in R (guest lecture by [Chris Kennedy](https://bids.berkeley.edu/people/chris-kennedy), Biostats & BIDS Data Science Fellow)
+* **Apr. 29/30:** Wrap-up and Package Development in R
