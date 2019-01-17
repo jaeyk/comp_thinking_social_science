@@ -46,7 +46,7 @@ ggplot(data_science_trends$interest_over_time, aes(date, hits)) +
 
 - Why should we care?
 - Yes, big data (or data science, or machine learning) is a trend. 
-- But computational tools and techniques are much broader and fundamental to how we work:
+- But computational tools and techniques are much broader and fundamental:
     - Data collection (e.g., APIs, webscraping)
     - Analysis (e.g., text analysis, machine learning)
     - Visualization (e.g., maps, social networks)
@@ -54,12 +54,6 @@ ggplot(data_science_trends$interest_over_time, aes(date, hits)) +
 ---  
 
 ![Ph.D. life](/home/jae/Pictures/phd_life.png)
-
---- 
-
-- Computational tools and techniques 
-    - can automate things you've done before.  
-    - can collect, analyze, and visualize data in a new way.
 
 --- 
 
@@ -76,6 +70,7 @@ ggplot(data_science_trends$interest_over_time, aes(date, hits)) +
     - Also, the code is reusable.
     
 ![Using python beautifulsoup](/home/jae/Pictures/Python_approach.png)
+
 
 ---
 
@@ -154,7 +149,9 @@ do_something_very_complicated("that", requires, many, arguments,
 ---
 
 - Writing code like writing an essay
-- Managing project like developing a package
+    - Think then code 
+- Managing project like running a business 
+    - Think about long-term efficiency gains 
 
 ---
 
@@ -172,7 +169,7 @@ do_something_very_complicated("that", requires, many, arguments,
     - Jan. 16: Introduction and Setup ("Installfest")
 - Version control
     - Jan. 21/23: Unix, Bash, and Git
-- R and Python fundamentals 
+- R and Python fundamentals (Don't Repeat Yourself)
     - Jan. 28/30: Data Structure in R
     - Feb. 4/6: Data Analysis in R
     - Feb. 11/13: Data Visualization in R
@@ -180,7 +177,7 @@ do_something_very_complicated("that", requires, many, arguments,
 
 ---
 
-- Online data collection 
+- Online data collection (Gold Rush to the Wild Wild Web)
     - Feb. 25/27: HTML/CSS/Javascript (project proposal draft due)
     - Mar. 4/6: APIs
     - Mar. 11/13: Web scraping (guest lecture by Jaren Haber, Sociology & Computational Text Analysis Working Group)
@@ -189,7 +186,7 @@ do_something_very_complicated("that", requires, many, arguments,
 
 ---
 
-- Text analysis and machine learning
+- Text analysis and machine learning (Systematic Scale-up)
     - Apr. 1/3: Text Analysis in R (guest lecture by Marla Stuart, Social Work & BIDS Data Science Fellow)
     - Apr. 8/10: Unsueprvised Machine Learning in R
     - Apr. 15/17: Supervised Machine Learning in R (guest lecture by Chris Kennedy, Biostats & BIDS Data Science Fellow)
@@ -209,6 +206,7 @@ do_something_very_complicated("that", requires, many, arguments,
     - Be nice to each other. We're all learning (especially me).
 - Homework (50%)
     - Every week. 
+    - A lot of DataCamp tutorials in the early sessions. More group and individual assignmetns later on.
     - Practice, practice, and practice.
 - Final project (25%)
     - Feasibility is your friend. Late Feb proposal, April presentations.
@@ -219,7 +217,7 @@ do_something_very_complicated("that", requires, many, arguments,
 
 - Learning by doing
     - Pair-programming on in-class challenges
-- Section is required
+- Section is required.
 - Julia Christensen is a technical assistant to the course.
 
 ---
