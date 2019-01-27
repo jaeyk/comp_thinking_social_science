@@ -9,6 +9,8 @@
 >   * How to push and pull (fetch)
 >   * How to branch (at least know about this conceptually) 
 
+![Why you should do version control](https://i2.wp.com/cdn-images-1.medium.com/max/399/1*7HHA_UkjUK7wp7qP4CYu1g.png?zoom=1.75&w=456&ssl=1)
+
 ### 1. Version control system 
 
 According to [Github Guides](https://guides.github.com), a versin control system "tracks the history of changes as people and teams collaborate on projects together". Specifically, it helps to track the following information:
@@ -26,11 +28,11 @@ The following images, from [Pro Git](git-scm.com), show how a centralized (e.g.,
 
 ![Centralized version control system](https://git-scm.com/book/en/v2/images/centralized.png)
 
-Figure 1. Centralized VCS.
+Figure 2. Centralized VCS.
 
 ![Decentralized version control system](https://git-scm.com/book/en/v2/images/distributed.png)
 
-Figure 2. Decentralized VCS.
+Figure 3. Decentralized VCS.
 
 For more information on the varieties of version control systems, please read [Petr Baudis's review](https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf) on that subject.
 
@@ -79,7 +81,7 @@ Another image from [Pro Git](https://git-scm.com/about/staging-area) well illust
 
 ![Git Workflow](https://git-scm.com/images/about/index1@2x.png)
 
-Figure 3. Staging and committing in Git.
+Figure 4. Staging and committing in Git.
 
 #### 4.1. Other useful commands for tracking history
 
@@ -154,6 +156,4 @@ $ git reset --hard $ restore the pristine version
 $ git commit -a -m "additional backup" # to save the state again
 ```
 
-For more Git exercises, please check out [https://gitexercises.fracz.com/](https://gitexercises.fracz.com/).
 
-For more information on Git, please check out [the following resources](https://git-scm.com/doc/ext). 

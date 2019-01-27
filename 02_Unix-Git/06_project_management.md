@@ -36,15 +36,15 @@ name_of_the_project
 
 
 
-
-
 #### 2. Naming files 
 
 - Machine readable (avoid spaces, punctuation, periods, and any other special characters except _ and -)
 - Human readable (should be meaningful. No text1, image1, etc.,)
 - Ordering (e.g., 01, 02, 03,  ... )
 
-##### 
+
+
+#### 3. Self-Oriented Project  
 
 When we cover R and Python, we'll learn more about what is [a self-contained project](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/). A project is [self-contained](https://www.r-bloggers.com/%F0%9F%93%81-project-oriented-workflow/) when 
 
