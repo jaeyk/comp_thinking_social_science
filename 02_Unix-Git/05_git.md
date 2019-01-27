@@ -32,7 +32,7 @@ Figure 1. Centralized VCS.
 
 Figure 2. Decentralized VCS.
 
-For more information on the varities of version control systems, please read [Petr Baudis's review](https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf) on that subject.
+For more information on the varieties of version control systems, please read [Petr Baudis's review](https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf) on that subject.
 
 ### 2. Setup 
 
@@ -65,7 +65,7 @@ If you're unfamiliar with basic Git commands, then please refer to [this Git che
 
 ### 4. Commit changes 
 
-These feautre show how Git works as a version control system. 
+These feature show how Git works as a version control system. 
 
 If you edited files or added new ones, then you need to update your repository. In Git terms, this action is called committing changes. 
 
@@ -100,7 +100,7 @@ $ git mv old_file_name new_file_name # rename a file
 
 These features show how Git works as a collaboration tool. 
 
-If you have not already done, let's clone PS239T directory on your clocal machine.
+If you have not already done, let's clone PS239T directory on your local machine.
 
 ```{shell}
 $ git clone https://github.com/jaeyk/PS239T # clone 
@@ -133,15 +133,15 @@ $ git checkout new_features
 
 You can see the newly created branch by typing **git branch**.
 
-In short, branching makes Git [works like](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics) a mini filesystem.
+In short, branching makes Git [works like](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics) a mini file system.
 
-### 7. Collbaorations 
+### 7. Collaborations 
 
 Two options. 
 
 * Sharing a repository (suitable for a private project).
 * Fork and pull (suitable for an open source project). 
-    ​    * The one who maintains the repositoriry becomes the maintainer. 
+    ​    * The one who maintains the repository becomes the maintainer. 
     ​    * The others can [fork](https://help.github.com/articles/about-forks/), make changes, and even [pull](https://help.github.com/articles/about-pull-requests/) them back.
 
 ### 8. Other stuff 
@@ -156,4 +156,4 @@ $ git commit -a -m "additional backup" # to save the state again
 
 For more Git exercises, please check out [https://gitexercises.fracz.com/](https://gitexercises.fracz.com/).
 
-For more informatin on Git, please check out [the following resources](https://git-scm.com/doc/ext). 
+For more information on Git, please check out [the following resources](https://git-scm.com/doc/ext). 
