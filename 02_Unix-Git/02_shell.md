@@ -12,9 +12,9 @@ At a high level, computers do four things:
 -   run programs
 -   store data
 -   communicate with each other
--   interact with us
+- interact with us
 
-They can do the last of these in many different ways, including direct brain-computer links and speech interfaces. Since these are still in their infancy, most of us use windows, icons, mice, and pointers. These technologies didn't become widespread until the 1980s, but their roots go back to Doug Engelbart's work in the 1960s, which you can see in what has been called "[The Mother of All Demos](http://www.youtube.com/watch?v=a11JDLBXtPQ)".
+  They can do the last of these in many different ways, including direct brain-computer links and speech interfaces. Since these are still in their infancy, most of us use windows, icons, mice, and pointers. These technologies didn't become widespread until the 1980s, but their roots go back to [Doug Engelbart who received his Ph.D. in electrical engineering from the University of California, Berkeley in 1955 and was hired as an assistant professor at the same department for a year. He then left academia and joined the tech industry and became one of the founding fathers in HCI field (mouse, hypertext, GUI, etc.,).
 
 Going back even further, the only way to interact with early computers was to rewire them. But in between, from the 1950s to the 1980s, most people used line printers. These devices only allowed input and output of the letters, numbers, and punctuation found on a standard keyboard, so programming languages and interfaces had to be designed around that constraint.
 
@@ -46,8 +46,7 @@ The most popular Unix shell is **Bash**, the Bourne Again Shell (so-called becau
 
 ### 5. Why Use a Shell
 
-Using Bash or any other shell sometimes feels more like programming than like using a mouse. Commands are terse (often only a couple of characters long),
-their names are frequently cryptic, and their output is lines of text rather than something visual like a graph. 
+Using Bash or any other shell sometimes feels more like programming than like using a mouse. Commands are terse (often only a couple of characters long), their names are frequently cryptic, and their output is lines of text rather than something visual like a graph. 
 
 On the other hand, the shell allows us to combine existing tools in powerful ways with only a few keystrokes and to set up pipelines to handle large volumes of data automatically.
 
@@ -101,4 +100,4 @@ Your computer will begin continuously pinging this IP address and reporting back
 
 Ping runs continuously, so when we want it to stop, we have to manually tell the kernel to stop executing the ping command. We do this simply by typing ctrl+c. 
 
-(Thanks Paul Thissen for the suggestion!)
+(Thanks [Paul Thissen](http://www.paulthissen.org/) for the suggestion!)

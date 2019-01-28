@@ -49,3 +49,4 @@ name_of_the_project
 When we cover R and Python, we'll learn more about what is [a self-contained project](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/). A project is [self-contained](https://www.r-bloggers.com/%F0%9F%93%81-project-oriented-workflow/) when 
 
 > you have everything you need at hand and your project does not affect anything it did not create.
+

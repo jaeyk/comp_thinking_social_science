@@ -114,7 +114,7 @@ Then, let's learn more about the repository.
 $ git remote -v 
 ```
 
-Previously, we learned how to send your data save in the local machine to the remote (the Github server). You can do that by editing or creating files, commiting, and then typing **git push**. 
+Previously, we learned how to send your data save in the local machine to the remote (the Github server). You can do that by editing or creating files, committing, and then typing **git push**. 
 
 Instead, if you want to update your local data with the remote data, then you can type **git pull origin** (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.
 
@@ -150,9 +150,9 @@ Two options.
 
 ```{shell}
 $ git status # show the status of changes 
-$ git branch $ show the branch being worked on locally
-$ git merge $ merge branches 
-$ git reset --hard $ restore the pristine version
+$ git branch # show the branch being worked on locally
+$ git merge # merge branches 
+$ git reset --hard # restore the pristine version
 $ git commit -a -m "additional backup" # to save the state again
 ```
 

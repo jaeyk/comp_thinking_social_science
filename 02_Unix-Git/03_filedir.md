@@ -26,28 +26,15 @@ $ pwd
 ```
 
 > #### Home Directory
-> 
-> The home directory path will look different on different operating systems. 
-> On Linux it will look like `/home/oski`, and on Windows it will be similar 
-> to `C:\Documents and Settings\oski`. Note that it may look slightly 
-> different for different versions of Windows.
+>
+> The home directory path will look different on different operating systems. On Linux it will look like `/home/oski`, and on Windows it will be similar to `C:\Documents and Settings\oski`. Note that it may look slightly different for different versions of Windows.
 
 > #### Alphabet Soup
-> 
-> If the command to find out who we are is `whoami`, the command to find
-> out where we are ought to be called `whereami`, so why is it `pwd`
-> instead? The usual answer is that in the early 1970s, when Unix was
-> first being developed, every keystroke counted: the devices of the day
-> were slow, and backspacing on a teletype was so painful that cutting the
-> number of keystrokes in order to cut the number of typing mistakes was
-> actually a win for usability. The reality is that commands were added to
-> Unix one by one, without any master plan, by people who were immersed in
-> its jargon. The result is as inconsistent as the roolz uv Inglish
-> speling, but we're stuck with it now. 
-> 
-> The good news is: because these basic commands were so integral to the 
-> development of early Unix, they have stuck around, and appear (in some form) 
-> in almost all programming languages.
+>
+> If the command to find out who we are is `whoami`, the command to find out where we are ought to be called `whereami`, so why is it `pwd` instead? The usual answer is that in the early 1970s, when Unix was
+> first being developed, every keystroke counted: the devices of the day were slow, and backspacing on a teletype was so painful that cutting the number of keystrokes in order to cut the number of typing mistakes was actually a win for usability. The reality is that commands were added to Unix one by one, without any master plan, by people who were immersed in its jargon. The result is as inconsistent as the roolz uv Inglish speling, but we're stuck with it now. 
+>
+> The good news is: because these basic commands were so integral to the development of early Unix, they have stuck around, and appear (in some form) in almost all programming languages.
 
 To understand what a "home directory" is, let's have a look at how the file system as a whole is organized. At the top is the **root directory** that holds everything else.
 
@@ -63,11 +50,9 @@ Inside that directory are several other directories: `bin` (which is where some 
 We know that our current working directory `/home/oski` is stored inside `/home` because `/home` is the first part of its name. Similarly, we know that `/home` is stored inside the root directory `/` because its name begins with `/`.
 
 > #### Path
-> 
+>
 > Notice that there are two meanings for the `/` character.
-> When it appears at the front of a file or directory name,
-> it refers to the root directory. When it appears *inside* a name,
-> it's just a separator.
+> When it appears at the front of a file or directory name, it refers to the root directory. When it appears *inside* a name, it's just a separator.
 
 ### 2. Listing
 
@@ -100,27 +85,15 @@ Downloads		Music			file.txt
 And note that there is a space between `ls` and `-F`: without it, the shell thinks we're trying to run a command called `ls-F`, which doesn't exist.
 
 > #### What's In A Name?
-> 
-> You may have noticed that all of our's files' names are "something dot
-> something". This is just a convention: we can call a file `file` or
-> almost anything else we want. However, most people use two-part names
-> most of the time to help them (and their programs) tell different kinds
-> of files apart. The second part of such a name is called the
-> **filename extension**, and indicates what type of data the file holds: 
-> `.txt` signals a plain text file, `.pdf` indicates a PDF document, `.cfg` is 
-> a configuration file full of parameters for some program or other, and so on.
 >
-> This is just a convention, albeit an important one. Files contain
-> bytes: it's up to us and our programs to interpret those bytes
-> according to the rules for PDF documents, images, and so on.
+> You may have noticed that all of our's files' names are "something dot something". This is just a convention: we can call a file `file` or almost anything else we want. However, most people use two-part names most of the time to help them (and their programs) tell different kinds of files apart. The second part of such a name is called the **filename extension**, and indicates what type of data the file holds: 
+> `.txt` signals a plain text file, `.pdf` indicates a PDF document, `.cfg` is a configuration file full of parameters for some program or other, and so on.
 >
-> Naming a PNG image of a whale as `whale.mp3` doesn't somehow
-> magically turn it into a recording of whalesong, though it *might*
-> cause the operating system to try to open it with a music player
-> when someone double-clicks it.
+> This is just a convention, albeit an important one. Files contain bytes: it's up to us and our programs to interpret those bytes according to the rules for PDF documents, images, and so on.
+>
+> Naming a PNG image of a whale as `whale.mp3` doesn't somehow magically turn it into a recording of whalesong, though it *might* cause the operating system to try to open it with a music player when someone double-clicks it.
 
-Now let's take a look at what's in your `Desktop` directory by running `ls -F data`, i.e., the command `ls` with the **arguments** `-F` and `PS239T`. The second argument --- the one *without* a leading dash --- tells `ls` that
-we want a listing of the files in something other than our current working directory:
+Now let's take a look at what's in your `Desktop` directory by running `ls -F data`, i.e., the command `ls` with the **arguments** `-F` and `PS239T`. The second argument --- the one *without* a leading dash --- tells `ls` that we want a listing of the files in something other than our current working directory:
 
 ```shell
 $ ls -F PS239T
@@ -147,8 +120,7 @@ Notice, by the way that we spelled the directory name `Desktop`. It doesn't have
 > In practice, however, most people use them interchangeably or inconsistently,
 > so we will too.
 
-If we run `ls -F /Desktop` (*with* a leading slash) we get a different answer,
-because `/Desktop` is an **absolute path**:
+If we run `ls -F /Desktop` (*with* a leading slash) we get a different answer, because `/Desktop` is an **absolute path**:
 
 ```shell
 $ ls -F /Desktop
@@ -283,7 +255,7 @@ This is called **tab completion**, and we will see it in many other tools as we 
 #### Challenge 1
 
 1. Change your working directory to the place where you want to clone the `PS239T` materials. 
-2. type `git clone https://github.com/jaeyk/PS239T.git` 
+2. type `git clone https://github.com/jaeyk/PS239T` 
 3. `cd` into the `PS239T/02_Unix-Bash` sub-directory.
 2. list the files in the directory
 
@@ -299,6 +271,3 @@ What does the command `cd` without a directory name do?
 #### Challenge 3
 
 What does the command `ls` do when used with the -s arguments?
-
-
-

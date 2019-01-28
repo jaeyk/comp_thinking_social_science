@@ -62,28 +62,15 @@ $ nano draft.txt
 
 
 > #### Which Editor?
-> 
-> When we say, "`nano` is a text editor," we really do mean "text": it can
-> only work with plain character data, not tables, images, or any other
-> human-friendly media. We use it in examples because almost anyone can
-> drive it anywhere without training, but please use something more
-> powerful for real work. On Unix systems (such as Linux and Mac OS X),
-> many programmers use [Emacs](http://www.gnu.org/software/emacs/) or
-> [Vim](http://www.vim.org/) (both of which are completely unintuitive,
-> even by Unix standards), or a graphical editor such as
-> [Gedit](http://projects.gnome.org/gedit/), which is on BCE. 
+>
+> When we say, "`nano` is a text editor," we really do mean "text": it can only work with plain character data, not tables, images, or any other human-friendly media. We use it in examples because almost anyone can drive it anywhere without training, but please use something more powerful for real work. On Unix systems (such as Linux and Mac OS X), many programmers use [Emacs](http://www.gnu.org/software/emacs/) or [Vim](http://www.vim.org/) (both of which are completely unintuitive, even by Unix standards), or a graphical editor such as [Gedit](http://projects.gnome.org/gedit/), which is on BCE. 
+>
 > On Windows, you may wish to use [Notepad++](http://notepad-plus-plus.org/).
-> 
-> The default text editor on Mac OS X and Linux is usually set to Vim, which 
-> is not famous for being intuitive. if you accidentally find yourself stuck 
-> in it, try typing the escape key, followed by `:q!` (colon, lower-case 'q', 
-> exclamation mark), then hitting Return to return to the shell.
-> 
-> Text editors are not limited to .txt files. Code is also text - so any
-> file with an extension like .py (for python) .sh (for shell) can also be 
-> edited in a text editor. So can files containing markup, like .html (for 
-> HTML) or .md (for markdown). Markup is a way to format text (bold, lists,
-> links, etc) using simple syntax.
+>
+> The default text editor on Mac OS X and Linux is usually set to Vim, which is not famous for being intuitive. if you accidentally find yourself stuck in it, try typing the escape key, followed by `:q!` (colon, lower-case 'q', exclamation mark), then hitting Return to return to the shell.
+>
+> Text editors are not limited to .txt files. Code is also text - so any file with an extension like .py (for python) .sh (for shell) can also be edited in a text editor. So can files containing markup, like .html (for 
+> HTML) or .md (for markdown). Markup is a way to format text (bold, lists, links, etc) using simple syntax.
 
 Let's type in a few lines of text, then use Control-O to write our data to disk:
 
@@ -100,20 +87,14 @@ draft.txt
 ```
 
 > #### Control Codes
-> 
-> The shell accepts a few special commands that allow users to interact with 
-> running processes or programs. You can enter each of these “control codes” 
-> by holding down the `CTRL` key and then pressing one of the control 
-> characters. In other tutorials, you may see the `^`` character used to 
+>
+> The shell accepts a few special commands that allow users to interact with running processes or programs. You can enter each of these “control codes” by holding down the `CTRL` key and then pressing one of the control characters. In other tutorials, you may see the `^`` character used to 
 > represent the `CTRL` key (e.g. `^c` = `CTRL+c`).
-> 
+>
 > * CTRL+c: Interrupts and cancels a running program. This is useful if you want to cancel a command that is taking too long to execute.
 > * CTRL+d  Indicates the end of a file or stream of characters that you are entering on the command line.
 > * CTRL+z  Suspends a process but does not terminate it. You can then use the command `fg` to restart the job in the foreground.
-> For new shell users, these control codes can all appear to have the same 
-> effect: they make things “go away.” But it is helpful to understand the 
-> differences. In general, if something went wrong and you just want to get 
-> your shell prompt back, it is better to use `CTRL+c`.
+> * For new shell users, these control codes can all appear to have the same effect: they make things “go away.” But it is helpful to understand the differences. In general, if something went wrong and you just want to get your shell prompt back, it is better to use `CTRL+c`.
 
 ### 3. Removing
 
@@ -130,12 +111,9 @@ $ ls
 ```
 
 > #### Deleting Is Forever
-> 
-> Unix doesn't have a trash bin: when we delete files, they are unhooked
-> from the file system so that their storage space on disk can be
-> recycled. Tools for finding and recovering deleted files do exist, but
-> there's no guarantee they'll work in any particular situation, since the
-> computer may recycle the file's disk space right away.
+>
+> Unix doesn't have a trash bin: when we delete files, they are unhooked from the file system so that their storage space on disk can be recycled. Tools for finding and recovering deleted files do exist, but
+> there's no guarantee they'll work in any particular situation, since the computer may recycle the file's disk space right away.
 
 Let's re-create that file and then move up one directory to `/home/oski` using `cd ..`:
 
@@ -152,8 +130,7 @@ draft.txt
 $ cd ..
 ```
 
-If we try to remove the entire `thesis` directory using `rm thesis`,
-we get an error message:
+If we try to remove the entire `thesis` directory using `rm thesis`, we get an error message:
 
 ```bash
 $ rm thesis
@@ -271,36 +248,18 @@ ls: cannot access quotes.txt: No such file or directory thesis/quotations.txt
 
 
 > ## Wildcards
-> 
-> `*` is a **wildcard**. It matches zero or more
-> characters, so `*.pdb` matches `ethane.pdb`, `propane.pdb`, and so on.
-> On the other hand, `p*.pdb` only matches `pentane.pdb` and
-> `propane.pdb`, because the 'p' at the front only matches itself.
-> 
-> `?` is also a wildcard, but it only matches a single character. This
-> means that `p?.pdb` matches `pi.pdb` or `p5.pdb`, but not `propane.pdb`.
-> We can use any number of wildcards at a time: for example, `p*.p?*`
-> matches anything that starts with a 'p' and ends with '.', 'p', and at
-> least one more character (since the '?' has to match one character, and
-> the final '\*' can match any number of characters). Thus, `p*.p?*` would
-> match `preferred.practice`, and even `p.pi` (since the first '\*' can
-> match no characters at all), but not `quality.practice` (doesn't start
-> with 'p') or `preferred.p` (there isn't at least one character after the
-> '.p').
-> 
-> When the shell sees a wildcard, it expands the wildcard to create a
-> list of matching filenames *before* running the command that was
-> asked for. As an exception, if a wildcard expression does not match
-> any file, Bash will pass the expression as a parameter to the command
-> as it is. For example typing `ls *.pdf` in the new-york-times directory
-> (which contains only files with names ending with `.TXT`) results in
-> an error message that there is no file called `*.pdf`.
-> However, generally commands like `wc` and `ls` see the lists of
-> file names matching these expressions, but not the wildcards
-> themselves. It is the shell, not the other programs, that deals with
-> expanding wildcards, and this another example of orthogonal design.
+>
+> `*` is a **wildcard**. It matches zero or more characters, so `*.pdb` matches `ethane.pdb`, `propane.pdb`, and so on. On the other hand, `p*.pdb` only matches `pentane.pdb` and `propane.pdb`, because the 'p' at the front only matches itself.
+>
+> `?` is also a wildcard, but it only matches a single character. This means that `p?.pdb` matches `pi.pdb` or `p5.pdb`, but not `propane.pdb`. We can use any number of wildcards at a time: for example, `p*.p?*`
+> matches anything that starts with a 'p' and ends with '.', 'p', and at least one more character (since the '?' has to match one character, and the final '\*' can match any number of characters). Thus, `p*.p?*` would match `preferred.practice`, and even `p.pi` (since the first '\*' can match no characters at all), but not `quality.practice` (doesn't start with 'p') or `preferred.p` (there isn't at least one character after the '.p').
+>
+> When the shell sees a wildcard, it expands the wildcard to create a list of matching filenames *before* running the command that was asked for. As an exception, if a wildcard expression does not match
+> any file, Bash will pass the expression as a parameter to the command as it is. For example typing `ls *.pdf` in the new-york-times directory (which contains only files with names ending with `.TXT`) results in an error message that there is no file called `*.pdf`.
+>
+> However, generally commands like `wc` and `ls` see the lists of file names matching these expressions, but not the wildcards themselves. It is the shell, not the other programs, that deals with expanding wildcards, and this another example of orthogonal design.
 > {: .source}
-{: .callout}
+> {: .callout}
 
 
 ## Exercises
@@ -315,7 +274,7 @@ ls: cannot access quotes.txt: No such file or directory thesis/quotations.txt
 #### Challenge 2
 
 What is the output of the closing `ls` command in the sequence shown below?
- 
+
 ```
 $ pwd
 /home/jamie/data
@@ -330,15 +289,15 @@ $ ls
 #### Challenge 3
 
 Suppose that:
- 
+
 ```
 $ ls -F
 analyzed/  nyt.csv    raw/   guardian.csv
 ```
- 
+
 What command(s) could you run so that the commands below will produce the 
 output shown?
- 
+
 ```
 $ ls
 analyzed   raw
@@ -372,3 +331,4 @@ in alphabetical order at each level.
 The command `ls -t` lists things by time of last change,
 with most recently changed files or directories first.
 In what order does `ls -R -t` display things?
+
