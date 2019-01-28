@@ -146,6 +146,10 @@ Documents		Movies			anaconda
 Downloads		Music			file.txt
 ```
 
+Use relative paths (e.g., ../PS239T/references.md) whenever it's possible so that your code is not dependable on how your system is configured. 
+
+
+
 ### 3. Moving Around
 
 We can use `cd` (**change directory**) followed by a directory name to change our working directory. 

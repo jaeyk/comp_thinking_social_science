@@ -115,6 +115,10 @@ $ ls
 > Unix doesn't have a trash bin: when we delete files, they are unhooked from the file system so that their storage space on disk can be recycled. Tools for finding and recovering deleted files do exist, but
 > there's no guarantee they'll work in any particular situation, since the computer may recycle the file's disk space right away.
 
+Remember this quote whenever you're using rm:
+
+> Unix was not designed to stop you from doing stupid things, because that would also stop you from doing clever things. - Doug Gwyn
+
 Let's re-create that file and then move up one directory to `/home/oski` using `cd ..`:
 
 ```bash
