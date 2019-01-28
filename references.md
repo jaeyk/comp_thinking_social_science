@@ -36,6 +36,10 @@ Santacroce, F. (2015). [Git Essentials](https://www.amazon.com/dp/B00WX1CWIC/ref
 
 Chacon, S. and Straub, B. (2014). [Git Pro book](https://git-scm.com/book/en/v2). Apress.
 
+## Regular expressions 
+
+Fitzgerald, M. (2012). [Introducion Regular Expressions](http://shop.oreilly.com/product/0636920012337.do). O'Reily Media.
+
 ## R
 
 ### Books
