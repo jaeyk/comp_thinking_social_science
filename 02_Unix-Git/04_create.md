@@ -10,7 +10,7 @@
 
 ### 1. Creating Things
 
-We now know how to explore files and directories, but how do we create them in the first place? Let's go back to this unit's working directory, `PS239T/02_Unix-Bash`, and use `ls -F` to see what it contains:
+We now know how to explore files and directories, but how do we create them in the first place? Let's go back to this unit's working directory, `PS239T/02_Unix-Git`, and use `ls -F` to see what it contains:
 
 ```bash
 $ cd ~/PS239T/02_Unix-Bash
@@ -270,7 +270,7 @@ ls: cannot access quotes.txt: No such file or directory thesis/quotations.txt
 
 #### Challenge 1
 
-1. `cd` into the `PS239T/02_Unix-Bash/` directory
+1. `cd` into the `PS239T/02_Unix-Git/` directory
 2. make a new directory with the path `data/new-york-times/2015-01-01`
 2. list the files in the `data/downloads` directory.
 3. copy all the files in the `data/downloads` directory into a new directory, `data/new-york-times/2015-01-01` (hint: use wildcards so that you don't have to do each one individually)
@@ -328,11 +328,32 @@ $ cp intro.txt methods.txt survey.txt
 
 #### Challenge 5
 
-The command `ls -R` lists the contents of directories recursively,
-i.e., lists their sub-directories, sub-sub-directories, and so on
-in alphabetical order at each level.
+The command `ls -R` lists the contents of directories recursively, i.e., lists their sub-directories, sub-sub-directories, and so on in alphabetical order at each level.
 
-The command `ls -t` lists things by time of last change,
-with most recently changed files or directories first.
+The command `ls -t` lists things by time of last change, with most recently changed files or directories first.
 In what order does `ls -R -t` display things?
 
+#### Challenge 6
+
+This challenge covers commands we did not cover above: `cat` and `grep`. But you can find information about them using `--help`. `cat` is "[derived from its function to con**cat**enate file](https://en.wikipedia.org/wiki/Cat_(Unix))" and `grep` is for "[searching plain-text sets for lines that match a regular expression](https://en.wikipedia.org/wiki/Grep)". 
+
+1. `cd` into the `PS239T/02_Unix-Git/data` directory
+2. Create a text file named students.txt in which the first names of the students enrolled in PS239T and their department affiliations are indicated. 
+
+```
+$ nano students.txt # you can type the student first names and department affiliations inside nano or 
+$ cat > students.txt # then type the list and Ctrl + C
+```
+
+3. How can you display the content of this text file?
+
+```
+$ cat students.txt # What's happening?
+```
+
+5. 4. How can you find the name of students affiliated with political science?
+
+```
+$ grep PolSci students.txt # What's happening?
+$ grep -PolSci students.txt # What's happening?
+```
