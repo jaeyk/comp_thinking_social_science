@@ -7,11 +7,11 @@ output:
   html_document: default
 ---
 
-* I adapted the following content from Wickham's R data science book (2017) chapter: https://r4ds.had.co.nz/tidy-data.html and his earlier paper (2014) published in Journal of Statistical Software: http://www.jstatsoft.org/v59/i10/paper.
+* I adapted the following content from Wickham's R data science book (2017) chapter: https://r4ds.had.co.nz/tidy-data.html and his earlier paper (2014) published in the Journal of Statistical Software: http://www.jstatsoft.org/v59/i10/paper.
 
-* Wickham created so many essential packages used in R for data science. For more information, please see the following website: http://hadley.nz/
+* Wickham created many essential R packages for data science. For more information, please see the following website: http://hadley.nz/
 
-# 1. What's tidy principles 
+# 1. What're tidy principles 
 
 ## 1. The dataset: strucure (physical layout) + semantics (meaning)
 
@@ -23,7 +23,7 @@ output:
 
 * variables > values (numbers or strings)
 
-## 2. Tidy tada: "provide a standard way to organize data values within a dataset"
+## 2. Tidy tada: "provide a standard way to organize data values within a dataset."
 
 ### 2.1 Tidy principles 
 
@@ -43,11 +43,11 @@ table1
 
 Practically, this approach is good because you're going to have consistency in the format of data across all the projects you're working on. Also, tidy data works well with key packages (e.g., dplyr, ggplot2) in R.
 
-Computationally, this approach is good for vectorized programming because "different variables from the same observation are always paired".
+Computationally, this approach is useful for vectorized programming because "different variables from the same observation are always paired".
 
 ## 3. Messay datasets 
 
-### 3.1. Signs of messay datasets 
+### 3.1. Signs of messy datasets 
 
 * 1. Column headers are values, not variable names.
 * 2. Multiple variables are not stored in one column.
@@ -55,7 +55,7 @@ Computationally, this approach is good for vectorized programming because "diffe
 * 4. Multiple types of observational units are stored in the same table.
 * 5. A single observational unit is stored in multiple tables.
 
-## 4. Tody tools 
+## 4. Tidy tools 
 
 Either input or output or both of them can be messy. Tidy tools can fix these problems. 
 
@@ -106,7 +106,7 @@ table3_separated <- table3 %>%
 ```
 
 
-#### 4.1.4. Unite (multiple coulmns into one column)
+#### 4.1.4. Unite (multiple columns into one column)
 
 ```{r}
 
@@ -118,6 +118,7 @@ table3_separated %>%
 ### 4.2. Visualization
 
 Will be covered in the future session.
+
 
 ### 4.3. Modeling 
 

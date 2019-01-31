@@ -12,12 +12,12 @@ output:
 R is a versatile, open source programming/scripting language that's useful both for statistics but also data science. Inspired by the programming language [`S`][S].
 
 * Open source software under [GPL][].
-* Superior (if not just comparable) to commercial alternatives. R has over 7,000 user contributed packages at this time (October 2016). It's widely used both in academia and industry.
+* Superior (if not just comparable) to commercial alternatives. As of January 2019, R ranks 12th in the TIOBE index, which measures the popularity of programming languages. It's widely used both in academia and industry especially in the circle of data scientists.
 * Available on all platforms (Unix, Windows, Linux).
 * As a result, if you do your analysis in R, anyone can easily replicate it.
-* Not just for statistics, but also general purpose programming.
-* Is object oriented and functional.
-* Large and growing community of peers.
+* Not just for statistics, but also **general purpose** programming.
+* Is **object oriented** (= R has objects) and **functional** (= You can write functions).
+* Large and growing community of peers. (Take advantage of git repositories.)
 
 [S]: https://en.wikipedia.org/wiki/S_(programming_language)
 [GPL]: https://www.gnu.org/licenses/gpl.html
@@ -28,7 +28,7 @@ There are two main ways of interacting with R: using the console or by using scr
 
 The console window (in RStudio, the bottom left panel) is the place where R is waiting for you to tell it what to do, and where it will show the results of a command.  You can type commands directly into the console, but they will be forgotten when you close the session. It is better to enter the commands in the script editor, and save the script. This way, you have a complete record of what you did, you can easily show others how you did it and you can do it again later on if needed. You can copy-paste into the R console, but the Rstudio script editor allows you to 'send' the current line or the currently selected text to the R console using the `Ctrl-Enter` shortcut.
 
-At some point in your analysis you may want to check the content of variable or the structure of an object, without necessarily keep a record of it in your script. You can type these commands directly in the console. RStudio provides the `Ctrl-1` and `Ctrl-2` shortcuts allow you to jump between the script and the console windows.
+At some point in your analysis, you may want to check the content of variable or the structure of an object, without necessarily keep a record of it in your script. You can type these commands directly in the console. RStudio provides the `Ctrl-1` and `Ctrl-2` shortcuts allow you to jump between the script and the console windows.
 
 If R is ready to accept commands, the R console shows a `>` prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using `Ctrl-Enter`; `Command-Enter` will also work on Macs), R will try to execute it, and when ready, show the results and come back with a new `>`-prompt to wait for new commands. This is the equivalent of the `$` in your terminal. 
 
@@ -80,6 +80,7 @@ If you have multiple packages to install, then please consier using pacman packa
 install.packages("pacman")
 
 pacman::p_load(
+  ggplot2,
   dplyr, 
   broom
 )
@@ -87,6 +88,14 @@ pacman::p_load(
 
 
 ## 4. Basic Syntax
+
+**Separing commands**
+
+Use `#`.
+
+**Whitespace**
+
+Meaningless.
 
 **Comments**
 
@@ -99,7 +108,10 @@ Use `#` signs to comment. Comment liberally in your R scripts. Anything to the r
 In RStudio, when you are typing into an active script, typing `Alt + -` (push `Alt`, which is the same as `Option` on Macs, at the same time as the `-` key) will write ` <- ` in a single keystroke. 
 
 ```{r}
-experiment<-"current vs. voltage" 
+USwerid <- "Why use lb for pound!" # Use this
+"Why use lb for pound!" -> USweird 
+assign("Why use lb for pound", USweird)
+"Why use lb for pound!" = USweird
 ```
 
 **Variable Names**
@@ -109,13 +121,6 @@ Variable names can only contain letters, numbers, the underscore character, and 
 **Printing**
 
 In R, the contents of an object can be printed by either simply executing the the object name or calling the ```print()``` function.
-
-```{r, error=FALSE}
-# Executing the object name
-experiment
-# Printing the object R-style
-print(experiment)
-```
 
 **Help**
 
@@ -132,11 +137,11 @@ print(experiment)
 From [Hadley Wickham](http://adv-r.had.co.nz/Introduction.html):
 # Note - this is the guy who wrote ggplot. We'll see his work again soon!
 
-If you are new to R, you might wonder what makes learning such a quirky language worthwhile. To me, some of the best features are:
+If you are new to R, you might wonder what makes learning such a quirky language worthwhile. In my opinion, R's some of the best features are:
 
 * It's free, open source, and available on every major platform. As a result, if you do your analysis in R, anyone can easily replicate it.
 
-* A massive set of packages for statistical modelling, machine learning, visualisation, and importing and manipulating data. Whatever model or graphic you're trying to do, chances are that someone has already tried to do it. At a minimum, you can learn from their efforts.
+* A massive set of packages for statistical modeling, machine learning, visualization, and importing and manipulating data. Whatever model or graphic you're trying to do, the chances are that someone has already tried to do it. At a minimum, you can learn from their efforts.
 
 * Cutting edge tools. Researchers in statistics and machine learning will often publish an R package to accompany their articles. This means immediate access to the very latest statistical techniques and implementations.
 
@@ -151,7 +156,7 @@ If you are new to R, you might wonder what makes learning such a quirky language
 
 * An [IDE](http://www.rstudio.com/ide/) tailored to the needs of interactive data analysis and statistical programming.
 
-* Powerful metaprogramming facilities. R is not just a programming language, it is also an environment for interactive data analysis. Its metaprogramming capabilities allow you to write magically succinct and concise functions and provide an excellent environment for designing domain-specific languages.
+* Powerful metaprogramming facilities. R is not just a programming language; it is also an environment for interactive data analysis. Its metaprogramming capabilities allow you to write magically succinct and concise functions and provide an excellent environment for designing domain-specific languages.
 
 * Designed to connect to high-performance programming languages like C, Fortran, and C++.
 

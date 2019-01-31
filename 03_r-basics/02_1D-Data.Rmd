@@ -17,14 +17,14 @@ It is **critical** to understand because these are the objects you will manipula
   - Everything that exists is an object.
   - Everything that happens is a function call.
   
-> __John Chambers__
+> __John Chambers__the creator of S (the mother of R)
 
 #### Outline
 
 In this markdown file, we cover the types of one-dimensional objects (vectors) that exist in R and their attributes.  
 
-1. [Main Classes](#main-classes) introduces you to R's one-dimensional atomic classes and data structures (vectors, lists, and a brief preview of how the two-dimensional structures are different).
-2. [Attributes](#attributes) takes a small detour to discuss attributes, R's flexible metadata specification. Here you'll learn about factors, an important data structure created by setting attributes of an atomic vector.
+1. [Main Classes](#main-classes) introduces you to R's one-dimensional or atomic classes and data structures. R has five basic atomic classes: logical, integer, numeric, complex, character. Social scientists don't use complex class. (Also, remember that we rarely use trigonometry.)
+2. [Attributes](#attributes) takes a small detour to discuss attributes, R's flexible metadata specification. Here you'll learn about factors, an important data structure created by setting attributes of an atomic vector. R has many data structures: vector, list, matrix, data frame, factors, tables.
 
 # 1. Main Classes of Vectors {#main-classes}
 
@@ -44,16 +44,21 @@ In this markdown file, we cover the types of one-dimensional objects (vectors) t
 | 2 (Must add a `L` at end to denote integer) | integer |
 | `TRUE`, `FALSE` | logical |
 
-Like Python, R is dynamically typed. There are a few differences in terminology, however, that are pertinent. First, "types" in Python are referred to as "classes" in R.  Second, R has some different names for the types string, integer, and float --- specifically **character**, **integer** (not different), and **numeric**. Because there is no "float" class in R, users tend to default to the "numeric" class when they want to work with numerical data.
+Like Python, R is dynamically typed. There are a few differences in terminology, however, that are pertinent. 
 
-The function for recovering object classes is ```class()```.
+- First, "types" in Python are referred to as "classes" in R. 
+
+- Second, R has some different names for the types string, integer, and float --- specifically **character**, **integer** (not different), and **numeric**. Because there is no "float" class in R, users tend to default to the "numeric" class when they want to work with numerical data.
+
+The function for recovering object classes is ```class()```. L suffix to qualify any number with the intent of making it an explicit integer. See more from the [R language definition](https://cran.r-project.org/doc/manuals/R-lang.html).
 
 ```{r}
 class(3)
-class(3L)
+class(3L) 
 class("Three")
 class(T)
 ```
+
 
 ### 1b. Data Structures
 
@@ -256,7 +261,7 @@ as.logical(x)
 
 ### 1e. Lists
 
-Lists are different from atomic vectors because their elements can be of any type. You construct lists by using `list()` instead of `c()`: 
+Lists are also vectors, but different from atomic vectors because their elements can be of any type. In short, they are generic vectors. You construct lists by using `list()` instead of `c()`: 
 
 Lists are sometimes called recursive vectors, because a list can contain other lists. This makes them fundamentally different from atomic vectors. 
 
@@ -274,7 +279,7 @@ is.list(x)
 length(x)
 ```
 
-`c()` will combine several lists into one. If given a combination of atomic vectors and lists, `c()` will coerce the vectors to lists before combining them. Compare the results of `list()` and `c()`:
+`c()` will combine several lists into one. If given a combination of atomic vectors and lists, `c()` (con**c**atenate) will coerce the vectors to lists before combining them. Compare the results of `list()` and `c()`:
 
 ```{r}
 x <- list(list(1, 2), c(3, 4))
