@@ -33,7 +33,7 @@ jbchristensen@berkeley.edu
 
 Lecture: Monday 10am - 12pm ([Dwinelle](https://www.google.com/maps/place/Dwinelle+Hall,+Berkeley,+CA+94704/@37.8707044,-122.2627458,17z/data=!3m1!4b1!4m5!3m4!1s0x80857c26625762f5:0xc5fa3349de95df50!8m2!3d37.8707002!4d-122.2605518) 209)
 
-Section: Wednesday 4pm - 6pm ([Barrows](https://www.google.com/maps/place/Barrows+Hall/@37.8700364,-122.2601828,17z/data=!3m1!4b1!4m5!3m4!1s0x80857c25938066c3:0x73f82f3646d8e0bd!8m2!3d37.8700322!4d-122.2579888) 791)
+Section: Wednesday 4pm - 6pm ([Barrows](https://www.google.com/maps/place/Barrows+Hall/@37.8700364,-122.2601828,17z/data=!3m1!4b1!4m5!3m4!1s0x80857c25938066c3:0x73f82f3646d8e0bd!8m2!3d37.8700322!4d-122.2579888) 118)
 
 ### Office Hours
 
