@@ -7,6 +7,14 @@ output:
   html_document: default
 ---
 
+>> "For R and Python, Python is first and foremost a programming language. And that has a lot of good features, but it tends to mean, that if you are going to do data science in Python, you have to first learn how to program in Python. Whereas I think you are going to get up and running faster with R, than with Python because there’s just a bunch more stuff built in and you don’t have to learn as many programming concepts. You can focus on being a great political scientist or whatever you do and learning enough R that you don’t have to become an expert programmer as well to get stuff done."
+
+>>> - Hadely Wickam's [interview in 2018](https://www.r-bloggers.com/advice-to-young-and-old-programmers-a-conversation-with-hadley-wickham/)
+
+* R is slow, but flexible, and suitable to doing data science. That's why we first learn how R works and then how your R skills can be transferred to Python.
+
+* Stata is great. But R has an active community. More important, R can do anything whereas Stata can do only things allowed to do.
+
 * Many of the materials for this session are adapted from Hadley Wickam's [Advanced R](http://adv-r.had.co.nz). I also mention other books and papers I referred to at the outset of each markdown file.
 
 ## 1. What's R?
@@ -23,6 +31,8 @@ R is a versatile, open source programming/scripting language that's useful both 
 
 [S]: https://en.wikipedia.org/wiki/S_(programming_language)
 [GPL]: https://www.gnu.org/licenses/gpl.html
+
+### 1.1. Examples 
 
 - The power of objects. I will explain about what the below code does at the end of the session. 
 
@@ -54,6 +64,7 @@ fix_missing <- function(x) {
   x[x == -99] <- NA
   x
 }
+
 df$a <- fix_missing(df$a)
 df$b <- fix_missing(df$b)
 df$c <- fix_missing(df$c)
@@ -63,6 +74,10 @@ df$f <- fix_missing(df$e)
 
 # beautiful
 ```
+
+- We mostly cover objects (abstract things) this week and functions (abstract procedures) next week. 
+- Abstraction makes a computer a general-purpose machine, which can do most of things within certain constraints.
+- In the end, your code (source code) should be implemented by a machine. So, every step should be precisely defined.
 
 ## 2. RStudio
 
@@ -158,10 +173,6 @@ inst = lapply(pkgs, library, character.only = TRUE)
 **Separing commands**
 
 Use `#`.
-
-**Whitespace**
-
-Meaningless.
 
 **Comments**
 
