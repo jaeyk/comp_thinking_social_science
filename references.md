@@ -10,6 +10,8 @@ Sedgewick, R., & Wayne, K. (2011). [Algorithms](https://www.amazon.com/gp/produc
 
 Calafiore, G. C., & El Ghaoui, L. (2014). [Optimization models](https://www.amazon.com/gp/product/B00LB6BB1O/ref=oh_aui_d_detailpage_o02_?ie=UTF8&psc=1). Cambridge university press.
 
+Abelson, H. & Sussman, G. J. (1985). [Structure and Interpretation of Computer Programs (aka the Wizard Book)](https://web.mit.edu/alexmv/6.037/sicp.pdf). MIT Press.
+
 ## Computational social science 
 
 Alvarez, R. M. (Ed.). (2016). [Computational social science](https://www.cambridge.org/core/books/computational-social-science/FB97BD1704D957183899DE120BEE2E4B). Cambridge University Press.
