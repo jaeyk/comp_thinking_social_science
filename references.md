@@ -2,7 +2,7 @@
 
 Here's a list of books, papers, and other resources related to PS239T that I found useful.
 
-## Basic Computer Science 
+## Basic computer science 
 
 Sedgewick, R., & Wayne, K. (2016). [Computer science: An interdisciplinary approach](https://www.amazon.com/gp/product/B01H916DHG/ref=oh_aui_d_detailpage_o01_?ie=UTF8&psc=1). Addison-Wesley Professional.
 
@@ -10,7 +10,11 @@ Sedgewick, R., & Wayne, K. (2011). [Algorithms](https://www.amazon.com/gp/produc
 
 Calafiore, G. C., & El Ghaoui, L. (2014). [Optimization models](https://www.amazon.com/gp/product/B00LB6BB1O/ref=oh_aui_d_detailpage_o02_?ie=UTF8&psc=1). Cambridge university press.
 
-Abelson, H. & Sussman, G. J. (1985). [Structure and Interpretation of Computer Programs (aka the Wizard Book)](https://web.mit.edu/alexmv/6.037/sicp.pdf). MIT Press.
+Roy, P. V., & Haridi, S., (2004). [Concepts, Techniques, and Models of Computer Programming](https://www.amazon.com/dp/0262220695/ref=cm_sw_su_dp?tag=devtools-20). MIT Press.
+
+Hunt, A., & Thomas, D., (1999). [The Pragmatic Programmer: From Journeyman to Master](https://www.amazon.com/dp/020161622X/ref=cm_sw_su_dp?tag=devtools-20). Addison-Wesley Professional.
+
+Abelson, H., & Sussman, G. J. (1985). [Structure and Interpretation of Computer Programs (aka the Wizard Book)](https://web.mit.edu/alexmv/6.037/sicp.pdf). MIT Press.
 
 ## Computational social science 
 
@@ -53,8 +57,6 @@ Grolemund, G. and Wickham, H. (2017). [R for Data Science](http://r4ds.had.co.nz
 Wickham, H. (2015). [R Packages](http://r-pkgs.had.co.nz/). O'Reilly Media, Inc.
 
 Grolemund, G. (2014). [Hands-On Programming with R](https://proquest.safaribooksonline.com/9781449359089). O'Reily Media, Inc.
-
-Wickham, H. (2014). [R Packages](http://adv-r.had.co.nz/). Chapman & Hall’s R Series.
 
 Matloff, N. (2011). [The art of R programming: A tour of statistical software design](https://nostarch.com/artofr.htm). No Starch Press.
 
@@ -188,6 +190,3 @@ Pustejovsky, J., & Stubbs, A. (2012). [Natural Language Annotation for Machine L
 Breiman, L. (2001). [Random forests. Machine learning](https://link.springer.com/content/pdf/10.1023/A:1010933404324.pdf), 45(1), 5-32.
 
 Breiman, L. (2001). [Statistical modeling: The two cultures (with comments and a rejoinder by the author)](https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726). Statistical science, 16(3), 199-231.
-
-
-

@@ -48,7 +48,7 @@ gapminder %>%
   arrange(desc(Mean)) # arrange by descending order
 ```
 
-- The power of functions. We're going to learn about them next week. Functions help you Don't Repeat Yourself. I love the following [Wickam's example](http://adv-r.had.co.nz/Functional-programming.html). 
+- The power of functions (input + computation + output). Functions help you Don't Repeat Yourself. I love the following [Wickam's example](http://adv-r.had.co.nz/Functional-programming.html). Also, there are ways in which you can simplify this example code further. We're going to learn about them next week.
 
 ```{r, eval = FALSE}
 df$a[df$a == -99] <- NA
@@ -216,6 +216,13 @@ In R, the contents of an object can be printed by either simply executing the th
 ```{r, eval = FALSE}
 ?mean
 ??mean
+help(mean)
+
+# The above three will do same. 
+
+example(ls) # provides example for how to use ls 
+
+help.search("visualization") # search functions and packages that have "visualization" in their descriptions
 ```
 
 ## Miminal reproducible example 
