@@ -1,11 +1,13 @@
 ---
 title: "Introduction to R"
 author: "PS239T"
-date: "Spring 2018"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   pdf_document: default
   html_document: default
 ---
+
+* Many of the materials for this session are adapted from Hadley Wickam's [Advanced R](http://adv-r.had.co.nz). I also mention other books and papers I referred to at the outset of each markdown file.
 
 ## 1. What's R?
 
@@ -21,6 +23,46 @@ R is a versatile, open source programming/scripting language that's useful both 
 
 [S]: https://en.wikipedia.org/wiki/S_(programming_language)
 [GPL]: https://www.gnu.org/licenses/gpl.html
+
+- The power of objects. I will explain about what the below code does at the end of the session. 
+
+```{r, eval = FALSE}
+library(dplyr)
+library(gapminder) # load gapminder package
+
+gapminder %>%
+  filter(continent == "Europe") %>% # filter by Europe
+  group_by(country) %>% # group by country 
+  summarize(Mean = mean(gdpPercap)) %>% # collapse data by mean 
+  top_n(5, Mean) %>% # count only top 5 by mean 
+  arrange(desc(Mean)) # arrange by descending order
+```
+
+- The power of functions. We're going to learn about them next week. Functions help you Don't Repeat Yourself. I love the following [Wickam's example](http://adv-r.had.co.nz/Functional-programming.html). 
+
+```{r, eval = FALSE}
+df$a[df$a == -99] <- NA
+df$b[df$b == -99] <- NA
+df$c[df$c == -99] <- NA
+df$d[df$d == -99] <- NA
+df$e[df$e == -99] <- NA
+df$f[df$f == -99] <- NA 
+
+# very tedious 
+
+fix_missing <- function(x) {
+  x[x == -99] <- NA
+  x
+}
+df$a <- fix_missing(df$a)
+df$b <- fix_missing(df$b)
+df$c <- fix_missing(df$c)
+df$d <- fix_missing(df$d)
+df$e <- fix_missing(df$e)
+df$f <- fix_missing(df$e)
+
+# beautiful
+```
 
 ## 2. RStudio
 
@@ -101,7 +143,9 @@ pkgs <- c("ggplot2", "dplyr", "broom")
 install.packages(pkgs)
 ```
   
-Okay. We have to write two lines. The simpler, the better, right? Note that lapply applies (there's a family of apply functions) a function to a list. In this case, library to pkgs. apply is an advanced concept, which is related to anonymous functions. We will learn about it later when we study functions.
+Still, we have to write two lines. The simpler, the better, right? Here's another approach that can simplify the code further.
+
+Note that lapply applies (there's a family of apply functions) a function to a list. In this case, library to pkgs. apply is an advanced concept, which is related to anonymous functions. We will learn about it later when we study functions.
 
 ```{r, eval = FALSE}
 inst = lapply(pkgs, library, character.only = TRUE)

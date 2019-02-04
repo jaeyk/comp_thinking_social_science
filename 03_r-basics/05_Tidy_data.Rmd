@@ -1,15 +1,17 @@
 ---
 title: "Tidy data"
 author: "PS239T"
-date: "Spring 2019"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   pdf_document: default
   html_document: default
 ---
 
-* I adapted the following content from Wickham's R data science book (2017) chapter: https://r4ds.had.co.nz/tidy-data.html and his earlier paper (2014) published in the Journal of Statistical Software: http://www.jstatsoft.org/v59/i10/paper.
+* I adapted the following content from Wickham's [R for Data Science](https://r4ds.had.co.nz/tidy-data.html), his [earlier paper](http://www.jstatsoft.org/v59/i10/paper) published in the Journal of Statistical Software, and [Efficient R Programming](https://csgillespie.github.io/efficientR/) by Gillespie and Lovelace.
 
-* Wickham created many essential R packages for data science. For more information, please see the following website: http://hadley.nz/
+- The big picture 
+    - Tidying data with **tidyr**
+    - Processing data with **dplyr**
 
 # 1. What're tidy principles 
 
@@ -59,12 +61,7 @@ Computationally, this approach is useful for vectorized programming because "dif
 
 Either input or output or both of them can be messy. Tidy tools can fix these problems. 
 
-### 4.1. Manipulation
-
-* Filter
-* Transform
-* Aggregate
-* Sort 
+### 4.1. Tidyr manipulation (organizing)
 
 #### 4.1.1. Gather (from wide to long)
 
@@ -115,11 +112,45 @@ table3_separated %>%
 
 ```
 
-### 4.2. Visualization
+### 4.2. dplyr manipulation (process)
 
-Will be covered in the future session.
+dplyr is better than the base R approaches to data processing:
+
+- fast to run (due to tis C++ backend) and intuitive to type
+- works well with tidy data and databases
+
+There are so many useful commands that come from dplyr: filter(), slice(), arrange(), select(), rename(), distint(), mutate(), summarize(), sample_n().
+
+The pipe operator %>% origianlly comes from the magrittr package. The idea behind the pipe operator is [similar to](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) what we leanred about chaining functions in high school. f: B -> C and g: A -> B can be expressed as $f(g(x))$. Basically, the pipe operator chains operations. 
+
+```{r}
+library(dplyr)
+library(gapminder) # load gapminder package
+
+gapminder # the data is already organized by tidy principles 
+
+names(gapminder) # the column names 
+  
+gapminder %>%
+  filter(continent == "Europe") %>% # filter by Europe
+  group_by(country) %>% # group by country 
+  summarize(Mean = mean(gdpPercap)) %>% # collapse data by mean 
+  top_n(5, Mean) %>% # count only top 5 by mean 
+  arrange(desc(Mean)) # arrange by descending order
+
+gapminder <- gapminder %>%
+  rename(population = pop) # rename pop variable (old name = new name) 
+
+gapminder$pop # It should be NULL
+```
 
 
 ### 4.3. Modeling 
 
 Will not be extensively covered in this course.
+
+### 4.4. Visualization
+
+Will be covered in the future session.
+
+

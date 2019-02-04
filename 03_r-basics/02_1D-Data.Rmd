@@ -1,7 +1,7 @@
 ---
 title: "One-Dimensional Data in R"
 author: "PS239T"
-date: "Spring 2018"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   pdf_document: default
   html_document: default
@@ -118,7 +118,15 @@ y <- c(TRUE, TRUE, FALSE, FALSE)
 Finally you can have character vectors:
 
 ```{r, eval = TRUE}
-z <- c("Beyonce", "Kelly", "Michelle", "LeToya")
+kim_family <- c("Jae", "Sun", "Jane")
+
+is.integer(kim_family) # integer?
+
+is.character(kim_family) # character?
+
+is.atomic(kim_family) # atomic?
+
+typeof(kim_family) # what's the type?
 ```
 
 **Short exercise: Create and examine your vector**  
@@ -448,7 +456,8 @@ All R objects can have arbitrary additional attributes, used to store metadata a
 y <- 1:10
 attr(y, "my_attribute") <- "This is a vector"
 attr(y, "my_attribute")
-str(attributes(y))
+
+str(attributes(y)) # str returns a new object with modified information
 ```
 
 ### Exercises
