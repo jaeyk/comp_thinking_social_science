@@ -56,7 +56,7 @@ The function for recovering object classes is ```class()```. L suffix to qualify
 class(3)
 class(3L) 
 class("Three")
-class(T)
+class(F)
 ```
 
 
@@ -113,6 +113,8 @@ length(x)
 
 ```{r, eval = TRUE}
 y <- c(TRUE, TRUE, FALSE, FALSE)
+
+y
 ```
 
 Finally you can have character vectors:
@@ -137,12 +139,13 @@ Create a character vector called `fruit` that contain 4 of your favorite fruits.
 
 # First create your fruit vector 
 # YOUR CODE HERE
-
+fruit <- 
 
 # Examine your vector
 length(fruit)
 class(fruit)
 str(fruit)
+
 ```
 
 **Add elements**
@@ -168,7 +171,10 @@ You can also create vectors as a sequence of numbers
 
 ```{r, eval = TRUE}
 series <- 1:10
+series
+
 seq(10)
+
 seq(1, 10, by = 0.1)
 ```
 
@@ -308,7 +314,9 @@ Lists are used to build up many of the more complicated data structures in R. Fo
 
 ```{r}
 is.list(mtcars)
+
 mod <- lm(mpg ~ wt, data = mtcars)
+
 is.list(mod)
 ```
 

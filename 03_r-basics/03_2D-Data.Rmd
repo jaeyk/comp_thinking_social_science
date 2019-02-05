@@ -121,6 +121,11 @@ str(df)
 
 This means that a dataframe has `names()`, `colnames()`, and `rownames()`, although `names()` and `colnames()` are the same thing. 
 
+** Summary **
+
+- Set column names: names() in data frame, colnames() in matrix 
+- Set row names: row.names() in data frame, rownames() in matrix
+
 ```{r}
 vec1 <- 1:3
 vec2 <- c("a", "b", "c")

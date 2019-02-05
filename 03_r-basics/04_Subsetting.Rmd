@@ -330,6 +330,7 @@ Extract the R squared from the model summary.
 ```{r, error = TRUE}
 mod.sum <- summary(mod)
 mod.sum$______ # Fill in here
+
 ```
 
 # 3. Subassignment {#subassignment}

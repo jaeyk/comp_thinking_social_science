@@ -7,11 +7,13 @@ output:
   html_document: default
 ---
 
-* I adapted the following content from Wickham's [R for Data Science](https://r4ds.had.co.nz/tidy-data.html), his [earlier paper](http://www.jstatsoft.org/v59/i10/paper) published in the Journal of Statistical Software, and [Efficient R Programming](https://csgillespie.github.io/efficientR/) by Gillespie and Lovelace.
+* I adapted the following content from Wickham's [R for Data Science](https://r4ds.had.co.nz/tidy-data.html), his [earlier paper](http://www.jstatsoft.org/v59/i10/paper) published in the Journal of Statistical Software, [Efficient R Programming](https://csgillespie.github.io/efficientR/) by Gillespie and Lovelace, and [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Roger P. Peng
 
 - The big picture 
     - Tidying data with **tidyr**
     - Processing data with **dplyr**
+
+These two packages don't do anything new, but simplify most common tasks in data manipulation. Plus, they are fast.
 
 # 1. What're tidy principles 
 
@@ -23,7 +25,7 @@ output:
 
 ### 1.2. Data semantics
 
-* variables > values (numbers or strings)
+* variables and values (numbers or strings)
 
 ## 2. Tidy tada: "provide a standard way to organize data values within a dataset."
 
@@ -45,9 +47,9 @@ table1
 
 Practically, this approach is good because you're going to have consistency in the format of data across all the projects you're working on. Also, tidy data works well with key packages (e.g., dplyr, ggplot2) in R.
 
-Computationally, this approach is useful for vectorized programming because "different variables from the same observation are always paired".
+Computationally, this approach is useful for vectorized programming because "different variables from the same observation are always paired". To remind you, vectorized means a function applies to a vector treats each element individually.
 
-## 3. Messay datasets 
+## 3. Messy datasets 
 
 ### 3.1. Signs of messy datasets 
 
@@ -70,7 +72,7 @@ Either input or output or both of them can be messy. Tidy tools can fix these pr
 table4a
 
 # from long to wide 
-table4a %>%
+table4a %>% # The first argument is the data frame
   gather('1999', '2000', key = "year", value = "population")
 
 # save the file 
@@ -78,6 +80,7 @@ table4a_wide <- table4a %>%
   gather('1999', '2000', key = "year", value = "population") 
 
 ```
+
 
 #### 4.1.2. Spread (from wide to long)
 
@@ -116,12 +119,15 @@ table3_separated %>%
 
 dplyr is better than the base R approaches to data processing:
 
-- fast to run (due to tis C++ backend) and intuitive to type
+- fast to run (due to the C++ backed) and intuitive to type
 - works well with tidy data and databases
 
-There are so many useful commands that come from dplyr: filter(), slice(), arrange(), select(), rename(), distint(), mutate(), summarize(), sample_n().
+There are so many useful functions that come from dplyr: filter(), slice(), arrange(), select(), rename(), distinct(), mutate(), summarize(), sample_n().
 
-The pipe operator %>% origianlly comes from the magrittr package. The idea behind the pipe operator is [similar to](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) what we leanred about chaining functions in high school. f: B -> C and g: A -> B can be expressed as $f(g(x))$. Basically, the pipe operator chains operations. 
+The pipe operator %>% originally comes from the magrittr package. The idea behind the pipe operator is [similar to](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) what we learned about chaining functions in high school. f: B -> C and g: A -> B can be expressed as $f(g(x))$. Basically, the pipe operator chains operations. 
+
+Some functions are designed to work together. For instance, the group_by
+function defines the strata that you're going to use for summary statistics. Then, use summarise() or summarize() for producing summary statistics.
 
 ```{r}
 library(dplyr)
@@ -144,6 +150,27 @@ gapminder <- gapminder %>%
 gapminder$pop # It should be NULL
 ```
 
+Another powerful feature of dplyr package is select function.
+
+```{r}
+survey_results <- read.csv("./data/ps239t_responses.csv") # load csv file using relativre path
+
+names(survey_results) # column names
+
+survey_results_r <- survey_results %>%
+  dplyr::select(ends_with("in.R.")) # What does it show?
+
+names(survey_results_r) <- c("import", "pipe", "ggplot2", "factor") # change col names using base r function names 
+
+survey_results_r %>%
+  gather("type", "value", import:factor) %>% # reshape from wide to long
+  group_by(type, value) %>% # group by type and value
+  summarise(n = n()) %>%  # summarize n
+  mutate(freq = n/sum(n)) %>% # calculate frequency
+  arrange(desc(freq)) %>% # descending order by freq
+  filter(value == "No") # filter by no
+
+```
 
 ### 4.3. Modeling 
 

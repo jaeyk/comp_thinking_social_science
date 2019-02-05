@@ -1,0 +1,10 @@
+Timestamp,Name,"I know how to import and save various forms (e.g., csv, rds) of files in R.",I know how to use pipe operator (%>%) in R.,I know how to use ggplot2 to visualize data in R.,I can explain the differences between character and factor variables in R.,I can explain what regular expressions are.,I can explain what tuples are in Python.,I know how to use pandas library in Python.,I can explain what high-dimensional data are.,I can explain the differences between supervised and unsupervised machine learning.
+2019/01/28 1:07:40 PM PST,S1,No,No,No,No,No,No,No,No,No
+2019/01/28 6:55:17 PM PST,S2,Yes,No,No,No,No,No,No,No,Yes
+2019/01/28 8:41:43 PM PST,S3,Yes,No,No,No,No,No,No,No,No
+2019/01/30 11:27:28 AM PST,S4,Yes,No,No,Yes,No,No,No,No,No
+2019/01/30 11:42:34 AM PST,S5,No,No,No,No,Yes,No,Yes,No,Yes
+2019/01/30 1:47:04 PM PST,S6,Yes,Yes,No,No,No,No,No,No,No
+2019/01/30 2:03:30 PM PST,S7,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes
+2019/01/30 4:20:24 PM PST,S8,Yes,No,No,No,No,No,No,No,Yes
+2019/01/30 4:21:30 PM PST,S9,Yes,Yes,Yes,Yes,No,No,No,No,No
