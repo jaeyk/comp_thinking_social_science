@@ -7,6 +7,8 @@ output:
   html_document: default
 ---
 
+* For factor subsection, I referred to [Factors in R](https://www.stat.berkeley.edu/~s133/factors.html) by Phil Spector.
+
 # Intro to Data Structures
 
 To make the best use of the R language, you'll need a strong understanding of the basic data types and data structures and how to operate on those. R is an **object-oriented** language, so the importance of this cannot be understated. 
@@ -354,8 +356,11 @@ Attributes provide additional information about the data to you, the user, and t
 * Dimensions, used to turn vectors into matrices.
 
 * Class, used to implement the S3 object system.
- 
+
 Each of these attributes has a specific accessor function to get and set values. When working with these attributes, use `names(x)`, `dim(x)`, and `class(x)`
+
+**Tips**
+In an object-oriented system, a [class](https://www.google.com/search?q=what+is+class+programming&oq=what+is+class+programming&aqs=chrome.0.0l6.3543j0j4&sourceid=chrome&ie=UTF-8) (an extensible problem-code-template) defines a type of objects like what its properties are, how it behaves, and how it relates to other types of objects. Therefore, technically, an object is an [instance](https://en.wikipedia.org/wiki/Instance_(computer_science)) (or ocurrence) of a class. A method is a function associated with a particular type of object.
 
 ### 2a. Names
 
@@ -390,9 +395,13 @@ You can create a new vector without names using `unname(x)`, or remove names in 
 
 ### 2b. Factors
 
-Factors are special vectors that represent categorical data. Factors can be ordered or unordered and are important for modelling functions such as `lm()` and `glm()` and also in plot methods.
+Factors are special vectors that represent categorical data. Factors can be ordered (ordinal variable) or unordered (nominal or categorical vavariable) and are important for modelling functions such as `lm()` and `glm()` and also in plot methods.
 
-Factors can only contain pre-defined values. Set allowed values using the `levels()` attribute.
+**Quiz**
+1. If you want to enter dummy variables (Democrats = 1, Non-democrats = 0) in your regression model, should you use numeric or factor variable?
+
+Factors can only contain pre-defined values. Set allowed values using the `levels()` attribute. Note that a factor's levels will always be character values. 
+
 
 ```{r}
 x <- factor(c("a", "b", "b", "a"))
@@ -405,6 +414,9 @@ x[2] <- "c"
 
 # NB: you can't combine factors
 c(factor("a"), factor("b"))
+
+rep(1:5, rep(6,5))
+
 ```
 
 Factors are pretty much integers that have labels on them. Underneath, it's really numbers (1, 2, 3...). 
@@ -424,8 +436,8 @@ party_char
 party_factor <- factor(party_char, levels = c("democrat", "republican"))
 party_factor
 
-table(party_char)
-table(party_factor)
+table(party_char) # shows only democrats 
+table(party_factor) # shows republicans too 
 ```
 
 Sometimes factors can be left unordered. Example: `democrat`, `republican`.
@@ -437,8 +449,9 @@ x <- factor(c("low","medium","high"))
 str(x)
 is.ordered(x)
 
-x <- ordered(c("low","medium","high"), levels = c("high","medium","low"))
-is.ordered(x)
+y <- ordered(c("low","medium","high"), levels = c("high","medium","low"))
+is.ordered(y) 
+
 ```
 
 While factors look (and often behave) like character vectors, they are actually integers. Be careful when treating them like strings. Some string methods (like `gsub()` and `grepl()`) will coerce factors to strings, while others (like `nchar()`) will throw an error, and still others (like `c()`) will use the underlying integer values. 

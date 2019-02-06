@@ -34,7 +34,7 @@ R is a versatile, open source programming/scripting language that's useful both 
 
 ### 1.1. Examples 
 
-- The power of objects. I will explain about what the below code does at the end of the session. 
+- The power of objects. You only need a few lines of code to do the task you want to perform.
 
 ```{r, eval = FALSE}
 install.packages("dplyr")
@@ -189,7 +189,7 @@ Use `#` signs to comment. Comment liberally in your R scripts. Anything to the r
 `<-` is the assignment operator. It assigns values on the right to objects on the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can be read as 3 **goes into** `x`.  You can also use `=` for assignments. 
 
 ```{r}
-USwerid <- "Why use lb for pound!" # Use this
+USweird <- "Why use lb for pound!" # Use this
 
 "Why use lb for pound!" = USweird
 ```
