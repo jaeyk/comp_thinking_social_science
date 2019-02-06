@@ -22,11 +22,15 @@ Alvarez, R. M. (Ed.). (2016). [Computational social science](https://www.cambrid
 
 Gitelman, L. (Ed.). (2013). [Raw data is an oxymoron](http://raley.english.ucsb.edu/wp-content/Engl800/RawData-excerpts.pdf). MIT Press.
 
+Spector, P. [Concepts in Computing with Data](https://www.stat.berkeley.edu/~s133/). Berkeley Statistics 133 lecture notes.
+
 Elish, M. C., & boyd, D. (2018). [Situating methods in the magic of Big Data and AI](https://www.tandfonline.com/doi/abs/10.1080/03637751.2017.1375130). *Communication Monographs*, 85(1), 57-80.
 
 boyd, D., & Crawford, K. (2012). [Critical questions for big data: Provocations for a cultural, technological, and scholarly phenomenon](https://www.tandfonline.com/doi/abs/10.1080/1369118X.2012.678878). *Information, communication & society*, 15(5), 662-679.
 
 Lazer, D. et al. (2009). [Life in the network: the coming age of computational social science](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2745217/). *Science*, 323(5915), 721.
+
+
 
 ## Unix and Git 
 
