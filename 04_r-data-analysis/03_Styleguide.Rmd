@@ -3,7 +3,7 @@ title: "Style Guide"
 output:
   pdf_document: default
   html_notebook: default
-author: "Jae Yeon Kim"
+author: "PS239T"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 

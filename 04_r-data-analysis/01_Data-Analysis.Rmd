@@ -1,7 +1,7 @@
 ---
 title: 'Data Analysis in R: Lecture Notes'
 author: "PS239T"
-date: "Spring 2018"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   pdf_document: default
   html_document: default
@@ -78,6 +78,12 @@ We can also import:
 * Other types of Microsoft Excel files (.xls or .xlsx):
 * Proprietary data formats (e.g.: .dta, .spss, .ssd) - these require the "foreign" package
 * Data from the web
+
+** Tips **
+
+- For files smaller than 1MB use read.csv().
+- For files largert than 100MB use fread() from data.table package and read_csv() from readr package 
+- Also, use rmd (native R file extension) rather than csv for large files
 
 
 ### 1b. Cleaning Data
