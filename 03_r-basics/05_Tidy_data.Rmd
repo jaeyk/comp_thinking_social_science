@@ -75,6 +75,9 @@ table4a
 table4a %>% # The first argument is the data frame
   gather('1999', '2000', key = "year", value = "population")
 
+```
+
+```{r}
 # save the file 
 table4a_wide <- table4a %>%
   gather('1999', '2000', key = "year", value = "population") 
@@ -136,7 +139,9 @@ library(gapminder) # load gapminder package
 gapminder # the data is already organized by tidy principles 
 
 names(gapminder) # the column names 
-  
+
+gapminder  
+
 gapminder %>%
   filter(continent == "Europe") %>% # filter by Europe
   group_by(country) %>% # group by country 
@@ -160,7 +165,10 @@ names(survey_results) # column names
 survey_results_r <- survey_results %>%
   dplyr::select(ends_with("in.R.")) # What does it show?
 
+
 names(survey_results_r) <- c("import", "pipe", "ggplot2", "factor") # change col names using base r function names 
+
+names(survey_results_r)
 
 survey_results_r %>%
   gather("type", "value", import:factor) %>% # reshape from wide to long

@@ -13,7 +13,7 @@ When working with data, you'll need to subset objects early and often. Luckily, 
 
 * The three subsetting operators, `[`, `[[`, and `$`.
 
-* Important differences in behaviour for different objects (e.g., vectors, lists, factors, matrices, and data frames).
+* Important differences in behavior for different objects (e.g., vectors, lists, factors, matrices, and data frames).
 
 * The use of subsetting in conjunction with assignment.
 
@@ -22,14 +22,14 @@ This unit helps you master subsetting by starting with the simplest type of subs
 ### Outline
 
 1. [Data types](#data-types) starts by teaching you about `[`. You'll start by learning the four ways to subset atomic vectors. You'll then learn how those four methods act when used to subset lists, matrices, and data frames.
-2. [Subsetting operators](#subsetting-operators) expands your knowledge of subsetting operators to include `[[` and `$`, focussing on the important principles of simplifying vs. preserving.
-3. In [Subsetting and assignment](#subassignment) you'll learn the art of subassignment, combining subsetting and assignment to modify parts  of an object.
+2. [Subsetting operators](#subsetting-operators) expands your knowledge of subsetting operators to include `[[` and `$`, focusing on the important principles of simplifying vs. preserving.
+3. In [Subsetting and assignment](#subassignment) you'll learn the art of sub assignment, combining subsetting and assignment to modify parts  of an object.
 4. [Applications](#applications) leads you through important, but not obvious, applications of subsetting to solve problems that you often encounter in a data analysis, using the tools above.
 5. [Bonus Items](#bonus-items) show you some additional details of how to work with your data and make your code more efficient, including by distinguishing when you want to simplify vs. preserve your data. 
 
 # 1. Data types {#data-types}
 
-It's easiest to learn how subsetting works for atomic vectors, and then how it generalises to higher dimensions and other more complicated objects. We'll start with `[`, the most commonly used operator. [Subsetting operators](#subsetting-operators) will cover `[[` and `$`, the two other main subsetting operators.
+It's easiest to learn how subsetting works for atomic vectors, and then how it generalizes to higher dimensions and other more complicated objects. We'll start with `[`, the most commonly used operator. [Subsetting operators](#subsetting-operators) will cover `[[` and `$`, the two other main subsetting operators.
 
 ### 1a. Atomic vectors
 
@@ -188,7 +188,7 @@ l['a']
 
 ### 1c. Matrices
 
-The most common way of subsetting matrices (2d) is a simple generalisation of 1d subsetting: you supply a 1d index for each dimension, separated by a comma. Blank subsetting is now useful because it lets you keep all rows or all columns.
+The most common way of subsetting matrices (2d) is a simple generalization of 1d subsetting: you supply a 1d index for each dimension, separated by a comma. Blank subsetting is now useful because it lets you keep all rows or all columns.
 
 ```{r}
 a <- matrix(1:9, nrow = 3)
@@ -230,6 +230,7 @@ df[c("x", "z")]
 df[, c("x", "z")]
 
 ```
+
 But there's an important difference when you select a single column: matrix subsetting simplifies by default, list subsetting does not.
 
 ```{r}
@@ -241,6 +242,44 @@ class((df[, "x"]))
 ```
 
 See the bottom section on [Simplying and Preserving to know more](#simplify-preserve)
+
+#### 1d.1. Slicing, selecting, and filtering
+
+We learned the tidyverse framework last week. Let's take advantage of that to do subsetting dataframe in an easy way. Just remember slice is for selecting rows, select is for selecting columns, and filter is for selecting rows based on logical conditions.  
+
+First, let's recap piping (%>%) for those missed the class. [The following example](https://r4ds.had.co.nz/pipes.html) by Wickham is a pseudo code. So consider that only as a thought experiment. 
+
+Pipe takes return value and feeds it in as an input to another function. In UNIX, pipe operator is |. 
+
+```{r, eval = FALSE}
+x %>% f %>% g # equals g(f(x))
+```
+
+```{r, eval = FALSE}
+# Without piping
+foo_foo_1 <- hop(foo_foo, through = forest)
+foo_foo_2 <- scoop(foo_foo_1, up = field_mice)
+foo_foo_3 <- bop(foo_foo_2, on = head)
+
+# With timping 
+foo_foo %>%
+  hop(through = forest) %>%
+  scoop(up = field_mice) %>%
+  bop(on = head)
+```
+Now, let's work with the real data.
+
+```{r}
+library(tidyverse)
+
+df %>%
+  slice(c(1,2)) # first 2 rows
+
+df %>%
+  select(c(1,2)) # first 2 columns 
+
+```
+
 
 #### Exercises
 
@@ -393,7 +432,7 @@ df1 <- df[, c(2,1,3)]
 df1
 ```
 
-One helpul function is the `order` function, which takes a vector as input and returns an integer vector describing how the subsetted vector should be ordered:
+One helpful function is the `order` function, which takes a vector as input and returns an integer vector describing how the subsetted vector should be ordered:
 
 ```{r}
 x <- c("b", "c", "a")
@@ -447,7 +486,7 @@ mtcars[mtcars$gear == 5 & mtcars$cyl == 4, ]
 
 ### 5a. `subset()`
 
-`subset()` is a specialised shorthand function for subsetting data frames, and saves some typing because you don't need to repeat the name of the data frame.
+`subset()` is a specialized shorthand function for subsetting data frames, and saves some typing because you don't need to repeat the name of the data frame.
 
 ```{r}
 subset(mtcars, gear == 5)
@@ -458,7 +497,7 @@ subset(mtcars, gear == 5 & cyl == 4)
 
 It's important to understand the distinction between simplifying and preserving subsetting. Simplifying subsets returns the simplest possible data structure that can represent the output, and is useful interactively because it usually gives you what you want. Preserving subsetting keeps the structure of the output the same as the input, and is generally better for programming because the result will always be the same type. Omitting `drop = FALSE` when subsetting matrices and data frames is one of the most common sources of programming errors. (It will work for your test cases, but then someone will pass in a single column data frame and it will fail in an unexpected and unclear way.)
 
-Unfortunately, how you switch between simplifying and preserving differs for different data types, as summarised in the table below.
+Unfortunately, how you switch between simplifying and preserving differs for different data types, as summarized in the table below.
 
 |             | Simplifying               | Preserving                                   |
 |-------------|---------------------------|----------------------------------------------|
@@ -467,7 +506,7 @@ Unfortunately, how you switch between simplifying and preserving differs for dif
 | Factor      | `x[1:4, drop = T]`        | `x[1:4]`                                     |
 | Data frame  | `x[, 1]` __or__ `x[[1]]`  | `x[, 1, drop = F]` __or__ `x[1]`             |
 
-Preserving is the same for all data types: you get the same type of output as input. Simplifying behaviour varies slightly between different data types, as described below:
+Preserving is the same for all data types: you get the same type of output as input. Simplifying behavior varies slightly between different data types, as described below:
 
 *   __Atomic vector__: removes names.
 
