@@ -443,7 +443,7 @@ mydataset &lt;- read_csv(file = &quot;data/country-year.csv&quot;) # this is for
 <pre class="r"><code>system.time(read.csv(file = &quot;data/country-year.csv&quot;,
                       stringsAsFactors = F)) # 0.031</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.028   0.000   0.028</code></pre>
+##   0.027   0.000   0.027</code></pre>
 <pre class="r"><code>system.time(read_csv(file = &quot;data/country-year.csv&quot;)) # 0.024</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
@@ -465,7 +465,7 @@ mydataset &lt;- read_csv(file = &quot;data/country-year.csv&quot;) # this is for
 ##   idealpoint = col_double()
 ## )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.019   0.000   0.018</code></pre>
+##   0.018   0.000   0.018</code></pre>
 <p>Let’s load the PolityVI (autocracy and democracy scales) and CIRI Human Rights Project datasets (both csvs):</p>
 <pre class="r"><code>library(tidyverse) # load tidyverse</code></pre>
 <pre><code>## ── Attaching packages ────────────── tidyverse 1.2.1 ──</code></pre>

@@ -400,15 +400,18 @@ setwd(dir=&quot;~/Dropbox/berkeley/Git-Repos/PS239T/04_r-data-analysis/&quot;)</
 lastName &lt;- &quot;Kim&quot;</code></pre>
 <p>Unlike in Python, R does not have a reserved operator for string concatenation such as <code>+</code>. Furthermore, using the usual concatenation operator <code>c()</code> on two or more character strings will not create a single character string, but rather a <strong>vector</strong> of character strings.</p>
 <pre class="r"><code>fullName &lt;- c(firstName, lastName)
+
 print(fullName)</code></pre>
 <pre><code>## [1] &quot;Jae Yeon&quot; &quot;Kim&quot;</code></pre>
 <pre class="r"><code>length(fullName)</code></pre>
 <pre><code>## [1] 2</code></pre>
 <p>In order to combine two or more character strings into one larger character string, we use the <code>paste()</code> function. This function takes character strings or vectors and collapses their values into a single character string, with each value separated by a character string selected by the user.</p>
-<pre class="r"><code>fullName&lt;-paste(firstName, lastName)
+<pre class="r"><code>fullName &lt;- paste(firstName, lastName)
+
 print(fullName)</code></pre>
 <pre><code>## [1] &quot;Jae Yeon Kim&quot;</code></pre>
 <pre class="r"><code>fullName&lt;-paste(firstName, lastName, sep = &quot;+&quot;)
+
 print(fullName)</code></pre>
 <pre><code>## [1] &quot;Jae Yeon+Kim&quot;</code></pre>
 <pre class="r"><code>fullName&lt;-paste(firstName, lastName, sep = &quot;___&quot;)
@@ -417,7 +420,7 @@ print(fullName)</code></pre>
 <p>As with Python, R can also extract substrings based on the index position of its characters. There are, however, two critical differences. First, <strong>index positions in R start at 1</strong>. This is in contrast to Python, where indexation starts at 0.</p>
 <p>Second, <strong>object subsets using index positions in R contain all the elements in the specified range</strong>. If some object called <code>data</code> contains five elements, <code>data[2:4]</code> will return the elements at the second, third, and fourth positions. By contrast, the same subset in Python would return the objects at the third and fourth positions (or second and third positions, depending upon whether your index starts at 0 or 1).</p>
 <p>Third, <strong>R does not allow indexing of character strings</strong>*. Instead, you must use the <code>substr()</code> function. Note that this function must receive both the <code>start</code> and <code>stop</code> arguments. So if you want to get all the characters between some index and the end of the string, you must make use of the <code>nchar()</code> function, which will tell you the length of a character string.</p>
-<pre class="r"><code>fullName&lt;-paste(firstName, lastName)
+<pre class="r"><code>fullName &lt;- paste(firstName, lastName)
 
 # this won't work like in Python
 fullName[1] # R sees the string as a unitary object - it can't be indexed this way</code></pre>
@@ -447,12 +450,10 @@ substr(x = fullName, start = 1, stop = 1)</code></pre>
 <pre class="r"><code>strsplit(x = fullName, split = &quot;n&quot;)</code></pre>
 <pre><code>## [[1]]
 ## [1] &quot;Jae Yeo&quot; &quot; Kim&quot;</code></pre>
-<pre class="r"><code>gsub(pattern = &quot;K&quot;, replacement = &quot;C&quot;, x = fullName)</code></pre>
-<pre><code>## [1] &quot;Jae Yeon Cim&quot;</code></pre>
-<pre class="r"><code>gsub(pattern = &quot;Schnitzel&quot;, replacement = &quot;Mike&quot;, x = fullName)</code></pre>
-<pre><code>## [1] &quot;Jae Yeon Kim&quot;</code></pre>
-<pre class="r"><code>gsub(pattern = &quot;von krumm&quot;, replacement = &quot;Duderino&quot;, x = fullName) </code></pre>
-<pre><code>## [1] &quot;Jae Yeon Kim&quot;</code></pre>
+<pre class="r"><code>gsub(pattern = &quot;Kim&quot;, replacement = &quot;Choi&quot;, x = fullName)</code></pre>
+<pre><code>## [1] &quot;Jae Yeon Choi&quot;</code></pre>
+<pre class="r"><code>gsub(pattern = &quot;Jae Yeon&quot;, replacement = &quot;Danny&quot;, x = fullName)</code></pre>
+<pre><code>## [1] &quot;Danny Kim&quot;</code></pre>
 <pre class="r"><code># Note the importance of cases! This doesn't throw an error, so you won't realize your function didn't work unless you double-check several entries 
 
 gsub(pattern = &quot; &quot;, replacement = &quot;&quot;, x = fullName) # The same function is used for replacements and stripping</code></pre>
@@ -463,32 +464,32 @@ gsub(pattern = &quot; &quot;, replacement = &quot;&quot;, x = fullName) # The sa
 <h1>2. Flow Control</h1>
 <p>Almost all the conditional operators used in Python also work in R. The basic loop set up is also very similar, with some small syntax adjustments. Note that <code>if()</code> is a function whose arguments must be specified inside parentheses. <code>else</code>, however, is a reserved operator that takes no arguments. Note that there is no <code>elif</code> option — one simply writes <code>else if()</code>. Whereas operations to be executed after conditional evaluations in Python come after a <code>:</code>, R operations must only be enclosed in curly brackets: <code>{}</code>. Furthermore, there is no requirement for indentation. The only thing to keep in mind is that <strong>each new operation must be on a separate line</strong>.</p>
 <pre class="r"><code>x &lt;- 5
-if(x&lt;0){
+if(x &lt; 0){
   print(&quot;x is negative&quot;)
 } 
 
 x &lt;- -5
-if(x&lt;0){
+if(x &lt; 0){
   print(&quot;x is negative&quot;)
 }</code></pre>
 <pre><code>## [1] &quot;x is negative&quot;</code></pre>
 <pre class="r"><code>x &lt;- 5
-if(x&lt;0){
+if(x &lt; 0){
   print(&quot;x is negative&quot;)
 } else{
   print(&quot;x is positive&quot;)
 }</code></pre>
 <pre><code>## [1] &quot;x is positive&quot;</code></pre>
 <pre class="r"><code>x &lt;- 0
-if(x&lt;0){
+if(x &lt; 0){
   print(&quot;x is negative&quot;)
-} else if(x==0){
+} else if(x == 0){
   print(&quot;x is zero&quot;)
 } else{
   print(&quot;x is positive&quot;)
 }</code></pre>
 <pre><code>## [1] &quot;x is zero&quot;</code></pre>
-<p>R also does some class coercion that makes boolean evaluations harder to break than in Python. But be careful — R has a set of special coercions used for fast logical evaluation and subsetting. Specifically, <code>TRUE</code> is considered equal to <code>1</code>, while <code>FALSE</code> is equal to <code>0</code>. The boolean logicals can also be specified as a full word in all caps, or simply as <code>T</code> or <code>F</code>.</p>
+<p>R also does some class coercion that makes Boolean evaluations harder to break than in Python. But be careful — R has a set of special coercion used for fast logical evaluation and subsetting. Specifically, <code>TRUE</code> is considered equal to <code>1</code>, while <code>FALSE</code> is equal to <code>0</code>. The Boolean logicals can also be specified as a full word in all caps, or simply as <code>T</code> or <code>F</code>.</p>
 <pre class="r"><code>1&lt;2</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <pre class="r"><code>&quot;1&quot;&lt;2</code></pre>
@@ -517,25 +518,25 @@ if(x&lt;0){
 <div id="functions" class="section level1">
 <h1>3. Functions</h1>
 <p>While functions are defined in Python using the <code>def</code> reserved operator, R sees functions as just another type of named object. Thus, they require explicit assignment to an object. This is done using the function <code>function()</code>, which creates a function taking the arguments specified in parentheses.</p>
-<pre class="r"><code>simple.function&lt;-function(x){
-  print(x+1)
+<pre class="r"><code>simple.function &lt;- function(x){
+  print(x + 1)
 }
 simple.function(x = 2)</code></pre>
 <pre><code>## [1] 3</code></pre>
-<pre class="r"><code>less.simple.function&lt;-function(x,y){
-  print(x-y+1)
+<pre class="r"><code>less.simple.function&lt;-function(x, y){
+  print(x - y + 1)
 }
 less.simple.function(x = 2, y = 10)</code></pre>
 <pre><code>## [1] -7</code></pre>
 <p>With respect to returning function output, most of the same rules apply as with Python. Be sure to remember that <code>return()</code> will only process a single object, so multiple items must usually be returned as a list. Note that your ordering of the functions matters, too.</p>
-<pre class="r"><code>dumbfun&lt;-function(x){
+<pre class="r"><code>dumbfun &lt;- function(x){
   return(x)
   print(&quot;This will never print :(&quot;)
 }
 
 dumbfun(x = &quot;something&quot;)</code></pre>
 <pre><code>## [1] &quot;something&quot;</code></pre>
-<pre class="r"><code>dumbfun&lt;-function(x){
+<pre class="r"><code>dumbfun &lt;- function(x){
   print(&quot;Why did I print?&quot;)
   return(x)
 }
@@ -543,7 +544,7 @@ dumbfun(x = &quot;something&quot;)</code></pre>
 dumbfun(x = &quot;something&quot;)</code></pre>
 <pre><code>## [1] &quot;Why did I print?&quot;</code></pre>
 <pre><code>## [1] &quot;something&quot;</code></pre>
-<pre class="r"><code>dumbfun&lt;-function(x,y){
+<pre class="r"><code>dumbfun &lt;- function(x,y){
   thing1&lt;-x
   thing2&lt;-y
   return(list(thing1, thing2))
@@ -562,8 +563,8 @@ dumbfun(x = &quot;some text&quot;, y = &quot;some data&quot;)</code></pre>
 ## [[2]]
 ## [1] &quot;some data&quot;</code></pre>
 <p>R functions also allow you to set default argument values:</p>
-<pre class="r"><code>less.simple.function&lt;-function(x,y=0){
-  print(x-y+1)
+<pre class="r"><code>less.simple.function &lt;- function(x, y = 0){
+  print(x - y + 1)
 }
 
 less.simple.function(x = 2)</code></pre>
@@ -593,17 +594,95 @@ send(message = &quot;Hello&quot;, recipient = &quot;World&quot;, cc = &quot;Rach
 <pre><code>## [1] &quot;Hello, World&quot;
 ## [1] &quot;CC: Rachel&quot;
 ## [1] &quot;BCC: Laura&quot;    &quot;BCC: Rochelle&quot;</code></pre>
+<p>Also, remember functions don’t have what CS people called side-effects. Functions only define local variables = They don’t change objects stored in the global environment, so on. (Consider the difference between <code>&lt;-</code> and <code>=</code> for assignments.) That’s why you can use functions for reusable tasks since it does not interrupt other important things in your system.</p>
+<p>See <a href="https://darrenjw.wordpress.com/2011/11/23/lexical-scope-and-function-closures-in-r/">the following example</a> from Wilkinson.</p>
+<pre class="r"><code>a = 1 
+b = 2
+
+f &lt;- function(x)
+{
+  a*x + b
+}
+
+g &lt;- function(x)
+{
+  a = 2
+  b = 1
+  f(x)
+}
+
+g(2) # a equals still 1 </code></pre>
+<pre><code>## [1] 4</code></pre>
+<div id="debugging" class="section level2">
+<h2>3.1. Debugging</h2>
+<div id="rstudio-debugging-tools" class="section level3">
+<h3>3.1.1. RStudio debugging tools</h3>
+<p>Debugging is a process. Don’t use this process when you’re writing a new function, but when you try to fix it. The idea is try to fail systematically.</p>
+<ul>
+<li>Realize that you have a bug.</li>
+<li>Make it repeatable. (Remove the code until you get to the smallest snippet that still causes the error.)</li>
+<li>Locate the bug.</li>
+<li>Fix it and test it.</li>
+</ul>
+<p>RStudio has several debugging tools. - <code>traceback</code>: list the sequence of calls that lead to the error. - Rerun with Debug tool and <code>options(error = browser)</code>: opens an interactive session where the error occurred. - breakpoints and <code>browser()</code>: opens an interactive session at an arbitrary location in the code.</p>
+<pre class="r"><code>f &lt;- function(a) g(a)
+g &lt;- function(b) h(b)
+h &lt;- function(c) i(c)
+i &lt;- function(d) &quot;a&quot; + d #&quot;a&quot; and d are non-numeric and + is a binary operator
+f(10)</code></pre>
+</div>
+<div id="condition-handling" class="section level3">
+<h3>3.1.2. Condition handling</h3>
+<ul>
+<li><code>try()</code>: continue execution even when an error occurs.</li>
+<li><code>tryCatch()</code>: specify handler functions when a condition is signalled.</li>
+</ul>
+<pre class="r"><code>f1 &lt;- function(x) {
+  log(x)
+  10
+}
+
+f1(&quot;x&quot;)
+
+f2 &lt;- function(x) {
+  try(log(x))
+  10
+}
+
+f2(&quot;a&quot;) # Now it's running through with an error</code></pre>
+<pre class="r"><code>show_condition &lt;- function(code) {
+  tryCatch(code,
+    error = function(c) &quot;error&quot;,
+    warning = function(c) &quot;warning&quot;,
+    message = function(c) &quot;message&quot;
+  )
+}
+
+show_condition(stop(&quot;!&quot;)) # error</code></pre>
+<pre><code>## [1] &quot;error&quot;</code></pre>
+<pre class="r"><code>show_condition(warning(&quot;?!&quot;)) # warning</code></pre>
+<pre><code>## [1] &quot;warning&quot;</code></pre>
+<pre class="r"><code>show_condition(message(&quot;?&quot;)) # message </code></pre>
+<pre><code>## [1] &quot;message&quot;</code></pre>
+<p>** Fail fast (defensive programming) **</p>
+<ul>
+<li>Be strict about what you accept. You can use <code>stopifnot</code> from <code>assertthat</code> package, or simple <code>if</code> statements and <code>stop()</code>.</li>
+<li>Avoid functions that use <a href="http://adv-r.had.co.nz/Computing-on-the-language.html#nse">non-standard evaluations</a> like subset. When they fail, they often fail with uninformative error messages.</li>
+<li>Avoid functions that return different types of output depending on input like <code>sapply</code> (which returns different types of vectors depending on input types). Never use, <code>sapply</code> inside a function.</li>
+</ul>
+</div>
+</div>
 </div>
 <div id="loops" class="section level1">
 <h1>4. Loops</h1>
 <p>Loops in R also work basically the same way as in Python, with just a few adjustments. First, recall that index positions in R start at 1. Second, <code>while()</code> and <code>for()</code> are functions rather than reserved operators, meaning they must take arguments in parentheses. Third, just like <code>else</code>, the <code>in</code> operator <em>is</em> reserved and takes no arguments in parentheses. Fourth, the conditional execution must appear between curly brackets. Finally, indentation is meaningless, but each new operation must appear on a new line.</p>
-<pre class="r"><code>fruits&lt;-c(&quot;apples&quot;, &quot;oranges&quot;, &quot;pears&quot;, &quot;bananas&quot;)
+<pre class="r"><code>fruits &lt;- c(&quot;apples&quot;, &quot;oranges&quot;, &quot;pears&quot;, &quot;bananas&quot;)
 
 # a while loop
-i&lt;-1
-while(i&lt;=length(fruits)){
+i &lt;- 1
+while(i &lt;= length(fruits)){
   print(fruits[i])
-  i&lt;-i+1
+  i &lt;- i + 1
 }</code></pre>
 <pre><code>## [1] &quot;apples&quot;
 ## [1] &quot;oranges&quot;
@@ -623,7 +702,7 @@ for(i in 1:length(fruits)){
 <h1>5. Vectorization</h1>
 <div id="vectorized-functions" class="section level3">
 <h3>5.1 Vectorized functions</h3>
-<p>Most of R’s functions are vectorised, meaning that the function will operate on all elements of a vector without needing to loop through and act on each element one at a time. This makes writing code more concise, easy to read, and less error prone.</p>
+<p>Most of R’s functions are vectorized, meaning that the function will operate on all elements of a vector without needing to loop through and act on each element one at a time. This makes writing code more concise, easy to read, and less error prone.</p>
 <pre class="r"><code>x &lt;- 1:4
 x * 2</code></pre>
 <pre><code>## [1] 2 4 6 8</code></pre>
@@ -649,7 +728,7 @@ log(x)</code></pre>
 <h3>5.2 Apply Family</h3>
 <p>While and for loops in R can be very slow. For this reason, R has a number of built-in iteration methods to speed up execution times. In many cases, packages will have “behind-the-scenes” ways to avoid for loops, but what if you need to write your own function?</p>
 <p>A common method of getting around for loops is the <strong>apply</strong> family of functions. These take a data structure and a function, and applies a function over all the elements in the object.</p>
-<pre class="r"><code>fruit &lt;-c(&quot;apple&quot;, &quot;orange&quot;, &quot;pear&quot;, &quot;banana&quot;)
+<pre class="r"><code>fruit &lt;- c(&quot;apple&quot;, &quot;orange&quot;, &quot;pear&quot;, &quot;banana&quot;)
 
 # make function that takes in only one element
 make.plural &lt;- function(x){
@@ -683,7 +762,7 @@ lapply(fruit, make.plural) # returns a list</code></pre>
 <pre class="r"><code>fruit &lt;- c(&quot;apple&quot;, &quot;orange&quot;, &quot;pear&quot;, &quot;banana&quot;, &quot;plum&quot;, 
            &quot;peach&quot;, &quot;lime&quot;, &quot;lemon&quot;, &quot;grape&quot;, &quot;cherry&quot;)
 
-veggie &lt;-c(&quot;celery&quot;, &quot;beets&quot;, &quot;arugula&quot;, &quot;carrots&quot;, &quot;radish&quot;,
+veggie &lt;- c(&quot;celery&quot;, &quot;beets&quot;, &quot;arugula&quot;, &quot;carrots&quot;, &quot;radish&quot;,
             &quot;turnip&quot;, &quot;broccoli&quot;, &quot;cauliflower&quot;, &quot;pea&quot;, &quot;cucumber&quot;)
 
 produce &lt;- data.frame(fruit, veggie)
@@ -710,7 +789,7 @@ for (i in 1:nrow(lotsofproduce)) {
 # stop the clock
 proc.time() - ptm</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.409   0.000   0.409</code></pre>
+##   0.426   0.001   0.427</code></pre>
 <p>We got the results we wanted (this time - it’s not a very big dataset!). But can we improve on our code?</p>
 <pre class="r"><code># First we could put in the vectors instead of making it loop through a dataframe:
 ptm &lt;- proc.time()
@@ -725,7 +804,7 @@ for (i in 1:nrow(lotsofproduce)) {
 
 proc.time() - ptm</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.285   0.008   0.293</code></pre>
+##   0.298   0.003   0.301</code></pre>
 <p>That looks like only a little bit of time saved, but it’s actually about a quarter of the function time that we cut, and it all adds up when you’re looping through thousands of rows!</p>
 <pre class="r"><code># Then we could move our conditional logic outside the for loop:
 ptm &lt;- proc.time()
@@ -744,7 +823,7 @@ for (i in 1:nrow(lotsofproduce)) {
 
 proc.time() - ptm</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.122   0.000   0.122</code></pre>
+##   0.126   0.001   0.126</code></pre>
 <p>This cut our loop by more than half again! Can we do better than that?</p>
 <pre class="r"><code># Then we could vectorize matches and change our subsetting to use brackets (which takes less time for R to &quot;read&quot; than the $ notation for vectors:
 ptm &lt;- proc.time()
@@ -765,7 +844,7 @@ lotsofproduce &lt;- cbind(lotsofproduce, matches)
 
 proc.time() - ptm</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.013   0.000   0.013</code></pre>
+##   0.012   0.000   0.013</code></pre>
 <p>A fraction of a second! Can’t beat that, right?</p>
 <pre class="r"><code># In fact, we could do this even faster by not using a loop at all. Instead, we can use an ifelse statement (which makes it completely vectorized, eliminating the need for a loop):
 ptm &lt;- proc.time()

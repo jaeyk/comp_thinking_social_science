@@ -38,17 +38,21 @@ Unlike in Python, R does not have a reserved operator for string concatenation s
 
 ```{r}
 fullName <- c(firstName, lastName)
+
 print(fullName)
+
 length(fullName)
 ```
 
 In order to combine two or more character strings into one larger character string, we use the ```paste()``` function.  This function takes character strings or vectors and collapses their values into a single character string, with each value separated by a character string selected by the user.
 
 ```{r}
-fullName<-paste(firstName, lastName)
+fullName <- paste(firstName, lastName)
+
 print(fullName)
 
 fullName<-paste(firstName, lastName, sep = "+")
+
 print(fullName)
 
 fullName<-paste(firstName, lastName, sep = "___")
@@ -63,7 +67,7 @@ Third, **R does not allow indexing of character strings***. Instead, you must us
 
 ```{r}
 
-fullName<-paste(firstName, lastName)
+fullName <- paste(firstName, lastName)
 
 # this won't work like in Python
 fullName[1] # R sees the string as a unitary object - it can't be indexed this way
@@ -87,9 +91,8 @@ tolower(x = fullName)
 strsplit(x = fullName, split = " ")
 strsplit(x = fullName, split = "n")
 
-gsub(pattern = "K", replacement = "C", x = fullName)
-gsub(pattern = "Schnitzel", replacement = "Mike", x = fullName)
-gsub(pattern = "von krumm", replacement = "Duderino", x = fullName) 
+gsub(pattern = "Kim", replacement = "Choi", x = fullName)
+gsub(pattern = "Jae Yeon", replacement = "Danny", x = fullName)
 
 # Note the importance of cases! This doesn't throw an error, so you won't realize your function didn't work unless you double-check several entries 
 
@@ -102,33 +105,33 @@ Almost all the conditional operators used in Python also work in R.  The basic l
 
 ```{r}
 x <- 5
-if(x<0){
+if(x < 0){
   print("x is negative")
 } 
 
 x <- -5
-if(x<0){
+if(x < 0){
   print("x is negative")
 }
 
 x <- 5
-if(x<0){
+if(x < 0){
   print("x is negative")
 } else{
   print("x is positive")
 }
 
 x <- 0
-if(x<0){
+if(x < 0){
   print("x is negative")
-} else if(x==0){
+} else if(x == 0){
   print("x is zero")
 } else{
   print("x is positive")
 }
 ```
 
-R also does some class coercion that makes boolean evaluations harder to break than in Python.  But be careful --- R has a set of special coercions used for fast logical evaluation and subsetting.  Specifically, ```TRUE``` is considered equal to ```1```, while ```FALSE``` is equal to ```0```. The boolean logicals can also be specified as a full word in all caps, or simply as ```T``` or ```F```.
+R also does some class coercion that makes Boolean evaluations harder to break than in Python.  But be careful --- R has a set of special coercion used for fast logical evaluation and subsetting.  Specifically, ```TRUE``` is considered equal to ```1```, while ```FALSE``` is equal to ```0```. The Boolean logicals can also be specified as a full word in all caps, or simply as ```T``` or ```F```.
 
 ```{r}
 1<2
@@ -153,13 +156,13 @@ FALSE<=1
 While functions are defined in Python using the ```def``` reserved operator, R sees functions as just another type of named object.  Thus, they require explicit assignment to an object.  This is done using the function ```function()```, which creates a function taking the arguments specified in parentheses.  
 
 ```{r}
-simple.function<-function(x){
-  print(x+1)
+simple.function <- function(x){
+  print(x + 1)
 }
 simple.function(x = 2)
 
-less.simple.function<-function(x,y){
-  print(x-y+1)
+less.simple.function<-function(x, y){
+  print(x - y + 1)
 }
 less.simple.function(x = 2, y = 10)
 ```
@@ -167,21 +170,21 @@ less.simple.function(x = 2, y = 10)
 With respect to returning function output, most of the same rules apply as with Python. Be sure to remember that ```return()``` will only process a single object, so multiple items must usually be returned as a list. Note that your ordering of the functions matters, too. 
 
 ```{r}
-dumbfun<-function(x){
+dumbfun <- function(x){
   return(x)
   print("This will never print :(")
 }
 
 dumbfun(x = "something")
 
-dumbfun<-function(x){
+dumbfun <- function(x){
   print("Why did I print?")
   return(x)
 }
 
 dumbfun(x = "something")
 
-dumbfun<-function(x,y){
+dumbfun <- function(x,y){
   thing1<-x
   thing2<-y
   return(list(thing1, thing2))
@@ -194,8 +197,8 @@ dumbfun(x = c(5,10,15), y = "some data")
 R functions also allow you to set default argument values:
 
 ```{r}
-less.simple.function<-function(x,y=0){
-  print(x-y+1)
+less.simple.function <- function(x, y = 0){
+  print(x - y + 1)
 }
 
 less.simple.function(x = 2)
@@ -218,18 +221,108 @@ send("Hello", "Rachel", "Laura", "World")
 send(message = "Hello", cc = "Rachel", bcc = c("Laura", "Rochelle"), recipient = "World")
 ```
 
+Also, remember functions don't have what CS people called side-effects. Functions only define local variables = They don't change objects stored in the global environment, so on. (Consider the difference between `<-` and `=` for assignments.) That's why you can use functions for reusable tasks since it does not interrupt other important things in your system.
+
+See [the following example](https://darrenjw.wordpress.com/2011/11/23/lexical-scope-and-function-closures-in-r/) from Wilkinson.
+
+```{r}
+a = 1 
+b = 2
+
+f <- function(x)
+{
+  a*x + b
+}
+
+g <- function(x)
+{
+  a = 2
+  b = 1
+  f(x)
+}
+
+g(2) # a equals still 1 
+```
+
+## 3.1. Debugging 
+
+### 3.1.1. RStudio debugging tools 
+
+Debugging is a process. Don't use this process when you're writing a new function, but when you try to fix it. The idea is try to fail systematically.
+
+- Realize that you have a bug.
+- Make it repeatable. (Remove the code until you get to the smallest snippet that still causes the error.)
+- Locate the bug.
+- Fix it and test it.
+
+RStudio has several debugging tools. 
+- `traceback`: list the sequence of calls that lead to the error.
+- Rerun with Debug tool and `options(error = browser)`: opens an interactive session where the error occurred.
+- breakpoints and `browser()`: opens an interactive session at an arbitrary location in the code.
+
+```{r, eval = FALSE}
+f <- function(a) g(a)
+g <- function(b) h(b)
+h <- function(c) i(c)
+i <- function(d) "a" + d #"a" and d are non-numeric and + is a binary operator
+f(10)
+```
+
+### 3.1.2. Condition handling 
+
+- `try()`: continue execution even when an error occurs.
+- `tryCatch()`: specify handler functions when a condition is signalled.
+
+```{r, eval = FALSE}
+f1 <- function(x) {
+  log(x)
+  10
+}
+
+f1("x")
+
+f2 <- function(x) {
+  try(log(x))
+  10
+}
+
+f2("a") # Now it's running through with an error
+
+```
+
+```{r}
+show_condition <- function(code) {
+  tryCatch(code,
+    error = function(c) "error",
+    warning = function(c) "warning",
+    message = function(c) "message"
+  )
+}
+
+show_condition(stop("!")) # error
+show_condition(warning("?!")) # warning
+show_condition(message("?")) # message 
+
+```
+
+** Fail fast (defensive programming) **
+
+- Be strict about what you accept. You can use `stopifnot` from `assertthat` package, or simple `if` statements and `stop()`.
+- Avoid functions that use [non-standard evaluations](http://adv-r.had.co.nz/Computing-on-the-language.html#nse) like subset. When they fail, they often fail with uninformative error messages.
+- Avoid functions that return different types of output depending on input like `sapply` (which returns different types of vectors depending on input types). Never use, `sapply` inside a function. 
+
 # 4. Loops {#loops}
 
 Loops in R also work basically the same way as in Python, with just a few adjustments.  First, recall that index positions in R start at 1.  Second, ```while()``` and ```for()``` are functions rather than reserved operators, meaning they must take arguments in parentheses.  Third, just like ```else```, the ```in``` operator *is* reserved and takes no arguments in parentheses.  Fourth, the conditional execution must appear between curly brackets.  Finally, indentation is meaningless, but each new operation must appear on a new line.
 
 ```{r}
-fruits<-c("apples", "oranges", "pears", "bananas")
+fruits <- c("apples", "oranges", "pears", "bananas")
 
 # a while loop
-i<-1
-while(i<=length(fruits)){
+i <- 1
+while(i <= length(fruits)){
   print(fruits[i])
-  i<-i+1
+  i <- i + 1
 }
 
 # a for loop
@@ -244,7 +337,7 @@ Can you improve the for loop above by making the code more concise?
 
 ### 5.1 Vectorized functions
 
-Most of R’s functions are vectorised, meaning that the function will operate on all elements of a vector without needing to loop through and act on each element one at a time. This makes writing code more concise, easy to read, and less error prone.
+Most of R’s functions are vectorized, meaning that the function will operate on all elements of a vector without needing to loop through and act on each element one at a time. This makes writing code more concise, easy to read, and less error prone.
 
 ```{r}
 x <- 1:4
@@ -287,7 +380,7 @@ While and for loops in R can be very slow. For this reason, R has a number of bu
 A common method of getting around for loops is the **apply** family of functions. These take a data structure and a function, and applies a function over all the elements in the object.
 
 ```{r}
-fruit <-c("apple", "orange", "pear", "banana")
+fruit <- c("apple", "orange", "pear", "banana")
 
 # make function that takes in only one element
 make.plural <- function(x){
@@ -312,7 +405,7 @@ So, what can you do if you really do need a for loop? There are two key steps yo
 fruit <- c("apple", "orange", "pear", "banana", "plum", 
            "peach", "lime", "lemon", "grape", "cherry")
 
-veggie <-c("celery", "beets", "arugula", "carrots", "radish",
+veggie <- c("celery", "beets", "arugula", "carrots", "radish",
             "turnip", "broccoli", "cauliflower", "pea", "cucumber")
 
 produce <- data.frame(fruit, veggie)

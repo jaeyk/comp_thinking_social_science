@@ -76,7 +76,6 @@ Let's load the PolityVI (autocracy and democracy scales) and CIRI Human Rights P
 ```{r}
 library(tidyverse) # load tidyverse
 # install.packages("skimr") If you haven't installed skimr
-library(skimr) # load skimr
 
 #impocountry.year
 polity <- read_csv("data/Polity/p4v2013.csv")
@@ -84,7 +83,6 @@ polity <- read_csv("data/Polity/p4v2013.csv")
 # take a quick peek
 head(polity) # first 6 rows
 glimpse(polity) # if you need more information
-skim(polity) # if you need quick summaries 
 
 # impocountry.year
 ciri <- read_csv("data/CIRI/CIRI_1981_2011.csv")
@@ -198,11 +196,22 @@ names(ciri.subset)
 
 country.year <- merge(country.year,ciri.subset, by=c("year","ccode"), all.x=TRUE)
 
-# delete duplicates
+# delete duplicates using indexing
 which(duplicated(country.year))
+
 duplicates <- which(duplicated(country.year))
+
 duplicates
-country.year <- country.year[-duplicates,]
+
+country.year[-duplicates,]
+
+# or you can use logical conditions 
+identical(country.year[-duplicates,], 
+  country.year[!duplicated(country.year),])
+
+# or you can select unique values 
+identical(country.year[-duplicates,],
+  unique(country.year))
 ```
 
 We can keep doing this for many datasets until we have a brand-spanking new dataset! 
@@ -220,7 +229,11 @@ head(country.year)
 First let's get a quick summary of all variables.
 
 ```{r}
+library(skimr) # load skimr
+
 summary(country.year)
+
+skim(country.year) # skim function is very informative 
 ```
 
 Look at region:
