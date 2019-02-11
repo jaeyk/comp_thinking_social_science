@@ -36,7 +36,7 @@ fit models.R
 ```
 
 - When naming files:
-    - Don't use speccial characters.
+    - Don't use special characters.
     - Don't capitalize.
     - Numbering them if files should be run in an order.
     
@@ -53,7 +53,7 @@ DayOne
 ```
 
 - When naming objects:
-    - Don't use speccial characters.
+    - Don't use special characters.
     - Don't capitalize.
     - Numbering them if files should be run in an order.
 
@@ -68,7 +68,7 @@ rdd
 ```
 
 - When naming objects:
-    - Don't use speccial characters.
+    - Don't use special characters.
     - Don't capitalize.
     - Use verbs instead of nouns.
     

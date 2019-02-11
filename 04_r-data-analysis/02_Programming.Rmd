@@ -3,8 +3,8 @@ title: 'More Advanced Programming in R: Lecture Notes'
 author: "PS239T"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 We've already learned about types in R. Now let's discuss some more advanced programming in R - namely:
@@ -15,7 +15,7 @@ We've already learned about types in R. Now let's discuss some more advanced pro
 4. [Loops](#loops)
 5. [Vectorized Functions](#vectorization)
 
-### Setup environment
+# Setup environment
 
 ```{r eval=F}
 # remove all objects
@@ -30,8 +30,8 @@ setwd(dir="~/Dropbox/berkeley/Git-Repos/PS239T/04_r-data-analysis/")
 ### 1.1 Intro to Operations on Strings
 
 ```{r}
-firstName <- "Schnitzel"
-lastName <- "von Krumm"
+firstName <- "Jae Yeon"
+lastName <- "Kim"
 ```
 
 Unlike in Python, R does not have a reserved operator for string concatenation such as `+`.  Furthermore, using the usual concatenation operator ```c()``` on two or more character strings will not create a single character string, but rather a **vector** of character strings. 
@@ -83,11 +83,16 @@ Like Python, R has a number of string methods, though these exist as individual 
 ```{r}
 toupper(x = fullName)
 tolower(x = fullName)
+
 strsplit(x = fullName, split = " ")
 strsplit(x = fullName, split = "n")
+
 gsub(pattern = "K", replacement = "C", x = fullName)
 gsub(pattern = "Schnitzel", replacement = "Mike", x = fullName)
-gsub(pattern = "von krumm", replacement = "Duderino", x = fullName) # Note the importance of cases! This doesn't throw an error, so you won't realize your function didn't work unless you double-check several entries 
+gsub(pattern = "von krumm", replacement = "Duderino", x = fullName) 
+
+# Note the importance of cases! This doesn't throw an error, so you won't realize your function didn't work unless you double-check several entries 
+
 gsub(pattern = " ", replacement = "", x = fullName) # The same function is used for replacements and stripping
 ```
 
@@ -129,11 +134,14 @@ R also does some class coercion that makes boolean evaluations harder to break t
 1<2
 "1"<2
 "a"<2
+
 TRUE<2
+
 TRUE=="TRUE"
 T=="TRUE"
 TRUE=="T"
 TRUE=="FALSE"
+
 TRUE==0
 TRUE==1
 FALSE==0
@@ -163,12 +171,14 @@ dumbfun<-function(x){
   return(x)
   print("This will never print :(")
 }
+
 dumbfun(x = "something")
 
 dumbfun<-function(x){
   print("Why did I print?")
   return(x)
 }
+
 dumbfun(x = "something")
 
 dumbfun<-function(x,y){
@@ -176,6 +186,7 @@ dumbfun<-function(x,y){
   thing2<-y
   return(list(thing1, thing2))
 }
+
 dumbfun(x = "some text", y = "some data")
 dumbfun(x = c(5,10,15), y = "some data")
 ```
@@ -186,6 +197,7 @@ R functions also allow you to set default argument values:
 less.simple.function<-function(x,y=0){
   print(x-y+1)
 }
+
 less.simple.function(x = 2)
 less.simple.function(x = 2, y = 10)
 ```
@@ -193,12 +205,14 @@ less.simple.function(x = 2, y = 10)
 With respect to specifying arguments, one can either use argument **position** specifications (i.e., the order) or argument **name** specifications.  The latter is strongly preferred, as it is very easy to accidentally specify incorrect argument values.
 
 ```{r}
-send<-function(message, recipient, cc=NULL, bcc=NULL){
+send <- function(message, recipient, cc=NULL, bcc=NULL){
   print(paste(message, recipient, sep = ", "))
   print(paste("CC:", cc, sep = " "))
   print(paste("BCC:", bcc, sep = " "))
 }
+
 send(message = "Hello", recipient = "World", cc = "Rachel", bcc = "Laura")
+
 send("Hello", "World", "Rachel", "Laura")
 send("Hello", "Rachel", "Laura", "World")
 send(message = "Hello", cc = "Rachel", bcc = c("Laura", "Rochelle"), recipient = "World")
@@ -268,7 +282,7 @@ To learn more about using and speeding up for loops, check out the answers to th
 
 ### 5.2 Apply Family
 
-Unlike in Python, while and for loops in R can be very slow. For this reason, R has a number of built-in iteration methods to speed up execution times. In many cases, packages will have "behind-the-scenes" ways to avoid for loops, but what if you need to write your own function? 
+While and for loops in R can be very slow. For this reason, R has a number of built-in iteration methods to speed up execution times. In many cases, packages will have "behind-the-scenes" ways to avoid for loops, but what if you need to write your own function? 
 
 A common method of getting around for loops is the **apply** family of functions. These take a data structure and a function, and applies a function over all the elements in the object.
 
@@ -277,7 +291,7 @@ fruit <-c("apple", "orange", "pear", "banana")
 
 # make function that takes in only one element
 make.plural <- function(x){
-   plural <- paste(x, 's', sep = '')
+   plural <- paste(x, 's', sep = '') # sep is for collapse, so collpase ''
    return(plural)
 }
 
@@ -297,19 +311,25 @@ So, what can you do if you really do need a for loop? There are two key steps yo
 ```{r}
 fruit <- c("apple", "orange", "pear", "banana", "plum", 
            "peach", "lime", "lemon", "grape", "cherry")
+
 veggie <-c("celery", "beets", "arugula", "carrots", "radish",
             "turnip", "broccoli", "cauliflower", "pea", "cucumber")
+
 produce <- data.frame(fruit, veggie)
+
 # We're going to make this bigger so that we really have something to work with:
+
 lotsofproduce <- do.call("rbind", replicate(1000, produce, simplify = FALSE))
 
 # let's say we want to want to fill in a new column, "matches," with a "yes" whenever the entries for fruit and veggies both contain the letter "a."
 
 # This is some code to time our for loop: 
   # start the clock!
+
 ptm <- proc.time()
 
 lotsofproduce$matches <- "No"
+
 for (i in 1:nrow(lotsofproduce)) {
   if(grepl("a", lotsofproduce$fruit[i])==grepl("a", lotsofproduce$veggie[i])){
     lotsofproduce$matches[i] <- "Yes"
@@ -328,6 +348,7 @@ We got the results we wanted (this time - it's not a very big dataset!). But can
 ptm <- proc.time()
 
 lotsofproduce$matches <- "No"
+
 for (i in 1:nrow(lotsofproduce)) {
   if(grepl("a", fruit[i])==grepl("a", veggie[i])){
     lotsofproduce$matches[i] <- "Yes"
@@ -344,8 +365,11 @@ That looks like only a little bit of time saved, but it's actually about a quart
 ptm <- proc.time()
 
 lotsofproduce$matches <- "No"
+
 cond1 <- as.logical(grepl("a", lotsofproduce$fruit)) # this creates a logical vector with the results of our first conditional test
+
 cond2 <- as.logical(grepl("a", lotsofproduce$veggie))
+
 for (i in 1:nrow(lotsofproduce)) {
   if(cond1[i]==cond2[i]){
     lotsofproduce$matches[i] <- "Yes"
@@ -362,13 +386,17 @@ This cut our loop by more than half again! Can we do better than that?
 ptm <- proc.time()
 
 matches <- rep("No", nrow(lotsofproduce))
+
 cond1 <- as.logical(grepl("a", lotsofproduce$fruit)) # this creates a logical vector with the results of our first conditional test
+
 cond2 <- as.logical(grepl("a", lotsofproduce$veggie)) # vector for second conditional test
+
 for (i in 1:nrow(lotsofproduce)) {
   if(cond1[i]==cond2[i]){
     matches[i] <- "Yes"
   }
 }
+
 lotsofproduce <- cbind(lotsofproduce, matches)
 
 proc.time() - ptm
@@ -382,6 +410,7 @@ ptm <- proc.time()
 
 cond1 <- as.logical(grepl("a", lotsofproduce$fruit)) 
 cond2 <- as.logical(grepl("a", lotsofproduce$veggie))
+
 lotsofproduce$matches <- ifelse(cond1==cond2,"Yes", "No")
 
 proc.time() - ptm

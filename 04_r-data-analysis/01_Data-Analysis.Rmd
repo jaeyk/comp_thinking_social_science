@@ -3,8 +3,8 @@ title: 'Data Analysis in R: Lecture Notes'
 author: "PS239T"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
   word_document: default
 ---
 
@@ -16,20 +16,21 @@ For most applied research, conducting data analysis in R involves the following 
 4. [Reshaping](#reshaping) data to and from various formats
 5. Testing relationships between variables, either [descriptive](#description) or [causal](#inferences) 
 
-This implies by extension that you will need to develop both a workflow (the process by which you conduct these tasks) and a way to keep track of the products (spreadsheets, charts, tables, etc.) of interest. For more on this way of thinking about programming, see [this discussion](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/). 
-
-As you become more advanced, I recommend switching to the above workflow. For now, let's clear our global environment and set up our working directory. 
-
-### Setup environment
+# Setup environment
 
 ```{r eval=F}
 # remove all objects
 rm(list=ls())
+
 # note that this does not remove any packages you might already have called, just objects
 
 # set YOUR working directory
 setwd(dir="~/YOUR_PATH_HERE/PS239T/04_r-data-analysis/")
 ```
+
+** Tips **
+
+But also be aware that this using `rm` and `setwd` are not best practices because they can create difficulties for replication. For instance, `rm` is an illusion. It only cleans up objects, so it's different from a fresh session. Other uses might find difficult to replicate your code if your code have dependencies. Similarly, `setwd` does not work because it makes your project *un*portable. For more advanced projects, I recommend you to learn using [here package](https://cran.r-project.org/web/packages/here/index.html). For more information on self-contained projects, see [this post](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/).
 
 # 1. Constructing a dataset {#constructing-a-dataset}
 
@@ -39,7 +40,7 @@ a) ***Importing*** different types of data from different sources
 b) ***Cleaning*** the data, including subsetting, altering values, etc.
 c) ***Merging*** the data with other data
 
-### 1a: Importing Data
+## 1a: Importing Data
 
 First, let's load any packages we need. 
 
@@ -54,21 +55,40 @@ library(foreign)
 
 Now, let's load some of the data we want to work with. In R, you can pretty much load as many datasets as you want at the same time (this is different than Stata, which some of you may be familiar with).
 
-```{r, eval=FALSE}
+```{r}
 # Basic CSV read: Import country-year data with header row, values separated by ",", decimals as "."
-mydataset<-read.csv(file="data/country-year.csv", stringsAsFactors=F)
+mydataset <- read.csv(file = "data/country-year.csv",
+                      stringsAsFactors = F)
+
+library(readr) # import readr package for read_csv function 
+mydataset <- read_csv(file = "data/country-year.csv") # this is for large data; string is default character 
+
+is.character(mydataset$region) # double check
+
+system.time(read.csv(file = "data/country-year.csv",
+                      stringsAsFactors = F)) # 0.031
+
+system.time(read_csv(file = "data/country-year.csv")) # 0.024
 ```
 
-Let's load the PolityVI and CIRI datasets (both csvs):
+Let's load the PolityVI (autocracy and democracy scales) and CIRI Human Rights Project datasets (both csvs):
 
 ```{r}
+library(tidyverse) # load tidyverse
+# install.packages("skimr") If you haven't installed skimr
+library(skimr) # load skimr
+
 #impocountry.year
-polity <- read.csv("data/Polity/p4v2013.csv", stringsAsFactors = F)
+polity <- read_csv("data/Polity/p4v2013.csv")
+
 # take a quick peek
 head(polity) # first 6 rows
+glimpse(polity) # if you need more information
+skim(polity) # if you need quick summaries 
 
 # impocountry.year
-ciri <- read.csv("data/CIRI/CIRI_1981_2011.csv", stringsAsFactors = F)
+ciri <- read_csv("data/CIRI/CIRI_1981_2011.csv")
+
 # take a quick peer
 head(ciri)
 ```
@@ -86,23 +106,29 @@ We can also import:
 - Also, use rmd (native R file extension) rather than csv for large files
 
 
-### 1b. Cleaning Data
+## 1b. Cleaning Data
 
 Let's start with the Polity dataset on political regime characteristics and transitions. First, let's inspect the dataset.
 
 ```{r}
 # Get the object class
 class(polity)
+
 # Get the object dimensionality 
 dim(polity) # Note this is rows by columns
+
 # Get the column names
 colnames(polity)
+
 # Get the row names
 rownames(polity)[1:50] # Only the first 50 rows
+
 # View first six rows and all columns
 head(polity)
+
 # View last six rows and all columns
 tail(polity)
+
 # Get detailed column-by-column information
 str(polity)
 ```
@@ -141,7 +167,7 @@ country.year <- country.year[!(country.year$country=="Sudan-North"),]
 
 ```
 
-### 1c. Merging data
+## 1c. Merging data
 
 Oftentimes, we want to combine data from multiple datasets to construct our own dataset. This is called **merging**. In order to merge datasets, at least one column has be to shared between them. This column is usually a vector of keys, or unique identifiers, by which you can match observations.
 
@@ -156,16 +182,21 @@ The first thing we want to do is inspect the dataset we want to merge and make i
 names(ciri) # to be merged
 
 # subset for the observations we care about (aka, we probably don't need all the variables)
-ciri.subset <- subset(ciri, YEAR > 1979 & YEAR < 2013, select=c(YEAR,COW,UNREG,PHYSINT,SPEECH,NEW_EMPINX,WECON,WOPOL,WOSOC,ELECSD))
+ciri.subset <- ciri %>%
+  filter(YEAR > 1979 & YEAR < 2013) %>%
+  select(YEAR, COW, UNREG, PHYSINT, SPEECH, NEW_EMPINX, WECON, WOPOL, WOSOC, ELECSD)
 
 # rename columns so that they are comparable to country.year
 names(country.year)
+
 names(ciri.subset) <- c("year","ccode","unreg","physint","speech","new_empinx","wecon","wopol","wosoc","elecsd") # Mini-challenge - what code could you use to change all the column names to lowercase in one fell swooop? 
+
 names(ciri.subset) 
 
 # merge
 # merge format: merge(dataset1, dataset2, by=c(id variables), additional specifications as nec.)
-country.year <- merge(country.year,ciri.subset,by=c("year","ccode"),all.x=TRUE)
+
+country.year <- merge(country.year,ciri.subset, by=c("year","ccode"), all.x=TRUE)
 
 # delete duplicates
 which(duplicated(country.year))
@@ -176,7 +207,7 @@ country.year <- country.year[-duplicates,]
 
 We can keep doing this for many datasets until we have a brand-spanking new dataset! 
 
-### Fast forward:
+## Fast forward:
 
 ```{r}
 country.year <- read.csv("data/country-year.csv", stringsAsFactors = F)
@@ -351,7 +382,7 @@ This often requires doing the following:
 
 Note that this class is not intended to serve as quantitative training and thus does not go into any nitty-gritty details of (for example) assessing causal identification; these are meant to be bare-bones instructions on how to run basic functions. 
 
-### 5a. Correlations
+## 5b. Correlations
 
 Often, when we want to quickly understand the relationship between two variables, and for whatever reason we want to summarize that quantitatively, we run a correlation (though, as you'll learn next week, exploring your data should be done **visually** FIRST, and correlations are no substitute for visualization). 
 
@@ -365,7 +396,7 @@ cor(country.year$gdp.pc.un, country.year$pop.wdi, use="pairwise.complete.obs", m
 
 What happens if we change which observations are included? Does the correlation change if we use a different kind of test? Use `?cor` to see your options. 
 
-### 5b. Hypothesis Testing
+## 5c. Hypothesis Testing
 
 Let's say we're interested in whether the New York Times covers MENA differently than the West in terms of quantity. One can test for differences in distributions in either a) their means using t-tests, or b) their entire distributions using ks-tests
 
@@ -391,7 +422,7 @@ t.test(x=nyt.africa.logged, y=nyt.mena.logged)
 ks.test(x=nyt.africa.logged, y=nyt.mena.logged)
 ```
 
-### 5c. Regressions {#inferential}
+## 5d. Regressions {#inferential}
 
 Running regressions in R is extremely simple, very straightforward (though doing things with standard errors requires a little extra work). **lm** is the most basic OLS regression you can run, and the most basic catch-all non-linear regression function in R is *glm*, which fits a generalized linear model with your choice of family/link function (gaussian, logit, poisson, etc.). 
 
@@ -413,5 +444,3 @@ names(country.year)
 reg <- lm(data = country.year, nyt.count ~ gdp.pc.un + pop.wdi + domestic9 + idealpoint)
 summary(reg) # You'll almost always want to display your regression results using summary, since lm and glm calls return lengthy lists containing all the same information but in a much less readable format
 ```
-
-
