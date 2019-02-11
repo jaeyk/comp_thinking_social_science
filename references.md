@@ -28,6 +28,8 @@ Elish, M. C., & boyd, D. (2018). [Situating methods in the magic of Big Data and
 
 boyd, D., & Crawford, K. (2012). [Critical questions for big data: Provocations for a cultural, technological, and scholarly phenomenon](https://www.tandfonline.com/doi/abs/10.1080/1369118X.2012.678878). *Information, communication & society*, 15(5), 662-679.
 
+Bowers, J. et al. (2011). [Six steps to a better relationship with your future self](http://www.jakebowers.org/PAPERS/tpm_v18_n2.pdf). *The Political Methodologist*, 18(2), 2-8.
+
 Lazer, D. et al. (2009). [Life in the network: the coming age of computational social science](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2745217/). *Science*, 323(5915), 721.
 
 
