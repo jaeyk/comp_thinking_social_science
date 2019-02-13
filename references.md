@@ -60,6 +60,8 @@ Gillespie, C. and Lovelace, R. (2017). [Efficienct R Programming](https://csgill
 
 Grolemund, G. and Wickham, H. (2017). [R for Data Science](http://r4ds.had.co.nz/). O'Reilly Media, Inc.
 
+Mailund, T. (2017). [Functional programming in R : advanced statistical programming for data science, analysis and finance](https://link-springer-com.libproxy.berkeley.edu/book/10.1007%2F978-1-4842-2746-6). Apress.
+
 Wickham, H. (2015). [R Packages](http://r-pkgs.had.co.nz/). O'Reilly Media, Inc.
 
 Grolemund, G. (2014). [Hands-On Programming with R](https://proquest.safaribooksonline.com/9781449359089). O'Reily Media, Inc.
