@@ -105,16 +105,19 @@ Almost all the conditional operators used in Python also work in R.  The basic l
 
 ```{r}
 x <- 5
+
 if(x < 0){
   print("x is negative")
 } 
 
 x <- -5
+
 if(x < 0){
   print("x is negative")
 }
 
 x <- 5
+
 if(x < 0){
   print("x is negative")
 } else{
@@ -122,6 +125,7 @@ if(x < 0){
 }
 
 x <- 0
+
 if(x < 0){
   print("x is negative")
 } else if(x == 0){
@@ -129,26 +133,27 @@ if(x < 0){
 } else{
   print("x is positive")
 }
+
 ```
 
 R also does some class coercion that makes Boolean evaluations harder to break than in Python.  But be careful --- R has a set of special coercion used for fast logical evaluation and subsetting.  Specifically, ```TRUE``` is considered equal to ```1```, while ```FALSE``` is equal to ```0```. The Boolean logicals can also be specified as a full word in all caps, or simply as ```T``` or ```F```.
 
 ```{r}
-1<2
-"1"<2
-"a"<2
+1 < 2
+"1" < 2
+"a" < 2
 
-TRUE<2
+TRUE < 2
 
-TRUE=="TRUE"
-T=="TRUE"
-TRUE=="T"
-TRUE=="FALSE"
+TRUE == "TRUE"
+T == "TRUE"
+TRUE == "T"
+TRUE == "FALSE"
 
-TRUE==0
-TRUE==1
-FALSE==0
-FALSE<=1
+TRUE == 0
+TRUE == 1
+FALSE == 0
+FALSE <= 1
 ```
 
 # 3. Functions {#functions}
@@ -159,11 +164,13 @@ While functions are defined in Python using the ```def``` reserved operator, R s
 simple.function <- function(x){
   print(x + 1)
 }
+
 simple.function(x = 2)
 
 less.simple.function<-function(x, y){
   print(x - y + 1)
 }
+
 less.simple.function(x = 2, y = 10)
 ```
 
@@ -202,6 +209,7 @@ less.simple.function <- function(x, y = 0){
 }
 
 less.simple.function(x = 2)
+
 less.simple.function(x = 2, y = 10)
 ```
 
@@ -214,11 +222,13 @@ send <- function(message, recipient, cc=NULL, bcc=NULL){
   print(paste("BCC:", bcc, sep = " "))
 }
 
-send(message = "Hello", recipient = "World", cc = "Rachel", bcc = "Laura")
+send(message = "Hello", recipient = "World", cc = "Sun", bcc = "Jane")
 
-send("Hello", "World", "Rachel", "Laura")
-send("Hello", "Rachel", "Laura", "World")
-send(message = "Hello", cc = "Rachel", bcc = c("Laura", "Rochelle"), recipient = "World")
+send("Hello", "World", "Sun", "Jane")
+
+send("Hello", "Sun", "Jane", "World")
+
+send(message = "Hello", cc = "Sun", bcc = c("Jane", "Rochelle"), recipient = "World")
 ```
 
 Also, remember functions don't have what CS people called side-effects. Functions only define local variables = They don't change objects stored in the global environment, so on. (Consider the difference between `<-` and `=` for assignments.) That's why you can use functions for reusable tasks since it does not interrupt other important things in your system.
@@ -265,6 +275,7 @@ f <- function(a) g(a)
 g <- function(b) h(b)
 h <- function(c) i(c)
 i <- function(d) "a" + d #"a" and d are non-numeric and + is a binary operator
+
 f(10)
 ```
 

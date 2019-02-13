@@ -24,8 +24,6 @@ rm(list=ls())
 
 # note that this does not remove any packages you might already have called, just objects
 
-# set YOUR working directory
-setwd(dir="~/YOUR_PATH_HERE/PS239T/04_r-data-analysis/")
 ```
 
 ** Tips **
@@ -50,6 +48,7 @@ For spreadsheet data that **is not** explicitly saved as a Microsoft Excel file,
 # This package allows us to import non-Excel files of many different kinds:
 # install.packages("foreign") # Only necessary one time
 # Once it's installed, remember to load it (every time):
+
 library(foreign)
 ```
 
@@ -100,9 +99,8 @@ We can also import:
 ** Tips **
 
 - For files smaller than 1MB use read.csv().
-- For files largert than 100MB use fread() from data.table package and read_csv() from readr package 
-- Also, use rmd (native R file extension) rather than csv for large files
-
+- For files larger than 100MB use fread() from data.table package and read_csv() from readr package 
+- Also, use rmd (native R file extension) rather than csv for large files.
 
 ## 1b. Cleaning Data
 
@@ -114,6 +112,10 @@ class(polity)
 
 # Get the object dimensionality 
 dim(polity) # Note this is rows by columns
+```
+
+
+```{r}
 
 # Get the column names
 colnames(polity)
@@ -128,7 +130,8 @@ head(polity)
 tail(polity)
 
 # Get detailed column-by-column information
-str(polity)
+str(polity) # base r 
+glimpse(polity) # dplyr
 ```
 
 We'll first want to subset, and maybe alter some values.
@@ -140,8 +143,15 @@ names(polity)
 # quickly summarize the year column
 summary(polity$year)
 
-# subset the data
-country.year <- subset(polity, year>1979 & year<2013, select=c(ccode,country,year,polity,democ,autoc))
+# subset the data (non-dplyr)
+country.year <- subset(polity, year > 1979 & year < 2013)
+country.year <- country.year[c("ccode", "country", "year", "polity", "democ", "autoc")]
+
+# subset the data (dplyr)
+
+country.year <- polity %>%
+  filter(year > 1979 & year < 2013) %>%   
+  select(ccode, country, year, polity, democ, autoc)
 
 # take a look
 head(country.year)
@@ -149,19 +159,24 @@ head(country.year)
 # quickly summarize the polity column
 summary(country.year$polity)
 
-# apply NA values
+# apply NA values (non-dplyr)
 country.year$polity[country.year$polity < -10] <- NA
+
+# apply NA values (dplyr)
+country.year %>%
+  mutate(polity = replace(polity, polity < -10, NA))
+
+# Note how the summary has changed - minimum value and NAs have changed
 summary(country.year$polity)
-  # Note how the summary has changed - minimum value and NAs have changed
 
 # get a list of all the countries in the dataset
 head(unique(country.year$country))
 
 # delete records
-country.year <- country.year[-which(country.year$country=="Sudan-North"),]
+country.year <- country.year[-which(country.year$country == "Sudan-North"),]
 
 # different way of deleting the same records
-country.year <- country.year[!(country.year$country=="Sudan-North"),]
+country.year <- country.year[!(country.year$country == "Sudan-North"),]
 
 ```
 
@@ -194,7 +209,7 @@ names(ciri.subset)
 # merge
 # merge format: merge(dataset1, dataset2, by=c(id variables), additional specifications as nec.)
 
-country.year <- merge(country.year,ciri.subset, by=c("year","ccode"), all.x=TRUE)
+country.year <- merge(country.year,ciri.subset, by = c("year","ccode"), all.x=TRUE)
 
 # delete duplicates using indexing
 which(duplicated(country.year))
@@ -219,8 +234,10 @@ We can keep doing this for many datasets until we have a brand-spanking new data
 ## Fast forward:
 
 ```{r}
-country.year <- read.csv("data/country-year.csv", stringsAsFactors = F)
+country.year <- read.csv("data/country-year.csv")
+
 names(country.year)
+
 head(country.year)
 ```
 
@@ -246,6 +263,7 @@ Let's change this back to a factor.
 
 ```{r}
 country.year$region <- as.factor(country.year$region)
+
 summary(country.year$region)
 ```
 
@@ -261,6 +279,7 @@ We can even divide by the total number of rows to get proportion, percent, etc.
 
 ```{r}
 table(country.year$region)/nrow(country.year) # Shown as decimal
+
 table(country.year$region)/nrow(country.year)*100 # Shown as regular percentage
 ```
 
@@ -282,8 +301,10 @@ Let's say we want to look at the number of NYT articles per region.
 
 ```{r}
 summary(country.year$nyt.count)
-sum(country.year$nyt.count[country.year$region=="MENA"],na.rm=T)
-sum(country.year$nyt.count[country.year$region=="LA"],na.rm=T)
+
+sum(country.year$nyt.count[country.year$region == "MENA"], na.rm=T)
+
+sum(country.year$nyt.count[country.year$region == "LA"], na.rm=T)
 ```
 
 That can get tedious! A better way uses the popular new `dplyr` package, which uses a the ***split-apply-combine*** strategy. We **split** the data using some variable or variables to group our data, we **apply** some kind of function (either a built-in one, or one we write ourselves), and then we re-**combine** the data into a new dataset
@@ -301,9 +322,11 @@ All of the major dplyr functions have the same basic syntax. In this case, we're
 Let's say we wanted to sum up all the NYT articles per region, and return those counts into their own dataframe. (This is often how we want our data organized for plotting, too.)
 
 ```{r}
-count.region <- summarise(group_by(country.year, region), region.sum=sum(nyt.count, na.rm=T))
-count.region
+summarise(group_by(country.year, region), region.sum = 
+            sum(nyt.count, na.rm=T)) # bad
+
 ```
+* The error message is not serious, but has something to do with tibble. For more information, read [the following](#https://www.r-bloggers.com/the-trouble-with-tibbles/).
 
 Note that many functions, like `sum`, are sensitive to missing values (NA); you should be sure to specify na.rm=T to avoid errors. 
 
@@ -312,17 +335,19 @@ We can use even easier-to-read syntax using the chain or pipe operator (`%>%`), 
 ```{r}
 count.region <- country.year %>% # put the dataset you want to work within here
   group_by(region)  %>% # next we have our grouping function
-  summarise(region.sum=sum(nyt.count, na.rm=T)) # now we name our new variable and specify the function to run
+  summarise(region.sum = sum(nyt.count, na.rm=T)) # now we name our new variable and specify the function to run
 count.region
+
 ```
 
 We can also split by multiple variables:
 
-```{r]}
+```{r}
 count.region.year <- country.year %>% 
   group_by(region, year)  %>% 
-  summarise(nyt.count=sum(nyt.count, na.rm=T)) 
-head(count.region.year)
+  summarise(nyt.count = sum(nyt.count, na.rm=T)) 
+
+country.year
 ```
 
 Another very useful function is **arrange**, which orders a data frame on the basis of column contents.
@@ -330,10 +355,12 @@ Another very useful function is **arrange**, which orders a data frame on the ba
 ```{r}
 # arrange by count, desc
 by.count <- arrange(count.region.year, desc(nyt.count))
+
 head(by.count)
 
 # arrange by year, then count
 by.year.count <- arrange(count.region.year, year, desc(nyt.count))
+
 head(by.year.count)
 ```
 
@@ -378,7 +405,7 @@ region.count.wide <- spread(count.region.year, year, nyt.count)
 region.count.wide[,1:10]
 
 # write to csv
-write.csv(region.count.wide,"region_year_counts.csv")
+write.csv(region.count.wide, "region_year_counts.csv")
 ```
 
 
@@ -415,10 +442,12 @@ Let's say we're interested in whether the New York Times covers MENA differently
 
 ```{r}
 nyt.africa <- country.year$nyt.count[country.year$region=="Africa"]
+
 nyt.mena <- country.year$nyt.count[country.year$region=="MENA"]
 
 # this is a simple little plot, just to get us started: 
 plot(density(nyt.africa, na.rm = T), col="blue", lwd=1, main="NYT Coverage of Africa and MENA")
+
 lines(density(nyt.mena, na.rm = T), col="red", lwd=1)
 
 # these are highly skewed, so let's transform taking the logarithm  
@@ -445,6 +474,7 @@ Once you understand what you're estimating, the basic lm and glm calls look some
 
 ```{r eval=FALSE}
 lm(data=yourdata, y~x1+x2+x3+...)
+
 glm(data=yourdata, y~x1+x2+x3+..., family=familyname)
 ```
 
@@ -454,6 +484,8 @@ Example: suppose we want to explain the variation in NYT articles, and we think 
 
 ```{r}
 names(country.year)
+
 reg <- lm(data = country.year, nyt.count ~ gdp.pc.un + pop.wdi + domestic9 + idealpoint)
+
 summary(reg) # You'll almost always want to display your regression results using summary, since lm and glm calls return lengthy lists containing all the same information but in a much less readable format
 ```
