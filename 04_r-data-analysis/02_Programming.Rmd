@@ -160,6 +160,35 @@ FALSE <= 1
 
 While functions are defined in Python using the ```def``` reserved operator, R sees functions as just another type of named object.  Thus, they require explicit assignment to an object.  This is done using the function ```function()```, which creates a function taking the arguments specified in parentheses.  
 
+```{r, eval = FALSE}
+df$a[df$a == -99] <- NA
+df$b[df$b == -99] <- NA
+df$c[df$c == -99] <- NA
+df$d[df$d == -99] <- NA
+df$e[df$e == -99] <- NA
+df$f[df$f == -99] <- NA 
+
+# very tedious 
+
+fix_missing <- function(x) {
+  x[x == -99] <- NA
+  x
+}
+
+df$a <- fix_missing(df$a)
+df$b <- fix_missing(df$b)
+df$c <- fix_missing(df$c)
+df$d <- fix_missing(df$d)
+df$e <- fix_missing(df$e)
+df$f <- fix_missing(df$e)
+
+# beautiful
+
+source(fix_missings.r)
+
+# more beautiful
+```
+
 ```{r}
 simple.function <- function(x){
   print(x + 1)
@@ -167,7 +196,7 @@ simple.function <- function(x){
 
 simple.function(x = 2)
 
-less.simple.function<-function(x, y){
+less.simple.function <- function(x, y){
   print(x - y + 1)
 }
 

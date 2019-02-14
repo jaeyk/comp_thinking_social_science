@@ -16,6 +16,7 @@ For most applied research, conducting data analysis in R involves the following 
 4. [Reshaping](#reshaping) data to and from various formats
 5. Testing relationships between variables, either [descriptive](#description) or [causal](#inferences) 
 
+
 # Setup environment
 
 ```{r eval=F}
@@ -29,6 +30,7 @@ rm(list=ls())
 ** Tips **
 
 But also be aware that this using `rm` and `setwd` are not best practices because they can create difficulties for replication. For instance, `rm` is an illusion. It only cleans up objects, so it's different from a fresh session. Other uses might find difficult to replicate your code if your code have dependencies. Similarly, `setwd` does not work because it makes your project *un*portable. For more advanced projects, I recommend you to learn using [here package](https://cran.r-project.org/web/packages/here/index.html). For more information on self-contained projects, see [this post](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/).
+
 
 # 1. Constructing a dataset {#constructing-a-dataset}
 
@@ -302,9 +304,9 @@ Let's say we want to look at the number of NYT articles per region.
 ```{r}
 summary(country.year$nyt.count)
 
-sum(country.year$nyt.count[country.year$region == "MENA"], na.rm=T)
+sum(country.year$nyt.count[country.year$region == "MENA"], na.rm = T)
 
-sum(country.year$nyt.count[country.year$region == "LA"], na.rm=T)
+sum(country.year$nyt.count[country.year$region == "LA"], na.rm = T)
 ```
 
 That can get tedious! A better way uses the popular new `dplyr` package, which uses a the ***split-apply-combine*** strategy. We **split** the data using some variable or variables to group our data, we **apply** some kind of function (either a built-in one, or one we write ourselves), and then we re-**combine** the data into a new dataset
@@ -406,6 +408,7 @@ region.count.wide[,1:10]
 
 # write to csv
 write.csv(region.count.wide, "region_year_counts.csv")
+
 ```
 
 
