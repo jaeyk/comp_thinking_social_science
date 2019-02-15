@@ -38,6 +38,8 @@ Lazer, D. et al. (2009). [Life in the network: the coming age of computational s
 
 ### Unix 
 
+Taylor D., & Perry, B. (2016). [Wicked Cool Shell Scripts, 2nd Edition: 101 Scripts for Linux, OS X, and UNIX Systems](https://www.amazon.com/Wicked-Cool-Shell-Scripts-2nd/dp/1593276028). No Starch Press.
+
 Ward, B. (2014). [How Linux Works](https://nostarch.com/howlinuxworks2). No Starch.
 
 Bradnam, K., & Korf, I. (2012). [UNIX and Perl to the rescue!: a field guide for the life sciences (and other data-rich pursuits)](https://www.cambridge.org/us/academic/subjects/life-sciences/genomics-bioinformatics-and-systems-biology/unix-and-perl-rescue-field-guide-life-sciences-and-other-data-rich-pursuits?format=PB&isbn=9780521169820). Cambridge University Press.
@@ -91,6 +93,8 @@ McKinney, W. (2010, June). [Data structures for statistical computing in python]
 ## Web Scraping 
 
 Mitchell, R. (2015). [Web Scraping with Python: Collecting More Data from the Modern Web](http://shop.oreilly.com/product/0636920034391.do). O'Reilly Media, Inc.
+
+Avasarala, S. (2014). [Selenium Testing Tools Definitive Guide](https://ebookcentral-proquest-com.libproxy.berkeley.edu/lib/berkeley-ebooks/detail.action?docID=1441786). Packt Publishing Ltd.
 
 Nolan, D., & Lang, D. T. (2014). [*XML and web technologies for data sciences with R*](https://link.springer.com/book/10.1007%2F978-1-4614-7900-0). New York and Heidelberg: Springer.
 
