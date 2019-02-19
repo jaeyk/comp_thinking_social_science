@@ -21,8 +21,6 @@ We've already learned about types in R. Now let's discuss some more advanced pro
 # remove all objects
 rm(list=ls())
 
-# set working directory
-setwd(dir="~/Dropbox/berkeley/Git-Repos/PS239T/04_r-data-analysis/")
 ```
 
 # 1. Strings {#strings}
@@ -51,11 +49,11 @@ fullName <- paste(firstName, lastName)
 
 print(fullName)
 
-fullName<-paste(firstName, lastName, sep = "+")
+fullName <- paste(firstName, lastName, sep = "+")
 
 print(fullName)
 
-fullName<-paste(firstName, lastName, sep = "___")
+fullName <- paste(firstName, lastName, sep = "___")
 print(fullName)
 ```
 
@@ -74,7 +72,7 @@ fullName[1] # R sees the string as a unitary object - it can't be indexed this w
 fullName[1:4] 
 
 # So use this instead
-substr(x = fullName, start = 1, stop = 1)
+substr(x = fullName, start = 1, stop = 2)
 substr(x = fullName, start = 5, stop = 5)
 substr(x = fullName, start = 1, stop = 10)
 substr(x = fullName, start = 11, stop = nchar(fullName))
@@ -221,8 +219,8 @@ dumbfun <- function(x){
 dumbfun(x = "something")
 
 dumbfun <- function(x,y){
-  thing1<-x
-  thing2<-y
+  thing1 <- x
+  thing2 <- y
   return(list(thing1, thing2))
 }
 
@@ -350,6 +348,21 @@ show_condition(message("?")) # message
 - Be strict about what you accept. You can use `stopifnot` from `assertthat` package, or simple `if` statements and `stop()`.
 - Avoid functions that use [non-standard evaluations](http://adv-r.had.co.nz/Computing-on-the-language.html#nse) like subset. When they fail, they often fail with uninformative error messages.
 - Avoid functions that return different types of output depending on input like `sapply` (which returns different types of vectors depending on input types). Never use, `sapply` inside a function. 
+- `map` function from purrr package is a better alternative if you take type-consistency seriously.
+
+
+```{r}
+# Why sapply is bad 
+
+sapply(1:100, paste) # return character 
+
+sapply(integer(), paste) # return list!
+
+library(purrr)
+map(1:100, paste) # return list
+
+map(integer(), paste) # return list
+```
 
 # 4. Loops {#loops}
 

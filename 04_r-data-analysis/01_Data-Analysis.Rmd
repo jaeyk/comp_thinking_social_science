@@ -83,6 +83,7 @@ polity <- read_csv("data/Polity/p4v2013.csv")
 
 # take a quick peek
 head(polity) # first 6 rows
+
 glimpse(polity) # if you need more information
 
 # impocountry.year
@@ -133,6 +134,7 @@ tail(polity)
 
 # Get detailed column-by-column information
 str(polity) # base r 
+
 glimpse(polity) # dplyr
 ```
 
@@ -147,6 +149,7 @@ summary(polity$year)
 
 # subset the data (non-dplyr)
 country.year <- subset(polity, year > 1979 & year < 2013)
+
 country.year <- country.year[c("ccode", "country", "year", "polity", "democ", "autoc")]
 
 # subset the data (dplyr)
@@ -175,8 +178,11 @@ summary(country.year$polity)
 head(unique(country.year$country))
 
 # delete records
-country.year <- country.year[-which(country.year$country == "Sudan-North"),]
+country.year <- country.year[-which(country.year$country == "Sudan-North"), ]
 
+```
+
+```{r}
 # different way of deleting the same records
 country.year <- country.year[!(country.year$country == "Sudan-North"),]
 
@@ -355,11 +361,17 @@ country.year
 Another very useful function is **arrange**, which orders a data frame on the basis of column contents.
 
 ```{r}
+count.region.year
+```
+
+```{r}
 # arrange by count, desc
 by.count <- arrange(count.region.year, desc(nyt.count))
 
 head(by.count)
+```
 
+```{r}
 # arrange by year, then count
 by.year.count <- arrange(count.region.year, year, desc(nyt.count))
 
@@ -404,11 +416,13 @@ count.region.year <- country.year %>%
 
 # now spread it:
 region.count.wide <- spread(count.region.year, year, nyt.count)
+
 region.count.wide[,1:10]
 
 # write to csv
 write.csv(region.count.wide, "region_year_counts.csv")
 
+count.region.year
 ```
 
 
