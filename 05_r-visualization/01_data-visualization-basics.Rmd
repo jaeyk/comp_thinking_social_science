@@ -24,13 +24,15 @@ pacman::p_load(
 
 # Motivation 
 
-- The following material is adapted from Kieran Healy's wonderful book (2018) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful on [ggplot2](https://link.springer.com/content/pdf/10.1007%2F978-0-387-98141-3.pdf). 
-- Why should we care data visualization? Put differently, why should we learn the grammar of statistical graphics?
+- The following material is adapted from Kieran Healy's wonderful book (2018) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful book on [ggplot2](https://link.springer.com/content/pdf/10.1007%2F978-0-387-98141-3.pdf). For more theoretical discussions, I recommend you to read [The Grammar of Graphics](https://link.springer.com/book/10.1007%2F0-387-28695-0) by Leland Wilkinson.
+
+- Why should we care data visualization? More precisely, why should we learn the grammar of statistical graphics?
 - Sometimes, pictures are better tools than words in 1) exploring, 2) understanding, and 3) explaining data.
 
 ## Anscombe's quartet
 
 [Anscombe](https://en.wikipedia.org/wiki/Frank_Anscombe)'s quarter comprises four datasets, which are so alike in terms of their descriptive statistics but quite different when presented graphically.
+
 ```{r}
 
 # data 
@@ -47,15 +49,19 @@ cor(anscombe)[c(1:4),c(5:8)]
 
 ```{r}
 
-# plot
-anscombe %>%
+# gather and select 
+anscombe_processed <- anscombe %>%
   gather(x_name, x_value, x1:x4) %>%
-  gather(y_name, y_value, y1:y4) %>%
+  gather(y_name, y_value, y1:y4)
+  
+# plot
+anscombe_processed %>%
   ggplot(aes(x = x_value, y = y_value)) +
-           geom_point() +
-           facet_grid(x_name ~ y_name) +
-  theme_bw() +
-  labs(x = "X values",
+    geom_point() +
+    geom_smooth(method = lm, se = FALSE) +
+    facet_grid(x_name ~ y_name) +
+    theme_bw() +
+    labs(x = "X values",
        y = "Y values",
        title = "Anscombe's quartet")
 ```
@@ -66,7 +72,7 @@ anscombe %>%
 
     - data
     - aesthetic attributes (color, shape, size)
-    - geometric objects (poitns, lines, bars)
+    - geometric objects (points, lines, bars)
     - stats (summary stats)
     - scales (map values in he data space)
     - coord (data coordinates)
@@ -86,7 +92,7 @@ No worries for new terms. We're going to learn them by actually plotting.
 
 ## Tidy data 
 
-- We covered tiday data in the previous sessions. 
+- We covered tidy data in the previous sessions. 
 
 ```{r, echo=FALSE}
 # load library 
@@ -95,36 +101,77 @@ library(gapminder)
 gapminder
 ```
 
-What is the difference between typeof and class?
+## Data
 
-```{r}
-typeof(gapminder)
-
-class(gapminder)
-```
+- Data argument tells where to find the variable you're about to use.
 
 ## Mapping and Geom
 
-- ggplot tells what is your data 
+- aes (aesthetic mappings or aesthetics) tells which variables (x, y) in your data should be represented by which visual elements (color, shape, size) in the plot.
 
-- aes (aesthetic mappings or aesthetics) tells what is your variables of interests in the data
-
-- geom_ tlles the type of plot you are going to use 
+- geom_ tells the type of plot you are going to use 
 
 ### Basic aes (x , y)
 
 ```{r}
+
 p <- ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap, y = lifeExp))
+            mapping = aes(x = gdpPercap, y = lifeExp)) # ggplot or R in general takes positional arguments too. So, you don't need to name data, mapping each time you use ggplot2.
+
+str(p) # a list of data and functions, but it shows nothing 
 
 p + geom_point()
 
-p + geom_point() + geom_smooth()
+p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
+                                 # the shaded area is the standard error for the line
+```
+
+### What if I am interested in plotting only one distribution (univariate distribution)
+
+- `geom_histogram()`: For the probability distributoin of a continuous variable. Bins divide the entire range of values into a series of intervals (see [the Wiki entry](https://en.wikipedia.org/wiki/Histogram)). 
+- `geom_density()`: Also for the proability distributoin of a continuous variable. It calculates a [kernel density estimate](https://en.wikipedia.org/wiki/Kernel_density_estimation) of the underlying distribution. 
+
+#### Histogram 
+```{r}
+
+data(midwest) # load midwest dataset 
+
+midwest
+```
+
+```{r, eval = FALSE}
+midwest %>%
+  ggplot(aes(x = area)) +
+  geom_point() # not working. 
+```
+
+```{r}
+midwest %>%
+  ggplot(aes(x = area)) +
+  geom_histogram() # stat_bin argument picks up 30 bins (or "bucket") by default.
+
+midwest %>%
+  ggplot(aes(x = area)) +
+  geom_histogram(bins = 10) # only 10 bins. 
+
+ggplot(data = subset(midwest, state %in% c("OH","IN")),
+         mapping = aes(x = percollege, fill = state)) +
+  geom_histogram(alpha = 0.4, bins = 20)
+
+
+```
+
+#### Density 
+
+```{r}
+midwest %>%
+  ggplot(aes(x = area, fill = state, color = state)) +
+    geom_density(alpha = 0.3)
 ```
 
 ### Advanced aes (size, color)
 
-- There's also fill argument (mostly used in geom_bar()). 
+- There's also fill argument (mostly used in geom_bar()). Color aes affects the appearance of lines and points, fill is for the filled areas of bars, polygons, and in some cases, the interior of a smoother's standard error ribon.
 
 - The property size/color/fill represents... 
 
@@ -150,47 +197,17 @@ ggplot(data = gapminder,
   geom_point()
 ```
 
+Aesthetics also can be mapped per Geom. 
+
 ```{r}
 p + geom_point() + 
   geom_smooth()
 
 p + geom_point(alpha = 0.3) + # alpha controls transparency
   geom_smooth(color = "red", se = FALSE, size = 2)
-```
 
-
-## Co-ordinates and scales 
-
-```{r}
-
-p + geom_point() +
-  coord_flip() # coord_type
-```
-
-```{r}
-
-p + geom_point() +
-  scale_x_log10() # scale_mapping_type
-
-p + geom_point() +
-  geom_smooth(method = "lm") +
-  scale_x_log10()
-
-p + geom_point() +
-  geom_smooth(method = "lm") +
-  scale_x_log10()
-```
-
-## Labels and guides 
-```{r}
-p + geom_point(alpha = 0.3) +
-  geom_smooth(method = "gam", color = "red") +
-  scale_x_log10(labels = scales::dollar) +
-  labs( x = "log GDP",
-        y = "Life Expectancy",
-        title = "A Gapminder Plot",
-        subtitle = "Data points are country-years",
-        caption = "Source: Gapminder")
+p + geom_point(alpha = 0.3) + # alpha controls transparency
+  geom_smooth(color = "red", se = FALSE, size = 2, method = "lm")
 ```
 
 ```{r}
@@ -198,8 +215,7 @@ ggplot(data = gapminder,
             mapping = aes(x = gdpPercap, y = lifeExp,
                           color = continent)) + 
   geom_point(alpha = 0.3) +
-  geom_smooth(method = "gam", color = "red") +
-  scale_x_log10(labels = scales::dollar) +
+  geom_smooth(method = "loess", color = "red") +
   labs( x = "log GDP",
         y = "Life Expectancy",
         title = "A Gapminder Plot",
@@ -211,7 +227,73 @@ ggplot(data = gapminder,
                           color = continent,
                           fill = continent)) + 
   geom_point(alpha = 0.3) +
-  geom_smooth(method = "gam", color = "red") +
+  geom_smooth(method = "loess", color = "red") +
+  labs( x = "log GDP",
+        y = "Life Expectancy",
+        title = "A Gapminder Plot",
+        subtitle = "Data points are country-years",
+        caption = "Source: Gapminder")
+```
+
+## Co-ordinates and scales 
+
+```{r}
+
+p + geom_point() +
+  coord_flip() # coord_type
+```
+
+The data is heavily bunched up against the left side. 
+```{r}
+
+p + geom_point() # without scaling 
+
+p + geom_point() +
+  scale_x_log10() # scales the axis of a plot to a log 10 basis 
+
+p + geom_point() +
+  geom_smooth(method = "lm") +
+  scale_x_log10()
+
+p + geom_point() +
+  geom_smooth(method = "lm") +
+  scale_x_log10()
+```
+
+```{r}
+ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap, y = lifeExp,
+                          color = continent)) + 
+  geom_point(alpha = 0.3) +
+  scale_x_log10() + 
+  geom_smooth(method = "loess", color = "red") +
+  labs( x = "log GDP",
+        y = "Life Expectancy",
+        title = "A Gapminder Plot",
+        subtitle = "Data points are country-years",
+        caption = "Source: Gapminder")
+
+ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap, y = lifeExp,
+                          color = continent,
+                          fill = continent)) + 
+  geom_point(alpha = 0.3) +
+  scale_x_log10() +
+  geom_smooth(method = "loess", color = "red") +
+  labs( x = "log GDP",
+        y = "Life Expectancy",
+        title = "A Gapminder Plot",
+        subtitle = "Data points are country-years",
+        caption = "Source: Gapminder")
+```
+
+## Labels and guides 
+
+`scales` package has some useful premade formatting functions. You can either load scales or just grab the function you need from the library using `scales::` 
+
+```{r}
+p + geom_point(alpha = 0.3) +
+  geom_smooth(method = "loess", color = "red") +
   scale_x_log10(labels = scales::dollar) +
   labs( x = "log GDP",
         y = "Life Expectancy",
@@ -223,7 +305,7 @@ ggplot(data = gapminder,
 6. Themes
 ```{r}
 p + geom_point(alpha = 0.3) +
-  geom_smooth(method = "gam", color = "red") +
+  geom_smooth(method = "loess", color = "red") +
   scale_x_log10(labels = scales::dollar) +
   labs( x = "log GDP",
         y = "Life Expectancy",
@@ -248,11 +330,5 @@ figure_example <- p + geom_point(alpha = 0.3) +
         caption = "Source: Gapminder") +
   theme_economist()
 
-ggsave(filename = "figure_example.png", plot = figure_example)
-
-ggsave(filename = "figure_example_modified.png", plot = figure_example,
-       height = 8,
-       width = 10,
-       units = "in")
-
+ggsave(filename = "./figures/figure_example.png", plot = figure_example)
 ```

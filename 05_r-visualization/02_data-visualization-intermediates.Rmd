@@ -29,7 +29,13 @@ pacman::p_load(
 
 # ggplot2 intermediates 
 
-## Grouping and facetting 
+Basic ideas:
+
+- Grouping: tell `ggplot2` about the structure of your data 
+- Facetting: break up your data into pieces for a plot 
+- Transforming: perform some calculations on or summarize your data before producing the plot 
+
+## Grouping
 
 - Can you guess what's wrong?
 
@@ -42,16 +48,26 @@ p + geom_point()
 p + geom_line() 
 ```
 
+`geom_line` joins up all the lines for each particular year in the order they appear in the dataset. `ggplot2` does not know the yearly observations in your data are grouped by country. 
+
+Note that you need grouping when the grouping information you need to tell is not built into the varaibles being mapped (like continent).
+
 ```{r}
 gapminder
 ```
 
-- Use grouping and facetting to clarify 
+## Facetting 
+
+Facetting is to make small multiples. 
+
+- `facet_wrap`: based on a single categorical variable like `facet_wrap(~single_categorical_variable)`. Your panels will be laid out in order and then wrapped into a grid.
+
+- `facet_grid`: when you want to cross-classify some data by two categorical variables like `facet_grid(one_cat_variable ~ two_cat_variable)`. 
 
 ```{r}
 p <- ggplot(gapminder, aes(x = year, y = gdpPercap)) 
 
-p + geom_line(aes(group = country)) # group by 
+p + geom_line(aes(group = country)) # group by, # The outlier is Kuwait. 
 
 p + geom_line(aes(group = country)) + facet_wrap(~continent) # facetting 
 
@@ -63,9 +79,24 @@ p + geom_line(aes(group = country), color = "gray70") +
        y = "GDP per capita",
        title = "GDP per capita on Five continents") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+p + geom_line(aes(group = country), color = "gray70") +
+  geom_smooth(size = 1.1, method = "loess", se = FALSE) +
+  scale_y_log10(labels = scales::dollar) +
+  facet_grid(~continent) + # for single categorical variable; for multiple categorical variables use facet_grid()
+  labs(x = "Year",
+       y = "GDP per capita",
+       title = "GDP per capita on Five continents") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
 ```
 
-## Use pipes to summarize data
+
+## Transforming
+
+### Use pipes to summarize data
+
+Also, we experiment bar charts here. By default, `geom_bar` [uses](https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar) stat = "bins", which makes the height of each bar equal to the number of cases in each group. If you have a y column, then you should use `stat = "identity"` argument. Alternatively, you can use `geom_col()`.
 
 ```{r}
 
@@ -90,6 +121,7 @@ gapminder %>%
        y = "Life expectancy",
        title = "Life expectancy in Europe")
 
+# geom point 
 gapminder %>%
   filter(continent == "Europe") %>%
   group_by(country, year) %>%
@@ -102,9 +134,34 @@ gapminder %>%
        title = "Life expectancy in Europe") +
   facet_wrap(~country)
 
+# geom bar
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(gdp_mean = mean(gdpPercap),
+            lifeExp_mean = mean(lifeExp)) %>%
+  ggplot(aes(x = year, y = lifeExp_mean)) +
+  geom_bar(stat = "identity") + 
+    labs(x = "Year",
+       y = "Life expectancy",
+       title = "Life expectancy in Europe") +
+  facet_wrap(~country)
+
+# no facet 
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(gdp_mean = mean(gdpPercap),
+            lifeExp_mean = mean(lifeExp)) %>%
+  ggplot(aes(x = year, y = lifeExp_mean, fill = country)) +
+  geom_bar(stat = "identity") + # even if you not stack, still the plot looks messy or you can use geom_col()
+    labs(x = "Year",
+       y = "Life expectancy",
+       title = "Life expectancy in Europe")
 ```
 
 ```{r}
+
 gapminder %>%
   filter(continent == "Europe") %>%
   group_by(country, year) %>%
@@ -117,6 +174,7 @@ gapminder %>%
        title = "Life expectancy in Europe") +
   coord_flip()
 
+# without ordering
 gapminder %>%
   filter(continent == "Europe") %>%
   group_by(country, year) %>%
@@ -129,6 +187,7 @@ gapminder %>%
        title = "Life expectancy in Europe") +
   coord_flip()
 
+# reorder
 gapminder %>%
   filter(continent == "Europe") %>%
   group_by(country, year) %>%
@@ -142,7 +201,7 @@ gapminder %>%
   coord_flip()
 ```
 
-## Plotting text
+### Plotting text
 
 ```{r}
 gapminder %>%
@@ -155,12 +214,53 @@ gapminder %>%
   geom_text(aes(label = country)) +
   scale_x_log10() +
   facet_grid(~continent)
+
+# with label 
+gapminder %>%
+  filter(continent == "Asia" | continent == "Americas") %>%
+  group_by(continent, country) %>%
+  summarize(gdp_mean = mean(gdpPercap),
+            lifeExp_mean = mean(lifeExp)) %>%
+  ggplot(aes(x = gdp_mean, y = lifeExp_mean)) +
+  geom_point() +
+  geom_label(aes(label = country)) +
+  scale_x_log10() +
+  facet_grid(~continent)
+
+# no overlaps
+gapminder %>%
+  filter(continent == "Asia" | continent == "Americas") %>%
+  group_by(continent, country) %>%
+  summarize(gdp_mean = mean(gdpPercap),
+            lifeExp_mean = mean(lifeExp)) %>%
+  ggplot(aes(x = gdp_mean, y = lifeExp_mean)) +
+  geom_point() +
+  geom_text_repel(aes(label = country)) + # there's also geom_label_repel
+  scale_x_log10() +
+  facet_grid(~continent)
 ```
 
 ## Ploting models 
 
-In plotting models, we use David Robinson's [broom package](https://cran.r-project.org/web/packages/broom/vignettes/broom.html) in R extensively. The idea is to transform model outputs (i.e., predictions and estimations) into tidy objects so that we can combine, separate, and visualize these elements easily. 
+In plotting models, we  extensively use David Robinson's [broom package](https://cran.r-project.org/web/packages/broom/vignettes/broom.html) in R. The idea is to transform model outputs (i.e., predictions and estimations) into tidy objects so that we can easilycombine, separate, and visualize these elements. 
 
+### Plotting several fits at the same time
+```{r}
+model_colors <- RColorBrewer::brewer.pal(3, "Set1") # select three qualitatively different colors from a larger palette.
+
+gapminder %>%
+  ggplot(aes( x= log(gdpPercap), y = lifeExp)) +
+    geom_point(alpha = 0.2) +
+    geom_smooth(method = "lm", aes(color = "OLS", fill = "OLS")) +
+    geom_smooth(method = "lm", formula = y ~ splines::bs(x, df = 3),
+                aes(color = "Cubic Spline", fill = "Cubic Spline")) +
+    geom_smooth(method = "loess", aes(color = "LOESS", fill = "LOESS")) +
+    theme(legend.position = "top") +
+    scale_color_manual(name = "Models", values = model_colors) +
+    scale_fill_manual(name = "Models", values = model_colors)
+```
+
+### Extracting model outcomes 
 ```{r}
 
 # regression model
@@ -182,6 +282,9 @@ Tidy is a method in broom package. It "constructs a dataframe that summarizes th
 
 Try glance(out), what did you get from these commands? If you're curious, you can try ?glance.
 
+The followings are to show your degree of confidence.
+
+#### Coeffficients
 ```{r}
 # estimates 
 out_comp <- tidy(out)
@@ -194,6 +297,7 @@ p + geom_point() +
   theme_bw()
 ```
 
+#### Confidence intervals
 ```{r}
 # plus confidence intervals 
 out_conf <- tidy(out, conf.int = TRUE)
@@ -213,6 +317,8 @@ out_conf %>%
   theme_bw()
 ```
 
+You can calculate marginal effects using `margins` package. For the sake of time, I'm not covering that here.
+
 **Challenge**
 
 1. If we only want to visualize a certain subset of variables, let's say gdpPercap and pop, how can you do that? Also, gdpPercap might be not very informative. What's the best way to change the value name?
@@ -225,5 +331,18 @@ gapminder %>%
   group_by(continent) %>%
     do(tidy(lm(gdpPercap ~ lifeExp, data = .), conf.int = TRUE))
 
+```
+
+3. You can write a function for OLS and apply that function to grouped subsets of the data. I don't expect you to do this since we're covering functions in much detail next week.
+
+```{r}
+fit_ols <- function(df){
+  lm(lifeExp ~ log(gdpPercap), data = df)
+}
+  
+out_le <- gapminder %>%
+  group_by(continent, year) %>%
+  nest() %>% # nest() is an intensive version of group_by(). It creates a data column.
+  mutate(model = map(data, fit_ols)) # the data column comes from nest().
 ```
 
