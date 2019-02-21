@@ -24,7 +24,7 @@ pacman::p_load(
 
 # Motivation 
 
-- The following material is adapted from Kieran Healy's wonderful book (2018) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful book on [ggplot2](https://link.springer.com/content/pdf/10.1007%2F978-0-387-98141-3.pdf). For more theoretical discussions, I recommend you to read [The Grammar of Graphics](https://link.springer.com/book/10.1007%2F0-387-28695-0) by Leland Wilkinson.
+- The following material is adapted from Kieran Healy's wonderful book (2019) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful book on [ggplot2](https://link.springer.com/content/pdf/10.1007%2F978-0-387-98141-3.pdf). For more theoretical discussions, I recommend you to read [The Grammar of Graphics](https://link.springer.com/book/10.1007%2F0-387-28695-0) by Leland Wilkinson.
 
 - Why should we care data visualization? More precisely, why should we learn the grammar of statistical graphics?
 - Sometimes, pictures are better tools than words in 1) exploring, 2) understanding, and 3) explaining data.
@@ -74,7 +74,7 @@ anscombe_processed %>%
     - aesthetic attributes (color, shape, size)
     - geometric objects (points, lines, bars)
     - stats (summary stats)
-    - scales (map values in he data space)
+    - scales (map values in the data space)
     - coord (data coordinates)
     - facet (facetting specifications)
     
@@ -96,9 +96,11 @@ No worries for new terms. We're going to learn them by actually plotting.
 
 ```{r, echo=FALSE}
 # load library 
+
 library(gapminder)
 
 gapminder
+
 ```
 
 ## Data
@@ -118,7 +120,7 @@ gapminder
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap, y = lifeExp)) # ggplot or R in general takes positional arguments too. So, you don't need to name data, mapping each time you use ggplot2.
 
-str(p) # a list of data and functions, but it shows nothing 
+p
 
 p + geom_point()
 
@@ -156,8 +158,7 @@ midwest %>%
 
 ggplot(data = subset(midwest, state %in% c("OH","IN")),
          mapping = aes(x = percollege, fill = state)) +
-  geom_histogram(alpha = 0.4, bins = 20)
-
+  geom_histogram(alpha = 0.7, bins = 20)
 
 ```
 
@@ -177,7 +178,7 @@ midwest %>%
 
 ```{r}
 ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap, y = lifeExp,
+            mapping = aes(x = gdpPercap, y = lifeExp, 
                           size = pop)) +
   geom_point()
 ```
@@ -189,6 +190,9 @@ ggplot(data = gapminder,
                           color = continent)) +
   geom_point()
 
+```
+
+```{r}
 # try red instead of "red"
 ggplot(data = gapminder,
             mapping = aes(x = gdpPercap, y = lifeExp,
@@ -255,43 +259,15 @@ p + geom_point() +
   geom_smooth(method = "lm") +
   scale_x_log10()
 
-p + geom_point() +
-  geom_smooth(method = "lm") +
-  scale_x_log10()
 ```
 
-```{r}
-ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap, y = lifeExp,
-                          color = continent)) + 
-  geom_point(alpha = 0.3) +
-  scale_x_log10() + 
-  geom_smooth(method = "loess", color = "red") +
-  labs( x = "log GDP",
-        y = "Life Expectancy",
-        title = "A Gapminder Plot",
-        subtitle = "Data points are country-years",
-        caption = "Source: Gapminder")
-
-ggplot(data = gapminder,
-            mapping = aes(x = gdpPercap, y = lifeExp,
-                          color = continent,
-                          fill = continent)) + 
-  geom_point(alpha = 0.3) +
-  scale_x_log10() +
-  geom_smooth(method = "loess", color = "red") +
-  labs( x = "log GDP",
-        y = "Life Expectancy",
-        title = "A Gapminder Plot",
-        subtitle = "Data points are country-years",
-        caption = "Source: Gapminder")
-```
 
 ## Labels and guides 
 
 `scales` package has some useful premade formatting functions. You can either load scales or just grab the function you need from the library using `scales::` 
 
 ```{r}
+
 p + geom_point(alpha = 0.3) +
   geom_smooth(method = "loess", color = "red") +
   scale_x_log10(labels = scales::dollar) +

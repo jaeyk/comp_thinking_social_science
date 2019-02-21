@@ -80,6 +80,9 @@ p + geom_line(aes(group = country), color = "gray70") +
        title = "GDP per capita on Five continents") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
+```
+
+```{r}
 p + geom_line(aes(group = country), color = "gray70") +
   geom_smooth(size = 1.1, method = "loess", se = FALSE) +
   scale_y_log10(labels = scales::dollar) +
@@ -100,11 +103,12 @@ Also, we experiment bar charts here. By default, `geom_bar` [uses](https://www.r
 
 ```{r}
 
-gapminder %>%
+gapminder_formatted <- gapminder %>%
   group_by(continent, year) %>%
   summarize(gdp_mean = mean(gdpPercap),
-            lifeExp_mean = mean(lifeExp)) %>%
-  ggplot(aes(x = year, y = lifeExp_mean, color = continent)) +
+            lifeExp_mean = mean(lifeExp))
+
+ggplot(data = gapminder_formatted, aes(x = year, y = lifeExp_mean, color = continent)) +
   geom_point() +
     labs(x = "Year",
        y = "Life expectancy",
@@ -120,7 +124,9 @@ gapminder %>%
     labs(x = "Year",
        y = "Life expectancy",
        title = "Life expectancy in Europe")
+```
 
+```{r}
 # geom point 
 gapminder %>%
   filter(continent == "Europe") %>%
@@ -174,6 +180,9 @@ gapminder %>%
        title = "Life expectancy in Europe") +
   coord_flip()
 
+```
+
+```{r}
 # without ordering
 gapminder %>%
   filter(continent == "Europe") %>%
@@ -214,7 +223,9 @@ gapminder %>%
   geom_text(aes(label = country)) +
   scale_x_log10() +
   facet_grid(~continent)
+```
 
+```{r}
 # with label 
 gapminder %>%
   filter(continent == "Asia" | continent == "Americas") %>%
@@ -226,7 +237,9 @@ gapminder %>%
   geom_label(aes(label = country)) +
   scale_x_log10() +
   facet_grid(~continent)
+```
 
+```{r}
 # no overlaps
 gapminder %>%
   filter(continent == "Asia" | continent == "Americas") %>%
@@ -242,7 +255,7 @@ gapminder %>%
 
 ## Ploting models 
 
-In plotting models, we  extensively use David Robinson's [broom package](https://cran.r-project.org/web/packages/broom/vignettes/broom.html) in R. The idea is to transform model outputs (i.e., predictions and estimations) into tidy objects so that we can easilycombine, separate, and visualize these elements. 
+In plotting models, we extensively use David Robinson's [broom package](https://cran.r-project.org/web/packages/broom/vignettes/broom.html) in R. The idea is to transform model outputs (i.e., predictions and estimations) into tidy objects so that we can easily combine, separate, and visualize these elements. 
 
 ### Plotting several fits at the same time
 ```{r}
@@ -266,9 +279,10 @@ gapminder %>%
 # regression model
 out <-lm(formula = lifeExp ~ gdpPercap + pop + continent, 
           data = gapminder)
+
 ```
 
-Tidy is a method in broom package. It "constructs a dataframe that summarizes the model's statistical findings". As the description states, tidy is a function that can be used generally for various models. For instance, a tidy can extract following information from a regression model.
+Tidy is a method in broom package. It "constructs a dataframe that summarizes the model's statistical findings". As the description states, tidy is a function that can be used for various models. For instance, a tidy can extract following information from a regression model.
 
 - Term: a term being estimated 
 - p.value
@@ -331,6 +345,7 @@ gapminder %>%
   group_by(continent) %>%
     do(tidy(lm(gdpPercap ~ lifeExp, data = .), conf.int = TRUE))
 
+?do
 ```
 
 3. You can write a function for OLS and apply that function to grouped subsets of the data. I don't expect you to do this since we're covering functions in much detail next week.
@@ -344,5 +359,9 @@ out_le <- gapminder %>%
   group_by(continent, year) %>%
   nest() %>% # nest() is an intensive version of group_by(). It creates a data column.
   mutate(model = map(data, fit_ols)) # the data column comes from nest().
+
+gapminder %>%
+  group_by(continent, year) %>%
+  nest()
 ```
 
