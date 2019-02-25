@@ -371,7 +371,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">More Advanced Programming in R: Lecture Notes</h1>
 <h4 class="author"><em>PS239T</em></h4>
-<h4 class="date"><em>11 February, 2019</em></h4>
+<h4 class="date"><em>25 February, 2019</em></h4>
 
 </div>
 
@@ -387,10 +387,7 @@ $(document).ready(function () {
 <div id="setup-environment" class="section level1">
 <h1>Setup environment</h1>
 <pre class="r"><code># remove all objects
-rm(list=ls())
-
-# set working directory
-setwd(dir=&quot;~/Dropbox/berkeley/Git-Repos/PS239T/04_r-data-analysis/&quot;)</code></pre>
+rm(list=ls())</code></pre>
 </div>
 <div id="strings" class="section level1">
 <h1>1. Strings</h1>
@@ -410,11 +407,11 @@ print(fullName)</code></pre>
 
 print(fullName)</code></pre>
 <pre><code>## [1] &quot;Jae Yeon Kim&quot;</code></pre>
-<pre class="r"><code>fullName&lt;-paste(firstName, lastName, sep = &quot;+&quot;)
+<pre class="r"><code>fullName &lt;- paste(firstName, lastName, sep = &quot;+&quot;)
 
 print(fullName)</code></pre>
 <pre><code>## [1] &quot;Jae Yeon+Kim&quot;</code></pre>
-<pre class="r"><code>fullName&lt;-paste(firstName, lastName, sep = &quot;___&quot;)
+<pre class="r"><code>fullName &lt;- paste(firstName, lastName, sep = &quot;___&quot;)
 print(fullName)</code></pre>
 <pre><code>## [1] &quot;Jae Yeon___Kim&quot;</code></pre>
 <p>As with Python, R can also extract substrings based on the index position of its characters. There are, however, two critical differences. First, <strong>index positions in R start at 1</strong>. This is in contrast to Python, where indexation starts at 0.</p>
@@ -428,8 +425,8 @@ fullName[1] # R sees the string as a unitary object - it can't be indexed this w
 <pre class="r"><code>fullName[1:4] </code></pre>
 <pre><code>## [1] &quot;Jae Yeon Kim&quot; NA             NA             NA</code></pre>
 <pre class="r"><code># So use this instead
-substr(x = fullName, start = 1, stop = 1)</code></pre>
-<pre><code>## [1] &quot;J&quot;</code></pre>
+substr(x = fullName, start = 1, stop = 2)</code></pre>
+<pre><code>## [1] &quot;Ja&quot;</code></pre>
 <pre class="r"><code>substr(x = fullName, start = 5, stop = 5)</code></pre>
 <pre><code>## [1] &quot;Y&quot;</code></pre>
 <pre class="r"><code>substr(x = fullName, start = 1, stop = 10)</code></pre>
@@ -464,16 +461,19 @@ gsub(pattern = &quot; &quot;, replacement = &quot;&quot;, x = fullName) # The sa
 <h1>2. Flow Control</h1>
 <p>Almost all the conditional operators used in Python also work in R. The basic loop set up is also very similar, with some small syntax adjustments. Note that <code>if()</code> is a function whose arguments must be specified inside parentheses. <code>else</code>, however, is a reserved operator that takes no arguments. Note that there is no <code>elif</code> option — one simply writes <code>else if()</code>. Whereas operations to be executed after conditional evaluations in Python come after a <code>:</code>, R operations must only be enclosed in curly brackets: <code>{}</code>. Furthermore, there is no requirement for indentation. The only thing to keep in mind is that <strong>each new operation must be on a separate line</strong>.</p>
 <pre class="r"><code>x &lt;- 5
+
 if(x &lt; 0){
   print(&quot;x is negative&quot;)
 } 
 
 x &lt;- -5
+
 if(x &lt; 0){
   print(&quot;x is negative&quot;)
 }</code></pre>
 <pre><code>## [1] &quot;x is negative&quot;</code></pre>
 <pre class="r"><code>x &lt;- 5
+
 if(x &lt; 0){
   print(&quot;x is negative&quot;)
 } else{
@@ -481,6 +481,7 @@ if(x &lt; 0){
 }</code></pre>
 <pre><code>## [1] &quot;x is positive&quot;</code></pre>
 <pre class="r"><code>x &lt;- 0
+
 if(x &lt; 0){
   print(&quot;x is negative&quot;)
 } else if(x == 0){
@@ -490,42 +491,70 @@ if(x &lt; 0){
 }</code></pre>
 <pre><code>## [1] &quot;x is zero&quot;</code></pre>
 <p>R also does some class coercion that makes Boolean evaluations harder to break than in Python. But be careful — R has a set of special coercion used for fast logical evaluation and subsetting. Specifically, <code>TRUE</code> is considered equal to <code>1</code>, while <code>FALSE</code> is equal to <code>0</code>. The Boolean logicals can also be specified as a full word in all caps, or simply as <code>T</code> or <code>F</code>.</p>
-<pre class="r"><code>1&lt;2</code></pre>
+<pre class="r"><code>1 &lt; 2</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>&quot;1&quot;&lt;2</code></pre>
+<pre class="r"><code>&quot;1&quot; &lt; 2</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>&quot;a&quot;&lt;2</code></pre>
+<pre class="r"><code>&quot;a&quot; &lt; 2</code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>TRUE&lt;2</code></pre>
+<pre class="r"><code>TRUE &lt; 2</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>TRUE==&quot;TRUE&quot;</code></pre>
+<pre class="r"><code>TRUE == &quot;TRUE&quot;</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>T==&quot;TRUE&quot;</code></pre>
+<pre class="r"><code>T == &quot;TRUE&quot;</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>TRUE==&quot;T&quot;</code></pre>
+<pre class="r"><code>TRUE == &quot;T&quot;</code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>TRUE==&quot;FALSE&quot;</code></pre>
+<pre class="r"><code>TRUE == &quot;FALSE&quot;</code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>TRUE==0</code></pre>
+<pre class="r"><code>TRUE == 0</code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>TRUE==1</code></pre>
+<pre class="r"><code>TRUE == 1</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>FALSE==0</code></pre>
+<pre class="r"><code>FALSE == 0</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>FALSE&lt;=1</code></pre>
+<pre class="r"><code>FALSE &lt;= 1</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="functions" class="section level1">
 <h1>3. Functions</h1>
 <p>While functions are defined in Python using the <code>def</code> reserved operator, R sees functions as just another type of named object. Thus, they require explicit assignment to an object. This is done using the function <code>function()</code>, which creates a function taking the arguments specified in parentheses.</p>
+<pre class="r"><code>df$a[df$a == -99] &lt;- NA
+df$b[df$b == -99] &lt;- NA
+df$c[df$c == -99] &lt;- NA
+df$d[df$d == -99] &lt;- NA
+df$e[df$e == -99] &lt;- NA
+df$f[df$f == -99] &lt;- NA 
+
+# very tedious 
+
+fix_missing &lt;- function(x) {
+  x[x == -99] &lt;- NA
+  x
+}
+
+df$a &lt;- fix_missing(df$a)
+df$b &lt;- fix_missing(df$b)
+df$c &lt;- fix_missing(df$c)
+df$d &lt;- fix_missing(df$d)
+df$e &lt;- fix_missing(df$e)
+df$f &lt;- fix_missing(df$e)
+
+# beautiful
+
+source(fix_missings.r)
+
+# more beautiful</code></pre>
 <pre class="r"><code>simple.function &lt;- function(x){
   print(x + 1)
 }
+
 simple.function(x = 2)</code></pre>
 <pre><code>## [1] 3</code></pre>
-<pre class="r"><code>less.simple.function&lt;-function(x, y){
+<pre class="r"><code>less.simple.function &lt;- function(x, y){
   print(x - y + 1)
 }
+
 less.simple.function(x = 2, y = 10)</code></pre>
 <pre><code>## [1] -7</code></pre>
 <p>With respect to returning function output, most of the same rules apply as with Python. Be sure to remember that <code>return()</code> will only process a single object, so multiple items must usually be returned as a list. Note that your ordering of the functions matters, too.</p>
@@ -545,8 +574,8 @@ dumbfun(x = &quot;something&quot;)</code></pre>
 <pre><code>## [1] &quot;Why did I print?&quot;</code></pre>
 <pre><code>## [1] &quot;something&quot;</code></pre>
 <pre class="r"><code>dumbfun &lt;- function(x,y){
-  thing1&lt;-x
-  thing2&lt;-y
+  thing1 &lt;- x
+  thing2 &lt;- y
   return(list(thing1, thing2))
 }
 
@@ -578,23 +607,23 @@ less.simple.function(x = 2)</code></pre>
   print(paste(&quot;BCC:&quot;, bcc, sep = &quot; &quot;))
 }
 
-send(message = &quot;Hello&quot;, recipient = &quot;World&quot;, cc = &quot;Rachel&quot;, bcc = &quot;Laura&quot;)</code></pre>
+send(message = &quot;Hello&quot;, recipient = &quot;World&quot;, cc = &quot;Sun&quot;, bcc = &quot;Jane&quot;)</code></pre>
 <pre><code>## [1] &quot;Hello, World&quot;
-## [1] &quot;CC: Rachel&quot;
-## [1] &quot;BCC: Laura&quot;</code></pre>
-<pre class="r"><code>send(&quot;Hello&quot;, &quot;World&quot;, &quot;Rachel&quot;, &quot;Laura&quot;)</code></pre>
+## [1] &quot;CC: Sun&quot;
+## [1] &quot;BCC: Jane&quot;</code></pre>
+<pre class="r"><code>send(&quot;Hello&quot;, &quot;World&quot;, &quot;Sun&quot;, &quot;Jane&quot;)</code></pre>
 <pre><code>## [1] &quot;Hello, World&quot;
-## [1] &quot;CC: Rachel&quot;
-## [1] &quot;BCC: Laura&quot;</code></pre>
-<pre class="r"><code>send(&quot;Hello&quot;, &quot;Rachel&quot;, &quot;Laura&quot;, &quot;World&quot;)</code></pre>
-<pre><code>## [1] &quot;Hello, Rachel&quot;
-## [1] &quot;CC: Laura&quot;
+## [1] &quot;CC: Sun&quot;
+## [1] &quot;BCC: Jane&quot;</code></pre>
+<pre class="r"><code>send(&quot;Hello&quot;, &quot;Sun&quot;, &quot;Jane&quot;, &quot;World&quot;)</code></pre>
+<pre><code>## [1] &quot;Hello, Sun&quot;
+## [1] &quot;CC: Jane&quot;
 ## [1] &quot;BCC: World&quot;</code></pre>
-<pre class="r"><code>send(message = &quot;Hello&quot;, cc = &quot;Rachel&quot;, bcc = c(&quot;Laura&quot;, &quot;Rochelle&quot;), recipient = &quot;World&quot;)</code></pre>
+<pre class="r"><code>send(message = &quot;Hello&quot;, cc = &quot;Sun&quot;, bcc = c(&quot;Jane&quot;, &quot;Rochelle&quot;), recipient = &quot;World&quot;)</code></pre>
 <pre><code>## [1] &quot;Hello, World&quot;
-## [1] &quot;CC: Rachel&quot;
-## [1] &quot;BCC: Laura&quot;    &quot;BCC: Rochelle&quot;</code></pre>
-<p>Also, remember functions don’t have what CS people called side-effects. Functions only define local variables = They don’t change objects stored in the global environment, so on. (Consider the difference between <code>&lt;-</code> and <code>=</code> for assignments.) That’s why you can use functions for reusable tasks since it does not interrupt other important things in your system.</p>
+## [1] &quot;CC: Sun&quot;
+## [1] &quot;BCC: Jane&quot;     &quot;BCC: Rochelle&quot;</code></pre>
+<p>Also, note that functions don’t have what CS people called side-effects. Functions only define local variables = They don’t change objects stored in the global environment. (Consider the difference between <code>&lt;-</code> and <code>=</code> for assignments.) That’s why you can use functions for reusable tasks since it does not interrupt other important things in your system.</p>
 <p>See <a href="https://darrenjw.wordpress.com/2011/11/23/lexical-scope-and-function-closures-in-r/">the following example</a> from Wilkinson.</p>
 <pre class="r"><code>a = 1 
 b = 2
@@ -604,7 +633,9 @@ f &lt;- function(x)
   a*x + b
 }
 
-g &lt;- function(x)
+f(2)</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>g &lt;- function(x)
 {
   a = 2
   b = 1
@@ -613,69 +644,14 @@ g &lt;- function(x)
 
 g(2) # a equals still 1 </code></pre>
 <pre><code>## [1] 4</code></pre>
-<div id="debugging" class="section level2">
-<h2>3.1. Debugging</h2>
-<div id="rstudio-debugging-tools" class="section level3">
-<h3>3.1.1. RStudio debugging tools</h3>
-<p>Debugging is a process. Don’t use this process when you’re writing a new function, but when you try to fix it. The idea is try to fail systematically.</p>
-<ul>
-<li>Realize that you have a bug.</li>
-<li>Make it repeatable. (Remove the code until you get to the smallest snippet that still causes the error.)</li>
-<li>Locate the bug.</li>
-<li>Fix it and test it.</li>
-</ul>
-<p>RStudio has several debugging tools. - <code>traceback</code>: list the sequence of calls that lead to the error. - Rerun with Debug tool and <code>options(error = browser)</code>: opens an interactive session where the error occurred. - breakpoints and <code>browser()</code>: opens an interactive session at an arbitrary location in the code.</p>
-<pre class="r"><code>f &lt;- function(a) g(a)
-g &lt;- function(b) h(b)
-h &lt;- function(c) i(c)
-i &lt;- function(d) &quot;a&quot; + d #&quot;a&quot; and d are non-numeric and + is a binary operator
-f(10)</code></pre>
-</div>
-<div id="condition-handling" class="section level3">
-<h3>3.1.2. Condition handling</h3>
-<ul>
-<li><code>try()</code>: continue execution even when an error occurs.</li>
-<li><code>tryCatch()</code>: specify handler functions when a condition is signalled.</li>
-</ul>
-<pre class="r"><code>f1 &lt;- function(x) {
-  log(x)
-  10
-}
-
-f1(&quot;x&quot;)
-
-f2 &lt;- function(x) {
-  try(log(x))
-  10
-}
-
-f2(&quot;a&quot;) # Now it's running through with an error</code></pre>
-<pre class="r"><code>show_condition &lt;- function(code) {
-  tryCatch(code,
-    error = function(c) &quot;error&quot;,
-    warning = function(c) &quot;warning&quot;,
-    message = function(c) &quot;message&quot;
-  )
-}
-
-show_condition(stop(&quot;!&quot;)) # error</code></pre>
-<pre><code>## [1] &quot;error&quot;</code></pre>
-<pre class="r"><code>show_condition(warning(&quot;?!&quot;)) # warning</code></pre>
-<pre><code>## [1] &quot;warning&quot;</code></pre>
-<pre class="r"><code>show_condition(message(&quot;?&quot;)) # message </code></pre>
-<pre><code>## [1] &quot;message&quot;</code></pre>
-<p>** Fail fast (defensive programming) **</p>
-<ul>
-<li>Be strict about what you accept. You can use <code>stopifnot</code> from <code>assertthat</code> package, or simple <code>if</code> statements and <code>stop()</code>.</li>
-<li>Avoid functions that use <a href="http://adv-r.had.co.nz/Computing-on-the-language.html#nse">non-standard evaluations</a> like subset. When they fail, they often fail with uninformative error messages.</li>
-<li>Avoid functions that return different types of output depending on input like <code>sapply</code> (which returns different types of vectors depending on input types). Never use, <code>sapply</code> inside a function.</li>
-</ul>
-</div>
-</div>
 </div>
 <div id="loops" class="section level1">
 <h1>4. Loops</h1>
 <p>Loops in R also work basically the same way as in Python, with just a few adjustments. First, recall that index positions in R start at 1. Second, <code>while()</code> and <code>for()</code> are functions rather than reserved operators, meaning they must take arguments in parentheses. Third, just like <code>else</code>, the <code>in</code> operator <em>is</em> reserved and takes no arguments in parentheses. Fourth, the conditional execution must appear between curly brackets. Finally, indentation is meaningless, but each new operation must appear on a new line.</p>
+<ul>
+<li><code>while()</code>: when we have no idea how many times loop needs to be executed.</li>
+<li><code>for()</code>: when we know how many times loop needs to be executed.</li>
+</ul>
 <pre class="r"><code>fruits &lt;- c(&quot;apples&quot;, &quot;oranges&quot;, &quot;pears&quot;, &quot;bananas&quot;)
 
 # a while loop
@@ -696,7 +672,6 @@ for(i in 1:length(fruits)){
 ## [1] &quot;oranges&quot;
 ## [1] &quot;pears&quot;
 ## [1] &quot;bananas&quot;</code></pre>
-<p>Can you improve the for loop above by making the code more concise?</p>
 </div>
 <div id="vectorization" class="section level1">
 <h1>5. Vectorization</h1>
@@ -754,109 +729,399 @@ lapply(fruit, make.plural) # returns a list</code></pre>
 <pre class="r"><code>sapply(fruit, make.plural) # returns a named vector</code></pre>
 <pre><code>##     apple    orange      pear    banana 
 ##  &quot;apples&quot; &quot;oranges&quot;   &quot;pears&quot; &quot;bananas&quot;</code></pre>
+<pre class="r"><code>library(purrr) # load package
+map(fruit, make.plural) # type consistent</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;apples&quot;
+## 
+## [[2]]
+## [1] &quot;oranges&quot;
+## 
+## [[3]]
+## [1] &quot;pears&quot;
+## 
+## [[4]]
+## [1] &quot;bananas&quot;</code></pre>
+<pre class="r"><code># Why sapply is bad 
+
+sapply(1:100, paste) # return character </code></pre>
+<pre><code>##   [1] &quot;1&quot;   &quot;2&quot;   &quot;3&quot;   &quot;4&quot;   &quot;5&quot;   &quot;6&quot;   &quot;7&quot;   &quot;8&quot;   &quot;9&quot;   &quot;10&quot;  &quot;11&quot; 
+##  [12] &quot;12&quot;  &quot;13&quot;  &quot;14&quot;  &quot;15&quot;  &quot;16&quot;  &quot;17&quot;  &quot;18&quot;  &quot;19&quot;  &quot;20&quot;  &quot;21&quot;  &quot;22&quot; 
+##  [23] &quot;23&quot;  &quot;24&quot;  &quot;25&quot;  &quot;26&quot;  &quot;27&quot;  &quot;28&quot;  &quot;29&quot;  &quot;30&quot;  &quot;31&quot;  &quot;32&quot;  &quot;33&quot; 
+##  [34] &quot;34&quot;  &quot;35&quot;  &quot;36&quot;  &quot;37&quot;  &quot;38&quot;  &quot;39&quot;  &quot;40&quot;  &quot;41&quot;  &quot;42&quot;  &quot;43&quot;  &quot;44&quot; 
+##  [45] &quot;45&quot;  &quot;46&quot;  &quot;47&quot;  &quot;48&quot;  &quot;49&quot;  &quot;50&quot;  &quot;51&quot;  &quot;52&quot;  &quot;53&quot;  &quot;54&quot;  &quot;55&quot; 
+##  [56] &quot;56&quot;  &quot;57&quot;  &quot;58&quot;  &quot;59&quot;  &quot;60&quot;  &quot;61&quot;  &quot;62&quot;  &quot;63&quot;  &quot;64&quot;  &quot;65&quot;  &quot;66&quot; 
+##  [67] &quot;67&quot;  &quot;68&quot;  &quot;69&quot;  &quot;70&quot;  &quot;71&quot;  &quot;72&quot;  &quot;73&quot;  &quot;74&quot;  &quot;75&quot;  &quot;76&quot;  &quot;77&quot; 
+##  [78] &quot;78&quot;  &quot;79&quot;  &quot;80&quot;  &quot;81&quot;  &quot;82&quot;  &quot;83&quot;  &quot;84&quot;  &quot;85&quot;  &quot;86&quot;  &quot;87&quot;  &quot;88&quot; 
+##  [89] &quot;89&quot;  &quot;90&quot;  &quot;91&quot;  &quot;92&quot;  &quot;93&quot;  &quot;94&quot;  &quot;95&quot;  &quot;96&quot;  &quot;97&quot;  &quot;98&quot;  &quot;99&quot; 
+## [100] &quot;100&quot;</code></pre>
+<pre class="r"><code>sapply(integer(), paste) # return list!</code></pre>
+<pre><code>## list()</code></pre>
+<pre class="r"><code>library(purrr)
+map(1:100, paste) # return list</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;1&quot;
+## 
+## [[2]]
+## [1] &quot;2&quot;
+## 
+## [[3]]
+## [1] &quot;3&quot;
+## 
+## [[4]]
+## [1] &quot;4&quot;
+## 
+## [[5]]
+## [1] &quot;5&quot;
+## 
+## [[6]]
+## [1] &quot;6&quot;
+## 
+## [[7]]
+## [1] &quot;7&quot;
+## 
+## [[8]]
+## [1] &quot;8&quot;
+## 
+## [[9]]
+## [1] &quot;9&quot;
+## 
+## [[10]]
+## [1] &quot;10&quot;
+## 
+## [[11]]
+## [1] &quot;11&quot;
+## 
+## [[12]]
+## [1] &quot;12&quot;
+## 
+## [[13]]
+## [1] &quot;13&quot;
+## 
+## [[14]]
+## [1] &quot;14&quot;
+## 
+## [[15]]
+## [1] &quot;15&quot;
+## 
+## [[16]]
+## [1] &quot;16&quot;
+## 
+## [[17]]
+## [1] &quot;17&quot;
+## 
+## [[18]]
+## [1] &quot;18&quot;
+## 
+## [[19]]
+## [1] &quot;19&quot;
+## 
+## [[20]]
+## [1] &quot;20&quot;
+## 
+## [[21]]
+## [1] &quot;21&quot;
+## 
+## [[22]]
+## [1] &quot;22&quot;
+## 
+## [[23]]
+## [1] &quot;23&quot;
+## 
+## [[24]]
+## [1] &quot;24&quot;
+## 
+## [[25]]
+## [1] &quot;25&quot;
+## 
+## [[26]]
+## [1] &quot;26&quot;
+## 
+## [[27]]
+## [1] &quot;27&quot;
+## 
+## [[28]]
+## [1] &quot;28&quot;
+## 
+## [[29]]
+## [1] &quot;29&quot;
+## 
+## [[30]]
+## [1] &quot;30&quot;
+## 
+## [[31]]
+## [1] &quot;31&quot;
+## 
+## [[32]]
+## [1] &quot;32&quot;
+## 
+## [[33]]
+## [1] &quot;33&quot;
+## 
+## [[34]]
+## [1] &quot;34&quot;
+## 
+## [[35]]
+## [1] &quot;35&quot;
+## 
+## [[36]]
+## [1] &quot;36&quot;
+## 
+## [[37]]
+## [1] &quot;37&quot;
+## 
+## [[38]]
+## [1] &quot;38&quot;
+## 
+## [[39]]
+## [1] &quot;39&quot;
+## 
+## [[40]]
+## [1] &quot;40&quot;
+## 
+## [[41]]
+## [1] &quot;41&quot;
+## 
+## [[42]]
+## [1] &quot;42&quot;
+## 
+## [[43]]
+## [1] &quot;43&quot;
+## 
+## [[44]]
+## [1] &quot;44&quot;
+## 
+## [[45]]
+## [1] &quot;45&quot;
+## 
+## [[46]]
+## [1] &quot;46&quot;
+## 
+## [[47]]
+## [1] &quot;47&quot;
+## 
+## [[48]]
+## [1] &quot;48&quot;
+## 
+## [[49]]
+## [1] &quot;49&quot;
+## 
+## [[50]]
+## [1] &quot;50&quot;
+## 
+## [[51]]
+## [1] &quot;51&quot;
+## 
+## [[52]]
+## [1] &quot;52&quot;
+## 
+## [[53]]
+## [1] &quot;53&quot;
+## 
+## [[54]]
+## [1] &quot;54&quot;
+## 
+## [[55]]
+## [1] &quot;55&quot;
+## 
+## [[56]]
+## [1] &quot;56&quot;
+## 
+## [[57]]
+## [1] &quot;57&quot;
+## 
+## [[58]]
+## [1] &quot;58&quot;
+## 
+## [[59]]
+## [1] &quot;59&quot;
+## 
+## [[60]]
+## [1] &quot;60&quot;
+## 
+## [[61]]
+## [1] &quot;61&quot;
+## 
+## [[62]]
+## [1] &quot;62&quot;
+## 
+## [[63]]
+## [1] &quot;63&quot;
+## 
+## [[64]]
+## [1] &quot;64&quot;
+## 
+## [[65]]
+## [1] &quot;65&quot;
+## 
+## [[66]]
+## [1] &quot;66&quot;
+## 
+## [[67]]
+## [1] &quot;67&quot;
+## 
+## [[68]]
+## [1] &quot;68&quot;
+## 
+## [[69]]
+## [1] &quot;69&quot;
+## 
+## [[70]]
+## [1] &quot;70&quot;
+## 
+## [[71]]
+## [1] &quot;71&quot;
+## 
+## [[72]]
+## [1] &quot;72&quot;
+## 
+## [[73]]
+## [1] &quot;73&quot;
+## 
+## [[74]]
+## [1] &quot;74&quot;
+## 
+## [[75]]
+## [1] &quot;75&quot;
+## 
+## [[76]]
+## [1] &quot;76&quot;
+## 
+## [[77]]
+## [1] &quot;77&quot;
+## 
+## [[78]]
+## [1] &quot;78&quot;
+## 
+## [[79]]
+## [1] &quot;79&quot;
+## 
+## [[80]]
+## [1] &quot;80&quot;
+## 
+## [[81]]
+## [1] &quot;81&quot;
+## 
+## [[82]]
+## [1] &quot;82&quot;
+## 
+## [[83]]
+## [1] &quot;83&quot;
+## 
+## [[84]]
+## [1] &quot;84&quot;
+## 
+## [[85]]
+## [1] &quot;85&quot;
+## 
+## [[86]]
+## [1] &quot;86&quot;
+## 
+## [[87]]
+## [1] &quot;87&quot;
+## 
+## [[88]]
+## [1] &quot;88&quot;
+## 
+## [[89]]
+## [1] &quot;89&quot;
+## 
+## [[90]]
+## [1] &quot;90&quot;
+## 
+## [[91]]
+## [1] &quot;91&quot;
+## 
+## [[92]]
+## [1] &quot;92&quot;
+## 
+## [[93]]
+## [1] &quot;93&quot;
+## 
+## [[94]]
+## [1] &quot;94&quot;
+## 
+## [[95]]
+## [1] &quot;95&quot;
+## 
+## [[96]]
+## [1] &quot;96&quot;
+## 
+## [[97]]
+## [1] &quot;97&quot;
+## 
+## [[98]]
+## [1] &quot;98&quot;
+## 
+## [[99]]
+## [1] &quot;99&quot;
+## 
+## [[100]]
+## [1] &quot;100&quot;</code></pre>
+<pre class="r"><code>map(integer(), paste) # return list</code></pre>
+<pre><code>## list()</code></pre>
 <p>The multivariate version of <code>sapply</code> is <code>mapply</code>. Use this if you have a function that takes in 2 or more arguments.</p>
 </div>
-<div id="speeding-up-for-loops" class="section level3">
-<h3>5.3 Speeding Up For Loops</h3>
-<p>So, what can you do if you really do need a for loop? There are two key steps you can take: first, take advantage of R’s vectorization capabilities, which tell R ahead of time that all the data the for loop is working on has the same class, making it more efficient. Second, create and store as much of the information outside the loop (i.e., in the global environment, or in the highest level loop if you have nested loops) as you can. Take a look at the example below, which explains each step in more detail.</p>
-<pre class="r"><code>fruit &lt;- c(&quot;apple&quot;, &quot;orange&quot;, &quot;pear&quot;, &quot;banana&quot;, &quot;plum&quot;, 
-           &quot;peach&quot;, &quot;lime&quot;, &quot;lemon&quot;, &quot;grape&quot;, &quot;cherry&quot;)
+</div>
+<div id="debugging" class="section level1">
+<h1>6. Debugging</h1>
+<div id="rstudio-debugging-tools" class="section level2">
+<h2>6.1. RStudio debugging tools</h2>
+<p>Debugging is a process. Don’t use this process when you’re writing a new function, but when you try to fix it. The idea is try to fail systematically.</p>
+<ul>
+<li>Realize that you have a bug.</li>
+<li>Make it repeatable. (Remove the code until you get to the smallest snippet that still causes the error.)</li>
+<li>Locate the bug.</li>
+<li>Fix it and test it.</li>
+</ul>
+<p>RStudio has several debugging tools. - <code>traceback</code>: list the sequence of calls that lead to the error. - Rerun with Debug tool and <code>options(error = browser)</code>: opens an interactive session where the error occurred. - breakpoints and <code>browser()</code>: opens an interactive session at an arbitrary location in the code.</p>
+<pre class="r"><code>f &lt;- function(a) g(a)
+g &lt;- function(b) h(b)
+h &lt;- function(c) i(c)
+i &lt;- function(d) &quot;a&quot; + d #&quot;a&quot; and d are non-numeric and + is a binary operator
 
-veggie &lt;- c(&quot;celery&quot;, &quot;beets&quot;, &quot;arugula&quot;, &quot;carrots&quot;, &quot;radish&quot;,
-            &quot;turnip&quot;, &quot;broccoli&quot;, &quot;cauliflower&quot;, &quot;pea&quot;, &quot;cucumber&quot;)
-
-produce &lt;- data.frame(fruit, veggie)
-
-# We're going to make this bigger so that we really have something to work with:
-
-lotsofproduce &lt;- do.call(&quot;rbind&quot;, replicate(1000, produce, simplify = FALSE))
-
-# let's say we want to want to fill in a new column, &quot;matches,&quot; with a &quot;yes&quot; whenever the entries for fruit and veggies both contain the letter &quot;a.&quot;
-
-# This is some code to time our for loop: 
-  # start the clock!
-
-ptm &lt;- proc.time()
-
-lotsofproduce$matches &lt;- &quot;No&quot;
-
-for (i in 1:nrow(lotsofproduce)) {
-  if(grepl(&quot;a&quot;, lotsofproduce$fruit[i])==grepl(&quot;a&quot;, lotsofproduce$veggie[i])){
-    lotsofproduce$matches[i] &lt;- &quot;Yes&quot;
-  }
+f(10)</code></pre>
+</div>
+<div id="condition-handling" class="section level2">
+<h2>6.2. Condition handling</h2>
+<ul>
+<li><code>try()</code>: continue execution even when an error occurs.</li>
+<li><code>tryCatch()</code>: specify handler functions when a condition is signalled.</li>
+</ul>
+<pre class="r"><code>f1 &lt;- function(x) {
+  log(x)
+  10
 }
 
-# stop the clock
-proc.time() - ptm</code></pre>
-<pre><code>##    user  system elapsed 
-##   0.426   0.001   0.427</code></pre>
-<p>We got the results we wanted (this time - it’s not a very big dataset!). But can we improve on our code?</p>
-<pre class="r"><code># First we could put in the vectors instead of making it loop through a dataframe:
-ptm &lt;- proc.time()
+f1(&quot;x&quot;)
 
-lotsofproduce$matches &lt;- &quot;No&quot;
-
-for (i in 1:nrow(lotsofproduce)) {
-  if(grepl(&quot;a&quot;, fruit[i])==grepl(&quot;a&quot;, veggie[i])){
-    lotsofproduce$matches[i] &lt;- &quot;Yes&quot;
-  }
+f2 &lt;- function(x) {
+  try(log(x))
+  10
 }
 
-proc.time() - ptm</code></pre>
-<pre><code>##    user  system elapsed 
-##   0.298   0.003   0.301</code></pre>
-<p>That looks like only a little bit of time saved, but it’s actually about a quarter of the function time that we cut, and it all adds up when you’re looping through thousands of rows!</p>
-<pre class="r"><code># Then we could move our conditional logic outside the for loop:
-ptm &lt;- proc.time()
-
-lotsofproduce$matches &lt;- &quot;No&quot;
-
-cond1 &lt;- as.logical(grepl(&quot;a&quot;, lotsofproduce$fruit)) # this creates a logical vector with the results of our first conditional test
-
-cond2 &lt;- as.logical(grepl(&quot;a&quot;, lotsofproduce$veggie))
-
-for (i in 1:nrow(lotsofproduce)) {
-  if(cond1[i]==cond2[i]){
-    lotsofproduce$matches[i] &lt;- &quot;Yes&quot;
-  }
+f2(&quot;a&quot;) # Now it's running through with an error</code></pre>
+<pre class="r"><code>show_condition &lt;- function(code) {
+  tryCatch(code,
+    error = function(c) &quot;error&quot;,
+    warning = function(c) &quot;warning&quot;,
+    message = function(c) &quot;message&quot;
+  )
 }
 
-proc.time() - ptm</code></pre>
-<pre><code>##    user  system elapsed 
-##   0.126   0.001   0.126</code></pre>
-<p>This cut our loop by more than half again! Can we do better than that?</p>
-<pre class="r"><code># Then we could vectorize matches and change our subsetting to use brackets (which takes less time for R to &quot;read&quot; than the $ notation for vectors:
-ptm &lt;- proc.time()
-
-matches &lt;- rep(&quot;No&quot;, nrow(lotsofproduce))
-
-cond1 &lt;- as.logical(grepl(&quot;a&quot;, lotsofproduce$fruit)) # this creates a logical vector with the results of our first conditional test
-
-cond2 &lt;- as.logical(grepl(&quot;a&quot;, lotsofproduce$veggie)) # vector for second conditional test
-
-for (i in 1:nrow(lotsofproduce)) {
-  if(cond1[i]==cond2[i]){
-    matches[i] &lt;- &quot;Yes&quot;
-  }
-}
-
-lotsofproduce &lt;- cbind(lotsofproduce, matches)
-
-proc.time() - ptm</code></pre>
-<pre><code>##    user  system elapsed 
-##   0.012   0.000   0.013</code></pre>
-<p>A fraction of a second! Can’t beat that, right?</p>
-<pre class="r"><code># In fact, we could do this even faster by not using a loop at all. Instead, we can use an ifelse statement (which makes it completely vectorized, eliminating the need for a loop):
-ptm &lt;- proc.time()
-
-cond1 &lt;- as.logical(grepl(&quot;a&quot;, lotsofproduce$fruit)) 
-cond2 &lt;- as.logical(grepl(&quot;a&quot;, lotsofproduce$veggie))
-
-lotsofproduce$matches &lt;- ifelse(cond1==cond2,&quot;Yes&quot;, &quot;No&quot;)
-
-proc.time() - ptm</code></pre>
-<pre><code>##    user  system elapsed 
-##   0.007   0.000   0.007</code></pre>
+show_condition(stop(&quot;!&quot;)) # error</code></pre>
+<pre><code>## [1] &quot;error&quot;</code></pre>
+<pre class="r"><code>show_condition(warning(&quot;?!&quot;)) # warning</code></pre>
+<pre><code>## [1] &quot;warning&quot;</code></pre>
+<pre class="r"><code>show_condition(message(&quot;?&quot;)) # message </code></pre>
+<pre><code>## [1] &quot;message&quot;</code></pre>
+<p>** Fail fast (defensive programming) **</p>
+<ul>
+<li>Be strict about what you accept. You can use <code>stopifnot</code> from <code>assertthat</code> package, or simple <code>if</code> statements and <code>stop()</code>.</li>
+<li>Avoid functions that use <a href="http://adv-r.had.co.nz/Computing-on-the-language.html#nse">non-standard evaluations</a> like subset. When they fail, they often fail with uninformative error messages.</li>
+<li>Avoid functions that return different types of output depending on input like <code>sapply</code> (which returns different types of vectors depending on input types). Never use, <code>sapply</code> inside a function.</li>
+<li><code>map</code> function from purrr package is a better alternative if you take type-consistency seriously. ```</li>
+</ul>
 </div>
 </div>
 

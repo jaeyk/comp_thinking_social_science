@@ -258,7 +258,7 @@ send("Hello", "Sun", "Jane", "World")
 send(message = "Hello", cc = "Sun", bcc = c("Jane", "Rochelle"), recipient = "World")
 ```
 
-Also, remember functions don't have what CS people called side-effects. Functions only define local variables = They don't change objects stored in the global environment, so on. (Consider the difference between `<-` and `=` for assignments.) That's why you can use functions for reusable tasks since it does not interrupt other important things in your system.
+Also, note that functions don't have what CS people called side-effects. Functions only define local variables = They don't change objects stored in the global environment. (Consider the difference between `<-` and `=` for assignments.) That's why you can use functions for reusable tasks since it does not interrupt other important things in your system.
 
 See [the following example](https://darrenjw.wordpress.com/2011/11/23/lexical-scope-and-function-closures-in-r/) from Wilkinson.
 
@@ -271,6 +271,8 @@ f <- function(x)
   a*x + b
 }
 
+f(2)
+
 g <- function(x)
 {
   a = 2
@@ -281,92 +283,12 @@ g <- function(x)
 g(2) # a equals still 1 
 ```
 
-## 3.1. Debugging 
-
-### 3.1.1. RStudio debugging tools 
-
-Debugging is a process. Don't use this process when you're writing a new function, but when you try to fix it. The idea is try to fail systematically.
-
-- Realize that you have a bug.
-- Make it repeatable. (Remove the code until you get to the smallest snippet that still causes the error.)
-- Locate the bug.
-- Fix it and test it.
-
-RStudio has several debugging tools. 
-- `traceback`: list the sequence of calls that lead to the error.
-- Rerun with Debug tool and `options(error = browser)`: opens an interactive session where the error occurred.
-- breakpoints and `browser()`: opens an interactive session at an arbitrary location in the code.
-
-```{r, eval = FALSE}
-f <- function(a) g(a)
-g <- function(b) h(b)
-h <- function(c) i(c)
-i <- function(d) "a" + d #"a" and d are non-numeric and + is a binary operator
-
-f(10)
-```
-
-### 3.1.2. Condition handling 
-
-- `try()`: continue execution even when an error occurs.
-- `tryCatch()`: specify handler functions when a condition is signalled.
-
-```{r, eval = FALSE}
-f1 <- function(x) {
-  log(x)
-  10
-}
-
-f1("x")
-
-f2 <- function(x) {
-  try(log(x))
-  10
-}
-
-f2("a") # Now it's running through with an error
-
-```
-
-```{r}
-show_condition <- function(code) {
-  tryCatch(code,
-    error = function(c) "error",
-    warning = function(c) "warning",
-    message = function(c) "message"
-  )
-}
-
-show_condition(stop("!")) # error
-show_condition(warning("?!")) # warning
-show_condition(message("?")) # message 
-
-```
-
-** Fail fast (defensive programming) **
-
-- Be strict about what you accept. You can use `stopifnot` from `assertthat` package, or simple `if` statements and `stop()`.
-- Avoid functions that use [non-standard evaluations](http://adv-r.had.co.nz/Computing-on-the-language.html#nse) like subset. When they fail, they often fail with uninformative error messages.
-- Avoid functions that return different types of output depending on input like `sapply` (which returns different types of vectors depending on input types). Never use, `sapply` inside a function. 
-- `map` function from purrr package is a better alternative if you take type-consistency seriously.
-
-
-```{r}
-# Why sapply is bad 
-
-sapply(1:100, paste) # return character 
-
-sapply(integer(), paste) # return list!
-
-library(purrr)
-map(1:100, paste) # return list
-
-map(integer(), paste) # return list
-```
-
 # 4. Loops {#loops}
 
 Loops in R also work basically the same way as in Python, with just a few adjustments.  First, recall that index positions in R start at 1.  Second, ```while()``` and ```for()``` are functions rather than reserved operators, meaning they must take arguments in parentheses.  Third, just like ```else```, the ```in``` operator *is* reserved and takes no arguments in parentheses.  Fourth, the conditional execution must appear between curly brackets.  Finally, indentation is meaningless, but each new operation must appear on a new line.
+
+- `while()`: when we have no idea how many times loop needs to be executed.
+- `for()`: when we know how many times loop needs to be executed.
 
 ```{r}
 fruits <- c("apples", "oranges", "pears", "bananas")
@@ -383,8 +305,6 @@ for(i in 1:length(fruits)){
   print(fruits[i])
 }
 ```
-
-Can you improve the for loop above by making the code more concise? 
 
 # 5. Vectorization {#vectorization}
 
@@ -446,118 +366,92 @@ make.plural('apple')
 # apply that function to every element
 lapply(fruit, make.plural) # returns a list
 sapply(fruit, make.plural) # returns a named vector
+
+library(purrr) # load package
+map(fruit, make.plural) # type consistent
+```
+
+```{r}
+# Why sapply is bad 
+
+sapply(1:100, paste) # return character 
+
+sapply(integer(), paste) # return list!
+
+library(purrr)
+map(1:100, paste) # return list
+
+map(integer(), paste) # return list
 ```
 
 The multivariate version of `sapply` is `mapply`. Use this if you have a function that takes in 2 or more arguments.
 
-### 5.3 Speeding Up For Loops
+# 6. Debugging 
 
-So, what can you do if you really do need a for loop? There are two key steps you can take: first, take advantage of R's vectorization capabilities, which tell R ahead of time that all the data the for loop is working on has the same class, making it more efficient. Second, create and store as much of the information outside the loop (i.e., in the global environment, or in the highest level loop if you have nested loops) as you can. Take a look at the example below, which explains each step in more detail. 
+## 6.1. RStudio debugging tools 
 
-```{r}
-fruit <- c("apple", "orange", "pear", "banana", "plum", 
-           "peach", "lime", "lemon", "grape", "cherry")
+Debugging is a process. Don't use this process when you're writing a new function, but when you try to fix it. The idea is try to fail systematically.
 
-veggie <- c("celery", "beets", "arugula", "carrots", "radish",
-            "turnip", "broccoli", "cauliflower", "pea", "cucumber")
+- Realize that you have a bug.
+- Make it repeatable. (Remove the code until you get to the smallest snippet that still causes the error.)
+- Locate the bug.
+- Fix it and test it.
 
-produce <- data.frame(fruit, veggie)
+RStudio has several debugging tools. 
+- `traceback`: list the sequence of calls that lead to the error.
+- Rerun with Debug tool and `options(error = browser)`: opens an interactive session where the error occurred.
+- breakpoints and `browser()`: opens an interactive session at an arbitrary location in the code.
 
-# We're going to make this bigger so that we really have something to work with:
+```{r, eval = FALSE}
+f <- function(a) g(a)
+g <- function(b) h(b)
+h <- function(c) i(c)
+i <- function(d) "a" + d #"a" and d are non-numeric and + is a binary operator
 
-lotsofproduce <- do.call("rbind", replicate(1000, produce, simplify = FALSE))
+f(10)
+```
 
-# let's say we want to want to fill in a new column, "matches," with a "yes" whenever the entries for fruit and veggies both contain the letter "a."
+## 6.2. Condition handling 
 
-# This is some code to time our for loop: 
-  # start the clock!
+- `try()`: continue execution even when an error occurs.
+- `tryCatch()`: specify handler functions when a condition is signalled.
 
-ptm <- proc.time()
-
-lotsofproduce$matches <- "No"
-
-for (i in 1:nrow(lotsofproduce)) {
-  if(grepl("a", lotsofproduce$fruit[i])==grepl("a", lotsofproduce$veggie[i])){
-    lotsofproduce$matches[i] <- "Yes"
-  }
+```{r, eval = FALSE}
+f1 <- function(x) {
+  log(x)
+  10
 }
 
-# stop the clock
-proc.time() - ptm
+f1("x")
+
+f2 <- function(x) {
+  try(log(x))
+  10
+}
+
+f2("a") # Now it's running through with an error
 
 ```
 
-We got the results we wanted (this time - it's not a very big dataset!). But can we improve on our code? 
-
 ```{r}
-# First we could put in the vectors instead of making it loop through a dataframe:
-ptm <- proc.time()
-
-lotsofproduce$matches <- "No"
-
-for (i in 1:nrow(lotsofproduce)) {
-  if(grepl("a", fruit[i])==grepl("a", veggie[i])){
-    lotsofproduce$matches[i] <- "Yes"
-  }
+show_condition <- function(code) {
+  tryCatch(code,
+    error = function(c) "error",
+    warning = function(c) "warning",
+    message = function(c) "message"
+  )
 }
 
-proc.time() - ptm
+show_condition(stop("!")) # error
+show_condition(warning("?!")) # warning
+show_condition(message("?")) # message 
+
 ```
 
-That looks like only a little bit of time saved, but it's actually about a quarter of the function time that we cut, and it all adds up when you're looping through thousands of rows!
+** Fail fast (defensive programming) **
 
-```{r}
-# Then we could move our conditional logic outside the for loop:
-ptm <- proc.time()
-
-lotsofproduce$matches <- "No"
-
-cond1 <- as.logical(grepl("a", lotsofproduce$fruit)) # this creates a logical vector with the results of our first conditional test
-
-cond2 <- as.logical(grepl("a", lotsofproduce$veggie))
-
-for (i in 1:nrow(lotsofproduce)) {
-  if(cond1[i]==cond2[i]){
-    lotsofproduce$matches[i] <- "Yes"
-  }
-}
-
-proc.time() - ptm
-```
-
-This cut our loop by more than half again! Can we do better than that? 
-
-```{r}
-# Then we could vectorize matches and change our subsetting to use brackets (which takes less time for R to "read" than the $ notation for vectors:
-ptm <- proc.time()
-
-matches <- rep("No", nrow(lotsofproduce))
-
-cond1 <- as.logical(grepl("a", lotsofproduce$fruit)) # this creates a logical vector with the results of our first conditional test
-
-cond2 <- as.logical(grepl("a", lotsofproduce$veggie)) # vector for second conditional test
-
-for (i in 1:nrow(lotsofproduce)) {
-  if(cond1[i]==cond2[i]){
-    matches[i] <- "Yes"
-  }
-}
-
-lotsofproduce <- cbind(lotsofproduce, matches)
-
-proc.time() - ptm
-```
-
-A fraction of a second! Can't beat that, right? 
-
-```{r}
-# In fact, we could do this even faster by not using a loop at all. Instead, we can use an ifelse statement (which makes it completely vectorized, eliminating the need for a loop):
-ptm <- proc.time()
-
-cond1 <- as.logical(grepl("a", lotsofproduce$fruit)) 
-cond2 <- as.logical(grepl("a", lotsofproduce$veggie))
-
-lotsofproduce$matches <- ifelse(cond1==cond2,"Yes", "No")
-
-proc.time() - ptm
+- Be strict about what you accept. You can use `stopifnot` from `assertthat` package, or simple `if` statements and `stop()`.
+- Avoid functions that use [non-standard evaluations](http://adv-r.had.co.nz/Computing-on-the-language.html#nse) like subset. When they fail, they often fail with uninformative error messages.
+- Avoid functions that return different types of output depending on input like `sapply` (which returns different types of vectors depending on input types). Never use, `sapply` inside a function. 
+- `map` function from purrr package is a better alternative if you take type-consistency seriously.
 ```
