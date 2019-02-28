@@ -182,3 +182,4 @@ A loop that keeps executing as long as some condition is true. See also: [for lo
 
 #### whitespace
 Any character or series of characters that represent horizontal or vertical space. Generally, space-bar, tab, return/enter. Some whitespace in python is represented differently than what you see. A return is `\n` and tab `\t`.
+

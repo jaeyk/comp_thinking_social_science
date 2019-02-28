@@ -40,11 +40,3 @@ The goal is to convert these semi-structured texts to a tabular dataset of **rec
 3. Country that is making the recommendation (*from*)
 4. The year when the review took place (*year*)
 5. The response to the recommendation, i.e. whether the reviewed country rejects, accepts, etc (*decision*)
-
-In other words, we want to turn this:
-
-<img src="img/text.png" width="600">
-
-into this:
-
-<img src="img/tabular.png" width="400">

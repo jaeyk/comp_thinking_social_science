@@ -10,9 +10,15 @@ Lectures draw heavily upon material from the D-Lab Python Intensives course and 
 
 # Differences Between R and Python 3
 
+
+
+The number of questions on Stack Overflow on Python versus on R.
+
+![python vs. r](https://community.rstudio.com/uploads/default/original/1X/bd81fdd73c8f6135d6ed35ae7dae62979abfd662.png)
+
 ## Similarities
 * Python 3, like R, is a *functionalized* language (Python 2 is not). This means that commands (usually verbs or package functions) are followed by parentheses, e.g., `help()`. 
-* By extension, this means that Python is also an *object-oriented* language. Every number, string, data structure, function, [class](https://docs.python.org/3/tutorial/classes.html?highlight=class), [module](https://docs.python.org/3/tutorial/modules.html) exist in its own box. However, it does not store data in memory the same way that R does. 
+* By extension, this means that Python is also an *object-oriented* language. Every number, string, data structure, function, [class](https://docs.python.org/3/tutorial/classes.html?highlight=class), [module](https://docs.python.org/3/tutorial/modules.html) exist in its own box. However, it does not store data in memory the same way that R does.
 * Both languages are open-source (with all the costs and benefits that entails). 
 * The overall syntax is fairly similar: R and Python are both descendants of C and C++ (like French and Spanish are both Indo-European languages). 
 
@@ -25,11 +31,11 @@ Lectures draw heavily upon material from the D-Lab Python Intensives course and 
 * Python doesn't have an IDE similar to RStudio, which means the interface is fairly different (though the process of typing a script in a notebook is very similar to an R-markdown file).
 
 ## Other Considerations
-* Python is a multi-use or generalist-type programming language, whereas R is a statistical language built specifically for manipulating data. That means that Python is good at both scientific and general computing. Yet R has much more specific and tailored capabilities where it comes to things like analyzing and visualizing data. Personally, I use R for data manipulation, analysis, and visualization and Python for API, webscraping, and machine learning. Being fluent in both languages comes handy when your project involves various computing tasks.
+* Python is a multi-use or generalist-type programming language, whereas R is a statistical language built specifically for manipulating data. That means that Python is good at both scientific and general computing. Yet R has much more specific and tailored capabilities where it comes to things like analyzing and visualizing data. Personally, I use R for data manipulation, analysis, and visualization and Python for API, webscraping, and machine learning. Being fluent in both languages comes handy when your project requires a wide range of tasks.
 
 ### Python data science libraries 
 * NumPy (Numerical Python) for manipulating numerical data (e.g., ndarray)
-* Pandas for manipulating labled data (closer to tidyverse in R)
+* Pandas for manipulating labeled data (closer to tidyverse in R)
 * Matplotlib for data visualization (closer to ggplot2 in R)
 * statsmodels for statistical analysis
 * SciPy for scientific computing 
