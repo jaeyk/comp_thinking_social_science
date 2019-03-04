@@ -1,6 +1,6 @@
 # Python Basics: 0-1 Introduction.
 
-Lectures draw heavily upon material from the D-Lab Python Intensives course and [Python for Data Science](https://proquest.safaribooksonline.com/book/programming/python/9781491957653/preliminaries/why_python_html#X2ludGVybmFsX0h0bWxWaWV3P3htbGlkPTk3ODE0OTE5NTc2NTMlMkZlc3NlbnRpYWxfbnVtcHlfaHRtbCZxdWVyeT0=) by Wes McKinney. Additional homeworks are available in the folder should you be interested. These lectures will teach you how to:
+Lectures draw heavily upon material from the D-Lab Python Intensives course, [Python for Everybody: Exploring Data Using Python 3](https://open.umn.edu/opentextbooks/textbooks/336) by Severance,  [Think Python: How to Think Like a Computer Scientist](http://www.greenteapress.com/thinkpython/thinkpython.pdf) by Downey, and [Python for Data Science](https://proquest.safaribooksonline.com/book/programming/python/9781491957653/preliminaries/why_python_html#X2ludGVybmFsX0h0bWxWaWV3P3htbGlkPTk3ODE0OTE5NTc2NTMlMkZlc3NlbnRpYWxfbnVtcHlfaHRtbCZxdWVyeT0=) by Wes McKinney. Additional homeworks are available in the folder should you be interested. These lectures will teach you how to:
 
 1. Run Python from both the Shell and in an IPython (Jupyter) Notebook
 2. Write basic commands using Python syntax
