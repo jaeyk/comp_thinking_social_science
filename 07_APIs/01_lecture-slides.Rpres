@@ -1,7 +1,7 @@
 Accessing Databases via Web APIs
 ========================================================
 author: PS239T
-date: Spring 2018
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 What is an API?
 ========================================================
