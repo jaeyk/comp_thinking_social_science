@@ -80,6 +80,8 @@ Wickham, H. (2014). [Tidy data](https://img1.wsimg.com/blobby/go/48119c9a-d3e2-4
 
 ## Python
 
+Ohri, A. (2018). [Python® for R Users: A Data Science Approach](https://onlinelibrary-wiley-com.libproxy.berkeley.edu/doi/book/10.1002/9781119126805). John Wiley & Sons, Inc.
+
 Severance, C. (2016). [Python for Everybody: Exploring Data Using Python 3](https://open.umn.edu/opentextbooks/textbooks/336). Independent.
 
 VanderPlas, J. (2016). [Python data science handbook: essential tools for working with data](https://jakevdp.github.io/PythonDataScienceHandbook/). O'Reilly Media, Inc.
