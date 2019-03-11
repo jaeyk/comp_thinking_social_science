@@ -4,20 +4,42 @@ author: PS239T
 date: Spring 2019
 autosize: TRUE
 
-Why HTML?
-========================================================
 
-Understanding the basic structure of HTML (and two other languages often used to customize websites, CSS and Javascript) allows us to: 
 
-- pursue data collection projects that entail webscraping
-- improve the design of our own websites (you have one, right?)
-- evaluate how best to share our findings with a web-based audience 
+[Mozila Foundation](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Getting_started) have amazing tutorials on Web fundamentals. I use some of their contents for this section. 
 
-Learning Objectives
-========================================================
 
-- understand enough HTML structure to build a scraper (next week)
-- discern what components of a webpage are relevant to that task (CSS, HTML, Javascript) and which probably are not
+Again, How the Web Works 
+===========================================================================================
+
+Computers connected to the web are **clients** and **servers**.
+
+- Clients: the typical web user's internet-connected devices 
+
+- Servers: computers that store webpages, sites, or apps.
+
+  
+
+![client-server](https://mdn.mozillademos.org/files/8973/Client-server.jpg)
+
+
+
+
+
+[The TCP/IP model](https://en.wikipedia.org/wiki/Internet_protocol_suite) has 4 components (for more information, see the post by [Karl Dubost](https://dev.opera.com/articles/http-basic-introduction/)). 
+
+1. **Link** describes the access to physical media (e.g. using the network card)
+2. **Internet** describes the envelope and routing of data — how it is packaged (IP)
+3. **Transport** describes the way the data is delivered from the starting point to the final destination (TCP, UDP)
+4. **Application** describes the meaning or format of the transferred messages (HTTP)
+
+
+
+When using an API, we don't need to worry about how web content is organized. Since that information is provided by the API documentation (key-value pairs). As long as you know how HTTP (Hyptertext Transfer Protocol) works, then it's fine. Unfortunately, that's not the case for web scraping. 
+
+![web-history](https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Internet_Key_Layers.png/525px-Internet_Key_Layers.png)
+
+
 
 What is a Website?
 ========================================================
@@ -25,15 +47,22 @@ What is a Website?
 Some combination of codebase, database
 
 The "front end" product is HTML + CSS stylesheets + Javascript
-- HTML: 
-  - provides the skeleton of the website (aka, the "tree")
-  - starts with call to `<html>` tag, ends with `</html>` tag
-- CSS: 
-  - fleshes out the website (provides color, shape, styling, etc.)
-  - uses *.css files or code embedded in `<style>` `</style>` or `<link>` `</link>` tags
-- Javascript:
-  - brings the website to life (dynamic or interactive content)
+- HTML (structure + semantics): 
+  - Provides the structure of the website (aka, the "tree") 
+  - Starts with call to `<html>` tag, ends with `</html>` tag
+  - Note: tags are case-sensitive. `<html>` not `HTML`.
+- CSS (styles + layout): 
+  - Fleshes out the website (provides color, shape, styling, etc.)
+  - Uses *.css files or code embedded in `<style>` `</style>` or `<link>` `</link>` tags
+- Javascript (all the dynamic and interactive stuff):
+  - Brings the website to life (dynamic or interactive content)
   - *.js files or code embedded in `<script>` `</script>` tags
+
+
+
+![layered-website](https://www.lifewire.com/thmb/ifaXMe5Av9OPfcUIJGyWJl0PGKI=/768x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/content-56a1462b3df78cf7726914d7.jpg)
+
+
 
 This is a Website
 ========================================================
@@ -62,12 +91,22 @@ HTML: Basic Structure
 </html>
 ```
 
+<!DOCTYPE html>: The doctype was a documentation standard in the early 1990s when HTML was young. It's now a historical artifact that shows that the document is a valid docttype.
+
+
+
 HTML is a Tree
 ========================================================
 
 ![tree](http://www.openbookproject.net/tutorials/getdown/css/images/lesson4/HTMLDOMTree.png)
 
-Where else have we seen a tree structure before? 
+ 
+
+This tree structure makes sense since that's how most documents are structured.
+
+![document-example](https://mdn.mozillademos.org/files/12371/newspaper_small.jpg)
+
+
 
 Document Object Model
 ========================================================
@@ -87,31 +126,25 @@ Note that the DOM retains the tree structure:
 HTML Elements
 ========================================================
 
-Generally speaking, an HTML element has three components:
+HTML works through elements. 
 
-1. Tags (starts and ends the element)
-2. Attributes (gives information about the element)
-3. Content (the text/image/etc. *inside* the element)
+1. Tags: the opening and closing tag. Failing to include either one of those two tags will cause an error.
+2. The element: the opening tag + the closing tag + the content 
+3. The content: the content of the the element 
 
-![elements](https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/HTML_element_structure.svg/330px-HTML_element_structure.svg.png)
+![elements](https://mdn.mozillademos.org/files/9347/grumpy-cat-small.png)
 
-HTML: Tags
-========================================================
-
-![html-tags](img/html-tags.png)
-
-<small>[Image credit](http://miriamposner.com/blog/wp-content/uploads/2011/11/html-handout.pdf)</small>
 
 Common HTML Tags
 ========================================================
 
-| Tag        | Meaning           | 
+| Tag        | Meaning           |
 | ------------- |-------------  |
-| `<head>`     | page header (metadata, etc | 
+| `<head>`     | page header (metadata, etc |
 | `<body>`     | holds all of the content |
 | `<p>` | regular text (paragraph) |
 | `<h1>`,`<h2>`,`<h3>` | header text, levels 1, 2, 3  |
-| `ol,`,`<ul>`,`<li>` | ordered list, unordered list, list item |
+| `<ol>,`,`<ul>`,`<li>` | ordered list, unordered list, list item |
 | `<a href="page.html">` | link to "page.html" |
 | `<table>`,`<tr>`,`<td>`  | table, table row, table item |
 | `<div>`,`<span` | general containers |
@@ -119,12 +152,14 @@ Common HTML Tags
 HTML Attributes
 ========================================================
 
-- HTML elements can have attributes
-- Attributes provide additional information about an element
-- Attributes are always specified in the start tag
-- Attributes come in name/value pairs like: name="value"
+- Elements can have attributes. 
+  - Attributes contain information about the element which you don't want to appear in the actual content. In this case, `class` attribute allows you to target the element with style information and other things. One of the most famous attributes would be `href`, which specifies the web address you want the link to point to. Something like `<a href=https://www.mozilla.org/ title=The Mozilla homepage>favorite website</a>`
+  - Syntax 
+    - A space between it and the element name.
+    - The attribute name, followed by an equal sign.
+    - An attribute value, with opening and closing quote marks wrapped around it. 
 
-![html-attributes](img/attributes.png)
+![html-attributes](https://mdn.mozillademos.org/files/9345/grumpy-cat-attribute-small.png)
 
 CSS
 ========================================================
@@ -137,18 +172,22 @@ CSS
 - You can piggyback on these to jump to the parts of the markup that contain the data you need.
 
 CSS Anatomy
-========================================================
+======================================
+
+CSS contains rules with two parts: **selectors** and **properties**
+
+![css-syntax](https://www.w3schools.com/css/selector.gif)
+
+A selector identifies what part of your web page gets styled. The property tells the browser what to change, and the value lets the browser know what the change should be.
 
 * Selectors
-    - Element selector: `p`
-    - Class selector:  `p class="blue"`
-    - I.D. selector: `p id="blue"`
-
+    * Element selector: `p`
+    * Class selector:  `p class="blue"`(class can be applied to more than one element)
+    * I.D. selector: `p id="blue"`(id for one element; should be unique within a page)
 * Declarations
     - Selector: `p`
     - Property: `background-color`
     - Value: `yellow`
-
 * Hooks
 
 ***
@@ -229,7 +268,7 @@ Assemble Your Tools
 Inspect Element
 ========================================================
 
-Google Chrome comes with great developer tools to help parse a webpage.
+Google Chrome comes with great developer tools to help parse a webpage. (For more information, click this [link](https://developers.google.com/web/tools/chrome-devtools/).)  To use DevTools, press Command+Option+C (Mac) or Control+Shift+C (Windows, Linux, Chrome OS).
 
 ![inspect element](img/inspect-element.png)
 
