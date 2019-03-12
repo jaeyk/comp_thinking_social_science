@@ -94,9 +94,11 @@ McKinney, W. (2010, June). [Data structures for statistical computing in python]
 
 Mitchell, R. (2015). [Web Scraping with Python: Collecting More Data from the Modern Web](http://shop.oreilly.com/product/0636920034391.do). O'Reilly Media, Inc.
 
+Nair, V G. (2014). [Getting Started with Beautiful Soup](https://www.amazon.com/Getting-Started-Beautiful-Soup-Vineeth-dp-1783289554/dp/1783289554/ref=mt_paperback?_encoding=UTF8&me=&qid=). Packt Publishing.
+
 Avasarala, S. (2014). [Selenium Testing Tools Definitive Guide](https://ebookcentral-proquest-com.libproxy.berkeley.edu/lib/berkeley-ebooks/detail.action?docID=1441786). Packt Publishing Ltd.
 
-Nolan, D., & Lang, D. T. (2014). [*XML and web technologies for data sciences with R*](https://link.springer.com/book/10.1007%2F978-1-4614-7900-0). New York and Heidelberg: Springer.
+Nolan, D., & Lang, D. T. (2014). [XML and web technologies for data sciences with R](https://link.springer.com/book/10.1007%2F978-1-4614-7900-0). New York and Heidelberg: Springer.
 
 Boeing, G., & Waddell, P. (2017). [New insights into rental housing markets across the United States: Web scraping and analyzing craigslist rental listings](https://journals.sagepub.com/doi/abs/10.1177/0739456X16664789). Journal of Planning Education and Research, 37(4), 457-476.
 
