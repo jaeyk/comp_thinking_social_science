@@ -46,8 +46,6 @@ Bradnam, K., & Korf, I. (2012). [UNIX and Perl to the rescue!: a field guide for
 
 ### Git
 
-Santacroce, F. (2015). [Git Essentials](https://www.amazon.com/dp/B00WX1CWIC/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1). Packt Publishing 
-
 Chacon, S. and Straub, B. (2014). [Git Pro book](https://git-scm.com/book/en/v2). Apress.
 
 ## Regular expressions 
@@ -93,10 +91,6 @@ McKinney, W. (2010, June). [Data structures for statistical computing in python]
 ## Web Scraping 
 
 Mitchell, R. (2015). [Web Scraping with Python: Collecting More Data from the Modern Web](http://shop.oreilly.com/product/0636920034391.do). O'Reilly Media, Inc.
-
-Nair, V G. (2014). [Getting Started with Beautiful Soup](https://www.amazon.com/Getting-Started-Beautiful-Soup-Vineeth-dp-1783289554/dp/1783289554/ref=mt_paperback?_encoding=UTF8&me=&qid=). Packt Publishing.
-
-Avasarala, S. (2014). [Selenium Testing Tools Definitive Guide](https://ebookcentral-proquest-com.libproxy.berkeley.edu/lib/berkeley-ebooks/detail.action?docID=1441786). Packt Publishing Ltd.
 
 Nolan, D., & Lang, D. T. (2014). [XML and web technologies for data sciences with R](https://link.springer.com/book/10.1007%2F978-1-4614-7900-0). New York and Heidelberg: Springer.
 
