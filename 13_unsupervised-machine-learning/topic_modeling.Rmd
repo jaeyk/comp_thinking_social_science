@@ -12,10 +12,8 @@ We touched on this concept briefly when we discussed tf-idf in the earlier sessi
 # Setup
 ```{r}
 
-rm(list=ls())
-
 # load packages
-require(tm) # for text mining
+library(tm) # for text mining
 library(tidyverse) # for tidyverse
 library(tidytext) # for tidy text analysis
 library(quanteda) # for text analysis and examples
