@@ -37,7 +37,10 @@ Section: Wednesday 4pm - 6pm ([Barrows](https://www.google.com/maps/place/Barrow
 
 ### Office Hours
 
-By appointment with Julia Christensen (email or bCourses to set up), 715 Barrows.
+By appointment with Julia Christensen (email or bCourses to set up), 
+
+- 715 Barrows (with Julia)
+- 390 Barrows (with Jae)
 
 ### bCourses
 
@@ -125,10 +128,10 @@ The schedule is subject to change based on the class's rate of progress.
 * **Feb. 20:** Data Visualization in R (group formation due)
 * **Feb. 25/27:** Intro to Python
 * **Mar. 4/6:** APIs (project proposal draft due, see [the 2018 examples](C_final-projects.md)) 
-* **Mar. 11/13:** HTML/CSS/Javascript 
-* **Mar. 18/20:** Web scraping (guest lecture by [Jaren Haber](http://dlab.berkeley.edu/people/jaren-haber), Sociology & Computational Text Analysis Working Group)
+* **Mar. 11/13:** HTML/CSS/Javascript & Web scraping 
+* **Mar. 18/20:** Research Design and Computational Methods (guest lecture by [Jaren Haber](http://dlab.berkeley.edu/people/jaren-haber), Sociology & Computational Text Analysis Working Group)
 * **Mar. 25/27:** SPRING BREAK [no class] (final project proposal due)
-* **Apr. 1/3**:  Online Sampling, Survey, and Field Experiments  [Note: final presentations occur in lieu of regular section in April]
+* **Apr. 1/3**:  Online Sampling and Survey  [Note: final presentations occur in lieu of regular section in April]
 * **Apr. 8/10:** Text Analysis in R (guest lecture by [Marla Stuart](https://bids.berkeley.edu/people/marla-stuart), Social Work & BIDS Data Science Fellow) 
 * **Apr. 15/17:** Unsupervised Machine Learning in R
 * **Apr. 22/24:** Supervised Machine Learning in R (guest lecture by [Chris Kennedy](https://bids.berkeley.edu/people/chris-kennedy), Biostats & BIDS Data Science Fellow)
