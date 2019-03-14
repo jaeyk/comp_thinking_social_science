@@ -5,7 +5,25 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: html_document
 ---
 
-The following material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge and David Robinson.
+The technical part of the material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge and David Robinson and the theoretical part from Foundations of Statistical Natural Language Processing (1999) by Christopher D. Manning and Heinrich Schütze. Silge and Robinson's book is an accessible introduction to text analysis in R. I like the book a lot since it uses tidyverse framework so you can use the skills you developed earlier in this course to text analysis. Manning and Schütze's book is still the best theoretical introduction to natural language processing. 
+
+**Learning objectives**
+
+    1. Understanding basic theoretical ideas of natural language processing (NLP)
+    2. Understanding the steps you need to take to conduct a text analysis 
+
+This is part of the analysis part of the course. We start from text analysis fundamentals to dictionary-based methods (non-model approach) to topic modeling (unsupervised learning) to classification (supervised learning).  
+
+Before digging into technical details, let's take a step back and think about this question for a movement: "What Is a Language?"
+
+- **Rationalist approach**: Chomsky's "the poverty of the stimulus" argument -> language acquisition device and universal grammar (language is something hardwired in our brain and has a very specific design.)
+- **Empiricist approach**: They also agree that language is part of our brain. But they believe that our brain doesn't have a very specific design, but has general operational rules like association, pattern recognition, and generalization. It is an old idea that is now re-surging with the new computational methods. 
+    
+**Statistical NLP** is a child of the empiricist approach. The belief is we can understand the structure of language by specifying an appropriate general language model, and then inducing the values of parameters by applying statistical, pattern recognition, and machine learning methods to a large amount of language use (mostly big texts called a *corpus* -- Latin word for "body"). 
+
+Language processing is getting the meaning out of the structure of language. Statistical NLP does that by treating language and cognition as **probabilistic** phenomenon. Cognition has some kind of quantitative framework that can handle uncertainty and incomplete information that surround humans in the world. If cognition is probabilistic, then its outcome (language) is also probabilistic. (For this reason, the deeper theoretical understanding of NLP requires some knowledge of probability and information theory.)
+
+This idea is the foundation for everything we do in computational text analysis.
 
 # Setup
 ```{r}
@@ -120,13 +138,14 @@ inaug_filtered %>%
 
 - Remove common words (something like "the") not useful for the analysis
 - These words are technically called [stop words](https://en.wikipedia.org/wiki/Stop_words) in natural language processing.
+- Also, remember that removing stop words is not always a good idea. Think about "to be" or "not to be". If you delete "not", there's no difference between the two words. 
+- If you want to cut out (assumed unnecessary) parts of the text, you can try either [stemming](https://en.wikipedia.org/wiki/Stemming) (no "ed", "ing", or "ly" in the end) or [lemminization](https://en.wikipedia.org/wiki/Lemmatisation)  (better -> goo).
 
 ```{r}
 MLK_df %>%
   unnest_tokens(word, text) %>%
   count(word, sort = TRUE)
 ```
-
 
 ```{r}
 # load stopwords dataset
@@ -138,7 +157,6 @@ MLK_df %>%
   anti_join(stop_words) %>%  
   count(word, sort = TRUE)
 ```
-
 
 - Now, visualize the results.
 
@@ -182,7 +200,7 @@ inaug_words <- left_join(inaug_words, inaug_total)
 inaug_words
 ```
 
-Note that the plot below proves Zipf's law: the frequency that a word appears is inversely proportional to its rank. As we learn later, this insight is key to understanding how topic modeling works. In most cases, we need only a few number of topics because important words are rare.
+Note that the plot below proves Zipf's law: the frequency that a word appears is inversely proportional to its rank. As we learn later, this insight is key to the understanding of how topic modeling works. In most cases, we need only a few number of topics because on a few words will have lots of examples.
 
 
 ```{r}
@@ -191,7 +209,6 @@ Note that the plot below proves Zipf's law: the frequency that a word appears is
 ggplot(data = inaug_words, aes(n/total, fill = President)) +
   geom_histogram(show.legend = FALSE) +
   facet_wrap(~President, ncol = 5, scales = "free_y")
-
 
 ```
 
@@ -220,7 +237,7 @@ inaug_words %>%
   group_by(President) %>%
   top_n(10) %>%
   ungroup %>% 
-  ggplot(aes(word, tf_idf, fill = President)) +
+  ggplot(aes(reorder(word, tf_idf), tf_idf, fill = President)) +
     geom_col(show.legend = FALSE) +
     labs(x = NULL, y = "tf-idf") +
     facet_wrap(~President, ncol = 3, scales = "free") +
