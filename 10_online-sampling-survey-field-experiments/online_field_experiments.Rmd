@@ -33,6 +33,8 @@ library(png)
 
 But, mostly for associations. Big data could be a boon for p-hacking. (Remember, the statistical power is a function of the size of the data set.). Don't be fooled by statistical **significance**.
 
+--- 
+
 [Goodhart's law](https://en.wikipedia.org/wiki/Goodhart%27s_law): "When a measure [p-value] becomes a target, it ceases to be a good measure" (rephrased by Marilyn Strathern). FYI, what the heck is p-value? 
 
 For a credible research, we need to think more than associations. (e.g., Threats to internal and external validity by Campbell and Stanley)
