@@ -111,6 +111,7 @@ How to build a panel data using Web data
     - Following both participants (also there's a subcategory divided by verified physical variable) of the movement (Occupy Gezi movement) and non-participants
     - Based on their retweet behavior in the 17 months leading up to the Gezi movement (before), during the movement (during), and the five months after the movement (after)
     - Trade-off between external and internal validity
+
 ---
 
 ### Evidence
