@@ -18,7 +18,9 @@ Abelson, H., & Sussman, G. J. (1985). [Structure and Interpretation of Computer 
 
 ## Computational social science 
 
-Alvarez, R. M. (Ed.). (2016). [Computational social science](https://www.cambridge.org/core/books/computational-social-science/FB97BD1704D957183899DE120BEE2E4B). Cambridge University Press.
+Alvarez, R. M. (Ed.). (2016). [Computational Social Science](https://www.cambridge.org/core/books/computational-social-science/FB97BD1704D957183899DE120BEE2E4B). Cambridge University Press.
+
+Salganik, M. J. (2017). [Bit by Bit: Social Research in the Digital Age](https://press.princeton.edu/titles/11057.html#bit-navbar). Princeton University Press.
 
 Gitelman, L. (Ed.). (2013). [Raw data is an oxymoron](http://raley.english.ucsb.edu/wp-content/Engl800/RawData-excerpts.pdf). MIT Press.
 
@@ -31,8 +33,6 @@ boyd, D., & Crawford, K. (2012). [Critical questions for big data: Provocations 
 Bowers, J. et al. (2011). [Six steps to a better relationship with your future self](http://www.jakebowers.org/PAPERS/tpm_v18_n2.pdf). *The Political Methodologist*, 18(2), 2-8.
 
 Lazer, D. et al. (2009). [Life in the network: the coming age of computational social science](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2745217/). *Science*, 323(5915), 721.
-
-
 
 ## Unix and Git 
 
@@ -98,12 +98,15 @@ Boeing, G., & Waddell, P. (2017). [New insights into rental housing markets acro
 
 ## Data visualization
 
-Healy, K. Forthcoming. [Data Visualization
-A practical introduction](https://socviz.co/). Princeton University Press.
+Healy, K. Forthcoming. [Data Visualization A practical introduction](https://socviz.co/). Princeton University Press.
 
 Wickham, H. (2016). [ggplot2: elegant graphics for data analysis](https://www.springer.com/us/book/9780387981413). Springer.
 
 Chang, W. (2012). [R graphics cookbook: practical recipes for visualizing data](http://shop.oreilly.com/product/0636920023135.do). O'Reilly Media, Inc.
+
+
+## Spatial analysis (mapping)
+Lovelace, R., Nowosad, J. & Muenchow, J. [Geocomputation with R](https://geocompr.robinlovelace.net/). CRC Press.
 
 ## Text analysis (some overalps with machine learning)
 
