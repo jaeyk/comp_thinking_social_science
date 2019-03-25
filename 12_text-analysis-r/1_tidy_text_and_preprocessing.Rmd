@@ -10,7 +10,7 @@ The technical part of the material is adapted from [Text Mining with R](https://
 **Learning objectives**
 
     1. Understanding basic theoretical ideas of natural language processing (NLP)
-    2. Understanding the steps you need to take to conduct a text analysis 
+    2. Understanding the steps students need to take to conduct a text analysis 
 
 This is part of the analysis part of the course. We start from text analysis fundamentals to dictionary-based methods (non-model approach) to topic modeling (unsupervised learning) to classification (supervised learning).  
 
