@@ -1,0 +1,21 @@
+---
+title: "Other_Resources"
+author: "Julia Christensen"
+date: "March 11, 2019"
+output: html_document
+---
+
+****************************************************
+# 1) GENERAL 
+
+(1) Geocomputation with R by Robin Lovelace, Jakub Nowosad, Jannes Muenchow
+* Link: 
+  https://geocompr.robinlovelace.net/
+*references scripts with example code. Scripts can be found here:
+  https://github.com/Robinlovelace/geocompr/tree/master/code
+
+(2) Ed Rubin's website 
+*Links:
+  http://edrub.in/ARE212/section12.html
+  http://edrub.in/ARE212/section13.html
+
