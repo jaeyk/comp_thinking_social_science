@@ -11,11 +11,25 @@ output: html_document
 (1) Geocomputation with R by Robin Lovelace, Jakub Nowosad, Jannes Muenchow
 * Link: 
   https://geocompr.robinlovelace.net/
-*references scripts with example code. Scripts can be found here:
+* Book references scripts with example code. Scripts can be found here:
   https://github.com/Robinlovelace/geocompr/tree/master/code
 
 (2) Ed Rubin's website 
-*Links:
-  http://edrub.in/ARE212/section12.html
-  http://edrub.in/ARE212/section13.html
+* Link to part 1: http://edrub.in/ARE212/section12.html
+* Link to part 2: http://edrub.in/ARE212/section13.html
+
+****************************************************
+# 2) Resources for using sf (simple feature)
+
+Package Documentation: https://cran.r-project.org/web/packages/sf/sf.pdf
+
+More resources: 
+* Link 1: https://cran.r-project.org/web/packages/sf/vignettes/sf1.html
+* Link 2: http://strimas.com/r/tidy-sf/
+* Link 3: https://r-spatial.github.io/sf/
+* Link 4: https://ggplot2.tidyverse.org/reference/ggsf.html
+* Link 5: https://dcl-2017-01.github.io/curriculum/notes/spatial-vis.html
+
+
+
 
