@@ -376,24 +376,29 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Tidy text and preprocessing in R</h1>
 <h4 class="author">Jae Yeon Kim</h4>
-<h4 class="date">25 March, 2019</h4>
+<h4 class="date">08 April, 2019</h4>
 
 </div>
 
 
-<p>The technical part of the material is adapted from <a href="https://proquest.safaribooksonline.com/9781491981641">Text Mining with R</a> (2017) by Julia Silge and David Robinson and the theoretical part from Foundations of Statistical Natural Language Processing (1999) by Christopher D. Manning and Heinrich Schütze. Silge and Robinson’s book is an accessible introduction to text analysis in R. I like the book a lot since it uses tidyverse framework so you can use the skills you developed earlier in this course to text analysis. Manning and Schütze’s book is still the best theoretical introduction to natural language processing.</p>
+<p>The technical part of the material is adapted from <a href="https://proquest.safaribooksonline.com/9781491981641">Text Mining with R</a> (2017) by Julia Silge and David Robinson and the theoretical part from Foundations of Statistical Natural Language Processing (1999) by Christopher D. Manning and Heinrich Schütze and lecture notes by David Bamman[<a href="http://people.ischool.berkeley.edu/~dbamman/" class="uri">http://people.ischool.berkeley.edu/~dbamman/</a>]. Silge and Robinson’s book is an accessible introduction to text analysis in R. I like the book a lot since it uses tidyverse framework so you can apply the skills you developed earlier in this course to text analysis. Manning and Schütze’s book is still the best theoretical introduction to natural language processing.</p>
 <p><strong>Learning objectives</strong></p>
 <pre><code>1. Understanding basic theoretical ideas of natural language processing (NLP)
 2. Understanding the steps students need to take to conduct a text analysis </code></pre>
-<p>This is part of the analysis part of the course. We start from text analysis fundamentals to dictionary-based methods (non-model approach) to topic modeling (unsupervised learning) to classification (supervised learning).</p>
+<p>This is part of the analysis part of the course. We start from text analysis fundamentals then move to dictionary-based methods (non-model approach), to topic modeling (unsupervised learning), and to text classification (supervised learning).</p>
 <p>Before digging into technical details, let’s take a step back and think about this question for a movement: “What Is a Language?”</p>
 <ul>
-<li><strong>Rationalist approach</strong>: Chomsky’s “the poverty of the stimulus” argument -&gt; language acquisition device and universal grammar (language is something hardwired in our brain and has a very specific design.)</li>
-<li><strong>Empiricist approach</strong>: They also agree that language is part of our brain. But they believe that our brain doesn’t have a very specific design, but has general operational rules like association, pattern recognition, and generalization. It is an old idea that is now re-surging with the new computational methods.</li>
+<li><p><strong>Rationalist approach</strong>: Chomsky’s “the poverty of the stimulus” argument -&gt; language acquisition device and universal grammar (language is something hardwired in our brain and has a very specific design.)</p></li>
+<li><p><strong>Empiricist approach</strong>: They also agree that language is part of our brain. But they believe that our brain doesn’t have a very specific design, but has general operational rules like association, pattern recognition, and generalization. It is an old idea that is now re-surging with the new computational methods.</p></li>
+<li><p><strong>Statistical NLP</strong> is a child of the empiricist approach. The belief is we can understand the structure of language by specifying an appropriate general language model, and then inducing the values of parameters by applying statistical, pattern recognition, and machine learning methods to a large amount of language use (mostly big texts called a <em>corpus</em> – Latin word for “body”).</p></li>
 </ul>
-<p><strong>Statistical NLP</strong> is a child of the empiricist approach. The belief is we can understand the structure of language by specifying an appropriate general language model, and then inducing the values of parameters by applying statistical, pattern recognition, and machine learning methods to a large amount of language use (mostly big texts called a <em>corpus</em> – Latin word for “body”).</p>
-<p>Language processing is getting the meaning out of the structure of language. Statistical NLP does that by treating language and cognition as <strong>probabilistic</strong> phenomenon. Cognition has some kind of quantitative framework that can handle uncertainty and incomplete information that surround humans in the world. If cognition is probabilistic, then its outcome (language) is also probabilistic. (For this reason, the deeper theoretical understanding of NLP requires some knowledge of probability and information theory.)</p>
-<p>This idea is the foundation for everything we do in computational text analysis.</p>
+<p><strong>Language processing</strong> is getting the meaning out of the structure of language (e.g., words, parts of speech, syntax). Statistical NLP does that by treating language and cognition as <strong>probabilistic</strong> phenomenon. Cognition has some kind of quantitative framework that can handle uncertainty and incomplete information that surround humans in the world. If cognition is probabilistic, then its outcome (language) is also probabilistic. (For this reason, the deeper theoretical understanding of NLP requires some knowledge of probability and information theory.) This idea is the foundation for everything we do in computational text analysis. In <strong>natural language processing</strong>, we process language with computers.</p>
+<p>Processing natural language is hard since language is so creative (and thus complex and ambiguous). To tackle this challenge collectively, the field has been evolved as an interdisciplinary field.</p>
+<ul>
+<li><p>Linguistics (representation of language) – structure of language</p></li>
+<li><p>Computer scientists (AI and ML) – dealing with high-dimensional data (n of n samples &lt; p of p features = curse of the curse of dimensionality) &gt; “As the number of features or dimensions grows, the amount of data we need to generalize accurately grows exponentially.” - Charles Isbell (Georgia Tech)</p></li>
+<li><p>Social sciences/humanities (computational social science, digital humanities, and digital journalism) – providing domain knowledge</p></li>
+</ul>
 <div id="setup" class="section level1">
 <h1>Setup</h1>
 <pre class="r"><code>rm(list=ls())
@@ -403,7 +408,7 @@ require(tm) # for text mining</code></pre>
 <pre><code>## Loading required package: NLP</code></pre>
 <pre class="r"><code>library(tidyverse) # for tidyverse</code></pre>
 <pre><code>## ── Attaching packages ── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.1.0       ✔ purrr   0.3.2  
+<pre><code>## ✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
 ## ✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
 ## ✔ tidyr   0.8.3       ✔ stringr 1.4.0  
 ## ✔ readr   1.3.1       ✔ forcats 0.4.0</code></pre>
@@ -413,7 +418,7 @@ require(tm) # for text mining</code></pre>
 ## ✖ dplyr::lag()        masks stats::lag()</code></pre>
 <pre class="r"><code>library(tidytext) # for tidy text analysis
 library(quanteda) # for text analysis and examples</code></pre>
-<pre><code>## Package version: 1.4.1</code></pre>
+<pre><code>## Package version: 1.4.3</code></pre>
 <pre><code>## Parallel computing: 2 of 8 threads used.</code></pre>
 <pre><code>## See https://quanteda.io for tutorials and examples.</code></pre>
 <pre><code>## 
@@ -665,7 +670,7 @@ MLK_df %&gt;%
 <ul>
 <li>TF indicates a term frequency.</li>
 <li>IDF indicates a term’s inverse document frequency.</li>
-<li>if-idf multiples the term frequency and the inverse document frequency.</li>
+<li>tf-idf multiples the term frequency and the inverse document frequency.</li>
 <li>IDF decreases the weight for common words and increases the weight for less common words.</li>
 </ul>
 <p>We are going to see how IDF works with an actual example.</p>
@@ -699,7 +704,7 @@ inaug_words &lt;- left_join(inaug_words, inaug_total)</code></pre>
 ##  9 Nixon      the     219  3929
 ## 10 Reagan     and     202  5007
 ## # … with 10,248 more rows</code></pre>
-<p>Note that the plot below proves Zipf’s law: the frequency that a word appears is inversely proportional to its rank. As we learn later, this insight is key to the understanding of how topic modeling works. In most cases, we need only a few number of topics because on a few words will have lots of examples.</p>
+<p>Note that the plot below proves Zipf’s law: the frequency that a word appears is inversely proportional to its rank. As we will learn later, this insight is key to the understanding of how topic modeling works. In most cases, we need only a few number of topics because a few words will have lots of examples.</p>
 <pre class="r"><code># plot the distribution of n/total
 ggplot(data = inaug_words, aes(n/total, fill = President)) +
   geom_histogram(show.legend = FALSE) +

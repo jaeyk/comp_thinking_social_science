@@ -5,25 +5,33 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: html_document
 ---
 
-The technical part of the material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge and David Robinson and the theoretical part from Foundations of Statistical Natural Language Processing (1999) by Christopher D. Manning and Heinrich Schütze. Silge and Robinson's book is an accessible introduction to text analysis in R. I like the book a lot since it uses tidyverse framework so you can use the skills you developed earlier in this course to text analysis. Manning and Schütze's book is still the best theoretical introduction to natural language processing. 
+The technical part of the material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge and David Robinson and the theoretical part from Foundations of Statistical Natural Language Processing (1999) by Christopher D. Manning and Heinrich Schütze and lecture notes by David Bamman[http://people.ischool.berkeley.edu/~dbamman/]. Silge and Robinson's book is an accessible introduction to text analysis in R. I like the book a lot since it uses tidyverse framework so you can apply the skills you developed earlier in this course to text analysis. Manning and Schütze's book is still the best theoretical introduction to natural language processing. 
 
 **Learning objectives**
 
     1. Understanding basic theoretical ideas of natural language processing (NLP)
     2. Understanding the steps students need to take to conduct a text analysis 
 
-This is part of the analysis part of the course. We start from text analysis fundamentals to dictionary-based methods (non-model approach) to topic modeling (unsupervised learning) to classification (supervised learning).  
+This is part of the analysis part of the course. We start from text analysis fundamentals then move to dictionary-based methods (non-model approach), to topic modeling (unsupervised learning), and to text classification (supervised learning).  
 
 Before digging into technical details, let's take a step back and think about this question for a movement: "What Is a Language?"
 
 - **Rationalist approach**: Chomsky's "the poverty of the stimulus" argument -> language acquisition device and universal grammar (language is something hardwired in our brain and has a very specific design.)
+
 - **Empiricist approach**: They also agree that language is part of our brain. But they believe that our brain doesn't have a very specific design, but has general operational rules like association, pattern recognition, and generalization. It is an old idea that is now re-surging with the new computational methods. 
     
-**Statistical NLP** is a child of the empiricist approach. The belief is we can understand the structure of language by specifying an appropriate general language model, and then inducing the values of parameters by applying statistical, pattern recognition, and machine learning methods to a large amount of language use (mostly big texts called a *corpus* -- Latin word for "body"). 
+- **Statistical NLP** is a child of the empiricist approach. The belief is we can understand the structure of language by specifying an appropriate general language model, and then inducing the values of parameters by applying statistical, pattern recognition, and machine learning methods to a large amount of language use (mostly big texts called a *corpus* -- Latin word for "body"). 
 
-Language processing is getting the meaning out of the structure of language. Statistical NLP does that by treating language and cognition as **probabilistic** phenomenon. Cognition has some kind of quantitative framework that can handle uncertainty and incomplete information that surround humans in the world. If cognition is probabilistic, then its outcome (language) is also probabilistic. (For this reason, the deeper theoretical understanding of NLP requires some knowledge of probability and information theory.)
+**Language processing** is getting the meaning out of the structure of language (e.g., words, parts of speech, syntax). Statistical NLP does that by treating language and cognition as **probabilistic** phenomenon. Cognition has some kind of quantitative framework that can handle uncertainty and incomplete information that surround humans in the world. If cognition is probabilistic, then its outcome (language) is also probabilistic. (For this reason, the deeper theoretical understanding of NLP requires some knowledge of probability and information theory.) This idea is the foundation for everything we do in computational text analysis. In **natural language processing**, we process language with computers. 
 
-This idea is the foundation for everything we do in computational text analysis.
+Processing natural language is hard since language is so creative (and thus complex and ambiguous). To tackle this challenge collectively, the field has been evolved as an interdisciplinary field.
+
+- Linguistics (representation of language) -- structure of language 
+
+- Computer scientists (AI and ML) -- dealing with high-dimensional data (n of n samples < p of p features = curse of the curse of dimensionality)
+> "As the number of features or dimensions grows, the amount of data we need to generalize accurately grows exponentially." - Charles Isbell (Georgia Tech)
+
+- Social sciences/humanities (computational social science, digital humanities, and digital journalism) -- providing domain knowledge
 
 # Setup
 ```{r}
@@ -176,7 +184,7 @@ MLK_df %>%
 
 - TF indicates a term frequency.
 - IDF indicates a term's inverse document frequency.
-- if-idf multiples the term frequency and the inverse document frequency.
+- tf-idf multiples the term frequency and the inverse document frequency.
 - IDF decreases the weight for common words and increases the weight for less common words. 
 
 We are going to see how IDF works with an actual example.
@@ -200,7 +208,7 @@ inaug_words <- left_join(inaug_words, inaug_total)
 inaug_words
 ```
 
-Note that the plot below proves Zipf's law: the frequency that a word appears is inversely proportional to its rank. As we learn later, this insight is key to the understanding of how topic modeling works. In most cases, we need only a few number of topics because on a few words will have lots of examples.
+Note that the plot below proves Zipf's law: the frequency that a word appears is inversely proportional to its rank. As we will learn later, this insight is key to the understanding of how topic modeling works. In most cases, we need only a few number of topics because a few words will have lots of examples.
 
 
 ```{r}
@@ -244,5 +252,3 @@ inaug_words %>%
     coord_flip()
 
 ```
-
-
