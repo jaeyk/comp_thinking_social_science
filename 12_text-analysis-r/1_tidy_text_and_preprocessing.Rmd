@@ -16,9 +16,9 @@ This is part of the analysis part of the course. We start from text analysis fun
 
 Before digging into technical details, let's take a step back and think about this question for a movement: "What Is a Language?"
 
-- **Rationalist approach**: Chomsky's "the poverty of the stimulus" argument -> language acquisition device and universal grammar (language is something hardwired in our brain and has a very specific design.)
+- **Rationalist approach** (e.g., Chomsky): Chomsky's "the poverty of the stimulus" argument -> language acquisition device and universal grammar (language is something hardwired in our brain and has a very specific design.). The structure of language is independent of meaning and communication ("autonomous"). 
 
-- **Empiricist approach**: They also agree that language is part of our brain. But they believe that our brain doesn't have a very specific design, but has general operational rules like association, pattern recognition, and generalization. It is an old idea that is now re-surging with the new computational methods. 
+- **Empiricist approach** (e.g., Lakoff): They also agree that language is part of our brain. But they believe that our brain doesn't have a very specific design, but has general operational rules like association, pattern recognition, and generalization. Meaning and communication matter. It is an old idea that is now re-surging with the new computational methods. 
     
 - **Statistical NLP** is a child of the empiricist approach. The belief is we can understand the structure of language by specifying an appropriate general language model, and then inducing the values of parameters by applying statistical, pattern recognition, and machine learning methods to a large amount of language use (mostly big texts called a *corpus* -- Latin word for "body"). 
 
@@ -39,6 +39,7 @@ Processing natural language is hard since language is so creative (and thus comp
 rm(list=ls())
 
 require(tm) # for text mining
+library(tibble)
 library(tidyverse) # for tidyverse
 library(tidytext) # for tidy text analysis
 library(quanteda) # for text analysis and examples
@@ -71,14 +72,13 @@ MLK[1:10]
 ```{r}
 
 # tidy text
-MLK_df <- data_frame(line = 1:length(MLK), text = MLK) 
+MLK_df <- tibble(line = 1:length(MLK), text = MLK) 
 
 # see data
 MLK_df
 
 # see class
 class(MLK_df) 
-
 ```
 
 # Preprocessing 
@@ -87,8 +87,11 @@ class(MLK_df)
 - And how to reduce dimensions of such text data by 
     - 1) tokenizing and using n-grams, 
     - 2) removing noise (e.g., html tags), and 
-    - 3) [normalizing](https://en.wikipedia.org/wiki/Text_normalization) (e.g., stop words, [stemming and lemmatization](https://nlp.stanford.edu/IR-book/html/htmledition/stemming-and-lemmatization-1.html)). 
-- In this unit, we focus on 1) and 3). For noise removing, you might need to learn how to do string manipulations by using [regular expressions](https://www.regular-expressions.info/) in R.
+    - 3) [normalizing](https://en.wikipedia.org/wiki/Text_normalization) (e.g., stop words)
+    - 4) [stemming or lemmatization](https://nlp.stanford.edu/IR-book/html/htmledition/stemming-and-lemmatization-1.html)) to reduce morphological variation
+    Stemming: reduce word forms to stems car, cars, car's, cars' -> car
+    Lemmatization: reduces inflectional variance (e.g., prefix, suffix); good is the lemma of better 
+- In this unit, we focus on 1) and 3). For advanced noise removing, you might need to learn how to do string manipulations by using [regular expressions](https://www.regular-expressions.info/) in R.
 
 ## Tokenizing
 
@@ -147,7 +150,7 @@ inaug_filtered %>%
 - Remove common words (something like "the") not useful for the analysis
 - These words are technically called [stop words](https://en.wikipedia.org/wiki/Stop_words) in natural language processing.
 - Also, remember that removing stop words is not always a good idea. Think about "to be" or "not to be". If you delete "not", there's no difference between the two words. 
-- If you want to cut out (assumed unnecessary) parts of the text, you can try either [stemming](https://en.wikipedia.org/wiki/Stemming) (no "ed", "ing", or "ly" in the end) or [lemminization](https://en.wikipedia.org/wiki/Lemmatisation)  (better -> goo).
+- If you want to cut out (assumed unnecessary) parts of words, you can try either [stemming](https://en.wikipedia.org/wiki/Stemming) (no "ed", "ing", or "ly" in the end) or [lemminization](https://en.wikipedia.org/wiki/Lemmatisation) (better -> good).
 
 ```{r}
 MLK_df %>%
@@ -248,7 +251,7 @@ inaug_words %>%
   ggplot(aes(reorder(word, tf_idf), tf_idf, fill = President)) +
     geom_col(show.legend = FALSE) +
     labs(x = NULL, y = "tf-idf") +
-    facet_wrap(~President, ncol = 3, scales = "free") +
+    facet_wrap(~President, ncol = 5, scales = "free") +
     coord_flip()
 
 ```
