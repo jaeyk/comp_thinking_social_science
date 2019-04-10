@@ -63,7 +63,8 @@ library(ggplot2)
 - Understanding 
     - Analyzing
     - Representation 
-- From Words to Meaning (Semantics)
+- Words -> Discourse 
+- Middle steps: Morphology, Syntax, Semantics 
 
 ---
 
@@ -77,6 +78,7 @@ library(ggplot2)
 
 # Computational text analysis 
 
+- NLP + domain knowledge
 - Dictionary-based methods 
 - Unsupervised machine learning (e.g., topic modeling)
 - Supervised machine learning (e.g., text classification)
