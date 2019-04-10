@@ -1,0 +1,82 @@
+---
+title: "Introduction to Computational Text Analysis"
+author: "Jae Yeon Kim"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  beamer_presentation:
+    fig_caption: no
+    latex_engine: xelatex
+    toc: no
+  ioslides_presentation: default
+  slidy_presentation: default
+header-includes:
+- \usepackage{array}
+- \usepackage{multicol}
+- \usepackage{fontspec}
+fontsize: 17pt
+---
+
+```{r setup, include=FALSE}
+rm(list=ls())
+
+knitr::opts_chunk$set(echo = FALSE)
+
+# install packages 
+library(ggplot2)
+
+```
+
+# Motivation
+
+- Misplaced hope and fear, confidence and skepticism 
+- Demystifying computational text analysis and machine learning
+- Learn **basic** theories and techniques at the same time
+
+---   
+
+# What Is Language?
+
+- Rationalist approach 
+- Empiricist approach 
+- Computational approach 
+
+---
+
+# What is NLP?
+
+- It's everywhere. 
+- It's evolving. 
+- It has limitations.
+
+---
+
+# The challenge of big data 
+
+- N of N samples < P of P features 
+- High-dimensional data 
+- Pervasive problem across text, sound, and image data 
+
+---
+
+# Language processing 
+
+- Understanding 
+    - Analyzing
+    - Representation 
+- From Words to Meaning (Semantics)
+
+---
+
+# Preprocessing 
+
+- Tokenization: spiting lines of texts into the most basic units (n-grams)
+- Removing stop words and other special characters among those units  
+- Normalization: standardizing those units (e.g., lemmatization)
+
+---
+
+# Computational text analysis 
+
+- Dictionary-based methods 
+- Unsupervised machine learning (e.g., topic modeling)
+- Supervised machine learning (e.g., text classification)
