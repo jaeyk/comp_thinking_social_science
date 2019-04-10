@@ -5,7 +5,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: html_document
 ---
 
-The technical part of the material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge and David Robinson and the theoretical part from Foundations of Statistical Natural Language Processing (1999) by Christopher D. Manning and Heinrich Schütze and lecture notes by David Bamman[http://people.ischool.berkeley.edu/~dbamman/]. Silge and Robinson's book is an accessible introduction to text analysis in R. I like the book a lot since it uses tidyverse framework so you can apply the skills you developed earlier in this course to text analysis. Manning and Schütze's book is still the best theoretical introduction to natural language processing. 
+The technical part of the material is adapted from [Text Mining with R](https://proquest.safaribooksonline.com/9781491981641) (2017) by Julia Silge and David Robinson and the theoretical part from Foundations of Statistical Natural Language Processing (1999) by Christopher D. Manning and Heinrich Schütze, Jurafsky and Martin's book on [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/) (forthcoming), and lecture notes by David Bamman[http://people.ischool.berkeley.edu/~dbamman/]. Silge and Robinson's book is an accessible introduction to text analysis in R. I like the book a lot since it uses tidyverse framework so you can apply the skills you developed earlier in this course to text analysis. Manning and Schütze's book is still the best theoretical introduction to natural language processing. 
 
 **Learning objectives**
 
@@ -87,17 +87,15 @@ class(MLK_df)
 - And how to reduce dimensions of such text data by 
     - 1) tokenizing and using n-grams, 
     - 2) removing noise (e.g., html tags), and 
-    - 3) [normalizing](https://en.wikipedia.org/wiki/Text_normalization) (e.g., stop words)
-    - 4) [stemming or lemmatization](https://nlp.stanford.edu/IR-book/html/htmledition/stemming-and-lemmatization-1.html)) to reduce morphological variation
-    Stemming: reduce word forms to stems car, cars, car's, cars' -> car
-    Lemmatization: reduces inflectional variance (e.g., prefix, suffix); good is the lemma of better 
-- In this unit, we focus on 1) and 3). For advanced noise removing, you might need to learn how to do string manipulations by using [regular expressions](https://www.regular-expressions.info/) in R.
+    - 3) these tokens can further [normalized](https://en.wikipedia.org/wiki/Text_normalization) (e.g., stop words) using [lemmatization](https://nlp.stanford.edu/IR-book/html/htmledition/stemming-and-lemmatization-1.html)) (a.k.a. collapsing words) to convert them to a more convenient and stanford form.
+        - Lemmatization: reduces inflectional variance (e.g., prefix, suffix); good is the lemma (root) of better 
+        - Stemming: a simpler form of lemmatization which reduce word forms to stems car, cars, car's, cars' -> car (strip suffixes)
 
 ## Tokenizing
 
 [Tokenizing](https://nlp.stanford.edu/IR-book/html/htmledition/tokenization-1.html) splits longer strings into smaller pieces (called 'tokens'). 
 
-From now on, we use the US presidential inaugural address texts from quanteda package to have experience with complicated data.
+For this exericse, we use the US presidential inaugural address texts from quanteda package to have experience with complicated data.
 
 - For unnest_tokens, word is a token output and text is a text input.
 - The function also strips punctuation, and converts the tokens to lower case. (Check to_lower argument.). This is nice because we want words not uninteresting characters like punctuation.
