@@ -202,6 +202,8 @@ Pustejovsky, J., & Stubbs, A. (2012). [Natural Language Annotation for Machine L
 
 ### Papers
 
+Athey, S. and Imbens, G. W. (2019). [Machine Learning Methods Economists Should Know About](<https://arxiv.org/abs/1903.10075>). Working paper.
+
 Breiman, L. (2001). [Random forests. Machine learning](https://link.springer.com/content/pdf/10.1023/A:1010933404324.pdf), 45(1), 5-32.
 
 Breiman, L. (2001). [Statistical modeling: The two cultures (with comments and a rejoinder by the author)](https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726). Statistical science, 16(3), 199-231.
