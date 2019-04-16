@@ -130,8 +130,6 @@ Silge, J. and Robinson, D. (2018). [Text Mining with R](https://www.tidytextmini
 
 Aggarwal, C. C., & Zhai, C. (Eds.). (2012). [Mining text data](<https://link-springer-com.libproxy.berkeley.edu/content/pdf/10.1007%2F978-1-4614-3223-4.pdf>). Springer Science & Business Media.
 
-
-
 #### Papers 
 
 Gentzkow, M., Kelly, B. T., & Taddy, M. (2017). [Text as data](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf) (No. w23276). *National Bureau of Economic Research*.
