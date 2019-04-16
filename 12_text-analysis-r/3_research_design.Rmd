@@ -74,7 +74,7 @@ library(ggplot2)
 
 # Some interesting findings
 
-- Experience restaurants: natural authenticity, educational capital (a lot of French, Italian, Japanese words), less adjectives 
+- Expensive restaurants: natural authenticity, educational capital (a lot of French, Italian, Japanese words), less adjectives 
 
 - Cheap restaurants: traditional authenticity, planety (i.e., portion size), more adjectivecs 
 
