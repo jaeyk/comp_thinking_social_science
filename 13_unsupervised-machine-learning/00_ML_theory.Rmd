@@ -37,7 +37,7 @@ library(ggplot2)
 
 - Data analysis 
 
-    - Prediction (algorithms; e.g., mean)
+    - Prediction (algorithms; e.g., regression line)
     
     - Information (inference; e.g., confidence intervals)
 
@@ -48,6 +48,12 @@ library(ggplot2)
 - Statistical inference 
 
     - y <- some probability models (e.g., linear regression, logistic regression, Cox model) <- x
+   
+    - y = X$\beta$ + $\epsilon$
+    
+    - The goal is to estimate $\beta$
+    
+---
 
 - Machine learning 
 
@@ -83,28 +89,34 @@ library(ggplot2)
 
 # ML
 
-- Developing algorithms 
+- Developing algorithms (estimating F)
 
 - Prediction power not structural/causal parameters
 
-- Using out-of-sample comparisons (cross-validation) not in-sample goodness-of-fit measures
+- Basically, high-dimensional data statistics (N < P)
 
 - The major problem is to avoid "the curse of dimensionality"
 
-    - You can reduce dimensionality by limiting covariates (features) to essential ones 
-    
-    - Or you can add many functions of the predictor variables (e.g., Support Vector Machines)
-
 ---
 
-# Underdeveloped in the ML literature 
+ - How to deal with high-P
+ 
+    - Parametric apprach (regression)
+    
+        - Easy, fast, but could be far from true F
+    
+        - Making algorithm more flexible can cause overfitting
+    
+    - Non-parametric approach (support vector machines)
 
-- No interventions $\rightarrow$ no causal arguments (Judea Pearl's criticism)
+        - No assumptions made (agnostic approach)
+    
+        - But requires more data and slow
+    
+        - Still, overfitting issue
 
-- Need to exploit the structure of the problems 
-
-    - The causal nature of the estimands 
-
+- Validation: out-of-sample comparisons (cross-validation) not in-sample goodness-of-fit measures 
+    
 ---
 
 # ML - Terminology 
@@ -117,16 +129,16 @@ library(ggplot2)
 
 - Regression parameters = weights 
 
-- Prediction problems = Supervised + Unsupervised 
+- Prediction problems = Supervised (some response variables are known) + Unsupervised (response variables are not known)
 
 --- 
 
-# ML and Causal inference 
+# Underdeveloped in the ML literature 
 
-- Causal inference 
+- Two types of errors: reducible and irreducible (upper bound)
 
-    - Designs: randomized experiments, uncofoundedness, instrumental variables, regression discontinuity, panel data, difference-in-differences
+- Missing data problem persists (Holland)
 
-    - Questions: ATE, LATE, CATE, Optimal Treatment Assignment Policies, Structural Parameter Estimation, Multiple Testing (Heterogeneous Treatment Effects)
+- No interventions $\rightarrow$ no causal arguments 
 
-ML: has a missing data problem (How can ML handle what if questions?)
+- Machines that won Go games against masters and drive cars still have hard time with causality (Judea Pearl's criticism)
