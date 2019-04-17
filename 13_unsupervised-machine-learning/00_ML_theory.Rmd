@@ -101,7 +101,7 @@ library(ggplot2)
 
  - How to deal with high-P
  
-    - Parametric apprach (regression)
+    - Parametric approach (regression)
     
         - Easy, fast, but could be far from true F
     
@@ -115,8 +115,14 @@ library(ggplot2)
     
         - Still, overfitting issue
 
+---
+
 - Validation: out-of-sample comparisons (cross-validation) not in-sample goodness-of-fit measures 
-    
+
+- So, it's curve-fitting but the primary focus is unseen not seen data 
+
+- Machine learning as p-hacking problem in the 21st century is correct and wrong at the same time 
+
 ---
 
 # ML - Terminology 
@@ -137,8 +143,8 @@ library(ggplot2)
 
 - Two types of errors: reducible and irreducible (upper bound)
 
-- Missing data problem persists (Holland)
-
 - No interventions $\rightarrow$ no causal arguments 
+
+- More fundamentally, little counterfactual thinking 
 
 - Machines that won Go games against masters and drive cars still have hard time with causality (Judea Pearl's criticism)
