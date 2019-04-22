@@ -135,4 +135,6 @@ The schedule is subject to change based on the class's rate of progress.
 * **Apr. 8/10:** Text Analysis in R (guest lecture by [Marla Stuart](https://bids.berkeley.edu/people/marla-stuart), Social Work & BIDS Data Science Fellow) 
 * **Apr. 15/17:** Unsupervised Machine Learning in R
 * **Apr. 22/24:** Supervised Machine Learning in R (guest lecture by [Chris Kennedy](https://bids.berkeley.edu/people/chris-kennedy), Biostats & BIDS Data Science Fellow)
-* **Apr. 29/30:** Wrap-up and Package Development in R
+* **Apr. 29:** Wrap-up
+* **May. 1**: Final presentation
+
