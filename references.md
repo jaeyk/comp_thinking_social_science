@@ -202,6 +202,12 @@ Pustejovsky, J., & Stubbs, A. (2012). [Natural Language Annotation for Machine L
 
 Athey, S. and Imbens, G. W. (2019). [Machine Learning Methods Economists Should Know About](<https://arxiv.org/abs/1903.10075>). Working paper.
 
+Athey, S. (2018). [The impact of machine learning on economics](<https://static1.squarespace.com/static/59c2a584be42d60a2772ba71/t/59c2b1d7a8b2b0210dd586ae/1505931735905/Athey.pdf>). In *The Economics of Artificial Intelligence: An Agenda*. University of Chicago Press.
+
+Mullainathan, S., & Spiess, J. (2017). [Machine learning: an applied econometric approach](<https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.31.2.87>). *Journal of Economic Perspectives*, *31*(2), 87-106.
+
+Varian, H. R. (2014). [Big data: New tricks for econometrics](<https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.3>). *Journal of Economic Perspectives*, *28*(2), 3-28.
+
 Breiman, L. (2001). [Random forests. Machine learning](https://link.springer.com/content/pdf/10.1023/A:1010933404324.pdf), 45(1), 5-32.
 
 Breiman, L. (2001). [Statistical modeling: The two cultures (with comments and a rejoinder by the author)](https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726). Statistical science, 16(3), 199-231.
