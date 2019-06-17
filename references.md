@@ -13,7 +13,7 @@ Calafiore, G. C., & El Ghaoui, L. (2014). [Optimization models](https://www.amaz
 Roy, P. V., & Haridi, S., (2004). [Concepts, Techniques, and Models of Computer Programming](https://www.amazon.com/dp/0262220695/ref=cm_sw_su_dp?tag=devtools-20). MIT Press.
 
 Hunt, A., & Thomas, D., (1999). [The Pragmatic Programmer: From Journeyman to Master](https://www.amazon.com/dp/020161622X/ref=cm_sw_su_dp?tag=devtools-20). Addison-Wesley Professional.
-
+https://courses.csail.mit.edu/18.337/2015/docs/50YearsDataScience.pdf
 Abelson, H., & Sussman, G. J. (1985). [Structure and Interpretation of Computer Programs (aka the Wizard Book)](https://web.mit.edu/alexmv/6.037/sicp.pdf). MIT Press.
 
 ## Computational social science 
@@ -21,6 +21,8 @@ Abelson, H., & Sussman, G. J. (1985). [Structure and Interpretation of Computer 
 Alvarez, R. M. (Ed.). (2016). [Computational Social Science](https://www.cambridge.org/core/books/computational-social-science/FB97BD1704D957183899DE120BEE2E4B). Cambridge University Press.
 
 Salganik, M. J. (2017). [Bit by Bit: Social Research in the Digital Age](https://press.princeton.edu/titles/11057.html#bit-navbar). Princeton University Press.
+
+Donoh, D. (2015). [50 years of Data Science](https://courses.csail.mit.edu/18.337/2015/docs/50YearsDataScience.pdf).
 
 Gitelman, L. (Ed.). (2013). [Raw data is an oxymoron](http://raley.english.ucsb.edu/wp-content/Engl800/RawData-excerpts.pdf). MIT Press.
 
@@ -31,7 +33,7 @@ Elish, M. C., & boyd, D. (2018). [Situating methods in the magic of Big Data and
 boyd, D., & Crawford, K. (2012). [Critical questions for big data: Provocations for a cultural, technological, and scholarly phenomenon](https://www.tandfonline.com/doi/abs/10.1080/1369118X.2012.678878). *Information, communication & society*, 15(5), 662-679.
 
 Bowers, J. et al. (2011). [Six steps to a better relationship with your future self](http://www.jakebowers.org/PAPERS/tpm_v18_n2.pdf). *The Political Methodologist*, 18(2), 2-8.
-
+https://courses.csail.mit.edu/18.337/2015/docs/50YearsDataScience.pdf
 Lazer, D. et al. (2009). [Life in the network: the coming age of computational social science](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2745217/). *Science*, 323(5915), 721.
 
 ## Unix and Git 
