@@ -22,7 +22,7 @@ Alvarez, R. M. (Ed.). (2016). [Computational Social Science](https://www.cambrid
 
 Salganik, M. J. (2017). [Bit by Bit: Social Research in the Digital Age](https://press.princeton.edu/titles/11057.html#bit-navbar). Princeton University Press.
 
-Donoh, D. (2015). [50 years of Data Science](https://courses.csail.mit.edu/18.337/2015/docs/50YearsDataScience.pdf).
+Donoh, D. (2015). [50 years of Data Science](https://courses.csail.mit.edu/18.337/2015/docs/50YearsDataScience.pdf). *Journal of Computational and Graphical Studies*. 26(4). 746-766.
 
 Gitelman, L. (Ed.). (2013). [Raw data is an oxymoron](http://raley.english.ucsb.edu/wp-content/Engl800/RawData-excerpts.pdf). MIT Press.
 
