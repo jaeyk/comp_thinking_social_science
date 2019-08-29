@@ -213,3 +213,7 @@ Varian, H. R. (2014). [Big data: New tricks for econometrics](<https://pubs.aeaw
 Breiman, L. (2001). [Random forests. Machine learning](https://link.springer.com/content/pdf/10.1023/A:1010933404324.pdf), 45(1), 5-32.
 
 Breiman, L. (2001). [Statistical modeling: The two cultures (with comments and a rejoinder by the author)](https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726). Statistical science, 16(3), 199-231.
+
+### Online courses 
+
+[Abu Mustafa](https://work.caltech.edu/) (Caltech). [Learning from Data](https://work.caltech.edu/telecourse.html)
