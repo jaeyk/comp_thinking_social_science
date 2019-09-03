@@ -200,6 +200,8 @@ Flach, P. (2012). [Machine learning: the art and science of algorithms that make
 
 Pustejovsky, J., & Stubbs, A. (2012). [Natural Language Annotation for Machine Learning](https://proquest.safaribooksonline.com/book/programming/machine-learning/9781449332693). O'Reilly Media, Inc.
 
+Van der Laan, M. J., & Rose, S. (2018). [Targeted Learning in Data Science](https://www.springer.com/gp/book/9783319653037). Springer International Publishing.
+
 ### Papers
 
 Athey, S. and Imbens, G. W. (2019). [Machine Learning Methods Economists Should Know About](<https://arxiv.org/abs/1903.10075>). Working paper.
@@ -213,6 +215,8 @@ Varian, H. R. (2014). [Big data: New tricks for econometrics](<https://pubs.aeaw
 Breiman, L. (2001). [Random forests. Machine learning](https://link.springer.com/content/pdf/10.1023/A:1010933404324.pdf), 45(1), 5-32.
 
 Breiman, L. (2001). [Statistical modeling: The two cultures (with comments and a rejoinder by the author)](https://projecteuclid.org/download/pdf_1/euclid.ss/1009213726). Statistical science, 16(3), 199-231.
+
+Polley, E. (2010). [Super learner](https://escholarship.org/uc/item/4qn0067v) (Doctoral dissertation, UC Berkeley).
 
 ### Online courses 
 
