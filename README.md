@@ -37,11 +37,11 @@ You can follow the course development process [here](https://github.com/jaeyk/PS
          - Version control 
          - Code style 
      - Tidy data and its friends  
-        - Tidy data 
-        - Making data tidy 
+        - Tidy data and why it matters 
+        - Wrangling data
             - How to wrangle data  
-            - How to wrangle data easier and faster  
-        - Modeling and visualizing tidy data 
+            - How to wrangle data at scale 
+        - Modeling and visualizing tidy data
      - Automating repeated things 
         - Functional programing 
         - Developing your own data tools 
