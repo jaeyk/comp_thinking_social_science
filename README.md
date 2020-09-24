@@ -15,7 +15,7 @@ The course is currently divided into two main subjects (fundamentals and applica
 * In the fifth, students learn how to analyze high-dimensional data (e.g., text) using machine learning. 
 * In the final, students learn how to access, query, and manage big data using SQL. 
 
-Note: The course is a remix version of [the course](https://github.com/rochelleterman/PS239T) originally developed by [Rochelle Terman](https://github.com/rochelleterman). 
+Note: This course is a remix version of [the course](https://github.com/rochelleterman/PS239T) originally developed by [Rochelle Terman](https://github.com/rochelleterman). 
 
 ## Contact
 
