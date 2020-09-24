@@ -15,8 +15,6 @@ The course is currently divided into two main subjects (fundamentals and applica
 * In the fifth, students learn how to analyze high-dimensional data (e.g., text) using machine learning. 
 * In the final, students learn how to access, query, and manage big data using SQL. 
 
-Please note that materials are still in development, and will be changing.
-
 ## Contact
 
 Please create [issues](https://github.com/jaeyk/PS239T/issues), if you have questions, comments, or suggestions.
