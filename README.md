@@ -19,6 +19,8 @@ Please note that materials are still in development, and will be changing.
 
 ## Contact
 
+Please create [issues](https://github.com/jaeyk/PS239T/issues), if you have questions, comments, or suggestions.
+
 Instructor: [Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
 
 ## PS239T 2.0 is coming 
