@@ -31,29 +31,29 @@ You can follow the course development process [here](https://github.com/jaeyk/PS
 
 ### Tentative new course outline 
 
-- Fundamentals 
-     - 1. Managing data and code 
+* Fundamentals 
+     - Managing data and code 
          - Computational reproducibility 
          - Version control 
          - Code style 
-     - 2. Tidy data and its friends  
+     - Tidy data and its friends  
         - Tidy data 
         - Making data tidy 
             - How to wrangle data  
             - How to wrangle data easier and faster  
         - Modeling and visualizing tidy data 
-     - 3. Automating repeated things 
+     - Automating repeated things 
         - Functional programing 
         - Package development 
  
-- Applications 
-     - 4. Semi-structured data
+* Applications 
+     - Semi-structured data
          - HTML/CSS: web scraping 
          - XML/JSON: social media scraping 
-     - 5. High-dimensional data  
+     - High-dimensional data  
          - Supervised machine learning 
              - Regularization 
              - Tree and ensemble models 
         - Unsupervised 
-     - 6. Big data 
+     - Big data 
         - Database and SQL
