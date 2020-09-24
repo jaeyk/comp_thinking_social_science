@@ -47,7 +47,7 @@ You can follow the course development process [here](https://github.com/jaeyk/PS
             - How to wrangle data at scale 
         - Modeling and visualizing tidy data
      - Automating repeated things 
-        - From For Loop to Functional Programing 
+        - From for loop to functional programing 
         - Developing your own data tools 
  
 * Applications 
