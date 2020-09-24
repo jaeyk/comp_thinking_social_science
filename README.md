@@ -56,6 +56,6 @@ You can follow the course development process [here](https://github.com/jaeyk/PS
          - Supervised machine learning 
              - Regularization 
              - Tree and ensemble models 
-        - Unsupervised 
+        - Unsupervised machine learning
      - Big data 
         - Database and SQL
