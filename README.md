@@ -44,7 +44,7 @@ You can follow the course development process [here](https://github.com/jaeyk/PS
         - Modeling and visualizing tidy data 
      - Automating repeated things 
         - Functional programing 
-        - Package development 
+        - Developing your own data tools 
  
 * Applications 
      - Semi-structured data
