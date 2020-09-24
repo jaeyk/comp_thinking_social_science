@@ -36,8 +36,8 @@ You can follow the course development process [here](https://github.com/jaeyk/PS
 * Fundamentals 
      - Managing data and code 
          - Project-oriented research 
+             - Computational reproducibility
              - Version control (Git and Bash)
-             - Computational reproducibility 
          - Writing code: How to code like a professional 
          - Asking questions: Minimal reproducible example 
      - Tidy data and its friends  
