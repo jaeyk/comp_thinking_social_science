@@ -26,15 +26,15 @@ You can follow the course development process [here](https://github.com/jaeyk/PS
          - Computational reproducibility 
          - Version control 
          - Code style 
- - Tidy data and its friends  
-      - Tidy data 
-      - Making data tidy 
-          - How to wrangle data  
-          - How to wrangle data easier and faster  
-      - Modeling and visualizing tidy data 
- - Automating repeated things 
-      - Functional programing 
-      - Package development 
+     - Tidy data and its friends  
+        - Tidy data 
+        - Making data tidy 
+            - How to wrangle data  
+            - How to wrangle data easier and faster  
+        - Modeling and visualizing tidy data 
+     - Automating repeated things 
+        - Functional programing 
+        - Package development 
  
 - Applications 
      - Semi-structured data
