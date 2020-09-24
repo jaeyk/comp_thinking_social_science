@@ -59,3 +59,5 @@ You can follow the course development process [here](https://github.com/jaeyk/PS
         - Unsupervised machine learning
      - Big data 
         - Database and SQL
+
+![](https://i.creativecommons.org/l/by/4.0/88x31.png) This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
