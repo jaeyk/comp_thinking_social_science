@@ -34,7 +34,7 @@ You can follow the course development process [here](https://github.com/jaeyk/PS
 * Fundamentals 
      - Managing data and code 
          - Computational reproducibility 
-         - Version control 
+         - Version control (Git and Bash)
          - Code style 
      - Tidy data and its friends  
         - Tidy data and why it matters 
