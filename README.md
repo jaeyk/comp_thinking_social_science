@@ -38,7 +38,7 @@ You can follow the course development process [here](https://github.com/jaeyk/PS
          - Project-oriented research 
              - Version control (Git and Bash)
              - Computational reproducibility 
-         - Writing code: Code style 
+         - Writing code: How to code like a professional 
          - Asking questions: Minimal reproducible example 
      - Tidy data and its friends  
         - Tidy data and why it matters 
