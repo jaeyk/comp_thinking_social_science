@@ -19,7 +19,7 @@ Instructor: [Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
 
 You can follow the course development process [here](https://github.com/jaeyk/PS239T/projects/1).
 
-### Development plan 
+### Tentative new course outline 
 
 - Fundamentals 
      - Managing data and code 
