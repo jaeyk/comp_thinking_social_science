@@ -8,7 +8,7 @@ The course is currently divided into two main subjects (fundamentals and applica
 **Fundamentals**
 * In the first section, students learn best practices in data and code management using Git and Bash. 
 * In the second, students learn how to wrangle, model, and visualize datat easier and faster. 
-* In the third, students learn how to use functions to automate repeated things. 
+* In the third, students learn how to use functions to automate repeated things and develop their own data tools (e.g., packages). 
 
 **Applications**
 * In the fourth, students learn how to collect and parse semi-structured data at scale (e.g., using APIs and webscraping). 
