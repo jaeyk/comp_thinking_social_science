@@ -10,3 +10,40 @@ Please note that materials are still in development, and will be changing.
 ## Contact
 
 Instructor: [Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
+
+## PS239T is coming 
+
+- I will be teaching PS239T again in Spring 2021 and am developing the next version of the course. The tentative course structure is outlined below. 
+
+### Dashboard 
+
+You can follow the course development process [here](https://github.com/jaeyk/PS239T/projects/1).
+
+### Development plan 
+
+- Fundamentals 
+     - Managing data and code 
+         - Computational reproducibility 
+         - Version control 
+         - Code style 
+ - Tidy data and its friends  
+      - Tidy data 
+      - Making data tidy 
+          - How to wrangle data  
+          - How to wrangle data easier and faster  
+      - Modeling and visualizing tidy data 
+ - Automating repeated things 
+      - Functional programing 
+      - Package development 
+ 
+- Applications 
+     - Semi-structured data
+         - HTML/CSS: web scraping 
+         - XML/JSON: social media scraping 
+     - High-dimensional data  
+         - Supervised machine learning 
+             - Regularization 
+             - Tree and ensemble models 
+        - Unsupervised 
+     - Big data 
+        - Database and SQL
