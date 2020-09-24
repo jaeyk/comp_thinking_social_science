@@ -5,9 +5,12 @@ This course will provide graduate students the technical skills necessary to con
 
 The course is currently divided into two main subjects (fundamentals and applications) and six main sessions. 
 
+**Fundamentals**
 - In the first section, students learn best practices to manage data and code using Git and Bash. 
 - In the second, students learn how to wrangle, model, and visualize datat easier and faster. 
 - In the third, students learn how to collect and parse semi-structured data at scale (e.g., using APIs and webscraping). 
+
+**Applications**
 - In the fourth, students learn how to collect high-dimensional data (e.g., text) using machine learning. 
 - In the final, students learn how to access and manage big data using SQL. 
 
