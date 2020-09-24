@@ -11,9 +11,9 @@ Please note that materials are still in development, and will be changing.
 
 Instructor: [Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
 
-## PS239T is coming 
+## PS239T 2.0 is coming 
 
-- I will be teaching PS239T again in Spring 2021 and am developing the next version of the course. The tentative course structure is outlined below. 
+- I will be teaching PS239T again in Spring 2021 and am developing the next version of the course (PS239T 2.0). The tentative course structure is outlined below. 
 
 ### Dashboard 
 
