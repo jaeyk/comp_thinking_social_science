@@ -31,16 +31,16 @@ I will be offering PS239T in Spring 2021 and am developing the next version of t
 
 You can follow the course development process [here](https://github.com/jaeyk/PS239T/projects/1).
 
-### Tentative new course outline 
+### Tentative new course outline (Computational Thinking for Social Scientists)
 
 * Fundamentals 
-     - Managing data and code 
+     - Managing data and code
          - Project-oriented research 
              - Computational reproducibility
              - Version control (Git and Bash)
          - Writing code: How to code like a professional 
          - Asking questions: Minimal reproducible example 
-     - Tidy data and its friends  
+     - Tidy data and its friends
         - Tidy data and why it matters 
         - Wrangling data
             - How to wrangle data  
