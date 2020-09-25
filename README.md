@@ -31,7 +31,7 @@ I will be offering PS239T in Spring 2021 and am developing the next version of t
 
 You can follow the course development process [here](https://github.com/jaeyk/PS239T/projects/1).
 
-### Tentative new course outline (Computational Thinking for Social Scientists)
+### Tentative new course outline 
 
 * Fundamentals 
      - Managing data and code
