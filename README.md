@@ -19,7 +19,7 @@ Note: This course is a remix version of [the course](https://github.com/rochelle
 
 ## Contact
 
-Please create [issues](https://github.com/jaeyk/PS239T/issues), if you have questions, comments, or suggestions.
+Please [create issues](https://github.com/jaeyk/PS239T/issues), if you have questions, comments, or suggestions.
 
 Instructor: [Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
 
