@@ -1,0 +1,5 @@
+book_filename: "computational-thinking-for-social-scientists"
+chapter_name: "Chapter "
+repo: https://github.com/jaeyk/PS239T
+output_dir: docs
+delete_merged_file: true
