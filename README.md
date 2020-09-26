@@ -57,8 +57,11 @@ You can follow the course development process [here](https://github.com/jaeyk/PS
      - High-dimensional data  
          - Supervised machine learning 
              - Regularization 
-             - Tree and ensemble models 
+             - Decision tree and ensemble models 
+             - Text classification 
         - Unsupervised machine learning
+             - Principal component analysis 
+             - Topic modeling 
      - Big data 
         - Database and SQL
 
