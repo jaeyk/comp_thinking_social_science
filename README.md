@@ -58,10 +58,9 @@ You can follow the course development process [here](https://github.com/jaeyk/PS
          - Supervised machine learning 
              - Regularization 
              - Decision tree and ensemble models 
-             - Text classification 
         - Unsupervised machine learning
-             - Principal component analysis 
-             - Topic modeling 
+             - Dimension reduction 
+             - Clustering 
      - Big data 
         - Database and SQL
 
