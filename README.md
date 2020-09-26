@@ -1,7 +1,7 @@
 # [PS239T](http://polisci.berkeley.edu/course/introduction-computational-tools-and-techniques-3)
 **Computational Tools and Techniques for Social Science**
 
-This course will help graduate students to develop proficiency with powerful computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables students to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let students to work on research projects that would previously seem impossible. 
+This course will help graduate students to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables students to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let students to work on research projects that would previously seem impossible. 
 
 The course is currently divided into two main subjects (fundamentals and applications) and six main sessions. 
 
