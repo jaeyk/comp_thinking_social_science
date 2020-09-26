@@ -14,13 +14,13 @@ github-repo: github.com/jaeyk/PS239T
 description: Computational Thinking for Social Scientists
 ---
 
-# Introduction
+# PS239T
 
 Welcome to PS239T
 
 ___
 
-This course will help graduate students to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables students to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let students to work on research projects that would previously seem impossible.
+This course will help social science graduate students to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables students to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let students to work on research projects that would previously seem impossible.
 
 The course is currently divided into two main subjects (fundamentals and applications) and six main sessions. 
 
