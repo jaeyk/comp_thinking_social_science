@@ -1,9 +1,7 @@
 --- 
 title: Computational Thingking for Social Scientists
 author: Jae Yeon Kim
-date: []
-tags:
-  - Computational Social Science
+date: "2020-09-26"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -12,7 +10,7 @@ bibliography:
   - packages.bib
 biblio-style: apalike
 link-citations: yes
-github-repo: https://github.com/jaeyk/PS239T
+github-repo: github.com/jaeyk/PS239T
 description: Computational Thinking for Social Scientists
 ---
 
