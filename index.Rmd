@@ -1,5 +1,5 @@
 --- 
-title: "Practical Data Science for Social Scientists"
+title: "Computational Thinking for Social Scientists"
 author: "Jae Yeon Kim"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -9,7 +9,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: https://github.com/jaeyk/PS239T
-description: "Practical Data Science for Social Scientists"
+description: "Computational Thinking for Social Scientists"
 ---
 
 # Prerequisites
