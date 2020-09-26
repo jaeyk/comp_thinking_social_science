@@ -1,7 +1,7 @@
 --- 
 title: Computational Thingking for Social Scientists
 author: Jae Yeon Kim
-date: "`r Sys.Date()`"
+date: "2020-09-26"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
