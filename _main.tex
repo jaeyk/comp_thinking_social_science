@@ -1,0 +1,222 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Computational Thinking for Social Scientists},
+  pdfauthor={Jae Yeon Kim},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{Computational Thinking for Social Scientists}
+\author{Jae Yeon Kim}
+\date{2020-09-26}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{ps239t}{%
+\chapter{PS239T}\label{ps239t}}
+
+Welcome to PS239T
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+This course will help social science graduate students to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables students to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let students to work on research projects that would previously seem impossible.
+
+The course is currently divided into two main subjects (fundamentals and applications) and six main sessions.
+
+\textbf{Part I Fundamentals}
+
+\begin{itemize}
+\item
+  In the first section, students learn best practices in data and code management using Git and Bash.
+\item
+  In the second, students learn how to wrangle, model, and visualize data easier and faster.
+\item
+  In the third, students learn how to use functions to automate repeated things and develop their own data tools (e.g., packages).
+\end{itemize}
+
+\textbf{Part II Applications}
+
+\begin{itemize}
+\item
+  In the fourth, students learn how to collect and parse semi-structured data at scale (e.g., using APIs and webscraping).
+\item
+  In the fifth, students learn how to analyze high-dimensional data (e.g., text) using machine learning.
+\item
+  In the final, students learn how to access, query, and manage big data using SQL.
+\end{itemize}
+
+\textbf{Instructor and course developer}
+
+\href{https://jaeyk.github.io/}{Jae Yeon Kim}: \href{mailto:jaeyeonkim@berkeley.edu}{\nolinkurl{jaeyeonkim@berkeley.edu}}
+
+\textbf{History}
+
+This course is a remix version of \href{https://github.com/rochelleterman/PS239T}{the course} originally developed by \href{https://github.com/rochelleterman}{Rochelle Terman}.
+
+\textbf{Questions, comments, or suggestions}
+
+Please \href{https://github.com/jaeyk/PS239T/issues}{create issues}, if you have questions, comments, or suggestions.
+
+\includegraphics{https://i.creativecommons.org/l/by/4.0/88x31.png} This work is licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License}.
+
+\hypertarget{Intro}{%
+\chapter{Managing data and code}\label{Intro}}
+
+\hypertarget{project-oriented-research}{%
+\section{Project-oriented research}\label{project-oriented-research}}
+
+\hypertarget{computational-reproducibility}{%
+\subsection{Computational reproducibility}\label{computational-reproducibility}}
+
+\hypertarget{version-control-git-and-bash}{%
+\subsection{Version control (Git and Bash)}\label{version-control-git-and-bash}}
+
+\hypertarget{writing-code-how-to-code-like-a-professional}{%
+\section{Writing code: How to code like a professional}\label{writing-code-how-to-code-like-a-professional}}
+
+\hypertarget{asking-questions-minimal-reproducible-example}{%
+\section{Asking questions: Minimal reproducible example}\label{asking-questions-minimal-reproducible-example}}
+
+\hypertarget{tidy_data}{%
+\chapter{Tidy data and its friends}\label{tidy_data}}
+
+\hypertarget{tidy-data-and-why-it-matters}{%
+\section{Tidy data and why it matters}\label{tidy-data-and-why-it-matters}}
+
+\hypertarget{wrangling-data}{%
+\section{Wrangling data}\label{wrangling-data}}
+
+\hypertarget{how-to-wrangle-data}{%
+\section{How to wrangle data}\label{how-to-wrangle-data}}
+
+\hypertarget{how-to-wrangle-data-at-scale}{%
+\section{How to wrangle data at scale}\label{how-to-wrangle-data-at-scale}}
+
+\hypertarget{modeling-and-visualizing-tidy-data}{%
+\section{Modeling and visualizing tidy data}\label{modeling-and-visualizing-tidy-data}}
+
+\hypertarget{functional_programming}{%
+\chapter{Automating repeated things}\label{functional_programming}}
+
+\hypertarget{from-for-loop-to-functional-programing}{%
+\section{From for loop to functional programing}\label{from-for-loop-to-functional-programing}}
+
+\hypertarget{developing-your-own-data-tools}{%
+\section{Developing your own data tools}\label{developing-your-own-data-tools}}
+
+\hypertarget{semi_structured_data}{%
+\chapter{Semi-structured data}\label{semi_structured_data}}
+
+\hypertarget{htmlcss-web-scraping}{%
+\section{HTML/CSS: web scraping}\label{htmlcss-web-scraping}}
+
+\hypertarget{xmljson-social-media-scraping}{%
+\section{XML/JSON: social media scraping}\label{xmljson-social-media-scraping}}
+
+\hypertarget{machine_learning}{%
+\chapter{High-dimensional data}\label{machine_learning}}
+
+\hypertarget{supervised-machine-learning}{%
+\section{Supervised machine learning}\label{supervised-machine-learning}}
+
+\hypertarget{regularization}{%
+\subsection{Regularization}\label{regularization}}
+
+\hypertarget{decision-tree-and-ensemble-models}{%
+\subsection{Decision tree and ensemble models}\label{decision-tree-and-ensemble-models}}
+
+\hypertarget{unsupervised-machine-learning}{%
+\section{Unsupervised machine learning}\label{unsupervised-machine-learning}}
+
+\hypertarget{dimension-reduction}{%
+\subsection{Dimension reduction}\label{dimension-reduction}}
+
+\hypertarget{clustering}{%
+\subsection{Clustering}\label{clustering}}
+
+\hypertarget{big_data}{%
+\chapter{Big data}\label{big_data}}
+
+\hypertarget{database-and-sql}{%
+\section{Database and SQL}\label{database-and-sql}}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}
