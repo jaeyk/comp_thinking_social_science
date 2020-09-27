@@ -40,7 +40,6 @@ The course is currently divided into two main subjects (fundamentals and applica
 
 - In the final, students learn how to access, query, and manage big data using SQL. 
 
-
 **Instructor and course developer**
 
 [Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
@@ -56,6 +55,41 @@ Please [create issues](https://github.com/jaeyk/PS239T/issues), if you have ques
 ![](https://i.creativecommons.org/l/by/4.0/88x31.png) This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
 <!--chapter:end:index.Rmd-->
+
+# Computational thinking {#Motivation}
+
+## Why computational thinking 
+
+> If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is automation. - [Jae Yeon Kim](https://dlab.berkeley.edu/blog/why-teaching-social-scientists-how-code-professional-important)
+
+## Computational way of thinking about data 
+
+### Structure 
+- Structured data (Excel spreadsheets, CSVs)
+  - Tidy data 
+- Semi-structured data 
+  - HTML/CSS: Websites 
+  - JSON/XML: APIs
+
+### Diemsnions 
+- Low-dimensional data (n > p)
+- High-dimensional data (n < p)
+
+## Computational way of thinking about research process
+
+- Computational tools and techniques make doing traditional research easier, faster, scalable, and more reproducible
+  - Data wrangling 
+  - Modeling 
+  - Visualization 
+- Computational tools and techniques make documentation and collaboration easier, faster, scalable and safer
+  - Dynamic reporting (markdown)
+  - Version control system (Git and GitHub)
+- Computational tools and techniques make collecting and analyzing large and complex data possible 
+  - Digital data collection (API and web scraping)
+      - Building a data infrastructure (SQL)
+  - Machine learning 
+
+<!--chapter:end:00_motivation.Rmd-->
 
 # Managing data and code {#Intro}
 
@@ -517,10 +551,12 @@ df
 - Takeaways
 
   1. Your code becomes more reusable, when it's easier to **change, debug, and scale up**. Don't repeat yourself and embrace the power of lazy programming. 
+
+> Lazy, because only lazy programmers will want to write the kind of tools that might replace them in the end. Lazy, because only a lazy programmer will avoid writing monotonous, repetitive code—thus avoiding redundancy, the enemy of software maintenance and flexible refactoring. Mostly, the tools and processes that come out of this endeavor fired by laziness will speed up the production. -  [Philipp Lenssen](http://blogoscoped.com/archive/2005-08-24-n14.html)
   
   2. Only when your code becomes **reusable**, you would become **efficient** in your data work. Otherwise, you need to start from scratch or copy and paste, when you work on a new project.
 
-> Lazy, because only lazy programmers will want to write the kind of tools that might replace them in the end. Lazy, because only a lazy programmer will avoid writing monotonous, repetitive code—thus avoiding redundancy, the enemy of software maintenance and flexible refactoring. Mostly, the tools and processes that come out of this endeavor fired by laziness will speed up the production. -  [Philipp Lenssen](http://blogoscoped.com/archive/2005-08-24-n14.html)
+> Code reuse aims to save time and resources and reduce redundancy by taking advantage of assets that have already been created in some form within the software product development process.[2] The key idea in reuse is that parts of a computer program written at one time can be or should be used in the construction of other programs written at a later time. - Wikipedia 
 
 ### Test your code systematically 
 
