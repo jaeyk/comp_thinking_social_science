@@ -574,7 +574,7 @@ df
 
 ### How to create a minimal reproducible example
 
-**References**
+## References
 
 - Project-oriented research 
 
