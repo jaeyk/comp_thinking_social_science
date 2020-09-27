@@ -41,6 +41,46 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -145,14 +185,757 @@ Please \href{https://github.com/jaeyk/PS239T/issues}{create issues}, if you have
 \hypertarget{computational-reproducibility}{%
 \subsection{Computational reproducibility}\label{computational-reproducibility}}
 
+\hypertarget{setup}{%
+\subsubsection{Setup}\label{setup}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pacman}\OperatorTok{::}\KeywordTok{p\_load}\NormalTok{(}
+\NormalTok{  tidyverse, }\CommentTok{\# tidyverse}
+\NormalTok{  here }\CommentTok{\# computational reproducibility}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{motivation}{%
+\subsubsection{Motivation}\label{motivation}}
+
+Why do you need to make your research project computationally reproducible?
+
+For your self-interest and public benefits.
+
+\includegraphics{https://github.com/dlab-berkeley/efficient-reproducible-project-management-in-R/blob/master/misc/screenshot.png?raw=true}
+
+\hypertarget{how-to-organize-files-in-a-project}{%
+\subsubsection{How to organize files in a project}\label{how-to-organize-files-in-a-project}}
+
+You cannot reproduce your project if it is not efficiently organized.
+
+Step 1. \href{https://environments.rstudio.com/}{\textbf{Environment}} is part of your project. Don't share them across workspaces. If someone can't reproduce your environment, they won't be able to run your code.
+
+\begin{itemize}
+\tightlist
+\item
+  Launch R Studio. Choose Tools \textgreater{} Global Options. You should not check \texttt{Restor\ .RData\ into\ workspace\ at\ startup} and set saving workspace option to \texttt{NEVER}.
+\end{itemize}
+
+Step 2. For each project, create a project directory named after the project.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Don\textquotesingle{}t name it a project. Use a name that\textquotesingle{}s more informative.}
+
+\KeywordTok{dir.create}\NormalTok{(}\StringTok{"../starwars"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Step 3. Launch R Studio. Choose File \textgreater{} New project \textgreater{} Browse existing directories \textgreater{} Create project This allows each project has its own workspace.
+
+Step 4. Organize files by putting them in separate subdirectories and naming them in a sensible way.
+
+\begin{itemize}
+\tightlist
+\item
+  Treat raw data as read only (raw data should be RAW!) and put in the \texttt{data} directory.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"project"}\NormalTok{, }\StringTok{"data"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Separate read-only data from processed data and put in the \texttt{processed\_data} subdirectory.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"project"}\NormalTok{, }\StringTok{"processed\_data"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Put your code in the \texttt{src} directory.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"project"}\NormalTok{, }\StringTok{"processed\_data"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Put generated outputs (e.g., tables, figures) in the \texttt{outputs} subdirectory and treat them as disposable.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"project"}\NormalTok{, }\StringTok{"outputs"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Put your custom functions in the \texttt{functions} subdirectory. You can put some of them together later as a package.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"project"}\NormalTok{, }\StringTok{"functions"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Challenge 1}
+
+Set a project structure for a project named ``starwars''.
+
+\hypertarget{how-to-organize-code-in-a-r-markdown-file}{%
+\subsubsection{How to organize code in a R markdown file}\label{how-to-organize-code-in-a-r-markdown-file}}
+
+\begin{itemize}
+\item
+  In addition to environment, \textbf{workflow} is an important component of project efficiency and reproducibility.
+\item
+  R Markdown basic syntax
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Header 1}
+\CommentTok{\#\# Header 2}
+\CommentTok{\#\#\# Header 3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Use these section headings to indicate workflow.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Import packages and data}
+\CommentTok{\# Tidy data}
+\CommentTok{\# Wrangle data}
+\CommentTok{\# Model data}
+\CommentTok{\# Visualize data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Press \texttt{ctrl\ +\ shift\ +\ o}. You can see a document outline based on these headings. This is a nice feature for finding code you need to focus.
+\item
+  If your project's scale is large, then divide these sections into files, number, and save them in \texttt{code} subdirectory.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    01\_tidying.Rmd
+  \item
+    02\_transforming.Rmd
+    \ldots{}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{making-a-project-computationally-reproducible}{%
+\subsubsection{Making a project computationally reproducible}\label{making-a-project-computationally-reproducible}}
+
+\begin{itemize}
+\item
+  \texttt{setwd()}: set a working directory.
+\item
+  Note that using \texttt{setwd()} is not a reproducible way to set up your project. For instance, none will be able to run the following code except me.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Set a working directory }
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"/home/jae/starwars"}\NormalTok{)}
+
+\CommentTok{\# Do something }
+\KeywordTok{ggplot}\NormalTok{(mtcars, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mpg, }\DataTypeTok{y =}\NormalTok{ wt)) }\OperatorTok{+}
+\StringTok{   }\KeywordTok{geom\_point}\NormalTok{()}
+
+\CommentTok{\# dot means the working directory set by setwd()}
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"./outputs/example.png"}\NormalTok{) }\CommentTok{\# This is called relative path }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Instead, learn how to use \texttt{here()}'.
+
+  \begin{itemize}
+  \item
+    Key idea: separate workflow (e.g., workspace information) from products (code and data). For more information, read Jenny Bryan's wonderful piece on \href{https://www.tidyverse.org/blog/2017/12/workflow-vs-script/}{project-oriented workflow}.
+  \item
+    Example
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# New: Reproducible }
+
+\KeywordTok{ggplot}\NormalTok{(mtcars, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mpg, }\DataTypeTok{y =}\NormalTok{ wt)) }\OperatorTok{+}
+\StringTok{   }\KeywordTok{geom\_point}\NormalTok{()}
+
+\KeywordTok{ggsave}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"project"}\NormalTok{, }\StringTok{"outputs"}\NormalTok{, }\StringTok{"example.png"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  How \texttt{here} works
+\end{itemize}
+
+\texttt{here()} function shows what's the top-level project directory.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{here}\OperatorTok{::}\KeywordTok{here}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Build a path including subdirectories
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"project"}\NormalTok{, }\StringTok{"outputs"}\NormalTok{)}
+           \CommentTok{\#depth 1   \#depth 2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  How \texttt{here} defines the top-level project directory. The following list came from \href{https://github.com/jennybc/here_here}{the here package vignette}).
+
+  \begin{itemize}
+  \item
+    Is a file named .here present?
+  \item
+    Is this an RStudio Project? (\textbf{Note that we already set up an RStudio Project!} So, if you use RStudio's project feature, then you are ready to use \texttt{here}.)
+  \item
+    Is this an R package? Does it have a DESCRIPTION file?
+  \item
+    Is this a remake project? Does it have a file named \texttt{remake.yml}?
+  \item
+    Is this a projectile project? Does it have a file named \texttt{.projectile}?
+  \item
+    Is this a checkout from a version control system? Does it have a directory named \texttt{.git} or \texttt{.svn}? Currently, only Git and Subversion are supported.
+  \item
+    If there's no match then use \texttt{set\_here()} to create an empty \texttt{.here} file.
+  \end{itemize}
+\end{itemize}
+
+\textbf{Challenge 1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Can you define computational reproducibility?
+\item
+  Can you explain why sharing code and data is not enough for computational reproducibility?
+\end{enumerate}
+
 \hypertarget{version-control-git-and-bash}{%
 \subsection{Version control (Git and Bash)}\label{version-control-git-and-bash}}
+
+\includegraphics{https://github.com/dlab-berkeley/BashGit/raw/master/octobash.png}
+
+\hypertarget{what-is-bash}{%
+\subsubsection{What Is Bash?}\label{what-is-bash}}
+
+\hypertarget{writing-your-first-shell-script}{%
+\paragraph{Writing your first shell script}\label{writing-your-first-shell-script}}
+
+Write a shell script that creates a directory called \texttt{/pdfs} under \texttt{/Download} directory, then find PDF files in \texttt{/Download} and copy those files to \texttt{pdfs}. This shell script creates a backup.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\#!/bin/sh}
+
+\FunctionTok{mkdir}\NormalTok{ /home/jae/Downloads/pdfs }
+
+\BuiltInTok{cd}\NormalTok{ Download}
+
+\FunctionTok{cp}\NormalTok{ *.pdf pdfs/ }
+
+\BuiltInTok{echo} \StringTok{"Copied pdfs"}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{what-are-git-and-github}{%
+\subsubsection{What Are Git and GitHub?}\label{what-are-git-and-github}}
+
+\begin{figure}
+\centering
+\includegraphics{https://plain-text.co/figures/git-basic.png}
+\caption{Figure 2.1. A schematic git workflow from Healy's ``The Plain Person's Guide to Plain Text Social Science''}
+\end{figure}
+
+\hypertarget{basics-git-push-and-git-pull}{%
+\paragraph{\texorpdfstring{Basics: \texttt{git\ push} and \texttt{git\ pull}}{Basics: git push and git pull}}\label{basics-git-push-and-git-pull}}
+
+\hypertarget{time-machine-git-revert}{%
+\paragraph{\texorpdfstring{Time machine: \texttt{git\ revert}}{Time machine: git revert}}\label{time-machine-git-revert}}
+
+\hypertarget{parallel-universe-git-branch}{%
+\paragraph{\texorpdfstring{Parallel universe: \texttt{git\ branch}}{Parallel universe: git branch}}\label{parallel-universe-git-branch}}
+
+\hypertarget{user-manual-readme}{%
+\paragraph{\texorpdfstring{User-manual: \texttt{readme}}{User-manual: readme}}\label{user-manual-readme}}
+
+\begin{itemize}
+\tightlist
+\item
+  README.md
+\end{itemize}
+
+\includegraphics{https://libapps.s3.amazonaws.com/accounts/125446/images/README_Sample.png}
+
+\begin{itemize}
+\item
+  In this simple markdown file, note some basic information about the project including the project structure.
+\item
+  This is how I used the \texttt{README.md} file for this course. Check out \href{https://github.com/jaeyk}{my GitHub account} to see how I manage my projects.
+\end{itemize}
+
+\hypertarget{deployment-github-pages}{%
+\subsubsection{Deployment: GitHub Pages}\label{deployment-github-pages}}
+
+\hypertarget{tracking-progress-github-issues}{%
+\subsubsection{Tracking progress: GitHub Issues}\label{tracking-progress-github-issues}}
+
+\hypertarget{project-management-github-dashboards}{%
+\subsubsection{Project management: GitHub Dashboards}\label{project-management-github-dashboards}}
 
 \hypertarget{writing-code-how-to-code-like-a-professional}{%
 \section{Writing code: How to code like a professional}\label{writing-code-how-to-code-like-a-professional}}
 
+\hypertarget{write-readable-code}{%
+\subsection{Write readable code}\label{write-readable-code}}
+
+\begin{itemize}
+\tightlist
+\item
+  Files
+\item
+  When naming files:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Don't use special characters.
+  \item
+    Don't capitalize.
+  \item
+    Numbering them if files should be run in an order.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Good}
+\NormalTok{fit\_models.R}
+\CommentTok{\# Bad}
+\NormalTok{fit models.R}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Objects
+\item
+  When naming objects:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Don't use special characters.
+  \item
+    Don't capitalize.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Good }
+\NormalTok{day\_one}
+    
+\CommentTok{\# Bad }
+\NormalTok{DayOne}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Functions
+\item
+  When naming functions:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Don't use special characters.
+  \item
+    Don't capitalize.
+  \item
+    Use \texttt{verbs} instead of \texttt{nouns}.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Good }
+\NormalTok{run\_rdd }
+
+\CommentTok{\# Bad }
+\NormalTok{rdd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Spacing
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Good}
+\NormalTok{x[, }\DecValTok{1}\NormalTok{] }
+
+\KeywordTok{mean}\NormalTok{(x, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }
+
+\ControlFlowTok{if}\NormalTok{ (debug) }\KeywordTok{show}\NormalTok{(x) }
+
+\ControlFlowTok{function}\NormalTok{(x) \{\}}
+
+\NormalTok{height <{-}}\StringTok{ }\NormalTok{(feet }\OperatorTok{*}\StringTok{ }\DecValTok{12}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{inches}
+
+\KeywordTok{sqrt}\NormalTok{(x}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{y}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# Bad}
+
+\NormalTok{x[,}\DecValTok{1}\NormalTok{]}
+
+\KeywordTok{mean}\NormalTok{ (x, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+
+\ControlFlowTok{if}\NormalTok{(debug) }\KeywordTok{show}\NormalTok{(x)}
+
+\ControlFlowTok{function}\NormalTok{(x)\{\}}
+
+\NormalTok{height <{-}}\StringTok{ }\NormalTok{(feet}\OperatorTok{*}\DecValTok{12}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{inches}
+
+\KeywordTok{sqrt}\NormalTok{(x }\OperatorTok{\^{}}\StringTok{ }\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{y }\OperatorTok{\^{}}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Indenting
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Good}
+\ControlFlowTok{if}\NormalTok{ (y }\OperatorTok{<}\StringTok{ }\DecValTok{0} \OperatorTok{\&\&}\StringTok{ }\NormalTok{debug) \{}
+  \KeywordTok{message}\NormalTok{(}\StringTok{"y is negative"}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{\# Bad}
+\ControlFlowTok{if}\NormalTok{ (y }\OperatorTok{<}\StringTok{ }\DecValTok{0} \OperatorTok{\&\&}\StringTok{ }\NormalTok{debug)}
+\KeywordTok{message}\NormalTok{(}\StringTok{"Y is negative"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Long lines
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Good}
+\KeywordTok{do\_something\_very\_complicated}\NormalTok{(}
+  \DataTypeTok{something =} \StringTok{"that"}\NormalTok{,}
+  \DataTypeTok{requires =}\NormalTok{ many,}
+  \DataTypeTok{arguments =} \StringTok{"some of which may be long"}
+\NormalTok{)}
+
+\CommentTok{\# Bad}
+\KeywordTok{do\_something\_very\_complicated}\NormalTok{(}\StringTok{"that"}\NormalTok{, requires, many, arguments,}
+                              \StringTok{"some of which may be long"}
+\NormalTok{                              )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Comments
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Use comments to explain why you make what decisions.
+  \item
+    Show your code; Do not try to explain your code by comments.
+  \item
+    Also, try to comment out rather than delete the code that you experiment with.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Comment out}
+\CommentTok{\# mean(jae$sleep, na.rm = T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Pipes
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Good}
+\NormalTok{iris }\OperatorTok{\%>\%}
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(Species) }\OperatorTok{\%>\%}
+\StringTok{  }\KeywordTok{summarize\_if}\NormalTok{(is.numeric, mean) }\OperatorTok{\%>\%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{\%>\%}
+\StringTok{  }\KeywordTok{gather}\NormalTok{(measure, value, }\OperatorTok{{-}}\NormalTok{Species) }\OperatorTok{\%>\%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(value)}
+
+\CommentTok{\# Bad}
+\NormalTok{iris }\OperatorTok{\%>\%}\StringTok{ }\KeywordTok{group\_by}\NormalTok{(Species) }\OperatorTok{\%>\%}\StringTok{ }\KeywordTok{summarize\_all}\NormalTok{(mean) }\OperatorTok{\%>\%}
+\NormalTok{ungroup }\OperatorTok{\%>\%}\StringTok{ }\KeywordTok{gather}\NormalTok{(measure, value, }\OperatorTok{{-}}\NormalTok{Species) }\OperatorTok{\%>\%}
+\KeywordTok{arrange}\NormalTok{(value)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Additional tips
+\item
+  Use \texttt{lintr} to check whether your code complies with a recommended style guideline (e.g., \texttt{tidyverse}) and \texttt{styler} package to format your code according to the style guideline.
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{https://camo.githubusercontent.com/6cb80270269165a8d3046d2da03cbf2b8f19ee2f/687474703a2f2f692e696d6775722e636f6d2f61635632374e562e676966}
+\caption{how lintr works}
+\end{figure}
+
+\hypertarget{write-reusable-code}{%
+\subsection{Write reusable code}\label{write-reusable-code}}
+
+\begin{itemize}
+\tightlist
+\item
+  Pasting
+\end{itemize}
+
+\begin{quote}
+Copy-and-paste programming, sometimes referred to as just pasting, is the production of highly repetitive computer programming code, as produced by copy and paste operations. It is primarily a pejorative term; those who use the term are often implying a lack of programming competence. It may also be the result of technology limitations (e.g., an insufficiently expressive development environment) as subroutines or libraries would normally be used instead. However, there are occasions when copy-and-paste programming is considered acceptable or necessary, such as for boilerplate, loop unrolling (when not supported automatically by the compiler), or certain programming idioms, and it is supported by some source code editors in the form of snippets. - Wikipedia
+\end{quote}
+
+\begin{itemize}
+\item
+  Example
+\item
+  Let's imagine \texttt{df} is a survey data.
+
+  \begin{itemize}
+  \item
+    a, b, c, d = Survey respondents
+  \item
+    -99: non-responses
+  \item
+    Your goal: replace -99 with NA
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Data}
+\NormalTok{df <{-}}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}\StringTok{"a"}\NormalTok{ =}\StringTok{ }\DecValTok{{-}99}\NormalTok{,}
+             \StringTok{"b"}\NormalTok{ =}\StringTok{ }\DecValTok{{-}99}\NormalTok{,}
+             \StringTok{"c"}\NormalTok{ =}\StringTok{ }\DecValTok{{-}99}\NormalTok{,}
+             \StringTok{"d"}\NormalTok{ =}\StringTok{ }\DecValTok{{-}99}\NormalTok{)}
+             
+\CommentTok{\# Copy and paste }
+\NormalTok{df}\OperatorTok{$}\NormalTok{a[df}\OperatorTok{$}\NormalTok{a }\OperatorTok{==}\StringTok{ }\DecValTok{{-}99}\NormalTok{] <{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{df}\OperatorTok{$}\NormalTok{b[df}\OperatorTok{$}\NormalTok{b }\OperatorTok{==}\StringTok{ }\DecValTok{{-}99}\NormalTok{] <{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{df}\OperatorTok{$}\NormalTok{c[df}\OperatorTok{$}\NormalTok{c }\OperatorTok{==}\StringTok{ }\DecValTok{{-}99}\NormalTok{] <{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{df}\OperatorTok{$}\NormalTok{d[df}\OperatorTok{$}\NormalTok{d }\OperatorTok{==}\StringTok{ }\DecValTok{{-}99}\NormalTok{] <{-}}\StringTok{ }\OtherTok{NA}
+
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 4
+##       a     b     c     d
+##   <dbl> <dbl> <dbl> <dbl>
+## 1    NA    NA    NA    NA
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Using a function
+
+  \begin{itemize}
+  \tightlist
+  \item
+    function: input + computation + output
+  \item
+    If you write a function, you gain efficiency because you don't need to copy and paste the computation part.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Function}
+\NormalTok{fix\_missing <{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+\NormalTok{  x[x }\OperatorTok{==}\StringTok{ }\DecValTok{{-}99}\NormalTok{] <{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{  x}
+\NormalTok{\}}
+
+\CommentTok{\# Apply function to each column (vector)}
+\NormalTok{df}\OperatorTok{$}\NormalTok{a <{-}}\StringTok{ }\KeywordTok{fix\_missing}\NormalTok{(df}\OperatorTok{$}\NormalTok{a)}
+\NormalTok{df}\OperatorTok{$}\NormalTok{b <{-}}\StringTok{ }\KeywordTok{fix\_missing}\NormalTok{(df}\OperatorTok{$}\NormalTok{b)}
+\NormalTok{df}\OperatorTok{$}\NormalTok{c <{-}}\StringTok{ }\KeywordTok{fix\_missing}\NormalTok{(df}\OperatorTok{$}\NormalTok{c)}
+\NormalTok{df}\OperatorTok{$}\NormalTok{d <{-}}\StringTok{ }\KeywordTok{fix\_missing}\NormalTok{(df}\OperatorTok{$}\NormalTok{d)}
+
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Automation
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Many options for automation in R: \texttt{for\ loop}, \texttt{apply} family, etc.
+  \item
+    Here's a tidy solution comes from \texttt{purrr} package.
+  \item
+    The power and joy of one-liner.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <{-}}\StringTok{ }\NormalTok{purrr}\OperatorTok{::}\KeywordTok{map\_df}\NormalTok{(df, fix\_missing)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+Takeaway: Your code is more reusable, when it's easier to change, debug, and scale up.
+
+\hypertarget{test-your-code-systematically}{%
+\subsection{Test your code systematically}\label{test-your-code-systematically}}
+
 \hypertarget{asking-questions-minimal-reproducible-example}{%
 \section{Asking questions: Minimal reproducible example}\label{asking-questions-minimal-reproducible-example}}
+
+\hypertarget{how-to-create-a-minimal-reproducible-example}{%
+\subsection{How to create a minimal reproducible example}\label{how-to-create-a-minimal-reproducible-example}}
+
+\textbf{References}
+
+\begin{itemize}
+\item
+  Project-oriented research
+
+  \begin{itemize}
+  \item
+    Computational reproducibility
+
+    \begin{itemize}
+    \item
+      \href{https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf}{``Good Enough Practices in Scientific Computing''} by PLOS
+    \item
+      \href{https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/}{Project Management with RStudio} by Software Carpentry
+    \item
+      \href{https://kbroman.org/steps2rr/}{Initial steps toward reproducible research} by Karl Broman
+    \end{itemize}
+  \item
+    Version control
+
+    \begin{itemize}
+    \item
+      \href{https://swcarpentry.github.io/git-novice/}{Version Control with Git} by Software Carpentry
+    \item
+      \href{http://plain-text.co/}{The Plain Person's Guide to Plain Text Social Science} by Kieran Healy
+    \end{itemize}
+  \end{itemize}
+\item
+  Writing code
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Style guides
+
+    \begin{itemize}
+    \tightlist
+    \item
+      R
+
+      \begin{itemize}
+      \tightlist
+      \item
+        \href{https://google.github.io/styleguide/Rguide.xml}{Google's R style guide}
+      \item
+        \href{http://r-pkgs.had.co.nz/r.html}{R code style guide} by Hadley Wickham
+      \item
+        \href{http://style.tidyverse.org/}{The tidyverse style guide} by Hadley Wickham
+      \end{itemize}
+    \item
+      Python
+
+      \begin{itemize}
+      \tightlist
+      \item
+        \href{https://github.com/google/styleguide/blob/gh-pages/pyguide.md}{Google Python Style Guide}
+      \item
+        \href{https://docs.python-guide.org/writing/style/\#zen-of-python}{Code Style} by the Hitchhiker's Guide to Python
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\item
+  Asking questions
+\end{itemize}
 
 \hypertarget{tidy_data}{%
 \chapter{Tidy data and its friends}\label{tidy_data}}

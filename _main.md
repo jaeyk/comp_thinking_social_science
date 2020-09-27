@@ -1,3 +1,62 @@
+--- 
+title: Computational Thinking for Social Scientists
+author: Jae Yeon Kim
+date: "2020-09-26"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography:
+  - book.bib
+  - packages.bib
+biblio-style: apalike
+link-citations: yes
+github-repo: github.com/jaeyk/PS239T
+description: Computational Thinking for Social Scientists
+---
+
+# PS239T
+
+Welcome to PS239T
+
+___
+
+This course will help social science graduate students to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables students to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let students to work on research projects that would previously seem impossible.
+
+The course is currently divided into two main subjects (fundamentals and applications) and six main sessions. 
+
+**Part I Fundamentals**
+
+- In the first section, students learn best practices in data and code management using Git and Bash. 
+
+- In the second, students learn how to wrangle, model, and visualize data easier and faster. 
+
+- In the third, students learn how to use functions to automate repeated things and develop their own data tools (e.g., packages). 
+
+**Part II Applications**
+
+- In the fourth, students learn how to collect and parse semi-structured data at scale (e.g., using APIs and webscraping). 
+
+- In the fifth, students learn how to analyze high-dimensional data (e.g., text) using machine learning. 
+
+- In the final, students learn how to access, query, and manage big data using SQL. 
+
+
+**Instructor and course developer**
+
+[Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
+
+**History**
+
+This course is a remix version of [the course](https://github.com/rochelleterman/PS239T) originally developed by [Rochelle Terman](https://github.com/rochelleterman).
+
+**Questions, comments, or suggestions**
+
+Please [create issues](https://github.com/jaeyk/PS239T/issues), if you have questions, comments, or suggestions.
+
+![](https://i.creativecommons.org/l/by/4.0/88x31.png) This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+
+<!--chapter:end:index.Rmd-->
+
 # Managing data and code {#Intro}
 
 ## Project-oriented research
@@ -6,7 +65,8 @@
 
 #### Setup
 
-```{r}
+
+```r
 pacman::p_load(
   tidyverse, # tidyverse
   here # computational reproducibility
@@ -31,12 +91,11 @@ Step 1. [**Environment**](https://environments.rstudio.com/) is part of your pro
 
 Step 2. For each project, create a project directory named after the project. 
 
-```{r eval = FALSE}
 
+```r
 # Don't name it a project. Use a name that's more informative.
 
 dir.create("../starwars")
-
 ```
 
 Step 3. Launch R Studio. Choose File > New project > Browse existing directories > Create project This allows each project has its own workspace. 
@@ -45,40 +104,37 @@ Step 4. Organize files by putting them in separate subdirectories and naming the
 
 - Treat raw data as read only (raw data should be RAW!) and put in the `data` directory.
 
-```{r eval = FALSE}
 
+```r
 dir.create(here::here("project", "data"))
-
 ```
 
 - Separate read-only data from processed data and put in the `processed_data` subdirectory.
 
-```{r eval = FALSE}
 
+```r
 dir.create(here::here("project", "processed_data"))
 ```
 
 - Put your code in the `src` directory. 
 
-```{r eval = FALSE}
 
+```r
 dir.create(here::here("project", "processed_data"))
 ```
 
 - Put generated outputs (e.g., tables, figures) in the `outputs` subdirectory and treat them as disposable.
 
-```{r eval = FALSE}
 
+```r
 dir.create(here::here("project", "outputs"))
-
 ```
 
 - Put your custom functions in the `functions` subdirectory. You can put some of them together later as a package. 
 
-```{r eval = FALSE}
 
+```r
 dir.create(here::here("project", "functions"))
-
 ```
 
 **Challenge 1**
@@ -91,7 +147,8 @@ Set a project structure for a project named "starwars".
 
 - R Markdown basic syntax 
 
-```{r}
+
+```r
 # Header 1
 ## Header 2
 ### Header 3
@@ -99,7 +156,8 @@ Set a project structure for a project named "starwars".
 
 - Use these section headings to indicate workflow.
 
-```{r}
+
+```r
 # Import packages and data
 # Tidy data
 # Wrangle data
@@ -121,8 +179,8 @@ Set a project structure for a project named "starwars".
 
 - Note that using `setwd()` is not a reproducible way to set up your project. For instance, none will be able to run the following code except me.
 
-```{r eval = FALSE}
 
+```r
 # Set a working directory 
 setwd("/home/jae/starwars")
 
@@ -132,7 +190,6 @@ ggplot(mtcars, aes(x = mpg, y = wt)) +
 
 # dot means the working directory set by setwd()
 ggsave("./outputs/example.png") # This is called relative path 
-
 ```
 
 - Instead, learn how to use `here()`'.
@@ -141,30 +198,28 @@ ggsave("./outputs/example.png") # This is called relative path
 
    - Example 
 
-```{r eval = FALSE}
 
+```r
 # New: Reproducible 
 
 ggplot(mtcars, aes(x = mpg, y = wt)) +
    geom_point()
 
 ggsave(here("project", "outputs", "example.png"))
-
 ```
 
    - How `here` works 
 
    `here()` function shows what's the top-level project directory. 
 
-```{r eval = FALSE}
 
+```r
 here::here()
-
 ```
    - Build a path including subdirectories 
 
-```{r eval = FALSE}
 
+```r
 here::here("project", "outputs")
            #depth 1   #depth 2
 ```
@@ -244,7 +299,8 @@ echo "Copied pdfs"
     - Don't capitalize.
     - Numbering them if files should be run in an order.
 
-```{r, eval= FALSE}
+
+```r
 # Good
 fit_models.R
 # Bad
@@ -256,7 +312,8 @@ fit models.R
     - Don't use special characters.
     - Don't capitalize.
 
-```{r, eval = FALSE}
+
+```r
 # Good 
 day_one
     
@@ -270,7 +327,8 @@ DayOne
     - Don't capitalize.
     - Use `verbs` instead of `nouns`.
     
-```{r, eval = FALSE}
+
+```r
 # Good 
 run_rdd 
 
@@ -280,8 +338,8 @@ rdd
     
 - Spacing 
 
-```{r, eval = FALSE}
 
+```r
 # Good
 x[, 1] 
 
@@ -312,7 +370,8 @@ sqrt(x ^ 2 + y ^ 2)
 
 - Indenting 
 
-```{r eval= FALSE}
+
+```r
 # Good
 if (y < 0 && debug) {
   message("y is negative")
@@ -325,7 +384,8 @@ message("Y is negative")
 
 - Long lines
 
-```{r, eval = FALSE}
+
+```r
 # Good
 do_something_very_complicated(
   something = "that",
@@ -344,14 +404,16 @@ do_something_very_complicated("that", requires, many, arguments,
    - Show your code; Do not try to explain your code by comments.
    - Also, try to comment out rather than delete the code that you experiment with. 
 
-```{r eval = FALSE}
+
+```r
 # Comment out
 # mean(jae$sleep, na.rm = T)
 ```
 
 - Pipes 
 
-```{r, eval = FALSE}
+
+```r
 # Good
 iris %>%
   group_by(Species) %>%
@@ -388,7 +450,8 @@ arrange(value)
     
     - Your goal: replace -99 with NA 
     
-```{r}
+
+```r
 # Data
 df <- tibble("a" = -99,
              "b" = -99,
@@ -404,11 +467,19 @@ df$d[df$d == -99] <- NA
 df
 ```
 
+```
+## # A tibble: 1 x 4
+##       a     b     c     d
+##   <dbl> <dbl> <dbl> <dbl>
+## 1    NA    NA    NA    NA
+```
+
 - Using a function 
    - function: input + computation + output 
    - If you write a function, you gain efficiency because you don't need to copy and paste the computation part. 
 
-```{r eval = FALSE}
+
+```r
 # Function
 fix_missing <- function(x) {
   x[x == -99] <- NA
@@ -429,7 +500,8 @@ df
    - Here's a tidy solution comes from `purrr` package.
    - The power and joy of one-liner. 
 
-```{r eval = FALSE}
+
+```r
 df <- purrr::map_df(df, fix_missing)
 df
 ```
@@ -472,3 +544,58 @@ Takeaway: Your code is more reusable, when it's easier to change, debug, and sca
          - [Code Style](https://docs.python-guide.org/writing/style/#zen-of-python) by the Hitchhiker's Guide to Python
 
 - Asking questions 
+
+<!--chapter:end:01_intro.Rmd-->
+
+# Tidy data and its friends {#tidy_data}
+
+## Tidy data and why it matters
+
+## Wrangling data
+
+## How to wrangle data
+
+## How to wrangle data at scale
+
+## Modeling and visualizing tidy data
+
+<!--chapter:end:02_tidy_data.Rmd-->
+
+# Automating repeated things {#functional_programming}
+
+## From for loop to functional programing
+
+## Developing your own data tools
+
+<!--chapter:end:03_functional_programming.Rmd-->
+
+# Semi-structured data {#semi_structured_data}
+
+## HTML/CSS: web scraping
+
+## XML/JSON: social media scraping
+
+<!--chapter:end:04_semi_structured_data.Rmd-->
+
+# High-dimensional data {#machine_learning}
+
+## Supervised machine learning
+
+### Regularization
+
+### Decision tree and ensemble models
+
+## Unsupervised machine learning
+
+### Dimension reduction
+
+### Clustering
+
+<!--chapter:end:05_high_dimensional_data.Rmd-->
+
+# Big data {#big_data}
+
+## Database and SQL
+
+<!--chapter:end:06_big_data.Rmd-->
+
