@@ -71,7 +71,7 @@ dir.create(here::here("us_election", "src"))
 dir.create(here::here("us_election", "outputs"))
 ```
 
-- Put your custom functions in the `functions` subdirectory. You can put some of them together later as a package. 
+- Put your custom functions in the `functions` subdirectory. You can gather some of these functions and distribute them as an open-source library. 
 
 
 ```r
