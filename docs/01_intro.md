@@ -78,7 +78,7 @@ dir.create(here::here("project", "outputs"))
 dir.create(here::here("project", "functions"))
 ```
 
-**Challenge 1**
+**Challenge 2**
 
 Set a project structure for a project named "starwars". 
 
