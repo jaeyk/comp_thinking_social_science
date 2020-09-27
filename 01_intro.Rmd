@@ -25,7 +25,7 @@ For your self-interest and public benefits.
 
 You won't be able to reproduce your project unless it is efficiently organized. 
 
-Step 1. [**Environment**](https://environments.rstudio.com/) is part of your project. Don't share them across workspaces. If someone can't reproduce your environment, they won't be able to run your code.
+Step 1. [**Environment**](https://environments.rstudio.com/) is part of your project. If someone can't reproduce your environment, they won't be able to run your code.
 
 - Launch R Studio. Choose Tools > Global Options. You should not check `Restor .RData into workspace at startup` and set saving workspace option to `NEVER`.
 
@@ -132,6 +132,7 @@ setwd("/home/jae/starwars")
 ggplot(mtcars, aes(x = mpg, y = wt)) +
    geom_point()
 
+# Export the object. 
 # dot means the working directory set by setwd()
 ggsave("./outputs/example.png") # This is called relative path 
 
@@ -238,12 +239,16 @@ echo "Copied pdfs"
 
 ## Writing code: How to code like a professional
 
-### Write readable code 
+### Write readable code
+
+- What is code style?
+
+> Every major open-source project has its own style guide: a set of conventions (sometimes arbitrary) about how to write code for that project. It is much easier to understand a large codebase when all the code in it is in a consistent style. - [Google Style Guides](https://google.github.io/styleguide/) 
 
 - Files 
 - When naming files:
-    - Don't use special characters.
-    - Don't capitalize.
+    - Don't use special characters. (Spaces make filenames awkward in the console/command-line.)
+    - Don't capitalize. (UNIX is case sensitive.)
     - Numbering them if files should be run in an order.
 
 ```{r, eval= FALSE}
@@ -271,7 +276,7 @@ DayOne
 - When naming functions:
     - Don't use special characters.
     - Don't capitalize.
-    - Use `verbs` instead of `nouns`.
+    - Use `verbs` instead of `nouns`. (Functions do something!)
     
 ```{r, eval = FALSE}
 # Good 
@@ -290,40 +295,25 @@ x[, 1]
 
 mean(x, na.rm = TRUE) 
 
-if (debug) show(x) 
-
-function(x) {}
-
-height <- (feet * 12) + inches
-
-sqrt(x^2 + y^2)
-
 # Bad
 
 x[,1]
 
 mean (x, na.rm = TRUE)
 
-if(debug) show(x)
-
-function(x){}
-
-height <- (feet*12) + inches
-
-sqrt(x ^ 2 + y ^ 2)
 ```
 
 - Indenting 
 
 ```{r eval= FALSE}
 # Good
-if (y < 0 && debug) {
+if (y < 0) {
   message("y is negative")
 }
 
 # Bad
-if (y < 0 && debug)
-message("Y is negative")
+if (y < 0) {
+message("Y is negative")}
 ```
 
 - Long lines
@@ -337,22 +327,26 @@ do_something_very_complicated(
 )
 
 # Bad
-do_something_very_complicated("that", requires, many, arguments,
+do_something_very_complicated("that", requires = many, arguments =
                               "some of which may be long"
                               )
 ```
 
 - Comments 
-   - Use comments to explain why you make what decisions. 
-   - Show your code; Do not try to explain your code by comments.
+   - Use comments to explain your decisions. 
+   - But, show your code; Do not try to explain your code by comments.
    - Also, try to comment out rather than delete the code that you experiment with. 
 
 ```{r eval = FALSE}
-# Comment out
-# mean(jae$sleep, na.rm = T)
+# Average sleep hours of Jae
+jae %>%
+  # By week
+  group_by(week) %>%
+  # Mean sleep hours 
+  summarise(week_sleep = mean(sleep, na.rm = TRUE))
 ```
 
-- Pipes 
+- Pipes (chaining commands)
 
 ```{r, eval = FALSE}
 # Good
@@ -379,25 +373,35 @@ arrange(value)
 
 - Pasting 
 
-> Copy-and-paste programming, sometimes referred to as just pasting, is the production of highly repetitive computer programming code, as produced by copy and paste operations. It is primarily a pejorative term; those who use the term are often implying a lack of programming competence. It may also be the result of technology limitations (e.g., an insufficiently expressive development environment) as subroutines or libraries would normally be used instead. However, there are occasions when copy-and-paste programming is considered acceptable or necessary, such as for boilerplate, loop unrolling (when not supported automatically by the compiler), or certain programming idioms, and it is supported by some source code editors in the form of snippets. - Wikipedia 
+> Copy-and-paste programming, sometimes referred to as just pasting, is the production of highly repetitive computer programming code, as produced by copy and paste operations. It is primarily a pejorative term; those who use the term are often implying a lack of programming competence. It may also be the result of technology limitations (e.g., an insufficiently expressive development environment) as subroutines or libraries would normally be used instead. However, there are occasions when copy-and-paste programming is considered acceptable or necessary, such as for boilerplate, loop unrolling (when not supported automatically by the compiler), or certain programming idioms, and it is supported by some source code editors in the form of snippets. - [Wikipedia](https://en.wikipedia.org/wiki/Copy-and-paste_programming) 
+
+- It's okay for pasting for the first attempt to solve a problem. But if you copy and paste three times (a.k.a. [Rule of Three](https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming)) in programming), something's wrong. You're working too hard. You need to be lazy. What do I mean and how can you do that?
 
 - Example 
 
-- Let's imagine `df` is a survey data. 
+- Let's imagine `df` is a survey dataset. 
 
-    - `a, b, c, d` = Survey respondents 
+    - `a, b, c, d` = Survey questions 
 
     - `-99`: non-responses 
     
     - Your goal: replace `-99` with `NA` 
     
 ```{r}
+
 # Data
-df <- tibble("a" = -99,
-             "b" = -99,
-             "c" = -99,
-             "d" = -99)
-             
+
+set.seed(1234) # for reproducibility 
+
+df <- tibble("a" = sample(c(-99, 1:3), size = 5 , replace= TRUE),
+             "b" = sample(c(-99, 1:3), size = 5 , replace= TRUE),
+             "c" = sample(c(-99, 1:3), size = 5 , replace= TRUE),
+             "d" = sample(c(-99, 1:3), size = 5 , replace= TRUE))
+           
+```
+
+```{r}
+
 # Copy and paste 
 df$a[df$a == -99] <- NA
 df$b[df$b == -99] <- NA
@@ -412,13 +416,14 @@ df
    - If you write a function, you gain efficiency because you don't need to copy and paste the computation part. 
 
 ```{r eval = FALSE}
-# Function
-fix_missing <- function(x) {
-  x[x == -99] <- NA
-  x
+# Create a custom function
+fix_missing <- function(x) { # INPUT
+  x[x == -99] <- NA # COMPUTATION
+  x # OUTPUT 
 }
 
-# Apply function to each column (vector)
+# Apply the function to each column (vector)
+# This iterated part can and should be automated.
 df$a <- fix_missing(df$a)
 df$b <- fix_missing(df$b)
 df$c <- fix_missing(df$c)
@@ -433,11 +438,19 @@ df
    - The power and joy of one-liner. 
 
 ```{r eval = FALSE}
-df <- purrr::map_df(df, fix_missing)
+
+df <- purrr::map_df(df, fix_missing) # What is this magic? We will unpack the blackbox (`map_df()`) later.
+
 df
 ```
 
-Takeaway: Your code is more reusable, when it's easier to change, debug, and scale up.
+- Takeaways
+
+  1. Your code becomes more reusable, when it's easier to **change, debug, and scale up**. Don't repeat yourself and embrace the power of lazy programming. 
+  
+  2. Only when your code becomes **reusable**, you would become **efficient** in your data work. Otherwise, you need to start from scratch or copy and paste, when you work on a new project.
+
+> Lazy, because only lazy programmers will want to write the kind of tools that might replace them in the end. Lazy, because only a lazy programmer will avoid writing monotonous, repetitive code—thus avoiding redundancy, the enemy of software maintenance and flexible refactoring. Mostly, the tools and processes that come out of this endeavor fired by laziness will speed up the production. -  [Philipp Lenssen](http://blogoscoped.com/archive/2005-08-24-n14.html)
 
 ### Test your code systematically 
 
