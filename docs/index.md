@@ -64,11 +64,11 @@ We will learn how to do all of the above mostly in **R**, and sometimes in **bas
 
 By appointment with ... 
 
-### Slack & bCourses
+### Slack & GitHub
 
-- We will [Slack](https://slack.com/) for communication (announcements and questions) and bCourses for turning in assignments. You should ask questions about class material and assignments through the Slack channels so that everyone can benefit from the discussion. We encourage you to respond to each other’s questions as well.  
+- [Slack](https://slack.com/) for communication (announcements and questions). You should ask questions about class material and assignments through the Slack channels so that everyone can benefit from the discussion. We encourage you to respond to each other’s questions as well.  
 
-- All course materials will be posted on GitHub at https://github.com/jaeyk/PS239T, including class notes, code demonstrations, sample data, and assignments. Students are required to use GitHub for their final projects, which will be publicly available, unless they have special considerations (e.g. proprietary data).
+- [GitHub](https://github.com/) for everything else, including turning in assignments (except final project proposals, which will be submitted to Slack). Students are required to use GitHub for their final projects, which will be publicly available, unless they have special considerations (e.g. proprietary data). All course materials will be posted on GitHub at https://github.com/jaeyk/PS239T, including class notes, code demonstrations, sample data, and assignments. 
 
 ### Accessibility
 
@@ -108,8 +108,13 @@ Because we will be using laptops every class, the temptation to attend to other 
 #### Final project 
 
 The final project consists of using the tools we learned in class on your own data of interest. First- and second-year students in the political science department are encouraged to use this as an opportunity to gather data to be used for other courses or the second-year thesis. Students are required to write a short proposal by March (no more than 2 paragraphs) in order to get approval and feedback from the instructor. 
-
 During sections in April we will have **lightning talk sessions** where students present their projects in a maximum 5 minute talk, with 5 minutes for class Q&A. Since there is no expectation of a formal paper, you should select a project that is completable by the end of the term. In other words, submitting a research design for your future dissertation that will use skills from the class but collects no data is not acceptable, but completing a viably small portion of a study or thesis is. 
+
+- [Final project rubric](https://github.com/jaeyk/PS239T/blob/master/final_projects/rubric.md)
+
+- [Final project template](https://github.com/jaeyk/PS239T/tree/master/final_projects/template)
+
+- [Final project examples](https://github.com/jaeyk/PS239T/blob/master/final_projects/template/past_projects.md)
 
 ### Class activities and materials 
 
