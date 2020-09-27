@@ -382,11 +382,11 @@ arrange(value)
 
 - Let's imagine `df` is a survey data. 
 
-    - a, b, c, d = Survey respondents 
+    - `a, b, c, d` = Survey respondents 
 
-    - -99: non-responses 
+    - `-99`: non-responses 
     
-    - Your goal: replace -99 with NA 
+    - Your goal: replace `-99` with `NA` 
     
 ```{r}
 # Data
