@@ -71,25 +71,33 @@ Please [create issues](https://github.com/jaeyk/PS239T/issues), if you have ques
   - HTML/CSS: Websites 
   - JSON/XML: APIs
 
-### Dimensions 
+### Dimension
 - Low-dimensional data (n > p)
   - Survey, experimental, and administrative data 
 - High-dimensional data (n < p)
   - Text, speech, image, video, etc. 
 
+### Size 
+- Data fit in your laptop's memory 
+- Data don't fit in your laptop's memory (=big data)
+
 ## Computational way of thinking about research process
 
-- Computational tools and techniques make doing traditional research easier, faster, scalable, and more reproducible
+Computational tools and techniques make ... 
+
+- Doing traditional research easier, faster, scalable, and more reproducible
   - Data wrangling 
   - Modeling 
   - Visualization 
-- Computational tools and techniques make documentation and collaboration easier, faster, scalable and safer
+- Documentation and collaboration easier, faster, scalable, safer, and more experimental 
   - Dynamic reporting (markdown)
   - Version control system (Git and GitHub)
-- Computational tools and techniques make collecting and analyzing large and complex data possible 
+- Collecting and analyzing large and complex data possible 
   - Digital data collection (API and web scraping)
       - Building a data infrastructure (SQL)
   - Machine learning 
+  
+## Course schedule
 
 <!--chapter:end:00_motivation.Rmd-->
 
