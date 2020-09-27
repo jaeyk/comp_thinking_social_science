@@ -15,7 +15,9 @@
 
 ### Dimensions 
 - Low-dimensional data (n > p)
+  - Survey, experimental, and administrative data 
 - High-dimensional data (n < p)
+  - Text, speech, image, video, etc. 
 
 ## Computational way of thinking about research process
 
