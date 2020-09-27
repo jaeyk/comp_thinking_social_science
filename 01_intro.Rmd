@@ -111,8 +111,8 @@ Set a project structure for a project named "starwars".
 
 - If your project's scale is large, then divide these sections into files, number, and save them in `code` subdirectory. 
 
-   - 01_tidying.Rmd
-   - 02_transforming.Rmd 
+   - 01_wrangling.Rmd
+   - 02_modeling.Rmd 
    ... 
 
 #### Making a project computationally reproducible
