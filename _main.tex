@@ -120,7 +120,7 @@
 
 \title{Computational Thinking for Social Scientists}
 \author{Jae Yeon Kim}
-\date{2020-09-26}
+\date{2020-09-27}
 
 \begin{document}
 \maketitle
@@ -209,9 +209,9 @@ For your self-interest and public benefits.
 \hypertarget{how-to-organize-files-in-a-project}{%
 \subsubsection{How to organize files in a project}\label{how-to-organize-files-in-a-project}}
 
-You cannot reproduce your project if it is not efficiently organized.
+You won't be able to reproduce your project unless it is efficiently organized.
 
-Step 1. \href{https://environments.rstudio.com/}{\textbf{Environment}} is part of your project. Don't share them across workspaces. If someone can't reproduce your environment, they won't be able to run your code.
+Step 1. \href{https://environments.rstudio.com/}{\textbf{Environment}} is part of your project. If someone can't reproduce your environment, they won't be able to run your code.
 
 \begin{itemize}
 \tightlist
@@ -223,9 +223,9 @@ Step 2. For each project, create a project directory named after the project.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Don\textquotesingle{}t name it a project. Use a name that\textquotesingle{}s more informative.}
+\CommentTok{\# Don\textquotesingle{}t name it a project. Use a name that\textquotesingle{}s more informative. For instance, us\_election not my\_project.}
 
-\KeywordTok{dir.create}\NormalTok{(}\StringTok{"../starwars"}\NormalTok{)}
+\KeywordTok{dir.create}\NormalTok{(}\StringTok{"../us\_election"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -241,7 +241,7 @@ Step 4. Organize files by putting them in separate subdirectories and naming the
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"project"}\NormalTok{, }\StringTok{"data"}\NormalTok{))}
+\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"us\_election"}\NormalTok{, }\StringTok{"data"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -253,7 +253,7 @@ Step 4. Organize files by putting them in separate subdirectories and naming the
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"project"}\NormalTok{, }\StringTok{"processed\_data"}\NormalTok{))}
+\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"us\_election"}\NormalTok{, }\StringTok{"processed\_data"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -265,7 +265,7 @@ Step 4. Organize files by putting them in separate subdirectories and naming the
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"project"}\NormalTok{, }\StringTok{"processed\_data"}\NormalTok{))}
+\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"us\_election"}\NormalTok{, }\StringTok{"src"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -277,7 +277,7 @@ Step 4. Organize files by putting them in separate subdirectories and naming the
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"project"}\NormalTok{, }\StringTok{"outputs"}\NormalTok{))}
+\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"us\_election"}\NormalTok{, }\StringTok{"outputs"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -289,11 +289,11 @@ Step 4. Organize files by putting them in separate subdirectories and naming the
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"project"}\NormalTok{, }\StringTok{"functions"}\NormalTok{))}
+\KeywordTok{dir.create}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"us\_election"}\NormalTok{, }\StringTok{"functions"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Challenge 1}
+\textbf{Challenge 2}
 
 Set a project structure for a project named ``starwars''.
 
@@ -340,9 +340,9 @@ Set a project structure for a project named ``starwars''.
   \begin{itemize}
   \tightlist
   \item
-    01\_tidying.Rmd
+    01\_wrangling.Rmd
   \item
-    02\_transforming.Rmd
+    02\_modeling.Rmd
     \ldots{}
   \end{itemize}
 \end{itemize}
@@ -366,6 +366,7 @@ Set a project structure for a project named ``starwars''.
 \KeywordTok{ggplot}\NormalTok{(mtcars, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mpg, }\DataTypeTok{y =}\NormalTok{ wt)) }\OperatorTok{+}
 \StringTok{   }\KeywordTok{geom\_point}\NormalTok{()}
 
+\CommentTok{\# Export the object. }
 \CommentTok{\# dot means the working directory set by setwd()}
 \KeywordTok{ggsave}\NormalTok{(}\StringTok{"./outputs/example.png"}\NormalTok{) }\CommentTok{\# This is called relative path }
 \end{Highlighting}
@@ -536,6 +537,16 @@ Write a shell script that creates a directory called \texttt{/pdfs} under \textt
 \begin{itemize}
 \tightlist
 \item
+  What is code style?
+\end{itemize}
+
+\begin{quote}
+Every major open-source project has its own style guide: a set of conventions (sometimes arbitrary) about how to write code for that project. It is much easier to understand a large codebase when all the code in it is in a consistent style. - \href{https://google.github.io/styleguide/}{Google Style Guides}
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
   Files
 \item
   When naming files:
@@ -543,9 +554,9 @@ Write a shell script that creates a directory called \texttt{/pdfs} under \textt
   \begin{itemize}
   \tightlist
   \item
-    Don't use special characters.
+    Don't use special characters. (Spaces make filenames awkward in the console/command-line.)
   \item
-    Don't capitalize.
+    Don't capitalize. (UNIX is case sensitive.)
   \item
     Numbering them if files should be run in an order.
   \end{itemize}
@@ -555,6 +566,7 @@ Write a shell script that creates a directory called \texttt{/pdfs} under \textt
 \begin{Highlighting}[]
 \CommentTok{\# Good}
 \NormalTok{fit\_models.R}
+
 \CommentTok{\# Bad}
 \NormalTok{fit models.R}
 \end{Highlighting}
@@ -600,7 +612,7 @@ Write a shell script that creates a directory called \texttt{/pdfs} under \textt
   \item
     Don't capitalize.
   \item
-    Use \texttt{verbs} instead of \texttt{nouns}.
+    Use \texttt{verbs} instead of \texttt{nouns}. (Functions do something!)
   \end{itemize}
 \end{itemize}
 
@@ -627,27 +639,11 @@ Write a shell script that creates a directory called \texttt{/pdfs} under \textt
 
 \KeywordTok{mean}\NormalTok{(x, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }
 
-\ControlFlowTok{if}\NormalTok{ (debug) }\KeywordTok{show}\NormalTok{(x) }
-
-\ControlFlowTok{function}\NormalTok{(x) \{\}}
-
-\NormalTok{height <{-}}\StringTok{ }\NormalTok{(feet }\OperatorTok{*}\StringTok{ }\DecValTok{12}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{inches}
-
-\KeywordTok{sqrt}\NormalTok{(x}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{y}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}
-
 \CommentTok{\# Bad}
 
 \NormalTok{x[,}\DecValTok{1}\NormalTok{]}
 
 \KeywordTok{mean}\NormalTok{ (x, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
-
-\ControlFlowTok{if}\NormalTok{(debug) }\KeywordTok{show}\NormalTok{(x)}
-
-\ControlFlowTok{function}\NormalTok{(x)\{\}}
-
-\NormalTok{height <{-}}\StringTok{ }\NormalTok{(feet}\OperatorTok{*}\DecValTok{12}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{inches}
-
-\KeywordTok{sqrt}\NormalTok{(x }\OperatorTok{\^{}}\StringTok{ }\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{y }\OperatorTok{\^{}}\StringTok{ }\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -660,13 +656,13 @@ Write a shell script that creates a directory called \texttt{/pdfs} under \textt
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Good}
-\ControlFlowTok{if}\NormalTok{ (y }\OperatorTok{<}\StringTok{ }\DecValTok{0} \OperatorTok{\&\&}\StringTok{ }\NormalTok{debug) \{}
+\ControlFlowTok{if}\NormalTok{ (y }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
   \KeywordTok{message}\NormalTok{(}\StringTok{"y is negative"}\NormalTok{)}
 \NormalTok{\}}
 
 \CommentTok{\# Bad}
-\ControlFlowTok{if}\NormalTok{ (y }\OperatorTok{<}\StringTok{ }\DecValTok{0} \OperatorTok{\&\&}\StringTok{ }\NormalTok{debug)}
-\KeywordTok{message}\NormalTok{(}\StringTok{"Y is negative"}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{ (y }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+\KeywordTok{message}\NormalTok{(}\StringTok{"Y is negative"}\NormalTok{)\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -686,7 +682,7 @@ Write a shell script that creates a directory called \texttt{/pdfs} under \textt
 \NormalTok{)}
 
 \CommentTok{\# Bad}
-\KeywordTok{do\_something\_very\_complicated}\NormalTok{(}\StringTok{"that"}\NormalTok{, requires, many, arguments,}
+\KeywordTok{do\_something\_very\_complicated}\NormalTok{(}\StringTok{"that"}\NormalTok{, }\DataTypeTok{requires =}\NormalTok{ many, }\DataTypeTok{arguments =}
                               \StringTok{"some of which may be long"}
 \NormalTok{                              )}
 \end{Highlighting}
@@ -700,9 +696,9 @@ Write a shell script that creates a directory called \texttt{/pdfs} under \textt
   \begin{itemize}
   \tightlist
   \item
-    Use comments to explain why you make what decisions.
+    Use comments to explain your decisions.
   \item
-    Show your code; Do not try to explain your code by comments.
+    But, show your code; Do not try to explain your code by comments.
   \item
     Also, try to comment out rather than delete the code that you experiment with.
   \end{itemize}
@@ -710,15 +706,19 @@ Write a shell script that creates a directory called \texttt{/pdfs} under \textt
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Comment out}
-\CommentTok{\# mean(jae$sleep, na.rm = T)}
+\CommentTok{\# Average sleep hours of Jae}
+\NormalTok{jae }\OperatorTok{\%>\%}
+\StringTok{  }\CommentTok{\# By week}
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(week) }\OperatorTok{\%>\%}
+\StringTok{  }\CommentTok{\# Mean sleep hours }
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{week\_sleep =} \KeywordTok{mean}\NormalTok{(sleep, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{itemize}
 \tightlist
 \item
-  Pipes
+  Pipes (chaining commands)
 \end{itemize}
 
 \begin{Shaded}
@@ -761,33 +761,42 @@ Write a shell script that creates a directory called \texttt{/pdfs} under \textt
 \end{itemize}
 
 \begin{quote}
-Copy-and-paste programming, sometimes referred to as just pasting, is the production of highly repetitive computer programming code, as produced by copy and paste operations. It is primarily a pejorative term; those who use the term are often implying a lack of programming competence. It may also be the result of technology limitations (e.g., an insufficiently expressive development environment) as subroutines or libraries would normally be used instead. However, there are occasions when copy-and-paste programming is considered acceptable or necessary, such as for boilerplate, loop unrolling (when not supported automatically by the compiler), or certain programming idioms, and it is supported by some source code editors in the form of snippets. - Wikipedia
+Copy-and-paste programming, sometimes referred to as just pasting, is the production of highly repetitive computer programming code, as produced by copy and paste operations. It is primarily a pejorative term; those who use the term are often implying a lack of programming competence. It may also be the result of technology limitations (e.g., an insufficiently expressive development environment) as subroutines or libraries would normally be used instead. However, there are occasions when copy-and-paste programming is considered acceptable or necessary, such as for boilerplate, loop unrolling (when not supported automatically by the compiler), or certain programming idioms, and it is supported by some source code editors in the form of snippets. - \href{https://en.wikipedia.org/wiki/Copy-and-paste_programming}{Wikipedia}
 \end{quote}
 
 \begin{itemize}
 \item
+  It's okay for pasting for the first attempt to solve a problem. But if you copy and paste three times (a.k.a. \href{https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming)}{Rule of Three} in programming), something's wrong. You're working too hard. You need to be lazy. What do I mean and how can you do that?
+\item
   Example
 \item
-  Let's imagine \texttt{df} is a survey data.
+  Let's imagine \texttt{df} is a survey dataset.
 
   \begin{itemize}
   \item
-    a, b, c, d = Survey respondents
+    \texttt{a,\ b,\ c,\ d} = Survey questions
   \item
-    -99: non-responses
+    \texttt{-99}: non-responses
   \item
-    Your goal: replace -99 with NA
+    Your goal: replace \texttt{-99} with \texttt{NA}
   \end{itemize}
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Data}
-\NormalTok{df <{-}}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}\StringTok{"a"}\NormalTok{ =}\StringTok{ }\DecValTok{{-}99}\NormalTok{,}
-             \StringTok{"b"}\NormalTok{ =}\StringTok{ }\DecValTok{{-}99}\NormalTok{,}
-             \StringTok{"c"}\NormalTok{ =}\StringTok{ }\DecValTok{{-}99}\NormalTok{,}
-             \StringTok{"d"}\NormalTok{ =}\StringTok{ }\DecValTok{{-}99}\NormalTok{)}
-             
+
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{) }\CommentTok{\# for reproducibility }
+
+\NormalTok{df <{-}}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}\StringTok{"a"}\NormalTok{ =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{99}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{), }\DataTypeTok{size =} \DecValTok{5}\NormalTok{ , }\DataTypeTok{replace=} \OtherTok{TRUE}\NormalTok{),}
+             \StringTok{"b"}\NormalTok{ =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{99}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{), }\DataTypeTok{size =} \DecValTok{5}\NormalTok{ , }\DataTypeTok{replace=} \OtherTok{TRUE}\NormalTok{),}
+             \StringTok{"c"}\NormalTok{ =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{99}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{), }\DataTypeTok{size =} \DecValTok{5}\NormalTok{ , }\DataTypeTok{replace=} \OtherTok{TRUE}\NormalTok{),}
+             \StringTok{"d"}\NormalTok{ =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{99}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{), }\DataTypeTok{size =} \DecValTok{5}\NormalTok{ , }\DataTypeTok{replace=} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# Copy and paste }
 \NormalTok{df}\OperatorTok{$}\NormalTok{a[df}\OperatorTok{$}\NormalTok{a }\OperatorTok{==}\StringTok{ }\DecValTok{{-}99}\NormalTok{] <{-}}\StringTok{ }\OtherTok{NA}
 \NormalTok{df}\OperatorTok{$}\NormalTok{b[df}\OperatorTok{$}\NormalTok{b }\OperatorTok{==}\StringTok{ }\DecValTok{{-}99}\NormalTok{] <{-}}\StringTok{ }\OtherTok{NA}
@@ -799,10 +808,14 @@ Copy-and-paste programming, sometimes referred to as just pasting, is the produc
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 1 x 4
+## # A tibble: 5 x 4
 ##       a     b     c     d
 ##   <dbl> <dbl> <dbl> <dbl>
-## 1    NA    NA    NA    NA
+## 1     3     3     3     1
+## 2     3     2     3     1
+## 3     1    NA     1     2
+## 4     1    NA     2     1
+## 5    NA     1     1     3
 \end{verbatim}
 
 \begin{itemize}
@@ -821,13 +834,14 @@ Copy-and-paste programming, sometimes referred to as just pasting, is the produc
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Function}
-\NormalTok{fix\_missing <{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
-\NormalTok{  x[x }\OperatorTok{==}\StringTok{ }\DecValTok{{-}99}\NormalTok{] <{-}}\StringTok{ }\OtherTok{NA}
-\NormalTok{  x}
+\CommentTok{\# Create a custom function}
+\NormalTok{fix\_missing <{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{ }\CommentTok{\# INPUT}
+\NormalTok{  x[x }\OperatorTok{==}\StringTok{ }\DecValTok{{-}99}\NormalTok{] <{-}}\StringTok{ }\OtherTok{NA} \CommentTok{\# COMPUTATION}
+\NormalTok{  x }\CommentTok{\# OUTPUT }
 \NormalTok{\}}
 
-\CommentTok{\# Apply function to each column (vector)}
+\CommentTok{\# Apply the function to each column (vector)}
+\CommentTok{\# This iterated part can and should be automated.}
 \NormalTok{df}\OperatorTok{$}\NormalTok{a <{-}}\StringTok{ }\KeywordTok{fix\_missing}\NormalTok{(df}\OperatorTok{$}\NormalTok{a)}
 \NormalTok{df}\OperatorTok{$}\NormalTok{b <{-}}\StringTok{ }\KeywordTok{fix\_missing}\NormalTok{(df}\OperatorTok{$}\NormalTok{b)}
 \NormalTok{df}\OperatorTok{$}\NormalTok{c <{-}}\StringTok{ }\KeywordTok{fix\_missing}\NormalTok{(df}\OperatorTok{$}\NormalTok{c)}
@@ -855,12 +869,28 @@ Copy-and-paste programming, sometimes referred to as just pasting, is the produc
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df <{-}}\StringTok{ }\NormalTok{purrr}\OperatorTok{::}\KeywordTok{map\_df}\NormalTok{(df, fix\_missing)}
+\NormalTok{df <{-}}\StringTok{ }\NormalTok{purrr}\OperatorTok{::}\KeywordTok{map\_df}\NormalTok{(df, fix\_missing) }\CommentTok{\# What is this magic? We will unpack the blackbox (\textasciigrave{}map\_df()\textasciigrave{}) later.}
+
 \NormalTok{df}
 \end{Highlighting}
 \end{Shaded}
 
-Takeaway: Your code is more reusable, when it's easier to change, debug, and scale up.
+\begin{itemize}
+\item
+  Takeaways
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \item
+    Your code becomes more reusable, when it's easier to \textbf{change, debug, and scale up}. Don't repeat yourself and embrace the power of lazy programming.
+  \item
+    Only when your code becomes \textbf{reusable}, you would become \textbf{efficient} in your data work. Otherwise, you need to start from scratch or copy and paste, when you work on a new project.
+  \end{enumerate}
+\end{itemize}
+
+\begin{quote}
+Lazy, because only lazy programmers will want to write the kind of tools that might replace them in the end. Lazy, because only a lazy programmer will avoid writing monotonous, repetitive code---thus avoiding redundancy, the enemy of software maintenance and flexible refactoring. Mostly, the tools and processes that come out of this endeavor fired by laziness will speed up the production. - \href{http://blogoscoped.com/archive/2005-08-24-n14.html}{Philipp Lenssen}
+\end{quote}
 
 \hypertarget{test-your-code-systematically}{%
 \subsection{Test your code systematically}\label{test-your-code-systematically}}
