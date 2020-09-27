@@ -1,5 +1,6 @@
 ## Some projects from prior students that followed template guidelines:
 
+Students: If you want to list your name and projects, please make a change, commit, and push. 
 
 ### Economics
 Zenan Wang: https://github.com/znwang25/PS239
