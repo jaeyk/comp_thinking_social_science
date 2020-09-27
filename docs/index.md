@@ -1,7 +1,7 @@
 --- 
 title: Computational Thinking for Social Scientists
 author: Jae Yeon Kim
-date: "2020-09-26"
+date: "2020-09-27"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
