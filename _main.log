@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2020.4.24)  27 SEP 2020 16:29
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2020.4.24)  27 SEP 2020 16:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -792,38 +792,38 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 Chapter 1.
 [5]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 178.
+(Font)              scaled to size 7.0pt on input line 183.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 178.
+(Font)              scaled to size 5.0pt on input line 183.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 178.
+(Font)              scaled to size 10.00092pt on input line 183.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 178.
+(Font)              scaled to size 7.00064pt on input line 183.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 178.
+(Font)              scaled to size 5.00046pt on input line 183.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 178.
+(Font)              scaled to size 9.99893pt on input line 183.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 178.
+(Font)              scaled to size 6.99925pt on input line 183.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 178.
+(Font)              scaled to size 4.99947pt on input line 183.
 [6] [7] [8]
 
 LaTeX Warning: File `https://i.creativecommons.org/l/by/4.0/88x31.png' not foun
-d on input line 365.
+d on input line 368.
 
 ! Unable to load picture or PDF file 'https://i.creativecommons.org/l/by/4.0/88
 x31.png'.
 <to be read again> 
                    }
-l.365 ...i.creativecommons.org/l/by/4.0/88x31.png}
+l.368 ...i.creativecommons.org/l/by/4.0/88x31.png}
                                                    This work is licensed und...
  
 Here is how much of TeX's memory you used:
- 19023 strings out of 479819
- 335473 string characters out of 5895846
+ 19024 strings out of 479819
+ 335478 string characters out of 5895846
  772366 words of memory out of 5000000
- 35847 multiletter control sequences out of 15000+600000
+ 35848 multiletter control sequences out of 15000+600000
  538781 words of font info for 76 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  58i,6n,115p,804b,432s stack positions out of 5000i,500n,10000p,200000b,80000s
