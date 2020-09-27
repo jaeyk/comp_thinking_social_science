@@ -21,12 +21,13 @@ The course is currently divided into two main subjects (fundamentals and applica
 * In the fifth, students learn how to analyze high-dimensional data (e.g., text) using machine learning. 
 * In the final, students learn how to access, query, and manage big data using SQL. 
 
-Note: This course is a remix version of [the course](https://github.com/rochelleterman/PS239T) originally developed by [Rochelle Terman](http://rochelleterman.com/) then revised by [Rachel Bernhard](http://rachelbernhard.com/).
-
 ## Contact
 
 Please [create issues](https://github.com/jaeyk/PS239T/issues), if you have questions, comments, or suggestions.
 
 Instructor: [Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
+
+## History 
+This course is a remix version of [the course](https://github.com/rochelleterman/PS239T) originally developed by [Rochelle Terman](http://rochelleterman.com/) then revised by [Rachel Bernhard](http://rachelbernhard.com/).
 
 ![](https://i.creativecommons.org/l/by/4.0/88x31.png) This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
