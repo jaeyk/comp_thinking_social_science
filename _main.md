@@ -739,9 +739,7 @@ df
 
 ## Wrangling data
 
-## How to wrangle data
-
-## How to wrangle data at scale
+## Wrangling data at scale
 
 ## Modeling and visualizing tidy data
 
