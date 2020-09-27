@@ -235,31 +235,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Launch R Studio. Choose Tools &gt; Global Options. You should not check <code>Restor .RData into workspace at startup</code> and set saving workspace option to <code>NEVER</code>.</li>
 </ul>
 <p>Step 2. For each project, create a project directory named after the project.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="Intro.html#cb2-1"></a><span class="co"># Don&#39;t name it a project. Use a name that&#39;s more informative.</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="Intro.html#cb2-1"></a><span class="co"># Don&#39;t name it a project. Use a name that&#39;s more informative. For instance, us_election not my_project.</span></span>
 <span id="cb2-2"><a href="Intro.html#cb2-2"></a></span>
-<span id="cb2-3"><a href="Intro.html#cb2-3"></a><span class="kw">dir.create</span>(<span class="st">&quot;../starwars&quot;</span>)</span></code></pre></div>
+<span id="cb2-3"><a href="Intro.html#cb2-3"></a><span class="kw">dir.create</span>(<span class="st">&quot;../us_election&quot;</span>)</span></code></pre></div>
 <p>Step 3. Launch R Studio. Choose File &gt; New project &gt; Browse existing directories &gt; Create project This allows each project has its own workspace.</p>
 <p>Step 4. Organize files by putting them in separate subdirectories and naming them in a sensible way.</p>
 <ul>
 <li>Treat raw data as read only (raw data should be RAW!) and put in the <code>data</code> directory.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Intro.html#cb3-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;data&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Intro.html#cb3-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;data&quot;</span>))</span></code></pre></div>
 <ul>
 <li>Separate read-only data from processed data and put in the <code>processed_data</code> subdirectory.</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="Intro.html#cb4-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;processed_data&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="Intro.html#cb4-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;processed_data&quot;</span>))</span></code></pre></div>
 <ul>
 <li>Put your code in the <code>src</code> directory.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Intro.html#cb5-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;processed_data&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Intro.html#cb5-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;src&quot;</span>))</span></code></pre></div>
 <ul>
 <li>Put generated outputs (e.g., tables, figures) in the <code>outputs</code> subdirectory and treat them as disposable.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Intro.html#cb6-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;outputs&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Intro.html#cb6-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;outputs&quot;</span>))</span></code></pre></div>
 <ul>
 <li>Put your custom functions in the <code>functions</code> subdirectory. You can put some of them together later as a package.</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Intro.html#cb7-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;functions&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Intro.html#cb7-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;functions&quot;</span>))</span></code></pre></div>
 <p><strong>Challenge 2</strong></p>
 <p>Set a project structure for a project named “starwars”.</p>
 </div>
@@ -420,8 +420,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="Intro.html#cb15-1"></a><span class="co"># Good</span></span>
 <span id="cb15-2"><a href="Intro.html#cb15-2"></a>fit_models.R</span>
-<span id="cb15-3"><a href="Intro.html#cb15-3"></a><span class="co"># Bad</span></span>
-<span id="cb15-4"><a href="Intro.html#cb15-4"></a>fit models.R</span></code></pre></div>
+<span id="cb15-3"><a href="Intro.html#cb15-3"></a></span>
+<span id="cb15-4"><a href="Intro.html#cb15-4"></a><span class="co"># Bad</span></span>
+<span id="cb15-5"><a href="Intro.html#cb15-5"></a>fit models.R</span></code></pre></div>
 <ul>
 <li>Objects</li>
 <li>When naming objects:

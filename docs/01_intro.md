@@ -34,9 +34,9 @@ Step 2. For each project, create a project directory named after the project.
 
 
 ```r
-# Don't name it a project. Use a name that's more informative.
+# Don't name it a project. Use a name that's more informative. For instance, us_election not my_project.
 
-dir.create("../starwars")
+dir.create("../us_election")
 ```
 
 Step 3. Launch R Studio. Choose File > New project > Browse existing directories > Create project This allows each project has its own workspace. 
@@ -47,35 +47,35 @@ Step 4. Organize files by putting them in separate subdirectories and naming the
 
 
 ```r
-dir.create(here::here("project", "data"))
+dir.create(here::here("us_election", "data"))
 ```
 
 - Separate read-only data from processed data and put in the `processed_data` subdirectory.
 
 
 ```r
-dir.create(here::here("project", "processed_data"))
+dir.create(here::here("us_election", "processed_data"))
 ```
 
 - Put your code in the `src` directory. 
 
 
 ```r
-dir.create(here::here("project", "processed_data"))
+dir.create(here::here("us_election", "src"))
 ```
 
 - Put generated outputs (e.g., tables, figures) in the `outputs` subdirectory and treat them as disposable.
 
 
 ```r
-dir.create(here::here("project", "outputs"))
+dir.create(here::here("us_election", "outputs"))
 ```
 
 - Put your custom functions in the `functions` subdirectory. You can put some of them together later as a package. 
 
 
 ```r
-dir.create(here::here("project", "functions"))
+dir.create(here::here("us_election", "functions"))
 ```
 
 **Challenge 2**
@@ -244,6 +244,7 @@ echo "Copied pdfs"
 ```r
 # Good
 fit_models.R
+
 # Bad
 fit models.R
 ```

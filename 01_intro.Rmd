@@ -33,9 +33,9 @@ Step 2. For each project, create a project directory named after the project.
 
 ```{r eval = FALSE}
 
-# Don't name it a project. Use a name that's more informative.
+# Don't name it a project. Use a name that's more informative. For instance, us_election not my_project.
 
-dir.create("../starwars")
+dir.create("../us_election")
 
 ```
 
@@ -47,7 +47,7 @@ Step 4. Organize files by putting them in separate subdirectories and naming the
 
 ```{r eval = FALSE}
 
-dir.create(here::here("project", "data"))
+dir.create(here::here("us_election", "data"))
 
 ```
 
@@ -55,21 +55,23 @@ dir.create(here::here("project", "data"))
 
 ```{r eval = FALSE}
 
-dir.create(here::here("project", "processed_data"))
+dir.create(here::here("us_election", "processed_data"))
+
 ```
 
 - Put your code in the `src` directory. 
 
 ```{r eval = FALSE}
 
-dir.create(here::here("project", "processed_data"))
+dir.create(here::here("us_election", "src"))
+
 ```
 
 - Put generated outputs (e.g., tables, figures) in the `outputs` subdirectory and treat them as disposable.
 
 ```{r eval = FALSE}
 
-dir.create(here::here("project", "outputs"))
+dir.create(here::here("us_election", "outputs"))
 
 ```
 
@@ -77,7 +79,7 @@ dir.create(here::here("project", "outputs"))
 
 ```{r eval = FALSE}
 
-dir.create(here::here("project", "functions"))
+dir.create(here::here("us_election", "functions"))
 
 ```
 
@@ -247,6 +249,7 @@ echo "Copied pdfs"
 ```{r, eval= FALSE}
 # Good
 fit_models.R
+
 # Bad
 fit models.R
 ```
