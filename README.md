@@ -5,7 +5,7 @@ This course will help social science graduate students to think computationally 
 
 ## Textbook 
 
-[The online book version](https://jaeyk.github.io/PS239T/) of the course materials is currently work-in-progress. 
+[The online book version](https://jaeyk.github.io/PS239T/) of the course materials is currently work in progress. 
 
 ## Objectives 
 
