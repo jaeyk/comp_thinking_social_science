@@ -71,7 +71,7 @@ Please [create issues](https://github.com/jaeyk/PS239T/issues), if you have ques
   - HTML/CSS: Websites 
   - JSON/XML: APIs
 
-### Diemsnions 
+### Dimensions 
 - Low-dimensional data (n > p)
 - High-dimensional data (n < p)
 

@@ -13,7 +13,7 @@
   - HTML/CSS: Websites 
   - JSON/XML: APIs
 
-### Diemsnions 
+### Dimensions 
 - Low-dimensional data (n > p)
 - High-dimensional data (n < p)
 
