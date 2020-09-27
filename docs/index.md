@@ -1,5 +1,5 @@
 --- 
-title: Computational Thingking for Social Scientists
+title: Computational Thinking for Social Scientists
 author: Jae Yeon Kim
 date: "2020-09-26"
 site: bookdown::bookdown_site
@@ -49,7 +49,7 @@ The course is currently divided into two main subjects (fundamentals and applica
 
 This course is a remix version of [the course](https://github.com/rochelleterman/PS239T) originally developed by [Rochelle Terman](https://github.com/rochelleterman).
 
-**Questioins, comments, or suggestions**
+**Questions, comments, or suggestions**
 
 Please [create issues](https://github.com/jaeyk/PS239T/issues), if you have questions, comments, or suggestions.
 
