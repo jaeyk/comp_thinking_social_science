@@ -3,6 +3,12 @@
 
 This course will help social science graduate students to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables students to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let students to work on research projects that would previously seem impossible. 
 
+## Textbook 
+
+[The online book version](https://jaeyk.github.io/PS239T/) of the course materials is currently work-in-progress. 
+
+## Objectives 
+
 The course is currently divided into two main subjects (fundamentals and applications) and six main sessions. 
 
 **Fundamentals**
@@ -22,46 +28,5 @@ Note: This course is a remix version of [the course](https://github.com/rochelle
 Please [create issues](https://github.com/jaeyk/PS239T/issues), if you have questions, comments, or suggestions.
 
 Instructor: [Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
-
-## PS239T 2.0 is coming 
-
-I will be offering PS239T in Spring 2021 and am developing the next version of the course (PS239T 2.0). The tentative course structure is outlined below. [The online book version](https://jaeyk.github.io/PS239T/) of the course materials is also work-in-progress. 
-
-### Dashboard 
-
-You can follow the course development process [here](https://github.com/jaeyk/PS239T/projects/1).
-
-### Tentative new course outline 
-
-* Fundamentals 
-     - Managing data and code
-         - Project-oriented research 
-             - Computational reproducibility
-             - Version control (Git and Bash)
-         - Writing code: How to code like a professional 
-         - Asking questions: Minimal reproducible example 
-     - Tidy data and its friends
-        - Tidy data and why it matters 
-        - Wrangling data
-            - How to wrangle data  
-            - How to wrangle data at scale 
-        - Modeling and visualizing tidy data
-     - Automating repeated things 
-        - From for loop to functional programing 
-        - Developing your own data tools 
- 
-* Applications 
-     - Semi-structured data
-         - HTML/CSS: web scraping 
-         - XML/JSON: social media scraping 
-     - High-dimensional data  
-         - Supervised machine learning 
-             - Regularization 
-             - Decision tree and ensemble models 
-        - Unsupervised machine learning
-             - Dimension reduction 
-             - Clustering 
-     - Big data 
-        - Database and SQL
 
 ![](https://i.creativecommons.org/l/by/4.0/88x31.png) This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
