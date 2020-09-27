@@ -56,7 +56,7 @@ Please [create issues](https://github.com/jaeyk/PS239T/issues), if you have ques
 
 <!--chapter:end:index.Rmd-->
 
-# Computational thinking {#Motivation}
+# Computational thinking {#motivation}
 
 ## Why computational thinking 
 
@@ -101,7 +101,7 @@ Computational tools and techniques make ...
 
 <!--chapter:end:00_motivation.Rmd-->
 
-# Managing data and code {#Intro}
+# Managing data and code {#intro}
 
 ## Project-oriented research
 

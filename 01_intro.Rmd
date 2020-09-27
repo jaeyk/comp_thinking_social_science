@@ -1,4 +1,4 @@
-# Managing data and code {#Intro}
+# Managing data and code {#intro}
 
 ## Project-oriented research
 
