@@ -23,7 +23,7 @@ For your self-interest and public benefits.
 
 #### How to organize files in a project 
 
-You cannot reproduce your project if it is not efficiently organized. 
+You won't be able to reproduce your project unless it is efficiently organized. 
 
 Step 1. [**Environment**](https://environments.rstudio.com/) is part of your project. Don't share them across workspaces. If someone can't reproduce your environment, they won't be able to run your code.
 
