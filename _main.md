@@ -73,7 +73,9 @@ Please [create issues](https://github.com/jaeyk/PS239T/issues), if you have ques
 
 ### Dimensions 
 - Low-dimensional data (n > p)
+  - Survey, experimental, and administrative data 
 - High-dimensional data (n < p)
+  - Text, speech, image, video, etc. 
 
 ## Computational way of thinking about research process
 
