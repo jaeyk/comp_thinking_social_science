@@ -1,4 +1,4 @@
-# Computational thinking {#Motivation}
+# Computational thinking {#motivation}
 
 ## Why computational thinking 
 
