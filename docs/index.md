@@ -40,7 +40,6 @@ The course is currently divided into two main subjects (fundamentals and applica
 
 - In the final, students learn how to access, query, and manage big data using SQL. 
 
-
 **Instructor and course developer**
 
 [Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
