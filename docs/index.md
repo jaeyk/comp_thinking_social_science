@@ -22,6 +22,10 @@ ___
 
 This course will help social science graduate students to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables students to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let students to work on research projects that would previously seem impossible.
 
+## Textbook 
+
+[The online book version](https://jaeyk.github.io/PS239T/) of the course materials is currently work-in-progress.
+
 ## Objectives
 
 The course is currently divided into two main subjects (fundamentals and applications) and six main sessions. 
@@ -65,8 +69,6 @@ By appointment with ...
 - We will [Slack](https://slack.com/) for communication (announcements and questions) and bCourses for turning in assignments. You should ask questions about class material and assignments through the Slack channels so that everyone can benefit from the discussion. We encourage you to respond to each other’s questions as well.  
 
 - All course materials will be posted on GitHub at https://github.com/jaeyk/PS239T, including class notes, code demonstrations, sample data, and assignments. Students are required to use GitHub for their final projects, which will be publicly available, unless they have special considerations (e.g. proprietary data).
-
-- Textbook: https://jaeyk.github.io/PS239T/ (bookdown version of the course Git repository)
 
 ### Accessibility
 
