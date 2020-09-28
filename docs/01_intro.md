@@ -257,11 +257,33 @@ echo "Copied pdfs"
 
 > Every major open-source project has its own style guide: a set of conventions (sometimes arbitrary) about how to write code for that project. It is much easier to understand a large codebase when all the code in it is in a consistent style. - [Google Style Guides](https://google.github.io/styleguide/) 
 
-- Files 
-- When naming files:
-    - Don't use special characters. (Spaces make filenames awkward in the console/command-line.)
-    - Don't capitalize. (UNIX is case sensitive.)
-    - Numbering them if files should be run in an order.
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UjhX2sVf0eg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
+
+<p>10 Tips For Clean Code - Michael Toppa</p>
+
+```
+
+- How to avoid smelly code? 
+
+  - Check out [the code-smells Git repository](https://github.com/jennybc/code-smells-and-feels#readme) by Jenny Bryan. 
+  
+```{=html}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7oyiPBjLAWY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> Code smells and feels - Jenny Bryan</p>
+
+<p> "Code smell" is an evocative term for that vague feeling of unease we get when reading certain bits of code. It's not necessarily wrong, but neither is it obviously correct. We may be reluctant to work on such code, because past experience suggests it's going to be fiddly and bug-prone. In contrast, there's another type of code that just feels good to read and work on. What's the difference? If we can be more precise about code smells and feels, we can be intentional about writing code that is easier and more pleasant to work on. I've been fortunate to spend the last couple years embedded in a group of developers working on the tidyverse and r-lib packages. Based on this experience, I'll talk about specific code smells and deodorizing strategies for R. - Jenny Bryan</p>
+```
+
+- Naming matters 
+
+  - When naming files:
+      - Don't use special characters. (Spaces make filenames awkward in the console/command-line.)
+      - Don't capitalize. (UNIX is case sensitive.)
+      - Numbering them if files should be run in an order.
 
 
 ```r
@@ -272,10 +294,9 @@ fit_models.R
 fit models.R
 ```
 
-- Objects
-- When naming objects:
-    - Don't use special characters.
-    - Don't capitalize.
+  - When naming objects:
+      - Don't use special characters.
+      - Don't capitalize.
 
 
 ```r
@@ -286,11 +307,10 @@ day_one
 DayOne
 ```
 
-- Functions 
-- When naming functions:
-    - Don't use special characters.
-    - Don't capitalize.
-    - Use `verbs` instead of `nouns`. (Functions do something!)
+  - When naming functions:
+      - Don't use special characters.
+      - Don't capitalize.
+      - Use `verbs` instead of `nouns`. (Functions do something!)
     
 
 ```r
@@ -475,11 +495,11 @@ df
 
 - Takeaways
 
-  1. Your code becomes more reusable, when it's easier to **change, debug, and scale up**. Don't repeat yourself and embrace the power of lazy programming. 
+1. Your code becomes more reusable, when it's easier to **change, debug, and scale up**. Don't repeat yourself and embrace the power of lazy programming. 
 
 > Lazy, because only lazy programmers will want to write the kind of tools that might replace them in the end. Lazy, because only a lazy programmer will avoid writing monotonous, repetitive code—thus avoiding redundancy, the enemy of software maintenance and flexible refactoring. Mostly, the tools and processes that come out of this endeavor fired by laziness will speed up the production. -  [Philipp Lenssen](http://blogoscoped.com/archive/2005-08-24-n14.html)
   
-  2. Only when your code becomes **reusable**, you would become **efficient** in your data work. Otherwise, you need to start from scratch or copy and paste, when you work on a new project.
+2. Only when your code becomes **reusable**, you would become **efficient** in your data work. Otherwise, you need to start from scratch or copy and paste, when you work on a new project.
 
 > Code reuse aims to save time and resources and reduce redundancy by taking advantage of assets that have already been created in some form within the software product development process.[2] The key idea in reuse is that parts of a computer program written at one time can be or should be used in the construction of other programs written at a later time. - Wikipedia 
 

@@ -469,13 +469,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Every major open-source project has its own style guide: a set of conventions (sometimes arbitrary) about how to write code for that project. It is much easier to understand a large codebase when all the code in it is in a consistent style. - <a href="https://google.github.io/styleguide/">Google Style Guides</a></p>
 </blockquote>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UjhX2sVf0eg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
+
+<p>10 Tips For Clean Code - Michael Toppa</p>
+
 <ul>
-<li>Files</li>
+<li><p>How to avoid smelly code?</p>
+<ul>
+<li>Check out <a href="https://github.com/jennybc/code-smells-and-feels#readme">the code-smells Git repository</a> by Jenny Bryan.</li>
+</ul></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7oyiPBjLAWY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> Code smells and feels - Jenny Bryan</p>
+
+<p> "Code smell" is an evocative term for that vague feeling of unease we get when reading certain bits of code. It's not necessarily wrong, but neither is it obviously correct. We may be reluctant to work on such code, because past experience suggests it's going to be fiddly and bug-prone. In contrast, there's another type of code that just feels good to read and work on. What's the difference? If we can be more precise about code smells and feels, we can be intentional about writing code that is easier and more pleasant to work on. I've been fortunate to spend the last couple years embedded in a group of developers working on the tidyverse and r-lib packages. Based on this experience, I'll talk about specific code smells and deodorizing strategies for R. - Jenny Bryan</p>
+<ul>
+<li><p>Naming matters</p>
+<ul>
 <li>When naming files:
 <ul>
 <li>Don’t use special characters. (Spaces make filenames awkward in the console/command-line.)</li>
 <li>Don’t capitalize. (UNIX is case sensitive.)</li>
 <li>Numbering them if files should be run in an order.</li>
+</ul></li>
 </ul></li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro.html#cb15-1"></a><span class="co"># Good</span></span>
@@ -484,7 +503,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-4"><a href="intro.html#cb15-4"></a><span class="co"># Bad</span></span>
 <span id="cb15-5"><a href="intro.html#cb15-5"></a>fit models.R</span></code></pre></div>
 <ul>
-<li>Objects</li>
 <li>When naming objects:
 <ul>
 <li>Don’t use special characters.</li>
@@ -497,7 +515,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-4"><a href="intro.html#cb16-4"></a><span class="co"># Bad </span></span>
 <span id="cb16-5"><a href="intro.html#cb16-5"></a>DayOne</span></code></pre></div>
 <ul>
-<li>Functions</li>
 <li>When naming functions:
 <ul>
 <li>Don’t use special characters.</li>
@@ -660,11 +677,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb27-2"><a href="intro.html#cb27-2"></a></span>
 <span id="cb27-3"><a href="intro.html#cb27-3"></a>df</span></code></pre></div>
 <ul>
-<li><p>Takeaways</p>
+<li>Takeaways</li>
+</ul>
 <ol style="list-style-type: decimal">
 <li>Your code becomes more reusable, when it’s easier to <strong>change, debug, and scale up</strong>. Don’t repeat yourself and embrace the power of lazy programming.</li>
-</ol></li>
-</ul>
+</ol>
 <blockquote>
 <p>Lazy, because only lazy programmers will want to write the kind of tools that might replace them in the end. Lazy, because only a lazy programmer will avoid writing monotonous, repetitive code—thus avoiding redundancy, the enemy of software maintenance and flexible refactoring. Mostly, the tools and processes that come out of this endeavor fired by laziness will speed up the production. - <a href="http://blogoscoped.com/archive/2005-08-24-n14.html">Philipp Lenssen</a></p>
 </blockquote>
