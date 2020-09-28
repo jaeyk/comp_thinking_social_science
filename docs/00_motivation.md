@@ -2,7 +2,7 @@
 
 ## Why computational thinking 
 
-- If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is automation. 
+- If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is **automation**. 
 
 - Let's think about the following two cases.
 
@@ -10,9 +10,13 @@
 
   - Case 2: An alternative is to write computer programs that collect such data automatically, parse them, and store them in interconnected databases. Additionally, someone may need to maintain and validate the quality of the data infrastructure. Nevertheless, this approach lowers the cost of the data collection process, thereby substantially increasing the reproducibility and scalability of the process. Furthermore, the researcher can document their code and publicly share it using their GitHub repository or even gather some of the functions they used and distribute them as open-source libraries. 
   
-- How can we automate our research process? How can we teach machine so that it could take over our boring job? 
+- Programming is as valuable a skill as writing in social science research. The extent to which a researcher can automate the research process can determine its efficiency, reproducibility, and scalability.
+  
+> Every modern statistical and data analysis problem needs code to solve it. You shouldn’t learn just the basics of programming, spend some time gaining mastery. Improving your programming skills pays off because code is a **force multiplier**: once you’ve solved a problem once, code allows you to solve it much faster in the future. As your programming skill increases, the generality of your solutions improves: you solve not just the precise problem you encountered, but a wider class of related problems (in this way programming skill is very much like mathematical skill). Finally, sharing your code with others allows them to benefit from your experience. - [Hadley Wickham](https://imstat.org/2014/12/16/hadley-wickham-impact-the-world-by-being-useful/) 
 
-- If we want social scientists to conduct research more like tech start-ups by building data infrastructure first and then developing applications (including but not limited to research articles), we also need to teach and train them to write code like professionals. To achieve this level of proficiency, it is not enough for social scientists to know how to write code that works. They also need to be able to write code that is efficient, reproducible, and reusable. Programming is as valuable a skill as writing in social science research. The extent to which a researcher can automate the research process can determine its efficiency, reproducibility, and scalability.
+- How can we automate our research process? How can we talk to and teach machines to do so?
+
+![From BBC Bitesize](https://bam.files.bbci.co.uk/bam/live/content/znmb87h/large)
 
 ## Computational way of thinking about data 
 
