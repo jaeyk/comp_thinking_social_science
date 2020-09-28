@@ -159,13 +159,13 @@ See [B_Install.md](https://github.com/jaeyk/PS239T/blob/master/B_Install.md) for
 
 ### Part II Applications
 
-* Week 9 Computational thinking and setup
-* Week 10 Managing data and code
-* Week 11 Tidy data and why it matters
-* Week 12 Wrangling data
-* Week 13 Wrangling data at scale
-* Week 14 Modeling and visualizing tidy data
-* Week 15 From for loop to functional programming
+* Week 9 HTML/CSS: web scraping
+* Week 10 XML/JSON: social media scraping
+* Week 11 Supervised machine learning
+* Week 12 Unsupervised machine learning
+* Week 13 Database and SQL
+* Week 14 Wrap-up
+* Week 15 Final presentation
 
 ## Questions, comments, or suggestions
 

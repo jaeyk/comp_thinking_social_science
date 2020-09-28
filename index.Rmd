@@ -186,7 +186,7 @@ glue("* Week {seq(part1_headings)} {part1_headings [1:length(part1_headings)]}")
 
 ```{r echo=FALSE, results='asis'}
   
-glue("* Week {length(part1_headings) + seq(part2_headings)} {part1_headings [1:length(part2_headings)]}") 
+glue("* Week {length(part1_headings) + seq(part2_headings)} {part2_headings [1:length(part2_headings)]}") 
 
 ```
 
