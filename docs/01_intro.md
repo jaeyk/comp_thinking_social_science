@@ -86,6 +86,14 @@ Set a project structure for a project named "starwars".
 
 - In addition to environment, **workflow** is an important component of project efficiency and reproducibility. 
 
+- What is R markdown? An R package, developed by [Yihui Xie](https://yihui.org/en/), that provides an authoring framework for data science. He is also a developer of many popular R packages such as `knitr`, [`xaringan`](https://github.com/yihui/xaringan) (cool kids use xaringan not [Beamer](https://en.wikipedia.org/wiki/Beamer_(LaTeX)) these days), `blogdown`, and `bookdown` (used to create this book) among many others.  
+
+```{=html}
+<p>R Markdown The bigger picture - Garrett Grolemund</p>
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/s9aWmU0atlQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+```
+
 - R Markdown basic syntax 
 
 
@@ -95,7 +103,7 @@ Set a project structure for a project named "starwars".
 ### Header 3
 ```
 
-- Use these section headings to indicate workflow.
+- Use these section headers to indicate workflow.
 
 
 ```r
@@ -106,7 +114,7 @@ Set a project structure for a project named "starwars".
 # Visualize data
 ```
 
-- Press `ctrl + shift + o`. You can see a document outline based on these headings. This is a nice feature for finding code you need to focus. 
+- Press `ctrl + shift + o`. You can see a document outline based on these headers. This is a nice feature for finding code you need to focus. 
 
 - If your project's scale is large, then divide these sections into files, number, and save them in `code` subdirectory. 
 

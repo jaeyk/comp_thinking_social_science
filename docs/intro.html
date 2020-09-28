@@ -305,13 +305,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">3.1.1.4</span> How to organize code in a R markdown file</h4>
 <ul>
 <li><p>In addition to environment, <strong>workflow</strong> is an important component of project efficiency and reproducibility.</p></li>
-<li><p>R Markdown basic syntax</p></li>
+<li><p>What is R markdown? An R package, developed by <a href="https://yihui.org/en/">Yihui Xie</a>, that provides an authoring framework for data science. He is also a developer of many popular R packages such as <code>knitr</code>, <a href="https://github.com/yihui/xaringan"><code>xaringan</code></a> (cool kids use xaringan not <a href="https://en.wikipedia.org/wiki/Beamer_(LaTeX)">Beamer</a> these days), <code>blogdown</code>, and <code>bookdown</code> (used to create this book) among many others.</p></li>
+</ul>
+<p>R Markdown The bigger picture - Garrett Grolemund</p>
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/s9aWmU0atlQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<ul>
+<li>R Markdown basic syntax</li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1"></a><span class="co"># Header 1</span></span>
 <span id="cb8-2"><a href="intro.html#cb8-2"></a><span class="co">## Header 2</span></span>
 <span id="cb8-3"><a href="intro.html#cb8-3"></a><span class="co">### Header 3</span></span></code></pre></div>
 <ul>
-<li>Use these section headings to indicate workflow.</li>
+<li>Use these section headers to indicate workflow.</li>
 </ul>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="intro.html#cb9-1"></a><span class="co"># Import packages and data</span></span>
 <span id="cb9-2"><a href="intro.html#cb9-2"></a><span class="co"># Tidy data</span></span>
@@ -319,7 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-4"><a href="intro.html#cb9-4"></a><span class="co"># Model data</span></span>
 <span id="cb9-5"><a href="intro.html#cb9-5"></a><span class="co"># Visualize data</span></span></code></pre></div>
 <ul>
-<li><p>Press <code>ctrl + shift + o</code>. You can see a document outline based on these headings. This is a nice feature for finding code you need to focus.</p></li>
+<li><p>Press <code>ctrl + shift + o</code>. You can see a document outline based on these headers. This is a nice feature for finding code you need to focus.</p></li>
 <li><p>If your project’s scale is large, then divide these sections into files, number, and save them in <code>code</code> subdirectory.</p>
 <ul>
 <li>01_wrangling.Rmd</li>
