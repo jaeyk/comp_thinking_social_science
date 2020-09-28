@@ -43,7 +43,9 @@ Step 3. Launch R Studio. Choose File > New project > Browse existing directories
 
 Step 4. Organize files by putting them in separate subdirectories and naming them in a sensible way.
 
-- Treat raw data as read only (raw data should be RAW!) and put in the `data` directory.
+- Treat raw data as read only (raw data should be RAW!) and put in the `data` subdirectory.
+
+    - Note that version control does not need replace backup. You still need to backup your raw data. 
 
 
 ```r
@@ -57,7 +59,7 @@ dir.create(here::here("us_election", "data"))
 dir.create(here::here("us_election", "processed_data"))
 ```
 
-- Put your code in the `src` directory. 
+- Put your code in the `src` subdirectory. 
 
 
 ```r
@@ -75,7 +77,7 @@ dir.create(here::here("us_election", "outputs"))
 
 
 ```r
-dir.create(here::here("us_election", "functions"))
+dir.create(here::here("us_election", "src"))
 ```
 
 **Challenge 2**
