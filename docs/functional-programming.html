@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Automating repeated things | Computational Thinking for Social Scientists</title>
-  <meta name="description" content="Chapter 5 Automating repeated things | Computational Thinking for Social Scientists" />
+  <meta name="description" content="Chapter 5 Automating repeated things | Computational Thinking for Social Scientists. Online textbook for PS239T" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Automating repeated things | Computational Thinking for Social Scientists" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Chapter 5 Automating repeated things | Computational Thinking for Social Scientists" />
-  <meta name="github-repo" content="github.com/jaeyk/PS239T" />
+  <meta property="og:description" content="Chapter 5 Automating repeated things | Computational Thinking for Social Scientists. Online textbook for PS239T" />
+  <meta name="github-repo" content="jaeyk/PS239T" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 5 Automating repeated things | Computational Thinking for Social Scientists" />
-  
-  <meta name="twitter:description" content="Chapter 5 Automating repeated things | Computational Thinking for Social Scientists" />
+  <meta name="twitter:site" content="@JaeJaeykim2" />
+  <meta name="twitter:description" content="Chapter 5 Automating repeated things | Computational Thinking for Social Scientists. Online textbook for PS239T" />
   
 
 <meta name="author" content="Jae Yeon Kim" />
@@ -306,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Setup</li>
 </ul>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="functional-programming.html#cb28-1"></a><span class="co"># Install packages</span></span>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="functional-programming.html#cb28-1"></a><span class="co"># Install packages￣</span></span>
 <span id="cb28-2"><a href="functional-programming.html#cb28-2"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) {</span>
 <span id="cb28-3"><a href="functional-programming.html#cb28-3"></a>  <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
 <span id="cb28-4"><a href="functional-programming.html#cb28-4"></a>}</span></code></pre></div>
@@ -472,7 +472,7 @@ function(input){</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="functional-programming.html#cb43-1"></a><span class="kw">tic</span>()</span>
 <span id="cb43-2"><a href="functional-programming.html#cb43-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb43-3"><a href="functional-programming.html#cb43-3"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.002 sec elapsed</code></pre>
+<pre><code>## 0.001 sec elapsed</code></pre>
 <ul>
 <li><p>In short, <code>map()</code> is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using <code>%&gt;%</code>.</p></li>
 <li><p>Final point: Why not base R <code>apply</code> family?</p></li>
@@ -874,30 +874,6 @@ Why the above solution is not efficient?</li>
 <li><p>Step2: Determine the parallel processing mode (<code>plan()</code>)</p></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="functional-programming.html#cb94-1"></a><span class="co"># Setup</span></span>
-<span id="cb94-2"><a href="functional-programming.html#cb94-2"></a>n_cores &lt;-<span class="st"> </span><span class="kw">availableCores</span>() <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb94-3"><a href="functional-programming.html#cb94-3"></a></span>
-<span id="cb94-4"><a href="functional-programming.html#cb94-4"></a>n_cores <span class="co"># This number depends on your computer spec.</span></span></code></pre></div>
-<pre><code>## system 
-##      7</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="functional-programming.html#cb96-1"></a><span class="kw">plan</span>(multiprocess, <span class="co"># multicore, if supported, otherwise multisession</span></span>
-<span id="cb96-2"><a href="functional-programming.html#cb96-2"></a>  <span class="dt">workers =</span> n_cores</span>
-<span id="cb96-3"><a href="functional-programming.html#cb96-3"></a>) <span class="co"># the maximum number of workers</span></span></code></pre></div>
-<pre><code>## Warning: [ONE-TIME WARNING] Forked processing (&#39;multicore&#39;) is disabled
-## in future (&gt;= 1.13.0) when running R from RStudio, because it is
-## considered unstable. Because of this, plan(&quot;multicore&quot;) will fall
-## back to plan(&quot;sequential&quot;), and plan(&quot;multiprocess&quot;) will fall back to
-## plan(&quot;multisession&quot;) - not plan(&quot;multicore&quot;) as in the past. For more details,
-## how to control forked processing or not, and how to silence this warning in
-## future R sessions, see ?future::supportsMulticore</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="functional-programming.html#cb98-1"></a><span class="kw">tic</span>()</span>
-<span id="cb98-2"><a href="functional-programming.html#cb98-2"></a>mean100 &lt;-<span class="st"> </span><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000000</span>, mean)</span>
-<span id="cb98-3"><a href="functional-programming.html#cb98-3"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 3.239 sec elapsed</code></pre>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="functional-programming.html#cb100-1"></a><span class="kw">tic</span>()</span>
-<span id="cb100-2"><a href="functional-programming.html#cb100-2"></a>mean100 &lt;-<span class="st"> </span><span class="kw">future_map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000000</span>, mean)</span>
-<span id="cb100-3"><a href="functional-programming.html#cb100-3"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 2.405 sec elapsed</code></pre>
 </div>
 </div>
 <div id="make-error-handling-easier" class="section level2" number="5.6">
@@ -910,13 +886,13 @@ Why the above solution is not efficient?</li>
 <li><p><strong>Challenge</strong></p></li>
 <li><p>Explain why we can’t run <code>map(url_lists, read_html)</code></p></li>
 </ul>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="functional-programming.html#cb102-1"></a>url_lists &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
-<span id="cb102-2"><a href="functional-programming.html#cb102-2"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/University_of_California,_Berkeley&quot;</span>,</span>
-<span id="cb102-3"><a href="functional-programming.html#cb102-3"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Stanford_University&quot;</span>,</span>
-<span id="cb102-4"><a href="functional-programming.html#cb102-4"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Carnegie_Mellon_University&quot;</span>,</span>
-<span id="cb102-5"><a href="functional-programming.html#cb102-5"></a>  <span class="st">&quot;https://DLAB&quot;</span></span>
-<span id="cb102-6"><a href="functional-programming.html#cb102-6"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="functional-programming.html#cb103-1"></a><span class="kw">map</span>(url_lists, read_html)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="functional-programming.html#cb94-1"></a>url_lists &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb94-2"><a href="functional-programming.html#cb94-2"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/University_of_California,_Berkeley&quot;</span>,</span>
+<span id="cb94-3"><a href="functional-programming.html#cb94-3"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Stanford_University&quot;</span>,</span>
+<span id="cb94-4"><a href="functional-programming.html#cb94-4"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Carnegie_Mellon_University&quot;</span>,</span>
+<span id="cb94-5"><a href="functional-programming.html#cb94-5"></a>  <span class="st">&quot;https://DLAB&quot;</span></span>
+<span id="cb94-6"><a href="functional-programming.html#cb94-6"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="functional-programming.html#cb95-1"></a><span class="kw">map</span>(url_lists, read_html)</span></code></pre></div>
 <ul>
 <li>This is a very simple problem so it’s easy to tell where the problem is. How can you make your error more informative?</li>
 </ul>
@@ -934,20 +910,20 @@ Why the above solution is not efficient?</li>
 </ul></li>
 <li><p>The basic logic of <code>try-catch</code>, R’s basic error handling function, works like the following.</p></li>
 </ul>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="functional-programming.html#cb104-1"></a><span class="kw">tryCatch</span>(</span>
-<span id="cb104-2"><a href="functional-programming.html#cb104-2"></a>  {</span>
-<span id="cb104-3"><a href="functional-programming.html#cb104-3"></a>    <span class="kw">map</span>(url_lists, read_html)</span>
-<span id="cb104-4"><a href="functional-programming.html#cb104-4"></a>  },</span>
-<span id="cb104-5"><a href="functional-programming.html#cb104-5"></a>  <span class="dt">warning =</span> <span class="cf">function</span>(w) {</span>
-<span id="cb104-6"><a href="functional-programming.html#cb104-6"></a>    <span class="st">&quot;Warning&quot;</span></span>
-<span id="cb104-7"><a href="functional-programming.html#cb104-7"></a>  },</span>
-<span id="cb104-8"><a href="functional-programming.html#cb104-8"></a>  <span class="dt">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb104-9"><a href="functional-programming.html#cb104-9"></a>    <span class="st">&quot;Error&quot;</span></span>
-<span id="cb104-10"><a href="functional-programming.html#cb104-10"></a>  },</span>
-<span id="cb104-11"><a href="functional-programming.html#cb104-11"></a>  <span class="dt">finally =</span> {</span>
-<span id="cb104-12"><a href="functional-programming.html#cb104-12"></a>    <span class="st">&quot;Message&quot;</span></span>
-<span id="cb104-13"><a href="functional-programming.html#cb104-13"></a>  }</span>
-<span id="cb104-14"><a href="functional-programming.html#cb104-14"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="functional-programming.html#cb96-1"></a><span class="kw">tryCatch</span>(</span>
+<span id="cb96-2"><a href="functional-programming.html#cb96-2"></a>  {</span>
+<span id="cb96-3"><a href="functional-programming.html#cb96-3"></a>    <span class="kw">map</span>(url_lists, read_html)</span>
+<span id="cb96-4"><a href="functional-programming.html#cb96-4"></a>  },</span>
+<span id="cb96-5"><a href="functional-programming.html#cb96-5"></a>  <span class="dt">warning =</span> <span class="cf">function</span>(w) {</span>
+<span id="cb96-6"><a href="functional-programming.html#cb96-6"></a>    <span class="st">&quot;Warning&quot;</span></span>
+<span id="cb96-7"><a href="functional-programming.html#cb96-7"></a>  },</span>
+<span id="cb96-8"><a href="functional-programming.html#cb96-8"></a>  <span class="dt">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb96-9"><a href="functional-programming.html#cb96-9"></a>    <span class="st">&quot;Error&quot;</span></span>
+<span id="cb96-10"><a href="functional-programming.html#cb96-10"></a>  },</span>
+<span id="cb96-11"><a href="functional-programming.html#cb96-11"></a>  <span class="dt">finally =</span> {</span>
+<span id="cb96-12"><a href="functional-programming.html#cb96-12"></a>    <span class="st">&quot;Message&quot;</span></span>
+<span id="cb96-13"><a href="functional-programming.html#cb96-13"></a>  }</span>
+<span id="cb96-14"><a href="functional-programming.html#cb96-14"></a>)</span></code></pre></div>
 <pre><code>## [1] &quot;Error&quot;</code></pre>
 <ul>
 <li>Here’s <code>purrr</code> version of the <code>try-catch</code> mechanism (evaluates code and assigns exception handlers).</li>
@@ -960,7 +936,7 @@ Why the above solution is not efficient?</li>
 <li>result: result or <code>NULL</code></li>
 <li>error: <code>NULL</code> or <code>error</code></li>
 </ul>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="functional-programming.html#cb106-1"></a><span class="kw">map</span>(url_lists, <span class="kw">safely</span>(read_html))</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="functional-programming.html#cb98-1"></a><span class="kw">map</span>(url_lists, <span class="kw">safely</span>(read_html))</span></code></pre></div>
 <pre><code>## [[1]]
 ## [[1]]$result
 ## {html_document}
@@ -1003,10 +979,10 @@ Why the above solution is not efficient?</li>
 <ul>
 <li>The easier way to solve this problem is just avoiding the error.</li>
 </ul>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="functional-programming.html#cb108-1"></a><span class="kw">map</span>(url_lists, <span class="kw">safely</span>(read_html)) <span class="op">%&gt;%</span></span>
-<span id="cb108-2"><a href="functional-programming.html#cb108-2"></a><span class="st">  </span><span class="kw">map</span>(<span class="st">&quot;result&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb108-3"><a href="functional-programming.html#cb108-3"></a><span class="st">  </span><span class="co"># = map(function(x) x[[&quot;result&quot;]]) = map(~.x[[&quot;name&quot;]])</span></span>
-<span id="cb108-4"><a href="functional-programming.html#cb108-4"></a><span class="st">  </span>purrr<span class="op">::</span><span class="kw">compact</span>() <span class="co"># Remove empty elements</span></span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="functional-programming.html#cb100-1"></a><span class="kw">map</span>(url_lists, <span class="kw">safely</span>(read_html)) <span class="op">%&gt;%</span></span>
+<span id="cb100-2"><a href="functional-programming.html#cb100-2"></a><span class="st">  </span><span class="kw">map</span>(<span class="st">&quot;result&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb100-3"><a href="functional-programming.html#cb100-3"></a><span class="st">  </span><span class="co"># = map(function(x) x[[&quot;result&quot;]]) = map(~.x[[&quot;name&quot;]])</span></span>
+<span id="cb100-4"><a href="functional-programming.html#cb100-4"></a><span class="st">  </span>purrr<span class="op">::</span><span class="kw">compact</span>() <span class="co"># Remove empty elements</span></span></code></pre></div>
 <pre><code>## [[1]]
 ## {html_document}
 ## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
@@ -1028,16 +1004,16 @@ Why the above solution is not efficient?</li>
 <div id="possibly" class="section level4" number="5.6.2.3">
 <h4><span class="header-section-number">5.6.2.3</span> possibly</h4>
 <p>What if the best way to solve the problem is not ignoring the error …</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="functional-programming.html#cb110-1"></a><span class="co"># If error occurred, &quot;The URL is broken.&quot; will be stored in that element(s).</span></span>
-<span id="cb110-2"><a href="functional-programming.html#cb110-2"></a>out &lt;-<span class="st"> </span><span class="kw">map</span>(</span>
-<span id="cb110-3"><a href="functional-programming.html#cb110-3"></a>  url_lists,</span>
-<span id="cb110-4"><a href="functional-programming.html#cb110-4"></a>  <span class="kw">possibly</span>(read_html,</span>
-<span id="cb110-5"><a href="functional-programming.html#cb110-5"></a>    <span class="dt">otherwise =</span> <span class="st">&quot;The URL is broken.&quot;</span></span>
-<span id="cb110-6"><a href="functional-programming.html#cb110-6"></a>  )</span>
-<span id="cb110-7"><a href="functional-programming.html#cb110-7"></a>)</span>
-<span id="cb110-8"><a href="functional-programming.html#cb110-8"></a></span>
-<span id="cb110-9"><a href="functional-programming.html#cb110-9"></a><span class="co"># Let&#39;s find the broken URL.</span></span>
-<span id="cb110-10"><a href="functional-programming.html#cb110-10"></a>url_lists[out[<span class="kw">seq</span>(out)] <span class="op">==</span><span class="st"> &quot;The URL is broken.&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="functional-programming.html#cb102-1"></a><span class="co"># If error occurred, &quot;The URL is broken.&quot; will be stored in that element(s).</span></span>
+<span id="cb102-2"><a href="functional-programming.html#cb102-2"></a>out &lt;-<span class="st"> </span><span class="kw">map</span>(</span>
+<span id="cb102-3"><a href="functional-programming.html#cb102-3"></a>  url_lists,</span>
+<span id="cb102-4"><a href="functional-programming.html#cb102-4"></a>  <span class="kw">possibly</span>(read_html,</span>
+<span id="cb102-5"><a href="functional-programming.html#cb102-5"></a>    <span class="dt">otherwise =</span> <span class="st">&quot;The URL is broken.&quot;</span></span>
+<span id="cb102-6"><a href="functional-programming.html#cb102-6"></a>  )</span>
+<span id="cb102-7"><a href="functional-programming.html#cb102-7"></a>)</span>
+<span id="cb102-8"><a href="functional-programming.html#cb102-8"></a></span>
+<span id="cb102-9"><a href="functional-programming.html#cb102-9"></a><span class="co"># Let&#39;s find the broken URL.</span></span>
+<span id="cb102-10"><a href="functional-programming.html#cb102-10"></a>url_lists[out[<span class="kw">seq</span>(out)] <span class="op">==</span><span class="st"> &quot;The URL is broken.&quot;</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;https://DLAB&quot;</code></pre>
 </div>
 </div>

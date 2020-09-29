@@ -6,7 +6,7 @@
 
 
 ```r
-# Install packages
+# Install packages￣
 if (!require("pacman")) {
   install.packages("pacman")
 }
@@ -227,7 +227,7 @@ toc()
 ```
 
 ```
-## 0.002 sec elapsed
+## 0.001 sec elapsed
 ```
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
 
@@ -780,53 +780,6 @@ In a different situation, you want to make your function run faster. This is a c
     - Step2: Determine the parallel processing mode (`plan()`) 
 
 
-```r
-# Setup
-n_cores <- availableCores() - 1
-
-n_cores # This number depends on your computer spec.
-```
-
-```
-## system 
-##      7
-```
-
-```r
-plan(multiprocess, # multicore, if supported, otherwise multisession
-  workers = n_cores
-) # the maximum number of workers
-```
-
-```
-## Warning: [ONE-TIME WARNING] Forked processing ('multicore') is disabled
-## in future (>= 1.13.0) when running R from RStudio, because it is
-## considered unstable. Because of this, plan("multicore") will fall
-## back to plan("sequential"), and plan("multiprocess") will fall back to
-## plan("multisession") - not plan("multicore") as in the past. For more details,
-## how to control forked processing or not, and how to silence this warning in
-## future R sessions, see ?future::supportsMulticore
-```
-
-```r
-tic()
-mean100 <- map(1:1000000, mean)
-toc()
-```
-
-```
-## 3.239 sec elapsed
-```
-
-```r
-tic()
-mean100 <- future_map(1:1000000, mean)
-toc()
-```
-
-```
-## 2.405 sec elapsed
-```
 
 ## Make error handling easier
 

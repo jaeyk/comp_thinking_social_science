@@ -1,8 +1,11 @@
 --- 
-title: Computational Thinking for Social Scientists
-author: Jae Yeon Kim
+knitr: "bookdown::render_book"
+title: "Computational Thinking for Social Scientists"
+author: ["Jae Yeon Kim"]
 date: "2020-09-29"
 site: bookdown::bookdown_site
+github-repo: jaeyk/PS239T
+twitter-handle: JaeJaeykim2
 output: bookdown::gitbook
 documentclass: book
 bibliography:
@@ -10,8 +13,8 @@ bibliography:
   - packages.bib
 biblio-style: apalike
 link-citations: yes
-github-repo: github.com/jaeyk/PS239T
-description: Computational Thinking for Social Scientists
+colorlinks: yes 
+description: "Computational Thinking for Social Scientists. Online textbook for PS239T"
 ---
 
 # PS239T
