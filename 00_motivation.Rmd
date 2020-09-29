@@ -2,8 +2,6 @@
 
 ## Why computational thinking 
 
-- The goal of this course is to help you become a more efficient and innovative research by leveraging the power of automation. 
-
 - If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is **automation**. 
 
 - Let's think about the following two cases.
@@ -16,7 +14,7 @@
   
 > Every modern statistical and data analysis problem needs code to solve it. You shouldn’t learn just the basics of programming, spend some time gaining mastery. Improving your programming skills pays off because code is a **force multiplier**: once you’ve solved a problem once, code allows you to solve it much faster in the future. As your programming skill increases, the generality of your solutions improves: you solve not just the precise problem you encountered, but a wider class of related problems (in this way programming skill is very much like mathematical skill). Finally, sharing your code with others allows them to benefit from your experience. - [Hadley Wickham](https://imstat.org/2014/12/16/hadley-wickham-impact-the-world-by-being-useful/) 
 
-- How can we automate our research process? How can we talk to and teach a machine so that it could become the most powerful and reliable research assistant ever?
+- How can we automate our research process? How can we talk to and teach a machine so that it could become (hopefully) the most competent and reliable research assistant ever?
 
 ![From BBC Bitesize](https://bam.files.bbci.co.uk/bam/live/content/znmb87h/large)
 
