@@ -211,15 +211,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>7</b> High-dimensional data</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="machine-learning.html"><a href="machine-learning.html#supervised-machine-learning"><i class="fa fa-check"></i><b>7.1</b> Supervised machine learning</a>
+<li class="chapter" data-level="7.1" data-path="machine-learning.html"><a href="machine-learning.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="machine-learning.html"><a href="machine-learning.html#dataset"><i class="fa fa-check"></i><b>7.2</b> Dataset</a></li>
+<li class="chapter" data-level="7.3" data-path="machine-learning.html"><a href="machine-learning.html#workflow"><i class="fa fa-check"></i><b>7.3</b> Workflow</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="machine-learning.html"><a href="machine-learning.html#regularization"><i class="fa fa-check"></i><b>7.1.1</b> Regularization</a></li>
-<li class="chapter" data-level="7.1.2" data-path="machine-learning.html"><a href="machine-learning.html#decision-tree-and-ensemble-models"><i class="fa fa-check"></i><b>7.1.2</b> Decision tree and ensemble models</a></li>
+<li class="chapter" data-level="7.3.1" data-path="machine-learning.html"><a href="machine-learning.html#tidymodels"><i class="fa fa-check"></i><b>7.3.1</b> Tidymodels</a></li>
+<li class="chapter" data-level="7.3.2" data-path="machine-learning.html"><a href="machine-learning.html#data-split"><i class="fa fa-check"></i><b>7.3.2</b> Data split</a></li>
+<li class="chapter" data-level="7.3.3" data-path="machine-learning.html"><a href="machine-learning.html#pre-process"><i class="fa fa-check"></i><b>7.3.3</b> Pre-process</a></li>
+<li class="chapter" data-level="7.3.4" data-path="machine-learning.html"><a href="machine-learning.html#model-building"><i class="fa fa-check"></i><b>7.3.4</b> Model building</a></li>
+<li class="chapter" data-level="7.3.5" data-path="machine-learning.html"><a href="machine-learning.html#model-evaluation"><i class="fa fa-check"></i><b>7.3.5</b> Model evaluation</a></li>
+<li class="chapter" data-level="7.3.6" data-path="machine-learning.html"><a href="machine-learning.html#tuning"><i class="fa fa-check"></i><b>7.3.6</b> Tuning</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="machine-learning.html"><a href="machine-learning.html#unsupervised-machine-learning"><i class="fa fa-check"></i><b>7.2</b> Unsupervised machine learning</a>
+<li class="chapter" data-level="7.4" data-path="machine-learning.html"><a href="machine-learning.html#supervised-learning"><i class="fa fa-check"></i><b>7.4</b> Supervised learning</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="machine-learning.html"><a href="machine-learning.html#dimension-reduction"><i class="fa fa-check"></i><b>7.2.1</b> Dimension reduction</a></li>
-<li class="chapter" data-level="7.2.2" data-path="machine-learning.html"><a href="machine-learning.html#clustering"><i class="fa fa-check"></i><b>7.2.2</b> Clustering</a></li>
+<li class="chapter" data-level="7.4.1" data-path="machine-learning.html"><a href="machine-learning.html#regularization"><i class="fa fa-check"></i><b>7.4.1</b> Regularization</a></li>
+<li class="chapter" data-level="7.4.2" data-path="machine-learning.html"><a href="machine-learning.html#decision-tree-and-ensemble-models"><i class="fa fa-check"></i><b>7.4.2</b> Decision tree and ensemble models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="machine-learning.html"><a href="machine-learning.html#unsupervised-learning"><i class="fa fa-check"></i><b>7.5</b> Unsupervised learning</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="machine-learning.html"><a href="machine-learning.html#dimension-reduction"><i class="fa fa-check"></i><b>7.5.1</b> Dimension reduction</a></li>
+<li class="chapter" data-level="7.5.2" data-path="machine-learning.html"><a href="machine-learning.html#clustering"><i class="fa fa-check"></i><b>7.5.2</b> Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="machine-learning.html"><a href="machine-learning.html#bias-and-fairness-in-machine-learning"><i class="fa fa-check"></i><b>7.6</b> Bias and fairness in machine learning</a></li>
+<li class="chapter" data-level="7.7" data-path="machine-learning.html"><a href="machine-learning.html#resources"><i class="fa fa-check"></i><b>7.7</b> Resources</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="machine-learning.html"><a href="machine-learning.html#books"><i class="fa fa-check"></i><b>7.7.1</b> Books</a></li>
+<li class="chapter" data-level="7.7.2" data-path="machine-learning.html"><a href="machine-learning.html#lecture-slides"><i class="fa fa-check"></i><b>7.7.2</b> Lecture slides</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="big-data.html"><a href="big-data.html"><i class="fa fa-check"></i><b>8</b> Big data</a>
@@ -390,6 +407,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
