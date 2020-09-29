@@ -64,9 +64,9 @@ In the previous session, we learned the difference between semi-structured data 
 
     - Database (push-parse): Push the large target data to a database, then explore, select, and filter it. If you were interested in using this option, then check out my [SQL for R Users](https://github.com/dlab-berkeley/sql-for-r-users) workshop.
         
-![Sample-Parse](https://rviews.rstudio.com/post/2019-07-01-3-big-data-paradigms-for-r_files/sample_model.png)
+![Sample-Parse. From RStudio.](https://rviews.rstudio.com/post/2019-07-01-3-big-data-paradigms-for-r_files/sample_model.png)
 
-![Push-Parse](https://rviews.rstudio.com/post/2019-07-01-3-big-data-paradigms-for-r_files/push_data.png)
+![Push-Parse. From RStudio.](https://rviews.rstudio.com/post/2019-07-01-3-big-data-paradigms-for-r_files/push_data.png)
 
 - But what exactly is this target data?
 
@@ -78,7 +78,7 @@ In the previous session, we learned the difference between semi-structured data 
      
      - If HTML, CSS, and JavaScript are storefronts, then XML and JSON are warehouses. 
 
-![](https://upload.wikimedia.org/wikipedia/commons/9/97/Automatisches_Kleinteilelager.jpg)
+![By Andreas Praefcke (Own work), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/9/97/Automatisches_Kleinteilelager.jpg)
 
 #### Opportunities and challenges for parsing social media data 
 
@@ -304,7 +304,7 @@ library(tidytweetjson)
 
 ##### Solution 
 
-![](https://rviews.rstudio.com/post/2019-07-01-3-big-data-paradigms-for-r_files/chunk_pull.png)
+![Chunk and Pull. From Studio.](https://rviews.rstudio.com/post/2019-07-01-3-big-data-paradigms-for-r_files/chunk_pull.png)
 
 Step1: Split the large JSON file in small chunks. 
 
