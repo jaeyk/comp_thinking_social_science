@@ -2,6 +2,8 @@
 
 ## Why computational thinking 
 
+- The goal of this course is to help you become a more efficient and innovative research by leveraging the power of automation. 
+
 - If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is **automation**. 
 
 - Let's think about the following two cases.
