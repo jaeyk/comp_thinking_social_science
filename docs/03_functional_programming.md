@@ -216,7 +216,7 @@ toc()
 ```
 
 ```
-## 0.007 sec elapsed
+## 0.006 sec elapsed
 ```
 
 
@@ -744,7 +744,7 @@ reduced
 
 - Learning how to use `slowly()` and `future_` to make automation process either slower or faster
 
-### How to Make Automation Slower
+### How to make automation Slower
 
 - Scraping 50 pages from a website and you don't want to overload the server. How can you do that?
 
@@ -769,7 +769,7 @@ reduced
 
 
 
-### How to Make Automation Faster 
+### How to make automation Faster 
 
 In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data at large-scale. You can solve this problem using parallel processing. For more on the parallel processing in R, read [this review](https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/).
 
@@ -815,7 +815,7 @@ toc()
 ```
 
 ```
-## 3.459 sec elapsed
+## 4.4 sec elapsed
 ```
 
 ```r
@@ -825,7 +825,7 @@ toc()
 ```
 
 ```
-## 2.602 sec elapsed
+## 3.01 sec elapsed
 ```
 
 ## Make error handling easier

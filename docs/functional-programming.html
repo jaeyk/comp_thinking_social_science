@@ -228,10 +228,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="functional-programming.html"><a href="functional-programming.html#make-automation-slower-or-faster"><i class="fa fa-check"></i><b>5.5</b> Make automation slower or faster</a>
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="functional-programming.html"><a href="functional-programming.html#objectives-2"><i class="fa fa-check"></i><b>5.5.1</b> Objectives</a></li>
-<li class="chapter" data-level="5.5.2" data-path="functional-programming.html"><a href="functional-programming.html#how-to-make-automation-slower"><i class="fa fa-check"></i><b>5.5.2</b> How to Make Automation Slower</a></li>
+<li class="chapter" data-level="5.5.2" data-path="functional-programming.html"><a href="functional-programming.html#how-to-make-automation-slower"><i class="fa fa-check"></i><b>5.5.2</b> How to make automation Slower</a></li>
 <li class="chapter" data-level="5.5.3" data-path="functional-programming.html"><a href="functional-programming.html#for-loop-1"><i class="fa fa-check"></i><b>5.5.3</b> For loop</a></li>
 <li class="chapter" data-level="5.5.4" data-path="functional-programming.html"><a href="functional-programming.html#map"><i class="fa fa-check"></i><b>5.5.4</b> Map</a></li>
-<li class="chapter" data-level="5.5.5" data-path="functional-programming.html"><a href="functional-programming.html#how-to-make-automation-faster"><i class="fa fa-check"></i><b>5.5.5</b> How to Make Automation Faster</a></li>
+<li class="chapter" data-level="5.5.5" data-path="functional-programming.html"><a href="functional-programming.html#how-to-make-automation-faster"><i class="fa fa-check"></i><b>5.5.5</b> How to make automation Faster</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="functional-programming.html"><a href="functional-programming.html#make-error-handling-easier"><i class="fa fa-check"></i><b>5.6</b> Make error handling easier</a>
 <ul>
@@ -468,7 +468,7 @@ function(input){</p>
 <span id="cb41-12"><a href="functional-programming.html#cb41-12"></a>  out1[[i]] &lt;-<span class="st"> </span><span class="kw">mean</span>(airquality[[i]], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb41-13"><a href="functional-programming.html#cb41-13"></a>}</span>
 <span id="cb41-14"><a href="functional-programming.html#cb41-14"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.007 sec elapsed</code></pre>
+<pre><code>## 0.006 sec elapsed</code></pre>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="functional-programming.html#cb43-1"></a><span class="kw">tic</span>()</span>
 <span id="cb43-2"><a href="functional-programming.html#cb43-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb43-3"><a href="functional-programming.html#cb43-3"></a><span class="kw">toc</span>()</span></code></pre></div>
@@ -844,7 +844,7 @@ Why the above solution is not efficient?</li>
 </ul>
 </div>
 <div id="how-to-make-automation-slower" class="section level3" number="5.5.2">
-<h3><span class="header-section-number">5.5.2</span> How to Make Automation Slower</h3>
+<h3><span class="header-section-number">5.5.2</span> How to make automation Slower</h3>
 <ul>
 <li>Scraping 50 pages from a website and you don’t want to overload the server. How can you do that?</li>
 </ul>
@@ -865,7 +865,7 @@ Why the above solution is not efficient?</li>
 </blockquote>
 </div>
 <div id="how-to-make-automation-faster" class="section level3" number="5.5.5">
-<h3><span class="header-section-number">5.5.5</span> How to Make Automation Faster</h3>
+<h3><span class="header-section-number">5.5.5</span> How to make automation Faster</h3>
 <p>In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data at large-scale. You can solve this problem using parallel processing. For more on the parallel processing in R, read <a href="https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/">this review</a>.</p>
 <ul>
 <li><p>Parallel processing setup</p>
@@ -893,11 +893,11 @@ Why the above solution is not efficient?</li>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="functional-programming.html#cb98-1"></a><span class="kw">tic</span>()</span>
 <span id="cb98-2"><a href="functional-programming.html#cb98-2"></a>mean100 &lt;-<span class="st"> </span><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000000</span>, mean)</span>
 <span id="cb98-3"><a href="functional-programming.html#cb98-3"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 3.459 sec elapsed</code></pre>
+<pre><code>## 4.4 sec elapsed</code></pre>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="functional-programming.html#cb100-1"></a><span class="kw">tic</span>()</span>
 <span id="cb100-2"><a href="functional-programming.html#cb100-2"></a>mean100 &lt;-<span class="st"> </span><span class="kw">future_map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000000</span>, mean)</span>
 <span id="cb100-3"><a href="functional-programming.html#cb100-3"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 2.602 sec elapsed</code></pre>
+<pre><code>## 3.01 sec elapsed</code></pre>
 </div>
 </div>
 <div id="make-error-handling-easier" class="section level2" number="5.6">
