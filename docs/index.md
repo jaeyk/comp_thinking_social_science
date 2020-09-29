@@ -27,11 +27,13 @@ This course will help social science graduate students to think computationally 
 
 ## Textbook 
 
-[The online book version](https://jaeyk.github.io/PS239T/) of the course materials is currently work in progress.
+[The online book version](https://jaeyk.github.io/PS239T/) of the course materials is currently work in progress. I am loosely aiming the completion of this book in 2020.
 
 ## Objectives
 
-The course is currently divided into two main subjects (fundamentals and applications) and six main sessions. 
+- The goal of this course is to help students become a more efficient and innovative researcher by leveraging the power of automation.
+
+- The course is currently divided into two main subjects (fundamentals and applications) and six main sessions. 
 
 ### Part I Fundamentals
 
@@ -49,13 +51,15 @@ The course is currently divided into two main subjects (fundamentals and applica
 
 - In the final, students learn how to access, query, and manage big data using SQL. 
 
-We will learn how to do all of the above mostly in **R**, and sometimes in **bash** and **Python**.
+We will learn how to do all of the above mostly in [**R**](https://www.r-project.org/about.html), and sometimes in [**bash**](https://www.gnu.org/software/bash/) and [**Python**](https://www.python.org/about/).
+
+  - R is free, easy to learn (thanks to [`tidyverse`](https://www.tidyverse.org/) and [RStudio](https://rstudio.com/)), fast (thanks to [`rcpp`](https://cran.r-project.org/web/packages/Rcpp/index.html)), runs everywhere, **open** (16,000+ packages; counting only ones [available at CRAN](https://cran.r-project.org/web/packages/)), and has a growing massive and inclusive community ([`#rstats`](https://twitter.com/search?q=%23rstats&src=typed_query)).
   
 ## Logistics 
 
-### Instructor
+### Contributors 
 
-[Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
+Instructor and content developer: [Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
 
 ### Time and location 
 
@@ -79,7 +83,7 @@ This class is committed to creating an environment in which everyone can partici
  
 ### Code for conduct 
 
-TBD
+**TBD**
 
 ### Course requirements and grades 
 
@@ -123,7 +127,7 @@ During sections in April we will have **lightning talk sessions** where students
 
 #### Lecture 
 
-Classes will follow a “workshop” style, combining lecture and lab formats. The class is interactive, with students programming every session. During the “skills” parts of the class, we will be learning how to program in Unix, HTML, and R by following course notes and tutorials. During the “applications” sections, we will follow a similar structure, with occasional guest speakers.  
+Classes will follow a “workshop” style, combining lecture and lab formats. The class is interactive, with students programming every session. During the “skills” parts of the class, we will be learning how to program in R, UNIX (bash), and Python by following course notes and tutorials. During the “applications” sections, we will follow a similar structure, with occasional guest speakers.  
 
 #### Section 
 
@@ -172,7 +176,7 @@ See [B_Install.md](https://github.com/jaeyk/PS239T/blob/master/B_Install.md) for
 
 ## Questions, comments, or suggestions
 
-Please [create issues](https://github.com/jaeyk/PS239T/issues), if you have questions, comments, or suggestions.
+Please [create issues](https://github.com/jaeyk/PS239T/issues) [TBD: issue template], if you have questions, comments, or suggestions.
 
 ## Special thanks 
 

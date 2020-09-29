@@ -197,6 +197,8 @@ ames %>%
 
  - [`rsample`](https://rsample.tidymodels.org/): for data splitting 
  
+#### Random sampling 
+
 
 ```r
 # data split 
@@ -206,6 +208,8 @@ df_split  <- rsample::initial_split(df, prop = 0.7)
 train <- rsample::training(df_split)
 test <- rsample::testing(df_split)
 ```
+
+#### Stratified random sampling 
 
 #### Cross-validation 
 
@@ -234,6 +238,8 @@ processed_test <- df_recipe %>% bake(test)
 
 - [`parsnip`](https://www.tidyverse.org/blog/2018/11/parsnip-0-0-1/): for model building 
 
+#### Choose model 
+
 
 ```r
 # Fit model 
@@ -251,6 +257,10 @@ df_ranger <- rand_forest(trees = 1000,
 
 df_pred <- predict(df_ranger, processed_test)
 ```
+
+#### Choose engine 
+
+#### Declare mode  
 
 ### Model evaluation 
 
@@ -275,6 +285,10 @@ df_pred %>%
 ### Tuning 
 
 - [`tune`](https://github.com/tidymodels/tune): parameter tuning 
+
+#### Grid search 
+
+#### Iterative search
 
 ## Supervised learning
 
@@ -312,12 +326,7 @@ predict(out)[1:5]
 #### Decision tree 
 
 - Partitioning feature space sequentially. 
-
-##### Bandit algorithm (optimizing an experiment)
-
 #### Random forest 
-
-##### Causal forest (estimating heterogeneous treatment effect)
 
 #### XGboost 
 
@@ -326,6 +335,12 @@ predict(out)[1:5]
 #### SuperLearners
 
 #### Neural networks / Deep learning 
+
+#### Applications 
+
+##### Bandit algorithm (optimizing an experiment)
+
+##### Causal forest (estimating heterogeneous treatment effect)
 
 ## Unsupervised learning
 
@@ -338,6 +353,10 @@ x -> f - > y (not defined)
 ### Clustering
 
 ![Agglomerative Hierarchical Clustering. From [George Seif's medium post](https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68).](https://miro.medium.com/max/770/1*ET8kCcPpr893vNZFs8j4xg.gif)
+
+### Applications 
+
+#### Imputation 
 
 #### Topic modeling 
 

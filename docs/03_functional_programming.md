@@ -27,7 +27,7 @@ pacman::p_load(
 ) # web scraping
 ```
 
-### Why `map()` 
+### Why map? 
 
 #### Objectives 
 
@@ -216,7 +216,7 @@ toc()
 ```
 
 ```
-## 0.006 sec elapsed
+## 0.008 sec elapsed
 ```
 
 
@@ -227,7 +227,7 @@ toc()
 ```
 
 ```
-## 0.001 sec elapsed
+## 0.002 sec elapsed
 ```
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
 
@@ -541,7 +541,7 @@ glue("{names} studies {fields}.")
 How can you create the character vector of column names? 
 
 - **Challenge**
-How can make `ggplot2()` take strings as x and y variable names? (Hint: Type `?aes_string()`) 
+How can you make `ggplot2()` take strings as x and y variable names? (Hint: Type `?aes_string()`) 
 
 
 ```r
@@ -562,7 +562,7 @@ airquality %>%
 
 - The next step is to write an automatic plotting function. 
 
-    - Note that in the function i (abstract argument) replaced 2 (specific number). 
+    - Note that in the function argument `i` (abstract) replaced 2 (specific): abstraction  
 
 
 ```r
@@ -744,7 +744,7 @@ reduced
 
 - Learning how to use `slowly()` and `future_` to make automation process either slower or faster
 
-### How to make automation Slower
+### How to make automation slower
 
 - Scraping 50 pages from a website and you don't want to overload the server. How can you do that?
 
@@ -845,7 +845,7 @@ tryCatch(
 
 - Here's `purrr` version of the `try-catch` mechanism (evaluates code and assigns exception handlers). 
 
-#### safely and possibly 
+#### safely
 
 **Outputs** 
 
