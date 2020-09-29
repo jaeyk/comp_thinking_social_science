@@ -243,14 +243,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="semi-structured-data.html"><a href="semi-structured-data.html"><i class="fa fa-check"></i><b>6</b> Semi-structured data</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="semi-structured-data.html"><a href="semi-structured-data.html#htmlcss-web-scraping"><i class="fa fa-check"></i><b>6.1</b> HTML/CSS: web scraping</a></li>
-<li class="chapter" data-level="6.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#xmljson-social-media-scraping"><i class="fa fa-check"></i><b>6.2</b> XML/JSON: social media scraping</a></li>
+<li class="chapter" data-level="6.1" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#what-is-semi-structured-data"><i class="fa fa-check"></i><b>6.2</b> What is semi-structured data?</a></li>
+<li class="chapter" data-level="6.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow"><i class="fa fa-check"></i><b>6.3</b> Workflow</a></li>
+<li class="chapter" data-level="6.4" data-path="semi-structured-data.html"><a href="semi-structured-data.html#htmlcss-web-scraping"><i class="fa fa-check"></i><b>6.4</b> HTML/CSS: web scraping</a></li>
+<li class="chapter" data-level="6.5" data-path="semi-structured-data.html"><a href="semi-structured-data.html#xmljson-social-media-scraping"><i class="fa fa-check"></i><b>6.5</b> XML/JSON: social media scraping</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="semi-structured-data.html"><a href="semi-structured-data.html#api"><i class="fa fa-check"></i><b>6.5.1</b> API</a></li>
+<li class="chapter" data-level="6.5.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#hydrating"><i class="fa fa-check"></i><b>6.5.2</b> Hydrating</a></li>
+<li class="chapter" data-level="6.5.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#parsing-json"><i class="fa fa-check"></i><b>6.5.3</b> Parsing JSON</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>7</b> High-dimensional data</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="machine-learning.html"><a href="machine-learning.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
 <li class="chapter" data-level="7.2" data-path="machine-learning.html"><a href="machine-learning.html#dataset"><i class="fa fa-check"></i><b>7.2</b> Dataset</a></li>
-<li class="chapter" data-level="7.3" data-path="machine-learning.html"><a href="machine-learning.html#workflow"><i class="fa fa-check"></i><b>7.3</b> Workflow</a>
+<li class="chapter" data-level="7.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow"><i class="fa fa-check"></i><b>7.3</b> Workflow</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="machine-learning.html"><a href="machine-learning.html#tidymodels"><i class="fa fa-check"></i><b>7.3.1</b> Tidymodels</a></li>
 <li class="chapter" data-level="7.3.2" data-path="machine-learning.html"><a href="machine-learning.html#data-split"><i class="fa fa-check"></i><b>7.3.2</b> Data split</a></li>
@@ -318,6 +326,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="tidy-data-and-why-it-matters" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Tidy data and why it matters</h2>
+<blockquote>
+<p>“Tidy data sets are easy to manipulate, model and visualize, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table.” - Hadley Wickham</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Variables -&gt; <strong>Columns</strong></li>
+<li>Observations -&gt; <strong>Rows</strong></li>
+<li>Values -&gt; <strong>Cells</strong></li>
+</ol>
+<div class="figure">
+<img src="https://garrettgman.github.io/images/tidy-1.png" alt="" />
+<p class="caption">Tidy Data Example (Source: R for Data Science)</p>
+</div>
+<p>If dataframes are tidy, it’s easy to transform, visualize, model, and program them using tidyverse packages (a whole workflow).</p>
+<div class="figure">
+<img src="https://miro.medium.com/max/960/0*mlPyX0NE0WQwEzpS.png" alt="" />
+<p class="caption">Tidyverse: an opinionated collection of R packages</p>
+</div>
+<ul>
+<li>Nevertheless, don’t be <strong>religious</strong>.</li>
+</ul>
+<blockquote>
+<p>In summary, tidy data is a useful conceptual idea and is often the right way to go for general, small data sets, but may not be appropriate for all problems. - Jeff Leek</p>
+</blockquote>
+<p>For instance, in many data science applications, linear algebra-based computations are essential (e.g., <a href="https://www.math.upenn.edu/~kazdan/312S13/JJ/PCA-JJ.pdf">Principal Component Analysis</a>). These computations are optimized to work on matrices, not tidy data frames (for more information, read <a href="https://simplystatistics.org/2016/02/17/non-tidy-data/">Jeff Leek’s blog post</a>).</p>
 </div>
 <div id="wrangling-data" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Wrangling data</h2>

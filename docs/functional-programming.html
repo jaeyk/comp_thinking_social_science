@@ -243,14 +243,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="semi-structured-data.html"><a href="semi-structured-data.html"><i class="fa fa-check"></i><b>6</b> Semi-structured data</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="semi-structured-data.html"><a href="semi-structured-data.html#htmlcss-web-scraping"><i class="fa fa-check"></i><b>6.1</b> HTML/CSS: web scraping</a></li>
-<li class="chapter" data-level="6.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#xmljson-social-media-scraping"><i class="fa fa-check"></i><b>6.2</b> XML/JSON: social media scraping</a></li>
+<li class="chapter" data-level="6.1" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#what-is-semi-structured-data"><i class="fa fa-check"></i><b>6.2</b> What is semi-structured data?</a></li>
+<li class="chapter" data-level="6.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow"><i class="fa fa-check"></i><b>6.3</b> Workflow</a></li>
+<li class="chapter" data-level="6.4" data-path="semi-structured-data.html"><a href="semi-structured-data.html#htmlcss-web-scraping"><i class="fa fa-check"></i><b>6.4</b> HTML/CSS: web scraping</a></li>
+<li class="chapter" data-level="6.5" data-path="semi-structured-data.html"><a href="semi-structured-data.html#xmljson-social-media-scraping"><i class="fa fa-check"></i><b>6.5</b> XML/JSON: social media scraping</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="semi-structured-data.html"><a href="semi-structured-data.html#api"><i class="fa fa-check"></i><b>6.5.1</b> API</a></li>
+<li class="chapter" data-level="6.5.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#hydrating"><i class="fa fa-check"></i><b>6.5.2</b> Hydrating</a></li>
+<li class="chapter" data-level="6.5.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#parsing-json"><i class="fa fa-check"></i><b>6.5.3</b> Parsing JSON</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>7</b> High-dimensional data</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="machine-learning.html"><a href="machine-learning.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
 <li class="chapter" data-level="7.2" data-path="machine-learning.html"><a href="machine-learning.html#dataset"><i class="fa fa-check"></i><b>7.2</b> Dataset</a></li>
-<li class="chapter" data-level="7.3" data-path="machine-learning.html"><a href="machine-learning.html#workflow"><i class="fa fa-check"></i><b>7.3</b> Workflow</a>
+<li class="chapter" data-level="7.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow"><i class="fa fa-check"></i><b>7.3</b> Workflow</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="machine-learning.html"><a href="machine-learning.html#tidymodels"><i class="fa fa-check"></i><b>7.3.1</b> Tidymodels</a></li>
 <li class="chapter" data-level="7.3.2" data-path="machine-learning.html"><a href="machine-learning.html#data-split"><i class="fa fa-check"></i><b>7.3.2</b> Data split</a></li>
@@ -308,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Setup</li>
 </ul>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="functional-programming.html#cb28-1"></a><span class="co"># Install packages￣</span></span>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="functional-programming.html#cb28-1"></a><span class="co"># Install packages</span></span>
 <span id="cb28-2"><a href="functional-programming.html#cb28-2"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) {</span>
 <span id="cb28-3"><a href="functional-programming.html#cb28-3"></a>  <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
 <span id="cb28-4"><a href="functional-programming.html#cb28-4"></a>}</span></code></pre></div>
@@ -470,7 +478,7 @@ function(input){</p>
 <span id="cb41-12"><a href="functional-programming.html#cb41-12"></a>  out1[[i]] &lt;-<span class="st"> </span><span class="kw">mean</span>(airquality[[i]], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb41-13"><a href="functional-programming.html#cb41-13"></a>}</span>
 <span id="cb41-14"><a href="functional-programming.html#cb41-14"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.008 sec elapsed</code></pre>
+<pre><code>## 0.006 sec elapsed</code></pre>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="functional-programming.html#cb43-1"></a><span class="kw">tic</span>()</span>
 <span id="cb43-2"><a href="functional-programming.html#cb43-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb43-3"><a href="functional-programming.html#cb43-3"></a><span class="kw">toc</span>()</span></code></pre></div>
@@ -478,8 +486,8 @@ function(input){</p>
 <ul>
 <li><p>In short, <code>map()</code> is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using <code>%&gt;%</code>.</p></li>
 <li><p>Final point: Why not base R <code>apply</code> family?</p></li>
+<li><p>Short answer: <code>purrr::map()</code> is simpler to write. For instance,</p></li>
 </ul>
-<p>Short answer: <code>purrr::map()</code> is simpler to write. For instance,</p>
 <p><code>map_dbl(x, mean, na.rm = TRUE)</code> = <code>vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))</code></p>
 </div>
 <div id="application-many-models" class="section level4" number="5.1.1.4">
@@ -590,7 +598,7 @@ function(input){</p>
 ## [1] &quot;University =  Stanford | Department =  firebenders&quot;
 ## [1] &quot;University =  Stanford | Department =  airbenders&quot;</code></pre>
 <ul>
-<li>This is not bad, but … n arguments -&gt; n nested for loops. As a scale of your problem grows, your code gets really complicated.</li>
+<li>This is not bad, but … <code>n</code> arguments -&gt; <code>n-nested for loops</code>. As a scale of your problem grows, your code gets really complicated.</li>
 </ul>
 <blockquote>
 <p>To become significantly more reliable, code must become more transparent. In particular, nested conditions and loops must be viewed with great suspicion. Complicated control flows confuse programmers. Messy code often hides bugs. — <a href="https://en.wikipedia.org/wiki/Bjarne_Stroustrup">Bjarne Stroustrup</a></p>
@@ -696,8 +704,8 @@ function(input){</p>
 <div id="solution" class="section level3" number="5.3.3">
 <h3><span class="header-section-number">5.3.3</span> Solution</h3>
 <ul>
-<li>Learn how <code>glue()</code> works.</li>
-<li><code>glue()</code> combines strings and objects and it works simpler and faster than <code>paste()</code> or <code>sprintif()</code>.</li>
+<li><p>Learn how <code>glue()</code> works.</p></li>
+<li><p><code>glue()</code> combines strings and objects and it works simpler and faster than <code>paste()</code> or <code>sprintif()</code>.</p></li>
 </ul>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="functional-programming.html#cb66-1"></a>names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jae&quot;</span>, <span class="st">&quot;Aniket&quot;</span>, <span class="st">&quot;Avery&quot;</span>)</span>
 <span id="cb66-2"><a href="functional-programming.html#cb66-2"></a></span>
@@ -775,8 +783,8 @@ How can you make <code>ggplot2()</code> take strings as x and y variable names? 
 <div id="problem-2" class="section level3" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Problem</h3>
 <ul>
-<li>How can you make joining multiple dataframes more efficient?</li>
-<li>Note that we will use <code>dplyr::left_join() = merge(x, y, all.x = TRUE)</code>.</li>
+<li><p>How can you make joining multiple dataframes more efficient?</p></li>
+<li><p>Note that we will use <code>dplyr::left_join() = merge(x, y, all.x = TRUE)</code>.</p></li>
 </ul>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="functional-programming.html#cb82-1"></a>df1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
 <span id="cb82-2"><a href="functional-programming.html#cb82-2"></a>  <span class="dt">x =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
@@ -906,9 +914,9 @@ Why the above solution is not efficient?</li>
 <ul>
 <li><p>There are three kinds of messages you will run into, if your code has an error based on the following functions.</p>
 <ul>
-<li>stop(): errors; Functions must stop.</li>
-<li>warning(): warnings; Functions may still work. Nonetheless, something is possibly messed up.</li>
-<li>message(): messages; Some actions happened.</li>
+<li><code>stop()</code>: errors; Functions must stop.</li>
+<li><code>warning()</code>: warnings; Functions may still work. Nonetheless, something is possibly messed up.</li>
+<li><code>message()</code>: messages; Some actions happened.</li>
 </ul></li>
 <li><p>The basic logic of <code>try-catch</code>, R’s basic error handling function, works like the following.</p></li>
 </ul>
@@ -941,35 +949,26 @@ Why the above solution is not efficient?</li>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="functional-programming.html#cb98-1"></a><span class="kw">map</span>(url_lists, <span class="kw">safely</span>(read_html))</span></code></pre></div>
 <pre><code>## [[1]]
 ## [[1]]$result
-## {html_document}
-## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
-## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8 ...
-## [2] &lt;body class=&quot;mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## NULL
 ## 
 ## [[1]]$error
-## NULL
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds&gt;
 ## 
 ## 
 ## [[2]]
 ## [[2]]$result
-## {html_document}
-## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
-## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8 ...
-## [2] &lt;body class=&quot;mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## NULL
 ## 
 ## [[2]]$error
-## NULL
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds&gt;
 ## 
 ## 
 ## [[3]]
 ## [[3]]$result
-## {html_document}
-## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
-## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8 ...
-## [2] &lt;body class=&quot;mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## NULL
 ## 
 ## [[3]]$error
-## NULL
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds&gt;
 ## 
 ## 
 ## [[4]]
@@ -985,23 +984,7 @@ Why the above solution is not efficient?</li>
 <span id="cb100-2"><a href="functional-programming.html#cb100-2"></a><span class="st">  </span><span class="kw">map</span>(<span class="st">&quot;result&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb100-3"><a href="functional-programming.html#cb100-3"></a><span class="st">  </span><span class="co"># = map(function(x) x[[&quot;result&quot;]]) = map(~.x[[&quot;name&quot;]])</span></span>
 <span id="cb100-4"><a href="functional-programming.html#cb100-4"></a><span class="st">  </span>purrr<span class="op">::</span><span class="kw">compact</span>() <span class="co"># Remove empty elements</span></span></code></pre></div>
-<pre><code>## [[1]]
-## {html_document}
-## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
-## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8 ...
-## [2] &lt;body class=&quot;mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
-## 
-## [[2]]
-## {html_document}
-## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
-## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8 ...
-## [2] &lt;body class=&quot;mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
-## 
-## [[3]]
-## {html_document}
-## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
-## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8 ...
-## [2] &lt;body class=&quot;mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...</code></pre>
+<pre><code>## list()</code></pre>
 </div>
 <div id="possibly" class="section level4" number="5.6.2.3">
 <h4><span class="header-section-number">5.6.2.3</span> possibly</h4>
@@ -1016,7 +999,10 @@ Why the above solution is not efficient?</li>
 <span id="cb102-8"><a href="functional-programming.html#cb102-8"></a></span>
 <span id="cb102-9"><a href="functional-programming.html#cb102-9"></a><span class="co"># Let&#39;s find the broken URL.</span></span>
 <span id="cb102-10"><a href="functional-programming.html#cb102-10"></a>url_lists[out[<span class="kw">seq</span>(out)] <span class="op">==</span><span class="st"> &quot;The URL is broken.&quot;</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;https://DLAB&quot;</code></pre>
+<pre><code>## [1] &quot;https://en.wikipedia.org/wiki/University_of_California,_Berkeley&quot;
+## [2] &quot;https://en.wikipedia.org/wiki/Stanford_University&quot;               
+## [3] &quot;https://en.wikipedia.org/wiki/Carnegie_Mellon_University&quot;        
+## [4] &quot;https://DLAB&quot;</code></pre>
 </div>
 </div>
 </div>

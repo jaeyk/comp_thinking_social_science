@@ -6,7 +6,7 @@
 
 
 ```r
-# Install packages￣
+# Install packages
 if (!require("pacman")) {
   install.packages("pacman")
 }
@@ -216,7 +216,7 @@ toc()
 ```
 
 ```
-## 0.008 sec elapsed
+## 0.006 sec elapsed
 ```
 
 
@@ -229,11 +229,12 @@ toc()
 ```
 ## 0.002 sec elapsed
 ```
+
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
 
 - Final point: Why not base R `apply` family? 
 
-Short answer: `purrr::map()` is simpler to write. For instance, 
+- Short answer: `purrr::map()` is simpler to write. For instance, 
 
 `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
 
@@ -349,7 +350,6 @@ paste("University = Berkeley | Department = CS")
 - Do we need a placeholder? No. We don't need a placeholder because we don't store the result of iterations.
     
 - **Challenge**: How many parameters do you need to solve the problem below?
-
   
 
 ```r
@@ -376,7 +376,7 @@ for (univ in c("Berkeley", "Stanford")) {
 ## [1] "University =  Stanford | Department =  airbenders"
 ```
 
-- This is not bad, but ... n arguments -> n nested for loops. As a scale of your problem grows, your code gets really complicated.
+- This is not bad, but ... `n` arguments -> `n-nested for loops`. As a scale of your problem grows, your code gets really complicated.
 
 > To become significantly more reliable, code must become more transparent. In particular, nested conditions and loops must be viewed with great suspicion. Complicated control flows confuse programmers. Messy code often hides bugs. — [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup)
 
@@ -517,6 +517,7 @@ airquality %>%
 ### Solution 
 
 - Learn how `glue()` works. 
+
 - `glue()` combines strings and objects and it works simpler and faster than `paste()` or `sprintif()`. 
 
 
@@ -533,6 +534,7 @@ glue("{names} studies {fields}.")
 ## Aniket studies Law.
 ## Avery studies Public Health.
 ```
+
 - So, our next step is to combine `glue()` and `map()`. 
 
 - Let's first think about writing a function that includes `glue()`.
@@ -647,6 +649,7 @@ map(2:ncol(airquality), create_point_plot)
 ### Problem 
 
 - How can you make joining multiple dataframes more efficient?
+
 - Note that we will use `dplyr::left_join() = merge(x, y, all.x = TRUE)`.
 
 
@@ -815,9 +818,9 @@ map(url_lists, read_html)
 
 - There are three kinds of messages you will run into, if your code has an error based on the following functions.  
 
-    - stop(): errors; Functions must stop. 
-    - warning(): warnings; Functions may still work. Nonetheless, something is possibly messed up. 
-    - message(): messages; Some actions happened. 
+    - `stop()`: errors; Functions must stop. 
+    - `warning()`: warnings; Functions may still work. Nonetheless, something is possibly messed up. 
+    - `message()`: messages; Some actions happened. 
     
 - The basic logic of `try-catch`, R's basic error handling function, works like the following. 
 
@@ -860,35 +863,26 @@ map(url_lists, safely(read_html))
 ```
 ## [[1]]
 ## [[1]]$result
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## NULL
 ## 
 ## [[1]]$error
-## NULL
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
 ## 
 ## 
 ## [[2]]
 ## [[2]]$result
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## NULL
 ## 
 ## [[2]]$error
-## NULL
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
 ## 
 ## 
 ## [[3]]
 ## [[3]]$result
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## NULL
 ## 
 ## [[3]]$error
-## NULL
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
 ## 
 ## 
 ## [[4]]
@@ -910,23 +904,7 @@ map(url_lists, safely(read_html)) %>%
 ```
 
 ```
-## [[1]]
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
-## 
-## [[2]]
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
-## 
-## [[3]]
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## list()
 ```
 
 #### possibly 
@@ -948,7 +926,10 @@ url_lists[out[seq(out)] == "The URL is broken."]
 ```
 
 ```
-## [1] "https://DLAB"
+## [1] "https://en.wikipedia.org/wiki/University_of_California,_Berkeley"
+## [2] "https://en.wikipedia.org/wiki/Stanford_University"               
+## [3] "https://en.wikipedia.org/wiki/Carnegie_Mellon_University"        
+## [4] "https://DLAB"
 ```
 
 ## Developing your own data tools

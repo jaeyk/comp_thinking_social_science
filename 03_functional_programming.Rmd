@@ -5,7 +5,7 @@
 - Setup 
 
 ```{r}
-# Install packages￣
+# Install packages
 if (!require("pacman")) {
   install.packages("pacman")
 }
@@ -100,6 +100,7 @@ df$c <- fix_missing(df$c)
 df$d <- fix_missing(df$d)
 
 df
+
 ```
 
 - **Challenge** Why using function is more efficient than 100% copying and pasting? Can you think about a way we can automate the process?
@@ -167,11 +168,12 @@ tic()
 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)
 toc()
 ```
+
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
 
 - Final point: Why not base R `apply` family? 
 
-Short answer: `purrr::map()` is simpler to write. For instance, 
+- Short answer: `purrr::map()` is simpler to write. For instance, 
 
 `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
 
@@ -258,7 +260,6 @@ paste("University = Berkeley | Department = CS")
 - Do we need a placeholder? No. We don't need a placeholder because we don't store the result of iterations.
     
 - **Challenge**: How many parameters do you need to solve the problem below?
-
   
 ```{r}
 
@@ -274,7 +275,7 @@ for (univ in c("Berkeley", "Stanford")) {
 }
 ```
 
-- This is not bad, but ... n arguments -> n nested for loops. As a scale of your problem grows, your code gets really complicated.
+- This is not bad, but ... `n` arguments -> `n-nested for loops`. As a scale of your problem grows, your code gets really complicated.
 
 > To become significantly more reliable, code must become more transparent. In particular, nested conditions and loops must be viewed with great suspicion. Complicated control flows confuse programmers. Messy code often hides bugs. — [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup)
 
@@ -364,6 +365,7 @@ airquality %>%
 ### Solution 
 
 - Learn how `glue()` works. 
+
 - `glue()` combines strings and objects and it works simpler and faster than `paste()` or `sprintif()`. 
 
 ```{r}
@@ -373,6 +375,7 @@ fields <- c("Political Science", "Law", "Public Health")
 
 glue("{names} studies {fields}.")
 ```
+
 - So, our next step is to combine `glue()` and `map()`. 
 
 - Let's first think about writing a function that includes `glue()`.
@@ -424,6 +427,7 @@ map(2:ncol(airquality), create_point_plot)
 ### Problem 
 
 - How can you make joining multiple dataframes more efficient?
+
 - Note that we will use `dplyr::left_join() = merge(x, y, all.x = TRUE)`.
 
 ```{r}
@@ -607,9 +611,9 @@ map(url_lists, read_html)
 
 - There are three kinds of messages you will run into, if your code has an error based on the following functions.  
 
-    - stop(): errors; Functions must stop. 
-    - warning(): warnings; Functions may still work. Nonetheless, something is possibly messed up. 
-    - message(): messages; Some actions happened. 
+    - `stop()`: errors; Functions must stop. 
+    - `warning()`: warnings; Functions may still work. Nonetheless, something is possibly messed up. 
+    - `message()`: messages; Some actions happened. 
     
 - The basic logic of `try-catch`, R's basic error handling function, works like the following. 
 

@@ -243,14 +243,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="semi-structured-data.html"><a href="semi-structured-data.html"><i class="fa fa-check"></i><b>6</b> Semi-structured data</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="semi-structured-data.html"><a href="semi-structured-data.html#htmlcss-web-scraping"><i class="fa fa-check"></i><b>6.1</b> HTML/CSS: web scraping</a></li>
-<li class="chapter" data-level="6.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#xmljson-social-media-scraping"><i class="fa fa-check"></i><b>6.2</b> XML/JSON: social media scraping</a></li>
+<li class="chapter" data-level="6.1" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#what-is-semi-structured-data"><i class="fa fa-check"></i><b>6.2</b> What is semi-structured data?</a></li>
+<li class="chapter" data-level="6.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow"><i class="fa fa-check"></i><b>6.3</b> Workflow</a></li>
+<li class="chapter" data-level="6.4" data-path="semi-structured-data.html"><a href="semi-structured-data.html#htmlcss-web-scraping"><i class="fa fa-check"></i><b>6.4</b> HTML/CSS: web scraping</a></li>
+<li class="chapter" data-level="6.5" data-path="semi-structured-data.html"><a href="semi-structured-data.html#xmljson-social-media-scraping"><i class="fa fa-check"></i><b>6.5</b> XML/JSON: social media scraping</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="semi-structured-data.html"><a href="semi-structured-data.html#api"><i class="fa fa-check"></i><b>6.5.1</b> API</a></li>
+<li class="chapter" data-level="6.5.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#hydrating"><i class="fa fa-check"></i><b>6.5.2</b> Hydrating</a></li>
+<li class="chapter" data-level="6.5.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#parsing-json"><i class="fa fa-check"></i><b>6.5.3</b> Parsing JSON</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>7</b> High-dimensional data</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="machine-learning.html"><a href="machine-learning.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
 <li class="chapter" data-level="7.2" data-path="machine-learning.html"><a href="machine-learning.html#dataset"><i class="fa fa-check"></i><b>7.2</b> Dataset</a></li>
-<li class="chapter" data-level="7.3" data-path="machine-learning.html"><a href="machine-learning.html#workflow"><i class="fa fa-check"></i><b>7.3</b> Workflow</a>
+<li class="chapter" data-level="7.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow"><i class="fa fa-check"></i><b>7.3</b> Workflow</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="machine-learning.html"><a href="machine-learning.html#tidymodels"><i class="fa fa-check"></i><b>7.3.1</b> Tidymodels</a></li>
 <li class="chapter" data-level="7.3.2" data-path="machine-learning.html"><a href="machine-learning.html#data-split"><i class="fa fa-check"></i><b>7.3.2</b> Data split</a></li>
@@ -376,14 +384,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="dataset" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Dataset</h2>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="machine-learning.html#cb104-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidymodels)</span>
-<span id="cb104-2"><a href="machine-learning.html#cb104-2"></a></span>
-<span id="cb104-3"><a href="machine-learning.html#cb104-3"></a><span class="co"># Ames, Iowa housing data </span></span>
-<span id="cb104-4"><a href="machine-learning.html#cb104-4"></a><span class="kw">data</span>(ames)</span>
-<span id="cb104-5"><a href="machine-learning.html#cb104-5"></a></span>
-<span id="cb104-6"><a href="machine-learning.html#cb104-6"></a><span class="co"># Glimpse </span></span>
-<span id="cb104-7"><a href="machine-learning.html#cb104-7"></a>ames <span class="op">%&gt;%</span></span>
-<span id="cb104-8"><a href="machine-learning.html#cb104-8"></a><span class="st">  </span><span class="kw">glimpse</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="machine-learning.html#cb135-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidymodels)</span>
+<span id="cb135-2"><a href="machine-learning.html#cb135-2"></a></span>
+<span id="cb135-3"><a href="machine-learning.html#cb135-3"></a><span class="co"># Ames, Iowa housing data </span></span>
+<span id="cb135-4"><a href="machine-learning.html#cb135-4"></a><span class="kw">data</span>(ames)</span>
+<span id="cb135-5"><a href="machine-learning.html#cb135-5"></a></span>
+<span id="cb135-6"><a href="machine-learning.html#cb135-6"></a><span class="co"># Glimpse </span></span>
+<span id="cb135-7"><a href="machine-learning.html#cb135-7"></a>ames <span class="op">%&gt;%</span></span>
+<span id="cb135-8"><a href="machine-learning.html#cb135-8"></a><span class="st">  </span><span class="kw">glimpse</span>()</span></code></pre></div>
 <pre><code>## Rows: 2,930
 ## Columns: 74
 ## $ MS_SubClass        &lt;fct&gt; One_Story_1946_and_Newer_All_Styles, One_Story_194…
@@ -513,12 +521,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="random-sampling" class="section level4" number="7.3.2.1">
 <h4><span class="header-section-number">7.3.2.1</span> Random sampling</h4>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="machine-learning.html#cb106-1"></a><span class="co"># data split </span></span>
-<span id="cb106-2"><a href="machine-learning.html#cb106-2"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb106-3"><a href="machine-learning.html#cb106-3"></a></span>
-<span id="cb106-4"><a href="machine-learning.html#cb106-4"></a>df_split  &lt;-<span class="st"> </span>rsample<span class="op">::</span><span class="kw">initial_split</span>(df, <span class="dt">prop =</span> <span class="fl">0.7</span>)</span>
-<span id="cb106-5"><a href="machine-learning.html#cb106-5"></a>train &lt;-<span class="st"> </span>rsample<span class="op">::</span><span class="kw">training</span>(df_split)</span>
-<span id="cb106-6"><a href="machine-learning.html#cb106-6"></a>test &lt;-<span class="st"> </span>rsample<span class="op">::</span><span class="kw">testing</span>(df_split)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="machine-learning.html#cb137-1"></a><span class="co"># data split </span></span>
+<span id="cb137-2"><a href="machine-learning.html#cb137-2"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb137-3"><a href="machine-learning.html#cb137-3"></a></span>
+<span id="cb137-4"><a href="machine-learning.html#cb137-4"></a>df_split  &lt;-<span class="st"> </span>rsample<span class="op">::</span><span class="kw">initial_split</span>(df, <span class="dt">prop =</span> <span class="fl">0.7</span>)</span>
+<span id="cb137-5"><a href="machine-learning.html#cb137-5"></a>train &lt;-<span class="st"> </span>rsample<span class="op">::</span><span class="kw">training</span>(df_split)</span>
+<span id="cb137-6"><a href="machine-learning.html#cb137-6"></a>test &lt;-<span class="st"> </span>rsample<span class="op">::</span><span class="kw">testing</span>(df_split)</span></code></pre></div>
 </div>
 <div id="stratified-random-sampling" class="section level4" number="7.3.2.2">
 <h4><span class="header-section-number">7.3.2.2</span> Stratified random sampling</h4>
@@ -533,17 +541,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><a href="https://recipes.tidymodels.org/index.html"><code>recipes</code></a>: for pre-processing</p></li>
 <li><p><a href="https://github.com/tidymodels/textrecipes"><code>textrecipes</code></a> for text pre-processing</p></li>
 </ul>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="machine-learning.html#cb107-1"></a><span class="co"># preprocess </span></span>
-<span id="cb107-2"><a href="machine-learning.html#cb107-2"></a>df_recipe &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">recipe</span>(resonse <span class="op">~</span>.) <span class="op">%&gt;%</span></span>
-<span id="cb107-3"><a href="machine-learning.html#cb107-3"></a><span class="st">  </span><span class="co"># Centering: x - mean(x)</span></span>
-<span id="cb107-4"><a href="machine-learning.html#cb107-4"></a><span class="st">  </span><span class="kw">step_center</span>(<span class="kw">all_predictors</span>(), <span class="op">-</span><span class="kw">all_outcomes</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb107-5"><a href="machine-learning.html#cb107-5"></a><span class="st">  </span><span class="co"># Scaling: x * k </span></span>
-<span id="cb107-6"><a href="machine-learning.html#cb107-6"></a><span class="st">  </span><span class="kw">step_scale</span>(<span class="kw">all_predictors</span>(), <span class="op">-</span><span class="kw">all_outcomes</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb107-7"><a href="machine-learning.html#cb107-7"></a><span class="st">  </span><span class="kw">prep</span>()</span>
-<span id="cb107-8"><a href="machine-learning.html#cb107-8"></a></span>
-<span id="cb107-9"><a href="machine-learning.html#cb107-9"></a><span class="co"># preprocessed training and testsets </span></span>
-<span id="cb107-10"><a href="machine-learning.html#cb107-10"></a>processed_train &lt;-<span class="st"> </span>df_recipe <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bake</span>(train)</span>
-<span id="cb107-11"><a href="machine-learning.html#cb107-11"></a>processed_test &lt;-<span class="st"> </span>df_recipe <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bake</span>(test)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="machine-learning.html#cb138-1"></a><span class="co"># preprocess </span></span>
+<span id="cb138-2"><a href="machine-learning.html#cb138-2"></a>df_recipe &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">recipe</span>(resonse <span class="op">~</span>.) <span class="op">%&gt;%</span></span>
+<span id="cb138-3"><a href="machine-learning.html#cb138-3"></a><span class="st">  </span><span class="co"># Centering: x - mean(x)</span></span>
+<span id="cb138-4"><a href="machine-learning.html#cb138-4"></a><span class="st">  </span><span class="kw">step_center</span>(<span class="kw">all_predictors</span>(), <span class="op">-</span><span class="kw">all_outcomes</span>()) <span class="op">%&gt;%</span></span>
+<span id="cb138-5"><a href="machine-learning.html#cb138-5"></a><span class="st">  </span><span class="co"># Scaling: x * k </span></span>
+<span id="cb138-6"><a href="machine-learning.html#cb138-6"></a><span class="st">  </span><span class="kw">step_scale</span>(<span class="kw">all_predictors</span>(), <span class="op">-</span><span class="kw">all_outcomes</span>()) <span class="op">%&gt;%</span></span>
+<span id="cb138-7"><a href="machine-learning.html#cb138-7"></a><span class="st">  </span><span class="kw">prep</span>()</span>
+<span id="cb138-8"><a href="machine-learning.html#cb138-8"></a></span>
+<span id="cb138-9"><a href="machine-learning.html#cb138-9"></a><span class="co"># preprocessed training and testsets </span></span>
+<span id="cb138-10"><a href="machine-learning.html#cb138-10"></a>processed_train &lt;-<span class="st"> </span>df_recipe <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bake</span>(train)</span>
+<span id="cb138-11"><a href="machine-learning.html#cb138-11"></a>processed_test &lt;-<span class="st"> </span>df_recipe <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bake</span>(test)</span></code></pre></div>
 </div>
 <div id="model-building" class="section level3" number="7.3.4">
 <h3><span class="header-section-number">7.3.4</span> Model building</h3>
@@ -552,20 +560,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="choose-model" class="section level4" number="7.3.4.1">
 <h4><span class="header-section-number">7.3.4.1</span> Choose model</h4>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="machine-learning.html#cb108-1"></a><span class="co"># Fit model </span></span>
-<span id="cb108-2"><a href="machine-learning.html#cb108-2"></a></span>
-<span id="cb108-3"><a href="machine-learning.html#cb108-3"></a>  <span class="co">## Choose model </span></span>
-<span id="cb108-4"><a href="machine-learning.html#cb108-4"></a>df_ranger &lt;-<span class="st"> </span><span class="kw">rand_forest</span>(<span class="dt">trees =</span> <span class="dv">1000</span>, </span>
-<span id="cb108-5"><a href="machine-learning.html#cb108-5"></a>                         <span class="co">## Declare mode </span></span>
-<span id="cb108-6"><a href="machine-learning.html#cb108-6"></a>                         <span class="dt">mode =</span> <span class="st">&quot;classification&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb108-7"><a href="machine-learning.html#cb108-7"></a><span class="st">  </span><span class="co">## Choose engine </span></span>
-<span id="cb108-8"><a href="machine-learning.html#cb108-8"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb108-9"><a href="machine-learning.html#cb108-9"></a><span class="st">  </span><span class="co">## Fit </span></span>
-<span id="cb108-10"><a href="machine-learning.html#cb108-10"></a><span class="st">  </span><span class="kw">fit</span>(response <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> processed_train)</span>
-<span id="cb108-11"><a href="machine-learning.html#cb108-11"></a></span>
-<span id="cb108-12"><a href="machine-learning.html#cb108-12"></a><span class="co"># Make predictions </span></span>
-<span id="cb108-13"><a href="machine-learning.html#cb108-13"></a></span>
-<span id="cb108-14"><a href="machine-learning.html#cb108-14"></a>df_pred &lt;-<span class="st"> </span><span class="kw">predict</span>(df_ranger, processed_test)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="machine-learning.html#cb139-1"></a><span class="co"># Fit model </span></span>
+<span id="cb139-2"><a href="machine-learning.html#cb139-2"></a></span>
+<span id="cb139-3"><a href="machine-learning.html#cb139-3"></a>  <span class="co">## Choose model </span></span>
+<span id="cb139-4"><a href="machine-learning.html#cb139-4"></a>df_ranger &lt;-<span class="st"> </span><span class="kw">rand_forest</span>(<span class="dt">trees =</span> <span class="dv">1000</span>, </span>
+<span id="cb139-5"><a href="machine-learning.html#cb139-5"></a>                         <span class="co">## Declare mode </span></span>
+<span id="cb139-6"><a href="machine-learning.html#cb139-6"></a>                         <span class="dt">mode =</span> <span class="st">&quot;classification&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb139-7"><a href="machine-learning.html#cb139-7"></a><span class="st">  </span><span class="co">## Choose engine </span></span>
+<span id="cb139-8"><a href="machine-learning.html#cb139-8"></a><span class="st">  </span><span class="kw">set_engine</span>(<span class="st">&quot;ranger&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb139-9"><a href="machine-learning.html#cb139-9"></a><span class="st">  </span><span class="co">## Fit </span></span>
+<span id="cb139-10"><a href="machine-learning.html#cb139-10"></a><span class="st">  </span><span class="kw">fit</span>(response <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> processed_train)</span>
+<span id="cb139-11"><a href="machine-learning.html#cb139-11"></a></span>
+<span id="cb139-12"><a href="machine-learning.html#cb139-12"></a><span class="co"># Make predictions </span></span>
+<span id="cb139-13"><a href="machine-learning.html#cb139-13"></a></span>
+<span id="cb139-14"><a href="machine-learning.html#cb139-14"></a>df_pred &lt;-<span class="st"> </span><span class="kw">predict</span>(df_ranger, processed_test)</span></code></pre></div>
 </div>
 <div id="choose-engine" class="section level4" number="7.3.4.2">
 <h4><span class="header-section-number">7.3.4.2</span> Choose engine</h4>
@@ -579,18 +587,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="https://github.com/tidymodels/yardstick"><code>yardstick</code></a>: for model evaluations</li>
 </ul>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="machine-learning.html#cb109-1"></a><span class="co"># validate </span></span>
-<span id="cb109-2"><a href="machine-learning.html#cb109-2"></a></span>
-<span id="cb109-3"><a href="machine-learning.html#cb109-3"></a>df_pred <span class="op">%&gt;%</span></span>
-<span id="cb109-4"><a href="machine-learning.html#cb109-4"></a><span class="st">  </span><span class="kw">bind_cols</span>(processed_test) <span class="op">%&gt;%</span></span>
-<span id="cb109-5"><a href="machine-learning.html#cb109-5"></a><span class="st">  </span><span class="co"># You can also easily change metrics you want to use </span></span>
-<span id="cb109-6"><a href="machine-learning.html#cb109-6"></a><span class="st">  </span><span class="kw">metrics</span>(<span class="dt">truth =</span> response, <span class="dt">estimate =</span> .pred_class)</span>
-<span id="cb109-7"><a href="machine-learning.html#cb109-7"></a></span>
-<span id="cb109-8"><a href="machine-learning.html#cb109-8"></a><span class="co">## # A tibble: 2 x 3</span></span>
-<span id="cb109-9"><a href="machine-learning.html#cb109-9"></a><span class="co">##   .metric  .estimator .estimate</span></span>
-<span id="cb109-10"><a href="machine-learning.html#cb109-10"></a><span class="co">##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;</span></span>
-<span id="cb109-11"><a href="machine-learning.html#cb109-11"></a><span class="co">## 1 accuracy multiclass     0.9</span></span>
-<span id="cb109-12"><a href="machine-learning.html#cb109-12"></a><span class="co">## 2 kap      multiclass     0.8</span></span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="machine-learning.html#cb140-1"></a><span class="co"># validate </span></span>
+<span id="cb140-2"><a href="machine-learning.html#cb140-2"></a></span>
+<span id="cb140-3"><a href="machine-learning.html#cb140-3"></a>df_pred <span class="op">%&gt;%</span></span>
+<span id="cb140-4"><a href="machine-learning.html#cb140-4"></a><span class="st">  </span><span class="kw">bind_cols</span>(processed_test) <span class="op">%&gt;%</span></span>
+<span id="cb140-5"><a href="machine-learning.html#cb140-5"></a><span class="st">  </span><span class="co"># You can also easily change metrics you want to use </span></span>
+<span id="cb140-6"><a href="machine-learning.html#cb140-6"></a><span class="st">  </span><span class="kw">metrics</span>(<span class="dt">truth =</span> response, <span class="dt">estimate =</span> .pred_class)</span>
+<span id="cb140-7"><a href="machine-learning.html#cb140-7"></a></span>
+<span id="cb140-8"><a href="machine-learning.html#cb140-8"></a><span class="co">## # A tibble: 2 x 3</span></span>
+<span id="cb140-9"><a href="machine-learning.html#cb140-9"></a><span class="co">##   .metric  .estimator .estimate</span></span>
+<span id="cb140-10"><a href="machine-learning.html#cb140-10"></a><span class="co">##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;</span></span>
+<span id="cb140-11"><a href="machine-learning.html#cb140-11"></a><span class="co">## 1 accuracy multiclass     0.9</span></span>
+<span id="cb140-12"><a href="machine-learning.html#cb140-12"></a><span class="co">## 2 kap      multiclass     0.8</span></span></code></pre></div>
 </div>
 <div id="tuning" class="section level3" number="7.3.6">
 <h3><span class="header-section-number">7.3.6</span> Tuning</h3>
@@ -612,11 +620,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.4.1</span> Regularization</h3>
 <div id="regression-ols" class="section level4" number="7.4.1.1">
 <h4><span class="header-section-number">7.4.1.1</span> Regression (OLS)</h4>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="machine-learning.html#cb110-1"></a><span class="co"># Build a linear regression model </span></span>
-<span id="cb110-2"><a href="machine-learning.html#cb110-2"></a>out &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars)</span>
-<span id="cb110-3"><a href="machine-learning.html#cb110-3"></a></span>
-<span id="cb110-4"><a href="machine-learning.html#cb110-4"></a><span class="co"># Predict the first five rows </span></span>
-<span id="cb110-5"><a href="machine-learning.html#cb110-5"></a><span class="kw">predict</span>(out)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="machine-learning.html#cb141-1"></a><span class="co"># Build a linear regression model </span></span>
+<span id="cb141-2"><a href="machine-learning.html#cb141-2"></a>out &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars)</span>
+<span id="cb141-3"><a href="machine-learning.html#cb141-3"></a></span>
+<span id="cb141-4"><a href="machine-learning.html#cb141-4"></a><span class="co"># Predict the first five rows </span></span>
+<span id="cb141-5"><a href="machine-learning.html#cb141-5"></a><span class="kw">predict</span>(out)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##         Mazda RX4     Mazda RX4 Wag        Datsun 710    Hornet 4 Drive 
 ##          20.62984          20.62984          26.38142          20.62984 
 ## Hornet Sportabout 
