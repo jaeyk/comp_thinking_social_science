@@ -1,6 +1,6 @@
 # Automating repeated things {#functional_programming}
 
-## Why Functional Programming
+## Why functional programming
 
 - Setup 
 
@@ -815,7 +815,7 @@ toc()
 ```
 
 ```
-## 4.4 sec elapsed
+## 3.239 sec elapsed
 ```
 
 ```r
@@ -825,7 +825,7 @@ toc()
 ```
 
 ```
-## 3.01 sec elapsed
+## 2.405 sec elapsed
 ```
 
 ## Make error handling easier

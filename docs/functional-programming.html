@@ -201,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>5</b> Automating repeated things</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="functional-programming.html"><a href="functional-programming.html#why-functional-programming"><i class="fa fa-check"></i><b>5.1</b> Why Functional Programming</a>
+<li class="chapter" data-level="5.1" data-path="functional-programming.html"><a href="functional-programming.html#why-functional-programming"><i class="fa fa-check"></i><b>5.1</b> Why functional programming</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="functional-programming.html"><a href="functional-programming.html#why-map"><i class="fa fa-check"></i><b>5.1.1</b> Why <code>map()</code></a></li>
 </ul></li>
@@ -302,7 +302,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="functional_programming" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Automating repeated things</h1>
 <div id="why-functional-programming" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Why Functional Programming</h2>
+<h2><span class="header-section-number">5.1</span> Why functional programming</h2>
 <ul>
 <li>Setup</li>
 </ul>
@@ -893,11 +893,11 @@ Why the above solution is not efficient?</li>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="functional-programming.html#cb98-1"></a><span class="kw">tic</span>()</span>
 <span id="cb98-2"><a href="functional-programming.html#cb98-2"></a>mean100 &lt;-<span class="st"> </span><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000000</span>, mean)</span>
 <span id="cb98-3"><a href="functional-programming.html#cb98-3"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 4.4 sec elapsed</code></pre>
+<pre><code>## 3.239 sec elapsed</code></pre>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="functional-programming.html#cb100-1"></a><span class="kw">tic</span>()</span>
 <span id="cb100-2"><a href="functional-programming.html#cb100-2"></a>mean100 &lt;-<span class="st"> </span><span class="kw">future_map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000000</span>, mean)</span>
 <span id="cb100-3"><a href="functional-programming.html#cb100-3"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 3.01 sec elapsed</code></pre>
+<pre><code>## 2.405 sec elapsed</code></pre>
 </div>
 </div>
 <div id="make-error-handling-easier" class="section level2" number="5.6">
