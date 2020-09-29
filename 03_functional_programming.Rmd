@@ -1,5 +1,672 @@
 # Automating repeated things {#functional_programming}
 
-## From for loop to functional programing
+## Why functional programming
+
+- Setup 
+
+```{r}
+# Install packages￣
+if (!require("pacman")) {
+  install.packages("pacman")
+}
+
+pacman::p_load(
+  tidyverse, # tidyverse pkgs including purrr
+  tictoc, # performance test
+  broom, # tidy modeling
+  glue, # paste string and objects
+  furrr, # parallel processing
+  rvest
+) # web scraping
+```
+
+### Why `map()` 
+
+#### Objectives 
+
+- How to use `purrr` to automate workflow in a cleaner, faster, and more extendable way
+
+#### Copy-and-paste programming 
+
+> Copy-and-paste programming, sometimes referred to as just pasting, is the production of highly repetitive computer programming code, as produced by copy and paste operations. It is primarily a pejorative term; those who use the term are often implying a lack of programming competence. It may also be the result of technology limitations (e.g., an insufficiently expressive development environment) as subroutines or libraries would normally be used instead. However, there are occasions when copy-and-paste programming is considered acceptable or necessary, such as for boilerplate, loop unrolling (when not supported automatically by the compiler), or certain programming idioms, and it is supported by some source code editors in the form of snippets. - Wikipedia 
+
+- Example 
+
+
+- Let's imagine `df` is a survey dataset. 
+
+    - `a, b, c, d` = Survey questions 
+
+    - `-99`: non-responses 
+    
+    - Your goal: replace `-99` with `NA` 
+    
+```{r}
+
+# Data
+
+set.seed(1234) # for reproducibility
+
+df <- tibble(
+  "a" = sample(c(-99, 1:3), size = 5, replace = TRUE),
+  "b" = sample(c(-99, 1:3), size = 5, replace = TRUE),
+  "c" = sample(c(-99, 1:3), size = 5, replace = TRUE),
+  "d" = sample(c(-99, 1:3), size = 5, replace = TRUE)
+)
+```
+
+```{r}
+
+# Copy and paste
+df$a[df$a == -99] <- NA
+df$b[df$b == -99] <- NA
+df$c[df$c == -99] <- NA
+df$d[df$d == -99] <- NA
+
+df
+```
+
+- **Challenge**. Explain why this solution is not very efficient (Hint: If `df$a[df$a == -99] <- NA` has an error, how are you going to fix it? A solution is not scalable if it's not automatable.
+
+#### Using a function 
+
+- Let's recall what's function in R: `input + computation + output` 
+
+- If you write a function, you gain efficiency because you don't need to copy and paste the computation part. 
+
+`
+function(input){
+  
+  computation 
+  
+  return(output)
+}
+`
+
+```{r}
+
+# Function
+
+fix_missing <- function(x) {
+  x[x == -99] <- NA
+  x
+}
+
+# Apply function to each column (vector)
+
+df$a <- fix_missing(df$a)
+df$b <- fix_missing(df$b)
+df$c <- fix_missing(df$c)
+df$d <- fix_missing(df$d)
+
+df
+```
+
+- **Challenge** Why using function is more efficient than 100% copying and pasting? Can you think about a way we can automate the process?
+
+- Many options for automation in R: `for loop`, `apply` family, etc. 
+
+- Here's a tidy solution comes from `purrr` package.
+
+- The power and joy of one-liner. 
+
+```{r}
+
+df <- purrr::map_df(df, fix_missing)
+
+df
+```
+
+`map()` is a [higher-order function](https://en.wikipedia.org/wiki/Map_(higher-order_function)) that applies a given function to each element of a list/vector. 
+
+![This is how map() works. It's easier to understand with a picture.](https://d33wubrfki0l68.cloudfront.net/f0494d020aa517ae7b1011cea4c4a9f21702df8b/2577b/diagrams/functionals/map.png)
+
+    - Input: Takes a vector/list. 
+    
+    - Computation: Calls the function once for each element of the vector 
+  
+    - Output: Returns in a list or whatever data format you prefer (e.g., `_df helper: dataframe`)
+
+- **Challenge** If you run the code below, what's going to be the data type of the output?
+
+```{r}
+
+map(df, fix_missing)
+```
+
+- Why `map()` is a good alternative to `for loop`. 
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bzUmK0Y07ck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>The Joy of Functional Programming (for Data Science) - Hadley Wickham</p>
+```
+
+```{r}
+
+# Built-in data
+data("airquality")
+
+tic()
+
+# Placeholder
+out1 <- vector("double", ncol(airquality))
+# Sequence variable
+for (i in seq_along(airquality)) { #
+
+  # Assign a computation result to each element
+  out1[[i]] <- mean(airquality[[i]], na.rm = TRUE)
+}
+toc()
+```
+
+```{r}
+
+tic()
+out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)
+toc()
+```
+- In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
+
+- Final point: Why not base R `apply` family? 
+
+Short answer: `purrr::map()` is simpler to write. For instance, 
+
+`map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
+
+#### Application (many models)
+
+- One popular application of `map()` is to run regression models (or whatever model you want to run) on list-columns. No more copying and pasting for running many regression models on subgroups!
+
+```{r eval = FALSE}
+# Have you ever tried this?
+lm_A <- lm(y ~ x, subset(data, subgroup == "group_A"))
+lm_B <- lm(y ~ x, subset(data, subgroup == "group_B"))
+lm_C <- lm(y ~ x, subset(data, subgroup == "group_C"))
+lm_D <- lm(y ~ x, subset(data, subgroup == "group_D"))
+lm_E <- lm(y ~ x, subset(data, subgroup == "group_E"))
+```
+
+- For more information on this technique, read the Many Models subchapter of the [R for Data Science](https://r4ds.had.co.nz/many-models.html#creating-list-columns).
+
+```{r}
+# Function
+lm_model <- function(df) {
+  lm(Temp ~ Ozone, data = df)
+}
+
+# Map
+models <- airquality %>%
+  group_by(Month) %>%
+  nest() %>% # Create list-columns
+  mutate(ols = map(data, lm_model)) # Map
+models$ols[1]
+
+# Add tidying
+tidy_lm_model <- purrr::compose( # compose multiple functions
+  broom::tidy, # convert lm objects into tidy tibbles
+  lm_model
+)
+
+tidied_models <- airquality %>%
+  group_by(Month) %>%
+  nest() %>% # Create list-columns
+  mutate(ols = map(data, tidy_lm_model))
+
+tidied_models$ols[1]
+```
+
+## Automote 2 or 2+ Tasks
+
+### Objectives 
+
+- Learning how to use `map2()` and `pmap()` to avoid writing nested loops.
+
+### Problem 
+
+- Problem: How can you create something like below?
+
+[1] "University =  Berkeley | Department =  waterbenders"
+
+[1] "University =  Berkeley | Department =  earthbenders"
+
+[1] "University =  Berkeley | Department =  firebenders"
+
+[1] "University =  Berkeley | Department =  airbenders"
+
+[1] "University =  Stanford | Department =  waterbenders"
+
+[1] "University =  Stanford | Department =  earthbenders"
+
+[1] "University =  Stanford | Department =  firebenders"
+
+[1] "University =  Stanford | Department =  airbenders"
+
+- The most manual way: You can copy and paste eight times.
+
+```{r}
+paste("University = Berkeley | Department = CS")
+```
+
+### For loop 
+
+- A slightly more efficient way: using a for loop. 
+
+- Think about which part of the statement is constant and which part varies ( = parameters).  
+    
+- Do we need a placeholder? No. We don't need a placeholder because we don't store the result of iterations.
+    
+- **Challenge**: How many parameters do you need to solve the problem below?
+
+  
+```{r}
+
+# Outer loop
+
+for (univ in c("Berkeley", "Stanford")) {
+
+  # Inner loop
+
+  for (dept in c("waterbenders", "earthbenders", "firebenders", "airbenders")) {
+    print(paste("University = ", univ, "|", "Department = ", dept))
+  }
+}
+```
+
+- This is not bad, but ... n arguments -> n nested for loops. As a scale of your problem grows, your code gets really complicated.
+
+> To become significantly more reliable, code must become more transparent. In particular, nested conditions and loops must be viewed with great suspicion. Complicated control flows confuse programmers. Messy code often hides bugs. — [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup)
+
+### map2 & pmap
+
+- Step 1: Define inputs and a function.
+
+- **Challenge** Why are we using `rep()` to create input vectors? For instance, for `univ_list` why not just use `c("Berkeley", "Stanford")`?
+
+```{r}
+
+# Inputs (remember the length of these inputs should be identical)
+
+univ_list <- rep(c("Berkeley", "Stanford"), 4)
+dept_list <- rep(c("waterbenders", "earthbenders", "firebenders", "airbenders"), 2)
+
+# Function
+
+print_lists <- function(univ, dept) {
+  print(paste(
+    "University = ", univ, "|",
+    "Department = ", dept
+  ))
+}
+
+# Test
+
+print_lists(univ_list[1], dept_list[1])
+```
+
+- Step2: Using `map2()` or `pmap()`
+
+![](https://dcl-prog.stanford.edu/images/map2.png)
+
+```{r}
+# 2 arguments
+map2_output <- map2(univ_list, dept_list, print_lists)
+```
+
+![](https://d33wubrfki0l68.cloudfront.net/e426c5755e2e65bdcc073d387775db79791f32fd/92902/diagrams/functionals/pmap.png)
+
+```{r}
+# 3+ arguments
+pmap_output <- pmap(list(univ_list, dept_list), print_lists)
+```
+
+- **Challenge** Have you noticed that we used a slightly different input for `pmap()` compared to `map()` or `map2()`? What is the difference?
+
+## Automate plotting
+
+### Objective 
+
+- Learning how to use `map()` and `glue()` to automate creating multiple plots
+
+### Problem 
+
+- Making the following data visualization process more efficient. 
+
+```{r}
+
+data("airquality")
+
+airquality %>%
+  ggplot(aes(x = Ozone, y = Solar.R)) +
+  geom_point() +
+  labs(
+    title = "Relationship between Ozone and Solar.R",
+    y = "Solar.R"
+  )
+
+airquality %>%
+  ggplot(aes(x = Ozone, y = Wind)) +
+  geom_point() +
+  labs(
+    title = "Relationship between Ozone and Wind",
+    y = "Wind"
+  )
+airquality %>%
+  ggplot(aes(x = Ozone, y = Temp)) +
+  geom_point() +
+  labs(
+    title = "Relationship between Ozone and Temp",
+    y = "Temp"
+  )
+```
+
+### Solution 
+
+- Learn how `glue()` works. 
+- `glue()` combines strings and objects and it works simpler and faster than `paste()` or `sprintif()`. 
+
+```{r}
+names <- c("Jae", "Aniket", "Avery")
+
+fields <- c("Political Science", "Law", "Public Health")
+
+glue("{names} studies {fields}.")
+```
+- So, our next step is to combine `glue()` and `map()`. 
+
+- Let's first think about writing a function that includes `glue()`.
+
+- **Challenge**
+How can you create the character vector of column names? 
+
+- **Challenge**
+How can make `ggplot2()` take strings as x and y variable names? (Hint: Type `?aes_string()`) 
+
+```{r}
+airquality %>%
+  ggplot(aes_string(x = names(airquality)[1], y = names(airquality)[2])) +
+  geom_point() +
+  labs(
+    title = glue("Relationship between Ozone and {names(airquality)[2]}"),
+    y = glue("{names(airquality)[2]}")
+  )
+```
+
+- The next step is to write an automatic plotting function. 
+
+    - Note that in the function i (abstract argument) replaced 2 (specific number). 
+
+```{r}
+create_point_plot <- function(i) {
+  airquality %>%
+    ggplot(aes_string(x = names(airquality)[1], y = names(airquality)[i])) +
+    geom_point() +
+    labs(
+      title = glue("Relationship between Ozone and {names(airquality)[i]}"),
+      y = glue("{names(airquality)[i]}")
+    )
+}
+```
+
+- The final step is to put the function in `map()`.
+
+```{r}
+map(2:ncol(airquality), create_point_plot)
+```
+
+## Automate joining
+
+### Objective 
+
+- Learning how to use `reduce()` to automate joining multiple dataframes
+
+### Problem 
+
+- How can you make joining multiple dataframes more efficient?
+- Note that we will use `dplyr::left_join() = merge(x, y, all.x = TRUE)`.
+
+```{r}
+df1 <- tibble(
+  x = sample(1:10, size = 3, replace = TRUE),
+  y = sample(1:10, size = 3, replace = TRUE),
+  z = sample(1:10, size = 3, replace = TRUE)
+)
+
+df2 <- tibble(
+  x = sample(1:10, size = 3, replace = TRUE),
+  y = sample(1:10, size = 3, replace = TRUE),
+  z = sample(1:10, size = 3, replace = TRUE)
+)
+
+df3 <- tibble(
+  x = sample(1:10, size = 3, replace = TRUE),
+  y = sample(1:10, size = 3, replace = TRUE),
+  z = sample(1:10, size = 3, replace = TRUE)
+)
+```
+
+### Copy and paste
+
+```{r}
+first_join <- left_join(df1, df2)
+
+second_join <- left_join(first_join, df3)
+
+second_join
+```
+
+- **Challenge**
+Why the above solution is not efficient?
+
+### reduce 
+
+![How reduce() works.](https://d33wubrfki0l68.cloudfront.net/9c239e1227c69b7a2c9c2df234c21f3e1c74dd57/eec0e/diagrams/functionals/reduce.png)
+
+    - Input: Takes a vector of length n
+  
+    - Computation: Calls a function with a pair of values at a time
+  
+    - Output: Returns a vector of length 1
+    
+```{r}
+reduced <- reduce(list(df1, df2, df3), left_join)
+
+reduced
+```
+
+## Make automation slower or faster 
+
+### Objectives 
+
+- Learning how to use `slowly()` and `future_` to make automation process either slower or faster
+
+### How to make automation Slower
+
+- Scraping 50 pages from a website and you don't want to overload the server. How can you do that?
+
+### For loop 
+
+```{r, include=FALSE}
+
+for (i in 1:50) {
+  message("Scraping page ", i)
+
+  if ((i %% 10) == 0) {
+    message("Break time")
+
+    Sys.sleep(1) # 1 second
+  }
+}
+```
+
+### Map 
+
+- `walk()` works same as `map()` but doesn't store its output. 
+
+```{r,include=FALSE}
+walk(1:50, function(x) {
+  message("Scraping page", x)
+})
+```
+
+- If you're web scraping, one problem with this approach is it's too fast by human standards.
+
+```{r,include=FALSE}
+
+tic()
+
+# Anonymous function; I don't name the function
+walk(1:50, function(x) {
+  message("Scraping 
+                               page", x)
+})
+toc()
+```
+
+- If you want to make the function run slowly ... 
+
+> slowly() takes a function and modifies it to wait a given amount of time between each call. - `purrr` package vignette 
+- If a function is a verb, then a helper function is an adverb (modifying the behavior of the verb). 
+
+```{r,include=FALSE}
+
+tic()
+
+walk(
+  1:50,
+  slowly(function(x) {
+    message("Scraping page", x)
+  },
+  rate = rate_delay(pause = 1)
+  )
+) # pause = Delay between attempts in seconds
+
+toc()
+```
+
+### How to make automation Faster 
+
+In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data at large-scale. You can solve this problem using parallel processing. For more on the parallel processing in R, read [this review](https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/).
+
+- Parallel processing setup 
+
+    - Step1: Determine the number of max workers (`availableCores()`)
+    
+    - Step2: Determine the parallel processing mode (`plan()`) 
+
+```{r include = FALSE}
+# Setup
+n_cores <- availableCores() - 1
+
+n_cores # This number depends on your computer spec.
+
+plan(multiprocess, # multicore, if supported, otherwise multisession
+  workers = n_cores
+) # the maximum number of workers
+
+tic()
+mean100 <- map(1:1000000, mean)
+toc()
+
+tic()
+mean100 <- future_map(1:1000000, mean)
+toc()
+```
+
+## Make error handling easier
+
+### Learning objective 
+
+- Learning how to use `safely()` and `possibly()` to make error handling easier 
+### Problem 
+
+- **Challenge**
+
+- Explain why we can't run `map(url_lists, read_html)`
+
+```{r}
+
+url_lists <- c(
+  "https://en.wikipedia.org/wiki/University_of_California,_Berkeley",
+  "https://en.wikipedia.org/wiki/Stanford_University",
+  "https://en.wikipedia.org/wiki/Carnegie_Mellon_University",
+  "https://DLAB"
+)
+```
+
+```{r, eval=FALSE}
+map(url_lists, read_html)
+```
+
+- This is a very simple problem so it's easy to tell where the problem is. How can you make your error more informative? 
+
+### Solution 
+
+#### Try-catch 
+
+- There are three kinds of messages you will run into, if your code has an error based on the following functions.  
+
+    - stop(): errors; Functions must stop. 
+    - warning(): warnings; Functions may still work. Nonetheless, something is possibly messed up. 
+    - message(): messages; Some actions happened. 
+    
+- The basic logic of `try-catch`, R's basic error handling function, works like the following. 
+
+```{r}
+tryCatch(
+  {
+    map(url_lists, read_html)
+  },
+  warning = function(w) {
+    "Warning"
+  },
+  error = function(e) {
+    "Error"
+  },
+  finally = {
+    "Message"
+  }
+)
+```
+
+- Here's `purrr` version of the `try-catch` mechanism (evaluates code and assigns exception handlers). 
+
+#### safely and possibly 
+
+**Outputs** 
+
+- result: result or `NULL`
+- error: `NULL` or `error` 
+
+```{r}
+map(url_lists, safely(read_html))
+```
+
+- The easier way to solve this problem is just avoiding the error.
+
+```{r}
+map(url_lists, safely(read_html)) %>%
+  map("result") %>% 
+  # = map(function(x) x[["result"]]) = map(~.x[["name"]])
+  purrr::compact() # Remove empty elements
+```
+
+#### possibly 
+
+What if the best way to solve the problem is not ignoring the error ... 
+
+```{r}
+# If error occurred, "The URL is broken." will be stored in that element(s).
+out <- map(
+  url_lists,
+  possibly(read_html,
+    otherwise = "The URL is broken."
+  )
+)
+
+# Let's find the broken URL.
+url_lists[out[seq(out)] == "The URL is broken."]
+```
 
 ## Developing your own data tools
