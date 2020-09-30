@@ -129,6 +129,8 @@ workflow_list <- c("Preprocessing",
 
 glue("- {seq(workflow_list)}. {workflow_list}")
 ```
+
+
 ## Tidymodels 
 
 - Like `tidyverse`, `tidymodels` is a collection of packages.
@@ -1399,7 +1401,7 @@ sherlock_words %>%
 dtm <- textProcessor(documents = sherlock$text,
                      metadata = sherlock, 
                      removestopwords = TRUE,
-                     verbose = TRUE)
+                     verbose = FALSE)
 
 ```
 
@@ -1444,7 +1446,7 @@ final_stm <- stm(dtm$documents,
                  data = dtm$meta, 
                  init.type="Spectral",
                  seed = 1234567,
-                 verbose  =TRUE)
+                 verbose = FALSE)
 ```
 
 ##### Explore the results 

@@ -129,7 +129,7 @@ pacman::p_load(
 )
 ```
 
-## Data sets 
+## Datasets 
 
 - [The flight on-time performance data](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236) from the Bureau of Transpiration Statistics of the U.S. government. The data goes back to 1987 and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.
 

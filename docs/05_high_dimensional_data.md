@@ -164,6 +164,8 @@ theme_set(theme_minimal())
 - 4. Model evaluation
 - 5. Model tuning
 - 6. Prediction
+
+
 ## Tidymodels 
 
 - Like `tidyverse`, `tidymodels` is a collection of packages.
@@ -703,7 +705,7 @@ glue('The RMSE of the intiail model is
 
 ```
 ## The RMSE of the intiail model is 
-##    7.88
+##    7.87
 ```
 
 ```r
@@ -717,7 +719,7 @@ glue('The RMSE of the tuned model is {rec_res %>%
 ```
 
 ```
-## The RMSE of the tuned model is 7.7
+## The RMSE of the tuned model is 7.71
 ```
 
 - Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
@@ -983,8 +985,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.756
-## 2 precision binary         0.721
+## 1 accuracy  binary         0.744
+## 2 precision binary         0.705
 ## 3 recall    binary         0.756
 ```
 
@@ -1768,17 +1770,7 @@ sherlock_words %>%
 dtm <- textProcessor(documents = sherlock$text,
                      metadata = sherlock, 
                      removestopwords = TRUE,
-                     verbose = TRUE)
-```
-
-```
-## Building corpus... 
-## Converting to Lower Case... 
-## Removing punctuation... 
-## Removing stopwords... 
-## Removing numbers... 
-## Stemming... 
-## Creating Output...
+                     verbose = FALSE)
 ```
 
 ##### Tuning K
@@ -1803,11 +1795,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.570) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.481, relative change = 1.176e-02) 
 ## ....................................................................................................
@@ -1832,7 +1824,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.371, relative change = 4.271e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.370, relative change = 2.175e-04) 
 ## ....................................................................................................
@@ -1859,7 +1851,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.480, relative change = 2.234e-02) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.378, relative change = 1.356e-02) 
 ## ....................................................................................................
@@ -1867,7 +1859,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.354, relative change = 3.251e-03) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 5 (approx. per word bound = -7.347, relative change = 1.040e-03) 
 ## Topic 1: holm, one, will, eye, across 
@@ -1881,11 +1873,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 9: said, ask, matter, noth, answer 
 ##  Topic 10: sherlock, hand, glanc, howev, anoth 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.344, relative change = 3.512e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.342, relative change = 2.888e-04) 
 ## ....................................................................................................
@@ -1977,7 +1969,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.335, relative change = 1.952e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 10 (approx. per word bound = -7.333, relative change = 2.106e-04) 
 ## Topic 1: holm, know, well, can, might 
@@ -2000,7 +1992,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 11 (approx. per word bound = -7.332, relative change = 2.243e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 12 (approx. per word bound = -7.331, relative change = 1.713e-04) 
 ## ....................................................................................................
@@ -2008,11 +2000,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 13 (approx. per word bound = -7.330, relative change = 1.282e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 14 (approx. per word bound = -7.329, relative change = 1.167e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 15 (approx. per word bound = -7.328, relative change = 6.326e-05) 
 ## Topic 1: holm, know, well, can, might 
@@ -2031,11 +2023,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 14: one, side, year, thing, two 
 ##  Topic 15: upon, tabl, besid, sever, finger 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 16 (approx. per word bound = -7.328, relative change = 5.296e-05) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 17 (approx. per word bound = -7.328, relative change = 3.663e-05) 
 ## ....................................................................................................
@@ -2078,59 +2070,7 @@ final_stm <- stm(dtm$documents,
                  data = dtm$meta, 
                  init.type="Spectral",
                  seed = 1234567,
-                 verbose  =TRUE)
-```
-
-```
-## Beginning Spectral Initialization 
-## 	 Calculating the gram matrix...
-## 	 Finding anchor words...
-##  	..........
-## 	 Recovering initialization...
-##  	.........................................................
-## Initialization complete.
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 1 (approx. per word bound = -7.692) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 2 (approx. per word bound = -7.478, relative change = 2.789e-02) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 3 (approx. per word bound = -7.367, relative change = 1.472e-02) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 4 (approx. per word bound = -7.334, relative change = 4.562e-03) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 5 (approx. per word bound = -7.322, relative change = 1.582e-03) 
-## Topic 1: man, case, came, way, room 
-##  Topic 2: said, holm, laugh, pray, watson 
-##  Topic 3: upon, see, noth, paper, man 
-##  Topic 4: said, can, matter, yes, see 
-##  Topic 5: littl, door, look, like, window 
-##  Topic 6: will, back, face, hous, get 
-##  Topic 7: one, must, ask, first, sherlock 
-##  Topic 8: holm, two, day, time, just 
-##  Topic 9: come, eye, small, letter, gentleman 
-##  Topic 10: now, may, hand, singular, wonder 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 6 (approx. per word bound = -7.317, relative change = 6.585e-04) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 7 (approx. per word bound = -7.315, relative change = 2.677e-04) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Model Converged
+                 verbose = FALSE)
 ```
 
 ##### Explore the results 
