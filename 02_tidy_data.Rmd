@@ -267,7 +267,7 @@ stocks %>%
 - Could you make `station` a series of dummy variables using `pivot_wider()`?
 
 ```{r}
-fish_encounters
+fish_encounters 
 ```
 
 1. Which pivot you should use?

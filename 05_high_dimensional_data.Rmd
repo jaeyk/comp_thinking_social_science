@@ -4,6 +4,8 @@
 
 - The rise of high-dimensional data. The new data frontiers in social sciences---text ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf); [Grimmer and Stewart 2013](https://www.jstor.org/stable/pdf/24572662.pdf?casa_token=SQdSI4R_VdwAAAAA:4QiVLhCXqr9f0qNMM9U75EL5JbDxxnXxUxyIfDf0U8ZzQx9szc0xVqaU6DXG4nHyZiNkvcwGlgD6H0Lxj3y0ULHwgkf1MZt8-9TPVtkEH9I4AHgbTg)) and and image ([Joo and Steinert-Threlkeld 2018](https://arxiv.org/pdf/1810.01544))---are all high-dimensional data. 
 
+    - 1000 common English words for 30-word tweets: $1000^{30}$ similar to N of atoms in the universe ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf))
+
     - Belloni, Alexandre, Victor Chernozhukov, and Christian Hansen. ["High-dimensional methods and inference on structural and treatment effects."](https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.29) *Journal of Economic Perspectives 28*, no. 2 (2014): 29-50.
 
 - The rise of new approach: statistics + computer science = machine learning 
@@ -83,7 +85,7 @@
 
 - One of the popular datasets used in machine learning competitions 
 
-```{r}
+```{r, cache = TRUE}
 
 # Load packages 
 
@@ -193,7 +195,7 @@ In this course, we focus on two preprocessing tasks.
 
 - One-hot encoding (creating dummy/indicator variables)
 
-```{r}
+```{r, cache = TRUE}
 
 # Turn selected numeric variables into factor variables 
 data <- data %>%
@@ -204,7 +206,7 @@ glimpse(data)
 ```
 - Imputation 
 
-```{r}
+```{r, cache = TRUE}
 
 # Check missing values 
 
@@ -230,7 +232,7 @@ data %>%
 
 #### Outcome variable 
 
-```{r}
+```{r, cache = TRUE}
 
 # Continuous variable 
 data$age %>% class()
@@ -238,7 +240,7 @@ data$age %>% class()
 ```
 #### Data splitting using random sampling 
 
-```{r}
+```{r, cache = TRUE}
 
 # for reproducibility 
 set.seed(1234) 
@@ -256,7 +258,7 @@ raw_test_x_reg <- testing(split_reg)
 
 #### recipe 
 
-```{r}
+```{r, cache = TRUE}
 
 # Regression recipe 
 rec_reg <- raw_train_x_reg %>%
@@ -272,7 +274,7 @@ prep_reg <- rec_reg %>% prep(retain = TRUE)
 
 ```
 
-```{r}
+```{r, cache = TRUE}
 
 # x features 
 train_x_reg <- juice(prep_reg, all_predictors())
@@ -292,7 +294,7 @@ class(train_y_reg) # Make sure this is a continuous variable!
 ```
 - Note that other imputation methods are also available. 
 
-```{r}
+```{r, cache = TRUE}
 grep("impute", ls("package:recipes"), value = TRUE)
 ```
 
@@ -302,7 +304,7 @@ grep("impute", ls("package:recipes"), value = TRUE)
 
 #### Outcome variable 
 
-```{r}
+```{r, cache = TRUE}
 
 data$target %>% class() 
 
@@ -314,7 +316,7 @@ data$target %>% class()
 
 #### Data splitting using stratified random sampling
 
-```{r}
+```{r, cache = TRUE}
 
 # split 
 split_class <- initial_split(data %>%
@@ -332,7 +334,7 @@ raw_test_x_class <- testing(split_class)
 
 #### recipe 
 
-```{r}
+```{r, cache = TRUE}
 
 # Classification recipe 
 rec_class <- raw_train_x_class %>% 
@@ -349,7 +351,7 @@ prep_class <- rec_class %>%prep(retain = TRUE)
 
 ```
 
-```{r}
+```{r, cache = TRUE}
 
 # x features 
 train_x_class <- juice(prep_class, all_predictors()) 
@@ -379,7 +381,7 @@ x -> f - > y (defined)
 2. Specify an engine 
 3. Specify a mode 
 
-```{r}
+```{r, cache = TRUE}
 
 # OLS spec 
 ols_spec <- linear_reg() %>% # Specify a model 
@@ -399,7 +401,7 @@ lasso_spec %>% translate() # See the documentation
 
 - Fit models 
 
-```{r}
+```{r, cache = TRUE}
 
 ols_fit <- ols_spec %>%
   fit_xy(x = train_x_reg, y= train_y_reg) 
@@ -414,13 +416,13 @@ lasso_fit <- lasso_spec %>%
 
 - Visualize model fits 
 
-```{r}
+```{r, cache = TRUE}
 
 map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit) 
 
 ```
 
-```{r}
+```{r, cache = TRUE}
 
 # Define performance metrics 
 metrics <- yardstick::metric_set(rmse, mae, rsq)
@@ -445,7 +447,7 @@ evals %>%
 
 ##### tune ingredients 
 
-```{r}
+```{r, cache = TRUE}
 
 # tune() = placeholder 
 
@@ -470,7 +472,7 @@ rec_folds <- vfold_cv(train_x_reg %>% bind_cols(tibble(age = train_y_reg)))
 
 ##### Add these elements to a workflow 
 
-```{r}
+```{r, cache = TRUE}
 
 # Workflow 
 rec_wf <- workflow() %>%
@@ -479,7 +481,7 @@ rec_wf <- workflow() %>%
 
 ```
 
-```{r}
+```{r, cache = TRUE}
 
 # Tuning results 
 rec_res <- rec_wf %>%
@@ -492,7 +494,7 @@ rec_res <- rec_wf %>%
 
 ##### Visualize 
 
-```{r}
+```{r, cache = TRUE}
 
 # Visualize
 
@@ -517,7 +519,7 @@ rec_res %>%
 
 ##### Select 
 
-```{r}
+```{r, cache = TRUE}
 
 top_rmse <- show_best(rec_res, metric = "rmse")
 
@@ -543,7 +545,7 @@ glue('The RMSE of the tuned model is {rec_res %>%
 
 - Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
 
-```{r}
+```{r, cache = TRUE}
 
 finalize_lasso <- rec_wf %>%
   finalize_workflow(best_rmse)
@@ -559,7 +561,7 @@ finalize_lasso %>%
 
 - Apply the tuned model to the test dataset 
 
-```{r}
+```{r, cache = TRUE}
 
 test_fit <- finalize_lasso %>% 
   fit(test_x_reg %>% bind_cols(tibble(age = test_y_reg)))
@@ -577,7 +579,7 @@ evaluate_reg(test_fit)
 2. Specify an engine 
 3. Specify a mode 
 
-```{r}
+```{r, cache = TRUE}
 
 # workflow 
 tree_wf <- workflow() %>% add_formula(target~.)
@@ -599,7 +601,7 @@ tree_wf <- tree_wf %>% add_model(tree_spec)
 
 - Fit a model
 
-```{r}
+```{r, cache = TRUE}
 
 tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
@@ -621,7 +623,7 @@ tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_
 
 - To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html). 
 
-```{r}
+```{r, cache = TRUE}
 
 # Define performance metrics 
 
@@ -647,7 +649,7 @@ tree_fit_viz_mat
 
 - **tree_depth** 
 
-```{r}
+```{r, cache = TRUE}
 
 tune_spec <- 
   decision_tree(
@@ -675,7 +677,7 @@ tree_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class
 
 ##### Add these elements to a workflow 
 
-```{r}
+```{r, cache = TRUE}
 
 # Update workflow 
 tree_wf <- tree_wf %>% update_model(tune_spec)
@@ -702,7 +704,7 @@ tree_res <- tree_wf %>%
 
 - The following plot draws on the [vignette](https://www.tidymodels.org/start/tuning/) of the tidymodels package. 
 
-```{r}
+```{r, cache = TRUE}
 
 tree_res %>%
   collect_metrics() %>%
@@ -725,7 +727,7 @@ tree_res %>%
 ```
 ##### Select 
 
-```{r}
+```{r, cache = TRUE}
 
 # Optimal parameter
 best_tree <- select_best(tree_res, "recall")
@@ -735,7 +737,7 @@ finalize_tree <- tree_wf %>%
   finalize_workflow(best_tree)
 ```
 
-```{r}
+```{r, cache = TRUE}
 
 tree_fit_tuned <- finalize_tree %>% 
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
@@ -750,7 +752,7 @@ tree_fit_tuned <- finalize_tree %>%
 
 - Visualize variable importance 
 
-```{r}
+```{r, cache = TRUE}
 
 tree_fit_tuned %>%
   pull_workflow_fit() %>%
@@ -762,7 +764,7 @@ tree_fit_tuned %>%
 
 - Apply the tuned model to the test dataset 
 
-```{r}
+```{r, cache = TRUE}
 
 test_fit <- finalize_tree %>% 
   fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
@@ -782,7 +784,7 @@ evaluate_class(test_fit)
 2. Specify an engine 
 3. Specify a mode 
 
-```{r}
+```{r, cache = TRUE}
 
 # workflow 
 rand_wf <- workflow() %>% add_formula(target~.)
@@ -808,7 +810,7 @@ rand_wf <- rand_wf %>% add_model(rand_spec)
 
 - Fit a model
 
-```{r}
+```{r, cache = TRUE}
 
 rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
@@ -826,7 +828,7 @@ rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_
 
 - `recall` (specificity): True positive rate (e.g., healthy people really healthy)
 
-```{r}
+```{r, cache = TRUE}
 
 # Define performance metrics 
 metrics <- yardstick::metric_set(accuracy, precision, recall)
@@ -839,7 +841,7 @@ rand_fit_viz_metr
 
 - Visualize the confusion matrix. 
   
-```{r}
+```{r, cache = TRUE}
 
 rand_fit_viz_mat <- visualize_class_conf(rand_fit)
 
@@ -857,7 +859,7 @@ We focus on the following two parameters:
 
 - `min_n`: The minimum number of data points needed to keep splitting nodes. 
 
-```{r}
+```{r, cache = TRUE}
 
 tune_spec <- 
   rand_forest(
@@ -879,7 +881,7 @@ rand_grid %>%
 
 ```
 
-```{r}
+```{r, cache = TRUE}
 # 10-fold cross-validation
 
 set.seed(1234) # for reproducibility 
@@ -892,7 +894,7 @@ rand_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class
 
 ##### Add these elements to a workflow 
 
-```{r}
+```{r, cache = TRUE}
 
 # Update workflow 
 rand_wf <- rand_wf %>% update_model(tune_spec)
@@ -909,7 +911,7 @@ rand_res <- rand_wf %>%
 
 ##### Visualize 
 
-```{r}
+```{r, cache = TRUE}
 
 rand_res %>%
   collect_metrics() %>%
@@ -932,7 +934,7 @@ rand_res %>%
   theme(legend.position="bottom")
 
 ```
-```{r}
+```{r, cache = TRUE}
 
 # Optimal parameter
 best_tree <- select_best(rand_res, "accuracy")
@@ -945,7 +947,7 @@ finalize_tree <- rand_wf %>%
 
 ```
 
-```{r}
+```{r, cache = TRUE}
 
 rand_fit_tuned <- finalize_tree %>% 
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
@@ -960,7 +962,7 @@ rand_fit_tuned <- finalize_tree %>%
 
 - Visualize variable importance 
 
-```{r}
+```{r, cache = TRUE}
 
 rand_fit_tuned %>%
   pull_workflow_fit() %>%
@@ -972,7 +974,7 @@ rand_fit_tuned %>%
 
 - Apply the tuned model to the test dataset 
 
-```{r}
+```{r, cache = TRUE}
 
 test_fit <- finalize_tree %>%
   fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
@@ -991,7 +993,7 @@ evaluate_class(test_fit)
 2. Specify an engine 
 3. Specify a mode 
 
-```{r}
+```{r, cache = TRUE}
 
 # workflow 
 xg_wf <- workflow() %>% add_formula(target~.)
@@ -1021,7 +1023,7 @@ xg_wf <- xg_wf %>% add_model(xg_spec)
 
 - Fit a model
 
-```{r}
+```{r, cache = TRUE}
 
 xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
@@ -1039,7 +1041,7 @@ xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_clas
 
 - `recall` (specificity): True positive rate (e.g., healthy people really healthy)
 
-```{r}
+```{r, cache = TRUE}
 
 metrics <- metric_set(yardstick::accuracy, 
                       yardstick::precision, 
@@ -1049,7 +1051,7 @@ evaluate_class(xg_fit)
 
 ```
 
-```{r}
+```{r, cache = TRUE}
 
 xg_fit_viz_metr <- visualize_class_eval(xg_fit)
 
@@ -1059,7 +1061,7 @@ xg_fit_viz_metr
 
 - Visualize the confusion matrix. 
   
-```{r}
+```{r, cache = TRUE}
 
 xg_fit_viz_mat <- visualize_class_conf(xg_fit)
 
@@ -1073,7 +1075,7 @@ xg_fit_viz_mat
 
 - We focus on the following parameters: `trees,` `tree_depth,` `learn_rate,` `min_n,` `mtry,` `loss_reduction,` and `sample_size`
 
-```{r}
+```{r, cache = TRUE}
 
 tune_spec <- 
   xg_spec <- boost_tree(
@@ -1122,7 +1124,7 @@ xg_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class))
 
 ##### Add these elements to a workflow 
 
-```{r}
+```{r, cache = TRUE}
 
 # Update workflow 
 xg_wf <- xg_wf %>% update_model(tune_spec)
@@ -1139,7 +1141,7 @@ xg_res <- xg_wf %>%
 
 ##### Visualize 
 
-```{r}
+```{r, cache = TRUE}
 
 xg_res %>%
   collect_metrics() %>% 
@@ -1155,7 +1157,7 @@ xg_res %>%
 
 ```
 
-```{r}
+```{r, cache = TRUE}
 
 # Optimal parameter
 best_xg <- select_best(xg_res, "roc_auc")
@@ -1168,7 +1170,7 @@ finalize_xg <- xg_wf %>%
 
 ```
 
-```{r}
+```{r, cache = TRUE}
 
 xg_fit_tuned <- finalize_xg %>% 
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
@@ -1183,7 +1185,7 @@ xg_fit_tuned <- finalize_xg %>%
 
 - Visualize variable importance 
 
-```{r}
+```{r, cache = TRUE}
 
 xg_fit_tuned %>%
   pull_workflow_fit() %>%
@@ -1195,7 +1197,7 @@ xg_fit_tuned %>%
 
 - Apply the tuned model to the test dataset 
 
-```{r}
+```{r, cache = TRUE}
 
 test_fit <- finalize_xg %>%
   fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
@@ -1226,7 +1228,7 @@ x -> f - > y (not defined)
     
     - Scaling issues 
     
-```{r}
+```{r, cache = TRUE}
 
 data_original %>%
   corrr::correlate()
@@ -1237,7 +1239,7 @@ data_original %>%
 
 `recipe` is essential for preprocesssing multiple features at once.
 
-```{r}
+```{r, cache = TRUE}
 
 pca_recipe <- recipe(~., data = data_original) %>%
   # Imputing NAs using mean 
@@ -1249,7 +1251,7 @@ pca_recipe <- recipe(~., data = data_original) %>%
 
 #### PCA analysis 
 
-```{r}
+```{r, cache = TRUE}
 
 pca_res <- pca_recipe %>% 
   step_pca(all_predictors(), 
@@ -1261,9 +1263,9 @@ pca_res %>%
 
 ```
 
-#### Screeplot
+##### Screeplot
 
-```{r}
+```{r, cache = TRUE}
 pca_recipe %>%
   step_pca(all_predictors(), 
            id = "pca") %>% # id argument identifies each PCA step 
@@ -1277,9 +1279,9 @@ pca_recipe %>%
          title = "Scree plot")
 ```
 
-#### View factor loadings 
+##### View factor loadings 
 
-```{r}
+```{r, cache = TRUE}
 
 pca_recipe %>%
   step_pca(all_predictors(), 
@@ -1297,9 +1299,181 @@ pca_recipe %>%
        
 ```
 
-### Clustering
+### Topic modeling 
 
-#### Topic modeling 
+#### Setup 
+
+```{r, cache = TRUE}
+pacman::p_load(tidytext, # tidy text analysis
+               glue, # paste string and objects  
+               stm, # structural topic modeling
+               gutenbergr) # toy datasets 
+```
+
+#### Dataset 
+
+The data munging process draws on [Julia Silge's blog post](https://juliasilge.com/blog/sherlock-holmes-stm/).
+
+```{r, cache = TRUE}
+
+sherlock_raw <- gutenberg_download(1661)
+
+glimpse(sherlock_raw)
+
+sherlock <- sherlock_raw %>%
+  # Mutate story using a conditional statement 
+  mutate(story = ifelse(str_starts(text, "ADVENTURE"), 
+                                   text, NA)) %>%
+  # Fill in missing values with next value  
+  tidyr::fill(story, .direction = "down") %>%
+  # Filter 
+  filter(story != "THE ADVENTURES OF SHERLOCK HOLMES") %>%
+  # Factor 
+  mutate(story = factor(story, levels = unique(story)))
+
+sherlock <- sherlock[,2:3]
+
+```
+
+#### Key ideas 
+
+- Topics as **distributions** of words 
+
+- Documents as **distributions** of topics 
+
+- What distributions?
+
+    - Probability 
+
+    - Multinominal (e.g., Latent Dirichlet Distribution)
+
+- Words lie on a lower dimensional space (dimension reduction)
+
+- Co-occurrence of words (clustering)
+
+- Bag of words (feature engineering)
+    - Upside: easy and fast (also quite working well)
+    - Downside: ignored grammatical structures and rich interactions among words (Alternative: word embeddings. Please check out [text2vec](http://text2vec.org/))
+
+#### Exploratory data analysis 
+
+```{r, cache = TRUE}
+
+sherlock_n <- sherlock %>%
+  unnest_tokens(output = word,
+                input = text) %>%
+  count(story, word, sort = TRUE)
+
+sherlock_total_n <- sherlock_n %>%
+  group_by(story) %>%
+  summarise(total = sum(n))
+
+sherlock_words <- sherlock_n %>% left_join(sherlock_total_n)
+
+sherlock_words %>%
+  mutate(freq = n/total) %>%
+  group_by(story) %>%
+  top_n(10) %>%
+  ggplot(aes(x = fct_reorder(word, freq), 
+             y = freq, 
+             fill = story)) +
+  geom_col() +
+  coord_flip() +
+  facet_wrap(~story, 
+             ncol = 2, 
+             scales = "free_y") +
+  scale_fill_viridis_d() +
+  labs(x = "")
+
+```
+
+#### STM 
+
+##### Turn text into document-term matrix
+
+`stm` package has its own preprocessing function.
+
+```{r, cache = TRUE}
+
+
+dtm <- textProcessor(documents = sherlock$text,
+                     metadata = sherlock, 
+                     removestopwords = TRUE,
+                     verbose = TRUE)
+
+```
+
+##### Tuning K
+
+- K is the number of topics. 
+- Let's try K = 5, 10, 15.
+
+```{r, cache = TRUE}
+
+test_res <- searchK(dtm$documents, dtm$vocab, 
+                   K = c(5, 10, 15),
+                   prevalence =~ story, 
+                   data = dtm$meta)
+
+```
+
+##### Evaludating models 
+
+There are several metrics to assess the performance of topic models: the held-out likelihood, residuals, semantic coherence, and exclusivity. In this course, we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
+
+```{r, cache = TRUE}
+
+test_res$results %>%
+  unnest(K, exclus, semcoh) %>%
+  dplyr::select(K, exclus, semcoh) %>%
+  mutate(K = as.factor(K)) %>%
+  ggplot(aes(x = exclus, y = semcoh)) +
+    geom_text(label = glue("K = {test_res$results$K}"),
+              size = 5,
+              color = "red")
+
+```
+
+##### Finalize 
+
+```{r, cache = TRUE}
+final_stm <- stm(dtm$documents, 
+                 dtm$vocab, 
+                 K = 10, prevalence =~ story,
+                 max.em.its = 75, 
+                 data = dtm$meta, 
+                 init.type="Spectral",
+                 seed = 1234567,
+                 verbose  =TRUE)
+```
+
+##### Explore the results 
+
+- Using the `stm` pacakge. 
+
+```{r, cache = TRUE}
+
+# plot
+plot(final_stm)
+
+```
+- Using ggplot2 
+```{r, cache = TRUE}
+# tidy  
+tidy_stm <- tidy(final_stm)
+
+# top terms
+tidy_stm %>%
+    group_by(topic) %>%
+    top_n(10, beta) %>%
+    ungroup() %>%
+    ggplot(aes(fct_reorder(term, beta), beta, fill = as.factor(topic))) +
+    geom_col(alpha = 0.8, show.legend = FALSE) +
+    facet_wrap(~ topic, scales = "free_y") +
+    coord_flip() +
+    scale_y_continuous(labels = scales::percent) +
+    scale_fill_viridis_d()
+```
 
 ## Bias and fairness in machine learning 
 

@@ -1,2 +1,0 @@
-libnlopt-dev
-default-jdk

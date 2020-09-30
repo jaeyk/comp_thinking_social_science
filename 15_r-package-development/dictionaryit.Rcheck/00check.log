@@ -1,9 +1,0 @@
-* using log directory ‘/home/jae/PS239T/15_r-package-development/dictionaryit.Rcheck’
-* using R version 3.5.2 (2018-12-20)
-* using platform: x86_64-pc-linux-gnu (64-bit)
-* using session charset: UTF-8
-* checking for file ‘dictionaryit/DESCRIPTION’ ... ERROR
-Required field missing or empty:
-  ‘License’
-* DONE
-Status: 1 ERROR

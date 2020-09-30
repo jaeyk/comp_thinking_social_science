@@ -1,7 +1,0 @@
-"0","rm(list = ls()) # clean the global environment"
-"0","require(devtools) # for package development "
-"2","Loading required package: devtools
-"
-"0","require(roxygen2) # for documentation"
-"2","Loading required package: roxygen2
-"

@@ -1,8 +1,0 @@
-"0","#' Combining a Dataframe with Dictionary Counts"
-"0","#'"
-"0","#' @param data the data input "
-"0","#' @param string_vector the dictionary object "
-"0","#'"
-"0","#' @return the combined dataframe with the dictionary counts as a new column to it"
-"0","#'"
-"0","#' @export "
