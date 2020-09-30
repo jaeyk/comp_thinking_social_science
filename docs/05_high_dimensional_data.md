@@ -688,7 +688,7 @@ best_rmse
 ## # A tibble: 1 x 2
 ##   penalty .config
 ##     <dbl> <chr>  
-## 1   0.153 Model46
+## 1   0.244 Model47
 ```
 
 ```r
@@ -701,7 +701,7 @@ glue('The RMSE of the intiail model is
 
 ```
 ## The RMSE of the intiail model is 
-##    7.88
+##    7.86
 ```
 
 ```r
@@ -749,9 +749,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.09 
-## 2 mae     standard       5.84 
-## 3 rsq     standard       0.414
+## 1 rmse    standard       7.17 
+## 2 mae     standard       5.93 
+## 3 rsq     standard       0.405
 ```
 ### Decision tree 
 
@@ -981,8 +981,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.756
-## 2 precision binary         0.721
+## 1 accuracy  binary         0.744
+## 2 precision binary         0.705
 ## 3 recall    binary         0.756
 ```
 
@@ -1168,7 +1168,7 @@ best_tree
 ## # A tibble: 1 x 3
 ##    mtry min_n .config
 ##   <int> <int> <chr>  
-## 1     1    10 Model21
+## 1     1     2 Model01
 ```
 
 ```r
@@ -1222,9 +1222,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.922
-## 2 precision binary         0.972
-## 3 recall    binary         0.854
+## 1 accuracy  binary         0.933
+## 2 precision binary         0.973
+## 3 recall    binary         0.878
 ```
 
 ### XGboost 

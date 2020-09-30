@@ -37,12 +37,12 @@
 SELECT COLUMN FROM TABLE 
 ```
 
-## Learning objectives 
+### Learning objectives 
 * Embracing a new mindset: shifting from ownership (opening CSVs in your laptop) to access (accessing data stored in a database)
 
 * Learning how to use R and SQL to access and query a database
 
-## Quick overview 
+### Quick overview 
 
 * SQL and R
 
@@ -93,7 +93,7 @@ ORDER BY column # Arrange
 
 ![SQL Zine by by [Julia Evans](https://jvns.ca/)](https://wizardzines.com/zines/sql/samples/from.png)
 
-## Setup
+### Setup
 
 Let's get to work. 
 
