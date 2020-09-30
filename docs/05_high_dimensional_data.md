@@ -688,7 +688,7 @@ best_rmse
 ## # A tibble: 1 x 2
 ##   penalty .config
 ##     <dbl> <chr>  
-## 1   0.244 Model47
+## 1   0.153 Model46
 ```
 
 ```r
@@ -701,7 +701,7 @@ glue('The RMSE of the intiail model is
 
 ```
 ## The RMSE of the intiail model is 
-##    7.86
+##    7.88
 ```
 
 ```r
@@ -715,7 +715,7 @@ glue('The RMSE of the tuned model is {rec_res %>%
 ```
 
 ```
-## The RMSE of the tuned model is 7.71
+## The RMSE of the tuned model is 7.7
 ```
 
 - Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
@@ -749,9 +749,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.17 
-## 2 mae     standard       5.93 
-## 3 rsq     standard       0.405
+## 1 rmse    standard       7.09 
+## 2 mae     standard       5.84 
+## 3 rsq     standard       0.414
 ```
 ### Decision tree 
 
@@ -1168,7 +1168,7 @@ best_tree
 ## # A tibble: 1 x 3
 ##    mtry min_n .config
 ##   <int> <int> <chr>  
-## 1     1     2 Model01
+## 1     1    10 Model21
 ```
 
 ```r
@@ -1222,9 +1222,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.933
-## 2 precision binary         0.973
-## 3 recall    binary         0.878
+## 1 accuracy  binary         0.922
+## 2 precision binary         0.972
+## 3 recall    binary         0.854
 ```
 
 ### XGboost 
@@ -1423,9 +1423,9 @@ best_xg
 
 ```
 ## # A tibble: 1 x 8
-##    mtry trees min_n tree_depth  learn_rate loss_reduction sample_size .config
-##   <int> <int> <int>      <int>       <dbl>          <dbl>       <dbl> <chr>  
-## 1     6    98     4         13 0.000000211  0.00000000336       0.422 Model26
+##    mtry trees min_n tree_depth learn_rate loss_reduction sample_size .config
+##   <int> <int> <int>      <int>      <dbl>          <dbl>       <dbl> <chr>  
+## 1    11   326     3         13     0.0176     0.00000254       0.544 Model27
 ```
 
 ```r
@@ -1487,9 +1487,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.8  
-## 2 precision binary         0.795
-## 3 recall    binary         0.756
+## 1 accuracy  binary         0.844
+## 2 precision binary         0.829
+## 3 recall    binary         0.829
 ```
 
 ### Applications 

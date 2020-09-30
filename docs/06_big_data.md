@@ -37,12 +37,12 @@
 SELECT COLUMN FROM TABLE 
 ```
 
-### Learning objectives 
+## Learning objectives 
 * Embracing a new mindset: shifting from ownership (opening CSVs in your laptop) to access (accessing data stored in a database)
 
 * Learning how to use R and SQL to access and query a database
 
-### Quick overview 
+## Quick overview 
 
 * SQL and R
 
@@ -93,11 +93,11 @@ ORDER BY column # Arrange
 
 ![SQL Zine by by [Julia Evans](https://jvns.ca/)](https://wizardzines.com/zines/sql/samples/from.png)
 
-### Setup
+## Setup
 
 Let's get to work. 
 
-### Packages 
+## Packages 
 
 - `pacman::p_load()` reduces steps for installing and loading several packages simultaneously. 
 
@@ -129,7 +129,7 @@ pacman::p_load(
 )
 ```
 
-### Data sets 
+## Data sets 
 
 - [The flight on-time performance data](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236) from the Bureau of Transpiration Statistics of the U.S. government. The data goes back to 1987 and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.
 
