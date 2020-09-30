@@ -1,8 +1,8 @@
 # Tidy data and its friends {#tidy_data}
 
-## Setup 
+## Setup
 
-- Check your `dplyr` package is up-to-date by typing `packageVersion("dplyr")`. If the current installed version is less than 1.0, then update by typing `update.packages("dplyr")`. You may need to restart R to make it work.
+-   Check your `dplyr` package is up-to-date by typing `packageVersion("dplyr")`. If the current installed version is less than 1.0, then update by typing `update.packages("dplyr")`. You may need to restart R to make it work.
 
 
 ```r
@@ -33,27 +33,27 @@ pacman::p_load(
 
 The rest of the chapter follows the basic structure in [the Data Wrangling Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) created by RStudio.
 
-## Tidyverse 
+## Tidyverse
 
-- [Tidyverse design guide](https://design.tidyverse.org/unifying-principles.html)
+-   [Tidyverse design guide](https://design.tidyverse.org/unifying-principles.html)
 
-    - Human centered 
-    
-    - Consistent 
-    
-    - Composable (modualized)
-    
-    - Inclusive 
-    
-    - Influenced by the [Basics of the Unix Philosophy](https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html), [The Zen of Python](https://www.python.org/dev/peps/pep-0020/), and the [Design Principles Behind Smalltalk](https://refs.devinmcgloin.com/smalltalk/Design-Principles-Behind-Smalltalk.pdf)
-    
-## Tidy data 
+    -   Human centered
+
+    -   Consistent
+
+    -   Composable (modualized)
+
+    -   Inclusive
+
+    -   Influenced by the [Basics of the Unix Philosophy](https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html), [The Zen of Python](https://www.python.org/dev/peps/pep-0020/), and the [Design Principles Behind Smalltalk](https://refs.devinmcgloin.com/smalltalk/Design-Principles-Behind-Smalltalk.pdf)
+
+## Tidy data
 
 > "Tidy data sets are easy to manipulate, model and visualize, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table." - Hadley Wickham
 
-1. Variables -> **Columns**
-2. Observations -> **Rows**
-3. Values -> **Cells**
+1.  Variables -\> **Columns**
+2.  Observations -\> **Rows**
+3.  Values -\> **Cells**
 
 ![Tidy Data Example (Source: R for Data Science)](https://garrettgman.github.io/images/tidy-1.png)
 
@@ -61,12 +61,11 @@ If dataframes are tidy, it's easy to transform, visualize, model, and program th
 
 ![Tidyverse: an opinionated collection of R packages](https://miro.medium.com/max/960/0*mlPyX0NE0WQwEzpS.png)
 
-- Nevertheless, don't be **religious**.
+-   Nevertheless, don't be **religious**.
 
 > In summary, tidy data is a useful conceptual idea and is often the right way to go for general, small data sets, but may not be appropriate for all problems. - Jeff Leek
 
 For instance, in many data science applications, linear algebra-based computations are essential (e.g., [Principal Component Analysis](https://www.math.upenn.edu/~kazdan/312S13/JJ/PCA-JJ.pdf)). These computations are optimized to work on matrices, not tidy data frames (for more information, read [Jeff Leek's blog post](https://simplystatistics.org/2016/02/17/non-tidy-data/)).
-
 
 This is what a tidy data looks like.
 
@@ -95,7 +94,7 @@ Let's take a look at the cases of untidy data.
 
 ![Messy Data Case 1 (Source: R for Data Science)](https://garrettgman.github.io/images/tidy-5.png)
 
-- Make It Longer
+-   Make It Longer
 
 **Challenge**: Why this data is not tidy?
 
@@ -113,11 +112,11 @@ table4a
 ## 3 China       212258 213766
 ```
 
-- Let's pivot (rotate by 90 degree).
+-   Let's pivot (rotate by 90 degree).
 
-- [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) increases the number of rows (longer) and decreases the number of columns. The inverse function is `pivot_wider()`. These functions improve the usability of `gather()` and `spread()`.
+-   [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) increases the number of rows (longer) and decreases the number of columns. The inverse function is `pivot_wider()`. These functions improve the usability of `gather()` and `spread()`.
 
-![What pivot_longer() does (Source: https://www.storybench.org)](https://www.storybench.org/wp-content/uploads/2019/08/pivot-longer-image.png)
+![What pivot\_longer() does (Source: <https://www.storybench.org>)](https://www.storybench.org/wp-content/uploads/2019/08/pivot-longer-image.png)
 
 
 ```r
@@ -162,11 +161,11 @@ table4a %>%
 ## 6 China       2000  213766
 ```
 
-- There's another problem, did you catch it?
+-   There's another problem, did you catch it?
 
-- The data type of `year` variable should be `numeric` not `character`. By default, `pivot_longer()` transforms uninformative columns to character.
+-   The data type of `year` variable should be `numeric` not `character`. By default, `pivot_longer()` transforms uninformative columns to character.
 
-- You can fix this problem by using `names_transform` argument.
+-   You can fix this problem by using `names_transform` argument.
 
 
 ```r
@@ -206,11 +205,11 @@ parse_number("reply1994")
 
 A flat file (e.g., CSV) is a rectangular shaped combination of strings. [Parsing](https://cran.r-project.org/web/packages/readr/vignettes/readr.html) determines the type of each column and turns into a vector of a more specific type. Tidyverse has `parse_` functions (from `readr` package) that are flexible and fast (e.g., `parse_integer()`, `parse_double()`, `parse_logical()`, `parse_datetime()`, `parse_date()`, `parse_time()`, `parse_factor()`, etc).
 
-- Let's do another practice. 
+-   Let's do another practice.
 
 **Challenge**
 
-1. Why this data is not tidy? (This exercise comes from [`pivot` function vigenette](https://tidyr.tidyverse.org/articles/pivot.html).) Too long or too wide?
+1.  Why this data is not tidy? (This exercise comes from [`pivot` function vigenette](https://tidyr.tidyverse.org/articles/pivot.html).) Too long or too wide?
 
 
 ```r
@@ -245,7 +244,7 @@ billboard
 ## #   wk71 <lgl>, wk72 <lgl>, wk73 <lgl>, wk74 <lgl>, wk75 <lgl>, wk76 <lgl>
 ```
 
-2. How can you fix it? Which pivot?
+2.  How can you fix it? Which pivot?
 
 
 ```r
@@ -274,7 +273,7 @@ billboard %>%
 ## # … with 5,297 more rows
 ```
 
-- Note that `pivot_longer()` is more versatile than `gather()`.
+-   Note that `pivot_longer()` is more versatile than `gather()`.
 
 
 ```r
@@ -305,9 +304,9 @@ billboard %>%
 ## # … with 5,297 more rows
 ```
 
-- Make It Wider
+-   Make It Wider
 
-- Why this data is not tidy? 
+-   Why this data is not tidy?
 
 
 ```r
@@ -332,21 +331,21 @@ table2
 ## 12 China        2000 population 1280428583
 ```
 
-- Each observation is spread across two rows.
+-   Each observation is spread across two rows.
 
-- How can you fix it?: `pivot_wider()`.
+-   How can you fix it?: `pivot_wider()`.
 
 **Two differences between `pivot_longer()` and `pivot_wider()`**
 
-- In `pivot_longer()`, the arguments are named `names_to` and `values_to` (*to*). 
+-   In `pivot_longer()`, the arguments are named `names_to` and `values_to` (*to*).
 
-- In `pivot_wider()`, this pattern is opposite. The arguments are named `names_from` and `values_from` (*from*).
+-   In `pivot_wider()`, this pattern is opposite. The arguments are named `names_from` and `values_from` (*from*).
 
-- The number of required arguments for `pivot_longer()` is 3 (col, names_to, values_to). 
+-   The number of required arguments for `pivot_longer()` is 3 (col, names\_to, values\_to).
 
-- The number of required arguments for `pivot_wider()` is 2 (names_from, values_from).
+-   The number of required arguments for `pivot_wider()` is 2 (names\_from, values\_from).
 
-![What pivot_wider() does (Source: https://www.storybench.org)](https://www.storybench.org/wp-content/uploads/2019/08/pivot-wider-image.png)
+![What pivot\_wider() does (Source: <https://www.storybench.org>)](https://www.storybench.org/wp-content/uploads/2019/08/pivot-wider-image.png)
 
 
 ```r
@@ -390,15 +389,15 @@ table2 %>%
 ## 6 China        2000 213766 1280428583
 ```
 
-Sometimes, a consultee came to me and asked: "I don't have missing values in my original dataframe. Then R said that I have missing values after I've done some data transformations. What happened?" 
+Sometimes, a consultee came to me and asked: "I don't have missing values in my original dataframe. Then R said that I have missing values after I've done some data transformations. What happened?"
 
-Here's an answer. 
+Here's an answer.
 
 R defines missing values in two ways.
 
-- *Implicit missing values*: simply not present in the data.
+-   *Implicit missing values*: simply not present in the data.
 
-- *Explicit missing values*: flagged with NA
+-   *Explicit missing values*: flagged with NA
 
 **Challenge**
 
@@ -427,9 +426,9 @@ stocks
 ## 6  2020     4      3
 ```
 
-- Where is explicit missing value?
+-   Where is explicit missing value?
 
-- Does `stocks` have implicit missing values?
+-   Does `stocks` have implicit missing values?
 
 
 ```r
@@ -451,9 +450,9 @@ stocks %>%
 
 **Challenge**
 
-- This exercise comes from [`pivot` function vigenette](https://tidyr.tidyverse.org/articles/pivot.html).
+-   This exercise comes from [`pivot` function vigenette](https://tidyr.tidyverse.org/articles/pivot.html).
 
-- Could you make `station` a series of dummy variables using `pivot_wider()`?
+-   Could you make `station` a series of dummy variables using `pivot_wider()`?
 
 
 ```r
@@ -477,13 +476,13 @@ fish_encounters
 ## # … with 104 more rows
 ```
 
-1. Which pivot you should use?
+1.  Which pivot you should use?
 
-2. Are there explicit missing values? 
+2.  Are there explicit missing values?
 
-3. How could you turn these NAs into 0s? Check `values_fill` argument in the `pivot_wider()` function. 
+3.  How could you turn these NAs into 0s? Check `values_fill` argument in the `pivot_wider()` function.
 
-- Separate
+-   Separate
 
 ![Messy Data Case 2 (Source: R for Data Science)](https://garrettgman.github.io/images/tidy-6.png)
 
@@ -552,7 +551,7 @@ table3
 ## 6 China        2000 213766/1280428583
 ```
 
-- Note `sep` argument. You can specify how to separate joined values.
+-   Note `sep` argument. You can specify how to separate joined values.
 
 
 ```r
@@ -574,7 +573,7 @@ table3 %>%
 ## 6 China        2000 213766 1280428583
 ```
 
-- Note `convert` argument. You can specify whether automatically convert the new values or not.
+-   Note `convert` argument. You can specify whether automatically convert the new values or not.
 
 
 ```r
@@ -597,11 +596,11 @@ table3 %>%
 ## 6 China        2000 213766 1280428583
 ```
 
-- Unite
+-   Unite
 
-`pivot_longer()` <-> `pivot_wider()`
+`pivot_longer()` \<-\> `pivot_wider()`
 
-`separate()` <-> `unite()`
+`separate()` \<-\> `unite()`
 
 
 ```r
@@ -640,9 +639,9 @@ df %>% unite("contact",
 
 ## Rearranging
 
-- Arrange
+-   Arrange
 
-- Order rows
+-   Order rows
 
 
 ```r
@@ -725,9 +724,9 @@ dplyr::arrange(mtcars, desc(mpg)) # High to Row
 ## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
 ```
 
-- Rename
+-   Rename
 
-- Rename columns
+-   Rename columns
 
 
 ```r
@@ -759,12 +758,11 @@ df %>% rename(Year = # OLD name
 ## 3  2013
 ```
 
-
 ## Subset observations (rows)
 
-- Choose row by logical condition 
+-   Choose row by logical condition
 
-- Single condition 
+-   Single condition
 
 
 ```r
@@ -783,7 +781,7 @@ starwars %>%
 
 The following filtering example was inspired by [the suzanbert's dplyr blog post](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/).
 
-- Multiple conditions (numeric)
+-   Multiple conditions (numeric)
 
 
 ```r
@@ -821,9 +819,9 @@ starwars %>%
 
 **Challenge**
 
-(1) Use `filter(between())` to find characters whose heights are between 180 and 160 and (2) count the number of these observations.  
+(1) Use `filter(between())` to find characters whose heights are between 180 and 160 and (2) count the number of these observations.
 
-- Minimum reproducible example 
+-   Minimum reproducible example
 
 
 ```r
@@ -861,7 +859,7 @@ df %>%
 ## 19     179 none
 ```
 
-- Multiple conditions (character)
+-   Multiple conditions (character)
 
 
 ```r
@@ -931,7 +929,7 @@ starwars %>%
 
 Use `str_detect()` to find characters whose names include "Han".
 
-- Choose row by position (row index)
+-   Choose row by position (row index)
 
 
 ```r
@@ -954,7 +952,7 @@ starwars %>%
 ## #   vehicles <list>, starships <list>
 ```
 
-- Sample by fraction
+-   Sample by fraction
 
 
 ```r
@@ -1009,7 +1007,7 @@ starwars %>%
 ## #   vehicles <list>, starships <list>
 ```
 
-- Sample by number 
+-   Sample by number
 
 
 ```r
@@ -1084,7 +1082,7 @@ starwars %>%
 ## #   vehicles <list>, starships <list>
 ```
 
-- Top 10 rows orderd by height
+-   Top 10 rows orderd by height
 
 
 ```r
@@ -1148,7 +1146,7 @@ names(msleep)
 ## [11] "bodywt"
 ```
 
-- Select only numeric columns 
+-   Select only numeric columns
 
 
 ```r
@@ -1174,12 +1172,12 @@ msleep %>%
 ## # … with 73 more rows
 ```
 
-**Challenge** 
+**Challenge**
 
-Use `select(where())` to find only non-numeric columns 
+Use `select(where())` to find only non-numeric columns
 
-- Select the columns that include "sleep" in their names 
- 
+-   Select the columns that include "sleep" in their names
+
 
 ```r
 msleep %>%
@@ -1203,11 +1201,11 @@ msleep %>%
 ## # … with 73 more rows
 ```
 
-- Select the columns that include either "sleep" or "wt" in their names 
+-   Select the columns that include either "sleep" or "wt" in their names
 
-- Basic R way 
+-   Basic R way
 
-`grepl` is one of the R base pattern matching functions. 
+`grepl` is one of the R base pattern matching functions.
 
 
 ```r
@@ -1233,9 +1231,9 @@ msleep[grepl('sleep|wt', names(msleep))]
 
 **Challenge**
 
-Use `select(match())` to find columns whose names include either "sleep" or "wt". 
+Use `select(match())` to find columns whose names include either "sleep" or "wt".
 
-- Select the columns that starts with "b"
+-   Select the columns that starts with "b"
 
 
 ```r
@@ -1260,7 +1258,7 @@ msleep %>%
 ## # … with 73 more rows
 ```
 
-- Select the columns that ends with "wt"
+-   Select the columns that ends with "wt"
 
 
 ```r
@@ -1285,9 +1283,9 @@ msleep %>%
 ## # … with 73 more rows
 ```
 
-- Select the columns using both beginning and end string patterns 
+-   Select the columns using both beginning and end string patterns
 
-The key idea is you can use Boolean operators (`!`, `&`, `|`)to combine different string pattern matching statements. 
+The key idea is you can use Boolean operators (`!`, `&`, `|`)to combine different string pattern matching statements.
 
 
 ```r
@@ -1312,7 +1310,7 @@ msleep %>%
 ## # … with 73 more rows
 ```
 
-- Select order and move it before everything 
+-   Select order and move it before everything
 
 
 ```r
@@ -1338,7 +1336,7 @@ msleep %>%
 ## # … with 73 more rows, and 2 more variables: brainwt <dbl>, bodywt <dbl>
 ```
 
-- Select variables from a character vector.
+-   Select variables from a character vector.
 
 
 ```r
@@ -1351,7 +1349,7 @@ msleep %>%
 ## [1] "name"  "order"
 ```
 
-- Select the variables named in the character + number pattern
+-   Select the variables named in the character + number pattern
 
 
 ```r
@@ -1382,9 +1380,9 @@ msleep %>%
 ## # … with 73 more rows
 ```
 
-## Counting 
+## Counting
 
-- How may countries in each continent?
+-   How may countries in each continent?
 
 
 ```r
@@ -1403,7 +1401,7 @@ gapminder %>%
 ## 5 Oceania      24
 ```
 
-- Let's arrange the result. 
+-   Let's arrange the result.
 
 
 ```r
@@ -1443,13 +1441,13 @@ gapminder %>%
 
 **Challenge**
 
-Count the number of observations per `continent` as well as `year` and arrange them with descending order. 
+Count the number of observations per `continent` as well as `year` and arrange them with descending order.
 
 Let's take a deeper look at how things work under the hood.
 
-- `tally()` works similar to `nrow()`: Calculate the total number of cases in a dataframe 
+-   `tally()` works similar to `nrow()`: Calculate the total number of cases in a dataframe
 
-- `count` = `group_by()` + `tally()`
+-   `count` = `group_by()` + `tally()`
 
 
 ```r
@@ -1464,11 +1462,11 @@ gapminder %>%
 ## 1  1704
 ```
 
-- `add_tally()` = `mutate(n = n())`
+-   `add_tally()` = `mutate(n = n())`
 
-**Challenge** 
+**Challenge**
 
-What does n in the below example represent? 
+What does n in the below example represent?
 
 
 ```r
@@ -1494,9 +1492,9 @@ gapminder %>%
 ## # … with 1,694 more rows
 ```
 
-- `add_count`
+-   `add_count`
 
-Add count as a column 
+Add count as a column
 
 
 ```r
@@ -1579,11 +1577,11 @@ gapminder %>%
 ## # … with 50 more rows
 ```
 
-## Summarizing 
+## Summarizing
 
-### Basic 
+### Basic
 
-- Create a summary 
+-   Create a summary
 
 
 ```r
@@ -1620,7 +1618,8 @@ tablea <- gapminder %>%
 ```
 ## `summarise()` ungrouping output (override with `.groups` argument)
 ```
-- Produce publishable tables 
+
+-   Produce publishable tables
 
 
 ```r
@@ -1676,13 +1675,13 @@ tablea %>% kableExtra::kable()
 tablea %>% flextable::flextable()
 ```
 
-<!--html_preserve--><div class="tabwid"><style>.cl-21addff4{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-21adf336{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-21adf34a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-21ae1be0{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21ae1bfe{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21ae1c08{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21ae1c1c{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21ae1c26{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21ae1c30{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-21ae1c26"><p class="cl-21adf336"><span class="cl-21addff4">continent</span></p></td><td class="cl-21ae1c30"><p class="cl-21adf34a"><span class="cl-21addff4">n</span></p></td><td class="cl-21ae1c30"><p class="cl-21adf34a"><span class="cl-21addff4">mean_gdp</span></p></td><td class="cl-21ae1c30"><p class="cl-21adf34a"><span class="cl-21addff4">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-21ae1be0"><p class="cl-21adf336"><span class="cl-21addff4">Africa</span></p></td><td class="cl-21ae1bfe"><p class="cl-21adf34a"><span class="cl-21addff4">624</span></p></td><td class="cl-21ae1bfe"><p class="cl-21adf34a"><span class="cl-21addff4">2193.755</span></p></td><td class="cl-21ae1bfe"><p class="cl-21adf34a"><span class="cl-21addff4">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-21ae1be0"><p class="cl-21adf336"><span class="cl-21addff4">Americas</span></p></td><td class="cl-21ae1bfe"><p class="cl-21adf34a"><span class="cl-21addff4">300</span></p></td><td class="cl-21ae1bfe"><p class="cl-21adf34a"><span class="cl-21addff4">7136.110</span></p></td><td class="cl-21ae1bfe"><p class="cl-21adf34a"><span class="cl-21addff4">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-21ae1be0"><p class="cl-21adf336"><span class="cl-21addff4">Asia</span></p></td><td class="cl-21ae1bfe"><p class="cl-21adf34a"><span class="cl-21addff4">396</span></p></td><td class="cl-21ae1bfe"><p class="cl-21adf34a"><span class="cl-21addff4">7902.150</span></p></td><td class="cl-21ae1bfe"><p class="cl-21adf34a"><span class="cl-21addff4">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-21ae1be0"><p class="cl-21adf336"><span class="cl-21addff4">Europe</span></p></td><td class="cl-21ae1bfe"><p class="cl-21adf34a"><span class="cl-21addff4">360</span></p></td><td class="cl-21ae1bfe"><p class="cl-21adf34a"><span class="cl-21addff4">14469.476</span></p></td><td class="cl-21ae1bfe"><p class="cl-21adf34a"><span class="cl-21addff4">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-21ae1c08"><p class="cl-21adf336"><span class="cl-21addff4">Oceania</span></p></td><td class="cl-21ae1c1c"><p class="cl-21adf34a"><span class="cl-21addff4">24</span></p></td><td class="cl-21ae1c1c"><p class="cl-21adf34a"><span class="cl-21addff4">18621.609</span></p></td><td class="cl-21ae1c1c"><p class="cl-21adf34a"><span class="cl-21addff4">6358.983</span></p></td></tr></tbody></table></div><!--/html_preserve-->
+<!--html_preserve--><div class="tabwid"><style>.cl-621c0be8{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-621c1f70{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-621c1f8e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-621c44dc{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-621c44f0{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-621c44fa{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-621c450e{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-621c450f{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-621c4522{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-621c450f"><p class="cl-621c1f70"><span class="cl-621c0be8">continent</span></p></td><td class="cl-621c4522"><p class="cl-621c1f8e"><span class="cl-621c0be8">n</span></p></td><td class="cl-621c4522"><p class="cl-621c1f8e"><span class="cl-621c0be8">mean_gdp</span></p></td><td class="cl-621c4522"><p class="cl-621c1f8e"><span class="cl-621c0be8">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-621c44dc"><p class="cl-621c1f70"><span class="cl-621c0be8">Africa</span></p></td><td class="cl-621c44f0"><p class="cl-621c1f8e"><span class="cl-621c0be8">624</span></p></td><td class="cl-621c44f0"><p class="cl-621c1f8e"><span class="cl-621c0be8">2193.755</span></p></td><td class="cl-621c44f0"><p class="cl-621c1f8e"><span class="cl-621c0be8">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-621c44dc"><p class="cl-621c1f70"><span class="cl-621c0be8">Americas</span></p></td><td class="cl-621c44f0"><p class="cl-621c1f8e"><span class="cl-621c0be8">300</span></p></td><td class="cl-621c44f0"><p class="cl-621c1f8e"><span class="cl-621c0be8">7136.110</span></p></td><td class="cl-621c44f0"><p class="cl-621c1f8e"><span class="cl-621c0be8">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-621c44dc"><p class="cl-621c1f70"><span class="cl-621c0be8">Asia</span></p></td><td class="cl-621c44f0"><p class="cl-621c1f8e"><span class="cl-621c0be8">396</span></p></td><td class="cl-621c44f0"><p class="cl-621c1f8e"><span class="cl-621c0be8">7902.150</span></p></td><td class="cl-621c44f0"><p class="cl-621c1f8e"><span class="cl-621c0be8">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-621c44dc"><p class="cl-621c1f70"><span class="cl-621c0be8">Europe</span></p></td><td class="cl-621c44f0"><p class="cl-621c1f8e"><span class="cl-621c0be8">360</span></p></td><td class="cl-621c44f0"><p class="cl-621c1f8e"><span class="cl-621c0be8">14469.476</span></p></td><td class="cl-621c44f0"><p class="cl-621c1f8e"><span class="cl-621c0be8">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-621c44fa"><p class="cl-621c1f70"><span class="cl-621c0be8">Oceania</span></p></td><td class="cl-621c450e"><p class="cl-621c1f8e"><span class="cl-621c0be8">24</span></p></td><td class="cl-621c450e"><p class="cl-621c1f8e"><span class="cl-621c0be8">18621.609</span></p></td><td class="cl-621c450e"><p class="cl-621c1f8e"><span class="cl-621c0be8">6358.983</span></p></td></tr></tbody></table></div><!--/html_preserve-->
 
 ### Scoped summaries
 
-- Old way 
+-   Old way
 
-- `summarise_all()`
+-   `summarise_all()`
 
 
 ```r
@@ -1711,7 +1710,7 @@ wide_gapminder %>%
 ## #   Switzerland <dbl>, Turkey <dbl>, `United Kingdom` <dbl>
 ```
 
-- `summarise_if()`: using a logical condition 
+-   `summarise_if()`: using a logical condition
 
 
 ```r
@@ -1732,9 +1731,10 @@ wide_gapminder %>%
 ## #   Spain <dbl>, Sweden <dbl>, Switzerland <dbl>, Turkey <dbl>, `United
 ## #   Kingdom` <dbl>
 ```
-- `summarise_at()`
 
-- `vars() = select()`
+-   `summarise_at()`
+
+-   `vars() = select()`
 
 
 ```r
@@ -1769,13 +1769,13 @@ wide_gapminder %>%
 ## 1    71.9
 ```
 
-- New way 
+-   New way
 
-- `summarise()` + `across()`
+-   `summarise()` + `across()`
 
-- If you find using `summarise_all()`, `summarise_if()` and `summarise_at()` confusing, here's a solution: use `summarise()` with `across()`.   
+-   If you find using `summarise_all()`, `summarise_if()` and `summarise_at()` confusing, here's a solution: use `summarise()` with `across()`.
 
-- `summarise_all()`
+-   `summarise_all()`
 
 
 ```r
@@ -1814,7 +1814,7 @@ wide_gapminder %>%
 ## #   Switzerland <dbl>, Turkey <dbl>, `United Kingdom` <dbl>
 ```
 
-- `summarise_if()`
+-   `summarise_if()`
 
 
 ```r
@@ -1849,7 +1849,7 @@ wide_gapminder %>%
 ## #   Kingdom` <dbl>
 ```
 
-- `summarise_at()`
+-   `summarise_at()`
 
 
 ```r
@@ -1906,19 +1906,19 @@ wide_gapminder %>%
 ## # … with 350 more rows
 ```
 
-Note that this workshop does not cover creating and manipulating variables using `mutate()` because many techniques you learned from playing with `summarise()` can be directly applied to `mutate()`. 
+Note that this workshop does not cover creating and manipulating variables using `mutate()` because many techniques you learned from playing with `summarise()` can be directly applied to `mutate()`.
 
 **Challenge**
 
-1. Summarize average GDP of countries whose names starting with alphabet "A".
+1.  Summarize average GDP of countries whose names starting with alphabet "A".
 
-2. Turn the summary dataframe into a publishable table using either `kableExtra` or `flextable` package. 
+2.  Turn the summary dataframe into a publishable table using either `kableExtra` or `flextable` package.
 
-## Grouping 
+## Grouping
 
-### Grouped summaries 
+### Grouped summaries
 
-- Calculate the mean of `gdpPercap`.
+-   Calculate the mean of `gdpPercap`.
 
 
 ```r
@@ -1942,7 +1942,7 @@ gapminder %>%
 ## 5 Oceania     18622.
 ```
 
-- Calculate multiple summary statistics.
+-   Calculate multiple summary statistics.
 
 
 ```r
@@ -1969,9 +1969,9 @@ gapminder %>%
 
 **Optional**
 
-- Other summary statistics
+-   Other summary statistics
 
-1. Measures of spread: `median(x)`, `sd(x)`, `IQR(x)`, `mad(x)` (the median absolute deviation)
+1.  Measures of spread: `median(x)`, `sd(x)`, `IQR(x)`, `mad(x)` (the median absolute deviation)
 
 
 ```r
@@ -1997,7 +1997,7 @@ gapminder %>%
 ## 5 Oceania     8072.
 ```
 
-2. Measures of rank: `min(x)`, `quantile(x, 0.25)`, `max(x)`
+2.  Measures of rank: `min(x)`, `quantile(x, 0.25)`, `max(x)`
 
 
 ```r
@@ -2022,7 +2022,7 @@ gapminder %>%
 ## 5 Oceania    10040.  34435.
 ```
 
-3. Measures of position: `first(x)`, `last(x)`, `nth(x, 2)`
+3.  Measures of position: `first(x)`, `last(x)`, `nth(x, 2)`
 
 
 ```r
@@ -2070,7 +2070,7 @@ gapminder %>%
 ## 5 Oceania      10040.   34435.
 ```
 
-4. Measures of counts: `n(x)` (all rows), `sum(!is.na(x))` (only non-missing rows) = `n_distinct(x)`
+4.  Measures of counts: `n(x)` (all rows), `sum(!is.na(x))` (only non-missing rows) = `n_distinct(x)`
 
 
 ```r
@@ -2094,7 +2094,7 @@ gapminder %>%
 ## 5 Oceania      24
 ```
 
-5. Counts and proportions of logical values: `sum(condition about x)` (the number of TRUEs in x), `mean(condition about x)` (the proportion of TRUEs in x)
+5.  Counts and proportions of logical values: `sum(condition about x)` (the number of TRUEs in x), `mean(condition about x)` (the proportion of TRUEs in x)
 
 
 ```r
@@ -2124,15 +2124,15 @@ gapminder %>%
 
 The following example comes from [R for Data Science](https://r4ds.had.co.nz/many-models.html) by by Garrett Grolemund and Hadley Wickham.
 
-- How can you run multiple models simultaneously? Using a nested data frame. 
+-   How can you run multiple models simultaneously? Using a nested data frame.
 
-- **Grouped data: each row = an observation**
+-   **Grouped data: each row = an observation**
 
-- **Nested data: each row = a group**
+-   **Nested data: each row = a group**
 
 **Challenge**
 
-In the following example, why did we use `country` and `continent` for nesting variables? 
+In the following example, why did we use `country` and `continent` for nesting variables?
 
 
 ```r
@@ -2178,7 +2178,7 @@ nested$data[[1]]
 ## 12  2007    43.8 31889923      975.
 ```
 
-- Custom function 
+-   Custom function
 
 
 ```r
@@ -2188,7 +2188,7 @@ lm_model <- function(df) {
 }
 ```
 
-- Apply function to the nested data 
+-   Apply function to the nested data
 
 
 ```r
@@ -2212,18 +2212,18 @@ head(nested)
 ## 5 Argentina   Americas  <tibble [12 × 4]> <lm>  
 ## 6 Australia   Oceania   <tibble [12 × 4]> <lm>
 ```
+
 S3 is part of R's object oriented systems. If you need more information, check [this section](http://adv-r.had.co.nz/S3.html) in Hadley's Advanced R out.
 
-### unnest 
+### unnest
 
 `glance()` function from `broom` package inspects the quality of a statistical model.
 
 **Additional tips**
 
-- `broom::glance(model)`: for evaluating model quality and/or complexity 
-- `broom::tidy(model)`: for extracting each coefficient in the model (the estimates + its variability)
-- `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics)
-
+-   `broom::glance(model)`: for evaluating model quality and/or complexity
+-   `broom::tidy(model)`: for extracting each coefficient in the model (the estimates + its variability)
+-   `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics)
 
 
 ```r
@@ -2241,7 +2241,7 @@ glanced$glance[[1]]
 ## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
-`unnest()` unpacks the list objects stored in glance column 
+`unnest()` unpacks the list objects stored in glance column
 
 
 ```r
@@ -2279,9 +2279,9 @@ glanced %>%
 
 <img src="02_tidy_data_files/figure-html/unnamed-chunk-68-1.png" width="672" />
 
-## Mapping 
+## Mapping
 
-We tasted a little bit about how `map()` function works. Let's dig into it deeper as this family of functions is really useful. For more information, see Rebecca Barter's wonderful tutorial on the `purrr` package. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input. 
+We tasted a little bit about how `map()` function works. Let's dig into it deeper as this family of functions is really useful. For more information, see Rebecca Barter's wonderful tutorial on the `purrr` package. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
 
 
 ```r
@@ -2295,7 +2295,7 @@ df <- list(first_obs = rnorm(7, 1, sd =1),
 
 **Challenge**
 
-Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between the output you got and what you saw earlier. 
+Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between the output you got and what you saw earlier.
 
 If you want to know more about the power and joy of functional programming in R (e.g., `purrr::map()`), then please take ["How to Automate Repeated Things in R"](https://github.com/dlab-berkeley/R-functional-programming) workshop.
 
@@ -2305,9 +2305,9 @@ If you want to know more about the power and joy of functional programming in R 
 
 > Add new variables to one data frame from matching observations in another"
 
-Using a simple toy example is great because it is easy to see how things work in that much narrow context. 
+Using a simple toy example is great because it is easy to see how things work in that much narrow context.
 
-- Toy example 
+-   Toy example
 
 
 ```r
@@ -2320,7 +2320,7 @@ y <- tibble(key = c(1:5),
             val_y = c("y1", "y2", "y3", "y4", "y5"))
 ```
 
-- Inner Join
+-   Inner Join
 
 `inner_join()` keeps the matched values in both tables. If the left table is a subset of the right table, then the result of `left_join()` is same as `inner_join()`.
 
@@ -2349,7 +2349,7 @@ inner_join(x, y)
 
 ![Mutating joins](https://d33wubrfki0l68.cloudfront.net/aeab386461820b029b7e7606ccff1286f623bae1/ef0d4/diagrams/join-venn.png)
 
-- Left Join
+-   Left Join
 
 `left_join()`, `right_join()` and `full_join()` are outer join functions. Unlike `inner_join()`, outer join functions keep observations that appear in at least one of the tables.
 
@@ -2374,7 +2374,7 @@ left_join(x, y)
 ## 4     4 x4    y4
 ```
 
-- Right Join
+-   Right Join
 
 `right_join()` does the opposite.
 
@@ -2398,7 +2398,7 @@ right_join(x, y)
 ## 5     5 <NA>  y5
 ```
 
-- Full Join
+-   Full Join
 
 `full_join()` keeps the observations from both tables. If they were unmatched, then NAs were recoded in one of the two tables.
 
@@ -2422,15 +2422,15 @@ full_join(x, y)
 ## 5     5 <NA>  y5
 ```
 
-### Filtering joins 
+### Filtering joins
 
 > Filter observations from one data frame based on whether or not they match an observation in the other table.
 
-- Semi Join
+-   Semi Join
 
-In SQL, this type of query is also called subqueries. 
+In SQL, this type of query is also called subqueries.
 
-- Filtering without joining 
+-   Filtering without joining
 
 
 ```r
@@ -2450,7 +2450,7 @@ filtered <- flights %>%
   filter(dest %in% top_dest$dest)
 ```
 
-- Using semi join: only keep (INCLUDE) the rows that were matched between the two tables 
+-   Using semi join: only keep (INCLUDE) the rows that were matched between the two tables
 
 
 ```r
@@ -2490,7 +2490,7 @@ head(filtered == joined)
 ## [6,]      TRUE
 ```
 
-- Anti Join
+-   Anti Join
 
 `anti_join()` dose the opposite. Exclude the rows that were matched between the two tables. Great technique to filter stopwords when you do a computational text analysis.
 
