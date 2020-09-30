@@ -1,9 +1,5 @@
 # Big data {#big_data}
 
-## Database and SQL
-
-* Special thanks to Jacob Coblnetz (@Jacob_Coblnetz) for sharing his slides on the SQL workshop used at MIT. 
-
 ## Motivation
 
 - Big data problem: data is too big to fit into memory (=local environment).
@@ -25,9 +21,10 @@
       - Non-relational database = a collection of documents (MongoDB), key-values (Redis and DyanoDB), wide-column stores (Cassandra and HBase), or graph (Neo4j and JanusGraph). This type of database does not preclude SQL. Note that NoSQL stands for ["not only SQL."](https://www.mongodb.com/nosql-explained)
      
 **Relational database**
+
 ![Relational Database. Source: MySQL Tutorial](https://sp.mysqltutorial.org/wp-content/uploads/2009/12/MySQL-Sample-Database-Schema.png)
 
-# What is SQL? 
+## What is SQL? 
 
 - Structured Query Language. Called SEQUEL and developed by IBM Corporation in the 1970s.
 
@@ -40,11 +37,12 @@
 SELECT COLUMN FROM TABLE 
 ```
 
-# Learning objectives 
+## Learning objectives 
+* Embracing a new mindset: shifting from ownership (opening CSVs in your laptop) to access (accessing data stored in a database)
 
-> * Embracing a new mindset: shifting from ownership (opening CSVs in your laptop) to access (accessing data stored in a database)
+* Learning how to use R and SQL to access and query a database
 
-> * Learning how to use R and SQL to access and query a database
+## Quick overview 
 
 * SQL and R
 

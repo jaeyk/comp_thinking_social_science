@@ -1,5 +1,8 @@
 # Automating repeated things {#functional_programming}
 
+> Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions. 
+- Hadley Wickam
+
 ## Why functional programming
 
 - Setup 
@@ -23,8 +26,12 @@ pacman::p_load(
   broom, # tidy modeling
   glue, # paste string and objects
   furrr, # parallel processing
-  rvest
-) # web scraping
+  rvest, # web scraping
+  devtools, # dev tools 
+  usethis, # workflow     
+  roxygen2, # documentation 
+            
+  testthat) # testing 
 ```
 
 ### Why map? 
@@ -216,7 +223,7 @@ toc()
 ```
 
 ```
-## 0.007 sec elapsed
+## 0.006 sec elapsed
 ```
 
 
@@ -866,7 +873,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[1]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
 ## 
 ## 
 ## [[2]]
@@ -874,7 +881,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[2]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
 ## 
 ## 
 ## [[3]]
@@ -933,3 +940,203 @@ url_lists[out[seq(out)] == "The URL is broken."]
 ```
 
 ## Developing your own data tools
+
+### Why developing R packages? 
+
+1. Reuse your code 
+2. Automate your workflow 
+3. Help others (be part of an open source development community)
+
+### Workflow 
+
+1. Write code in `\R`
+2. Document code in `\man` (automated by `roxygen2` package)
+  - `devtools::document()` 
+3. Check dependencies in `NAMESPACE`
+  - `devtools::update()` updates the documentation 
+  - `devtools::check()` to see whether your package is ready to be submitted to CRAN
+4. Build a package (for more information, read [this section](http://r-pkgs.had.co.nz/package.html) in Hadley's R package development book)
+  - `devtools::build()` 
+5. (Optional) Test (`devtools::test()`), teach in `\vignettes`, and add data in `\data`
+6. Distribute the package either via CRAN or GitHub  
+
+![]http://r-pkgs.had.co.nz/diagrams/package-files.png
+
+### Developing an R package 
+
+The 4 required components are necessary to build and distribute a minimally viable R package. The other steps are optional.
+
+### Required Components
+
+- Package 
+  - `\R`: R functions 
+  - `\man`: function documentations 
+  - DESCRIPTION: provides meta data about the package (e.g., author)
+  - LICENSE
+    - GNU, MIT, etc.
+  - NAMESPACE: package dependencies (to make your package self-contained)
+  - README (optional)
+  
+1. Setup (**DESCRIPTION**)
+
+
+```r
+# This function creates DESCRIPTION file 
+usethis::create_package(here("mypkg"))
+
+# Initialize git repo 
+usethis::use_git()
+
+# License the package 
+# You can use the MIT license by typing devtools::use_mit_license("author name"). The function produces MIT license related files (LICENSE, LICENSE.md).
+use_mit_license("Jae Yeon Kim")
+
+# Add README (optional)
+# Makes the package more use-friendly 
+use_readme_md()
+
+# Add news (optional) 
+# Helps track changes 
+use_news_md() 
+```
+
+2. Write code (**R**)
+
+
+```r
+usethis::use_r("rbind_mutate")
+```
+
+```r
+#' Add two numbers
+#'
+#' @param x A number
+#' @param y A number
+#' @return The sum of x and y 
+#' @export
+
+add <- function(x, y){
+  
+  x + y
+  
+}
+```
+
+3. Document (**man**)
+
+
+```r
+# Document 
+# The function creates documentation related files (NAMESPACE, function_name.rd)
+devtools::document()
+
+# Load all 
+devtools::load_all()
+
+# Check 
+devtools::check()
+```
+
+4. Organize (**NAMESPACE**)
+
+
+```r
+usethis::use_package("dplyr")
+```
+
+### Optional Components  
+1. Test (**test**)
+
+
+```r
+usethis::use_testthat()
+
+usethis::use_test("rbind_mutate")
+```
+
+3. Add data (**data**)
+
+
+```r
+x <- "Jae"
+y <- "Sun"
+z <- "Jane"
+
+usethis::use_data(x, y, z, overwrite = TRUE)
+```
+
+4. Teach (**vignetts**)
+
+
+```r
+usethis::use_vignette("rbind_mutate")
+```
+
+```r
+title: "Vignette title"
+author: "Vignette author"
+date: "2020-09-29"
+output: rmarkdown::html_vignette
+vignette: blah blah
+``` 
+
+- You can build a package website using `pkgdown`
+
+
+```r
+# install.packages("pkgdown")
+usethis::use_pkgdown()
+pkgdown::build_site()
+```
+
+- A package site includes information on METADATA, Function references, Articles, News, etc. 
+
+### Building an R package 
+
+- CMD (in the terminal)
+
+You can run R commands in the terminal using R CMD.
+
+```sh
+R CMD build mypkg 
+R CMD INSTALL mypkg 
+```
+
+- devtools 
+
+
+```r
+# Build 
+devtools::build()
+
+# Install 
+devtools::install()
+```
+
+### Distributing an R package 
+
+
+```r
+# Version update 
+usethis::use_version()
+
+# Spell check
+usethis::use_spell_check()
+```
+
+1. [CRAN (The Comprehensive R Archive Network)](https://cran.r-project.org/)
+  - R package submission should comply with [the CRAN Repository Policy](https://cran.r-project.org/)
+2. GitHub 
+  - Push everything to the Git repository (you can do it using command-line interface or RStudio).
+
+```sh 
+git add . 
+git commit -m "first push"
+git push 
+```
+  - Don't forget that your repository should be `public`.
+  - I highly recommend connecting GitHub with SSH. For more information, visit [this link](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
+  
+```sh
+git remote set-url origin git@github.com:user/repo 
+```

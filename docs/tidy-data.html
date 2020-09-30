@@ -52,6 +52,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.0.0/tabwid.js"></script>
 
 
 <style type="text/css">
@@ -197,9 +199,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="intro.html"><a href="intro.html#setup"><i class="fa fa-check"></i><b>4.1</b> Setup</a></li>
 <li class="chapter" data-level="4.2" data-path="tidy-data.html"><a href="tidy-data.html#tidyverse-way-of-thinking-data-science-workflow"><i class="fa fa-check"></i><b>4.2</b> Tidyverse way of thinking data science workflow</a></li>
 <li class="chapter" data-level="4.3" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data-and-why-it-matters"><i class="fa fa-check"></i><b>4.3</b> Tidy data and why it matters</a></li>
-<li class="chapter" data-level="4.4" data-path="tidy-data.html"><a href="tidy-data.html#wrangling-data"><i class="fa fa-check"></i><b>4.4</b> Wrangling data</a></li>
-<li class="chapter" data-level="4.5" data-path="tidy-data.html"><a href="tidy-data.html#wrangling-data-at-scale"><i class="fa fa-check"></i><b>4.5</b> Wrangling data at scale</a></li>
-<li class="chapter" data-level="4.6" data-path="tidy-data.html"><a href="tidy-data.html#modeling-and-visualizing-tidy-data"><i class="fa fa-check"></i><b>4.6</b> Modeling and visualizing tidy data</a></li>
+<li class="chapter" data-level="4.4" data-path="tidy-data.html"><a href="tidy-data.html#reshape-data"><i class="fa fa-check"></i><b>4.4</b> Reshape Data</a></li>
+<li class="chapter" data-level="4.5" data-path="tidy-data.html"><a href="tidy-data.html#represent-data"><i class="fa fa-check"></i><b>4.5</b> Represent Data</a></li>
+<li class="chapter" data-level="4.6" data-path="tidy-data.html"><a href="tidy-data.html#subset-observations-rows"><i class="fa fa-check"></i><b>4.6</b> Subset Observations (Rows)</a></li>
+<li class="chapter" data-level="4.7" data-path="tidy-data.html"><a href="tidy-data.html#subset-variables-columns"><i class="fa fa-check"></i><b>4.7</b> Subset Variables (Columns)</a></li>
+<li class="chapter" data-level="4.8" data-path="tidy-data.html"><a href="tidy-data.html#counting"><i class="fa fa-check"></i><b>4.8</b> Counting</a></li>
+<li class="chapter" data-level="4.9" data-path="tidy-data.html"><a href="tidy-data.html#summarizing"><i class="fa fa-check"></i><b>4.9</b> Summarizing</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="tidy-data.html"><a href="tidy-data.html#basic"><i class="fa fa-check"></i><b>4.9.1</b> Basic</a></li>
+<li class="chapter" data-level="4.9.2" data-path="tidy-data.html"><a href="tidy-data.html#scoped-summaries"><i class="fa fa-check"></i><b>4.9.2</b> Scoped summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="tidy-data.html"><a href="tidy-data.html#grouping"><i class="fa fa-check"></i><b>4.10</b> Grouping</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="tidy-data.html"><a href="tidy-data.html#grouped-summaries"><i class="fa fa-check"></i><b>4.10.1</b> Grouped summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="tidy-data.html"><a href="tidy-data.html#nesting"><i class="fa fa-check"></i><b>4.11</b> Nesting</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="tidy-data.html"><a href="tidy-data.html#nest"><i class="fa fa-check"></i><b>4.11.1</b> nest</a></li>
+<li class="chapter" data-level="4.11.2" data-path="tidy-data.html"><a href="tidy-data.html#unnest"><i class="fa fa-check"></i><b>4.11.2</b> unnest</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="tidy-data.html"><a href="tidy-data.html#mapping"><i class="fa fa-check"></i><b>4.12</b> Mapping</a></li>
+<li class="chapter" data-level="4.13" data-path="tidy-data.html"><a href="tidy-data.html#mutating-joins"><i class="fa fa-check"></i><b>4.13</b> Mutating joins</a>
+<ul>
+<li class="chapter" data-level="4.13.1" data-path="tidy-data.html"><a href="tidy-data.html#inner-join"><i class="fa fa-check"></i><b>4.13.1</b> Inner Join</a></li>
+<li class="chapter" data-level="4.13.2" data-path="tidy-data.html"><a href="tidy-data.html#left-join"><i class="fa fa-check"></i><b>4.13.2</b> Left Join</a></li>
+<li class="chapter" data-level="4.13.3" data-path="tidy-data.html"><a href="tidy-data.html#right-join"><i class="fa fa-check"></i><b>4.13.3</b> Right Join</a></li>
+<li class="chapter" data-level="4.13.4" data-path="tidy-data.html"><a href="tidy-data.html#full-join"><i class="fa fa-check"></i><b>4.13.4</b> Full Join</a></li>
+</ul></li>
+<li class="chapter" data-level="4.14" data-path="tidy-data.html"><a href="tidy-data.html#filtering-joins"><i class="fa fa-check"></i><b>4.14</b> Filtering joins</a>
+<ul>
+<li class="chapter" data-level="4.14.1" data-path="tidy-data.html"><a href="tidy-data.html#semi-join"><i class="fa fa-check"></i><b>4.14.1</b> Semi Join</a></li>
+<li class="chapter" data-level="4.14.2" data-path="tidy-data.html"><a href="tidy-data.html#anti-join"><i class="fa fa-check"></i><b>4.14.2</b> Anti Join</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>5</b> Automating repeated things</a>
 <ul>
@@ -240,13 +271,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.1" data-path="functional-programming.html"><a href="functional-programming.html#learning-objective"><i class="fa fa-check"></i><b>5.6.1</b> Learning objective</a></li>
 <li class="chapter" data-level="5.6.2" data-path="functional-programming.html"><a href="functional-programming.html#solution-1"><i class="fa fa-check"></i><b>5.6.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="functional-programming.html"><a href="functional-programming.html#developing-your-own-data-tools"><i class="fa fa-check"></i><b>5.7</b> Developing your own data tools</a></li>
+<li class="chapter" data-level="5.7" data-path="functional-programming.html"><a href="functional-programming.html#developing-your-own-data-tools"><i class="fa fa-check"></i><b>5.7</b> Developing your own data tools</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="functional-programming.html"><a href="functional-programming.html#why-developing-r-packages"><i class="fa fa-check"></i><b>5.7.1</b> Why developing R packages?</a></li>
+<li class="chapter" data-level="5.7.2" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>5.7.2</b> Workflow</a></li>
+<li class="chapter" data-level="5.7.3" data-path="functional-programming.html"><a href="functional-programming.html#developing-an-r-package"><i class="fa fa-check"></i><b>5.7.3</b> Developing an R package</a></li>
+<li class="chapter" data-level="5.7.4" data-path="functional-programming.html"><a href="functional-programming.html#required-components"><i class="fa fa-check"></i><b>5.7.4</b> Required Components</a></li>
+<li class="chapter" data-level="5.7.5" data-path="functional-programming.html"><a href="functional-programming.html#optional-components"><i class="fa fa-check"></i><b>5.7.5</b> Optional Components</a></li>
+<li class="chapter" data-level="5.7.6" data-path="functional-programming.html"><a href="functional-programming.html#building-an-r-package"><i class="fa fa-check"></i><b>5.7.6</b> Building an R package</a></li>
+<li class="chapter" data-level="5.7.7" data-path="functional-programming.html"><a href="functional-programming.html#distributing-an-r-package"><i class="fa fa-check"></i><b>5.7.7</b> Distributing an R package</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="semi-structured-data.html"><a href="semi-structured-data.html"><i class="fa fa-check"></i><b>6</b> Semi-structured data</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
 <li class="chapter" data-level="6.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#what-is-semi-structured-data"><i class="fa fa-check"></i><b>6.2</b> What is semi-structured data?</a></li>
-<li class="chapter" data-level="6.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow"><i class="fa fa-check"></i><b>6.3</b> Workflow</a></li>
+<li class="chapter" data-level="6.3" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>6.3</b> Workflow</a></li>
 <li class="chapter" data-level="6.4" data-path="semi-structured-data.html"><a href="semi-structured-data.html#htmlcss-web-scraping"><i class="fa fa-check"></i><b>6.4</b> HTML/CSS: web scraping</a></li>
 <li class="chapter" data-level="6.5" data-path="semi-structured-data.html"><a href="semi-structured-data.html#xmljson-social-media-scraping"><i class="fa fa-check"></i><b>6.5</b> XML/JSON: social media scraping</a>
 <ul>
@@ -259,7 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="machine-learning.html"><a href="machine-learning.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
 <li class="chapter" data-level="7.2" data-path="machine-learning.html"><a href="machine-learning.html#dataset"><i class="fa fa-check"></i><b>7.2</b> Dataset</a></li>
-<li class="chapter" data-level="7.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow"><i class="fa fa-check"></i><b>7.3</b> Workflow</a></li>
+<li class="chapter" data-level="7.3" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>7.3</b> Workflow</a></li>
 <li class="chapter" data-level="7.4" data-path="machine-learning.html"><a href="machine-learning.html#pre-processing"><i class="fa fa-check"></i><b>7.4</b> Pre-processing</a>
 <ul>
 <li class="chapter" data-level="7.4.1" data-path="machine-learning.html"><a href="machine-learning.html#regression-setup"><i class="fa fa-check"></i><b>7.4.1</b> Regression setup</a></li>
@@ -288,33 +328,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="big-data.html"><a href="big-data.html"><i class="fa fa-check"></i><b>8</b> Big data</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="big-data.html"><a href="big-data.html#database-and-sql"><i class="fa fa-check"></i><b>8.1</b> Database and SQL</a></li>
-<li class="chapter" data-level="8.2" data-path="motivation.html"><a href="motivation.html#motivation"><i class="fa fa-check"></i><b>8.2</b> Motivation</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="what-is-sql.html"><a href="what-is-sql.html"><i class="fa fa-check"></i><b>9</b> What is SQL?</a></li>
-<li class="chapter" data-level="10" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>10</b> Learning objectives</a>
+<li class="chapter" data-level="8.1" data-path="motivation.html"><a href="motivation.html#motivation"><i class="fa fa-check"></i><b>8.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.2" data-path="big-data.html"><a href="big-data.html#what-is-sql"><i class="fa fa-check"></i><b>8.2</b> What is SQL?</a></li>
+<li class="chapter" data-level="8.3" data-path="big-data.html"><a href="big-data.html#learning-objectives"><i class="fa fa-check"></i><b>8.3</b> Learning objectives</a></li>
+<li class="chapter" data-level="8.4" data-path="big-data.html"><a href="big-data.html#quick-overview"><i class="fa fa-check"></i><b>8.4</b> Quick overview</a></li>
+<li class="chapter" data-level="8.5" data-path="intro.html"><a href="intro.html#setup"><i class="fa fa-check"></i><b>8.5</b> Setup</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="intro.html"><a href="intro.html#setup"><i class="fa fa-check"></i><b>10.1</b> Setup</a>
-<ul>
-<li class="chapter" data-level="10.1.1" data-path="learning-objectives.html"><a href="learning-objectives.html#packages"><i class="fa fa-check"></i><b>10.1.1</b> Packages</a></li>
-<li class="chapter" data-level="10.1.2" data-path="learning-objectives.html"><a href="learning-objectives.html#data-sets"><i class="fa fa-check"></i><b>10.1.2</b> Data sets</a></li>
+<li class="chapter" data-level="8.5.1" data-path="big-data.html"><a href="big-data.html#packages"><i class="fa fa-check"></i><b>8.5.1</b> Packages</a></li>
+<li class="chapter" data-level="8.5.2" data-path="big-data.html"><a href="big-data.html#data-sets"><i class="fa fa-check"></i><b>8.5.2</b> Data sets</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow"><i class="fa fa-check"></i><b>10.2</b> Workflow</a></li>
-<li class="chapter" data-level="10.3" data-path="learning-objectives.html"><a href="learning-objectives.html#create-a-database"><i class="fa fa-check"></i><b>10.3</b> Create a database</a></li>
-<li class="chapter" data-level="10.4" data-path="learning-objectives.html"><a href="learning-objectives.html#copy-an-object-as-a-table-to-the-database-push"><i class="fa fa-check"></i><b>10.4</b> Copy an object as a table to the database (push)</a></li>
-<li class="chapter" data-level="10.5" data-path="learning-objectives.html"><a href="learning-objectives.html#quick-demonstrations"><i class="fa fa-check"></i><b>10.5</b> Quick demonstrations:</a></li>
-<li class="chapter" data-level="10.6" data-path="learning-objectives.html"><a href="learning-objectives.html#tidy-way-dplyr---sql"><i class="fa fa-check"></i><b>10.6</b> Tidy-way: dplyr -&gt; SQL</a>
+<li class="chapter" data-level="8.6" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>8.6</b> Workflow</a></li>
+<li class="chapter" data-level="8.7" data-path="big-data.html"><a href="big-data.html#create-a-database"><i class="fa fa-check"></i><b>8.7</b> Create a database</a></li>
+<li class="chapter" data-level="8.8" data-path="big-data.html"><a href="big-data.html#copy-an-object-as-a-table-to-the-database-push"><i class="fa fa-check"></i><b>8.8</b> Copy an object as a table to the database (push)</a></li>
+<li class="chapter" data-level="8.9" data-path="big-data.html"><a href="big-data.html#quick-demonstrations"><i class="fa fa-check"></i><b>8.9</b> Quick demonstrations:</a></li>
+<li class="chapter" data-level="8.10" data-path="big-data.html"><a href="big-data.html#tidy-way-dplyr---sql"><i class="fa fa-check"></i><b>8.10</b> Tidy-way: dplyr -&gt; SQL</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="learning-objectives.html"><a href="learning-objectives.html#select-select"><i class="fa fa-check"></i><b>10.6.1</b> <code>select</code> = <code>SELECT</code></a></li>
-<li class="chapter" data-level="10.6.2" data-path="learning-objectives.html"><a href="learning-objectives.html#mutate-select-as"><i class="fa fa-check"></i><b>10.6.2</b> <code>mutate</code> = <code>SELECT</code> <code>AS</code></a></li>
-<li class="chapter" data-level="10.6.3" data-path="learning-objectives.html"><a href="learning-objectives.html#filter-where"><i class="fa fa-check"></i><b>10.6.3</b> <code>filter</code> = <code>WHERE</code></a></li>
-<li class="chapter" data-level="10.6.4" data-path="learning-objectives.html"><a href="learning-objectives.html#arrange-order-by"><i class="fa fa-check"></i><b>10.6.4</b> <code>arrange</code> = <code>ORDER BY</code></a></li>
-<li class="chapter" data-level="10.6.5" data-path="learning-objectives.html"><a href="learning-objectives.html#summarise-select-as-and-group-by-group-by"><i class="fa fa-check"></i><b>10.6.5</b> <code>summarise</code> = <code>SELECT</code> <code>AS</code> and <code>group by</code> = <code>GROUP BY</code></a></li>
-<li class="chapter" data-level="10.6.6" data-path="learning-objectives.html"><a href="learning-objectives.html#joins"><i class="fa fa-check"></i><b>10.6.6</b> Joins</a></li>
+<li class="chapter" data-level="8.10.1" data-path="big-data.html"><a href="big-data.html#select-select"><i class="fa fa-check"></i><b>8.10.1</b> <code>select</code> = <code>SELECT</code></a></li>
+<li class="chapter" data-level="8.10.2" data-path="big-data.html"><a href="big-data.html#mutate-select-as"><i class="fa fa-check"></i><b>8.10.2</b> <code>mutate</code> = <code>SELECT</code> <code>AS</code></a></li>
+<li class="chapter" data-level="8.10.3" data-path="big-data.html"><a href="big-data.html#filter-where"><i class="fa fa-check"></i><b>8.10.3</b> <code>filter</code> = <code>WHERE</code></a></li>
+<li class="chapter" data-level="8.10.4" data-path="big-data.html"><a href="big-data.html#arrange-order-by"><i class="fa fa-check"></i><b>8.10.4</b> <code>arrange</code> = <code>ORDER BY</code></a></li>
+<li class="chapter" data-level="8.10.5" data-path="big-data.html"><a href="big-data.html#summarise-select-as-and-group-by-group-by"><i class="fa fa-check"></i><b>8.10.5</b> <code>summarise</code> = <code>SELECT</code> <code>AS</code> and <code>group by</code> = <code>GROUP BY</code></a></li>
+<li class="chapter" data-level="8.10.6" data-path="big-data.html"><a href="big-data.html#joins"><i class="fa fa-check"></i><b>8.10.6</b> Joins</a></li>
 </ul></li>
-<li class="chapter" data-level="10.7" data-path="learning-objectives.html"><a href="learning-objectives.html#collect-pull"><i class="fa fa-check"></i><b>10.7</b> Collect (pull)</a></li>
-<li class="chapter" data-level="10.8" data-path="learning-objectives.html"><a href="learning-objectives.html#disconnect"><i class="fa fa-check"></i><b>10.8</b> Disconnect</a></li>
-<li class="chapter" data-level="10.9" data-path="intro.html"><a href="intro.html#references"><i class="fa fa-check"></i><b>10.9</b> References</a></li>
+<li class="chapter" data-level="8.11" data-path="big-data.html"><a href="big-data.html#collect-pull"><i class="fa fa-check"></i><b>8.11</b> Collect (pull)</a></li>
+<li class="chapter" data-level="8.12" data-path="big-data.html"><a href="big-data.html#disconnect"><i class="fa fa-check"></i><b>8.12</b> Disconnect</a></li>
+<li class="chapter" data-level="8.13" data-path="intro.html"><a href="intro.html#references"><i class="fa fa-check"></i><b>8.13</b> References</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/jaeyk/PS239T/" target="blank">Published with bookdown</a></li>
@@ -350,8 +388,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Loading required package: pacman</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="tidy-data.html#cb32-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(</span>
 <span id="cb32-2"><a href="tidy-data.html#cb32-2"></a>  tidyverse, <span class="co"># for the tidyverse framework</span></span>
-<span id="cb32-3"><a href="tidy-data.html#cb32-3"></a>  here <span class="co"># for computational reproducibility</span></span>
-<span id="cb32-4"><a href="tidy-data.html#cb32-4"></a>  )</span></code></pre></div>
+<span id="cb32-3"><a href="tidy-data.html#cb32-3"></a>  here, <span class="co"># for computational reproducibility</span></span>
+<span id="cb32-4"><a href="tidy-data.html#cb32-4"></a>  gapminder, <span class="co"># toy data</span></span>
+<span id="cb32-5"><a href="tidy-data.html#cb32-5"></a>  nycflights13 <span class="co"># for exercise </span></span>
+<span id="cb32-6"><a href="tidy-data.html#cb32-6"></a>  )</span></code></pre></div>
 <p>The rest of the chapter follows the basic structure in <a href="https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">the Data Wrangling Cheat Sheet</a> created by RStudio.</p>
 </div>
 <div id="tidyverse-way-of-thinking-data-science-workflow" class="section level2" number="4.2">
@@ -407,15 +447,1806 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
 </div>
-<div id="wrangling-data" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> Wrangling data</h2>
+<div id="reshape-data" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Reshape Data</h2>
+<p>Let’s take a look at the cases of untidy data.</p>
+<div class="figure">
+<img src="https://garrettgman.github.io/images/tidy-5.png" alt="" />
+<p class="caption">Messy Data Case 1 (Source: R for Data Science)</p>
 </div>
-<div id="wrangling-data-at-scale" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> Wrangling data at scale</h2>
+<ul>
+<li>Make It Longer</li>
+</ul>
+<p><strong>Challenge</strong>: Why this data is not tidy?</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="tidy-data.html#cb35-1"></a>table4a</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   country     `1999` `2000`
+## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766</code></pre>
+<ul>
+<li><p>Let’s pivot (rotate by 90 degree).</p></li>
+<li><p><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html"><code>pivot_longer()</code></a> increases the number of rows (longer) and decreases the number of columns. The inverse function is <code>pivot_wider()</code>. These functions improve the usability of <code>gather()</code> and <code>spread()</code>.</p></li>
+</ul>
+<div class="figure">
+<img src="https://www.storybench.org/wp-content/uploads/2019/08/pivot-longer-image.png" alt="" />
+<p class="caption">What pivot_longer() does (Source: <a href="https://www.storybench.org" class="uri">https://www.storybench.org</a>)</p>
 </div>
-<div id="modeling-and-visualizing-tidy-data" class="section level2" number="4.6">
-<h2><span class="header-section-number">4.6</span> Modeling and visualizing tidy data</h2>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="tidy-data.html#cb37-1"></a><span class="co"># Old way, less intuitive</span></span>
+<span id="cb37-2"><a href="tidy-data.html#cb37-2"></a>table4a <span class="op">%&gt;%</span></span>
+<span id="cb37-3"><a href="tidy-data.html#cb37-3"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;cases&quot;</span>, <span class="co"># Current column names</span></span>
+<span id="cb37-4"><a href="tidy-data.html#cb37-4"></a>         <span class="dt">value =</span> <span class="st">&quot;year&quot;</span>, <span class="co"># The values matched to cases</span></span>
+<span id="cb37-5"><a href="tidy-data.html#cb37-5"></a>         <span class="kw">c</span>(<span class="st">&quot;1999&quot;</span>, <span class="st">&quot;2000&quot;</span>)) <span class="co"># Selected columns</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country     cases   year
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
+## 1 Afghanistan 1999     745
+## 2 Brazil      1999   37737
+## 3 China       1999  212258
+## 4 Afghanistan 2000    2666
+## 5 Brazil      2000   80488
+## 6 China       2000  213766</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="tidy-data.html#cb39-1"></a><span class="co"># New way, more intuitive</span></span>
+<span id="cb39-2"><a href="tidy-data.html#cb39-2"></a>table4a <span class="op">%&gt;%</span></span>
+<span id="cb39-3"><a href="tidy-data.html#cb39-3"></a><span class="st">  </span><span class="kw">pivot_longer</span>(</span>
+<span id="cb39-4"><a href="tidy-data.html#cb39-4"></a>    <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;1999&quot;</span>, <span class="st">&quot;2000&quot;</span>), <span class="co"># Selected columns</span></span>
+<span id="cb39-5"><a href="tidy-data.html#cb39-5"></a>    <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="co"># Shorter columns (the columns going to be in one column called year)</span></span>
+<span id="cb39-6"><a href="tidy-data.html#cb39-6"></a>    <span class="dt">values_to =</span> <span class="st">&quot;cases&quot;</span>) <span class="co"># Longer rows (the values are going to be in a separate column called named cases)</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country     year   cases
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
+## 1 Afghanistan 1999     745
+## 2 Afghanistan 2000    2666
+## 3 Brazil      1999   37737
+## 4 Brazil      2000   80488
+## 5 China       1999  212258
+## 6 China       2000  213766</code></pre>
+<ul>
+<li><p>There’s another problem, did you catch it?</p></li>
+<li><p>The data type of <code>year</code> variable should be <code>numeric</code> not <code>character</code>. By default, <code>pivot_longer()</code> transforms uninformative columns to character.</p></li>
+<li><p>You can fix this problem by using <code>names_transform</code> argument.</p></li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="tidy-data.html#cb41-1"></a>table4a <span class="op">%&gt;%</span></span>
+<span id="cb41-2"><a href="tidy-data.html#cb41-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(</span>
+<span id="cb41-3"><a href="tidy-data.html#cb41-3"></a>    <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;1999&quot;</span>, <span class="st">&quot;2000&quot;</span>), <span class="co"># Put two columns together</span></span>
+<span id="cb41-4"><a href="tidy-data.html#cb41-4"></a>    <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="co"># Shorter columns (the columns going to be in one column called year)</span></span>
+<span id="cb41-5"><a href="tidy-data.html#cb41-5"></a>    <span class="dt">values_to =</span> <span class="st">&quot;cases&quot;</span>, <span class="co"># Longer rows (the values are going to be in a separate column called named cases)</span></span>
+<span id="cb41-6"><a href="tidy-data.html#cb41-6"></a>    <span class="dt">names_transform =</span> <span class="kw">list</span>(<span class="dt">year =</span> readr<span class="op">::</span>parse_number)</span>
+<span id="cb41-7"><a href="tidy-data.html#cb41-7"></a>    ) <span class="co"># Transform the variable  </span></span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country      year  cases
+##   &lt;chr&gt;       &lt;dbl&gt;  &lt;int&gt;
+## 1 Afghanistan  1999    745
+## 2 Afghanistan  2000   2666
+## 3 Brazil       1999  37737
+## 4 Brazil       2000  80488
+## 5 China        1999 212258
+## 6 China        2000 213766</code></pre>
+<p><strong>Additional tips</strong></p>
+<p><code>parse_number()</code> also keeps only numeric information in a variable.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="tidy-data.html#cb43-1"></a><span class="kw">parse_number</span>(<span class="st">&quot;reply1994&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 1994</code></pre>
+<p>A flat file (e.g., CSV) is a rectangular shaped combination of strings. <a href="https://cran.r-project.org/web/packages/readr/vignettes/readr.html">Parsing</a> determines the type of each column and turns into a vector of a more specific type. Tidyverse has <code>parse_</code> functions (from <code>readr</code> package) that are flexible and fast (e.g., <code>parse_integer()</code>, <code>parse_double()</code>, <code>parse_logical()</code>, <code>parse_datetime()</code>, <code>parse_date()</code>, <code>parse_time()</code>, <code>parse_factor()</code>, etc).</p>
+<ul>
+<li>Let’s do another practice.</li>
+</ul>
+<p><strong>Challenge</strong></p>
+<ol style="list-style-type: decimal">
+<li>Why this data is not tidy? (This exercise comes from <a href="https://tidyr.tidyverse.org/articles/pivot.html"><code>pivot</code> function vigenette</a>.) Too long or too wide?</li>
+</ol>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="tidy-data.html#cb45-1"></a>billboard</span></code></pre></div>
+<pre><code>## # A tibble: 317 x 79
+##    artist track date.entered   wk1   wk2   wk3   wk4   wk5   wk6   wk7   wk8
+##    &lt;chr&gt;  &lt;chr&gt; &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 2 Pac  Baby… 2000-02-26      87    82    72    77    87    94    99    NA
+##  2 2Ge+h… The … 2000-09-02      91    87    92    NA    NA    NA    NA    NA
+##  3 3 Doo… Kryp… 2000-04-08      81    70    68    67    66    57    54    53
+##  4 3 Doo… Loser 2000-10-21      76    76    72    69    67    65    55    59
+##  5 504 B… Wobb… 2000-04-15      57    34    25    17    17    31    36    49
+##  6 98^0   Give… 2000-08-19      51    39    34    26    26    19     2     2
+##  7 A*Tee… Danc… 2000-07-08      97    97    96    95   100    NA    NA    NA
+##  8 Aaliy… I Do… 2000-01-29      84    62    51    41    38    35    35    38
+##  9 Aaliy… Try … 2000-03-18      59    53    38    28    21    18    16    14
+## 10 Adams… Open… 2000-08-26      76    76    74    69    68    67    61    58
+## # … with 307 more rows, and 68 more variables: wk9 &lt;dbl&gt;, wk10 &lt;dbl&gt;,
+## #   wk11 &lt;dbl&gt;, wk12 &lt;dbl&gt;, wk13 &lt;dbl&gt;, wk14 &lt;dbl&gt;, wk15 &lt;dbl&gt;, wk16 &lt;dbl&gt;,
+## #   wk17 &lt;dbl&gt;, wk18 &lt;dbl&gt;, wk19 &lt;dbl&gt;, wk20 &lt;dbl&gt;, wk21 &lt;dbl&gt;, wk22 &lt;dbl&gt;,
+## #   wk23 &lt;dbl&gt;, wk24 &lt;dbl&gt;, wk25 &lt;dbl&gt;, wk26 &lt;dbl&gt;, wk27 &lt;dbl&gt;, wk28 &lt;dbl&gt;,
+## #   wk29 &lt;dbl&gt;, wk30 &lt;dbl&gt;, wk31 &lt;dbl&gt;, wk32 &lt;dbl&gt;, wk33 &lt;dbl&gt;, wk34 &lt;dbl&gt;,
+## #   wk35 &lt;dbl&gt;, wk36 &lt;dbl&gt;, wk37 &lt;dbl&gt;, wk38 &lt;dbl&gt;, wk39 &lt;dbl&gt;, wk40 &lt;dbl&gt;,
+## #   wk41 &lt;dbl&gt;, wk42 &lt;dbl&gt;, wk43 &lt;dbl&gt;, wk44 &lt;dbl&gt;, wk45 &lt;dbl&gt;, wk46 &lt;dbl&gt;,
+## #   wk47 &lt;dbl&gt;, wk48 &lt;dbl&gt;, wk49 &lt;dbl&gt;, wk50 &lt;dbl&gt;, wk51 &lt;dbl&gt;, wk52 &lt;dbl&gt;,
+## #   wk53 &lt;dbl&gt;, wk54 &lt;dbl&gt;, wk55 &lt;dbl&gt;, wk56 &lt;dbl&gt;, wk57 &lt;dbl&gt;, wk58 &lt;dbl&gt;,
+## #   wk59 &lt;dbl&gt;, wk60 &lt;dbl&gt;, wk61 &lt;dbl&gt;, wk62 &lt;dbl&gt;, wk63 &lt;dbl&gt;, wk64 &lt;dbl&gt;,
+## #   wk65 &lt;dbl&gt;, wk66 &lt;lgl&gt;, wk67 &lt;lgl&gt;, wk68 &lt;lgl&gt;, wk69 &lt;lgl&gt;, wk70 &lt;lgl&gt;,
+## #   wk71 &lt;lgl&gt;, wk72 &lt;lgl&gt;, wk73 &lt;lgl&gt;, wk74 &lt;lgl&gt;, wk75 &lt;lgl&gt;, wk76 &lt;lgl&gt;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>How can you fix it? Which pivot?</li>
+</ol>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="tidy-data.html#cb47-1"></a><span class="co"># Old way</span></span>
+<span id="cb47-2"><a href="tidy-data.html#cb47-2"></a>billboard <span class="op">%&gt;%</span></span>
+<span id="cb47-3"><a href="tidy-data.html#cb47-3"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;week&quot;</span>,</span>
+<span id="cb47-4"><a href="tidy-data.html#cb47-4"></a>         <span class="dt">value =</span> <span class="st">&quot;rank&quot;</span>,</span>
+<span id="cb47-5"><a href="tidy-data.html#cb47-5"></a>         <span class="kw">starts_with</span>(<span class="st">&quot;wk&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Use regular expressions</span></span>
+<span id="cb47-6"><a href="tidy-data.html#cb47-6"></a><span class="st">  </span><span class="kw">drop_na</span>() <span class="co"># Drop NAs</span></span></code></pre></div>
+<pre><code>## # A tibble: 5,307 x 5
+##    artist         track                   date.entered week   rank
+##    &lt;chr&gt;          &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
+##  1 2 Pac          Baby Don&#39;t Cry (Keep... 2000-02-26   wk1      87
+##  2 2Ge+her        The Hardest Part Of ... 2000-09-02   wk1      91
+##  3 3 Doors Down   Kryptonite              2000-04-08   wk1      81
+##  4 3 Doors Down   Loser                   2000-10-21   wk1      76
+##  5 504 Boyz       Wobble Wobble           2000-04-15   wk1      57
+##  6 98^0           Give Me Just One Nig... 2000-08-19   wk1      51
+##  7 A*Teens        Dancing Queen           2000-07-08   wk1      97
+##  8 Aaliyah        I Don&#39;t Wanna           2000-01-29   wk1      84
+##  9 Aaliyah        Try Again               2000-03-18   wk1      59
+## 10 Adams, Yolanda Open My Heart           2000-08-26   wk1      76
+## # … with 5,297 more rows</code></pre>
+<ul>
+<li>Note that <code>pivot_longer()</code> is more versatile than <code>gather()</code>.</li>
+</ul>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="tidy-data.html#cb49-1"></a><span class="co"># New way</span></span>
+<span id="cb49-2"><a href="tidy-data.html#cb49-2"></a>billboard <span class="op">%&gt;%</span></span>
+<span id="cb49-3"><a href="tidy-data.html#cb49-3"></a><span class="st">  </span><span class="kw">pivot_longer</span>(</span>
+<span id="cb49-4"><a href="tidy-data.html#cb49-4"></a>    <span class="dt">cols =</span> <span class="kw">starts_with</span>(<span class="st">&quot;wk&quot;</span>), <span class="co"># Use regular expressions</span></span>
+<span id="cb49-5"><a href="tidy-data.html#cb49-5"></a>    <span class="dt">names_to =</span> <span class="st">&quot;week&quot;</span>,</span>
+<span id="cb49-6"><a href="tidy-data.html#cb49-6"></a>    <span class="dt">values_to =</span> <span class="st">&quot;rank&quot;</span>,</span>
+<span id="cb49-7"><a href="tidy-data.html#cb49-7"></a>    <span class="dt">values_drop_na =</span> <span class="ot">TRUE</span> <span class="co"># Drop NAs</span></span>
+<span id="cb49-8"><a href="tidy-data.html#cb49-8"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 5,307 x 5
+##    artist  track                   date.entered week   rank
+##    &lt;chr&gt;   &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
+##  1 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk1      87
+##  2 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk2      82
+##  3 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk3      72
+##  4 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk4      77
+##  5 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk5      87
+##  6 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk6      94
+##  7 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk7      99
+##  8 2Ge+her The Hardest Part Of ... 2000-09-02   wk1      91
+##  9 2Ge+her The Hardest Part Of ... 2000-09-02   wk2      87
+## 10 2Ge+her The Hardest Part Of ... 2000-09-02   wk3      92
+## # … with 5,297 more rows</code></pre>
+<ul>
+<li><p>Make It Wider</p></li>
+<li><p>Why this data is not tidy?</p></li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="tidy-data.html#cb51-1"></a>table2</span></code></pre></div>
+<pre><code>## # A tibble: 12 x 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583</code></pre>
+<ul>
+<li><p>Each observation is spread across two rows.</p></li>
+<li><p>How can you fix it?: <code>pivot_wider()</code>.</p></li>
+</ul>
+<p><strong>Two differences between <code>pivot_longer()</code> and <code>pivot_wider()</code></strong></p>
+<ul>
+<li><p>In <code>pivot_longer()</code>, the arguments are named <code>names_to</code> and <code>values_to</code> (<em>to</em>).</p></li>
+<li><p>In <code>pivot_wider()</code>, this pattern is opposite. The arguments are named <code>names_from</code> and <code>values_from</code> (<em>from</em>).</p></li>
+<li><p>The number of required arguments for <code>pivot_longer()</code> is 3 (col, names_to, values_to).</p></li>
+<li><p>The number of required arguments for <code>pivot_wider()</code> is 2 (names_from, values_from).</p></li>
+</ul>
+<div class="figure">
+<img src="https://www.storybench.org/wp-content/uploads/2019/08/pivot-wider-image.png" alt="" />
+<p class="caption">What pivot_wider() does (Source: <a href="https://www.storybench.org" class="uri">https://www.storybench.org</a>)</p>
+</div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="tidy-data.html#cb53-1"></a><span class="co"># Old way</span></span>
+<span id="cb53-2"><a href="tidy-data.html#cb53-2"></a>table2 <span class="op">%&gt;%</span></span>
+<span id="cb53-3"><a href="tidy-data.html#cb53-3"></a><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> type,</span>
+<span id="cb53-4"><a href="tidy-data.html#cb53-4"></a>         <span class="dt">value =</span> count)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="tidy-data.html#cb55-1"></a><span class="co"># New way</span></span>
+<span id="cb55-2"><a href="tidy-data.html#cb55-2"></a>table2 <span class="op">%&gt;%</span></span>
+<span id="cb55-3"><a href="tidy-data.html#cb55-3"></a><span class="st">  </span><span class="kw">pivot_wider</span>(</span>
+<span id="cb55-4"><a href="tidy-data.html#cb55-4"></a>    <span class="dt">names_from =</span> type, <span class="co"># first</span></span>
+<span id="cb55-5"><a href="tidy-data.html#cb55-5"></a>    <span class="dt">values_from =</span> count <span class="co"># second</span></span>
+<span id="cb55-6"><a href="tidy-data.html#cb55-6"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<p>Sometimes, a consultee came to me and asked: “I don’t have missing values in my original dataframe. Then R said that I have missing values after I’ve done some data transformations. What happened?”</p>
+<p>Here’s an answer.</p>
+<p>R defines missing values in two ways.</p>
+<ul>
+<li><p><em>Implicit missing values</em>: simply not present in the data.</p></li>
+<li><p><em>Explicit missing values</em>: flagged with NA</p></li>
+</ul>
+<p><strong>Challenge</strong></p>
+<p>The example comes from <a href="https://r4ds.had.co.nz/tidy-data.html"><em>R for Data Science</em></a>.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="tidy-data.html#cb57-1"></a>stocks &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb57-2"><a href="tidy-data.html#cb57-2"></a>  <span class="dt">year =</span> <span class="kw">c</span>(<span class="dv">2019</span>, <span class="dv">2019</span>, <span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2020</span>, <span class="dv">2020</span>),</span>
+<span id="cb57-3"><a href="tidy-data.html#cb57-3"></a>  <span class="dt">qtr =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), </span>
+<span id="cb57-4"><a href="tidy-data.html#cb57-4"></a>  <span class="dt">return =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">NA</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb57-5"><a href="tidy-data.html#cb57-5"></a>)</span>
+<span id="cb57-6"><a href="tidy-data.html#cb57-6"></a></span>
+<span id="cb57-7"><a href="tidy-data.html#cb57-7"></a>stocks</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##    year   qtr return
+##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2019     1      1
+## 2  2019     2      2
+## 3  2019     3      3
+## 4  2020     2     NA
+## 5  2020     3      2
+## 6  2020     4      3</code></pre>
+<ul>
+<li><p>Where is explicit missing value?</p></li>
+<li><p>Does <code>stocks</code> have implicit missing values?</p></li>
+</ul>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="tidy-data.html#cb59-1"></a><span class="co"># implicit missing values become explicit </span></span>
+<span id="cb59-2"><a href="tidy-data.html#cb59-2"></a>stocks <span class="op">%&gt;%</span></span>
+<span id="cb59-3"><a href="tidy-data.html#cb59-3"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> year, </span>
+<span id="cb59-4"><a href="tidy-data.html#cb59-4"></a>              <span class="dt">values_from =</span> return)</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+##     qtr `2019` `2020`
+##   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     1      1     NA
+## 2     2      2     NA
+## 3     3      3      2
+## 4     4     NA      3</code></pre>
+<p><strong>Challenge</strong></p>
+<ul>
+<li><p>This exercise comes from <a href="https://tidyr.tidyverse.org/articles/pivot.html"><code>pivot</code> function vigenette</a>.</p></li>
+<li><p>Could you make <code>station</code> a series of dummy variables using <code>pivot_wider()</code>?</p></li>
+</ul>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="tidy-data.html#cb61-1"></a>fish_encounters</span></code></pre></div>
+<pre><code>## # A tibble: 114 x 3
+##    fish  station  seen
+##    &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;
+##  1 4842  Release     1
+##  2 4842  I80_1       1
+##  3 4842  Lisbon      1
+##  4 4842  Rstr        1
+##  5 4842  Base_TD     1
+##  6 4842  BCE         1
+##  7 4842  BCW         1
+##  8 4842  BCE2        1
+##  9 4842  BCW2        1
+## 10 4842  MAE         1
+## # … with 104 more rows</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Which pivot you should use?</p></li>
+<li><p>Are there explicit missing values?</p></li>
+<li><p>How could you turn these NAs into 0s? Check <code>values_fill</code> argument in the <code>pivot_wider()</code> function.</p></li>
+</ol>
+<ul>
+<li>Separate</li>
+</ul>
+<div class="figure">
+<img src="https://garrettgman.github.io/images/tidy-6.png" alt="" />
+<p class="caption">Messy Data Case 2 (Source: R for Data Science)</p>
+</div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="tidy-data.html#cb63-1"></a><span class="co"># Toy example</span></span>
+<span id="cb63-2"><a href="tidy-data.html#cb63-2"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;Dad.apple&quot;</span>, <span class="st">&quot;Mom.orange&quot;</span>, <span class="st">&quot;Daughter.banana&quot;</span>))</span>
+<span id="cb63-3"><a href="tidy-data.html#cb63-3"></a></span>
+<span id="cb63-4"><a href="tidy-data.html#cb63-4"></a>df</span></code></pre></div>
+<pre><code>##                 x
+## 1            &lt;NA&gt;
+## 2       Dad.apple
+## 3      Mom.orange
+## 4 Daughter.banana</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="tidy-data.html#cb65-1"></a><span class="co"># Separate</span></span>
+<span id="cb65-2"><a href="tidy-data.html#cb65-2"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb65-3"><a href="tidy-data.html#cb65-3"></a><span class="st">  </span><span class="kw">separate</span>(x, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;Preferred_fruit&quot;</span>))</span></code></pre></div>
+<pre><code>##       Name Preferred_fruit
+## 1     &lt;NA&gt;            &lt;NA&gt;
+## 2      Dad           apple
+## 3      Mom          orange
+## 4 Daughter          banana</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="tidy-data.html#cb67-1"></a><span class="co"># Don&#39;t need the first variable</span></span>
+<span id="cb67-2"><a href="tidy-data.html#cb67-2"></a></span>
+<span id="cb67-3"><a href="tidy-data.html#cb67-3"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb67-4"><a href="tidy-data.html#cb67-4"></a><span class="st">  </span><span class="kw">separate</span>(x, <span class="dt">into =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;Preferred_fruit&quot;</span>))</span></code></pre></div>
+<pre><code>##   Preferred_fruit
+## 1            &lt;NA&gt;
+## 2           apple
+## 3          orange
+## 4          banana</code></pre>
+<p><strong>Practice</strong></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="tidy-data.html#cb69-1"></a>table3</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country      year rate             
+## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583</code></pre>
+<ul>
+<li>Note <code>sep</code> argument. You can specify how to separate joined values.</li>
+</ul>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="tidy-data.html#cb71-1"></a>table3 <span class="op">%&gt;%</span></span>
+<span id="cb71-2"><a href="tidy-data.html#cb71-2"></a><span class="st">  </span><span class="kw">separate</span>(rate,</span>
+<span id="cb71-3"><a href="tidy-data.html#cb71-3"></a>           <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>),</span>
+<span id="cb71-4"><a href="tidy-data.html#cb71-4"></a>           <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year cases  population
+##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     
+## 1 Afghanistan  1999 745    19987071  
+## 2 Afghanistan  2000 2666   20595360  
+## 3 Brazil       1999 37737  172006362 
+## 4 Brazil       2000 80488  174504898 
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<ul>
+<li>Note <code>convert</code> argument. You can specify whether automatically convert the new values or not.</li>
+</ul>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="tidy-data.html#cb73-1"></a>table3 <span class="op">%&gt;%</span></span>
+<span id="cb73-2"><a href="tidy-data.html#cb73-2"></a><span class="st">  </span><span class="kw">separate</span>(rate,</span>
+<span id="cb73-3"><a href="tidy-data.html#cb73-3"></a>           <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>),</span>
+<span id="cb73-4"><a href="tidy-data.html#cb73-4"></a>           <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>,</span>
+<span id="cb73-5"><a href="tidy-data.html#cb73-5"></a>           <span class="dt">convert =</span> <span class="ot">TRUE</span>) <span class="co"># cases and population become integers</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<ul>
+<li>Unite</li>
+</ul>
+<p><code>pivot_longer()</code> &lt;-&gt; <code>pivot_wider()</code></p>
+<p><code>separate()</code> &lt;-&gt; <code>unite()</code></p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="tidy-data.html#cb75-1"></a><span class="co"># Create a toy example</span></span>
+<span id="cb75-2"><a href="tidy-data.html#cb75-2"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb75-3"><a href="tidy-data.html#cb75-3"></a>  <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Jae&quot;</span>, <span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Jane&quot;</span>, <span class="ot">NA</span>),</span>
+<span id="cb75-4"><a href="tidy-data.html#cb75-4"></a>  <span class="dt">birthmonth =</span> <span class="kw">c</span>(<span class="st">&quot;April&quot;</span>, <span class="st">&quot;April&quot;</span>, <span class="st">&quot;June&quot;</span>, <span class="ot">NA</span>))</span>
+<span id="cb75-5"><a href="tidy-data.html#cb75-5"></a></span>
+<span id="cb75-6"><a href="tidy-data.html#cb75-6"></a><span class="co"># Include missing values</span></span>
+<span id="cb75-7"><a href="tidy-data.html#cb75-7"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unite</span>(<span class="st">&quot;contact&quot;</span>,</span>
+<span id="cb75-8"><a href="tidy-data.html#cb75-8"></a>             <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;birthmonth&quot;</span>))</span></code></pre></div>
+<pre><code>##     contact
+## 1 Jae_April
+## 2 Sun_April
+## 3 Jane_June
+## 4     NA_NA</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="tidy-data.html#cb77-1"></a><span class="co"># Do not include missing values</span></span>
+<span id="cb77-2"><a href="tidy-data.html#cb77-2"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unite</span>(<span class="st">&quot;contact&quot;</span>,</span>
+<span id="cb77-3"><a href="tidy-data.html#cb77-3"></a>             <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;birthmonth&quot;</span>),</span>
+<span id="cb77-4"><a href="tidy-data.html#cb77-4"></a>             <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>##     contact
+## 1 Jae_April
+## 2 Sun_April
+## 3 Jane_June
+## 4</code></pre>
+</div>
+<div id="represent-data" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Represent Data</h2>
+<ul>
+<li><p>Arrange</p></li>
+<li><p>Order rows</p></li>
+</ul>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="tidy-data.html#cb79-1"></a>dplyr<span class="op">::</span><span class="kw">arrange</span>(mtcars, mpg) <span class="co"># Low to High (default)</span></span></code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="tidy-data.html#cb81-1"></a>dplyr<span class="op">::</span><span class="kw">arrange</span>(mtcars, <span class="kw">desc</span>(mpg)) <span class="co"># High to Row</span></span></code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></pre>
+<ul>
+<li><p>Rename</p></li>
+<li><p>Rename columns</p></li>
+</ul>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="tidy-data.html#cb83-1"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">2011</span>, <span class="dv">2012</span>, <span class="dv">2013</span>))</span>
+<span id="cb83-2"><a href="tidy-data.html#cb83-2"></a></span>
+<span id="cb83-3"><a href="tidy-data.html#cb83-3"></a>df</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 1
+##       y
+##   &lt;dbl&gt;
+## 1  2011
+## 2  2012
+## 3  2013</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="tidy-data.html#cb85-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">Year =</span> <span class="co"># OLD name</span></span>
+<span id="cb85-2"><a href="tidy-data.html#cb85-2"></a>                y) <span class="co"># NEW name</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 x 1
+##    Year
+##   &lt;dbl&gt;
+## 1  2011
+## 2  2012
+## 3  2013</code></pre>
+</div>
+<div id="subset-observations-rows" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Subset Observations (Rows)</h2>
+<ul>
+<li><p>Choose row by logical condition</p></li>
+<li><p>Single condition</p></li>
+</ul>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="tidy-data.html#cb87-1"></a>starwars <span class="op">%&gt;%</span></span>
+<span id="cb87-2"><a href="tidy-data.html#cb87-2"></a><span class="st">  </span><span class="kw">filter</span>(gender <span class="op">==</span><span class="st"> &quot;female&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb87-3"><a href="tidy-data.html#cb87-3"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(height))</span></code></pre></div>
+<pre><code>## # A tibble: 0 x 14
+## # … with 14 variables: name &lt;chr&gt;, height &lt;int&gt;, mass &lt;dbl&gt;, hair_color &lt;chr&gt;,
+## #   skin_color &lt;chr&gt;, eye_color &lt;chr&gt;, birth_year &lt;dbl&gt;, sex &lt;chr&gt;,
+## #   gender &lt;chr&gt;, homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>The following filtering example was inspired by <a href="https://suzan.rbind.io/2018/02/dplyr-tutorial-3/">the suzanbert’s dplyr blog post</a>.</p>
+<ul>
+<li>Multiple conditions (numeric)</li>
+</ul>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="tidy-data.html#cb89-1"></a><span class="co"># First example</span></span>
+<span id="cb89-2"><a href="tidy-data.html#cb89-2"></a>starwars <span class="op">%&gt;%</span></span>
+<span id="cb89-3"><a href="tidy-data.html#cb89-3"></a><span class="st">  </span><span class="kw">filter</span>(height <span class="op">&lt;</span><span class="st"> </span><span class="dv">180</span>, height <span class="op">&gt;</span><span class="st"> </span><span class="dv">160</span>) <span class="op">%&gt;%</span></span>
+<span id="cb89-4"><a href="tidy-data.html#cb89-4"></a><span class="st">  </span><span class="kw">nrow</span>()</span></code></pre></div>
+<pre><code>## [1] 24</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="tidy-data.html#cb91-1"></a><span class="co"># Same as above</span></span>
+<span id="cb91-2"><a href="tidy-data.html#cb91-2"></a>starwars <span class="op">%&gt;%</span></span>
+<span id="cb91-3"><a href="tidy-data.html#cb91-3"></a><span class="st">  </span><span class="kw">filter</span>(height <span class="op">&lt;</span><span class="st"> </span><span class="dv">180</span> <span class="op">&amp;</span><span class="st"> </span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">160</span>) <span class="op">%&gt;%</span></span>
+<span id="cb91-4"><a href="tidy-data.html#cb91-4"></a><span class="st">  </span><span class="kw">nrow</span>()</span></code></pre></div>
+<pre><code>## [1] 24</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="tidy-data.html#cb93-1"></a><span class="co"># Not same as above</span></span>
+<span id="cb93-2"><a href="tidy-data.html#cb93-2"></a>starwars <span class="op">%&gt;%</span></span>
+<span id="cb93-3"><a href="tidy-data.html#cb93-3"></a><span class="st">  </span><span class="kw">filter</span>(height <span class="op">&lt;</span><span class="st"> </span><span class="dv">180</span> <span class="op">|</span><span class="st"> </span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">160</span>) <span class="op">%&gt;%</span></span>
+<span id="cb93-4"><a href="tidy-data.html#cb93-4"></a><span class="st">  </span><span class="kw">nrow</span>()</span></code></pre></div>
+<pre><code>## [1] 81</code></pre>
+<p><strong>Challenge</strong></p>
+<ol style="list-style-type: decimal">
+<li>Use <code>filter(between())</code> to find characters whose heights are between 180 and 160 and (2) count the number of these observations.</li>
+</ol>
+<ul>
+<li>Minimum reproducible example</li>
+</ul>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="tidy-data.html#cb95-1"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb95-2"><a href="tidy-data.html#cb95-2"></a>  <span class="dt">heights =</span> <span class="kw">c</span>(<span class="dv">160</span><span class="op">:</span><span class="dv">180</span>),</span>
+<span id="cb95-3"><a href="tidy-data.html#cb95-3"></a>  <span class="dt">char =</span> <span class="kw">rep</span>(<span class="st">&quot;none&quot;</span>, <span class="kw">length</span>(<span class="kw">c</span>(<span class="dv">160</span><span class="op">:</span><span class="dv">180</span>)))</span>
+<span id="cb95-4"><a href="tidy-data.html#cb95-4"></a>)</span>
+<span id="cb95-5"><a href="tidy-data.html#cb95-5"></a></span>
+<span id="cb95-6"><a href="tidy-data.html#cb95-6"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb95-7"><a href="tidy-data.html#cb95-7"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">between</span>(heights, <span class="dv">161</span>, <span class="dv">179</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 19 x 2
+##    heights char 
+##      &lt;int&gt; &lt;chr&gt;
+##  1     161 none 
+##  2     162 none 
+##  3     163 none 
+##  4     164 none 
+##  5     165 none 
+##  6     166 none 
+##  7     167 none 
+##  8     168 none 
+##  9     169 none 
+## 10     170 none 
+## 11     171 none 
+## 12     172 none 
+## 13     173 none 
+## 14     174 none 
+## 15     175 none 
+## 16     176 none 
+## 17     177 none 
+## 18     178 none 
+## 19     179 none</code></pre>
+<ul>
+<li>Multiple conditions (character)</li>
+</ul>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="tidy-data.html#cb97-1"></a><span class="co"># Filter names include ars; `grepl` is a base R function  </span></span>
+<span id="cb97-2"><a href="tidy-data.html#cb97-2"></a></span>
+<span id="cb97-3"><a href="tidy-data.html#cb97-3"></a>starwars <span class="op">%&gt;%</span></span>
+<span id="cb97-4"><a href="tidy-data.html#cb97-4"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;ars&quot;</span>, <span class="kw">tolower</span>(name)))</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 14
+##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Owen…    178   120 brown, gr… light      blue              52 male  mascu…
+## 2 Beru…    165    75 brown      light      blue              47 fema… femin…
+## 3 Quar…    183    NA black      dark       brown             62 &lt;NA&gt;  &lt;NA&gt;  
+## 4 Clie…    183    NA brown      fair       blue              82 male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="tidy-data.html#cb99-1"></a><span class="co"># Or, if you prefer dplyr way </span></span>
+<span id="cb99-2"><a href="tidy-data.html#cb99-2"></a></span>
+<span id="cb99-3"><a href="tidy-data.html#cb99-3"></a>starwars <span class="op">%&gt;%</span></span>
+<span id="cb99-4"><a href="tidy-data.html#cb99-4"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(<span class="kw">tolower</span>(name), <span class="st">&quot;ars&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 14
+##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Owen…    178   120 brown, gr… light      blue              52 male  mascu…
+## 2 Beru…    165    75 brown      light      blue              47 fema… femin…
+## 3 Quar…    183    NA black      dark       brown             62 &lt;NA&gt;  &lt;NA&gt;  
+## 4 Clie…    183    NA brown      fair       blue              82 male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="tidy-data.html#cb101-1"></a><span class="co"># Filter brown and black hair_color</span></span>
+<span id="cb101-2"><a href="tidy-data.html#cb101-2"></a></span>
+<span id="cb101-3"><a href="tidy-data.html#cb101-3"></a>starwars <span class="op">%&gt;%</span></span>
+<span id="cb101-4"><a href="tidy-data.html#cb101-4"></a><span class="st">  </span><span class="kw">filter</span>(hair_color <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;brown&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 31 x 14
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Leia…    150  49   brown      light      brown           19   fema… femin…
+##  2 Beru…    165  75   brown      light      blue            47   fema… femin…
+##  3 Bigg…    183  84   black      light      brown           24   male  mascu…
+##  4 Chew…    228 112   brown      unknown    blue           200   male  mascu…
+##  5 Han …    180  80   brown      fair       brown           29   male  mascu…
+##  6 Wedg…    170  77   brown      fair       hazel           21   male  mascu…
+##  7 Jek …    180 110   brown      fair       blue            NA   male  mascu…
+##  8 Boba…    183  78.2 black      fair       brown           31.5 male  mascu…
+##  9 Land…    177  79   black      dark       brown           31   male  mascu…
+## 10 Arve…     NA  NA   brown      fair       brown           NA   male  mascu…
+## # … with 21 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p><strong>Challenge</strong></p>
+<p>Use <code>str_detect()</code> to find characters whose names include “Han”.</p>
+<ul>
+<li>Choose row by position (row index)</li>
+</ul>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="tidy-data.html#cb103-1"></a>starwars <span class="op">%&gt;%</span></span>
+<span id="cb103-2"><a href="tidy-data.html#cb103-2"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(height)) <span class="op">%&gt;%</span></span>
+<span id="cb103-3"><a href="tidy-data.html#cb103-3"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 14
+##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Yara…    264    NA none       white      yellow            NA male  mascu…
+## 2 Tarf…    234   136 brown      brown      blue              NA male  mascu…
+## 3 Lama…    229    88 none       grey       black             NA male  mascu…
+## 4 Chew…    228   112 brown      unknown    blue             200 male  mascu…
+## 5 Roos…    224    82 none       grey       orange            NA male  mascu…
+## 6 Grie…    216   159 none       brown, wh… green, y…         NA male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<ul>
+<li>Sample by fraction</li>
+</ul>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="tidy-data.html#cb105-1"></a><span class="co"># For reproducibility </span></span>
+<span id="cb105-2"><a href="tidy-data.html#cb105-2"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb105-3"><a href="tidy-data.html#cb105-3"></a></span>
+<span id="cb105-4"><a href="tidy-data.html#cb105-4"></a><span class="co"># Old way </span></span>
+<span id="cb105-5"><a href="tidy-data.html#cb105-5"></a></span>
+<span id="cb105-6"><a href="tidy-data.html#cb105-6"></a>starwars <span class="op">%&gt;%</span></span>
+<span id="cb105-7"><a href="tidy-data.html#cb105-7"></a><span class="st">  </span><span class="kw">sample_frac</span>(<span class="fl">0.10</span>, </span>
+<span id="cb105-8"><a href="tidy-data.html#cb105-8"></a>              <span class="dt">replace =</span> <span class="ot">FALSE</span>) <span class="co"># Without replacement </span></span></code></pre></div>
+<pre><code>## # A tibble: 9 x 14
+##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Arve…     NA    NA brown      fair       brown           NA   male  mascu…
+## 2 Sly …    178    48 none       pale       white           NA   &lt;NA&gt;  &lt;NA&gt;  
+## 3 IG-88    200   140 none       metal      red             15   none  mascu…
+## 4 Bigg…    183    84 black      light      brown           24   male  mascu…
+## 5 Leia…    150    49 brown      light      brown           19   fema… femin…
+## 6 Watto    137    NA black      blue, grey yellow          NA   male  mascu…
+## 7 Jabb…    175  1358 &lt;NA&gt;       green-tan… orange         600   herm… mascu…
+## 8 Dart…    202   136 none       white      yellow          41.9 male  mascu…
+## 9 Taun…    213    NA none       grey       black           NA   fema… femin…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="tidy-data.html#cb107-1"></a><span class="co"># New way</span></span>
+<span id="cb107-2"><a href="tidy-data.html#cb107-2"></a></span>
+<span id="cb107-3"><a href="tidy-data.html#cb107-3"></a>starwars <span class="op">%&gt;%</span></span>
+<span id="cb107-4"><a href="tidy-data.html#cb107-4"></a><span class="st">  </span><span class="kw">slice_sample</span>(<span class="dt">prop =</span> <span class="fl">0.10</span>, </span>
+<span id="cb107-5"><a href="tidy-data.html#cb107-5"></a>             <span class="dt">replace =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 8 x 14
+##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Raym…    188  79   brown      light      brown           NA   male  mascu…
+## 2 Tarf…    234 136   brown      brown      blue            NA   male  mascu…
+## 3 Han …    180  80   brown      fair       brown           29   male  mascu…
+## 4 Mas …    196  NA   none       blue       blue            NA   male  mascu…
+## 5 Barr…    166  50   black      yellow     blue            40   fema… femin…
+## 6 Dart…    202 136   none       white      yellow          41.9 male  mascu…
+## 7 Finn      NA  NA   black      dark       dark            NA   male  mascu…
+## 8 Boba…    183  78.2 black      fair       brown           31.5 male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<ul>
+<li>Sample by number</li>
+</ul>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="tidy-data.html#cb109-1"></a><span class="co"># Old way </span></span>
+<span id="cb109-2"><a href="tidy-data.html#cb109-2"></a></span>
+<span id="cb109-3"><a href="tidy-data.html#cb109-3"></a>starwars <span class="op">%&gt;%</span></span>
+<span id="cb109-4"><a href="tidy-data.html#cb109-4"></a><span class="st">  </span><span class="kw">sample_n</span>(<span class="dv">20</span>, </span>
+<span id="cb109-5"><a href="tidy-data.html#cb109-5"></a>           <span class="dt">replace =</span> <span class="ot">FALSE</span>) <span class="co"># Without replacement </span></span></code></pre></div>
+<pre><code>## # A tibble: 20 x 14
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Quar…    183    NA black      dark       brown             62 &lt;NA&gt;  &lt;NA&gt;  
+##  2 Poe …     NA    NA brown      light      brown             NA male  mascu…
+##  3 Mas …    196    NA none       blue       blue              NA male  mascu…
+##  4 Zam …    168    55 blonde     fair, gre… yellow            NA fema… femin…
+##  5 Leia…    150    49 brown      light      brown             19 fema… femin…
+##  6 Jang…    183    79 black      tan        brown             66 male  mascu…
+##  7 Ben …    163    65 none       grey, gre… orange            NA male  mascu…
+##  8 Padm…    165    45 brown      light      brown             46 fema… femin…
+##  9 Mace…    188    84 none       dark       brown             72 male  mascu…
+## 10 R2-D2     96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…
+## 11 Shmi…    163    NA black      fair       brown             72 fema… femin…
+## 12 Ratt…     79    15 none       grey, blue unknown           NA male  mascu…
+## 13 Nute…    191    90 none       mottled g… red               NA male  mascu…
+## 14 Dart…    175    80 none       red        yellow            54 male  mascu…
+## 15 Bib …    180    NA none       pale       pink              NA male  mascu…
+## 16 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 none  mascu…
+## 17 Yara…    264    NA none       white      yellow            NA male  mascu…
+## 18 Ki-A…    198    82 white      pale       yellow            92 male  mascu…
+## 19 BB8       NA    NA none       none       black             NA none  mascu…
+## 20 Eeth…    171    NA black      brown      brown             NA male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="tidy-data.html#cb111-1"></a><span class="co"># New way</span></span>
+<span id="cb111-2"><a href="tidy-data.html#cb111-2"></a></span>
+<span id="cb111-3"><a href="tidy-data.html#cb111-3"></a>starwars <span class="op">%&gt;%</span></span>
+<span id="cb111-4"><a href="tidy-data.html#cb111-4"></a><span class="st">  </span><span class="kw">slice_sample</span>(<span class="dt">n =</span> <span class="dv">20</span>, </span>
+<span id="cb111-5"><a href="tidy-data.html#cb111-5"></a>             <span class="dt">replace =</span> <span class="ot">FALSE</span>) <span class="co"># Without replacement </span></span></code></pre></div>
+<pre><code>## # A tibble: 20 x 14
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Owen…    178   120 brown, gr… light      blue              52 male  mascu…
+##  2 Ki-A…    198    82 white      pale       yellow            92 male  mascu…
+##  3 Capt…     NA    NA unknown    unknown    unknown           NA &lt;NA&gt;  &lt;NA&gt;  
+##  4 Greg…    185    85 black      dark       brown             NA male  mascu…
+##  5 R5-D4     97    32 &lt;NA&gt;       white, red red               NA none  mascu…
+##  6 Ackb…    180    83 none       brown mot… orange            41 male  mascu…
+##  7 Wedg…    170    77 brown      fair       hazel             21 male  mascu…
+##  8 Dormé    165    NA brown      light      brown             NA fema… femin…
+##  9 Rey       NA    NA brown      light      hazel             NA fema… femin…
+## 10 IG-88    200   140 none       metal      red               15 none  mascu…
+## 11 Roos…    224    82 none       grey       orange            NA male  mascu…
+## 12 Shmi…    163    NA black      fair       brown             72 fema… femin…
+## 13 R2-D2     96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…
+## 14 Poe …     NA    NA brown      light      brown             NA male  mascu…
+## 15 Obi-…    182    77 auburn, w… fair       blue-gray         57 male  mascu…
+## 16 Plo …    188    80 none       orange     black             22 male  mascu…
+## 17 Tarf…    234   136 brown      brown      blue              NA male  mascu…
+## 18 Lobot    175    79 none       light      blue              37 male  mascu…
+## 19 San …    191    NA none       grey       gold              NA male  mascu…
+## 20 Kit …    196    87 none       green      black             NA male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<ul>
+<li>Top 10 rows orderd by height</li>
+</ul>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="tidy-data.html#cb113-1"></a><span class="co"># Old way </span></span>
+<span id="cb113-2"><a href="tidy-data.html#cb113-2"></a>starwars <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb113-3"><a href="tidy-data.html#cb113-3"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">10</span>, height) </span></code></pre></div>
+<pre><code>## # A tibble: 10 x 14
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Dart…    202   136 none       white      yellow          41.9 male  mascu…
+##  2 Chew…    228   112 brown      unknown    blue           200   male  mascu…
+##  3 Roos…    224    82 none       grey       orange          NA   male  mascu…
+##  4 Rugo…    206    NA none       green      orange          NA   male  mascu…
+##  5 Yara…    264    NA none       white      yellow          NA   male  mascu…
+##  6 Lama…    229    88 none       grey       black           NA   male  mascu…
+##  7 Taun…    213    NA none       grey       black           NA   fema… femin…
+##  8 Grie…    216   159 none       brown, wh… green, y…       NA   male  mascu…
+##  9 Tarf…    234   136 brown      brown      blue            NA   male  mascu…
+## 10 Tion…    206    80 none       grey       black           NA   male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="tidy-data.html#cb115-1"></a><span class="co"># New way</span></span>
+<span id="cb115-2"><a href="tidy-data.html#cb115-2"></a>starwars <span class="op">%&gt;%</span></span>
+<span id="cb115-3"><a href="tidy-data.html#cb115-3"></a><span class="st">  </span><span class="kw">slice_max</span>(height, <span class="dt">n =</span> <span class="dv">10</span>) <span class="co"># Variable first, Argument second </span></span></code></pre></div>
+<pre><code>## # A tibble: 10 x 14
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Yara…    264    NA none       white      yellow          NA   male  mascu…
+##  2 Tarf…    234   136 brown      brown      blue            NA   male  mascu…
+##  3 Lama…    229    88 none       grey       black           NA   male  mascu…
+##  4 Chew…    228   112 brown      unknown    blue           200   male  mascu…
+##  5 Roos…    224    82 none       grey       orange          NA   male  mascu…
+##  6 Grie…    216   159 none       brown, wh… green, y…       NA   male  mascu…
+##  7 Taun…    213    NA none       grey       black           NA   fema… femin…
+##  8 Rugo…    206    NA none       green      orange          NA   male  mascu…
+##  9 Tion…    206    80 none       grey       black           NA   male  mascu…
+## 10 Dart…    202   136 none       white      yellow          41.9 male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div id="subset-variables-columns" class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> Subset Variables (Columns)</h2>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="tidy-data.html#cb117-1"></a><span class="kw">names</span>(msleep)</span></code></pre></div>
+<pre><code>##  [1] &quot;name&quot;         &quot;genus&quot;        &quot;vore&quot;         &quot;order&quot;        &quot;conservation&quot;
+##  [6] &quot;sleep_total&quot;  &quot;sleep_rem&quot;    &quot;sleep_cycle&quot;  &quot;awake&quot;        &quot;brainwt&quot;     
+## [11] &quot;bodywt&quot;</code></pre>
+<ul>
+<li>Select only numeric columns</li>
+</ul>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="tidy-data.html#cb119-1"></a><span class="co"># Only numeric </span></span>
+<span id="cb119-2"><a href="tidy-data.html#cb119-2"></a>msleep <span class="op">%&gt;%</span></span>
+<span id="cb119-3"><a href="tidy-data.html#cb119-3"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric))</span></code></pre></div>
+<pre><code>## # A tibble: 83 x 6
+##    sleep_total sleep_rem sleep_cycle awake  brainwt  bodywt
+##          &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+##  1        12.1      NA        NA      11.9 NA        50    
+##  2        17         1.8      NA       7    0.0155    0.48 
+##  3        14.4       2.4      NA       9.6 NA         1.35 
+##  4        14.9       2.3       0.133   9.1  0.00029   0.019
+##  5         4         0.7       0.667  20    0.423   600    
+##  6        14.4       2.2       0.767   9.6 NA         3.85 
+##  7         8.7       1.4       0.383  15.3 NA        20.5  
+##  8         7        NA        NA      17   NA         0.045
+##  9        10.1       2.9       0.333  13.9  0.07     14    
+## 10         3        NA        NA      21    0.0982   14.8  
+## # … with 73 more rows</code></pre>
+<p><strong>Challenge</strong></p>
+<p>Use <code>select(where())</code> to find only non-numeric columns</p>
+<ul>
+<li>Select the columns that include “sleep” in their names</li>
+</ul>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="tidy-data.html#cb121-1"></a>msleep <span class="op">%&gt;%</span></span>
+<span id="cb121-2"><a href="tidy-data.html#cb121-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;sleep&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 83 x 3
+##    sleep_total sleep_rem sleep_cycle
+##          &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+##  1        12.1      NA        NA    
+##  2        17         1.8      NA    
+##  3        14.4       2.4      NA    
+##  4        14.9       2.3       0.133
+##  5         4         0.7       0.667
+##  6        14.4       2.2       0.767
+##  7         8.7       1.4       0.383
+##  8         7        NA        NA    
+##  9        10.1       2.9       0.333
+## 10         3        NA        NA    
+## # … with 73 more rows</code></pre>
+<ul>
+<li><p>Select the columns that include either “sleep” or “wt” in their names</p></li>
+<li><p>Basic R way</p></li>
+</ul>
+<p><code>grepl</code> is one of the R base pattern matching functions.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="tidy-data.html#cb123-1"></a>msleep[<span class="kw">grepl</span>(<span class="st">&#39;sleep|wt&#39;</span>, <span class="kw">names</span>(msleep))]</span></code></pre></div>
+<pre><code>## # A tibble: 83 x 5
+##    sleep_total sleep_rem sleep_cycle  brainwt  bodywt
+##          &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+##  1        12.1      NA        NA     NA        50    
+##  2        17         1.8      NA      0.0155    0.48 
+##  3        14.4       2.4      NA     NA         1.35 
+##  4        14.9       2.3       0.133  0.00029   0.019
+##  5         4         0.7       0.667  0.423   600    
+##  6        14.4       2.2       0.767 NA         3.85 
+##  7         8.7       1.4       0.383 NA        20.5  
+##  8         7        NA        NA     NA         0.045
+##  9        10.1       2.9       0.333  0.07     14    
+## 10         3        NA        NA      0.0982   14.8  
+## # … with 73 more rows</code></pre>
+<p><strong>Challenge</strong></p>
+<p>Use <code>select(match())</code> to find columns whose names include either “sleep” or “wt”.</p>
+<ul>
+<li>Select the columns that starts with “b”</li>
+</ul>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="tidy-data.html#cb125-1"></a>msleep <span class="op">%&gt;%</span></span>
+<span id="cb125-2"><a href="tidy-data.html#cb125-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&quot;b&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 83 x 2
+##     brainwt  bodywt
+##       &lt;dbl&gt;   &lt;dbl&gt;
+##  1 NA        50    
+##  2  0.0155    0.48 
+##  3 NA         1.35 
+##  4  0.00029   0.019
+##  5  0.423   600    
+##  6 NA         3.85 
+##  7 NA        20.5  
+##  8 NA         0.045
+##  9  0.07     14    
+## 10  0.0982   14.8  
+## # … with 73 more rows</code></pre>
+<ul>
+<li>Select the columns that ends with “wt”</li>
+</ul>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="tidy-data.html#cb127-1"></a>msleep <span class="op">%&gt;%</span></span>
+<span id="cb127-2"><a href="tidy-data.html#cb127-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">ends_with</span>(<span class="st">&quot;wt&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 83 x 2
+##     brainwt  bodywt
+##       &lt;dbl&gt;   &lt;dbl&gt;
+##  1 NA        50    
+##  2  0.0155    0.48 
+##  3 NA         1.35 
+##  4  0.00029   0.019
+##  5  0.423   600    
+##  6 NA         3.85 
+##  7 NA        20.5  
+##  8 NA         0.045
+##  9  0.07     14    
+## 10  0.0982   14.8  
+## # … with 73 more rows</code></pre>
+<ul>
+<li>Select the columns using both beginning and end string patterns</li>
+</ul>
+<p>The key idea is you can use Boolean operators (<code>!</code>, <code>&amp;</code>, <code>|</code>)to combine different string pattern matching statements.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="tidy-data.html#cb129-1"></a>msleep <span class="op">%&gt;%</span></span>
+<span id="cb129-2"><a href="tidy-data.html#cb129-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&quot;b&quot;</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">ends_with</span>(<span class="st">&quot;wt&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 83 x 2
+##     brainwt  bodywt
+##       &lt;dbl&gt;   &lt;dbl&gt;
+##  1 NA        50    
+##  2  0.0155    0.48 
+##  3 NA         1.35 
+##  4  0.00029   0.019
+##  5  0.423   600    
+##  6 NA         3.85 
+##  7 NA        20.5  
+##  8 NA         0.045
+##  9  0.07     14    
+## 10  0.0982   14.8  
+## # … with 73 more rows</code></pre>
+<ul>
+<li>Select order and move it before everything</li>
+</ul>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="tidy-data.html#cb131-1"></a><span class="co"># By specifying a column </span></span>
+<span id="cb131-2"><a href="tidy-data.html#cb131-2"></a>msleep <span class="op">%&gt;%</span></span>
+<span id="cb131-3"><a href="tidy-data.html#cb131-3"></a><span class="st">  </span><span class="kw">select</span>(order, <span class="kw">everything</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 83 x 11
+##    order name  genus vore  conservation sleep_total sleep_rem sleep_cycle awake
+##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+##  1 Carn… Chee… Acin… carni lc                  12.1      NA        NA      11.9
+##  2 Prim… Owl … Aotus omni  &lt;NA&gt;                17         1.8      NA       7  
+##  3 Rode… Moun… Aplo… herbi nt                  14.4       2.4      NA       9.6
+##  4 Sori… Grea… Blar… omni  lc                  14.9       2.3       0.133   9.1
+##  5 Arti… Cow   Bos   herbi domesticated         4         0.7       0.667  20  
+##  6 Pilo… Thre… Brad… herbi &lt;NA&gt;                14.4       2.2       0.767   9.6
+##  7 Carn… Nort… Call… carni vu                   8.7       1.4       0.383  15.3
+##  8 Rode… Vesp… Calo… &lt;NA&gt;  &lt;NA&gt;                 7        NA        NA      17  
+##  9 Carn… Dog   Canis carni domesticated        10.1       2.9       0.333  13.9
+## 10 Arti… Roe … Capr… herbi lc                   3        NA        NA      21  
+## # … with 73 more rows, and 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+<ul>
+<li>Select variables from a character vector.</li>
+</ul>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="tidy-data.html#cb133-1"></a>msleep <span class="op">%&gt;%</span></span>
+<span id="cb133-2"><a href="tidy-data.html#cb133-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">any_of</span>(<span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;order&quot;</span>))) <span class="op">%&gt;%</span></span>
+<span id="cb133-3"><a href="tidy-data.html#cb133-3"></a><span class="st">  </span><span class="kw">colnames</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;name&quot;  &quot;order&quot;</code></pre>
+<ul>
+<li>Select the variables named in the character + number pattern</li>
+</ul>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="tidy-data.html#cb135-1"></a>msleep<span class="op">$</span>week8 &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb135-2"><a href="tidy-data.html#cb135-2"></a></span>
+<span id="cb135-3"><a href="tidy-data.html#cb135-3"></a>msleep<span class="op">$</span>week12 &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb135-4"><a href="tidy-data.html#cb135-4"></a></span>
+<span id="cb135-5"><a href="tidy-data.html#cb135-5"></a>msleep<span class="op">$</span>week_extra &lt;-<span class="st"> </span><span class="dv">0</span> </span>
+<span id="cb135-6"><a href="tidy-data.html#cb135-6"></a></span>
+<span id="cb135-7"><a href="tidy-data.html#cb135-7"></a>msleep <span class="op">%&gt;%</span></span>
+<span id="cb135-8"><a href="tidy-data.html#cb135-8"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">num_range</span>(<span class="st">&quot;week&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)))</span></code></pre></div>
+<pre><code>## # A tibble: 83 x 2
+##    week8 week12
+##    &lt;lgl&gt; &lt;lgl&gt; 
+##  1 NA    NA    
+##  2 NA    NA    
+##  3 NA    NA    
+##  4 NA    NA    
+##  5 NA    NA    
+##  6 NA    NA    
+##  7 NA    NA    
+##  8 NA    NA    
+##  9 NA    NA    
+## 10 NA    NA    
+## # … with 73 more rows</code></pre>
+</div>
+<div id="counting" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Counting</h2>
+<ul>
+<li>How may countries in each continent?</li>
+</ul>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="tidy-data.html#cb137-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb137-2"><a href="tidy-data.html#cb137-2"></a><span class="st">  </span><span class="kw">count</span>(continent)</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 2
+##   continent     n
+##   &lt;fct&gt;     &lt;int&gt;
+## 1 Africa      624
+## 2 Americas    300
+## 3 Asia        396
+## 4 Europe      360
+## 5 Oceania      24</code></pre>
+<ul>
+<li>Let’s arrange the result.</li>
+</ul>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="tidy-data.html#cb139-1"></a><span class="co"># Just add a new argument `sort = TRUE`</span></span>
+<span id="cb139-2"><a href="tidy-data.html#cb139-2"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb139-3"><a href="tidy-data.html#cb139-3"></a><span class="st">  </span><span class="kw">count</span>(continent, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 2
+##   continent     n
+##   &lt;fct&gt;     &lt;int&gt;
+## 1 Africa      624
+## 2 Asia        396
+## 3 Europe      360
+## 4 Americas    300
+## 5 Oceania      24</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="tidy-data.html#cb141-1"></a><span class="co"># Same as above; How nice!</span></span>
+<span id="cb141-2"><a href="tidy-data.html#cb141-2"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb141-3"><a href="tidy-data.html#cb141-3"></a><span class="st">  </span><span class="kw">count</span>(continent) <span class="op">%&gt;%</span></span>
+<span id="cb141-4"><a href="tidy-data.html#cb141-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 2
+##   continent     n
+##   &lt;fct&gt;     &lt;int&gt;
+## 1 Africa      624
+## 2 Asia        396
+## 3 Europe      360
+## 4 Americas    300
+## 5 Oceania      24</code></pre>
+<p><strong>Challenge</strong></p>
+<p>Count the number of observations per <code>continent</code> as well as <code>year</code> and arrange them with descending order.</p>
+<p>Let’s take a deeper look at how things work under the hood.</p>
+<ul>
+<li><p><code>tally()</code> works similar to <code>nrow()</code>: Calculate the total number of cases in a dataframe</p></li>
+<li><p><code>count</code> = <code>group_by()</code> + <code>tally()</code></p></li>
+</ul>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="tidy-data.html#cb143-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb143-2"><a href="tidy-data.html#cb143-2"></a><span class="st">  </span><span class="kw">tally</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1  1704</code></pre>
+<ul>
+<li><code>add_tally()</code> = <code>mutate(n = n())</code></li>
+</ul>
+<p><strong>Challenge</strong></p>
+<p>What does n in the below example represent?</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="tidy-data.html#cb145-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb145-2"><a href="tidy-data.html#cb145-2"></a><span class="st">  </span><span class="kw">select</span>(continent, country) <span class="op">%&gt;%</span></span>
+<span id="cb145-3"><a href="tidy-data.html#cb145-3"></a><span class="st">  </span><span class="kw">add_tally</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1,704 x 3
+##    continent country         n
+##    &lt;fct&gt;     &lt;fct&gt;       &lt;int&gt;
+##  1 Asia      Afghanistan  1704
+##  2 Asia      Afghanistan  1704
+##  3 Asia      Afghanistan  1704
+##  4 Asia      Afghanistan  1704
+##  5 Asia      Afghanistan  1704
+##  6 Asia      Afghanistan  1704
+##  7 Asia      Afghanistan  1704
+##  8 Asia      Afghanistan  1704
+##  9 Asia      Afghanistan  1704
+## 10 Asia      Afghanistan  1704
+## # … with 1,694 more rows</code></pre>
+<ul>
+<li><code>add_count</code></li>
+</ul>
+<p>Add count as a column</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="tidy-data.html#cb147-1"></a><span class="co"># Add count as a column</span></span>
+<span id="cb147-2"><a href="tidy-data.html#cb147-2"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb147-3"><a href="tidy-data.html#cb147-3"></a><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span></span>
+<span id="cb147-4"><a href="tidy-data.html#cb147-4"></a><span class="st">  </span><span class="kw">add_count</span>(year)</span></code></pre></div>
+<pre><code>## # A tibble: 1,704 x 7
+## # Groups:   continent [5]
+##    country     continent  year lifeExp      pop gdpPercap     n
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.    33
+##  2 Afghanistan Asia       1957    30.3  9240934      821.    33
+##  3 Afghanistan Asia       1962    32.0 10267083      853.    33
+##  4 Afghanistan Asia       1967    34.0 11537966      836.    33
+##  5 Afghanistan Asia       1972    36.1 13079460      740.    33
+##  6 Afghanistan Asia       1977    38.4 14880372      786.    33
+##  7 Afghanistan Asia       1982    39.9 12881816      978.    33
+##  8 Afghanistan Asia       1987    40.8 13867957      852.    33
+##  9 Afghanistan Asia       1992    41.7 16317921      649.    33
+## 10 Afghanistan Asia       1997    41.8 22227415      635.    33
+## # … with 1,694 more rows</code></pre>
+<p><strong>Challenge</strong></p>
+<p>Do the cases 1 and 2 in the below code chunk produce same outputs? If so, why?</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="tidy-data.html#cb149-1"></a><span class="co"># Case 1</span></span>
+<span id="cb149-2"><a href="tidy-data.html#cb149-2"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb149-3"><a href="tidy-data.html#cb149-3"></a><span class="st">  </span><span class="kw">group_by</span>(continent, year) <span class="op">%&gt;%</span></span>
+<span id="cb149-4"><a href="tidy-data.html#cb149-4"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 60 x 3
+## # Groups:   continent, year [60]
+##    continent  year     n
+##    &lt;fct&gt;     &lt;int&gt; &lt;int&gt;
+##  1 Africa     1952    52
+##  2 Africa     1957    52
+##  3 Africa     1962    52
+##  4 Africa     1967    52
+##  5 Africa     1972    52
+##  6 Africa     1977    52
+##  7 Africa     1982    52
+##  8 Africa     1987    52
+##  9 Africa     1992    52
+## 10 Africa     1997    52
+## # … with 50 more rows</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="tidy-data.html#cb151-1"></a><span class="co"># Case 2</span></span>
+<span id="cb151-2"><a href="tidy-data.html#cb151-2"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb151-3"><a href="tidy-data.html#cb151-3"></a><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span></span>
+<span id="cb151-4"><a href="tidy-data.html#cb151-4"></a><span class="st">  </span><span class="kw">count</span>(year)</span></code></pre></div>
+<pre><code>## # A tibble: 60 x 3
+## # Groups:   continent [5]
+##    continent  year     n
+##    &lt;fct&gt;     &lt;int&gt; &lt;int&gt;
+##  1 Africa     1952    52
+##  2 Africa     1957    52
+##  3 Africa     1962    52
+##  4 Africa     1967    52
+##  5 Africa     1972    52
+##  6 Africa     1977    52
+##  7 Africa     1982    52
+##  8 Africa     1987    52
+##  9 Africa     1992    52
+## 10 Africa     1997    52
+## # … with 50 more rows</code></pre>
+</div>
+<div id="summarizing" class="section level2" number="4.9">
+<h2><span class="header-section-number">4.9</span> Summarizing</h2>
+<div id="basic" class="section level3" number="4.9.1">
+<h3><span class="header-section-number">4.9.1</span> Basic</h3>
+<ul>
+<li>Create a summary</li>
+</ul>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="tidy-data.html#cb153-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb153-2"><a href="tidy-data.html#cb153-2"></a><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span></span>
+<span id="cb153-3"><a href="tidy-data.html#cb153-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), </span>
+<span id="cb153-4"><a href="tidy-data.html#cb153-4"></a>            <span class="dt">mean_gdp =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb153-5"><a href="tidy-data.html#cb153-5"></a>            <span class="dt">sd_gdp =</span> <span class="kw">sd</span>(gdpPercap))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 5 x 4
+##   continent     n mean_gdp sd_gdp
+##   &lt;fct&gt;     &lt;int&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Africa      624    2194.  2828.
+## 2 Americas    300    7136.  6397.
+## 3 Asia        396    7902. 14045.
+## 4 Europe      360   14469.  9355.
+## 5 Oceania      24   18622.  6359.</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="tidy-data.html#cb156-1"></a>tablea &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb156-2"><a href="tidy-data.html#cb156-2"></a><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span></span>
+<span id="cb156-3"><a href="tidy-data.html#cb156-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), </span>
+<span id="cb156-4"><a href="tidy-data.html#cb156-4"></a>            <span class="dt">mean_gdp =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb156-5"><a href="tidy-data.html#cb156-5"></a>            <span class="dt">sd_gdp =</span> <span class="kw">sd</span>(gdpPercap))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<ul>
+<li>Produce publishable tables</li>
+</ul>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="tidy-data.html#cb158-1"></a><span class="co"># For HTML and LaTeX</span></span>
+<span id="cb158-2"><a href="tidy-data.html#cb158-2"></a>tablea <span class="op">%&gt;%</span><span class="st"> </span>kableExtra<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+continent
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+mean_gdp
+</th>
+<th style="text-align:right;">
+sd_gdp
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Africa
+</td>
+<td style="text-align:right;">
+624
+</td>
+<td style="text-align:right;">
+2193.755
+</td>
+<td style="text-align:right;">
+2827.930
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Americas
+</td>
+<td style="text-align:right;">
+300
+</td>
+<td style="text-align:right;">
+7136.110
+</td>
+<td style="text-align:right;">
+6396.764
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Asia
+</td>
+<td style="text-align:right;">
+396
+</td>
+<td style="text-align:right;">
+7902.150
+</td>
+<td style="text-align:right;">
+14045.373
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:right;">
+360
+</td>
+<td style="text-align:right;">
+14469.476
+</td>
+<td style="text-align:right;">
+9355.213
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Oceania
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+18621.609
+</td>
+<td style="text-align:right;">
+6358.983
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="tidy-data.html#cb159-1"></a><span class="co"># For HTML and MS Office suite </span></span>
+<span id="cb159-2"><a href="tidy-data.html#cb159-2"></a>tablea <span class="op">%&gt;%</span><span class="st"> </span>flextable<span class="op">::</span><span class="kw">flextable</span>()</span></code></pre></div>
+<div class="tabwid"><style>.cl-0a86bc8e{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-0a86cce2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-0a86ccf6{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-0a86eee8{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0a86ef06{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0a86ef10{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0a86ef24{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0a86ef2e{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0a86ef2f{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-0a86ef2e"><p class="cl-0a86cce2"><span class="cl-0a86bc8e">continent</span></p></td><td class="cl-0a86ef2f"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">n</span></p></td><td class="cl-0a86ef2f"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">mean_gdp</span></p></td><td class="cl-0a86ef2f"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-0a86eee8"><p class="cl-0a86cce2"><span class="cl-0a86bc8e">Africa</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">624</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">2193.755</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0a86eee8"><p class="cl-0a86cce2"><span class="cl-0a86bc8e">Americas</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">300</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">7136.110</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0a86eee8"><p class="cl-0a86cce2"><span class="cl-0a86bc8e">Asia</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">396</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">7902.150</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0a86eee8"><p class="cl-0a86cce2"><span class="cl-0a86bc8e">Europe</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">360</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">14469.476</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0a86ef10"><p class="cl-0a86cce2"><span class="cl-0a86bc8e">Oceania</span></p></td><td class="cl-0a86ef24"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">24</span></p></td><td class="cl-0a86ef24"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">18621.609</span></p></td><td class="cl-0a86ef24"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">6358.983</span></p></td></tr></tbody></table></div>
+</div>
+<div id="scoped-summaries" class="section level3" number="4.9.2">
+<h3><span class="header-section-number">4.9.2</span> Scoped summaries</h3>
+<ul>
+<li><p>Old way</p></li>
+<li><p><code>summarise_all()</code></p></li>
+</ul>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="tidy-data.html#cb160-1"></a><span class="co"># Create a wide-shaped data example </span></span>
+<span id="cb160-2"><a href="tidy-data.html#cb160-2"></a>wide_gapminder &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb160-3"><a href="tidy-data.html#cb160-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb160-4"><a href="tidy-data.html#cb160-4"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> country, </span>
+<span id="cb160-5"><a href="tidy-data.html#cb160-5"></a>              <span class="dt">values_from =</span> gdpPercap)</span>
+<span id="cb160-6"><a href="tidy-data.html#cb160-6"></a></span>
+<span id="cb160-7"><a href="tidy-data.html#cb160-7"></a><span class="co"># Apply summarise_all </span></span>
+<span id="cb160-8"><a href="tidy-data.html#cb160-8"></a>wide_gapminder <span class="op">%&gt;%</span></span>
+<span id="cb160-9"><a href="tidy-data.html#cb160-9"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb160-10"><a href="tidy-data.html#cb160-10"></a><span class="st">  </span><span class="kw">summarise_all</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 30
+##   Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia `Czech Republic`
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+## 1   3255.  20412.  19901.            3485.    6384.   9332.           13920.
+## # … with 23 more variables: Denmark &lt;dbl&gt;, Finland &lt;dbl&gt;, France &lt;dbl&gt;,
+## #   Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;, Ireland &lt;dbl&gt;,
+## #   Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;, Norway &lt;dbl&gt;,
+## #   Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;, Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;, `Slovak
+## #   Republic` &lt;dbl&gt;, Slovenia &lt;dbl&gt;, Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
+## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, `United Kingdom` &lt;dbl&gt;</code></pre>
+<ul>
+<li><code>summarise_if()</code>: using a logical condition</li>
+</ul>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="tidy-data.html#cb162-1"></a>wide_gapminder <span class="op">%&gt;%</span></span>
+<span id="cb162-2"><a href="tidy-data.html#cb162-2"></a><span class="st">  </span><span class="kw">summarise_if</span>(is.double, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 31
+##   lifeExp Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+## 1    71.9   3255.  20412.  19901.            3485.    6384.   9332.
+## # … with 24 more variables: `Czech Republic` &lt;dbl&gt;, Denmark &lt;dbl&gt;,
+## #   Finland &lt;dbl&gt;, France &lt;dbl&gt;, Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;,
+## #   Iceland &lt;dbl&gt;, Ireland &lt;dbl&gt;, Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;,
+## #   Netherlands &lt;dbl&gt;, Norway &lt;dbl&gt;, Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;,
+## #   Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;, `Slovak Republic` &lt;dbl&gt;, Slovenia &lt;dbl&gt;,
+## #   Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;, Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, `United
+## #   Kingdom` &lt;dbl&gt;</code></pre>
+<ul>
+<li><p><code>summarise_at()</code></p></li>
+<li><p><code>vars() = select()</code></p></li>
+</ul>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="tidy-data.html#cb164-1"></a>wide_gapminder <span class="op">%&gt;%</span></span>
+<span id="cb164-2"><a href="tidy-data.html#cb164-2"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)), </span>
+<span id="cb164-3"><a href="tidy-data.html#cb164-3"></a>               mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 30
+##   Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia `Czech Republic`
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+## 1   3255.  20412.  19901.            3485.    6384.   9332.           13920.
+## # … with 23 more variables: Denmark &lt;dbl&gt;, Finland &lt;dbl&gt;, France &lt;dbl&gt;,
+## #   Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;, Ireland &lt;dbl&gt;,
+## #   Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;, Norway &lt;dbl&gt;,
+## #   Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;, Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;, `Slovak
+## #   Republic` &lt;dbl&gt;, Slovenia &lt;dbl&gt;, Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
+## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, `United Kingdom` &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="tidy-data.html#cb166-1"></a>wide_gapminder <span class="op">%&gt;%</span></span>
+<span id="cb166-2"><a href="tidy-data.html#cb166-2"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(<span class="kw">contains</span>(<span class="st">&quot;life&quot;</span>)), </span>
+<span id="cb166-3"><a href="tidy-data.html#cb166-3"></a>               mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   lifeExp
+##     &lt;dbl&gt;
+## 1    71.9</code></pre>
+<ul>
+<li><p>New way</p></li>
+<li><p><code>summarise()</code> + <code>across()</code></p></li>
+<li><p>If you find using <code>summarise_all()</code>, <code>summarise_if()</code> and <code>summarise_at()</code> confusing, here’s a solution: use <code>summarise()</code> with <code>across()</code>.</p></li>
+<li><p><code>summarise_all()</code></p></li>
+</ul>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="tidy-data.html#cb168-1"></a>wide_gapminder <span class="op">%&gt;%</span></span>
+<span id="cb168-2"><a href="tidy-data.html#cb168-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="kw">across</span>(Albania<span class="op">:</span><span class="st">`</span><span class="dt">United Kingdom</span><span class="st">`</span>, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 30
+##   Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia `Czech Republic`
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+## 1   3255.  20412.  19901.            3485.    6384.   9332.           13920.
+## # … with 23 more variables: Denmark &lt;dbl&gt;, Finland &lt;dbl&gt;, France &lt;dbl&gt;,
+## #   Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;, Ireland &lt;dbl&gt;,
+## #   Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;, Norway &lt;dbl&gt;,
+## #   Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;, Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;, `Slovak
+## #   Republic` &lt;dbl&gt;, Slovenia &lt;dbl&gt;, Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
+## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, `United Kingdom` &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="tidy-data.html#cb170-1"></a>wide_gapminder <span class="op">%&gt;%</span></span>
+<span id="cb170-2"><a href="tidy-data.html#cb170-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="kw">across</span>(<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 30
+##   Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia `Czech Republic`
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+## 1   3255.  20412.  19901.            3485.    6384.   9332.           13920.
+## # … with 23 more variables: Denmark &lt;dbl&gt;, Finland &lt;dbl&gt;, France &lt;dbl&gt;,
+## #   Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;, Ireland &lt;dbl&gt;,
+## #   Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;, Norway &lt;dbl&gt;,
+## #   Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;, Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;, `Slovak
+## #   Republic` &lt;dbl&gt;, Slovenia &lt;dbl&gt;, Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
+## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, `United Kingdom` &lt;dbl&gt;</code></pre>
+<ul>
+<li><code>summarise_if()</code></li>
+</ul>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="tidy-data.html#cb172-1"></a>wide_gapminder <span class="op">%&gt;%</span></span>
+<span id="cb172-2"><a href="tidy-data.html#cb172-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="kw">across</span>(is.double, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## Warning: Predicate functions must be wrapped in `where()`.
+## 
+##   # Bad
+##   data %&gt;% select(is.double)
+## 
+##   # Good
+##   data %&gt;% select(where(is.double))
+## 
+## ℹ Please update your code.
+## This message is displayed once per session.</code></pre>
+<pre><code>## # A tibble: 1 x 31
+##   lifeExp Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+## 1    71.9   3255.  20412.  19901.            3485.    6384.   9332.
+## # … with 24 more variables: `Czech Republic` &lt;dbl&gt;, Denmark &lt;dbl&gt;,
+## #   Finland &lt;dbl&gt;, France &lt;dbl&gt;, Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;,
+## #   Iceland &lt;dbl&gt;, Ireland &lt;dbl&gt;, Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;,
+## #   Netherlands &lt;dbl&gt;, Norway &lt;dbl&gt;, Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;,
+## #   Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;, `Slovak Republic` &lt;dbl&gt;, Slovenia &lt;dbl&gt;,
+## #   Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;, Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, `United
+## #   Kingdom` &lt;dbl&gt;</code></pre>
+<ul>
+<li><code>summarise_at()</code></li>
+</ul>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="tidy-data.html#cb175-1"></a>wide_gapminder <span class="op">%&gt;%</span></span>
+<span id="cb175-2"><a href="tidy-data.html#cb175-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="kw">across</span>(<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), </span>
+<span id="cb175-3"><a href="tidy-data.html#cb175-3"></a>               mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 30
+##   Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia `Czech Republic`
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+## 1   3255.  20412.  19901.            3485.    6384.   9332.           13920.
+## # … with 23 more variables: Denmark &lt;dbl&gt;, Finland &lt;dbl&gt;, France &lt;dbl&gt;,
+## #   Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;, Ireland &lt;dbl&gt;,
+## #   Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;, Norway &lt;dbl&gt;,
+## #   Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;, Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;, `Slovak
+## #   Republic` &lt;dbl&gt;, Slovenia &lt;dbl&gt;, Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
+## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, `United Kingdom` &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="tidy-data.html#cb177-1"></a>wide_gapminder <span class="op">%&gt;%</span></span>
+<span id="cb177-2"><a href="tidy-data.html#cb177-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="kw">across</span>(<span class="kw">contains</span>(<span class="st">&quot;life&quot;</span>), </span>
+<span id="cb177-3"><a href="tidy-data.html#cb177-3"></a>               mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   lifeExp
+##     &lt;dbl&gt;
+## 1    71.9</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="tidy-data.html#cb179-1"></a>wide_gapminder <span class="op">%&gt;%</span></span>
+<span id="cb179-2"><a href="tidy-data.html#cb179-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="kw">across</span>(<span class="kw">contains</span>(<span class="st">&quot;A&quot;</span>, <span class="dt">ignore.case =</span> <span class="ot">FALSE</span>)))</span></code></pre></div>
+<pre><code>## # A tibble: 360 x 2
+##    Albania Austria
+##      &lt;dbl&gt;   &lt;dbl&gt;
+##  1   1601.      NA
+##  2   1942.      NA
+##  3   2313.      NA
+##  4   2760.      NA
+##  5   3313.      NA
+##  6   3533.      NA
+##  7   3631.      NA
+##  8   3739.      NA
+##  9   2497.      NA
+## 10   3193.      NA
+## # … with 350 more rows</code></pre>
+<p>Note that this workshop does not cover creating and manipulating variables using <code>mutate()</code> because many techniques you learned from playing with <code>summarise()</code> can be directly applied to <code>mutate()</code>.</p>
+<p><strong>Challenge</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Summarize average GDP of countries whose names starting with alphabet “A”.</p></li>
+<li><p>Turn the summary dataframe into a publishable table using either <code>kableExtra</code> or <code>flextable</code> package.</p></li>
+</ol>
+</div>
+</div>
+<div id="grouping" class="section level2" number="4.10">
+<h2><span class="header-section-number">4.10</span> Grouping</h2>
+<div id="grouped-summaries" class="section level3" number="4.10.1">
+<h3><span class="header-section-number">4.10.1</span> Grouped summaries</h3>
+<ul>
+<li>Calculate the mean of <code>gdpPercap</code>.</li>
+</ul>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="tidy-data.html#cb181-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb181-2"><a href="tidy-data.html#cb181-2"></a><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># </span></span>
+<span id="cb181-3"><a href="tidy-data.html#cb181-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_gdp =</span> <span class="kw">mean</span>(gdpPercap))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 5 x 2
+##   continent mean_gdp
+##   &lt;fct&gt;        &lt;dbl&gt;
+## 1 Africa       2194.
+## 2 Americas     7136.
+## 3 Asia         7902.
+## 4 Europe      14469.
+## 5 Oceania     18622.</code></pre>
+<ul>
+<li>Calculate multiple summary statistics.</li>
+</ul>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="tidy-data.html#cb184-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb184-2"><a href="tidy-data.html#cb184-2"></a><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># </span></span>
+<span id="cb184-3"><a href="tidy-data.html#cb184-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_gdp =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb184-4"><a href="tidy-data.html#cb184-4"></a>            <span class="dt">count =</span> <span class="kw">n</span>())</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##   continent mean_gdp count
+##   &lt;fct&gt;        &lt;dbl&gt; &lt;int&gt;
+## 1 Africa       2194.   624
+## 2 Americas     7136.   300
+## 3 Asia         7902.   396
+## 4 Europe      14469.   360
+## 5 Oceania     18622.    24</code></pre>
+<p><strong>Optional</strong></p>
+<ul>
+<li>Other summary statistics</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Measures of spread: <code>median(x)</code>, <code>sd(x)</code>, <code>IQR(x)</code>, <code>mad(x)</code> (the median absolute deviation)</li>
+</ol>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="tidy-data.html#cb187-1"></a><span class="co"># The Interquartile Range = The Difference Between 75t and 25t Percentiles </span></span>
+<span id="cb187-2"><a href="tidy-data.html#cb187-2"></a></span>
+<span id="cb187-3"><a href="tidy-data.html#cb187-3"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb187-4"><a href="tidy-data.html#cb187-4"></a><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># </span></span>
+<span id="cb187-5"><a href="tidy-data.html#cb187-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">IQR_gdp =</span> <span class="kw">IQR</span>(gdpPercap))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 5 x 2
+##   continent IQR_gdp
+##   &lt;fct&gt;       &lt;dbl&gt;
+## 1 Africa      1616.
+## 2 Americas    4402.
+## 3 Asia        7492.
+## 4 Europe     13248.
+## 5 Oceania     8072.</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Measures of rank: <code>min(x)</code>, <code>quantile(x, 0.25)</code>, <code>max(x)</code></li>
+</ol>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="tidy-data.html#cb190-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb190-2"><a href="tidy-data.html#cb190-2"></a><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># </span></span>
+<span id="cb190-3"><a href="tidy-data.html#cb190-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">min_gdp =</span> <span class="kw">min</span>(gdpPercap),</span>
+<span id="cb190-4"><a href="tidy-data.html#cb190-4"></a>            <span class="dt">max_gdp =</span> <span class="kw">max</span>(gdpPercap))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##   continent min_gdp max_gdp
+##   &lt;fct&gt;       &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Africa       241.  21951.
+## 2 Americas    1202.  42952.
+## 3 Asia         331  113523.
+## 4 Europe       974.  49357.
+## 5 Oceania    10040.  34435.</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Measures of position: <code>first(x)</code>, <code>last(x)</code>, <code>nth(x, 2)</code></li>
+</ol>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="tidy-data.html#cb193-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb193-2"><a href="tidy-data.html#cb193-2"></a><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb193-3"><a href="tidy-data.html#cb193-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">first_gdp =</span> <span class="kw">first</span>(gdpPercap),</span>
+<span id="cb193-4"><a href="tidy-data.html#cb193-4"></a>            <span class="dt">last_gdp =</span> <span class="kw">last</span>(gdpPercap))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##   continent first_gdp last_gdp
+##   &lt;fct&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Africa        2449.     470.
+## 2 Americas      5911.   11416.
+## 3 Asia           779.    2281.
+## 4 Europe        1601.   33203.
+## 5 Oceania      10040.   25185.</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="tidy-data.html#cb196-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb196-2"><a href="tidy-data.html#cb196-2"></a><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb196-3"><a href="tidy-data.html#cb196-3"></a><span class="st">  </span><span class="kw">arrange</span>(gdpPercap) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Adding arrange</span></span>
+<span id="cb196-4"><a href="tidy-data.html#cb196-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">first_gdp =</span> <span class="kw">first</span>(gdpPercap),</span>
+<span id="cb196-5"><a href="tidy-data.html#cb196-5"></a>            <span class="dt">last_gdp =</span> <span class="kw">last</span>(gdpPercap))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##   continent first_gdp last_gdp
+##   &lt;fct&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Africa         241.   21951.
+## 2 Americas      1202.   42952.
+## 3 Asia           331   113523.
+## 4 Europe         974.   49357.
+## 5 Oceania      10040.   34435.</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Measures of counts: <code>n(x)</code> (all rows), <code>sum(!is.na(x))</code> (only non-missing rows) = <code>n_distinct(x)</code></li>
+</ol>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="tidy-data.html#cb199-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb199-2"><a href="tidy-data.html#cb199-2"></a><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span></span>
+<span id="cb199-3"><a href="tidy-data.html#cb199-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">ns =</span> <span class="kw">n</span>())</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 5 x 2
+##   continent    ns
+##   &lt;fct&gt;     &lt;int&gt;
+## 1 Africa      624
+## 2 Americas    300
+## 3 Asia        396
+## 4 Europe      360
+## 5 Oceania      24</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Counts and proportions of logical values: <code>sum(condition about x)</code> (the number of TRUEs in x), <code>mean(condition about x)</code> (the proportion of TRUEs in x)</li>
+</ol>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="tidy-data.html#cb202-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb202-2"><a href="tidy-data.html#cb202-2"></a><span class="st">  </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb202-3"><a href="tidy-data.html#cb202-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">rich_countries =</span> <span class="kw">mean</span>(gdpPercap <span class="op">&gt;</span><span class="st"> </span><span class="dv">20000</span>))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 5 x 2
+##   continent rich_countries
+##   &lt;fct&gt;              &lt;dbl&gt;
+## 1 Africa           0.00481
+## 2 Americas         0.05   
+## 3 Asia             0.111  
+## 4 Europe           0.261  
+## 5 Oceania          0.333</code></pre>
+</div>
+</div>
+<div id="nesting" class="section level2" number="4.11">
+<h2><span class="header-section-number">4.11</span> Nesting</h2>
+<div id="nest" class="section level3" number="4.11.1">
+<h3><span class="header-section-number">4.11.1</span> nest</h3>
+<p>The following example comes from <a href="https://r4ds.had.co.nz/many-models.html">R for Data Science</a> by by Garrett Grolemund and Hadley Wickham.</p>
+<ul>
+<li><p>How can you run multiple models simultaneously? Using a nested data frame.</p></li>
+<li><p><strong>Grouped data: each row = an observation</strong></p></li>
+<li><p><strong>Nested data: each row = a group</strong></p></li>
+</ul>
+<p><strong>Challenge</strong></p>
+<p>In the following example, why did we use <code>country</code> and <code>continent</code> for nesting variables?</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="tidy-data.html#cb205-1"></a>nested &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb205-2"><a href="tidy-data.html#cb205-2"></a><span class="st">  </span><span class="kw">group_by</span>(country, continent) <span class="op">%&gt;%</span></span>
+<span id="cb205-3"><a href="tidy-data.html#cb205-3"></a><span class="st">  </span><span class="kw">nest</span>() </span>
+<span id="cb205-4"><a href="tidy-data.html#cb205-4"></a></span>
+<span id="cb205-5"><a href="tidy-data.html#cb205-5"></a><span class="kw">head</span>(nested)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+## # Groups:   country, continent [6]
+##   country     continent data             
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;list&gt;           
+## 1 Afghanistan Asia      &lt;tibble [12 × 4]&gt;
+## 2 Albania     Europe    &lt;tibble [12 × 4]&gt;
+## 3 Algeria     Africa    &lt;tibble [12 × 4]&gt;
+## 4 Angola      Africa    &lt;tibble [12 × 4]&gt;
+## 5 Argentina   Americas  &lt;tibble [12 × 4]&gt;
+## 6 Australia   Oceania   &lt;tibble [12 × 4]&gt;</code></pre>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="tidy-data.html#cb207-1"></a>nested<span class="op">$</span>data[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>## # A tibble: 12 x 4
+##     year lifeExp      pop gdpPercap
+##    &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1  1952    28.8  8425333      779.
+##  2  1957    30.3  9240934      821.
+##  3  1962    32.0 10267083      853.
+##  4  1967    34.0 11537966      836.
+##  5  1972    36.1 13079460      740.
+##  6  1977    38.4 14880372      786.
+##  7  1982    39.9 12881816      978.
+##  8  1987    40.8 13867957      852.
+##  9  1992    41.7 16317921      649.
+## 10  1997    41.8 22227415      635.
+## 11  2002    42.1 25268405      727.
+## 12  2007    43.8 31889923      975.</code></pre>
+<ul>
+<li>Custom function</li>
+</ul>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="tidy-data.html#cb209-1"></a>lm_model &lt;-<span class="st"> </span><span class="cf">function</span>(df) {</span>
+<span id="cb209-2"><a href="tidy-data.html#cb209-2"></a>  </span>
+<span id="cb209-3"><a href="tidy-data.html#cb209-3"></a>  <span class="kw">lm</span>(lifeExp <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> df)</span>
+<span id="cb209-4"><a href="tidy-data.html#cb209-4"></a>}</span></code></pre></div>
+<ul>
+<li>Apply function to the nested data</li>
+</ul>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="tidy-data.html#cb210-1"></a><span class="co"># Apply m_model to the nested data </span></span>
+<span id="cb210-2"><a href="tidy-data.html#cb210-2"></a></span>
+<span id="cb210-3"><a href="tidy-data.html#cb210-3"></a>nested &lt;-<span class="st"> </span>nested <span class="op">%&gt;%</span></span>
+<span id="cb210-4"><a href="tidy-data.html#cb210-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">models =</span> <span class="kw">map</span>(data, lm_model)) <span class="co"># Add the list object as a new column</span></span>
+<span id="cb210-5"><a href="tidy-data.html#cb210-5"></a></span>
+<span id="cb210-6"><a href="tidy-data.html#cb210-6"></a><span class="kw">head</span>(nested)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+## # Groups:   country, continent [6]
+##   country     continent data              models
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;list&gt;            &lt;list&gt;
+## 1 Afghanistan Asia      &lt;tibble [12 × 4]&gt; &lt;lm&gt;  
+## 2 Albania     Europe    &lt;tibble [12 × 4]&gt; &lt;lm&gt;  
+## 3 Algeria     Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;  
+## 4 Angola      Africa    &lt;tibble [12 × 4]&gt; &lt;lm&gt;  
+## 5 Argentina   Americas  &lt;tibble [12 × 4]&gt; &lt;lm&gt;  
+## 6 Australia   Oceania   &lt;tibble [12 × 4]&gt; &lt;lm&gt;</code></pre>
+<p>S3 is part of R’s object oriented systems. If you need more information, check <a href="http://adv-r.had.co.nz/S3.html">this section</a> in Hadley’s Advanced R out.</p>
+</div>
+<div id="unnest" class="section level3" number="4.11.2">
+<h3><span class="header-section-number">4.11.2</span> unnest</h3>
+<p><code>glance()</code> function from <code>broom</code> package inspects the quality of a statistical model.</p>
+<p><strong>Additional tips</strong></p>
+<ul>
+<li><code>broom::glance(model)</code>: for evaluating model quality and/or complexity</li>
+<li><code>broom::tidy(model)</code>: for extracting each coefficient in the model (the estimates + its variability)</li>
+<li><code>broom::augment(model, data)</code>: for getting extra values (residuals, and influence statistics)</li>
+</ul>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="tidy-data.html#cb212-1"></a>glanced &lt;-<span class="st"> </span>nested <span class="op">%&gt;%</span></span>
+<span id="cb212-2"><a href="tidy-data.html#cb212-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">glance =</span> <span class="kw">map</span>(models, broom<span class="op">::</span>glance))</span>
+<span id="cb212-3"><a href="tidy-data.html#cb212-3"></a></span>
+<span id="cb212-4"><a href="tidy-data.html#cb212-4"></a>glanced<span class="op">$</span>glance[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 12
+##   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     0.948         0.942  1.22      181. 9.84e-8     1  -18.3  42.7  44.1
+## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p><code>unnest()</code> unpacks the list objects stored in glance column</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="tidy-data.html#cb214-1"></a>glanced <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb214-2"><a href="tidy-data.html#cb214-2"></a><span class="st">  </span><span class="kw">unnest</span>(glance) <span class="op">%&gt;%</span></span>
+<span id="cb214-3"><a href="tidy-data.html#cb214-3"></a><span class="st">  </span><span class="kw">arrange</span>(BIC) <span class="co"># Low to High; Lower BIC indicates a better model fit </span></span></code></pre></div>
+<pre><code>## # A tibble: 142 x 16
+## # Groups:   country, continent [142]
+##    country continent data  models r.squared adj.r.squared sigma statistic
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;lis&gt; &lt;list&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Sweden  Europe    &lt;tib… &lt;lm&gt;       0.995         0.995 0.212     2203.
+##  2 Switze… Europe    &lt;tib… &lt;lm&gt;       0.997         0.997 0.215     3823.
+##  3 France  Europe    &lt;tib… &lt;lm&gt;       0.998         0.997 0.220     4200.
+##  4 Canada  Americas  &lt;tib… &lt;lm&gt;       0.996         0.996 0.249     2757.
+##  5 Argent… Americas  &lt;tib… &lt;lm&gt;       0.996         0.995 0.292     2246.
+##  6 Belgium Europe    &lt;tib… &lt;lm&gt;       0.995         0.994 0.293     1822.
+##  7 Brazil  Americas  &lt;tib… &lt;lm&gt;       0.998         0.998 0.326     5111.
+##  8 Equato… Africa    &lt;tib… &lt;lm&gt;       0.997         0.997 0.329     3184.
+##  9 Nether… Europe    &lt;tib… &lt;lm&gt;       0.982         0.980 0.348      552.
+## 10 Finland Europe    &lt;tib… &lt;lm&gt;       0.994         0.993 0.354     1613.
+## # … with 132 more rows, and 8 more variables: p.value &lt;dbl&gt;, df &lt;dbl&gt;,
+## #   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;,
+## #   nobs &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="tidy-data.html#cb216-1"></a>glanced <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb216-2"><a href="tidy-data.html#cb216-2"></a><span class="st">  </span><span class="kw">unnest</span>(glance) <span class="op">%&gt;%</span></span>
+<span id="cb216-3"><a href="tidy-data.html#cb216-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(continent, BIC)) <span class="op">+</span></span>
+<span id="cb216-4"><a href="tidy-data.html#cb216-4"></a><span class="st">    </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+</div>
+</div>
+<div id="mapping" class="section level2" number="4.12">
+<h2><span class="header-section-number">4.12</span> Mapping</h2>
+<p>We tasted a little bit about how <code>map()</code> function works. Let’s dig into it deeper as this family of functions is really useful. For more information, see Rebecca Barter’s wonderful tutorial on the <code>purrr</code> package. In her words, this is “the tidyverse’s answer to apply functions for iteration”. <code>map()</code> function can take a vector (of any type), a list, and a dataframe for input.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="tidy-data.html#cb217-1"></a>multiply &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb217-2"><a href="tidy-data.html#cb217-2"></a>  x<span class="op">*</span>x </span>
+<span id="cb217-3"><a href="tidy-data.html#cb217-3"></a>}</span>
+<span id="cb217-4"><a href="tidy-data.html#cb217-4"></a></span>
+<span id="cb217-5"><a href="tidy-data.html#cb217-5"></a>df &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_obs =</span> <span class="kw">rnorm</span>(<span class="dv">7</span>, <span class="dv">1</span>, <span class="dt">sd =</span><span class="dv">1</span>),</span>
+<span id="cb217-6"><a href="tidy-data.html#cb217-6"></a>           <span class="dt">second_obs =</span> <span class="kw">rnorm</span>(<span class="dv">7</span>, <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">2</span>)) <span class="co"># normal distribution </span></span></code></pre></div>
+<p><strong>Challenge</strong></p>
+<p>Try <code>map_df(.x = df, .f = multiply)</code> and tell me what’s the difference between the output you got and what you saw earlier.</p>
+<p>If you want to know more about the power and joy of functional programming in R (e.g., <code>purrr::map()</code>), then please take <a href="https://github.com/dlab-berkeley/R-functional-programming">“How to Automate Repeated Things in R”</a> workshop.</p>
+</div>
+<div id="mutating-joins" class="section level2" number="4.13">
+<h2><span class="header-section-number">4.13</span> Mutating joins</h2>
+<blockquote>
+<p>Add new variables to one data frame from matching observations in another"</p>
+</blockquote>
+<p>Using a simple toy example is great because it is easy to see how things work in that much narrow context.</p>
+<ul>
+<li>Toy example</li>
+</ul>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="tidy-data.html#cb218-1"></a><span class="co"># Table 1 </span></span>
+<span id="cb218-2"><a href="tidy-data.html#cb218-2"></a>x &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">key =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>),</span>
+<span id="cb218-3"><a href="tidy-data.html#cb218-3"></a>            <span class="dt">val_x =</span> <span class="kw">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>, <span class="st">&quot;x3&quot;</span>, <span class="st">&quot;x4&quot;</span>))</span>
+<span id="cb218-4"><a href="tidy-data.html#cb218-4"></a></span>
+<span id="cb218-5"><a href="tidy-data.html#cb218-5"></a><span class="co"># Table 2</span></span>
+<span id="cb218-6"><a href="tidy-data.html#cb218-6"></a>y &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">key =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),</span>
+<span id="cb218-7"><a href="tidy-data.html#cb218-7"></a>            <span class="dt">val_y =</span> <span class="kw">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;y3&quot;</span>, <span class="st">&quot;y4&quot;</span>, <span class="st">&quot;y5&quot;</span>))</span></code></pre></div>
+<div id="inner-join" class="section level3" number="4.13.1">
+<h3><span class="header-section-number">4.13.1</span> Inner Join</h3>
+<p><code>inner_join()</code> keeps the matched values in both tables. If the left table is a subset of the right table, then the result of <code>left_join()</code> is same as <code>inner_join()</code>.</p>
+<p><strong>Challenge</strong></p>
+<p>What are going to be the shared keys?</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="tidy-data.html#cb219-1"></a><span class="kw">inner_join</span>(x, y)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;key&quot;</code></pre>
+<pre><code>## # A tibble: 4 x 3
+##     key val_x val_y
+##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1     1 x1    y1   
+## 2     2 x2    y2   
+## 3     3 x3    y3   
+## 4     4 x4    y4</code></pre>
+<div class="figure">
+<img src="https://d33wubrfki0l68.cloudfront.net/aeab386461820b029b7e7606ccff1286f623bae1/ef0d4/diagrams/join-venn.png" alt="" />
+<p class="caption">Mutating joins</p>
+</div>
+</div>
+<div id="left-join" class="section level3" number="4.13.2">
+<h3><span class="header-section-number">4.13.2</span> Left Join</h3>
+<p><code>left_join()</code>, <code>right_join()</code> and <code>full_join()</code> are outer join functions. Unlike <code>inner_join()</code>, outer join functions keep observations that appear in at least one of the tables.</p>
+<p><code>left_join()</code> keeps only the matched observations in the right table.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="tidy-data.html#cb222-1"></a><span class="kw">left_join</span>(x, y)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;key&quot;</code></pre>
+<pre><code>## # A tibble: 4 x 3
+##     key val_x val_y
+##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1     1 x1    y1   
+## 2     2 x2    y2   
+## 3     3 x3    y3   
+## 4     4 x4    y4</code></pre>
+</div>
+<div id="right-join" class="section level3" number="4.13.3">
+<h3><span class="header-section-number">4.13.3</span> Right Join</h3>
+<p><code>right_join()</code> does the opposite.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="tidy-data.html#cb225-1"></a><span class="kw">right_join</span>(x, y)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;key&quot;</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##     key val_x val_y
+##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1     1 x1    y1   
+## 2     2 x2    y2   
+## 3     3 x3    y3   
+## 4     4 x4    y4   
+## 5     5 &lt;NA&gt;  y5</code></pre>
+</div>
+<div id="full-join" class="section level3" number="4.13.4">
+<h3><span class="header-section-number">4.13.4</span> Full Join</h3>
+<p><code>full_join()</code> keeps the observations from both tables. If they were unmatched, then NAs were recoded in one of the two tables.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="tidy-data.html#cb228-1"></a><span class="kw">full_join</span>(x, y)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;key&quot;</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##     key val_x val_y
+##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1     1 x1    y1   
+## 2     2 x2    y2   
+## 3     3 x3    y3   
+## 4     4 x4    y4   
+## 5     5 &lt;NA&gt;  y5</code></pre>
+</div>
+</div>
+<div id="filtering-joins" class="section level2" number="4.14">
+<h2><span class="header-section-number">4.14</span> Filtering joins</h2>
+<blockquote>
+<p>Filter observations from one data frame based on whether or not they match an observation in the other table.</p>
+</blockquote>
+<div id="semi-join" class="section level3" number="4.14.1">
+<h3><span class="header-section-number">4.14.1</span> Semi Join</h3>
+<p>In SQL, this type of query is also called subqueries.</p>
+<ul>
+<li>Filtering without joining</li>
+</ul>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="tidy-data.html#cb231-1"></a><span class="co"># Create the list of the top 10 destinations </span></span>
+<span id="cb231-2"><a href="tidy-data.html#cb231-2"></a>top_dest &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></span>
+<span id="cb231-3"><a href="tidy-data.html#cb231-3"></a><span class="st">  </span><span class="kw">count</span>(dest, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb231-4"><a href="tidy-data.html#cb231-4"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## Selecting by n</code></pre>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="tidy-data.html#cb233-1"></a><span class="co"># Filter</span></span>
+<span id="cb233-2"><a href="tidy-data.html#cb233-2"></a>filtered &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></span>
+<span id="cb233-3"><a href="tidy-data.html#cb233-3"></a><span class="st">  </span><span class="kw">filter</span>(dest <span class="op">%in%</span><span class="st"> </span>top_dest<span class="op">$</span>dest)</span></code></pre></div>
+<ul>
+<li>Using semi join: only keep (INCLUDE) the rows that were matched between the two tables</li>
+</ul>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="tidy-data.html#cb234-1"></a>joined &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></span>
+<span id="cb234-2"><a href="tidy-data.html#cb234-2"></a><span class="st">  </span><span class="kw">semi_join</span>(top_dest)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;dest&quot;</code></pre>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="tidy-data.html#cb236-1"></a><span class="kw">head</span>(filtered <span class="op">==</span><span class="st"> </span>joined)</span></code></pre></div>
+<pre><code>##      year month  day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+## [1,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+## [2,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+## [3,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+## [4,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+## [5,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+## [6,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+##      arr_delay carrier flight tailnum origin dest air_time distance hour minute
+## [1,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+## [2,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+## [3,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+## [4,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+## [5,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+## [6,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+##      time_hour
+## [1,]      TRUE
+## [2,]      TRUE
+## [3,]      TRUE
+## [4,]      TRUE
+## [5,]      TRUE
+## [6,]      TRUE</code></pre>
+</div>
+<div id="anti-join" class="section level3" number="4.14.2">
+<h3><span class="header-section-number">4.14.2</span> Anti Join</h3>
+<p><code>anti_join()</code> dose the opposite. Exclude the rows that were matched between the two tables. Great technique to filter stopwords when you do a computational text analysis.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="tidy-data.html#cb238-1"></a>flights <span class="op">%&gt;%</span></span>
+<span id="cb238-2"><a href="tidy-data.html#cb238-2"></a><span class="st">  </span><span class="kw">anti_join</span>(planes, <span class="dt">by =</span> <span class="st">&quot;tailnum&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb238-3"><a href="tidy-data.html#cb238-3"></a><span class="st">  </span><span class="kw">count</span>(tailnum, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 722 x 2
+##    tailnum     n
+##    &lt;chr&gt;   &lt;int&gt;
+##  1 &lt;NA&gt;     2512
+##  2 N725MQ    575
+##  3 N722MQ    513
+##  4 N723MQ    507
+##  5 N713MQ    483
+##  6 N735MQ    396
+##  7 N0EGMQ    371
+##  8 N534MQ    364
+##  9 N542MQ    363
+## 10 N531MQ    349
+## # … with 712 more rows</code></pre>
 
+</div>
 </div>
 </div>
             </section>

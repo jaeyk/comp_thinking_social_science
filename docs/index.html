@@ -52,6 +52,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.0.0/tabwid.js"></script>
 
 
 <style type="text/css">
@@ -197,9 +199,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="intro.html"><a href="intro.html#setup"><i class="fa fa-check"></i><b>4.1</b> Setup</a></li>
 <li class="chapter" data-level="4.2" data-path="tidy-data.html"><a href="tidy-data.html#tidyverse-way-of-thinking-data-science-workflow"><i class="fa fa-check"></i><b>4.2</b> Tidyverse way of thinking data science workflow</a></li>
 <li class="chapter" data-level="4.3" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data-and-why-it-matters"><i class="fa fa-check"></i><b>4.3</b> Tidy data and why it matters</a></li>
-<li class="chapter" data-level="4.4" data-path="tidy-data.html"><a href="tidy-data.html#wrangling-data"><i class="fa fa-check"></i><b>4.4</b> Wrangling data</a></li>
-<li class="chapter" data-level="4.5" data-path="tidy-data.html"><a href="tidy-data.html#wrangling-data-at-scale"><i class="fa fa-check"></i><b>4.5</b> Wrangling data at scale</a></li>
-<li class="chapter" data-level="4.6" data-path="tidy-data.html"><a href="tidy-data.html#modeling-and-visualizing-tidy-data"><i class="fa fa-check"></i><b>4.6</b> Modeling and visualizing tidy data</a></li>
+<li class="chapter" data-level="4.4" data-path="tidy-data.html"><a href="tidy-data.html#reshape-data"><i class="fa fa-check"></i><b>4.4</b> Reshape Data</a></li>
+<li class="chapter" data-level="4.5" data-path="tidy-data.html"><a href="tidy-data.html#represent-data"><i class="fa fa-check"></i><b>4.5</b> Represent Data</a></li>
+<li class="chapter" data-level="4.6" data-path="tidy-data.html"><a href="tidy-data.html#subset-observations-rows"><i class="fa fa-check"></i><b>4.6</b> Subset Observations (Rows)</a></li>
+<li class="chapter" data-level="4.7" data-path="tidy-data.html"><a href="tidy-data.html#subset-variables-columns"><i class="fa fa-check"></i><b>4.7</b> Subset Variables (Columns)</a></li>
+<li class="chapter" data-level="4.8" data-path="tidy-data.html"><a href="tidy-data.html#counting"><i class="fa fa-check"></i><b>4.8</b> Counting</a></li>
+<li class="chapter" data-level="4.9" data-path="tidy-data.html"><a href="tidy-data.html#summarizing"><i class="fa fa-check"></i><b>4.9</b> Summarizing</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="tidy-data.html"><a href="tidy-data.html#basic"><i class="fa fa-check"></i><b>4.9.1</b> Basic</a></li>
+<li class="chapter" data-level="4.9.2" data-path="tidy-data.html"><a href="tidy-data.html#scoped-summaries"><i class="fa fa-check"></i><b>4.9.2</b> Scoped summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="tidy-data.html"><a href="tidy-data.html#grouping"><i class="fa fa-check"></i><b>4.10</b> Grouping</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="tidy-data.html"><a href="tidy-data.html#grouped-summaries"><i class="fa fa-check"></i><b>4.10.1</b> Grouped summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="tidy-data.html"><a href="tidy-data.html#nesting"><i class="fa fa-check"></i><b>4.11</b> Nesting</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="tidy-data.html"><a href="tidy-data.html#nest"><i class="fa fa-check"></i><b>4.11.1</b> nest</a></li>
+<li class="chapter" data-level="4.11.2" data-path="tidy-data.html"><a href="tidy-data.html#unnest"><i class="fa fa-check"></i><b>4.11.2</b> unnest</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="tidy-data.html"><a href="tidy-data.html#mapping"><i class="fa fa-check"></i><b>4.12</b> Mapping</a></li>
+<li class="chapter" data-level="4.13" data-path="tidy-data.html"><a href="tidy-data.html#mutating-joins"><i class="fa fa-check"></i><b>4.13</b> Mutating joins</a>
+<ul>
+<li class="chapter" data-level="4.13.1" data-path="tidy-data.html"><a href="tidy-data.html#inner-join"><i class="fa fa-check"></i><b>4.13.1</b> Inner Join</a></li>
+<li class="chapter" data-level="4.13.2" data-path="tidy-data.html"><a href="tidy-data.html#left-join"><i class="fa fa-check"></i><b>4.13.2</b> Left Join</a></li>
+<li class="chapter" data-level="4.13.3" data-path="tidy-data.html"><a href="tidy-data.html#right-join"><i class="fa fa-check"></i><b>4.13.3</b> Right Join</a></li>
+<li class="chapter" data-level="4.13.4" data-path="tidy-data.html"><a href="tidy-data.html#full-join"><i class="fa fa-check"></i><b>4.13.4</b> Full Join</a></li>
+</ul></li>
+<li class="chapter" data-level="4.14" data-path="tidy-data.html"><a href="tidy-data.html#filtering-joins"><i class="fa fa-check"></i><b>4.14</b> Filtering joins</a>
+<ul>
+<li class="chapter" data-level="4.14.1" data-path="tidy-data.html"><a href="tidy-data.html#semi-join"><i class="fa fa-check"></i><b>4.14.1</b> Semi Join</a></li>
+<li class="chapter" data-level="4.14.2" data-path="tidy-data.html"><a href="tidy-data.html#anti-join"><i class="fa fa-check"></i><b>4.14.2</b> Anti Join</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>5</b> Automating repeated things</a>
 <ul>
@@ -240,13 +271,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.1" data-path="functional-programming.html"><a href="functional-programming.html#learning-objective"><i class="fa fa-check"></i><b>5.6.1</b> Learning objective</a></li>
 <li class="chapter" data-level="5.6.2" data-path="functional-programming.html"><a href="functional-programming.html#solution-1"><i class="fa fa-check"></i><b>5.6.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="functional-programming.html"><a href="functional-programming.html#developing-your-own-data-tools"><i class="fa fa-check"></i><b>5.7</b> Developing your own data tools</a></li>
+<li class="chapter" data-level="5.7" data-path="functional-programming.html"><a href="functional-programming.html#developing-your-own-data-tools"><i class="fa fa-check"></i><b>5.7</b> Developing your own data tools</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="functional-programming.html"><a href="functional-programming.html#why-developing-r-packages"><i class="fa fa-check"></i><b>5.7.1</b> Why developing R packages?</a></li>
+<li class="chapter" data-level="5.7.2" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>5.7.2</b> Workflow</a></li>
+<li class="chapter" data-level="5.7.3" data-path="functional-programming.html"><a href="functional-programming.html#developing-an-r-package"><i class="fa fa-check"></i><b>5.7.3</b> Developing an R package</a></li>
+<li class="chapter" data-level="5.7.4" data-path="functional-programming.html"><a href="functional-programming.html#required-components"><i class="fa fa-check"></i><b>5.7.4</b> Required Components</a></li>
+<li class="chapter" data-level="5.7.5" data-path="functional-programming.html"><a href="functional-programming.html#optional-components"><i class="fa fa-check"></i><b>5.7.5</b> Optional Components</a></li>
+<li class="chapter" data-level="5.7.6" data-path="functional-programming.html"><a href="functional-programming.html#building-an-r-package"><i class="fa fa-check"></i><b>5.7.6</b> Building an R package</a></li>
+<li class="chapter" data-level="5.7.7" data-path="functional-programming.html"><a href="functional-programming.html#distributing-an-r-package"><i class="fa fa-check"></i><b>5.7.7</b> Distributing an R package</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="semi-structured-data.html"><a href="semi-structured-data.html"><i class="fa fa-check"></i><b>6</b> Semi-structured data</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
 <li class="chapter" data-level="6.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#what-is-semi-structured-data"><i class="fa fa-check"></i><b>6.2</b> What is semi-structured data?</a></li>
-<li class="chapter" data-level="6.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow"><i class="fa fa-check"></i><b>6.3</b> Workflow</a></li>
+<li class="chapter" data-level="6.3" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>6.3</b> Workflow</a></li>
 <li class="chapter" data-level="6.4" data-path="semi-structured-data.html"><a href="semi-structured-data.html#htmlcss-web-scraping"><i class="fa fa-check"></i><b>6.4</b> HTML/CSS: web scraping</a></li>
 <li class="chapter" data-level="6.5" data-path="semi-structured-data.html"><a href="semi-structured-data.html#xmljson-social-media-scraping"><i class="fa fa-check"></i><b>6.5</b> XML/JSON: social media scraping</a>
 <ul>
@@ -259,7 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="machine-learning.html"><a href="machine-learning.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
 <li class="chapter" data-level="7.2" data-path="machine-learning.html"><a href="machine-learning.html#dataset"><i class="fa fa-check"></i><b>7.2</b> Dataset</a></li>
-<li class="chapter" data-level="7.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow"><i class="fa fa-check"></i><b>7.3</b> Workflow</a></li>
+<li class="chapter" data-level="7.3" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>7.3</b> Workflow</a></li>
 <li class="chapter" data-level="7.4" data-path="machine-learning.html"><a href="machine-learning.html#pre-processing"><i class="fa fa-check"></i><b>7.4</b> Pre-processing</a>
 <ul>
 <li class="chapter" data-level="7.4.1" data-path="machine-learning.html"><a href="machine-learning.html#regression-setup"><i class="fa fa-check"></i><b>7.4.1</b> Regression setup</a></li>
@@ -288,33 +328,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="big-data.html"><a href="big-data.html"><i class="fa fa-check"></i><b>8</b> Big data</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="big-data.html"><a href="big-data.html#database-and-sql"><i class="fa fa-check"></i><b>8.1</b> Database and SQL</a></li>
-<li class="chapter" data-level="8.2" data-path="motivation.html"><a href="motivation.html#motivation"><i class="fa fa-check"></i><b>8.2</b> Motivation</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="what-is-sql.html"><a href="what-is-sql.html"><i class="fa fa-check"></i><b>9</b> What is SQL?</a></li>
-<li class="chapter" data-level="10" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>10</b> Learning objectives</a>
+<li class="chapter" data-level="8.1" data-path="motivation.html"><a href="motivation.html#motivation"><i class="fa fa-check"></i><b>8.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.2" data-path="big-data.html"><a href="big-data.html#what-is-sql"><i class="fa fa-check"></i><b>8.2</b> What is SQL?</a></li>
+<li class="chapter" data-level="8.3" data-path="big-data.html"><a href="big-data.html#learning-objectives"><i class="fa fa-check"></i><b>8.3</b> Learning objectives</a></li>
+<li class="chapter" data-level="8.4" data-path="big-data.html"><a href="big-data.html#quick-overview"><i class="fa fa-check"></i><b>8.4</b> Quick overview</a></li>
+<li class="chapter" data-level="8.5" data-path="intro.html"><a href="intro.html#setup"><i class="fa fa-check"></i><b>8.5</b> Setup</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="intro.html"><a href="intro.html#setup"><i class="fa fa-check"></i><b>10.1</b> Setup</a>
-<ul>
-<li class="chapter" data-level="10.1.1" data-path="learning-objectives.html"><a href="learning-objectives.html#packages"><i class="fa fa-check"></i><b>10.1.1</b> Packages</a></li>
-<li class="chapter" data-level="10.1.2" data-path="learning-objectives.html"><a href="learning-objectives.html#data-sets"><i class="fa fa-check"></i><b>10.1.2</b> Data sets</a></li>
+<li class="chapter" data-level="8.5.1" data-path="big-data.html"><a href="big-data.html#packages"><i class="fa fa-check"></i><b>8.5.1</b> Packages</a></li>
+<li class="chapter" data-level="8.5.2" data-path="big-data.html"><a href="big-data.html#data-sets"><i class="fa fa-check"></i><b>8.5.2</b> Data sets</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow"><i class="fa fa-check"></i><b>10.2</b> Workflow</a></li>
-<li class="chapter" data-level="10.3" data-path="learning-objectives.html"><a href="learning-objectives.html#create-a-database"><i class="fa fa-check"></i><b>10.3</b> Create a database</a></li>
-<li class="chapter" data-level="10.4" data-path="learning-objectives.html"><a href="learning-objectives.html#copy-an-object-as-a-table-to-the-database-push"><i class="fa fa-check"></i><b>10.4</b> Copy an object as a table to the database (push)</a></li>
-<li class="chapter" data-level="10.5" data-path="learning-objectives.html"><a href="learning-objectives.html#quick-demonstrations"><i class="fa fa-check"></i><b>10.5</b> Quick demonstrations:</a></li>
-<li class="chapter" data-level="10.6" data-path="learning-objectives.html"><a href="learning-objectives.html#tidy-way-dplyr---sql"><i class="fa fa-check"></i><b>10.6</b> Tidy-way: dplyr -&gt; SQL</a>
+<li class="chapter" data-level="8.6" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>8.6</b> Workflow</a></li>
+<li class="chapter" data-level="8.7" data-path="big-data.html"><a href="big-data.html#create-a-database"><i class="fa fa-check"></i><b>8.7</b> Create a database</a></li>
+<li class="chapter" data-level="8.8" data-path="big-data.html"><a href="big-data.html#copy-an-object-as-a-table-to-the-database-push"><i class="fa fa-check"></i><b>8.8</b> Copy an object as a table to the database (push)</a></li>
+<li class="chapter" data-level="8.9" data-path="big-data.html"><a href="big-data.html#quick-demonstrations"><i class="fa fa-check"></i><b>8.9</b> Quick demonstrations:</a></li>
+<li class="chapter" data-level="8.10" data-path="big-data.html"><a href="big-data.html#tidy-way-dplyr---sql"><i class="fa fa-check"></i><b>8.10</b> Tidy-way: dplyr -&gt; SQL</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="learning-objectives.html"><a href="learning-objectives.html#select-select"><i class="fa fa-check"></i><b>10.6.1</b> <code>select</code> = <code>SELECT</code></a></li>
-<li class="chapter" data-level="10.6.2" data-path="learning-objectives.html"><a href="learning-objectives.html#mutate-select-as"><i class="fa fa-check"></i><b>10.6.2</b> <code>mutate</code> = <code>SELECT</code> <code>AS</code></a></li>
-<li class="chapter" data-level="10.6.3" data-path="learning-objectives.html"><a href="learning-objectives.html#filter-where"><i class="fa fa-check"></i><b>10.6.3</b> <code>filter</code> = <code>WHERE</code></a></li>
-<li class="chapter" data-level="10.6.4" data-path="learning-objectives.html"><a href="learning-objectives.html#arrange-order-by"><i class="fa fa-check"></i><b>10.6.4</b> <code>arrange</code> = <code>ORDER BY</code></a></li>
-<li class="chapter" data-level="10.6.5" data-path="learning-objectives.html"><a href="learning-objectives.html#summarise-select-as-and-group-by-group-by"><i class="fa fa-check"></i><b>10.6.5</b> <code>summarise</code> = <code>SELECT</code> <code>AS</code> and <code>group by</code> = <code>GROUP BY</code></a></li>
-<li class="chapter" data-level="10.6.6" data-path="learning-objectives.html"><a href="learning-objectives.html#joins"><i class="fa fa-check"></i><b>10.6.6</b> Joins</a></li>
+<li class="chapter" data-level="8.10.1" data-path="big-data.html"><a href="big-data.html#select-select"><i class="fa fa-check"></i><b>8.10.1</b> <code>select</code> = <code>SELECT</code></a></li>
+<li class="chapter" data-level="8.10.2" data-path="big-data.html"><a href="big-data.html#mutate-select-as"><i class="fa fa-check"></i><b>8.10.2</b> <code>mutate</code> = <code>SELECT</code> <code>AS</code></a></li>
+<li class="chapter" data-level="8.10.3" data-path="big-data.html"><a href="big-data.html#filter-where"><i class="fa fa-check"></i><b>8.10.3</b> <code>filter</code> = <code>WHERE</code></a></li>
+<li class="chapter" data-level="8.10.4" data-path="big-data.html"><a href="big-data.html#arrange-order-by"><i class="fa fa-check"></i><b>8.10.4</b> <code>arrange</code> = <code>ORDER BY</code></a></li>
+<li class="chapter" data-level="8.10.5" data-path="big-data.html"><a href="big-data.html#summarise-select-as-and-group-by-group-by"><i class="fa fa-check"></i><b>8.10.5</b> <code>summarise</code> = <code>SELECT</code> <code>AS</code> and <code>group by</code> = <code>GROUP BY</code></a></li>
+<li class="chapter" data-level="8.10.6" data-path="big-data.html"><a href="big-data.html#joins"><i class="fa fa-check"></i><b>8.10.6</b> Joins</a></li>
 </ul></li>
-<li class="chapter" data-level="10.7" data-path="learning-objectives.html"><a href="learning-objectives.html#collect-pull"><i class="fa fa-check"></i><b>10.7</b> Collect (pull)</a></li>
-<li class="chapter" data-level="10.8" data-path="learning-objectives.html"><a href="learning-objectives.html#disconnect"><i class="fa fa-check"></i><b>10.8</b> Disconnect</a></li>
-<li class="chapter" data-level="10.9" data-path="intro.html"><a href="intro.html#references"><i class="fa fa-check"></i><b>10.9</b> References</a></li>
+<li class="chapter" data-level="8.11" data-path="big-data.html"><a href="big-data.html#collect-pull"><i class="fa fa-check"></i><b>8.11</b> Collect (pull)</a></li>
+<li class="chapter" data-level="8.12" data-path="big-data.html"><a href="big-data.html#disconnect"><i class="fa fa-check"></i><b>8.12</b> Disconnect</a></li>
+<li class="chapter" data-level="8.13" data-path="intro.html"><a href="intro.html#references"><i class="fa fa-check"></i><b>8.13</b> References</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/jaeyk/PS239T/" target="blank">Published with bookdown</a></li>
