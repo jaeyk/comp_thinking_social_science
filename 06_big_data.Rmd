@@ -37,12 +37,12 @@
 SELECT COLUMN FROM TABLE 
 ```
 
-## Learning objectives 
+### Learning objectives 
 * Embracing a new mindset: shifting from ownership (opening CSVs in your laptop) to access (accessing data stored in a database)
 
 * Learning how to use R and SQL to access and query a database
 
-## Quick overview 
+### Quick overview 
 
 * SQL and R
 
@@ -93,7 +93,7 @@ ORDER BY column # Arrange
 
 ![SQL Zine by by [Julia Evans](https://jvns.ca/)](https://wizardzines.com/zines/sql/samples/from.png)
 
-## Setup
+### Setup
 
 Let's get to work. 
 
@@ -182,7 +182,7 @@ INSERT INTO students(name, birth, gpa, grad)
 
 5. Disconnect the database 
 
-## Create a database 
+### Create a database 
 
 ```{r}
 
@@ -207,7 +207,7 @@ dbListTables(con)
 
 - Note that con is empty at this stage.
 
-## Copy an object as a table to the database (push)
+### Copy an object as a table to the database (push)
 
 ```{r}
 
@@ -248,7 +248,7 @@ dbListFields(con, "weather")
 
 ```
 
-## Quick demonstrations:
+### Quick demonstrations:
 
 - SELECT desired columns 
 - FROM tables 
@@ -349,7 +349,7 @@ dbGetQuery(con,
 
 ```
 
-## Tidy-way: dplyr -> SQL
+### Tidy-way: dplyr -> SQL
 
 Thanks to the `dbplyr` package you can use the `dplyr` syntax to query SQL. 
 
@@ -365,7 +365,7 @@ weather <- con %>% tbl("weather")
 
 ```
 
-### `select` = `SELECT`
+- `select` = `SELECT`
 
 ```{r}
 
@@ -377,7 +377,7 @@ flights %>%
 **Challenge 4** 
 Your turn: write the same code in SQL 
 
-### `mutate` = `SELECT` `AS`
+- `mutate` = `SELECT` `AS`
 
 ```{r}
 
@@ -390,7 +390,7 @@ flights %>%
 **Challenge 5** 
 Your turn: write the same code in SQL (hint: `mutate(new_var = var 1 * var2` = `SELECT var1 * var2 AS near_var`)
 
-### `filter` = `WHERE` 
+- `filter` = `WHERE` 
 
 ```{r}
 
@@ -404,7 +404,7 @@ Your turn: write the same code in SQL (hint: `filter(condition1, condition2)` = 
 
 - Note that R and SQL operators are not exactly alike. R uses `!=` for `Not equal to`. SQL uses `<>` or `!=`. Furthermore, there are some cautions about using `NULL` (NA; unknown or missing): it should be `IS NULL` or `IS NOT NULL` not `=NULL` or `!=NULL`. 
 
-### `arrange` = `ORDER BY`
+- `arrange` = `ORDER BY`
 
 ```{r}
 
@@ -417,7 +417,7 @@ flights %>%
 **Challenge 7** 
 Your turn: write the same code in SQL (hint: `arrange(var1, desc(var2)) = ORDER BY var1, var2 DESC`)
 
-### `summarise` = `SELECT` `AS` and `group by` = `GROUP BY`
+- `summarise` = `SELECT` `AS` and `group by` = `GROUP BY`
 
 ```{r}
 
@@ -441,7 +441,7 @@ flights %>%
 
 ```
 
-### Joins 
+- Joins 
 
 - Using joins is simpler in R than it is in SQL.
 
@@ -460,7 +460,7 @@ flights %>%
 
 ```
 
-## Collect (pull)
+### Collect (pull)
 
 * `collect()` is used to pull the data. Depending on the data size, it may take a long time to run.
 
@@ -493,7 +493,7 @@ origin_flights_plot <- ggplot(df) +
 origin_flights_plot
 ```
 
-## Disconnect 
+### Disconnect 
 
 ```{r}
 
