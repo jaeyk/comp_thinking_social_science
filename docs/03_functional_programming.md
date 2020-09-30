@@ -223,7 +223,7 @@ toc()
 ```
 
 ```
-## 0.008 sec elapsed
+## 0.006 sec elapsed
 ```
 
 
@@ -881,7 +881,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[2]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
 ## 
 ## 
 ## [[3]]

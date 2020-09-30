@@ -86,7 +86,7 @@ This explanation draws on Pablo Barbara's [LSE social media workshop slides](htt
 
 **Basic information**
 
-- What is an API?: An interface (you can think of it as something akin to restaurant menu. API parameters are menu items.)
+- What is an API?: An interface (you can think of it as something akin to a restaurant menu. API parameters are menu items.)
     - [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) (Representational state transfer) API: static information (e.g., user profiles, list of followers and friends)
         - R packages: [tweetscores](https://github.com/pablobarbera/twitter_ideology/tree/master/pkg/tweetscores), [twitteR](https://cran.r-project.org/web/packages/twitteR/twitteR.pdf), [rtweet](https://github.com/ropensci/rtweet)
     - [Streaming API](https://blog.axway.com/amplify/api-management/streaming-apis#:~:text=Streaming%20APIs%20are%20used%20to,a%20subset%20of%20Streaming%20APIS.): dynamic information (e..g, new tweets)
