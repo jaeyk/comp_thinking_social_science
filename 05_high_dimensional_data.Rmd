@@ -79,15 +79,35 @@
 
 ## Dataset  
 
+- [Heart disease data from UCI](https://archive.ics.uci.edu/ml/datasets/heart+Disease)
+
+- One of the popular datasets used in machine learning competitions 
+
 ```{r}
-pacman::p_load(tidymodels)
 
-# Ames, Iowa housing data 
-data(ames)
+# Load packages 
 
-# Glimpse 
-ames %>%
-  glimpse()
+## CRAN packages 
+pacman::p_load(here,
+               tidyverse, 
+               tidymodels,
+               doParallel, # parallel processing 
+               patchwork) # arranging ggplots 
+
+## Jae's custom functions 
+source(here("functions", "ml_utils.r"))
+
+# Import the dataset 
+
+data_original <- read_csv(here("data", "heart.csv"))
+
+glimpse(data_original)
+
+# Createa a copy 
+data <- data_original
+
+theme_set(theme_minimal())
+
 ```
 
 - For more information on the Iowa housing data, read [Cook (2011)](http://jse.amstat.org/v19n3/decock.pdf). This is one of the famous datastets used in many prediction modeling competitions.
@@ -95,10 +115,10 @@ ames %>%
 ## Workflow 
 
 ```{r echo=FALSE, results='asis'}
+
 pacman::p_load(glue)
 
-workflow_list <- c("Data splitting", 
-                   "Preprocessing",
+workflow_list <- c("Preprocessing",
                    "Model building",
                    "Model fitting",
                    "Model evaluation",
@@ -107,11 +127,31 @@ workflow_list <- c("Data splitting",
 
 glue("- {seq(workflow_list)}. {workflow_list}")
 ```
-![Workflow. Based on RStudio.](https://rviews.rstudio.com/post/2019-06-14-a-gentle-intro-to-tidymodels_files/figure-html/tidymodels.png)
-
-### Tidymodels 
+## Tidymodels 
 
 - Like `tidyverse`, `tidymodels` is a collection of packages.
+
+    - [`rsample`](https://rsample.tidymodels.org/): for data splitting 
+    
+    - [`recipes`](https://recipes.tidymodels.org/index.html): for pre-processing
+    
+    - [`parsnip`](https://www.tidyverse.org/blog/2018/11/parsnip-0-0-1/): for model building 
+    
+        - [`tune`](https://github.com/tidymodels/tune): parameter tuning 
+    
+    - [`yardstick`](https://github.com/tidymodels/yardstick): for model evaluations 
+    
+    - [`workflows`](https://github.com/tidymodels/workflows): for bundling a pieplne that bundles together pre-processing, modeling, and post-processing requests 
+    
+- Why taking a tidyverse approach to machine learning?
+
+- Benefits 
+
+    - Readable code 
+    
+    - Reusable data structures 
+    
+    - Extendable code
 
 ![Tidymodels. From RStudio.](https://rviews.rstudio.com/post/2019-06-14-a-gentle-intro-to-tidymodels_files/figure-html/ds.png)
 
@@ -119,149 +159,1056 @@ glue("- {seq(workflow_list)}. {workflow_list}")
 
 - Currently, 238 models are [available](https://topepo.github.io/caret/available-models.html) 
 
-### Data split 
+- The following materials are based on [the machine learning with tidymodels workshop](https://github.com/dlab-berkeley/Machine-Learning-with-tidymodels) I developed for D-Lab. [The original workshop](https://github.com/dlab-berkeley/Machine-Learning-in-R) was designed by [Chris Kennedy](https://ck37.com/) and [Evan Muzzall](https://dlab.berkeley.edu/people/evan-muzzall.
 
- - [`rsample`](https://rsample.tidymodels.org/): for data splitting 
- 
-#### Random sampling 
-
-```{r eval = FALSE}
-# data split 
-set.seed(1234)
-
-df_split  <- rsample::initial_split(df, prop = 0.7)
-train <- rsample::training(df_split)
-test <- rsample::testing(df_split)
-
-```
-
-#### Stratified random sampling 
-
-#### Cross-validation 
-
-### Pre-process 
+## Pre-processing
 
 - [`recipes`](https://recipes.tidymodels.org/index.html): for pre-processing
 
 - [`textrecipes`](https://github.com/tidymodels/textrecipes) for text pre-processing
 
-```{r eval = FALSE}
+- Step 1: `recipe()` defines target and predictor variables (ingredients).
 
-# preprocess 
-df_recipe <- df %>% recipe(resonse ~.) %>%
-  # Centering: x - mean(x)
-  step_center(all_predictors(), -all_outcomes()) %>%
-  # Scaling: x * k 
-  step_scale(all_predictors(), -all_outcomes()) %>%
-  prep()
+- Step 2: `step_*()` defines preprocessing steps to be taken (recipe).
 
-# preprocessed training and testsets 
-processed_train <- df_recipe %>% bake(train)
-processed_test <- df_recipe %>% bake(test)
-  
-```
+    The list of the preprocessing steps draws on the vignette of the [`parsnip`](https://www.tidymodels.org/find/parsnip/) package.
 
-### Model building 
+    - dummy: Also called one-hot encoding
 
-- [`parsnip`](https://www.tidyverse.org/blog/2018/11/parsnip-0-0-1/): for model building 
+    - zero variance: Removing columns (or features) with a single unique value  
 
-#### Choose model 
+    - impute: Imputing missing values
 
-```{r eval = FALSE}
+    - decorrelate: Mitigating correlated predictors (e.g., principal component analysis)
 
-# Fit model 
+    - normalize: Centering and/or scaling predictors (e.g., log scaling)
 
-  ## Choose model 
-df_ranger <- rand_forest(trees = 1000, 
-                         ## Declare mode 
-                         mode = "classification") %>%
-  ## Choose engine 
-  set_engine("ranger") %>%
-  ## Fit 
-  fit(response ~ ., data = processed_train)
+    - transform: Making predictors symmetric 
 
-# Make predictions 
+- Step 3: `prep()` prepares a dataset to base each step on.
 
-df_pred <- predict(df_ranger, processed_test)
+- Step 4: `bake()` applies the pre-processing steps to your datasets. 
+
+In this course, we focus on two preprocessing tasks. 
+
+- One-hot encoding (creating dummy/indicator variables)
+
+```{r}
+
+# Turn selected numeric variables into factor variables 
+data <- data %>%
+  dplyr::mutate(across(c("sex", "ca", "cp", "slope", "thal"), as.factor)) 
+
+glimpse(data) 
 
 ```
+- Imputation 
 
-#### Choose engine 
+```{r}
 
-#### Declare mode  
+# Check missing values 
 
-### Model evaluation 
+map_df(data, ~ is.na(.) %>% sum())
 
-- [`yardstick`](https://github.com/tidymodels/yardstick): for model evaluations 
-    
-```{r eval = FALSE}
+# Add missing values 
 
-# validate 
+data$oldpeak[sample(seq(data), size = 10)] <- NA
 
-df_pred %>%
-  bind_cols(processed_test) %>%
-  # You can also easily change metrics you want to use 
-  metrics(truth = response, estimate = .pred_class)
+# Check missing values 
 
-## # A tibble: 2 x 3
-##   .metric  .estimator .estimate
-##   <chr>    <chr>          <dbl>
-## 1 accuracy multiclass     0.9
-## 2 kap      multiclass     0.8
+# Check the number of missing values 
+data %>%
+  map_df(~is.na(.) %>% sum())
+
+# Check the rate of missing values
+data %>%
+  map_df(~is.na(.) %>% mean())
+
+```
+ 
+### Regression setup 
+
+#### Outcome variable 
+
+```{r}
+
+# Continuous variable 
+data$age %>% class()
+
+```
+#### Data splitting using random sampling 
+
+```{r}
+
+# for reproducibility 
+set.seed(1234) 
+
+# split 
+split_reg <- initial_split(data, prop = 0.7)
+
+# training set 
+raw_train_x_reg <- training(split_reg)
+
+# test set 
+raw_test_x_reg <- testing(split_reg)
 
 ```
 
-### Tuning 
+#### recipe 
 
-- [`tune`](https://github.com/tidymodels/tune): parameter tuning 
+```{r}
 
-#### Grid search 
+# Regression recipe 
+rec_reg <- raw_train_x_reg %>%
+  # Define the outcome variable 
+  recipe(age ~ .) %>%
+  # Median impute oldpeak column 
+  step_medianimpute(oldpeak) %>%
+  # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators). 
+  step_dummy(c("sex", "ca", "cp", "slope", "thal"))
 
-#### Iterative search
+# Prepare a dataset to base each step on
+prep_reg <- rec_reg %>% prep(retain = TRUE) 
+
+```
+
+```{r}
+
+# x features 
+train_x_reg <- juice(prep_reg, all_predictors())
+
+test_x_reg <- bake(object = prep_reg, 
+                   new_data = raw_test_x_reg, all_predictors())
+
+# y variables 
+train_y_reg <- juice(prep_reg, all_outcomes())$age %>% as.numeric()
+test_y_reg <- bake(prep_reg, raw_test_x_reg, all_outcomes())$age %>% as.numeric()
+
+# Checks
+names(train_x_reg) # Make sure there's no age variable!
+
+class(train_y_reg) # Make sure this is a continuous variable!
+
+```
+- Note that other imputation methods are also available. 
+
+```{r}
+grep("impute", ls("package:recipes"), value = TRUE)
+```
+
+- You can also create your own `step_` functions. For more information, see [tidymodels.org](https://www.tidymodels.org/learn/develop/recipes/).
+
+### Classification setup 
+
+#### Outcome variable 
+
+```{r}
+
+data$target %>% class() 
+
+data$target <- as.factor(data$target)
+
+data$target %>% class()
+
+```
+
+#### Data splitting using stratified random sampling
+
+```{r}
+
+# split 
+split_class <- initial_split(data %>%
+                             mutate(target = as.factor(target)), 
+                             prop = 0.7, 
+                             strata = target)
+
+# training set 
+raw_train_x_class <- training(split_class)
+
+# testing set 
+raw_test_x_class <- testing(split_class)
+
+```
+
+#### recipe 
+
+```{r}
+
+# Classification recipe 
+rec_class <- raw_train_x_class %>% 
+  # Define the outcome variable 
+  recipe(target ~ .) %>%
+  # Median impute oldpeak column 
+  step_medianimpute(oldpeak) %>%
+  # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators).
+  step_normalize(age) %>%
+  step_dummy(c("sex", "ca", "cp", "slope", "thal")) 
+
+# Prepare a dataset to base each step on
+prep_class <- rec_class %>%prep(retain = TRUE) 
+
+```
+
+```{r}
+
+# x features 
+train_x_class <- juice(prep_class, all_predictors()) 
+test_x_class <- bake(prep_class, raw_test_x_class, all_predictors())
+
+# y variables 
+train_y_class <- juice(prep_class, all_outcomes())$target %>% as.factor()
+test_y_class <- bake(prep_class, raw_test_x_class, all_outcomes())$target %>% as.factor()
+
+# Checks 
+names(train_x_class) # Make sure there's no target variable!
+class(train_y_class) # Make sure this is a factor variable!
+
+```
 
 ## Supervised learning
 
 x -> f - > y (defined)
 
-### Regularization
+### OLS and Lasso
 
-#### Regression (OLS)
+#### parsnip 
+
+- Build models (`parsnip`)
+
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
 
 ```{r}
-# Build a linear regression model 
-out <- lm(mpg ~ cyl, data = mtcars)
 
-# Predict the first five rows 
-predict(out)[1:5]
+# OLS spec 
+ols_spec <- linear_reg() %>% # Specify a model 
+  set_engine("lm") %>% # Specify an engine: lm, glmnet, stan, keras, spark 
+  set_mode("regression") # Declare a mode: regression or classification 
+
+# Lasso spec 
+lasso_spec <- linear_reg(penalty = 0.1, # tuning parameter 
+                         mixture = 1) %>% # 1 = lasso, 0 = ridge 
+  set_engine("glmnet") %>%
+  set_mode("regression") 
+
+# If you don't understand parsnip arguments 
+lasso_spec %>% translate() # See the documentation
+
 ```
-![Based on [vas3k blog](https://vas3k.com/blog/machine_learning/) ](https://i.vas3k.ru/7qy.jpg)
 
-#### Lasso, ridge, and elastic net 
+- Fit models 
 
-- Tibshirani, Robert. ["The lasso method for variable selection in the Cox model."](https://onlinelibrary.wiley.com/doi/pdf/10.1002/(SICI)1097-0258(19970228)16:4%3C385::AID-SIM380%3E3.0.CO;2-3?casa_token=-JOiqeKwpSkAAAAA:NXo0URXwmVbZtK31uN990xESg-sPNDGs0SyMJN5FaiwZfbIStEgUHm2xHyLvdCC_EGlV9g07DZvp-g) *Statistics in medicine* 16, no. 4 (1997): 385-395.
+```{r}
 
-- [R `glmnet` package](https://cran.r-project.org/web/packages/glmnet/glmnet.pdf)
+ols_fit <- ols_spec %>%
+  fit_xy(x = train_x_reg, y= train_y_reg) 
+  # fit(train_y_reg ~ ., train_x_reg) # When you data are not preprocessed 
 
-### Decision tree and ensemble models
+lasso_fit <- lasso_spec %>%
+  fit_xy(x = train_x_reg, y= train_y_reg) 
 
-#### Decision tree 
+```
 
-- Partitioning feature space sequentially. 
-#### Random forest 
+#### yardstick 
 
-#### XGboost 
+- Visualize model fits 
 
-- Repeatedly using weak learners. 
+```{r}
 
-#### SuperLearners
+map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit) 
 
-#### Neural networks / Deep learning 
+```
 
-#### Applications 
+```{r}
 
-##### Bandit algorithm (optimizing an experiment)
+# Define performance metrics 
+metrics <- yardstick::metric_set(rmse, mae, rsq)
 
-##### Causal forest (estimating heterogeneous treatment effect)
+# Evaluate many models 
+evals <- purrr::map(list(ols_fit, lasso_fit), evaluate_reg) %>%
+  reduce(bind_rows) %>%
+  mutate(type = rep(c("OLS", "Lasso"), each = 3))
+
+# Visualize the test results 
+evals %>%
+  ggplot(aes(x = fct_reorder(type, .estimate), y = .estimate)) +
+    geom_point() +
+    labs(x = "Model",
+         y = "Estimate") +
+    facet_wrap(~glue("{toupper(.metric)}"), scales = "free_y") 
+
+```
+- For more information, read [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
+
+#### tune 
+
+##### tune ingredients 
+
+```{r}
+
+# tune() = placeholder 
+
+tune_spec <- linear_reg(penalty = tune(), # tuning parameter 
+                         mixture = 1) %>% # 1 = lasso, 0 = ridge 
+  set_engine("glmnet") %>%
+  set_mode("regression") 
+
+tune_spec
+
+# penalty() searches 50 possible combinations 
+
+lambda_grid <- grid_regular(penalty(), levels = 50)
+
+# 10-fold cross-validation
+
+set.seed(1234) # for reproducibility 
+
+rec_folds <- vfold_cv(train_x_reg %>% bind_cols(tibble(age = train_y_reg)))
+
+```
+
+##### Add these elements to a workflow 
+
+```{r}
+
+# Workflow 
+rec_wf <- workflow() %>%
+  add_model(tune_spec) %>%
+  add_formula(age~.)
+
+```
+
+```{r}
+
+# Tuning results 
+rec_res <- rec_wf %>%
+  tune_grid(
+    resamples = rec_folds, 
+    grid = lambda_grid
+  )
+
+```
+
+##### Visualize 
+
+```{r}
+
+# Visualize
+
+rec_res %>%
+  collect_metrics() %>%
+  ggplot(aes(penalty, mean, col = .metric)) +
+  geom_errorbar(aes(
+    ymin = mean - std_err,
+    ymax = mean + std_err
+  ),
+  alpha = 0.3
+  ) +
+  geom_line(size = 2) +
+  scale_x_log10() +
+  labs(x = "log(lambda)") +
+  facet_wrap(~glue("{toupper(.metric)}"), 
+             scales = "free",
+             nrow = 2) +
+  theme(legend.position = "none")
+
+```
+
+##### Select 
+
+```{r}
+
+top_rmse <- show_best(rec_res, metric = "rmse")
+
+best_rmse <- select_best(rec_res, metric = "rmse")
+
+best_rmse 
+
+glue('The RMSE of the intiail model is 
+     {evals %>%
+  filter(type == "Lasso", .metric == "rmse") %>%
+  select(.estimate) %>%
+  round(2)}')
+
+glue('The RMSE of the tuned model is {rec_res %>%
+  collect_metrics() %>%
+  filter(.metric == "rmse") %>%
+  arrange(mean) %>%
+  dplyr::slice(1) %>%
+  select(mean) %>%
+  round(2)}')
+
+```
+
+- Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
+
+```{r}
+
+finalize_lasso <- rec_wf %>%
+  finalize_workflow(best_rmse)
+
+finalize_lasso %>%
+  fit(train_x_reg %>% bind_cols(tibble(age = train_y_reg))) %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+  
+```
+
+##### Test fit 
+
+- Apply the tuned model to the test dataset 
+
+```{r}
+
+test_fit <- finalize_lasso %>% 
+  fit(test_x_reg %>% bind_cols(tibble(age = test_y_reg)))
+
+evaluate_reg(test_fit)
+
+```
+### Decision tree 
+
+#### parsnip 
+
+- Build a model 
+
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
+
+```{r}
+
+# workflow 
+tree_wf <- workflow() %>% add_formula(target~.)
+
+# spec 
+tree_spec <- decision_tree(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning parameters
+           cost_complexity = NULL, 
+           tree_depth = NULL) %>%
+  set_engine("rpart") # rpart, c5.0, spark
+
+tree_wf <- tree_wf %>% add_model(tree_spec)
+
+```
+
+- Fit a model
+
+```{r}
+
+tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+
+```
+
+#### yardstick 
+
+- Let's formally test prediction performance. 
+
+**Metrics**
+
+- `accuracy`: The proportion of the data predicted correctly 
+
+- `precision`: Positive predictive value
+
+- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
+
+![From wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png)
+
+- To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html). 
+
+```{r}
+
+# Define performance metrics 
+
+metrics <- yardstick::metric_set(accuracy, precision, recall)
+
+# Visualize
+
+tree_fit_viz_metr <- visualize_class_eval(tree_fit)
+
+tree_fit_viz_metr
+
+tree_fit_viz_mat <- visualize_class_conf(tree_fit)
+
+tree_fit_viz_mat
+
+```
+
+#### tune 
+
+##### tune ingredients 
+
+- **complexity parameter**: a high CP means a simple decision tree with few splits. 
+
+- **tree_depth** 
+
+```{r}
+
+tune_spec <- 
+  decision_tree(
+    cost_complexity = tune(), 
+    tree_depth = tune(),
+    mode = "classification"
+  ) %>%
+  set_engine("rpart")
+
+tree_grid <- grid_regular(cost_complexity(),
+                          tree_depth(),
+                          levels = 5) # 2 parameters -> 5*5 = 25 combinations 
+
+tree_grid %>%
+  count(tree_depth)
+
+# 10-fold cross-validation
+
+set.seed(1234) # for reproducibility 
+
+tree_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
+                       strata = target)
+
+```
+
+##### Add these elements to a workflow 
+
+```{r}
+
+# Update workflow 
+tree_wf <- tree_wf %>% update_model(tune_spec)
+
+# Determine the number of cores
+no_cores <- detectCores() - 1
+
+# Initiate
+cl <- makeCluster(no_cores)
+
+registerDoParallel(cl)
+
+# Tuning results 
+tree_res <- tree_wf %>%
+  tune_grid(
+    resamples = tree_folds, 
+    grid = tree_grid,
+    metrics = metrics
+  )
+
+```
+
+##### Visualize 
+
+- The following plot draws on the [vignette](https://www.tidymodels.org/start/tuning/) of the tidymodels package. 
+
+```{r}
+
+tree_res %>%
+  collect_metrics() %>%
+  mutate(tree_depth = factor(tree_depth)) %>%
+  ggplot(aes(cost_complexity, mean, col = .metric)) +
+  geom_point(size = 3) +
+  # Subplots 
+  facet_wrap(~ tree_depth, 
+             scales = "free", 
+             nrow = 2) +
+  # Log scale x 
+  scale_x_log10(labels = scales::label_number()) +
+  # Discrete color scale 
+  scale_color_viridis_d(option = "plasma", begin = .9, end = 0) +
+  labs(x = "Cost complexity",
+       col = "Tree depth",
+       y = NULL) +
+  coord_flip()
+
+```
+##### Select 
+
+```{r}
+
+# Optimal parameter
+best_tree <- select_best(tree_res, "recall")
+
+# Add the parameter to the workflow 
+finalize_tree <- tree_wf %>%
+  finalize_workflow(best_tree)
+```
+
+```{r}
+
+tree_fit_tuned <- finalize_tree %>% 
+  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+
+# Metrics 
+(tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
+
+# Confusion matrix 
+(tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
+
+```
+
+- Visualize variable importance 
+
+```{r}
+
+tree_fit_tuned %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+
+```
+
+##### Test fit
+
+- Apply the tuned model to the test dataset 
+
+```{r}
+
+test_fit <- finalize_tree %>% 
+  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
+
+evaluate_class(test_fit)
+
+```
+
+### Random forest 
+
+
+#### parsnip 
+
+- Build a model 
+
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
+
+```{r}
+
+# workflow 
+rand_wf <- workflow() %>% add_formula(target~.)
+
+# spec 
+rand_spec <- rand_forest(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning parameters
+           mtry = NULL, # The number of predictors to available for splitting at each node  
+           min_n = NULL, # The minimum number of data points needed to keep splitting nodes
+           trees = 500) %>% # The number of trees
+  set_engine("ranger", 
+             # We want the importance of predictors to be assessed.
+             seed = 1234, 
+             importance = "permutation") 
+
+rand_wf <- rand_wf %>% add_model(rand_spec)
+
+```
+
+- Fit a model
+
+```{r}
+
+rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+
+```
+
+#### yardstick 
+
+- Let's formally test prediction performance. 
+
+**Metrics**
+
+- `accuracy`: The proportion of the data predicted correctly 
+
+- `precision`: Positive predictive value
+
+- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
+
+```{r}
+
+# Define performance metrics 
+metrics <- yardstick::metric_set(accuracy, precision, recall)
+
+rand_fit_viz_metr <- visualize_class_eval(rand_fit)
+
+rand_fit_viz_metr
+
+```
+
+- Visualize the confusion matrix. 
+  
+```{r}
+
+rand_fit_viz_mat <- visualize_class_conf(rand_fit)
+
+rand_fit_viz_mat
+
+```
+
+#### tune 
+
+##### tune ingredients 
+
+We focus on the following two parameters:
+
+- `mtry`: The number of predictors to available for splitting at each node.
+
+- `min_n`: The minimum number of data points needed to keep splitting nodes. 
+
+```{r}
+
+tune_spec <- 
+  rand_forest(
+           mode = "classification",
+           
+           # Tuning parameters
+           mtry = tune(), 
+           min_n = tune()) %>%
+  set_engine("ranger",
+             seed = 1234, 
+             importance = "permutation")
+
+rand_grid <- grid_regular(mtry(range = c(1, 10)),
+                          min_n(range = c(2, 10)),
+                          levels = 5)
+
+rand_grid %>%
+  count(min_n)
+
+```
+
+```{r}
+# 10-fold cross-validation
+
+set.seed(1234) # for reproducibility 
+
+rand_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
+                       strata = target)
+
+
+```
+
+##### Add these elements to a workflow 
+
+```{r}
+
+# Update workflow 
+rand_wf <- rand_wf %>% update_model(tune_spec)
+
+# Tuning results 
+rand_res <- rand_wf %>%
+  tune_grid(
+    resamples = rand_folds, 
+    grid = rand_grid,
+    metrics = metrics
+  )
+
+```
+
+##### Visualize 
+
+```{r}
+
+rand_res %>%
+  collect_metrics() %>%
+  mutate(min_n = factor(min_n)) %>%
+  ggplot(aes(mtry, mean, color = min_n)) +
+  # Line + Point plot 
+  geom_line(size = 1.5, alpha = 0.6) +
+  geom_point(size = 2) +
+  # Subplots 
+  facet_wrap(~ .metric, 
+             scales = "free", 
+             nrow = 2) +
+  # Log scale x 
+  scale_x_log10(labels = scales::label_number()) +
+  # Discrete color scale 
+  scale_color_viridis_d(option = "plasma", begin = .9, end = 0) +
+  labs(x = "The number of predictors to be sampled",
+       col = "The minimum number of data points needed for splitting",
+       y = NULL) +
+  theme(legend.position="bottom")
+
+```
+```{r}
+
+# Optimal parameter
+best_tree <- select_best(rand_res, "accuracy")
+
+best_tree
+
+# Add the parameter to the workflow 
+finalize_tree <- rand_wf %>%
+  finalize_workflow(best_tree)
+
+```
+
+```{r}
+
+rand_fit_tuned <- finalize_tree %>% 
+  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+
+# Metrics 
+(rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
+
+# Confusion matrix 
+(rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
+
+```
+
+- Visualize variable importance 
+
+```{r}
+
+rand_fit_tuned %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+
+```
+
+##### Test fit
+
+- Apply the tuned model to the test dataset 
+
+```{r}
+
+test_fit <- finalize_tree %>%
+  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
+
+evaluate_class(test_fit)
+
+```
+
+### XGboost 
+
+#### parsnip 
+
+- Build a model 
+
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
+
+```{r}
+
+# workflow 
+xg_wf <- workflow() %>% add_formula(target~.)
+
+# spec 
+xg_spec <- boost_tree(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning parameters
+           
+           # The number of trees to fit, aka boosting iterations
+           trees = c(100, 300, 500, 700, 900),
+           # The depth of the decision tree (how many levels of splits).
+	         tree_depth = c(1, 6), 
+           # Learning rate: lower means the ensemble will adapt more slowly.
+           learn_rate = c(0.0001, 0.01, 0.2),
+           # Stop splitting a tree if we only have this many obs in a tree node.
+	         min_n = 10L
+          ) %>% 
+  set_engine("xgboost") 
+
+xg_wf <- xg_wf %>% add_model(xg_spec)
+
+```
+
+- Fit a model
+
+```{r}
+
+xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+
+```
+
+#### yardstick 
+
+- Let's formally test prediction performance. 
+
+**Metrics**
+
+- `accuracy`: The proportion of the data predicted correctly 
+
+- `precision`: Positive predictive value
+
+- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
+
+```{r}
+
+metrics <- metric_set(yardstick::accuracy, 
+                      yardstick::precision, 
+                      yardstick::recall)
+
+evaluate_class(xg_fit)
+
+```
+
+```{r}
+
+xg_fit_viz_metr <- visualize_class_eval(xg_fit)
+
+xg_fit_viz_metr
+
+```
+
+- Visualize the confusion matrix. 
+  
+```{r}
+
+xg_fit_viz_mat <- visualize_class_conf(xg_fit)
+
+xg_fit_viz_mat
+
+```
+
+#### tune 
+
+##### tune ingredients 
+
+- We focus on the following parameters: `trees,` `tree_depth,` `learn_rate,` `min_n,` `mtry,` `loss_reduction,` and `sample_size`
+
+```{r}
+
+tune_spec <- 
+  xg_spec <- boost_tree(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning parameters
+           
+           # The number of trees to fit, aka boosting iterations
+           trees = tune(),
+           # The depth of the decision tree (how many levels of splits).
+	         tree_depth = tune(), 
+           # Learning rate: lower means the ensemble will adapt more slowly.
+           learn_rate = tune(),
+           # Stop splitting a tree if we only have this many obs in a tree node.
+	         min_n = tune(),
+           loss_reduction = tune(),
+           # The number of randomly selected parameters 
+           mtry = tune(), 
+           # The size of the data set used for modeling within an iteration
+           sample_size = tune()
+          ) %>% 
+  set_engine("xgboost") 
+
+# Space-filling parameter grids 
+xg_grid <- grid_latin_hypercube(
+  trees(),
+  tree_depth(),
+  learn_rate(),
+  min_n(),
+  loss_reduction(), 
+  sample_size = sample_prop(),
+  finalize(mtry(), train_x_class),
+  size = 30
+  )
+
+# 10-fold cross-validation
+
+set.seed(1234) # for reproducibility 
+
+xg_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
+                     strata = target)
+
+```
+
+##### Add these elements to a workflow 
+
+```{r}
+
+# Update workflow 
+xg_wf <- xg_wf %>% update_model(tune_spec)
+
+# Tuning results 
+xg_res <- xg_wf %>%
+  tune_grid(
+    resamples = xg_folds, 
+    grid = xg_grid,
+    control = control_grid(save_pred = TRUE)
+  )
+
+```
+
+##### Visualize 
+
+```{r}
+
+xg_res %>%
+  collect_metrics() %>% 
+  filter(.metric == "roc_auc") %>%
+  pivot_longer(mtry:sample_size,
+               values_to = "value",
+               names_to = "parameter") %>%
+  ggplot(aes(x = value, y = mean, color = parameter)) +
+    geom_point(alpha = 0.8, show.legend = FALSE) +
+    facet_wrap(~parameter, scales = "free_x") +
+    labs(y = "AUC",
+         x = NULL)
+
+```
+
+```{r}
+
+# Optimal parameter
+best_xg <- select_best(xg_res, "roc_auc")
+
+best_xg 
+
+# Add the parameter to the workflow 
+finalize_xg <- xg_wf %>%
+  finalize_workflow(best_xg)
+
+```
+
+```{r}
+
+xg_fit_tuned <- finalize_xg %>% 
+  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+
+# Metrics 
+(xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
+
+# Confusion matrix 
+(xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
+
+```
+
+- Visualize variable importance 
+
+```{r}
+
+xg_fit_tuned %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+
+```
+
+##### Test fit
+
+- Apply the tuned model to the test dataset 
+
+```{r}
+
+test_fit <- finalize_xg %>%
+  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
+
+evaluate_class(test_fit)
+
+```
+
+### Applications 
+
+#### Bandit algorithm (optimizing an experiment)
+
+#### Causal forest (estimating heterogeneous treatment effect)
 
 ## Unsupervised learning
 
@@ -271,13 +1218,86 @@ x -> f - > y (not defined)
 
 ![Projecting 2D-data to a line (PCA). From vas3k.com](https://i.stack.imgur.com/Q7HIP.gif)
 
+#### Correlation analysis 
+
+- Notice some problems? 
+
+    - NAs 
+    
+    - Scaling issues 
+    
+```{r}
+
+data_original %>%
+  corrr::correlate()
+
+```
+
+#### Preprocessing 
+
+`recipe` is essential for preprocesssing multiple features at once.
+
+```{r}
+
+pca_recipe <- recipe(~., data = data_original) %>%
+  # Imputing NAs using mean 
+  step_meanimpute(all_predictors()) %>%
+  # Normalize some numeric variables 
+  step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak")) 
+
+```
+
+#### PCA analysis 
+
+```{r}
+
+pca_res <- pca_recipe %>% 
+  step_pca(all_predictors(), 
+           id = "pca") %>% # id argument identifies each PCA step 
+  prep()
+
+pca_res %>%
+  tidy(id = "pca") 
+
+```
+
+#### Screeplot
+
+```{r}
+pca_recipe %>%
+  step_pca(all_predictors(), 
+           id = "pca") %>% # id argument identifies each PCA step 
+  prep() %>%
+  tidy(id = "pca", type = "variance") %>%
+  filter(terms == "percent variance") %>% 
+  ggplot(aes(x = component, y = value)) +
+    geom_col() +
+    labs(x = "PCAs of heart disease",
+         y = "% of variance",
+         title = "Scree plot")
+```
+
+#### View factor loadings 
+
+```{r}
+
+pca_recipe %>%
+  step_pca(all_predictors(), 
+           id = "pca") %>% # id argument identifies each PCA step 
+  prep() %>%
+  tidy(id = "pca") %>%
+  filter(component %in% c("PC1", "PC2")) %>%
+  ggplot(aes(x = fct_reorder(terms, value), y = value, 
+             fill = component)) +
+    geom_col(position = "dodge") +
+    coord_flip() +
+    labs(x = "Terms",
+         y = "Contribtutions",
+         fill = "PCAs") 
+       
+```
+
 ### Clustering
-
-![Agglomerative Hierarchical Clustering. From [George Seif's medium post](https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68).](https://miro.medium.com/max/770/1*ET8kCcPpr893vNZFs8j4xg.gif)
-
-### Applications 
-
-#### Imputation 
 
 #### Topic modeling 
 
@@ -299,3 +1319,9 @@ x -> f - > y (not defined)
 ### Lecture slides 
 
 - [An introduction to supervised and unsupervised learning (2015)](https://www.nber.org/econometrics_minicourse_2015/nber_slides11.pdf) by Susan Athey and Guido Imbens 
+
+- ["Introduction Machine Learning with the Tidyverse"](https://education.rstudio.com/blog/2020/02/conf20-intro-ml/) by Alison Hill
+
+### Blog posts 
+
+- ["Using the recipes package for easy pre-processing"](http://www.rebeccabarter.com/blog/2019-06-06_pre_processing/) by Rebecca Barter

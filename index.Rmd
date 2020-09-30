@@ -177,7 +177,7 @@ part2_headings <- c(
 "XML/JSON: social media scraping", 
 "Supervised machine learning", 
 "Unsupervised machine learning", 
-"Database and SQL",
+"Database, SQL, MongoDB, and Spark",
 "Wrap-up",
 "Final presentation")
 

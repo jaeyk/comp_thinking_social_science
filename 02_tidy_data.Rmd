@@ -1,5 +1,26 @@
 # Tidy data and its friends {#tidy_data}
 
+## Setup 
+
+- Check your `dplyr` package is up-to-date by typing `packageVersion("dplyr")`. If the current installed version is less than 1.0, then update by typing `update.packages("dplyr")`. You may need to restart R to make it work.
+
+```{r}
+
+ifelse(packageVersion("dplyr") > 1, 
+       "The installed version of dplyr package is greater than or equal to 1.0.0", update.packages("dplyr"))
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+  tidyverse, # for the tidyverse framework
+  here, # for computational reproducibility
+  gapminder, # toy data
+  nycflights13 # for exercise 
+  )
+
+```
+
+The rest of the chapter follows the basic structure in [the Data Wrangling Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) created by RStudio.
+
 ## Tidyverse way of thinking data science workflow 
 
 - [Tidyverse design guide](https://design.tidyverse.org/unifying-principles.html)
@@ -34,8 +55,1111 @@ If dataframes are tidy, it's easy to transform, visualize, model, and program th
 
 For instance, in many data science applications, linear algebra-based computations are essential (e.g., [Principal Component Analysis](https://www.math.upenn.edu/~kazdan/312S13/JJ/PCA-JJ.pdf)). These computations are optimized to work on matrices, not tidy data frames (for more information, read [Jeff Leek's blog post](https://simplystatistics.org/2016/02/17/non-tidy-data/)).
 
-## Wrangling data
 
-## Wrangling data at scale
+This is what a tidy data looks like.
 
-## Modeling and visualizing tidy data
+```{r}
+
+library(tidyverse)
+
+table1
+
+```
+
+## Reshape Data
+
+Let's take a look at the cases of untidy data.
+
+![Messy Data Case 1 (Source: R for Data Science)](https://garrettgman.github.io/images/tidy-5.png)
+
+- Make It Longer
+
+**Challenge**: Why this data is not tidy?
+
+```{r}
+
+table4a
+
+```
+
+- Let's pivot (rotate by 90 degree).
+
+- [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) increases the number of rows (longer) and decreases the number of columns. The inverse function is `pivot_wider()`. These functions improve the usability of `gather()` and `spread()`.
+
+![What pivot_longer() does (Source: https://www.storybench.org)](https://www.storybench.org/wp-content/uploads/2019/08/pivot-longer-image.png)
+
+```{r}
+
+# Old way, less intuitive
+table4a %>%
+  gather(key = "cases", # Current column names
+         value = "year", # The values matched to cases
+         c("1999", "2000")) # Selected columns
+
+```
+
+```{r}
+
+# New way, more intuitive
+table4a %>%
+  pivot_longer(
+    cols = c("1999", "2000"), # Selected columns
+    names_to = "year", # Shorter columns (the columns going to be in one column called year)
+    values_to = "cases") # Longer rows (the values are going to be in a separate column called named cases)
+
+```
+
+- There's another problem, did you catch it?
+
+- The data type of `year` variable should be `numeric` not `character`. By default, `pivot_longer()` transforms uninformative columns to character.
+
+- You can fix this problem by using `names_transform` argument.
+
+```{r}
+
+table4a %>%
+  pivot_longer(
+    cols = c("1999", "2000"), # Put two columns together
+    names_to = "year", # Shorter columns (the columns going to be in one column called year)
+    values_to = "cases", # Longer rows (the values are going to be in a separate column called named cases)
+    names_transform = list(year = readr::parse_number)
+    ) # Transform the variable  
+
+```
+
+**Additional tips**
+
+`parse_number()` also keeps only numeric information in a variable.
+
+```{r}
+
+parse_number("reply1994")
+
+```
+
+A flat file (e.g., CSV) is a rectangular shaped combination of strings. [Parsing](https://cran.r-project.org/web/packages/readr/vignettes/readr.html) determines the type of each column and turns into a vector of a more specific type. Tidyverse has `parse_` functions (from `readr` package) that are flexible and fast (e.g., `parse_integer()`, `parse_double()`, `parse_logical()`, `parse_datetime()`, `parse_date()`, `parse_time()`, `parse_factor()`, etc).
+
+- Let's do another practice. 
+
+**Challenge**
+
+1. Why this data is not tidy? (This exercise comes from [`pivot` function vigenette](https://tidyr.tidyverse.org/articles/pivot.html).) Too long or too wide?
+
+```{r}
+
+billboard
+
+```
+
+2. How can you fix it? Which pivot?
+
+```{r}
+
+# Old way
+billboard %>%
+  gather(key = "week",
+         value = "rank",
+         starts_with("wk")) %>% # Use regular expressions
+  drop_na() # Drop NAs
+
+```
+
+- Note that `pivot_longer()` is more versatile than `gather()`.
+
+```{r}
+
+# New way
+billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"), # Use regular expressions
+    names_to = "week",
+    values_to = "rank",
+    values_drop_na = TRUE # Drop NAs
+  )
+
+```
+
+- Make It Wider
+
+- Why this data is not tidy? 
+
+```{r}
+table2
+```
+
+- Each observation is spread across two rows.
+
+- How can you fix it?: `pivot_wider()`.
+
+**Two differences between `pivot_longer()` and `pivot_wider()`**
+
+- In `pivot_longer()`, the arguments are named `names_to` and `values_to` (*to*). 
+
+- In `pivot_wider()`, this pattern is opposite. The arguments are named `names_from` and `values_from` (*from*).
+
+- The number of required arguments for `pivot_longer()` is 3 (col, names_to, values_to). 
+
+- The number of required arguments for `pivot_wider()` is 2 (names_from, values_from).
+
+![What pivot_wider() does (Source: https://www.storybench.org)](https://www.storybench.org/wp-content/uploads/2019/08/pivot-wider-image.png)
+
+```{r}
+
+# Old way
+table2 %>%
+  spread(key = type,
+         value = count)
+
+```
+
+```{r}
+# New way
+table2 %>%
+  pivot_wider(
+    names_from = type, # first
+    values_from = count # second
+  )
+
+```
+
+Sometimes, a consultee came to me and asked: "I don't have missing values in my original dataframe. Then R said that I have missing values after I've done some data transformations. What happened?" 
+
+Here's an answer. 
+
+R defines missing values in two ways.
+
+- *Implicit missing values*: simply not present in the data.
+
+- *Explicit missing values*: flagged with NA
+
+**Challenge**
+
+The example comes from [*R for Data Science*](https://r4ds.had.co.nz/tidy-data.html).
+
+```{r}
+
+
+stocks <- tibble(
+  year = c(2019, 2019, 2019, 2020, 2020, 2020),
+  qtr = c(1, 2, 3, 2, 3, 4), 
+  return = c(1, 2, 3, NA, 2, 3)
+)
+
+stocks
+
+```
+
+- Where is explicit missing value?
+
+- Does `stocks` have implicit missing values?
+
+```{r}
+# implicit missing values become explicit 
+stocks %>%
+  pivot_wider(names_from = year, 
+              values_from = return)
+```
+
+**Challenge**
+
+- This exercise comes from [`pivot` function vigenette](https://tidyr.tidyverse.org/articles/pivot.html).
+
+- Could you make `station` a series of dummy variables using `pivot_wider()`?
+
+```{r}
+fish_encounters
+```
+
+1. Which pivot you should use?
+
+2. Are there explicit missing values? 
+
+3. How could you turn these NAs into 0s? Check `values_fill` argument in the `pivot_wider()` function. 
+
+- Separate
+
+![Messy Data Case 2 (Source: R for Data Science)](https://garrettgman.github.io/images/tidy-6.png)
+
+```{r}
+
+# Toy example
+df <- data.frame(x = c(NA, "Dad.apple", "Mom.orange", "Daughter.banana"))
+
+df
+
+```
+
+```{r}
+
+# Separate
+df %>%
+  separate(x, into = c("Name", "Preferred_fruit"))
+
+# Don't need the first variable
+
+df %>%
+  separate(x, into = c(NA, "Preferred_fruit"))
+```
+
+**Practice**
+
+```{r}
+table3
+```
+
+- Note `sep` argument. You can specify how to separate joined values.
+
+```{r}
+table3 %>%
+  separate(rate,
+           into = c("cases", "population"),
+           sep = "/")
+```
+
+- Note `convert` argument. You can specify whether automatically convert the new values or not.
+
+```{r}
+table3 %>%
+  separate(rate,
+           into = c("cases", "population"),
+           sep = "/",
+           convert = TRUE) # cases and population become integers
+```
+
+- Unite
+
+`pivot_longer()` <-> `pivot_wider()`
+
+`separate()` <-> `unite()`
+
+```{r}
+
+# Create a toy example
+df <- data.frame(
+  name = c("Jae", "Sun", "Jane", NA),
+  birthmonth = c("April", "April", "June", NA))
+
+# Include missing values
+df %>% unite("contact",
+             c("name", "birthmonth"))
+
+# Do not include missing values
+df %>% unite("contact",
+             c("name", "birthmonth"),
+             na.rm = TRUE)
+
+```
+
+## Represent Data
+
+- Arrange
+
+- Order rows
+
+```{r}
+
+dplyr::arrange(mtcars, mpg) # Low to High (default)
+
+dplyr::arrange(mtcars, desc(mpg)) # High to Row
+
+```
+
+- Rename
+
+- Rename columns
+
+```{r}
+
+df <- tibble(y = c(2011, 2012, 2013))
+
+df
+
+df %>% rename(Year = # OLD name
+                y) # NEW name
+
+```
+
+
+## Subset Observations (Rows)
+
+- Choose row by logical condition 
+
+- Single condition 
+
+```{r}
+
+starwars %>%
+  filter(gender == "female") %>%
+  arrange(desc(height))
+
+```
+
+The following filtering example was inspired by [the suzanbert's dplyr blog post](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/).
+
+- Multiple conditions (numeric)
+
+```{r}
+
+# First example
+starwars %>%
+  filter(height < 180, height > 160) %>%
+  nrow()
+
+# Same as above
+starwars %>%
+  filter(height < 180 & height > 160) %>%
+  nrow()
+
+# Not same as above
+starwars %>%
+  filter(height < 180 | height > 160) %>%
+  nrow()
+
+```
+
+**Challenge**
+
+(1) Use `filter(between())` to find characters whose heights are between 180 and 160 and (2) count the number of these observations.  
+
+- Minimum reproducible example 
+
+```{r}
+
+df <- tibble(
+  heights = c(160:180),
+  char = rep("none", length(c(160:180)))
+)
+
+df %>%
+  filter(between(heights, 161, 179))
+
+```
+
+- Multiple conditions (character)
+
+```{r}
+
+# Filter names include ars; `grepl` is a base R function  
+
+starwars %>%
+  filter(grepl("ars", tolower(name)))
+
+# Or, if you prefer dplyr way 
+
+starwars %>%
+  filter(str_detect(tolower(name), "ars"))
+
+# Filter brown and black hair_color
+
+starwars %>%
+  filter(hair_color %in% c("black", "brown"))
+
+```
+
+**Challenge**
+
+Use `str_detect()` to find characters whose names include "Han".
+
+- Choose row by position (row index)
+
+```{r}
+
+starwars %>%
+  arrange(desc(height)) %>%
+  slice(1:6)
+
+```
+
+- Sample by fraction
+
+```{r}
+
+# For reproducibility 
+set.seed(1234)
+
+# Old way 
+
+starwars %>%
+  sample_frac(0.10, 
+              replace = FALSE) # Without replacement 
+
+# New way
+
+starwars %>%
+  slice_sample(prop = 0.10, 
+             replace = FALSE)
+
+```
+
+- Sample by number 
+
+```{r}
+
+# Old way 
+
+starwars %>%
+  sample_n(20, 
+           replace = FALSE) # Without replacement 
+
+# New way
+
+starwars %>%
+  slice_sample(n = 20, 
+             replace = FALSE) # Without replacement 
+
+```
+
+- Top 10 rows orderd by height
+
+```{r}
+
+# Old way 
+starwars %>% 
+  top_n(10, height) 
+
+# New way
+starwars %>%
+  slice_max(height, n = 10) # Variable first, Argument second 
+
+```
+
+## Subset Variables (Columns)
+
+```{r}
+
+names(msleep)
+
+```
+
+- Select only numeric columns 
+
+```{r}
+
+# Only numeric 
+msleep %>%
+  select(where(is.numeric))
+
+```
+
+**Challenge** 
+
+Use `select(where())` to find only non-numeric columns 
+
+- Select the columns that include "sleep" in their names 
+ 
+```{r}
+
+msleep %>%
+  select(contains("sleep"))
+
+```
+
+- Select the columns that include either "sleep" or "wt" in their names 
+
+- Basic R way 
+
+`grepl` is one of the R base pattern matching functions. 
+
+```{r}
+
+msleep[grepl('sleep|wt', names(msleep))]
+
+```
+
+**Challenge**
+
+Use `select(match())` to find columns whose names include either "sleep" or "wt". 
+
+- Select the columns that starts with "b"
+
+```{r}
+
+msleep %>%
+  select(starts_with("b"))
+
+```
+
+- Select the columns that ends with "wt"
+
+```{r}
+
+msleep %>%
+  select(ends_with("wt"))
+
+```
+
+- Select the columns using both beginning and end string patterns 
+
+The key idea is you can use Boolean operators (`!`, `&`, `|`)to combine different string pattern matching statements. 
+
+```{r}
+
+msleep %>%
+  select(starts_with("b") & ends_with("wt"))
+
+```
+
+- Select order and move it before everything 
+
+```{r}
+
+# By specifying a column 
+msleep %>%
+  select(order, everything())
+  
+```
+
+- Select variables from a character vector.
+
+```{r}
+
+msleep %>%
+  select(any_of(c("name", "order"))) %>%
+  colnames()
+
+```
+
+- Select the variables named in the character + number pattern
+
+```{r}
+
+msleep$week8 <- NA
+
+msleep$week12 <- NA
+
+msleep$week_extra <- 0 
+
+msleep %>%
+  select(num_range("week", c(1:12)))
+
+```
+
+## Counting 
+
+- How may countries in each continent?
+
+```{r}
+
+gapminder %>%
+  count(continent)
+
+```
+
+- Let's arrange the result. 
+
+```{r}
+
+# Just add a new argument `sort = TRUE`
+gapminder %>%
+  count(continent, sort = TRUE)
+
+# Same as above; How nice!
+gapminder %>%
+  count(continent) %>%
+  arrange(desc(n))
+
+```
+
+**Challenge**
+
+Count the number of observations per `continent` as well as `year` and arrange them with descending order. 
+
+Let's take a deeper look at how things work under the hood.
+
+- `tally()` works similar to `nrow()`: Calculate the total number of cases in a dataframe 
+
+- `count` = `group_by()` + `tally()`
+
+```{r}
+
+gapminder %>%
+  tally()
+
+```
+
+- `add_tally()` = `mutate(n = n())`
+
+**Challenge** 
+
+What does n in the below example represent? 
+
+```{r}
+
+gapminder %>%
+  select(continent, country) %>%
+  add_tally()
+
+```
+
+- `add_count`
+
+Add count as a column 
+
+```{r}
+
+# Add count as a column
+gapminder %>%
+  group_by(continent) %>%
+  add_count(year)
+
+```
+
+**Challenge**
+
+Do the cases 1 and 2 in the below code chunk produce same outputs? If so, why?
+
+```{r}
+
+# Case 1
+gapminder %>%
+  group_by(continent, year) %>%
+  count()
+
+# Case 2
+gapminder %>%
+  group_by(continent) %>%
+  count(year)
+
+```
+
+## Summarizing 
+
+### Basic 
+
+- Create a summary 
+
+```{r}
+
+gapminder %>%
+  group_by(continent) %>%
+  summarise(n = n(), 
+            mean_gdp = mean(gdpPercap),
+            sd_gdp = sd(gdpPercap))
+
+tablea <- gapminder %>%
+  group_by(continent) %>%
+  summarise(n = n(), 
+            mean_gdp = mean(gdpPercap),
+            sd_gdp = sd(gdpPercap))
+
+```
+- Produce publishable tables 
+
+```{r}
+
+# For HTML and LaTeX
+tablea %>% kableExtra::kable()
+
+# For HTML and MS Office suite 
+tablea %>% flextable::flextable()
+
+```
+
+### Scoped summaries
+
+- Old way 
+
+- `summarise_all()`
+
+```{r}
+
+# Create a wide-shaped data example 
+wide_gapminder <- gapminder %>%
+  filter(continent == "Europe") %>%
+  pivot_wider(names_from = country, 
+              values_from = gdpPercap)
+
+# Apply summarise_all 
+wide_gapminder %>%
+  select(-c(1:4)) %>%
+  summarise_all(mean, na.rm = TRUE)
+
+```
+
+- `summarise_if()`: using a logical condition 
+
+```{r}
+
+wide_gapminder %>%
+  summarise_if(is.double, mean, na.rm = TRUE)
+
+```
+- `summarise_at()`
+
+- `vars() = select()`
+
+```{r}
+
+wide_gapminder %>%
+  summarise_at(vars(-c(1:4)), 
+               mean, na.rm = TRUE)
+
+wide_gapminder %>%
+  summarise_at(vars(contains("life")), 
+               mean, na.rm = TRUE)
+
+```
+
+- New way 
+
+- `summarise()` + `across()`
+
+- If you find using `summarise_all()`, `summarise_if()` and `summarise_at()` confusing, here's a solution: use `summarise()` with `across()`.   
+
+- `summarise_all()`
+
+```{r}
+
+wide_gapminder %>%
+  summarise(across(Albania:`United Kingdom`, mean, na.rm = TRUE))
+
+wide_gapminder %>%
+  summarise(across(-c(1:4), mean, na.rm = TRUE))
+
+```
+
+- `summarise_if()`
+
+```{r}
+
+wide_gapminder %>%
+  summarise(across(is.double, mean, na.rm = TRUE))
+
+```
+
+- `summarise_at()`
+
+```{r}
+
+wide_gapminder %>%
+  summarise(across(-c(1:4), 
+               mean, na.rm = TRUE))
+
+wide_gapminder %>%
+  summarise(across(contains("life"), 
+               mean, na.rm = TRUE))
+
+wide_gapminder %>%
+  summarise(across(contains("A", ignore.case = FALSE)))
+
+```
+
+Note that this workshop does not cover creating and manipulating variables using `mutate()` because many techniques you learned from playing with `summarise()` can be directly applied to `mutate()`. 
+
+**Challenge**
+
+1. Summarize average GDP of countries whose names starting with alphabet "A".
+
+2. Turn the summary dataframe into a publishable table using either `kableExtra` or `flextable` package. 
+
+## Grouping 
+
+### Grouped summaries 
+
+- Calculate the mean of `gdpPercap`.
+
+```{r}
+
+gapminder %>%
+  group_by(continent) %>% # 
+  summarise(mean_gdp = mean(gdpPercap))
+
+```
+
+- Calculate multiple summary statistics.
+
+```{r}
+
+gapminder %>%
+  group_by(continent) %>% # 
+  summarise(mean_gdp = mean(gdpPercap),
+            count = n())
+
+```
+
+**Optional**
+
+- Other summary statistics
+
+1. Measures of spread: `median(x)`, `sd(x)`, `IQR(x)`, `mad(x)` (the median absolute deviation)
+
+```{r}
+
+# The Interquartile Range = The Difference Between 75t and 25t Percentiles 
+
+gapminder %>%
+  group_by(continent) %>% # 
+  summarise(IQR_gdp = IQR(gdpPercap))
+
+```
+
+2. Measures of rank: `min(x)`, `quantile(x, 0.25)`, `max(x)`
+
+```{r}
+
+gapminder %>%
+  group_by(continent) %>% # 
+  summarise(min_gdp = min(gdpPercap),
+            max_gdp = max(gdpPercap))
+
+```
+
+3. Measures of position: `first(x)`, `last(x)`, `nth(x, 2)`
+
+```{r}
+
+gapminder %>%
+  group_by(continent) %>% 
+  summarise(first_gdp = first(gdpPercap),
+            last_gdp = last(gdpPercap))
+
+gapminder %>%
+  group_by(continent) %>% 
+  arrange(gdpPercap) %>% # Adding arrange
+  summarise(first_gdp = first(gdpPercap),
+            last_gdp = last(gdpPercap))
+
+```
+
+4. Measures of counts: `n(x)` (all rows), `sum(!is.na(x))` (only non-missing rows) = `n_distinct(x)`
+
+```{r}
+
+gapminder %>%
+  group_by(continent) %>%
+  summarise(ns = n())
+
+```
+
+5. Counts and proportions of logical values: `sum(condition about x)` (the number of TRUEs in x), `mean(condition about x)` (the proportion of TRUEs in x)
+
+```{r}
+
+gapminder %>%
+  group_by(continent) %>% 
+  summarise(rich_countries = mean(gdpPercap > 20000))
+
+```
+
+## Nesting
+
+### nest
+
+The following example comes from [R for Data Science](https://r4ds.had.co.nz/many-models.html) by by Garrett Grolemund and Hadley Wickham.
+
+- How can you run multiple models simultaneously? Using a nested data frame. 
+
+- **Grouped data: each row = an observation**
+
+- **Nested data: each row = a group**
+
+**Challenge**
+
+In the following example, why did we use `country` and `continent` for nesting variables? 
+
+```{r}
+
+nested <- gapminder %>%
+  group_by(country, continent) %>%
+  nest() 
+
+head(nested)
+
+nested$data[[1]]
+
+```
+
+- Custom function 
+
+```{r}
+
+lm_model <- function(df) {
+  
+  lm(lifeExp ~ year, data = df)
+}
+
+```
+
+- Apply function to the nested data 
+
+```{r}
+
+# Apply m_model to the nested data 
+
+nested <- nested %>%
+  mutate(models = map(data, lm_model)) # Add the list object as a new column
+
+head(nested)
+
+```
+S3 is part of R's object oriented systems. If you need more information, check [this section](http://adv-r.had.co.nz/S3.html) in Hadley's Advanced R out.
+
+### unnest 
+
+`glance()` function from `broom` package inspects the quality of a statistical model.
+
+**Additional tips**
+
+- `broom::glance(model)`: for evaluating model quality and/or complexity 
+- `broom::tidy(model)`: for extracting each coefficient in the model (the estimates + its variability)
+- `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics)
+
+
+```{r}
+
+glanced <- nested %>%
+  mutate(glance = map(models, broom::glance))
+
+glanced$glance[[1]]
+
+```
+
+`unnest()` unpacks the list objects stored in glance column 
+
+```{r}
+
+glanced %>% 
+  unnest(glance) %>%
+  arrange(BIC) # Low to High; Lower BIC indicates a better model fit 
+
+glanced %>% 
+  unnest(glance) %>%
+  ggplot(aes(continent, BIC)) +
+    geom_jitter(width = 0.5)
+
+```
+
+## Mapping 
+
+We tasted a little bit about how `map()` function works. Let's dig into it deeper as this family of functions is really useful. For more information, see Rebecca Barter's wonderful tutorial on the `purrr` package. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input. 
+
+```{r}
+
+multiply <- function(x){
+  x*x 
+}
+
+df <- list(first_obs = rnorm(7, 1, sd =1),
+           second_obs = rnorm(7, 2, sd = 2)) # normal distribution 
+
+```
+
+**Challenge**
+
+Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between the output you got and what you saw earlier. 
+
+If you want to know more about the power and joy of functional programming in R (e.g., `purrr::map()`), then please take ["How to Automate Repeated Things in R"](https://github.com/dlab-berkeley/R-functional-programming) workshop.
+
+## Mutating joins
+
+> Add new variables to one data frame from matching observations in another"
+
+Using a simple toy example is great because it is easy to see how things work in that much narrow context. 
+
+- Toy example 
+
+```{r}
+
+# Table 1 
+x <- tibble(key = c(1:4),
+            val_x = c("x1", "x2", "x3", "x4"))
+
+# Table 2
+y <- tibble(key = c(1:5),
+            val_y = c("y1", "y2", "y3", "y4", "y5"))
+
+```
+
+### Inner Join
+
+`inner_join()` keeps the matched values in both tables. If the left table is a subset of the right table, then the result of `left_join()` is same as `inner_join()`.
+
+**Challenge**
+
+What are going to be the shared keys?
+
+```{r}
+
+inner_join(x, y)
+
+```
+
+![Mutating joins](https://d33wubrfki0l68.cloudfront.net/aeab386461820b029b7e7606ccff1286f623bae1/ef0d4/diagrams/join-venn.png)
+
+### Left Join
+
+`left_join()`, `right_join()` and `full_join()` are outer join functions. Unlike `inner_join()`, outer join functions keep observations that appear in at least one of the tables.
+
+`left_join()` keeps only the matched observations in the right table.
+
+```{r}
+
+left_join(x, y)
+
+```
+
+### Right Join
+
+`right_join()` does the opposite.
+
+```{r}
+
+right_join(x, y)
+
+```
+
+### Full Join
+
+`full_join()` keeps the observations from both tables. If they were unmatched, then NAs were recoded in one of the two tables.
+
+```{r}
+
+full_join(x, y)
+
+```
+
+## Filtering joins 
+
+> Filter observations from one data frame based on whether or not they match an observation in the other table.
+
+### Semi Join
+
+In SQL, this type of query is also called subqueries. 
+
+- Filtering without joining 
+
+```{r}
+
+# Create the list of the top 10 destinations 
+top_dest <- flights %>%
+  count(dest, sort = TRUE) %>%
+  top_n(10)
+
+# Filter
+filtered <- flights %>%
+  filter(dest %in% top_dest$dest)
+
+```
+
+- Using semi join: only keep (INCLUDE) the rows that were matched between the two tables 
+
+```{r}
+
+joined <- flights %>%
+  semi_join(top_dest)
+
+head(filtered == joined)
+
+```
+
+### Anti Join
+
+`anti_join()` dose the opposite. Exclude the rows that were matched between the two tables. Great technique to filter stopwords when you do a computational text analysis.
+
+```{r}
+
+flights %>%
+  anti_join(planes, by = "tailnum") %>%
+  count(tailnum, sort = TRUE)
+
+```
