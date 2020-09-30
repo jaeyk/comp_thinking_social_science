@@ -99,7 +99,7 @@ This explanation draws on Pablo Barbara's [LSE social media workshop slides](htt
     
 > Twitter data is unique from data shared by most other social platforms because it reflects information that users *choose* to share publicly. Our API platform provides broad access to public Twitter data that users have chosen to share with the world. - Twitter Help Center
 
-    - What does this policy mean? If Twitter users don't share the locations of their tweets (e.g., GPS), you can't get collect them.
+- What does this policy mean? If Twitter users don't share the locations of their tweets (e.g., GPS), you can't collect them.
 
 - Facebook API access has become much constrained with [the exception of Social Science One](https://socialscience.one/blog/unprecedented-facebook-urls-dataset-now-available-research-through-social-science-one) since the 2016 U.S. election.
     
