@@ -309,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.6" data-path="machine-learning.html"><a href="machine-learning.html#unsupervised-learning"><i class="fa fa-check"></i><b>7.6</b> Unsupervised learning</a>
 <ul>
 <li class="chapter" data-level="7.6.1" data-path="machine-learning.html"><a href="machine-learning.html#dimension-reduction"><i class="fa fa-check"></i><b>7.6.1</b> Dimension reduction</a></li>
-<li class="chapter" data-level="7.6.2" data-path="machine-learning.html"><a href="machine-learning.html#clustering"><i class="fa fa-check"></i><b>7.6.2</b> Clustering</a></li>
+<li class="chapter" data-level="7.6.2" data-path="machine-learning.html"><a href="machine-learning.html#topic-modeling"><i class="fa fa-check"></i><b>7.6.2</b> Topic modeling</a></li>
 </ul></li>
 <li class="chapter" data-level="7.7" data-path="machine-learning.html"><a href="machine-learning.html#bias-and-fairness-in-machine-learning"><i class="fa fa-check"></i><b>7.7</b> Bias and fairness in machine learning</a></li>
 <li class="chapter" data-level="7.8" data-path="machine-learning.html"><a href="machine-learning.html#resources"><i class="fa fa-check"></i><b>7.8</b> Resources</a>
@@ -406,7 +406,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Database management systems figures optimal way to execute query (query optimization)</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb476"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb476-1"><a href="big-data.html#cb476-1"></a><span class="kw">SELECT</span> <span class="kw">COLUMN</span> <span class="kw">FROM</span> <span class="kw">TABLE</span> </span></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb499-1"><a href="big-data.html#cb499-1"></a><span class="kw">SELECT</span> <span class="kw">COLUMN</span> <span class="kw">FROM</span> <span class="kw">TABLE</span> </span></code></pre></div>
 </div>
 <div id="learning-objectives" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> Learning objectives</h2>
@@ -467,29 +467,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>R example</li>
 </ul>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="big-data.html#cb477-1"></a></span>
-<span id="cb477-2"><a href="big-data.html#cb477-2"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Data </span></span>
-<span id="cb477-3"><a href="big-data.html#cb477-3"></a><span class="st">  </span><span class="kw">select</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Column</span></span>
-<span id="cb477-4"><a href="big-data.html#cb477-4"></a><span class="st">  </span><span class="kw">filter</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Row </span></span>
-<span id="cb477-5"><a href="big-data.html#cb477-5"></a><span class="st">  </span><span class="kw">group_by</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Group by </span></span>
-<span id="cb477-6"><a href="big-data.html#cb477-6"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Aggregation</span></span>
-<span id="cb477-7"><a href="big-data.html#cb477-7"></a><span class="st">  </span><span class="kw">filter</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Row </span></span>
-<span id="cb477-8"><a href="big-data.html#cb477-8"></a><span class="st">  </span><span class="kw">order_by</span>() <span class="co"># Arrange </span></span></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="big-data.html#cb500-1"></a></span>
+<span id="cb500-2"><a href="big-data.html#cb500-2"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Data </span></span>
+<span id="cb500-3"><a href="big-data.html#cb500-3"></a><span class="st">  </span><span class="kw">select</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Column</span></span>
+<span id="cb500-4"><a href="big-data.html#cb500-4"></a><span class="st">  </span><span class="kw">filter</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Row </span></span>
+<span id="cb500-5"><a href="big-data.html#cb500-5"></a><span class="st">  </span><span class="kw">group_by</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Group by </span></span>
+<span id="cb500-6"><a href="big-data.html#cb500-6"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Aggregation</span></span>
+<span id="cb500-7"><a href="big-data.html#cb500-7"></a><span class="st">  </span><span class="kw">filter</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Row </span></span>
+<span id="cb500-8"><a href="big-data.html#cb500-8"></a><span class="st">  </span><span class="kw">order_by</span>() <span class="co"># Arrange </span></span></code></pre></div>
 <ul>
 <li>SQL example</li>
 </ul>
-<div class="sourceCode" id="cb478"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb478-1"><a href="big-data.html#cb478-1"></a></span>
-<span id="cb478-2"><a href="big-data.html#cb478-2"></a><span class="kw">SELECT</span> <span class="kw">column</span>, aggregation (<span class="fu">count</span>())` # <span class="kw">Column</span></span>
-<span id="cb478-3"><a href="big-data.html#cb478-3"></a></span>
-<span id="cb478-4"><a href="big-data.html#cb478-4"></a><span class="kw">FROM</span> <span class="kw">data</span> # <span class="kw">Data</span> </span>
-<span id="cb478-5"><a href="big-data.html#cb478-5"></a></span>
-<span id="cb478-6"><a href="big-data.html#cb478-6"></a><span class="kw">WHERE</span> condition # <span class="kw">Row</span> </span>
-<span id="cb478-7"><a href="big-data.html#cb478-7"></a></span>
-<span id="cb478-8"><a href="big-data.html#cb478-8"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">column</span> # <span class="kw">Group</span> <span class="kw">by</span></span>
-<span id="cb478-9"><a href="big-data.html#cb478-9"></a></span>
-<span id="cb478-10"><a href="big-data.html#cb478-10"></a><span class="kw">HAVING</span> condition # <span class="kw">Row</span>  </span>
-<span id="cb478-11"><a href="big-data.html#cb478-11"></a></span>
-<span id="cb478-12"><a href="big-data.html#cb478-12"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="kw">column</span> # Arrange </span></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb501-1"><a href="big-data.html#cb501-1"></a></span>
+<span id="cb501-2"><a href="big-data.html#cb501-2"></a><span class="kw">SELECT</span> <span class="kw">column</span>, aggregation (<span class="fu">count</span>())` # <span class="kw">Column</span></span>
+<span id="cb501-3"><a href="big-data.html#cb501-3"></a></span>
+<span id="cb501-4"><a href="big-data.html#cb501-4"></a><span class="kw">FROM</span> <span class="kw">data</span> # <span class="kw">Data</span> </span>
+<span id="cb501-5"><a href="big-data.html#cb501-5"></a></span>
+<span id="cb501-6"><a href="big-data.html#cb501-6"></a><span class="kw">WHERE</span> condition # <span class="kw">Row</span> </span>
+<span id="cb501-7"><a href="big-data.html#cb501-7"></a></span>
+<span id="cb501-8"><a href="big-data.html#cb501-8"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">column</span> # <span class="kw">Group</span> <span class="kw">by</span></span>
+<span id="cb501-9"><a href="big-data.html#cb501-9"></a></span>
+<span id="cb501-10"><a href="big-data.html#cb501-10"></a><span class="kw">HAVING</span> condition # <span class="kw">Row</span>  </span>
+<span id="cb501-11"><a href="big-data.html#cb501-11"></a></span>
+<span id="cb501-12"><a href="big-data.html#cb501-12"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="kw">column</span> # Arrange </span></code></pre></div>
 <div class="figure">
 <img src="https://wizardzines.com/zines/sql/samples/from.png" alt="" />
 <p class="caption">SQL Zine by by <a href="https://jvns.ca/">Julia Evans</a></p>
@@ -504,24 +504,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>pacman::p_load()</code> reduces steps for installing and loading several packages simultaneously.</li>
 </ul>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="big-data.html#cb479-1"></a><span class="co"># pacman </span></span>
-<span id="cb479-2"><a href="big-data.html#cb479-2"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="big-data.html#cb502-1"></a><span class="co"># pacman </span></span>
+<span id="cb502-2"><a href="big-data.html#cb502-2"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span></code></pre></div>
 <pre><code>## Loading required package: pacman</code></pre>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="big-data.html#cb481-1"></a><span class="co"># The rest of pkgs </span></span>
-<span id="cb481-2"><a href="big-data.html#cb481-2"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(</span>
-<span id="cb481-3"><a href="big-data.html#cb481-3"></a> </span>
-<span id="cb481-4"><a href="big-data.html#cb481-4"></a> tidyverse, <span class="co"># tidyverse packages </span></span>
-<span id="cb481-5"><a href="big-data.html#cb481-5"></a> </span>
-<span id="cb481-6"><a href="big-data.html#cb481-6"></a> DBI, <span class="co"># using SQL queries</span></span>
-<span id="cb481-7"><a href="big-data.html#cb481-7"></a> </span>
-<span id="cb481-8"><a href="big-data.html#cb481-8"></a> RSQLite, <span class="co"># SQLite</span></span>
-<span id="cb481-9"><a href="big-data.html#cb481-9"></a> </span>
-<span id="cb481-10"><a href="big-data.html#cb481-10"></a> dbplyr, <span class="co"># use database with dplyr </span></span>
-<span id="cb481-11"><a href="big-data.html#cb481-11"></a> </span>
-<span id="cb481-12"><a href="big-data.html#cb481-12"></a> glue, <span class="co"># glue to automate workflow </span></span>
-<span id="cb481-13"><a href="big-data.html#cb481-13"></a> </span>
-<span id="cb481-14"><a href="big-data.html#cb481-14"></a> nycflights13 <span class="co"># toy data </span></span>
-<span id="cb481-15"><a href="big-data.html#cb481-15"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="big-data.html#cb504-1"></a><span class="co"># The rest of pkgs </span></span>
+<span id="cb504-2"><a href="big-data.html#cb504-2"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(</span>
+<span id="cb504-3"><a href="big-data.html#cb504-3"></a> </span>
+<span id="cb504-4"><a href="big-data.html#cb504-4"></a> tidyverse, <span class="co"># tidyverse packages </span></span>
+<span id="cb504-5"><a href="big-data.html#cb504-5"></a> </span>
+<span id="cb504-6"><a href="big-data.html#cb504-6"></a> DBI, <span class="co"># using SQL queries</span></span>
+<span id="cb504-7"><a href="big-data.html#cb504-7"></a> </span>
+<span id="cb504-8"><a href="big-data.html#cb504-8"></a> RSQLite, <span class="co"># SQLite</span></span>
+<span id="cb504-9"><a href="big-data.html#cb504-9"></a> </span>
+<span id="cb504-10"><a href="big-data.html#cb504-10"></a> dbplyr, <span class="co"># use database with dplyr </span></span>
+<span id="cb504-11"><a href="big-data.html#cb504-11"></a> </span>
+<span id="cb504-12"><a href="big-data.html#cb504-12"></a> glue, <span class="co"># glue to automate workflow </span></span>
+<span id="cb504-13"><a href="big-data.html#cb504-13"></a> </span>
+<span id="cb504-14"><a href="big-data.html#cb504-14"></a> nycflights13 <span class="co"># toy data </span></span>
+<span id="cb504-15"><a href="big-data.html#cb504-15"></a>)</span></code></pre></div>
 </div>
 <div id="data-sets" class="section level2" number="8.7">
 <h2><span class="header-section-number">8.7</span> Data sets</h2>
@@ -567,17 +567,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb482"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb482-1"><a href="big-data.html#cb482-1"></a></span>
-<span id="cb482-2"><a href="big-data.html#cb482-2"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> students (</span>
-<span id="cb482-3"><a href="big-data.html#cb482-3"></a>    <span class="kw">id</span> <span class="dt">INT</span> AUTO_INCREMENT,</span>
-<span id="cb482-4"><a href="big-data.html#cb482-4"></a>    name <span class="dt">VARCHAR</span>(<span class="dv">30</span>),</span>
-<span id="cb482-5"><a href="big-data.html#cb482-5"></a>    birth <span class="dt">DATE</span>,</span>
-<span id="cb482-6"><a href="big-data.html#cb482-6"></a>    gpa <span class="dt">FLOAT</span>,</span>
-<span id="cb482-7"><a href="big-data.html#cb482-7"></a>    grad <span class="dt">INT</span>,</span>
-<span id="cb482-8"><a href="big-data.html#cb482-8"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(<span class="kw">id</span>));</span>
-<span id="cb482-9"><a href="big-data.html#cb482-9"></a>    </span>
-<span id="cb482-10"><a href="big-data.html#cb482-10"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> students(name, birth, gpa, grad)</span>
-<span id="cb482-11"><a href="big-data.html#cb482-11"></a>      <span class="kw">VALUES</span> (<span class="st">&#39;Adam&#39;</span>, <span class="st">&#39;2000-08-04&#39;</span>, <span class="fl">4.0</span>, <span class="dv">2020</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb505-1"><a href="big-data.html#cb505-1"></a></span>
+<span id="cb505-2"><a href="big-data.html#cb505-2"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> students (</span>
+<span id="cb505-3"><a href="big-data.html#cb505-3"></a>    <span class="kw">id</span> <span class="dt">INT</span> AUTO_INCREMENT,</span>
+<span id="cb505-4"><a href="big-data.html#cb505-4"></a>    name <span class="dt">VARCHAR</span>(<span class="dv">30</span>),</span>
+<span id="cb505-5"><a href="big-data.html#cb505-5"></a>    birth <span class="dt">DATE</span>,</span>
+<span id="cb505-6"><a href="big-data.html#cb505-6"></a>    gpa <span class="dt">FLOAT</span>,</span>
+<span id="cb505-7"><a href="big-data.html#cb505-7"></a>    grad <span class="dt">INT</span>,</span>
+<span id="cb505-8"><a href="big-data.html#cb505-8"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(<span class="kw">id</span>));</span>
+<span id="cb505-9"><a href="big-data.html#cb505-9"></a>    </span>
+<span id="cb505-10"><a href="big-data.html#cb505-10"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> students(name, birth, gpa, grad)</span>
+<span id="cb505-11"><a href="big-data.html#cb505-11"></a>      <span class="kw">VALUES</span> (<span class="st">&#39;Adam&#39;</span>, <span class="st">&#39;2000-08-04&#39;</span>, <span class="fl">4.0</span>, <span class="dv">2020</span>);</span></code></pre></div>
 <ul>
 <li>Option 2: Copy a file (object) to a table in a database using <code>copy_to</code>). We take this option as it’s fast and we would like to focus on querying in this workshop.</li>
 </ul>
@@ -593,22 +593,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <div id="create-a-database" class="section level3" number="8.8.1">
 <h3><span class="header-section-number">8.8.1</span> Create a database</h3>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="big-data.html#cb483-1"></a><span class="co"># Define a backend engine </span></span>
-<span id="cb483-2"><a href="big-data.html#cb483-2"></a></span>
-<span id="cb483-3"><a href="big-data.html#cb483-3"></a>drv &lt;-<span class="st"> </span>RSQLite<span class="op">::</span><span class="kw">SQLite</span>()</span>
-<span id="cb483-4"><a href="big-data.html#cb483-4"></a></span>
-<span id="cb483-5"><a href="big-data.html#cb483-5"></a><span class="co"># Create an empty in-memory database </span></span>
-<span id="cb483-6"><a href="big-data.html#cb483-6"></a>con &lt;-<span class="st"> </span>DBI<span class="op">::</span><span class="kw">dbConnect</span>(drv, </span>
-<span id="cb483-7"><a href="big-data.html#cb483-7"></a>                      <span class="dt">dbname =</span> <span class="st">&quot;:memory:&quot;</span>)</span>
-<span id="cb483-8"><a href="big-data.html#cb483-8"></a></span>
-<span id="cb483-9"><a href="big-data.html#cb483-9"></a><span class="co"># Connect to an existing database </span></span>
-<span id="cb483-10"><a href="big-data.html#cb483-10"></a><span class="co">#con &lt;- DBI::dbConnect(RMariaDB::MariaDB(), </span></span>
-<span id="cb483-11"><a href="big-data.html#cb483-11"></a> <span class="co"># host = &quot;database.rstudio.com&quot;,</span></span>
-<span id="cb483-12"><a href="big-data.html#cb483-12"></a> <span class="co"># user = &quot;hadley&quot;,</span></span>
-<span id="cb483-13"><a href="big-data.html#cb483-13"></a> <span class="co"># password = rstudioapi::askForPassword(&quot;Database password&quot;)</span></span>
-<span id="cb483-14"><a href="big-data.html#cb483-14"></a><span class="co">#)</span></span>
-<span id="cb483-15"><a href="big-data.html#cb483-15"></a></span>
-<span id="cb483-16"><a href="big-data.html#cb483-16"></a><span class="kw">dbListTables</span>(con)</span></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="big-data.html#cb506-1"></a><span class="co"># Define a backend engine </span></span>
+<span id="cb506-2"><a href="big-data.html#cb506-2"></a></span>
+<span id="cb506-3"><a href="big-data.html#cb506-3"></a>drv &lt;-<span class="st"> </span>RSQLite<span class="op">::</span><span class="kw">SQLite</span>()</span>
+<span id="cb506-4"><a href="big-data.html#cb506-4"></a></span>
+<span id="cb506-5"><a href="big-data.html#cb506-5"></a><span class="co"># Create an empty in-memory database </span></span>
+<span id="cb506-6"><a href="big-data.html#cb506-6"></a>con &lt;-<span class="st"> </span>DBI<span class="op">::</span><span class="kw">dbConnect</span>(drv, </span>
+<span id="cb506-7"><a href="big-data.html#cb506-7"></a>                      <span class="dt">dbname =</span> <span class="st">&quot;:memory:&quot;</span>)</span>
+<span id="cb506-8"><a href="big-data.html#cb506-8"></a></span>
+<span id="cb506-9"><a href="big-data.html#cb506-9"></a><span class="co"># Connect to an existing database </span></span>
+<span id="cb506-10"><a href="big-data.html#cb506-10"></a><span class="co">#con &lt;- DBI::dbConnect(RMariaDB::MariaDB(), </span></span>
+<span id="cb506-11"><a href="big-data.html#cb506-11"></a> <span class="co"># host = &quot;database.rstudio.com&quot;,</span></span>
+<span id="cb506-12"><a href="big-data.html#cb506-12"></a> <span class="co"># user = &quot;hadley&quot;,</span></span>
+<span id="cb506-13"><a href="big-data.html#cb506-13"></a> <span class="co"># password = rstudioapi::askForPassword(&quot;Database password&quot;)</span></span>
+<span id="cb506-14"><a href="big-data.html#cb506-14"></a><span class="co">#)</span></span>
+<span id="cb506-15"><a href="big-data.html#cb506-15"></a></span>
+<span id="cb506-16"><a href="big-data.html#cb506-16"></a><span class="kw">dbListTables</span>(con)</span></code></pre></div>
 <pre><code>## character(0)</code></pre>
 <ul>
 <li>Note that con is empty at this stage.</li>
@@ -616,39 +616,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="copy-an-object-as-a-table-to-the-database-push" class="section level3" number="8.8.2">
 <h3><span class="header-section-number">8.8.2</span> Copy an object as a table to the database (push)</h3>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="big-data.html#cb485-1"></a><span class="co"># Copy objects to the data </span></span>
-<span id="cb485-2"><a href="big-data.html#cb485-2"></a><span class="kw">copy_to</span>(<span class="dt">dest =</span> con, </span>
-<span id="cb485-3"><a href="big-data.html#cb485-3"></a>        <span class="dt">df =</span> flights)</span>
-<span id="cb485-4"><a href="big-data.html#cb485-4"></a></span>
-<span id="cb485-5"><a href="big-data.html#cb485-5"></a><span class="kw">copy_to</span>(<span class="dt">dest =</span> con, </span>
-<span id="cb485-6"><a href="big-data.html#cb485-6"></a>        <span class="dt">df =</span> airports)</span>
-<span id="cb485-7"><a href="big-data.html#cb485-7"></a></span>
-<span id="cb485-8"><a href="big-data.html#cb485-8"></a><span class="kw">copy_to</span>(<span class="dt">dest =</span> con,</span>
-<span id="cb485-9"><a href="big-data.html#cb485-9"></a>        <span class="dt">df =</span> planes)</span>
-<span id="cb485-10"><a href="big-data.html#cb485-10"></a></span>
-<span id="cb485-11"><a href="big-data.html#cb485-11"></a><span class="kw">copy_to</span>(<span class="dt">dest =</span> con, </span>
-<span id="cb485-12"><a href="big-data.html#cb485-12"></a>        <span class="dt">df =</span> weather)</span>
-<span id="cb485-13"><a href="big-data.html#cb485-13"></a></span>
-<span id="cb485-14"><a href="big-data.html#cb485-14"></a><span class="co"># If you want you can also decide what columns you want to copy:</span></span>
-<span id="cb485-15"><a href="big-data.html#cb485-15"></a></span>
-<span id="cb485-16"><a href="big-data.html#cb485-16"></a><span class="co"># copy_to(dest = con, </span></span>
-<span id="cb485-17"><a href="big-data.html#cb485-17"></a><span class="co">#          df = flights, </span></span>
-<span id="cb485-18"><a href="big-data.html#cb485-18"></a><span class="co">#          name = &quot;flights&quot;,</span></span>
-<span id="cb485-19"><a href="big-data.html#cb485-19"></a><span class="co">#          indexes = list(c(&quot;year&quot;, &quot;tailnum&quot;, &quot;dest&quot;)))</span></span></code></pre></div>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="big-data.html#cb486-1"></a><span class="co"># Show two tables in the database </span></span>
-<span id="cb486-2"><a href="big-data.html#cb486-2"></a></span>
-<span id="cb486-3"><a href="big-data.html#cb486-3"></a><span class="kw">dbListTables</span>(con)</span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="big-data.html#cb508-1"></a><span class="co"># Copy objects to the data </span></span>
+<span id="cb508-2"><a href="big-data.html#cb508-2"></a><span class="kw">copy_to</span>(<span class="dt">dest =</span> con, </span>
+<span id="cb508-3"><a href="big-data.html#cb508-3"></a>        <span class="dt">df =</span> flights)</span>
+<span id="cb508-4"><a href="big-data.html#cb508-4"></a></span>
+<span id="cb508-5"><a href="big-data.html#cb508-5"></a><span class="kw">copy_to</span>(<span class="dt">dest =</span> con, </span>
+<span id="cb508-6"><a href="big-data.html#cb508-6"></a>        <span class="dt">df =</span> airports)</span>
+<span id="cb508-7"><a href="big-data.html#cb508-7"></a></span>
+<span id="cb508-8"><a href="big-data.html#cb508-8"></a><span class="kw">copy_to</span>(<span class="dt">dest =</span> con,</span>
+<span id="cb508-9"><a href="big-data.html#cb508-9"></a>        <span class="dt">df =</span> planes)</span>
+<span id="cb508-10"><a href="big-data.html#cb508-10"></a></span>
+<span id="cb508-11"><a href="big-data.html#cb508-11"></a><span class="kw">copy_to</span>(<span class="dt">dest =</span> con, </span>
+<span id="cb508-12"><a href="big-data.html#cb508-12"></a>        <span class="dt">df =</span> weather)</span>
+<span id="cb508-13"><a href="big-data.html#cb508-13"></a></span>
+<span id="cb508-14"><a href="big-data.html#cb508-14"></a><span class="co"># If you want you can also decide what columns you want to copy:</span></span>
+<span id="cb508-15"><a href="big-data.html#cb508-15"></a></span>
+<span id="cb508-16"><a href="big-data.html#cb508-16"></a><span class="co"># copy_to(dest = con, </span></span>
+<span id="cb508-17"><a href="big-data.html#cb508-17"></a><span class="co">#          df = flights, </span></span>
+<span id="cb508-18"><a href="big-data.html#cb508-18"></a><span class="co">#          name = &quot;flights&quot;,</span></span>
+<span id="cb508-19"><a href="big-data.html#cb508-19"></a><span class="co">#          indexes = list(c(&quot;year&quot;, &quot;tailnum&quot;, &quot;dest&quot;)))</span></span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="big-data.html#cb509-1"></a><span class="co"># Show two tables in the database </span></span>
+<span id="cb509-2"><a href="big-data.html#cb509-2"></a></span>
+<span id="cb509-3"><a href="big-data.html#cb509-3"></a><span class="kw">dbListTables</span>(con)</span></code></pre></div>
 <pre><code>## [1] &quot;airports&quot;     &quot;flights&quot;      &quot;planes&quot;       &quot;sqlite_stat1&quot; &quot;sqlite_stat4&quot;
 ## [6] &quot;weather&quot;</code></pre>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="big-data.html#cb488-1"></a><span class="co"># Show the columns/attributes/fields of a table </span></span>
-<span id="cb488-2"><a href="big-data.html#cb488-2"></a></span>
-<span id="cb488-3"><a href="big-data.html#cb488-3"></a><span class="kw">dbListFields</span>(con, <span class="st">&quot;flights&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="big-data.html#cb511-1"></a><span class="co"># Show the columns/attributes/fields of a table </span></span>
+<span id="cb511-2"><a href="big-data.html#cb511-2"></a></span>
+<span id="cb511-3"><a href="big-data.html#cb511-3"></a><span class="kw">dbListFields</span>(con, <span class="st">&quot;flights&quot;</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;year&quot;           &quot;month&quot;          &quot;day&quot;            &quot;dep_time&quot;      
 ##  [5] &quot;sched_dep_time&quot; &quot;dep_delay&quot;      &quot;arr_time&quot;       &quot;sched_arr_time&quot;
 ##  [9] &quot;arr_delay&quot;      &quot;carrier&quot;        &quot;flight&quot;         &quot;tailnum&quot;       
 ## [13] &quot;origin&quot;         &quot;dest&quot;           &quot;air_time&quot;       &quot;distance&quot;      
 ## [17] &quot;hour&quot;           &quot;minute&quot;         &quot;time_hour&quot;</code></pre>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="big-data.html#cb490-1"></a><span class="kw">dbListFields</span>(con, <span class="st">&quot;weather&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="big-data.html#cb513-1"></a><span class="kw">dbListFields</span>(con, <span class="st">&quot;weather&quot;</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;origin&quot;     &quot;year&quot;       &quot;month&quot;      &quot;day&quot;        &quot;hour&quot;      
 ##  [6] &quot;temp&quot;       &quot;dewp&quot;       &quot;humid&quot;      &quot;wind_dir&quot;   &quot;wind_speed&quot;
 ## [11] &quot;wind_gust&quot;  &quot;precip&quot;     &quot;pressure&quot;   &quot;visib&quot;      &quot;time_hour&quot;</code></pre>
@@ -662,8 +662,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Note that you can combine SQL and R commands thanks to <code>dbplyr</code>.</p></li>
 <li><p>Option 1</p></li>
 </ul>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="big-data.html#cb492-1"></a>DBI<span class="op">::</span><span class="kw">dbGetQuery</span>(con, <span class="st">&quot;SELECT * FROM flights;&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb492-2"><a href="big-data.html#cb492-2"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="big-data.html#cb515-1"></a>DBI<span class="op">::</span><span class="kw">dbGetQuery</span>(con, <span class="st">&quot;SELECT * FROM flights;&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb515-2"><a href="big-data.html#cb515-2"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>) </span></code></pre></div>
 <pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ## 1  2013     1   1      517            515         2      830            819
 ## 2  2013     1   1      533            529         4      850            830
@@ -700,10 +700,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Option 2 (works faster)</li>
 </ul>
-<div class="sourceCode" id="cb494"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb494-1"><a href="big-data.html#cb494-1"></a></span>
-<span id="cb494-2"><a href="big-data.html#cb494-2"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb494-3"><a href="big-data.html#cb494-3"></a><span class="kw">FROM</span> flights </span>
-<span id="cb494-4"><a href="big-data.html#cb494-4"></a><span class="kw">LIMIT</span> <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb517-1"><a href="big-data.html#cb517-1"></a></span>
+<span id="cb517-2"><a href="big-data.html#cb517-2"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb517-3"><a href="big-data.html#cb517-3"></a><span class="kw">FROM</span> flights </span>
+<span id="cb517-4"><a href="big-data.html#cb517-4"></a><span class="kw">LIMIT</span> <span class="dv">5</span></span></code></pre></div>
 <div class="knitsql-table">
 <table style="width:100%;">
 <caption><span id="tab:unnamed-chunk-5">Table 8.1: </span>5 records</caption>
@@ -866,22 +866,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>When local variables are updated, the SQL query is also automatically updated.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="big-data.html#cb495-1"></a><span class="co"># Local variables </span></span>
-<span id="cb495-2"><a href="big-data.html#cb495-2"></a>tbl &lt;-<span class="st"> &quot;flights&quot;</span></span>
-<span id="cb495-3"><a href="big-data.html#cb495-3"></a>var &lt;-<span class="st"> &quot;dep_delay&quot;</span></span>
-<span id="cb495-4"><a href="big-data.html#cb495-4"></a>num &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb495-5"><a href="big-data.html#cb495-5"></a></span>
-<span id="cb495-6"><a href="big-data.html#cb495-6"></a><span class="co"># Glue SQL query string </span></span>
-<span id="cb495-7"><a href="big-data.html#cb495-7"></a><span class="co"># Note that to indicate a numeric value, you don&#39;t need ``</span></span>
-<span id="cb495-8"><a href="big-data.html#cb495-8"></a></span>
-<span id="cb495-9"><a href="big-data.html#cb495-9"></a>sql_query &lt;-<span class="st"> </span><span class="kw">glue_sql</span>(<span class="st">&quot;</span></span>
-<span id="cb495-10"><a href="big-data.html#cb495-10"></a><span class="st">  SELECT {`var`}</span></span>
-<span id="cb495-11"><a href="big-data.html#cb495-11"></a><span class="st">  FROM {`tbl`}</span></span>
-<span id="cb495-12"><a href="big-data.html#cb495-12"></a><span class="st">  LIMIT {num} </span></span>
-<span id="cb495-13"><a href="big-data.html#cb495-13"></a><span class="st">  &quot;</span>, <span class="dt">.con =</span> con)</span>
-<span id="cb495-14"><a href="big-data.html#cb495-14"></a></span>
-<span id="cb495-15"><a href="big-data.html#cb495-15"></a><span class="co"># Run the query </span></span>
-<span id="cb495-16"><a href="big-data.html#cb495-16"></a><span class="kw">dbGetQuery</span>(con, sql_query)</span></code></pre></div>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="big-data.html#cb518-1"></a><span class="co"># Local variables </span></span>
+<span id="cb518-2"><a href="big-data.html#cb518-2"></a>tbl &lt;-<span class="st"> &quot;flights&quot;</span></span>
+<span id="cb518-3"><a href="big-data.html#cb518-3"></a>var &lt;-<span class="st"> &quot;dep_delay&quot;</span></span>
+<span id="cb518-4"><a href="big-data.html#cb518-4"></a>num &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb518-5"><a href="big-data.html#cb518-5"></a></span>
+<span id="cb518-6"><a href="big-data.html#cb518-6"></a><span class="co"># Glue SQL query string </span></span>
+<span id="cb518-7"><a href="big-data.html#cb518-7"></a><span class="co"># Note that to indicate a numeric value, you don&#39;t need ``</span></span>
+<span id="cb518-8"><a href="big-data.html#cb518-8"></a></span>
+<span id="cb518-9"><a href="big-data.html#cb518-9"></a>sql_query &lt;-<span class="st"> </span><span class="kw">glue_sql</span>(<span class="st">&quot;</span></span>
+<span id="cb518-10"><a href="big-data.html#cb518-10"></a><span class="st">  SELECT {`var`}</span></span>
+<span id="cb518-11"><a href="big-data.html#cb518-11"></a><span class="st">  FROM {`tbl`}</span></span>
+<span id="cb518-12"><a href="big-data.html#cb518-12"></a><span class="st">  LIMIT {num} </span></span>
+<span id="cb518-13"><a href="big-data.html#cb518-13"></a><span class="st">  &quot;</span>, <span class="dt">.con =</span> con)</span>
+<span id="cb518-14"><a href="big-data.html#cb518-14"></a></span>
+<span id="cb518-15"><a href="big-data.html#cb518-15"></a><span class="co"># Run the query </span></span>
+<span id="cb518-16"><a href="big-data.html#cb518-16"></a><span class="kw">dbGetQuery</span>(con, sql_query)</span></code></pre></div>
 <pre><code>##   dep_delay
 ## 1         2
 ## 2         4
@@ -899,31 +899,31 @@ Could you remind me how to see the list of attributes of a table? Let’s say yo
 <ul>
 <li>Collect the selected columns and filtered rows</li>
 </ul>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="big-data.html#cb497-1"></a>df &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(con, <span class="st">&quot;SELECT dep_delay, arr_delay FROM flights;&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb497-2"><a href="big-data.html#cb497-2"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span></span>
-<span id="cb497-3"><a href="big-data.html#cb497-3"></a><span class="st">  </span><span class="kw">collect</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="big-data.html#cb520-1"></a>df &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(con, <span class="st">&quot;SELECT dep_delay, arr_delay FROM flights;&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb520-2"><a href="big-data.html#cb520-2"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span></span>
+<span id="cb520-3"><a href="big-data.html#cb520-3"></a><span class="st">  </span><span class="kw">collect</span>()</span></code></pre></div>
 <ul>
 <li><p>Counting rows</p>
 <ul>
 <li>Count all (*)</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="big-data.html#cb498-1"></a><span class="kw">dbGetQuery</span>(con, </span>
-<span id="cb498-2"><a href="big-data.html#cb498-2"></a>          <span class="st">&quot;SELECT COUNT(*) </span></span>
-<span id="cb498-3"><a href="big-data.html#cb498-3"></a><span class="st">           FROM flights;&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="big-data.html#cb521-1"></a><span class="kw">dbGetQuery</span>(con, </span>
+<span id="cb521-2"><a href="big-data.html#cb521-2"></a>          <span class="st">&quot;SELECT COUNT(*) </span></span>
+<span id="cb521-3"><a href="big-data.html#cb521-3"></a><span class="st">           FROM flights;&quot;</span>) </span></code></pre></div>
 <pre><code>##   COUNT(*)
 ## 1   336776</code></pre>
-<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="big-data.html#cb500-1"></a><span class="kw">dbGetQuery</span>(con, </span>
-<span id="cb500-2"><a href="big-data.html#cb500-2"></a>           <span class="st">&quot;SELECT COUNT(dep_delay)</span></span>
-<span id="cb500-3"><a href="big-data.html#cb500-3"></a><span class="st">           FROM flights;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="big-data.html#cb523-1"></a><span class="kw">dbGetQuery</span>(con, </span>
+<span id="cb523-2"><a href="big-data.html#cb523-2"></a>           <span class="st">&quot;SELECT COUNT(dep_delay)</span></span>
+<span id="cb523-3"><a href="big-data.html#cb523-3"></a><span class="st">           FROM flights;&quot;</span>)</span></code></pre></div>
 <pre><code>##   COUNT(dep_delay)
 ## 1           328521</code></pre>
 <ul>
 <li>Count distinct values</li>
 </ul>
-<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="big-data.html#cb502-1"></a><span class="kw">dbGetQuery</span>(con, </span>
-<span id="cb502-2"><a href="big-data.html#cb502-2"></a>           <span class="st">&quot;SELECT COUNT(DISTINCT dep_delay)</span></span>
-<span id="cb502-3"><a href="big-data.html#cb502-3"></a><span class="st">           FROM flights;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="big-data.html#cb525-1"></a><span class="kw">dbGetQuery</span>(con, </span>
+<span id="cb525-2"><a href="big-data.html#cb525-2"></a>           <span class="st">&quot;SELECT COUNT(DISTINCT dep_delay)</span></span>
+<span id="cb525-3"><a href="big-data.html#cb525-3"></a><span class="st">           FROM flights;&quot;</span>)</span></code></pre></div>
 <pre><code>##   COUNT(DISTINCT dep_delay)
 ## 1                       527</code></pre>
 </div>
@@ -933,16 +933,16 @@ Could you remind me how to see the list of attributes of a table? Let’s say yo
 <ul>
 <li>Note that pipe (%) works.</li>
 </ul>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="big-data.html#cb504-1"></a><span class="co"># tbl select tables</span></span>
-<span id="cb504-2"><a href="big-data.html#cb504-2"></a>flights &lt;-<span class="st"> </span>con <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tbl</span>(<span class="st">&quot;flights&quot;</span>)</span>
-<span id="cb504-3"><a href="big-data.html#cb504-3"></a>airports &lt;-<span class="st"> </span>con <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tbl</span>(<span class="st">&quot;airports&quot;</span>)</span>
-<span id="cb504-4"><a href="big-data.html#cb504-4"></a>planes &lt;-<span class="st"> </span>con <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tbl</span>(<span class="st">&quot;planes&quot;</span>)</span>
-<span id="cb504-5"><a href="big-data.html#cb504-5"></a>weather &lt;-<span class="st"> </span>con <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tbl</span>(<span class="st">&quot;weather&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="big-data.html#cb527-1"></a><span class="co"># tbl select tables</span></span>
+<span id="cb527-2"><a href="big-data.html#cb527-2"></a>flights &lt;-<span class="st"> </span>con <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tbl</span>(<span class="st">&quot;flights&quot;</span>)</span>
+<span id="cb527-3"><a href="big-data.html#cb527-3"></a>airports &lt;-<span class="st"> </span>con <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tbl</span>(<span class="st">&quot;airports&quot;</span>)</span>
+<span id="cb527-4"><a href="big-data.html#cb527-4"></a>planes &lt;-<span class="st"> </span>con <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tbl</span>(<span class="st">&quot;planes&quot;</span>)</span>
+<span id="cb527-5"><a href="big-data.html#cb527-5"></a>weather &lt;-<span class="st"> </span>con <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tbl</span>(<span class="st">&quot;weather&quot;</span>)</span></code></pre></div>
 <ul>
 <li><code>select</code> = <code>SELECT</code></li>
 </ul>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="big-data.html#cb505-1"></a>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb505-2"><a href="big-data.html#cb505-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;delay&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="big-data.html#cb528-1"></a>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb528-2"><a href="big-data.html#cb528-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;delay&quot;</span>))</span></code></pre></div>
 <pre><code>## # Source:   lazy query [?? x 2]
 ## # Database: sqlite 3.30.1 [:memory:]
 ##    dep_delay arr_delay
@@ -963,9 +963,9 @@ Your turn: write the same code in SQL</p>
 <ul>
 <li><code>mutate</code> = <code>SELECT</code> <code>AS</code></li>
 </ul>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="big-data.html#cb507-1"></a>flights <span class="op">%&gt;%</span></span>
-<span id="cb507-2"><a href="big-data.html#cb507-2"></a><span class="st">  </span><span class="kw">select</span>(distance, air_time) <span class="op">%&gt;%</span><span class="st">  </span></span>
-<span id="cb507-3"><a href="big-data.html#cb507-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">speed =</span> distance <span class="op">/</span><span class="st"> </span>(air_time <span class="op">/</span><span class="st"> </span><span class="dv">60</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="big-data.html#cb530-1"></a>flights <span class="op">%&gt;%</span></span>
+<span id="cb530-2"><a href="big-data.html#cb530-2"></a><span class="st">  </span><span class="kw">select</span>(distance, air_time) <span class="op">%&gt;%</span><span class="st">  </span></span>
+<span id="cb530-3"><a href="big-data.html#cb530-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">speed =</span> distance <span class="op">/</span><span class="st"> </span>(air_time <span class="op">/</span><span class="st"> </span><span class="dv">60</span>)) </span></code></pre></div>
 <pre><code>## # Source:   lazy query [?? x 3]
 ## # Database: sqlite 3.30.1 [:memory:]
 ##    distance air_time speed
@@ -986,8 +986,8 @@ Your turn: write the same code in SQL (hint: <code>mutate(new_var = var 1 * var2
 <ul>
 <li><code>filter</code> = <code>WHERE</code></li>
 </ul>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="big-data.html#cb509-1"></a>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb509-2"><a href="big-data.html#cb509-2"></a><span class="st">  </span><span class="kw">filter</span>(month <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, day <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="big-data.html#cb532-1"></a>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb532-2"><a href="big-data.html#cb532-2"></a><span class="st">  </span><span class="kw">filter</span>(month <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, day <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## # Source:   lazy query [?? x 19]
 ## # Database: sqlite 3.30.1 [:memory:]
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
@@ -1011,9 +1011,9 @@ Your turn: write the same code in SQL (hint: <code>filter(condition1, condition2
 <li><p>Note that R and SQL operators are not exactly alike. R uses <code>!=</code> for <code>Not equal to</code>. SQL uses <code>&lt;&gt;</code> or <code>!=</code>. Furthermore, there are some cautions about using <code>NULL</code> (NA; unknown or missing): it should be <code>IS NULL</code> or <code>IS NOT NULL</code> not <code>=NULL</code> or <code>!=NULL</code>.</p></li>
 <li><p><code>arrange</code> = <code>ORDER BY</code></p></li>
 </ul>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="big-data.html#cb511-1"></a>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb511-2"><a href="big-data.html#cb511-2"></a><span class="st">  </span><span class="kw">arrange</span>(carrier, <span class="kw">desc</span>(arr_delay)) <span class="op">%&gt;%</span></span>
-<span id="cb511-3"><a href="big-data.html#cb511-3"></a><span class="st">  </span><span class="kw">show_query</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="big-data.html#cb534-1"></a>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb534-2"><a href="big-data.html#cb534-2"></a><span class="st">  </span><span class="kw">arrange</span>(carrier, <span class="kw">desc</span>(arr_delay)) <span class="op">%&gt;%</span></span>
+<span id="cb534-3"><a href="big-data.html#cb534-3"></a><span class="st">  </span><span class="kw">show_query</span>()</span></code></pre></div>
 <pre><code>## &lt;SQL&gt;
 ## SELECT *
 ## FROM `flights`
@@ -1023,9 +1023,9 @@ Your turn: write the same code in SQL (hint: <code>arrange(var1, desc(var2)) = O
 <ul>
 <li><code>summarise</code> = <code>SELECT</code> <code>AS</code> and <code>group by</code> = <code>GROUP BY</code></li>
 </ul>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="big-data.html#cb513-1"></a>flights <span class="op">%&gt;%</span></span>
-<span id="cb513-2"><a href="big-data.html#cb513-2"></a><span class="st">  </span><span class="kw">group_by</span>(month, day) <span class="op">%&gt;%</span></span>
-<span id="cb513-3"><a href="big-data.html#cb513-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">delay =</span> <span class="kw">mean</span>(dep_delay)) </span></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="big-data.html#cb536-1"></a>flights <span class="op">%&gt;%</span></span>
+<span id="cb536-2"><a href="big-data.html#cb536-2"></a><span class="st">  </span><span class="kw">group_by</span>(month, day) <span class="op">%&gt;%</span></span>
+<span id="cb536-3"><a href="big-data.html#cb536-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">delay =</span> <span class="kw">mean</span>(dep_delay)) </span></code></pre></div>
 <pre><code>## Warning: Missing values are always removed in SQL.
 ## Use `mean(x, na.rm = TRUE)` to silence this warning
 ## This warning is displayed only once per session.</code></pre>
@@ -1050,10 +1050,10 @@ Your turn: write the same code in SQL (hint: in SQL the order should be <code>SE
 <ul>
 <li>If you feel too much challenged, here’s a help.</li>
 </ul>
-<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="big-data.html#cb516-1"></a>flights <span class="op">%&gt;%</span></span>
-<span id="cb516-2"><a href="big-data.html#cb516-2"></a><span class="st">  </span><span class="kw">group_by</span>(month, day) <span class="op">%&gt;%</span></span>
-<span id="cb516-3"><a href="big-data.html#cb516-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">delay =</span> <span class="kw">mean</span>(dep_delay)) <span class="op">%&gt;%</span></span>
-<span id="cb516-4"><a href="big-data.html#cb516-4"></a><span class="st">  </span><span class="kw">show_query</span>() <span class="co"># Show the SQL equivalent!</span></span></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="big-data.html#cb539-1"></a>flights <span class="op">%&gt;%</span></span>
+<span id="cb539-2"><a href="big-data.html#cb539-2"></a><span class="st">  </span><span class="kw">group_by</span>(month, day) <span class="op">%&gt;%</span></span>
+<span id="cb539-3"><a href="big-data.html#cb539-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">delay =</span> <span class="kw">mean</span>(dep_delay)) <span class="op">%&gt;%</span></span>
+<span id="cb539-4"><a href="big-data.html#cb539-4"></a><span class="st">  </span><span class="kw">show_query</span>() <span class="co"># Show the SQL equivalent!</span></span></code></pre></div>
 <pre><code>## &lt;SQL&gt;
 ## SELECT `month`, `day`, AVG(`dep_delay`) AS `delay`
 ## FROM `flights`
@@ -1068,9 +1068,9 @@ Your turn: write the same code in SQL (hint: in SQL the order should be <code>SE
 <li>For more information, check out <a href="https://github.com/ianmcook/tidyquery/issues"><code>tidyquery</code></a> to see the latest developments.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="big-data.html#cb518-1"></a>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb518-2"><a href="big-data.html#cb518-2"></a><span class="st">  </span><span class="kw">left_join</span>(weather, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;month&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb518-3"><a href="big-data.html#cb518-3"></a><span class="st">  </span><span class="kw">show_query</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="big-data.html#cb541-1"></a>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb541-2"><a href="big-data.html#cb541-2"></a><span class="st">  </span><span class="kw">left_join</span>(weather, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;month&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb541-3"><a href="big-data.html#cb541-3"></a><span class="st">  </span><span class="kw">show_query</span>()</span></code></pre></div>
 <pre><code>## &lt;SQL&gt;
 ## SELECT `LHS`.`year` AS `year`, `LHS`.`month` AS `month`, `LHS`.`day` AS `day.x`, `LHS`.`dep_time` AS `dep_time`, `LHS`.`sched_dep_time` AS `sched_dep_time`, `LHS`.`dep_delay` AS `dep_delay`, `LHS`.`arr_time` AS `arr_time`, `LHS`.`sched_arr_time` AS `sched_arr_time`, `LHS`.`arr_delay` AS `arr_delay`, `LHS`.`carrier` AS `carrier`, `LHS`.`flight` AS `flight`, `LHS`.`tailnum` AS `tailnum`, `LHS`.`origin` AS `origin.x`, `LHS`.`dest` AS `dest`, `LHS`.`air_time` AS `air_time`, `LHS`.`distance` AS `distance`, `LHS`.`hour` AS `hour.x`, `LHS`.`minute` AS `minute`, `LHS`.`time_hour` AS `time_hour.x`, `RHS`.`origin` AS `origin.y`, `RHS`.`day` AS `day.y`, `RHS`.`hour` AS `hour.y`, `RHS`.`temp` AS `temp`, `RHS`.`dewp` AS `dewp`, `RHS`.`humid` AS `humid`, `RHS`.`wind_dir` AS `wind_dir`, `RHS`.`wind_speed` AS `wind_speed`, `RHS`.`wind_gust` AS `wind_gust`, `RHS`.`precip` AS `precip`, `RHS`.`pressure` AS `pressure`, `RHS`.`visib` AS `visib`, `RHS`.`time_hour` AS `time_hour.y`
 ## FROM `flights` AS `LHS`
@@ -1086,29 +1086,29 @@ Your turn: write the same code in SQL (hint: in SQL the order should be <code>SE
 <blockquote>
 <p>Error in UseMethod(“collect”) : no applicable method for ‘collect’ applied to an object of class “c(‘LayerInstance’, ‘Layer’, ‘ggproto’, ‘gg’)”</p>
 </blockquote>
-<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="big-data.html#cb520-1"></a>origin_flights_plot &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></span>
-<span id="cb520-2"><a href="big-data.html#cb520-2"></a><span class="st">  </span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></span>
-<span id="cb520-3"><a href="big-data.html#cb520-3"></a><span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span></span>
-<span id="cb520-4"><a href="big-data.html#cb520-4"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb520-5"><a href="big-data.html#cb520-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> origin, <span class="dt">y =</span> n)) <span class="op">%&gt;%</span></span>
-<span id="cb520-6"><a href="big-data.html#cb520-6"></a><span class="st">  </span><span class="kw">collect</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="big-data.html#cb543-1"></a>origin_flights_plot &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></span>
+<span id="cb543-2"><a href="big-data.html#cb543-2"></a><span class="st">  </span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></span>
+<span id="cb543-3"><a href="big-data.html#cb543-3"></a><span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span></span>
+<span id="cb543-4"><a href="big-data.html#cb543-4"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb543-5"><a href="big-data.html#cb543-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> origin, <span class="dt">y =</span> n)) <span class="op">%&gt;%</span></span>
+<span id="cb543-6"><a href="big-data.html#cb543-6"></a><span class="st">  </span><span class="kw">collect</span>()</span></code></pre></div>
 <ul>
 <li>This works.</li>
 </ul>
-<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="big-data.html#cb521-1"></a>df &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></span>
-<span id="cb521-2"><a href="big-data.html#cb521-2"></a><span class="st">  </span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></span>
-<span id="cb521-3"><a href="big-data.html#cb521-3"></a><span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span></span>
-<span id="cb521-4"><a href="big-data.html#cb521-4"></a><span class="st">  </span><span class="kw">collect</span>()</span>
-<span id="cb521-5"><a href="big-data.html#cb521-5"></a></span>
-<span id="cb521-6"><a href="big-data.html#cb521-6"></a>origin_flights_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df) <span class="op">+</span></span>
-<span id="cb521-7"><a href="big-data.html#cb521-7"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> origin, <span class="dt">y =</span> n))</span>
-<span id="cb521-8"><a href="big-data.html#cb521-8"></a></span>
-<span id="cb521-9"><a href="big-data.html#cb521-9"></a>origin_flights_plot</span></code></pre></div>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="big-data.html#cb544-1"></a>df &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></span>
+<span id="cb544-2"><a href="big-data.html#cb544-2"></a><span class="st">  </span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></span>
+<span id="cb544-3"><a href="big-data.html#cb544-3"></a><span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span></span>
+<span id="cb544-4"><a href="big-data.html#cb544-4"></a><span class="st">  </span><span class="kw">collect</span>()</span>
+<span id="cb544-5"><a href="big-data.html#cb544-5"></a></span>
+<span id="cb544-6"><a href="big-data.html#cb544-6"></a>origin_flights_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df) <span class="op">+</span></span>
+<span id="cb544-7"><a href="big-data.html#cb544-7"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> origin, <span class="dt">y =</span> n))</span>
+<span id="cb544-8"><a href="big-data.html#cb544-8"></a></span>
+<span id="cb544-9"><a href="big-data.html#cb544-9"></a>origin_flights_plot</span></code></pre></div>
 <p><img src="06_big_data_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 </div>
 <div id="disconnect" class="section level3" number="8.8.6">
 <h3><span class="header-section-number">8.8.6</span> Disconnect</h3>
-<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="big-data.html#cb522-1"></a>DBI<span class="op">::</span><span class="kw">dbDisconnect</span>(con)</span></code></pre></div>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="big-data.html#cb545-1"></a>DBI<span class="op">::</span><span class="kw">dbDisconnect</span>(con)</span></code></pre></div>
 </div>
 </div>
 <div id="references" class="section level2" number="8.9">

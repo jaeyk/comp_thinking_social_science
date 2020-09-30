@@ -4,6 +4,8 @@
 
 - The rise of high-dimensional data. The new data frontiers in social sciences---text ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf); [Grimmer and Stewart 2013](https://www.jstor.org/stable/pdf/24572662.pdf?casa_token=SQdSI4R_VdwAAAAA:4QiVLhCXqr9f0qNMM9U75EL5JbDxxnXxUxyIfDf0U8ZzQx9szc0xVqaU6DXG4nHyZiNkvcwGlgD6H0Lxj3y0ULHwgkf1MZt8-9TPVtkEH9I4AHgbTg)) and and image ([Joo and Steinert-Threlkeld 2018](https://arxiv.org/pdf/1810.01544))---are all high-dimensional data. 
 
+    - 1000 common English words for 30-word tweets: $1000^{30}$ similar to N of atoms in the universe ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf))
+
     - Belloni, Alexandre, Victor Chernozhukov, and Christian Hansen. ["High-dimensional methods and inference on structural and treatment effects."](https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.29) *Journal of Economic Perspectives 28*, no. 2 (2014): 29-50.
 
 - The rise of new approach: statistics + computer science = machine learning 
@@ -981,8 +983,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.744
-## 2 precision binary         0.705
+## 1 accuracy  binary         0.756
+## 2 precision binary         0.721
 ## 3 recall    binary         0.756
 ```
 
@@ -1168,7 +1170,7 @@ best_tree
 ## # A tibble: 1 x 3
 ##    mtry min_n .config
 ##   <int> <int> <chr>  
-## 1     1    10 Model21
+## 1     1     2 Model01
 ```
 
 ```r
@@ -1222,9 +1224,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.922
-## 2 precision binary         0.972
-## 3 recall    binary         0.854
+## 1 accuracy  binary         0.933
+## 2 precision binary         0.973
+## 3 recall    binary         0.878
 ```
 
 ### XGboost 
@@ -1423,9 +1425,9 @@ best_xg
 
 ```
 ## # A tibble: 1 x 8
-##    mtry trees min_n tree_depth learn_rate loss_reduction sample_size .config
-##   <int> <int> <int>      <int>      <dbl>          <dbl>       <dbl> <chr>  
-## 1    11   326     3         13     0.0176     0.00000254       0.544 Model27
+##    mtry trees min_n tree_depth  learn_rate loss_reduction sample_size .config
+##   <int> <int> <int>      <int>       <dbl>          <dbl>       <dbl> <chr>  
+## 1     6    98     4         13 0.000000211  0.00000000336       0.422 Model26
 ```
 
 ```r
@@ -1487,9 +1489,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.844
-## 2 precision binary         0.829
-## 3 recall    binary         0.829
+## 1 accuracy  binary         0.8  
+## 2 precision binary         0.795
+## 3 recall    binary         0.756
 ```
 
 ### Applications 
@@ -1591,7 +1593,7 @@ pca_res %>%
 ## # … with 186 more rows
 ```
 
-#### Screeplot
+##### Screeplot
 
 
 ```r
@@ -1610,7 +1612,7 @@ pca_recipe %>%
 
 <img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-62-1.png" width="672" />
 
-#### View factor loadings 
+##### View factor loadings 
 
 
 ```r
@@ -1631,9 +1633,537 @@ pca_recipe %>%
 
 <img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-63-1.png" width="672" />
 
-### Clustering
+### Topic modeling 
 
-#### Topic modeling 
+#### Setup 
+
+
+```r
+pacman::p_load(tidytext, # tidy text analysis
+               glue, # paste string and objects  
+               stm, # structural topic modeling
+               gutenbergr) # toy datasets 
+```
+
+#### Dataset 
+
+The data munging process draws on [Julia Silge's blog post](https://juliasilge.com/blog/sherlock-holmes-stm/).
+
+
+```r
+sherlock_raw <- gutenberg_download(1661)
+```
+
+```
+## Determining mirror for Project Gutenberg from http://www.gutenberg.org/robot/harvest
+```
+
+```
+## Using mirror http://aleph.gutenberg.org
+```
+
+```r
+glimpse(sherlock_raw)
+```
+
+```
+## Rows: 12,648
+## Columns: 2
+## $ gutenberg_id <int> 1661, 1661, 1661, 1661, 1661, 1661, 1661, 1661, 1661, 16…
+## $ text         <chr> "THE ADVENTURES OF SHERLOCK HOLMES", "", "by", "", "SIR …
+```
+
+```r
+sherlock <- sherlock_raw %>%
+  # Mutate story using a conditional statement 
+  mutate(story = ifelse(str_starts(text, "ADVENTURE"), 
+                                   text, NA)) %>%
+  # Fill in missing values with next value  
+  tidyr::fill(story, .direction = "down") %>%
+  # Filter 
+  filter(story != "THE ADVENTURES OF SHERLOCK HOLMES") %>%
+  # Factor 
+  mutate(story = factor(story, levels = unique(story)))
+
+sherlock <- sherlock[,2:3]
+```
+
+#### Key ideas 
+
+- Topics as **distributions** of words 
+
+- Documents as **distributions** of topics 
+
+- What distributions?
+
+    - Probability 
+
+    - Multinominal (e.g., Latent Dirichlet Distribution)
+
+- Words lie on a lower dimensional space (dimension reduction)
+
+- Co-occurrence of words (clustering)
+
+- Bag of words (feature engineering)
+    - Upside: easy and fast (also quite working well)
+    - Downside: ignored grammatical structures and rich interactions among words (Alternative: word embeddings. Please check out [text2vec](http://text2vec.org/))
+
+#### Exploratory data analysis 
+
+
+```r
+sherlock_n <- sherlock %>%
+  unnest_tokens(output = word,
+                input = text) %>%
+  count(story, word, sort = TRUE)
+
+sherlock_total_n <- sherlock_n %>%
+  group_by(story) %>%
+  summarise(total = sum(n))
+```
+
+```
+## `summarise()` ungrouping output (override with `.groups` argument)
+```
+
+```r
+sherlock_words <- sherlock_n %>% left_join(sherlock_total_n)
+```
+
+```
+## Joining, by = "story"
+```
+
+```r
+sherlock_words %>%
+  mutate(freq = n/total) %>%
+  group_by(story) %>%
+  top_n(10) %>%
+  ggplot(aes(x = fct_reorder(word, freq), 
+             y = freq, 
+             fill = story)) +
+  geom_col() +
+  coord_flip() +
+  facet_wrap(~story, 
+             ncol = 2, 
+             scales = "free_y") +
+  scale_fill_viridis_d() +
+  labs(x = "")
+```
+
+```
+## Selecting by freq
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-66-1.png" width="672" />
+
+#### STM 
+
+##### Turn text into document-term matrix
+
+`stm` package has its own preprocessing function.
+
+
+```r
+dtm <- textProcessor(documents = sherlock$text,
+                     metadata = sherlock, 
+                     removestopwords = TRUE,
+                     verbose = TRUE)
+```
+
+```
+## Building corpus... 
+## Converting to Lower Case... 
+## Removing punctuation... 
+## Removing stopwords... 
+## Removing numbers... 
+## Stemming... 
+## Creating Output...
+```
+
+##### Tuning K
+
+- K is the number of topics. 
+- Let's try K = 5, 10, 15.
+
+
+```r
+test_res <- searchK(dtm$documents, dtm$vocab, 
+                   K = c(5, 10, 15),
+                   prevalence =~ story, 
+                   data = dtm$meta)
+```
+
+```
+## Beginning Spectral Initialization 
+## 	 Calculating the gram matrix...
+## 	 Finding anchor words...
+##  	.....
+## 	 Recovering initialization...
+##  	........................................................
+## Initialization complete.
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.570) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.481, relative change = 1.176e-02) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.400, relative change = 1.090e-02) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.381, relative change = 2.581e-03) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.375, relative change = 8.290e-04) 
+## Topic 1: come, time, might, know, must 
+##  Topic 2: one, said, well, matter, came 
+##  Topic 3: holm, upon, said, may, just 
+##  Topic 4: littl, will, man, see, think 
+##  Topic 5: case, yes, remark, noth, put 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.371, relative change = 4.271e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.370, relative change = 2.175e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.369, relative change = 7.176e-05) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Model Converged 
+## Beginning Spectral Initialization 
+## 	 Calculating the gram matrix...
+## 	 Finding anchor words...
+##  	..........
+## 	 Recovering initialization...
+##  	........................................................
+## Initialization complete.
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.651) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.480, relative change = 2.234e-02) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.378, relative change = 1.356e-02) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.354, relative change = 3.251e-03) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.347, relative change = 1.040e-03) 
+## Topic 1: holm, one, will, eye, across 
+##  Topic 2: may, upon, case, shall, remark 
+##  Topic 3: well, know, father, call, mind 
+##  Topic 4: littl, see, like, yes, might 
+##  Topic 5: said, man, see, watson, hard 
+##  Topic 6: hous, room, hand, man, without 
+##  Topic 7: come, came, even, back, tell 
+##  Topic 8: upon, day, door, look, may 
+##  Topic 9: said, ask, matter, noth, answer 
+##  Topic 10: sherlock, hand, glanc, howev, anoth 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.344, relative change = 3.512e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.342, relative change = 2.888e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.340, relative change = 2.464e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.339, relative change = 1.991e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 10 (approx. per word bound = -7.338, relative change = 1.230e-04) 
+## Topic 1: holm, one, will, eye, chair 
+##  Topic 2: may, case, shall, say, remark 
+##  Topic 3: know, well, never, thought, cri 
+##  Topic 4: littl, yes, like, might, see 
+##  Topic 5: said, man, see, can, watson 
+##  Topic 6: hous, room, young, ladi, without 
+##  Topic 7: come, came, back, even, just 
+##  Topic 8: upon, door, day, open, look 
+##  Topic 9: ask, matter, must, take, noth 
+##  Topic 10: hand, howev, sherlock, glanc, head 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 11 (approx. per word bound = -7.337, relative change = 5.576e-05) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Model Converged 
+## Beginning Spectral Initialization 
+## 	 Calculating the gram matrix...
+## 	 Finding anchor words...
+##  	...............
+## 	 Recovering initialization...
+##  	........................................................
+## Initialization complete.
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.737) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.500, relative change = 3.056e-02) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.388, relative change = 1.494e-02) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.356, relative change = 4.344e-03) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.345, relative change = 1.583e-03) 
+## Topic 1: holm, know, well, can, might 
+##  Topic 2: small, lay, known, form, power 
+##  Topic 3: time, seen, two, sherlock, anyth 
+##  Topic 4: said, man, shall, miss, word 
+##  Topic 5: look, face, man, first, eye 
+##  Topic 6: room, man, must, open, took 
+##  Topic 7: back, ask, came, way, come 
+##  Topic 8: littl, said, noth, last, sir 
+##  Topic 9: now, see, yes, like, think 
+##  Topic 10: street, hand, found, sudden, pass 
+##  Topic 11: someth, sure, went, mind, live 
+##  Topic 12: come, call, busi, gentleman, may 
+##  Topic 13: will, may, case, littl, find 
+##  Topic 14: one, side, two, year, famili 
+##  Topic 15: upon, tabl, finger, depend, wrist 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.340, relative change = 5.712e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.338, relative change = 2.704e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.336, relative change = 2.640e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.335, relative change = 1.952e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 10 (approx. per word bound = -7.333, relative change = 2.106e-04) 
+## Topic 1: holm, know, well, can, might 
+##  Topic 2: small, work, told, lay, fire 
+##  Topic 3: time, howev, day, sherlock, turn 
+##  Topic 4: said, man, miss, young, word 
+##  Topic 5: look, face, eye, tell, first 
+##  Topic 6: room, must, open, father, made 
+##  Topic 7: back, came, door, ask, way 
+##  Topic 8: littl, noth, last, paper, read 
+##  Topic 9: now, see, think, yes, like 
+##  Topic 10: found, street, hand, sudden, light 
+##  Topic 11: went, place, someth, mind, son 
+##  Topic 12: come, away, busi, call, reason 
+##  Topic 13: will, may, case, find, interest 
+##  Topic 14: one, side, year, thing, two 
+##  Topic 15: upon, tabl, besid, finger, bear 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 11 (approx. per word bound = -7.332, relative change = 2.243e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 12 (approx. per word bound = -7.331, relative change = 1.713e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 13 (approx. per word bound = -7.330, relative change = 1.282e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 14 (approx. per word bound = -7.329, relative change = 1.167e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 15 (approx. per word bound = -7.328, relative change = 6.326e-05) 
+## Topic 1: holm, know, well, can, might 
+##  Topic 2: small, work, told, lay, fire 
+##  Topic 3: time, day, much, howev, turn 
+##  Topic 4: said, man, miss, say, right 
+##  Topic 5: look, face, eye, tell, first 
+##  Topic 6: must, room, open, made, morn 
+##  Topic 7: door, came, back, ask, way 
+##  Topic 8: littl, noth, last, paper, sir 
+##  Topic 9: now, see, think, yes, like 
+##  Topic 10: found, street, hand, long, light 
+##  Topic 11: place, went, someth, mind, son 
+##  Topic 12: come, away, busi, call, certain 
+##  Topic 13: will, may, case, find, take 
+##  Topic 14: one, side, year, thing, two 
+##  Topic 15: upon, tabl, besid, sever, finger 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 16 (approx. per word bound = -7.328, relative change = 5.296e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 17 (approx. per word bound = -7.328, relative change = 3.663e-05) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Model Converged
+```
+
+##### Evaludating models 
+
+There are several metrics to assess the performance of topic models: the held-out likelihood, residuals, semantic coherence, and exclusivity. In this course, we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
+
+
+```r
+test_res$results %>%
+  unnest(K, exclus, semcoh) %>%
+  dplyr::select(K, exclus, semcoh) %>%
+  mutate(K = as.factor(K)) %>%
+  ggplot(aes(x = exclus, y = semcoh)) +
+    geom_text(label = glue("K = {test_res$results$K}"),
+              size = 5,
+              color = "red")
+```
+
+```
+## Warning: unnest() has a new interface. See ?unnest for details.
+## Try `df %>% unnest(c(K, exclus, semcoh))`, with `mutate()` if needed
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-69-1.png" width="672" />
+
+##### Finalize 
+
+
+```r
+final_stm <- stm(dtm$documents, 
+                 dtm$vocab, 
+                 K = 10, prevalence =~ story,
+                 max.em.its = 75, 
+                 data = dtm$meta, 
+                 init.type="Spectral",
+                 seed = 1234567,
+                 verbose  =TRUE)
+```
+
+```
+## Beginning Spectral Initialization 
+## 	 Calculating the gram matrix...
+## 	 Finding anchor words...
+##  	..........
+## 	 Recovering initialization...
+##  	.........................................................
+## Initialization complete.
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.692) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.478, relative change = 2.789e-02) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.367, relative change = 1.472e-02) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.334, relative change = 4.562e-03) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.322, relative change = 1.582e-03) 
+## Topic 1: man, case, came, way, room 
+##  Topic 2: said, holm, laugh, pray, watson 
+##  Topic 3: upon, see, noth, paper, man 
+##  Topic 4: said, can, matter, yes, see 
+##  Topic 5: littl, door, look, like, window 
+##  Topic 6: will, back, face, hous, get 
+##  Topic 7: one, must, ask, first, sherlock 
+##  Topic 8: holm, two, day, time, just 
+##  Topic 9: come, eye, small, letter, gentleman 
+##  Topic 10: now, may, hand, singular, wonder 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.317, relative change = 6.585e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.315, relative change = 2.677e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Model Converged
+```
+
+##### Explore the results 
+
+- Using the `stm` pacakge. 
+
+
+```r
+# plot
+plot(final_stm)
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-71-1.png" width="672" />
+- Using ggplot2 
+
+```r
+# tidy  
+tidy_stm <- tidy(final_stm)
+
+# top terms
+tidy_stm %>%
+    group_by(topic) %>%
+    top_n(10, beta) %>%
+    ungroup() %>%
+    ggplot(aes(fct_reorder(term, beta), beta, fill = as.factor(topic))) +
+    geom_col(alpha = 0.8, show.legend = FALSE) +
+    facet_wrap(~ topic, scales = "free_y") +
+    coord_flip() +
+    scale_y_continuous(labels = scales::percent) +
+    scale_fill_viridis_d()
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-72-1.png" width="672" />
 
 ## Bias and fairness in machine learning 
 

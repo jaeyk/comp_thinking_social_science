@@ -889,7 +889,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[3]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
 ## 
 ## 
 ## [[4]]
@@ -1075,7 +1075,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-09-29"
+date: "2020-09-30"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 
