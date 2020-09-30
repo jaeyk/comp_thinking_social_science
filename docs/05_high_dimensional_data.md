@@ -79,113 +79,114 @@
 
 ## Dataset  
 
+- [Heart disease data from UCI](https://archive.ics.uci.edu/ml/datasets/heart+Disease)
+
+- One of the popular datasets used in machine learning competitions 
+
 
 ```r
-pacman::p_load(tidymodels)
+# Load packages 
 
-# Ames, Iowa housing data 
-data(ames)
+## CRAN packages 
+pacman::p_load(here,
+               tidyverse, 
+               tidymodels,
+               doParallel, # parallel processing 
+               patchwork) # arranging ggplots 
 
-# Glimpse 
-ames %>%
-  glimpse()
+## Jae's custom functions 
+source(here("functions", "ml_utils.r"))
+
+# Import the dataset 
+
+data_original <- read_csv(here("data", "heart.csv"))
 ```
 
 ```
-## Rows: 2,930
-## Columns: 74
-## $ MS_SubClass        <fct> One_Story_1946_and_Newer_All_Styles, One_Story_194…
-## $ MS_Zoning          <fct> Residential_Low_Density, Residential_High_Density,…
-## $ Lot_Frontage       <dbl> 141, 80, 81, 93, 74, 78, 41, 43, 39, 60, 75, 0, 63…
-## $ Lot_Area           <int> 31770, 11622, 14267, 11160, 13830, 9978, 4920, 500…
-## $ Street             <fct> Pave, Pave, Pave, Pave, Pave, Pave, Pave, Pave, Pa…
-## $ Alley              <fct> No_Alley_Access, No_Alley_Access, No_Alley_Access,…
-## $ Lot_Shape          <fct> Slightly_Irregular, Regular, Slightly_Irregular, R…
-## $ Land_Contour       <fct> Lvl, Lvl, Lvl, Lvl, Lvl, Lvl, Lvl, HLS, Lvl, Lvl, …
-## $ Utilities          <fct> AllPub, AllPub, AllPub, AllPub, AllPub, AllPub, Al…
-## $ Lot_Config         <fct> Corner, Inside, Corner, Corner, Inside, Inside, In…
-## $ Land_Slope         <fct> Gtl, Gtl, Gtl, Gtl, Gtl, Gtl, Gtl, Gtl, Gtl, Gtl, …
-## $ Neighborhood       <fct> North_Ames, North_Ames, North_Ames, North_Ames, Gi…
-## $ Condition_1        <fct> Norm, Feedr, Norm, Norm, Norm, Norm, Norm, Norm, N…
-## $ Condition_2        <fct> Norm, Norm, Norm, Norm, Norm, Norm, Norm, Norm, No…
-## $ Bldg_Type          <fct> OneFam, OneFam, OneFam, OneFam, OneFam, OneFam, Tw…
-## $ House_Style        <fct> One_Story, One_Story, One_Story, One_Story, Two_St…
-## $ Overall_Cond       <fct> Average, Above_Average, Above_Average, Average, Av…
-## $ Year_Built         <int> 1960, 1961, 1958, 1968, 1997, 1998, 2001, 1992, 19…
-## $ Year_Remod_Add     <int> 1960, 1961, 1958, 1968, 1998, 1998, 2001, 1992, 19…
-## $ Roof_Style         <fct> Hip, Gable, Hip, Hip, Gable, Gable, Gable, Gable, …
-## $ Roof_Matl          <fct> CompShg, CompShg, CompShg, CompShg, CompShg, CompS…
-## $ Exterior_1st       <fct> BrkFace, VinylSd, Wd Sdng, BrkFace, VinylSd, Vinyl…
-## $ Exterior_2nd       <fct> Plywood, VinylSd, Wd Sdng, BrkFace, VinylSd, Vinyl…
-## $ Mas_Vnr_Type       <fct> Stone, None, BrkFace, None, None, BrkFace, None, N…
-## $ Mas_Vnr_Area       <dbl> 112, 0, 108, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ Exter_Cond         <fct> Typical, Typical, Typical, Typical, Typical, Typic…
-## $ Foundation         <fct> CBlock, CBlock, CBlock, CBlock, PConc, PConc, PCon…
-## $ Bsmt_Cond          <fct> Good, Typical, Typical, Typical, Typical, Typical,…
-## $ Bsmt_Exposure      <fct> Gd, No, No, No, No, No, Mn, No, No, No, No, No, No…
-## $ BsmtFin_Type_1     <fct> BLQ, Rec, ALQ, ALQ, GLQ, GLQ, GLQ, ALQ, GLQ, Unf, …
-## $ BsmtFin_SF_1       <dbl> 2, 6, 1, 1, 3, 3, 3, 1, 3, 7, 7, 1, 7, 3, 3, 1, 3,…
-## $ BsmtFin_Type_2     <fct> Unf, LwQ, Unf, Unf, Unf, Unf, Unf, Unf, Unf, Unf, …
-## $ BsmtFin_SF_2       <dbl> 0, 144, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1120, …
-## $ Bsmt_Unf_SF        <dbl> 441, 270, 406, 1045, 137, 324, 722, 1017, 415, 994…
-## $ Total_Bsmt_SF      <dbl> 1080, 882, 1329, 2110, 928, 926, 1338, 1280, 1595,…
-## $ Heating            <fct> GasA, GasA, GasA, GasA, GasA, GasA, GasA, GasA, Ga…
-## $ Heating_QC         <fct> Fair, Typical, Typical, Excellent, Good, Excellent…
-## $ Central_Air        <fct> Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y,…
-## $ Electrical         <fct> SBrkr, SBrkr, SBrkr, SBrkr, SBrkr, SBrkr, SBrkr, S…
-## $ First_Flr_SF       <int> 1656, 896, 1329, 2110, 928, 926, 1338, 1280, 1616,…
-## $ Second_Flr_SF      <int> 0, 0, 0, 0, 701, 678, 0, 0, 0, 776, 892, 0, 676, 0…
-## $ Gr_Liv_Area        <int> 1656, 896, 1329, 2110, 1629, 1604, 1338, 1280, 161…
-## $ Bsmt_Full_Bath     <dbl> 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0,…
-## $ Bsmt_Half_Bath     <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-## $ Full_Bath          <int> 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 3, 2,…
-## $ Half_Bath          <int> 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0,…
-## $ Bedroom_AbvGr      <int> 3, 2, 3, 3, 3, 3, 2, 2, 2, 3, 3, 3, 3, 2, 1, 4, 4,…
-## $ Kitchen_AbvGr      <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
-## $ TotRms_AbvGrd      <int> 7, 5, 6, 8, 6, 7, 6, 5, 5, 7, 7, 6, 7, 5, 4, 12, 8…
-## $ Functional         <fct> Typ, Typ, Typ, Typ, Typ, Typ, Typ, Typ, Typ, Typ, …
-## $ Fireplaces         <int> 2, 0, 0, 2, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0,…
-## $ Garage_Type        <fct> Attchd, Attchd, Attchd, Attchd, Attchd, Attchd, At…
-## $ Garage_Finish      <fct> Fin, Unf, Unf, Fin, Fin, Fin, Fin, RFn, RFn, Fin, …
-## $ Garage_Cars        <dbl> 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2,…
-## $ Garage_Area        <dbl> 528, 730, 312, 522, 482, 470, 582, 506, 608, 442, …
-## $ Garage_Cond        <fct> Typical, Typical, Typical, Typical, Typical, Typic…
-## $ Paved_Drive        <fct> Partial_Pavement, Paved, Paved, Paved, Paved, Pave…
-## $ Wood_Deck_SF       <int> 210, 140, 393, 0, 212, 360, 0, 0, 237, 140, 157, 4…
-## $ Open_Porch_SF      <int> 62, 0, 36, 0, 34, 36, 0, 82, 152, 60, 84, 21, 75, …
-## $ Enclosed_Porch     <int> 0, 0, 0, 0, 0, 0, 170, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ Three_season_porch <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-## $ Screen_Porch       <int> 0, 120, 0, 0, 0, 0, 0, 144, 0, 0, 0, 0, 0, 0, 140,…
-## $ Pool_Area          <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-## $ Pool_QC            <fct> No_Pool, No_Pool, No_Pool, No_Pool, No_Pool, No_Po…
-## $ Fence              <fct> No_Fence, Minimum_Privacy, No_Fence, No_Fence, Min…
-## $ Misc_Feature       <fct> None, None, Gar2, None, None, None, None, None, No…
-## $ Misc_Val           <int> 0, 0, 12500, 0, 0, 0, 0, 0, 0, 0, 0, 500, 0, 0, 0,…
-## $ Mo_Sold            <int> 5, 6, 6, 4, 3, 6, 4, 1, 3, 6, 4, 3, 5, 2, 6, 6, 6,…
-## $ Year_Sold          <int> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…
-## $ Sale_Type          <fct> WD , WD , WD , WD , WD , WD , WD , WD , WD , WD , …
-## $ Sale_Condition     <fct> Normal, Normal, Normal, Normal, Normal, Normal, No…
-## $ Sale_Price         <int> 215000, 105000, 172000, 244000, 189900, 195500, 21…
-## $ Longitude          <dbl> -93.61975, -93.61976, -93.61939, -93.61732, -93.63…
-## $ Latitude           <dbl> 42.05403, 42.05301, 42.05266, 42.05125, 42.06090, …
+## Parsed with column specification:
+## cols(
+##   age = col_double(),
+##   sex = col_double(),
+##   cp = col_double(),
+##   trestbps = col_double(),
+##   chol = col_double(),
+##   fbs = col_double(),
+##   restecg = col_double(),
+##   thalach = col_double(),
+##   exang = col_double(),
+##   oldpeak = col_double(),
+##   slope = col_double(),
+##   ca = col_double(),
+##   thal = col_double(),
+##   target = col_double()
+## )
+```
+
+```r
+glimpse(data_original)
+```
+
+```
+## Rows: 303
+## Columns: 14
+## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58, …
+## $ sex      <dbl> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, …
+## $ cp       <dbl> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3, …
+## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130, …
+## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275, …
+## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
+## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, …
+## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139, …
+## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, …
+## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2, …
+## $ slope    <dbl> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2, …
+## $ ca       <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, …
+## $ thal     <dbl> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+```
+
+```r
+# Createa a copy 
+data <- data_original
+
+theme_set(theme_minimal())
 ```
 
 - For more information on the Iowa housing data, read [Cook (2011)](http://jse.amstat.org/v19n3/decock.pdf). This is one of the famous datastets used in many prediction modeling competitions.
 
 ## Workflow 
 
-- 1. Data splitting
-- 2. Preprocessing
-- 3. Model building
-- 4. Model fitting
-- 5. Model evaluation
-- 6. Model tuning
-- 7. Prediction
-![Workflow. Based on RStudio.](https://rviews.rstudio.com/post/2019-06-14-a-gentle-intro-to-tidymodels_files/figure-html/tidymodels.png)
-
-### Tidymodels 
+- 1. Preprocessing
+- 2. Model building
+- 3. Model fitting
+- 4. Model evaluation
+- 5. Model tuning
+- 6. Prediction
+## Tidymodels 
 
 - Like `tidyverse`, `tidymodels` is a collection of packages.
+
+    - [`rsample`](https://rsample.tidymodels.org/): for data splitting 
+    
+    - [`recipes`](https://recipes.tidymodels.org/index.html): for pre-processing
+    
+    - [`parsnip`](https://www.tidyverse.org/blog/2018/11/parsnip-0-0-1/): for model building 
+    
+        - [`tune`](https://github.com/tidymodels/tune): parameter tuning 
+    
+    - [`yardstick`](https://github.com/tidymodels/yardstick): for model evaluations 
+    
+    - [`workflows`](https://github.com/tidymodels/workflows): for bundling a pieplne that bundles together pre-processing, modeling, and post-processing requests 
+    
+- Why taking a tidyverse approach to machine learning?
+
+- Benefits 
+
+    - Readable code 
+    
+    - Reusable data structures 
+    
+    - Extendable code
 
 ![Tidymodels. From RStudio.](https://rviews.rstudio.com/post/2019-06-14-a-gentle-intro-to-tidymodels_files/figure-html/ds.png)
 
@@ -193,154 +194,1309 @@ ames %>%
 
 - Currently, 238 models are [available](https://topepo.github.io/caret/available-models.html) 
 
-### Data split 
+- The following materials are based on [the machine learning with tidymodels workshop](https://github.com/dlab-berkeley/Machine-Learning-with-tidymodels) I developed for D-Lab. [The original workshop](https://github.com/dlab-berkeley/Machine-Learning-in-R) was designed by [Chris Kennedy](https://ck37.com/) and [Evan Muzzall](https://dlab.berkeley.edu/people/evan-muzzall.
 
- - [`rsample`](https://rsample.tidymodels.org/): for data splitting 
- 
-#### Random sampling 
-
-
-```r
-# data split 
-set.seed(1234)
-
-df_split  <- rsample::initial_split(df, prop = 0.7)
-train <- rsample::training(df_split)
-test <- rsample::testing(df_split)
-```
-
-#### Stratified random sampling 
-
-#### Cross-validation 
-
-### Pre-process 
+## Pre-processing
 
 - [`recipes`](https://recipes.tidymodels.org/index.html): for pre-processing
 
 - [`textrecipes`](https://github.com/tidymodels/textrecipes) for text pre-processing
 
+- Step 1: `recipe()` defines target and predictor variables (ingredients).
+
+- Step 2: `step_*()` defines preprocessing steps to be taken (recipe).
+
+    The list of the preprocessing steps draws on the vignette of the [`parsnip`](https://www.tidymodels.org/find/parsnip/) package.
+
+    - dummy: Also called one-hot encoding
+
+    - zero variance: Removing columns (or features) with a single unique value  
+
+    - impute: Imputing missing values
+
+    - decorrelate: Mitigating correlated predictors (e.g., principal component analysis)
+
+    - normalize: Centering and/or scaling predictors (e.g., log scaling)
+
+    - transform: Making predictors symmetric 
+
+- Step 3: `prep()` prepares a dataset to base each step on.
+
+- Step 4: `bake()` applies the pre-processing steps to your datasets. 
+
+In this course, we focus on two preprocessing tasks. 
+
+- One-hot encoding (creating dummy/indicator variables)
+
 
 ```r
-# preprocess 
-df_recipe <- df %>% recipe(resonse ~.) %>%
-  # Centering: x - mean(x)
-  step_center(all_predictors(), -all_outcomes()) %>%
-  # Scaling: x * k 
-  step_scale(all_predictors(), -all_outcomes()) %>%
-  prep()
+# Turn selected numeric variables into factor variables 
+data <- data %>%
+  dplyr::mutate(across(c("sex", "ca", "cp", "slope", "thal"), as.factor)) 
 
-# preprocessed training and testsets 
-processed_train <- df_recipe %>% bake(train)
-processed_test <- df_recipe %>% bake(test)
+glimpse(data) 
 ```
 
-### Model building 
-
-- [`parsnip`](https://www.tidyverse.org/blog/2018/11/parsnip-0-0-1/): for model building 
-
-#### Choose model 
+```
+## Rows: 303
+## Columns: 14
+## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58, …
+## $ sex      <fct> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, …
+## $ cp       <fct> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3, …
+## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130, …
+## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275, …
+## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
+## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, …
+## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139, …
+## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, …
+## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2, …
+## $ slope    <fct> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2, …
+## $ ca       <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, …
+## $ thal     <fct> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+```
+- Imputation 
 
 
 ```r
-# Fit model 
+# Check missing values 
 
-  ## Choose model 
-df_ranger <- rand_forest(trees = 1000, 
-                         ## Declare mode 
-                         mode = "classification") %>%
-  ## Choose engine 
-  set_engine("ranger") %>%
-  ## Fit 
-  fit(response ~ ., data = processed_train)
-
-# Make predictions 
-
-df_pred <- predict(df_ranger, processed_test)
+map_df(data, ~ is.na(.) %>% sum())
 ```
 
-#### Choose engine 
-
-#### Declare mode  
-
-### Model evaluation 
-
-- [`yardstick`](https://github.com/tidymodels/yardstick): for model evaluations 
-    
+```
+## # A tibble: 1 x 14
+##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
+##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
+## 1     0     0     0        0     0     0       0       0     0       0     0
+## # … with 3 more variables: ca <int>, thal <int>, target <int>
+```
 
 ```r
-# validate 
+# Add missing values 
 
-df_pred %>%
-  bind_cols(processed_test) %>%
-  # You can also easily change metrics you want to use 
-  metrics(truth = response, estimate = .pred_class)
+data$oldpeak[sample(seq(data), size = 10)] <- NA
 
-## # A tibble: 2 x 3
-##   .metric  .estimator .estimate
-##   <chr>    <chr>          <dbl>
-## 1 accuracy multiclass     0.9
-## 2 kap      multiclass     0.8
+# Check missing values 
+
+# Check the number of missing values 
+data %>%
+  map_df(~is.na(.) %>% sum())
 ```
 
-### Tuning 
+```
+## # A tibble: 1 x 14
+##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
+##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
+## 1     0     0     0        0     0     0       0       0     0      10     0
+## # … with 3 more variables: ca <int>, thal <int>, target <int>
+```
 
-- [`tune`](https://github.com/tidymodels/tune): parameter tuning 
+```r
+# Check the rate of missing values
+data %>%
+  map_df(~is.na(.) %>% mean())
+```
 
-#### Grid search 
+```
+## # A tibble: 1 x 14
+##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
+##   <dbl> <dbl> <dbl>    <dbl> <dbl> <dbl>   <dbl>   <dbl> <dbl>   <dbl> <dbl>
+## 1     0     0     0        0     0     0       0       0     0  0.0330     0
+## # … with 3 more variables: ca <dbl>, thal <dbl>, target <dbl>
+```
+ 
+### Regression setup 
 
-#### Iterative search
+#### Outcome variable 
+
+
+```r
+# Continuous variable 
+data$age %>% class()
+```
+
+```
+## [1] "numeric"
+```
+#### Data splitting using random sampling 
+
+
+```r
+# for reproducibility 
+set.seed(1234) 
+
+# split 
+split_reg <- initial_split(data, prop = 0.7)
+
+# training set 
+raw_train_x_reg <- training(split_reg)
+
+# test set 
+raw_test_x_reg <- testing(split_reg)
+```
+
+#### recipe 
+
+
+```r
+# Regression recipe 
+rec_reg <- raw_train_x_reg %>%
+  # Define the outcome variable 
+  recipe(age ~ .) %>%
+  # Median impute oldpeak column 
+  step_medianimpute(oldpeak) %>%
+  # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators). 
+  step_dummy(c("sex", "ca", "cp", "slope", "thal"))
+
+# Prepare a dataset to base each step on
+prep_reg <- rec_reg %>% prep(retain = TRUE) 
+```
+
+
+```r
+# x features 
+train_x_reg <- juice(prep_reg, all_predictors())
+
+test_x_reg <- bake(object = prep_reg, 
+                   new_data = raw_test_x_reg, all_predictors())
+
+# y variables 
+train_y_reg <- juice(prep_reg, all_outcomes())$age %>% as.numeric()
+test_y_reg <- bake(prep_reg, raw_test_x_reg, all_outcomes())$age %>% as.numeric()
+
+# Checks
+names(train_x_reg) # Make sure there's no age variable!
+```
+
+```
+##  [1] "trestbps" "chol"     "fbs"      "restecg"  "thalach"  "exang"   
+##  [7] "oldpeak"  "target"   "sex_X1"   "ca_X1"    "ca_X2"    "ca_X3"   
+## [13] "ca_X4"    "cp_X1"    "cp_X2"    "cp_X3"    "slope_X1" "slope_X2"
+## [19] "thal_X1"  "thal_X2"  "thal_X3"
+```
+
+```r
+class(train_y_reg) # Make sure this is a continuous variable!
+```
+
+```
+## [1] "numeric"
+```
+- Note that other imputation methods are also available. 
+
+
+```r
+grep("impute", ls("package:recipes"), value = TRUE)
+```
+
+```
+##  [1] "step_bagimpute"          "step_knnimpute"         
+##  [3] "step_lowerimpute"        "step_meanimpute"        
+##  [5] "step_medianimpute"       "step_modeimpute"        
+##  [7] "step_rollimpute"         "tunable.step_bagimpute" 
+##  [9] "tunable.step_knnimpute"  "tunable.step_meanimpute"
+## [11] "tunable.step_rollimpute"
+```
+
+- You can also create your own `step_` functions. For more information, see [tidymodels.org](https://www.tidymodels.org/learn/develop/recipes/).
+
+### Classification setup 
+
+#### Outcome variable 
+
+
+```r
+data$target %>% class() 
+```
+
+```
+## [1] "numeric"
+```
+
+```r
+data$target <- as.factor(data$target)
+
+data$target %>% class()
+```
+
+```
+## [1] "factor"
+```
+
+#### Data splitting using stratified random sampling
+
+
+```r
+# split 
+split_class <- initial_split(data %>%
+                             mutate(target = as.factor(target)), 
+                             prop = 0.7, 
+                             strata = target)
+
+# training set 
+raw_train_x_class <- training(split_class)
+
+# testing set 
+raw_test_x_class <- testing(split_class)
+```
+
+#### recipe 
+
+
+```r
+# Classification recipe 
+rec_class <- raw_train_x_class %>% 
+  # Define the outcome variable 
+  recipe(target ~ .) %>%
+  # Median impute oldpeak column 
+  step_medianimpute(oldpeak) %>%
+  # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators).
+  step_normalize(age) %>%
+  step_dummy(c("sex", "ca", "cp", "slope", "thal")) 
+
+# Prepare a dataset to base each step on
+prep_class <- rec_class %>%prep(retain = TRUE) 
+```
+
+
+```r
+# x features 
+train_x_class <- juice(prep_class, all_predictors()) 
+test_x_class <- bake(prep_class, raw_test_x_class, all_predictors())
+
+# y variables 
+train_y_class <- juice(prep_class, all_outcomes())$target %>% as.factor()
+test_y_class <- bake(prep_class, raw_test_x_class, all_outcomes())$target %>% as.factor()
+
+# Checks 
+names(train_x_class) # Make sure there's no target variable!
+```
+
+```
+##  [1] "age"      "trestbps" "chol"     "fbs"      "restecg"  "thalach" 
+##  [7] "exang"    "oldpeak"  "sex_X1"   "ca_X1"    "ca_X2"    "ca_X3"   
+## [13] "ca_X4"    "cp_X1"    "cp_X2"    "cp_X3"    "slope_X1" "slope_X2"
+## [19] "thal_X1"  "thal_X2"  "thal_X3"
+```
+
+```r
+class(train_y_class) # Make sure this is a factor variable!
+```
+
+```
+## [1] "factor"
+```
 
 ## Supervised learning
 
 x -> f - > y (defined)
 
-### Regularization
+### OLS and Lasso
 
-#### Regression (OLS)
+#### parsnip 
+
+- Build models (`parsnip`)
+
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
 
 
 ```r
-# Build a linear regression model 
-out <- lm(mpg ~ cyl, data = mtcars)
+# OLS spec 
+ols_spec <- linear_reg() %>% # Specify a model 
+  set_engine("lm") %>% # Specify an engine: lm, glmnet, stan, keras, spark 
+  set_mode("regression") # Declare a mode: regression or classification 
 
-# Predict the first five rows 
-predict(out)[1:5]
+# Lasso spec 
+lasso_spec <- linear_reg(penalty = 0.1, # tuning parameter 
+                         mixture = 1) %>% # 1 = lasso, 0 = ridge 
+  set_engine("glmnet") %>%
+  set_mode("regression") 
+
+# If you don't understand parsnip arguments 
+lasso_spec %>% translate() # See the documentation
 ```
 
 ```
-##         Mazda RX4     Mazda RX4 Wag        Datsun 710    Hornet 4 Drive 
-##          20.62984          20.62984          26.38142          20.62984 
-## Hornet Sportabout 
-##          14.87826
+## Linear Regression Model Specification (regression)
+## 
+## Main Arguments:
+##   penalty = 0.1
+##   mixture = 1
+## 
+## Computational engine: glmnet 
+## 
+## Model fit template:
+## glmnet::glmnet(x = missing_arg(), y = missing_arg(), weights = missing_arg(), 
+##     alpha = 1, family = "gaussian")
 ```
-![Based on [vas3k blog](https://vas3k.com/blog/machine_learning/) ](https://i.vas3k.ru/7qy.jpg)
 
-#### Lasso, ridge, and elastic net 
+- Fit models 
 
-- Tibshirani, Robert. ["The lasso method for variable selection in the Cox model."](https://onlinelibrary.wiley.com/doi/pdf/10.1002/(SICI)1097-0258(19970228)16:4%3C385::AID-SIM380%3E3.0.CO;2-3?casa_token=-JOiqeKwpSkAAAAA:NXo0URXwmVbZtK31uN990xESg-sPNDGs0SyMJN5FaiwZfbIStEgUHm2xHyLvdCC_EGlV9g07DZvp-g) *Statistics in medicine* 16, no. 4 (1997): 385-395.
 
-- [R `glmnet` package](https://cran.r-project.org/web/packages/glmnet/glmnet.pdf)
+```r
+ols_fit <- ols_spec %>%
+  fit_xy(x = train_x_reg, y= train_y_reg) 
+  # fit(train_y_reg ~ ., train_x_reg) # When you data are not preprocessed 
 
-### Decision tree and ensemble models
+lasso_fit <- lasso_spec %>%
+  fit_xy(x = train_x_reg, y= train_y_reg) 
+```
 
-#### Decision tree 
+#### yardstick 
 
-- Partitioning feature space sequentially. 
-#### Random forest 
+- Visualize model fits 
 
-#### XGboost 
 
-- Repeatedly using weak learners. 
+```r
+map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit) 
+```
 
-#### SuperLearners
+```
+## [[1]]
+```
 
-#### Neural networks / Deep learning 
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
-#### Applications 
+```
+## 
+## [[2]]
+```
 
-##### Bandit algorithm (optimizing an experiment)
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-16-2.png" width="672" />
 
-##### Causal forest (estimating heterogeneous treatment effect)
+
+```r
+# Define performance metrics 
+metrics <- yardstick::metric_set(rmse, mae, rsq)
+
+# Evaluate many models 
+evals <- purrr::map(list(ols_fit, lasso_fit), evaluate_reg) %>%
+  reduce(bind_rows) %>%
+  mutate(type = rep(c("OLS", "Lasso"), each = 3))
+
+# Visualize the test results 
+evals %>%
+  ggplot(aes(x = fct_reorder(type, .estimate), y = .estimate)) +
+    geom_point() +
+    labs(x = "Model",
+         y = "Estimate") +
+    facet_wrap(~glue("{toupper(.metric)}"), scales = "free_y") 
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+- For more information, read [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
+
+#### tune 
+
+##### tune ingredients 
+
+
+```r
+# tune() = placeholder 
+
+tune_spec <- linear_reg(penalty = tune(), # tuning parameter 
+                         mixture = 1) %>% # 1 = lasso, 0 = ridge 
+  set_engine("glmnet") %>%
+  set_mode("regression") 
+
+tune_spec
+```
+
+```
+## Linear Regression Model Specification (regression)
+## 
+## Main Arguments:
+##   penalty = tune()
+##   mixture = 1
+## 
+## Computational engine: glmnet
+```
+
+```r
+# penalty() searches 50 possible combinations 
+
+lambda_grid <- grid_regular(penalty(), levels = 50)
+
+# 10-fold cross-validation
+
+set.seed(1234) # for reproducibility 
+
+rec_folds <- vfold_cv(train_x_reg %>% bind_cols(tibble(age = train_y_reg)))
+```
+
+##### Add these elements to a workflow 
+
+
+```r
+# Workflow 
+rec_wf <- workflow() %>%
+  add_model(tune_spec) %>%
+  add_formula(age~.)
+```
+
+
+```r
+# Tuning results 
+rec_res <- rec_wf %>%
+  tune_grid(
+    resamples = rec_folds, 
+    grid = lambda_grid
+  )
+```
+
+##### Visualize 
+
+
+```r
+# Visualize
+
+rec_res %>%
+  collect_metrics() %>%
+  ggplot(aes(penalty, mean, col = .metric)) +
+  geom_errorbar(aes(
+    ymin = mean - std_err,
+    ymax = mean + std_err
+  ),
+  alpha = 0.3
+  ) +
+  geom_line(size = 2) +
+  scale_x_log10() +
+  labs(x = "log(lambda)") +
+  facet_wrap(~glue("{toupper(.metric)}"), 
+             scales = "free",
+             nrow = 2) +
+  theme(legend.position = "none")
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+
+##### Select 
+
+
+```r
+top_rmse <- show_best(rec_res, metric = "rmse")
+
+best_rmse <- select_best(rec_res, metric = "rmse")
+
+best_rmse 
+```
+
+```
+## # A tibble: 1 x 2
+##   penalty .config
+##     <dbl> <chr>  
+## 1   0.244 Model47
+```
+
+```r
+glue('The RMSE of the intiail model is 
+     {evals %>%
+  filter(type == "Lasso", .metric == "rmse") %>%
+  select(.estimate) %>%
+  round(2)}')
+```
+
+```
+## The RMSE of the intiail model is 
+##    7.86
+```
+
+```r
+glue('The RMSE of the tuned model is {rec_res %>%
+  collect_metrics() %>%
+  filter(.metric == "rmse") %>%
+  arrange(mean) %>%
+  dplyr::slice(1) %>%
+  select(mean) %>%
+  round(2)}')
+```
+
+```
+## The RMSE of the tuned model is 7.71
+```
+
+- Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
+
+
+```r
+finalize_lasso <- rec_wf %>%
+  finalize_workflow(best_rmse)
+
+finalize_lasso %>%
+  fit(train_x_reg %>% bind_cols(tibble(age = train_y_reg))) %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+
+##### Test fit 
+
+- Apply the tuned model to the test dataset 
+
+
+```r
+test_fit <- finalize_lasso %>% 
+  fit(test_x_reg %>% bind_cols(tibble(age = test_y_reg)))
+
+evaluate_reg(test_fit)
+```
+
+```
+## # A tibble: 3 x 3
+##   .metric .estimator .estimate
+##   <chr>   <chr>          <dbl>
+## 1 rmse    standard       7.17 
+## 2 mae     standard       5.93 
+## 3 rsq     standard       0.405
+```
+### Decision tree 
+
+#### parsnip 
+
+- Build a model 
+
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
+
+
+```r
+# workflow 
+tree_wf <- workflow() %>% add_formula(target~.)
+
+# spec 
+tree_spec <- decision_tree(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning parameters
+           cost_complexity = NULL, 
+           tree_depth = NULL) %>%
+  set_engine("rpart") # rpart, c5.0, spark
+
+tree_wf <- tree_wf %>% add_model(tree_spec)
+```
+
+- Fit a model
+
+
+```r
+tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+```
+
+#### yardstick 
+
+- Let's formally test prediction performance. 
+
+**Metrics**
+
+- `accuracy`: The proportion of the data predicted correctly 
+
+- `precision`: Positive predictive value
+
+- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
+
+![From wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png)
+
+- To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html). 
+
+
+```r
+# Define performance metrics 
+
+metrics <- yardstick::metric_set(accuracy, precision, recall)
+
+# Visualize
+
+tree_fit_viz_metr <- visualize_class_eval(tree_fit)
+
+tree_fit_viz_metr
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+
+```r
+tree_fit_viz_mat <- visualize_class_conf(tree_fit)
+
+tree_fit_viz_mat
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-27-2.png" width="672" />
+
+#### tune 
+
+##### tune ingredients 
+
+- **complexity parameter**: a high CP means a simple decision tree with few splits. 
+
+- **tree_depth** 
+
+
+```r
+tune_spec <- 
+  decision_tree(
+    cost_complexity = tune(), 
+    tree_depth = tune(),
+    mode = "classification"
+  ) %>%
+  set_engine("rpart")
+
+tree_grid <- grid_regular(cost_complexity(),
+                          tree_depth(),
+                          levels = 5) # 2 parameters -> 5*5 = 25 combinations 
+
+tree_grid %>%
+  count(tree_depth)
+```
+
+```
+## # A tibble: 5 x 2
+##   tree_depth     n
+##        <int> <int>
+## 1          1     5
+## 2          4     5
+## 3          8     5
+## 4         11     5
+## 5         15     5
+```
+
+```r
+# 10-fold cross-validation
+
+set.seed(1234) # for reproducibility 
+
+tree_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
+                       strata = target)
+```
+
+##### Add these elements to a workflow 
+
+
+```r
+# Update workflow 
+tree_wf <- tree_wf %>% update_model(tune_spec)
+
+# Determine the number of cores
+no_cores <- detectCores() - 1
+
+# Initiate
+cl <- makeCluster(no_cores)
+
+registerDoParallel(cl)
+
+# Tuning results 
+tree_res <- tree_wf %>%
+  tune_grid(
+    resamples = tree_folds, 
+    grid = tree_grid,
+    metrics = metrics
+  )
+```
+
+##### Visualize 
+
+- The following plot draws on the [vignette](https://www.tidymodels.org/start/tuning/) of the tidymodels package. 
+
+
+```r
+tree_res %>%
+  collect_metrics() %>%
+  mutate(tree_depth = factor(tree_depth)) %>%
+  ggplot(aes(cost_complexity, mean, col = .metric)) +
+  geom_point(size = 3) +
+  # Subplots 
+  facet_wrap(~ tree_depth, 
+             scales = "free", 
+             nrow = 2) +
+  # Log scale x 
+  scale_x_log10(labels = scales::label_number()) +
+  # Discrete color scale 
+  scale_color_viridis_d(option = "plasma", begin = .9, end = 0) +
+  labs(x = "Cost complexity",
+       col = "Tree depth",
+       y = NULL) +
+  coord_flip()
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+##### Select 
+
+
+```r
+# Optimal parameter
+best_tree <- select_best(tree_res, "recall")
+
+# Add the parameter to the workflow 
+finalize_tree <- tree_wf %>%
+  finalize_workflow(best_tree)
+```
+
+
+```r
+tree_fit_tuned <- finalize_tree %>% 
+  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+
+# Metrics 
+(tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+
+```r
+# Confusion matrix 
+(tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-32-2.png" width="672" />
+
+- Visualize variable importance 
+
+
+```r
+tree_fit_tuned %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+
+##### Test fit
+
+- Apply the tuned model to the test dataset 
+
+
+```r
+test_fit <- finalize_tree %>% 
+  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
+
+evaluate_class(test_fit)
+```
+
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.744
+## 2 precision binary         0.705
+## 3 recall    binary         0.756
+```
+
+### Random forest 
+
+
+#### parsnip 
+
+- Build a model 
+
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
+
+
+```r
+# workflow 
+rand_wf <- workflow() %>% add_formula(target~.)
+
+# spec 
+rand_spec <- rand_forest(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning parameters
+           mtry = NULL, # The number of predictors to available for splitting at each node  
+           min_n = NULL, # The minimum number of data points needed to keep splitting nodes
+           trees = 500) %>% # The number of trees
+  set_engine("ranger", 
+             # We want the importance of predictors to be assessed.
+             seed = 1234, 
+             importance = "permutation") 
+
+rand_wf <- rand_wf %>% add_model(rand_spec)
+```
+
+- Fit a model
+
+
+```r
+rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+```
+
+#### yardstick 
+
+- Let's formally test prediction performance. 
+
+**Metrics**
+
+- `accuracy`: The proportion of the data predicted correctly 
+
+- `precision`: Positive predictive value
+
+- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
+
+
+```r
+# Define performance metrics 
+metrics <- yardstick::metric_set(accuracy, precision, recall)
+
+rand_fit_viz_metr <- visualize_class_eval(rand_fit)
+
+rand_fit_viz_metr
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+
+- Visualize the confusion matrix. 
+  
+
+```r
+rand_fit_viz_mat <- visualize_class_conf(rand_fit)
+
+rand_fit_viz_mat
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-38-1.png" width="672" />
+
+#### tune 
+
+##### tune ingredients 
+
+We focus on the following two parameters:
+
+- `mtry`: The number of predictors to available for splitting at each node.
+
+- `min_n`: The minimum number of data points needed to keep splitting nodes. 
+
+
+```r
+tune_spec <- 
+  rand_forest(
+           mode = "classification",
+           
+           # Tuning parameters
+           mtry = tune(), 
+           min_n = tune()) %>%
+  set_engine("ranger",
+             seed = 1234, 
+             importance = "permutation")
+
+rand_grid <- grid_regular(mtry(range = c(1, 10)),
+                          min_n(range = c(2, 10)),
+                          levels = 5)
+
+rand_grid %>%
+  count(min_n)
+```
+
+```
+## # A tibble: 5 x 2
+##   min_n     n
+##   <int> <int>
+## 1     2     5
+## 2     4     5
+## 3     6     5
+## 4     8     5
+## 5    10     5
+```
+
+
+```r
+# 10-fold cross-validation
+
+set.seed(1234) # for reproducibility 
+
+rand_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
+                       strata = target)
+```
+
+##### Add these elements to a workflow 
+
+
+```r
+# Update workflow 
+rand_wf <- rand_wf %>% update_model(tune_spec)
+
+# Tuning results 
+rand_res <- rand_wf %>%
+  tune_grid(
+    resamples = rand_folds, 
+    grid = rand_grid,
+    metrics = metrics
+  )
+```
+
+##### Visualize 
+
+
+```r
+rand_res %>%
+  collect_metrics() %>%
+  mutate(min_n = factor(min_n)) %>%
+  ggplot(aes(mtry, mean, color = min_n)) +
+  # Line + Point plot 
+  geom_line(size = 1.5, alpha = 0.6) +
+  geom_point(size = 2) +
+  # Subplots 
+  facet_wrap(~ .metric, 
+             scales = "free", 
+             nrow = 2) +
+  # Log scale x 
+  scale_x_log10(labels = scales::label_number()) +
+  # Discrete color scale 
+  scale_color_viridis_d(option = "plasma", begin = .9, end = 0) +
+  labs(x = "The number of predictors to be sampled",
+       col = "The minimum number of data points needed for splitting",
+       y = NULL) +
+  theme(legend.position="bottom")
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+
+```r
+# Optimal parameter
+best_tree <- select_best(rand_res, "accuracy")
+
+best_tree
+```
+
+```
+## # A tibble: 1 x 3
+##    mtry min_n .config
+##   <int> <int> <chr>  
+## 1     1     2 Model01
+```
+
+```r
+# Add the parameter to the workflow 
+finalize_tree <- rand_wf %>%
+  finalize_workflow(best_tree)
+```
+
+
+```r
+rand_fit_tuned <- finalize_tree %>% 
+  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+
+# Metrics 
+(rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-44-1.png" width="672" />
+
+```r
+# Confusion matrix 
+(rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-44-2.png" width="672" />
+
+- Visualize variable importance 
+
+
+```r
+rand_fit_tuned %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-45-1.png" width="672" />
+
+##### Test fit
+
+- Apply the tuned model to the test dataset 
+
+
+```r
+test_fit <- finalize_tree %>%
+  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
+
+evaluate_class(test_fit)
+```
+
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.933
+## 2 precision binary         0.973
+## 3 recall    binary         0.878
+```
+
+### XGboost 
+
+#### parsnip 
+
+- Build a model 
+
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
+
+
+```r
+# workflow 
+xg_wf <- workflow() %>% add_formula(target~.)
+
+# spec 
+xg_spec <- boost_tree(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning parameters
+           
+           # The number of trees to fit, aka boosting iterations
+           trees = c(100, 300, 500, 700, 900),
+           # The depth of the decision tree (how many levels of splits).
+	         tree_depth = c(1, 6), 
+           # Learning rate: lower means the ensemble will adapt more slowly.
+           learn_rate = c(0.0001, 0.01, 0.2),
+           # Stop splitting a tree if we only have this many obs in a tree node.
+	         min_n = 10L
+          ) %>% 
+  set_engine("xgboost") 
+
+xg_wf <- xg_wf %>% add_model(xg_spec)
+```
+
+- Fit a model
+
+
+```r
+xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+```
+
+```
+## Warning in begin_iteration:end_iteration: numerical expression has 5 elements:
+## only the first used
+```
+
+#### yardstick 
+
+- Let's formally test prediction performance. 
+
+**Metrics**
+
+- `accuracy`: The proportion of the data predicted correctly 
+
+- `precision`: Positive predictive value
+
+- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
+
+
+```r
+metrics <- metric_set(yardstick::accuracy, 
+                      yardstick::precision, 
+                      yardstick::recall)
+
+evaluate_class(xg_fit)
+```
+
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.733
+## 2 precision binary         0.730
+## 3 recall    binary         0.659
+```
+
+
+```r
+xg_fit_viz_metr <- visualize_class_eval(xg_fit)
+
+xg_fit_viz_metr
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-50-1.png" width="672" />
+
+- Visualize the confusion matrix. 
+  
+
+```r
+xg_fit_viz_mat <- visualize_class_conf(xg_fit)
+
+xg_fit_viz_mat
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-51-1.png" width="672" />
+
+#### tune 
+
+##### tune ingredients 
+
+- We focus on the following parameters: `trees,` `tree_depth,` `learn_rate,` `min_n,` `mtry,` `loss_reduction,` and `sample_size`
+
+
+```r
+tune_spec <- 
+  xg_spec <- boost_tree(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning parameters
+           
+           # The number of trees to fit, aka boosting iterations
+           trees = tune(),
+           # The depth of the decision tree (how many levels of splits).
+	         tree_depth = tune(), 
+           # Learning rate: lower means the ensemble will adapt more slowly.
+           learn_rate = tune(),
+           # Stop splitting a tree if we only have this many obs in a tree node.
+	         min_n = tune(),
+           loss_reduction = tune(),
+           # The number of randomly selected parameters 
+           mtry = tune(), 
+           # The size of the data set used for modeling within an iteration
+           sample_size = tune()
+          ) %>% 
+  set_engine("xgboost") 
+
+# Space-filling parameter grids 
+xg_grid <- grid_latin_hypercube(
+  trees(),
+  tree_depth(),
+  learn_rate(),
+  min_n(),
+  loss_reduction(), 
+  sample_size = sample_prop(),
+  finalize(mtry(), train_x_class),
+  size = 30
+  )
+
+# 10-fold cross-validation
+
+set.seed(1234) # for reproducibility 
+
+xg_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
+                     strata = target)
+```
+
+##### Add these elements to a workflow 
+
+
+```r
+# Update workflow 
+xg_wf <- xg_wf %>% update_model(tune_spec)
+
+# Tuning results 
+xg_res <- xg_wf %>%
+  tune_grid(
+    resamples = xg_folds, 
+    grid = xg_grid,
+    control = control_grid(save_pred = TRUE)
+  )
+```
+
+##### Visualize 
+
+
+```r
+xg_res %>%
+  collect_metrics() %>% 
+  filter(.metric == "roc_auc") %>%
+  pivot_longer(mtry:sample_size,
+               values_to = "value",
+               names_to = "parameter") %>%
+  ggplot(aes(x = value, y = mean, color = parameter)) +
+    geom_point(alpha = 0.8, show.legend = FALSE) +
+    facet_wrap(~parameter, scales = "free_x") +
+    labs(y = "AUC",
+         x = NULL)
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-54-1.png" width="672" />
+
+
+```r
+# Optimal parameter
+best_xg <- select_best(xg_res, "roc_auc")
+
+best_xg 
+```
+
+```
+## # A tibble: 1 x 8
+##    mtry trees min_n tree_depth learn_rate loss_reduction sample_size .config
+##   <int> <int> <int>      <int>      <dbl>          <dbl>       <dbl> <chr>  
+## 1    11   326     3         13     0.0176     0.00000254       0.544 Model27
+```
+
+```r
+# Add the parameter to the workflow 
+finalize_xg <- xg_wf %>%
+  finalize_workflow(best_xg)
+```
+
+
+```r
+xg_fit_tuned <- finalize_xg %>% 
+  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+
+# Metrics 
+(xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-56-1.png" width="672" />
+
+```r
+# Confusion matrix 
+(xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-56-2.png" width="672" />
+
+- Visualize variable importance 
+
+
+```r
+xg_fit_tuned %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+```
+
+```
+## Warning: `as.tibble()` is deprecated as of tibble 2.0.0.
+## Please use `as_tibble()` instead.
+## The signature and semantics have changed, see `?as_tibble`.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-57-1.png" width="672" />
+
+##### Test fit
+
+- Apply the tuned model to the test dataset 
+
+
+```r
+test_fit <- finalize_xg %>%
+  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
+
+evaluate_class(test_fit)
+```
+
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.833
+## 2 precision binary         0.810
+## 3 recall    binary         0.829
+```
+
+### Applications 
+
+#### Bandit algorithm (optimizing an experiment)
+
+#### Causal forest (estimating heterogeneous treatment effect)
 
 ## Unsupervised learning
 
@@ -350,13 +1506,132 @@ x -> f - > y (not defined)
 
 ![Projecting 2D-data to a line (PCA). From vas3k.com](https://i.stack.imgur.com/Q7HIP.gif)
 
+#### Correlation analysis 
+
+- Notice some problems? 
+
+    - NAs 
+    
+    - Scaling issues 
+    
+
+```r
+data_original %>%
+  corrr::correlate()
+```
+
+```
+## 
+## Correlation method: 'pearson'
+## Missing treated using: 'pairwise.complete.obs'
+```
+
+```
+## # A tibble: 14 x 15
+##    rowname     age     sex      cp trestbps     chol      fbs restecg  thalach
+##    <chr>     <dbl>   <dbl>   <dbl>    <dbl>    <dbl>    <dbl>   <dbl>    <dbl>
+##  1 age     NA      -0.0984 -0.0687   0.279   0.214    0.121   -0.116  -0.399  
+##  2 sex     -0.0984 NA      -0.0494  -0.0568 -0.198    0.0450  -0.0582 -0.0440 
+##  3 cp      -0.0687 -0.0494 NA        0.0476 -0.0769   0.0944   0.0444  0.296  
+##  4 trestb…  0.279  -0.0568  0.0476  NA       0.123    0.178   -0.114  -0.0467 
+##  5 chol     0.214  -0.198  -0.0769   0.123  NA        0.0133  -0.151  -0.00994
+##  6 fbs      0.121   0.0450  0.0944   0.178   0.0133  NA       -0.0842 -0.00857
+##  7 restecg -0.116  -0.0582  0.0444  -0.114  -0.151   -0.0842  NA       0.0441 
+##  8 thalach -0.399  -0.0440  0.296   -0.0467 -0.00994 -0.00857  0.0441 NA      
+##  9 exang    0.0968  0.142  -0.394    0.0676  0.0670   0.0257  -0.0707 -0.379  
+## 10 oldpeak  0.210   0.0961 -0.149    0.193   0.0540   0.00575 -0.0588 -0.344  
+## 11 slope   -0.169  -0.0307  0.120   -0.121  -0.00404 -0.0599   0.0930  0.387  
+## 12 ca       0.276   0.118  -0.181    0.101   0.0705   0.138   -0.0720 -0.213  
+## 13 thal     0.0680  0.210  -0.162    0.0622  0.0988  -0.0320  -0.0120 -0.0964 
+## 14 target  -0.225  -0.281   0.434   -0.145  -0.0852  -0.0280   0.137   0.422  
+## # … with 6 more variables: exang <dbl>, oldpeak <dbl>, slope <dbl>, ca <dbl>,
+## #   thal <dbl>, target <dbl>
+```
+
+#### Preprocessing 
+
+`recipe` is essential for preprocesssing multiple features at once.
+
+
+```r
+pca_recipe <- recipe(~., data = data_original) %>%
+  # Imputing NAs using mean 
+  step_meanimpute(all_predictors()) %>%
+  # Normalize some numeric variables 
+  step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak")) 
+```
+
+#### PCA analysis 
+
+
+```r
+pca_res <- pca_recipe %>% 
+  step_pca(all_predictors(), 
+           id = "pca") %>% # id argument identifies each PCA step 
+  prep()
+
+pca_res %>%
+  tidy(id = "pca") 
+```
+
+```
+## # A tibble: 196 x 4
+##    terms        value component id   
+##    <chr>        <dbl> <chr>     <chr>
+##  1 age      -0.00101  PC1       pca  
+##  2 sex       0.216    PC1       pca  
+##  3 cp        0.321    PC1       pca  
+##  4 trestbps  0.00118  PC1       pca  
+##  5 chol     -0.000292 PC1       pca  
+##  6 fbs       0.0468   PC1       pca  
+##  7 restecg   0.166    PC1       pca  
+##  8 thalach   0.0137   PC1       pca  
+##  9 exang     0.0962   PC1       pca  
+## 10 oldpeak  -0.00863  PC1       pca  
+## # … with 186 more rows
+```
+
+#### Screeplot
+
+
+```r
+pca_recipe %>%
+  step_pca(all_predictors(), 
+           id = "pca") %>% # id argument identifies each PCA step 
+  prep() %>%
+  tidy(id = "pca", type = "variance") %>%
+  filter(terms == "percent variance") %>% 
+  ggplot(aes(x = component, y = value)) +
+    geom_col() +
+    labs(x = "PCAs of heart disease",
+         y = "% of variance",
+         title = "Scree plot")
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-62-1.png" width="672" />
+
+#### View factor loadings 
+
+
+```r
+pca_recipe %>%
+  step_pca(all_predictors(), 
+           id = "pca") %>% # id argument identifies each PCA step 
+  prep() %>%
+  tidy(id = "pca") %>%
+  filter(component %in% c("PC1", "PC2")) %>%
+  ggplot(aes(x = fct_reorder(terms, value), y = value, 
+             fill = component)) +
+    geom_col(position = "dodge") +
+    coord_flip() +
+    labs(x = "Terms",
+         y = "Contribtutions",
+         fill = "PCAs") 
+```
+
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-63-1.png" width="672" />
+
 ### Clustering
-
-![Agglomerative Hierarchical Clustering. From [George Seif's medium post](https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68).](https://miro.medium.com/max/770/1*ET8kCcPpr893vNZFs8j4xg.gif)
-
-### Applications 
-
-#### Imputation 
 
 #### Topic modeling 
 
@@ -378,3 +1653,9 @@ x -> f - > y (not defined)
 ### Lecture slides 
 
 - [An introduction to supervised and unsupervised learning (2015)](https://www.nber.org/econometrics_minicourse_2015/nber_slides11.pdf) by Susan Athey and Guido Imbens 
+
+- ["Introduction Machine Learning with the Tidyverse"](https://education.rstudio.com/blog/2020/02/conf20-intro-ml/) by Alison Hill
+
+### Blog posts 
+
+- ["Using the recipes package for easy pre-processing"](http://www.rebeccabarter.com/blog/2019-06-06_pre_processing/) by Rebecca Barter

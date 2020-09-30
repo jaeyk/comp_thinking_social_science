@@ -170,7 +170,7 @@ See [B_Install.md](https://github.com/jaeyk/PS239T/blob/master/B_Install.md) for
 * Week 10 XML/JSON: social media scraping
 * Week 11 Supervised machine learning
 * Week 12 Unsupervised machine learning
-* Week 13 Database and SQL
+* Week 13 Database, SQL, MongoDB, and Spark
 * Week 14 Wrap-up
 * Week 15 Final presentation
 

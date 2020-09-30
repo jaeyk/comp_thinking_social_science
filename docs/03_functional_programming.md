@@ -216,7 +216,7 @@ toc()
 ```
 
 ```
-## 0.006 sec elapsed
+## 0.007 sec elapsed
 ```
 
 
@@ -227,7 +227,7 @@ toc()
 ```
 
 ```
-## 0.001 sec elapsed
+## 0.002 sec elapsed
 ```
 
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
@@ -304,7 +304,7 @@ tidied_models$ols[1]
 ## 2 Ozone          0.163    0.0500      3.26 3.31e- 3
 ```
 
-## Automote 2 or 2+ Tasks
+## Automote 2 or 2+ tasks
 
 ### Objectives 
 
@@ -866,7 +866,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[1]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
 ## 
 ## 
 ## [[2]]
