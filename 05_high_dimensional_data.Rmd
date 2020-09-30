@@ -85,7 +85,7 @@
 
 - One of the popular datasets used in machine learning competitions 
 
-```{r, cache = TRUE}
+```{r}
 
 # Load packages 
 
@@ -1305,9 +1305,9 @@ pca_recipe %>%
 
 #### Setup 
 
-```{r, cache = TRUE}
+```{r}
 pacman::p_load(tidytext, # tidy text analysis
-               glue, # paste string and objects  
+               glue, # paste string and objects                
                stm, # structural topic modeling
                gutenbergr) # toy datasets 
 ```
@@ -1316,7 +1316,7 @@ pacman::p_load(tidytext, # tidy text analysis
 
 The data munging process draws on [Julia Silge's blog post](https://juliasilge.com/blog/sherlock-holmes-stm/).
 
-```{r, cache = TRUE}
+```{r}
 
 sherlock_raw <- gutenberg_download(1661)
 
@@ -1359,7 +1359,7 @@ sherlock <- sherlock[,2:3]
 
 #### Exploratory data analysis 
 
-```{r, cache = TRUE}
+```{r}
 
 sherlock_n <- sherlock %>%
   unnest_tokens(output = word,
@@ -1395,7 +1395,7 @@ sherlock_words %>%
 
 `stm` package has its own preprocessing function.
 
-```{r, cache = TRUE}
+```{r}
 
 
 dtm <- textProcessor(documents = sherlock$text,
@@ -1410,7 +1410,7 @@ dtm <- textProcessor(documents = sherlock$text,
 - K is the number of topics. 
 - Let's try K = 5, 10, 15.
 
-```{r, cache = TRUE}
+```{r}
 
 test_res <- searchK(dtm$documents, dtm$vocab, 
                    K = c(5, 10, 15),
@@ -1423,7 +1423,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 
 There are several metrics to assess the performance of topic models: the held-out likelihood, residuals, semantic coherence, and exclusivity. In this course, we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
 
-```{r, cache = TRUE}
+```{r}
 
 test_res$results %>%
   unnest(K, exclus, semcoh) %>%
@@ -1438,7 +1438,7 @@ test_res$results %>%
 
 ##### Finalize 
 
-```{r, cache = TRUE}
+```{r}
 final_stm <- stm(dtm$documents, 
                  dtm$vocab, 
                  K = 10, prevalence =~ story,
@@ -1453,14 +1453,16 @@ final_stm <- stm(dtm$documents,
 
 - Using the `stm` pacakge. 
 
-```{r, cache = TRUE}
+```{r}
 
 # plot
 plot(final_stm)
 
 ```
+
 - Using ggplot2 
-```{r, cache = TRUE}
+
+```{r}
 # tidy  
 tidy_stm <- tidy(final_stm)
 
@@ -1496,7 +1498,7 @@ tidy_stm %>%
 
 - [An introduction to supervised and unsupervised learning (2015)](https://www.nber.org/econometrics_minicourse_2015/nber_slides11.pdf) by Susan Athey and Guido Imbens 
 
-- ["Introduction Machine Learning with the Tidyverse"](https://education.rstudio.com/blog/2020/02/conf20-intro-ml/) by Alison Hill
+- [Introduction Machine Learning with the Tidyverse](https://education.rstudio.com/blog/2020/02/conf20-intro-ml/) by Alison Hill
 
 ### Blog posts 
 
