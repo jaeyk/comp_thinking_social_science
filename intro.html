@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Managing data and code | Computational Thinking for Social Scientists</title>
+  <meta name="description" content="Chapter 3 Managing data and code | Computational Thinking for Social Scientists. Online textbook for PS239T" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Managing data and code | Computational Thinking for Social Scientists" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chapter 3 Managing data and code | Computational Thinking for Social Scientists. Online textbook for PS239T" />
+  <meta name="github-repo" content="jaeyk/PS239T" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Managing data and code | Computational Thinking for Social Scientists" />
+  <meta name="twitter:site" content="@JaeJaeykim2" />
+  <meta name="twitter:description" content="Chapter 3 Managing data and code | Computational Thinking for Social Scientists. Online textbook for PS239T" />
+  
+
+<meta name="author" content="Jae Yeon Kim" />
+
+
+<meta name="date" content="2020-09-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="motivation.html"/>
+<link rel="next" href="tidy-data.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.0.0/tabwid.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computational Thinking for Social Scientists</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> PS239T</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#textbook"><i class="fa fa-check"></i><b>1.1</b> Textbook</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>1.2</b> Objectives</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#part-i-fundamentals"><i class="fa fa-check"></i><b>1.2.1</b> Part I Fundamentals</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#part-ii-applications"><i class="fa fa-check"></i><b>1.2.2</b> Part II Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#logistics"><i class="fa fa-check"></i><b>1.3</b> Logistics</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i><b>1.3.1</b> Contributors</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#time-and-location"><i class="fa fa-check"></i><b>1.3.2</b> Time and location</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#office-hours"><i class="fa fa-check"></i><b>1.3.3</b> Office hours</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#slack-github"><i class="fa fa-check"></i><b>1.3.4</b> Slack &amp; GitHub</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#accessibility"><i class="fa fa-check"></i><b>1.3.5</b> Accessibility</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#code-for-conduct"><i class="fa fa-check"></i><b>1.3.6</b> Code for conduct</a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#course-requirements-and-grades"><i class="fa fa-check"></i><b>1.3.7</b> Course requirements and grades</a></li>
+<li class="chapter" data-level="1.3.8" data-path="index.html"><a href="index.html#class-activities-and-materials"><i class="fa fa-check"></i><b>1.3.8</b> Class activities and materials</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-schedule"><i class="fa fa-check"></i><b>1.4</b> Course schedule</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#part-i-fundamentals-1"><i class="fa fa-check"></i><b>1.4.1</b> Part I Fundamentals</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#part-ii-applications-1"><i class="fa fa-check"></i><b>1.4.2</b> Part II Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#questions-comments-or-suggestions"><i class="fa fa-check"></i><b>1.5</b> Questions, comments, or suggestions</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#special-thanks"><i class="fa fa-check"></i><b>1.6</b> Special thanks</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>1.7</b> License</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>2</b> Computational thinking</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="motivation.html"><a href="motivation.html#why-computational-thinking"><i class="fa fa-check"></i><b>2.1</b> Why computational thinking</a></li>
+<li class="chapter" data-level="2.2" data-path="motivation.html"><a href="motivation.html#computational-way-of-thinking-about-data"><i class="fa fa-check"></i><b>2.2</b> Computational way of thinking about data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="motivation.html"><a href="motivation.html#structure"><i class="fa fa-check"></i><b>2.2.1</b> Structure</a></li>
+<li class="chapter" data-level="2.2.2" data-path="motivation.html"><a href="motivation.html#dimension"><i class="fa fa-check"></i><b>2.2.2</b> Dimension</a></li>
+<li class="chapter" data-level="2.2.3" data-path="motivation.html"><a href="motivation.html#size"><i class="fa fa-check"></i><b>2.2.3</b> Size</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="motivation.html"><a href="motivation.html#computational-way-of-thinking-about-research-process"><i class="fa fa-check"></i><b>2.3</b> Computational way of thinking about research process</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>3</b> Managing data and code</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="intro.html"><a href="intro.html#project-oriented-research"><i class="fa fa-check"></i><b>3.1</b> Project-oriented research</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="intro.html"><a href="intro.html#computational-reproducibility"><i class="fa fa-check"></i><b>3.1.1</b> Computational reproducibility</a></li>
+<li class="chapter" data-level="3.1.2" data-path="intro.html"><a href="intro.html#version-control-git-and-bash"><i class="fa fa-check"></i><b>3.1.2</b> Version control (Git and Bash)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="intro.html"><a href="intro.html#writing-code-how-to-code-like-a-professional"><i class="fa fa-check"></i><b>3.2</b> Writing code: How to code like a professional</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="intro.html"><a href="intro.html#write-readable-code"><i class="fa fa-check"></i><b>3.2.1</b> Write readable code</a></li>
+<li class="chapter" data-level="3.2.2" data-path="intro.html"><a href="intro.html#write-reusable-code"><i class="fa fa-check"></i><b>3.2.2</b> Write reusable code</a></li>
+<li class="chapter" data-level="3.2.3" data-path="intro.html"><a href="intro.html#test-your-code-systematically"><i class="fa fa-check"></i><b>3.2.3</b> Test your code systematically</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="intro.html"><a href="intro.html#asking-questions-minimal-reproducible-example"><i class="fa fa-check"></i><b>3.3</b> Asking questions: Minimal reproducible example</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="intro.html"><a href="intro.html#how-to-create-a-minimal-reproducible-example"><i class="fa fa-check"></i><b>3.3.1</b> How to create a minimal reproducible example</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="intro.html"><a href="intro.html#references"><i class="fa fa-check"></i><b>3.4</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>4</b> Tidy data and its friends</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="intro.html"><a href="intro.html#setup"><i class="fa fa-check"></i><b>4.1</b> Setup</a></li>
+<li class="chapter" data-level="4.2" data-path="tidy-data.html"><a href="tidy-data.html#tidyverse"><i class="fa fa-check"></i><b>4.2</b> Tidyverse</a></li>
+<li class="chapter" data-level="4.3" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data"><i class="fa fa-check"></i><b>4.3</b> Tidy data</a></li>
+<li class="chapter" data-level="4.4" data-path="tidy-data.html"><a href="tidy-data.html#reshaping"><i class="fa fa-check"></i><b>4.4</b> Reshaping</a></li>
+<li class="chapter" data-level="4.5" data-path="tidy-data.html"><a href="tidy-data.html#rearranging"><i class="fa fa-check"></i><b>4.5</b> Rearranging</a></li>
+<li class="chapter" data-level="4.6" data-path="tidy-data.html"><a href="tidy-data.html#subset-observations-rows"><i class="fa fa-check"></i><b>4.6</b> Subset observations (rows)</a></li>
+<li class="chapter" data-level="4.7" data-path="tidy-data.html"><a href="tidy-data.html#subset-variables-columns"><i class="fa fa-check"></i><b>4.7</b> Subset variables (columns)</a></li>
+<li class="chapter" data-level="4.8" data-path="tidy-data.html"><a href="tidy-data.html#counting"><i class="fa fa-check"></i><b>4.8</b> Counting</a></li>
+<li class="chapter" data-level="4.9" data-path="tidy-data.html"><a href="tidy-data.html#summarizing"><i class="fa fa-check"></i><b>4.9</b> Summarizing</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="tidy-data.html"><a href="tidy-data.html#basic"><i class="fa fa-check"></i><b>4.9.1</b> Basic</a></li>
+<li class="chapter" data-level="4.9.2" data-path="tidy-data.html"><a href="tidy-data.html#scoped-summaries"><i class="fa fa-check"></i><b>4.9.2</b> Scoped summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="tidy-data.html"><a href="tidy-data.html#grouping"><i class="fa fa-check"></i><b>4.10</b> Grouping</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="tidy-data.html"><a href="tidy-data.html#grouped-summaries"><i class="fa fa-check"></i><b>4.10.1</b> Grouped summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="tidy-data.html"><a href="tidy-data.html#nesting"><i class="fa fa-check"></i><b>4.11</b> Nesting</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="tidy-data.html"><a href="tidy-data.html#nest"><i class="fa fa-check"></i><b>4.11.1</b> nest</a></li>
+<li class="chapter" data-level="4.11.2" data-path="tidy-data.html"><a href="tidy-data.html#unnest"><i class="fa fa-check"></i><b>4.11.2</b> unnest</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="tidy-data.html"><a href="tidy-data.html#mapping"><i class="fa fa-check"></i><b>4.12</b> Mapping</a></li>
+<li class="chapter" data-level="4.13" data-path="tidy-data.html"><a href="tidy-data.html#joining"><i class="fa fa-check"></i><b>4.13</b> Joining</a>
+<ul>
+<li class="chapter" data-level="4.13.1" data-path="tidy-data.html"><a href="tidy-data.html#mutating-joins"><i class="fa fa-check"></i><b>4.13.1</b> Mutating joins</a></li>
+<li class="chapter" data-level="4.13.2" data-path="tidy-data.html"><a href="tidy-data.html#filtering-joins"><i class="fa fa-check"></i><b>4.13.2</b> Filtering joins</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>5</b> Automating repeated things</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="functional-programming.html"><a href="functional-programming.html#why-functional-programming"><i class="fa fa-check"></i><b>5.1</b> Why functional programming</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="functional-programming.html"><a href="functional-programming.html#why-map"><i class="fa fa-check"></i><b>5.1.1</b> Why map?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="functional-programming.html"><a href="functional-programming.html#automote-2-or-2-tasks"><i class="fa fa-check"></i><b>5.2</b> Automote 2 or 2+ tasks</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="functional-programming.html"><a href="functional-programming.html#objectives-1"><i class="fa fa-check"></i><b>5.2.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.2.2" data-path="functional-programming.html"><a href="functional-programming.html#problem"><i class="fa fa-check"></i><b>5.2.2</b> Problem</a></li>
+<li class="chapter" data-level="5.2.3" data-path="functional-programming.html"><a href="functional-programming.html#for-loop"><i class="fa fa-check"></i><b>5.2.3</b> For loop</a></li>
+<li class="chapter" data-level="5.2.4" data-path="functional-programming.html"><a href="functional-programming.html#map2-pmap"><i class="fa fa-check"></i><b>5.2.4</b> map2 &amp; pmap</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="functional-programming.html"><a href="functional-programming.html#automate-plotting"><i class="fa fa-check"></i><b>5.3</b> Automate plotting</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="functional-programming.html"><a href="functional-programming.html#objective"><i class="fa fa-check"></i><b>5.3.1</b> Objective</a></li>
+<li class="chapter" data-level="5.3.2" data-path="functional-programming.html"><a href="functional-programming.html#problem-1"><i class="fa fa-check"></i><b>5.3.2</b> Problem</a></li>
+<li class="chapter" data-level="5.3.3" data-path="functional-programming.html"><a href="functional-programming.html#solution"><i class="fa fa-check"></i><b>5.3.3</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="functional-programming.html"><a href="functional-programming.html#automate-joining"><i class="fa fa-check"></i><b>5.4</b> Automate joining</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="functional-programming.html"><a href="functional-programming.html#objective-1"><i class="fa fa-check"></i><b>5.4.1</b> Objective</a></li>
+<li class="chapter" data-level="5.4.2" data-path="functional-programming.html"><a href="functional-programming.html#problem-2"><i class="fa fa-check"></i><b>5.4.2</b> Problem</a></li>
+<li class="chapter" data-level="5.4.3" data-path="functional-programming.html"><a href="functional-programming.html#copy-and-paste"><i class="fa fa-check"></i><b>5.4.3</b> Copy and paste</a></li>
+<li class="chapter" data-level="5.4.4" data-path="functional-programming.html"><a href="functional-programming.html#reduce"><i class="fa fa-check"></i><b>5.4.4</b> reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="functional-programming.html"><a href="functional-programming.html#make-automation-slower-or-faster"><i class="fa fa-check"></i><b>5.5</b> Make automation slower or faster</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="functional-programming.html"><a href="functional-programming.html#objectives-2"><i class="fa fa-check"></i><b>5.5.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.5.2" data-path="functional-programming.html"><a href="functional-programming.html#how-to-make-automation-slower"><i class="fa fa-check"></i><b>5.5.2</b> How to make automation slower</a></li>
+<li class="chapter" data-level="5.5.3" data-path="functional-programming.html"><a href="functional-programming.html#for-loop-1"><i class="fa fa-check"></i><b>5.5.3</b> For loop</a></li>
+<li class="chapter" data-level="5.5.4" data-path="functional-programming.html"><a href="functional-programming.html#map"><i class="fa fa-check"></i><b>5.5.4</b> Map</a></li>
+<li class="chapter" data-level="5.5.5" data-path="functional-programming.html"><a href="functional-programming.html#how-to-make-automation-faster"><i class="fa fa-check"></i><b>5.5.5</b> How to make automation Faster</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="functional-programming.html"><a href="functional-programming.html#make-error-handling-easier"><i class="fa fa-check"></i><b>5.6</b> Make error handling easier</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="functional-programming.html"><a href="functional-programming.html#learning-objective"><i class="fa fa-check"></i><b>5.6.1</b> Learning objective</a></li>
+<li class="chapter" data-level="5.6.2" data-path="functional-programming.html"><a href="functional-programming.html#solution-1"><i class="fa fa-check"></i><b>5.6.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="functional-programming.html"><a href="functional-programming.html#developing-your-own-data-tools"><i class="fa fa-check"></i><b>5.7</b> Developing your own data tools</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="functional-programming.html"><a href="functional-programming.html#why-developing-r-packages"><i class="fa fa-check"></i><b>5.7.1</b> Why developing R packages?</a></li>
+<li class="chapter" data-level="5.7.2" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>5.7.2</b> Workflow</a></li>
+<li class="chapter" data-level="5.7.3" data-path="functional-programming.html"><a href="functional-programming.html#developing-an-r-package"><i class="fa fa-check"></i><b>5.7.3</b> Developing an R package</a></li>
+<li class="chapter" data-level="5.7.4" data-path="functional-programming.html"><a href="functional-programming.html#required-components"><i class="fa fa-check"></i><b>5.7.4</b> Required Components</a></li>
+<li class="chapter" data-level="5.7.5" data-path="functional-programming.html"><a href="functional-programming.html#optional-components"><i class="fa fa-check"></i><b>5.7.5</b> Optional Components</a></li>
+<li class="chapter" data-level="5.7.6" data-path="functional-programming.html"><a href="functional-programming.html#building-an-r-package"><i class="fa fa-check"></i><b>5.7.6</b> Building an R package</a></li>
+<li class="chapter" data-level="5.7.7" data-path="functional-programming.html"><a href="functional-programming.html#distributing-an-r-package"><i class="fa fa-check"></i><b>5.7.7</b> Distributing an R package</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="semi-structured-data.html"><a href="semi-structured-data.html"><i class="fa fa-check"></i><b>6</b> Semi-structured data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>6.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#what-is-semi-structured-data"><i class="fa fa-check"></i><b>6.2</b> What is semi-structured data?</a></li>
+<li class="chapter" data-level="6.3" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>6.3</b> Workflow</a></li>
+<li class="chapter" data-level="6.4" data-path="semi-structured-data.html"><a href="semi-structured-data.html#htmlcss-web-scraping"><i class="fa fa-check"></i><b>6.4</b> HTML/CSS: web scraping</a></li>
+<li class="chapter" data-level="6.5" data-path="semi-structured-data.html"><a href="semi-structured-data.html#xmljson-social-media-scraping"><i class="fa fa-check"></i><b>6.5</b> XML/JSON: social media scraping</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="semi-structured-data.html"><a href="semi-structured-data.html#api"><i class="fa fa-check"></i><b>6.5.1</b> API</a></li>
+<li class="chapter" data-level="6.5.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#hydrating"><i class="fa fa-check"></i><b>6.5.2</b> Hydrating</a></li>
+<li class="chapter" data-level="6.5.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#parsing-json"><i class="fa fa-check"></i><b>6.5.3</b> Parsing JSON</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>7</b> High-dimensional data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="machine-learning.html"><a href="machine-learning.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="machine-learning.html"><a href="machine-learning.html#dataset"><i class="fa fa-check"></i><b>7.2</b> Dataset</a></li>
+<li class="chapter" data-level="7.3" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>7.3</b> Workflow</a></li>
+<li class="chapter" data-level="7.4" data-path="machine-learning.html"><a href="machine-learning.html#tidymodels"><i class="fa fa-check"></i><b>7.4</b> Tidymodels</a></li>
+<li class="chapter" data-level="7.5" data-path="machine-learning.html"><a href="machine-learning.html#pre-processing"><i class="fa fa-check"></i><b>7.5</b> Pre-processing</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="machine-learning.html"><a href="machine-learning.html#regression-setup"><i class="fa fa-check"></i><b>7.5.1</b> Regression setup</a></li>
+<li class="chapter" data-level="7.5.2" data-path="machine-learning.html"><a href="machine-learning.html#classification-setup"><i class="fa fa-check"></i><b>7.5.2</b> Classification setup</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="machine-learning.html"><a href="machine-learning.html#supervised-learning"><i class="fa fa-check"></i><b>7.6</b> Supervised learning</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="machine-learning.html"><a href="machine-learning.html#ols-and-lasso"><i class="fa fa-check"></i><b>7.6.1</b> OLS and Lasso</a></li>
+<li class="chapter" data-level="7.6.2" data-path="machine-learning.html"><a href="machine-learning.html#decision-tree"><i class="fa fa-check"></i><b>7.6.2</b> Decision tree</a></li>
+<li class="chapter" data-level="7.6.3" data-path="machine-learning.html"><a href="machine-learning.html#random-forest"><i class="fa fa-check"></i><b>7.6.3</b> Random forest</a></li>
+<li class="chapter" data-level="7.6.4" data-path="machine-learning.html"><a href="machine-learning.html#xgboost"><i class="fa fa-check"></i><b>7.6.4</b> XGboost</a></li>
+<li class="chapter" data-level="7.6.5" data-path="semi-structured-data.html"><a href="semi-structured-data.html#applications"><i class="fa fa-check"></i><b>7.6.5</b> Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="machine-learning.html"><a href="machine-learning.html#unsupervised-learning"><i class="fa fa-check"></i><b>7.7</b> Unsupervised learning</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="machine-learning.html"><a href="machine-learning.html#dimension-reduction"><i class="fa fa-check"></i><b>7.7.1</b> Dimension reduction</a></li>
+<li class="chapter" data-level="7.7.2" data-path="machine-learning.html"><a href="machine-learning.html#topic-modeling"><i class="fa fa-check"></i><b>7.7.2</b> Topic modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="machine-learning.html"><a href="machine-learning.html#bias-and-fairness-in-machine-learning"><i class="fa fa-check"></i><b>7.8</b> Bias and fairness in machine learning</a></li>
+<li class="chapter" data-level="7.9" data-path="machine-learning.html"><a href="machine-learning.html#resources"><i class="fa fa-check"></i><b>7.9</b> Resources</a>
+<ul>
+<li class="chapter" data-level="7.9.1" data-path="machine-learning.html"><a href="machine-learning.html#books"><i class="fa fa-check"></i><b>7.9.1</b> Books</a></li>
+<li class="chapter" data-level="7.9.2" data-path="machine-learning.html"><a href="machine-learning.html#lecture-slides"><i class="fa fa-check"></i><b>7.9.2</b> Lecture slides</a></li>
+<li class="chapter" data-level="7.9.3" data-path="machine-learning.html"><a href="machine-learning.html#blog-posts"><i class="fa fa-check"></i><b>7.9.3</b> Blog posts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="big-data.html"><a href="big-data.html"><i class="fa fa-check"></i><b>8</b> Big data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="motivation.html"><a href="motivation.html#motivation"><i class="fa fa-check"></i><b>8.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.2" data-path="big-data.html"><a href="big-data.html#what-is-sql"><i class="fa fa-check"></i><b>8.2</b> What is SQL?</a></li>
+<li class="chapter" data-level="8.3" data-path="big-data.html"><a href="big-data.html#learning-objectives"><i class="fa fa-check"></i><b>8.3</b> Learning objectives</a></li>
+<li class="chapter" data-level="8.4" data-path="big-data.html"><a href="big-data.html#quick-overview"><i class="fa fa-check"></i><b>8.4</b> Quick overview</a></li>
+<li class="chapter" data-level="8.5" data-path="intro.html"><a href="intro.html#setup"><i class="fa fa-check"></i><b>8.5</b> Setup</a></li>
+<li class="chapter" data-level="8.6" data-path="big-data.html"><a href="big-data.html#packages"><i class="fa fa-check"></i><b>8.6</b> Packages</a></li>
+<li class="chapter" data-level="8.7" data-path="big-data.html"><a href="big-data.html#datasets"><i class="fa fa-check"></i><b>8.7</b> Datasets</a></li>
+<li class="chapter" data-level="8.8" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>8.8</b> Workflow</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="big-data.html"><a href="big-data.html#create-a-database"><i class="fa fa-check"></i><b>8.8.1</b> Create a database</a></li>
+<li class="chapter" data-level="8.8.2" data-path="big-data.html"><a href="big-data.html#copy-an-object-as-a-table-to-the-database-push"><i class="fa fa-check"></i><b>8.8.2</b> Copy an object as a table to the database (push)</a></li>
+<li class="chapter" data-level="8.8.3" data-path="big-data.html"><a href="big-data.html#quick-demonstrations"><i class="fa fa-check"></i><b>8.8.3</b> Quick demonstrations:</a></li>
+<li class="chapter" data-level="8.8.4" data-path="big-data.html"><a href="big-data.html#tidy-way-dplyr---sql"><i class="fa fa-check"></i><b>8.8.4</b> Tidy-way: dplyr -&gt; SQL</a></li>
+<li class="chapter" data-level="8.8.5" data-path="big-data.html"><a href="big-data.html#collect-pull"><i class="fa fa-check"></i><b>8.8.5</b> Collect (pull)</a></li>
+<li class="chapter" data-level="8.8.6" data-path="big-data.html"><a href="big-data.html#disconnect"><i class="fa fa-check"></i><b>8.8.6</b> Disconnect</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="intro.html"><a href="intro.html#references"><i class="fa fa-check"></i><b>8.9</b> References</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/jaeyk/PS239T/" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Thinking for Social Scientists</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Managing data and code</h1>
+<div id="project-oriented-research" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Project-oriented research</h2>
+<div id="computational-reproducibility" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Computational reproducibility</h3>
+<div id="setup" class="section level4" number="3.1.1.1">
+<h4><span class="header-section-number">3.1.1.1</span> Setup</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(</span>
+<span id="cb1-2"><a href="intro.html#cb1-2"></a>  tidyverse, <span class="co"># tidyverse</span></span>
+<span id="cb1-3"><a href="intro.html#cb1-3"></a>  here <span class="co"># computational reproducibility</span></span>
+<span id="cb1-4"><a href="intro.html#cb1-4"></a>)</span></code></pre></div>
+</div>
+<div id="motivation" class="section level4" number="3.1.1.2">
+<h4><span class="header-section-number">3.1.1.2</span> Motivation</h4>
+<p>Why do you need to make your research project computationally reproducible?</p>
+<p>For your self-interest and public benefits.</p>
+<p><img src="https://github.com/dlab-berkeley/efficient-reproducible-project-management-in-R/blob/master/misc/screenshot.png?raw=true" /></p>
+</div>
+<div id="how-to-organize-files-in-a-project" class="section level4" number="3.1.1.3">
+<h4><span class="header-section-number">3.1.1.3</span> How to organize files in a project</h4>
+<p>You won’t be able to reproduce your project unless it is efficiently organized.</p>
+<p>Step 1. <a href="https://environments.rstudio.com/"><strong>Environment</strong></a> is part of your project. If someone can’t reproduce your environment, they won’t be able to run your code.</p>
+<ul>
+<li>Launch R Studio. Choose Tools &gt; Global Options. You should not check <code>Restor .RData into workspace at startup</code> and set saving workspace option to <code>NEVER</code>.</li>
+</ul>
+<p>Step 2. For each project, create a project directory named after the project.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1"></a><span class="co"># Don&#39;t name it a project. Use a name that&#39;s more informative. For instance, us_election not my_project.</span></span>
+<span id="cb2-2"><a href="intro.html#cb2-2"></a></span>
+<span id="cb2-3"><a href="intro.html#cb2-3"></a><span class="kw">dir.create</span>(<span class="st">&quot;../us_election&quot;</span>)</span></code></pre></div>
+<p>Step 3. Launch R Studio. Choose File &gt; New project &gt; Browse existing directories &gt; Create project This allows each project has its own workspace.</p>
+<p>Step 4. Organize files by putting them in separate subdirectories and naming them in a sensible way.</p>
+<ul>
+<li><p>Treat raw data as read only (raw data should be RAW!) and put in the <code>data</code> subdirectory.</p>
+<ul>
+<li>Note that version control does not need replace backup. You still need to backup your raw data.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;data&quot;</span>))</span></code></pre></div>
+<ul>
+<li>Separate read-only data from processed data and put in the <code>processed_data</code> subdirectory.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro.html#cb4-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;processed_data&quot;</span>))</span></code></pre></div>
+<ul>
+<li>Put your code in the <code>src</code> subdirectory.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;src&quot;</span>))</span></code></pre></div>
+<ul>
+<li>Put generated outputs (e.g., tables, figures) in the <code>outputs</code> subdirectory and treat them as disposable.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;outputs&quot;</span>))</span></code></pre></div>
+<ul>
+<li>Put your custom functions in the <code>functions</code> subdirectory. You can gather some of these functions and distribute them as an open-source library.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;src&quot;</span>))</span></code></pre></div>
+<p><strong>Challenge 2</strong></p>
+<p>Set a project structure for a project named “starwars”.</p>
+</div>
+<div id="how-to-organize-code-in-a-r-markdown-file" class="section level4" number="3.1.1.4">
+<h4><span class="header-section-number">3.1.1.4</span> How to organize code in a R markdown file</h4>
+<ul>
+<li><p>In addition to environment, <strong>workflow</strong> is an important component of project efficiency and reproducibility.</p></li>
+<li><p>What is R markdown? An R package, developed by <a href="https://yihui.org/en/">Yihui Xie</a>, that provides an authoring framework for data science. Xie is also a developer of many widely popular R packages such as <code>knitr</code>, <a href="https://github.com/yihui/xaringan"><code>xaringan</code></a> (cool kids use xaringan not <a href="https://en.wikipedia.org/wiki/Beamer_(LaTeX)">Beamer</a> these days), <code>blogdown</code> (used to create <a href="https://jaeyk.github.io/">my personal website</a>), and <code>bookdown</code> (used to create this book) among many others.</p>
+<ul>
+<li>Many applications: <a href="https://rstudio.github.io/distill/basics.html">reports</a>, <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html">presentations</a>, <a href="https://rmarkdown.rstudio.com/flexdashboard/">dashboards</a>, <a href="https://bookdown.org/yihui/rmarkdown/websites.html">websites</a><br />
+</li>
+<li>Check out <a href="https://ysc-rmarkdown.netlify.app/">Communicating with R markdown workshop</a> by <a href="https://alison.rbind.io/">Alison Hill</a> (RStudio)
+<ul>
+<li>Alison Hill is a co-author of <a href="https://bookdown.org/yihui/blogdown/"><code>blogdown: Creating Websites with R Markdown.</code></a></li>
+</ul></li>
+<li>Key strengths: dynamic reporting + reproducible science + easy deployment</li>
+</ul></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/s9aWmU0atlQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>R Markdown The bigger picture - Garrett Grolemund</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Xn5AmUf7gDQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>R-Ladies Oslo (English) - Reports to impress your boss! Rmarkdown magic - Athanasia Mowinckel</p>
+<ul>
+<li>R Markdown basic syntax</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1"></a><span class="co"># Header 1</span></span>
+<span id="cb8-2"><a href="intro.html#cb8-2"></a><span class="co">## Header 2</span></span>
+<span id="cb8-3"><a href="intro.html#cb8-3"></a><span class="co">### Header 3</span></span></code></pre></div>
+<ul>
+<li>Use these section headers to indicate workflow.</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="intro.html#cb9-1"></a><span class="co"># Import packages and data</span></span>
+<span id="cb9-2"><a href="intro.html#cb9-2"></a><span class="co"># Tidy data</span></span>
+<span id="cb9-3"><a href="intro.html#cb9-3"></a><span class="co"># Wrangle data</span></span>
+<span id="cb9-4"><a href="intro.html#cb9-4"></a><span class="co"># Model data</span></span>
+<span id="cb9-5"><a href="intro.html#cb9-5"></a><span class="co"># Visualize data</span></span></code></pre></div>
+<ul>
+<li><p>Press <code>ctrl + shift + o</code>. You can see a document outline based on these headers. This is a nice feature for finding code you need to focus.</p></li>
+<li><p>If your project’s scale is large, then divide these sections into files, number, and save them in <code>code</code> subdirectory.</p>
+<ul>
+<li>01_wrangling.Rmd</li>
+<li>02_modeling.Rmd
+…</li>
+</ul></li>
+</ul>
+</div>
+<div id="making-a-project-computationally-reproducible" class="section level4" number="3.1.1.5">
+<h4><span class="header-section-number">3.1.1.5</span> Making a project computationally reproducible</h4>
+<ul>
+<li><p><code>setwd()</code>: set a working directory.</p></li>
+<li><p>Note that using <code>setwd()</code> is not a reproducible way to set up your project. For instance, none will be able to run the following code except me.</p></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intro.html#cb10-1"></a><span class="co"># Set a working directory </span></span>
+<span id="cb10-2"><a href="intro.html#cb10-2"></a><span class="kw">setwd</span>(<span class="st">&quot;/home/jae/starwars&quot;</span>)</span>
+<span id="cb10-3"><a href="intro.html#cb10-3"></a></span>
+<span id="cb10-4"><a href="intro.html#cb10-4"></a><span class="co"># Do something </span></span>
+<span id="cb10-5"><a href="intro.html#cb10-5"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span></span>
+<span id="cb10-6"><a href="intro.html#cb10-6"></a><span class="st">   </span><span class="kw">geom_point</span>()</span>
+<span id="cb10-7"><a href="intro.html#cb10-7"></a></span>
+<span id="cb10-8"><a href="intro.html#cb10-8"></a><span class="co"># Export the object. </span></span>
+<span id="cb10-9"><a href="intro.html#cb10-9"></a><span class="co"># dot means the working directory set by setwd()</span></span>
+<span id="cb10-10"><a href="intro.html#cb10-10"></a><span class="kw">ggsave</span>(<span class="st">&quot;./outputs/example.png&quot;</span>) <span class="co"># This is called relative path </span></span></code></pre></div>
+<ul>
+<li><p>Instead, learn how to use <code>here()</code>’.</p>
+<ul>
+<li><p>Key idea: separate workflow (e.g., workspace information) from products (code and data). For more information, read Jenny Bryan’s wonderful piece on <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">project-oriented workflow</a>.</p></li>
+<li><p>Example</p></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="intro.html#cb11-1"></a><span class="co"># New: Reproducible </span></span>
+<span id="cb11-2"><a href="intro.html#cb11-2"></a></span>
+<span id="cb11-3"><a href="intro.html#cb11-3"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span></span>
+<span id="cb11-4"><a href="intro.html#cb11-4"></a><span class="st">   </span><span class="kw">geom_point</span>()</span>
+<span id="cb11-5"><a href="intro.html#cb11-5"></a></span>
+<span id="cb11-6"><a href="intro.html#cb11-6"></a><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;outputs&quot;</span>, <span class="st">&quot;example.png&quot;</span>))</span></code></pre></div>
+<ul>
+<li>How <code>here</code> works</li>
+</ul>
+<p><code>here()</code> function shows what’s the top-level project directory.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1"></a>here<span class="op">::</span><span class="kw">here</span>()</span></code></pre></div>
+<ul>
+<li>Build a path including subdirectories</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro.html#cb13-1"></a>here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;outputs&quot;</span>)</span>
+<span id="cb13-2"><a href="intro.html#cb13-2"></a>           <span class="co">#depth 1   #depth 2</span></span></code></pre></div>
+<ul>
+<li><p>How <code>here</code> defines the top-level project directory. The following list came from <a href="https://github.com/jennybc/here_here">the here package vignette</a>).</p>
+<ul>
+<li><p>Is a file named .here present?</p></li>
+<li><p>Is this an RStudio Project? (<strong>Note that we already set up an RStudio Project!</strong> So, if you use RStudio’s project feature, then you are ready to use <code>here</code>.)</p></li>
+<li><p>Is this an R package? Does it have a DESCRIPTION file?</p></li>
+<li><p>Is this a remake project? Does it have a file named <code>remake.yml</code>?</p></li>
+<li><p>Is this a projectile project? Does it have a file named <code>.projectile</code>?</p></li>
+<li><p>Is this a checkout from a version control system? Does it have a directory named <code>.git</code> or <code>.svn</code>? Currently, only Git and Subversion are supported.</p></li>
+<li><p>If there’s no match then use <code>set_here()</code> to create an empty <code>.here</code> file.</p></li>
+</ul></li>
+</ul>
+<p><strong>Challenge 1</strong></p>
+<ol style="list-style-type: decimal">
+<li>Can you define computational reproducibility?</li>
+<li>Can you explain why sharing code and data is not enough for computational reproducibility?</li>
+</ol>
+</div>
+</div>
+<div id="version-control-git-and-bash" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Version control (Git and Bash)</h3>
+<p><img src="https://github.com/dlab-berkeley/BashGit/raw/master/octobash.png" /></p>
+<div id="what-is-bash" class="section level4" number="3.1.2.1">
+<h4><span class="header-section-number">3.1.2.1</span> What Is Bash?</h4>
+<div id="writing-your-first-shell-script" class="section level5" number="3.1.2.1.1">
+<h5><span class="header-section-number">3.1.2.1.1</span> Writing your first shell script</h5>
+<p>Write a shell script that creates a directory called <code>/pdfs</code> under <code>/Download</code> directory, then find PDF files in <code>/Download</code> and copy those files to <code>pdfs</code>. This shell script creates a backup.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="intro.html#cb14-1"></a></span>
+<span id="cb14-2"><a href="intro.html#cb14-2"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb14-3"><a href="intro.html#cb14-3"></a></span>
+<span id="cb14-4"><a href="intro.html#cb14-4"></a><span class="fu">mkdir</span> /home/jae/Downloads/pdfs </span>
+<span id="cb14-5"><a href="intro.html#cb14-5"></a></span>
+<span id="cb14-6"><a href="intro.html#cb14-6"></a><span class="bu">cd</span> Download</span>
+<span id="cb14-7"><a href="intro.html#cb14-7"></a></span>
+<span id="cb14-8"><a href="intro.html#cb14-8"></a><span class="fu">cp</span> *.pdf pdfs/ </span>
+<span id="cb14-9"><a href="intro.html#cb14-9"></a></span>
+<span id="cb14-10"><a href="intro.html#cb14-10"></a><span class="bu">echo</span> <span class="st">&quot;Copied pdfs&quot;</span></span></code></pre></div>
+</div>
+</div>
+<div id="what-are-git-and-github" class="section level4" number="3.1.2.2">
+<h4><span class="header-section-number">3.1.2.2</span> What Are Git and GitHub?</h4>
+<div class="figure">
+<img src="https://plain-text.co/figures/git-basic.png" alt="" />
+<p class="caption">Figure 2.1. A schematic git workflow from Healy’s “The Plain Person’s Guide to Plain Text Social Science”</p>
+</div>
+<div id="basics-git-push-and-git-pull" class="section level5" number="3.1.2.2.1">
+<h5><span class="header-section-number">3.1.2.2.1</span> Basics: <code>git push</code> and <code>git pull</code></h5>
+</div>
+<div id="time-machine-git-revert" class="section level5" number="3.1.2.2.2">
+<h5><span class="header-section-number">3.1.2.2.2</span> Time machine: <code>git revert</code></h5>
+</div>
+<div id="parallel-universe-git-branch" class="section level5" number="3.1.2.2.3">
+<h5><span class="header-section-number">3.1.2.2.3</span> Parallel universe: <code>git branch</code></h5>
+</div>
+<div id="user-manual-readme" class="section level5" number="3.1.2.2.4">
+<h5><span class="header-section-number">3.1.2.2.4</span> User-manual: <code>readme</code></h5>
+<ul>
+<li>README.md</li>
+</ul>
+<p><img src="https://libapps.s3.amazonaws.com/accounts/125446/images/README_Sample.png" /></p>
+<ul>
+<li><p>In this simple markdown file, note some basic information about the project including the project structure.</p></li>
+<li><p>This is how I used the <code>README.md</code> file for this course. Check out <a href="https://github.com/jaeyk">my GitHub account</a> to see how I manage my projects.</p></li>
+</ul>
+</div>
+</div>
+<div id="deployment-github-pages" class="section level4" number="3.1.2.3">
+<h4><span class="header-section-number">3.1.2.3</span> Deployment: GitHub Pages</h4>
+</div>
+<div id="tracking-progress-github-issues" class="section level4" number="3.1.2.4">
+<h4><span class="header-section-number">3.1.2.4</span> Tracking progress: GitHub Issues</h4>
+</div>
+<div id="project-management-github-dashboards" class="section level4" number="3.1.2.5">
+<h4><span class="header-section-number">3.1.2.5</span> Project management: GitHub Dashboards</h4>
+</div>
+</div>
+</div>
+<div id="writing-code-how-to-code-like-a-professional" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Writing code: How to code like a professional</h2>
+<div id="write-readable-code" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Write readable code</h3>
+<ul>
+<li>What is code style?</li>
+</ul>
+<blockquote>
+<p>Every major open-source project has its own style guide: a set of conventions (sometimes arbitrary) about how to write code for that project. It is much easier to understand a large codebase when all the code in it is in a consistent style. - <a href="https://google.github.io/styleguide/">Google Style Guides</a></p>
+</blockquote>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UjhX2sVf0eg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
+
+<p>10 Tips For Clean Code - Michael Toppa</p>
+
+<ul>
+<li><p>How to avoid smelly code?</p>
+<ul>
+<li>Check out <a href="https://github.com/jennybc/code-smells-and-feels#readme">the code-smells Git repository</a> by Jenny Bryan.</li>
+</ul></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7oyiPBjLAWY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> Code smells and feels - Jenny Bryan</p>
+
+<p> "Code smell" is an evocative term for that vague feeling of unease we get when reading certain bits of code. It's not necessarily wrong, but neither is it obviously correct. We may be reluctant to work on such code, because past experience suggests it's going to be fiddly and bug-prone. In contrast, there's another type of code that just feels good to read and work on. What's the difference? If we can be more precise about code smells and feels, we can be intentional about writing code that is easier and more pleasant to work on. I've been fortunate to spend the last couple years embedded in a group of developers working on the tidyverse and r-lib packages. Based on this experience, I'll talk about specific code smells and deodorizing strategies for R. - Jenny Bryan</p>
+<ul>
+<li><p>Naming matters</p>
+<ul>
+<li>When naming files:
+<ul>
+<li>Don’t use special characters. (Spaces make filenames awkward in the console/command-line.)</li>
+<li>Don’t capitalize. (UNIX is case sensitive.)</li>
+<li>Numbering them if files should be run in an order.</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro.html#cb15-1"></a><span class="co"># Good</span></span>
+<span id="cb15-2"><a href="intro.html#cb15-2"></a>fit_models.R</span>
+<span id="cb15-3"><a href="intro.html#cb15-3"></a></span>
+<span id="cb15-4"><a href="intro.html#cb15-4"></a><span class="co"># Bad</span></span>
+<span id="cb15-5"><a href="intro.html#cb15-5"></a>fit models.R</span></code></pre></div>
+<ul>
+<li>When naming objects:
+<ul>
+<li>Don’t use special characters.</li>
+<li>Don’t capitalize.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="intro.html#cb16-1"></a><span class="co"># Good </span></span>
+<span id="cb16-2"><a href="intro.html#cb16-2"></a>day_one</span>
+<span id="cb16-3"><a href="intro.html#cb16-3"></a>    </span>
+<span id="cb16-4"><a href="intro.html#cb16-4"></a><span class="co"># Bad </span></span>
+<span id="cb16-5"><a href="intro.html#cb16-5"></a>DayOne</span></code></pre></div>
+<ul>
+<li>When naming functions:
+<ul>
+<li>Don’t use special characters.</li>
+<li>Don’t capitalize.</li>
+<li>Use <code>verbs</code> instead of <code>nouns</code>. (Functions do something!)</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="intro.html#cb17-1"></a><span class="co"># Good </span></span>
+<span id="cb17-2"><a href="intro.html#cb17-2"></a>run_rdd </span>
+<span id="cb17-3"><a href="intro.html#cb17-3"></a></span>
+<span id="cb17-4"><a href="intro.html#cb17-4"></a><span class="co"># Bad </span></span>
+<span id="cb17-5"><a href="intro.html#cb17-5"></a>rdd</span></code></pre></div>
+<ul>
+<li>Spacing</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro.html#cb18-1"></a><span class="co"># Good</span></span>
+<span id="cb18-2"><a href="intro.html#cb18-2"></a>x[, <span class="dv">1</span>] </span>
+<span id="cb18-3"><a href="intro.html#cb18-3"></a></span>
+<span id="cb18-4"><a href="intro.html#cb18-4"></a><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </span>
+<span id="cb18-5"><a href="intro.html#cb18-5"></a></span>
+<span id="cb18-6"><a href="intro.html#cb18-6"></a><span class="co"># Bad</span></span>
+<span id="cb18-7"><a href="intro.html#cb18-7"></a></span>
+<span id="cb18-8"><a href="intro.html#cb18-8"></a>x[,<span class="dv">1</span>]</span>
+<span id="cb18-9"><a href="intro.html#cb18-9"></a></span>
+<span id="cb18-10"><a href="intro.html#cb18-10"></a><span class="kw">mean</span> (x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<ul>
+<li>Indenting</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro.html#cb19-1"></a><span class="co"># Good</span></span>
+<span id="cb19-2"><a href="intro.html#cb19-2"></a><span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb19-3"><a href="intro.html#cb19-3"></a>  <span class="kw">message</span>(<span class="st">&quot;y is negative&quot;</span>)</span>
+<span id="cb19-4"><a href="intro.html#cb19-4"></a>}</span>
+<span id="cb19-5"><a href="intro.html#cb19-5"></a></span>
+<span id="cb19-6"><a href="intro.html#cb19-6"></a><span class="co"># Bad</span></span>
+<span id="cb19-7"><a href="intro.html#cb19-7"></a><span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb19-8"><a href="intro.html#cb19-8"></a><span class="kw">message</span>(<span class="st">&quot;Y is negative&quot;</span>)}</span></code></pre></div>
+<ul>
+<li>Long lines</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro.html#cb20-1"></a><span class="co"># Good</span></span>
+<span id="cb20-2"><a href="intro.html#cb20-2"></a><span class="kw">do_something_very_complicated</span>(</span>
+<span id="cb20-3"><a href="intro.html#cb20-3"></a>  <span class="dt">something =</span> <span class="st">&quot;that&quot;</span>,</span>
+<span id="cb20-4"><a href="intro.html#cb20-4"></a>  <span class="dt">requires =</span> many,</span>
+<span id="cb20-5"><a href="intro.html#cb20-5"></a>  <span class="dt">arguments =</span> <span class="st">&quot;some of which may be long&quot;</span></span>
+<span id="cb20-6"><a href="intro.html#cb20-6"></a>)</span>
+<span id="cb20-7"><a href="intro.html#cb20-7"></a></span>
+<span id="cb20-8"><a href="intro.html#cb20-8"></a><span class="co"># Bad</span></span>
+<span id="cb20-9"><a href="intro.html#cb20-9"></a><span class="kw">do_something_very_complicated</span>(<span class="st">&quot;that&quot;</span>, <span class="dt">requires =</span> many, <span class="dt">arguments =</span></span>
+<span id="cb20-10"><a href="intro.html#cb20-10"></a>                              <span class="st">&quot;some of which may be long&quot;</span></span>
+<span id="cb20-11"><a href="intro.html#cb20-11"></a>                              )</span></code></pre></div>
+<ul>
+<li>Comments
+<ul>
+<li>Use comments to explain your decisions.</li>
+<li>But, show your code; Do not try to explain your code by comments.</li>
+<li>Also, try to comment out rather than delete the code that you experiment with.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="intro.html#cb21-1"></a><span class="co"># Average sleep hours of Jae</span></span>
+<span id="cb21-2"><a href="intro.html#cb21-2"></a>jae <span class="op">%&gt;%</span></span>
+<span id="cb21-3"><a href="intro.html#cb21-3"></a><span class="st">  </span><span class="co"># By week</span></span>
+<span id="cb21-4"><a href="intro.html#cb21-4"></a><span class="st">  </span><span class="kw">group_by</span>(week) <span class="op">%&gt;%</span></span>
+<span id="cb21-5"><a href="intro.html#cb21-5"></a><span class="st">  </span><span class="co"># Mean sleep hours </span></span>
+<span id="cb21-6"><a href="intro.html#cb21-6"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">week_sleep =</span> <span class="kw">mean</span>(sleep, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<ul>
+<li>Pipes (chaining commands)</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro.html#cb22-1"></a><span class="co"># Good</span></span>
+<span id="cb22-2"><a href="intro.html#cb22-2"></a>iris <span class="op">%&gt;%</span></span>
+<span id="cb22-3"><a href="intro.html#cb22-3"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span></span>
+<span id="cb22-4"><a href="intro.html#cb22-4"></a><span class="st">  </span><span class="kw">summarize_if</span>(is.numeric, mean) <span class="op">%&gt;%</span></span>
+<span id="cb22-5"><a href="intro.html#cb22-5"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb22-6"><a href="intro.html#cb22-6"></a><span class="st">  </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></span>
+<span id="cb22-7"><a href="intro.html#cb22-7"></a><span class="st">  </span><span class="kw">arrange</span>(value)</span>
+<span id="cb22-8"><a href="intro.html#cb22-8"></a></span>
+<span id="cb22-9"><a href="intro.html#cb22-9"></a><span class="co"># Bad</span></span>
+<span id="cb22-10"><a href="intro.html#cb22-10"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize_all</span>(mean) <span class="op">%&gt;%</span></span>
+<span id="cb22-11"><a href="intro.html#cb22-11"></a>ungroup <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></span>
+<span id="cb22-12"><a href="intro.html#cb22-12"></a><span class="kw">arrange</span>(value)</span></code></pre></div>
+<ul>
+<li><p>Additional tips</p></li>
+<li><p>Use <code>lintr</code> to check whether your code complies with a recommended style guideline (e.g., <code>tidyverse</code>) and <code>styler</code> package to format your code according to the style guideline.</p></li>
+</ul>
+<div class="figure">
+<img src="https://camo.githubusercontent.com/6cb80270269165a8d3046d2da03cbf2b8f19ee2f/687474703a2f2f692e696d6775722e636f6d2f61635632374e562e676966" alt="" />
+<p class="caption">how lintr works</p>
+</div>
+</div>
+<div id="write-reusable-code" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Write reusable code</h3>
+<ul>
+<li>Pasting</li>
+</ul>
+<blockquote>
+<p>Copy-and-paste programming, sometimes referred to as just pasting, is the production of highly repetitive computer programming code, as produced by copy and paste operations. It is primarily a pejorative term; those who use the term are often implying a lack of programming competence. It may also be the result of technology limitations (e.g., an insufficiently expressive development environment) as subroutines or libraries would normally be used instead. However, there are occasions when copy-and-paste programming is considered acceptable or necessary, such as for boilerplate, loop unrolling (when not supported automatically by the compiler), or certain programming idioms, and it is supported by some source code editors in the form of snippets. - <a href="https://en.wikipedia.org/wiki/Copy-and-paste_programming">Wikipedia</a></p>
+</blockquote>
+<ul>
+<li><p>It’s okay for pasting for the first attempt to solve a problem. But if you copy and paste three times (a.k.a. <a href="https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming)">Rule of Three</a> in programming), something’s wrong. You’re working too hard. You need to be lazy. What do I mean and how can you do that?</p></li>
+<li><p>Example</p></li>
+<li><p>Let’s imagine <code>df</code> is a survey dataset.</p>
+<ul>
+<li><p><code>a, b, c, d</code> = Survey questions</p></li>
+<li><p><code>-99</code>: non-responses</p></li>
+<li><p>Your goal: replace <code>-99</code> with <code>NA</code></p></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="intro.html#cb23-1"></a><span class="co"># Data</span></span>
+<span id="cb23-2"><a href="intro.html#cb23-2"></a></span>
+<span id="cb23-3"><a href="intro.html#cb23-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co"># for reproducibility </span></span>
+<span id="cb23-4"><a href="intro.html#cb23-4"></a></span>
+<span id="cb23-5"><a href="intro.html#cb23-5"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
+<span id="cb23-6"><a href="intro.html#cb23-6"></a>             <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
+<span id="cb23-7"><a href="intro.html#cb23-7"></a>             <span class="st">&quot;c&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
+<span id="cb23-8"><a href="intro.html#cb23-8"></a>             <span class="st">&quot;d&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1"></a><span class="co"># Copy and paste </span></span>
+<span id="cb24-2"><a href="intro.html#cb24-2"></a>df<span class="op">$</span>a[df<span class="op">$</span>a <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb24-3"><a href="intro.html#cb24-3"></a>df<span class="op">$</span>b[df<span class="op">$</span>b <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb24-4"><a href="intro.html#cb24-4"></a>df<span class="op">$</span>c[df<span class="op">$</span>c <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb24-5"><a href="intro.html#cb24-5"></a>df<span class="op">$</span>d[df<span class="op">$</span>d <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb24-6"><a href="intro.html#cb24-6"></a></span>
+<span id="cb24-7"><a href="intro.html#cb24-7"></a>df</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 4
+##       a     b     c     d
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     3     3     3     1
+## 2     3     2     3     1
+## 3     1    NA     1     2
+## 4     1    NA     2     1
+## 5    NA     1     1     3</code></pre>
+<ul>
+<li>Using a function
+<ul>
+<li>function: input + computation + output</li>
+<li>If you write a function, you gain efficiency because you don’t need to copy and paste the computation part.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1"></a><span class="co"># Create a custom function</span></span>
+<span id="cb26-2"><a href="intro.html#cb26-2"></a>fix_missing &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="co"># INPUT</span></span>
+<span id="cb26-3"><a href="intro.html#cb26-3"></a>  x[x <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># COMPUTATION</span></span>
+<span id="cb26-4"><a href="intro.html#cb26-4"></a>  x <span class="co"># OUTPUT </span></span>
+<span id="cb26-5"><a href="intro.html#cb26-5"></a>}</span>
+<span id="cb26-6"><a href="intro.html#cb26-6"></a></span>
+<span id="cb26-7"><a href="intro.html#cb26-7"></a><span class="co"># Apply the function to each column (vector)</span></span>
+<span id="cb26-8"><a href="intro.html#cb26-8"></a><span class="co"># This iterated part can and should be automated.</span></span>
+<span id="cb26-9"><a href="intro.html#cb26-9"></a>df<span class="op">$</span>a &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>a)</span>
+<span id="cb26-10"><a href="intro.html#cb26-10"></a>df<span class="op">$</span>b &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>b)</span>
+<span id="cb26-11"><a href="intro.html#cb26-11"></a>df<span class="op">$</span>c &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>c)</span>
+<span id="cb26-12"><a href="intro.html#cb26-12"></a>df<span class="op">$</span>d &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>d)</span>
+<span id="cb26-13"><a href="intro.html#cb26-13"></a></span>
+<span id="cb26-14"><a href="intro.html#cb26-14"></a>df</span></code></pre></div>
+<ul>
+<li>Automation
+<ul>
+<li>Many options for automation in R: <code>for loop</code>, <code>apply</code> family, etc.</li>
+<li>Here’s a tidy solution comes from <code>purrr</code> package.</li>
+<li>The power and joy of one-liner.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="intro.html#cb27-1"></a>df &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map_df</span>(df, fix_missing) <span class="co"># What is this magic? We will unpack the blackbox (`map_df()`) later.</span></span>
+<span id="cb27-2"><a href="intro.html#cb27-2"></a></span>
+<span id="cb27-3"><a href="intro.html#cb27-3"></a>df</span></code></pre></div>
+<ul>
+<li>Takeaways</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Your code becomes more reusable, when it’s easier to <strong>change, debug, and scale up</strong>. Don’t repeat yourself and embrace the power of lazy programming.</li>
+</ol>
+<blockquote>
+<p>Lazy, because only lazy programmers will want to write the kind of tools that might replace them in the end. Lazy, because only a lazy programmer will avoid writing monotonous, repetitive code—thus avoiding redundancy, the enemy of software maintenance and flexible refactoring. Mostly, the tools and processes that come out of this endeavor fired by laziness will speed up the production. - <a href="http://blogoscoped.com/archive/2005-08-24-n14.html">Philipp Lenssen</a></p>
+</blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>Only when your code becomes <strong>reusable</strong>, you would become <strong>efficient</strong> in your data work. Otherwise, you need to start from scratch or copy and paste, when you work on a new project.</li>
+</ol>
+<blockquote>
+<p>Code reuse aims to save time and resources and reduce redundancy by taking advantage of assets that have already been created in some form within the software product development process.[2] The key idea in reuse is that parts of a computer program written at one time can be or should be used in the construction of other programs written at a later time. - Wikipedia</p>
+</blockquote>
+</div>
+<div id="test-your-code-systematically" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Test your code systematically</h3>
+</div>
+</div>
+<div id="asking-questions-minimal-reproducible-example" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Asking questions: Minimal reproducible example</h2>
+<div id="how-to-create-a-minimal-reproducible-example" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> How to create a minimal reproducible example</h3>
+</div>
+</div>
+<div id="references" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> References</h2>
+<ul>
+<li><p>Project-oriented research</p>
+<ul>
+<li><p>Computational reproducibility</p>
+<ul>
+<li><p><a href="https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf">“Good Enough Practices in Scientific Computing”</a> by PLOS</p></li>
+<li><p><a href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/">Project Management with RStudio</a> by Software Carpentry</p></li>
+<li><p><a href="https://kbroman.org/steps2rr/">Initial steps toward reproducible research</a> by Karl Broman</p></li>
+</ul></li>
+<li><p>Version control</p>
+<ul>
+<li><p><a href="https://swcarpentry.github.io/git-novice/">Version Control with Git</a> by Software Carpentry</p></li>
+<li><p><a href="http://plain-text.co/">The Plain Person’s Guide to Plain Text Social Science</a> by Kieran Healy</p></li>
+</ul></li>
+</ul></li>
+<li><p>Writing code</p>
+<ul>
+<li>Style guides
+<ul>
+<li>R
+<ul>
+<li><a href="https://google.github.io/styleguide/Rguide.xml">Google’s R style guide</a></li>
+<li><a href="http://r-pkgs.had.co.nz/r.html">R code style guide</a> by Hadley Wickham</li>
+<li><a href="http://style.tidyverse.org/">The tidyverse style guide</a> by Hadley Wickham</li>
+</ul></li>
+<li>Python
+<ul>
+<li><a href="https://github.com/google/styleguide/blob/gh-pages/pyguide.md">Google Python Style Guide</a></li>
+<li><a href="https://docs.python-guide.org/writing/style/#zen-of-python">Code Style</a> by the Hitchhiker’s Guide to Python</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Asking questions</p></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="motivation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tidy-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
