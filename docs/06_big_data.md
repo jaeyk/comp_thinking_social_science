@@ -187,7 +187,7 @@ INSERT INTO students(name, birth, gpa, grad)
 
 5. Disconnect the database 
 
-## Create a database 
+### Create a database 
 
 
 ```r
@@ -215,7 +215,7 @@ dbListTables(con)
 
 - Note that con is empty at this stage.
 
-## Copy an object as a table to the database (push)
+### Copy an object as a table to the database (push)
 
 
 ```r
@@ -277,7 +277,7 @@ dbListFields(con, "weather")
 ## [11] "wind_gust"  "precip"     "pressure"   "visib"      "time_hour"
 ```
 
-## Quick demonstrations:
+### Quick demonstrations:
 
 - SELECT desired columns 
 - FROM tables 
@@ -450,7 +450,7 @@ dbGetQuery(con,
 ## 1                       527
 ```
 
-## Tidy-way: dplyr -> SQL
+### Tidy-way: dplyr -> SQL
 
 Thanks to the `dbplyr` package you can use the `dplyr` syntax to query SQL. 
 
@@ -465,7 +465,7 @@ planes <- con %>% tbl("planes")
 weather <- con %>% tbl("weather")
 ```
 
-### `select` = `SELECT`
+- `select` = `SELECT`
 
 
 ```r
@@ -494,7 +494,7 @@ flights %>%
 **Challenge 4** 
 Your turn: write the same code in SQL 
 
-### `mutate` = `SELECT` `AS`
+- `mutate` = `SELECT` `AS`
 
 
 ```r
@@ -524,7 +524,7 @@ flights %>%
 **Challenge 5** 
 Your turn: write the same code in SQL (hint: `mutate(new_var = var 1 * var2` = `SELECT var1 * var2 AS near_var`)
 
-### `filter` = `WHERE` 
+- `filter` = `WHERE` 
 
 
 ```r
@@ -557,7 +557,7 @@ Your turn: write the same code in SQL (hint: `filter(condition1, condition2)` = 
 
 - Note that R and SQL operators are not exactly alike. R uses `!=` for `Not equal to`. SQL uses `<>` or `!=`. Furthermore, there are some cautions about using `NULL` (NA; unknown or missing): it should be `IS NULL` or `IS NOT NULL` not `=NULL` or `!=NULL`. 
 
-### `arrange` = `ORDER BY`
+- `arrange` = `ORDER BY`
 
 
 ```r
@@ -576,7 +576,7 @@ flights %>%
 **Challenge 7** 
 Your turn: write the same code in SQL (hint: `arrange(var1, desc(var2)) = ORDER BY var1, var2 DESC`)
 
-### `summarise` = `SELECT` `AS` and `group by` = `GROUP BY`
+- `summarise` = `SELECT` `AS` and `group by` = `GROUP BY`
 
 
 ```r
@@ -630,7 +630,7 @@ flights %>%
 ## GROUP BY `month`, `day`
 ```
 
-### Joins 
+- Joins 
 
 - Using joins is simpler in R than it is in SQL.
 
@@ -656,7 +656,7 @@ flights %>%
 ## ON (`LHS`.`year` = `RHS`.`year` AND `LHS`.`month` = `RHS`.`month`)
 ```
 
-## Collect (pull)
+### Collect (pull)
 
 * `collect()` is used to pull the data. Depending on the data size, it may take a long time to run.
 
@@ -691,7 +691,7 @@ origin_flights_plot
 
 <img src="06_big_data_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
-## Disconnect 
+### Disconnect 
 
 
 ```r

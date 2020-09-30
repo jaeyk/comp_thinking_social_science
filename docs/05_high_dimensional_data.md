@@ -981,8 +981,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.744
-## 2 precision binary         0.705
+## 1 accuracy  binary         0.756
+## 2 precision binary         0.721
 ## 3 recall    binary         0.756
 ```
 
@@ -1423,9 +1423,9 @@ best_xg
 
 ```
 ## # A tibble: 1 x 8
-##    mtry trees min_n tree_depth learn_rate loss_reduction sample_size .config
-##   <int> <int> <int>      <int>      <dbl>          <dbl>       <dbl> <chr>  
-## 1    11   326     3         13     0.0176     0.00000254       0.544 Model27
+##    mtry trees min_n tree_depth  learn_rate loss_reduction sample_size .config
+##   <int> <int> <int>      <int>       <dbl>          <dbl>       <dbl> <chr>  
+## 1     6    98     4         13 0.000000211  0.00000000336       0.422 Model26
 ```
 
 ```r
@@ -1487,9 +1487,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.833
-## 2 precision binary         0.810
-## 3 recall    binary         0.829
+## 1 accuracy  binary         0.8  
+## 2 precision binary         0.795
+## 3 recall    binary         0.756
 ```
 
 ### Applications 

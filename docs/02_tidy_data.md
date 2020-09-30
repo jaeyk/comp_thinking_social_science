@@ -33,7 +33,7 @@ pacman::p_load(
 
 The rest of the chapter follows the basic structure in [the Data Wrangling Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) created by RStudio.
 
-## Tidyverse way of thinking data science workflow 
+## Tidyverse 
 
 - [Tidyverse design guide](https://design.tidyverse.org/unifying-principles.html)
 
@@ -47,7 +47,7 @@ The rest of the chapter follows the basic structure in [the Data Wrangling Cheat
     
     - Influenced by the [Basics of the Unix Philosophy](https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html), [The Zen of Python](https://www.python.org/dev/peps/pep-0020/), and the [Design Principles Behind Smalltalk](https://refs.devinmcgloin.com/smalltalk/Design-Principles-Behind-Smalltalk.pdf)
     
-## Tidy data and why it matters
+## Tidy data 
 
 > "Tidy data sets are easy to manipulate, model and visualize, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table." - Hadley Wickham
 
@@ -89,7 +89,7 @@ table1
 ## 6 China        2000 213766 1280428583
 ```
 
-## Reshape Data
+## Reshaping
 
 Let's take a look at the cases of untidy data.
 
@@ -638,7 +638,7 @@ df %>% unite("contact",
 ## 4
 ```
 
-## Represent Data
+## Rearranging
 
 - Arrange
 
@@ -1676,7 +1676,7 @@ tablea %>% kableExtra::kable()
 tablea %>% flextable::flextable()
 ```
 
-<!--html_preserve--><div class="tabwid"><style>.cl-0a86bc8e{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-0a86cce2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-0a86ccf6{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-0a86eee8{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0a86ef06{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0a86ef10{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0a86ef24{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0a86ef2e{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0a86ef2f{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-0a86ef2e"><p class="cl-0a86cce2"><span class="cl-0a86bc8e">continent</span></p></td><td class="cl-0a86ef2f"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">n</span></p></td><td class="cl-0a86ef2f"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">mean_gdp</span></p></td><td class="cl-0a86ef2f"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-0a86eee8"><p class="cl-0a86cce2"><span class="cl-0a86bc8e">Africa</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">624</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">2193.755</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0a86eee8"><p class="cl-0a86cce2"><span class="cl-0a86bc8e">Americas</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">300</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">7136.110</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0a86eee8"><p class="cl-0a86cce2"><span class="cl-0a86bc8e">Asia</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">396</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">7902.150</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0a86eee8"><p class="cl-0a86cce2"><span class="cl-0a86bc8e">Europe</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">360</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">14469.476</span></p></td><td class="cl-0a86ef06"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0a86ef10"><p class="cl-0a86cce2"><span class="cl-0a86bc8e">Oceania</span></p></td><td class="cl-0a86ef24"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">24</span></p></td><td class="cl-0a86ef24"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">18621.609</span></p></td><td class="cl-0a86ef24"><p class="cl-0a86ccf6"><span class="cl-0a86bc8e">6358.983</span></p></td></tr></tbody></table></div><!--/html_preserve-->
+<!--html_preserve--><div class="tabwid"><style>.cl-a1026968{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-a1027da4{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-a1027dc2{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-a102a8a6{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a102a8c4{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a102a8ce{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a102a8e2{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a102a8ec{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a102a8f6{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-a102a8ec"><p class="cl-a1027da4"><span class="cl-a1026968">continent</span></p></td><td class="cl-a102a8f6"><p class="cl-a1027dc2"><span class="cl-a1026968">n</span></p></td><td class="cl-a102a8f6"><p class="cl-a1027dc2"><span class="cl-a1026968">mean_gdp</span></p></td><td class="cl-a102a8f6"><p class="cl-a1027dc2"><span class="cl-a1026968">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-a102a8a6"><p class="cl-a1027da4"><span class="cl-a1026968">Africa</span></p></td><td class="cl-a102a8c4"><p class="cl-a1027dc2"><span class="cl-a1026968">624</span></p></td><td class="cl-a102a8c4"><p class="cl-a1027dc2"><span class="cl-a1026968">2193.755</span></p></td><td class="cl-a102a8c4"><p class="cl-a1027dc2"><span class="cl-a1026968">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a102a8a6"><p class="cl-a1027da4"><span class="cl-a1026968">Americas</span></p></td><td class="cl-a102a8c4"><p class="cl-a1027dc2"><span class="cl-a1026968">300</span></p></td><td class="cl-a102a8c4"><p class="cl-a1027dc2"><span class="cl-a1026968">7136.110</span></p></td><td class="cl-a102a8c4"><p class="cl-a1027dc2"><span class="cl-a1026968">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a102a8a6"><p class="cl-a1027da4"><span class="cl-a1026968">Asia</span></p></td><td class="cl-a102a8c4"><p class="cl-a1027dc2"><span class="cl-a1026968">396</span></p></td><td class="cl-a102a8c4"><p class="cl-a1027dc2"><span class="cl-a1026968">7902.150</span></p></td><td class="cl-a102a8c4"><p class="cl-a1027dc2"><span class="cl-a1026968">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a102a8a6"><p class="cl-a1027da4"><span class="cl-a1026968">Europe</span></p></td><td class="cl-a102a8c4"><p class="cl-a1027dc2"><span class="cl-a1026968">360</span></p></td><td class="cl-a102a8c4"><p class="cl-a1027dc2"><span class="cl-a1026968">14469.476</span></p></td><td class="cl-a102a8c4"><p class="cl-a1027dc2"><span class="cl-a1026968">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a102a8ce"><p class="cl-a1027da4"><span class="cl-a1026968">Oceania</span></p></td><td class="cl-a102a8e2"><p class="cl-a1027dc2"><span class="cl-a1026968">24</span></p></td><td class="cl-a102a8e2"><p class="cl-a1027dc2"><span class="cl-a1026968">18621.609</span></p></td><td class="cl-a102a8e2"><p class="cl-a1027dc2"><span class="cl-a1026968">6358.983</span></p></td></tr></tbody></table></div><!--/html_preserve-->
 
 ### Scoped summaries
 
@@ -2299,7 +2299,9 @@ Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between t
 
 If you want to know more about the power and joy of functional programming in R (e.g., `purrr::map()`), then please take ["How to Automate Repeated Things in R"](https://github.com/dlab-berkeley/R-functional-programming) workshop.
 
-## Mutating joins
+## Joining
+
+### Mutating joins
 
 > Add new variables to one data frame from matching observations in another"
 
@@ -2318,7 +2320,7 @@ y <- tibble(key = c(1:5),
             val_y = c("y1", "y2", "y3", "y4", "y5"))
 ```
 
-### Inner Join
+- Inner Join
 
 `inner_join()` keeps the matched values in both tables. If the left table is a subset of the right table, then the result of `left_join()` is same as `inner_join()`.
 
@@ -2347,7 +2349,7 @@ inner_join(x, y)
 
 ![Mutating joins](https://d33wubrfki0l68.cloudfront.net/aeab386461820b029b7e7606ccff1286f623bae1/ef0d4/diagrams/join-venn.png)
 
-### Left Join
+- Left Join
 
 `left_join()`, `right_join()` and `full_join()` are outer join functions. Unlike `inner_join()`, outer join functions keep observations that appear in at least one of the tables.
 
@@ -2372,7 +2374,7 @@ left_join(x, y)
 ## 4     4 x4    y4
 ```
 
-### Right Join
+- Right Join
 
 `right_join()` does the opposite.
 
@@ -2396,7 +2398,7 @@ right_join(x, y)
 ## 5     5 <NA>  y5
 ```
 
-### Full Join
+- Full Join
 
 `full_join()` keeps the observations from both tables. If they were unmatched, then NAs were recoded in one of the two tables.
 
@@ -2420,11 +2422,11 @@ full_join(x, y)
 ## 5     5 <NA>  y5
 ```
 
-## Filtering joins 
+### Filtering joins 
 
 > Filter observations from one data frame based on whether or not they match an observation in the other table.
 
-### Semi Join
+- Semi Join
 
 In SQL, this type of query is also called subqueries. 
 
@@ -2488,7 +2490,7 @@ head(filtered == joined)
 ## [6,]      TRUE
 ```
 
-### Anti Join
+- Anti Join
 
 `anti_join()` dose the opposite. Exclude the rows that were matched between the two tables. Great technique to filter stopwords when you do a computational text analysis.
 
