@@ -223,7 +223,7 @@ toc()
 ```
 
 ```
-## 0.006 sec elapsed
+## 0.009 sec elapsed
 ```
 
 
@@ -873,7 +873,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[1]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
 ## 
 ## 
 ## [[2]]
@@ -881,7 +881,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[2]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
 ## 
 ## 
 ## [[3]]
@@ -1075,7 +1075,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-09-30"
+date: "2020-10-01"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 

@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-09-30" />
+<meta name="date" content="2020-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -537,7 +537,7 @@ function(input){</p>
 <span id="cb253-12"><a href="functional-programming.html#cb253-12"></a>  out1[[i]] &lt;-<span class="st"> </span><span class="kw">mean</span>(airquality[[i]], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb253-13"><a href="functional-programming.html#cb253-13"></a>}</span>
 <span id="cb253-14"><a href="functional-programming.html#cb253-14"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.006 sec elapsed</code></pre>
+<pre><code>## 0.009 sec elapsed</code></pre>
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="functional-programming.html#cb255-1"></a><span class="kw">tic</span>()</span>
 <span id="cb255-2"><a href="functional-programming.html#cb255-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb255-3"><a href="functional-programming.html#cb255-3"></a><span class="kw">toc</span>()</span></code></pre></div>
@@ -1011,7 +1011,7 @@ Why the above solution is not efficient?</li>
 ## NULL
 ## 
 ## [[1]]$error
-## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds&gt;
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds&gt;
 ## 
 ## 
 ## [[2]]
@@ -1019,7 +1019,7 @@ Why the above solution is not efficient?</li>
 ## NULL
 ## 
 ## [[2]]$error
-## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds&gt;
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds&gt;
 ## 
 ## 
 ## [[3]]
@@ -1198,7 +1198,7 @@ Why the above solution is not efficient?</li>
 <div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="functional-programming.html#cb323-1"></a>usethis<span class="op">::</span><span class="kw">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="functional-programming.html#cb324-1"></a>title<span class="op">:</span><span class="st"> &quot;Vignette title&quot;</span></span>
 <span id="cb324-2"><a href="functional-programming.html#cb324-2"></a>author<span class="op">:</span><span class="st"> &quot;Vignette author&quot;</span></span>
-<span id="cb324-3"><a href="functional-programming.html#cb324-3"></a>date<span class="op">:</span><span class="st"> &quot;2020-09-30&quot;</span></span>
+<span id="cb324-3"><a href="functional-programming.html#cb324-3"></a>date<span class="op">:</span><span class="st"> &quot;2020-10-01&quot;</span></span>
 <span id="cb324-4"><a href="functional-programming.html#cb324-4"></a>output<span class="op">:</span><span class="st"> </span>rmarkdown<span class="op">::</span>html_vignette</span>
 <span id="cb324-5"><a href="functional-programming.html#cb324-5"></a>vignette<span class="op">:</span><span class="st"> </span>blah blah</span></code></pre></div>
 <ul>

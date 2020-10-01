@@ -1,8 +1,8 @@
 --- 
 knitr: "bookdown::render_book"
 title: "Computational Thinking for Social Scientists"
-author: ["Jae Yeon Kim"]
-date: "2020-09-30"
+author: ["[Jae Yeon Kim](https://jaeyk.github.io/)"]
+date: "2020-10-01"
 site: bookdown::bookdown_site
 github-repo: jaeyk/PS239T
 twitter-handle: JaeJaeykim2
@@ -59,7 +59,7 @@ We will learn how to do all of the above mostly in [**R**](https://www.r-project
 
 ### Contributors 
 
-Instructor and content developer: [Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
+- Instructor and content developer: [Jae Yeon Kim](https://jaeyk.github.io/) (jaeyeonkim@berkeley.edu)
 
 ### Time and location 
 
