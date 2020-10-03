@@ -994,7 +994,7 @@ x
 x[c("a", "d")]
 ```
 
-#### Lists
+### Lists
 
 Subsetting a list works in the same way as subsetting an atomic vector. Using `[` will always return a list; `[[` and `$`, as described below, let you pull out the components of the list.
 
@@ -1007,7 +1007,7 @@ l[[1]]
 l["a"]
 ```
 
-#### Matrices
+### Matrices
 
 The most common way of subsetting matrices (2d) is a simple generalization of 1d subsetting: you supply a 1d index for each dimension, separated by a comma. Blank subsetting is now useful because it lets you keep all rows or all columns.
 
@@ -1023,7 +1023,7 @@ a[0, -2]
 a[c(1, 2), -2]
 ```
 
-#### Data frames
+### Data frames
 
 Data from data frames can be addressed like matrices (with row and column indicators separated by a comma).
 
@@ -1063,7 +1063,7 @@ class((df[, "x"]))
 
 See the bottom section on [Simplying and Preserving to know more](#simplify-preserve)
 
-#### Subsetting operators 
+### Subsetting operators 
 
 There are two other subsetting operators: `[[` and `$`. 
 
@@ -1113,7 +1113,7 @@ mtcars$var
 mtcars[[var]]
 ```
 
-#### Subassignment
+### Subassignment
 
 All subsetting operators can be combined with assignment to modify selected values of the input vector.
 
@@ -2003,7 +2003,7 @@ Note that this workshop does not cover creating and manipulating variables using
 
 2.  Turn the summary dataframe into a publishable table using either `kableExtra` or `flextable` package.
 
-#### Tabulization (TBD)
+#### Tabulation (TBD)
 
 ### Grouping
 
