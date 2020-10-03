@@ -22,6 +22,74 @@ For your self-interest and public benefits.
 
 ![](https://github.com/dlab-berkeley/efficient-reproducible-project-management-in-R/blob/master/misc/screenshot.png?raw=true)
 
+#### RStudio 
+
+There are two main ways of interacting with R: using the console or by using script files (plain text files that contain your code).
+
+If R is ready to accept commands, the R console shows a `>` prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using `Ctrl-Enter`; `Command-Enter` will also work on Macs), R will try to execute it, and when ready, show the results and come back with a new `>`-prompt to wait for new commands. This is the equivalent of the `$` in your terminal. 
+
+#### Environment 
+
+##### Objects 
+
+- List objects in your current environment
+
+
+```r
+numbers <- c(1,2,3,4,5)
+
+ls()
+
+rm(numbers)
+```
+
+- Remove objects from your current environment
+
+
+```r
+x <- 5
+
+rm(x)
+```
+
+- Remove all objects from your current environment
+
+
+```r
+a <- 7
+
+b <- 3
+
+rm(list = ls())
+```
+
+- Force memory release 
+
+
+```r
+gc()
+```
+
+##### Packages 
+
+ `install.packages(package-name)` will download a package from one of the CRAN mirrors assuming that a binary is available for your operating system. 
+
+
+```r
+# From CRAN
+install.packages("stats") 
+
+# Load package 
+library(stats)
+
+# From GitHub 
+devtools::install_github()
+
+# Unload package 
+detach("package:stats", unload=TRUE)
+```
+
+- 
 #### How to organize files in a project 
 
 You won't be able to reproduce your project unless it is efficiently organized. 
@@ -418,7 +486,7 @@ arrange(value)
 
 - It's okay for pasting for the first attempt to solve a problem. But if you copy and paste three times (a.k.a. [Rule of Three](https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming)) in programming), something's wrong. You're working too hard. You need to be lazy. What do I mean and how can you do that?
 
-- Example 
+- The following exercise was inspired by [Wickham's example](http://adv-r.had.co.nz/Functional-programming.html).
 
 - Let's imagine `df` is a survey dataset. 
 

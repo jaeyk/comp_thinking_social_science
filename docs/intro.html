@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-10-01" />
+<meta name="date" content="2020-10-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="motivation.html"/>
 <link rel="next" href="tidy-data.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/header-attrs-2.4/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -327,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="big-data.html"><a href="big-data.html#learning-objectives"><i class="fa fa-check"></i><b>8.3</b> Learning objectives</a></li>
 <li class="chapter" data-level="8.4" data-path="big-data.html"><a href="big-data.html#quick-overview"><i class="fa fa-check"></i><b>8.4</b> Quick overview</a></li>
 <li class="chapter" data-level="8.5" data-path="intro.html"><a href="intro.html#setup"><i class="fa fa-check"></i><b>8.5</b> Setup</a></li>
-<li class="chapter" data-level="8.6" data-path="big-data.html"><a href="big-data.html#packages"><i class="fa fa-check"></i><b>8.6</b> Packages</a></li>
+<li class="chapter" data-level="8.6" data-path="intro.html"><a href="intro.html#packages"><i class="fa fa-check"></i><b>8.6</b> Packages</a></li>
 <li class="chapter" data-level="8.7" data-path="big-data.html"><a href="big-data.html#datasets"><i class="fa fa-check"></i><b>8.7</b> Datasets</a></li>
 <li class="chapter" data-level="8.8" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>8.8</b> Workflow</a>
 <ul>
@@ -379,17 +379,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For your self-interest and public benefits.</p>
 <p><img src="https://github.com/dlab-berkeley/efficient-reproducible-project-management-in-R/blob/master/misc/screenshot.png?raw=true" /></p>
 </div>
-<div id="how-to-organize-files-in-a-project" class="section level4" number="3.1.1.3">
-<h4><span class="header-section-number">3.1.1.3</span> How to organize files in a project</h4>
+<div id="rstudio" class="section level4" number="3.1.1.3">
+<h4><span class="header-section-number">3.1.1.3</span> RStudio</h4>
+<p>There are two main ways of interacting with R: using the console or by using script files (plain text files that contain your code).</p>
+<p>If R is ready to accept commands, the R console shows a <code>&gt;</code> prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using <code>Ctrl-Enter</code>; <code>Command-Enter</code> will also work on Macs), R will try to execute it, and when ready, show the results and come back with a new <code>&gt;</code>-prompt to wait for new commands. This is the equivalent of the <code>$</code> in your terminal.</p>
+</div>
+<div id="environment" class="section level4" number="3.1.1.4">
+<h4><span class="header-section-number">3.1.1.4</span> Environment</h4>
+<div id="objects" class="section level5" number="3.1.1.4.1">
+<h5><span class="header-section-number">3.1.1.4.1</span> Objects</h5>
+<ul>
+<li>List objects in your current environment</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1"></a>numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb2-2"><a href="intro.html#cb2-2"></a></span>
+<span id="cb2-3"><a href="intro.html#cb2-3"></a><span class="kw">ls</span>()</span>
+<span id="cb2-4"><a href="intro.html#cb2-4"></a></span>
+<span id="cb2-5"><a href="intro.html#cb2-5"></a><span class="kw">rm</span>(numbers)</span></code></pre></div>
+<ul>
+<li>Remove objects from your current environment</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb3-2"><a href="intro.html#cb3-2"></a></span>
+<span id="cb3-3"><a href="intro.html#cb3-3"></a><span class="kw">rm</span>(x)</span></code></pre></div>
+<ul>
+<li>Remove all objects from your current environment</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro.html#cb4-1"></a>a &lt;-<span class="st"> </span><span class="dv">7</span></span>
+<span id="cb4-2"><a href="intro.html#cb4-2"></a></span>
+<span id="cb4-3"><a href="intro.html#cb4-3"></a>b &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb4-4"><a href="intro.html#cb4-4"></a></span>
+<span id="cb4-5"><a href="intro.html#cb4-5"></a><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</span></code></pre></div>
+<ul>
+<li>Force memory release</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1"></a><span class="kw">gc</span>()</span></code></pre></div>
+</div>
+<div id="packages" class="section level5" number="3.1.1.4.2">
+<h5><span class="header-section-number">3.1.1.4.2</span> Packages</h5>
+<p><code>install.packages(package-name)</code> will download a package from one of the CRAN mirrors assuming that a binary is available for your operating system.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1"></a><span class="co"># From CRAN</span></span>
+<span id="cb6-2"><a href="intro.html#cb6-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;stats&quot;</span>) </span>
+<span id="cb6-3"><a href="intro.html#cb6-3"></a></span>
+<span id="cb6-4"><a href="intro.html#cb6-4"></a><span class="co"># Load package </span></span>
+<span id="cb6-5"><a href="intro.html#cb6-5"></a><span class="kw">library</span>(stats)</span>
+<span id="cb6-6"><a href="intro.html#cb6-6"></a></span>
+<span id="cb6-7"><a href="intro.html#cb6-7"></a><span class="co"># From GitHub </span></span>
+<span id="cb6-8"><a href="intro.html#cb6-8"></a>devtools<span class="op">::</span><span class="kw">install_github</span>()</span>
+<span id="cb6-9"><a href="intro.html#cb6-9"></a></span>
+<span id="cb6-10"><a href="intro.html#cb6-10"></a><span class="co"># Unload package </span></span>
+<span id="cb6-11"><a href="intro.html#cb6-11"></a><span class="kw">detach</span>(<span class="st">&quot;package:stats&quot;</span>, <span class="dt">unload=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<ul>
+<li><h4 id="how-to-organize-files-in-a-project">How to organize files in a project</h4></li>
+</ul>
 <p>You won’t be able to reproduce your project unless it is efficiently organized.</p>
 <p>Step 1. <a href="https://environments.rstudio.com/"><strong>Environment</strong></a> is part of your project. If someone can’t reproduce your environment, they won’t be able to run your code.</p>
 <ul>
 <li>Launch R Studio. Choose Tools &gt; Global Options. You should not check <code>Restor .RData into workspace at startup</code> and set saving workspace option to <code>NEVER</code>.</li>
 </ul>
 <p>Step 2. For each project, create a project directory named after the project.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1"></a><span class="co"># Don&#39;t name it a project. Use a name that&#39;s more informative. For instance, us_election not my_project.</span></span>
-<span id="cb2-2"><a href="intro.html#cb2-2"></a></span>
-<span id="cb2-3"><a href="intro.html#cb2-3"></a><span class="kw">dir.create</span>(<span class="st">&quot;../us_election&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1"></a><span class="co"># Don&#39;t name it a project. Use a name that&#39;s more informative. For instance, us_election not my_project.</span></span>
+<span id="cb7-2"><a href="intro.html#cb7-2"></a></span>
+<span id="cb7-3"><a href="intro.html#cb7-3"></a><span class="kw">dir.create</span>(<span class="st">&quot;../us_election&quot;</span>)</span></code></pre></div>
 <p>Step 3. Launch R Studio. Choose File &gt; New project &gt; Browse existing directories &gt; Create project This allows each project has its own workspace.</p>
 <p>Step 4. Organize files by putting them in separate subdirectories and naming them in a sensible way.</p>
 <ul>
@@ -398,28 +449,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Note that version control does not need replace backup. You still need to backup your raw data.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;data&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;data&quot;</span>))</span></code></pre></div>
 <ul>
 <li>Separate read-only data from processed data and put in the <code>processed_data</code> subdirectory.</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro.html#cb4-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;processed_data&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="intro.html#cb9-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;processed_data&quot;</span>))</span></code></pre></div>
 <ul>
 <li>Put your code in the <code>src</code> subdirectory.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;src&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intro.html#cb10-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;src&quot;</span>))</span></code></pre></div>
 <ul>
 <li>Put generated outputs (e.g., tables, figures) in the <code>outputs</code> subdirectory and treat them as disposable.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;outputs&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="intro.html#cb11-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;outputs&quot;</span>))</span></code></pre></div>
 <ul>
 <li>Put your custom functions in the <code>functions</code> subdirectory. You can gather some of these functions and distribute them as an open-source library.</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;src&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;src&quot;</span>))</span></code></pre></div>
 <p><strong>Challenge 2</strong></p>
 <p>Set a project structure for a project named “starwars”.</p>
 </div>
-<div id="how-to-organize-code-in-a-r-markdown-file" class="section level4" number="3.1.1.4">
-<h4><span class="header-section-number">3.1.1.4</span> How to organize code in a R markdown file</h4>
+</div>
+<div id="how-to-organize-code-in-a-r-markdown-file" class="section level4" number="3.1.1.5">
+<h4><span class="header-section-number">3.1.1.5</span> How to organize code in a R markdown file</h4>
 <ul>
 <li><p>In addition to environment, <strong>workflow</strong> is an important component of project efficiency and reproducibility.</p></li>
 <li><p>What is R markdown? An R package, developed by <a href="https://yihui.org/en/">Yihui Xie</a>, that provides an authoring framework for data science. Xie is also a developer of many widely popular R packages such as <code>knitr</code>, <a href="https://github.com/yihui/xaringan"><code>xaringan</code></a> (cool kids use xaringan not <a href="https://en.wikipedia.org/wiki/Beamer_(LaTeX)">Beamer</a> these days), <code>blogdown</code> (used to create <a href="https://jaeyk.github.io/">my personal website</a>), and <code>bookdown</code> (used to create this book) among many others.</p>
@@ -442,17 +494,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>R Markdown basic syntax</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1"></a><span class="co"># Header 1</span></span>
-<span id="cb8-2"><a href="intro.html#cb8-2"></a><span class="co">## Header 2</span></span>
-<span id="cb8-3"><a href="intro.html#cb8-3"></a><span class="co">### Header 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro.html#cb13-1"></a><span class="co"># Header 1</span></span>
+<span id="cb13-2"><a href="intro.html#cb13-2"></a><span class="co">## Header 2</span></span>
+<span id="cb13-3"><a href="intro.html#cb13-3"></a><span class="co">### Header 3</span></span></code></pre></div>
 <ul>
 <li>Use these section headers to indicate workflow.</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="intro.html#cb9-1"></a><span class="co"># Import packages and data</span></span>
-<span id="cb9-2"><a href="intro.html#cb9-2"></a><span class="co"># Tidy data</span></span>
-<span id="cb9-3"><a href="intro.html#cb9-3"></a><span class="co"># Wrangle data</span></span>
-<span id="cb9-4"><a href="intro.html#cb9-4"></a><span class="co"># Model data</span></span>
-<span id="cb9-5"><a href="intro.html#cb9-5"></a><span class="co"># Visualize data</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="intro.html#cb14-1"></a><span class="co"># Import packages and data</span></span>
+<span id="cb14-2"><a href="intro.html#cb14-2"></a><span class="co"># Tidy data</span></span>
+<span id="cb14-3"><a href="intro.html#cb14-3"></a><span class="co"># Wrangle data</span></span>
+<span id="cb14-4"><a href="intro.html#cb14-4"></a><span class="co"># Model data</span></span>
+<span id="cb14-5"><a href="intro.html#cb14-5"></a><span class="co"># Visualize data</span></span></code></pre></div>
 <ul>
 <li><p>Press <code>ctrl + shift + o</code>. You can see a document outline based on these headers. This is a nice feature for finding code you need to focus.</p></li>
 <li><p>If your project’s scale is large, then divide these sections into files, number, and save them in <code>code</code> subdirectory.</p>
@@ -463,22 +515,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
-<div id="making-a-project-computationally-reproducible" class="section level4" number="3.1.1.5">
-<h4><span class="header-section-number">3.1.1.5</span> Making a project computationally reproducible</h4>
+<div id="making-a-project-computationally-reproducible" class="section level4" number="3.1.1.6">
+<h4><span class="header-section-number">3.1.1.6</span> Making a project computationally reproducible</h4>
 <ul>
 <li><p><code>setwd()</code>: set a working directory.</p></li>
 <li><p>Note that using <code>setwd()</code> is not a reproducible way to set up your project. For instance, none will be able to run the following code except me.</p></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intro.html#cb10-1"></a><span class="co"># Set a working directory </span></span>
-<span id="cb10-2"><a href="intro.html#cb10-2"></a><span class="kw">setwd</span>(<span class="st">&quot;/home/jae/starwars&quot;</span>)</span>
-<span id="cb10-3"><a href="intro.html#cb10-3"></a></span>
-<span id="cb10-4"><a href="intro.html#cb10-4"></a><span class="co"># Do something </span></span>
-<span id="cb10-5"><a href="intro.html#cb10-5"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span></span>
-<span id="cb10-6"><a href="intro.html#cb10-6"></a><span class="st">   </span><span class="kw">geom_point</span>()</span>
-<span id="cb10-7"><a href="intro.html#cb10-7"></a></span>
-<span id="cb10-8"><a href="intro.html#cb10-8"></a><span class="co"># Export the object. </span></span>
-<span id="cb10-9"><a href="intro.html#cb10-9"></a><span class="co"># dot means the working directory set by setwd()</span></span>
-<span id="cb10-10"><a href="intro.html#cb10-10"></a><span class="kw">ggsave</span>(<span class="st">&quot;./outputs/example.png&quot;</span>) <span class="co"># This is called relative path </span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro.html#cb15-1"></a><span class="co"># Set a working directory </span></span>
+<span id="cb15-2"><a href="intro.html#cb15-2"></a><span class="kw">setwd</span>(<span class="st">&quot;/home/jae/starwars&quot;</span>)</span>
+<span id="cb15-3"><a href="intro.html#cb15-3"></a></span>
+<span id="cb15-4"><a href="intro.html#cb15-4"></a><span class="co"># Do something </span></span>
+<span id="cb15-5"><a href="intro.html#cb15-5"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span></span>
+<span id="cb15-6"><a href="intro.html#cb15-6"></a><span class="st">   </span><span class="kw">geom_point</span>()</span>
+<span id="cb15-7"><a href="intro.html#cb15-7"></a></span>
+<span id="cb15-8"><a href="intro.html#cb15-8"></a><span class="co"># Export the object. </span></span>
+<span id="cb15-9"><a href="intro.html#cb15-9"></a><span class="co"># dot means the working directory set by setwd()</span></span>
+<span id="cb15-10"><a href="intro.html#cb15-10"></a><span class="kw">ggsave</span>(<span class="st">&quot;./outputs/example.png&quot;</span>) <span class="co"># This is called relative path </span></span></code></pre></div>
 <ul>
 <li><p>Instead, learn how to use <code>here()</code>’.</p>
 <ul>
@@ -486,22 +538,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Example</p></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="intro.html#cb11-1"></a><span class="co"># New: Reproducible </span></span>
-<span id="cb11-2"><a href="intro.html#cb11-2"></a></span>
-<span id="cb11-3"><a href="intro.html#cb11-3"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span></span>
-<span id="cb11-4"><a href="intro.html#cb11-4"></a><span class="st">   </span><span class="kw">geom_point</span>()</span>
-<span id="cb11-5"><a href="intro.html#cb11-5"></a></span>
-<span id="cb11-6"><a href="intro.html#cb11-6"></a><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;outputs&quot;</span>, <span class="st">&quot;example.png&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="intro.html#cb16-1"></a><span class="co"># New: Reproducible </span></span>
+<span id="cb16-2"><a href="intro.html#cb16-2"></a></span>
+<span id="cb16-3"><a href="intro.html#cb16-3"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span></span>
+<span id="cb16-4"><a href="intro.html#cb16-4"></a><span class="st">   </span><span class="kw">geom_point</span>()</span>
+<span id="cb16-5"><a href="intro.html#cb16-5"></a></span>
+<span id="cb16-6"><a href="intro.html#cb16-6"></a><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;outputs&quot;</span>, <span class="st">&quot;example.png&quot;</span>))</span></code></pre></div>
 <ul>
 <li>How <code>here</code> works</li>
 </ul>
 <p><code>here()</code> function shows what’s the top-level project directory.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1"></a>here<span class="op">::</span><span class="kw">here</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="intro.html#cb17-1"></a>here<span class="op">::</span><span class="kw">here</span>()</span></code></pre></div>
 <ul>
 <li>Build a path including subdirectories</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro.html#cb13-1"></a>here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;outputs&quot;</span>)</span>
-<span id="cb13-2"><a href="intro.html#cb13-2"></a>           <span class="co">#depth 1   #depth 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro.html#cb18-1"></a>here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;outputs&quot;</span>)</span>
+<span id="cb18-2"><a href="intro.html#cb18-2"></a>           <span class="co">#depth 1   #depth 2</span></span></code></pre></div>
 <ul>
 <li><p>How <code>here</code> defines the top-level project directory. The following list came from <a href="https://github.com/jennybc/here_here">the here package vignette</a>).</p>
 <ul>
@@ -529,16 +581,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="writing-your-first-shell-script" class="section level5" number="3.1.2.1.1">
 <h5><span class="header-section-number">3.1.2.1.1</span> Writing your first shell script</h5>
 <p>Write a shell script that creates a directory called <code>/pdfs</code> under <code>/Download</code> directory, then find PDF files in <code>/Download</code> and copy those files to <code>pdfs</code>. This shell script creates a backup.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="intro.html#cb14-1"></a></span>
-<span id="cb14-2"><a href="intro.html#cb14-2"></a><span class="co">#!/bin/sh</span></span>
-<span id="cb14-3"><a href="intro.html#cb14-3"></a></span>
-<span id="cb14-4"><a href="intro.html#cb14-4"></a><span class="fu">mkdir</span> /home/jae/Downloads/pdfs </span>
-<span id="cb14-5"><a href="intro.html#cb14-5"></a></span>
-<span id="cb14-6"><a href="intro.html#cb14-6"></a><span class="bu">cd</span> Download</span>
-<span id="cb14-7"><a href="intro.html#cb14-7"></a></span>
-<span id="cb14-8"><a href="intro.html#cb14-8"></a><span class="fu">cp</span> *.pdf pdfs/ </span>
-<span id="cb14-9"><a href="intro.html#cb14-9"></a></span>
-<span id="cb14-10"><a href="intro.html#cb14-10"></a><span class="bu">echo</span> <span class="st">&quot;Copied pdfs&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="intro.html#cb19-1"></a></span>
+<span id="cb19-2"><a href="intro.html#cb19-2"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb19-3"><a href="intro.html#cb19-3"></a></span>
+<span id="cb19-4"><a href="intro.html#cb19-4"></a><span class="fu">mkdir</span> /home/jae/Downloads/pdfs </span>
+<span id="cb19-5"><a href="intro.html#cb19-5"></a></span>
+<span id="cb19-6"><a href="intro.html#cb19-6"></a><span class="bu">cd</span> Download</span>
+<span id="cb19-7"><a href="intro.html#cb19-7"></a></span>
+<span id="cb19-8"><a href="intro.html#cb19-8"></a><span class="fu">cp</span> *.pdf pdfs/ </span>
+<span id="cb19-9"><a href="intro.html#cb19-9"></a></span>
+<span id="cb19-10"><a href="intro.html#cb19-10"></a><span class="bu">echo</span> <span class="st">&quot;Copied pdfs&quot;</span></span></code></pre></div>
 </div>
 </div>
 <div id="what-are-git-and-github" class="section level4" number="3.1.2.2">
@@ -617,11 +669,11 @@ allowfullscreen></iframe>
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro.html#cb15-1"></a><span class="co"># Good</span></span>
-<span id="cb15-2"><a href="intro.html#cb15-2"></a>fit_models.R</span>
-<span id="cb15-3"><a href="intro.html#cb15-3"></a></span>
-<span id="cb15-4"><a href="intro.html#cb15-4"></a><span class="co"># Bad</span></span>
-<span id="cb15-5"><a href="intro.html#cb15-5"></a>fit models.R</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro.html#cb20-1"></a><span class="co"># Good</span></span>
+<span id="cb20-2"><a href="intro.html#cb20-2"></a>fit_models.R</span>
+<span id="cb20-3"><a href="intro.html#cb20-3"></a></span>
+<span id="cb20-4"><a href="intro.html#cb20-4"></a><span class="co"># Bad</span></span>
+<span id="cb20-5"><a href="intro.html#cb20-5"></a>fit models.R</span></code></pre></div>
 <ul>
 <li>When naming objects:
 <ul>
@@ -629,11 +681,11 @@ allowfullscreen></iframe>
 <li>Don’t capitalize.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="intro.html#cb16-1"></a><span class="co"># Good </span></span>
-<span id="cb16-2"><a href="intro.html#cb16-2"></a>day_one</span>
-<span id="cb16-3"><a href="intro.html#cb16-3"></a>    </span>
-<span id="cb16-4"><a href="intro.html#cb16-4"></a><span class="co"># Bad </span></span>
-<span id="cb16-5"><a href="intro.html#cb16-5"></a>DayOne</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="intro.html#cb21-1"></a><span class="co"># Good </span></span>
+<span id="cb21-2"><a href="intro.html#cb21-2"></a>day_one</span>
+<span id="cb21-3"><a href="intro.html#cb21-3"></a>    </span>
+<span id="cb21-4"><a href="intro.html#cb21-4"></a><span class="co"># Bad </span></span>
+<span id="cb21-5"><a href="intro.html#cb21-5"></a>DayOne</span></code></pre></div>
 <ul>
 <li>When naming functions:
 <ul>
@@ -642,49 +694,49 @@ allowfullscreen></iframe>
 <li>Use <code>verbs</code> instead of <code>nouns</code>. (Functions do something!)</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="intro.html#cb17-1"></a><span class="co"># Good </span></span>
-<span id="cb17-2"><a href="intro.html#cb17-2"></a>run_rdd </span>
-<span id="cb17-3"><a href="intro.html#cb17-3"></a></span>
-<span id="cb17-4"><a href="intro.html#cb17-4"></a><span class="co"># Bad </span></span>
-<span id="cb17-5"><a href="intro.html#cb17-5"></a>rdd</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro.html#cb22-1"></a><span class="co"># Good </span></span>
+<span id="cb22-2"><a href="intro.html#cb22-2"></a>run_rdd </span>
+<span id="cb22-3"><a href="intro.html#cb22-3"></a></span>
+<span id="cb22-4"><a href="intro.html#cb22-4"></a><span class="co"># Bad </span></span>
+<span id="cb22-5"><a href="intro.html#cb22-5"></a>rdd</span></code></pre></div>
 <ul>
 <li>Spacing</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro.html#cb18-1"></a><span class="co"># Good</span></span>
-<span id="cb18-2"><a href="intro.html#cb18-2"></a>x[, <span class="dv">1</span>] </span>
-<span id="cb18-3"><a href="intro.html#cb18-3"></a></span>
-<span id="cb18-4"><a href="intro.html#cb18-4"></a><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </span>
-<span id="cb18-5"><a href="intro.html#cb18-5"></a></span>
-<span id="cb18-6"><a href="intro.html#cb18-6"></a><span class="co"># Bad</span></span>
-<span id="cb18-7"><a href="intro.html#cb18-7"></a></span>
-<span id="cb18-8"><a href="intro.html#cb18-8"></a>x[,<span class="dv">1</span>]</span>
-<span id="cb18-9"><a href="intro.html#cb18-9"></a></span>
-<span id="cb18-10"><a href="intro.html#cb18-10"></a><span class="kw">mean</span> (x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="intro.html#cb23-1"></a><span class="co"># Good</span></span>
+<span id="cb23-2"><a href="intro.html#cb23-2"></a>x[, <span class="dv">1</span>] </span>
+<span id="cb23-3"><a href="intro.html#cb23-3"></a></span>
+<span id="cb23-4"><a href="intro.html#cb23-4"></a><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </span>
+<span id="cb23-5"><a href="intro.html#cb23-5"></a></span>
+<span id="cb23-6"><a href="intro.html#cb23-6"></a><span class="co"># Bad</span></span>
+<span id="cb23-7"><a href="intro.html#cb23-7"></a></span>
+<span id="cb23-8"><a href="intro.html#cb23-8"></a>x[,<span class="dv">1</span>]</span>
+<span id="cb23-9"><a href="intro.html#cb23-9"></a></span>
+<span id="cb23-10"><a href="intro.html#cb23-10"></a><span class="kw">mean</span> (x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <ul>
 <li>Indenting</li>
 </ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro.html#cb19-1"></a><span class="co"># Good</span></span>
-<span id="cb19-2"><a href="intro.html#cb19-2"></a><span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb19-3"><a href="intro.html#cb19-3"></a>  <span class="kw">message</span>(<span class="st">&quot;y is negative&quot;</span>)</span>
-<span id="cb19-4"><a href="intro.html#cb19-4"></a>}</span>
-<span id="cb19-5"><a href="intro.html#cb19-5"></a></span>
-<span id="cb19-6"><a href="intro.html#cb19-6"></a><span class="co"># Bad</span></span>
-<span id="cb19-7"><a href="intro.html#cb19-7"></a><span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb19-8"><a href="intro.html#cb19-8"></a><span class="kw">message</span>(<span class="st">&quot;Y is negative&quot;</span>)}</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1"></a><span class="co"># Good</span></span>
+<span id="cb24-2"><a href="intro.html#cb24-2"></a><span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb24-3"><a href="intro.html#cb24-3"></a>  <span class="kw">message</span>(<span class="st">&quot;y is negative&quot;</span>)</span>
+<span id="cb24-4"><a href="intro.html#cb24-4"></a>}</span>
+<span id="cb24-5"><a href="intro.html#cb24-5"></a></span>
+<span id="cb24-6"><a href="intro.html#cb24-6"></a><span class="co"># Bad</span></span>
+<span id="cb24-7"><a href="intro.html#cb24-7"></a><span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb24-8"><a href="intro.html#cb24-8"></a><span class="kw">message</span>(<span class="st">&quot;Y is negative&quot;</span>)}</span></code></pre></div>
 <ul>
 <li>Long lines</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro.html#cb20-1"></a><span class="co"># Good</span></span>
-<span id="cb20-2"><a href="intro.html#cb20-2"></a><span class="kw">do_something_very_complicated</span>(</span>
-<span id="cb20-3"><a href="intro.html#cb20-3"></a>  <span class="dt">something =</span> <span class="st">&quot;that&quot;</span>,</span>
-<span id="cb20-4"><a href="intro.html#cb20-4"></a>  <span class="dt">requires =</span> many,</span>
-<span id="cb20-5"><a href="intro.html#cb20-5"></a>  <span class="dt">arguments =</span> <span class="st">&quot;some of which may be long&quot;</span></span>
-<span id="cb20-6"><a href="intro.html#cb20-6"></a>)</span>
-<span id="cb20-7"><a href="intro.html#cb20-7"></a></span>
-<span id="cb20-8"><a href="intro.html#cb20-8"></a><span class="co"># Bad</span></span>
-<span id="cb20-9"><a href="intro.html#cb20-9"></a><span class="kw">do_something_very_complicated</span>(<span class="st">&quot;that&quot;</span>, <span class="dt">requires =</span> many, <span class="dt">arguments =</span></span>
-<span id="cb20-10"><a href="intro.html#cb20-10"></a>                              <span class="st">&quot;some of which may be long&quot;</span></span>
-<span id="cb20-11"><a href="intro.html#cb20-11"></a>                              )</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="intro.html#cb25-1"></a><span class="co"># Good</span></span>
+<span id="cb25-2"><a href="intro.html#cb25-2"></a><span class="kw">do_something_very_complicated</span>(</span>
+<span id="cb25-3"><a href="intro.html#cb25-3"></a>  <span class="dt">something =</span> <span class="st">&quot;that&quot;</span>,</span>
+<span id="cb25-4"><a href="intro.html#cb25-4"></a>  <span class="dt">requires =</span> many,</span>
+<span id="cb25-5"><a href="intro.html#cb25-5"></a>  <span class="dt">arguments =</span> <span class="st">&quot;some of which may be long&quot;</span></span>
+<span id="cb25-6"><a href="intro.html#cb25-6"></a>)</span>
+<span id="cb25-7"><a href="intro.html#cb25-7"></a></span>
+<span id="cb25-8"><a href="intro.html#cb25-8"></a><span class="co"># Bad</span></span>
+<span id="cb25-9"><a href="intro.html#cb25-9"></a><span class="kw">do_something_very_complicated</span>(<span class="st">&quot;that&quot;</span>, <span class="dt">requires =</span> many, <span class="dt">arguments =</span></span>
+<span id="cb25-10"><a href="intro.html#cb25-10"></a>                              <span class="st">&quot;some of which may be long&quot;</span></span>
+<span id="cb25-11"><a href="intro.html#cb25-11"></a>                              )</span></code></pre></div>
 <ul>
 <li>Comments
 <ul>
@@ -693,27 +745,27 @@ allowfullscreen></iframe>
 <li>Also, try to comment out rather than delete the code that you experiment with.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="intro.html#cb21-1"></a><span class="co"># Average sleep hours of Jae</span></span>
-<span id="cb21-2"><a href="intro.html#cb21-2"></a>jae <span class="op">%&gt;%</span></span>
-<span id="cb21-3"><a href="intro.html#cb21-3"></a><span class="st">  </span><span class="co"># By week</span></span>
-<span id="cb21-4"><a href="intro.html#cb21-4"></a><span class="st">  </span><span class="kw">group_by</span>(week) <span class="op">%&gt;%</span></span>
-<span id="cb21-5"><a href="intro.html#cb21-5"></a><span class="st">  </span><span class="co"># Mean sleep hours </span></span>
-<span id="cb21-6"><a href="intro.html#cb21-6"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">week_sleep =</span> <span class="kw">mean</span>(sleep, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1"></a><span class="co"># Average sleep hours of Jae</span></span>
+<span id="cb26-2"><a href="intro.html#cb26-2"></a>jae <span class="op">%&gt;%</span></span>
+<span id="cb26-3"><a href="intro.html#cb26-3"></a><span class="st">  </span><span class="co"># By week</span></span>
+<span id="cb26-4"><a href="intro.html#cb26-4"></a><span class="st">  </span><span class="kw">group_by</span>(week) <span class="op">%&gt;%</span></span>
+<span id="cb26-5"><a href="intro.html#cb26-5"></a><span class="st">  </span><span class="co"># Mean sleep hours </span></span>
+<span id="cb26-6"><a href="intro.html#cb26-6"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">week_sleep =</span> <span class="kw">mean</span>(sleep, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <ul>
 <li>Pipes (chaining commands)</li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro.html#cb22-1"></a><span class="co"># Good</span></span>
-<span id="cb22-2"><a href="intro.html#cb22-2"></a>iris <span class="op">%&gt;%</span></span>
-<span id="cb22-3"><a href="intro.html#cb22-3"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span></span>
-<span id="cb22-4"><a href="intro.html#cb22-4"></a><span class="st">  </span><span class="kw">summarize_if</span>(is.numeric, mean) <span class="op">%&gt;%</span></span>
-<span id="cb22-5"><a href="intro.html#cb22-5"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
-<span id="cb22-6"><a href="intro.html#cb22-6"></a><span class="st">  </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></span>
-<span id="cb22-7"><a href="intro.html#cb22-7"></a><span class="st">  </span><span class="kw">arrange</span>(value)</span>
-<span id="cb22-8"><a href="intro.html#cb22-8"></a></span>
-<span id="cb22-9"><a href="intro.html#cb22-9"></a><span class="co"># Bad</span></span>
-<span id="cb22-10"><a href="intro.html#cb22-10"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize_all</span>(mean) <span class="op">%&gt;%</span></span>
-<span id="cb22-11"><a href="intro.html#cb22-11"></a>ungroup <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></span>
-<span id="cb22-12"><a href="intro.html#cb22-12"></a><span class="kw">arrange</span>(value)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="intro.html#cb27-1"></a><span class="co"># Good</span></span>
+<span id="cb27-2"><a href="intro.html#cb27-2"></a>iris <span class="op">%&gt;%</span></span>
+<span id="cb27-3"><a href="intro.html#cb27-3"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span></span>
+<span id="cb27-4"><a href="intro.html#cb27-4"></a><span class="st">  </span><span class="kw">summarize_if</span>(is.numeric, mean) <span class="op">%&gt;%</span></span>
+<span id="cb27-5"><a href="intro.html#cb27-5"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb27-6"><a href="intro.html#cb27-6"></a><span class="st">  </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></span>
+<span id="cb27-7"><a href="intro.html#cb27-7"></a><span class="st">  </span><span class="kw">arrange</span>(value)</span>
+<span id="cb27-8"><a href="intro.html#cb27-8"></a></span>
+<span id="cb27-9"><a href="intro.html#cb27-9"></a><span class="co"># Bad</span></span>
+<span id="cb27-10"><a href="intro.html#cb27-10"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize_all</span>(mean) <span class="op">%&gt;%</span></span>
+<span id="cb27-11"><a href="intro.html#cb27-11"></a>ungroup <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></span>
+<span id="cb27-12"><a href="intro.html#cb27-12"></a><span class="kw">arrange</span>(value)</span></code></pre></div>
 <ul>
 <li><p>Additional tips</p></li>
 <li><p>Use <code>lintr</code> to check whether your code complies with a recommended style guideline (e.g., <code>tidyverse</code>) and <code>styler</code> package to format your code according to the style guideline.</p></li>
@@ -733,7 +785,7 @@ allowfullscreen></iframe>
 </blockquote>
 <ul>
 <li><p>It’s okay for pasting for the first attempt to solve a problem. But if you copy and paste three times (a.k.a. <a href="https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming)">Rule of Three</a> in programming), something’s wrong. You’re working too hard. You need to be lazy. What do I mean and how can you do that?</p></li>
-<li><p>Example</p></li>
+<li><p>The following exercise was inspired by <a href="http://adv-r.had.co.nz/Functional-programming.html">Wickham’s example</a>.</p></li>
 <li><p>Let’s imagine <code>df</code> is a survey dataset.</p>
 <ul>
 <li><p><code>a, b, c, d</code> = Survey questions</p></li>
@@ -741,21 +793,21 @@ allowfullscreen></iframe>
 <li><p>Your goal: replace <code>-99</code> with <code>NA</code></p></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="intro.html#cb23-1"></a><span class="co"># Data</span></span>
-<span id="cb23-2"><a href="intro.html#cb23-2"></a></span>
-<span id="cb23-3"><a href="intro.html#cb23-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co"># for reproducibility </span></span>
-<span id="cb23-4"><a href="intro.html#cb23-4"></a></span>
-<span id="cb23-5"><a href="intro.html#cb23-5"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
-<span id="cb23-6"><a href="intro.html#cb23-6"></a>             <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
-<span id="cb23-7"><a href="intro.html#cb23-7"></a>             <span class="st">&quot;c&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
-<span id="cb23-8"><a href="intro.html#cb23-8"></a>             <span class="st">&quot;d&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1"></a><span class="co"># Copy and paste </span></span>
-<span id="cb24-2"><a href="intro.html#cb24-2"></a>df<span class="op">$</span>a[df<span class="op">$</span>a <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb24-3"><a href="intro.html#cb24-3"></a>df<span class="op">$</span>b[df<span class="op">$</span>b <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb24-4"><a href="intro.html#cb24-4"></a>df<span class="op">$</span>c[df<span class="op">$</span>c <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb24-5"><a href="intro.html#cb24-5"></a>df<span class="op">$</span>d[df<span class="op">$</span>d <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb24-6"><a href="intro.html#cb24-6"></a></span>
-<span id="cb24-7"><a href="intro.html#cb24-7"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1"></a><span class="co"># Data</span></span>
+<span id="cb28-2"><a href="intro.html#cb28-2"></a></span>
+<span id="cb28-3"><a href="intro.html#cb28-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co"># for reproducibility </span></span>
+<span id="cb28-4"><a href="intro.html#cb28-4"></a></span>
+<span id="cb28-5"><a href="intro.html#cb28-5"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
+<span id="cb28-6"><a href="intro.html#cb28-6"></a>             <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
+<span id="cb28-7"><a href="intro.html#cb28-7"></a>             <span class="st">&quot;c&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
+<span id="cb28-8"><a href="intro.html#cb28-8"></a>             <span class="st">&quot;d&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="intro.html#cb29-1"></a><span class="co"># Copy and paste </span></span>
+<span id="cb29-2"><a href="intro.html#cb29-2"></a>df<span class="op">$</span>a[df<span class="op">$</span>a <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb29-3"><a href="intro.html#cb29-3"></a>df<span class="op">$</span>b[df<span class="op">$</span>b <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb29-4"><a href="intro.html#cb29-4"></a>df<span class="op">$</span>c[df<span class="op">$</span>c <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb29-5"><a href="intro.html#cb29-5"></a>df<span class="op">$</span>d[df<span class="op">$</span>d <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb29-6"><a href="intro.html#cb29-6"></a></span>
+<span id="cb29-7"><a href="intro.html#cb29-7"></a>df</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##       a     b     c     d
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -771,20 +823,20 @@ allowfullscreen></iframe>
 <li>If you write a function, you gain efficiency because you don’t need to copy and paste the computation part.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1"></a><span class="co"># Create a custom function</span></span>
-<span id="cb26-2"><a href="intro.html#cb26-2"></a>fix_missing &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="co"># INPUT</span></span>
-<span id="cb26-3"><a href="intro.html#cb26-3"></a>  x[x <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># COMPUTATION</span></span>
-<span id="cb26-4"><a href="intro.html#cb26-4"></a>  x <span class="co"># OUTPUT </span></span>
-<span id="cb26-5"><a href="intro.html#cb26-5"></a>}</span>
-<span id="cb26-6"><a href="intro.html#cb26-6"></a></span>
-<span id="cb26-7"><a href="intro.html#cb26-7"></a><span class="co"># Apply the function to each column (vector)</span></span>
-<span id="cb26-8"><a href="intro.html#cb26-8"></a><span class="co"># This iterated part can and should be automated.</span></span>
-<span id="cb26-9"><a href="intro.html#cb26-9"></a>df<span class="op">$</span>a &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>a)</span>
-<span id="cb26-10"><a href="intro.html#cb26-10"></a>df<span class="op">$</span>b &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>b)</span>
-<span id="cb26-11"><a href="intro.html#cb26-11"></a>df<span class="op">$</span>c &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>c)</span>
-<span id="cb26-12"><a href="intro.html#cb26-12"></a>df<span class="op">$</span>d &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>d)</span>
-<span id="cb26-13"><a href="intro.html#cb26-13"></a></span>
-<span id="cb26-14"><a href="intro.html#cb26-14"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="intro.html#cb31-1"></a><span class="co"># Create a custom function</span></span>
+<span id="cb31-2"><a href="intro.html#cb31-2"></a>fix_missing &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="co"># INPUT</span></span>
+<span id="cb31-3"><a href="intro.html#cb31-3"></a>  x[x <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># COMPUTATION</span></span>
+<span id="cb31-4"><a href="intro.html#cb31-4"></a>  x <span class="co"># OUTPUT </span></span>
+<span id="cb31-5"><a href="intro.html#cb31-5"></a>}</span>
+<span id="cb31-6"><a href="intro.html#cb31-6"></a></span>
+<span id="cb31-7"><a href="intro.html#cb31-7"></a><span class="co"># Apply the function to each column (vector)</span></span>
+<span id="cb31-8"><a href="intro.html#cb31-8"></a><span class="co"># This iterated part can and should be automated.</span></span>
+<span id="cb31-9"><a href="intro.html#cb31-9"></a>df<span class="op">$</span>a &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>a)</span>
+<span id="cb31-10"><a href="intro.html#cb31-10"></a>df<span class="op">$</span>b &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>b)</span>
+<span id="cb31-11"><a href="intro.html#cb31-11"></a>df<span class="op">$</span>c &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>c)</span>
+<span id="cb31-12"><a href="intro.html#cb31-12"></a>df<span class="op">$</span>d &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>d)</span>
+<span id="cb31-13"><a href="intro.html#cb31-13"></a></span>
+<span id="cb31-14"><a href="intro.html#cb31-14"></a>df</span></code></pre></div>
 <ul>
 <li>Automation
 <ul>
@@ -793,9 +845,9 @@ allowfullscreen></iframe>
 <li>The power and joy of one-liner.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="intro.html#cb27-1"></a>df &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map_df</span>(df, fix_missing) <span class="co"># What is this magic? We will unpack the blackbox (`map_df()`) later.</span></span>
-<span id="cb27-2"><a href="intro.html#cb27-2"></a></span>
-<span id="cb27-3"><a href="intro.html#cb27-3"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1"></a>df &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map_df</span>(df, fix_missing) <span class="co"># What is this magic? We will unpack the blackbox (`map_df()`) later.</span></span>
+<span id="cb32-2"><a href="intro.html#cb32-2"></a></span>
+<span id="cb32-3"><a href="intro.html#cb32-3"></a>df</span></code></pre></div>
 <ul>
 <li>Takeaways</li>
 </ul>
