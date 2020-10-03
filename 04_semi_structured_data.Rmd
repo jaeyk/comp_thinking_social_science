@@ -65,7 +65,7 @@ In the previous session, we learned the difference between semi-structured data 
 
         -   Laptop (sample-parse): Downsamle the large target data and parse it on your laptop. This is just one option to [deal with big data in R](https://rviews.rstudio.com/2019/07/17/3-big-data-strategies-for-r/). It's a simple strategy as it doesn't require storing target data in your own database.
 
-    -   Database (push-parse): Push the large target data to a database, then explore, select, and filter it.
+    -   Database (push-parse): Push the large target data to a database, then explore, select, and filter it. If you were interested in using this option, then check out my [SQL for R Users](https://github.com/dlab-berkeley/sql-for-r-users) workshop.
 
 ![Sample-Parse. From RStudio.](https://rviews.rstudio.com/post/2019-07-01-3-big-data-paradigms-for-r_files/sample_model.png)
 
@@ -89,29 +89,9 @@ This explanation draws on Pablo Barbara's [LSE social media workshop slides](htt
 
 **Basic information**
 
--   What is an API?
+-   What is an API?: An interface (you can think of it as something akin to a restaurant menu. API parameters are menu items.)
 
--   API stands for **Application Programming Interface**
-
--   a set of rules and procedures that facilitate interactions between computers and their applications
-
--   WEB APIS
-
-    -   allows users to query a remote database over the internet
-
-    -   takes on a variety of formats
-
-    -   majority adhere to a particular style known as **Representational State Transfer** or **REST**
-
-    -   "RESTful" APIs are convenient because we can use them to query databases using Uniform Resource Locations or URLs (consider a Google search).
-
-```{r}
-obama <- curl::curl("https://www.google.com/search?q=obama")
-```
-
--   The types of Twitter API
-
-    -   [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) API: static information (e.g., user profiles, list of followers and friends)
+    -   [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) (Representational state transfer) API: static information (e.g., user profiles, list of followers and friends)
 
         -   R packages: [tweetscores](https://github.com/pablobarbera/twitter_ideology/tree/master/pkg/tweetscores), [twitteR](https://cran.r-project.org/web/packages/twitteR/twitteR.pdf), [rtweet](https://github.com/ropensci/rtweet)
 
@@ -150,9 +130,9 @@ Web scraping (Wild Wild West) \<\> API (Big Gated Garden)
 
 #### Next steps
 
--   If you want to know how to sign up a new Twitter developer account and access Twitter API, see Steinert-Threlkeld's [APSA workshop slides](https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia/blob/master/Presentation/02_AccessTwitter.pdf).
+-   If you want to know how to sign up a new Twitter developer account and access Twitter API, then see Steinert-Threlkeld's [APSA workshop slides](https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia/blob/master/Presentation/02_AccessTwitter.pdf).
 
--   If you want to know about how to use `tweetscore` package, see Pablo Barbara's R markdown file for [scraping data from Twitter's REST API](http://pablobarbera.com/social-media-workshop/code/02-twitter-REST-data-collection.html)
+-   If you want to know about how to use `tweetscore` package, then see Pablo Barbara's R markdown file for [scraping data from Twitter's REST API](http://pablobarbera.com/social-media-workshop/code/02-twitter-REST-data-collection.html)
 
 ### Hydrating
 

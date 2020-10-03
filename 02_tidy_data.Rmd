@@ -6,22 +6,1139 @@
 
 ```{r}
 
-ifelse(packageVersion("dplyr") > 1, 
-       "The installed version of dplyr package is greater than or equal to 1.0.0", update.packages("dplyr"))
+ifelse(packageVersion("dplyr") > 1,
+  "The installed version of dplyr package is greater than or equal to 1.0.0", update.packages("dplyr")
+)
 
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(
   tidyverse, # for the tidyverse framework
   here, # for computational reproducibility
   gapminder, # toy data
-  nycflights13 # for exercise 
-  )
-
+  nycflights13 # for exercise
+)
 ```
 
 The rest of the chapter follows the basic structure in [the Data Wrangling Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) created by RStudio.
 
+## R Data structures 
+
+To make the best use of the R language, you'll need a strong understanding of the basic data types and data structures and how to operate on those. R is an **object-oriented** language, so the importance of this cannot be understated. 
+
+It is **critical** to understand because these are the objects you will manipulate on a day-to-day basis in R, and they are not always as easy to work with as they sound at the outset. Dealing with object conversions is one of the most common sources of frustration for beginners.
+
+> To understand computations in R, two slogans are helpful:
+  - Everything that exists is an object.
+  - Everything that happens is a function call.
+  
+> __John Chambers__the creator of S (the mother of R)
+
+1. [Main Classes](#main-classes) introduces you to R's one-dimensional or atomic classes and data structures. R has five basic atomic classes: logical, integer, numeric, complex, character. Social scientists don't use complex class. (Also, remember that we rarely use trigonometry.)
+
+2. [Attributes](#attributes) takes a small detour to discuss attributes, R's flexible metadata specification. Here you'll learn about factors, an important data structure created by setting attributes of an atomic vector. R has many data structures: vector, list, matrix, data frame, factors, tables.
+
+## 1D data: Vectors 
+
+### Atomic classes
+
+`R`'s main atomic classes are:
+
+* character (or a "string" in Python and Stata)
+* numeric (integer or float)
+* integer (just integer)
+* logical (booleans)
+
+| Example | Type |
+| ------- | ---- |
+| "a", "swc" | character |
+| 2, 15.5 | numeric | 
+| 2 (Must add a `L` at end to denote integer) | integer |
+| `TRUE`, `FALSE` | logical |
+
+Like Python, R is dynamically typed. There are a few differences in terminology, however, that are pertinent. 
+
+- First, "types" in Python are referred to as "classes" in R. 
+
+- Second, R has some different names for the types string, integer, and float --- specifically **character**, **integer** (not different), and **numeric**. Because there is no "float" class in R, users tend to default to the "numeric" class when they want to work with numerical data.
+
+The function for recovering object classes is ```class()```. L suffix to qualify any number with the intent of making it an explicit integer. See more from the [R language definition](https://cran.r-project.org/doc/manuals/R-lang.html).
+
+```{r}
+class(3)
+class(3L)
+class("Three")
+class(F)
+```
+
+### Data structures
+
+R's base data structures can be organized by their dimensionality (1d, 2d, or nd) and whether they're homogeneous (all contents must be of the same type) or heterogeneous (the contents can be of different types). This gives rise to the five data types most often used in data analysis: 
+
+|    | Homogeneous   | Heterogeneous |
+|----|---------------|---------------|
+| 1d | Atomic vector | List          |
+| 2d | Matrix        | Data frame    |
+| nd | Array         |               |
+
+Each data structure has its own specifications and behavior. For our purposes, an important thing to remember is that R is always **faster** (more efficient) working with homogenous (**vectorized**) data.
+
+#### Vector properties
+
+Vectors have three common properties:
+
+* Class, `class()`, or what type of object it is (same as `type()` in Python).
+* Length, `length()`, how many elements it contains (same as `len()` in Python).
+* Attributes, `attributes()`, additional arbitrary metadata.
+
+They differ in the types of their elements: all elements of an atomic vector must be the same type, whereas the elements of a list can have different types.
+
+#### Creating different types of atomic vectors
+
+Remember, there are four common types of vectors: 
+* `logical` 
+* `integer` 
+* `numeric` (same as `double`)
+* `character`.
+
+You can create an empty vector with `vector()` (By default the mode is `logical`. You can be more explicit as shown in the examples below.) It is more common to use direct constructors such as `character()`, `numeric()`, etc.
+
+```{r}
+
+x <- vector()
+
+# with a length and type
+vector("character", length = 10)
+
+## character vector of length 5
+character(5)
+
+numeric(5)
+
+logical(5)
+```
+
+Atomic vectors are usually created with `c()`, which is short for concatenate:
+
+```{r}
+
+x <- c(1, 2, 3)
+
+x
+
+length(x)
+```
+
+`x` is a numeric vector. These are the most common kind. You can also have logical vectors. 
+
+```{r}
+
+y <- c(TRUE, TRUE, FALSE, FALSE)
+
+y
+```
+
+Finally you can have character vectors:
+
+```{r}
+
+kim_family <- c("Jae", "Sun", "Jane")
+
+is.integer(kim_family) # integer?
+
+is.character(kim_family) # character?
+
+is.atomic(kim_family) # atomic?
+
+typeof(kim_family) # what's the type?
+```
+
+**Short exercise: Create and examine your vector**  
+
+Create a character vector called `fruit` that contain 4 of your favorite fruits. Then evaluate its structure using the commands below.
+
+```{r, eval = FALSE}
+
+# First create your fruit vector
+# YOUR CODE HERE
+fruit <-
+
+  # Examine your vector
+  length(fruit)
+class(fruit)
+str(fruit)
+```
+
+**Add elements**
+
+You can add elements to the end of a vector by passing the original vector into the `c` function, like so:
+
+```{r}
+
+z <- c("Beyonce", "Kelly", "Michelle", "LeToya")
+
+z <- c(z, "Farrah")
+
+z
+```
+
+More examples of vectors
+
+```{r}
+
+x <- c(0.5, 0.7)
+
+x <- c(TRUE, FALSE)
+
+x <- c("a", "b", "c", "d", "e")
+
+x <- 9:100
+```
+
+You can also create vectors as a sequence of numbers:
+
+```{r}
+
+series <- 1:10
+
+series
+
+seq(10)
+
+seq(1, 10, by = 0.1)
+```
+
+Atomic vectors are always flat, even if you nest `c()`'s:
+
+```{r eval = TRUE}
+
+c(1, c(2, c(3, 4)))
+
+# the same as
+c(1, 2, 3, 4)
+```
+
+**Types and Tests**
+
+Given a vector, you can determine its class with `class`, or check if it's a specific type with an "is" function: `is.character()`, `is.numeric()`, `is.integer()`, `is.logical()`, or, more generally, `is.atomic()`.
+
+```{r }
+
+char_var <- c("harry", "sally")
+
+class(char_var)
+
+is.character(char_var)
+
+is.atomic(char_var)
+
+num_var <- c(1, 2.5, 4.5)
+
+class(num_var)
+
+is.numeric(num_var)
+
+is.atomic(num_var)
+```
+
+NB: `is.vector()` does not test if an object is a vector. Instead it returns `TRUE` only if the object is a vector with no attributes apart from names. Use `is.atomic(x) || is.list(x)` to test if an object is actually a vector.
+
+**Coercion**
+
+All elements of an atomic vector must be the same type, so when you attempt to combine different types they will be __coerced__ to the most flexible type. Types from least to most flexible are: logical, integer, double, and character. 
+
+For example, combining a character and an integer yields a character:
+
+```{r}
+str(c("a", 1))
+```
+
+**Guess what the following do without running them first**
+
+```{r, eval = FALSE}
+
+c(1.7, "a")
+
+c(TRUE, 2)
+
+c("a", TRUE)
+```
+
+Notice that when a logical vector is coerced to an integer or double, `TRUE` becomes 1 and `FALSE` becomes 0. This is very useful in conjunction with `sum()` and `mean()`
+
+```{r}
+
+x <- c(FALSE, FALSE, TRUE)
+
+as.numeric(x)
+
+# Total number of TRUEs
+sum(x)
+
+# Proportion that are TRUE
+mean(x)
+```
+
+Coercion often happens automatically. This is called implicit coercion. Most mathematical functions (`+`, `log`, `abs`, etc.) will coerce to a numeric or integer, and most logical operations (`&`, `|`, `any`, etc) will coerce to a logical. You will usually get a warning message if the coercion might lose information. 
+
+```{r}
+
+1 < "2"
+
+"1" > 2
+```
+
+You can also coerce vectors explicitly coerce with `as.character()`, `as.numeric()`, `as.integer()`, or `as.logical()`. Example:
+
+```{r}
+
+x <- 0:6
+
+as.numeric(x)
+
+as.logical(x)
+
+as.character(x)
+```
+
+Sometimes coercions, especially nonsensical ones, won’t work.
+
+```{r}
+
+x <- c("a", "b", "c")
+
+as.numeric(x)
+
+as.logical(x)
+```
+
+**Short Exercise**
+
+```{r, eval=FALSE}
+
+# 1. Create a vector of a sequence of numbers between 1 to 10.
+
+# 2. Coerce that vector into a character vector
+
+# 3. Add the element "11" to the end of the vector
+
+# 4. Coerce it back to a numeric vector.
+```
+
+#### Lists
+
+Lists are also vectors, but different from atomic vectors because their elements can be of any type. In short, they are generic vectors. You construct lists by using `list()` instead of `c()`: 
+
+Lists are sometimes called recursive vectors, because a list can contain other lists. This makes them fundamentally different from atomic vectors. 
+
+```{r}
+
+x <- list(1, "a", TRUE, c(4, 5, 6))
+
+x
+```
+
+You can coerce other objects using `as.list()`. You can test for a list with `is.list()`
+
+```{r}
+
+x <- 1:10
+
+x <- as.list(x)
+
+is.list(x)
+
+length(x)
+```
+
+`c()` will combine several lists into one. If given a combination of atomic vectors and lists, `c()` (con**c**atenate) will coerce the vectors to lists before combining them. Compare the results of `list()` and `c()`:
+
+```{r}
+
+x <- list(list(1, 2), c(3, 4))
+
+y <- c(list(1, 2), c(3, 4))
+
+str(x)
+
+str(y)
+```
+
+You can turn a list into an atomic vector with `unlist()`. If the elements of a list have different types, `unlist()` uses the same coercion rules as `c()`.
+
+```{r}
+
+x <- list(list(1, 2), c(3, 4))
+
+x
+
+unlist(x)
+```
+
+Lists are used to build up many of the more complicated data structures in R. For example, both data frames and linear models objects (as produced by `lm()`) are lists:
+
+```{r}
+
+is.list(mtcars)
+
+mod <- lm(mpg ~ wt, data = mtcars)
+
+is.list(mod)
+```
+
+For this reason, lists are extremely useful inside functions. You can "staple" together lots of different kinds of results into a single object that a function can return.
+
+A list does not print to the console like a vector. Instead, each element of the list starts on a new line.
+
+```{r}
+x.vec <- c(1, 2, 3)
+x.list <- list(1, 2, 3)
+x.vec
+x.list
+```
+
+For lists, elements are **indexed by double brackets**. Single brackets will still return a(nother) list. (We'll talk more about subsetting and indexing in the fourth lesson.)
+
+**Exercises**
+
+1. What are the four basic types of atomic vector? How does a list differ from an
+   atomic vector?
+
+2. Why is `1 == "1"` true? Why is `-1 < FALSE` true? Why is `"one" < 2` false?
+
+3. Create three vectors and then combine them into a list.
+
+4.  If `x` is a list, what is the class of `x[1]`?  How about `x[[1]]`?
+
+
+### Attributes
+
+Attributes provide additional information about the data to you, the user, and to R. We've already seen the following three attributes in action:
+
+* Names (`names(x)`), a character vector giving each element a name. 
+
+* Dimensions (`dim(x)`), used to turn vectors into matrices.
+
+* Class (`class(x)`), used to implement the S3 object system.
+
+**Tips**
+In an object-oriented system, a [class](https://www.google.com/search?q=what+is+class+programming&oq=what+is+class+programming&aqs=chrome.0.0l6.3543j0j4&sourceid=chrome&ie=UTF-8) (an extensible problem-code-template) defines a type of objects like what its properties are, how it behaves, and how it relates to other types of objects. Therefore, technically, an object is an [instance](https://en.wikipedia.org/wiki/Instance_(computer_science)) (or occurrence) of a class. A method is a function associated with a particular type of object.
+
+#### Names
+
+You can name a vector when you create it:
+
+```{r}
+
+x <- c(a = 1, b = 2, c = 3)
+```
+
+You can also modifying an existing vector: 
+
+```{r}
+
+x <- 1:3
+
+names(x)
+
+names(x) <- c("e", "f", "g")
+
+names(x)
+```
+
+Names don't have to be unique. However, character subsetting, described in the next lesson, is the most important reason to use names and it is most useful when the names are unique. (For Python users: when names are unique, a vector behaves kind of like a Python dictionary key.)
+
+Not all elements of a vector need to have a name. If some names are missing, `names()` will return an empty string for those elements. If all names are missing, `names()` will return `NULL`.
+
+```{r}
+
+y <- c(a = 1, 2, 3)
+
+names(y)
+
+z <- c(1, 2, 3)
+
+names(z)
+```
+
+You can create a new vector without names using `unname(x)`, or remove names in place with `names(x) <- NULL`.
+
+#### Factors
+
+Factors are special vectors that represent categorical data. Factors can be ordered (ordinal variable) or unordered (nominal or categorical variable) and are important for modeling functions such as `lm()` and `glm()` and also in plot methods.
+
+**Quiz**
+1. If you want to enter dummy variables (Democrats = 1, Non-democrats = 0) in your regression model, should you use numeric or factor variable?
+
+Factors can only contain pre-defined values. Set allowed values using the `levels()` attribute. Note that a factor's levels will always be character values. 
+
+
+```{r}
+
+x <- c("a", "b", "b", "a")
+
+x <- factor(c("a", "b", "b", "a"))
+
+x
+
+class(x)
+
+levels(x)
+
+# You can't use values that are not in the levels
+x[2] <- "c"
+
+# NB: you can't combine factors
+c(factor("a"), factor("b"))
+
+rep(1:5, rep(6, 5))
+```
+
+Factors are pretty much integers that have labels on them. Underneath, it's really numbers (1, 2, 3...). 
+
+```{r}
+
+x <- factor(c("a", "b", "b", "a"))
+
+str(x)
+```
+
+They are better than using simple integer labels because factors are what are called self describing. For example, `democrat` and `republican` is more descriptive than `1`s and `2`s. 
+
+Factors are useful when you know the possible values a variable may take, even if you don't see all values in a given dataset. Using a factor instead of a character vector makes it obvious when some groups contain no observations:
+
+```{r}
+
+party_char <- c("democrat", "democrat", "democrat")
+
+party_char
+
+party_factor <- factor(party_char, levels = c("democrat", "republican"))
+
+party_factor
+
+table(party_char) # shows only democrats
+
+table(party_factor) # shows republicans too
+```
+
+Sometimes factors can be left unordered. Example: `democrat`, `republican`.
+
+Other times you might want factors to be ordered (or ranked). Example: `low`, `medium`, `high`. 
+
+```{r}
+
+x <- factor(c("low", "medium", "high"))
+
+str(x)
+
+is.ordered(x)
+
+y <- ordered(c("low", "medium", "high"), levels = c("high", "medium", "low"))
+
+is.ordered(y)
+```
+
+While factors look (and often behave) like character vectors, they are actually integers. Be careful when treating them like strings. Some string methods (like `gsub()` and `grepl()`) will coerce factors to strings, while others (like `nchar()`) will throw an error, and still others (like `c()`) will use the underlying integer values. 
+
+```{r}
+
+x <- c("a", "b", "b", "a")
+
+x
+
+is.factor(x)
+
+x <- as.factor(x)
+
+x
+
+c(x, "c")
+```
+
+For this reason, it's usually best to explicitly convert factors to character vectors if you need string-like behaviour. In early versions of R, there was a memory advantage to using factors instead of character vectors, but this is no longer the case.
+
+Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there's no way for those functions to know the set of all possible levels or their optimal order. If this becomes a problem, use the argument `stringsAsFactors = FALSE` to suppress this behaviour, and then manually convert character vectors to factors using your knowledge of the data.
+
+**More attributes**
+
+All R objects can have arbitrary additional attributes, used to store metadata about the object. Attributes can be thought of as a named list (with unique names). Attributes can be accessed individually with `attr()` or all at once (as a list) with `attributes()`. 
+
+```{r}
+
+y <- 1:10
+
+attr(y, "my_attribute") <- "This is a vector"
+
+attr(y, "my_attribute")
+
+# str returns a new object with modified information
+str(attributes(y))
+```
+
+**Exercises**
+
+1.  What happens to a factor when you modify its levels? 
+    
+```{r, results = "none"}
+
+f1 <- factor(letters)
+
+levels(f1) <- rev(levels(f1))
+
+f1
+```
+
+2.  What does this code do? How do `f2` and `f3` differ from `f1`?
+
+```{r, results = "none"}
+
+f2 <- rev(factor(letters))
+
+f3 <- factor(letters, levels = rev(letters))
+```
+
+## 2D data: matrices and dataframes 
+
+1. Matrices:  data structures for storing 2d data that is all the same class.
+2. Dataframes: teaches you about the dataframe, the most important data structure for storing data in R, because it stores different kinds of (2d) data.
+
+### Matrices
+
+Matrices are created when we combine multiple vectors that all have the same class (e.g., numeric). This creates a dataset with rows and columns. By definition, if you want to combine multiple classes of vectors, you want a dataframe. You can coerce a matrix to become a dataframe, and vice-versa, but as with all vector coercions, the results can be unpredictable, so be sure you know how each variable (column) will convert.
+
+```{r}
+
+m <- matrix(nrow = 2, ncol = 2)
+
+m
+
+dim(m)
+```
+
+Matrices are filled column-wise. 
+
+```{r}
+
+m <- matrix(1:6, nrow = 2, ncol = 3)
+
+m
+```
+
+Other ways to construct a matrix
+
+```{r}
+
+m <- 1:10
+
+dim(m) <- c(2, 5)
+
+m
+
+dim(m) <- c(5, 2)
+
+m
+```
+
+You can transpose a matrix (or dataframe) with `t()`
+
+```{r}
+
+m <- 1:10
+
+dim(m) <- c(2, 5)
+
+m
+
+t(m)
+```
+
+Another way is to bind columns or rows using `cbind()` and `rbind()`.
+
+```{r}
+
+x <- 1:3
+
+y <- 10:12
+
+cbind(x, y)
+
+# or
+
+rbind(x, y)
+```
+
+You can also use the `byrow` argument to specify how the matrix is filled. From R's own documentation:
+
+```{r}
+
+mdat <- matrix(c(1, 2, 3, 11, 12, 13),
+  nrow = 2,
+  ncol = 3,
+  byrow = TRUE,
+  dimnames = list(
+    c("row1", "row2"),
+    c("C.1", "C.2", "C.3")
+  )
+)
+mdat
+```   
+
+Notice that we gave `names` to the dimentions in `mdat`.
+
+```{r}
+
+dimnames(mdat)
+
+rownames(mdat)
+
+colnames(mdat)
+```
+
+### Dataframes 
+
+A data frame is a very important data type in R. It's pretty much the **de facto** data structure for most tabular data and what we use for statistics. 
+
+#### Creation
+
+You create a data frame using `data.frame()`, which takes named vectors as input:
+
+```{r}
+vec1 <- 1:3
+vec2 <- c("a", "b", "c")
+df <- data.frame(vec1, vec2)
+df
+str(df)
+```
+
+Beware: `data.frame()`'s default behavior which turns strings into factors. Remember to use `stringAsFactors = FALSE` to suppress this behavior as needed:
+
+```{r}
+df <- data.frame(
+  x = 1:3,
+  y = c("a", "b", "c"),
+  stringsAsFactors = FALSE
+)
+str(df)
+```
+
+In reality, we rarely type up our datasets ourselves, and certainly not in R. The most common way to make a data.frame is by calling a file using `read.csv` (which relies on the `foreign` package), `read.dta` (if you're using a Stata file), or some other kind of data file input.
+
+#### Structure and Attributes
+
+Under the hood, a data frame is a list of equal-length vectors. This makes it a 2-dimensional structure, so it shares properties of both the matrix and the list. 
+
+```{r}
+vec1 <- 1:3
+vec2 <- c("a", "b", "c")
+df <- data.frame(vec1, vec2)
+
+str(df)
+```
+
+This means that a dataframe has `names()`, `colnames()`, and `rownames()`, although `names()` and `colnames()` are the same thing. 
+
+** Summary **
+
+- Set column names: names() in data frame, colnames() in matrix 
+- Set row names: row.names() in data frame, rownames() in matrix
+
+```{r}
+vec1 <- 1:3
+vec2 <- c("a", "b", "c")
+df <- data.frame(vec1, vec2)
+
+# these two are equivalent
+names(df)
+colnames(df)
+
+# change the colnames
+colnames(df) <- c("Number", "Character")
+df
+```
+
+```{r}
+names(df) <- c("Number", "Character")
+df
+```
+
+```{r}
+# change the rownames
+rownames(df)
+rownames(df) <- c("donut", "pickle", "pretzel")
+df
+```
+
+The `length()` of a dataframe is the length of the underlying list and so is the same as `ncol()`; `nrow()` gives the number of rows. 
+
+```{r}
+vec1 <- 1:3
+vec2 <- c("a", "b", "c")
+df <- data.frame(vec1, vec2)
+
+# these two are equivalent - number of columns
+length(df)
+
+ncol(df)
+
+# get number of rows
+nrow(df)
+
+# get number of both columns and rows
+dim(df)
+```
+
+#### Testing and coercion
+
+To check if an object is a dataframe, use `class()` or test explicitly with `is.data.frame()`:
+
+```{r}
+class(df)
+is.data.frame(df)
+```
+
+You can coerce an object to a dataframe with `as.data.frame()`:
+
+* A vector will create a one-column dataframe.
+
+* A list will create one column for each element; it's an error if they're 
+  not all the same length.
+  
+* A matrix will create a data frame with the same number of columns and rows as the matrix.
+
+#### Combining dataframes
+
+You can combine dataframes using `cbind()` and `rbind()`:
+
+```{r}
+df <- data.frame(
+  x = 1:3,
+  y = c("a", "b", "c"),
+  stringsAsFactors = FALSE
+)
+
+cbind(df, data.frame(z = 3:1))
+rbind(df, data.frame(x = 10, y = "z"))
+```
+
+When combining column-wise, the number of rows must match, but row names are ignored. When combining row-wise, both the number and names of columns must match. (If you want to combine rows that don't have the same columns, there are other functions / packages in R that can help.)
+
+It's a common mistake to try and create a dataframe by `cbind()`ing vectors together. This doesn't work because `cbind()` will create a matrix unless one of the arguments is already a dataframe. Instead use `data.frame()` directly:
+
+```{r}
+bad <- (cbind(x = 1:2, y = c("a", "b")))
+bad
+str(bad)
+
+good <- data.frame(
+  x = 1:2, y = c("a", "b"),
+  stringsAsFactors = FALSE
+)
+good
+str(good)
+```
+
+The conversion rules for `cbind()` are complicated and best avoided by ensuring all inputs are of the same type.
+
+#### List columns (TBD)
+
+**Other objects**
+
+Missing values are specified with `NA`, which is a logical vector of length 1. `NA` will always be coerced to the correct type if used inside `c()`
+
+```{r}
+x <- c(NA, 1)
+x
+typeof(NA)
+typeof(x)
+```
+
+`Inf` is infinity. You can have either positive or negative infinity.
+
+```{r}
+1 / 0
+1 / Inf
+```
+
+`NaN` means Not a number. It's an undefined value.
+
+```{r}
+0 / 0
+```
+
+## Subset
+
+When working with data, you'll need to subset objects early and often. Luckily, R's subsetting operators are powerful and fast. Mastery of subsetting allows you to succinctly express complex operations in a way that few other languages can match. Subsetting is hard to learn because you need to master a number of interrelated concepts:
+
+* The three subsetting operators, `[`, `[[`, and `$`.
+
+* Important differences in behavior for different objects (e.g., vectors, lists, factors, matrices, and data frames).
+
+* The use of subsetting in conjunction with assignment.
+
+This unit helps you master subsetting by starting with the simplest type of subsetting: subsetting an atomic vector with `[`. It then gradually extends your knowledge, first to more complicated data types (like dataframes and lists), and then to the other subsetting operators, `[[` and `$`. You'll then learn how subsetting and assignment can be combined to modify parts of an object, and, finally, you'll see a large number of useful applications.
+
+### Atomic vectors
+
+Let's explore the different types of subsetting with a simple vector, `x`. 
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+```
+
+Note that the number after the decimal point gives the original position in the vector.
+
+**NB:** In R, positions start at 1, unlike Python, which starts at 0. Fun!**
+
+There are five things that you can use to subset a vector: 
+
+#### Positive integers
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+x
+x[1]
+x[c(3, 1)]
+
+# `order(x)` gives the positions of smallest to largest values.
+order(x)
+x[order(x)]
+x[c(1, 3, 2, 4)]
+
+# Duplicated indices yield duplicated values
+x[c(1, 1)]
+```
+
+#### Negative integers
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+x[-1]
+x[-c(3, 1)]
+```
+
+You can't mix positive and negative integers in a single subset:
+
+```{r, error = TRUE}
+x <- c(2.1, 4.2, 3.3, 5.4)
+x[c(-1, 2)]
+```
+
+#### Logical vectors
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+
+x[c(TRUE, TRUE, FALSE, FALSE)]
+```
+
+This is probably the most useful type of subsetting because you write the expression that creates the logical vector
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+
+# this returns a logical vector
+x > 3
+x
+
+# use a conditional statement to create an implicit logical vector
+x[x > 3]
+```
+
+You can combine conditional statements with `&` (and), `|` (or), and `!` (not)
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+
+# combing two conditional statements with &
+x > 3 & x < 5
+
+
+x[x > 3 & x < 5]
+
+# combing two conditional statements with |
+x < 3 | x > 5
+x[x < 3 | x > 5]
+
+# combining conditional statements with !
+!x > 5
+x[!x > 5]
+```
+
+Another way to generate implicit conditional statements is using the `%in%` operator, which works like the `in` keywords in Python.
+
+```{r}
+# generate implicit logical vectors through the %in% operator
+x %in% c(3.3, 4.2)
+x
+x[x %in% c(3.3, 4.2)]
+```
+
+#### Character vectors
+
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+
+# apply names
+names(x) <- c("a", "b", "c", "d")
+x
+
+# subset using names
+x[c("d", "c", "a")]
+
+# Like integer indices, you can repeat indices
+x[c("a", "a", "a")]
+
+# Careful! names are always matched exactly
+x <- c(abc = 1, def = 2)
+x
+x[c("a", "d")]
+```
+
+#### Lists
+
+Subsetting a list works in the same way as subsetting an atomic vector. Using `[` will always return a list; `[[` and `$`, as described below, let you pull out the components of the list.
+
+```{r}
+l <- list("a" = 1, "b" = 2)
+l
+
+l[1]
+l[[1]]
+l["a"]
+```
+
+#### Matrices
+
+The most common way of subsetting matrices (2d) is a simple generalization of 1d subsetting: you supply a 1d index for each dimension, separated by a comma. Blank subsetting is now useful because it lets you keep all rows or all columns.
+
+```{r}
+a <- matrix(1:9, nrow = 3)
+colnames(a) <- c("A", "B", "C")
+a
+
+# rows come first, then columns
+a[c(1, 2), ]
+a[c(T, F, T), c("B", "A")]
+a[0, -2]
+a[c(1, 2), -2]
+```
+
+#### Data frames
+
+Data from data frames can be addressed like matrices (with row and column indicators separated by a comma).
+
+```{r}
+df <- data.frame(x = 4:6, y = 3:1, z = letters[1:3])
+df
+
+# return only the rows where x == 6
+df[df$x == 6, ]
+
+# return the first and third row
+df[c(1, 3), ]
+
+# return the first and third row, and the first and second column
+df[c(1, 3), c(1, 2)]
+```
+
+Data frames possess the characteristics of both lists and matrices: if you subset with a single vector, they behave like lists, and return only the columns.
+
+```{r}
+# There are two ways to select columns from a data frame
+# Like a list:
+df[c("x", "z")]
+# Like a matrix
+df[, c("x", "z")]
+```
+
+But there's an important difference when you select a single column: matrix subsetting simplifies by default, list subsetting does not.
+
+```{r}
+(df["x"])
+class((df["x"]))
+
+(df[, "x"])
+class((df[, "x"]))
+```
+
+See the bottom section on [Simplying and Preserving to know more](#simplify-preserve)
+
+#### Subsetting operators 
+
+There are two other subsetting operators: `[[` and `$`. 
+
+* `[[` is similar to `[`, except it can only return a single value and it allows you to pull pieces out of a list. 
+* `$` is a useful shorthand for `[[` combined with character subsetting. 
+
+##### `[[`
+
+You need `[[` when working with lists. This is because when `[` is applied to a list it always returns a list: it never gives you the contents of the list. To get the contents, you need `[[`:
+
+>  "If list `x` is a train carrying objects, then `x[[5]]` is
+> the object in car 5; `x[4:6]` is a train of cars 4-6." 
+>
+> --- @RLangTip
+
+Because data frames are lists of columns, you can use `[[` to extract a column from data frames:
+
+```{r}
+mtcars
+
+# these two are equivalent
+mtcars[[1]]
+mtcars[, 1]
+
+# which differs from this:
+mtcars[1]
+```
+
+##### `$`
+
+`$` is a shorthand operator, where `x$y` is equivalent to `x[["y", exact = FALSE]]`.  It's often used to access variables in a data frame:
+
+```{r}
+# these two are equivalent
+mtcars[["cyl"]]
+mtcars$cyl
+```
+
+One common mistake with `$` is to try and use it when you have the name of a column stored in a variable:
+
+```{r}
+var <- "cyl"
+# Doesn't work - mtcars$var translated to mtcars[["var"]]
+mtcars$var
+
+# Instead use [[
+mtcars[[var]]
+```
+
+#### Subassignment
+
+All subsetting operators can be combined with assignment to modify selected values of the input vector.
+
+```{r, error = TRUE}
+x <- 1:5
+x
+x[c(1, 2)] <- 2:3
+x
+
+# The length of the LHS needs to match the RHS!
+x[-1] <- 4:1
+x
+
+x[1] <- 4:1
+
+# This is mostly useful when conditionally modifying vectors
+df <- data.frame(a = c(1, 10, NA))
+df
+df$a[df$a < 5] <- 0
+df
+```
+
 ## Tidyverse
+
+* I adapted the following content from Wickham's [R for Data Science](https://r4ds.had.co.nz/tidy-data.html), his [earlier paper](http://www.jstatsoft.org/v59/i10/paper) published in the Journal of Statistical Software, [Efficient R Programming](https://csgillespie.github.io/efficientR/) by Gillespie and Lovelace, and [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Roger P. Peng.
 
 -   [Tidyverse design guide](https://design.tidyverse.org/unifying-principles.html)
 
@@ -62,16 +1179,41 @@ This is what a tidy data looks like.
 library(tidyverse)
 
 table1
-
 ```
 
-## Reshaping
+- The big picture 
+    - Tidying data with **tidyr**
+    - Processing data with **dplyr**
+    
+These two packages don't do anything new, but simplify most common tasks in data manipulation. Plus, they are fast, consistent, and more readable.
+
+Practically, this approach is good because you're going to have consistency in the format of data across all the projects you're working on. Also, tidy data works well with key packages (e.g., dplyr, ggplot2) in R.
+
+Computationally, this approach is useful for vectorized programming because "different variables from the same observation are always paired". To remind you, vectorized means a function applies to a vector treats each element individually.
+
+## tidyr 
+
+### Reshaping
+
+**Signs of messy datasets**
+
+* 1. Column headers are values, not variable names.
+* 2. Multiple variables are not stored in one column.
+* 3. Variables are stored in both rows and columns.
+* 4. Multiple types of observational units are stored in the same table.
+* 5. A single observational unit is stored in multiple tables.
 
 Let's take a look at the cases of untidy data.
 
 ![Messy Data Case 1 (Source: R for Data Science)](https://garrettgman.github.io/images/tidy-5.png)
 
 -   Make It Longer
+
+    | Col1 | Col2 | Col3 |
+    |------|------|------|
+    |      |      |      |
+    |      |      |      |
+    |      |      |      |
 
 **Challenge**: Why this data is not tidy?
 
@@ -86,14 +1228,17 @@ table4a
 
 ![What pivot\_longer() does (Source: <https://www.storybench.org>)](https://www.storybench.org/wp-content/uploads/2019/08/pivot-longer-image.png)
 
+- The pipe operator `%>%` originally comes from the `magrittr` package. The idea behind the pipe operator is [similar to](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) what we learned about chaining functions in high school. f: B -> C and g: A -> B can be expressed as $f(g(x))$. Basically, the pipe operator chains operations. 
+
 ```{r}
 
 # Old way, less intuitive
 table4a %>%
-  gather(key = "cases", # Current column names
-         value = "year", # The values matched to cases
-         c("1999", "2000")) # Selected columns
-
+  gather(
+    key = "cases", # Current column names
+    value = "year", # The values matched to cases
+    c("1999", "2000")
+  ) # Selected columns
 ```
 
 ```{r}
@@ -103,8 +1248,8 @@ table4a %>%
   pivot_longer(
     cols = c("1999", "2000"), # Selected columns
     names_to = "year", # Shorter columns (the columns going to be in one column called year)
-    values_to = "cases") # Longer rows (the values are going to be in a separate column called named cases)
-
+    values_to = "cases"
+  ) # Longer rows (the values are going to be in a separate column called named cases)
 ```
 
 -   There's another problem, did you catch it?
@@ -121,8 +1266,7 @@ table4a %>%
     names_to = "year", # Shorter columns (the columns going to be in one column called year)
     values_to = "cases", # Longer rows (the values are going to be in a separate column called named cases)
     names_transform = list(year = readr::parse_number)
-    ) # Transform the variable  
-
+  ) # Transform the variable
 ```
 
 **Additional tips**
@@ -132,7 +1276,6 @@ table4a %>%
 ```{r}
 
 parse_number("reply1994")
-
 ```
 
 A flat file (e.g., CSV) is a rectangular shaped combination of strings. [Parsing](https://cran.r-project.org/web/packages/readr/vignettes/readr.html) determines the type of each column and turns into a vector of a more specific type. Tidyverse has `parse_` functions (from `readr` package) that are flexible and fast (e.g., `parse_integer()`, `parse_double()`, `parse_logical()`, `parse_datetime()`, `parse_date()`, `parse_time()`, `parse_factor()`, etc).
@@ -146,7 +1289,6 @@ A flat file (e.g., CSV) is a rectangular shaped combination of strings. [Parsing
 ```{r}
 
 billboard
-
 ```
 
 2.  How can you fix it? Which pivot?
@@ -155,11 +1297,12 @@ billboard
 
 # Old way
 billboard %>%
-  gather(key = "week",
-         value = "rank",
-         starts_with("wk")) %>% # Use regular expressions
+  gather(
+    key = "week",
+    value = "rank",
+    starts_with("wk")
+  ) %>% # Use regular expressions
   drop_na() # Drop NAs
-
 ```
 
 -   Note that `pivot_longer()` is more versatile than `gather()`.
@@ -174,7 +1317,6 @@ billboard %>%
     values_to = "rank",
     values_drop_na = TRUE # Drop NAs
   )
-
 ```
 
 -   Make It Wider
@@ -205,9 +1347,10 @@ table2
 
 # Old way
 table2 %>%
-  spread(key = type,
-         value = count)
-
+  spread(
+    key = type,
+    value = count
+  )
 ```
 
 ```{r}
@@ -217,7 +1360,6 @@ table2 %>%
     names_from = type, # first
     values_from = count # second
   )
-
 ```
 
 Sometimes, a consultee came to me and asked: "I don't have missing values in my original dataframe. Then R said that I have missing values after I've done some data transformations. What happened?"
@@ -239,12 +1381,11 @@ The example comes from [*R for Data Science*](https://r4ds.had.co.nz/tidy-data.h
 
 stocks <- tibble(
   year = c(2019, 2019, 2019, 2020, 2020, 2020),
-  qtr = c(1, 2, 3, 2, 3, 4), 
+  qtr = c(1, 2, 3, 2, 3, 4),
   return = c(1, 2, 3, NA, 2, 3)
 )
 
 stocks
-
 ```
 
 -   Where is explicit missing value?
@@ -252,10 +1393,12 @@ stocks
 -   Does `stocks` have implicit missing values?
 
 ```{r}
-# implicit missing values become explicit 
+# implicit missing values become explicit
 stocks %>%
-  pivot_wider(names_from = year, 
-              values_from = return)
+  pivot_wider(
+    names_from = year,
+    values_from = return
+  )
 ```
 
 **Challenge**
@@ -265,7 +1408,7 @@ stocks %>%
 -   Could you make `station` a series of dummy variables using `pivot_wider()`?
 
 ```{r}
-fish_encounters 
+fish_encounters
 ```
 
 1.  Which pivot you should use?
@@ -284,7 +1427,6 @@ fish_encounters
 df <- data.frame(x = c(NA, "Dad.apple", "Mom.orange", "Daughter.banana"))
 
 df
-
 ```
 
 ```{r}
@@ -310,8 +1452,9 @@ table3
 ```{r}
 table3 %>%
   separate(rate,
-           into = c("cases", "population"),
-           sep = "/")
+    into = c("cases", "population"),
+    sep = "/"
+  )
 ```
 
 -   Note `convert` argument. You can specify whether automatically convert the new values or not.
@@ -319,9 +1462,10 @@ table3 %>%
 ```{r}
 table3 %>%
   separate(rate,
-           into = c("cases", "population"),
-           sep = "/",
-           convert = TRUE) # cases and population become integers
+    into = c("cases", "population"),
+    sep = "/",
+    convert = TRUE
+  ) # cases and population become integers
 ```
 
 -   Unite
@@ -335,20 +1479,32 @@ table3 %>%
 # Create a toy example
 df <- data.frame(
   name = c("Jae", "Sun", "Jane", NA),
-  birthmonth = c("April", "April", "June", NA))
+  birthmonth = c("April", "April", "June", NA)
+)
 
 # Include missing values
-df %>% unite("contact",
-             c("name", "birthmonth"))
+df %>% unite(
+  "contact",
+  c("name", "birthmonth")
+)
 
 # Do not include missing values
 df %>% unite("contact",
-             c("name", "birthmonth"),
-             na.rm = TRUE)
-
+  c("name", "birthmonth"),
+  na.rm = TRUE
+)
 ```
 
-## Rearranging
+### Filling (TBD)
+
+## dplyr 
+
+dplyr is better than the base R approaches to data processing:
+
+- fast to run (due to the C++ backed) and intuitive to type
+- works well with tidy data and databases
+
+### Rearranging
 
 -   Arrange
 
@@ -359,7 +1515,6 @@ df %>% unite("contact",
 dplyr::arrange(mtcars, mpg) # Low to High (default)
 
 dplyr::arrange(mtcars, desc(mpg)) # High to Row
-
 ```
 
 -   Rename
@@ -372,12 +1527,13 @@ df <- tibble(y = c(2011, 2012, 2013))
 
 df
 
-df %>% rename(Year = # OLD name
-                y) # NEW name
-
+df %>% rename(
+  Year = # OLD name
+  y
+) # NEW name
 ```
 
-## Subset observations (rows)
+### Subset observations (rows)
 
 -   Choose row by logical condition
 
@@ -388,7 +1544,6 @@ df %>% rename(Year = # OLD name
 starwars %>%
   filter(gender == "female") %>%
   arrange(desc(height))
-
 ```
 
 The following filtering example was inspired by [the suzanbert's dplyr blog post](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/).
@@ -411,7 +1566,6 @@ starwars %>%
 starwars %>%
   filter(height < 180 | height > 160) %>%
   nrow()
-
 ```
 
 **Challenge**
@@ -429,19 +1583,18 @@ df <- tibble(
 
 df %>%
   filter(between(heights, 161, 179))
-
 ```
 
 -   Multiple conditions (character)
 
 ```{r}
 
-# Filter names include ars; `grepl` is a base R function  
+# Filter names include ars; `grepl` is a base R function
 
 starwars %>%
   filter(grepl("ars", tolower(name)))
 
-# Or, if you prefer dplyr way 
+# Or, if you prefer dplyr way
 
 starwars %>%
   filter(str_detect(tolower(name), "ars"))
@@ -450,7 +1603,6 @@ starwars %>%
 
 starwars %>%
   filter(hair_color %in% c("black", "brown"))
-
 ```
 
 **Challenge**
@@ -464,78 +1616,78 @@ Use `str_detect()` to find characters whose names include "Han".
 starwars %>%
   arrange(desc(height)) %>%
   slice(1:6)
-
 ```
 
 -   Sample by fraction
 
 ```{r}
 
-# For reproducibility 
+# For reproducibility
 set.seed(1234)
 
-# Old way 
+# Old way
 
 starwars %>%
-  sample_frac(0.10, 
-              replace = FALSE) # Without replacement 
+  sample_frac(0.10,
+    replace = FALSE
+  ) # Without replacement
 
 # New way
 
 starwars %>%
-  slice_sample(prop = 0.10, 
-             replace = FALSE)
-
+  slice_sample(
+    prop = 0.10,
+    replace = FALSE
+  )
 ```
 
 -   Sample by number
 
 ```{r}
 
-# Old way 
+# Old way
 
 starwars %>%
-  sample_n(20, 
-           replace = FALSE) # Without replacement 
+  sample_n(20,
+    replace = FALSE
+  ) # Without replacement
 
 # New way
 
 starwars %>%
-  slice_sample(n = 20, 
-             replace = FALSE) # Without replacement 
-
+  slice_sample(
+    n = 20,
+    replace = FALSE
+  ) # Without replacement
 ```
 
 -   Top 10 rows orderd by height
 
 ```{r}
 
-# Old way 
-starwars %>% 
-  top_n(10, height) 
+# Old way
+starwars %>%
+  top_n(10, height)
 
 # New way
 starwars %>%
-  slice_max(height, n = 10) # Variable first, Argument second 
-
+  slice_max(height, n = 10) # Variable first, Argument second
 ```
 
-## Subset variables (columns)
+### Subset variables (columns)
 
 ```{r}
 
 names(msleep)
-
 ```
 
 -   Select only numeric columns
 
 ```{r}
 
-# Only numeric 
+# Only numeric
 msleep %>%
   select(where(is.numeric))
-
 ```
 
 **Challenge**
@@ -548,7 +1700,6 @@ Use `select(where())` to find only non-numeric columns
 
 msleep %>%
   select(contains("sleep"))
-
 ```
 
 -   Select the columns that include either "sleep" or "wt" in their names
@@ -559,8 +1710,7 @@ msleep %>%
 
 ```{r}
 
-msleep[grepl('sleep|wt', names(msleep))]
-
+msleep[grepl("sleep|wt", names(msleep))]
 ```
 
 **Challenge**
@@ -573,7 +1723,6 @@ Use `select(match())` to find columns whose names include either "sleep" or "wt"
 
 msleep %>%
   select(starts_with("b"))
-
 ```
 
 -   Select the columns that ends with "wt"
@@ -582,7 +1731,6 @@ msleep %>%
 
 msleep %>%
   select(ends_with("wt"))
-
 ```
 
 -   Select the columns using both beginning and end string patterns
@@ -593,17 +1741,15 @@ The key idea is you can use Boolean operators (`!`, `&`, `|`)to combine differen
 
 msleep %>%
   select(starts_with("b") & ends_with("wt"))
-
 ```
 
 -   Select order and move it before everything
 
 ```{r}
 
-# By specifying a column 
+# By specifying a column
 msleep %>%
   select(order, everything())
-  
 ```
 
 -   Select variables from a character vector.
@@ -613,7 +1759,6 @@ msleep %>%
 msleep %>%
   select(any_of(c("name", "order"))) %>%
   colnames()
-
 ```
 
 -   Select the variables named in the character + number pattern
@@ -624,14 +1769,21 @@ msleep$week8 <- NA
 
 msleep$week12 <- NA
 
-msleep$week_extra <- 0 
+msleep$week_extra <- 0
 
 msleep %>%
   select(num_range("week", c(1:12)))
-
 ```
 
-## Counting
+### Create variables (TBD)
+
+### Rename variables (TBD)
+
+#### Clean names (TBD)
+
+### Recode values (TBD)
+
+### Counting
 
 -   How may countries in each continent?
 
@@ -639,7 +1791,6 @@ msleep %>%
 
 gapminder %>%
   count(continent)
-
 ```
 
 -   Let's arrange the result.
@@ -654,7 +1805,6 @@ gapminder %>%
 gapminder %>%
   count(continent) %>%
   arrange(desc(n))
-
 ```
 
 **Challenge**
@@ -671,7 +1821,6 @@ Let's take a deeper look at how things work under the hood.
 
 gapminder %>%
   tally()
-
 ```
 
 -   `add_tally()` = `mutate(n = n())`
@@ -685,7 +1834,6 @@ What does n in the below example represent?
 gapminder %>%
   select(continent, country) %>%
   add_tally()
-
 ```
 
 -   `add_count`
@@ -698,7 +1846,6 @@ Add count as a column
 gapminder %>%
   group_by(continent) %>%
   add_count(year)
-
 ```
 
 **Challenge**
@@ -716,12 +1863,11 @@ gapminder %>%
 gapminder %>%
   group_by(continent) %>%
   count(year)
-
 ```
 
-## Summarizing
+### Summarizing
 
-### Basic
+#### Basic
 
 -   Create a summary
 
@@ -729,16 +1875,19 @@ gapminder %>%
 
 gapminder %>%
   group_by(continent) %>%
-  summarise(n = n(), 
-            mean_gdp = mean(gdpPercap),
-            sd_gdp = sd(gdpPercap))
+  summarise(
+    n = n(),
+    mean_gdp = mean(gdpPercap),
+    sd_gdp = sd(gdpPercap)
+  )
 
 tablea <- gapminder %>%
   group_by(continent) %>%
-  summarise(n = n(), 
-            mean_gdp = mean(gdpPercap),
-            sd_gdp = sd(gdpPercap))
-
+  summarise(
+    n = n(),
+    mean_gdp = mean(gdpPercap),
+    sd_gdp = sd(gdpPercap)
+  )
 ```
 
 -   Produce publishable tables
@@ -748,12 +1897,11 @@ tablea <- gapminder %>%
 # For HTML and LaTeX
 tablea %>% kableExtra::kable()
 
-# For HTML and MS Office suite 
+# For HTML and MS Office suite
 tablea %>% flextable::flextable()
-
 ```
 
-### Scoped summaries
+#### Scoped summaries
 
 -   Old way
 
@@ -761,17 +1909,18 @@ tablea %>% flextable::flextable()
 
 ```{r}
 
-# Create a wide-shaped data example 
+# Create a wide-shaped data example
 wide_gapminder <- gapminder %>%
   filter(continent == "Europe") %>%
-  pivot_wider(names_from = country, 
-              values_from = gdpPercap)
+  pivot_wider(
+    names_from = country,
+    values_from = gdpPercap
+  )
 
-# Apply summarise_all 
+# Apply summarise_all
 wide_gapminder %>%
   select(-c(1:4)) %>%
   summarise_all(mean, na.rm = TRUE)
-
 ```
 
 -   `summarise_if()`: using a logical condition
@@ -780,7 +1929,6 @@ wide_gapminder %>%
 
 wide_gapminder %>%
   summarise_if(is.double, mean, na.rm = TRUE)
-
 ```
 
 -   `summarise_at()`
@@ -790,13 +1938,16 @@ wide_gapminder %>%
 ```{r}
 
 wide_gapminder %>%
-  summarise_at(vars(-c(1:4)), 
-               mean, na.rm = TRUE)
+  summarise_at(vars(-c(1:4)),
+    mean,
+    na.rm = TRUE
+  )
 
 wide_gapminder %>%
-  summarise_at(vars(contains("life")), 
-               mean, na.rm = TRUE)
-
+  summarise_at(vars(contains("life")),
+    mean,
+    na.rm = TRUE
+  )
 ```
 
 -   New way
@@ -814,7 +1965,6 @@ wide_gapminder %>%
 
 wide_gapminder %>%
   summarise(across(-c(1:4), mean, na.rm = TRUE))
-
 ```
 
 -   `summarise_if()`
@@ -823,7 +1973,6 @@ wide_gapminder %>%
 
 wide_gapminder %>%
   summarise(across(is.double, mean, na.rm = TRUE))
-
 ```
 
 -   `summarise_at()`
@@ -831,16 +1980,19 @@ wide_gapminder %>%
 ```{r}
 
 wide_gapminder %>%
-  summarise(across(-c(1:4), 
-               mean, na.rm = TRUE))
+  summarise(across(-c(1:4),
+    mean,
+    na.rm = TRUE
+  ))
 
 wide_gapminder %>%
-  summarise(across(contains("life"), 
-               mean, na.rm = TRUE))
+  summarise(across(contains("life"),
+    mean,
+    na.rm = TRUE
+  ))
 
 wide_gapminder %>%
   summarise(across(contains("A", ignore.case = FALSE)))
-
 ```
 
 Note that this workshop does not cover creating and manipulating variables using `mutate()` because many techniques you learned from playing with `summarise()` can be directly applied to `mutate()`.
@@ -851,18 +2003,22 @@ Note that this workshop does not cover creating and manipulating variables using
 
 2.  Turn the summary dataframe into a publishable table using either `kableExtra` or `flextable` package.
 
-## Grouping
+#### Tabulization (TBD)
 
-### Grouped summaries
+### Grouping
 
--   Calculate the mean of `gdpPercap`.
+#### Grouped summaries
+
+- Calculate the mean of `gdpPercap`.
+
+- Some functions are designed to work together. For instance, the group_by
+function defines the strata that you're going to use for summary statistics. Then, use summarise() or summarize() for producing summary statistics.
 
 ```{r}
 
 gapminder %>%
-  group_by(continent) %>% # 
+  group_by(continent) %>% #
   summarise(mean_gdp = mean(gdpPercap))
-
 ```
 
 -   Calculate multiple summary statistics.
@@ -870,10 +2026,11 @@ gapminder %>%
 ```{r}
 
 gapminder %>%
-  group_by(continent) %>% # 
-  summarise(mean_gdp = mean(gdpPercap),
-            count = n())
-
+  group_by(continent) %>% #
+  summarise(
+    mean_gdp = mean(gdpPercap),
+    count = n()
+  )
 ```
 
 **Optional**
@@ -884,12 +2041,11 @@ gapminder %>%
 
 ```{r}
 
-# The Interquartile Range = The Difference Between 75t and 25t Percentiles 
+# The Interquartile Range = The Difference Between 75t and 25t Percentiles
 
 gapminder %>%
-  group_by(continent) %>% # 
+  group_by(continent) %>% #
   summarise(IQR_gdp = IQR(gdpPercap))
-
 ```
 
 2.  Measures of rank: `min(x)`, `quantile(x, 0.25)`, `max(x)`
@@ -897,10 +2053,11 @@ gapminder %>%
 ```{r}
 
 gapminder %>%
-  group_by(continent) %>% # 
-  summarise(min_gdp = min(gdpPercap),
-            max_gdp = max(gdpPercap))
-
+  group_by(continent) %>% #
+  summarise(
+    min_gdp = min(gdpPercap),
+    max_gdp = max(gdpPercap)
+  )
 ```
 
 3.  Measures of position: `first(x)`, `last(x)`, `nth(x, 2)`
@@ -908,16 +2065,19 @@ gapminder %>%
 ```{r}
 
 gapminder %>%
-  group_by(continent) %>% 
-  summarise(first_gdp = first(gdpPercap),
-            last_gdp = last(gdpPercap))
+  group_by(continent) %>%
+  summarise(
+    first_gdp = first(gdpPercap),
+    last_gdp = last(gdpPercap)
+  )
 
 gapminder %>%
-  group_by(continent) %>% 
+  group_by(continent) %>%
   arrange(gdpPercap) %>% # Adding arrange
-  summarise(first_gdp = first(gdpPercap),
-            last_gdp = last(gdpPercap))
-
+  summarise(
+    first_gdp = first(gdpPercap),
+    last_gdp = last(gdpPercap)
+  )
 ```
 
 4.  Measures of counts: `n(x)` (all rows), `sum(!is.na(x))` (only non-missing rows) = `n_distinct(x)`
@@ -927,7 +2087,6 @@ gapminder %>%
 gapminder %>%
   group_by(continent) %>%
   summarise(ns = n())
-
 ```
 
 5.  Counts and proportions of logical values: `sum(condition about x)` (the number of TRUEs in x), `mean(condition about x)` (the proportion of TRUEs in x)
@@ -935,14 +2094,13 @@ gapminder %>%
 ```{r}
 
 gapminder %>%
-  group_by(continent) %>% 
+  group_by(continent) %>%
   summarise(rich_countries = mean(gdpPercap > 20000))
-
 ```
 
-## Nesting
+### Nesting
 
-### nest
+#### nest
 
 The following example comes from [R for Data Science](https://r4ds.had.co.nz/many-models.html) by by Garrett Grolemund and Hadley Wickham.
 
@@ -960,12 +2118,11 @@ In the following example, why did we use `country` and `continent` for nesting v
 
 nested <- gapminder %>%
   group_by(country, continent) %>%
-  nest() 
+  nest()
 
 head(nested)
 
 nested$data[[1]]
-
 ```
 
 -   Custom function
@@ -973,28 +2130,25 @@ nested$data[[1]]
 ```{r}
 
 lm_model <- function(df) {
-  
   lm(lifeExp ~ year, data = df)
 }
-
 ```
 
 -   Apply function to the nested data
 
 ```{r}
 
-# Apply m_model to the nested data 
+# Apply m_model to the nested data
 
 nested <- nested %>%
   mutate(models = map(data, lm_model)) # Add the list object as a new column
 
 head(nested)
-
 ```
 
 S3 is part of R's object oriented systems. If you need more information, check [this section](http://adv-r.had.co.nz/S3.html) in Hadley's Advanced R out.
 
-### unnest
+#### unnest
 
 `glance()` function from `broom` package inspects the quality of a statistical model.
 
@@ -1010,37 +2164,36 @@ glanced <- nested %>%
   mutate(glance = map(models, broom::glance))
 
 glanced$glance[[1]]
-
 ```
 
 `unnest()` unpacks the list objects stored in glance column
 
 ```{r}
 
-glanced %>% 
+glanced %>%
   unnest(glance) %>%
-  arrange(BIC) # Low to High; Lower BIC indicates a better model fit 
+  arrange(BIC) # Low to High; Lower BIC indicates a better model fit
 
-glanced %>% 
+glanced %>%
   unnest(glance) %>%
   ggplot(aes(continent, BIC)) +
-    geom_jitter(width = 0.5)
-
+  geom_jitter(width = 0.5)
 ```
 
-## Mapping
+### Mapping
 
 We tasted a little bit about how `map()` function works. Let's dig into it deeper as this family of functions is really useful. For more information, see Rebecca Barter's wonderful tutorial on the `purrr` package. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
 
 ```{r}
 
-multiply <- function(x){
-  x*x 
+multiply <- function(x) {
+  x * x
 }
 
-df <- list(first_obs = rnorm(7, 1, sd =1),
-           second_obs = rnorm(7, 2, sd = 2)) # normal distribution 
-
+df <- list(
+  first_obs = rnorm(7, 1, sd = 1),
+  second_obs = rnorm(7, 2, sd = 2)
+) # normal distribution
 ```
 
 **Challenge**
@@ -1049,9 +2202,9 @@ Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between t
 
 If you want to know more about the power and joy of functional programming in R (e.g., `purrr::map()`), then please take ["How to Automate Repeated Things in R"](https://github.com/dlab-berkeley/R-functional-programming) workshop.
 
-## Joining
+### Joining
 
-### Mutating joins
+#### Mutating joins
 
 > Add new variables to one data frame from matching observations in another"
 
@@ -1061,14 +2214,17 @@ Using a simple toy example is great because it is easy to see how things work in
 
 ```{r}
 
-# Table 1 
-x <- tibble(key = c(1:4),
-            val_x = c("x1", "x2", "x3", "x4"))
+# Table 1
+x <- tibble(
+  key = c(1:4),
+  val_x = c("x1", "x2", "x3", "x4")
+)
 
 # Table 2
-y <- tibble(key = c(1:5),
-            val_y = c("y1", "y2", "y3", "y4", "y5"))
-
+y <- tibble(
+  key = c(1:5),
+  val_y = c("y1", "y2", "y3", "y4", "y5")
+)
 ```
 
 -   Inner Join
@@ -1082,7 +2238,6 @@ What are going to be the shared keys?
 ```{r}
 
 inner_join(x, y)
-
 ```
 
 ![Mutating joins](https://d33wubrfki0l68.cloudfront.net/aeab386461820b029b7e7606ccff1286f623bae1/ef0d4/diagrams/join-venn.png)
@@ -1096,7 +2251,6 @@ inner_join(x, y)
 ```{r}
 
 left_join(x, y)
-
 ```
 
 -   Right Join
@@ -1106,7 +2260,6 @@ left_join(x, y)
 ```{r}
 
 right_join(x, y)
-
 ```
 
 -   Full Join
@@ -1116,10 +2269,9 @@ right_join(x, y)
 ```{r}
 
 full_join(x, y)
-
 ```
 
-### Filtering joins
+#### Filtering joins
 
 > Filter observations from one data frame based on whether or not they match an observation in the other table.
 
@@ -1131,7 +2283,7 @@ In SQL, this type of query is also called subqueries.
 
 ```{r}
 
-# Create the list of the top 10 destinations 
+# Create the list of the top 10 destinations
 top_dest <- flights %>%
   count(dest, sort = TRUE) %>%
   top_n(10)
@@ -1139,7 +2291,6 @@ top_dest <- flights %>%
 # Filter
 filtered <- flights %>%
   filter(dest %in% top_dest$dest)
-
 ```
 
 -   Using semi join: only keep (INCLUDE) the rows that were matched between the two tables
@@ -1150,7 +2301,6 @@ joined <- flights %>%
   semi_join(top_dest)
 
 head(filtered == joined)
-
 ```
 
 -   Anti Join
@@ -1162,5 +2312,4 @@ head(filtered == joined)
 flights %>%
   anti_join(planes, by = "tailnum") %>%
   count(tailnum, sort = TRUE)
-
 ```
