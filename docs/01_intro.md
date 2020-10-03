@@ -28,6 +28,76 @@ There are two main ways of interacting with R: using the console or by using scr
 
 If R is ready to accept commands, the R console shows a `>` prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using `Ctrl-Enter`; `Command-Enter` will also work on Macs), R will try to execute it, and when ready, show the results and come back with a new `>`-prompt to wait for new commands. This is the equivalent of the `$` in your terminal. 
 
+##### Basic Syntax
+
+**Comments**
+
+Use `#` signs to comment. Comment liberally in your R scripts. Anything to the right of a `#` is ignored by R. For those of you familiar with other languages, there is no doc string, or equivalent to `"""` in R.
+
+**Assignment operator**
+
+`<-` is the assignment operator. It assigns values on the right to objects on the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can be read as 3 **goes into** `x`.  You can also use `=` for assignments. 
+
+
+```r
+USweird <- "Why use lb for pound!" # Use this
+
+"Why use lb for pound!" = USweird
+```
+
+Nonetheless, *can* does not mean you *should*. It is good practice to use `<-` for assignments. `=` should only be used to specify the values of arguments of functions. This is what Google and Hadley Wickham recommend as well. If they don't convince you enough, here's [a real example](https://csgillespie.wordpress.com/2010/11/16/assignment-operators-in-r-vs/).
+
+
+```r
+mean(x = 1:10) # Does it save x?
+```
+
+```
+## [1] 5.5
+```
+
+```r
+rm(x)
+```
+
+```
+## Warning in rm(x): object 'x' not found
+```
+
+```r
+mean(x <- 1:10) # Does it save x?
+```
+
+```
+## [1] 5.5
+```
+
+```r
+rm(x)
+```
+
+**Printing**
+
+In R, the contents of an object can be printed by either simply executing the the object name or calling the ```print()``` function.
+
+**Help**
+
+* `?` + object opens a help page for that specific object
+* `??` + object searches help pages containing the name of the object
+
+
+```r
+?mean
+??mean
+help(mean)
+
+# The above three will do same. 
+
+example(ls) # provides example for how to use ls 
+
+help.search("visualization") # search functions and packages that have "visualization" in their descriptions
+```
+
 #### Environment 
 
 ##### Objects 
@@ -36,19 +106,24 @@ If R is ready to accept commands, the R console shows a `>` prompt. If it receiv
 
 
 ```r
-numbers <- c(1,2,3,4,5)
+# Create a numeric object 
+x <- c(1,2,3,4,5)
 
+# List the object 
 ls()
 
-rm(numbers)
+# Remove the object 
+rm(x)
 ```
 
 - Remove objects from your current environment
 
 
 ```r
+# Create an object 
 x <- 5
 
+# Remove the object 
 rm(x)
 ```
 
@@ -56,10 +131,12 @@ rm(x)
 
 
 ```r
+# Create an object 
 a <- 7
 
 b <- 3
 
+# Remove the object 
 rm(list = ls())
 ```
 
@@ -67,29 +144,64 @@ rm(list = ls())
 
 
 ```r
+# Garbage collect; for more information, type ?gc() 
+
 gc()
 ```
 
 ##### Packages 
 
- `install.packages(package-name)` will download a package from one of the CRAN mirrors assuming that a binary is available for your operating system. 
+`install.packages(package-name)` will download a package from one of the CRAN mirrors assuming that a binary is available for your operating system. 
 
 
 ```r
 # From CRAN
-install.packages("stats") 
+install.packages("dplyr") 
 
 # Load package 
-library(stats)
+library(dplyr)
 
 # From GitHub 
-devtools::install_github()
+devtools::install_github("jaeyk/tidytweetjson") # my own package 
 
 # Unload package 
-detach("package:stats", unload=TRUE)
+# detach("package:stats", unload=TRUE)
 ```
 
-- 
+**Tips**
+
+If you have multiple packages to install, then please consider using pacman package. The following is the example. First, you install pacman. Then, you load several libraries by using `p_load()` method.
+
+
+```r
+install.packages("pacman")
+
+pacman::p_load(
+  ggplot2,
+  dplyr, 
+  broom
+)
+```
+
+If you don't like to use `pacman`, then the other option is to create a list (we're going to learn what is list soon).
+
+
+```r
+pkgs <- c("ggplot2", "dplyr", "broom")
+
+install.packages(pkgs)
+```
+  
+Still, we have to write two lines. The simpler, the better, right? Here's another approach that can simplify the code further.
+
+Note that `lapply()` applies (there's a family of apply functions) a function to a list. In this case, library to pkgs. apply is an advanced concept, which is related to anonymous functions. We will learn about it later when we study functions.
+
+
+```r
+inst <- lapply(pkgs, library, 
+               character.only = TRUE)
+```
+
 #### How to organize files in a project 
 
 You won't be able to reproduce your project unless it is efficiently organized. 
@@ -579,6 +691,17 @@ df
 ## Asking questions: Minimal reproducible example
 
 ### How to create a minimal reproducible example
+
+- Chances are you're going to use StackOverFlow a lot to solve a pressing problem you face. However, other can't understand/be interested in your problem unless you can provide an example which they can understand with minimal efforts. Such example is called a minimal reproducible example. 
+
+- Read [this StackOverFlow post](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) to understand the concept and best practices.
+
+- Simply put, a MRE consists of the following items:
+
+    - A minimal dataset 
+    - The minimal burnable code
+    - The necessary information on package, R version, system (use `sessionInfo()`)
+    - A seed for reproducibility (`set.seed()`), if you used a random process. 
 
 ## References
 
