@@ -1922,7 +1922,7 @@ x[c("a", "d")]
 ##   NA   NA
 ```
 
-#### Lists
+### Lists
 
 Subsetting a list works in the same way as subsetting an atomic vector. Using `[` will always return a list; `[[` and `$`, as described below, let you pull out the components of the list.
 
@@ -1966,7 +1966,7 @@ l["a"]
 ## [1] 1
 ```
 
-#### Matrices
+### Matrices
 
 The most common way of subsetting matrices (2d) is a simple generalization of 1d subsetting: you supply a 1d index for each dimension, separated by a comma. Blank subsetting is now useful because it lets you keep all rows or all columns.
 
@@ -2023,7 +2023,7 @@ a[c(1, 2), -2]
 ## [2,] 2 8
 ```
 
-#### Data frames
+### Data frames
 
 Data from data frames can be addressed like matrices (with row and column indicators separated by a comma).
 
@@ -2140,7 +2140,7 @@ class((df[, "x"]))
 
 See the bottom section on [Simplying and Preserving to know more](#simplify-preserve)
 
-#### Subsetting operators 
+### Subsetting operators 
 
 There are two other subsetting operators: `[[` and `$`. 
 
@@ -2305,7 +2305,7 @@ mtcars[[var]]
 ##  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4
 ```
 
-#### Subassignment
+### Subassignment
 
 All subsetting operators can be combined with assignment to modify selected values of the input vector.
 
@@ -4088,7 +4088,7 @@ tablea %>% kableExtra::kable()
 tablea %>% flextable::flextable()
 ```
 
-<!--html_preserve--><div class="tabwid"><style>.cl-45de62a8{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-45de759a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-45de75b8{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-45de9cb4{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45de9cd2{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45de9cdc{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45de9ce6{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45de9cf0{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45de9cfa{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-45de9cf0"><p class="cl-45de759a"><span class="cl-45de62a8">continent</span></p></td><td class="cl-45de9cfa"><p class="cl-45de75b8"><span class="cl-45de62a8">n</span></p></td><td class="cl-45de9cfa"><p class="cl-45de75b8"><span class="cl-45de62a8">mean_gdp</span></p></td><td class="cl-45de9cfa"><p class="cl-45de75b8"><span class="cl-45de62a8">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-45de9cb4"><p class="cl-45de759a"><span class="cl-45de62a8">Africa</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">624</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">2193.755</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-45de9cb4"><p class="cl-45de759a"><span class="cl-45de62a8">Americas</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">300</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">7136.110</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-45de9cb4"><p class="cl-45de759a"><span class="cl-45de62a8">Asia</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">396</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">7902.150</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-45de9cb4"><p class="cl-45de759a"><span class="cl-45de62a8">Europe</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">360</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">14469.476</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-45de9cdc"><p class="cl-45de759a"><span class="cl-45de62a8">Oceania</span></p></td><td class="cl-45de9ce6"><p class="cl-45de75b8"><span class="cl-45de62a8">24</span></p></td><td class="cl-45de9ce6"><p class="cl-45de75b8"><span class="cl-45de62a8">18621.609</span></p></td><td class="cl-45de9ce6"><p class="cl-45de75b8"><span class="cl-45de62a8">6358.983</span></p></td></tr></tbody></table></div><!--/html_preserve-->
+<!--html_preserve--><div class="tabwid"><style>.cl-43d85110{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-43d86326{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-43d86344{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-43d88964{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d88978{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d88982{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d8898c{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d88996{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d889a0{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-43d88996"><p class="cl-43d86326"><span class="cl-43d85110">continent</span></p></td><td class="cl-43d889a0"><p class="cl-43d86344"><span class="cl-43d85110">n</span></p></td><td class="cl-43d889a0"><p class="cl-43d86344"><span class="cl-43d85110">mean_gdp</span></p></td><td class="cl-43d889a0"><p class="cl-43d86344"><span class="cl-43d85110">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-43d88964"><p class="cl-43d86326"><span class="cl-43d85110">Africa</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">624</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">2193.755</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-43d88964"><p class="cl-43d86326"><span class="cl-43d85110">Americas</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">300</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">7136.110</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-43d88964"><p class="cl-43d86326"><span class="cl-43d85110">Asia</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">396</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">7902.150</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-43d88964"><p class="cl-43d86326"><span class="cl-43d85110">Europe</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">360</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">14469.476</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-43d88982"><p class="cl-43d86326"><span class="cl-43d85110">Oceania</span></p></td><td class="cl-43d8898c"><p class="cl-43d86344"><span class="cl-43d85110">24</span></p></td><td class="cl-43d8898c"><p class="cl-43d86344"><span class="cl-43d85110">18621.609</span></p></td><td class="cl-43d8898c"><p class="cl-43d86344"><span class="cl-43d85110">6358.983</span></p></td></tr></tbody></table></div><!--/html_preserve-->
 
 #### Scoped summaries
 
@@ -4337,7 +4337,7 @@ Note that this workshop does not cover creating and manipulating variables using
 
 2.  Turn the summary dataframe into a publishable table using either `kableExtra` or `flextable` package.
 
-#### Tabulization (TBD)
+#### Tabulation (TBD)
 
 ### Grouping
 

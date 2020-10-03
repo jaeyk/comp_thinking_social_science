@@ -212,6 +212,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="tidy-data.html"><a href="tidy-data.html#subset"><i class="fa fa-check"></i><b>4.5</b> Subset</a>
 <ul>
 <li class="chapter" data-level="4.5.1" data-path="tidy-data.html"><a href="tidy-data.html#atomic-vectors"><i class="fa fa-check"></i><b>4.5.1</b> Atomic vectors</a></li>
+<li class="chapter" data-level="4.5.2" data-path="tidy-data.html"><a href="tidy-data.html#lists-1"><i class="fa fa-check"></i><b>4.5.2</b> Lists</a></li>
+<li class="chapter" data-level="4.5.3" data-path="tidy-data.html"><a href="tidy-data.html#matrices-1"><i class="fa fa-check"></i><b>4.5.3</b> Matrices</a></li>
+<li class="chapter" data-level="4.5.4" data-path="tidy-data.html"><a href="tidy-data.html#data-frames"><i class="fa fa-check"></i><b>4.5.4</b> Data frames</a></li>
+<li class="chapter" data-level="4.5.5" data-path="tidy-data.html"><a href="tidy-data.html#subsetting-operators"><i class="fa fa-check"></i><b>4.5.5</b> Subsetting operators</a></li>
+<li class="chapter" data-level="4.5.6" data-path="tidy-data.html"><a href="tidy-data.html#subassignment"><i class="fa fa-check"></i><b>4.5.6</b> Subassignment</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="tidy-data.html"><a href="tidy-data.html#tidyverse"><i class="fa fa-check"></i><b>4.6</b> Tidyverse</a></li>
 <li class="chapter" data-level="4.7" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data"><i class="fa fa-check"></i><b>4.7</b> Tidy data</a></li>
@@ -1297,8 +1302,9 @@ not all the same length.</p></li>
 <pre><code>## &lt;NA&gt; &lt;NA&gt; 
 ##   NA   NA</code></pre>
 </div>
-<div id="lists-1" class="section level4" number="4.5.1.5">
-<h4><span class="header-section-number">4.5.1.5</span> Lists</h4>
+</div>
+<div id="lists-1" class="section level3" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Lists</h3>
 <p>Subsetting a list works in the same way as subsetting an atomic vector. Using <code>[</code> will always return a list; <code>[[</code> and <code>$</code>, as described below, let you pull out the components of the list.</p>
 <div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="tidy-data.html#cb344-1"></a>l &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="dv">2</span>)</span>
 <span id="cb344-2"><a href="tidy-data.html#cb344-2"></a>l</span></code></pre></div>
@@ -1316,8 +1322,8 @@ not all the same length.</p></li>
 <pre><code>## $a
 ## [1] 1</code></pre>
 </div>
-<div id="matrices-1" class="section level4" number="4.5.1.6">
-<h4><span class="header-section-number">4.5.1.6</span> Matrices</h4>
+<div id="matrices-1" class="section level3" number="4.5.3">
+<h3><span class="header-section-number">4.5.3</span> Matrices</h3>
 <p>The most common way of subsetting matrices (2d) is a simple generalization of 1d subsetting: you supply a 1d index for each dimension, separated by a comma. Blank subsetting is now useful because it lets you keep all rows or all columns.</p>
 <div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="tidy-data.html#cb352-1"></a>a &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow =</span> <span class="dv">3</span>)</span>
 <span id="cb352-2"><a href="tidy-data.html#cb352-2"></a><span class="kw">colnames</span>(a) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
@@ -1342,8 +1348,8 @@ not all the same length.</p></li>
 ## [1,] 1 7
 ## [2,] 2 8</code></pre>
 </div>
-<div id="data-frames" class="section level4" number="4.5.1.7">
-<h4><span class="header-section-number">4.5.1.7</span> Data frames</h4>
+<div id="data-frames" class="section level3" number="4.5.4">
+<h3><span class="header-section-number">4.5.4</span> Data frames</h3>
 <p>Data from data frames can be addressed like matrices (with row and column indicators separated by a comma).</p>
 <div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="tidy-data.html#cb362-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">y =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>, <span class="dt">z =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>])</span>
 <span id="cb362-2"><a href="tidy-data.html#cb362-2"></a>df</span></code></pre></div>
@@ -1393,15 +1399,15 @@ not all the same length.</p></li>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <p>See the bottom section on <a href="#simplify-preserve">Simplying and Preserving to know more</a></p>
 </div>
-<div id="subsetting-operators" class="section level4" number="4.5.1.8">
-<h4><span class="header-section-number">4.5.1.8</span> Subsetting operators</h4>
+<div id="subsetting-operators" class="section level3" number="4.5.5">
+<h3><span class="header-section-number">4.5.5</span> Subsetting operators</h3>
 <p>There are two other subsetting operators: <code>[[</code> and <code>$</code>.</p>
 <ul>
 <li><code>[[</code> is similar to <code>[</code>, except it can only return a single value and it allows you to pull pieces out of a list.</li>
 <li><code>$</code> is a useful shorthand for <code>[[</code> combined with character subsetting.</li>
 </ul>
-<div id="section" class="section level5" number="4.5.1.8.1">
-<h5><span class="header-section-number">4.5.1.8.1</span> <code>[[</code></h5>
+<div id="section" class="section level5" number="4.5.5.0.1">
+<h5><span class="header-section-number">4.5.5.0.1</span> <code>[[</code></h5>
 <p>You need <code>[[</code> when working with lists. This is because when <code>[</code> is applied to a list it always returns a list: it never gives you the contents of the list. To get the contents, you need <code>[[</code>:</p>
 <blockquote>
 <p>“If list <code>x</code> is a train carrying objects, then <code>x[[5]]</code> is
@@ -1488,8 +1494,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## Maserati Bora       15.0
 ## Volvo 142E          21.4</code></pre>
 </div>
-<div id="section-1" class="section level5" number="4.5.1.8.2">
-<h5><span class="header-section-number">4.5.1.8.2</span> <code>$</code></h5>
+<div id="section-1" class="section level5" number="4.5.5.0.2">
+<h5><span class="header-section-number">4.5.5.0.2</span> <code>$</code></h5>
 <p><code>$</code> is a shorthand operator, where <code>x$y</code> is equivalent to <code>x[["y", exact = FALSE]]</code>. It’s often used to access variables in a data frame:</p>
 <div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="tidy-data.html#cb390-1"></a><span class="co"># these two are equivalent</span></span>
 <span id="cb390-2"><a href="tidy-data.html#cb390-2"></a>mtcars[[<span class="st">&quot;cyl&quot;</span>]]</span></code></pre></div>
@@ -1506,8 +1512,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <pre><code>##  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4</code></pre>
 </div>
 </div>
-<div id="subassignment" class="section level4" number="4.5.1.9">
-<h4><span class="header-section-number">4.5.1.9</span> Subassignment</h4>
+<div id="subassignment" class="section level3" number="4.5.6">
+<h3><span class="header-section-number">4.5.6</span> Subassignment</h3>
 <p>All subsetting operators can be combined with assignment to modify selected values of the input vector.</p>
 <div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="tidy-data.html#cb398-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
 <span id="cb398-2"><a href="tidy-data.html#cb398-2"></a>x</span></code></pre></div>
@@ -1535,7 +1541,6 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 1  0
 ## 2 10
 ## 3 NA</code></pre>
-</div>
 </div>
 </div>
 <div id="tidyverse" class="section level2" number="4.6">
@@ -2918,7 +2923,7 @@ Oceania
 </table>
 <div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="tidy-data.html#cb536-1"></a><span class="co"># For HTML and MS Office suite</span></span>
 <span id="cb536-2"><a href="tidy-data.html#cb536-2"></a>tablea <span class="op">%&gt;%</span><span class="st"> </span>flextable<span class="op">::</span><span class="kw">flextable</span>()</span></code></pre></div>
-<div class="tabwid"><style>.cl-45de62a8{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-45de759a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-45de75b8{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-45de9cb4{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45de9cd2{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45de9cdc{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45de9ce6{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45de9cf0{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45de9cfa{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-45de9cf0"><p class="cl-45de759a"><span class="cl-45de62a8">continent</span></p></td><td class="cl-45de9cfa"><p class="cl-45de75b8"><span class="cl-45de62a8">n</span></p></td><td class="cl-45de9cfa"><p class="cl-45de75b8"><span class="cl-45de62a8">mean_gdp</span></p></td><td class="cl-45de9cfa"><p class="cl-45de75b8"><span class="cl-45de62a8">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-45de9cb4"><p class="cl-45de759a"><span class="cl-45de62a8">Africa</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">624</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">2193.755</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-45de9cb4"><p class="cl-45de759a"><span class="cl-45de62a8">Americas</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">300</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">7136.110</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-45de9cb4"><p class="cl-45de759a"><span class="cl-45de62a8">Asia</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">396</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">7902.150</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-45de9cb4"><p class="cl-45de759a"><span class="cl-45de62a8">Europe</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">360</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">14469.476</span></p></td><td class="cl-45de9cd2"><p class="cl-45de75b8"><span class="cl-45de62a8">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-45de9cdc"><p class="cl-45de759a"><span class="cl-45de62a8">Oceania</span></p></td><td class="cl-45de9ce6"><p class="cl-45de75b8"><span class="cl-45de62a8">24</span></p></td><td class="cl-45de9ce6"><p class="cl-45de75b8"><span class="cl-45de62a8">18621.609</span></p></td><td class="cl-45de9ce6"><p class="cl-45de75b8"><span class="cl-45de62a8">6358.983</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-43d85110{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-43d86326{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-43d86344{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-43d88964{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d88978{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d88982{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d8898c{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d88996{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d889a0{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-43d88996"><p class="cl-43d86326"><span class="cl-43d85110">continent</span></p></td><td class="cl-43d889a0"><p class="cl-43d86344"><span class="cl-43d85110">n</span></p></td><td class="cl-43d889a0"><p class="cl-43d86344"><span class="cl-43d85110">mean_gdp</span></p></td><td class="cl-43d889a0"><p class="cl-43d86344"><span class="cl-43d85110">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-43d88964"><p class="cl-43d86326"><span class="cl-43d85110">Africa</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">624</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">2193.755</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-43d88964"><p class="cl-43d86326"><span class="cl-43d85110">Americas</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">300</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">7136.110</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-43d88964"><p class="cl-43d86326"><span class="cl-43d85110">Asia</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">396</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">7902.150</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-43d88964"><p class="cl-43d86326"><span class="cl-43d85110">Europe</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">360</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">14469.476</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-43d88982"><p class="cl-43d86326"><span class="cl-43d85110">Oceania</span></p></td><td class="cl-43d8898c"><p class="cl-43d86344"><span class="cl-43d85110">24</span></p></td><td class="cl-43d8898c"><p class="cl-43d86344"><span class="cl-43d85110">18621.609</span></p></td><td class="cl-43d8898c"><p class="cl-43d86344"><span class="cl-43d85110">6358.983</span></p></td></tr></tbody></table></div>
 </div>
 <div id="scoped-summaries" class="section level4" number="4.9.8.2">
 <h4><span class="header-section-number">4.9.8.2</span> Scoped summaries</h4>
@@ -3098,8 +3103,8 @@ Oceania
 <li><p>Turn the summary dataframe into a publishable table using either <code>kableExtra</code> or <code>flextable</code> package.</p></li>
 </ol>
 </div>
-<div id="tabulization-tbd" class="section level4" number="4.9.8.3">
-<h4><span class="header-section-number">4.9.8.3</span> Tabulization (TBD)</h4>
+<div id="tabulation-tbd" class="section level4" number="4.9.8.3">
+<h4><span class="header-section-number">4.9.8.3</span> Tabulation (TBD)</h4>
 </div>
 </div>
 <div id="grouping" class="section level3" number="4.9.9">
