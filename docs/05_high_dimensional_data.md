@@ -1926,11 +1926,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.500, relative change = 3.056e-02) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.388, relative change = 1.494e-02) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.356, relative change = 4.344e-03) 
 ## ....................................................................................................
