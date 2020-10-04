@@ -994,6 +994,76 @@ x
 x[c("a", "d")]
 ```
 
+###### More on string operations 
+
+```{r}
+firstName <- "Jae Yeon"
+lastName <- "Kim"
+```
+
+Unlike in Python, R does not have a reserved operator for string concatenation such as `+`.  Furthermore, using the usual concatenation operator ```c()``` on two or more character strings will not create a single character string, but rather a **vector** of character strings. 
+
+```{r}
+fullName <- c(firstName, lastName)
+
+print(fullName)
+
+length(fullName)
+```
+
+In order to combine two or more character strings into one larger character string, we use the ```paste()``` function.  This function takes character strings or vectors and collapses their values into a single character string, with each value separated by a character string selected by the user.
+
+```{r eval = FALSE}
+fullName <- paste(firstName, lastName)
+
+print(fullName)
+
+fullName <- paste(firstName, lastName, sep = "+")
+
+print(fullName)
+
+fullName <- paste(firstName, lastName, sep = "___")
+print(fullName)
+```
+
+As with Python, R can also extract substrings based on the index position of its characters.  There are, however, two critical differences.  First, **index positions in R start at 1**.  This is in contrast to Python, where indexation starts at 0.  
+
+Second, **object subsets using index positions in R contain all the elements in the specified range**.  If some object called ```data``` contains five elements, ```data[2:4]``` will return the elements at the second, third, and fourth positions.  By contrast, the same subset in Python would return the objects at the third and fourth positions (or second and third positions, depending upon whether your index starts at 0 or 1).  
+
+Third, **R does not allow indexing of character strings***. Instead, you must use the ```substr()``` function.  Note that this function must receive both the ```start``` and ```stop``` arguments.  So if you want to get all the characters between some index and the end of the string, you must make use of the ```nchar()``` function, which will tell you the length of a character string.
+
+```{r}
+
+fullName <- paste(firstName, lastName)
+
+# this won't work like in Python
+fullName[1] # R sees the string as a unitary object - it can't be indexed this way
+fullName[1:4]
+
+# So use this instead
+substr(x = fullName, start = 1, stop = 2)
+substr(x = fullName, start = 5, stop = 5)
+substr(x = fullName, start = 1, stop = 10)
+substr(x = fullName, start = 11, stop = nchar(fullName))
+```
+
+Like Python, R has a number of string methods, though these exist as individual rather than "mix-and-match" functions. For example:
+
+```{r}
+toupper(x = fullName)
+tolower(x = fullName)
+
+strsplit(x = fullName, split = " ")
+strsplit(x = fullName, split = "n")
+
+gsub(pattern = "Kim", replacement = "Choi", x = fullName)
+gsub(pattern = "Jae Yeon", replacement = "Danny", x = fullName)
+
+# Note the importance of cases! This doesn't throw an error, so you won't realize your function didn't work unless you double-check several entries
+
+gsub(pattern = " ", replacement = "", x = fullName) # The same function is used for replacements and stripping
+```
+
 ### Lists
 
 Subsetting a list works in the same way as subsetting an atomic vector. Using `[` will always return a list; `[[` and `$`, as described below, let you pull out the components of the list.
