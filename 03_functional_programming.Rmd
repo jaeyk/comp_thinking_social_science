@@ -1,9 +1,9 @@
 # Automating repeated things {#functional_programming}
 
 > Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions. 
-- Hadley Wickam
+- Hadley Wickham
 
-## Flow Control 
+## Flow control 
 
 Almost all the conditional operators used in Python also work in R.  The basic loop set up is also very similar, with some small syntax adjustments.  Note that ```if()``` is a function whose arguments must be specified inside parentheses.  ```else```, however, is a reserved operator that takes no arguments.  Note that there is no ```elif``` option --- one simply writes ```else if()```.  Whereas operations to be executed after conditional evaluations in Python come after a ```:```, R operations must only be enclosed in curly brackets: ```{}```.  Furthermore, there is no requirement for indentation.  The only thing to keep in mind is that **each new operation must be on a separate line**.
 
