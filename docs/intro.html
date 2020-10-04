@@ -331,7 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="machine-learning.html"><a href="machine-learning.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
 <li class="chapter" data-level="7.2" data-path="machine-learning.html"><a href="machine-learning.html#dataset"><i class="fa fa-check"></i><b>7.2</b> Dataset</a></li>
 <li class="chapter" data-level="7.3" data-path="functional-programming.html"><a href="functional-programming.html#workflow"><i class="fa fa-check"></i><b>7.3</b> Workflow</a></li>
-<li class="chapter" data-level="7.4" data-path="machine-learning.html"><a href="machine-learning.html#tidymodels"><i class="fa fa-check"></i><b>7.4</b> Tidymodels</a></li>
+<li class="chapter" data-level="7.4" data-path="machine-learning.html"><a href="machine-learning.html#tidymodels"><i class="fa fa-check"></i><b>7.4</b> tidymodels</a></li>
 <li class="chapter" data-level="7.5" data-path="machine-learning.html"><a href="machine-learning.html#pre-processing"><i class="fa fa-check"></i><b>7.5</b> Pre-processing</a>
 <ul>
 <li class="chapter" data-level="7.5.1" data-path="machine-learning.html"><a href="machine-learning.html#regression-setup"><i class="fa fa-check"></i><b>7.5.1</b> Regression setup</a></li>
@@ -585,7 +585,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Put your custom functions in the <code>functions</code> subdirectory. You can gather some of these functions and distribute them as an open-source library.</li>
 </ul>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1"></a><span class="kw">dir.create</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;src&quot;</span>))</span></code></pre></div>
-<p><strong>Challenge 2</strong></p>
+<p><strong>Challenge</strong></p>
 <p>Set a project structure for a project named “starwars”.</p>
 </div>
 <div id="how-to-organize-code-in-a-r-markdown-file" class="section level4" number="3.1.1.6">
@@ -684,7 +684,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>If there’s no match then use <code>set_here()</code> to create an empty <code>.here</code> file.</p></li>
 </ul></li>
 </ul>
-<p><strong>Challenge 1</strong></p>
+<p><strong>Challenge</strong></p>
 <ol style="list-style-type: decimal">
 <li>Can you define computational reproducibility?</li>
 <li>Can you explain why sharing code and data is not enough for computational reproducibility?</li>
@@ -696,56 +696,403 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="https://github.com/dlab-berkeley/BashGit/raw/master/octobash.png" /></p>
 <div id="what-is-bash" class="section level4" number="3.1.2.1">
 <h4><span class="header-section-number">3.1.2.1</span> What Is Bash?</h4>
-<div id="writing-your-first-shell-script" class="section level5" number="3.1.2.1.1">
-<h5><span class="header-section-number">3.1.2.1.1</span> Writing your first shell script</h5>
+<div id="unix" class="section level5" number="3.1.2.1.1">
+<h5><span class="header-section-number">3.1.2.1.1</span> Unix</h5>
+<p>UNIX is an operating system which was first developed by AT &amp; T employees at Bell Labs (1969-1971). Bell Labs canceled the project (MULTICS) but was continued by the employees worked in a smaller scale. The new project was named UNICS (Uniplexed Information and Computation System) and then renamed UNIX. Due to <a href="https://en.wikipedia.org/wiki/Breakup_of_the_Bell_System">the anti-trust issue</a>, AT &amp; T gave away UNIX in 1975. Berkeley is one of the main places where UNIX was developed. <a href="https://en.wikipedia.org/wiki/Berkeley_Software_Distribution">The Berkeley Software Distribution</a>, one of the branches of UNIX, came out it 1977.</p>
+<p>From Mac OS X to Linux, many of current operation systems are some versions of UNIX.</p>
+<p>For more information on the history of UNIX, see <a href="https://docs.google.com/presentation/d/1kKt9V6rom55hU6SJ2_3nGluobjtScptlnJV9YFe6Jz4/pub?start=false&amp;loop=false&amp;delayms=3000&amp;slide=id.g163c5ae2ce_0_17">this link</a>.</p>
+<div class="figure">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Unix_history-simple.svg/1200px-Unix_history-simple.svg.png" alt="" />
+<p class="caption">Unix history</p>
+</div>
+</div>
+<div id="kernel" class="section level5" number="3.1.2.1.2">
+<h5><span class="header-section-number">3.1.2.1.2</span> Kernel</h5>
+<p>The kernel of UNIX is the hub of the operating system: it allocates time and memory to programs and handles the <a href="http://users.ox.ac.uk/~martinw/unix/chap3.html">filestore</a> (e.g., files and directories) and communications in response to system calls.</p>
+</div>
+<div id="shell" class="section level5" number="3.1.2.1.3">
+<h5><span class="header-section-number">3.1.2.1.3</span> Shell</h5>
+<p>The shell is an interactive program that provides an interface between the user and the kernel. The shell interprets commands entered by the user or supplied by a shell script, and passes them to the kernel for execution.</p>
+<p>As an illustration of the way that the shell and the kernel work together, suppose a user types <code>rm myfile</code> (which has the effect of removing the file <em>myfile</em>). The shell searches the filestore for the file containing the program <code>rm</code>, and then requests the kernel, through system calls, to execute the program <code>rm</code> on <em>myfile</em>. When the process <code>rm myfile</code> has finished running, the shell then returns the UNIX prompt % to the user, indicating that it is waiting for further commands.</p>
+<p>We’ll talk more about shells in a little bit.</p>
+</div>
+<div id="human-computer-interfaces" class="section level5" number="3.1.2.1.4">
+<h5><span class="header-section-number">3.1.2.1.4</span> Human-Computer interfaces</h5>
+<p>At a high level, computers do four things:</p>
+<ul>
+<li><p>run programs</p></li>
+<li><p>store data</p></li>
+<li><p>communicate with each other</p></li>
+<li><p>interact with us</p>
+<p>They can do the last of these in many different ways, including direct brain-computer links and speech interfaces. Since these are still in their infancy, most of us use windows, icons, mice, and pointers. These technologies didn’t become widespread until the 1980s, but their roots go back to [Doug Engelbart who received his Ph.D. in electrical engineering from the University of California, Berkeley in 1955 and was hired as an assistant professor at the same department for a year. He then left academia and joined the tech industry and became one of the founding fathers in HCI field (mouse, hypertext, GUI, etc.,).</p></li>
+</ul>
+<p>Going back even further, the only way to interact with early computers was to rewire them. But in between, from the 1950s to the 1980s, most people used line printers. These devices only allowed input and output of the letters, numbers, and punctuation found on a standard keyboard, so programming languages and interfaces had to be designed around that constraint.</p>
+</div>
+<div id="the-command-line" class="section level5" number="3.1.2.1.5">
+<h5><span class="header-section-number">3.1.2.1.5</span> The Command Line</h5>
+<p>This kind of interface is called a <strong>command-line interface</strong>, or CLI,
+to distinguish it from the <strong>graphical user interface</strong>, or GUI, that most people now use.</p>
+<p>The heart of a CLI is a <strong>read-evaluate-print loop</strong>, or REPL: when the user types a command and then presses the enter (or return) key, the computer reads it, executes it, and prints its output. The user then types another command,
+and so on until the user logs off.</p>
+<p>As William Shotts the author of <em><a href="http://linuxcommand.org/tlcl.php">The Linux Command Line</a></em> put it:
+&gt;graphical user interfaces make easy tasks easy, while command line interfaces make difficult tasks possible.</p>
+</div>
+<div id="the-shell" class="section level5" number="3.1.2.1.6">
+<h5><span class="header-section-number">3.1.2.1.6</span> The Shell</h5>
+<p>This description makes it sound as though the user sends commands directly to the computer, and the computer sends output directly to the user. In fact,
+there is usually a program in between called a <strong>command shell</strong>.</p>
+<p>What the user types goes into the shell; it figures out what commands to run and orders the computer to execute them.</p>
+<p>Note, the reason why the shell is called <em>the shell</em>: it encloses the operating system in order to hide some of its complexity and make it simpler to interact with.</p>
+<p>A shell is a program like any other. What’s special about it is that its job is to run other programs rather than to do calculations itself. The commands are themselves programs: when they terminate, the shell gives the user another prompt ($ on our systems).</p>
+</div>
+<div id="bash" class="section level5" number="3.1.2.1.7">
+<h5><span class="header-section-number">3.1.2.1.7</span> Bash</h5>
+<p>The most popular Unix shell is <strong>Bash</strong>, the Bourne Again Shell (so-called because it’s derived from a shell written by Stephen Bourne — this is what passes for wit among programmers). Bash is the default shell on most modern implementations of <strong>Unix</strong>, and in most packages that provide Unix-like tools for Windows.</p>
+</div>
+<div id="why-shell" class="section level5" number="3.1.2.1.8">
+<h5><span class="header-section-number">3.1.2.1.8</span> Why Shell?</h5>
+<p>Using Bash or any other shell sometimes feels more like programming than like using a mouse. Commands are terse (often only a couple of characters long), their names are frequently cryptic, and their output is lines of text rather than something visual like a graph.</p>
+<p>On the other hand, the shell allows us to combine existing tools in powerful ways with only a few keystrokes and to set up pipelines to handle large volumes of data automatically.</p>
+<p>In addition, the command line is often the easiest way to interact with remote machines. As clusters and cloud computing become more popular for scientific data crunching, being able to drive them is becoming a necessary skill.</p>
+</div>
+<div id="our-first-command" class="section level5" number="3.1.2.1.9">
+<h5><span class="header-section-number">3.1.2.1.9</span> Our first command</h5>
+<p>The part of the operating system responsible for managing files and directories is called the <strong>file system</strong>. It organizes our data into files, which hold information, and directories (also called “folders”), which hold files or other directories.</p>
+<p>Several commands are frequently used to create, inspect, rename, and delete files and directories. To start exploring them, let’s open a shell window:</p>
+<pre class="shell"><code>$</code></pre>
+<p>The dollar sign is a <strong>prompt</strong>, which shows us that the shell is waiting for input; your shell may show something more elaborate.</p>
+<p>Type the command <code>whoami</code>, then press the Enter key (sometimes marked Return) to send the command to the shell.</p>
+<p>The command’s output is the ID of the current user, i.e., it shows us who the shell thinks we are:</p>
+<pre class="shell"><code>$ whoami
+
+oski</code></pre>
+<p>More specifically, when we type <code>whoami</code> the shell:</p>
+<ol style="list-style-type: decimal">
+<li>finds a program called <code>whoami</code>,</li>
+<li>runs that program,</li>
+<li>displays that program’s output, then</li>
+<li>displays a new prompt to tell us that it’s ready for more commands.</li>
+</ol>
+</div>
+<div id="communicating-to-other-systems" class="section level5" number="3.1.2.1.10">
+<h5><span class="header-section-number">3.1.2.1.10</span> Communicating to other systems</h5>
+<p>In the next unit, we’ll be focusing on the structure of our own operating systems. But our operating systems rarely work in isolation; often, we are relying on the Internet to communicate with others! You can visualize this sort of communication within your own shell by asking your computer to <code>ping</code> (based on the old term for submarine sonar) an IP address provided by Google (8.8.8.8); in effect, this will test whether your Internet (thanks Airbears2) is working.</p>
+<pre class="shell"><code>$ ping 8.8.8.8</code></pre>
+<p>Note: Windows users may have to try a slightly different alternative:</p>
+<pre class="shell"><code>$ ping -t 8.8.8.8</code></pre>
+<p>Your computer will begin continuously pinging this IP address and reporting back the “latency,” or how long it took for the ping data packet to go to that IP address and back. If your Internet isn’t working, it will instead report an error saying “No route to host.”</p>
+<p>Ping runs continuously, so when we want it to stop, we have to manually tell the kernel to stop executing the ping command. We do this simply by typing ctrl+c. </p>
+<p>(Thanks <a href="http://www.paulthissen.org/">Paul Thissen</a> for the suggestion!)</p>
+</div>
+<div id="file-system-organization" class="section level5" number="3.1.2.1.11">
+<h5><span class="header-section-number">3.1.2.1.11</span> File system organization</h5>
+<p>Next, let’s find out where we are by running a command called <code>pwd</code> (<strong>print working directory</strong>).</p>
+<p>At any moment, our <strong>current working directory</strong> is our current default directory, i.e., the directory that the computer assumes we want to run commands in unless we explicitly specify something else.</p>
+<p>Here, the computer’s response is <code>/home/oski</code>, which is the <strong>home directory</strong>:</p>
+<pre class="shell"><code>$ pwd
+
+/home/oski</code></pre>
+<blockquote>
+<h4 id="home-directory">Home Directory</h4>
+<p>The home directory path will look different on different operating systems. On Linux it will look like <code>/home/oski</code>, and on Windows it will be similar to <code>C:\Documents and Settings\oski</code>. Note that it may look slightly different for different versions of Windows.</p>
+</blockquote>
+<blockquote>
+<h4 id="alphabet-soup">Alphabet Soup</h4>
+<p>If the command to find out who we are is <code>whoami</code>, the command to find out where we are ought to be called <code>whereami</code>, so why is it <code>pwd</code> instead? The usual answer is that in the early 1970s, when Unix was
+first being developed, every keystroke counted: the devices of the day were slow, and backspacing on a teletype was so painful that cutting the number of keystrokes in order to cut the number of typing mistakes was actually a win for usability. The reality is that commands were added to Unix one by one, without any master plan, by people who were immersed in its jargon. The result is as inconsistent as the roolz uv Inglish speling, but we’re stuck with it now.</p>
+<p>The good news: because these basic commands were so integral to the development of early Unix, they have stuck around, and appear (in some form) in almost all programming languages.</p>
+</blockquote>
+<p>To understand what a “home directory” is, let’s have a look at how the file system as a whole is organized. At the top is the <strong>root directory</strong> that holds everything else.</p>
+<p>We refer to it using a slash character <code>/</code> on its own; this is the leading slash in <code>/home/oski</code>.</p>
+<p>Inside that directory are several other directories: <code>bin</code> (which is where some built-in programs are stored), <code>data</code> (holding miscellaneous data files) <code>etc</code> (where local configuration files are stored), <code>tmp</code> (for temporary files that don’t need to be stored long-term), and so on.</p>
+<blockquote>
+<p>If you’re working on a Mac, the file structure will look similar, but not
+identical. The following image shows a file system graph for the typical Mac.</p>
+</blockquote>
+<div class="figure">
+<img src="https://swcarpentry.github.io/shell-novice/fig/home-directories.svg" alt="" />
+<p class="caption">File Directory</p>
+</div>
+<p>We know that our current working directory <code>/home/oski</code> is stored inside <code>/home</code> because <code>/home</code> is the first part of its name. Similarly, we know that <code>/home</code> is stored inside the root directory <code>/</code> because its name begins with <code>/</code>.</p>
+<blockquote>
+<h4 id="path">Path</h4>
+<p>Notice that there are two meanings for the <code>/</code> character.
+When it appears at the front of a file or directory name, it refers to the root directory. When it appears <em>inside</em> a name, it’s just a separator.</p>
+</blockquote>
+</div>
+<div id="listing" class="section level5" number="3.1.2.1.12">
+<h5><span class="header-section-number">3.1.2.1.12</span> Listing</h5>
+<p>Let’s see what’s in your home directory by running <code>ls</code> (**list files and directories):</p>
+<pre class="shell"><code>$ ls
+
+Applications		Dropbox			Pictures
+Creative Cloud Files	Google Drive		Public
+Desktop			Library			Untitled.ipynb
+Documents		Movies			anaconda
+Downloads		Music			file.txt</code></pre>
+<p><code>ls</code> prints the names of the files and directories in the current directory in alphabetical order, arranged neatly into columns.</p>
+<p>We can make its output more comprehensible by using the <strong>flag</strong> <code>-F</code>, which tells <code>ls</code> to add a trailing <code>/</code> to the names of directories:</p>
+<pre class="shell"><code>$ ls -F
+
+Applications		Dropbox			Pictures
+Creative Cloud Files	Google Drive		Public
+Desktop			Library			Untitled.ipynb
+Documents		Movies			anaconda
+Downloads		Music			file.txt</code></pre>
+<p>And note that there is a space between <code>ls</code> and <code>-F</code>: without it, the shell thinks we’re trying to run a command called <code>ls-F</code>, which doesn’t exist.</p>
+<blockquote>
+<h4 id="whats-in-a-name">What’s In A Name?</h4>
+<p>You may have noticed that all of our’s files’ names are “something dot something”. This is just a convention: we can call a file <code>file</code> or almost anything else we want. However, most people use two-part names most of the time to help them (and their programs) tell different kinds of files apart. The second part of such a name is called the <strong>filename extension</strong>, and indicates what type of data the file holds:
+<code>.txt</code> signals a plain text file, <code>.pdf</code> indicates a PDF document, <code>.cfg</code> is a configuration file full of parameters for some program or other, and so on.</p>
+<p>This is just a convention, albeit an important one. Files contain bytes: it’s up to us and our programs to interpret those bytes according to the rules for PDF documents, images, and so on.</p>
+<p>Naming a PNG image of a whale as <code>whale.mp3</code> doesn’t somehow magically turn it into a recording of whalesong, though it <em>might</em> cause the operating system to try to open it with a music player when someone double-clicks it.</p>
+</blockquote>
+<p>Now let’s take a look at what’s in your <code>Desktop</code> directory by running <code>ls -F data</code>, i.e., the command <code>ls</code> with the <strong>arguments</strong> <code>-F</code> and <code>PS239T</code>. The second argument — the one <em>without</em> a leading dash — tells <code>ls</code> that we want a listing of the files in something other than our current working directory:</p>
+<pre class="shell"><code>$ ls -F PS239T
+
+01_Introduction/			10_python-basics/
+02_Unix-Bash/				11_FINAL PROJECTS/
+03_r-basics/				12_text-analysis-python/
+04_r-data-analysis/			13_text-analysis-r/
+05_r-visualization/			14_machine-learning/
+06_APIs/				15_machine-learning-applications/
+07_html-css-javascript/			A_Syllabus.md
+08_webscraping/				B_Install.md
+09_qualtrics-mturk/			README.md</code></pre>
+<p>The output shows us that there are three files and fifteen sub-sub-directories. Organizing things hierarchically in this way helps us keep track of our work: it’s possible to put hundreds of files in our home directory, just as it’s possible to pile hundreds of printed papers on our desk, but it’s a self-defeating strategy.</p>
+<p>Notice, by the way that we spelled the directory name <code>Desktop</code>. It doesn’t have a trailing slash: that’s added to directory names by <code>ls</code> when we use the <code>-F</code> flag to help us tell things apart. And it doesn’t begin with a slash because it’s a <strong>relative path</strong>, i.e., it tells <code>ls</code> how to find something from where we are, rather than from the root of the file system.</p>
+<blockquote>
+<h4 id="parameters-vs.-arguments">Parameters vs. Arguments</h4>
+<p>According to <a href="https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments">Wikipedia</a>,
+the terms <strong>argument</strong> and <strong>parameter</strong> mean slightly different things.
+In practice, however, most people use them interchangeably or inconsistently,
+so we will too.</p>
+</blockquote>
+<p>If we run <code>ls -F /Desktop</code> (<em>with</em> a leading slash) we get a different answer, because <code>/Desktop</code> is an <strong>absolute path</strong>:</p>
+<pre class="shell"><code>$ ls -F /Desktop
+
+ls: /Desktop: No such file or directory</code></pre>
+<p>The leading <code>/</code> tells the computer to follow the path from the root of the file system, so it always refers to exactly one directory, no matter where we are when we run the command.</p>
+<p>What if we want to change our current working directory? Before we do this, <code>pwd</code> shows us that we’re in <code>/home/oski</code>, and <code>ls</code> without any arguments shows us that directory’s contents:</p>
+<pre class="shell"><code>$ pwd
+
+/home/oski (/Users/rachel)
+
+$ ls
+
+Applications		Dropbox			Pictures
+Creative Cloud Files	Google Drive		Public
+Desktop			Library			Untitled.ipynb
+Documents		Movies			anaconda
+Downloads		Music			file.txt</code></pre>
+<p>Use relative paths (e.g., ../PS239T/references.md) whenever it’s possible so that your code is not dependable on how your system is configured.</p>
+</div>
+<div id="moving-around" class="section level5" number="3.1.2.1.13">
+<h5><span class="header-section-number">3.1.2.1.13</span> Moving around</h5>
+<p>We can use <code>cd</code> (<strong>change directory</strong>) followed by a directory name to change our working directory.</p>
+<pre class="shell"><code>$ cd Desktop</code></pre>
+<p><code>cd</code> doesn’t print anything, but if we run <code>pwd</code> after it, we can see that we are now in <code>/home/oski/Desktop</code>.</p>
+<p>If we run <code>ls</code> without arguments now, it lists the contents of <code>/home/oski/Desktop</code>, because that’s where we now are:</p>
+<pre class="shell"><code>$ pwd
+
+/home/oski/Desktop
+</code></pre>
+<p>We now know how to go down the directory tree: how do we go up? We could use an absolute path:</p>
+<pre class="shell"><code>$ cd /home/oski/</code></pre>
+<p>but it’s almost always simpler to use <code>cd ..</code> to go up one level:</p>
+<pre class="shell"><code>$ pwd
+
+/home/oski/Desktop
+
+$ cd ..</code></pre>
+<p><code>..</code> is a special directory name meaning “the directory containing this one”,
+or more succinctly, the <strong>parent</strong> of the current directory. Sure enough, if we run <code>pwd</code> after running <code>cd ..</code>, we’re back in <code>/home/oski/</code>:</p>
+<pre class="shell"><code>$ pwd
+
+/home/oski/</code></pre>
+<p>The special directory <code>..</code> doesn’t usually show up when we run <code>ls</code>. If we want to display it, we can give <code>ls</code> the <code>-a</code> flag:</p>
+<pre class="shell"><code>$ ls -a
+
+.		.localized	Shared
+..		Guest		rachel</code></pre>
+<p><code>-a</code> stands for “show all”; it forces <code>ls</code> to show us file and directory names that begin with <code>.</code>, such as <code>..</code>.</p>
+<blockquote>
+<h4 id="hidden-files-for-your-own-protection">Hidden Files: For Your Own Protection</h4>
+<p>As you can see, a bunch of other items just appeared when we enter <code>ls -a</code>.
+These files and directories begin with <code>.</code> followed by a name. These are
+usually files and directories that hold important programmatic information,
+not usually edited by the casual computer user. They are kept hidden so that
+users don’t accidentally delete or edit them without knowing what they’re
+doing.</p>
+</blockquote>
+<p>As you can see, it also displays another special directory that’s just called <code>.</code>, which means “the current working directory”. It may seem redundant to have a name for it, but we’ll see some uses for it soon.</p>
+<blockquote>
+<h4 id="phone-home">Phone Home</h4>
+<p>If you ever want to get to the home directory immediately, you can use the
+shortcut <code>~</code>. For example, type <code>cd ~</code> and you’ll get back home in a jiffy.
+<code>~</code> will also stand in for your home directory in paths, so for instance
+<code>~/Desktop</code> is the same as <code>/home/oski/Desktop</code>. This only works if it is
+the first character in the path: <code>here/there/~/elsewhere</code> is not
+<code>/home/oski/elsewhere</code>.</p>
+</blockquote>
+</div>
+<div id="tab-completion" class="section level5" number="3.1.2.1.14">
+<h5><span class="header-section-number">3.1.2.1.14</span> Tab completion</h5>
+<p>If you are in you home directory, you can see what files you have on your <code>Desktop</code> using the command:</p>
+<pre class="shell"><code>$ ls ~/Desktop</code></pre>
+<p>This is a lot to type, but she can let the shell do most of the work. If she types:</p>
+<pre class="shell"><code>$ ls ~/Des</code></pre>
+<p>and then presses tab, the shell automatically completes the directory name for her:</p>
+<pre class="shell"><code>$ ls ~/Desktop</code></pre>
+<p>Pressing tab again does nothing, since there are multiple possibilities. Pressing tab twice brings up a list of all the files and directories, and so on.</p>
+<p>This is called <strong>tab completion</strong>, and we will see it in many other tools as we go on.</p>
+<blockquote>
+<h4 id="quick-file-paths">Quick File Paths</h4>
+<p>If you quickly need the path of a file or directory, you can also copy the
+file/directory in the GUI and paste.The full path of the file or directory
+will appear.</p>
+</blockquote>
+</div>
+<div id="writing-your-first-shell-script" class="section level5" number="3.1.2.1.15">
+<h5><span class="header-section-number">3.1.2.1.15</span> Writing your first shell script</h5>
 <p>Write a shell script that creates a directory called <code>/pdfs</code> under <code>/Download</code> directory, then find PDF files in <code>/Download</code> and copy those files to <code>pdfs</code>. This shell script creates a backup.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="intro.html#cb31-1"></a></span>
-<span id="cb31-2"><a href="intro.html#cb31-2"></a><span class="co">#!/bin/sh</span></span>
-<span id="cb31-3"><a href="intro.html#cb31-3"></a></span>
-<span id="cb31-4"><a href="intro.html#cb31-4"></a><span class="fu">mkdir</span> /home/jae/Downloads/pdfs </span>
-<span id="cb31-5"><a href="intro.html#cb31-5"></a></span>
-<span id="cb31-6"><a href="intro.html#cb31-6"></a><span class="bu">cd</span> Download</span>
-<span id="cb31-7"><a href="intro.html#cb31-7"></a></span>
-<span id="cb31-8"><a href="intro.html#cb31-8"></a><span class="fu">cp</span> *.pdf pdfs/ </span>
-<span id="cb31-9"><a href="intro.html#cb31-9"></a></span>
-<span id="cb31-10"><a href="intro.html#cb31-10"></a><span class="bu">echo</span> <span class="st">&quot;Copied pdfs&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb50-1"><a href="intro.html#cb50-1"></a></span>
+<span id="cb50-2"><a href="intro.html#cb50-2"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb50-3"><a href="intro.html#cb50-3"></a></span>
+<span id="cb50-4"><a href="intro.html#cb50-4"></a><span class="fu">mkdir</span> /home/jae/Downloads/pdfs </span>
+<span id="cb50-5"><a href="intro.html#cb50-5"></a></span>
+<span id="cb50-6"><a href="intro.html#cb50-6"></a><span class="bu">cd</span> Download</span>
+<span id="cb50-7"><a href="intro.html#cb50-7"></a></span>
+<span id="cb50-8"><a href="intro.html#cb50-8"></a><span class="fu">cp</span> *.pdf pdfs/ </span>
+<span id="cb50-9"><a href="intro.html#cb50-9"></a></span>
+<span id="cb50-10"><a href="intro.html#cb50-10"></a><span class="bu">echo</span> <span class="st">&quot;Copied pdfs&quot;</span></span></code></pre></div>
 </div>
 </div>
-<div id="what-are-git-and-github" class="section level4" number="3.1.2.2">
-<h4><span class="header-section-number">3.1.2.2</span> What Are Git and GitHub?</h4>
+<div id="git-and-github" class="section level4" number="3.1.2.2">
+<h4><span class="header-section-number">3.1.2.2</span> Git and GitHub</h4>
+<div id="version-control-system" class="section level5" number="3.1.2.2.1">
+<h5><span class="header-section-number">3.1.2.2.1</span> Version control system</h5>
+<div class="figure">
+<img src="https://i2.wp.com/cdn-images-1.medium.com/max/399/1*7HHA_UkjUK7wp7qP4CYu1g.png?zoom=1.75&amp;w=456&amp;ssl=1" alt="" />
+<p class="caption">Why you should do version control</p>
+</div>
+<p>According to <a href="https://guides.github.com">Github Guides</a>, a versin control system “tracks the history of changes as people and teams collaborate on projects together”. Specifically, it helps to track the following information:</p>
+<ul>
+<li>Which changes were made?</li>
+<li>Who made the changes?</li>
+<li>When were the changes made?</li>
+<li>Why were changes needed?</li>
+</ul>
+<p>Git is a case of a <a href="https://en.wikipedia.org/wiki/Distributed_version_control">distributed version control system</a>, common in open source and commercial software development. This is no surprising given that Git <a href="https://lkml.org/lkml/2005/4/6/121">was originally created</a> to deal with Linux kernal development.</p>
+<ul>
+<li>If you’re curious about how the Intenret works, learn one of the key ideas of the Internet: <a href="https://en.wikipedia.org/wiki/End-to-end_principle">end-to-end principle</a>. This also explains why <a href="https://en.wikipedia.org/wiki/Net_neutrality">net neutrality</a> matters.</li>
+</ul>
+<p>The following images, from <a href="git-scm.com">Pro Git</a>, show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS (e.g., Git, Mercurial, Bazzar or Darcs) works differently.</p>
+<div class="figure">
+<img src="https://git-scm.com/book/en/v2/images/centralized.png" alt="" />
+<p class="caption">Centralized version control system</p>
+</div>
+<p>Figure 2. Centralized VCS.</p>
+<div class="figure">
+<img src="https://git-scm.com/book/en/v2/images/distributed.png" alt="" />
+<p class="caption">Decentralized version control system</p>
+</div>
+<p>Figure 3. Decentralized VCS.</p>
+<p>For more information on the varieties of version control systems, please read <a href="https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf">Petr Baudis’s review</a> on that subject.</p>
 <div class="figure">
 <img src="https://plain-text.co/figures/git-basic.png" alt="" />
 <p class="caption">Figure 2.1. A schematic git workflow from Healy’s “The Plain Person’s Guide to Plain Text Social Science”</p>
 </div>
-<div id="basics-git-push-and-git-pull" class="section level5" number="3.1.2.2.1">
-<h5><span class="header-section-number">3.1.2.2.1</span> Basics: <code>git push</code> and <code>git pull</code></h5>
 </div>
-<div id="time-machine-git-revert" class="section level5" number="3.1.2.2.2">
-<h5><span class="header-section-number">3.1.2.2.2</span> Time machine: <code>git revert</code></h5>
+<div id="setup-1" class="section level5" number="3.1.2.2.2">
+<h5><span class="header-section-number">3.1.2.2.2</span> Setup</h5>
+<p>We’ll start with telling Git who you are.</p>
+<pre class="shell"><code>$ git config --global user.name &quot;Firstname Lastname&quot;
+$ git config --global user.email username@company.extension</code></pre>
 </div>
-<div id="parallel-universe-git-branch" class="section level5" number="3.1.2.2.3">
-<h5><span class="header-section-number">3.1.2.2.3</span> Parallel universe: <code>git branch</code></h5>
+<div id="making-a-repository" class="section level5" number="3.1.2.2.3">
+<h5><span class="header-section-number">3.1.2.2.3</span> Making a repository</h5>
+<p>Create a new directory and move to it.</p>
+<pre class="shell"><code>$ mkdir code_exercise 
+$ cd code_exercise </code></pre>
+<pre class="shell"><code>$ git init </code></pre>
+<p>Alternatively, you can create a Git repository via Github and then clone it on your local machine.</p>
+<pre class="shell"><code>$ git clone /path/to/repository</code></pre>
+<p>If you’re unfamiliar with basic Git commands, then please refer to <a href="http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf">this Git cheet sheet</a>.</p>
 </div>
-<div id="user-manual-readme" class="section level5" number="3.1.2.2.4">
-<h5><span class="header-section-number">3.1.2.2.4</span> User-manual: <code>readme</code></h5>
+<div id="commit-changes" class="section level5" number="3.1.2.2.4">
+<h5><span class="header-section-number">3.1.2.2.4</span> Commit changes</h5>
+<p>These feature show how Git works as a version control system.</p>
+<p>If you edited files or added new ones, then you need to update your repository. In Git terms, this action is called committing changes.</p>
+<pre class="shell"><code>$ git add . # update every change. In Git terms, you&#39;re staging. 
+$ git add file_name # or stage a specific file.
+$ git commit -m &quot;your comment&quot; # your comment for the commit. 
+$ git push origin master # commit the change. Origin is a defaul name given to a server by Git. </code></pre>
+<p>Another image from <a href="https://git-scm.com/about/staging-area">Pro Git</a> well illustrates this process.</p>
+<div class="figure">
+<img src="https://git-scm.com/images/about/index1@2x.png" alt="" />
+<p class="caption">Git Workflow</p>
+</div>
+</div>
+<div id="other-useful-commands-for-tracking-history" class="section level5" number="3.1.2.2.5">
+<h5><span class="header-section-number">3.1.2.2.5</span> Other useful commands for tracking history</h5>
+<pre class="shell"><code>$ git diff # to see what changed (e.g., inside a file)
+$ git log # to track who committed what
+$ git checkout the commit hash (e.g., a5e556) file name (fruit_list.txt) # to recover old files 
+$ git revert 1q84 # revert to the previous commit </code></pre>
+</div>
+<div id="doing-other-than-adding" class="section level5" number="3.1.2.2.6">
+<h5><span class="header-section-number">3.1.2.2.6</span> Doing other than adding</h5>
+<pre class="shell"><code>$ git rm file_name # remove 
+$ git mv old_file_name new_file_name # rename a file </code></pre>
+</div>
+<div id="push-and-pull-or-fetch" class="section level5" number="3.1.2.2.7">
+<h5><span class="header-section-number">3.1.2.2.7</span> Push and pull (or fetch)</h5>
+<p>These features show how Git works as a collaboration tool.</p>
+<p>If you have not already done, let’s clone PS239T directory on your local machine.</p>
+<pre class="shell"><code>$ git clone https://github.com/jaeyk/PS239T # clone </code></pre>
+<p>Then, let’s learn more about the repository.</p>
+<pre class="shell"><code>$ git remote -v </code></pre>
+<p>Previously, we learned how to send your data save in the local machine to the remote (the Github server). You can do that by editing or creating files, committing, and then typing <strong>git push</strong>.</p>
+<p>Instead, if you want to update your local data with the remote data, then you can type <strong>git pull origin</strong> (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.</p>
+<pre class="shell"><code>$ git fetch origin</code></pre>
+</div>
+<div id="branching" class="section level5" number="3.1.2.2.8">
+<h5><span class="header-section-number">3.1.2.2.8</span> Branching</h5>
+<p>It’s an advanced feature of Git’s version control system that allows developers to “diverge from the main line of development and continue to do work without messing with that main line” according to <a href="https://git-scm.com/book/en/v1/Git-Branching">Scott Chacon and Ben Straub</a>.</p>
+<p>If you start working on a new feature, then create a new branch.</p>
+<pre class="shell"><code>$ git branch new_features
+$ git checkout new_features</code></pre>
+<p>You can see the newly created branch by typing <strong>git branch</strong>.</p>
+<p>In short, branching makes Git <a href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics">works like</a> a mini file system.</p>
+</div>
+<div id="collaborations" class="section level5" number="3.1.2.2.9">
+<h5><span class="header-section-number">3.1.2.2.9</span> Collaborations</h5>
+<p>Two options.</p>
 <ul>
-<li>README.md</li>
-</ul>
-<p><img src="https://libapps.s3.amazonaws.com/accounts/125446/images/README_Sample.png" /></p>
-<ul>
-<li><p>In this simple markdown file, note some basic information about the project including the project structure.</p></li>
-<li><p>This is how I used the <code>README.md</code> file for this course. Check out <a href="https://github.com/jaeyk">my GitHub account</a> to see how I manage my projects.</p></li>
+<li>Sharing a repository (suitable for a private project).</li>
+<li>Fork and pull (suitable for an open source project).
+​ * The one who maintains the repository becomes the maintainer.
+​ * The others can <a href="https://help.github.com/articles/about-forks/">fork</a>, make changes, and even <a href="https://help.github.com/articles/about-pull-requests/">pull</a> them back.</li>
 </ul>
 </div>
+<div id="other-stuff" class="section level5" number="3.1.2.2.10">
+<h5><span class="header-section-number">3.1.2.2.10</span> Other stuff</h5>
+<pre class="shell"><code>$ git status # show the status of changes 
+$ git branch # show the branch being worked on locally
+$ git merge # merge branches 
+$ git reset --hard # restore the pristine version
+$ git commit -a -m &quot;additional backup&quot; # to save the state again</code></pre>
 </div>
-<div id="deployment-github-pages" class="section level4" number="3.1.2.3">
-<h4><span class="header-section-number">3.1.2.3</span> Deployment: GitHub Pages</h4>
+<div id="deployment-github-pages" class="section level5" number="3.1.2.2.11">
+<h5><span class="header-section-number">3.1.2.2.11</span> Deployment: GitHub Pages</h5>
 </div>
-<div id="tracking-progress-github-issues" class="section level4" number="3.1.2.4">
-<h4><span class="header-section-number">3.1.2.4</span> Tracking progress: GitHub Issues</h4>
+<div id="tracking-progress-github-issues" class="section level5" number="3.1.2.2.12">
+<h5><span class="header-section-number">3.1.2.2.12</span> Tracking progress: GitHub Issues</h5>
 </div>
-<div id="project-management-github-dashboards" class="section level4" number="3.1.2.5">
-<h4><span class="header-section-number">3.1.2.5</span> Project management: GitHub Dashboards</h4>
+<div id="project-management-github-dashboards" class="section level5" number="3.1.2.2.13">
+<h5><span class="header-section-number">3.1.2.2.13</span> Project management: GitHub Dashboards</h5>
+</div>
 </div>
 </div>
 </div>
@@ -787,11 +1134,11 @@ allowfullscreen></iframe>
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1"></a><span class="co"># Good</span></span>
-<span id="cb32-2"><a href="intro.html#cb32-2"></a>fit_models.R</span>
-<span id="cb32-3"><a href="intro.html#cb32-3"></a></span>
-<span id="cb32-4"><a href="intro.html#cb32-4"></a><span class="co"># Bad</span></span>
-<span id="cb32-5"><a href="intro.html#cb32-5"></a>fit models.R</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="intro.html#cb63-1"></a><span class="co"># Good</span></span>
+<span id="cb63-2"><a href="intro.html#cb63-2"></a>fit_models.R</span>
+<span id="cb63-3"><a href="intro.html#cb63-3"></a></span>
+<span id="cb63-4"><a href="intro.html#cb63-4"></a><span class="co"># Bad</span></span>
+<span id="cb63-5"><a href="intro.html#cb63-5"></a>fit models.R</span></code></pre></div>
 <ul>
 <li>When naming objects:
 <ul>
@@ -799,11 +1146,11 @@ allowfullscreen></iframe>
 <li>Don’t capitalize.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="intro.html#cb33-1"></a><span class="co"># Good </span></span>
-<span id="cb33-2"><a href="intro.html#cb33-2"></a>day_one</span>
-<span id="cb33-3"><a href="intro.html#cb33-3"></a>    </span>
-<span id="cb33-4"><a href="intro.html#cb33-4"></a><span class="co"># Bad </span></span>
-<span id="cb33-5"><a href="intro.html#cb33-5"></a>DayOne</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="intro.html#cb64-1"></a><span class="co"># Good </span></span>
+<span id="cb64-2"><a href="intro.html#cb64-2"></a>day_one</span>
+<span id="cb64-3"><a href="intro.html#cb64-3"></a>    </span>
+<span id="cb64-4"><a href="intro.html#cb64-4"></a><span class="co"># Bad </span></span>
+<span id="cb64-5"><a href="intro.html#cb64-5"></a>DayOne</span></code></pre></div>
 <ul>
 <li>When naming functions:
 <ul>
@@ -812,49 +1159,49 @@ allowfullscreen></iframe>
 <li>Use <code>verbs</code> instead of <code>nouns</code>. (Functions do something!)</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intro.html#cb34-1"></a><span class="co"># Good </span></span>
-<span id="cb34-2"><a href="intro.html#cb34-2"></a>run_rdd </span>
-<span id="cb34-3"><a href="intro.html#cb34-3"></a></span>
-<span id="cb34-4"><a href="intro.html#cb34-4"></a><span class="co"># Bad </span></span>
-<span id="cb34-5"><a href="intro.html#cb34-5"></a>rdd</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="intro.html#cb65-1"></a><span class="co"># Good </span></span>
+<span id="cb65-2"><a href="intro.html#cb65-2"></a>run_rdd </span>
+<span id="cb65-3"><a href="intro.html#cb65-3"></a></span>
+<span id="cb65-4"><a href="intro.html#cb65-4"></a><span class="co"># Bad </span></span>
+<span id="cb65-5"><a href="intro.html#cb65-5"></a>rdd</span></code></pre></div>
 <ul>
 <li>Spacing</li>
 </ul>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="intro.html#cb35-1"></a><span class="co"># Good</span></span>
-<span id="cb35-2"><a href="intro.html#cb35-2"></a>x[, <span class="dv">1</span>] </span>
-<span id="cb35-3"><a href="intro.html#cb35-3"></a></span>
-<span id="cb35-4"><a href="intro.html#cb35-4"></a><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </span>
-<span id="cb35-5"><a href="intro.html#cb35-5"></a></span>
-<span id="cb35-6"><a href="intro.html#cb35-6"></a><span class="co"># Bad</span></span>
-<span id="cb35-7"><a href="intro.html#cb35-7"></a></span>
-<span id="cb35-8"><a href="intro.html#cb35-8"></a>x[,<span class="dv">1</span>]</span>
-<span id="cb35-9"><a href="intro.html#cb35-9"></a></span>
-<span id="cb35-10"><a href="intro.html#cb35-10"></a><span class="kw">mean</span> (x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="intro.html#cb66-1"></a><span class="co"># Good</span></span>
+<span id="cb66-2"><a href="intro.html#cb66-2"></a>x[, <span class="dv">1</span>] </span>
+<span id="cb66-3"><a href="intro.html#cb66-3"></a></span>
+<span id="cb66-4"><a href="intro.html#cb66-4"></a><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </span>
+<span id="cb66-5"><a href="intro.html#cb66-5"></a></span>
+<span id="cb66-6"><a href="intro.html#cb66-6"></a><span class="co"># Bad</span></span>
+<span id="cb66-7"><a href="intro.html#cb66-7"></a></span>
+<span id="cb66-8"><a href="intro.html#cb66-8"></a>x[,<span class="dv">1</span>]</span>
+<span id="cb66-9"><a href="intro.html#cb66-9"></a></span>
+<span id="cb66-10"><a href="intro.html#cb66-10"></a><span class="kw">mean</span> (x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <ul>
 <li>Indenting</li>
 </ul>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="intro.html#cb36-1"></a><span class="co"># Good</span></span>
-<span id="cb36-2"><a href="intro.html#cb36-2"></a><span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb36-3"><a href="intro.html#cb36-3"></a>  <span class="kw">message</span>(<span class="st">&quot;y is negative&quot;</span>)</span>
-<span id="cb36-4"><a href="intro.html#cb36-4"></a>}</span>
-<span id="cb36-5"><a href="intro.html#cb36-5"></a></span>
-<span id="cb36-6"><a href="intro.html#cb36-6"></a><span class="co"># Bad</span></span>
-<span id="cb36-7"><a href="intro.html#cb36-7"></a><span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb36-8"><a href="intro.html#cb36-8"></a><span class="kw">message</span>(<span class="st">&quot;Y is negative&quot;</span>)}</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="intro.html#cb67-1"></a><span class="co"># Good</span></span>
+<span id="cb67-2"><a href="intro.html#cb67-2"></a><span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb67-3"><a href="intro.html#cb67-3"></a>  <span class="kw">message</span>(<span class="st">&quot;y is negative&quot;</span>)</span>
+<span id="cb67-4"><a href="intro.html#cb67-4"></a>}</span>
+<span id="cb67-5"><a href="intro.html#cb67-5"></a></span>
+<span id="cb67-6"><a href="intro.html#cb67-6"></a><span class="co"># Bad</span></span>
+<span id="cb67-7"><a href="intro.html#cb67-7"></a><span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb67-8"><a href="intro.html#cb67-8"></a><span class="kw">message</span>(<span class="st">&quot;Y is negative&quot;</span>)}</span></code></pre></div>
 <ul>
 <li>Long lines</li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="intro.html#cb37-1"></a><span class="co"># Good</span></span>
-<span id="cb37-2"><a href="intro.html#cb37-2"></a><span class="kw">do_something_very_complicated</span>(</span>
-<span id="cb37-3"><a href="intro.html#cb37-3"></a>  <span class="dt">something =</span> <span class="st">&quot;that&quot;</span>,</span>
-<span id="cb37-4"><a href="intro.html#cb37-4"></a>  <span class="dt">requires =</span> many,</span>
-<span id="cb37-5"><a href="intro.html#cb37-5"></a>  <span class="dt">arguments =</span> <span class="st">&quot;some of which may be long&quot;</span></span>
-<span id="cb37-6"><a href="intro.html#cb37-6"></a>)</span>
-<span id="cb37-7"><a href="intro.html#cb37-7"></a></span>
-<span id="cb37-8"><a href="intro.html#cb37-8"></a><span class="co"># Bad</span></span>
-<span id="cb37-9"><a href="intro.html#cb37-9"></a><span class="kw">do_something_very_complicated</span>(<span class="st">&quot;that&quot;</span>, <span class="dt">requires =</span> many, <span class="dt">arguments =</span></span>
-<span id="cb37-10"><a href="intro.html#cb37-10"></a>                              <span class="st">&quot;some of which may be long&quot;</span></span>
-<span id="cb37-11"><a href="intro.html#cb37-11"></a>                              )</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="intro.html#cb68-1"></a><span class="co"># Good</span></span>
+<span id="cb68-2"><a href="intro.html#cb68-2"></a><span class="kw">do_something_very_complicated</span>(</span>
+<span id="cb68-3"><a href="intro.html#cb68-3"></a>  <span class="dt">something =</span> <span class="st">&quot;that&quot;</span>,</span>
+<span id="cb68-4"><a href="intro.html#cb68-4"></a>  <span class="dt">requires =</span> many,</span>
+<span id="cb68-5"><a href="intro.html#cb68-5"></a>  <span class="dt">arguments =</span> <span class="st">&quot;some of which may be long&quot;</span></span>
+<span id="cb68-6"><a href="intro.html#cb68-6"></a>)</span>
+<span id="cb68-7"><a href="intro.html#cb68-7"></a></span>
+<span id="cb68-8"><a href="intro.html#cb68-8"></a><span class="co"># Bad</span></span>
+<span id="cb68-9"><a href="intro.html#cb68-9"></a><span class="kw">do_something_very_complicated</span>(<span class="st">&quot;that&quot;</span>, <span class="dt">requires =</span> many, <span class="dt">arguments =</span></span>
+<span id="cb68-10"><a href="intro.html#cb68-10"></a>                              <span class="st">&quot;some of which may be long&quot;</span></span>
+<span id="cb68-11"><a href="intro.html#cb68-11"></a>                              )</span></code></pre></div>
 <ul>
 <li>Comments
 <ul>
@@ -863,27 +1210,27 @@ allowfullscreen></iframe>
 <li>Also, try to comment out rather than delete the code that you experiment with.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="intro.html#cb38-1"></a><span class="co"># Average sleep hours of Jae</span></span>
-<span id="cb38-2"><a href="intro.html#cb38-2"></a>jae <span class="op">%&gt;%</span></span>
-<span id="cb38-3"><a href="intro.html#cb38-3"></a><span class="st">  </span><span class="co"># By week</span></span>
-<span id="cb38-4"><a href="intro.html#cb38-4"></a><span class="st">  </span><span class="kw">group_by</span>(week) <span class="op">%&gt;%</span></span>
-<span id="cb38-5"><a href="intro.html#cb38-5"></a><span class="st">  </span><span class="co"># Mean sleep hours </span></span>
-<span id="cb38-6"><a href="intro.html#cb38-6"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">week_sleep =</span> <span class="kw">mean</span>(sleep, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="intro.html#cb69-1"></a><span class="co"># Average sleep hours of Jae</span></span>
+<span id="cb69-2"><a href="intro.html#cb69-2"></a>jae <span class="op">%&gt;%</span></span>
+<span id="cb69-3"><a href="intro.html#cb69-3"></a><span class="st">  </span><span class="co"># By week</span></span>
+<span id="cb69-4"><a href="intro.html#cb69-4"></a><span class="st">  </span><span class="kw">group_by</span>(week) <span class="op">%&gt;%</span></span>
+<span id="cb69-5"><a href="intro.html#cb69-5"></a><span class="st">  </span><span class="co"># Mean sleep hours </span></span>
+<span id="cb69-6"><a href="intro.html#cb69-6"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">week_sleep =</span> <span class="kw">mean</span>(sleep, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <ul>
 <li>Pipes (chaining commands)</li>
 </ul>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="intro.html#cb39-1"></a><span class="co"># Good</span></span>
-<span id="cb39-2"><a href="intro.html#cb39-2"></a>iris <span class="op">%&gt;%</span></span>
-<span id="cb39-3"><a href="intro.html#cb39-3"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span></span>
-<span id="cb39-4"><a href="intro.html#cb39-4"></a><span class="st">  </span><span class="kw">summarize_if</span>(is.numeric, mean) <span class="op">%&gt;%</span></span>
-<span id="cb39-5"><a href="intro.html#cb39-5"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
-<span id="cb39-6"><a href="intro.html#cb39-6"></a><span class="st">  </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></span>
-<span id="cb39-7"><a href="intro.html#cb39-7"></a><span class="st">  </span><span class="kw">arrange</span>(value)</span>
-<span id="cb39-8"><a href="intro.html#cb39-8"></a></span>
-<span id="cb39-9"><a href="intro.html#cb39-9"></a><span class="co"># Bad</span></span>
-<span id="cb39-10"><a href="intro.html#cb39-10"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize_all</span>(mean) <span class="op">%&gt;%</span></span>
-<span id="cb39-11"><a href="intro.html#cb39-11"></a>ungroup <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></span>
-<span id="cb39-12"><a href="intro.html#cb39-12"></a><span class="kw">arrange</span>(value)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="intro.html#cb70-1"></a><span class="co"># Good</span></span>
+<span id="cb70-2"><a href="intro.html#cb70-2"></a>iris <span class="op">%&gt;%</span></span>
+<span id="cb70-3"><a href="intro.html#cb70-3"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span></span>
+<span id="cb70-4"><a href="intro.html#cb70-4"></a><span class="st">  </span><span class="kw">summarize_if</span>(is.numeric, mean) <span class="op">%&gt;%</span></span>
+<span id="cb70-5"><a href="intro.html#cb70-5"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb70-6"><a href="intro.html#cb70-6"></a><span class="st">  </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></span>
+<span id="cb70-7"><a href="intro.html#cb70-7"></a><span class="st">  </span><span class="kw">arrange</span>(value)</span>
+<span id="cb70-8"><a href="intro.html#cb70-8"></a></span>
+<span id="cb70-9"><a href="intro.html#cb70-9"></a><span class="co"># Bad</span></span>
+<span id="cb70-10"><a href="intro.html#cb70-10"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize_all</span>(mean) <span class="op">%&gt;%</span></span>
+<span id="cb70-11"><a href="intro.html#cb70-11"></a>ungroup <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(measure, value, <span class="op">-</span>Species) <span class="op">%&gt;%</span></span>
+<span id="cb70-12"><a href="intro.html#cb70-12"></a><span class="kw">arrange</span>(value)</span></code></pre></div>
 <ul>
 <li><p>Additional tips</p></li>
 <li><p>Use <code>lintr</code> to check whether your code complies with a recommended style guideline (e.g., <code>tidyverse</code>) and <code>styler</code> package to format your code according to the style guideline.</p></li>
@@ -911,21 +1258,21 @@ allowfullscreen></iframe>
 <li><p>Your goal: replace <code>-99</code> with <code>NA</code></p></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="intro.html#cb40-1"></a><span class="co"># Data</span></span>
-<span id="cb40-2"><a href="intro.html#cb40-2"></a></span>
-<span id="cb40-3"><a href="intro.html#cb40-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co"># for reproducibility </span></span>
-<span id="cb40-4"><a href="intro.html#cb40-4"></a></span>
-<span id="cb40-5"><a href="intro.html#cb40-5"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
-<span id="cb40-6"><a href="intro.html#cb40-6"></a>             <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
-<span id="cb40-7"><a href="intro.html#cb40-7"></a>             <span class="st">&quot;c&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
-<span id="cb40-8"><a href="intro.html#cb40-8"></a>             <span class="st">&quot;d&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="intro.html#cb41-1"></a><span class="co"># Copy and paste </span></span>
-<span id="cb41-2"><a href="intro.html#cb41-2"></a>df<span class="op">$</span>a[df<span class="op">$</span>a <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb41-3"><a href="intro.html#cb41-3"></a>df<span class="op">$</span>b[df<span class="op">$</span>b <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb41-4"><a href="intro.html#cb41-4"></a>df<span class="op">$</span>c[df<span class="op">$</span>c <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb41-5"><a href="intro.html#cb41-5"></a>df<span class="op">$</span>d[df<span class="op">$</span>d <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb41-6"><a href="intro.html#cb41-6"></a></span>
-<span id="cb41-7"><a href="intro.html#cb41-7"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="intro.html#cb71-1"></a><span class="co"># Data</span></span>
+<span id="cb71-2"><a href="intro.html#cb71-2"></a></span>
+<span id="cb71-3"><a href="intro.html#cb71-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co"># for reproducibility </span></span>
+<span id="cb71-4"><a href="intro.html#cb71-4"></a></span>
+<span id="cb71-5"><a href="intro.html#cb71-5"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
+<span id="cb71-6"><a href="intro.html#cb71-6"></a>             <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
+<span id="cb71-7"><a href="intro.html#cb71-7"></a>             <span class="st">&quot;c&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>),</span>
+<span id="cb71-8"><a href="intro.html#cb71-8"></a>             <span class="st">&quot;d&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span> , <span class="dt">replace=</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="intro.html#cb72-1"></a><span class="co"># Copy and paste </span></span>
+<span id="cb72-2"><a href="intro.html#cb72-2"></a>df<span class="op">$</span>a[df<span class="op">$</span>a <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb72-3"><a href="intro.html#cb72-3"></a>df<span class="op">$</span>b[df<span class="op">$</span>b <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb72-4"><a href="intro.html#cb72-4"></a>df<span class="op">$</span>c[df<span class="op">$</span>c <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb72-5"><a href="intro.html#cb72-5"></a>df<span class="op">$</span>d[df<span class="op">$</span>d <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb72-6"><a href="intro.html#cb72-6"></a></span>
+<span id="cb72-7"><a href="intro.html#cb72-7"></a>df</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##       a     b     c     d
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -941,20 +1288,20 @@ allowfullscreen></iframe>
 <li>If you write a function, you gain efficiency because you don’t need to copy and paste the computation part.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="intro.html#cb43-1"></a><span class="co"># Create a custom function</span></span>
-<span id="cb43-2"><a href="intro.html#cb43-2"></a>fix_missing &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="co"># INPUT</span></span>
-<span id="cb43-3"><a href="intro.html#cb43-3"></a>  x[x <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># COMPUTATION</span></span>
-<span id="cb43-4"><a href="intro.html#cb43-4"></a>  x <span class="co"># OUTPUT </span></span>
-<span id="cb43-5"><a href="intro.html#cb43-5"></a>}</span>
-<span id="cb43-6"><a href="intro.html#cb43-6"></a></span>
-<span id="cb43-7"><a href="intro.html#cb43-7"></a><span class="co"># Apply the function to each column (vector)</span></span>
-<span id="cb43-8"><a href="intro.html#cb43-8"></a><span class="co"># This iterated part can and should be automated.</span></span>
-<span id="cb43-9"><a href="intro.html#cb43-9"></a>df<span class="op">$</span>a &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>a)</span>
-<span id="cb43-10"><a href="intro.html#cb43-10"></a>df<span class="op">$</span>b &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>b)</span>
-<span id="cb43-11"><a href="intro.html#cb43-11"></a>df<span class="op">$</span>c &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>c)</span>
-<span id="cb43-12"><a href="intro.html#cb43-12"></a>df<span class="op">$</span>d &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>d)</span>
-<span id="cb43-13"><a href="intro.html#cb43-13"></a></span>
-<span id="cb43-14"><a href="intro.html#cb43-14"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="intro.html#cb74-1"></a><span class="co"># Create a custom function</span></span>
+<span id="cb74-2"><a href="intro.html#cb74-2"></a>fix_missing &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="co"># INPUT</span></span>
+<span id="cb74-3"><a href="intro.html#cb74-3"></a>  x[x <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># COMPUTATION</span></span>
+<span id="cb74-4"><a href="intro.html#cb74-4"></a>  x <span class="co"># OUTPUT </span></span>
+<span id="cb74-5"><a href="intro.html#cb74-5"></a>}</span>
+<span id="cb74-6"><a href="intro.html#cb74-6"></a></span>
+<span id="cb74-7"><a href="intro.html#cb74-7"></a><span class="co"># Apply the function to each column (vector)</span></span>
+<span id="cb74-8"><a href="intro.html#cb74-8"></a><span class="co"># This iterated part can and should be automated.</span></span>
+<span id="cb74-9"><a href="intro.html#cb74-9"></a>df<span class="op">$</span>a &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>a)</span>
+<span id="cb74-10"><a href="intro.html#cb74-10"></a>df<span class="op">$</span>b &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>b)</span>
+<span id="cb74-11"><a href="intro.html#cb74-11"></a>df<span class="op">$</span>c &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>c)</span>
+<span id="cb74-12"><a href="intro.html#cb74-12"></a>df<span class="op">$</span>d &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>d)</span>
+<span id="cb74-13"><a href="intro.html#cb74-13"></a></span>
+<span id="cb74-14"><a href="intro.html#cb74-14"></a>df</span></code></pre></div>
 <ul>
 <li>Automation
 <ul>
@@ -963,9 +1310,9 @@ allowfullscreen></iframe>
 <li>The power and joy of one-liner.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="intro.html#cb44-1"></a>df &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map_df</span>(df, fix_missing) <span class="co"># What is this magic? We will unpack the blackbox (`map_df()`) later.</span></span>
-<span id="cb44-2"><a href="intro.html#cb44-2"></a></span>
-<span id="cb44-3"><a href="intro.html#cb44-3"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="intro.html#cb75-1"></a>df &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map_df</span>(df, fix_missing) <span class="co"># What is this magic? We will unpack the blackbox (`map_df()`) later.</span></span>
+<span id="cb75-2"><a href="intro.html#cb75-2"></a></span>
+<span id="cb75-3"><a href="intro.html#cb75-3"></a>df</span></code></pre></div>
 <ul>
 <li>Takeaways</li>
 </ul>
@@ -1037,7 +1384,6 @@ allowfullscreen></iframe>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><p>Asking questions</p></li>
 </ul>
 
 </div>

@@ -166,7 +166,7 @@ theme_set(theme_minimal())
 - 6. Prediction
 
 
-## Tidymodels 
+## tidymodels 
 
 - Like `tidyverse`, `tidymodels` is a collection of packages.
 
@@ -1965,11 +1965,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.336, relative change = 2.640e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.335, relative change = 1.952e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 10 (approx. per word bound = -7.333, relative change = 2.106e-04) 
 ## Topic 1: holm, know, well, can, might 
