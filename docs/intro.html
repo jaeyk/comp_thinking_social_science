@@ -236,9 +236,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9.7" data-path="tidy-data.html"><a href="tidy-data.html#counting"><i class="fa fa-check"></i><b>4.9.7</b> Counting</a></li>
 <li class="chapter" data-level="4.9.8" data-path="tidy-data.html"><a href="tidy-data.html#summarizing"><i class="fa fa-check"></i><b>4.9.8</b> Summarizing</a></li>
 <li class="chapter" data-level="4.9.9" data-path="tidy-data.html"><a href="tidy-data.html#grouping"><i class="fa fa-check"></i><b>4.9.9</b> Grouping</a></li>
-<li class="chapter" data-level="4.9.10" data-path="tidy-data.html"><a href="tidy-data.html#nesting"><i class="fa fa-check"></i><b>4.9.10</b> Nesting</a></li>
-<li class="chapter" data-level="4.9.11" data-path="tidy-data.html"><a href="tidy-data.html#mapping"><i class="fa fa-check"></i><b>4.9.11</b> Mapping</a></li>
-<li class="chapter" data-level="4.9.12" data-path="tidy-data.html"><a href="tidy-data.html#joining"><i class="fa fa-check"></i><b>4.9.12</b> Joining</a></li>
+<li class="chapter" data-level="4.9.10" data-path="tidy-data.html"><a href="tidy-data.html#joining"><i class="fa fa-check"></i><b>4.9.10</b> Joining</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="tidy-data.html"><a href="tidy-data.html#broom"><i class="fa fa-check"></i><b>4.10</b> broom</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="tidy-data.html"><a href="tidy-data.html#nesting"><i class="fa fa-check"></i><b>4.10.1</b> Nesting</a></li>
+<li class="chapter" data-level="4.10.2" data-path="tidy-data.html"><a href="tidy-data.html#mapping"><i class="fa fa-check"></i><b>4.10.2</b> Mapping</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="tidy-data.html"><a href="tidy-data.html#ggplot2"><i class="fa fa-check"></i><b>4.11</b> ggplot2</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="motivation.html"><a href="motivation.html#motivation"><i class="fa fa-check"></i><b>4.11.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.11.2" data-path="tidy-data.html"><a href="tidy-data.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>4.11.2</b> The grammar of graphics</a></li>
+<li class="chapter" data-level="4.11.3" data-path="tidy-data.html"><a href="tidy-data.html#mapping-and-geom"><i class="fa fa-check"></i><b>4.11.3</b> mapping and geom</a></li>
+<li class="chapter" data-level="4.11.4" data-path="tidy-data.html"><a href="tidy-data.html#basic-aes-x-y"><i class="fa fa-check"></i><b>4.11.4</b> basic aes (x , y)</a></li>
+<li class="chapter" data-level="4.11.5" data-path="tidy-data.html"><a href="tidy-data.html#univariate-distribution"><i class="fa fa-check"></i><b>4.11.5</b> Univariate distribution</a></li>
+<li class="chapter" data-level="4.11.6" data-path="tidy-data.html"><a href="tidy-data.html#advanced-aes-size-color"><i class="fa fa-check"></i><b>4.11.6</b> Advanced aes (size, color)</a></li>
+<li class="chapter" data-level="4.11.7" data-path="tidy-data.html"><a href="tidy-data.html#co-ordinates-and-scales"><i class="fa fa-check"></i><b>4.11.7</b> Co-ordinates and scales</a></li>
+<li class="chapter" data-level="4.11.8" data-path="tidy-data.html"><a href="tidy-data.html#labels-and-guides"><i class="fa fa-check"></i><b>4.11.8</b> Labels and guides</a></li>
+<li class="chapter" data-level="4.11.9" data-path="tidy-data.html"><a href="tidy-data.html#ggsave"><i class="fa fa-check"></i><b>4.11.9</b> ggsave</a></li>
+<li class="chapter" data-level="4.11.10" data-path="tidy-data.html"><a href="tidy-data.html#many-plots"><i class="fa fa-check"></i><b>4.11.10</b> Many plots</a></li>
+<li class="chapter" data-level="4.11.11" data-path="tidy-data.html"><a href="tidy-data.html#transforming"><i class="fa fa-check"></i><b>4.11.11</b> Transforming</a></li>
+<li class="chapter" data-level="4.11.12" data-path="tidy-data.html"><a href="tidy-data.html#ploting-models"><i class="fa fa-check"></i><b>4.11.12</b> Ploting models</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>5</b> Automating repeated things</a>
@@ -519,6 +537,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Launch R Studio. Choose Tools &gt; Global Options. You should not check <code>Restor .RData into workspace at startup</code> and set saving workspace option to <code>NEVER</code>.</li>
 </ul>
 <p>Step 2. For each project, create a project directory named after the project.</p>
+<p>name_of_the_project</p>
+<ul>
+<li>data:
+<ul>
+<li>raw</li>
+<li>processed (all processed, cleaned, and tided)</li>
+</ul></li>
+<li>figures</li>
+<li>packrat (optional)</li>
+<li>reports (PDF, HTML, TEX, etc.,)</li>
+<li>results (model outcomes, etc.,)</li>
+<li>scripts (i.e., functions)</li>
+<li>.gitignore (for Git)</li>
+<li>name_of_project.Rproj (for R)</li>
+<li>README.md (for Git)</li>
+</ul>
+<div class="figure">
+<img src="https://datacarpentry.org/R-ecology-lesson/img/working-directory-structure.png" alt="" />
+<p class="caption">Working directory structure example</p>
+</div>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro.html#cb19-1"></a><span class="co"># Don&#39;t name it a project. Use a name that&#39;s more informative. For instance, us_election not my_project.</span></span>
 <span id="cb19-2"><a href="intro.html#cb19-2"></a></span>
 <span id="cb19-3"><a href="intro.html#cb19-3"></a><span class="kw">dir.create</span>(<span class="st">&quot;../us_election&quot;</span>)</span></code></pre></div>
@@ -741,11 +779,11 @@ allowfullscreen></iframe>
 <ul>
 <li><p>Naming matters</p>
 <ul>
-<li>When naming files:
+<li>When naming files, remember the following three rules:
 <ul>
-<li>Don’t use special characters. (Spaces make filenames awkward in the console/command-line.)</li>
-<li>Don’t capitalize. (UNIX is case sensitive.)</li>
-<li>Numbering them if files should be run in an order.</li>
+<li>Machine readable (avoid spaces, punctuation, periods, and any other special characters except _ and -)</li>
+<li>Human readable (should be meaningful. No text1, image1, etc.,)</li>
+<li>Ordering (e.g., 01, 02, 03, … )</li>
 </ul></li>
 </ul></li>
 </ul>

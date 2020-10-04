@@ -212,6 +212,23 @@ Step 1. [**Environment**](https://environments.rstudio.com/) is part of your pro
 
 Step 2. For each project, create a project directory named after the project. 
 
+name_of_the_project 
+
+- data: 
+  - raw 
+  - processed (all processed, cleaned, and tided)
+- figures 
+- packrat (optional) 
+- reports (PDF, HTML, TEX, etc.,) 
+- results (model outcomes, etc.,)
+- scripts (i.e., functions)
+- .gitignore (for Git)
+- name_of_project.Rproj (for R)
+- README.md (for Git) 
+
+![Working directory structure example](https://datacarpentry.org/R-ecology-lesson/img/working-directory-structure.png)
+
+
 
 ```r
 # Don't name it a project. Use a name that's more informative. For instance, us_election not my_project.
@@ -463,10 +480,11 @@ allowfullscreen></iframe>
 
 - Naming matters 
 
-  - When naming files:
-      - Don't use special characters. (Spaces make filenames awkward in the console/command-line.)
-      - Don't capitalize. (UNIX is case sensitive.)
-      - Numbering them if files should be run in an order.
+  - When naming files, remember the following three rules:
+      - Machine readable (avoid spaces, punctuation, periods, and any other special characters except _ and -)
+      - Human readable (should be meaningful. No text1, image1, etc.,)
+      - Ordering (e.g., 01, 02, 03,  ... )
+    
 
 
 ```r

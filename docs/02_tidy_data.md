@@ -28,7 +28,11 @@ pacman::p_load(
   tidyverse, # for the tidyverse framework
   here, # for computational reproducibility
   gapminder, # toy data
-  nycflights13 # for exercise
+  nycflights13, # for exercise
+  ggthemes, # additional themes
+  ggrepel, # arranging ggplots
+  patchwork, # arranging ggplots
+  broom # tidying model outputs
 )
 ```
 
@@ -119,7 +123,7 @@ R's base data structures can be organized by their dimensionality (1d, 2d, or nd
 | 2d | Matrix        | Data frame    |
 | nd | Array         |               |
 
-Each data structure has its own specifications and behavior. For our purposes, an important thing to remember is that R is always **faster** (more efficient) working with homogenous (**vectorized**) data.
+Each data structure has its own specifications and behavior. For our purposes, an important thing to remember is that R is always **faster** (more efficient) working with homogeneous (**vectorized**) data.
 
 #### Vector properties
 
@@ -999,9 +1003,9 @@ c(x, "c")
 ## [1] "1" "2" "2" "1" "c"
 ```
 
-For this reason, it's usually best to explicitly convert factors to character vectors if you need string-like behaviour. In early versions of R, there was a memory advantage to using factors instead of character vectors, but this is no longer the case.
+For this reason, it's usually best to explicitly convert factors to character vectors if you need string-like behavior. In early versions of R, there was a memory advantage to using factors instead of character vectors, but this is no longer the case.
 
-Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there's no way for those functions to know the set of all possible levels or their optimal order. If this becomes a problem, use the argument `stringsAsFactors = FALSE` to suppress this behaviour, and then manually convert character vectors to factors using your knowledge of the data.
+Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there's no way for those functions to know the set of all possible levels or their optimal order. If this becomes a problem, use the argument `stringsAsFactors = FALSE` to suppress this behavior, and then manually convert character vectors to factors using your knowledge of the data.
 
 **More attributes**
 
@@ -1216,7 +1220,7 @@ mdat
 ## row2  11  12  13
 ```
 
-Notice that we gave `names` to the dimentions in `mdat`.
+Notice that we gave `names` to the dimensions in `mdat`.
 
 
 ```r
@@ -1323,8 +1327,8 @@ This means that a dataframe has `names()`, `colnames()`, and `rownames()`, altho
 
 ** Summary **
 
-- Set column names: names() in data frame, colnames() in matrix 
-- Set row names: row.names() in data frame, rownames() in matrix
+- Set column names: `names()` in data frame, `colnames()` in matrix 
+- Set row names: `row.names()` in data frame, `rownames()` in matrix
 
 
 ```r
@@ -4255,7 +4259,7 @@ tablea %>% kableExtra::kable()
 tablea %>% flextable::flextable()
 ```
 
-<!--html_preserve--><div class="tabwid"><style>.cl-9f24f53a{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-9f25075a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-9f250778{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-9f252d0c{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9f252d20{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9f252d2a{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9f252d3e{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9f252d48{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9f252d52{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-9f252d48"><p class="cl-9f25075a"><span class="cl-9f24f53a">continent</span></p></td><td class="cl-9f252d52"><p class="cl-9f250778"><span class="cl-9f24f53a">n</span></p></td><td class="cl-9f252d52"><p class="cl-9f250778"><span class="cl-9f24f53a">mean_gdp</span></p></td><td class="cl-9f252d52"><p class="cl-9f250778"><span class="cl-9f24f53a">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-9f252d0c"><p class="cl-9f25075a"><span class="cl-9f24f53a">Africa</span></p></td><td class="cl-9f252d20"><p class="cl-9f250778"><span class="cl-9f24f53a">624</span></p></td><td class="cl-9f252d20"><p class="cl-9f250778"><span class="cl-9f24f53a">2193.755</span></p></td><td class="cl-9f252d20"><p class="cl-9f250778"><span class="cl-9f24f53a">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9f252d0c"><p class="cl-9f25075a"><span class="cl-9f24f53a">Americas</span></p></td><td class="cl-9f252d20"><p class="cl-9f250778"><span class="cl-9f24f53a">300</span></p></td><td class="cl-9f252d20"><p class="cl-9f250778"><span class="cl-9f24f53a">7136.110</span></p></td><td class="cl-9f252d20"><p class="cl-9f250778"><span class="cl-9f24f53a">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9f252d0c"><p class="cl-9f25075a"><span class="cl-9f24f53a">Asia</span></p></td><td class="cl-9f252d20"><p class="cl-9f250778"><span class="cl-9f24f53a">396</span></p></td><td class="cl-9f252d20"><p class="cl-9f250778"><span class="cl-9f24f53a">7902.150</span></p></td><td class="cl-9f252d20"><p class="cl-9f250778"><span class="cl-9f24f53a">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9f252d0c"><p class="cl-9f25075a"><span class="cl-9f24f53a">Europe</span></p></td><td class="cl-9f252d20"><p class="cl-9f250778"><span class="cl-9f24f53a">360</span></p></td><td class="cl-9f252d20"><p class="cl-9f250778"><span class="cl-9f24f53a">14469.476</span></p></td><td class="cl-9f252d20"><p class="cl-9f250778"><span class="cl-9f24f53a">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9f252d2a"><p class="cl-9f25075a"><span class="cl-9f24f53a">Oceania</span></p></td><td class="cl-9f252d3e"><p class="cl-9f250778"><span class="cl-9f24f53a">24</span></p></td><td class="cl-9f252d3e"><p class="cl-9f250778"><span class="cl-9f24f53a">18621.609</span></p></td><td class="cl-9f252d3e"><p class="cl-9f250778"><span class="cl-9f24f53a">6358.983</span></p></td></tr></tbody></table></div><!--/html_preserve-->
+<!--html_preserve--><div class="tabwid"><style>.cl-cee9ed3a{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-cee9fe6a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-cee9fe88{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-ceea23fe{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ceea241c{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ceea2426{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ceea2430{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ceea243a{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ceea2444{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-ceea243a"><p class="cl-cee9fe6a"><span class="cl-cee9ed3a">continent</span></p></td><td class="cl-ceea2444"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">n</span></p></td><td class="cl-ceea2444"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">mean_gdp</span></p></td><td class="cl-ceea2444"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-ceea23fe"><p class="cl-cee9fe6a"><span class="cl-cee9ed3a">Africa</span></p></td><td class="cl-ceea241c"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">624</span></p></td><td class="cl-ceea241c"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">2193.755</span></p></td><td class="cl-ceea241c"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ceea23fe"><p class="cl-cee9fe6a"><span class="cl-cee9ed3a">Americas</span></p></td><td class="cl-ceea241c"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">300</span></p></td><td class="cl-ceea241c"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">7136.110</span></p></td><td class="cl-ceea241c"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ceea23fe"><p class="cl-cee9fe6a"><span class="cl-cee9ed3a">Asia</span></p></td><td class="cl-ceea241c"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">396</span></p></td><td class="cl-ceea241c"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">7902.150</span></p></td><td class="cl-ceea241c"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ceea23fe"><p class="cl-cee9fe6a"><span class="cl-cee9ed3a">Europe</span></p></td><td class="cl-ceea241c"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">360</span></p></td><td class="cl-ceea241c"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">14469.476</span></p></td><td class="cl-ceea241c"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ceea2426"><p class="cl-cee9fe6a"><span class="cl-cee9ed3a">Oceania</span></p></td><td class="cl-ceea2430"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">24</span></p></td><td class="cl-ceea2430"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">18621.609</span></p></td><td class="cl-ceea2430"><p class="cl-cee9fe88"><span class="cl-cee9ed3a">6358.983</span></p></td></tr></tbody></table></div><!--/html_preserve-->
 
 #### Scoped summaries
 
@@ -4721,188 +4725,6 @@ gapminder %>%
 ## 5 Oceania          0.333
 ```
 
-### Nesting
-
-#### nest
-
-The following example comes from [R for Data Science](https://r4ds.had.co.nz/many-models.html) by by Garrett Grolemund and Hadley Wickham.
-
--   How can you run multiple models simultaneously? Using a nested data frame.
-
--   **Grouped data: each row = an observation**
-
--   **Nested data: each row = a group**
-
-**Challenge**
-
-In the following example, why did we use `country` and `continent` for nesting variables?
-
-
-```r
-nested <- gapminder %>%
-  group_by(country, continent) %>%
-  nest()
-
-head(nested)
-```
-
-```
-## # A tibble: 6 x 3
-## # Groups:   country, continent [6]
-##   country     continent data             
-##   <fct>       <fct>     <list>           
-## 1 Afghanistan Asia      <tibble [12 × 4]>
-## 2 Albania     Europe    <tibble [12 × 4]>
-## 3 Algeria     Africa    <tibble [12 × 4]>
-## 4 Angola      Africa    <tibble [12 × 4]>
-## 5 Argentina   Americas  <tibble [12 × 4]>
-## 6 Australia   Oceania   <tibble [12 × 4]>
-```
-
-```r
-nested$data[[1]]
-```
-
-```
-## # A tibble: 12 x 4
-##     year lifeExp      pop gdpPercap
-##    <int>   <dbl>    <int>     <dbl>
-##  1  1952    28.8  8425333      779.
-##  2  1957    30.3  9240934      821.
-##  3  1962    32.0 10267083      853.
-##  4  1967    34.0 11537966      836.
-##  5  1972    36.1 13079460      740.
-##  6  1977    38.4 14880372      786.
-##  7  1982    39.9 12881816      978.
-##  8  1987    40.8 13867957      852.
-##  9  1992    41.7 16317921      649.
-## 10  1997    41.8 22227415      635.
-## 11  2002    42.1 25268405      727.
-## 12  2007    43.8 31889923      975.
-```
-
--   Custom function
-
-
-```r
-lm_model <- function(df) {
-  lm(lifeExp ~ year, data = df)
-}
-```
-
--   Apply function to the nested data
-
-
-```r
-# Apply m_model to the nested data
-
-nested <- nested %>%
-  mutate(models = map(data, lm_model)) # Add the list object as a new column
-
-head(nested)
-```
-
-```
-## # A tibble: 6 x 4
-## # Groups:   country, continent [6]
-##   country     continent data              models
-##   <fct>       <fct>     <list>            <list>
-## 1 Afghanistan Asia      <tibble [12 × 4]> <lm>  
-## 2 Albania     Europe    <tibble [12 × 4]> <lm>  
-## 3 Algeria     Africa    <tibble [12 × 4]> <lm>  
-## 4 Angola      Africa    <tibble [12 × 4]> <lm>  
-## 5 Argentina   Americas  <tibble [12 × 4]> <lm>  
-## 6 Australia   Oceania   <tibble [12 × 4]> <lm>
-```
-
-S3 is part of R's object oriented systems. If you need more information, check [this section](http://adv-r.had.co.nz/S3.html) in Hadley's Advanced R out.
-
-#### unnest
-
-`glance()` function from `broom` package inspects the quality of a statistical model.
-
-**Additional tips**
-
--   `broom::glance(model)`: for evaluating model quality and/or complexity
--   `broom::tidy(model)`: for extracting each coefficient in the model (the estimates + its variability)
--   `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics)
-
-
-```r
-glanced <- nested %>%
-  mutate(glance = map(models, broom::glance))
-
-glanced$glance[[1]]
-```
-
-```
-## # A tibble: 1 x 12
-##   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-##       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>
-## 1     0.948         0.942  1.22      181. 9.84e-8     1  -18.3  42.7  44.1
-## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
-```
-
-`unnest()` unpacks the list objects stored in glance column
-
-
-```r
-glanced %>%
-  unnest(glance) %>%
-  arrange(BIC) # Low to High; Lower BIC indicates a better model fit
-```
-
-```
-## # A tibble: 142 x 16
-## # Groups:   country, continent [142]
-##    country continent data  models r.squared adj.r.squared sigma statistic
-##    <fct>   <fct>     <lis> <list>     <dbl>         <dbl> <dbl>     <dbl>
-##  1 Sweden  Europe    <tib… <lm>       0.995         0.995 0.212     2203.
-##  2 Switze… Europe    <tib… <lm>       0.997         0.997 0.215     3823.
-##  3 France  Europe    <tib… <lm>       0.998         0.997 0.220     4200.
-##  4 Canada  Americas  <tib… <lm>       0.996         0.996 0.249     2757.
-##  5 Argent… Americas  <tib… <lm>       0.996         0.995 0.292     2246.
-##  6 Belgium Europe    <tib… <lm>       0.995         0.994 0.293     1822.
-##  7 Brazil  Americas  <tib… <lm>       0.998         0.998 0.326     5111.
-##  8 Equato… Africa    <tib… <lm>       0.997         0.997 0.329     3184.
-##  9 Nether… Europe    <tib… <lm>       0.982         0.980 0.348      552.
-## 10 Finland Europe    <tib… <lm>       0.994         0.993 0.354     1613.
-## # … with 132 more rows, and 8 more variables: p.value <dbl>, df <dbl>,
-## #   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>, df.residual <int>,
-## #   nobs <int>
-```
-
-```r
-glanced %>%
-  unnest(glance) %>%
-  ggplot(aes(continent, BIC)) +
-  geom_jitter(width = 0.5)
-```
-
-<img src="02_tidy_data_files/figure-html/unnamed-chunk-146-1.png" width="672" />
-
-### Mapping
-
-We tasted a little bit about how `map()` function works. Let's dig into it deeper as this family of functions is really useful. For more information, see Rebecca Barter's wonderful tutorial on the `purrr` package. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
-
-
-```r
-multiply <- function(x) {
-  x * x
-}
-
-df <- list(
-  first_obs = rnorm(7, 1, sd = 1),
-  second_obs = rnorm(7, 2, sd = 2)
-) # normal distribution
-```
-
-**Challenge**
-
-Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between the output you got and what you saw earlier.
-
-If you want to know more about the power and joy of functional programming in R (e.g., `purrr::map()`), then please take ["How to Automate Repeated Things in R"](https://github.com/dlab-berkeley/R-functional-programming) workshop.
-
 ### Joining
 
 #### Mutating joins
@@ -5125,3 +4947,1147 @@ flights %>%
 ## 10 N531MQ    349
 ## # … with 712 more rows
 ```
+
+## broom 
+
+### Nesting
+
+#### nest
+
+The following example comes from [R for Data Science](https://r4ds.had.co.nz/many-models.html) by by Garrett Grolemund and Hadley Wickham.
+
+-   How can you run multiple models simultaneously? Using a nested data frame.
+
+-   **Grouped data: each row = an observation**
+
+-   **Nested data: each row = a group**
+
+**Challenge**
+
+In the following example, why did we use `country` and `continent` for nesting variables?
+
+
+```r
+nested <- gapminder %>%
+  group_by(country, continent) %>%
+  nest()
+
+head(nested)
+```
+
+```
+## # A tibble: 6 x 3
+## # Groups:   country, continent [6]
+##   country     continent data             
+##   <fct>       <fct>     <list>           
+## 1 Afghanistan Asia      <tibble [12 × 4]>
+## 2 Albania     Europe    <tibble [12 × 4]>
+## 3 Algeria     Africa    <tibble [12 × 4]>
+## 4 Angola      Africa    <tibble [12 × 4]>
+## 5 Argentina   Americas  <tibble [12 × 4]>
+## 6 Australia   Oceania   <tibble [12 × 4]>
+```
+
+```r
+nested$data[[1]]
+```
+
+```
+## # A tibble: 12 x 4
+##     year lifeExp      pop gdpPercap
+##    <int>   <dbl>    <int>     <dbl>
+##  1  1952    28.8  8425333      779.
+##  2  1957    30.3  9240934      821.
+##  3  1962    32.0 10267083      853.
+##  4  1967    34.0 11537966      836.
+##  5  1972    36.1 13079460      740.
+##  6  1977    38.4 14880372      786.
+##  7  1982    39.9 12881816      978.
+##  8  1987    40.8 13867957      852.
+##  9  1992    41.7 16317921      649.
+## 10  1997    41.8 22227415      635.
+## 11  2002    42.1 25268405      727.
+## 12  2007    43.8 31889923      975.
+```
+
+-   Custom function
+
+
+```r
+lm_model <- function(df) {
+  lm(lifeExp ~ year, data = df)
+}
+```
+
+-   Apply function to the nested data
+
+
+```r
+# Apply m_model to the nested data
+
+nested <- nested %>%
+  mutate(models = map(data, lm_model)) # Add the list object as a new column
+
+head(nested)
+```
+
+```
+## # A tibble: 6 x 4
+## # Groups:   country, continent [6]
+##   country     continent data              models
+##   <fct>       <fct>     <list>            <list>
+## 1 Afghanistan Asia      <tibble [12 × 4]> <lm>  
+## 2 Albania     Europe    <tibble [12 × 4]> <lm>  
+## 3 Algeria     Africa    <tibble [12 × 4]> <lm>  
+## 4 Angola      Africa    <tibble [12 × 4]> <lm>  
+## 5 Argentina   Americas  <tibble [12 × 4]> <lm>  
+## 6 Australia   Oceania   <tibble [12 × 4]> <lm>
+```
+
+S3 is part of R's object oriented systems. If you need more information, check [this section](http://adv-r.had.co.nz/S3.html) in Hadley's Advanced R out.
+
+#### unnest
+
+`glance()` function from `broom` package inspects the quality of a statistical model.
+
+**Additional tips**
+
+-   `broom::glance(model)`: for evaluating model quality and/or complexity
+-   `broom::tidy(model)`: for extracting each coefficient in the model (the estimates + its variability)
+-   `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics)
+
+
+```r
+glanced <- nested %>%
+  mutate(glance = map(models, broom::glance))
+
+glanced$glance[[1]]
+```
+
+```
+## # A tibble: 1 x 12
+##   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+##       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>
+## 1     0.948         0.942  1.22      181. 9.84e-8     1  -18.3  42.7  44.1
+## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+```
+
+`unnest()` unpacks the list objects stored in glance column
+
+
+```r
+glanced %>%
+  unnest(glance) %>%
+  arrange(BIC) # Low to High; Lower BIC indicates a better model fit
+```
+
+```
+## # A tibble: 142 x 16
+## # Groups:   country, continent [142]
+##    country continent data  models r.squared adj.r.squared sigma statistic
+##    <fct>   <fct>     <lis> <list>     <dbl>         <dbl> <dbl>     <dbl>
+##  1 Sweden  Europe    <tib… <lm>       0.995         0.995 0.212     2203.
+##  2 Switze… Europe    <tib… <lm>       0.997         0.997 0.215     3823.
+##  3 France  Europe    <tib… <lm>       0.998         0.997 0.220     4200.
+##  4 Canada  Americas  <tib… <lm>       0.996         0.996 0.249     2757.
+##  5 Argent… Americas  <tib… <lm>       0.996         0.995 0.292     2246.
+##  6 Belgium Europe    <tib… <lm>       0.995         0.994 0.293     1822.
+##  7 Brazil  Americas  <tib… <lm>       0.998         0.998 0.326     5111.
+##  8 Equato… Africa    <tib… <lm>       0.997         0.997 0.329     3184.
+##  9 Nether… Europe    <tib… <lm>       0.982         0.980 0.348      552.
+## 10 Finland Europe    <tib… <lm>       0.994         0.993 0.354     1613.
+## # … with 132 more rows, and 8 more variables: p.value <dbl>, df <dbl>,
+## #   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>, df.residual <int>,
+## #   nobs <int>
+```
+
+```r
+glanced %>%
+  unnest(glance) %>%
+  ggplot(aes(continent, BIC)) +
+  geom_jitter(width = 0.5)
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-154-1.png" width="672" />
+
+### Mapping
+
+We tasted a little bit about how `map()` function works. Let's dig into it deeper as this family of functions is really useful. For more information, see Rebecca Barter's wonderful tutorial on the `purrr` package. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
+
+
+```r
+multiply <- function(x) {
+  x * x
+}
+
+df <- list(
+  first_obs = rnorm(7, 1, sd = 1),
+  second_obs = rnorm(7, 2, sd = 2)
+) # normal distribution
+```
+
+**Challenge**
+
+Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between the output you got and what you saw earlier.
+
+If you want to know more about the power and joy of functional programming in R (e.g., `purrr::map()`), then please take ["How to Automate Repeated Things in R"](https://github.com/dlab-berkeley/R-functional-programming) workshop.
+
+## ggplot2 
+
+- The following material is adapted from Kieran Healy's wonderful book (2019) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful book on [ggplot2](https://link.springer.com/content/pdf/10.1007%2F978-0-387-98141-3.pdf). For more theoretical discussions, I recommend you to read [The Grammar of Graphics](https://link.springer.com/book/10.1007%2F0-387-28695-0) by Leland Wilkinson.
+
+- Why should we care data visualization? More precisely, why should we learn the grammar of statistical graphics?
+- Sometimes, pictures are better tools than words in 1) exploring, 2) understanding, and 3) explaining data.
+
+### Motivation 
+
+[Anscombe](https://en.wikipedia.org/wiki/Frank_Anscombe)'s quarter comprises four datasets, which are so alike in terms of their descriptive statistics but quite different when presented graphically.
+
+
+```r
+# data
+anscombe
+```
+
+```
+##    x1 x2 x3 x4    y1   y2    y3    y4
+## 1  10 10 10  8  8.04 9.14  7.46  6.58
+## 2   8  8  8  8  6.95 8.14  6.77  5.76
+## 3  13 13 13  8  7.58 8.74 12.74  7.71
+## 4   9  9  9  8  8.81 8.77  7.11  8.84
+## 5  11 11 11  8  8.33 9.26  7.81  8.47
+## 6  14 14 14  8  9.96 8.10  8.84  7.04
+## 7   6  6  6  8  7.24 6.13  6.08  5.25
+## 8   4  4  4 19  4.26 3.10  5.39 12.50
+## 9  12 12 12  8 10.84 9.13  8.15  5.56
+## 10  7  7  7  8  4.82 7.26  6.42  7.91
+## 11  5  5  5  8  5.68 4.74  5.73  6.89
+```
+
+
+```r
+# correlation
+cor(anscombe)[c(1:4), c(5:8)]
+```
+
+```
+##            y1         y2         y3         y4
+## x1  0.8164205  0.8162365  0.8162867 -0.3140467
+## x2  0.8164205  0.8162365  0.8162867 -0.3140467
+## x3  0.8164205  0.8162365  0.8162867 -0.3140467
+## x4 -0.5290927 -0.7184365 -0.3446610  0.8165214
+```
+
+
+```r
+# gather and select
+anscombe_processed <- anscombe %>%
+  gather(x_name, x_value, x1:x4) %>%
+  gather(y_name, y_value, y1:y4)
+
+# plot
+anscombe_processed %>%
+  ggplot(aes(x = x_value, y = y_value)) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE) +
+  facet_grid(x_name ~ y_name) +
+  theme_bw() +
+  labs(
+    x = "X values",
+    y = "Y values",
+    title = "Anscombe's quartet"
+  )
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-158-1.png" width="672" />
+
+### The grammar of graphics 
+
+- the grammar of graphics 
+
+    - data
+    - aesthetic attributes (color, shape, size)
+    - geometric objects (points, lines, bars)
+    - stats (summary stats)
+    - scales (map values in the data space)
+    - coord (data coordinates)
+    - facet (facetting specifications)
+    
+No worries for new terms. We're going to learn them by actually plotting. 
+
+- Workflow: 
+
+    1. Tidy data 
+    2. Mapping 
+    3. Geom 
+    4. Cor_ordinates and scales 
+    5. Labels and guides
+    6. Themes
+    7. Save files 
+
+### mapping and geom
+
+- `aes` (aesthetic mappings or aesthetics) tells which variables (x, y) in your data should be represented by which visual elements (color, shape, size) in the plot.
+
+- `geom_` tells the type of plot you are going to use 
+
+### basic aes (x , y)
+
+
+```r
+p <- ggplot(
+  data = gapminder,
+  mapping = aes(x = gdpPercap, y = lifeExp)
+) # ggplot or R in general takes positional arguments too. So, you don't need to name data, mapping each time you use ggplot2.
+
+p
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-159-1.png" width="672" />
+
+```r
+p + geom_point()
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-159-2.png" width="672" />
+
+```r
+p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
+```
+
+```
+## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-159-3.png" width="672" />
+
+```r
+# the shaded area is the standard error for the line
+```
+
+### Univariate distribution
+
+- `geom_histogram()`: For the probability distribution of a continuous variable. Bins divide the entire range of values into a series of intervals (see [the Wiki entry](https://en.wikipedia.org/wiki/Histogram)). 
+- `geom_density()`: Also for the probability distribution of a continuous variable. It calculates a [kernel density estimate](https://en.wikipedia.org/wiki/Kernel_density_estimation) of the underlying distribution. 
+
+#### Histogram 
+
+```r
+data(midwest) # load midwest dataset
+
+midwest
+```
+
+```
+## # A tibble: 437 x 28
+##      PID county state  area poptotal popdensity popwhite popblack popamerindian
+##    <int> <chr>  <chr> <dbl>    <int>      <dbl>    <int>    <int>         <int>
+##  1   561 ADAMS  IL    0.052    66090      1271.    63917     1702            98
+##  2   562 ALEXA… IL    0.014    10626       759      7054     3496            19
+##  3   563 BOND   IL    0.022    14991       681.    14477      429            35
+##  4   564 BOONE  IL    0.017    30806      1812.    29344      127            46
+##  5   565 BROWN  IL    0.018     5836       324.     5264      547            14
+##  6   566 BUREAU IL    0.05     35688       714.    35157       50            65
+##  7   567 CALHO… IL    0.017     5322       313.     5298        1             8
+##  8   568 CARRO… IL    0.027    16805       622.    16519      111            30
+##  9   569 CASS   IL    0.024    13437       560.    13384       16             8
+## 10   570 CHAMP… IL    0.058   173025      2983.   146506    16559           331
+## # … with 427 more rows, and 19 more variables: popasian <int>, popother <int>,
+## #   percwhite <dbl>, percblack <dbl>, percamerindan <dbl>, percasian <dbl>,
+## #   percother <dbl>, popadults <int>, perchsd <dbl>, percollege <dbl>,
+## #   percprof <dbl>, poppovertyknown <int>, percpovertyknown <dbl>,
+## #   percbelowpoverty <dbl>, percchildbelowpovert <dbl>, percadultpoverty <dbl>,
+## #   percelderlypoverty <dbl>, inmetro <int>, category <chr>
+```
+
+
+```r
+midwest %>%
+  ggplot(aes(x = area)) +
+  geom_point() # not working.
+```
+
+
+```r
+midwest %>%
+  ggplot(aes(x = area)) +
+  geom_histogram() # stat_bin argument picks up 30 bins (or "bucket") by default.
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-162-1.png" width="672" />
+
+```r
+midwest %>%
+  ggplot(aes(x = area)) +
+  geom_histogram(bins = 10) # only 10 bins.
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-162-2.png" width="672" />
+
+```r
+ggplot(
+  data = subset(midwest, state %in% c("OH", "IN")),
+  mapping = aes(x = percollege, fill = state)
+) +
+  geom_histogram(alpha = 0.7, bins = 20)
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-162-3.png" width="672" />
+
+#### Density 
+
+
+```r
+midwest %>%
+  ggplot(aes(x = area, fill = state, color = state)) +
+  geom_density(alpha = 0.3)
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-163-1.png" width="672" />
+
+### Advanced aes (size, color)
+
+- There's also fill argument (mostly used in `geom_bar()`). Color `aes` affects the appearance of lines and points, fill is for the filled areas of bars, polygons, and in some cases, the interior of a smoother's standard error ribbon.
+
+- The property size/color/fill represents... 
+
+
+```r
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap, y = lifeExp,
+    size = pop
+  )
+) +
+  geom_point()
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-164-1.png" width="672" />
+
+
+```r
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap, y = lifeExp,
+    size = pop,
+    color = continent
+  )
+) +
+  geom_point()
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-165-1.png" width="672" />
+
+
+```r
+# try red instead of "red"
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap, y = lifeExp,
+    size = pop,
+    color = "red"
+  )
+) +
+  geom_point()
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-166-1.png" width="672" />
+
+Aesthetics also can be mapped per Geom. 
+
+
+```r
+p + geom_point() +
+  geom_smooth()
+```
+
+```
+## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-167-1.png" width="672" />
+
+```r
+p + geom_point(alpha = 0.3) + # alpha controls transparency
+  geom_smooth(color = "red", se = FALSE, size = 2)
+```
+
+```
+## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-167-2.png" width="672" />
+
+```r
+p + geom_point(alpha = 0.3) + # alpha controls transparency
+  geom_smooth(color = "red", se = FALSE, size = 2, method = "lm")
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-167-3.png" width="672" />
+
+
+```r
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap, y = lifeExp,
+    color = continent
+  )
+) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "loess", color = "red") +
+  labs(
+    x = "log GDP",
+    y = "Life Expectancy",
+    title = "A Gapminder Plot",
+    subtitle = "Data points are country-years",
+    caption = "Source: Gapminder"
+  )
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-168-1.png" width="672" />
+
+```r
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap, y = lifeExp,
+    color = continent,
+    fill = continent
+  )
+) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "loess", color = "red") +
+  labs(
+    x = "log GDP",
+    y = "Life Expectancy",
+    title = "A Gapminder Plot",
+    subtitle = "Data points are country-years",
+    caption = "Source: Gapminder"
+  )
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-168-2.png" width="672" />
+
+### Co-ordinates and scales 
+
+
+```r
+p + geom_point() +
+  coord_flip() # coord_type
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-169-1.png" width="672" />
+
+The data is heavily bunched up against the left side. 
+
+```r
+p + geom_point() # without scaling
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-170-1.png" width="672" />
+
+```r
+p + geom_point() +
+  scale_x_log10() # scales the axis of a plot to a log 10 basis
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-170-2.png" width="672" />
+
+```r
+p + geom_point() +
+  geom_smooth(method = "lm") +
+  scale_x_log10()
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-170-3.png" width="672" />
+
+
+### Labels and guides 
+
+`scales` package has some useful premade formatting functions. You can either load scales or just grab the function you need from the library using `scales::` 
+
+
+```r
+p + geom_point(alpha = 0.3) +
+  geom_smooth(method = "loess", color = "red") +
+  scale_x_log10(labels = scales::dollar) +
+  labs(
+    x = "log GDP",
+    y = "Life Expectancy",
+    title = "A Gapminder Plot",
+    subtitle = "Data points are country-years",
+    caption = "Source: Gapminder"
+  )
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-171-1.png" width="672" />
+
+6. Themes
+
+```r
+p + geom_point(alpha = 0.3) +
+  geom_smooth(method = "loess", color = "red") +
+  scale_x_log10(labels = scales::dollar) +
+  labs(
+    x = "log GDP",
+    y = "Life Expectancy",
+    title = "A Gapminder Plot",
+    subtitle = "Data points are country-years",
+    caption = "Source: Gapminder"
+  ) +
+  theme_economist()
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-172-1.png" width="672" />
+
+### ggsave 
+
+
+```r
+figure_example <- p + geom_point(alpha = 0.3) +
+  geom_smooth(method = "gam", color = "red") +
+  scale_x_log10(labels = scales::dollar) +
+  labs(
+    x = "log GDP",
+    y = "Life Expectancy",
+    title = "A Gapminder Plot",
+    subtitle = "Data points are country-years",
+    caption = "Source: Gapminder"
+  ) +
+  theme_economist()
+
+ggsave(figure_example, here("outputs", "figure_example.png"))
+```
+
+### Many plots 
+
+Basic ideas:
+
+- Grouping: tell `ggplot2` about the structure of your data 
+- Facetting: break up your data into pieces for a plot 
+
+#### Grouping
+
+- Can you guess what's wrong?
+
+
+```r
+p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
+
+p + geom_point()
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-174-1.png" width="672" />
+
+```r
+p + geom_line()
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-174-2.png" width="672" />
+
+`geom_line` joins up all the lines for each particular year in the order they appear in the dataset. `ggplot2` does not know the yearly observations in your data are grouped by country. 
+
+Note that you need grouping when the grouping information you need to tell is not built into the varaibles being mapped (like continent).
+
+
+```r
+gapminder
+```
+
+```
+## # A tibble: 1,704 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    <fct>       <fct>     <int>   <dbl>    <int>     <dbl>
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # … with 1,694 more rows
+```
+
+#### Facetting 
+
+Facetting is to make small multiples. 
+
+- `facet_wrap`: based on a single categorical variable like `facet_wrap(~single_categorical_variable)`. Your panels will be laid out in order and then wrapped into a grid.
+
+- `facet_grid`: when you want to cross-classify some data by two categorical variables like `facet_grid(one_cat_variable ~ two_cat_variable)`. 
+
+
+```r
+p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
+
+p + geom_line(aes(group = country)) # group by, # The outlier is Kuwait.
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-176-1.png" width="672" />
+
+```r
+p + geom_line(aes(group = country)) + facet_wrap(~continent) # facetting
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-176-2.png" width="672" />
+
+```r
+p + geom_line(aes(group = country), color = "gray70") +
+  geom_smooth(size = 1.1, method = "loess", se = FALSE) +
+  scale_y_log10(labels = scales::dollar) +
+  facet_wrap(~continent, ncol = 5) + # for single categorical variable; for multiple categorical variables use facet_grid()
+  labs(
+    x = "Year",
+    y = "GDP per capita",
+    title = "GDP per capita on Five continents"
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-176-3.png" width="672" />
+
+
+```r
+p + geom_line(aes(group = country), color = "gray70") +
+  geom_smooth(size = 1.1, method = "loess", se = FALSE) +
+  scale_y_log10(labels = scales::dollar) +
+  facet_grid(~continent) + # for single categorical variable; for multiple categorical variables use facet_grid()
+  labs(
+    x = "Year",
+    y = "GDP per capita",
+    title = "GDP per capita on Five continents"
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-177-1.png" width="672" />
+
+
+### Transforming
+
+- Transforming: perform some calculations on or summarize your data before producing the plot 
+
+#### Use pipes to summarize data
+
+Also, we experiment bar charts here. By default, `geom_bar` [uses](https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar) stat = "bins", which makes the height of each bar equal to the number of cases in each group. If you have a y column, then you should use `stat = "identity"` argument. Alternatively, you can use `geom_col()`.
+
+
+```r
+gapminder_formatted <- gapminder %>%
+  group_by(continent, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  )
+```
+
+```
+## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
+```
+
+```r
+ggplot(data = gapminder_formatted, aes(x = year, y = lifeExp_mean, color = continent)) +
+  geom_point() +
+  labs(
+    x = "Year",
+    y = "Life expectancy",
+    title = "Life expectancy on Five continents"
+  )
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-178-1.png" width="672" />
+
+```r
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = year, y = lifeExp_mean, color = country)) +
+  geom_point() +
+  labs(
+    x = "Year",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  )
+```
+
+```
+## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-178-2.png" width="672" />
+
+
+```r
+# geom point
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = year, y = lifeExp_mean)) +
+  geom_point() +
+  labs(
+    x = "Year",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  ) +
+  facet_wrap(~country)
+```
+
+```
+## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-179-1.png" width="672" />
+
+```r
+# geom bar
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = year, y = lifeExp_mean)) +
+  geom_bar(stat = "identity") +
+  labs(
+    x = "Year",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  ) +
+  facet_wrap(~country)
+```
+
+```
+## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-179-2.png" width="672" />
+
+```r
+# no facet
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = year, y = lifeExp_mean, fill = country)) +
+  geom_bar(stat = "identity") + # even if you not stack, still the plot looks messy or you can use geom_col()
+  labs(
+    x = "Year",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  )
+```
+
+```
+## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-179-3.png" width="672" />
+
+
+```r
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = country, y = lifeExp_mean)) +
+  geom_boxplot() +
+  labs(
+    x = "Country",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  ) +
+  coord_flip()
+```
+
+```
+## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-180-1.png" width="672" />
+
+
+```r
+# without ordering
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = reorder(country, lifeExp_mean), y = lifeExp_mean)) +
+  geom_boxplot() +
+  labs(
+    x = "Country",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  ) +
+  coord_flip()
+```
+
+```
+## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-181-1.png" width="672" />
+
+```r
+# reorder
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = reorder(country, -lifeExp_mean), y = lifeExp_mean)) +
+  geom_boxplot() +
+  labs(
+    x = "Country",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  ) +
+  coord_flip()
+```
+
+```
+## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-181-2.png" width="672" />
+
+#### Plotting text
+
+
+```r
+gapminder %>%
+  filter(continent == "Asia" | continent == "Americas") %>%
+  group_by(continent, country) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = gdp_mean, y = lifeExp_mean)) +
+  geom_point() +
+  geom_text(aes(label = country)) +
+  scale_x_log10() +
+  facet_grid(~continent)
+```
+
+```
+## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-182-1.png" width="672" />
+
+
+```r
+# with label
+gapminder %>%
+  filter(continent == "Asia" | continent == "Americas") %>%
+  group_by(continent, country) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = gdp_mean, y = lifeExp_mean)) +
+  geom_point() +
+  geom_label(aes(label = country)) +
+  scale_x_log10() +
+  facet_grid(~continent)
+```
+
+```
+## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-183-1.png" width="672" />
+
+
+```r
+# no overlaps
+gapminder %>%
+  filter(continent == "Asia" | continent == "Americas") %>%
+  group_by(continent, country) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = gdp_mean, y = lifeExp_mean)) +
+  geom_point() +
+  geom_text_repel(aes(label = country)) + # there's also geom_label_repel
+  scale_x_log10() +
+  facet_grid(~continent)
+```
+
+```
+## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-184-1.png" width="672" />
+
+### Ploting models 
+
+In plotting models, we extensively use David Robinson's [broom package](https://cran.r-project.org/web/packages/broom/vignettes/broom.html) in R. The idea is to transform model outputs (i.e., predictions and estimations) into tidy objects so that we can easily combine, separate, and visualize these elements. 
+
+#### Plotting several fits at the same time
+
+```r
+model_colors <- RColorBrewer::brewer.pal(3, "Set1") # select three qualitatively different colors from a larger palette.
+
+gapminder %>%
+  ggplot(aes(x = log(gdpPercap), y = lifeExp)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(method = "lm", aes(color = "OLS", fill = "OLS")) +
+  geom_smooth(
+    method = "lm", formula = y ~ splines::bs(x, df = 3),
+    aes(color = "Cubic Spline", fill = "Cubic Spline")
+  ) +
+  geom_smooth(method = "loess", aes(color = "LOESS", fill = "LOESS")) +
+  theme(legend.position = "top") +
+  scale_color_manual(name = "Models", values = model_colors) +
+  scale_fill_manual(name = "Models", values = model_colors)
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-185-1.png" width="672" />
+
+#### Extracting model outcomes 
+
+```r
+# regression model
+out <- lm(
+  formula = lifeExp ~ gdpPercap + pop + continent,
+  data = gapminder
+)
+```
+
+`tidy()` is a method in the `broom` package. It "constructs a dataframe that summarizes the model's statistical findings". As the description states, tidy is a function that can be used for various models. For instance, a tidy can extract following information from a regression model.
+
+- `Term`: a term being estimated 
+- `p.value`
+- `statistic`: a test statistic used to compute p-value
+- `estimate` 
+- `conf.low`: the low end of a confidence interval 
+- `conf.high`: the high end of a confidence interval
+- `df`: degrees of freedom
+
+**Challege**
+
+Try glance(out), what did you get from these commands? If you're curious, you can try ?glance.
+
+The followings are to show your degree of confidence.
+
+##### Coeffficients
+
+```r
+# estimates
+out_comp <- tidy(out)
+
+p <- out_comp %>%
+  ggplot(aes(x = term, y = estimate))
+
+p + geom_point() +
+  coord_flip() +
+  theme_bw()
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-187-1.png" width="672" />
+
+##### Confidence intervals
+
+
+```r
+# plus confidence intervals
+out_conf <- tidy(out, conf.int = TRUE)
+
+# plotting coefficients using ggplot2 (pointrange)
+out_conf %>%
+  ggplot(aes(x = reorder(term, estimate), y = estimate, ymin = conf.low, ymax = conf.high)) +
+  geom_pointrange() +
+  coord_flip() +
+  labs(x = "", y = "OLS Estimate") +
+  theme_bw()
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-188-1.png" width="672" />
+
+```r
+# another way to do it (errorbar)
+out_conf %>%
+  ggplot(aes(x = estimate, y = reorder(term, estimate))) +
+  geom_point() +
+  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high)) +
+  labs(y = "", x = "OLS Estimate") +
+  theme_bw()
+```
+
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-188-2.png" width="672" />
+
+You can calculate marginal effects using `margins` package. For the sake of time, I'm not covering that here.
