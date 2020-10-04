@@ -15,7 +15,11 @@ pacman::p_load(
   tidyverse, # for the tidyverse framework
   here, # for computational reproducibility
   gapminder, # toy data
-  nycflights13 # for exercise
+  nycflights13, # for exercise
+  ggthemes, # additional themes
+  ggrepel, # arranging ggplots
+  patchwork, # arranging ggplots
+  broom # tidying model outputs
 )
 ```
 
@@ -80,7 +84,7 @@ R's base data structures can be organized by their dimensionality (1d, 2d, or nd
 | 2d | Matrix        | Data frame    |
 | nd | Array         |               |
 
-Each data structure has its own specifications and behavior. For our purposes, an important thing to remember is that R is always **faster** (more efficient) working with homogenous (**vectorized**) data.
+Each data structure has its own specifications and behavior. For our purposes, an important thing to remember is that R is always **faster** (more efficient) working with homogeneous (**vectorized**) data.
 
 #### Vector properties
 
@@ -555,9 +559,9 @@ x
 c(x, "c")
 ```
 
-For this reason, it's usually best to explicitly convert factors to character vectors if you need string-like behaviour. In early versions of R, there was a memory advantage to using factors instead of character vectors, but this is no longer the case.
+For this reason, it's usually best to explicitly convert factors to character vectors if you need string-like behavior. In early versions of R, there was a memory advantage to using factors instead of character vectors, but this is no longer the case.
 
-Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there's no way for those functions to know the set of all possible levels or their optimal order. If this becomes a problem, use the argument `stringsAsFactors = FALSE` to suppress this behaviour, and then manually convert character vectors to factors using your knowledge of the data.
+Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there's no way for those functions to know the set of all possible levels or their optimal order. If this becomes a problem, use the argument `stringsAsFactors = FALSE` to suppress this behavior, and then manually convert character vectors to factors using your knowledge of the data.
 
 **More attributes**
 
@@ -683,7 +687,7 @@ mdat <- matrix(c(1, 2, 3, 11, 12, 13),
 mdat
 ```   
 
-Notice that we gave `names` to the dimentions in `mdat`.
+Notice that we gave `names` to the dimensions in `mdat`.
 
 ```{r}
 
@@ -739,8 +743,8 @@ This means that a dataframe has `names()`, `colnames()`, and `rownames()`, altho
 
 ** Summary **
 
-- Set column names: names() in data frame, colnames() in matrix 
-- Set row names: row.names() in data frame, rownames() in matrix
+- Set column names: `names()` in data frame, `colnames()` in matrix 
+- Set row names: `row.names()` in data frame, `rownames()` in matrix
 
 ```{r}
 vec1 <- 1:3
@@ -2168,110 +2172,6 @@ gapminder %>%
   summarise(rich_countries = mean(gdpPercap > 20000))
 ```
 
-### Nesting
-
-#### nest
-
-The following example comes from [R for Data Science](https://r4ds.had.co.nz/many-models.html) by by Garrett Grolemund and Hadley Wickham.
-
--   How can you run multiple models simultaneously? Using a nested data frame.
-
--   **Grouped data: each row = an observation**
-
--   **Nested data: each row = a group**
-
-**Challenge**
-
-In the following example, why did we use `country` and `continent` for nesting variables?
-
-```{r}
-
-nested <- gapminder %>%
-  group_by(country, continent) %>%
-  nest()
-
-head(nested)
-
-nested$data[[1]]
-```
-
--   Custom function
-
-```{r}
-
-lm_model <- function(df) {
-  lm(lifeExp ~ year, data = df)
-}
-```
-
--   Apply function to the nested data
-
-```{r}
-
-# Apply m_model to the nested data
-
-nested <- nested %>%
-  mutate(models = map(data, lm_model)) # Add the list object as a new column
-
-head(nested)
-```
-
-S3 is part of R's object oriented systems. If you need more information, check [this section](http://adv-r.had.co.nz/S3.html) in Hadley's Advanced R out.
-
-#### unnest
-
-`glance()` function from `broom` package inspects the quality of a statistical model.
-
-**Additional tips**
-
--   `broom::glance(model)`: for evaluating model quality and/or complexity
--   `broom::tidy(model)`: for extracting each coefficient in the model (the estimates + its variability)
--   `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics)
-
-```{r}
-
-glanced <- nested %>%
-  mutate(glance = map(models, broom::glance))
-
-glanced$glance[[1]]
-```
-
-`unnest()` unpacks the list objects stored in glance column
-
-```{r}
-
-glanced %>%
-  unnest(glance) %>%
-  arrange(BIC) # Low to High; Lower BIC indicates a better model fit
-
-glanced %>%
-  unnest(glance) %>%
-  ggplot(aes(continent, BIC)) +
-  geom_jitter(width = 0.5)
-```
-
-### Mapping
-
-We tasted a little bit about how `map()` function works. Let's dig into it deeper as this family of functions is really useful. For more information, see Rebecca Barter's wonderful tutorial on the `purrr` package. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
-
-```{r}
-
-multiply <- function(x) {
-  x * x
-}
-
-df <- list(
-  first_obs = rnorm(7, 1, sd = 1),
-  second_obs = rnorm(7, 2, sd = 2)
-) # normal distribution
-```
-
-**Challenge**
-
-Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between the output you got and what you saw earlier.
-
-If you want to know more about the power and joy of functional programming in R (e.g., `purrr::map()`), then please take ["How to Automate Repeated Things in R"](https://github.com/dlab-berkeley/R-functional-programming) workshop.
-
 ### Joining
 
 #### Mutating joins
@@ -2383,3 +2283,760 @@ flights %>%
   anti_join(planes, by = "tailnum") %>%
   count(tailnum, sort = TRUE)
 ```
+
+## broom 
+
+### Nesting
+
+#### nest
+
+The following example comes from [R for Data Science](https://r4ds.had.co.nz/many-models.html) by by Garrett Grolemund and Hadley Wickham.
+
+-   How can you run multiple models simultaneously? Using a nested data frame.
+
+-   **Grouped data: each row = an observation**
+
+-   **Nested data: each row = a group**
+
+**Challenge**
+
+In the following example, why did we use `country` and `continent` for nesting variables?
+
+```{r}
+
+nested <- gapminder %>%
+  group_by(country, continent) %>%
+  nest()
+
+head(nested)
+
+nested$data[[1]]
+```
+
+-   Custom function
+
+```{r}
+
+lm_model <- function(df) {
+  lm(lifeExp ~ year, data = df)
+}
+```
+
+-   Apply function to the nested data
+
+```{r}
+
+# Apply m_model to the nested data
+
+nested <- nested %>%
+  mutate(models = map(data, lm_model)) # Add the list object as a new column
+
+head(nested)
+```
+
+S3 is part of R's object oriented systems. If you need more information, check [this section](http://adv-r.had.co.nz/S3.html) in Hadley's Advanced R out.
+
+#### unnest
+
+`glance()` function from `broom` package inspects the quality of a statistical model.
+
+**Additional tips**
+
+-   `broom::glance(model)`: for evaluating model quality and/or complexity
+-   `broom::tidy(model)`: for extracting each coefficient in the model (the estimates + its variability)
+-   `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics)
+
+```{r}
+
+glanced <- nested %>%
+  mutate(glance = map(models, broom::glance))
+
+glanced$glance[[1]]
+```
+
+`unnest()` unpacks the list objects stored in glance column
+
+```{r}
+
+glanced %>%
+  unnest(glance) %>%
+  arrange(BIC) # Low to High; Lower BIC indicates a better model fit
+
+glanced %>%
+  unnest(glance) %>%
+  ggplot(aes(continent, BIC)) +
+  geom_jitter(width = 0.5)
+```
+
+### Mapping
+
+We tasted a little bit about how `map()` function works. Let's dig into it deeper as this family of functions is really useful. For more information, see Rebecca Barter's wonderful tutorial on the `purrr` package. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
+
+```{r}
+
+multiply <- function(x) {
+  x * x
+}
+
+df <- list(
+  first_obs = rnorm(7, 1, sd = 1),
+  second_obs = rnorm(7, 2, sd = 2)
+) # normal distribution
+```
+
+**Challenge**
+
+Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between the output you got and what you saw earlier.
+
+If you want to know more about the power and joy of functional programming in R (e.g., `purrr::map()`), then please take ["How to Automate Repeated Things in R"](https://github.com/dlab-berkeley/R-functional-programming) workshop.
+
+## ggplot2 
+
+- The following material is adapted from Kieran Healy's wonderful book (2019) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful book on [ggplot2](https://link.springer.com/content/pdf/10.1007%2F978-0-387-98141-3.pdf). For more theoretical discussions, I recommend you to read [The Grammar of Graphics](https://link.springer.com/book/10.1007%2F0-387-28695-0) by Leland Wilkinson.
+
+- Why should we care data visualization? More precisely, why should we learn the grammar of statistical graphics?
+- Sometimes, pictures are better tools than words in 1) exploring, 2) understanding, and 3) explaining data.
+
+### Motivation 
+
+[Anscombe](https://en.wikipedia.org/wiki/Frank_Anscombe)'s quarter comprises four datasets, which are so alike in terms of their descriptive statistics but quite different when presented graphically.
+
+```{r}
+
+# data
+anscombe
+```
+
+```{r}
+
+# correlation
+cor(anscombe)[c(1:4), c(5:8)]
+```
+
+```{r}
+
+# gather and select
+anscombe_processed <- anscombe %>%
+  gather(x_name, x_value, x1:x4) %>%
+  gather(y_name, y_value, y1:y4)
+
+# plot
+anscombe_processed %>%
+  ggplot(aes(x = x_value, y = y_value)) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE) +
+  facet_grid(x_name ~ y_name) +
+  theme_bw() +
+  labs(
+    x = "X values",
+    y = "Y values",
+    title = "Anscombe's quartet"
+  )
+```
+
+### The grammar of graphics 
+
+- the grammar of graphics 
+
+    - data
+    - aesthetic attributes (color, shape, size)
+    - geometric objects (points, lines, bars)
+    - stats (summary stats)
+    - scales (map values in the data space)
+    - coord (data coordinates)
+    - facet (facetting specifications)
+    
+No worries for new terms. We're going to learn them by actually plotting. 
+
+- Workflow: 
+
+    1. Tidy data 
+    2. Mapping 
+    3. Geom 
+    4. Cor_ordinates and scales 
+    5. Labels and guides
+    6. Themes
+    7. Save files 
+
+### mapping and geom
+
+- `aes` (aesthetic mappings or aesthetics) tells which variables (x, y) in your data should be represented by which visual elements (color, shape, size) in the plot.
+
+- `geom_` tells the type of plot you are going to use 
+
+### basic aes (x , y)
+
+```{r}
+
+p <- ggplot(
+  data = gapminder,
+  mapping = aes(x = gdpPercap, y = lifeExp)
+) # ggplot or R in general takes positional arguments too. So, you don't need to name data, mapping each time you use ggplot2.
+
+p
+
+p + geom_point()
+
+p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
+# the shaded area is the standard error for the line
+```
+
+### Univariate distribution
+
+- `geom_histogram()`: For the probability distribution of a continuous variable. Bins divide the entire range of values into a series of intervals (see [the Wiki entry](https://en.wikipedia.org/wiki/Histogram)). 
+- `geom_density()`: Also for the probability distribution of a continuous variable. It calculates a [kernel density estimate](https://en.wikipedia.org/wiki/Kernel_density_estimation) of the underlying distribution. 
+
+#### Histogram 
+```{r}
+
+data(midwest) # load midwest dataset
+
+midwest
+```
+
+```{r, eval = FALSE}
+midwest %>%
+  ggplot(aes(x = area)) +
+  geom_point() # not working.
+```
+
+```{r}
+midwest %>%
+  ggplot(aes(x = area)) +
+  geom_histogram() # stat_bin argument picks up 30 bins (or "bucket") by default.
+
+midwest %>%
+  ggplot(aes(x = area)) +
+  geom_histogram(bins = 10) # only 10 bins.
+
+ggplot(
+  data = subset(midwest, state %in% c("OH", "IN")),
+  mapping = aes(x = percollege, fill = state)
+) +
+  geom_histogram(alpha = 0.7, bins = 20)
+```
+
+#### Density 
+
+```{r}
+midwest %>%
+  ggplot(aes(x = area, fill = state, color = state)) +
+  geom_density(alpha = 0.3)
+```
+
+### Advanced aes (size, color)
+
+- There's also fill argument (mostly used in `geom_bar()`). Color `aes` affects the appearance of lines and points, fill is for the filled areas of bars, polygons, and in some cases, the interior of a smoother's standard error ribbon.
+
+- The property size/color/fill represents... 
+
+```{r}
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap, y = lifeExp,
+    size = pop
+  )
+) +
+  geom_point()
+```
+
+```{r}
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap, y = lifeExp,
+    size = pop,
+    color = continent
+  )
+) +
+  geom_point()
+```
+
+```{r}
+# try red instead of "red"
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap, y = lifeExp,
+    size = pop,
+    color = "red"
+  )
+) +
+  geom_point()
+```
+
+Aesthetics also can be mapped per Geom. 
+
+```{r}
+p + geom_point() +
+  geom_smooth()
+
+p + geom_point(alpha = 0.3) + # alpha controls transparency
+  geom_smooth(color = "red", se = FALSE, size = 2)
+
+p + geom_point(alpha = 0.3) + # alpha controls transparency
+  geom_smooth(color = "red", se = FALSE, size = 2, method = "lm")
+```
+
+```{r}
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap, y = lifeExp,
+    color = continent
+  )
+) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "loess", color = "red") +
+  labs(
+    x = "log GDP",
+    y = "Life Expectancy",
+    title = "A Gapminder Plot",
+    subtitle = "Data points are country-years",
+    caption = "Source: Gapminder"
+  )
+
+ggplot(
+  data = gapminder,
+  mapping = aes(
+    x = gdpPercap, y = lifeExp,
+    color = continent,
+    fill = continent
+  )
+) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "loess", color = "red") +
+  labs(
+    x = "log GDP",
+    y = "Life Expectancy",
+    title = "A Gapminder Plot",
+    subtitle = "Data points are country-years",
+    caption = "Source: Gapminder"
+  )
+```
+
+### Co-ordinates and scales 
+
+```{r}
+
+p + geom_point() +
+  coord_flip() # coord_type
+```
+
+The data is heavily bunched up against the left side. 
+```{r}
+
+p + geom_point() # without scaling
+
+p + geom_point() +
+  scale_x_log10() # scales the axis of a plot to a log 10 basis
+
+p + geom_point() +
+  geom_smooth(method = "lm") +
+  scale_x_log10()
+```
+
+
+### Labels and guides 
+
+`scales` package has some useful premade formatting functions. You can either load scales or just grab the function you need from the library using `scales::` 
+
+```{r}
+
+p + geom_point(alpha = 0.3) +
+  geom_smooth(method = "loess", color = "red") +
+  scale_x_log10(labels = scales::dollar) +
+  labs(
+    x = "log GDP",
+    y = "Life Expectancy",
+    title = "A Gapminder Plot",
+    subtitle = "Data points are country-years",
+    caption = "Source: Gapminder"
+  )
+```
+
+6. Themes
+```{r}
+p + geom_point(alpha = 0.3) +
+  geom_smooth(method = "loess", color = "red") +
+  scale_x_log10(labels = scales::dollar) +
+  labs(
+    x = "log GDP",
+    y = "Life Expectancy",
+    title = "A Gapminder Plot",
+    subtitle = "Data points are country-years",
+    caption = "Source: Gapminder"
+  ) +
+  theme_economist()
+```
+
+### ggsave 
+
+```{r eval = FALSE}
+figure_example <- p + geom_point(alpha = 0.3) +
+  geom_smooth(method = "gam", color = "red") +
+  scale_x_log10(labels = scales::dollar) +
+  labs(
+    x = "log GDP",
+    y = "Life Expectancy",
+    title = "A Gapminder Plot",
+    subtitle = "Data points are country-years",
+    caption = "Source: Gapminder"
+  ) +
+  theme_economist()
+
+ggsave(figure_example, here("outputs", "figure_example.png"))
+```
+
+### Many plots 
+
+Basic ideas:
+
+- Grouping: tell `ggplot2` about the structure of your data 
+- Facetting: break up your data into pieces for a plot 
+
+#### Grouping
+
+- Can you guess what's wrong?
+
+```{r}
+
+p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
+
+p + geom_point()
+
+p + geom_line()
+```
+
+`geom_line` joins up all the lines for each particular year in the order they appear in the dataset. `ggplot2` does not know the yearly observations in your data are grouped by country. 
+
+Note that you need grouping when the grouping information you need to tell is not built into the varaibles being mapped (like continent).
+
+```{r}
+gapminder
+```
+
+#### Facetting 
+
+Facetting is to make small multiples. 
+
+- `facet_wrap`: based on a single categorical variable like `facet_wrap(~single_categorical_variable)`. Your panels will be laid out in order and then wrapped into a grid.
+
+- `facet_grid`: when you want to cross-classify some data by two categorical variables like `facet_grid(one_cat_variable ~ two_cat_variable)`. 
+
+```{r}
+p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
+
+p + geom_line(aes(group = country)) # group by, # The outlier is Kuwait.
+
+p + geom_line(aes(group = country)) + facet_wrap(~continent) # facetting
+
+p + geom_line(aes(group = country), color = "gray70") +
+  geom_smooth(size = 1.1, method = "loess", se = FALSE) +
+  scale_y_log10(labels = scales::dollar) +
+  facet_wrap(~continent, ncol = 5) + # for single categorical variable; for multiple categorical variables use facet_grid()
+  labs(
+    x = "Year",
+    y = "GDP per capita",
+    title = "GDP per capita on Five continents"
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+```{r}
+p + geom_line(aes(group = country), color = "gray70") +
+  geom_smooth(size = 1.1, method = "loess", se = FALSE) +
+  scale_y_log10(labels = scales::dollar) +
+  facet_grid(~continent) + # for single categorical variable; for multiple categorical variables use facet_grid()
+  labs(
+    x = "Year",
+    y = "GDP per capita",
+    title = "GDP per capita on Five continents"
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
+### Transforming
+
+- Transforming: perform some calculations on or summarize your data before producing the plot 
+
+#### Use pipes to summarize data
+
+Also, we experiment bar charts here. By default, `geom_bar` [uses](https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar) stat = "bins", which makes the height of each bar equal to the number of cases in each group. If you have a y column, then you should use `stat = "identity"` argument. Alternatively, you can use `geom_col()`.
+
+```{r}
+
+gapminder_formatted <- gapminder %>%
+  group_by(continent, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  )
+
+ggplot(data = gapminder_formatted, aes(x = year, y = lifeExp_mean, color = continent)) +
+  geom_point() +
+  labs(
+    x = "Year",
+    y = "Life expectancy",
+    title = "Life expectancy on Five continents"
+  )
+
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = year, y = lifeExp_mean, color = country)) +
+  geom_point() +
+  labs(
+    x = "Year",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  )
+```
+
+```{r}
+# geom point
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = year, y = lifeExp_mean)) +
+  geom_point() +
+  labs(
+    x = "Year",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  ) +
+  facet_wrap(~country)
+
+# geom bar
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = year, y = lifeExp_mean)) +
+  geom_bar(stat = "identity") +
+  labs(
+    x = "Year",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  ) +
+  facet_wrap(~country)
+
+# no facet
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = year, y = lifeExp_mean, fill = country)) +
+  geom_bar(stat = "identity") + # even if you not stack, still the plot looks messy or you can use geom_col()
+  labs(
+    x = "Year",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  )
+```
+
+```{r}
+
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = country, y = lifeExp_mean)) +
+  geom_boxplot() +
+  labs(
+    x = "Country",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  ) +
+  coord_flip()
+```
+
+```{r}
+# without ordering
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = reorder(country, lifeExp_mean), y = lifeExp_mean)) +
+  geom_boxplot() +
+  labs(
+    x = "Country",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  ) +
+  coord_flip()
+
+# reorder
+gapminder %>%
+  filter(continent == "Europe") %>%
+  group_by(country, year) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = reorder(country, -lifeExp_mean), y = lifeExp_mean)) +
+  geom_boxplot() +
+  labs(
+    x = "Country",
+    y = "Life expectancy",
+    title = "Life expectancy in Europe"
+  ) +
+  coord_flip()
+```
+
+#### Plotting text
+
+```{r}
+gapminder %>%
+  filter(continent == "Asia" | continent == "Americas") %>%
+  group_by(continent, country) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = gdp_mean, y = lifeExp_mean)) +
+  geom_point() +
+  geom_text(aes(label = country)) +
+  scale_x_log10() +
+  facet_grid(~continent)
+```
+
+```{r}
+# with label
+gapminder %>%
+  filter(continent == "Asia" | continent == "Americas") %>%
+  group_by(continent, country) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = gdp_mean, y = lifeExp_mean)) +
+  geom_point() +
+  geom_label(aes(label = country)) +
+  scale_x_log10() +
+  facet_grid(~continent)
+```
+
+```{r}
+# no overlaps
+gapminder %>%
+  filter(continent == "Asia" | continent == "Americas") %>%
+  group_by(continent, country) %>%
+  summarize(
+    gdp_mean = mean(gdpPercap),
+    lifeExp_mean = mean(lifeExp)
+  ) %>%
+  ggplot(aes(x = gdp_mean, y = lifeExp_mean)) +
+  geom_point() +
+  geom_text_repel(aes(label = country)) + # there's also geom_label_repel
+  scale_x_log10() +
+  facet_grid(~continent)
+```
+
+### Ploting models 
+
+In plotting models, we extensively use David Robinson's [broom package](https://cran.r-project.org/web/packages/broom/vignettes/broom.html) in R. The idea is to transform model outputs (i.e., predictions and estimations) into tidy objects so that we can easily combine, separate, and visualize these elements. 
+
+#### Plotting several fits at the same time
+```{r}
+model_colors <- RColorBrewer::brewer.pal(3, "Set1") # select three qualitatively different colors from a larger palette.
+
+gapminder %>%
+  ggplot(aes(x = log(gdpPercap), y = lifeExp)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(method = "lm", aes(color = "OLS", fill = "OLS")) +
+  geom_smooth(
+    method = "lm", formula = y ~ splines::bs(x, df = 3),
+    aes(color = "Cubic Spline", fill = "Cubic Spline")
+  ) +
+  geom_smooth(method = "loess", aes(color = "LOESS", fill = "LOESS")) +
+  theme(legend.position = "top") +
+  scale_color_manual(name = "Models", values = model_colors) +
+  scale_fill_manual(name = "Models", values = model_colors)
+```
+
+#### Extracting model outcomes 
+```{r}
+
+# regression model
+out <- lm(
+  formula = lifeExp ~ gdpPercap + pop + continent,
+  data = gapminder
+)
+```
+
+`tidy()` is a method in the `broom` package. It "constructs a dataframe that summarizes the model's statistical findings". As the description states, tidy is a function that can be used for various models. For instance, a tidy can extract following information from a regression model.
+
+- `Term`: a term being estimated 
+- `p.value`
+- `statistic`: a test statistic used to compute p-value
+- `estimate` 
+- `conf.low`: the low end of a confidence interval 
+- `conf.high`: the high end of a confidence interval
+- `df`: degrees of freedom
+
+**Challege**
+
+Try glance(out), what did you get from these commands? If you're curious, you can try ?glance.
+
+The followings are to show your degree of confidence.
+
+##### Coeffficients
+```{r}
+# estimates
+out_comp <- tidy(out)
+
+p <- out_comp %>%
+  ggplot(aes(x = term, y = estimate))
+
+p + geom_point() +
+  coord_flip() +
+  theme_bw()
+```
+
+##### Confidence intervals
+
+```{r}
+# plus confidence intervals
+out_conf <- tidy(out, conf.int = TRUE)
+
+# plotting coefficients using ggplot2 (pointrange)
+out_conf %>%
+  ggplot(aes(x = reorder(term, estimate), y = estimate, ymin = conf.low, ymax = conf.high)) +
+  geom_pointrange() +
+  coord_flip() +
+  labs(x = "", y = "OLS Estimate") +
+  theme_bw()
+
+# another way to do it (errorbar)
+out_conf %>%
+  ggplot(aes(x = estimate, y = reorder(term, estimate))) +
+  geom_point() +
+  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high)) +
+  labs(y = "", x = "OLS Estimate") +
+  theme_bw()
+```
+
+You can calculate marginal effects using `margins` package. For the sake of time, I'm not covering that here.
