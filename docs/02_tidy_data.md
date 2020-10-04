@@ -1922,6 +1922,173 @@ x[c("a", "d")]
 ##   NA   NA
 ```
 
+###### More on string operations 
+
+
+```r
+firstName <- "Jae Yeon"
+lastName <- "Kim"
+```
+
+Unlike in Python, R does not have a reserved operator for string concatenation such as `+`.  Furthermore, using the usual concatenation operator ```c()``` on two or more character strings will not create a single character string, but rather a **vector** of character strings. 
+
+
+```r
+fullName <- c(firstName, lastName)
+
+print(fullName)
+```
+
+```
+## [1] "Jae Yeon" "Kim"
+```
+
+```r
+length(fullName)
+```
+
+```
+## [1] 2
+```
+
+In order to combine two or more character strings into one larger character string, we use the ```paste()``` function.  This function takes character strings or vectors and collapses their values into a single character string, with each value separated by a character string selected by the user.
+
+
+```r
+fullName <- paste(firstName, lastName)
+
+print(fullName)
+
+fullName <- paste(firstName, lastName, sep = "+")
+
+print(fullName)
+
+fullName <- paste(firstName, lastName, sep = "___")
+print(fullName)
+```
+
+As with Python, R can also extract substrings based on the index position of its characters.  There are, however, two critical differences.  First, **index positions in R start at 1**.  This is in contrast to Python, where indexation starts at 0.  
+
+Second, **object subsets using index positions in R contain all the elements in the specified range**.  If some object called ```data``` contains five elements, ```data[2:4]``` will return the elements at the second, third, and fourth positions.  By contrast, the same subset in Python would return the objects at the third and fourth positions (or second and third positions, depending upon whether your index starts at 0 or 1).  
+
+Third, **R does not allow indexing of character strings***. Instead, you must use the ```substr()``` function.  Note that this function must receive both the ```start``` and ```stop``` arguments.  So if you want to get all the characters between some index and the end of the string, you must make use of the ```nchar()``` function, which will tell you the length of a character string.
+
+
+```r
+fullName <- paste(firstName, lastName)
+
+# this won't work like in Python
+fullName[1] # R sees the string as a unitary object - it can't be indexed this way
+```
+
+```
+## [1] "Jae Yeon Kim"
+```
+
+```r
+fullName[1:4]
+```
+
+```
+## [1] "Jae Yeon Kim" NA             NA             NA
+```
+
+```r
+# So use this instead
+substr(x = fullName, start = 1, stop = 2)
+```
+
+```
+## [1] "Ja"
+```
+
+```r
+substr(x = fullName, start = 5, stop = 5)
+```
+
+```
+## [1] "Y"
+```
+
+```r
+substr(x = fullName, start = 1, stop = 10)
+```
+
+```
+## [1] "Jae Yeon K"
+```
+
+```r
+substr(x = fullName, start = 11, stop = nchar(fullName))
+```
+
+```
+## [1] "im"
+```
+
+Like Python, R has a number of string methods, though these exist as individual rather than "mix-and-match" functions. For example:
+
+
+```r
+toupper(x = fullName)
+```
+
+```
+## [1] "JAE YEON KIM"
+```
+
+```r
+tolower(x = fullName)
+```
+
+```
+## [1] "jae yeon kim"
+```
+
+```r
+strsplit(x = fullName, split = " ")
+```
+
+```
+## [[1]]
+## [1] "Jae"  "Yeon" "Kim"
+```
+
+```r
+strsplit(x = fullName, split = "n")
+```
+
+```
+## [[1]]
+## [1] "Jae Yeo" " Kim"
+```
+
+```r
+gsub(pattern = "Kim", replacement = "Choi", x = fullName)
+```
+
+```
+## [1] "Jae Yeon Choi"
+```
+
+```r
+gsub(pattern = "Jae Yeon", replacement = "Danny", x = fullName)
+```
+
+```
+## [1] "Danny Kim"
+```
+
+```r
+# Note the importance of cases! This doesn't throw an error, so you won't realize your function didn't work unless you double-check several entries
+
+gsub(pattern = " ", replacement = "", x = fullName) # The same function is used for replacements and stripping
+```
+
+```
+## [1] "JaeYeonKim"
+```
+
 ### Lists
 
 Subsetting a list works in the same way as subsetting an atomic vector. Using `[` will always return a list; `[[` and `$`, as described below, let you pull out the components of the list.
@@ -4088,7 +4255,7 @@ tablea %>% kableExtra::kable()
 tablea %>% flextable::flextable()
 ```
 
-<!--html_preserve--><div class="tabwid"><style>.cl-43d85110{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-43d86326{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-43d86344{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-43d88964{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d88978{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d88982{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d8898c{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d88996{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-43d889a0{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-43d88996"><p class="cl-43d86326"><span class="cl-43d85110">continent</span></p></td><td class="cl-43d889a0"><p class="cl-43d86344"><span class="cl-43d85110">n</span></p></td><td class="cl-43d889a0"><p class="cl-43d86344"><span class="cl-43d85110">mean_gdp</span></p></td><td class="cl-43d889a0"><p class="cl-43d86344"><span class="cl-43d85110">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-43d88964"><p class="cl-43d86326"><span class="cl-43d85110">Africa</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">624</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">2193.755</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-43d88964"><p class="cl-43d86326"><span class="cl-43d85110">Americas</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">300</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">7136.110</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-43d88964"><p class="cl-43d86326"><span class="cl-43d85110">Asia</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">396</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">7902.150</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-43d88964"><p class="cl-43d86326"><span class="cl-43d85110">Europe</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">360</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">14469.476</span></p></td><td class="cl-43d88978"><p class="cl-43d86344"><span class="cl-43d85110">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-43d88982"><p class="cl-43d86326"><span class="cl-43d85110">Oceania</span></p></td><td class="cl-43d8898c"><p class="cl-43d86344"><span class="cl-43d85110">24</span></p></td><td class="cl-43d8898c"><p class="cl-43d86344"><span class="cl-43d85110">18621.609</span></p></td><td class="cl-43d8898c"><p class="cl-43d86344"><span class="cl-43d85110">6358.983</span></p></td></tr></tbody></table></div><!--/html_preserve-->
+<!--html_preserve--><div class="tabwid"><style>.cl-3d4db828{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-3d4dca7a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-3d4dca8e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-3d4df0f4{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d4df112{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d4df11c{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d4df126{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d4df130{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3d4df13a{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-3d4df130"><p class="cl-3d4dca7a"><span class="cl-3d4db828">continent</span></p></td><td class="cl-3d4df13a"><p class="cl-3d4dca8e"><span class="cl-3d4db828">n</span></p></td><td class="cl-3d4df13a"><p class="cl-3d4dca8e"><span class="cl-3d4db828">mean_gdp</span></p></td><td class="cl-3d4df13a"><p class="cl-3d4dca8e"><span class="cl-3d4db828">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-3d4df0f4"><p class="cl-3d4dca7a"><span class="cl-3d4db828">Africa</span></p></td><td class="cl-3d4df112"><p class="cl-3d4dca8e"><span class="cl-3d4db828">624</span></p></td><td class="cl-3d4df112"><p class="cl-3d4dca8e"><span class="cl-3d4db828">2193.755</span></p></td><td class="cl-3d4df112"><p class="cl-3d4dca8e"><span class="cl-3d4db828">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3d4df0f4"><p class="cl-3d4dca7a"><span class="cl-3d4db828">Americas</span></p></td><td class="cl-3d4df112"><p class="cl-3d4dca8e"><span class="cl-3d4db828">300</span></p></td><td class="cl-3d4df112"><p class="cl-3d4dca8e"><span class="cl-3d4db828">7136.110</span></p></td><td class="cl-3d4df112"><p class="cl-3d4dca8e"><span class="cl-3d4db828">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3d4df0f4"><p class="cl-3d4dca7a"><span class="cl-3d4db828">Asia</span></p></td><td class="cl-3d4df112"><p class="cl-3d4dca8e"><span class="cl-3d4db828">396</span></p></td><td class="cl-3d4df112"><p class="cl-3d4dca8e"><span class="cl-3d4db828">7902.150</span></p></td><td class="cl-3d4df112"><p class="cl-3d4dca8e"><span class="cl-3d4db828">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3d4df0f4"><p class="cl-3d4dca7a"><span class="cl-3d4db828">Europe</span></p></td><td class="cl-3d4df112"><p class="cl-3d4dca8e"><span class="cl-3d4db828">360</span></p></td><td class="cl-3d4df112"><p class="cl-3d4dca8e"><span class="cl-3d4db828">14469.476</span></p></td><td class="cl-3d4df112"><p class="cl-3d4dca8e"><span class="cl-3d4db828">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3d4df11c"><p class="cl-3d4dca7a"><span class="cl-3d4db828">Oceania</span></p></td><td class="cl-3d4df126"><p class="cl-3d4dca8e"><span class="cl-3d4db828">24</span></p></td><td class="cl-3d4df126"><p class="cl-3d4dca8e"><span class="cl-3d4db828">18621.609</span></p></td><td class="cl-3d4df126"><p class="cl-3d4dca8e"><span class="cl-3d4db828">6358.983</span></p></td></tr></tbody></table></div><!--/html_preserve-->
 
 #### Scoped summaries
 
@@ -4712,7 +4879,7 @@ glanced %>%
   geom_jitter(width = 0.5)
 ```
 
-<img src="02_tidy_data_files/figure-html/unnamed-chunk-141-1.png" width="672" />
+<img src="02_tidy_data_files/figure-html/unnamed-chunk-146-1.png" width="672" />
 
 ### Mapping
 

@@ -3,7 +3,813 @@
 > Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions. 
 - Hadley Wickam
 
-## Why functional programming
+## Flow Control 
+
+Almost all the conditional operators used in Python also work in R.  The basic loop set up is also very similar, with some small syntax adjustments.  Note that ```if()``` is a function whose arguments must be specified inside parentheses.  ```else```, however, is a reserved operator that takes no arguments.  Note that there is no ```elif``` option --- one simply writes ```else if()```.  Whereas operations to be executed after conditional evaluations in Python come after a ```:```, R operations must only be enclosed in curly brackets: ```{}```.  Furthermore, there is no requirement for indentation.  The only thing to keep in mind is that **each new operation must be on a separate line**.
+
+
+```r
+x <- 5
+
+if(x < 0){
+  print("x is negative")
+} 
+
+x <- -5
+
+if(x < 0){
+  print("x is negative")
+}
+```
+
+```
+## [1] "x is negative"
+```
+
+```r
+x <- 5
+
+if(x < 0){
+  print("x is negative")
+} else{
+  print("x is positive")
+}
+```
+
+```
+## [1] "x is positive"
+```
+
+```r
+x <- 0
+
+if(x < 0){
+  print("x is negative")
+} else if(x == 0){
+  print("x is zero")
+} else{
+  print("x is positive")
+}
+```
+
+```
+## [1] "x is zero"
+```
+
+R also does some class coercion that makes Boolean evaluations harder to break than in Python.  But be careful --- R has a set of special coercion used for fast logical evaluation and subsetting.  Specifically, ```TRUE``` is considered equal to ```1```, while ```FALSE``` is equal to ```0```. The Boolean logicals can also be specified as a full word in all caps, or simply as ```T``` or ```F```.
+
+
+```r
+1 < 2
+```
+
+```
+## [1] TRUE
+```
+
+```r
+"1" < 2
+```
+
+```
+## [1] TRUE
+```
+
+```r
+"a" < 2
+```
+
+```
+## [1] FALSE
+```
+
+```r
+TRUE < 2
+```
+
+```
+## [1] TRUE
+```
+
+```r
+TRUE == "TRUE"
+```
+
+```
+## [1] TRUE
+```
+
+```r
+T == "TRUE"
+```
+
+```
+## [1] TRUE
+```
+
+```r
+TRUE == "T"
+```
+
+```
+## [1] FALSE
+```
+
+```r
+TRUE == "FALSE"
+```
+
+```
+## [1] FALSE
+```
+
+```r
+TRUE == 0
+```
+
+```
+## [1] FALSE
+```
+
+```r
+TRUE == 1
+```
+
+```
+## [1] TRUE
+```
+
+```r
+FALSE == 0
+```
+
+```
+## [1] TRUE
+```
+
+```r
+FALSE <= 1
+```
+
+```
+## [1] TRUE
+```
+
+## Functions 
+
+While functions are defined in Python using the ```def``` reserved operator, R sees functions as just another type of named object.  Thus, they require explicit assignment to an object.  This is done using the function ```function()```, which creates a function taking the arguments specified in parentheses.  
+
+
+```r
+simple.function <- function(x){
+  print(x + 1)
+}
+
+simple.function(x = 2)
+```
+
+```
+## [1] 3
+```
+
+```r
+less.simple.function <- function(x, y){
+  print(x - y + 1)
+}
+
+less.simple.function(x = 2, y = 10)
+```
+
+```
+## [1] -7
+```
+
+With respect to returning function output, most of the same rules apply as with Python. Be sure to remember that ```return()``` will only process a single object, so multiple items must usually be returned as a list. Note that your ordering of the functions matters, too. 
+
+
+```r
+dumbfun <- function(x){
+  return(x)
+  print("This will never print :(")
+}
+
+dumbfun(x = "something")
+```
+
+```
+## [1] "something"
+```
+
+```r
+dumbfun <- function(x){
+  print("Why did I print?")
+  return(x)
+}
+
+dumbfun(x = "something")
+```
+
+```
+## [1] "Why did I print?"
+```
+
+```
+## [1] "something"
+```
+
+```r
+dumbfun <- function(x,y){
+  thing1 <- x
+  thing2 <- y
+  return(list(thing1, thing2))
+}
+
+dumbfun(x = "some text", y = "some data")
+```
+
+```
+## [[1]]
+## [1] "some text"
+## 
+## [[2]]
+## [1] "some data"
+```
+
+```r
+dumbfun(x = c(5,10,15), y = "some data")
+```
+
+```
+## [[1]]
+## [1]  5 10 15
+## 
+## [[2]]
+## [1] "some data"
+```
+
+R functions also allow you to set default argument values:
+
+
+```r
+less.simple.function <- function(x, y = 0){
+  print(x - y + 1)
+}
+
+less.simple.function(x = 2)
+```
+
+```
+## [1] 3
+```
+
+```r
+less.simple.function(x = 2, y = 10)
+```
+
+```
+## [1] -7
+```
+
+With respect to specifying arguments, one can either use argument **position** specifications (i.e., the order) or argument **name** specifications.  The latter is strongly preferred, as it is very easy to accidentally specify incorrect argument values.
+
+
+```r
+send <- function(message, recipient, cc=NULL, bcc=NULL){
+  print(paste(message, recipient, sep = ", "))
+  print(paste("CC:", cc, sep = " "))
+  print(paste("BCC:", bcc, sep = " "))
+}
+
+send(message = "Hello", recipient = "World", cc = "Sun", bcc = "Jane")
+```
+
+```
+## [1] "Hello, World"
+## [1] "CC: Sun"
+## [1] "BCC: Jane"
+```
+
+```r
+send("Hello", "World", "Sun", "Jane")
+```
+
+```
+## [1] "Hello, World"
+## [1] "CC: Sun"
+## [1] "BCC: Jane"
+```
+
+```r
+send("Hello", "Sun", "Jane", "World")
+```
+
+```
+## [1] "Hello, Sun"
+## [1] "CC: Jane"
+## [1] "BCC: World"
+```
+
+```r
+send(message = "Hello", cc = "Sun", bcc = c("Jane", "Rochelle"), recipient = "World")
+```
+
+```
+## [1] "Hello, World"
+## [1] "CC: Sun"
+## [1] "BCC: Jane"     "BCC: Rochelle"
+```
+
+Also, note that functions don't have what CS people called side-effects. Functions only define local variables = They don't change objects stored in the global environment. (Consider the difference between `<-` and `=` for assignments.) That's why you can use functions for reusable tasks since it does not interrupt other important things in your system.
+
+See [the following example](https://darrenjw.wordpress.com/2011/11/23/lexical-scope-and-function-closures-in-r/) from Wilkinson.
+
+
+```r
+a = 1 
+b = 2
+
+f <- function(x)
+{
+  a*x + b
+}
+
+f(2)
+```
+
+```
+## [1] 4
+```
+
+```r
+g <- function(x)
+{
+  a = 2
+  b = 1
+  f(x)
+}
+
+g(2) # a equals still 1 
+```
+
+```
+## [1] 4
+```
+
+## for loop 
+
+Loops in R also work basically the same way as in Python, with just a few adjustments.  First, recall that index positions in R start at 1.  Second, ```while()``` and ```for()``` are functions rather than reserved operators, meaning they must take arguments in parentheses.  Third, just like ```else```, the ```in``` operator *is* reserved and takes no arguments in parentheses.  Fourth, the conditional execution must appear between curly brackets.  Finally, indentation is meaningless, but each new operation must appear on a new line.
+
+- `while()`: when we have no idea how many times loop needs to be executed.
+- `for()`: when we know how many times loop needs to be executed.
+
+
+```r
+fruits <- c("apples", "oranges", "pears", "bananas")
+
+# a while loop
+i <- 1
+while(i <= length(fruits)){
+  print(fruits[i])
+  i <- i + 1
+}
+```
+
+```
+## [1] "apples"
+## [1] "oranges"
+## [1] "pears"
+## [1] "bananas"
+```
+
+```r
+# a for loop
+for(i in 1:length(fruits)){
+  print(fruits[i])
+}
+```
+
+```
+## [1] "apples"
+## [1] "oranges"
+## [1] "pears"
+## [1] "bananas"
+```
+
+## apply family 
+
+While and for loops in R can be very slow. For this reason, R has a number of built-in iteration methods to speed up execution times. In many cases, packages will have "behind-the-scenes" ways to avoid for loops, but what if you need to write your own function? 
+
+A common method of getting around for loops is the **apply** family of functions. These take a data structure and a function, and applies a function over all the elements in the object.
+
+
+```r
+fruit <- c("apple", "orange", "pear", "banana")
+
+# make function that takes in only one element
+make.plural <- function(x){
+   plural <- paste(x, 's', sep = '') # sep is for collapse, so collpase ''
+   return(plural)
+}
+
+make.plural('apple')
+```
+
+```
+## [1] "apples"
+```
+
+```r
+# apply that function to every element
+lapply(fruit, make.plural) # returns a list
+```
+
+```
+## [[1]]
+## [1] "apples"
+## 
+## [[2]]
+## [1] "oranges"
+## 
+## [[3]]
+## [1] "pears"
+## 
+## [[4]]
+## [1] "bananas"
+```
+
+```r
+sapply(fruit, make.plural) # returns a named vector
+```
+
+```
+##     apple    orange      pear    banana 
+##  "apples" "oranges"   "pears" "bananas"
+```
+
+```r
+library(purrr) # load package
+map(fruit, make.plural) # type consistent
+```
+
+```
+## [[1]]
+## [1] "apples"
+## 
+## [[2]]
+## [1] "oranges"
+## 
+## [[3]]
+## [1] "pears"
+## 
+## [[4]]
+## [1] "bananas"
+```
+
+
+```r
+# Why sapply is bad 
+
+sapply(1:100, paste) # return character 
+```
+
+```
+##   [1] "1"   "2"   "3"   "4"   "5"   "6"   "7"   "8"   "9"   "10"  "11"  "12" 
+##  [13] "13"  "14"  "15"  "16"  "17"  "18"  "19"  "20"  "21"  "22"  "23"  "24" 
+##  [25] "25"  "26"  "27"  "28"  "29"  "30"  "31"  "32"  "33"  "34"  "35"  "36" 
+##  [37] "37"  "38"  "39"  "40"  "41"  "42"  "43"  "44"  "45"  "46"  "47"  "48" 
+##  [49] "49"  "50"  "51"  "52"  "53"  "54"  "55"  "56"  "57"  "58"  "59"  "60" 
+##  [61] "61"  "62"  "63"  "64"  "65"  "66"  "67"  "68"  "69"  "70"  "71"  "72" 
+##  [73] "73"  "74"  "75"  "76"  "77"  "78"  "79"  "80"  "81"  "82"  "83"  "84" 
+##  [85] "85"  "86"  "87"  "88"  "89"  "90"  "91"  "92"  "93"  "94"  "95"  "96" 
+##  [97] "97"  "98"  "99"  "100"
+```
+
+```r
+sapply(integer(), paste) # return list!
+```
+
+```
+## list()
+```
+
+```r
+library(purrr)
+map(1:100, paste) # return list
+```
+
+```
+## [[1]]
+## [1] "1"
+## 
+## [[2]]
+## [1] "2"
+## 
+## [[3]]
+## [1] "3"
+## 
+## [[4]]
+## [1] "4"
+## 
+## [[5]]
+## [1] "5"
+## 
+## [[6]]
+## [1] "6"
+## 
+## [[7]]
+## [1] "7"
+## 
+## [[8]]
+## [1] "8"
+## 
+## [[9]]
+## [1] "9"
+## 
+## [[10]]
+## [1] "10"
+## 
+## [[11]]
+## [1] "11"
+## 
+## [[12]]
+## [1] "12"
+## 
+## [[13]]
+## [1] "13"
+## 
+## [[14]]
+## [1] "14"
+## 
+## [[15]]
+## [1] "15"
+## 
+## [[16]]
+## [1] "16"
+## 
+## [[17]]
+## [1] "17"
+## 
+## [[18]]
+## [1] "18"
+## 
+## [[19]]
+## [1] "19"
+## 
+## [[20]]
+## [1] "20"
+## 
+## [[21]]
+## [1] "21"
+## 
+## [[22]]
+## [1] "22"
+## 
+## [[23]]
+## [1] "23"
+## 
+## [[24]]
+## [1] "24"
+## 
+## [[25]]
+## [1] "25"
+## 
+## [[26]]
+## [1] "26"
+## 
+## [[27]]
+## [1] "27"
+## 
+## [[28]]
+## [1] "28"
+## 
+## [[29]]
+## [1] "29"
+## 
+## [[30]]
+## [1] "30"
+## 
+## [[31]]
+## [1] "31"
+## 
+## [[32]]
+## [1] "32"
+## 
+## [[33]]
+## [1] "33"
+## 
+## [[34]]
+## [1] "34"
+## 
+## [[35]]
+## [1] "35"
+## 
+## [[36]]
+## [1] "36"
+## 
+## [[37]]
+## [1] "37"
+## 
+## [[38]]
+## [1] "38"
+## 
+## [[39]]
+## [1] "39"
+## 
+## [[40]]
+## [1] "40"
+## 
+## [[41]]
+## [1] "41"
+## 
+## [[42]]
+## [1] "42"
+## 
+## [[43]]
+## [1] "43"
+## 
+## [[44]]
+## [1] "44"
+## 
+## [[45]]
+## [1] "45"
+## 
+## [[46]]
+## [1] "46"
+## 
+## [[47]]
+## [1] "47"
+## 
+## [[48]]
+## [1] "48"
+## 
+## [[49]]
+## [1] "49"
+## 
+## [[50]]
+## [1] "50"
+## 
+## [[51]]
+## [1] "51"
+## 
+## [[52]]
+## [1] "52"
+## 
+## [[53]]
+## [1] "53"
+## 
+## [[54]]
+## [1] "54"
+## 
+## [[55]]
+## [1] "55"
+## 
+## [[56]]
+## [1] "56"
+## 
+## [[57]]
+## [1] "57"
+## 
+## [[58]]
+## [1] "58"
+## 
+## [[59]]
+## [1] "59"
+## 
+## [[60]]
+## [1] "60"
+## 
+## [[61]]
+## [1] "61"
+## 
+## [[62]]
+## [1] "62"
+## 
+## [[63]]
+## [1] "63"
+## 
+## [[64]]
+## [1] "64"
+## 
+## [[65]]
+## [1] "65"
+## 
+## [[66]]
+## [1] "66"
+## 
+## [[67]]
+## [1] "67"
+## 
+## [[68]]
+## [1] "68"
+## 
+## [[69]]
+## [1] "69"
+## 
+## [[70]]
+## [1] "70"
+## 
+## [[71]]
+## [1] "71"
+## 
+## [[72]]
+## [1] "72"
+## 
+## [[73]]
+## [1] "73"
+## 
+## [[74]]
+## [1] "74"
+## 
+## [[75]]
+## [1] "75"
+## 
+## [[76]]
+## [1] "76"
+## 
+## [[77]]
+## [1] "77"
+## 
+## [[78]]
+## [1] "78"
+## 
+## [[79]]
+## [1] "79"
+## 
+## [[80]]
+## [1] "80"
+## 
+## [[81]]
+## [1] "81"
+## 
+## [[82]]
+## [1] "82"
+## 
+## [[83]]
+## [1] "83"
+## 
+## [[84]]
+## [1] "84"
+## 
+## [[85]]
+## [1] "85"
+## 
+## [[86]]
+## [1] "86"
+## 
+## [[87]]
+## [1] "87"
+## 
+## [[88]]
+## [1] "88"
+## 
+## [[89]]
+## [1] "89"
+## 
+## [[90]]
+## [1] "90"
+## 
+## [[91]]
+## [1] "91"
+## 
+## [[92]]
+## [1] "92"
+## 
+## [[93]]
+## [1] "93"
+## 
+## [[94]]
+## [1] "94"
+## 
+## [[95]]
+## [1] "95"
+## 
+## [[96]]
+## [1] "96"
+## 
+## [[97]]
+## [1] "97"
+## 
+## [[98]]
+## [1] "98"
+## 
+## [[99]]
+## [1] "99"
+## 
+## [[100]]
+## [1] "100"
+```
+
+```r
+map(integer(), paste) # return list
+```
+
+```
+## list()
+```
+
+The multivariate version of `sapply` is `mapply`. Use this if you have a function that takes in 2 or more arguments.
+
+## purrr
 
 - Setup 
 
@@ -222,7 +1028,7 @@ toc()
 ```
 
 ```
-## 0.007 sec elapsed
+## 0.008 sec elapsed
 ```
 
 
@@ -486,7 +1292,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-26-1.png" width="672" />
 
 ```r
 airquality %>%
@@ -502,7 +1308,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-16-2.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-26-2.png" width="672" />
 
 ```r
 airquality %>%
@@ -518,7 +1324,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-16-3.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-26-3.png" width="672" />
 
 ### Solution 
 
@@ -566,7 +1372,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 
 - The next step is to write an automatic plotting function. 
 
@@ -600,7 +1406,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
 ```
 ## 
@@ -611,7 +1417,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-20-2.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-30-2.png" width="672" />
 
 ```
 ## 
@@ -622,7 +1428,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-20-3.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-30-3.png" width="672" />
 
 ```
 ## 
@@ -633,7 +1439,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-20-4.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-30-4.png" width="672" />
 
 ```
 ## 
@@ -644,7 +1450,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-20-5.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-30-5.png" width="672" />
 
 ## Automate joining
 
@@ -872,7 +1678,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[1]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
 ## 
 ## 
 ## [[2]]
@@ -1074,7 +1880,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-10-03"
+date: "2020-10-04"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 
