@@ -243,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>5</b> Automating repeated things</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="functional-programming.html"><a href="functional-programming.html#flow-control"><i class="fa fa-check"></i><b>5.1</b> Flow Control</a></li>
+<li class="chapter" data-level="5.1" data-path="functional-programming.html"><a href="functional-programming.html#flow-control"><i class="fa fa-check"></i><b>5.1</b> Flow control</a></li>
 <li class="chapter" data-level="5.2" data-path="functional-programming.html"><a href="functional-programming.html#functions"><i class="fa fa-check"></i><b>5.2</b> Functions</a></li>
 <li class="chapter" data-level="5.3" data-path="functional-programming.html"><a href="functional-programming.html#for-loop"><i class="fa fa-check"></i><b>5.3</b> for loop</a></li>
 <li class="chapter" data-level="5.4" data-path="functional-programming.html"><a href="functional-programming.html#apply-family"><i class="fa fa-check"></i><b>5.4</b> apply family</a></li>
@@ -384,10 +384,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 5</span> Automating repeated things</h1>
 <blockquote>
 <p>Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions.
-- Hadley Wickam</p>
+- Hadley Wickham</p>
 </blockquote>
 <div id="flow-control" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Flow Control</h2>
+<h2><span class="header-section-number">5.1</span> Flow control</h2>
 <p>Almost all the conditional operators used in Python also work in R. The basic loop set up is also very similar, with some small syntax adjustments. Note that <code>if()</code> is a function whose arguments must be specified inside parentheses. <code>else</code>, however, is a reserved operator that takes no arguments. Note that there is no <code>elif</code> option — one simply writes <code>else if()</code>. Whereas operations to be executed after conditional evaluations in Python come after a <code>:</code>, R operations must only be enclosed in curly brackets: <code>{}</code>. Furthermore, there is no requirement for indentation. The only thing to keep in mind is that <strong>each new operation must be on a separate line</strong>.</p>
 <div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="functional-programming.html#cb649-1"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
 <span id="cb649-2"><a href="functional-programming.html#cb649-2"></a></span>
@@ -1109,7 +1109,7 @@ function(input){</p>
 <span id="cb741-12"><a href="functional-programming.html#cb741-12"></a>  out1[[i]] &lt;-<span class="st"> </span><span class="kw">mean</span>(airquality[[i]], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb741-13"><a href="functional-programming.html#cb741-13"></a>}</span>
 <span id="cb741-14"><a href="functional-programming.html#cb741-14"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.008 sec elapsed</code></pre>
+<pre><code>## 0.006 sec elapsed</code></pre>
 <div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="functional-programming.html#cb743-1"></a><span class="kw">tic</span>()</span>
 <span id="cb743-2"><a href="functional-programming.html#cb743-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb743-3"><a href="functional-programming.html#cb743-3"></a><span class="kw">toc</span>()</span></code></pre></div>
@@ -1583,7 +1583,7 @@ Why the above solution is not efficient?</li>
 ## NULL
 ## 
 ## [[1]]$error
-## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds&gt;
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds&gt;
 ## 
 ## 
 ## [[2]]
@@ -1599,7 +1599,7 @@ Why the above solution is not efficient?</li>
 ## NULL
 ## 
 ## [[3]]$error
-## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds&gt;
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds&gt;
 ## 
 ## 
 ## [[4]]
