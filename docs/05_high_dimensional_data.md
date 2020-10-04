@@ -1847,7 +1847,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.651) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.480, relative change = 2.234e-02) 
 ## ....................................................................................................
@@ -1903,7 +1903,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 9: ask, matter, must, take, noth 
 ##  Topic 10: hand, howev, sherlock, glanc, head 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 11 (approx. per word bound = -7.337, relative change = 5.576e-05) 
 ## ....................................................................................................
@@ -1969,7 +1969,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.335, relative change = 1.952e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 10 (approx. per word bound = -7.333, relative change = 2.106e-04) 
 ## Topic 1: holm, know, well, can, might 
@@ -2004,7 +2004,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 14 (approx. per word bound = -7.329, relative change = 1.167e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 15 (approx. per word bound = -7.328, relative change = 6.326e-05) 
 ## Topic 1: holm, know, well, can, might 

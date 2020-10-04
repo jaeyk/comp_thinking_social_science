@@ -1127,11 +1127,11 @@ function(input){</p>
 <span id="cb853-12"><a href="functional-programming.html#cb853-12"></a>  out1[[i]] &lt;-<span class="st"> </span><span class="kw">mean</span>(airquality[[i]], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb853-13"><a href="functional-programming.html#cb853-13"></a>}</span>
 <span id="cb853-14"><a href="functional-programming.html#cb853-14"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.007 sec elapsed</code></pre>
+<pre><code>## 0.005 sec elapsed</code></pre>
 <div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="functional-programming.html#cb855-1"></a><span class="kw">tic</span>()</span>
 <span id="cb855-2"><a href="functional-programming.html#cb855-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb855-3"><a href="functional-programming.html#cb855-3"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.002 sec elapsed</code></pre>
+<pre><code>## 0.001 sec elapsed</code></pre>
 <ul>
 <li><p>In short, <code>map()</code> is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using <code>%&gt;%</code>.</p></li>
 <li><p>Final point: Why not base R <code>apply</code> family?</p></li>
@@ -1601,7 +1601,7 @@ Why the above solution is not efficient?</li>
 ## NULL
 ## 
 ## [[1]]$error
-## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds&gt;
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds&gt;
 ## 
 ## 
 ## [[2]]
@@ -1617,7 +1617,7 @@ Why the above solution is not efficient?</li>
 ## NULL
 ## 
 ## [[3]]$error
-## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds&gt;
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds&gt;
 ## 
 ## 
 ## [[4]]
