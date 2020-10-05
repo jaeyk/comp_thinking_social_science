@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-10-04" />
+<meta name="date" content="2020-10-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -479,8 +479,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>Like Python, R is dynamically typed. There are a few differences in terminology, however, that are pertinent.</p>
 <ul>
-<li><p>First, “types” in Python are referred to as “classes” in R.</p></li>
-<li><p>Second, R has some different names for the types string, integer, and float — specifically <strong>character</strong>, <strong>integer</strong> (not different), and <strong>numeric</strong>. Because there is no “float” class in R, users tend to default to the “numeric” class when they want to work with numerical data.</p></li>
+<li>First, “types” in Python are referred to as “classes” in R.</li>
+</ul>
+<p>What is a class?</p>
+<div class="figure">
+<img src="https://ds055uzetaobb.cloudfront.net/brioche/uploads/pJZt3mh3Ht-prettycars.png?width=2400" alt="" />
+<p class="caption">from <a href="https://brilliant.org/" class="uri">https://brilliant.org/</a></p>
+</div>
+<ul>
+<li>Second, R has some different names for the types string, integer, and float — specifically <strong>character</strong>, <strong>integer</strong> (not different), and <strong>numeric</strong>. Because there is no “float” class in R, users tend to default to the “numeric” class when they want to work with numerical data.</li>
 </ul>
 <p>The function for recovering object classes is <code>class()</code>. L suffix to qualify any number with the intent of making it an explicit integer. See more from the <a href="https://cran.r-project.org/doc/manuals/R-lang.html">R language definition</a>.</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="tidy-data.html#cb81-1"></a><span class="kw">class</span>(<span class="dv">3</span>)</span></code></pre></div>
@@ -3010,7 +3017,7 @@ Oceania
 </table>
 <div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="tidy-data.html#cb599-1"></a><span class="co"># For HTML and MS Office suite</span></span>
 <span id="cb599-2"><a href="tidy-data.html#cb599-2"></a>tablea <span class="op">%&gt;%</span><span class="st"> </span>flextable<span class="op">::</span><span class="kw">flextable</span>()</span></code></pre></div>
-<div class="tabwid"><style>.cl-b03353fe{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-b0336a88{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-b0336ab0{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-b03399cc{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b03399f4{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b03399fe{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b0339a12{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b0339a1c{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b0339a26{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-b0339a1c"><p class="cl-b0336a88"><span class="cl-b03353fe">continent</span></p></td><td class="cl-b0339a26"><p class="cl-b0336ab0"><span class="cl-b03353fe">n</span></p></td><td class="cl-b0339a26"><p class="cl-b0336ab0"><span class="cl-b03353fe">mean_gdp</span></p></td><td class="cl-b0339a26"><p class="cl-b0336ab0"><span class="cl-b03353fe">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b03399cc"><p class="cl-b0336a88"><span class="cl-b03353fe">Africa</span></p></td><td class="cl-b03399f4"><p class="cl-b0336ab0"><span class="cl-b03353fe">624</span></p></td><td class="cl-b03399f4"><p class="cl-b0336ab0"><span class="cl-b03353fe">2193.755</span></p></td><td class="cl-b03399f4"><p class="cl-b0336ab0"><span class="cl-b03353fe">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b03399cc"><p class="cl-b0336a88"><span class="cl-b03353fe">Americas</span></p></td><td class="cl-b03399f4"><p class="cl-b0336ab0"><span class="cl-b03353fe">300</span></p></td><td class="cl-b03399f4"><p class="cl-b0336ab0"><span class="cl-b03353fe">7136.110</span></p></td><td class="cl-b03399f4"><p class="cl-b0336ab0"><span class="cl-b03353fe">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b03399cc"><p class="cl-b0336a88"><span class="cl-b03353fe">Asia</span></p></td><td class="cl-b03399f4"><p class="cl-b0336ab0"><span class="cl-b03353fe">396</span></p></td><td class="cl-b03399f4"><p class="cl-b0336ab0"><span class="cl-b03353fe">7902.150</span></p></td><td class="cl-b03399f4"><p class="cl-b0336ab0"><span class="cl-b03353fe">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b03399cc"><p class="cl-b0336a88"><span class="cl-b03353fe">Europe</span></p></td><td class="cl-b03399f4"><p class="cl-b0336ab0"><span class="cl-b03353fe">360</span></p></td><td class="cl-b03399f4"><p class="cl-b0336ab0"><span class="cl-b03353fe">14469.476</span></p></td><td class="cl-b03399f4"><p class="cl-b0336ab0"><span class="cl-b03353fe">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b03399fe"><p class="cl-b0336a88"><span class="cl-b03353fe">Oceania</span></p></td><td class="cl-b0339a12"><p class="cl-b0336ab0"><span class="cl-b03353fe">24</span></p></td><td class="cl-b0339a12"><p class="cl-b0336ab0"><span class="cl-b03353fe">18621.609</span></p></td><td class="cl-b0339a12"><p class="cl-b0336ab0"><span class="cl-b03353fe">6358.983</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-628d1258{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-628d269e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-628d26bc{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-628d5024{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-628d5042{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-628d504c{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-628d5056{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-628d5060{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-628d5074{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-628d5060"><p class="cl-628d269e"><span class="cl-628d1258">continent</span></p></td><td class="cl-628d5074"><p class="cl-628d26bc"><span class="cl-628d1258">n</span></p></td><td class="cl-628d5074"><p class="cl-628d26bc"><span class="cl-628d1258">mean_gdp</span></p></td><td class="cl-628d5074"><p class="cl-628d26bc"><span class="cl-628d1258">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-628d5024"><p class="cl-628d269e"><span class="cl-628d1258">Africa</span></p></td><td class="cl-628d5042"><p class="cl-628d26bc"><span class="cl-628d1258">624</span></p></td><td class="cl-628d5042"><p class="cl-628d26bc"><span class="cl-628d1258">2193.755</span></p></td><td class="cl-628d5042"><p class="cl-628d26bc"><span class="cl-628d1258">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-628d5024"><p class="cl-628d269e"><span class="cl-628d1258">Americas</span></p></td><td class="cl-628d5042"><p class="cl-628d26bc"><span class="cl-628d1258">300</span></p></td><td class="cl-628d5042"><p class="cl-628d26bc"><span class="cl-628d1258">7136.110</span></p></td><td class="cl-628d5042"><p class="cl-628d26bc"><span class="cl-628d1258">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-628d5024"><p class="cl-628d269e"><span class="cl-628d1258">Asia</span></p></td><td class="cl-628d5042"><p class="cl-628d26bc"><span class="cl-628d1258">396</span></p></td><td class="cl-628d5042"><p class="cl-628d26bc"><span class="cl-628d1258">7902.150</span></p></td><td class="cl-628d5042"><p class="cl-628d26bc"><span class="cl-628d1258">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-628d5024"><p class="cl-628d269e"><span class="cl-628d1258">Europe</span></p></td><td class="cl-628d5042"><p class="cl-628d26bc"><span class="cl-628d1258">360</span></p></td><td class="cl-628d5042"><p class="cl-628d26bc"><span class="cl-628d1258">14469.476</span></p></td><td class="cl-628d5042"><p class="cl-628d26bc"><span class="cl-628d1258">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-628d504c"><p class="cl-628d269e"><span class="cl-628d1258">Oceania</span></p></td><td class="cl-628d5056"><p class="cl-628d26bc"><span class="cl-628d1258">24</span></p></td><td class="cl-628d5056"><p class="cl-628d26bc"><span class="cl-628d1258">18621.609</span></p></td><td class="cl-628d5056"><p class="cl-628d26bc"><span class="cl-628d1258">6358.983</span></p></td></tr></tbody></table></div>
 </div>
 <div id="scoped-summaries" class="section level4" number="4.9.8.2">
 <h4><span class="header-section-number">4.9.8.2</span> Scoped summaries</h4>
@@ -3638,8 +3645,10 @@ function defines the strata that you’re going to use for summary statistics. T
 <div id="motivation" class="section level3" number="4.11.1">
 <h3><span class="header-section-number">4.11.1</span> Motivation</h3>
 <p><a href="https://en.wikipedia.org/wiki/Frank_Anscombe">Anscombe</a>’s quarter comprises four datasets, which are so alike in terms of their descriptive statistics but quite different when presented graphically.</p>
-<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="tidy-data.html#cb680-1"></a><span class="co"># data</span></span>
-<span id="cb680-2"><a href="tidy-data.html#cb680-2"></a>anscombe</span></code></pre></div>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="tidy-data.html#cb680-1"></a><span class="co"># Set theme </span></span>
+<span id="cb680-2"><a href="tidy-data.html#cb680-2"></a><span class="kw">theme_set</span>(<span class="kw">theme_minimal</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="tidy-data.html#cb681-1"></a><span class="co"># Data</span></span>
+<span id="cb681-2"><a href="tidy-data.html#cb681-2"></a>anscombe</span></code></pre></div>
 <pre><code>##    x1 x2 x3 x4    y1   y2    y3    y4
 ## 1  10 10 10  8  8.04 9.14  7.46  6.58
 ## 2   8  8  8  8  6.95 8.14  6.77  5.76
@@ -3652,32 +3661,32 @@ function defines the strata that you’re going to use for summary statistics. T
 ## 9  12 12 12  8 10.84 9.13  8.15  5.56
 ## 10  7  7  7  8  4.82 7.26  6.42  7.91
 ## 11  5  5  5  8  5.68 4.74  5.73  6.89</code></pre>
-<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="tidy-data.html#cb682-1"></a><span class="co"># correlation</span></span>
-<span id="cb682-2"><a href="tidy-data.html#cb682-2"></a><span class="kw">cor</span>(anscombe)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="tidy-data.html#cb683-1"></a><span class="co"># Correlation</span></span>
+<span id="cb683-2"><a href="tidy-data.html#cb683-2"></a><span class="kw">cor</span>(anscombe)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>)]</span></code></pre></div>
 <pre><code>##            y1         y2         y3         y4
 ## x1  0.8164205  0.8162365  0.8162867 -0.3140467
 ## x2  0.8164205  0.8162365  0.8162867 -0.3140467
 ## x3  0.8164205  0.8162365  0.8162867 -0.3140467
 ## x4 -0.5290927 -0.7184365 -0.3446610  0.8165214</code></pre>
-<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="tidy-data.html#cb684-1"></a><span class="co"># gather and select</span></span>
-<span id="cb684-2"><a href="tidy-data.html#cb684-2"></a>anscombe_processed &lt;-<span class="st"> </span>anscombe <span class="op">%&gt;%</span></span>
-<span id="cb684-3"><a href="tidy-data.html#cb684-3"></a><span class="st">  </span><span class="kw">gather</span>(x_name, x_value, x1<span class="op">:</span>x4) <span class="op">%&gt;%</span></span>
-<span id="cb684-4"><a href="tidy-data.html#cb684-4"></a><span class="st">  </span><span class="kw">gather</span>(y_name, y_value, y1<span class="op">:</span>y4)</span>
-<span id="cb684-5"><a href="tidy-data.html#cb684-5"></a></span>
-<span id="cb684-6"><a href="tidy-data.html#cb684-6"></a><span class="co"># plot</span></span>
-<span id="cb684-7"><a href="tidy-data.html#cb684-7"></a>anscombe_processed <span class="op">%&gt;%</span></span>
-<span id="cb684-8"><a href="tidy-data.html#cb684-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x_value, <span class="dt">y =</span> y_value)) <span class="op">+</span></span>
-<span id="cb684-9"><a href="tidy-data.html#cb684-9"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb684-10"><a href="tidy-data.html#cb684-10"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> lm, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb684-11"><a href="tidy-data.html#cb684-11"></a><span class="st">  </span><span class="kw">facet_grid</span>(x_name <span class="op">~</span><span class="st"> </span>y_name) <span class="op">+</span></span>
-<span id="cb684-12"><a href="tidy-data.html#cb684-12"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb684-13"><a href="tidy-data.html#cb684-13"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb684-14"><a href="tidy-data.html#cb684-14"></a>    <span class="dt">x =</span> <span class="st">&quot;X values&quot;</span>,</span>
-<span id="cb684-15"><a href="tidy-data.html#cb684-15"></a>    <span class="dt">y =</span> <span class="st">&quot;Y values&quot;</span>,</span>
-<span id="cb684-16"><a href="tidy-data.html#cb684-16"></a>    <span class="dt">title =</span> <span class="st">&quot;Anscombe&#39;s quartet&quot;</span></span>
-<span id="cb684-17"><a href="tidy-data.html#cb684-17"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="tidy-data.html#cb685-1"></a><span class="co"># gather and select</span></span>
+<span id="cb685-2"><a href="tidy-data.html#cb685-2"></a>anscombe_processed &lt;-<span class="st"> </span>anscombe <span class="op">%&gt;%</span></span>
+<span id="cb685-3"><a href="tidy-data.html#cb685-3"></a><span class="st">  </span><span class="kw">gather</span>(x_name, x_value, x1<span class="op">:</span>x4) <span class="op">%&gt;%</span></span>
+<span id="cb685-4"><a href="tidy-data.html#cb685-4"></a><span class="st">  </span><span class="kw">gather</span>(y_name, y_value, y1<span class="op">:</span>y4)</span>
+<span id="cb685-5"><a href="tidy-data.html#cb685-5"></a></span>
+<span id="cb685-6"><a href="tidy-data.html#cb685-6"></a><span class="co"># plot</span></span>
+<span id="cb685-7"><a href="tidy-data.html#cb685-7"></a>anscombe_processed <span class="op">%&gt;%</span></span>
+<span id="cb685-8"><a href="tidy-data.html#cb685-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x_value, <span class="dt">y =</span> y_value)) <span class="op">+</span></span>
+<span id="cb685-9"><a href="tidy-data.html#cb685-9"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb685-10"><a href="tidy-data.html#cb685-10"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> lm, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb685-11"><a href="tidy-data.html#cb685-11"></a><span class="st">  </span><span class="kw">facet_grid</span>(x_name <span class="op">~</span><span class="st"> </span>y_name) <span class="op">+</span></span>
+<span id="cb685-12"><a href="tidy-data.html#cb685-12"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb685-13"><a href="tidy-data.html#cb685-13"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb685-14"><a href="tidy-data.html#cb685-14"></a>    <span class="dt">x =</span> <span class="st">&quot;X values&quot;</span>,</span>
+<span id="cb685-15"><a href="tidy-data.html#cb685-15"></a>    <span class="dt">y =</span> <span class="st">&quot;Y values&quot;</span>,</span>
+<span id="cb685-16"><a href="tidy-data.html#cb685-16"></a>    <span class="dt">title =</span> <span class="st">&quot;Anscombe&#39;s quartet&quot;</span></span>
+<span id="cb685-17"><a href="tidy-data.html#cb685-17"></a>  )</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
 </div>
 <div id="the-grammar-of-graphics" class="section level3" number="4.11.2">
 <h3><span class="header-section-number">4.11.2</span> The grammar of graphics</h3>
@@ -3716,19 +3725,19 @@ function defines the strata that you’re going to use for summary statistics. T
 </div>
 <div id="basic-aes-x-y" class="section level3" number="4.11.4">
 <h3><span class="header-section-number">4.11.4</span> basic aes (x , y)</h3>
-<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="tidy-data.html#cb686-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(</span>
-<span id="cb686-2"><a href="tidy-data.html#cb686-2"></a>  <span class="dt">data =</span> gapminder,</span>
-<span id="cb686-3"><a href="tidy-data.html#cb686-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)</span>
-<span id="cb686-4"><a href="tidy-data.html#cb686-4"></a>) <span class="co"># ggplot or R in general takes positional arguments too. So, you don&#39;t need to name data, mapping each time you use ggplot2.</span></span>
-<span id="cb686-5"><a href="tidy-data.html#cb686-5"></a></span>
-<span id="cb686-6"><a href="tidy-data.html#cb686-6"></a>p</span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
-<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="tidy-data.html#cb687-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-159-2.png" width="672" /></p>
-<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="tidy-data.html#cb688-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>() <span class="co"># geom_smooth has calculated a smoothed line;</span></span></code></pre></div>
+<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="tidy-data.html#cb687-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(</span>
+<span id="cb687-2"><a href="tidy-data.html#cb687-2"></a>  <span class="dt">data =</span> gapminder,</span>
+<span id="cb687-3"><a href="tidy-data.html#cb687-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)</span>
+<span id="cb687-4"><a href="tidy-data.html#cb687-4"></a>) <span class="co"># ggplot or R in general takes positional arguments too. So, you don&#39;t need to name data, mapping each time you use ggplot2.</span></span>
+<span id="cb687-5"><a href="tidy-data.html#cb687-5"></a></span>
+<span id="cb687-6"><a href="tidy-data.html#cb687-6"></a>p</span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="tidy-data.html#cb688-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-160-2.png" width="672" /></p>
+<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="tidy-data.html#cb689-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>() <span class="co"># geom_smooth has calculated a smoothed line;</span></span></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-159-3.png" width="672" /></p>
-<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="tidy-data.html#cb690-1"></a><span class="co"># the shaded area is the standard error for the line</span></span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-160-3.png" width="672" /></p>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="tidy-data.html#cb691-1"></a><span class="co"># the shaded area is the standard error for the line</span></span></code></pre></div>
 </div>
 <div id="univariate-distribution" class="section level3" number="4.11.5">
 <h3><span class="header-section-number">4.11.5</span> Univariate distribution</h3>
@@ -3738,9 +3747,9 @@ function defines the strata that you’re going to use for summary statistics. T
 </ul>
 <div id="histogram" class="section level4" number="4.11.5.1">
 <h4><span class="header-section-number">4.11.5.1</span> Histogram</h4>
-<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="tidy-data.html#cb691-1"></a><span class="kw">data</span>(midwest) <span class="co"># load midwest dataset</span></span>
-<span id="cb691-2"><a href="tidy-data.html#cb691-2"></a></span>
-<span id="cb691-3"><a href="tidy-data.html#cb691-3"></a>midwest</span></code></pre></div>
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="tidy-data.html#cb692-1"></a><span class="kw">data</span>(midwest) <span class="co"># load midwest dataset</span></span>
+<span id="cb692-2"><a href="tidy-data.html#cb692-2"></a></span>
+<span id="cb692-3"><a href="tidy-data.html#cb692-3"></a>midwest</span></code></pre></div>
 <pre><code>## # A tibble: 437 x 28
 ##      PID county state  area poptotal popdensity popwhite popblack popamerindian
 ##    &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;    &lt;int&gt;      &lt;dbl&gt;    &lt;int&gt;    &lt;int&gt;         &lt;int&gt;
@@ -3760,31 +3769,34 @@ function defines the strata that you’re going to use for summary statistics. T
 ## #   percprof &lt;dbl&gt;, poppovertyknown &lt;int&gt;, percpovertyknown &lt;dbl&gt;,
 ## #   percbelowpoverty &lt;dbl&gt;, percchildbelowpovert &lt;dbl&gt;, percadultpoverty &lt;dbl&gt;,
 ## #   percelderlypoverty &lt;dbl&gt;, inmetro &lt;int&gt;, category &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="tidy-data.html#cb693-1"></a>midwest <span class="op">%&gt;%</span></span>
-<span id="cb693-2"><a href="tidy-data.html#cb693-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> area)) <span class="op">+</span></span>
-<span id="cb693-3"><a href="tidy-data.html#cb693-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># not working.</span></span></code></pre></div>
 <div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="tidy-data.html#cb694-1"></a>midwest <span class="op">%&gt;%</span></span>
 <span id="cb694-2"><a href="tidy-data.html#cb694-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> area)) <span class="op">+</span></span>
-<span id="cb694-3"><a href="tidy-data.html#cb694-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="co"># stat_bin argument picks up 30 bins (or &quot;bucket&quot;) by default.</span></span></code></pre></div>
+<span id="cb694-3"><a href="tidy-data.html#cb694-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># not working.</span></span></code></pre></div>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="tidy-data.html#cb695-1"></a>midwest <span class="op">%&gt;%</span></span>
+<span id="cb695-2"><a href="tidy-data.html#cb695-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> area)) <span class="op">+</span></span>
+<span id="cb695-3"><a href="tidy-data.html#cb695-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="co"># stat_bin argument picks up 30 bins (or &quot;bucket&quot;) by default.</span></span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
-<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="tidy-data.html#cb696-1"></a>midwest <span class="op">%&gt;%</span></span>
-<span id="cb696-2"><a href="tidy-data.html#cb696-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> area)) <span class="op">+</span></span>
-<span id="cb696-3"><a href="tidy-data.html#cb696-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">10</span>) <span class="co"># only 10 bins.</span></span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-162-2.png" width="672" /></p>
-<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="tidy-data.html#cb697-1"></a><span class="kw">ggplot</span>(</span>
-<span id="cb697-2"><a href="tidy-data.html#cb697-2"></a>  <span class="dt">data =</span> <span class="kw">subset</span>(midwest, state <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;OH&quot;</span>, <span class="st">&quot;IN&quot;</span>)),</span>
-<span id="cb697-3"><a href="tidy-data.html#cb697-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> percollege, <span class="dt">fill =</span> state)</span>
-<span id="cb697-4"><a href="tidy-data.html#cb697-4"></a>) <span class="op">+</span></span>
-<span id="cb697-5"><a href="tidy-data.html#cb697-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">alpha =</span> <span class="fl">0.7</span>, <span class="dt">bins =</span> <span class="dv">20</span>)</span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-162-3.png" width="672" /></p>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="tidy-data.html#cb697-1"></a>midwest <span class="op">%&gt;%</span></span>
+<span id="cb697-2"><a href="tidy-data.html#cb697-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> area)) <span class="op">+</span></span>
+<span id="cb697-3"><a href="tidy-data.html#cb697-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">10</span>) <span class="co"># only 10 bins.</span></span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-163-2.png" width="672" /></p>
+<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="tidy-data.html#cb698-1"></a><span class="kw">ggplot</span>(</span>
+<span id="cb698-2"><a href="tidy-data.html#cb698-2"></a>  <span class="dt">data =</span> <span class="kw">subset</span>(midwest, state <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;OH&quot;</span>, <span class="st">&quot;IN&quot;</span>)),</span>
+<span id="cb698-3"><a href="tidy-data.html#cb698-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> percollege, <span class="dt">fill =</span> state)</span>
+<span id="cb698-4"><a href="tidy-data.html#cb698-4"></a>) <span class="op">+</span></span>
+<span id="cb698-5"><a href="tidy-data.html#cb698-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">alpha =</span> <span class="fl">0.7</span>, <span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></span>
+<span id="cb698-6"><a href="tidy-data.html#cb698-6"></a><span class="st">  </span><span class="kw">scale_fill_viridis_d</span>()</span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-163-3.png" width="672" /></p>
 </div>
 <div id="density" class="section level4" number="4.11.5.2">
 <h4><span class="header-section-number">4.11.5.2</span> Density</h4>
-<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="tidy-data.html#cb698-1"></a>midwest <span class="op">%&gt;%</span></span>
-<span id="cb698-2"><a href="tidy-data.html#cb698-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> area, <span class="dt">fill =</span> state, <span class="dt">color =</span> state)) <span class="op">+</span></span>
-<span id="cb698-3"><a href="tidy-data.html#cb698-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
+<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="tidy-data.html#cb699-1"></a>midwest <span class="op">%&gt;%</span></span>
+<span id="cb699-2"><a href="tidy-data.html#cb699-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> area, <span class="dt">fill =</span> state, <span class="dt">color =</span> state)) <span class="op">+</span></span>
+<span id="cb699-3"><a href="tidy-data.html#cb699-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb699-4"><a href="tidy-data.html#cb699-4"></a><span class="st">  </span><span class="kw">scale_color_viridis_d</span>() <span class="op">+</span></span>
+<span id="cb699-5"><a href="tidy-data.html#cb699-5"></a><span class="st">  </span><span class="kw">scale_fill_viridis_d</span>()</span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
 </div>
 </div>
 <div id="advanced-aes-size-color" class="section level3" number="4.11.6">
@@ -3793,151 +3805,154 @@ function defines the strata that you’re going to use for summary statistics. T
 <li><p>There’s also fill argument (mostly used in <code>geom_bar()</code>). Color <code>aes</code> affects the appearance of lines and points, fill is for the filled areas of bars, polygons, and in some cases, the interior of a smoother’s standard error ribbon.</p></li>
 <li><p>The property size/color/fill represents…</p></li>
 </ul>
-<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="tidy-data.html#cb699-1"></a><span class="kw">ggplot</span>(</span>
-<span id="cb699-2"><a href="tidy-data.html#cb699-2"></a>  <span class="dt">data =</span> gapminder,</span>
-<span id="cb699-3"><a href="tidy-data.html#cb699-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(</span>
-<span id="cb699-4"><a href="tidy-data.html#cb699-4"></a>    <span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp,</span>
-<span id="cb699-5"><a href="tidy-data.html#cb699-5"></a>    <span class="dt">size =</span> pop</span>
-<span id="cb699-6"><a href="tidy-data.html#cb699-6"></a>  )</span>
-<span id="cb699-7"><a href="tidy-data.html#cb699-7"></a>) <span class="op">+</span></span>
-<span id="cb699-8"><a href="tidy-data.html#cb699-8"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
 <div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="tidy-data.html#cb700-1"></a><span class="kw">ggplot</span>(</span>
 <span id="cb700-2"><a href="tidy-data.html#cb700-2"></a>  <span class="dt">data =</span> gapminder,</span>
 <span id="cb700-3"><a href="tidy-data.html#cb700-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(</span>
 <span id="cb700-4"><a href="tidy-data.html#cb700-4"></a>    <span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp,</span>
-<span id="cb700-5"><a href="tidy-data.html#cb700-5"></a>    <span class="dt">size =</span> pop,</span>
-<span id="cb700-6"><a href="tidy-data.html#cb700-6"></a>    <span class="dt">color =</span> continent</span>
-<span id="cb700-7"><a href="tidy-data.html#cb700-7"></a>  )</span>
-<span id="cb700-8"><a href="tidy-data.html#cb700-8"></a>) <span class="op">+</span></span>
-<span id="cb700-9"><a href="tidy-data.html#cb700-9"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<span id="cb700-5"><a href="tidy-data.html#cb700-5"></a>    <span class="dt">size =</span> pop</span>
+<span id="cb700-6"><a href="tidy-data.html#cb700-6"></a>  )</span>
+<span id="cb700-7"><a href="tidy-data.html#cb700-7"></a>) <span class="op">+</span></span>
+<span id="cb700-8"><a href="tidy-data.html#cb700-8"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
 <p><img src="02_tidy_data_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
-<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="tidy-data.html#cb701-1"></a><span class="co"># try red instead of &quot;red&quot;</span></span>
-<span id="cb701-2"><a href="tidy-data.html#cb701-2"></a><span class="kw">ggplot</span>(</span>
-<span id="cb701-3"><a href="tidy-data.html#cb701-3"></a>  <span class="dt">data =</span> gapminder,</span>
-<span id="cb701-4"><a href="tidy-data.html#cb701-4"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(</span>
-<span id="cb701-5"><a href="tidy-data.html#cb701-5"></a>    <span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp,</span>
-<span id="cb701-6"><a href="tidy-data.html#cb701-6"></a>    <span class="dt">size =</span> pop,</span>
-<span id="cb701-7"><a href="tidy-data.html#cb701-7"></a>    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span></span>
-<span id="cb701-8"><a href="tidy-data.html#cb701-8"></a>  )</span>
-<span id="cb701-9"><a href="tidy-data.html#cb701-9"></a>) <span class="op">+</span></span>
-<span id="cb701-10"><a href="tidy-data.html#cb701-10"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="tidy-data.html#cb701-1"></a><span class="kw">ggplot</span>(</span>
+<span id="cb701-2"><a href="tidy-data.html#cb701-2"></a>  <span class="dt">data =</span> gapminder,</span>
+<span id="cb701-3"><a href="tidy-data.html#cb701-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(</span>
+<span id="cb701-4"><a href="tidy-data.html#cb701-4"></a>    <span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp,</span>
+<span id="cb701-5"><a href="tidy-data.html#cb701-5"></a>    <span class="dt">size =</span> pop,</span>
+<span id="cb701-6"><a href="tidy-data.html#cb701-6"></a>    <span class="dt">color =</span> continent</span>
+<span id="cb701-7"><a href="tidy-data.html#cb701-7"></a>  )</span>
+<span id="cb701-8"><a href="tidy-data.html#cb701-8"></a>) <span class="op">+</span></span>
+<span id="cb701-9"><a href="tidy-data.html#cb701-9"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb701-10"><a href="tidy-data.html#cb701-10"></a><span class="st">  </span><span class="kw">scale_color_viridis_d</span>()</span></code></pre></div>
 <p><img src="02_tidy_data_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
-<p>Aesthetics also can be mapped per Geom.</p>
-<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="tidy-data.html#cb702-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb702-2"><a href="tidy-data.html#cb702-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
-<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="tidy-data.html#cb702-1"></a><span class="co"># try red instead of &quot;red&quot;</span></span>
+<span id="cb702-2"><a href="tidy-data.html#cb702-2"></a><span class="kw">ggplot</span>(</span>
+<span id="cb702-3"><a href="tidy-data.html#cb702-3"></a>  <span class="dt">data =</span> gapminder,</span>
+<span id="cb702-4"><a href="tidy-data.html#cb702-4"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(</span>
+<span id="cb702-5"><a href="tidy-data.html#cb702-5"></a>    <span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp,</span>
+<span id="cb702-6"><a href="tidy-data.html#cb702-6"></a>    <span class="dt">size =</span> pop,</span>
+<span id="cb702-7"><a href="tidy-data.html#cb702-7"></a>    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span></span>
+<span id="cb702-8"><a href="tidy-data.html#cb702-8"></a>  )</span>
+<span id="cb702-9"><a href="tidy-data.html#cb702-9"></a>) <span class="op">+</span></span>
+<span id="cb702-10"><a href="tidy-data.html#cb702-10"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
 <p><img src="02_tidy_data_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
-<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="tidy-data.html#cb704-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># alpha controls transparency</span></span>
-<span id="cb704-2"><a href="tidy-data.html#cb704-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>Aesthetics also can be mapped per Geom.</p>
+<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="tidy-data.html#cb703-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb703-2"><a href="tidy-data.html#cb703-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-167-2.png" width="672" /></p>
-<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="tidy-data.html#cb706-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># alpha controls transparency</span></span>
-<span id="cb706-2"><a href="tidy-data.html#cb706-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-167-3.png" width="672" /></p>
-<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="tidy-data.html#cb708-1"></a><span class="kw">ggplot</span>(</span>
-<span id="cb708-2"><a href="tidy-data.html#cb708-2"></a>  <span class="dt">data =</span> gapminder,</span>
-<span id="cb708-3"><a href="tidy-data.html#cb708-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(</span>
-<span id="cb708-4"><a href="tidy-data.html#cb708-4"></a>    <span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp,</span>
-<span id="cb708-5"><a href="tidy-data.html#cb708-5"></a>    <span class="dt">color =</span> continent</span>
-<span id="cb708-6"><a href="tidy-data.html#cb708-6"></a>  )</span>
-<span id="cb708-7"><a href="tidy-data.html#cb708-7"></a>) <span class="op">+</span></span>
-<span id="cb708-8"><a href="tidy-data.html#cb708-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
-<span id="cb708-9"><a href="tidy-data.html#cb708-9"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb708-10"><a href="tidy-data.html#cb708-10"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb708-11"><a href="tidy-data.html#cb708-11"></a>    <span class="dt">x =</span> <span class="st">&quot;log GDP&quot;</span>,</span>
-<span id="cb708-12"><a href="tidy-data.html#cb708-12"></a>    <span class="dt">y =</span> <span class="st">&quot;Life Expectancy&quot;</span>,</span>
-<span id="cb708-13"><a href="tidy-data.html#cb708-13"></a>    <span class="dt">title =</span> <span class="st">&quot;A Gapminder Plot&quot;</span>,</span>
-<span id="cb708-14"><a href="tidy-data.html#cb708-14"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Data points are country-years&quot;</span>,</span>
-<span id="cb708-15"><a href="tidy-data.html#cb708-15"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: Gapminder&quot;</span></span>
-<span id="cb708-16"><a href="tidy-data.html#cb708-16"></a>  )</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="02_tidy_data_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
-<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="tidy-data.html#cb710-1"></a><span class="kw">ggplot</span>(</span>
-<span id="cb710-2"><a href="tidy-data.html#cb710-2"></a>  <span class="dt">data =</span> gapminder,</span>
-<span id="cb710-3"><a href="tidy-data.html#cb710-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(</span>
-<span id="cb710-4"><a href="tidy-data.html#cb710-4"></a>    <span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp,</span>
-<span id="cb710-5"><a href="tidy-data.html#cb710-5"></a>    <span class="dt">color =</span> continent,</span>
-<span id="cb710-6"><a href="tidy-data.html#cb710-6"></a>    <span class="dt">fill =</span> continent</span>
-<span id="cb710-7"><a href="tidy-data.html#cb710-7"></a>  )</span>
-<span id="cb710-8"><a href="tidy-data.html#cb710-8"></a>) <span class="op">+</span></span>
-<span id="cb710-9"><a href="tidy-data.html#cb710-9"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
-<span id="cb710-10"><a href="tidy-data.html#cb710-10"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb710-11"><a href="tidy-data.html#cb710-11"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb710-12"><a href="tidy-data.html#cb710-12"></a>    <span class="dt">x =</span> <span class="st">&quot;log GDP&quot;</span>,</span>
-<span id="cb710-13"><a href="tidy-data.html#cb710-13"></a>    <span class="dt">y =</span> <span class="st">&quot;Life Expectancy&quot;</span>,</span>
-<span id="cb710-14"><a href="tidy-data.html#cb710-14"></a>    <span class="dt">title =</span> <span class="st">&quot;A Gapminder Plot&quot;</span>,</span>
-<span id="cb710-15"><a href="tidy-data.html#cb710-15"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Data points are country-years&quot;</span>,</span>
-<span id="cb710-16"><a href="tidy-data.html#cb710-16"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: Gapminder&quot;</span></span>
-<span id="cb710-17"><a href="tidy-data.html#cb710-17"></a>  )</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="tidy-data.html#cb705-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># alpha controls transparency</span></span>
+<span id="cb705-2"><a href="tidy-data.html#cb705-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
 <p><img src="02_tidy_data_files/figure-html/unnamed-chunk-168-2.png" width="672" /></p>
+<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="tidy-data.html#cb707-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># alpha controls transparency</span></span>
+<span id="cb707-2"><a href="tidy-data.html#cb707-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-168-3.png" width="672" /></p>
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="tidy-data.html#cb709-1"></a><span class="kw">ggplot</span>(</span>
+<span id="cb709-2"><a href="tidy-data.html#cb709-2"></a>  <span class="dt">data =</span> gapminder,</span>
+<span id="cb709-3"><a href="tidy-data.html#cb709-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(</span>
+<span id="cb709-4"><a href="tidy-data.html#cb709-4"></a>    <span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp,</span>
+<span id="cb709-5"><a href="tidy-data.html#cb709-5"></a>    <span class="dt">color =</span> continent</span>
+<span id="cb709-6"><a href="tidy-data.html#cb709-6"></a>  )</span>
+<span id="cb709-7"><a href="tidy-data.html#cb709-7"></a>) <span class="op">+</span></span>
+<span id="cb709-8"><a href="tidy-data.html#cb709-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb709-9"><a href="tidy-data.html#cb709-9"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb709-10"><a href="tidy-data.html#cb709-10"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb709-11"><a href="tidy-data.html#cb709-11"></a>    <span class="dt">x =</span> <span class="st">&quot;log GDP&quot;</span>,</span>
+<span id="cb709-12"><a href="tidy-data.html#cb709-12"></a>    <span class="dt">y =</span> <span class="st">&quot;Life Expectancy&quot;</span>,</span>
+<span id="cb709-13"><a href="tidy-data.html#cb709-13"></a>    <span class="dt">title =</span> <span class="st">&quot;A Gapminder Plot&quot;</span>,</span>
+<span id="cb709-14"><a href="tidy-data.html#cb709-14"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Data points are country-years&quot;</span>,</span>
+<span id="cb709-15"><a href="tidy-data.html#cb709-15"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: Gapminder&quot;</span></span>
+<span id="cb709-16"><a href="tidy-data.html#cb709-16"></a>  )</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="tidy-data.html#cb711-1"></a><span class="kw">ggplot</span>(</span>
+<span id="cb711-2"><a href="tidy-data.html#cb711-2"></a>  <span class="dt">data =</span> gapminder,</span>
+<span id="cb711-3"><a href="tidy-data.html#cb711-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(</span>
+<span id="cb711-4"><a href="tidy-data.html#cb711-4"></a>    <span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp,</span>
+<span id="cb711-5"><a href="tidy-data.html#cb711-5"></a>    <span class="dt">color =</span> continent,</span>
+<span id="cb711-6"><a href="tidy-data.html#cb711-6"></a>    <span class="dt">fill =</span> continent</span>
+<span id="cb711-7"><a href="tidy-data.html#cb711-7"></a>  )</span>
+<span id="cb711-8"><a href="tidy-data.html#cb711-8"></a>) <span class="op">+</span></span>
+<span id="cb711-9"><a href="tidy-data.html#cb711-9"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb711-10"><a href="tidy-data.html#cb711-10"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb711-11"><a href="tidy-data.html#cb711-11"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb711-12"><a href="tidy-data.html#cb711-12"></a>    <span class="dt">x =</span> <span class="st">&quot;log GDP&quot;</span>,</span>
+<span id="cb711-13"><a href="tidy-data.html#cb711-13"></a>    <span class="dt">y =</span> <span class="st">&quot;Life Expectancy&quot;</span>,</span>
+<span id="cb711-14"><a href="tidy-data.html#cb711-14"></a>    <span class="dt">title =</span> <span class="st">&quot;A Gapminder Plot&quot;</span>,</span>
+<span id="cb711-15"><a href="tidy-data.html#cb711-15"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Data points are country-years&quot;</span>,</span>
+<span id="cb711-16"><a href="tidy-data.html#cb711-16"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: Gapminder&quot;</span></span>
+<span id="cb711-17"><a href="tidy-data.html#cb711-17"></a>  ) <span class="op">+</span></span>
+<span id="cb711-18"><a href="tidy-data.html#cb711-18"></a><span class="st">  </span><span class="kw">scale_color_viridis_d</span>() <span class="op">+</span></span>
+<span id="cb711-19"><a href="tidy-data.html#cb711-19"></a><span class="st">  </span><span class="kw">scale_fill_viridis_d</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-169-2.png" width="672" /></p>
 </div>
 <div id="co-ordinates-and-scales" class="section level3" number="4.11.7">
 <h3><span class="header-section-number">4.11.7</span> Co-ordinates and scales</h3>
-<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="tidy-data.html#cb712-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb712-2"><a href="tidy-data.html#cb712-2"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="co"># coord_type</span></span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
-<p>The data is heavily bunched up against the left side.</p>
-<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="tidy-data.html#cb713-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="co"># without scaling</span></span></code></pre></div>
+<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="tidy-data.html#cb713-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb713-2"><a href="tidy-data.html#cb713-2"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="co"># coord_type</span></span></code></pre></div>
 <p><img src="02_tidy_data_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
-<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="tidy-data.html#cb714-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb714-2"><a href="tidy-data.html#cb714-2"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="co"># scales the axis of a plot to a log 10 basis</span></span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-170-2.png" width="672" /></p>
+<p>The data is heavily bunched up against the left side.</p>
+<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="tidy-data.html#cb714-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="co"># without scaling</span></span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
 <div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="tidy-data.html#cb715-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb715-2"><a href="tidy-data.html#cb715-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></span>
-<span id="cb715-3"><a href="tidy-data.html#cb715-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>()</span></code></pre></div>
+<span id="cb715-2"><a href="tidy-data.html#cb715-2"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="co"># scales the axis of a plot to a log 10 basis</span></span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-171-2.png" width="672" /></p>
+<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="tidy-data.html#cb716-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb716-2"><a href="tidy-data.html#cb716-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></span>
+<span id="cb716-3"><a href="tidy-data.html#cb716-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-170-3.png" width="672" /></p>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-171-3.png" width="672" /></p>
 </div>
 <div id="labels-and-guides" class="section level3" number="4.11.8">
 <h3><span class="header-section-number">4.11.8</span> Labels and guides</h3>
 <p><code>scales</code> package has some useful premade formatting functions. You can either load scales or just grab the function you need from the library using <code>scales::</code></p>
-<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb717-1"><a href="tidy-data.html#cb717-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
-<span id="cb717-2"><a href="tidy-data.html#cb717-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb717-3"><a href="tidy-data.html#cb717-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
-<span id="cb717-4"><a href="tidy-data.html#cb717-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb717-5"><a href="tidy-data.html#cb717-5"></a>    <span class="dt">x =</span> <span class="st">&quot;log GDP&quot;</span>,</span>
-<span id="cb717-6"><a href="tidy-data.html#cb717-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Life Expectancy&quot;</span>,</span>
-<span id="cb717-7"><a href="tidy-data.html#cb717-7"></a>    <span class="dt">title =</span> <span class="st">&quot;A Gapminder Plot&quot;</span>,</span>
-<span id="cb717-8"><a href="tidy-data.html#cb717-8"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Data points are country-years&quot;</span>,</span>
-<span id="cb717-9"><a href="tidy-data.html#cb717-9"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: Gapminder&quot;</span></span>
-<span id="cb717-10"><a href="tidy-data.html#cb717-10"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="tidy-data.html#cb718-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb718-2"><a href="tidy-data.html#cb718-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb718-3"><a href="tidy-data.html#cb718-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
+<span id="cb718-4"><a href="tidy-data.html#cb718-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb718-5"><a href="tidy-data.html#cb718-5"></a>    <span class="dt">x =</span> <span class="st">&quot;log GDP&quot;</span>,</span>
+<span id="cb718-6"><a href="tidy-data.html#cb718-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Life Expectancy&quot;</span>,</span>
+<span id="cb718-7"><a href="tidy-data.html#cb718-7"></a>    <span class="dt">title =</span> <span class="st">&quot;A Gapminder Plot&quot;</span>,</span>
+<span id="cb718-8"><a href="tidy-data.html#cb718-8"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Data points are country-years&quot;</span>,</span>
+<span id="cb718-9"><a href="tidy-data.html#cb718-9"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: Gapminder&quot;</span></span>
+<span id="cb718-10"><a href="tidy-data.html#cb718-10"></a>  )</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
 <ol start="6" style="list-style-type: decimal">
 <li>Themes</li>
 </ol>
-<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb719-1"><a href="tidy-data.html#cb719-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
-<span id="cb719-2"><a href="tidy-data.html#cb719-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb719-3"><a href="tidy-data.html#cb719-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
-<span id="cb719-4"><a href="tidy-data.html#cb719-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb719-5"><a href="tidy-data.html#cb719-5"></a>    <span class="dt">x =</span> <span class="st">&quot;log GDP&quot;</span>,</span>
-<span id="cb719-6"><a href="tidy-data.html#cb719-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Life Expectancy&quot;</span>,</span>
-<span id="cb719-7"><a href="tidy-data.html#cb719-7"></a>    <span class="dt">title =</span> <span class="st">&quot;A Gapminder Plot&quot;</span>,</span>
-<span id="cb719-8"><a href="tidy-data.html#cb719-8"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Data points are country-years&quot;</span>,</span>
-<span id="cb719-9"><a href="tidy-data.html#cb719-9"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: Gapminder&quot;</span></span>
-<span id="cb719-10"><a href="tidy-data.html#cb719-10"></a>  ) <span class="op">+</span></span>
-<span id="cb719-11"><a href="tidy-data.html#cb719-11"></a><span class="st">  </span><span class="kw">theme_economist</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="tidy-data.html#cb720-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb720-2"><a href="tidy-data.html#cb720-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb720-3"><a href="tidy-data.html#cb720-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
+<span id="cb720-4"><a href="tidy-data.html#cb720-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb720-5"><a href="tidy-data.html#cb720-5"></a>    <span class="dt">x =</span> <span class="st">&quot;log GDP&quot;</span>,</span>
+<span id="cb720-6"><a href="tidy-data.html#cb720-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Life Expectancy&quot;</span>,</span>
+<span id="cb720-7"><a href="tidy-data.html#cb720-7"></a>    <span class="dt">title =</span> <span class="st">&quot;A Gapminder Plot&quot;</span>,</span>
+<span id="cb720-8"><a href="tidy-data.html#cb720-8"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Data points are country-years&quot;</span>,</span>
+<span id="cb720-9"><a href="tidy-data.html#cb720-9"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: Gapminder&quot;</span></span>
+<span id="cb720-10"><a href="tidy-data.html#cb720-10"></a>  ) <span class="op">+</span></span>
+<span id="cb720-11"><a href="tidy-data.html#cb720-11"></a><span class="st">  </span><span class="kw">theme_economist</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
 </div>
 <div id="ggsave" class="section level3" number="4.11.9">
 <h3><span class="header-section-number">4.11.9</span> ggsave</h3>
-<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="tidy-data.html#cb721-1"></a>figure_example &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
-<span id="cb721-2"><a href="tidy-data.html#cb721-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;gam&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb721-3"><a href="tidy-data.html#cb721-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
-<span id="cb721-4"><a href="tidy-data.html#cb721-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb721-5"><a href="tidy-data.html#cb721-5"></a>    <span class="dt">x =</span> <span class="st">&quot;log GDP&quot;</span>,</span>
-<span id="cb721-6"><a href="tidy-data.html#cb721-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Life Expectancy&quot;</span>,</span>
-<span id="cb721-7"><a href="tidy-data.html#cb721-7"></a>    <span class="dt">title =</span> <span class="st">&quot;A Gapminder Plot&quot;</span>,</span>
-<span id="cb721-8"><a href="tidy-data.html#cb721-8"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Data points are country-years&quot;</span>,</span>
-<span id="cb721-9"><a href="tidy-data.html#cb721-9"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: Gapminder&quot;</span></span>
-<span id="cb721-10"><a href="tidy-data.html#cb721-10"></a>  ) <span class="op">+</span></span>
-<span id="cb721-11"><a href="tidy-data.html#cb721-11"></a><span class="st">  </span><span class="kw">theme_economist</span>()</span>
-<span id="cb721-12"><a href="tidy-data.html#cb721-12"></a></span>
-<span id="cb721-13"><a href="tidy-data.html#cb721-13"></a><span class="kw">ggsave</span>(figure_example, <span class="kw">here</span>(<span class="st">&quot;outputs&quot;</span>, <span class="st">&quot;figure_example.png&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="tidy-data.html#cb722-1"></a>figure_example &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb722-2"><a href="tidy-data.html#cb722-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;gam&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb722-3"><a href="tidy-data.html#cb722-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
+<span id="cb722-4"><a href="tidy-data.html#cb722-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb722-5"><a href="tidy-data.html#cb722-5"></a>    <span class="dt">x =</span> <span class="st">&quot;log GDP&quot;</span>,</span>
+<span id="cb722-6"><a href="tidy-data.html#cb722-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Life Expectancy&quot;</span>,</span>
+<span id="cb722-7"><a href="tidy-data.html#cb722-7"></a>    <span class="dt">title =</span> <span class="st">&quot;A Gapminder Plot&quot;</span>,</span>
+<span id="cb722-8"><a href="tidy-data.html#cb722-8"></a>    <span class="dt">subtitle =</span> <span class="st">&quot;Data points are country-years&quot;</span>,</span>
+<span id="cb722-9"><a href="tidy-data.html#cb722-9"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: Gapminder&quot;</span></span>
+<span id="cb722-10"><a href="tidy-data.html#cb722-10"></a>  ) <span class="op">+</span></span>
+<span id="cb722-11"><a href="tidy-data.html#cb722-11"></a><span class="st">  </span><span class="kw">theme_economist</span>()</span>
+<span id="cb722-12"><a href="tidy-data.html#cb722-12"></a></span>
+<span id="cb722-13"><a href="tidy-data.html#cb722-13"></a><span class="kw">ggsave</span>(figure_example, <span class="kw">here</span>(<span class="st">&quot;outputs&quot;</span>, <span class="st">&quot;figure_example.png&quot;</span>))</span></code></pre></div>
 </div>
 <div id="many-plots" class="section level3" number="4.11.10">
 <h3><span class="header-section-number">4.11.10</span> Many plots</h3>
@@ -3951,15 +3966,15 @@ function defines the strata that you’re going to use for summary statistics. T
 <ul>
 <li>Can you guess what’s wrong?</li>
 </ul>
-<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="tidy-data.html#cb722-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> gdpPercap))</span>
-<span id="cb722-2"><a href="tidy-data.html#cb722-2"></a></span>
-<span id="cb722-3"><a href="tidy-data.html#cb722-3"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
-<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="tidy-data.html#cb723-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-174-2.png" width="672" /></p>
+<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="tidy-data.html#cb723-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> gdpPercap))</span>
+<span id="cb723-2"><a href="tidy-data.html#cb723-2"></a></span>
+<span id="cb723-3"><a href="tidy-data.html#cb723-3"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="tidy-data.html#cb724-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-175-2.png" width="672" /></p>
 <p><code>geom_line</code> joins up all the lines for each particular year in the order they appear in the dataset. <code>ggplot2</code> does not know the yearly observations in your data are grouped by country.</p>
 <p>Note that you need grouping when the grouping information you need to tell is not built into the varaibles being mapped (like continent).</p>
-<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="tidy-data.html#cb724-1"></a>gapminder</span></code></pre></div>
+<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="tidy-data.html#cb725-1"></a>gapminder</span></code></pre></div>
 <pre><code>## # A tibble: 1,704 x 6
 ##    country     continent  year lifeExp      pop gdpPercap
 ##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
@@ -3982,36 +3997,36 @@ function defines the strata that you’re going to use for summary statistics. T
 <li><p><code>facet_wrap</code>: based on a single categorical variable like <code>facet_wrap(~single_categorical_variable)</code>. Your panels will be laid out in order and then wrapped into a grid.</p></li>
 <li><p><code>facet_grid</code>: when you want to cross-classify some data by two categorical variables like <code>facet_grid(one_cat_variable ~ two_cat_variable)</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="tidy-data.html#cb726-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> gdpPercap))</span>
-<span id="cb726-2"><a href="tidy-data.html#cb726-2"></a></span>
-<span id="cb726-3"><a href="tidy-data.html#cb726-3"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> country)) <span class="co"># group by, # The outlier is Kuwait.</span></span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
-<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="tidy-data.html#cb727-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> country)) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>continent) <span class="co"># facetting</span></span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-176-2.png" width="672" /></p>
-<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="tidy-data.html#cb728-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> country), <span class="dt">color =</span> <span class="st">&quot;gray70&quot;</span>) <span class="op">+</span></span>
-<span id="cb728-2"><a href="tidy-data.html#cb728-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">size =</span> <span class="fl">1.1</span>, <span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb728-3"><a href="tidy-data.html#cb728-3"></a><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
-<span id="cb728-4"><a href="tidy-data.html#cb728-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>continent, <span class="dt">ncol =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="co"># for single categorical variable; for multiple categorical variables use facet_grid()</span></span>
-<span id="cb728-5"><a href="tidy-data.html#cb728-5"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb728-6"><a href="tidy-data.html#cb728-6"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb728-7"><a href="tidy-data.html#cb728-7"></a>    <span class="dt">y =</span> <span class="st">&quot;GDP per capita&quot;</span>,</span>
-<span id="cb728-8"><a href="tidy-data.html#cb728-8"></a>    <span class="dt">title =</span> <span class="st">&quot;GDP per capita on Five continents&quot;</span></span>
-<span id="cb728-9"><a href="tidy-data.html#cb728-9"></a>  ) <span class="op">+</span></span>
-<span id="cb728-10"><a href="tidy-data.html#cb728-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-176-3.png" width="672" /></p>
-<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="tidy-data.html#cb730-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> country), <span class="dt">color =</span> <span class="st">&quot;gray70&quot;</span>) <span class="op">+</span></span>
-<span id="cb730-2"><a href="tidy-data.html#cb730-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">size =</span> <span class="fl">1.1</span>, <span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb730-3"><a href="tidy-data.html#cb730-3"></a><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
-<span id="cb730-4"><a href="tidy-data.html#cb730-4"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>continent) <span class="op">+</span><span class="st"> </span><span class="co"># for single categorical variable; for multiple categorical variables use facet_grid()</span></span>
-<span id="cb730-5"><a href="tidy-data.html#cb730-5"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb730-6"><a href="tidy-data.html#cb730-6"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb730-7"><a href="tidy-data.html#cb730-7"></a>    <span class="dt">y =</span> <span class="st">&quot;GDP per capita&quot;</span>,</span>
-<span id="cb730-8"><a href="tidy-data.html#cb730-8"></a>    <span class="dt">title =</span> <span class="st">&quot;GDP per capita on Five continents&quot;</span></span>
-<span id="cb730-9"><a href="tidy-data.html#cb730-9"></a>  ) <span class="op">+</span></span>
-<span id="cb730-10"><a href="tidy-data.html#cb730-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="tidy-data.html#cb727-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> gdpPercap))</span>
+<span id="cb727-2"><a href="tidy-data.html#cb727-2"></a></span>
+<span id="cb727-3"><a href="tidy-data.html#cb727-3"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> country)) <span class="co"># group by, # The outlier is Kuwait.</span></span></code></pre></div>
 <p><img src="02_tidy_data_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="tidy-data.html#cb728-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> country)) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>continent) <span class="co"># facetting</span></span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-177-2.png" width="672" /></p>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="tidy-data.html#cb729-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> country), <span class="dt">color =</span> <span class="st">&quot;gray70&quot;</span>) <span class="op">+</span></span>
+<span id="cb729-2"><a href="tidy-data.html#cb729-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">size =</span> <span class="fl">1.1</span>, <span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb729-3"><a href="tidy-data.html#cb729-3"></a><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
+<span id="cb729-4"><a href="tidy-data.html#cb729-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>continent, <span class="dt">ncol =</span> <span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="co"># for single categorical variable; for multiple categorical variables use facet_grid()</span></span>
+<span id="cb729-5"><a href="tidy-data.html#cb729-5"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb729-6"><a href="tidy-data.html#cb729-6"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb729-7"><a href="tidy-data.html#cb729-7"></a>    <span class="dt">y =</span> <span class="st">&quot;GDP per capita&quot;</span>,</span>
+<span id="cb729-8"><a href="tidy-data.html#cb729-8"></a>    <span class="dt">title =</span> <span class="st">&quot;GDP per capita on Five continents&quot;</span></span>
+<span id="cb729-9"><a href="tidy-data.html#cb729-9"></a>  ) <span class="op">+</span></span>
+<span id="cb729-10"><a href="tidy-data.html#cb729-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-177-3.png" width="672" /></p>
+<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="tidy-data.html#cb731-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> country), <span class="dt">color =</span> <span class="st">&quot;gray70&quot;</span>) <span class="op">+</span></span>
+<span id="cb731-2"><a href="tidy-data.html#cb731-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">size =</span> <span class="fl">1.1</span>, <span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb731-3"><a href="tidy-data.html#cb731-3"></a><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
+<span id="cb731-4"><a href="tidy-data.html#cb731-4"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>continent) <span class="op">+</span><span class="st"> </span><span class="co"># for single categorical variable; for multiple categorical variables use facet_grid()</span></span>
+<span id="cb731-5"><a href="tidy-data.html#cb731-5"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb731-6"><a href="tidy-data.html#cb731-6"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb731-7"><a href="tidy-data.html#cb731-7"></a>    <span class="dt">y =</span> <span class="st">&quot;GDP per capita&quot;</span>,</span>
+<span id="cb731-8"><a href="tidy-data.html#cb731-8"></a>    <span class="dt">title =</span> <span class="st">&quot;GDP per capita on Five continents&quot;</span></span>
+<span id="cb731-9"><a href="tidy-data.html#cb731-9"></a>  ) <span class="op">+</span></span>
+<span id="cb731-10"><a href="tidy-data.html#cb731-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 </div>
 </div>
 <div id="transforming" class="section level3" number="4.11.11">
@@ -4022,190 +4037,190 @@ function defines the strata that you’re going to use for summary statistics. T
 <div id="use-pipes-to-summarize-data" class="section level4" number="4.11.11.1">
 <h4><span class="header-section-number">4.11.11.1</span> Use pipes to summarize data</h4>
 <p>Also, we experiment bar charts here. By default, <code>geom_bar</code> <a href="https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar">uses</a> stat = “bins”, which makes the height of each bar equal to the number of cases in each group. If you have a y column, then you should use <code>stat = "identity"</code> argument. Alternatively, you can use <code>geom_col()</code>.</p>
-<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="tidy-data.html#cb732-1"></a>gapminder_formatted &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span></span>
-<span id="cb732-2"><a href="tidy-data.html#cb732-2"></a><span class="st">  </span><span class="kw">group_by</span>(continent, year) <span class="op">%&gt;%</span></span>
-<span id="cb732-3"><a href="tidy-data.html#cb732-3"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb732-4"><a href="tidy-data.html#cb732-4"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
-<span id="cb732-5"><a href="tidy-data.html#cb732-5"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
-<span id="cb732-6"><a href="tidy-data.html#cb732-6"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="tidy-data.html#cb733-1"></a>gapminder_formatted &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb733-2"><a href="tidy-data.html#cb733-2"></a><span class="st">  </span><span class="kw">group_by</span>(continent, year) <span class="op">%&gt;%</span></span>
+<span id="cb733-3"><a href="tidy-data.html#cb733-3"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb733-4"><a href="tidy-data.html#cb733-4"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb733-5"><a href="tidy-data.html#cb733-5"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
+<span id="cb733-6"><a href="tidy-data.html#cb733-6"></a>  )</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;continent&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="tidy-data.html#cb734-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder_formatted, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp_mean, <span class="dt">color =</span> continent)) <span class="op">+</span></span>
-<span id="cb734-2"><a href="tidy-data.html#cb734-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb734-3"><a href="tidy-data.html#cb734-3"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb734-4"><a href="tidy-data.html#cb734-4"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb734-5"><a href="tidy-data.html#cb734-5"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
-<span id="cb734-6"><a href="tidy-data.html#cb734-6"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy on Five continents&quot;</span></span>
-<span id="cb734-7"><a href="tidy-data.html#cb734-7"></a>  )</span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
-<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb735-1"><a href="tidy-data.html#cb735-1"></a>gapminder <span class="op">%&gt;%</span></span>
-<span id="cb735-2"><a href="tidy-data.html#cb735-2"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb735-3"><a href="tidy-data.html#cb735-3"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
-<span id="cb735-4"><a href="tidy-data.html#cb735-4"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb735-5"><a href="tidy-data.html#cb735-5"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
-<span id="cb735-6"><a href="tidy-data.html#cb735-6"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
-<span id="cb735-7"><a href="tidy-data.html#cb735-7"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb735-8"><a href="tidy-data.html#cb735-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp_mean, <span class="dt">color =</span> country)) <span class="op">+</span></span>
-<span id="cb735-9"><a href="tidy-data.html#cb735-9"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb735-10"><a href="tidy-data.html#cb735-10"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb735-11"><a href="tidy-data.html#cb735-11"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb735-12"><a href="tidy-data.html#cb735-12"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
-<span id="cb735-13"><a href="tidy-data.html#cb735-13"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
-<span id="cb735-14"><a href="tidy-data.html#cb735-14"></a>  )</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-178-2.png" width="672" /></p>
-<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="tidy-data.html#cb737-1"></a><span class="co"># geom point</span></span>
-<span id="cb737-2"><a href="tidy-data.html#cb737-2"></a>gapminder <span class="op">%&gt;%</span></span>
-<span id="cb737-3"><a href="tidy-data.html#cb737-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb737-4"><a href="tidy-data.html#cb737-4"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
-<span id="cb737-5"><a href="tidy-data.html#cb737-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb737-6"><a href="tidy-data.html#cb737-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
-<span id="cb737-7"><a href="tidy-data.html#cb737-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
-<span id="cb737-8"><a href="tidy-data.html#cb737-8"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb737-9"><a href="tidy-data.html#cb737-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
-<span id="cb737-10"><a href="tidy-data.html#cb737-10"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb737-11"><a href="tidy-data.html#cb737-11"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb737-12"><a href="tidy-data.html#cb737-12"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb737-13"><a href="tidy-data.html#cb737-13"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
-<span id="cb737-14"><a href="tidy-data.html#cb737-14"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
-<span id="cb737-15"><a href="tidy-data.html#cb737-15"></a>  ) <span class="op">+</span></span>
-<span id="cb737-16"><a href="tidy-data.html#cb737-16"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>country)</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb735-1"><a href="tidy-data.html#cb735-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> gapminder_formatted, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp_mean, <span class="dt">color =</span> continent)) <span class="op">+</span></span>
+<span id="cb735-2"><a href="tidy-data.html#cb735-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb735-3"><a href="tidy-data.html#cb735-3"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb735-4"><a href="tidy-data.html#cb735-4"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb735-5"><a href="tidy-data.html#cb735-5"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
+<span id="cb735-6"><a href="tidy-data.html#cb735-6"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy on Five continents&quot;</span></span>
+<span id="cb735-7"><a href="tidy-data.html#cb735-7"></a>  )</span></code></pre></div>
 <p><img src="02_tidy_data_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
-<div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb739-1"><a href="tidy-data.html#cb739-1"></a><span class="co"># geom bar</span></span>
-<span id="cb739-2"><a href="tidy-data.html#cb739-2"></a>gapminder <span class="op">%&gt;%</span></span>
-<span id="cb739-3"><a href="tidy-data.html#cb739-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb739-4"><a href="tidy-data.html#cb739-4"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
-<span id="cb739-5"><a href="tidy-data.html#cb739-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb739-6"><a href="tidy-data.html#cb739-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
-<span id="cb739-7"><a href="tidy-data.html#cb739-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
-<span id="cb739-8"><a href="tidy-data.html#cb739-8"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb739-9"><a href="tidy-data.html#cb739-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
-<span id="cb739-10"><a href="tidy-data.html#cb739-10"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span></span>
-<span id="cb739-11"><a href="tidy-data.html#cb739-11"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb739-12"><a href="tidy-data.html#cb739-12"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb739-13"><a href="tidy-data.html#cb739-13"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
-<span id="cb739-14"><a href="tidy-data.html#cb739-14"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
-<span id="cb739-15"><a href="tidy-data.html#cb739-15"></a>  ) <span class="op">+</span></span>
-<span id="cb739-16"><a href="tidy-data.html#cb739-16"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>country)</span></code></pre></div>
+<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="tidy-data.html#cb736-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb736-2"><a href="tidy-data.html#cb736-2"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb736-3"><a href="tidy-data.html#cb736-3"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
+<span id="cb736-4"><a href="tidy-data.html#cb736-4"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb736-5"><a href="tidy-data.html#cb736-5"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb736-6"><a href="tidy-data.html#cb736-6"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
+<span id="cb736-7"><a href="tidy-data.html#cb736-7"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb736-8"><a href="tidy-data.html#cb736-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp_mean, <span class="dt">color =</span> country)) <span class="op">+</span></span>
+<span id="cb736-9"><a href="tidy-data.html#cb736-9"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb736-10"><a href="tidy-data.html#cb736-10"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb736-11"><a href="tidy-data.html#cb736-11"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb736-12"><a href="tidy-data.html#cb736-12"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
+<span id="cb736-13"><a href="tidy-data.html#cb736-13"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
+<span id="cb736-14"><a href="tidy-data.html#cb736-14"></a>  )</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
 <p><img src="02_tidy_data_files/figure-html/unnamed-chunk-179-2.png" width="672" /></p>
-<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="tidy-data.html#cb741-1"></a><span class="co"># no facet</span></span>
-<span id="cb741-2"><a href="tidy-data.html#cb741-2"></a>gapminder <span class="op">%&gt;%</span></span>
-<span id="cb741-3"><a href="tidy-data.html#cb741-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb741-4"><a href="tidy-data.html#cb741-4"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
-<span id="cb741-5"><a href="tidy-data.html#cb741-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb741-6"><a href="tidy-data.html#cb741-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
-<span id="cb741-7"><a href="tidy-data.html#cb741-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
-<span id="cb741-8"><a href="tidy-data.html#cb741-8"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb741-9"><a href="tidy-data.html#cb741-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp_mean, <span class="dt">fill =</span> country)) <span class="op">+</span></span>
-<span id="cb741-10"><a href="tidy-data.html#cb741-10"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># even if you not stack, still the plot looks messy or you can use geom_col()</span></span>
-<span id="cb741-11"><a href="tidy-data.html#cb741-11"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb741-12"><a href="tidy-data.html#cb741-12"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb741-13"><a href="tidy-data.html#cb741-13"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
-<span id="cb741-14"><a href="tidy-data.html#cb741-14"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
-<span id="cb741-15"><a href="tidy-data.html#cb741-15"></a>  )</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-179-3.png" width="672" /></p>
-<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="tidy-data.html#cb743-1"></a>gapminder <span class="op">%&gt;%</span></span>
-<span id="cb743-2"><a href="tidy-data.html#cb743-2"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb743-3"><a href="tidy-data.html#cb743-3"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
-<span id="cb743-4"><a href="tidy-data.html#cb743-4"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb743-5"><a href="tidy-data.html#cb743-5"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
-<span id="cb743-6"><a href="tidy-data.html#cb743-6"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
-<span id="cb743-7"><a href="tidy-data.html#cb743-7"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb743-8"><a href="tidy-data.html#cb743-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> country, <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
-<span id="cb743-9"><a href="tidy-data.html#cb743-9"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
-<span id="cb743-10"><a href="tidy-data.html#cb743-10"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb743-11"><a href="tidy-data.html#cb743-11"></a>    <span class="dt">x =</span> <span class="st">&quot;Country&quot;</span>,</span>
-<span id="cb743-12"><a href="tidy-data.html#cb743-12"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
-<span id="cb743-13"><a href="tidy-data.html#cb743-13"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
-<span id="cb743-14"><a href="tidy-data.html#cb743-14"></a>  ) <span class="op">+</span></span>
-<span id="cb743-15"><a href="tidy-data.html#cb743-15"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="tidy-data.html#cb738-1"></a><span class="co"># geom point</span></span>
+<span id="cb738-2"><a href="tidy-data.html#cb738-2"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb738-3"><a href="tidy-data.html#cb738-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb738-4"><a href="tidy-data.html#cb738-4"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
+<span id="cb738-5"><a href="tidy-data.html#cb738-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb738-6"><a href="tidy-data.html#cb738-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb738-7"><a href="tidy-data.html#cb738-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
+<span id="cb738-8"><a href="tidy-data.html#cb738-8"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb738-9"><a href="tidy-data.html#cb738-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
+<span id="cb738-10"><a href="tidy-data.html#cb738-10"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb738-11"><a href="tidy-data.html#cb738-11"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb738-12"><a href="tidy-data.html#cb738-12"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb738-13"><a href="tidy-data.html#cb738-13"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
+<span id="cb738-14"><a href="tidy-data.html#cb738-14"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
+<span id="cb738-15"><a href="tidy-data.html#cb738-15"></a>  ) <span class="op">+</span></span>
+<span id="cb738-16"><a href="tidy-data.html#cb738-16"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>country)</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
 <p><img src="02_tidy_data_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
-<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="tidy-data.html#cb745-1"></a><span class="co"># without ordering</span></span>
-<span id="cb745-2"><a href="tidy-data.html#cb745-2"></a>gapminder <span class="op">%&gt;%</span></span>
-<span id="cb745-3"><a href="tidy-data.html#cb745-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb745-4"><a href="tidy-data.html#cb745-4"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
-<span id="cb745-5"><a href="tidy-data.html#cb745-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb745-6"><a href="tidy-data.html#cb745-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
-<span id="cb745-7"><a href="tidy-data.html#cb745-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
-<span id="cb745-8"><a href="tidy-data.html#cb745-8"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb745-9"><a href="tidy-data.html#cb745-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">reorder</span>(country, lifeExp_mean), <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
-<span id="cb745-10"><a href="tidy-data.html#cb745-10"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
-<span id="cb745-11"><a href="tidy-data.html#cb745-11"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb745-12"><a href="tidy-data.html#cb745-12"></a>    <span class="dt">x =</span> <span class="st">&quot;Country&quot;</span>,</span>
-<span id="cb745-13"><a href="tidy-data.html#cb745-13"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
-<span id="cb745-14"><a href="tidy-data.html#cb745-14"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
-<span id="cb745-15"><a href="tidy-data.html#cb745-15"></a>  ) <span class="op">+</span></span>
-<span id="cb745-16"><a href="tidy-data.html#cb745-16"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="tidy-data.html#cb740-1"></a><span class="co"># geom bar</span></span>
+<span id="cb740-2"><a href="tidy-data.html#cb740-2"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb740-3"><a href="tidy-data.html#cb740-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb740-4"><a href="tidy-data.html#cb740-4"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
+<span id="cb740-5"><a href="tidy-data.html#cb740-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb740-6"><a href="tidy-data.html#cb740-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb740-7"><a href="tidy-data.html#cb740-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
+<span id="cb740-8"><a href="tidy-data.html#cb740-8"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb740-9"><a href="tidy-data.html#cb740-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
+<span id="cb740-10"><a href="tidy-data.html#cb740-10"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span></span>
+<span id="cb740-11"><a href="tidy-data.html#cb740-11"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb740-12"><a href="tidy-data.html#cb740-12"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb740-13"><a href="tidy-data.html#cb740-13"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
+<span id="cb740-14"><a href="tidy-data.html#cb740-14"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
+<span id="cb740-15"><a href="tidy-data.html#cb740-15"></a>  ) <span class="op">+</span></span>
+<span id="cb740-16"><a href="tidy-data.html#cb740-16"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>country)</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-180-2.png" width="672" /></p>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="tidy-data.html#cb742-1"></a><span class="co"># no facet</span></span>
+<span id="cb742-2"><a href="tidy-data.html#cb742-2"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb742-3"><a href="tidy-data.html#cb742-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb742-4"><a href="tidy-data.html#cb742-4"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
+<span id="cb742-5"><a href="tidy-data.html#cb742-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb742-6"><a href="tidy-data.html#cb742-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb742-7"><a href="tidy-data.html#cb742-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
+<span id="cb742-8"><a href="tidy-data.html#cb742-8"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb742-9"><a href="tidy-data.html#cb742-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp_mean, <span class="dt">fill =</span> country)) <span class="op">+</span></span>
+<span id="cb742-10"><a href="tidy-data.html#cb742-10"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># even if you not stack, still the plot looks messy or you can use geom_col()</span></span>
+<span id="cb742-11"><a href="tidy-data.html#cb742-11"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb742-12"><a href="tidy-data.html#cb742-12"></a>    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb742-13"><a href="tidy-data.html#cb742-13"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
+<span id="cb742-14"><a href="tidy-data.html#cb742-14"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
+<span id="cb742-15"><a href="tidy-data.html#cb742-15"></a>  )</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-180-3.png" width="672" /></p>
+<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="tidy-data.html#cb744-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb744-2"><a href="tidy-data.html#cb744-2"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb744-3"><a href="tidy-data.html#cb744-3"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
+<span id="cb744-4"><a href="tidy-data.html#cb744-4"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb744-5"><a href="tidy-data.html#cb744-5"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb744-6"><a href="tidy-data.html#cb744-6"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
+<span id="cb744-7"><a href="tidy-data.html#cb744-7"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb744-8"><a href="tidy-data.html#cb744-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> country, <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
+<span id="cb744-9"><a href="tidy-data.html#cb744-9"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb744-10"><a href="tidy-data.html#cb744-10"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb744-11"><a href="tidy-data.html#cb744-11"></a>    <span class="dt">x =</span> <span class="st">&quot;Country&quot;</span>,</span>
+<span id="cb744-12"><a href="tidy-data.html#cb744-12"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
+<span id="cb744-13"><a href="tidy-data.html#cb744-13"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
+<span id="cb744-14"><a href="tidy-data.html#cb744-14"></a>  ) <span class="op">+</span></span>
+<span id="cb744-15"><a href="tidy-data.html#cb744-15"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
 <p><img src="02_tidy_data_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
-<div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb747-1"><a href="tidy-data.html#cb747-1"></a><span class="co"># reorder</span></span>
-<span id="cb747-2"><a href="tidy-data.html#cb747-2"></a>gapminder <span class="op">%&gt;%</span></span>
-<span id="cb747-3"><a href="tidy-data.html#cb747-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb747-4"><a href="tidy-data.html#cb747-4"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
-<span id="cb747-5"><a href="tidy-data.html#cb747-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb747-6"><a href="tidy-data.html#cb747-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
-<span id="cb747-7"><a href="tidy-data.html#cb747-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
-<span id="cb747-8"><a href="tidy-data.html#cb747-8"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb747-9"><a href="tidy-data.html#cb747-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">reorder</span>(country, <span class="op">-</span>lifeExp_mean), <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
-<span id="cb747-10"><a href="tidy-data.html#cb747-10"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
-<span id="cb747-11"><a href="tidy-data.html#cb747-11"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb747-12"><a href="tidy-data.html#cb747-12"></a>    <span class="dt">x =</span> <span class="st">&quot;Country&quot;</span>,</span>
-<span id="cb747-13"><a href="tidy-data.html#cb747-13"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
-<span id="cb747-14"><a href="tidy-data.html#cb747-14"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
-<span id="cb747-15"><a href="tidy-data.html#cb747-15"></a>  ) <span class="op">+</span></span>
-<span id="cb747-16"><a href="tidy-data.html#cb747-16"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="tidy-data.html#cb746-1"></a><span class="co"># without ordering</span></span>
+<span id="cb746-2"><a href="tidy-data.html#cb746-2"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb746-3"><a href="tidy-data.html#cb746-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb746-4"><a href="tidy-data.html#cb746-4"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
+<span id="cb746-5"><a href="tidy-data.html#cb746-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb746-6"><a href="tidy-data.html#cb746-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb746-7"><a href="tidy-data.html#cb746-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
+<span id="cb746-8"><a href="tidy-data.html#cb746-8"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb746-9"><a href="tidy-data.html#cb746-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">reorder</span>(country, lifeExp_mean), <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
+<span id="cb746-10"><a href="tidy-data.html#cb746-10"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb746-11"><a href="tidy-data.html#cb746-11"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb746-12"><a href="tidy-data.html#cb746-12"></a>    <span class="dt">x =</span> <span class="st">&quot;Country&quot;</span>,</span>
+<span id="cb746-13"><a href="tidy-data.html#cb746-13"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
+<span id="cb746-14"><a href="tidy-data.html#cb746-14"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
+<span id="cb746-15"><a href="tidy-data.html#cb746-15"></a>  ) <span class="op">+</span></span>
+<span id="cb746-16"><a href="tidy-data.html#cb746-16"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-181-2.png" width="672" /></p>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="tidy-data.html#cb748-1"></a><span class="co"># reorder</span></span>
+<span id="cb748-2"><a href="tidy-data.html#cb748-2"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb748-3"><a href="tidy-data.html#cb748-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb748-4"><a href="tidy-data.html#cb748-4"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
+<span id="cb748-5"><a href="tidy-data.html#cb748-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb748-6"><a href="tidy-data.html#cb748-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb748-7"><a href="tidy-data.html#cb748-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
+<span id="cb748-8"><a href="tidy-data.html#cb748-8"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb748-9"><a href="tidy-data.html#cb748-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">reorder</span>(country, <span class="op">-</span>lifeExp_mean), <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
+<span id="cb748-10"><a href="tidy-data.html#cb748-10"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb748-11"><a href="tidy-data.html#cb748-11"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb748-12"><a href="tidy-data.html#cb748-12"></a>    <span class="dt">x =</span> <span class="st">&quot;Country&quot;</span>,</span>
+<span id="cb748-13"><a href="tidy-data.html#cb748-13"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
+<span id="cb748-14"><a href="tidy-data.html#cb748-14"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
+<span id="cb748-15"><a href="tidy-data.html#cb748-15"></a>  ) <span class="op">+</span></span>
+<span id="cb748-16"><a href="tidy-data.html#cb748-16"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-182-2.png" width="672" /></p>
 </div>
 <div id="plotting-text" class="section level4" number="4.11.11.2">
 <h4><span class="header-section-number">4.11.11.2</span> Plotting text</h4>
-<div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb749-1"><a href="tidy-data.html#cb749-1"></a>gapminder <span class="op">%&gt;%</span></span>
-<span id="cb749-2"><a href="tidy-data.html#cb749-2"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span> <span class="op">|</span><span class="st"> </span>continent <span class="op">==</span><span class="st"> &quot;Americas&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb749-3"><a href="tidy-data.html#cb749-3"></a><span class="st">  </span><span class="kw">group_by</span>(continent, country) <span class="op">%&gt;%</span></span>
-<span id="cb749-4"><a href="tidy-data.html#cb749-4"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb749-5"><a href="tidy-data.html#cb749-5"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
-<span id="cb749-6"><a href="tidy-data.html#cb749-6"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
-<span id="cb749-7"><a href="tidy-data.html#cb749-7"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb749-8"><a href="tidy-data.html#cb749-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> gdp_mean, <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
-<span id="cb749-9"><a href="tidy-data.html#cb749-9"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb749-10"><a href="tidy-data.html#cb749-10"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> country)) <span class="op">+</span></span>
-<span id="cb749-11"><a href="tidy-data.html#cb749-11"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
-<span id="cb749-12"><a href="tidy-data.html#cb749-12"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>continent)</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;continent&#39; (override with `.groups` argument)</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
-<div class="sourceCode" id="cb751"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb751-1"><a href="tidy-data.html#cb751-1"></a><span class="co"># with label</span></span>
-<span id="cb751-2"><a href="tidy-data.html#cb751-2"></a>gapminder <span class="op">%&gt;%</span></span>
-<span id="cb751-3"><a href="tidy-data.html#cb751-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span> <span class="op">|</span><span class="st"> </span>continent <span class="op">==</span><span class="st"> &quot;Americas&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb751-4"><a href="tidy-data.html#cb751-4"></a><span class="st">  </span><span class="kw">group_by</span>(continent, country) <span class="op">%&gt;%</span></span>
-<span id="cb751-5"><a href="tidy-data.html#cb751-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb751-6"><a href="tidy-data.html#cb751-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
-<span id="cb751-7"><a href="tidy-data.html#cb751-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
-<span id="cb751-8"><a href="tidy-data.html#cb751-8"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb751-9"><a href="tidy-data.html#cb751-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> gdp_mean, <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
-<span id="cb751-10"><a href="tidy-data.html#cb751-10"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb751-11"><a href="tidy-data.html#cb751-11"></a><span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> country)) <span class="op">+</span></span>
-<span id="cb751-12"><a href="tidy-data.html#cb751-12"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
-<span id="cb751-13"><a href="tidy-data.html#cb751-13"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>continent)</span></code></pre></div>
+<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb750-1"><a href="tidy-data.html#cb750-1"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb750-2"><a href="tidy-data.html#cb750-2"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span> <span class="op">|</span><span class="st"> </span>continent <span class="op">==</span><span class="st"> &quot;Americas&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb750-3"><a href="tidy-data.html#cb750-3"></a><span class="st">  </span><span class="kw">group_by</span>(continent, country) <span class="op">%&gt;%</span></span>
+<span id="cb750-4"><a href="tidy-data.html#cb750-4"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb750-5"><a href="tidy-data.html#cb750-5"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb750-6"><a href="tidy-data.html#cb750-6"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
+<span id="cb750-7"><a href="tidy-data.html#cb750-7"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb750-8"><a href="tidy-data.html#cb750-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> gdp_mean, <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
+<span id="cb750-9"><a href="tidy-data.html#cb750-9"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb750-10"><a href="tidy-data.html#cb750-10"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> country)) <span class="op">+</span></span>
+<span id="cb750-11"><a href="tidy-data.html#cb750-11"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
+<span id="cb750-12"><a href="tidy-data.html#cb750-12"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>continent)</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;continent&#39; (override with `.groups` argument)</code></pre>
 <p><img src="02_tidy_data_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
-<div class="sourceCode" id="cb753"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb753-1"><a href="tidy-data.html#cb753-1"></a><span class="co"># no overlaps</span></span>
-<span id="cb753-2"><a href="tidy-data.html#cb753-2"></a>gapminder <span class="op">%&gt;%</span></span>
-<span id="cb753-3"><a href="tidy-data.html#cb753-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span> <span class="op">|</span><span class="st"> </span>continent <span class="op">==</span><span class="st"> &quot;Americas&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb753-4"><a href="tidy-data.html#cb753-4"></a><span class="st">  </span><span class="kw">group_by</span>(continent, country) <span class="op">%&gt;%</span></span>
-<span id="cb753-5"><a href="tidy-data.html#cb753-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
-<span id="cb753-6"><a href="tidy-data.html#cb753-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
-<span id="cb753-7"><a href="tidy-data.html#cb753-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
-<span id="cb753-8"><a href="tidy-data.html#cb753-8"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb753-9"><a href="tidy-data.html#cb753-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> gdp_mean, <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
-<span id="cb753-10"><a href="tidy-data.html#cb753-10"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb753-11"><a href="tidy-data.html#cb753-11"></a><span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> country)) <span class="op">+</span><span class="st"> </span><span class="co"># there&#39;s also geom_label_repel</span></span>
-<span id="cb753-12"><a href="tidy-data.html#cb753-12"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
-<span id="cb753-13"><a href="tidy-data.html#cb753-13"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>continent)</span></code></pre></div>
+<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="tidy-data.html#cb752-1"></a><span class="co"># with label</span></span>
+<span id="cb752-2"><a href="tidy-data.html#cb752-2"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb752-3"><a href="tidy-data.html#cb752-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span> <span class="op">|</span><span class="st"> </span>continent <span class="op">==</span><span class="st"> &quot;Americas&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb752-4"><a href="tidy-data.html#cb752-4"></a><span class="st">  </span><span class="kw">group_by</span>(continent, country) <span class="op">%&gt;%</span></span>
+<span id="cb752-5"><a href="tidy-data.html#cb752-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb752-6"><a href="tidy-data.html#cb752-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb752-7"><a href="tidy-data.html#cb752-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
+<span id="cb752-8"><a href="tidy-data.html#cb752-8"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb752-9"><a href="tidy-data.html#cb752-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> gdp_mean, <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
+<span id="cb752-10"><a href="tidy-data.html#cb752-10"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb752-11"><a href="tidy-data.html#cb752-11"></a><span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> country)) <span class="op">+</span></span>
+<span id="cb752-12"><a href="tidy-data.html#cb752-12"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
+<span id="cb752-13"><a href="tidy-data.html#cb752-13"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>continent)</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;continent&#39; (override with `.groups` argument)</code></pre>
 <p><img src="02_tidy_data_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="tidy-data.html#cb754-1"></a><span class="co"># no overlaps</span></span>
+<span id="cb754-2"><a href="tidy-data.html#cb754-2"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb754-3"><a href="tidy-data.html#cb754-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span> <span class="op">|</span><span class="st"> </span>continent <span class="op">==</span><span class="st"> &quot;Americas&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb754-4"><a href="tidy-data.html#cb754-4"></a><span class="st">  </span><span class="kw">group_by</span>(continent, country) <span class="op">%&gt;%</span></span>
+<span id="cb754-5"><a href="tidy-data.html#cb754-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb754-6"><a href="tidy-data.html#cb754-6"></a>    <span class="dt">gdp_mean =</span> <span class="kw">mean</span>(gdpPercap),</span>
+<span id="cb754-7"><a href="tidy-data.html#cb754-7"></a>    <span class="dt">lifeExp_mean =</span> <span class="kw">mean</span>(lifeExp)</span>
+<span id="cb754-8"><a href="tidy-data.html#cb754-8"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb754-9"><a href="tidy-data.html#cb754-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> gdp_mean, <span class="dt">y =</span> lifeExp_mean)) <span class="op">+</span></span>
+<span id="cb754-10"><a href="tidy-data.html#cb754-10"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb754-11"><a href="tidy-data.html#cb754-11"></a><span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> country)) <span class="op">+</span><span class="st"> </span><span class="co"># there&#39;s also geom_label_repel</span></span>
+<span id="cb754-12"><a href="tidy-data.html#cb754-12"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
+<span id="cb754-13"><a href="tidy-data.html#cb754-13"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>continent)</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;continent&#39; (override with `.groups` argument)</code></pre>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
 </div>
 </div>
 <div id="ploting-models" class="section level3" number="4.11.12">
@@ -4213,31 +4228,31 @@ function defines the strata that you’re going to use for summary statistics. T
 <p>In plotting models, we extensively use David Robinson’s <a href="https://cran.r-project.org/web/packages/broom/vignettes/broom.html">broom package</a> in R. The idea is to transform model outputs (i.e., predictions and estimations) into tidy objects so that we can easily combine, separate, and visualize these elements.</p>
 <div id="plotting-several-fits-at-the-same-time" class="section level4" number="4.11.12.1">
 <h4><span class="header-section-number">4.11.12.1</span> Plotting several fits at the same time</h4>
-<div class="sourceCode" id="cb755"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb755-1"><a href="tidy-data.html#cb755-1"></a>model_colors &lt;-<span class="st"> </span>RColorBrewer<span class="op">::</span><span class="kw">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Set1&quot;</span>) <span class="co"># select three qualitatively different colors from a larger palette.</span></span>
-<span id="cb755-2"><a href="tidy-data.html#cb755-2"></a></span>
-<span id="cb755-3"><a href="tidy-data.html#cb755-3"></a>gapminder <span class="op">%&gt;%</span></span>
-<span id="cb755-4"><a href="tidy-data.html#cb755-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">log</span>(gdpPercap), <span class="dt">y =</span> lifeExp)) <span class="op">+</span></span>
-<span id="cb755-5"><a href="tidy-data.html#cb755-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
-<span id="cb755-6"><a href="tidy-data.html#cb755-6"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;OLS&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;OLS&quot;</span>)) <span class="op">+</span></span>
-<span id="cb755-7"><a href="tidy-data.html#cb755-7"></a><span class="st">  </span><span class="kw">geom_smooth</span>(</span>
-<span id="cb755-8"><a href="tidy-data.html#cb755-8"></a>    <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>splines<span class="op">::</span><span class="kw">bs</span>(x, <span class="dt">df =</span> <span class="dv">3</span>),</span>
-<span id="cb755-9"><a href="tidy-data.html#cb755-9"></a>    <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Cubic Spline&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Cubic Spline&quot;</span>)</span>
-<span id="cb755-10"><a href="tidy-data.html#cb755-10"></a>  ) <span class="op">+</span></span>
-<span id="cb755-11"><a href="tidy-data.html#cb755-11"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;LOESS&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;LOESS&quot;</span>)) <span class="op">+</span></span>
-<span id="cb755-12"><a href="tidy-data.html#cb755-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="op">+</span></span>
-<span id="cb755-13"><a href="tidy-data.html#cb755-13"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Models&quot;</span>, <span class="dt">values =</span> model_colors) <span class="op">+</span></span>
-<span id="cb755-14"><a href="tidy-data.html#cb755-14"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Models&quot;</span>, <span class="dt">values =</span> model_colors)</span></code></pre></div>
+<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="tidy-data.html#cb756-1"></a>model_colors &lt;-<span class="st"> </span>RColorBrewer<span class="op">::</span><span class="kw">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Set1&quot;</span>) <span class="co"># select three qualitatively different colors from a larger palette.</span></span>
+<span id="cb756-2"><a href="tidy-data.html#cb756-2"></a></span>
+<span id="cb756-3"><a href="tidy-data.html#cb756-3"></a>gapminder <span class="op">%&gt;%</span></span>
+<span id="cb756-4"><a href="tidy-data.html#cb756-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">log</span>(gdpPercap), <span class="dt">y =</span> lifeExp)) <span class="op">+</span></span>
+<span id="cb756-5"><a href="tidy-data.html#cb756-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
+<span id="cb756-6"><a href="tidy-data.html#cb756-6"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;OLS&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;OLS&quot;</span>)) <span class="op">+</span></span>
+<span id="cb756-7"><a href="tidy-data.html#cb756-7"></a><span class="st">  </span><span class="kw">geom_smooth</span>(</span>
+<span id="cb756-8"><a href="tidy-data.html#cb756-8"></a>    <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>splines<span class="op">::</span><span class="kw">bs</span>(x, <span class="dt">df =</span> <span class="dv">3</span>),</span>
+<span id="cb756-9"><a href="tidy-data.html#cb756-9"></a>    <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Cubic Spline&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Cubic Spline&quot;</span>)</span>
+<span id="cb756-10"><a href="tidy-data.html#cb756-10"></a>  ) <span class="op">+</span></span>
+<span id="cb756-11"><a href="tidy-data.html#cb756-11"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;LOESS&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;LOESS&quot;</span>)) <span class="op">+</span></span>
+<span id="cb756-12"><a href="tidy-data.html#cb756-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="op">+</span></span>
+<span id="cb756-13"><a href="tidy-data.html#cb756-13"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Models&quot;</span>, <span class="dt">values =</span> model_colors) <span class="op">+</span></span>
+<span id="cb756-14"><a href="tidy-data.html#cb756-14"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Models&quot;</span>, <span class="dt">values =</span> model_colors)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
 ## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
 </div>
 <div id="extracting-model-outcomes" class="section level4" number="4.11.12.2">
 <h4><span class="header-section-number">4.11.12.2</span> Extracting model outcomes</h4>
-<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="tidy-data.html#cb757-1"></a><span class="co"># regression model</span></span>
-<span id="cb757-2"><a href="tidy-data.html#cb757-2"></a>out &lt;-<span class="st"> </span><span class="kw">lm</span>(</span>
-<span id="cb757-3"><a href="tidy-data.html#cb757-3"></a>  <span class="dt">formula =</span> lifeExp <span class="op">~</span><span class="st"> </span>gdpPercap <span class="op">+</span><span class="st"> </span>pop <span class="op">+</span><span class="st"> </span>continent,</span>
-<span id="cb757-4"><a href="tidy-data.html#cb757-4"></a>  <span class="dt">data =</span> gapminder</span>
-<span id="cb757-5"><a href="tidy-data.html#cb757-5"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="tidy-data.html#cb758-1"></a><span class="co"># regression model</span></span>
+<span id="cb758-2"><a href="tidy-data.html#cb758-2"></a>out &lt;-<span class="st"> </span><span class="kw">lm</span>(</span>
+<span id="cb758-3"><a href="tidy-data.html#cb758-3"></a>  <span class="dt">formula =</span> lifeExp <span class="op">~</span><span class="st"> </span>gdpPercap <span class="op">+</span><span class="st"> </span>pop <span class="op">+</span><span class="st"> </span>continent,</span>
+<span id="cb758-4"><a href="tidy-data.html#cb758-4"></a>  <span class="dt">data =</span> gapminder</span>
+<span id="cb758-5"><a href="tidy-data.html#cb758-5"></a>)</span></code></pre></div>
 <p><code>tidy()</code> is a method in the <code>broom</code> package. It “constructs a dataframe that summarizes the model’s statistical findings”. As the description states, tidy is a function that can be used for various models. For instance, a tidy can extract following information from a regression model.</p>
 <ul>
 <li><code>Term</code>: a term being estimated</li>
@@ -4253,38 +4268,38 @@ function defines the strata that you’re going to use for summary statistics. T
 <p>The followings are to show your degree of confidence.</p>
 <div id="coeffficients" class="section level5" number="4.11.12.2.1">
 <h5><span class="header-section-number">4.11.12.2.1</span> Coeffficients</h5>
-<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="tidy-data.html#cb758-1"></a><span class="co"># estimates</span></span>
-<span id="cb758-2"><a href="tidy-data.html#cb758-2"></a>out_comp &lt;-<span class="st"> </span><span class="kw">tidy</span>(out)</span>
-<span id="cb758-3"><a href="tidy-data.html#cb758-3"></a></span>
-<span id="cb758-4"><a href="tidy-data.html#cb758-4"></a>p &lt;-<span class="st"> </span>out_comp <span class="op">%&gt;%</span></span>
-<span id="cb758-5"><a href="tidy-data.html#cb758-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> term, <span class="dt">y =</span> estimate))</span>
-<span id="cb758-6"><a href="tidy-data.html#cb758-6"></a></span>
-<span id="cb758-7"><a href="tidy-data.html#cb758-7"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb758-8"><a href="tidy-data.html#cb758-8"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
-<span id="cb758-9"><a href="tidy-data.html#cb758-9"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<div class="sourceCode" id="cb759"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb759-1"><a href="tidy-data.html#cb759-1"></a><span class="co"># estimates</span></span>
+<span id="cb759-2"><a href="tidy-data.html#cb759-2"></a>out_comp &lt;-<span class="st"> </span><span class="kw">tidy</span>(out)</span>
+<span id="cb759-3"><a href="tidy-data.html#cb759-3"></a></span>
+<span id="cb759-4"><a href="tidy-data.html#cb759-4"></a>p &lt;-<span class="st"> </span>out_comp <span class="op">%&gt;%</span></span>
+<span id="cb759-5"><a href="tidy-data.html#cb759-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> term, <span class="dt">y =</span> estimate))</span>
+<span id="cb759-6"><a href="tidy-data.html#cb759-6"></a></span>
+<span id="cb759-7"><a href="tidy-data.html#cb759-7"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb759-8"><a href="tidy-data.html#cb759-8"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb759-9"><a href="tidy-data.html#cb759-9"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
 </div>
 <div id="confidence-intervals" class="section level5" number="4.11.12.2.2">
 <h5><span class="header-section-number">4.11.12.2.2</span> Confidence intervals</h5>
-<div class="sourceCode" id="cb759"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb759-1"><a href="tidy-data.html#cb759-1"></a><span class="co"># plus confidence intervals</span></span>
-<span id="cb759-2"><a href="tidy-data.html#cb759-2"></a>out_conf &lt;-<span class="st"> </span><span class="kw">tidy</span>(out, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb759-3"><a href="tidy-data.html#cb759-3"></a></span>
-<span id="cb759-4"><a href="tidy-data.html#cb759-4"></a><span class="co"># plotting coefficients using ggplot2 (pointrange)</span></span>
-<span id="cb759-5"><a href="tidy-data.html#cb759-5"></a>out_conf <span class="op">%&gt;%</span></span>
-<span id="cb759-6"><a href="tidy-data.html#cb759-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">reorder</span>(term, estimate), <span class="dt">y =</span> estimate, <span class="dt">ymin =</span> conf.low, <span class="dt">ymax =</span> conf.high)) <span class="op">+</span></span>
-<span id="cb759-7"><a href="tidy-data.html#cb759-7"></a><span class="st">  </span><span class="kw">geom_pointrange</span>() <span class="op">+</span></span>
-<span id="cb759-8"><a href="tidy-data.html#cb759-8"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
-<span id="cb759-9"><a href="tidy-data.html#cb759-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;OLS Estimate&quot;</span>) <span class="op">+</span></span>
-<span id="cb759-10"><a href="tidy-data.html#cb759-10"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
-<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="tidy-data.html#cb760-1"></a><span class="co"># another way to do it (errorbar)</span></span>
-<span id="cb760-2"><a href="tidy-data.html#cb760-2"></a>out_conf <span class="op">%&gt;%</span></span>
-<span id="cb760-3"><a href="tidy-data.html#cb760-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> estimate, <span class="dt">y =</span> <span class="kw">reorder</span>(term, estimate))) <span class="op">+</span></span>
-<span id="cb760-4"><a href="tidy-data.html#cb760-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb760-5"><a href="tidy-data.html#cb760-5"></a><span class="st">  </span><span class="kw">geom_errorbarh</span>(<span class="kw">aes</span>(<span class="dt">xmin =</span> conf.low, <span class="dt">xmax =</span> conf.high)) <span class="op">+</span></span>
-<span id="cb760-6"><a href="tidy-data.html#cb760-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;OLS Estimate&quot;</span>) <span class="op">+</span></span>
-<span id="cb760-7"><a href="tidy-data.html#cb760-7"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-188-2.png" width="672" /></p>
+<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="tidy-data.html#cb760-1"></a><span class="co"># plus confidence intervals</span></span>
+<span id="cb760-2"><a href="tidy-data.html#cb760-2"></a>out_conf &lt;-<span class="st"> </span><span class="kw">tidy</span>(out, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb760-3"><a href="tidy-data.html#cb760-3"></a></span>
+<span id="cb760-4"><a href="tidy-data.html#cb760-4"></a><span class="co"># plotting coefficients using ggplot2 (pointrange)</span></span>
+<span id="cb760-5"><a href="tidy-data.html#cb760-5"></a>out_conf <span class="op">%&gt;%</span></span>
+<span id="cb760-6"><a href="tidy-data.html#cb760-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">reorder</span>(term, estimate), <span class="dt">y =</span> estimate, <span class="dt">ymin =</span> conf.low, <span class="dt">ymax =</span> conf.high)) <span class="op">+</span></span>
+<span id="cb760-7"><a href="tidy-data.html#cb760-7"></a><span class="st">  </span><span class="kw">geom_pointrange</span>() <span class="op">+</span></span>
+<span id="cb760-8"><a href="tidy-data.html#cb760-8"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb760-9"><a href="tidy-data.html#cb760-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;OLS Estimate&quot;</span>) <span class="op">+</span></span>
+<span id="cb760-10"><a href="tidy-data.html#cb760-10"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<div class="sourceCode" id="cb761"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb761-1"><a href="tidy-data.html#cb761-1"></a><span class="co"># another way to do it (errorbar)</span></span>
+<span id="cb761-2"><a href="tidy-data.html#cb761-2"></a>out_conf <span class="op">%&gt;%</span></span>
+<span id="cb761-3"><a href="tidy-data.html#cb761-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> estimate, <span class="dt">y =</span> <span class="kw">reorder</span>(term, estimate))) <span class="op">+</span></span>
+<span id="cb761-4"><a href="tidy-data.html#cb761-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb761-5"><a href="tidy-data.html#cb761-5"></a><span class="st">  </span><span class="kw">geom_errorbarh</span>(<span class="kw">aes</span>(<span class="dt">xmin =</span> conf.low, <span class="dt">xmax =</span> conf.high)) <span class="op">+</span></span>
+<span id="cb761-6"><a href="tidy-data.html#cb761-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;OLS Estimate&quot;</span>) <span class="op">+</span></span>
+<span id="cb761-7"><a href="tidy-data.html#cb761-7"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="02_tidy_data_files/figure-html/unnamed-chunk-189-2.png" width="672" /></p>
 <p>You can calculate marginal effects using <code>margins</code> package. For the sake of time, I’m not covering that here.</p>
 
 </div>
