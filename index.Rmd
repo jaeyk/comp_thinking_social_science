@@ -17,6 +17,11 @@ colorlinks: yes
 description: "Computational Thinking for Social Scientists. Online textbook for PS239T"
 ---
 
+```{r include=FALSE}
+# To speed up building process 
+knitr::opts_chunk$set(cache = TRUE)
+```
+
 # PS239T
 
 Welcome to PS239T

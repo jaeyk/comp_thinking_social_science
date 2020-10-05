@@ -2406,14 +2406,19 @@ If you want to know more about the power and joy of functional programming in R 
 [Anscombe](https://en.wikipedia.org/wiki/Frank_Anscombe)'s quarter comprises four datasets, which are so alike in terms of their descriptive statistics but quite different when presented graphically.
 
 ```{r}
+# Set theme 
+theme_set(theme_minimal())
+```
 
-# data
+```{r}
+
+# Data
 anscombe
 ```
 
 ```{r}
 
-# correlation
+# Correlation
 cor(anscombe)[c(1:4), c(5:8)]
 ```
 
@@ -2517,7 +2522,9 @@ ggplot(
   data = subset(midwest, state %in% c("OH", "IN")),
   mapping = aes(x = percollege, fill = state)
 ) +
-  geom_histogram(alpha = 0.7, bins = 20)
+  geom_histogram(alpha = 0.7, bins = 20) +
+  scale_fill_viridis_d()
+
 ```
 
 #### Density 
@@ -2525,7 +2532,9 @@ ggplot(
 ```{r}
 midwest %>%
   ggplot(aes(x = area, fill = state, color = state)) +
-  geom_density(alpha = 0.3)
+  geom_density(alpha = 0.3) +
+  scale_color_viridis_d() +
+  scale_fill_viridis_d()
 ```
 
 ### Advanced aes (size, color)
@@ -2542,7 +2551,7 @@ ggplot(
     size = pop
   )
 ) +
-  geom_point()
+  geom_point() 
 ```
 
 ```{r}
@@ -2554,7 +2563,8 @@ ggplot(
     color = continent
   )
 ) +
-  geom_point()
+  geom_point() +
+  scale_color_viridis_d()
 ```
 
 ```{r}
@@ -2567,7 +2577,7 @@ ggplot(
     color = "red"
   )
 ) +
-  geom_point()
+  geom_point() 
 ```
 
 Aesthetics also can be mapped per Geom. 
@@ -2617,7 +2627,9 @@ ggplot(
     title = "A Gapminder Plot",
     subtitle = "Data points are country-years",
     caption = "Source: Gapminder"
-  )
+  ) +
+  scale_color_viridis_d() +
+  scale_fill_viridis_d()
 ```
 
 ### Co-ordinates and scales 
