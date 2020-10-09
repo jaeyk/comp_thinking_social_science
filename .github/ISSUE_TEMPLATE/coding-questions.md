@@ -1,9 +1,9 @@
 ---
 name: Coding questions
-about: 'Coding questions '
+about: 'Questions related to the conceptual parts of the course '
 title: ''
 labels: coding_questions
-assignees: ''
+assignees: jaeyk
 
 ---
 
