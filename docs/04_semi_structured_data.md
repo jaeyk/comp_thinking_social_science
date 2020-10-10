@@ -1,5 +1,7 @@
 # Semi-structured data {#semi_structured_data}
 
+
+
 ## Objectives
 
 -   Automating the process of turning semi-structured data (input) into structured data (output)

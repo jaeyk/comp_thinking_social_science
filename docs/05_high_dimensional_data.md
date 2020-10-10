@@ -1,5 +1,7 @@
 # High-dimensional data {#machine_learning}
 
+
+
 ## Overview 
 
 - The rise of high-dimensional data. The new data frontiers in social sciences---text ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf); [Grimmer and Stewart 2013](https://www.jstor.org/stable/pdf/24572662.pdf?casa_token=SQdSI4R_VdwAAAAA:4QiVLhCXqr9f0qNMM9U75EL5JbDxxnXxUxyIfDf0U8ZzQx9szc0xVqaU6DXG4nHyZiNkvcwGlgD6H0Lxj3y0ULHwgkf1MZt8-9TPVtkEH9I4AHgbTg)) and and image ([Joo and Steinert-Threlkeld 2018](https://arxiv.org/pdf/1810.01544))---are all high-dimensional data. 
@@ -563,14 +565,14 @@ map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit)
 ## [[1]]
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 ```
 ## 
 ## [[2]]
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-16-2.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-17-2.png" width="672" />
 
 
 ```r
@@ -591,7 +593,7 @@ evals %>%
     facet_wrap(~glue("{toupper(.metric)}"), scales = "free_y") 
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 - For more information, read [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
 
 #### tune 
@@ -676,7 +678,7 @@ rec_res %>%
   theme(legend.position = "none")
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
 ##### Select 
 
@@ -706,7 +708,7 @@ glue('The RMSE of the intiail model is
 
 ```
 ## The RMSE of the intiail model is 
-##    7.87
+##    7.88
 ```
 
 ```r
@@ -720,7 +722,7 @@ glue('The RMSE of the tuned model is {rec_res %>%
 ```
 
 ```
-## The RMSE of the tuned model is 7.71
+## The RMSE of the tuned model is 7.7
 ```
 
 - Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
@@ -736,7 +738,7 @@ finalize_lasso %>%
   vip::vip()
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-24-1.png" width="672" />
 
 ##### Test fit 
 
@@ -823,7 +825,7 @@ tree_fit_viz_metr <- visualize_class_eval(tree_fit)
 tree_fit_viz_metr
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 
 ```r
 tree_fit_viz_mat <- visualize_class_conf(tree_fit)
@@ -831,7 +833,7 @@ tree_fit_viz_mat <- visualize_class_conf(tree_fit)
 tree_fit_viz_mat
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-27-2.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-28-2.png" width="672" />
 
 #### tune 
 
@@ -928,7 +930,7 @@ tree_res %>%
   coord_flip()
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-31-1.png" width="672" />
 ##### Select 
 
 
@@ -950,14 +952,14 @@ tree_fit_tuned <- finalize_tree %>%
 (tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
 ```r
 # Confusion matrix 
 (tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-32-2.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-33-2.png" width="672" />
 
 - Visualize variable importance 
 
@@ -968,7 +970,7 @@ tree_fit_tuned %>%
   vip::vip()
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 
 ##### Test fit
 
@@ -986,8 +988,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.744
-## 2 precision binary         0.705
+## 1 accuracy  binary         0.756
+## 2 precision binary         0.721
 ## 3 recall    binary         0.756
 ```
 
@@ -1054,7 +1056,7 @@ rand_fit_viz_metr <- visualize_class_eval(rand_fit)
 rand_fit_viz_metr
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-38-1.png" width="672" />
 
 - Visualize the confusion matrix. 
   
@@ -1065,7 +1067,7 @@ rand_fit_viz_mat <- visualize_class_conf(rand_fit)
 rand_fit_viz_mat
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-38-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-39-1.png" width="672" />
 
 #### tune 
 
@@ -1160,7 +1162,7 @@ rand_res %>%
   theme(legend.position="bottom")
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-43-1.png" width="672" />
 
 ```r
 # Optimal parameter
@@ -1173,7 +1175,7 @@ best_tree
 ## # A tibble: 1 x 3
 ##    mtry min_n .config
 ##   <int> <int> <chr>  
-## 1     1     2 Model01
+## 1     1    10 Model21
 ```
 
 ```r
@@ -1191,14 +1193,14 @@ rand_fit_tuned <- finalize_tree %>%
 (rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-44-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-45-1.png" width="672" />
 
 ```r
 # Confusion matrix 
 (rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-44-2.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-45-2.png" width="672" />
 
 - Visualize variable importance 
 
@@ -1209,7 +1211,7 @@ rand_fit_tuned %>%
   vip::vip()
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-45-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-46-1.png" width="672" />
 
 ##### Test fit
 
@@ -1227,9 +1229,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.933
-## 2 precision binary         0.973
-## 3 recall    binary         0.878
+## 1 accuracy  binary         0.922
+## 2 precision binary         0.972
+## 3 recall    binary         0.854
 ```
 
 ### XGboost 
@@ -1318,7 +1320,7 @@ xg_fit_viz_metr <- visualize_class_eval(xg_fit)
 xg_fit_viz_metr
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-50-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-51-1.png" width="672" />
 
 - Visualize the confusion matrix. 
   
@@ -1329,7 +1331,7 @@ xg_fit_viz_mat <- visualize_class_conf(xg_fit)
 xg_fit_viz_mat
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-51-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-52-1.png" width="672" />
 
 #### tune 
 
@@ -1416,7 +1418,7 @@ xg_res %>%
          x = NULL)
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-54-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-55-1.png" width="672" />
 
 
 ```r
@@ -1448,14 +1450,14 @@ xg_fit_tuned <- finalize_xg %>%
 (xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-56-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-57-1.png" width="672" />
 
 ```r
 # Confusion matrix 
 (xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-56-2.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-57-2.png" width="672" />
 
 - Visualize variable importance 
 
@@ -1474,7 +1476,7 @@ xg_fit_tuned %>%
 ## Call `lifecycle::last_warnings()` to see where this warning was generated.
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-57-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-58-1.png" width="672" />
 
 ##### Test fit
 
@@ -1613,7 +1615,7 @@ pca_recipe %>%
          title = "Scree plot")
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-62-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-63-1.png" width="672" />
 
 ##### View factor loadings 
 
@@ -1634,7 +1636,7 @@ pca_recipe %>%
          fill = "PCAs") 
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-63-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-64-1.png" width="672" />
 
 ### Topic modeling 
 
@@ -1758,7 +1760,7 @@ sherlock_words %>%
 ## Selecting by freq
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-66-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-67-1.png" width="672" />
 
 #### STM 
 
@@ -1796,7 +1798,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.570) 
 ## ....................................................................................................
@@ -1808,7 +1810,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.400, relative change = 1.090e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.381, relative change = 2.581e-03) 
 ## ....................................................................................................
@@ -1848,15 +1850,15 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.651) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.480, relative change = 2.234e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.378, relative change = 1.356e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.354, relative change = 3.251e-03) 
 ## ....................................................................................................
@@ -1878,7 +1880,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.344, relative change = 3.512e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.342, relative change = 2.888e-04) 
 ## ....................................................................................................
@@ -1886,7 +1888,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.340, relative change = 2.464e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.339, relative change = 1.991e-04) 
 ## ....................................................................................................
@@ -1908,7 +1910,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 11 (approx. per word bound = -7.337, relative change = 5.576e-05) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -1919,23 +1921,23 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.737) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.500, relative change = 3.056e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.388, relative change = 1.494e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.356, relative change = 4.344e-03) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 5 (approx. per word bound = -7.345, relative change = 1.583e-03) 
 ## Topic 1: holm, know, well, can, might 
@@ -1954,23 +1956,23 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 14: one, side, two, year, famili 
 ##  Topic 15: upon, tabl, finger, depend, wrist 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.340, relative change = 5.712e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.338, relative change = 2.704e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.336, relative change = 2.640e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.335, relative change = 1.952e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 10 (approx. per word bound = -7.333, relative change = 2.106e-04) 
 ## Topic 1: holm, know, well, can, might 
@@ -1993,7 +1995,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 11 (approx. per word bound = -7.332, relative change = 2.243e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 12 (approx. per word bound = -7.331, relative change = 1.713e-04) 
 ## ....................................................................................................
@@ -2001,11 +2003,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 13 (approx. per word bound = -7.330, relative change = 1.282e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 14 (approx. per word bound = -7.329, relative change = 1.167e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 15 (approx. per word bound = -7.328, relative change = 6.326e-05) 
 ## Topic 1: holm, know, well, can, might 
@@ -2058,7 +2060,7 @@ test_res$results %>%
 ## Try `df %>% unnest(c(K, exclus, semcoh))`, with `mutate()` if needed
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-69-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-70-1.png" width="672" />
 
 ##### Finalize 
 
@@ -2084,7 +2086,7 @@ final_stm <- stm(dtm$documents,
 plot(final_stm)
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-71-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-72-1.png" width="672" />
 
 - Using ggplot2 
 
@@ -2106,7 +2108,7 @@ tidy_stm %>%
     scale_fill_viridis_d()
 ```
 
-<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-72-1.png" width="672" />
+<img src="05_high_dimensional_data_files/figure-html/unnamed-chunk-73-1.png" width="672" />
 
 ## Bias and fairness in machine learning 
 

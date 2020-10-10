@@ -1,5 +1,7 @@
 # Big data {#big_data}
 
+
+
 ## Motivation
 
 - Big data problem: data is too big to fit into memory (=local environment).
@@ -344,7 +346,7 @@ LIMIT 5
 <div class="knitsql-table">
 
 
-Table: (\#tab:unnamed-chunk-5)5 records
+Table: (\#tab:unnamed-chunk-6)5 records
 
 | year| month| day| dep_time| sched_dep_time| dep_delay| arr_time| sched_arr_time| arr_delay|carrier | flight|tailnum |origin |dest | air_time| distance| hour| minute|  time_hour|
 |----:|-----:|---:|--------:|--------------:|---------:|--------:|--------------:|---------:|:-------|------:|:-------|:------|:----|--------:|--------:|----:|------:|----------:|
@@ -689,7 +691,7 @@ origin_flights_plot <- ggplot(df) +
 origin_flights_plot
 ```
 
-<img src="06_big_data_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="06_big_data_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 ### Disconnect 
 

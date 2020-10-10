@@ -1,5 +1,7 @@
 # Automating repeated things {#functional_programming}
 
+
+
 > Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions. 
 - Hadley Wickham
 
@@ -1028,7 +1030,7 @@ toc()
 ```
 
 ```
-## 0.006 sec elapsed
+## 0.011 sec elapsed
 ```
 
 
@@ -1292,7 +1294,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-27-1.png" width="672" />
 
 ```r
 airquality %>%
@@ -1308,7 +1310,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-26-2.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-27-2.png" width="672" />
 
 ```r
 airquality %>%
@@ -1324,7 +1326,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-26-3.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-27-3.png" width="672" />
 
 ### Solution 
 
@@ -1372,7 +1374,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 
 - The next step is to write an automatic plotting function. 
 
@@ -1406,7 +1408,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-31-1.png" width="672" />
 
 ```
 ## 
@@ -1417,7 +1419,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-30-2.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-31-2.png" width="672" />
 
 ```
 ## 
@@ -1428,7 +1430,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-30-3.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-31-3.png" width="672" />
 
 ```
 ## 
@@ -1439,7 +1441,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-30-4.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-31-4.png" width="672" />
 
 ```
 ## 
@@ -1450,7 +1452,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="03_functional_programming_files/figure-html/unnamed-chunk-30-5.png" width="672" />
+<img src="03_functional_programming_files/figure-html/unnamed-chunk-31-5.png" width="672" />
 
 ## Automate joining
 
