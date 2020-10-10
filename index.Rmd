@@ -17,11 +17,6 @@ colorlinks: yes
 description: "Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists."
 ---
 
-```{r include=FALSE}
-# To speed up building process 
-knitr::opts_chunk$set(cache = TRUE)
-```
-
 # Hello World 
 
 This is the website for *Computational Thinking for Social Scientists*. This book intends to help social scientists to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let them to work on research projects that would previously seem impossible.
