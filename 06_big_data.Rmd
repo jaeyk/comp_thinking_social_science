@@ -1,10 +1,5 @@
 # Big data {#big_data}
 
-```{r include=FALSE}
-# To speed up building process 
-knitr::opts_chunk$set(cache = TRUE)
-```
-
 ## Motivation
 
 - Big data problem: data is too big to fit into memory (=local environment).
@@ -272,7 +267,7 @@ DBI::dbGetQuery(con, "SELECT * FROM flights;") %>%
 
 - Option 2 (works faster)
 
-```{sql, connection = con}
+```{sql connection=con, include=FALSE}
 
 SELECT * 
 FROM flights 
