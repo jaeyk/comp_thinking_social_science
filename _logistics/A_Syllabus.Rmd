@@ -1,4 +1,14 @@
-# Introduction to Computational Tools for Social Science
+---
+title: "PS239T: Introduction to Computational Tools for Social Science"
+author: "Jae Yeon Kim"
+date: "10/9/2020"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+# Overview
 
 This course will help social science graduate students to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables students to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let students to work on research projects that would previously seem impossible.
 
@@ -46,7 +56,7 @@ We will learn how to do all of the above mostly in [**R**](https://www.r-project
 
 ### Contributors 
 
-- Instructor and content developer: [Jae Yeon Kim](https://jaeyk.github.io/) (jaeyeonkim@berkeley.edu)
+- Instructor: [Jae Yeon Kim](https://jaeyk.github.io/) (jaeyeonkim@berkeley.edu)
 
 ### Time and location 
 
@@ -66,10 +76,6 @@ By appointment with ...
 ### Accessibility
 
 This class is committed to creating an environment in which everyone can participate, regardless of background, discipline, or disability. If you have a particular concern, please come to me as soon as possible so that we can make special arrangements.
- 
-### Code for conduct 
-
-**TBD**
 
 ### Course requirements and grades 
 
@@ -101,6 +107,7 @@ Because we will be using laptops every class, the temptation to attend to other 
 #### Final project 
 
 The final project consists of using the tools we learned in class on your own data of interest. First- and second-year students in the political science department are encouraged to use this as an opportunity to gather data to be used for other courses or the second-year thesis. Students are required to write a short proposal by March (no more than 2 paragraphs) in order to get approval and feedback from the instructor. 
+
 During sections in April we will have **lightning talk sessions** where students present their projects in a maximum 5 minute talk, with 5 minutes for class Q&A. Since there is no expectation of a formal paper, you should select a project that is completable by the end of the term. In other words, submitting a research design for your future dissertation that will use skills from the class but collects no data is not acceptable, but completing a viably small portion of a study or thesis is. 
 
 - [Final project rubric](https://github.com/jaeyk/PS239T/blob/master/final_projects/rubric.md)
@@ -185,12 +192,8 @@ glue("* Week {length(part1_headings) + seq(part2_headings)} {part2_headings [1:l
 
 ## Questions, comments, or suggestions
 
-Please [create issues](https://github.com/jaeyk/PS239T/issues) [TBD: issue template], if you have questions, comments, or suggestions.
+Please [create issues](https://github.com/jaeyk/PS239T/issues), if you have questions, comments, or suggestions.
 
 ## Special thanks 
 
-This course is a remix version of [the course](https://github.com/rochelleterman/PS239T) originally developed by [Rochelle Terman](http://rochelleterman.com/) then revised by [Rachel Bernhard](http://rachelbernhard.com/). Other teaching materials draw from the workshops I created for [D-Lab](https://dlab.berkeley.edu/) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley.
-
-## License 
-
-![](https://i.creativecommons.org/l/by/4.0/88x31.png) This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+This course is a remix version of [the course](https://github.com/rochelleterman/PS239T) originally developed by [Rochelle Terman](http://rochelleterman.com/) then revised by [Rachel Bernhard](http://rachelbernhard.com/). Other teaching materials draw from the workshops I have created for [D-Lab](https://dlab.berkeley.edu/) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley.
