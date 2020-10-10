@@ -1,5 +1,10 @@
 # Big data {#big_data}
 
+```{r include=FALSE}
+# To speed up building process 
+knitr::opts_chunk$set(cache = TRUE)
+```
+
 ## Motivation
 
 - Big data problem: data is too big to fit into memory (=local environment).

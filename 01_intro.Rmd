@@ -1,5 +1,10 @@
 # Managing data and code {#intro}
 
+```{r include=FALSE}
+# To speed up building process 
+knitr::opts_chunk$set(cache = TRUE)
+```
+
 ## Project-oriented research
 
 ### Computational reproducibility

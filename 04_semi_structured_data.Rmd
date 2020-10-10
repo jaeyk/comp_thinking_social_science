@@ -1,5 +1,10 @@
 # Semi-structured data {#semi_structured_data}
 
+```{r include=FALSE}
+# To speed up building process 
+knitr::opts_chunk$set(cache = TRUE)
+```
+
 ## Objectives
 
 -   Automating the process of turning semi-structured data (input) into structured data (output)
