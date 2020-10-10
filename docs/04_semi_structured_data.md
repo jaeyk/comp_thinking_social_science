@@ -288,17 +288,12 @@ devtools::install_github("jaeyk/tidytweetjson",
 ```
 
 ```
-## Skipping install of 'tidytweetjson' from a github remote, the SHA1 (3ab642b2) has not changed since last install.
+## Skipping install of 'tidytweetjson' from a github remote, the SHA1 (a1d9cf14) has not changed since last install.
 ##   Use `force = TRUE` to force installation
 ```
 
 ```r
 library(tidytweetjson)
-```
-
-```
-## Warning: replacing previous import 'maps::map' by 'purrr::map' when loading
-## 'tidytweetjson'
 ```
 
 #### Objectives
