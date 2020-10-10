@@ -1,7 +1,5 @@
 # Big data {#big_data}
 
-
-
 ## Motivation
 
 - Big data problem: data is too big to fit into memory (=local environment).
@@ -334,29 +332,6 @@ DBI::dbGetQuery(con, "SELECT * FROM flights;") %>%
 - Option 2 (works faster)
 
 
-```sql
-
-SELECT * 
-FROM flights 
-LIMIT 5
-
-```
-
-
-<div class="knitsql-table">
-
-
-Table: (\#tab:unnamed-chunk-6)5 records
-
-| year| month| day| dep_time| sched_dep_time| dep_delay| arr_time| sched_arr_time| arr_delay|carrier | flight|tailnum |origin |dest | air_time| distance| hour| minute|  time_hour|
-|----:|-----:|---:|--------:|--------------:|---------:|--------:|--------------:|---------:|:-------|------:|:-------|:------|:----|--------:|--------:|----:|------:|----------:|
-| 2013|     1|   1|      517|            515|         2|      830|            819|        11|UA      |   1545|N14228  |EWR    |IAH  |      227|     1400|    5|     15| 1357034400|
-| 2013|     1|   1|      533|            529|         4|      850|            830|        20|UA      |   1714|N24211  |LGA    |IAH  |      227|     1416|    5|     29| 1357034400|
-| 2013|     1|   1|      542|            540|         2|      923|            850|        33|AA      |   1141|N619AA  |JFK    |MIA  |      160|     1089|    5|     40| 1357034400|
-| 2013|     1|   1|      544|            545|        -1|     1004|           1022|       -18|B6      |    725|N804JB  |JFK    |BQN  |      183|     1576|    5|     45| 1357034400|
-| 2013|     1|   1|      554|            600|        -6|      812|            837|       -25|DL      |    461|N668DN  |LGA    |ATL  |      116|      762|    6|      0| 1357038000|
-
-</div>
 
 - Option 3 (automating workflow)
 
@@ -691,7 +666,7 @@ origin_flights_plot <- ggplot(df) +
 origin_flights_plot
 ```
 
-<img src="06_big_data_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<img src="06_big_data_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 ### Disconnect 
 
