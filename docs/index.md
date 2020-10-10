@@ -23,7 +23,7 @@ description: "Computational Thinking for Social Scientists. Online textbook for 
 
 This is the website for *Computational Thinking for Social Scientists*. This book intends to help social scientists to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let them to work on research projects that would previously seem impossible.
 
-The book is not intended to be a comprehensive guide for computational social science or any particular programming language, computational tool or technique. For general introduction to computational social science, I recommend [Matthew Salganik](http://www.princeton.edu/~mjs3/)'s [Bit By Bit (2019)](https://www.bitbybitbook.com/). 
+The book is not intended to be a comprehensive guide for computational social science or any particular programming language, computational tool or technique. For general introduction to computational social science, I recommend [Matthew Salganik](http://www.princeton.edu/~mjs3/)'s [Bit By Bit (2017)](https://www.bitbybitbook.com/). 
 
 The book is currently divided into two main subjects (fundamentals and applications) and six main sessions.
 

@@ -2,7 +2,10 @@
 title: "A_Syllabus"
 author: "Jae Yeon Kim"
 date: "10/9/2020"
-output: html_document
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
 ---
 
 # Introduction to Computational Tools for Social Science
