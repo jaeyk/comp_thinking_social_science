@@ -5651,7 +5651,7 @@ tablea %>% kableExtra::kable()
 tablea %>% flextable::flextable()
 ```
 
-<!--html_preserve--><div class="tabwid"><style>.cl-45bfc17c{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-45bfd1e4{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-45bfd202{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-45bff46c{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45bff48a{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45bff494{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45bff49e{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45bff4a8{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45bff4b2{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-45bff4a8"><p class="cl-45bfd1e4"><span class="cl-45bfc17c">continent</span></p></td><td class="cl-45bff4b2"><p class="cl-45bfd202"><span class="cl-45bfc17c">n</span></p></td><td class="cl-45bff4b2"><p class="cl-45bfd202"><span class="cl-45bfc17c">mean_gdp</span></p></td><td class="cl-45bff4b2"><p class="cl-45bfd202"><span class="cl-45bfc17c">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-45bff46c"><p class="cl-45bfd1e4"><span class="cl-45bfc17c">Africa</span></p></td><td class="cl-45bff48a"><p class="cl-45bfd202"><span class="cl-45bfc17c">624</span></p></td><td class="cl-45bff48a"><p class="cl-45bfd202"><span class="cl-45bfc17c">2193.755</span></p></td><td class="cl-45bff48a"><p class="cl-45bfd202"><span class="cl-45bfc17c">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-45bff46c"><p class="cl-45bfd1e4"><span class="cl-45bfc17c">Americas</span></p></td><td class="cl-45bff48a"><p class="cl-45bfd202"><span class="cl-45bfc17c">300</span></p></td><td class="cl-45bff48a"><p class="cl-45bfd202"><span class="cl-45bfc17c">7136.110</span></p></td><td class="cl-45bff48a"><p class="cl-45bfd202"><span class="cl-45bfc17c">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-45bff46c"><p class="cl-45bfd1e4"><span class="cl-45bfc17c">Asia</span></p></td><td class="cl-45bff48a"><p class="cl-45bfd202"><span class="cl-45bfc17c">396</span></p></td><td class="cl-45bff48a"><p class="cl-45bfd202"><span class="cl-45bfc17c">7902.150</span></p></td><td class="cl-45bff48a"><p class="cl-45bfd202"><span class="cl-45bfc17c">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-45bff46c"><p class="cl-45bfd1e4"><span class="cl-45bfc17c">Europe</span></p></td><td class="cl-45bff48a"><p class="cl-45bfd202"><span class="cl-45bfc17c">360</span></p></td><td class="cl-45bff48a"><p class="cl-45bfd202"><span class="cl-45bfc17c">14469.476</span></p></td><td class="cl-45bff48a"><p class="cl-45bfd202"><span class="cl-45bfc17c">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-45bff494"><p class="cl-45bfd1e4"><span class="cl-45bfc17c">Oceania</span></p></td><td class="cl-45bff49e"><p class="cl-45bfd202"><span class="cl-45bfc17c">24</span></p></td><td class="cl-45bff49e"><p class="cl-45bfd202"><span class="cl-45bfc17c">18621.609</span></p></td><td class="cl-45bff49e"><p class="cl-45bfd202"><span class="cl-45bfc17c">6358.983</span></p></td></tr></tbody></table></div><!--/html_preserve-->
+<!--html_preserve--><div class="tabwid"><style>.cl-a8290f2e{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-a8291eb0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-a8291ece{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-a8293f80{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a8293f9e{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a8293fa8{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a8293fb2{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a8293fbc{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a8293fc6{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-a8293fbc"><p class="cl-a8291eb0"><span class="cl-a8290f2e">continent</span></p></td><td class="cl-a8293fc6"><p class="cl-a8291ece"><span class="cl-a8290f2e">n</span></p></td><td class="cl-a8293fc6"><p class="cl-a8291ece"><span class="cl-a8290f2e">mean_gdp</span></p></td><td class="cl-a8293fc6"><p class="cl-a8291ece"><span class="cl-a8290f2e">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-a8293f80"><p class="cl-a8291eb0"><span class="cl-a8290f2e">Africa</span></p></td><td class="cl-a8293f9e"><p class="cl-a8291ece"><span class="cl-a8290f2e">624</span></p></td><td class="cl-a8293f9e"><p class="cl-a8291ece"><span class="cl-a8290f2e">2193.755</span></p></td><td class="cl-a8293f9e"><p class="cl-a8291ece"><span class="cl-a8290f2e">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a8293f80"><p class="cl-a8291eb0"><span class="cl-a8290f2e">Americas</span></p></td><td class="cl-a8293f9e"><p class="cl-a8291ece"><span class="cl-a8290f2e">300</span></p></td><td class="cl-a8293f9e"><p class="cl-a8291ece"><span class="cl-a8290f2e">7136.110</span></p></td><td class="cl-a8293f9e"><p class="cl-a8291ece"><span class="cl-a8290f2e">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a8293f80"><p class="cl-a8291eb0"><span class="cl-a8290f2e">Asia</span></p></td><td class="cl-a8293f9e"><p class="cl-a8291ece"><span class="cl-a8290f2e">396</span></p></td><td class="cl-a8293f9e"><p class="cl-a8291ece"><span class="cl-a8290f2e">7902.150</span></p></td><td class="cl-a8293f9e"><p class="cl-a8291ece"><span class="cl-a8290f2e">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a8293f80"><p class="cl-a8291eb0"><span class="cl-a8290f2e">Europe</span></p></td><td class="cl-a8293f9e"><p class="cl-a8291ece"><span class="cl-a8290f2e">360</span></p></td><td class="cl-a8293f9e"><p class="cl-a8291ece"><span class="cl-a8290f2e">14469.476</span></p></td><td class="cl-a8293f9e"><p class="cl-a8291ece"><span class="cl-a8290f2e">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a8293fa8"><p class="cl-a8291eb0"><span class="cl-a8290f2e">Oceania</span></p></td><td class="cl-a8293fb2"><p class="cl-a8291ece"><span class="cl-a8290f2e">24</span></p></td><td class="cl-a8293fb2"><p class="cl-a8291ece"><span class="cl-a8290f2e">18621.609</span></p></td><td class="cl-a8293fb2"><p class="cl-a8291ece"><span class="cl-a8290f2e">6358.983</span></p></td></tr></tbody></table></div><!--/html_preserve-->
 
 #### Scoped summaries
 
@@ -8528,7 +8528,7 @@ toc()
 ```
 
 ```
-## 0.005 sec elapsed
+## 0.006 sec elapsed
 ```
 
 
@@ -9186,7 +9186,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[2]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
 ## 
 ## 
 ## [[3]]
@@ -11836,7 +11836,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.381, relative change = 2.581e-03) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 5 (approx. per word bound = -7.375, relative change = 8.290e-04) 
 ## Topic 1: come, time, might, know, must 
@@ -11849,7 +11849,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.371, relative change = 4.271e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.370, relative change = 2.175e-04) 
 ## ....................................................................................................
@@ -11868,15 +11868,15 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.651) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.480, relative change = 2.234e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.378, relative change = 1.356e-02) 
 ## ....................................................................................................
@@ -11947,19 +11947,19 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.737) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.500, relative change = 3.056e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.388, relative change = 1.494e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.356, relative change = 4.344e-03) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 5 (approx. per word bound = -7.345, relative change = 1.583e-03) 
 ## Topic 1: holm, know, well, can, might 
@@ -11978,15 +11978,15 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 14: one, side, two, year, famili 
 ##  Topic 15: upon, tabl, finger, depend, wrist 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.340, relative change = 5.712e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.338, relative change = 2.704e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.336, relative change = 2.640e-04) 
 ## ....................................................................................................
@@ -11994,7 +11994,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.335, relative change = 1.952e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 10 (approx. per word bound = -7.333, relative change = 2.106e-04) 
 ## Topic 1: holm, know, well, can, might 
@@ -12017,11 +12017,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 11 (approx. per word bound = -7.332, relative change = 2.243e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 12 (approx. per word bound = -7.331, relative change = 1.713e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 13 (approx. per word bound = -7.330, relative change = 1.282e-04) 
 ## ....................................................................................................
@@ -12029,7 +12029,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 14 (approx. per word bound = -7.329, relative change = 1.167e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 15 (approx. per word bound = -7.328, relative change = 6.326e-05) 
 ## Topic 1: holm, know, well, can, might 
