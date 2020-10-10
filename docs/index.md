@@ -19,23 +19,38 @@ description: "Computational Thinking for Social Scientists. Online textbook for 
 
 # Hello World 
 
+
+```r
+print("Hello, World!")
+```
+
+```
+## [1] "Hello, World!"
+```
+
 This is the website for *Computational Thinking for Social Scientists*. This book intends to help social scientists to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let them to work on research projects that would previously seem impossible.
 
 The book is not intended to be a comprehensive guide for computational social science or any particular programming language, computational tool or technique. For general introduction to computational social science, I recommend [Matthew Salganik](http://www.princeton.edu/~mjs3/)'s [Bit By Bit (2017)](https://www.bitbybitbook.com/). 
 
-The book is currently divided into two main subjects (fundamentals and applications) and six main sessions.
+The book is currently divided into two main subjects (fundamentals and applications) and seven main sessions.
 
 ### Part I Fundamentals
 
-- 1. Best practices in data and code management using Git and Bash. 
-- 2. How to wrangle, model, and visualize data easier and faster. 
-- 3. How to use functions to automate repeated things and develop their own data tools (e.g., packages). 
+1. [Why computational thinking](#motivation)
+
+2. [Best practices in data and code management using Git and Bash](#git_bash)
+
+3. [How to wrangle, model, and visualize data easier and faster](#tidy_data) 
+
+4. [How to use functions to automate repeated things and develop their own data tools (e.g., packages)](#functional_programming) 
 
 ### Part II Applications
 
-- 4. How to collect and parse semi-structured data at scale (e.g., using APIs and webscraping). 
-- 5. How to analyze high-dimensional data (e.g., text) using machine learning. 
-- 6. How to access, query, and manage big data using SQL. 
+5. [How to collect and parse semi-structured data at scale (e.g., using APIs and webscraping)](#semi_structured_data) 
+
+6. [How to analyze high-dimensional data (e.g., text) using machine learning](#machine_learning) 
+
+7. [How to access, query, and manage big data using SQL](#big_data) 
 
 The book teaches how to do all of these mostly in [**R**](https://www.r-project.org/about.html), and sometimes in [**bash**](https://www.gnu.org/software/bash/) and [**Python**](https://www.python.org/about/).
 
