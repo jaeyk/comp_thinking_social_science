@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-**Please describe your question is related to which part of the course (e.g., Chapter 1)**
+**Please describe your question is related to which part of the course (e.g., Week 1)**
 
 **Please describe why that part is unclear**
 
