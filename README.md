@@ -6,21 +6,21 @@ The book is currently divided into two main subjects (fundamentals and applicati
 
 ### Part I Fundamentals
 
-1. [Why computational thinking]("https://jaeyk.github.io/PS239T/motivation.html")
+1. [Why computational thinking](https://jaeyk.github.io/PS239T/motivation.html)
 
-2. [Best practices in data and code management using Git and Bash]("https://jaeyk.github.io/PS239T/git_bash.html")
+2. [Best practices in data and code management using Git and Bash](https://jaeyk.github.io/PS239T/git_bash.html)
 
-3. [How to wrangle, model, and visualize data easier and faster]("https://jaeyk.github.io/PS239T/tidy_data.html") 
+3. [How to wrangle, model, and visualize data easier and faster](https://jaeyk.github.io/PS239T/tidy_data.html) 
 
-4. [How to use functions to automate repeated things and develop their own data tools (e.g., packages)]("https://jaeyk.github.io/PS239T/functional_programming.html") 
+4. [How to use functions to automate repeated things and develop their own data tools (e.g., packages)](https://jaeyk.github.io/PS239T/functional_programming.html) 
 
 ### Part II Applications
 
-5. [How to collect and parse semi-structured data at scale (e.g., using APIs and webscraping)]("https://jaeyk.github.io/PS239T/semi_structured_data.html") 
+5. [How to collect and parse semi-structured data at scale (e.g., using APIs and webscraping)](https://jaeyk.github.io/PS239T/semi_structured_data.html) 
 
-6. [How to analyze high-dimensional data (e.g., text) using machine learning]("https://jaeyk.github.io/PS239T/machine_learning.html") 
+6. [How to analyze high-dimensional data (e.g., text) using machine learning](https://jaeyk.github.io/PS239T/machine_learning.html) 
 
-7. [How to access, query, and manage big data using SQL]("https://jaeyk.github.io/PS239T/big_data.html") 
+7. [How to access, query, and manage big data using SQL](https://jaeyk.github.io/PS239T/big_data.html) 
 
 ## Feedback 
 If you have questions, comments, or suggestions, please [create an issue](https://github.com/jaeyk/ctss/issues). 
