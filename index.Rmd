@@ -37,7 +37,7 @@ The book is currently divided into two main subjects (fundamentals and applicati
 
 3. [How to wrangle, model, and visualize data easier and faster](#tidy_data) 
 
-4. [How to use functions to automate repeated things and develop their own data tools (e.g., packages)](#functional_programming) 
+4. [How to use functions to automate repeated things and develop data tools (e.g., packages and apps)](#functional_programming) 
 
 ### Part II Applications
 

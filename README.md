@@ -12,7 +12,7 @@ The book is currently divided into two main subjects (fundamentals and applicati
 
 3. [How to wrangle, model, and visualize data easier and faster](https://jaeyk.github.io/PS239T/tidy_data.html) 
 
-4. [How to use functions to automate repeated things and develop their own data tools (e.g., packages)](https://jaeyk.github.io/PS239T/functional_programming.html) 
+4. [How to use functions to automate repeated things and develop data tools (e.g., packages and apps)](https://jaeyk.github.io/PS239T/functional_programming.html) 
 
 ### Part II Applications
 
