@@ -2,7 +2,7 @@
 knitr: "bookdown::render_book"
 title: "Computational Thinking for Social Scientists"
 author: ["[Jae Yeon Kim](https://jaeyk.github.io/)"]
-date: "2020-10-14"
+date: "2020-10-15"
 site: bookdown::bookdown_site
 github-repo: jaeyk/PS239T
 twitter-handle: JaeJaeykim2
@@ -42,7 +42,7 @@ The book is currently divided into two main subjects (fundamentals and applicati
 
 3. [How to wrangle, model, and visualize data easier and faster](#tidy_data) 
 
-4. [How to use functions to automate repeated things and develop their own data tools (e.g., packages)](#functional_programming) 
+4. [How to use functions to automate repeated things and develop data tools (e.g., packages and apps)](#functional_programming) 
 
 ### Part II Applications
 
