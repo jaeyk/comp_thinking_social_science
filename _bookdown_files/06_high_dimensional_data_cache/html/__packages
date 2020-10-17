@@ -29,3 +29,8 @@ glue
 tidytext
 stm
 gutenbergr
+pacman
+conflicted
+ggthemes
+survival
+reticulate
