@@ -2108,36 +2108,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.8.1</span> Bias in the Data (Risk of Recidivism Analysis)</h3>
 <div id="setup-4" class="section level4" number="7.8.1.1">
 <h4><span class="header-section-number">7.8.1.1</span> Setup</h4>
-<div class="sourceCode" id="cb1098"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1098-1"><a href="machine-learning.html#cb1098-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span></code></pre></div>
-<pre><code>## Loading required package: pacman</code></pre>
-<div class="sourceCode" id="cb1100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1100-1"><a href="machine-learning.html#cb1100-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(</span>
-<span id="cb1100-2"><a href="machine-learning.html#cb1100-2"></a> tidyverse, <span class="co"># tidyverse packages </span></span>
-<span id="cb1100-3"><a href="machine-learning.html#cb1100-3"></a> conflicted, <span class="co"># an alternative conflict resolution strategy </span></span>
-<span id="cb1100-4"><a href="machine-learning.html#cb1100-4"></a> ggthemes, <span class="co"># other themes for ggplot2 </span></span>
-<span id="cb1100-5"><a href="machine-learning.html#cb1100-5"></a> patchwork, <span class="co"># arranging ggplots</span></span>
-<span id="cb1100-6"><a href="machine-learning.html#cb1100-6"></a> scales, <span class="co"># rescaling </span></span>
-<span id="cb1100-7"><a href="machine-learning.html#cb1100-7"></a> survival, <span class="co"># survival analysis</span></span>
-<span id="cb1100-8"><a href="machine-learning.html#cb1100-8"></a> broom, <span class="co"># for modeling</span></span>
-<span id="cb1100-9"><a href="machine-learning.html#cb1100-9"></a> here, <span class="co"># reproducibility </span></span>
-<span id="cb1100-10"><a href="machine-learning.html#cb1100-10"></a> glue <span class="co"># pasting strings and objects </span></span>
-<span id="cb1100-11"><a href="machine-learning.html#cb1100-11"></a>)</span>
-<span id="cb1100-12"><a href="machine-learning.html#cb1100-12"></a></span>
-<span id="cb1100-13"><a href="machine-learning.html#cb1100-13"></a><span class="co"># To avoid conflicts </span></span>
-<span id="cb1100-14"><a href="machine-learning.html#cb1100-14"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb1098"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1098-1"><a href="machine-learning.html#cb1098-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb1098-2"><a href="machine-learning.html#cb1098-2"></a></span>
+<span id="cb1098-3"><a href="machine-learning.html#cb1098-3"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(</span>
+<span id="cb1098-4"><a href="machine-learning.html#cb1098-4"></a> tidyverse, <span class="co"># tidyverse packages </span></span>
+<span id="cb1098-5"><a href="machine-learning.html#cb1098-5"></a> conflicted, <span class="co"># an alternative conflict resolution strategy </span></span>
+<span id="cb1098-6"><a href="machine-learning.html#cb1098-6"></a> ggthemes, <span class="co"># other themes for ggplot2 </span></span>
+<span id="cb1098-7"><a href="machine-learning.html#cb1098-7"></a> patchwork, <span class="co"># arranging ggplots</span></span>
+<span id="cb1098-8"><a href="machine-learning.html#cb1098-8"></a> scales, <span class="co"># rescaling </span></span>
+<span id="cb1098-9"><a href="machine-learning.html#cb1098-9"></a> survival, <span class="co"># survival analysis</span></span>
+<span id="cb1098-10"><a href="machine-learning.html#cb1098-10"></a> broom, <span class="co"># for modeling</span></span>
+<span id="cb1098-11"><a href="machine-learning.html#cb1098-11"></a> here, <span class="co"># reproducibility </span></span>
+<span id="cb1098-12"><a href="machine-learning.html#cb1098-12"></a> glue <span class="co"># pasting strings and objects </span></span>
+<span id="cb1098-13"><a href="machine-learning.html#cb1098-13"></a>)</span>
+<span id="cb1098-14"><a href="machine-learning.html#cb1098-14"></a></span>
+<span id="cb1098-15"><a href="machine-learning.html#cb1098-15"></a><span class="co"># To avoid conflicts </span></span>
+<span id="cb1098-16"><a href="machine-learning.html#cb1098-16"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>) </span></code></pre></div>
 <pre><code>## [conflicted] Will prefer dplyr::filter over any other package</code></pre>
-<div class="sourceCode" id="cb1102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1102-1"><a href="machine-learning.html#cb1102-1"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb1100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1100-1"><a href="machine-learning.html#cb1100-1"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>) </span></code></pre></div>
 <pre><code>## [conflicted] Will prefer dplyr::select over any other package</code></pre>
-<div class="sourceCode" id="cb1104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1104-1"><a href="machine-learning.html#cb1104-1"></a><span class="co"># Set themes </span></span>
-<span id="cb1104-2"><a href="machine-learning.html#cb1104-2"></a><span class="kw">theme_set</span>(ggthemes<span class="op">::</span><span class="kw">theme_fivethirtyeight</span>())</span></code></pre></div>
 </div>
 <div id="load-data" class="section level4" number="7.8.1.2">
 <h4><span class="header-section-number">7.8.1.2</span> Load data</h4>
 <p>We select fields for severity of charge, number of priors, demographics, age, sex, COMPAS scores, and whether each person was accused of a crime within two years.</p>
-<div class="sourceCode" id="cb1105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1105-1"><a href="machine-learning.html#cb1105-1"></a>two_years &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;compas-scores-two-years.csv&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1102-1"><a href="machine-learning.html#cb1102-1"></a>two_years &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;compas-scores-two-years.csv&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning: Duplicated column names deduplicated: &#39;decile_score&#39; =&gt;
 ## &#39;decile_score_1&#39; [40], &#39;priors_count&#39; =&gt; &#39;priors_count_1&#39; [49]</code></pre>
-<div class="sourceCode" id="cb1107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1107-1"><a href="machine-learning.html#cb1107-1"></a><span class="kw">glue</span>(<span class="st">&quot;N of observations (rows): {nrow(two_years)}</span></span>
-<span id="cb1107-2"><a href="machine-learning.html#cb1107-2"></a><span class="st">      N of variables (columns): {ncol(two_years)}&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1104-1"><a href="machine-learning.html#cb1104-1"></a><span class="kw">glue</span>(<span class="st">&quot;N of observations (rows): {nrow(two_years)}</span></span>
+<span id="cb1104-2"><a href="machine-learning.html#cb1104-2"></a><span class="st">      N of variables (columns): {ncol(two_years)}&quot;</span>)</span></code></pre></div>
 <pre><code>## N of observations (rows): 7214
 ## N of variables (columns): 53</code></pre>
 </div>
@@ -2154,40 +2152,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>Create a function</li>
 </ul>
-<div class="sourceCode" id="cb1109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1109-1"><a href="machine-learning.html#cb1109-1"></a>wrangle_data &lt;-<span class="st"> </span><span class="cf">function</span>(data){</span>
-<span id="cb1109-2"><a href="machine-learning.html#cb1109-2"></a></span>
-<span id="cb1109-3"><a href="machine-learning.html#cb1109-3"></a>df &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1109-4"><a href="machine-learning.html#cb1109-4"></a><span class="st">    </span></span>
-<span id="cb1109-5"><a href="machine-learning.html#cb1109-5"></a><span class="st">    </span><span class="co"># Select variables </span></span>
-<span id="cb1109-6"><a href="machine-learning.html#cb1109-6"></a><span class="st">    </span><span class="kw">select</span>(age, c_charge_degree, race, age_cat, score_text, sex, priors_count, days_b_screening_arrest, decile_score, is_recid, two_year_recid, </span>
-<span id="cb1109-7"><a href="machine-learning.html#cb1109-7"></a>         c_jail_in, c_jail_out) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1109-8"><a href="machine-learning.html#cb1109-8"></a><span class="st">    </span><span class="co"># Filter rows </span></span>
-<span id="cb1109-9"><a href="machine-learning.html#cb1109-9"></a><span class="st">    </span><span class="kw">filter</span>(days_b_screening_arrest <span class="op">&lt;=</span><span class="st"> </span><span class="dv">30</span>,</span>
-<span id="cb1109-10"><a href="machine-learning.html#cb1109-10"></a>           days_b_screening_arrest <span class="op">&gt;=</span><span class="st"> </span><span class="dv">-30</span>, </span>
-<span id="cb1109-11"><a href="machine-learning.html#cb1109-11"></a>           is_recid <span class="op">!=</span><span class="st"> </span><span class="dv">-1</span>,</span>
-<span id="cb1109-12"><a href="machine-learning.html#cb1109-12"></a>           c_charge_degree <span class="op">!=</span><span class="st"> &quot;O&quot;</span>,</span>
-<span id="cb1109-13"><a href="machine-learning.html#cb1109-13"></a>           score_text <span class="op">!=</span><span class="st"> &#39;N/A&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1109-14"><a href="machine-learning.html#cb1109-14"></a><span class="st">    </span><span class="co"># Mutate variables </span></span>
-<span id="cb1109-15"><a href="machine-learning.html#cb1109-15"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">length_of_stay =</span> <span class="kw">as.numeric</span>(<span class="kw">as.Date</span>(c_jail_out) <span class="op">-</span><span class="st"> </span><span class="kw">as.Date</span>(c_jail_in)),</span>
-<span id="cb1109-16"><a href="machine-learning.html#cb1109-16"></a>           <span class="dt">c_charge_degree =</span> <span class="kw">factor</span>(c_charge_degree),</span>
-<span id="cb1109-17"><a href="machine-learning.html#cb1109-17"></a>           <span class="dt">age_cat =</span> <span class="kw">factor</span>(age_cat),</span>
-<span id="cb1109-18"><a href="machine-learning.html#cb1109-18"></a>           <span class="dt">race =</span> <span class="kw">factor</span>(race, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Caucasian&quot;</span>,<span class="st">&quot;African-American&quot;</span>,<span class="st">&quot;Hispanic&quot;</span>,<span class="st">&quot;Other&quot;</span>,<span class="st">&quot;Asian&quot;</span>,<span class="st">&quot;Native American&quot;</span>)),</span>
-<span id="cb1109-19"><a href="machine-learning.html#cb1109-19"></a>           <span class="dt">sex =</span> <span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>)),</span>
-<span id="cb1109-20"><a href="machine-learning.html#cb1109-20"></a>           <span class="dt">score_text =</span> <span class="kw">factor</span>(score_text, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)),</span>
-<span id="cb1109-21"><a href="machine-learning.html#cb1109-21"></a>           <span class="dt">score =</span> score_text,</span>
-<span id="cb1109-22"><a href="machine-learning.html#cb1109-22"></a><span class="co"># I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference </span></span>
-<span id="cb1109-23"><a href="machine-learning.html#cb1109-23"></a>           <span class="dt">score_num =</span> <span class="kw">as.numeric</span>(score_text)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1109-24"><a href="machine-learning.html#cb1109-24"></a><span class="st">    </span><span class="co"># Rename variables </span></span>
-<span id="cb1109-25"><a href="machine-learning.html#cb1109-25"></a><span class="st">    </span><span class="kw">rename</span>(<span class="dt">crime =</span> c_charge_degree,</span>
-<span id="cb1109-26"><a href="machine-learning.html#cb1109-26"></a>           <span class="dt">gender =</span> sex)</span>
-<span id="cb1109-27"><a href="machine-learning.html#cb1109-27"></a>        </span>
-<span id="cb1109-28"><a href="machine-learning.html#cb1109-28"></a><span class="kw">return</span>(df)}</span></code></pre></div>
+<div class="sourceCode" id="cb1106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1106-1"><a href="machine-learning.html#cb1106-1"></a>wrangle_data &lt;-<span class="st"> </span><span class="cf">function</span>(data){</span>
+<span id="cb1106-2"><a href="machine-learning.html#cb1106-2"></a></span>
+<span id="cb1106-3"><a href="machine-learning.html#cb1106-3"></a>df &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1106-4"><a href="machine-learning.html#cb1106-4"></a><span class="st">    </span></span>
+<span id="cb1106-5"><a href="machine-learning.html#cb1106-5"></a><span class="st">    </span><span class="co"># Select variables </span></span>
+<span id="cb1106-6"><a href="machine-learning.html#cb1106-6"></a><span class="st">    </span><span class="kw">select</span>(age, c_charge_degree, race, age_cat, score_text, sex, priors_count, days_b_screening_arrest, decile_score, is_recid, two_year_recid, </span>
+<span id="cb1106-7"><a href="machine-learning.html#cb1106-7"></a>         c_jail_in, c_jail_out) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1106-8"><a href="machine-learning.html#cb1106-8"></a><span class="st">    </span><span class="co"># Filter rows </span></span>
+<span id="cb1106-9"><a href="machine-learning.html#cb1106-9"></a><span class="st">    </span><span class="kw">filter</span>(days_b_screening_arrest <span class="op">&lt;=</span><span class="st"> </span><span class="dv">30</span>,</span>
+<span id="cb1106-10"><a href="machine-learning.html#cb1106-10"></a>           days_b_screening_arrest <span class="op">&gt;=</span><span class="st"> </span><span class="dv">-30</span>, </span>
+<span id="cb1106-11"><a href="machine-learning.html#cb1106-11"></a>           is_recid <span class="op">!=</span><span class="st"> </span><span class="dv">-1</span>,</span>
+<span id="cb1106-12"><a href="machine-learning.html#cb1106-12"></a>           c_charge_degree <span class="op">!=</span><span class="st"> &quot;O&quot;</span>,</span>
+<span id="cb1106-13"><a href="machine-learning.html#cb1106-13"></a>           score_text <span class="op">!=</span><span class="st"> &#39;N/A&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1106-14"><a href="machine-learning.html#cb1106-14"></a><span class="st">    </span><span class="co"># Mutate variables </span></span>
+<span id="cb1106-15"><a href="machine-learning.html#cb1106-15"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">length_of_stay =</span> <span class="kw">as.numeric</span>(<span class="kw">as.Date</span>(c_jail_out) <span class="op">-</span><span class="st"> </span><span class="kw">as.Date</span>(c_jail_in)),</span>
+<span id="cb1106-16"><a href="machine-learning.html#cb1106-16"></a>           <span class="dt">c_charge_degree =</span> <span class="kw">factor</span>(c_charge_degree),</span>
+<span id="cb1106-17"><a href="machine-learning.html#cb1106-17"></a>           <span class="dt">age_cat =</span> <span class="kw">factor</span>(age_cat),</span>
+<span id="cb1106-18"><a href="machine-learning.html#cb1106-18"></a>           <span class="dt">race =</span> <span class="kw">factor</span>(race, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Caucasian&quot;</span>,<span class="st">&quot;African-American&quot;</span>,<span class="st">&quot;Hispanic&quot;</span>,<span class="st">&quot;Other&quot;</span>,<span class="st">&quot;Asian&quot;</span>,<span class="st">&quot;Native American&quot;</span>)),</span>
+<span id="cb1106-19"><a href="machine-learning.html#cb1106-19"></a>           <span class="dt">sex =</span> <span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>)),</span>
+<span id="cb1106-20"><a href="machine-learning.html#cb1106-20"></a>           <span class="dt">score_text =</span> <span class="kw">factor</span>(score_text, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)),</span>
+<span id="cb1106-21"><a href="machine-learning.html#cb1106-21"></a>           <span class="dt">score =</span> score_text,</span>
+<span id="cb1106-22"><a href="machine-learning.html#cb1106-22"></a><span class="co"># I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference </span></span>
+<span id="cb1106-23"><a href="machine-learning.html#cb1106-23"></a>           <span class="dt">score_num =</span> <span class="kw">as.numeric</span>(score_text)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1106-24"><a href="machine-learning.html#cb1106-24"></a><span class="st">    </span><span class="co"># Rename variables </span></span>
+<span id="cb1106-25"><a href="machine-learning.html#cb1106-25"></a><span class="st">    </span><span class="kw">rename</span>(<span class="dt">crime =</span> c_charge_degree,</span>
+<span id="cb1106-26"><a href="machine-learning.html#cb1106-26"></a>           <span class="dt">gender =</span> sex)</span>
+<span id="cb1106-27"><a href="machine-learning.html#cb1106-27"></a>        </span>
+<span id="cb1106-28"><a href="machine-learning.html#cb1106-28"></a><span class="kw">return</span>(df)}</span></code></pre></div>
 <ul>
 <li>Apply the function to the data</li>
 </ul>
-<div class="sourceCode" id="cb1110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1110-1"><a href="machine-learning.html#cb1110-1"></a>df &lt;-<span class="st"> </span><span class="kw">wrangle_data</span>(two_years)</span>
-<span id="cb1110-2"><a href="machine-learning.html#cb1110-2"></a></span>
-<span id="cb1110-3"><a href="machine-learning.html#cb1110-3"></a><span class="kw">names</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb1107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1107-1"><a href="machine-learning.html#cb1107-1"></a>df &lt;-<span class="st"> </span><span class="kw">wrangle_data</span>(two_years)</span>
+<span id="cb1107-2"><a href="machine-learning.html#cb1107-2"></a></span>
+<span id="cb1107-3"><a href="machine-learning.html#cb1107-3"></a><span class="kw">names</span>(df)</span></code></pre></div>
 <pre><code>##  [1] &quot;age&quot;                     &quot;crime&quot;                  
 ##  [3] &quot;race&quot;                    &quot;age_cat&quot;                
 ##  [5] &quot;score_text&quot;              &quot;gender&quot;                 
@@ -2196,8 +2194,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [11] &quot;two_year_recid&quot;          &quot;c_jail_in&quot;              
 ## [13] &quot;c_jail_out&quot;              &quot;length_of_stay&quot;         
 ## [15] &quot;score&quot;                   &quot;score_num&quot;</code></pre>
-<div class="sourceCode" id="cb1112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1112-1"><a href="machine-learning.html#cb1112-1"></a><span class="co"># Check whether the function works as expected</span></span>
-<span id="cb1112-2"><a href="machine-learning.html#cb1112-2"></a><span class="kw">head</span>(df, <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1109-1"><a href="machine-learning.html#cb1109-1"></a><span class="co"># Check whether the function works as expected</span></span>
+<span id="cb1109-2"><a href="machine-learning.html#cb1109-2"></a><span class="kw">head</span>(df, <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 16
 ##     age crime race  age_cat score_text gender priors_count days_b_screenin…
 ##   &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;      &lt;fct&gt;         &lt;dbl&gt;            &lt;dbl&gt;
@@ -2215,25 +2213,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Higher COMPAS scores are slightly correlated with a longer length of stay.</li>
 </ul>
-<div class="sourceCode" id="cb1114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1114-1"><a href="machine-learning.html#cb1114-1"></a><span class="kw">cor</span>(df<span class="op">$</span>length_of_stay, df<span class="op">$</span>decile_score)</span></code></pre></div>
+<div class="sourceCode" id="cb1111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1111-1"><a href="machine-learning.html#cb1111-1"></a><span class="kw">cor</span>(df<span class="op">$</span>length_of_stay, df<span class="op">$</span>decile_score)</span></code></pre></div>
 <pre><code>## [1] 0.2073297</code></pre>
-<div class="sourceCode" id="cb1116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1116-1"><a href="machine-learning.html#cb1116-1"></a>df <span class="op">%&gt;%</span></span>
-<span id="cb1116-2"><a href="machine-learning.html#cb1116-2"></a><span class="st">  </span><span class="kw">group_by</span>(score) <span class="op">%&gt;%</span></span>
-<span id="cb1116-3"><a href="machine-learning.html#cb1116-3"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
-<span id="cb1116-4"><a href="machine-learning.html#cb1116-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> score, <span class="dt">y =</span> n)) <span class="op">+</span></span>
-<span id="cb1116-5"><a href="machine-learning.html#cb1116-5"></a><span class="st">    </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb1116-6"><a href="machine-learning.html#cb1116-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Score&quot;</span>,</span>
-<span id="cb1116-7"><a href="machine-learning.html#cb1116-7"></a>         <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
-<span id="cb1116-8"><a href="machine-learning.html#cb1116-8"></a>         <span class="dt">title =</span> <span class="st">&quot;Score distribution&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1113-1"><a href="machine-learning.html#cb1113-1"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb1113-2"><a href="machine-learning.html#cb1113-2"></a><span class="st">  </span><span class="kw">group_by</span>(score) <span class="op">%&gt;%</span></span>
+<span id="cb1113-3"><a href="machine-learning.html#cb1113-3"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1113-4"><a href="machine-learning.html#cb1113-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> score, <span class="dt">y =</span> n)) <span class="op">+</span></span>
+<span id="cb1113-5"><a href="machine-learning.html#cb1113-5"></a><span class="st">    </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb1113-6"><a href="machine-learning.html#cb1113-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Score&quot;</span>,</span>
+<span id="cb1113-7"><a href="machine-learning.html#cb1113-7"></a>         <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb1113-8"><a href="machine-learning.html#cb1113-8"></a>         <span class="dt">title =</span> <span class="st">&quot;Score distribution&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
 <p>Judges are often presented with two sets of scores from the COMPAS system – one that classifies people into High, Medium and Low risk, and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.</p>
-<div class="sourceCode" id="cb1117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1117-1"><a href="machine-learning.html#cb1117-1"></a>df <span class="op">%&gt;%</span></span>
-<span id="cb1117-2"><a href="machine-learning.html#cb1117-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">ordered</span>(decile_score))) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb1117-3"><a href="machine-learning.html#cb1117-3"></a><span class="st">          </span><span class="kw">geom_bar</span>() <span class="op">+</span></span>
-<span id="cb1117-4"><a href="machine-learning.html#cb1117-4"></a><span class="st">          </span><span class="kw">facet_wrap</span>(<span class="op">~</span>race, <span class="dt">nrow =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb1117-5"><a href="machine-learning.html#cb1117-5"></a><span class="st">          </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Decile Score&quot;</span>,</span>
-<span id="cb1117-6"><a href="machine-learning.html#cb1117-6"></a>               <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
-<span id="cb1117-7"><a href="machine-learning.html#cb1117-7"></a>               <span class="dt">Title =</span> <span class="st">&quot;Defendant&#39;s Decile Score&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1114-1"><a href="machine-learning.html#cb1114-1"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb1114-2"><a href="machine-learning.html#cb1114-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">ordered</span>(decile_score))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb1114-3"><a href="machine-learning.html#cb1114-3"></a><span class="st">          </span><span class="kw">geom_bar</span>() <span class="op">+</span></span>
+<span id="cb1114-4"><a href="machine-learning.html#cb1114-4"></a><span class="st">          </span><span class="kw">facet_wrap</span>(<span class="op">~</span>race, <span class="dt">nrow =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb1114-5"><a href="machine-learning.html#cb1114-5"></a><span class="st">          </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Decile Score&quot;</span>,</span>
+<span id="cb1114-6"><a href="machine-learning.html#cb1114-6"></a>               <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb1114-7"><a href="machine-learning.html#cb1114-7"></a>               <span class="dt">Title =</span> <span class="st">&quot;Defendant&#39;s Decile Score&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
 </div>
 <div id="modeling" class="section level4" number="7.8.1.5">
@@ -2242,83 +2240,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Model building</li>
 </ul>
-<div class="sourceCode" id="cb1118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1118-1"><a href="machine-learning.html#cb1118-1"></a>model_data &lt;-<span class="st"> </span><span class="cf">function</span>(data){</span>
-<span id="cb1118-2"><a href="machine-learning.html#cb1118-2"></a></span>
-<span id="cb1118-3"><a href="machine-learning.html#cb1118-3"></a><span class="co"># Logistic regression model</span></span>
-<span id="cb1118-4"><a href="machine-learning.html#cb1118-4"></a>lr_model &lt;-<span class="st"> </span><span class="kw">glm</span>(score <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age_cat <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>priors_count <span class="op">+</span><span class="st"> </span>crime <span class="op">+</span><span class="st"> </span>two_year_recid, </span>
-<span id="cb1118-5"><a href="machine-learning.html#cb1118-5"></a>             <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> data)</span>
-<span id="cb1118-6"><a href="machine-learning.html#cb1118-6"></a></span>
-<span id="cb1118-7"><a href="machine-learning.html#cb1118-7"></a><span class="co"># OLS, DV = score_num</span></span>
-<span id="cb1118-8"><a href="machine-learning.html#cb1118-8"></a>ols_model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(score_num <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age_cat <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>priors_count <span class="op">+</span><span class="st"> </span>crime <span class="op">+</span><span class="st"> </span>two_year_recid, <span class="dt">data =</span> data)</span>
-<span id="cb1118-9"><a href="machine-learning.html#cb1118-9"></a></span>
-<span id="cb1118-10"><a href="machine-learning.html#cb1118-10"></a><span class="co"># OLS, DV = decile_score </span></span>
-<span id="cb1118-11"><a href="machine-learning.html#cb1118-11"></a>ols_model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(decile_score <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age_cat <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>priors_count <span class="op">+</span><span class="st"> </span>crime <span class="op">+</span><span class="st"> </span>two_year_recid, <span class="dt">data =</span> data)</span>
-<span id="cb1118-12"><a href="machine-learning.html#cb1118-12"></a></span>
-<span id="cb1118-13"><a href="machine-learning.html#cb1118-13"></a><span class="co"># Extract model outcomes with confidence intervals </span></span>
-<span id="cb1118-14"><a href="machine-learning.html#cb1118-14"></a>lr_est &lt;-<span class="st"> </span>lr_model <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1118-15"><a href="machine-learning.html#cb1118-15"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) </span>
-<span id="cb1118-16"><a href="machine-learning.html#cb1118-16"></a></span>
-<span id="cb1118-17"><a href="machine-learning.html#cb1118-17"></a>ols_est1 &lt;-<span class="st"> </span>ols_model1 <span class="op">%&gt;%</span></span>
-<span id="cb1118-18"><a href="machine-learning.html#cb1118-18"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) </span>
-<span id="cb1118-19"><a href="machine-learning.html#cb1118-19"></a></span>
-<span id="cb1118-20"><a href="machine-learning.html#cb1118-20"></a>ols_est2 &lt;-<span class="st"> </span>ols_model2 <span class="op">%&gt;%</span></span>
-<span id="cb1118-21"><a href="machine-learning.html#cb1118-21"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) </span>
-<span id="cb1118-22"><a href="machine-learning.html#cb1118-22"></a></span>
-<span id="cb1118-23"><a href="machine-learning.html#cb1118-23"></a><span class="co"># AIC scores </span></span>
-<span id="cb1118-24"><a href="machine-learning.html#cb1118-24"></a>lr_AIC &lt;-<span class="st"> </span><span class="kw">AIC</span>(lr_model)</span>
-<span id="cb1118-25"><a href="machine-learning.html#cb1118-25"></a>ols_AIC1 &lt;-<span class="st"> </span><span class="kw">AIC</span>(ols_model1)</span>
-<span id="cb1118-26"><a href="machine-learning.html#cb1118-26"></a>ols_AIC2 &lt;-<span class="st"> </span><span class="kw">AIC</span>(ols_model2)</span>
-<span id="cb1118-27"><a href="machine-learning.html#cb1118-27"></a>    </span>
-<span id="cb1118-28"><a href="machine-learning.html#cb1118-28"></a><span class="kw">list</span>(lr_est, ols_est1, ols_est2, </span>
-<span id="cb1118-29"><a href="machine-learning.html#cb1118-29"></a>     lr_AIC, ols_AIC1, ols_AIC2)</span>
-<span id="cb1118-30"><a href="machine-learning.html#cb1118-30"></a></span>
-<span id="cb1118-31"><a href="machine-learning.html#cb1118-31"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1115-1"><a href="machine-learning.html#cb1115-1"></a>model_data &lt;-<span class="st"> </span><span class="cf">function</span>(data){</span>
+<span id="cb1115-2"><a href="machine-learning.html#cb1115-2"></a></span>
+<span id="cb1115-3"><a href="machine-learning.html#cb1115-3"></a><span class="co"># Logistic regression model</span></span>
+<span id="cb1115-4"><a href="machine-learning.html#cb1115-4"></a>lr_model &lt;-<span class="st"> </span><span class="kw">glm</span>(score <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age_cat <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>priors_count <span class="op">+</span><span class="st"> </span>crime <span class="op">+</span><span class="st"> </span>two_year_recid, </span>
+<span id="cb1115-5"><a href="machine-learning.html#cb1115-5"></a>             <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> data)</span>
+<span id="cb1115-6"><a href="machine-learning.html#cb1115-6"></a></span>
+<span id="cb1115-7"><a href="machine-learning.html#cb1115-7"></a><span class="co"># OLS, DV = score_num</span></span>
+<span id="cb1115-8"><a href="machine-learning.html#cb1115-8"></a>ols_model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(score_num <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age_cat <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>priors_count <span class="op">+</span><span class="st"> </span>crime <span class="op">+</span><span class="st"> </span>two_year_recid, <span class="dt">data =</span> data)</span>
+<span id="cb1115-9"><a href="machine-learning.html#cb1115-9"></a></span>
+<span id="cb1115-10"><a href="machine-learning.html#cb1115-10"></a><span class="co"># OLS, DV = decile_score </span></span>
+<span id="cb1115-11"><a href="machine-learning.html#cb1115-11"></a>ols_model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(decile_score <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age_cat <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>priors_count <span class="op">+</span><span class="st"> </span>crime <span class="op">+</span><span class="st"> </span>two_year_recid, <span class="dt">data =</span> data)</span>
+<span id="cb1115-12"><a href="machine-learning.html#cb1115-12"></a></span>
+<span id="cb1115-13"><a href="machine-learning.html#cb1115-13"></a><span class="co"># Extract model outcomes with confidence intervals </span></span>
+<span id="cb1115-14"><a href="machine-learning.html#cb1115-14"></a>lr_est &lt;-<span class="st"> </span>lr_model <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1115-15"><a href="machine-learning.html#cb1115-15"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) </span>
+<span id="cb1115-16"><a href="machine-learning.html#cb1115-16"></a></span>
+<span id="cb1115-17"><a href="machine-learning.html#cb1115-17"></a>ols_est1 &lt;-<span class="st"> </span>ols_model1 <span class="op">%&gt;%</span></span>
+<span id="cb1115-18"><a href="machine-learning.html#cb1115-18"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) </span>
+<span id="cb1115-19"><a href="machine-learning.html#cb1115-19"></a></span>
+<span id="cb1115-20"><a href="machine-learning.html#cb1115-20"></a>ols_est2 &lt;-<span class="st"> </span>ols_model2 <span class="op">%&gt;%</span></span>
+<span id="cb1115-21"><a href="machine-learning.html#cb1115-21"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) </span>
+<span id="cb1115-22"><a href="machine-learning.html#cb1115-22"></a></span>
+<span id="cb1115-23"><a href="machine-learning.html#cb1115-23"></a><span class="co"># AIC scores </span></span>
+<span id="cb1115-24"><a href="machine-learning.html#cb1115-24"></a>lr_AIC &lt;-<span class="st"> </span><span class="kw">AIC</span>(lr_model)</span>
+<span id="cb1115-25"><a href="machine-learning.html#cb1115-25"></a>ols_AIC1 &lt;-<span class="st"> </span><span class="kw">AIC</span>(ols_model1)</span>
+<span id="cb1115-26"><a href="machine-learning.html#cb1115-26"></a>ols_AIC2 &lt;-<span class="st"> </span><span class="kw">AIC</span>(ols_model2)</span>
+<span id="cb1115-27"><a href="machine-learning.html#cb1115-27"></a>    </span>
+<span id="cb1115-28"><a href="machine-learning.html#cb1115-28"></a><span class="kw">list</span>(lr_est, ols_est1, ols_est2, </span>
+<span id="cb1115-29"><a href="machine-learning.html#cb1115-29"></a>     lr_AIC, ols_AIC1, ols_AIC2)</span>
+<span id="cb1115-30"><a href="machine-learning.html#cb1115-30"></a></span>
+<span id="cb1115-31"><a href="machine-learning.html#cb1115-31"></a>}</span></code></pre></div>
 <ul>
 <li>Model comparisons</li>
 </ul>
-<div class="sourceCode" id="cb1119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1119-1"><a href="machine-learning.html#cb1119-1"></a><span class="kw">glue</span>(<span class="st">&quot;AIC score of logistic regression: {model_data(df)[4]} </span></span>
-<span id="cb1119-2"><a href="machine-learning.html#cb1119-2"></a><span class="st">      AIC score of OLS regression (with categorical DV):  {model_data(df)[5]}</span></span>
-<span id="cb1119-3"><a href="machine-learning.html#cb1119-3"></a><span class="st">      AIC score of OLS regression (with continuous DV): {model_data(df)[6]}&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1116-1"><a href="machine-learning.html#cb1116-1"></a><span class="kw">glue</span>(<span class="st">&quot;AIC score of logistic regression: {model_data(df)[4]} </span></span>
+<span id="cb1116-2"><a href="machine-learning.html#cb1116-2"></a><span class="st">      AIC score of OLS regression (with categorical DV):  {model_data(df)[5]}</span></span>
+<span id="cb1116-3"><a href="machine-learning.html#cb1116-3"></a><span class="st">      AIC score of OLS regression (with continuous DV): {model_data(df)[6]}&quot;</span>)</span></code></pre></div>
 <pre><code>## AIC score of logistic regression: 6192.40169473357 
 ## AIC score of OLS regression (with categorical DV):  11772.1148541111
 ## AIC score of OLS regression (with continuous DV): 26779.9512226999</code></pre>
 <ul>
 <li>Logistic regression model</li>
 </ul>
-<div class="sourceCode" id="cb1121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1121-1"><a href="machine-learning.html#cb1121-1"></a>lr_model &lt;-<span class="st"> </span><span class="kw">model_data</span>(df)[<span class="dv">1</span>] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">data.frame</span>()</span>
-<span id="cb1121-2"><a href="machine-learning.html#cb1121-2"></a></span>
-<span id="cb1121-3"><a href="machine-learning.html#cb1121-3"></a>lr_model <span class="op">%&gt;%</span></span>
-<span id="cb1121-4"><a href="machine-learning.html#cb1121-4"></a><span class="st">  </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;(Intercept)&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1121-5"><a href="machine-learning.html#cb1121-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">gsub</span>(<span class="st">&quot;race|age_cat|gender|M&quot;</span>,<span class="st">&quot;&quot;</span>, term)) <span class="op">%&gt;%</span></span>
-<span id="cb1121-6"><a href="machine-learning.html#cb1121-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(term, estimate), <span class="dt">y =</span> estimate, <span class="dt">ymax =</span> conf.high, <span class="dt">ymin =</span> conf.low)) <span class="op">+</span></span>
-<span id="cb1121-7"><a href="machine-learning.html#cb1121-7"></a><span class="st">  </span><span class="kw">geom_pointrange</span>() <span class="op">+</span></span>
-<span id="cb1121-8"><a href="machine-learning.html#cb1121-8"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
-<span id="cb1121-9"><a href="machine-learning.html#cb1121-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Estimate&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb1121-10"><a href="machine-learning.html#cb1121-10"></a>      <span class="dt">title =</span> <span class="st">&quot;Logistic regression&quot;</span>) <span class="op">+</span></span>
-<span id="cb1121-11"><a href="machine-learning.html#cb1121-11"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1118-1"><a href="machine-learning.html#cb1118-1"></a>lr_model &lt;-<span class="st"> </span><span class="kw">model_data</span>(df)[<span class="dv">1</span>] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">data.frame</span>()</span>
+<span id="cb1118-2"><a href="machine-learning.html#cb1118-2"></a></span>
+<span id="cb1118-3"><a href="machine-learning.html#cb1118-3"></a>lr_model <span class="op">%&gt;%</span></span>
+<span id="cb1118-4"><a href="machine-learning.html#cb1118-4"></a><span class="st">  </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;(Intercept)&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1118-5"><a href="machine-learning.html#cb1118-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">gsub</span>(<span class="st">&quot;race|age_cat|gender|M&quot;</span>,<span class="st">&quot;&quot;</span>, term)) <span class="op">%&gt;%</span></span>
+<span id="cb1118-6"><a href="machine-learning.html#cb1118-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(term, estimate), <span class="dt">y =</span> estimate, <span class="dt">ymax =</span> conf.high, <span class="dt">ymin =</span> conf.low)) <span class="op">+</span></span>
+<span id="cb1118-7"><a href="machine-learning.html#cb1118-7"></a><span class="st">  </span><span class="kw">geom_pointrange</span>() <span class="op">+</span></span>
+<span id="cb1118-8"><a href="machine-learning.html#cb1118-8"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb1118-9"><a href="machine-learning.html#cb1118-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Estimate&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1118-10"><a href="machine-learning.html#cb1118-10"></a>      <span class="dt">title =</span> <span class="st">&quot;Logistic regression&quot;</span>) <span class="op">+</span></span>
+<span id="cb1118-11"><a href="machine-learning.html#cb1118-11"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
-<div class="sourceCode" id="cb1122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1122-1"><a href="machine-learning.html#cb1122-1"></a>interpret_estimate &lt;-<span class="st"> </span><span class="cf">function</span>(model){</span>
-<span id="cb1122-2"><a href="machine-learning.html#cb1122-2"></a>    </span>
-<span id="cb1122-3"><a href="machine-learning.html#cb1122-3"></a>    <span class="co"># Control </span></span>
-<span id="cb1122-4"><a href="machine-learning.html#cb1122-4"></a>    intercept &lt;-<span class="st"> </span>model<span class="op">$</span>estimate[model<span class="op">$</span>term <span class="op">==</span><span class="st"> &quot;(Intercept)&quot;</span>]</span>
-<span id="cb1122-5"><a href="machine-learning.html#cb1122-5"></a>    control &lt;-<span class="st"> </span><span class="kw">exp</span>(intercept) <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(intercept))</span>
-<span id="cb1122-6"><a href="machine-learning.html#cb1122-6"></a>    </span>
-<span id="cb1122-7"><a href="machine-learning.html#cb1122-7"></a>    <span class="co"># Likelihood </span></span>
-<span id="cb1122-8"><a href="machine-learning.html#cb1122-8"></a>    model &lt;-<span class="st"> </span>model <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;(Intercept)&quot;</span>)</span>
-<span id="cb1122-9"><a href="machine-learning.html#cb1122-9"></a>    </span>
-<span id="cb1122-10"><a href="machine-learning.html#cb1122-10"></a>    model<span class="op">$</span>likelihood &lt;-<span class="st"> </span>(<span class="kw">exp</span>(model<span class="op">$</span>estimate) <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>control <span class="op">+</span><span class="st"> </span>(control <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(model<span class="op">$</span>estimate))))</span>
-<span id="cb1122-11"><a href="machine-learning.html#cb1122-11"></a>    </span>
-<span id="cb1122-12"><a href="machine-learning.html#cb1122-12"></a>    <span class="kw">return</span>(model)</span>
-<span id="cb1122-13"><a href="machine-learning.html#cb1122-13"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb1123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1123-1"><a href="machine-learning.html#cb1123-1"></a><span class="kw">interpret_estimate</span>(lr_model) <span class="op">%&gt;%</span></span>
-<span id="cb1123-2"><a href="machine-learning.html#cb1123-2"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">gsub</span>(<span class="st">&quot;race|age_cat|gender&quot;</span>,<span class="st">&quot;&quot;</span>, term)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1123-3"><a href="machine-learning.html#cb1123-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(term, likelihood), <span class="dt">y =</span> likelihood)) <span class="op">+</span></span>
-<span id="cb1123-4"><a href="machine-learning.html#cb1123-4"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb1123-5"><a href="machine-learning.html#cb1123-5"></a><span class="st">        </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
-<span id="cb1123-6"><a href="machine-learning.html#cb1123-6"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Likelihood&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb1123-7"><a href="machine-learning.html#cb1123-7"></a>            <span class="dt">title =</span><span class="st">&quot;Logistic regression&quot;</span>) <span class="op">+</span></span>
-<span id="cb1123-8"><a href="machine-learning.html#cb1123-8"></a><span class="st">        </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">percent_format</span>(<span class="dt">accuracy =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb1123-9"><a href="machine-learning.html#cb1123-9"></a><span class="st">        </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1119-1"><a href="machine-learning.html#cb1119-1"></a>interpret_estimate &lt;-<span class="st"> </span><span class="cf">function</span>(model){</span>
+<span id="cb1119-2"><a href="machine-learning.html#cb1119-2"></a>    </span>
+<span id="cb1119-3"><a href="machine-learning.html#cb1119-3"></a>    <span class="co"># Control </span></span>
+<span id="cb1119-4"><a href="machine-learning.html#cb1119-4"></a>    intercept &lt;-<span class="st"> </span>model<span class="op">$</span>estimate[model<span class="op">$</span>term <span class="op">==</span><span class="st"> &quot;(Intercept)&quot;</span>]</span>
+<span id="cb1119-5"><a href="machine-learning.html#cb1119-5"></a>    control &lt;-<span class="st"> </span><span class="kw">exp</span>(intercept) <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(intercept))</span>
+<span id="cb1119-6"><a href="machine-learning.html#cb1119-6"></a>    </span>
+<span id="cb1119-7"><a href="machine-learning.html#cb1119-7"></a>    <span class="co"># Likelihood </span></span>
+<span id="cb1119-8"><a href="machine-learning.html#cb1119-8"></a>    model &lt;-<span class="st"> </span>model <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;(Intercept)&quot;</span>)</span>
+<span id="cb1119-9"><a href="machine-learning.html#cb1119-9"></a>    </span>
+<span id="cb1119-10"><a href="machine-learning.html#cb1119-10"></a>    model<span class="op">$</span>likelihood &lt;-<span class="st"> </span>(<span class="kw">exp</span>(model<span class="op">$</span>estimate) <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>control <span class="op">+</span><span class="st"> </span>(control <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(model<span class="op">$</span>estimate))))</span>
+<span id="cb1119-11"><a href="machine-learning.html#cb1119-11"></a>    </span>
+<span id="cb1119-12"><a href="machine-learning.html#cb1119-12"></a>    <span class="kw">return</span>(model)</span>
+<span id="cb1119-13"><a href="machine-learning.html#cb1119-13"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1120-1"><a href="machine-learning.html#cb1120-1"></a><span class="kw">interpret_estimate</span>(lr_model) <span class="op">%&gt;%</span></span>
+<span id="cb1120-2"><a href="machine-learning.html#cb1120-2"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">gsub</span>(<span class="st">&quot;race|age_cat|gender&quot;</span>,<span class="st">&quot;&quot;</span>, term)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1120-3"><a href="machine-learning.html#cb1120-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(term, likelihood), <span class="dt">y =</span> likelihood)) <span class="op">+</span></span>
+<span id="cb1120-4"><a href="machine-learning.html#cb1120-4"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb1120-5"><a href="machine-learning.html#cb1120-5"></a><span class="st">        </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb1120-6"><a href="machine-learning.html#cb1120-6"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Likelihood&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1120-7"><a href="machine-learning.html#cb1120-7"></a>            <span class="dt">title =</span><span class="st">&quot;Logistic regression&quot;</span>) <span class="op">+</span></span>
+<span id="cb1120-8"><a href="machine-learning.html#cb1120-8"></a><span class="st">        </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">percent_format</span>(<span class="dt">accuracy =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb1120-9"><a href="machine-learning.html#cb1120-9"></a><span class="st">        </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
 </div>
 </div>
@@ -2326,32 +2324,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.8.2</span> Bias in the Data (Risk of Violent Recidivism Analysis)</h3>
 <div id="setup-5" class="section level4" number="7.8.2.1">
 <h4><span class="header-section-number">7.8.2.1</span> Setup</h4>
-<div class="sourceCode" id="cb1124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1124-1"><a href="machine-learning.html#cb1124-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
-<span id="cb1124-2"><a href="machine-learning.html#cb1124-2"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(</span>
-<span id="cb1124-3"><a href="machine-learning.html#cb1124-3"></a> tidyverse, <span class="co"># tidyverse packages </span></span>
-<span id="cb1124-4"><a href="machine-learning.html#cb1124-4"></a> conflicted, <span class="co"># an alternative conflict resolution strategy </span></span>
-<span id="cb1124-5"><a href="machine-learning.html#cb1124-5"></a> ggthemes, <span class="co"># other themes for ggplot2 </span></span>
-<span id="cb1124-6"><a href="machine-learning.html#cb1124-6"></a> patchwork, <span class="co"># arranging ggplots</span></span>
-<span id="cb1124-7"><a href="machine-learning.html#cb1124-7"></a> scales, <span class="co"># rescaling </span></span>
-<span id="cb1124-8"><a href="machine-learning.html#cb1124-8"></a> survival, <span class="co"># survival analysis</span></span>
-<span id="cb1124-9"><a href="machine-learning.html#cb1124-9"></a> broom, <span class="co"># for modeling</span></span>
-<span id="cb1124-10"><a href="machine-learning.html#cb1124-10"></a> here, <span class="co"># reproducibility </span></span>
-<span id="cb1124-11"><a href="machine-learning.html#cb1124-11"></a> glue <span class="co"># pasting strings and objects </span></span>
-<span id="cb1124-12"><a href="machine-learning.html#cb1124-12"></a>)</span>
-<span id="cb1124-13"><a href="machine-learning.html#cb1124-13"></a></span>
-<span id="cb1124-14"><a href="machine-learning.html#cb1124-14"></a><span class="co"># To avoid conflicts </span></span>
-<span id="cb1124-15"><a href="machine-learning.html#cb1124-15"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb1121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1121-1"><a href="machine-learning.html#cb1121-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb1121-2"><a href="machine-learning.html#cb1121-2"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(</span>
+<span id="cb1121-3"><a href="machine-learning.html#cb1121-3"></a> tidyverse, <span class="co"># tidyverse packages </span></span>
+<span id="cb1121-4"><a href="machine-learning.html#cb1121-4"></a> conflicted, <span class="co"># an alternative conflict resolution strategy </span></span>
+<span id="cb1121-5"><a href="machine-learning.html#cb1121-5"></a> ggthemes, <span class="co"># other themes for ggplot2 </span></span>
+<span id="cb1121-6"><a href="machine-learning.html#cb1121-6"></a> patchwork, <span class="co"># arranging ggplots</span></span>
+<span id="cb1121-7"><a href="machine-learning.html#cb1121-7"></a> scales, <span class="co"># rescaling </span></span>
+<span id="cb1121-8"><a href="machine-learning.html#cb1121-8"></a> survival, <span class="co"># survival analysis</span></span>
+<span id="cb1121-9"><a href="machine-learning.html#cb1121-9"></a> broom, <span class="co"># for modeling</span></span>
+<span id="cb1121-10"><a href="machine-learning.html#cb1121-10"></a> here, <span class="co"># reproducibility </span></span>
+<span id="cb1121-11"><a href="machine-learning.html#cb1121-11"></a> glue <span class="co"># pasting strings and objects </span></span>
+<span id="cb1121-12"><a href="machine-learning.html#cb1121-12"></a>)</span>
+<span id="cb1121-13"><a href="machine-learning.html#cb1121-13"></a></span>
+<span id="cb1121-14"><a href="machine-learning.html#cb1121-14"></a><span class="co"># To avoid conflicts </span></span>
+<span id="cb1121-15"><a href="machine-learning.html#cb1121-15"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>) </span></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer dplyr::filter over any other package</code></pre>
-<div class="sourceCode" id="cb1127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1127-1"><a href="machine-learning.html#cb1127-1"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb1124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1124-1"><a href="machine-learning.html#cb1124-1"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>) </span></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer dplyr::select over any other package</code></pre>
-<div class="sourceCode" id="cb1130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1130-1"><a href="machine-learning.html#cb1130-1"></a><span class="co"># Set themes </span></span>
-<span id="cb1130-2"><a href="machine-learning.html#cb1130-2"></a><span class="kw">theme_set</span>(ggthemes<span class="op">::</span><span class="kw">theme_fivethirtyeight</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb1127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1127-1"><a href="machine-learning.html#cb1127-1"></a><span class="co"># Set themes </span></span>
+<span id="cb1127-2"><a href="machine-learning.html#cb1127-2"></a><span class="kw">theme_set</span>(ggthemes<span class="op">::</span><span class="kw">theme_fivethirtyeight</span>())</span></code></pre></div>
 </div>
 <div id="load-data-1" class="section level4" number="7.8.2.2">
 <h4><span class="header-section-number">7.8.2.2</span> Load data</h4>
-<div class="sourceCode" id="cb1131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1131-1"><a href="machine-learning.html#cb1131-1"></a>two_years_violent &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span> ,<span class="st">&quot;compas-scores-two-years-violent.csv&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1128-1"><a href="machine-learning.html#cb1128-1"></a>two_years_violent &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span> ,<span class="st">&quot;compas-scores-two-years-violent.csv&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning: Duplicated column names deduplicated: &#39;decile_score&#39; =&gt;
 ## &#39;decile_score_1&#39; [40], &#39;priors_count&#39; =&gt; &#39;priors_count_1&#39; [49], &#39;two_year_recid&#39;
 ## =&gt; &#39;two_year_recid_1&#39; [54]</code></pre>
@@ -2382,8 +2380,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   # ... with 14 more columns
 ## )
 ## ℹ Use `spec()` for the full column specifications.</code></pre>
-<div class="sourceCode" id="cb1134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1134-1"><a href="machine-learning.html#cb1134-1"></a><span class="kw">glue</span>(<span class="st">&quot;N of observations (rows): {nrow(two_years_violent)}</span></span>
-<span id="cb1134-2"><a href="machine-learning.html#cb1134-2"></a><span class="st">      N of variables (columns): {ncol(two_years_violent)}&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1131-1"><a href="machine-learning.html#cb1131-1"></a><span class="kw">glue</span>(<span class="st">&quot;N of observations (rows): {nrow(two_years_violent)}</span></span>
+<span id="cb1131-2"><a href="machine-learning.html#cb1131-2"></a><span class="st">      N of variables (columns): {ncol(two_years_violent)}&quot;</span>)</span></code></pre></div>
 <pre><code>## N of observations (rows): 4743
 ## N of variables (columns): 54</code></pre>
 </div>
@@ -2392,46 +2390,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Create a function</li>
 </ul>
-<div class="sourceCode" id="cb1136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1136-1"><a href="machine-learning.html#cb1136-1"></a>wrangle_data &lt;-<span class="st"> </span><span class="cf">function</span>(data){</span>
-<span id="cb1136-2"><a href="machine-learning.html#cb1136-2"></a></span>
-<span id="cb1136-3"><a href="machine-learning.html#cb1136-3"></a>df &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1136-4"><a href="machine-learning.html#cb1136-4"></a><span class="st">    </span></span>
-<span id="cb1136-5"><a href="machine-learning.html#cb1136-5"></a><span class="st">    </span><span class="co"># Select variables </span></span>
-<span id="cb1136-6"><a href="machine-learning.html#cb1136-6"></a><span class="st">    </span><span class="kw">select</span>(age, c_charge_degree, race, age_cat, v_score_text, sex, priors_count, </span>
-<span id="cb1136-7"><a href="machine-learning.html#cb1136-7"></a>         days_b_screening_arrest, v_decile_score, is_recid, two_year_recid) <span class="op">%&gt;%</span><span class="st">            </span></span>
-<span id="cb1136-8"><a href="machine-learning.html#cb1136-8"></a><span class="st">    </span><span class="co"># Filter rows </span></span>
-<span id="cb1136-9"><a href="machine-learning.html#cb1136-9"></a><span class="st">    </span><span class="kw">filter</span>(days_b_screening_arrest <span class="op">&lt;=</span><span class="st"> </span><span class="dv">30</span>,</span>
-<span id="cb1136-10"><a href="machine-learning.html#cb1136-10"></a>           days_b_screening_arrest <span class="op">&gt;=</span><span class="st"> </span><span class="dv">-30</span>, </span>
-<span id="cb1136-11"><a href="machine-learning.html#cb1136-11"></a>           is_recid <span class="op">!=</span><span class="st"> </span><span class="dv">-1</span>,</span>
-<span id="cb1136-12"><a href="machine-learning.html#cb1136-12"></a>           c_charge_degree <span class="op">!=</span><span class="st"> &quot;O&quot;</span>,</span>
-<span id="cb1136-13"><a href="machine-learning.html#cb1136-13"></a>           v_score_text <span class="op">!=</span><span class="st"> &#39;N/A&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1136-14"><a href="machine-learning.html#cb1136-14"></a><span class="st">    </span><span class="co"># Mutate variables </span></span>
-<span id="cb1136-15"><a href="machine-learning.html#cb1136-15"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">c_charge_degree =</span> <span class="kw">factor</span>(c_charge_degree),</span>
-<span id="cb1136-16"><a href="machine-learning.html#cb1136-16"></a>           <span class="dt">age_cat =</span> <span class="kw">factor</span>(age_cat),</span>
-<span id="cb1136-17"><a href="machine-learning.html#cb1136-17"></a>           <span class="dt">race =</span> <span class="kw">factor</span>(race, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Caucasian&quot;</span>,<span class="st">&quot;African-American&quot;</span>,<span class="st">&quot;Hispanic&quot;</span>,<span class="st">&quot;Other&quot;</span>,<span class="st">&quot;Asian&quot;</span>,<span class="st">&quot;Native American&quot;</span>)),</span>
-<span id="cb1136-18"><a href="machine-learning.html#cb1136-18"></a>           <span class="dt">sex =</span> <span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>)),</span>
-<span id="cb1136-19"><a href="machine-learning.html#cb1136-19"></a>           <span class="dt">v_score_text =</span> <span class="kw">factor</span>(v_score_text, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)),</span>
-<span id="cb1136-20"><a href="machine-learning.html#cb1136-20"></a><span class="co"># I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference </span></span>
-<span id="cb1136-21"><a href="machine-learning.html#cb1136-21"></a>           <span class="dt">score_num =</span> <span class="kw">as.numeric</span>(v_score_text)) <span class="op">%&gt;%</span></span>
-<span id="cb1136-22"><a href="machine-learning.html#cb1136-22"></a><span class="st">    </span><span class="co"># Rename variables </span></span>
-<span id="cb1136-23"><a href="machine-learning.html#cb1136-23"></a><span class="st">    </span><span class="kw">rename</span>(<span class="dt">crime =</span> c_charge_degree,</span>
-<span id="cb1136-24"><a href="machine-learning.html#cb1136-24"></a>           <span class="dt">gender =</span> sex,</span>
-<span id="cb1136-25"><a href="machine-learning.html#cb1136-25"></a>           <span class="dt">score =</span> v_score_text)</span>
-<span id="cb1136-26"><a href="machine-learning.html#cb1136-26"></a>        </span>
-<span id="cb1136-27"><a href="machine-learning.html#cb1136-27"></a><span class="kw">return</span>(df)}</span></code></pre></div>
+<div class="sourceCode" id="cb1133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1133-1"><a href="machine-learning.html#cb1133-1"></a>wrangle_data &lt;-<span class="st"> </span><span class="cf">function</span>(data){</span>
+<span id="cb1133-2"><a href="machine-learning.html#cb1133-2"></a></span>
+<span id="cb1133-3"><a href="machine-learning.html#cb1133-3"></a>df &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1133-4"><a href="machine-learning.html#cb1133-4"></a><span class="st">    </span></span>
+<span id="cb1133-5"><a href="machine-learning.html#cb1133-5"></a><span class="st">    </span><span class="co"># Select variables </span></span>
+<span id="cb1133-6"><a href="machine-learning.html#cb1133-6"></a><span class="st">    </span><span class="kw">select</span>(age, c_charge_degree, race, age_cat, v_score_text, sex, priors_count, </span>
+<span id="cb1133-7"><a href="machine-learning.html#cb1133-7"></a>         days_b_screening_arrest, v_decile_score, is_recid, two_year_recid) <span class="op">%&gt;%</span><span class="st">            </span></span>
+<span id="cb1133-8"><a href="machine-learning.html#cb1133-8"></a><span class="st">    </span><span class="co"># Filter rows </span></span>
+<span id="cb1133-9"><a href="machine-learning.html#cb1133-9"></a><span class="st">    </span><span class="kw">filter</span>(days_b_screening_arrest <span class="op">&lt;=</span><span class="st"> </span><span class="dv">30</span>,</span>
+<span id="cb1133-10"><a href="machine-learning.html#cb1133-10"></a>           days_b_screening_arrest <span class="op">&gt;=</span><span class="st"> </span><span class="dv">-30</span>, </span>
+<span id="cb1133-11"><a href="machine-learning.html#cb1133-11"></a>           is_recid <span class="op">!=</span><span class="st"> </span><span class="dv">-1</span>,</span>
+<span id="cb1133-12"><a href="machine-learning.html#cb1133-12"></a>           c_charge_degree <span class="op">!=</span><span class="st"> &quot;O&quot;</span>,</span>
+<span id="cb1133-13"><a href="machine-learning.html#cb1133-13"></a>           v_score_text <span class="op">!=</span><span class="st"> &#39;N/A&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1133-14"><a href="machine-learning.html#cb1133-14"></a><span class="st">    </span><span class="co"># Mutate variables </span></span>
+<span id="cb1133-15"><a href="machine-learning.html#cb1133-15"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">c_charge_degree =</span> <span class="kw">factor</span>(c_charge_degree),</span>
+<span id="cb1133-16"><a href="machine-learning.html#cb1133-16"></a>           <span class="dt">age_cat =</span> <span class="kw">factor</span>(age_cat),</span>
+<span id="cb1133-17"><a href="machine-learning.html#cb1133-17"></a>           <span class="dt">race =</span> <span class="kw">factor</span>(race, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Caucasian&quot;</span>,<span class="st">&quot;African-American&quot;</span>,<span class="st">&quot;Hispanic&quot;</span>,<span class="st">&quot;Other&quot;</span>,<span class="st">&quot;Asian&quot;</span>,<span class="st">&quot;Native American&quot;</span>)),</span>
+<span id="cb1133-18"><a href="machine-learning.html#cb1133-18"></a>           <span class="dt">sex =</span> <span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>)),</span>
+<span id="cb1133-19"><a href="machine-learning.html#cb1133-19"></a>           <span class="dt">v_score_text =</span> <span class="kw">factor</span>(v_score_text, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)),</span>
+<span id="cb1133-20"><a href="machine-learning.html#cb1133-20"></a><span class="co"># I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference </span></span>
+<span id="cb1133-21"><a href="machine-learning.html#cb1133-21"></a>           <span class="dt">score_num =</span> <span class="kw">as.numeric</span>(v_score_text)) <span class="op">%&gt;%</span></span>
+<span id="cb1133-22"><a href="machine-learning.html#cb1133-22"></a><span class="st">    </span><span class="co"># Rename variables </span></span>
+<span id="cb1133-23"><a href="machine-learning.html#cb1133-23"></a><span class="st">    </span><span class="kw">rename</span>(<span class="dt">crime =</span> c_charge_degree,</span>
+<span id="cb1133-24"><a href="machine-learning.html#cb1133-24"></a>           <span class="dt">gender =</span> sex,</span>
+<span id="cb1133-25"><a href="machine-learning.html#cb1133-25"></a>           <span class="dt">score =</span> v_score_text)</span>
+<span id="cb1133-26"><a href="machine-learning.html#cb1133-26"></a>        </span>
+<span id="cb1133-27"><a href="machine-learning.html#cb1133-27"></a><span class="kw">return</span>(df)}</span></code></pre></div>
 <ul>
 <li>Apply the function to the data</li>
 </ul>
-<div class="sourceCode" id="cb1137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1137-1"><a href="machine-learning.html#cb1137-1"></a>df &lt;-<span class="st"> </span><span class="kw">wrangle_data</span>(two_years_violent)</span>
-<span id="cb1137-2"><a href="machine-learning.html#cb1137-2"></a></span>
-<span id="cb1137-3"><a href="machine-learning.html#cb1137-3"></a><span class="kw">names</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb1134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1134-1"><a href="machine-learning.html#cb1134-1"></a>df &lt;-<span class="st"> </span><span class="kw">wrangle_data</span>(two_years_violent)</span>
+<span id="cb1134-2"><a href="machine-learning.html#cb1134-2"></a></span>
+<span id="cb1134-3"><a href="machine-learning.html#cb1134-3"></a><span class="kw">names</span>(df)</span></code></pre></div>
 <pre><code>##  [1] &quot;age&quot;                     &quot;crime&quot;                  
 ##  [3] &quot;race&quot;                    &quot;age_cat&quot;                
 ##  [5] &quot;score&quot;                   &quot;gender&quot;                 
 ##  [7] &quot;priors_count&quot;            &quot;days_b_screening_arrest&quot;
 ##  [9] &quot;v_decile_score&quot;          &quot;is_recid&quot;               
 ## [11] &quot;two_year_recid&quot;          &quot;score_num&quot;</code></pre>
-<div class="sourceCode" id="cb1139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1139-1"><a href="machine-learning.html#cb1139-1"></a><span class="kw">head</span>(df, <span class="dv">5</span>) <span class="co"># Check whether the function works as expected </span></span></code></pre></div>
+<div class="sourceCode" id="cb1136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1136-1"><a href="machine-learning.html#cb1136-1"></a><span class="kw">head</span>(df, <span class="dv">5</span>) <span class="co"># Check whether the function works as expected </span></span></code></pre></div>
 <pre><code>## # A tibble: 5 x 12
 ##     age crime race  age_cat score gender priors_count days_b_screenin…
 ##   &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt;         &lt;dbl&gt;            &lt;dbl&gt;
@@ -2448,94 +2446,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Score distribution</li>
 </ul>
-<div class="sourceCode" id="cb1141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1141-1"><a href="machine-learning.html#cb1141-1"></a>df <span class="op">%&gt;%</span></span>
-<span id="cb1141-2"><a href="machine-learning.html#cb1141-2"></a><span class="st">  </span><span class="kw">group_by</span>(score) <span class="op">%&gt;%</span></span>
-<span id="cb1141-3"><a href="machine-learning.html#cb1141-3"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
-<span id="cb1141-4"><a href="machine-learning.html#cb1141-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> score, <span class="dt">y =</span> n)) <span class="op">+</span></span>
-<span id="cb1141-5"><a href="machine-learning.html#cb1141-5"></a><span class="st">    </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb1141-6"><a href="machine-learning.html#cb1141-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Score&quot;</span>,</span>
-<span id="cb1141-7"><a href="machine-learning.html#cb1141-7"></a>         <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
-<span id="cb1141-8"><a href="machine-learning.html#cb1141-8"></a>         <span class="dt">title =</span> <span class="st">&quot;Score distribution&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1138-1"><a href="machine-learning.html#cb1138-1"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb1138-2"><a href="machine-learning.html#cb1138-2"></a><span class="st">  </span><span class="kw">group_by</span>(score) <span class="op">%&gt;%</span></span>
+<span id="cb1138-3"><a href="machine-learning.html#cb1138-3"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1138-4"><a href="machine-learning.html#cb1138-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> score, <span class="dt">y =</span> n)) <span class="op">+</span></span>
+<span id="cb1138-5"><a href="machine-learning.html#cb1138-5"></a><span class="st">    </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb1138-6"><a href="machine-learning.html#cb1138-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Score&quot;</span>,</span>
+<span id="cb1138-7"><a href="machine-learning.html#cb1138-7"></a>         <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb1138-8"><a href="machine-learning.html#cb1138-8"></a>         <span class="dt">title =</span> <span class="st">&quot;Score distribution&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 <ul>
 <li>Score distribution by race</li>
 </ul>
-<div class="sourceCode" id="cb1142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1142-1"><a href="machine-learning.html#cb1142-1"></a>df <span class="op">%&gt;%</span></span>
-<span id="cb1142-2"><a href="machine-learning.html#cb1142-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">ordered</span>(v_decile_score))) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb1142-3"><a href="machine-learning.html#cb1142-3"></a><span class="st">          </span><span class="kw">geom_bar</span>() <span class="op">+</span></span>
-<span id="cb1142-4"><a href="machine-learning.html#cb1142-4"></a><span class="st">          </span><span class="kw">facet_wrap</span>(<span class="op">~</span>race, <span class="dt">nrow =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb1142-5"><a href="machine-learning.html#cb1142-5"></a><span class="st">          </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Decile Score&quot;</span>,</span>
-<span id="cb1142-6"><a href="machine-learning.html#cb1142-6"></a>               <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
-<span id="cb1142-7"><a href="machine-learning.html#cb1142-7"></a>               <span class="dt">Title =</span> <span class="st">&quot;Defendant&#39;s Decile Score&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1139-1"><a href="machine-learning.html#cb1139-1"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb1139-2"><a href="machine-learning.html#cb1139-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">ordered</span>(v_decile_score))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb1139-3"><a href="machine-learning.html#cb1139-3"></a><span class="st">          </span><span class="kw">geom_bar</span>() <span class="op">+</span></span>
+<span id="cb1139-4"><a href="machine-learning.html#cb1139-4"></a><span class="st">          </span><span class="kw">facet_wrap</span>(<span class="op">~</span>race, <span class="dt">nrow =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb1139-5"><a href="machine-learning.html#cb1139-5"></a><span class="st">          </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Decile Score&quot;</span>,</span>
+<span id="cb1139-6"><a href="machine-learning.html#cb1139-6"></a>               <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb1139-7"><a href="machine-learning.html#cb1139-7"></a>               <span class="dt">Title =</span> <span class="st">&quot;Defendant&#39;s Decile Score&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
 </div>
 <div id="modeling-1" class="section level4" number="7.8.2.5">
 <h4><span class="header-section-number">7.8.2.5</span> Modeling</h4>
 <p>After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. To do so we need to change some variables into factors, and run a logistic regression, comparing low scores to high scores.</p>
-<div class="sourceCode" id="cb1143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1143-1"><a href="machine-learning.html#cb1143-1"></a>model_data &lt;-<span class="st"> </span><span class="cf">function</span>(data){</span>
-<span id="cb1143-2"><a href="machine-learning.html#cb1143-2"></a></span>
-<span id="cb1143-3"><a href="machine-learning.html#cb1143-3"></a><span class="co"># Logistic regression model</span></span>
-<span id="cb1143-4"><a href="machine-learning.html#cb1143-4"></a>lr_model &lt;-<span class="st"> </span><span class="kw">glm</span>(score <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age_cat <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>priors_count <span class="op">+</span><span class="st"> </span>crime <span class="op">+</span><span class="st"> </span>two_year_recid, </span>
-<span id="cb1143-5"><a href="machine-learning.html#cb1143-5"></a>             <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> data)</span>
-<span id="cb1143-6"><a href="machine-learning.html#cb1143-6"></a></span>
-<span id="cb1143-7"><a href="machine-learning.html#cb1143-7"></a><span class="co"># OLS</span></span>
-<span id="cb1143-8"><a href="machine-learning.html#cb1143-8"></a>ols_model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(score_num <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age_cat <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>priors_count <span class="op">+</span><span class="st"> </span>crime <span class="op">+</span><span class="st"> </span>two_year_recid, </span>
-<span id="cb1143-9"><a href="machine-learning.html#cb1143-9"></a>             <span class="dt">data =</span> data)</span>
-<span id="cb1143-10"><a href="machine-learning.html#cb1143-10"></a></span>
-<span id="cb1143-11"><a href="machine-learning.html#cb1143-11"></a>ols_model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(v_decile_score <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age_cat <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>priors_count <span class="op">+</span><span class="st"> </span>crime <span class="op">+</span><span class="st"> </span>two_year_recid, </span>
-<span id="cb1143-12"><a href="machine-learning.html#cb1143-12"></a>             <span class="dt">data =</span> data)</span>
-<span id="cb1143-13"><a href="machine-learning.html#cb1143-13"></a></span>
-<span id="cb1143-14"><a href="machine-learning.html#cb1143-14"></a><span class="co"># Extract model outcomes with confidence intervals </span></span>
-<span id="cb1143-15"><a href="machine-learning.html#cb1143-15"></a>lr_est &lt;-<span class="st"> </span>lr_model <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1143-16"><a href="machine-learning.html#cb1143-16"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) </span>
-<span id="cb1143-17"><a href="machine-learning.html#cb1143-17"></a></span>
-<span id="cb1143-18"><a href="machine-learning.html#cb1143-18"></a>ols_est1 &lt;-<span class="st"> </span>ols_model1 <span class="op">%&gt;%</span></span>
-<span id="cb1143-19"><a href="machine-learning.html#cb1143-19"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) </span>
-<span id="cb1143-20"><a href="machine-learning.html#cb1143-20"></a></span>
-<span id="cb1143-21"><a href="machine-learning.html#cb1143-21"></a>ols_est2 &lt;-<span class="st"> </span>ols_model2 <span class="op">%&gt;%</span></span>
-<span id="cb1143-22"><a href="machine-learning.html#cb1143-22"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) </span>
-<span id="cb1143-23"><a href="machine-learning.html#cb1143-23"></a></span>
-<span id="cb1143-24"><a href="machine-learning.html#cb1143-24"></a><span class="co"># AIC scores </span></span>
-<span id="cb1143-25"><a href="machine-learning.html#cb1143-25"></a>lr_AIC &lt;-<span class="st"> </span><span class="kw">AIC</span>(lr_model)</span>
-<span id="cb1143-26"><a href="machine-learning.html#cb1143-26"></a>ols_AIC1 &lt;-<span class="st"> </span><span class="kw">AIC</span>(ols_model1)</span>
-<span id="cb1143-27"><a href="machine-learning.html#cb1143-27"></a>ols_AIC2 &lt;-<span class="st"> </span><span class="kw">AIC</span>(ols_model2)</span>
-<span id="cb1143-28"><a href="machine-learning.html#cb1143-28"></a>    </span>
-<span id="cb1143-29"><a href="machine-learning.html#cb1143-29"></a><span class="kw">list</span>(lr_est, ols_est1, ols_est2, lr_AIC, ols_AIC1, ols_AIC2)</span>
-<span id="cb1143-30"><a href="machine-learning.html#cb1143-30"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1140-1"><a href="machine-learning.html#cb1140-1"></a>model_data &lt;-<span class="st"> </span><span class="cf">function</span>(data){</span>
+<span id="cb1140-2"><a href="machine-learning.html#cb1140-2"></a></span>
+<span id="cb1140-3"><a href="machine-learning.html#cb1140-3"></a><span class="co"># Logistic regression model</span></span>
+<span id="cb1140-4"><a href="machine-learning.html#cb1140-4"></a>lr_model &lt;-<span class="st"> </span><span class="kw">glm</span>(score <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age_cat <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>priors_count <span class="op">+</span><span class="st"> </span>crime <span class="op">+</span><span class="st"> </span>two_year_recid, </span>
+<span id="cb1140-5"><a href="machine-learning.html#cb1140-5"></a>             <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> data)</span>
+<span id="cb1140-6"><a href="machine-learning.html#cb1140-6"></a></span>
+<span id="cb1140-7"><a href="machine-learning.html#cb1140-7"></a><span class="co"># OLS</span></span>
+<span id="cb1140-8"><a href="machine-learning.html#cb1140-8"></a>ols_model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(score_num <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age_cat <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>priors_count <span class="op">+</span><span class="st"> </span>crime <span class="op">+</span><span class="st"> </span>two_year_recid, </span>
+<span id="cb1140-9"><a href="machine-learning.html#cb1140-9"></a>             <span class="dt">data =</span> data)</span>
+<span id="cb1140-10"><a href="machine-learning.html#cb1140-10"></a></span>
+<span id="cb1140-11"><a href="machine-learning.html#cb1140-11"></a>ols_model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(v_decile_score <span class="op">~</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age_cat <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>priors_count <span class="op">+</span><span class="st"> </span>crime <span class="op">+</span><span class="st"> </span>two_year_recid, </span>
+<span id="cb1140-12"><a href="machine-learning.html#cb1140-12"></a>             <span class="dt">data =</span> data)</span>
+<span id="cb1140-13"><a href="machine-learning.html#cb1140-13"></a></span>
+<span id="cb1140-14"><a href="machine-learning.html#cb1140-14"></a><span class="co"># Extract model outcomes with confidence intervals </span></span>
+<span id="cb1140-15"><a href="machine-learning.html#cb1140-15"></a>lr_est &lt;-<span class="st"> </span>lr_model <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1140-16"><a href="machine-learning.html#cb1140-16"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) </span>
+<span id="cb1140-17"><a href="machine-learning.html#cb1140-17"></a></span>
+<span id="cb1140-18"><a href="machine-learning.html#cb1140-18"></a>ols_est1 &lt;-<span class="st"> </span>ols_model1 <span class="op">%&gt;%</span></span>
+<span id="cb1140-19"><a href="machine-learning.html#cb1140-19"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) </span>
+<span id="cb1140-20"><a href="machine-learning.html#cb1140-20"></a></span>
+<span id="cb1140-21"><a href="machine-learning.html#cb1140-21"></a>ols_est2 &lt;-<span class="st"> </span>ols_model2 <span class="op">%&gt;%</span></span>
+<span id="cb1140-22"><a href="machine-learning.html#cb1140-22"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) </span>
+<span id="cb1140-23"><a href="machine-learning.html#cb1140-23"></a></span>
+<span id="cb1140-24"><a href="machine-learning.html#cb1140-24"></a><span class="co"># AIC scores </span></span>
+<span id="cb1140-25"><a href="machine-learning.html#cb1140-25"></a>lr_AIC &lt;-<span class="st"> </span><span class="kw">AIC</span>(lr_model)</span>
+<span id="cb1140-26"><a href="machine-learning.html#cb1140-26"></a>ols_AIC1 &lt;-<span class="st"> </span><span class="kw">AIC</span>(ols_model1)</span>
+<span id="cb1140-27"><a href="machine-learning.html#cb1140-27"></a>ols_AIC2 &lt;-<span class="st"> </span><span class="kw">AIC</span>(ols_model2)</span>
+<span id="cb1140-28"><a href="machine-learning.html#cb1140-28"></a>    </span>
+<span id="cb1140-29"><a href="machine-learning.html#cb1140-29"></a><span class="kw">list</span>(lr_est, ols_est1, ols_est2, lr_AIC, ols_AIC1, ols_AIC2)</span>
+<span id="cb1140-30"><a href="machine-learning.html#cb1140-30"></a>}</span></code></pre></div>
 <ul>
 <li>Model comparisons</li>
 </ul>
-<div class="sourceCode" id="cb1144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1144-1"><a href="machine-learning.html#cb1144-1"></a><span class="kw">glue</span>(<span class="st">&quot;AIC score of logistic regression: {model_data(df)[4]} </span></span>
-<span id="cb1144-2"><a href="machine-learning.html#cb1144-2"></a><span class="st">      AIC score of OLS regression (with categorical DV):  {model_data(df)[5]}</span></span>
-<span id="cb1144-3"><a href="machine-learning.html#cb1144-3"></a><span class="st">      AIC score of OLS regression (with continuous DV): {model_data(df)[6]}&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1141-1"><a href="machine-learning.html#cb1141-1"></a><span class="kw">glue</span>(<span class="st">&quot;AIC score of logistic regression: {model_data(df)[4]} </span></span>
+<span id="cb1141-2"><a href="machine-learning.html#cb1141-2"></a><span class="st">      AIC score of OLS regression (with categorical DV):  {model_data(df)[5]}</span></span>
+<span id="cb1141-3"><a href="machine-learning.html#cb1141-3"></a><span class="st">      AIC score of OLS regression (with continuous DV): {model_data(df)[6]}&quot;</span>)</span></code></pre></div>
 <pre><code>## AIC score of logistic regression: 3022.77943765996 
 ## AIC score of OLS regression (with categorical DV):  5414.49127581608
 ## AIC score of OLS regression (with continuous DV): 15458.3861723106</code></pre>
 <ul>
 <li>Logistic regression model</li>
 </ul>
-<div class="sourceCode" id="cb1146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1146-1"><a href="machine-learning.html#cb1146-1"></a>lr_model &lt;-<span class="st"> </span><span class="kw">model_data</span>(df)[<span class="dv">1</span>] <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1146-2"><a href="machine-learning.html#cb1146-2"></a><span class="st">  </span><span class="kw">data.frame</span>()</span>
-<span id="cb1146-3"><a href="machine-learning.html#cb1146-3"></a></span>
-<span id="cb1146-4"><a href="machine-learning.html#cb1146-4"></a>lr_model <span class="op">%&gt;%</span></span>
-<span id="cb1146-5"><a href="machine-learning.html#cb1146-5"></a><span class="st">  </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;(Intercept)&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1146-6"><a href="machine-learning.html#cb1146-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">gsub</span>(<span class="st">&quot;race|age_cat|gender&quot;</span>,<span class="st">&quot;&quot;</span>, term)) <span class="op">%&gt;%</span></span>
-<span id="cb1146-7"><a href="machine-learning.html#cb1146-7"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(term, estimate), <span class="dt">y =</span> estimate, <span class="dt">ymax =</span> conf.high, <span class="dt">ymin =</span> conf.low)) <span class="op">+</span></span>
-<span id="cb1146-8"><a href="machine-learning.html#cb1146-8"></a><span class="st">  </span><span class="kw">geom_pointrange</span>() <span class="op">+</span></span>
-<span id="cb1146-9"><a href="machine-learning.html#cb1146-9"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
-<span id="cb1146-10"><a href="machine-learning.html#cb1146-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Estimate&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb1146-11"><a href="machine-learning.html#cb1146-11"></a>      <span class="dt">title =</span> <span class="st">&quot;Logistic regression&quot;</span>) <span class="op">+</span></span>
-<span id="cb1146-12"><a href="machine-learning.html#cb1146-12"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1143-1"><a href="machine-learning.html#cb1143-1"></a>lr_model &lt;-<span class="st"> </span><span class="kw">model_data</span>(df)[<span class="dv">1</span>] <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1143-2"><a href="machine-learning.html#cb1143-2"></a><span class="st">  </span><span class="kw">data.frame</span>()</span>
+<span id="cb1143-3"><a href="machine-learning.html#cb1143-3"></a></span>
+<span id="cb1143-4"><a href="machine-learning.html#cb1143-4"></a>lr_model <span class="op">%&gt;%</span></span>
+<span id="cb1143-5"><a href="machine-learning.html#cb1143-5"></a><span class="st">  </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;(Intercept)&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1143-6"><a href="machine-learning.html#cb1143-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">gsub</span>(<span class="st">&quot;race|age_cat|gender&quot;</span>,<span class="st">&quot;&quot;</span>, term)) <span class="op">%&gt;%</span></span>
+<span id="cb1143-7"><a href="machine-learning.html#cb1143-7"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(term, estimate), <span class="dt">y =</span> estimate, <span class="dt">ymax =</span> conf.high, <span class="dt">ymin =</span> conf.low)) <span class="op">+</span></span>
+<span id="cb1143-8"><a href="machine-learning.html#cb1143-8"></a><span class="st">  </span><span class="kw">geom_pointrange</span>() <span class="op">+</span></span>
+<span id="cb1143-9"><a href="machine-learning.html#cb1143-9"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb1143-10"><a href="machine-learning.html#cb1143-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Estimate&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1143-11"><a href="machine-learning.html#cb1143-11"></a>      <span class="dt">title =</span> <span class="st">&quot;Logistic regression&quot;</span>) <span class="op">+</span></span>
+<span id="cb1143-12"><a href="machine-learning.html#cb1143-12"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
-<div class="sourceCode" id="cb1147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1147-1"><a href="machine-learning.html#cb1147-1"></a><span class="kw">interpret_estimate</span>(lr_model) <span class="op">%&gt;%</span></span>
-<span id="cb1147-2"><a href="machine-learning.html#cb1147-2"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">gsub</span>(<span class="st">&quot;race|age_cat|gender&quot;</span>,<span class="st">&quot;&quot;</span>, term)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1147-3"><a href="machine-learning.html#cb1147-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(term, likelihood), <span class="dt">y =</span> likelihood)) <span class="op">+</span></span>
-<span id="cb1147-4"><a href="machine-learning.html#cb1147-4"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb1147-5"><a href="machine-learning.html#cb1147-5"></a><span class="st">        </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
-<span id="cb1147-6"><a href="machine-learning.html#cb1147-6"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Likelihood&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb1147-7"><a href="machine-learning.html#cb1147-7"></a>            <span class="dt">title =</span><span class="st">&quot;Logistic regression&quot;</span>) <span class="op">+</span></span>
-<span id="cb1147-8"><a href="machine-learning.html#cb1147-8"></a><span class="st">        </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">percent_format</span>(<span class="dt">accuracy =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb1147-9"><a href="machine-learning.html#cb1147-9"></a><span class="st">        </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1144-1"><a href="machine-learning.html#cb1144-1"></a><span class="kw">interpret_estimate</span>(lr_model) <span class="op">%&gt;%</span></span>
+<span id="cb1144-2"><a href="machine-learning.html#cb1144-2"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">gsub</span>(<span class="st">&quot;race|age_cat|gender&quot;</span>,<span class="st">&quot;&quot;</span>, term)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1144-3"><a href="machine-learning.html#cb1144-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(term, likelihood), <span class="dt">y =</span> likelihood)) <span class="op">+</span></span>
+<span id="cb1144-4"><a href="machine-learning.html#cb1144-4"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb1144-5"><a href="machine-learning.html#cb1144-5"></a><span class="st">        </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb1144-6"><a href="machine-learning.html#cb1144-6"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Likelihood&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1144-7"><a href="machine-learning.html#cb1144-7"></a>            <span class="dt">title =</span><span class="st">&quot;Logistic regression&quot;</span>) <span class="op">+</span></span>
+<span id="cb1144-8"><a href="machine-learning.html#cb1144-8"></a><span class="st">        </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span><span class="kw">percent_format</span>(<span class="dt">accuracy =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb1144-9"><a href="machine-learning.html#cb1144-9"></a><span class="st">        </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
 </div>
 </div>
@@ -2547,33 +2545,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="setup-6" class="section level4" number="7.8.3.1">
 <h4><span class="header-section-number">7.8.3.1</span> Setup</h4>
-<div class="sourceCode" id="cb1148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1148-1"><a href="machine-learning.html#cb1148-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
-<span id="cb1148-2"><a href="machine-learning.html#cb1148-2"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(</span>
-<span id="cb1148-3"><a href="machine-learning.html#cb1148-3"></a> tidyverse, <span class="co"># tidyverse packages </span></span>
-<span id="cb1148-4"><a href="machine-learning.html#cb1148-4"></a> conflicted, <span class="co"># an alternative conflict resolution strategy </span></span>
-<span id="cb1148-5"><a href="machine-learning.html#cb1148-5"></a> ggthemes, <span class="co"># other themes for ggplot2 </span></span>
-<span id="cb1148-6"><a href="machine-learning.html#cb1148-6"></a> patchwork, <span class="co"># arranging ggplots</span></span>
-<span id="cb1148-7"><a href="machine-learning.html#cb1148-7"></a> scales, <span class="co"># rescaling </span></span>
-<span id="cb1148-8"><a href="machine-learning.html#cb1148-8"></a> survival, <span class="co"># survival analysis</span></span>
-<span id="cb1148-9"><a href="machine-learning.html#cb1148-9"></a> broom, <span class="co"># for modeling</span></span>
-<span id="cb1148-10"><a href="machine-learning.html#cb1148-10"></a> here, <span class="co"># reproducibility </span></span>
-<span id="cb1148-11"><a href="machine-learning.html#cb1148-11"></a> glue, <span class="co"># pasting strings and objects </span></span>
-<span id="cb1148-12"><a href="machine-learning.html#cb1148-12"></a> reticulate <span class="co"># source python codes</span></span>
-<span id="cb1148-13"><a href="machine-learning.html#cb1148-13"></a>)</span>
-<span id="cb1148-14"><a href="machine-learning.html#cb1148-14"></a></span>
-<span id="cb1148-15"><a href="machine-learning.html#cb1148-15"></a><span class="co"># To avoid conflicts </span></span>
-<span id="cb1148-16"><a href="machine-learning.html#cb1148-16"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb1145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1145-1"><a href="machine-learning.html#cb1145-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb1145-2"><a href="machine-learning.html#cb1145-2"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(</span>
+<span id="cb1145-3"><a href="machine-learning.html#cb1145-3"></a> tidyverse, <span class="co"># tidyverse packages </span></span>
+<span id="cb1145-4"><a href="machine-learning.html#cb1145-4"></a> conflicted, <span class="co"># an alternative conflict resolution strategy </span></span>
+<span id="cb1145-5"><a href="machine-learning.html#cb1145-5"></a> ggthemes, <span class="co"># other themes for ggplot2 </span></span>
+<span id="cb1145-6"><a href="machine-learning.html#cb1145-6"></a> patchwork, <span class="co"># arranging ggplots</span></span>
+<span id="cb1145-7"><a href="machine-learning.html#cb1145-7"></a> scales, <span class="co"># rescaling </span></span>
+<span id="cb1145-8"><a href="machine-learning.html#cb1145-8"></a> survival, <span class="co"># survival analysis</span></span>
+<span id="cb1145-9"><a href="machine-learning.html#cb1145-9"></a> broom, <span class="co"># for modeling</span></span>
+<span id="cb1145-10"><a href="machine-learning.html#cb1145-10"></a> here, <span class="co"># reproducibility </span></span>
+<span id="cb1145-11"><a href="machine-learning.html#cb1145-11"></a> glue, <span class="co"># pasting strings and objects </span></span>
+<span id="cb1145-12"><a href="machine-learning.html#cb1145-12"></a> reticulate <span class="co"># source python codes</span></span>
+<span id="cb1145-13"><a href="machine-learning.html#cb1145-13"></a>)</span>
+<span id="cb1145-14"><a href="machine-learning.html#cb1145-14"></a></span>
+<span id="cb1145-15"><a href="machine-learning.html#cb1145-15"></a><span class="co"># To avoid conflicts </span></span>
+<span id="cb1145-16"><a href="machine-learning.html#cb1145-16"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>) </span></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer dplyr::filter over any other package</code></pre>
-<div class="sourceCode" id="cb1151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1151-1"><a href="machine-learning.html#cb1151-1"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb1148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1148-1"><a href="machine-learning.html#cb1148-1"></a><span class="kw">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>) </span></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer dplyr::select over any other package</code></pre>
-<div class="sourceCode" id="cb1154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1154-1"><a href="machine-learning.html#cb1154-1"></a><span class="co"># Set themes </span></span>
-<span id="cb1154-2"><a href="machine-learning.html#cb1154-2"></a><span class="kw">theme_set</span>(ggthemes<span class="op">::</span><span class="kw">theme_fivethirtyeight</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb1151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1151-1"><a href="machine-learning.html#cb1151-1"></a><span class="co"># Set themes </span></span>
+<span id="cb1151-2"><a href="machine-learning.html#cb1151-2"></a><span class="kw">theme_set</span>(ggthemes<span class="op">::</span><span class="kw">theme_fivethirtyeight</span>())</span></code></pre></div>
 </div>
 <div id="load-data-2" class="section level4" number="7.8.3.2">
 <h4><span class="header-section-number">7.8.3.2</span> Load data</h4>
-<div class="sourceCode" id="cb1155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1155-1"><a href="machine-learning.html#cb1155-1"></a>cox_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span> ,<span class="st">&quot;cox-parsed.csv&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1152-1"><a href="machine-learning.html#cb1152-1"></a>cox_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span> ,<span class="st">&quot;cox-parsed.csv&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning: Duplicated column names deduplicated: &#39;decile_score&#39; =&gt;
 ## &#39;decile_score_1&#39; [40], &#39;priors_count&#39; =&gt; &#39;priors_count_1&#39; [49]</code></pre>
 <pre><code>## 
@@ -2603,225 +2601,225 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   # ... with 13 more columns
 ## )
 ## ℹ Use `spec()` for the full column specifications.</code></pre>
-<div class="sourceCode" id="cb1158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1158-1"><a href="machine-learning.html#cb1158-1"></a><span class="kw">glue</span>(<span class="st">&quot;N of observations (rows): {nrow(cox_data)}</span></span>
-<span id="cb1158-2"><a href="machine-learning.html#cb1158-2"></a><span class="st">      N of variables (columns): {ncol(cox_data)}&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1155-1"><a href="machine-learning.html#cb1155-1"></a><span class="kw">glue</span>(<span class="st">&quot;N of observations (rows): {nrow(cox_data)}</span></span>
+<span id="cb1155-2"><a href="machine-learning.html#cb1155-2"></a><span class="st">      N of variables (columns): {ncol(cox_data)}&quot;</span>)</span></code></pre></div>
 <pre><code>## N of observations (rows): 13419
 ## N of variables (columns): 52</code></pre>
 </div>
 <div id="wrangling-2" class="section level4" number="7.8.3.3">
 <h4><span class="header-section-number">7.8.3.3</span> Wrangling</h4>
-<div class="sourceCode" id="cb1160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1160-1"><a href="machine-learning.html#cb1160-1"></a>df &lt;-<span class="st"> </span>cox_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1160-2"><a href="machine-learning.html#cb1160-2"></a><span class="st">    </span><span class="kw">filter</span>(score_text <span class="op">!=</span><span class="st"> &quot;N/A&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1160-3"><a href="machine-learning.html#cb1160-3"></a><span class="st">    </span><span class="kw">filter</span>(end <span class="op">&gt;</span><span class="st"> </span>start) <span class="op">%&gt;%</span></span>
-<span id="cb1160-4"><a href="machine-learning.html#cb1160-4"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">c_charge_degree =</span> <span class="kw">factor</span>(c_charge_degree),</span>
-<span id="cb1160-5"><a href="machine-learning.html#cb1160-5"></a>           <span class="dt">age_cat =</span> <span class="kw">factor</span>(age_cat),</span>
-<span id="cb1160-6"><a href="machine-learning.html#cb1160-6"></a>           <span class="dt">race =</span> <span class="kw">factor</span>(race, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Caucasian&quot;</span>,<span class="st">&quot;African-American&quot;</span>,<span class="st">&quot;Hispanic&quot;</span>,<span class="st">&quot;Other&quot;</span>,<span class="st">&quot;Asian&quot;</span>,<span class="st">&quot;Native American&quot;</span>)),</span>
-<span id="cb1160-7"><a href="machine-learning.html#cb1160-7"></a>           <span class="dt">sex =</span> <span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>)),</span>
-<span id="cb1160-8"><a href="machine-learning.html#cb1160-8"></a>           <span class="dt">score_factor =</span> <span class="kw">factor</span>(score_text, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)))</span>
-<span id="cb1160-9"><a href="machine-learning.html#cb1160-9"></a></span>
-<span id="cb1160-10"><a href="machine-learning.html#cb1160-10"></a>grp &lt;-<span class="st"> </span>df[<span class="op">!</span><span class="kw">duplicated</span>(df<span class="op">$</span>id),]</span></code></pre></div>
+<div class="sourceCode" id="cb1157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1157-1"><a href="machine-learning.html#cb1157-1"></a>df &lt;-<span class="st"> </span>cox_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1157-2"><a href="machine-learning.html#cb1157-2"></a><span class="st">    </span><span class="kw">filter</span>(score_text <span class="op">!=</span><span class="st"> &quot;N/A&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1157-3"><a href="machine-learning.html#cb1157-3"></a><span class="st">    </span><span class="kw">filter</span>(end <span class="op">&gt;</span><span class="st"> </span>start) <span class="op">%&gt;%</span></span>
+<span id="cb1157-4"><a href="machine-learning.html#cb1157-4"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">c_charge_degree =</span> <span class="kw">factor</span>(c_charge_degree),</span>
+<span id="cb1157-5"><a href="machine-learning.html#cb1157-5"></a>           <span class="dt">age_cat =</span> <span class="kw">factor</span>(age_cat),</span>
+<span id="cb1157-6"><a href="machine-learning.html#cb1157-6"></a>           <span class="dt">race =</span> <span class="kw">factor</span>(race, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Caucasian&quot;</span>,<span class="st">&quot;African-American&quot;</span>,<span class="st">&quot;Hispanic&quot;</span>,<span class="st">&quot;Other&quot;</span>,<span class="st">&quot;Asian&quot;</span>,<span class="st">&quot;Native American&quot;</span>)),</span>
+<span id="cb1157-7"><a href="machine-learning.html#cb1157-7"></a>           <span class="dt">sex =</span> <span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>)),</span>
+<span id="cb1157-8"><a href="machine-learning.html#cb1157-8"></a>           <span class="dt">score_factor =</span> <span class="kw">factor</span>(score_text, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)))</span>
+<span id="cb1157-9"><a href="machine-learning.html#cb1157-9"></a></span>
+<span id="cb1157-10"><a href="machine-learning.html#cb1157-10"></a>grp &lt;-<span class="st"> </span>df[<span class="op">!</span><span class="kw">duplicated</span>(df<span class="op">$</span>id),]</span></code></pre></div>
 </div>
 <div id="descriptive-analysis-2" class="section level4" number="7.8.3.4">
 <h4><span class="header-section-number">7.8.3.4</span> Descriptive analysis</h4>
 <ul>
 <li>Score distribution</li>
 </ul>
-<div class="sourceCode" id="cb1161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1161-1"><a href="machine-learning.html#cb1161-1"></a>grp <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1161-2"><a href="machine-learning.html#cb1161-2"></a><span class="st">    </span><span class="kw">group_by</span>(score_factor) <span class="op">%&gt;%</span></span>
-<span id="cb1161-3"><a href="machine-learning.html#cb1161-3"></a><span class="st">      </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
-<span id="cb1161-4"><a href="machine-learning.html#cb1161-4"></a><span class="st">      </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> score_factor, <span class="dt">y =</span> n)) <span class="op">+</span></span>
-<span id="cb1161-5"><a href="machine-learning.html#cb1161-5"></a><span class="st">        </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb1161-6"><a href="machine-learning.html#cb1161-6"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Score&quot;</span>,</span>
-<span id="cb1161-7"><a href="machine-learning.html#cb1161-7"></a>             <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
-<span id="cb1161-8"><a href="machine-learning.html#cb1161-8"></a>             <span class="dt">title =</span> <span class="st">&quot;Score distribution&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1158-1"><a href="machine-learning.html#cb1158-1"></a>grp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1158-2"><a href="machine-learning.html#cb1158-2"></a><span class="st">    </span><span class="kw">group_by</span>(score_factor) <span class="op">%&gt;%</span></span>
+<span id="cb1158-3"><a href="machine-learning.html#cb1158-3"></a><span class="st">      </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1158-4"><a href="machine-learning.html#cb1158-4"></a><span class="st">      </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> score_factor, <span class="dt">y =</span> n)) <span class="op">+</span></span>
+<span id="cb1158-5"><a href="machine-learning.html#cb1158-5"></a><span class="st">        </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb1158-6"><a href="machine-learning.html#cb1158-6"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Score&quot;</span>,</span>
+<span id="cb1158-7"><a href="machine-learning.html#cb1158-7"></a>             <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb1158-8"><a href="machine-learning.html#cb1158-8"></a>             <span class="dt">title =</span> <span class="st">&quot;Score distribution&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 <ul>
 <li>Score distribution by race</li>
 </ul>
-<div class="sourceCode" id="cb1162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1162-1"><a href="machine-learning.html#cb1162-1"></a>df <span class="op">%&gt;%</span></span>
-<span id="cb1162-2"><a href="machine-learning.html#cb1162-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">ordered</span>(score_factor))) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb1162-3"><a href="machine-learning.html#cb1162-3"></a><span class="st">          </span><span class="kw">geom_bar</span>() <span class="op">+</span></span>
-<span id="cb1162-4"><a href="machine-learning.html#cb1162-4"></a><span class="st">          </span><span class="kw">facet_wrap</span>(<span class="op">~</span>race, <span class="dt">nrow =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb1162-5"><a href="machine-learning.html#cb1162-5"></a><span class="st">          </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Decile Score&quot;</span>,</span>
-<span id="cb1162-6"><a href="machine-learning.html#cb1162-6"></a>               <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
-<span id="cb1162-7"><a href="machine-learning.html#cb1162-7"></a>               <span class="dt">Title =</span> <span class="st">&quot;Defendant&#39;s Decile Score&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1159-1"><a href="machine-learning.html#cb1159-1"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb1159-2"><a href="machine-learning.html#cb1159-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">ordered</span>(score_factor))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb1159-3"><a href="machine-learning.html#cb1159-3"></a><span class="st">          </span><span class="kw">geom_bar</span>() <span class="op">+</span></span>
+<span id="cb1159-4"><a href="machine-learning.html#cb1159-4"></a><span class="st">          </span><span class="kw">facet_wrap</span>(<span class="op">~</span>race, <span class="dt">nrow =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb1159-5"><a href="machine-learning.html#cb1159-5"></a><span class="st">          </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Decile Score&quot;</span>,</span>
+<span id="cb1159-6"><a href="machine-learning.html#cb1159-6"></a>               <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb1159-7"><a href="machine-learning.html#cb1159-7"></a>               <span class="dt">Title =</span> <span class="st">&quot;Defendant&#39;s Decile Score&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 </div>
 <div id="modeling-2" class="section level4" number="7.8.3.5">
 <h4><span class="header-section-number">7.8.3.5</span> Modeling</h4>
-<div class="sourceCode" id="cb1163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1163-1"><a href="machine-learning.html#cb1163-1"></a>f2 &lt;-<span class="st"> </span><span class="kw">Surv</span>(start, end, event, <span class="dt">type=</span><span class="st">&quot;counting&quot;</span>) <span class="op">~</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>score_factor <span class="op">+</span><span class="st"> </span>race <span class="op">*</span><span class="st"> </span>score_factor</span>
-<span id="cb1163-2"><a href="machine-learning.html#cb1163-2"></a></span>
-<span id="cb1163-3"><a href="machine-learning.html#cb1163-3"></a>model &lt;-<span class="st"> </span><span class="kw">coxph</span>(f2, <span class="dt">data =</span> df)</span>
-<span id="cb1163-4"><a href="machine-learning.html#cb1163-4"></a></span>
-<span id="cb1163-5"><a href="machine-learning.html#cb1163-5"></a>model <span class="op">%&gt;%</span></span>
-<span id="cb1163-6"><a href="machine-learning.html#cb1163-6"></a><span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1163-7"><a href="machine-learning.html#cb1163-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">gsub</span>(<span class="st">&quot;race|score_factor&quot;</span>,<span class="st">&quot;&quot;</span>, term)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1163-8"><a href="machine-learning.html#cb1163-8"></a><span class="st">  </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;&lt;chr&gt;&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1163-9"><a href="machine-learning.html#cb1163-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(term, estimate), <span class="dt">y =</span> estimate, <span class="dt">ymax =</span> conf.high, <span class="dt">ymin =</span> conf.low)) <span class="op">+</span></span>
-<span id="cb1163-10"><a href="machine-learning.html#cb1163-10"></a><span class="st">  </span><span class="kw">geom_pointrange</span>() <span class="op">+</span></span>
-<span id="cb1163-11"><a href="machine-learning.html#cb1163-11"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
-<span id="cb1163-12"><a href="machine-learning.html#cb1163-12"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Estimate&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1160-1"><a href="machine-learning.html#cb1160-1"></a>f2 &lt;-<span class="st"> </span><span class="kw">Surv</span>(start, end, event, <span class="dt">type=</span><span class="st">&quot;counting&quot;</span>) <span class="op">~</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>score_factor <span class="op">+</span><span class="st"> </span>race <span class="op">*</span><span class="st"> </span>score_factor</span>
+<span id="cb1160-2"><a href="machine-learning.html#cb1160-2"></a></span>
+<span id="cb1160-3"><a href="machine-learning.html#cb1160-3"></a>model &lt;-<span class="st"> </span><span class="kw">coxph</span>(f2, <span class="dt">data =</span> df)</span>
+<span id="cb1160-4"><a href="machine-learning.html#cb1160-4"></a></span>
+<span id="cb1160-5"><a href="machine-learning.html#cb1160-5"></a>model <span class="op">%&gt;%</span></span>
+<span id="cb1160-6"><a href="machine-learning.html#cb1160-6"></a><span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1160-7"><a href="machine-learning.html#cb1160-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">term =</span> <span class="kw">gsub</span>(<span class="st">&quot;race|score_factor&quot;</span>,<span class="st">&quot;&quot;</span>, term)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1160-8"><a href="machine-learning.html#cb1160-8"></a><span class="st">  </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;&lt;chr&gt;&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1160-9"><a href="machine-learning.html#cb1160-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(term, estimate), <span class="dt">y =</span> estimate, <span class="dt">ymax =</span> conf.high, <span class="dt">ymin =</span> conf.low)) <span class="op">+</span></span>
+<span id="cb1160-10"><a href="machine-learning.html#cb1160-10"></a><span class="st">  </span><span class="kw">geom_pointrange</span>() <span class="op">+</span></span>
+<span id="cb1160-11"><a href="machine-learning.html#cb1160-11"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb1160-12"><a href="machine-learning.html#cb1160-12"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Estimate&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 <p>The interaction term shows a similar disparity as the logistic regression above.</p>
 <p>High risk white defendants are 3.61 more likely than low risk white defendants, while High risk black defendants are 2.99 more likely than low.</p>
-<div class="sourceCode" id="cb1164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1164-1"><a href="machine-learning.html#cb1164-1"></a>visualize_surv &lt;-<span class="st"> </span><span class="cf">function</span>(input){</span>
-<span id="cb1164-2"><a href="machine-learning.html#cb1164-2"></a>  </span>
-<span id="cb1164-3"><a href="machine-learning.html#cb1164-3"></a>f &lt;-<span class="st"> </span><span class="kw">Surv</span>(start, end, event, <span class="dt">type=</span><span class="st">&quot;counting&quot;</span>) <span class="op">~</span><span class="st"> </span>score_factor</span>
-<span id="cb1164-4"><a href="machine-learning.html#cb1164-4"></a></span>
-<span id="cb1164-5"><a href="machine-learning.html#cb1164-5"></a>fit &lt;-<span class="st"> </span><span class="kw">survfit</span>(f, <span class="dt">data =</span> input)</span>
-<span id="cb1164-6"><a href="machine-learning.html#cb1164-6"></a></span>
-<span id="cb1164-7"><a href="machine-learning.html#cb1164-7"></a>fit <span class="op">%&gt;%</span></span>
-<span id="cb1164-8"><a href="machine-learning.html#cb1164-8"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1164-9"><a href="machine-learning.html#cb1164-9"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">strata =</span> <span class="kw">gsub</span>(<span class="st">&quot;score_factor=&quot;</span>,<span class="st">&quot;&quot;</span>, strata)) <span class="op">%&gt;%</span></span>
-<span id="cb1164-10"><a href="machine-learning.html#cb1164-10"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">strata =</span> <span class="kw">factor</span>(strata, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;High&quot;</span>,<span class="st">&quot;Medium&quot;</span>,<span class="st">&quot;Low&quot;</span>))) <span class="op">%&gt;%</span></span>
-<span id="cb1164-11"><a href="machine-learning.html#cb1164-11"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> estimate, <span class="dt">ymax =</span> conf.high, <span class="dt">ymin =</span> conf.low, <span class="dt">group =</span> strata, <span class="dt">col =</span> strata)) <span class="op">+</span></span>
-<span id="cb1164-12"><a href="machine-learning.html#cb1164-12"></a><span class="st">    </span><span class="kw">geom_pointrange</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span></span>
-<span id="cb1164-13"><a href="machine-learning.html#cb1164-13"></a><span class="st">    </span><span class="kw">guides</span>(<span class="dt">colour =</span> <span class="kw">guide_legend</span>(<span class="dt">override.aes =</span> <span class="kw">list</span>(<span class="dt">alpha =</span> <span class="dv">1</span>))) <span class="op">+</span></span>
-<span id="cb1164-14"><a href="machine-learning.html#cb1164-14"></a><span class="st">    </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb1164-15"><a href="machine-learning.html#cb1164-15"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Time&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Estimated survival rate&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;Strata&quot;</span>)}</span></code></pre></div>
-<div class="sourceCode" id="cb1165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1165-1"><a href="machine-learning.html#cb1165-1"></a><span class="kw">visualize_surv</span>(df) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Overall&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1161-1"><a href="machine-learning.html#cb1161-1"></a>visualize_surv &lt;-<span class="st"> </span><span class="cf">function</span>(input){</span>
+<span id="cb1161-2"><a href="machine-learning.html#cb1161-2"></a>  </span>
+<span id="cb1161-3"><a href="machine-learning.html#cb1161-3"></a>f &lt;-<span class="st"> </span><span class="kw">Surv</span>(start, end, event, <span class="dt">type=</span><span class="st">&quot;counting&quot;</span>) <span class="op">~</span><span class="st"> </span>score_factor</span>
+<span id="cb1161-4"><a href="machine-learning.html#cb1161-4"></a></span>
+<span id="cb1161-5"><a href="machine-learning.html#cb1161-5"></a>fit &lt;-<span class="st"> </span><span class="kw">survfit</span>(f, <span class="dt">data =</span> input)</span>
+<span id="cb1161-6"><a href="machine-learning.html#cb1161-6"></a></span>
+<span id="cb1161-7"><a href="machine-learning.html#cb1161-7"></a>fit <span class="op">%&gt;%</span></span>
+<span id="cb1161-8"><a href="machine-learning.html#cb1161-8"></a><span class="st">    </span><span class="kw">tidy</span>(<span class="dt">conf.int =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1161-9"><a href="machine-learning.html#cb1161-9"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">strata =</span> <span class="kw">gsub</span>(<span class="st">&quot;score_factor=&quot;</span>,<span class="st">&quot;&quot;</span>, strata)) <span class="op">%&gt;%</span></span>
+<span id="cb1161-10"><a href="machine-learning.html#cb1161-10"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">strata =</span> <span class="kw">factor</span>(strata, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;High&quot;</span>,<span class="st">&quot;Medium&quot;</span>,<span class="st">&quot;Low&quot;</span>))) <span class="op">%&gt;%</span></span>
+<span id="cb1161-11"><a href="machine-learning.html#cb1161-11"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> estimate, <span class="dt">ymax =</span> conf.high, <span class="dt">ymin =</span> conf.low, <span class="dt">group =</span> strata, <span class="dt">col =</span> strata)) <span class="op">+</span></span>
+<span id="cb1161-12"><a href="machine-learning.html#cb1161-12"></a><span class="st">    </span><span class="kw">geom_pointrange</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>) <span class="op">+</span></span>
+<span id="cb1161-13"><a href="machine-learning.html#cb1161-13"></a><span class="st">    </span><span class="kw">guides</span>(<span class="dt">colour =</span> <span class="kw">guide_legend</span>(<span class="dt">override.aes =</span> <span class="kw">list</span>(<span class="dt">alpha =</span> <span class="dv">1</span>))) <span class="op">+</span></span>
+<span id="cb1161-14"><a href="machine-learning.html#cb1161-14"></a><span class="st">    </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb1161-15"><a href="machine-learning.html#cb1161-15"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Time&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Estimated survival rate&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;Strata&quot;</span>)}</span></code></pre></div>
+<div class="sourceCode" id="cb1162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1162-1"><a href="machine-learning.html#cb1162-1"></a><span class="kw">visualize_surv</span>(df) <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Overall&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
 <p>Black defendants do recidivate at higher rates according to race specific Kaplan Meier plots.</p>
-<div class="sourceCode" id="cb1166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1166-1"><a href="machine-learning.html#cb1166-1"></a>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(race <span class="op">==</span><span class="st"> &quot;Caucasian&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">visualize_surv</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Caucasian&quot;</span>)) <span class="op">/</span></span>
-<span id="cb1166-2"><a href="machine-learning.html#cb1166-2"></a>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(race <span class="op">==</span><span class="st"> &quot;African-American&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">visualize_surv</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;African-American&quot;</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb1163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1163-1"><a href="machine-learning.html#cb1163-1"></a>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(race <span class="op">==</span><span class="st"> &quot;Caucasian&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">visualize_surv</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Caucasian&quot;</span>)) <span class="op">/</span></span>
+<span id="cb1163-2"><a href="machine-learning.html#cb1163-2"></a>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(race <span class="op">==</span><span class="st"> &quot;African-American&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">visualize_surv</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;African-American&quot;</span>)) </span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 <p>In terms of underlying recidivism rates, we can look at gender specific Kaplan Meier estimates. There is a striking difference between women and men.</p>
-<div class="sourceCode" id="cb1167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1167-1"><a href="machine-learning.html#cb1167-1"></a>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">visualize_surv</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Female&quot;</span>)) <span class="op">/</span></span>
-<span id="cb1167-2"><a href="machine-learning.html#cb1167-2"></a></span>
-<span id="cb1167-3"><a href="machine-learning.html#cb1167-3"></a>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">visualize_surv</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Male&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1164-1"><a href="machine-learning.html#cb1164-1"></a>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">visualize_surv</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Female&quot;</span>)) <span class="op">/</span></span>
+<span id="cb1164-2"><a href="machine-learning.html#cb1164-2"></a></span>
+<span id="cb1164-3"><a href="machine-learning.html#cb1164-3"></a>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">visualize_surv</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;Male&quot;</span>))</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
 <p>As these plots show, the COMPAS score treats a High risk women the same as a Medium risk man.</p>
 </div>
 <div id="risk-of-recidivism-accuracy" class="section level4" number="7.8.3.6">
 <h4><span class="header-section-number">7.8.3.6</span> Risk of Recidivism accuracy</h4>
 <p>The above analysis shows that the COMPAS algorithm does overpredict African-American defendant’s future recidivism, but we haven’t yet explored the direction of the bias. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.</p>
-<div class="sourceCode" id="cb1168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1168-1"><a href="machine-learning.html#cb1168-1"></a><span class="co"># create a new environment </span></span>
-<span id="cb1168-2"><a href="machine-learning.html#cb1168-2"></a><span class="kw">conda_create</span>(<span class="st">&quot;r-reticulate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1165-1"><a href="machine-learning.html#cb1165-1"></a><span class="co"># create a new environment </span></span>
+<span id="cb1165-2"><a href="machine-learning.html#cb1165-2"></a><span class="kw">conda_create</span>(<span class="st">&quot;r-reticulate&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;/home/jae/.local/share/r-miniconda/envs/r-reticulate/bin/python&quot;</code></pre>
-<div class="sourceCode" id="cb1170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1170-1"><a href="machine-learning.html#cb1170-1"></a><span class="co"># install libs </span></span>
-<span id="cb1170-2"><a href="machine-learning.html#cb1170-2"></a><span class="kw">conda_install</span>(<span class="st">&quot;r-reticulate&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;pandas&quot;</span>))</span>
-<span id="cb1170-3"><a href="machine-learning.html#cb1170-3"></a></span>
-<span id="cb1170-4"><a href="machine-learning.html#cb1170-4"></a><span class="co"># indicate that we want to use a specific condaenv</span></span>
-<span id="cb1170-5"><a href="machine-learning.html#cb1170-5"></a><span class="kw">use_condaenv</span>(<span class="st">&quot;r-reticulate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1171"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1171-1"><a href="machine-learning.html#cb1171-1"></a></span>
-<span id="cb1171-2"><a href="machine-learning.html#cb1171-2"></a><span class="im">from</span> truth_tables <span class="im">import</span> PeekyReader, Person, table, is_race, count, vtable, hightable, vhightable</span>
-<span id="cb1171-3"><a href="machine-learning.html#cb1171-3"></a><span class="im">from</span> csv <span class="im">import</span> DictReader</span>
-<span id="cb1171-4"><a href="machine-learning.html#cb1171-4"></a></span>
-<span id="cb1171-5"><a href="machine-learning.html#cb1171-5"></a>people <span class="op">=</span> []</span></code></pre></div>
-<div class="sourceCode" id="cb1172"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1172-1"><a href="machine-learning.html#cb1172-1"></a></span>
-<span id="cb1172-2"><a href="machine-learning.html#cb1172-2"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;./data/cox-parsed.csv&quot;</span>) <span class="im">as</span> f:</span>
-<span id="cb1172-3"><a href="machine-learning.html#cb1172-3"></a>    reader <span class="op">=</span> PeekyReader(DictReader(f))</span>
-<span id="cb1172-4"><a href="machine-learning.html#cb1172-4"></a>    <span class="cf">try</span>:</span>
-<span id="cb1172-5"><a href="machine-learning.html#cb1172-5"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb1172-6"><a href="machine-learning.html#cb1172-6"></a>            p <span class="op">=</span> Person(reader)</span>
-<span id="cb1172-7"><a href="machine-learning.html#cb1172-7"></a>            <span class="cf">if</span> p.valid:</span>
-<span id="cb1172-8"><a href="machine-learning.html#cb1172-8"></a>                people.append(p)</span>
-<span id="cb1172-9"><a href="machine-learning.html#cb1172-9"></a>    <span class="cf">except</span> <span class="pp">StopIteration</span>:</span>
-<span id="cb1172-10"><a href="machine-learning.html#cb1172-10"></a>        <span class="cf">pass</span></span></code></pre></div>
-<div class="sourceCode" id="cb1173"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1173-1"><a href="machine-learning.html#cb1173-1"></a></span>
-<span id="cb1173-2"><a href="machine-learning.html#cb1173-2"></a>pop <span class="op">=</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> i: ((i.recidivist <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> i.lifetime <span class="op">&lt;=</span> <span class="dv">730</span>) <span class="kw">or</span></span>
-<span id="cb1173-3"><a href="machine-learning.html#cb1173-3"></a>                              i.lifetime <span class="op">&gt;</span> <span class="dv">730</span>), <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> x: x.score_valid, people))))</span>
-<span id="cb1173-4"><a href="machine-learning.html#cb1173-4"></a></span>
-<span id="cb1173-5"><a href="machine-learning.html#cb1173-5"></a>recid <span class="op">=</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> i: i.recidivist <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> i.lifetime <span class="op">&lt;=</span> <span class="dv">730</span>, pop))</span>
-<span id="cb1173-6"><a href="machine-learning.html#cb1173-6"></a></span>
-<span id="cb1173-7"><a href="machine-learning.html#cb1173-7"></a>rset <span class="op">=</span> <span class="bu">set</span>(recid)</span>
-<span id="cb1173-8"><a href="machine-learning.html#cb1173-8"></a></span>
-<span id="cb1173-9"><a href="machine-learning.html#cb1173-9"></a>surv <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> pop <span class="cf">if</span> i <span class="kw">not</span> <span class="kw">in</span> rset]</span></code></pre></div>
+<div class="sourceCode" id="cb1167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1167-1"><a href="machine-learning.html#cb1167-1"></a><span class="co"># install libs </span></span>
+<span id="cb1167-2"><a href="machine-learning.html#cb1167-2"></a><span class="kw">conda_install</span>(<span class="st">&quot;r-reticulate&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;pandas&quot;</span>))</span>
+<span id="cb1167-3"><a href="machine-learning.html#cb1167-3"></a></span>
+<span id="cb1167-4"><a href="machine-learning.html#cb1167-4"></a><span class="co"># indicate that we want to use a specific condaenv</span></span>
+<span id="cb1167-5"><a href="machine-learning.html#cb1167-5"></a><span class="kw">use_condaenv</span>(<span class="st">&quot;r-reticulate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1168"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1168-1"><a href="machine-learning.html#cb1168-1"></a></span>
+<span id="cb1168-2"><a href="machine-learning.html#cb1168-2"></a><span class="im">from</span> truth_tables <span class="im">import</span> PeekyReader, Person, table, is_race, count, vtable, hightable, vhightable</span>
+<span id="cb1168-3"><a href="machine-learning.html#cb1168-3"></a><span class="im">from</span> csv <span class="im">import</span> DictReader</span>
+<span id="cb1168-4"><a href="machine-learning.html#cb1168-4"></a></span>
+<span id="cb1168-5"><a href="machine-learning.html#cb1168-5"></a>people <span class="op">=</span> []</span></code></pre></div>
+<div class="sourceCode" id="cb1169"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1169-1"><a href="machine-learning.html#cb1169-1"></a></span>
+<span id="cb1169-2"><a href="machine-learning.html#cb1169-2"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;./data/cox-parsed.csv&quot;</span>) <span class="im">as</span> f:</span>
+<span id="cb1169-3"><a href="machine-learning.html#cb1169-3"></a>    reader <span class="op">=</span> PeekyReader(DictReader(f))</span>
+<span id="cb1169-4"><a href="machine-learning.html#cb1169-4"></a>    <span class="cf">try</span>:</span>
+<span id="cb1169-5"><a href="machine-learning.html#cb1169-5"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb1169-6"><a href="machine-learning.html#cb1169-6"></a>            p <span class="op">=</span> Person(reader)</span>
+<span id="cb1169-7"><a href="machine-learning.html#cb1169-7"></a>            <span class="cf">if</span> p.valid:</span>
+<span id="cb1169-8"><a href="machine-learning.html#cb1169-8"></a>                people.append(p)</span>
+<span id="cb1169-9"><a href="machine-learning.html#cb1169-9"></a>    <span class="cf">except</span> <span class="pp">StopIteration</span>:</span>
+<span id="cb1169-10"><a href="machine-learning.html#cb1169-10"></a>        <span class="cf">pass</span></span></code></pre></div>
+<div class="sourceCode" id="cb1170"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1170-1"><a href="machine-learning.html#cb1170-1"></a></span>
+<span id="cb1170-2"><a href="machine-learning.html#cb1170-2"></a>pop <span class="op">=</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> i: ((i.recidivist <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> i.lifetime <span class="op">&lt;=</span> <span class="dv">730</span>) <span class="kw">or</span></span>
+<span id="cb1170-3"><a href="machine-learning.html#cb1170-3"></a>                              i.lifetime <span class="op">&gt;</span> <span class="dv">730</span>), <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> x: x.score_valid, people))))</span>
+<span id="cb1170-4"><a href="machine-learning.html#cb1170-4"></a></span>
+<span id="cb1170-5"><a href="machine-learning.html#cb1170-5"></a>recid <span class="op">=</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> i: i.recidivist <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> i.lifetime <span class="op">&lt;=</span> <span class="dv">730</span>, pop))</span>
+<span id="cb1170-6"><a href="machine-learning.html#cb1170-6"></a></span>
+<span id="cb1170-7"><a href="machine-learning.html#cb1170-7"></a>rset <span class="op">=</span> <span class="bu">set</span>(recid)</span>
+<span id="cb1170-8"><a href="machine-learning.html#cb1170-8"></a></span>
+<span id="cb1170-9"><a href="machine-learning.html#cb1170-9"></a>surv <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> pop <span class="cf">if</span> i <span class="kw">not</span> <span class="kw">in</span> rset]</span></code></pre></div>
 <ul>
 <li>Define a function for a table.</li>
 </ul>
-<div class="sourceCode" id="cb1174"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1174-1"><a href="machine-learning.html#cb1174-1"></a></span>
-<span id="cb1174-2"><a href="machine-learning.html#cb1174-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
-<span id="cb1174-3"><a href="machine-learning.html#cb1174-3"></a></span>
-<span id="cb1174-4"><a href="machine-learning.html#cb1174-4"></a><span class="kw">def</span> create_table(x, y):</span>
-<span id="cb1174-5"><a href="machine-learning.html#cb1174-5"></a></span>
-<span id="cb1174-6"><a href="machine-learning.html#cb1174-6"></a>  t <span class="op">=</span> table(<span class="bu">list</span>(x), <span class="bu">list</span>(y))</span>
-<span id="cb1174-7"><a href="machine-learning.html#cb1174-7"></a>  </span>
-<span id="cb1174-8"><a href="machine-learning.html#cb1174-8"></a>  df <span class="op">=</span> pd.DataFrame(t.items(), </span>
-<span id="cb1174-9"><a href="machine-learning.html#cb1174-9"></a>             columns <span class="op">=</span> [<span class="st">&#39;Metrics&#39;</span>, <span class="st">&#39;Scores&#39;</span>])</span>
-<span id="cb1174-10"><a href="machine-learning.html#cb1174-10"></a>             </span>
-<span id="cb1174-11"><a href="machine-learning.html#cb1174-11"></a>  <span class="cf">return</span>(df)</span>
-<span id="cb1174-12"><a href="machine-learning.html#cb1174-12"></a>             </span></code></pre></div>
+<div class="sourceCode" id="cb1171"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1171-1"><a href="machine-learning.html#cb1171-1"></a></span>
+<span id="cb1171-2"><a href="machine-learning.html#cb1171-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb1171-3"><a href="machine-learning.html#cb1171-3"></a></span>
+<span id="cb1171-4"><a href="machine-learning.html#cb1171-4"></a><span class="kw">def</span> create_table(x, y):</span>
+<span id="cb1171-5"><a href="machine-learning.html#cb1171-5"></a></span>
+<span id="cb1171-6"><a href="machine-learning.html#cb1171-6"></a>  t <span class="op">=</span> table(<span class="bu">list</span>(x), <span class="bu">list</span>(y))</span>
+<span id="cb1171-7"><a href="machine-learning.html#cb1171-7"></a>  </span>
+<span id="cb1171-8"><a href="machine-learning.html#cb1171-8"></a>  df <span class="op">=</span> pd.DataFrame(t.items(), </span>
+<span id="cb1171-9"><a href="machine-learning.html#cb1171-9"></a>             columns <span class="op">=</span> [<span class="st">&#39;Metrics&#39;</span>, <span class="st">&#39;Scores&#39;</span>])</span>
+<span id="cb1171-10"><a href="machine-learning.html#cb1171-10"></a>             </span>
+<span id="cb1171-11"><a href="machine-learning.html#cb1171-11"></a>  <span class="cf">return</span>(df)</span>
+<span id="cb1171-12"><a href="machine-learning.html#cb1171-12"></a>             </span></code></pre></div>
 <ul>
 <li>All defenders</li>
 </ul>
-<div class="sourceCode" id="cb1175"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1175-1"><a href="machine-learning.html#cb1175-1"></a></span>
-<span id="cb1175-2"><a href="machine-learning.html#cb1175-2"></a>create_table(<span class="bu">list</span>(recid), <span class="bu">list</span>(surv)).to_csv(<span class="st">&quot;data/table_recid.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1176-1"><a href="machine-learning.html#cb1176-1"></a><span class="kw">read.csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;table_recid.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>] <span class="op">%&gt;%</span></span>
-<span id="cb1176-2"><a href="machine-learning.html#cb1176-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Metrics, <span class="dt">y =</span> Scores)) <span class="op">+</span></span>
-<span id="cb1176-3"><a href="machine-learning.html#cb1176-3"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb1176-4"><a href="machine-learning.html#cb1176-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Recidivism&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1172"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1172-1"><a href="machine-learning.html#cb1172-1"></a></span>
+<span id="cb1172-2"><a href="machine-learning.html#cb1172-2"></a>create_table(<span class="bu">list</span>(recid), <span class="bu">list</span>(surv)).to_csv(<span class="st">&quot;data/table_recid.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1173-1"><a href="machine-learning.html#cb1173-1"></a><span class="kw">read.csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;table_recid.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>] <span class="op">%&gt;%</span></span>
+<span id="cb1173-2"><a href="machine-learning.html#cb1173-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Metrics, <span class="dt">y =</span> Scores)) <span class="op">+</span></span>
+<span id="cb1173-3"><a href="machine-learning.html#cb1173-3"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb1173-4"><a href="machine-learning.html#cb1173-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Recidivism&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 <p>That number is higher for African Americans at 44.85% and lower for whites at 23.45%.</p>
-<div class="sourceCode" id="cb1177"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1177-1"><a href="machine-learning.html#cb1177-1"></a></span>
-<span id="cb1177-2"><a href="machine-learning.html#cb1177-2"></a><span class="kw">def</span> create_comp_tables(recid_data, surv_data):</span>
-<span id="cb1177-3"><a href="machine-learning.html#cb1177-3"></a>  </span>
-<span id="cb1177-4"><a href="machine-learning.html#cb1177-4"></a>    <span class="co"># filtering variables </span></span>
-<span id="cb1177-5"><a href="machine-learning.html#cb1177-5"></a>    is_afam <span class="op">=</span> is_race(<span class="st">&quot;African-American&quot;</span>)</span>
-<span id="cb1177-6"><a href="machine-learning.html#cb1177-6"></a>    is_white <span class="op">=</span> is_race(<span class="st">&quot;Caucasian&quot;</span>)</span>
-<span id="cb1177-7"><a href="machine-learning.html#cb1177-7"></a>  </span>
-<span id="cb1177-8"><a href="machine-learning.html#cb1177-8"></a>    <span class="co"># dfs </span></span>
-<span id="cb1177-9"><a href="machine-learning.html#cb1177-9"></a>    df1 <span class="op">=</span> create_table(<span class="bu">filter</span>(is_afam, recid_data),</span>
-<span id="cb1177-10"><a href="machine-learning.html#cb1177-10"></a>                       <span class="bu">filter</span>(is_afam, surv_data))</span>
-<span id="cb1177-11"><a href="machine-learning.html#cb1177-11"></a>  </span>
-<span id="cb1177-12"><a href="machine-learning.html#cb1177-12"></a>    df2 <span class="op">=</span> create_table(<span class="bu">filter</span>(is_white, recid_data), </span>
-<span id="cb1177-13"><a href="machine-learning.html#cb1177-13"></a>                       <span class="bu">filter</span>(is_white, surv_data))</span>
-<span id="cb1177-14"><a href="machine-learning.html#cb1177-14"></a>  </span>
-<span id="cb1177-15"><a href="machine-learning.html#cb1177-15"></a>    <span class="co"># concat </span></span>
-<span id="cb1177-16"><a href="machine-learning.html#cb1177-16"></a>    dfs <span class="op">=</span> pd.concat([df1, df2])</span>
-<span id="cb1177-17"><a href="machine-learning.html#cb1177-17"></a>    </span>
-<span id="cb1177-18"><a href="machine-learning.html#cb1177-18"></a>    dfs[<span class="st">&#39;Group&#39;</span>] <span class="op">=</span> [<span class="st">&#39;African Americans&#39;</span>,<span class="st">&#39;African Americans&#39;</span>,<span class="st">&#39;Whites&#39;</span>,<span class="st">&#39;Whites&#39;</span>]</span>
-<span id="cb1177-19"><a href="machine-learning.html#cb1177-19"></a>    </span>
-<span id="cb1177-20"><a href="machine-learning.html#cb1177-20"></a>    <span class="cf">return</span>(dfs)</span>
-<span id="cb1177-21"><a href="machine-learning.html#cb1177-21"></a>    </span></code></pre></div>
-<div class="sourceCode" id="cb1178"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1178-1"><a href="machine-learning.html#cb1178-1"></a></span>
-<span id="cb1178-2"><a href="machine-learning.html#cb1178-2"></a>create_comp_tables(recid, surv).to_csv(<span class="st">&quot;data/comp_tables_recid.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1179-1"><a href="machine-learning.html#cb1179-1"></a><span class="kw">read.csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;comp_tables_recid.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>] <span class="op">%&gt;%</span></span>
-<span id="cb1179-2"><a href="machine-learning.html#cb1179-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Metrics, <span class="dt">y =</span> Scores, <span class="dt">fill =</span> Group)) <span class="op">+</span></span>
-<span id="cb1179-3"><a href="machine-learning.html#cb1179-3"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
-<span id="cb1179-4"><a href="machine-learning.html#cb1179-4"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
-<span id="cb1179-5"><a href="machine-learning.html#cb1179-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Recidivism&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1174"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1174-1"><a href="machine-learning.html#cb1174-1"></a></span>
+<span id="cb1174-2"><a href="machine-learning.html#cb1174-2"></a><span class="kw">def</span> create_comp_tables(recid_data, surv_data):</span>
+<span id="cb1174-3"><a href="machine-learning.html#cb1174-3"></a>  </span>
+<span id="cb1174-4"><a href="machine-learning.html#cb1174-4"></a>    <span class="co"># filtering variables </span></span>
+<span id="cb1174-5"><a href="machine-learning.html#cb1174-5"></a>    is_afam <span class="op">=</span> is_race(<span class="st">&quot;African-American&quot;</span>)</span>
+<span id="cb1174-6"><a href="machine-learning.html#cb1174-6"></a>    is_white <span class="op">=</span> is_race(<span class="st">&quot;Caucasian&quot;</span>)</span>
+<span id="cb1174-7"><a href="machine-learning.html#cb1174-7"></a>  </span>
+<span id="cb1174-8"><a href="machine-learning.html#cb1174-8"></a>    <span class="co"># dfs </span></span>
+<span id="cb1174-9"><a href="machine-learning.html#cb1174-9"></a>    df1 <span class="op">=</span> create_table(<span class="bu">filter</span>(is_afam, recid_data),</span>
+<span id="cb1174-10"><a href="machine-learning.html#cb1174-10"></a>                       <span class="bu">filter</span>(is_afam, surv_data))</span>
+<span id="cb1174-11"><a href="machine-learning.html#cb1174-11"></a>  </span>
+<span id="cb1174-12"><a href="machine-learning.html#cb1174-12"></a>    df2 <span class="op">=</span> create_table(<span class="bu">filter</span>(is_white, recid_data), </span>
+<span id="cb1174-13"><a href="machine-learning.html#cb1174-13"></a>                       <span class="bu">filter</span>(is_white, surv_data))</span>
+<span id="cb1174-14"><a href="machine-learning.html#cb1174-14"></a>  </span>
+<span id="cb1174-15"><a href="machine-learning.html#cb1174-15"></a>    <span class="co"># concat </span></span>
+<span id="cb1174-16"><a href="machine-learning.html#cb1174-16"></a>    dfs <span class="op">=</span> pd.concat([df1, df2])</span>
+<span id="cb1174-17"><a href="machine-learning.html#cb1174-17"></a>    </span>
+<span id="cb1174-18"><a href="machine-learning.html#cb1174-18"></a>    dfs[<span class="st">&#39;Group&#39;</span>] <span class="op">=</span> [<span class="st">&#39;African Americans&#39;</span>,<span class="st">&#39;African Americans&#39;</span>,<span class="st">&#39;Whites&#39;</span>,<span class="st">&#39;Whites&#39;</span>]</span>
+<span id="cb1174-19"><a href="machine-learning.html#cb1174-19"></a>    </span>
+<span id="cb1174-20"><a href="machine-learning.html#cb1174-20"></a>    <span class="cf">return</span>(dfs)</span>
+<span id="cb1174-21"><a href="machine-learning.html#cb1174-21"></a>    </span></code></pre></div>
+<div class="sourceCode" id="cb1175"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1175-1"><a href="machine-learning.html#cb1175-1"></a></span>
+<span id="cb1175-2"><a href="machine-learning.html#cb1175-2"></a>create_comp_tables(recid, surv).to_csv(<span class="st">&quot;data/comp_tables_recid.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1176-1"><a href="machine-learning.html#cb1176-1"></a><span class="kw">read.csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;comp_tables_recid.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>] <span class="op">%&gt;%</span></span>
+<span id="cb1176-2"><a href="machine-learning.html#cb1176-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Metrics, <span class="dt">y =</span> Scores, <span class="dt">fill =</span> Group)) <span class="op">+</span></span>
+<span id="cb1176-3"><a href="machine-learning.html#cb1176-3"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
+<span id="cb1176-4"><a href="machine-learning.html#cb1176-4"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb1176-5"><a href="machine-learning.html#cb1176-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Recidivism&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 </div>
 <div id="risk-of-violent-recidivism-accuracy" class="section level4" number="7.8.3.7">
 <h4><span class="header-section-number">7.8.3.7</span> Risk of Violent Recidivism accuracy</h4>
 <p>COMPAS also offers a score that aims to measure a persons risk of violent recidivism, which has a similar overall accuracy to the Recidivism score.</p>
-<div class="sourceCode" id="cb1180"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1180-1"><a href="machine-learning.html#cb1180-1"></a></span>
-<span id="cb1180-2"><a href="machine-learning.html#cb1180-2"></a>vpeople <span class="op">=</span> []</span>
-<span id="cb1180-3"><a href="machine-learning.html#cb1180-3"></a></span>
-<span id="cb1180-4"><a href="machine-learning.html#cb1180-4"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;./data/cox-violent-parsed.csv&quot;</span>) <span class="im">as</span> f:</span>
-<span id="cb1180-5"><a href="machine-learning.html#cb1180-5"></a>    reader <span class="op">=</span> PeekyReader(DictReader(f))</span>
-<span id="cb1180-6"><a href="machine-learning.html#cb1180-6"></a>    <span class="cf">try</span>:</span>
-<span id="cb1180-7"><a href="machine-learning.html#cb1180-7"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb1180-8"><a href="machine-learning.html#cb1180-8"></a>            p <span class="op">=</span> Person(reader)</span>
-<span id="cb1180-9"><a href="machine-learning.html#cb1180-9"></a>            <span class="cf">if</span> p.valid:</span>
-<span id="cb1180-10"><a href="machine-learning.html#cb1180-10"></a>                vpeople.append(p)</span>
-<span id="cb1180-11"><a href="machine-learning.html#cb1180-11"></a>    <span class="cf">except</span> <span class="pp">StopIteration</span>:</span>
-<span id="cb1180-12"><a href="machine-learning.html#cb1180-12"></a>        <span class="cf">pass</span></span>
-<span id="cb1180-13"><a href="machine-learning.html#cb1180-13"></a></span>
-<span id="cb1180-14"><a href="machine-learning.html#cb1180-14"></a>vpop <span class="op">=</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> i: ((i.violent_recidivist <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> i.lifetime <span class="op">&lt;=</span> <span class="dv">730</span>) <span class="kw">or</span></span>
-<span id="cb1180-15"><a href="machine-learning.html#cb1180-15"></a>                              i.lifetime <span class="op">&gt;</span> <span class="dv">730</span>), <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> x: x.vscore_valid, vpeople))))</span>
-<span id="cb1180-16"><a href="machine-learning.html#cb1180-16"></a></span>
-<span id="cb1180-17"><a href="machine-learning.html#cb1180-17"></a>vrecid <span class="op">=</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> i: i.violent_recidivist <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> i.lifetime <span class="op">&lt;=</span> <span class="dv">730</span>, vpeople))</span>
-<span id="cb1180-18"><a href="machine-learning.html#cb1180-18"></a></span>
-<span id="cb1180-19"><a href="machine-learning.html#cb1180-19"></a>vrset <span class="op">=</span> <span class="bu">set</span>(vrecid)</span>
-<span id="cb1180-20"><a href="machine-learning.html#cb1180-20"></a></span>
-<span id="cb1180-21"><a href="machine-learning.html#cb1180-21"></a>vsurv <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> vpop <span class="cf">if</span> i <span class="kw">not</span> <span class="kw">in</span> vrset]</span></code></pre></div>
-<div class="sourceCode" id="cb1181"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1181-1"><a href="machine-learning.html#cb1181-1"></a></span>
-<span id="cb1181-2"><a href="machine-learning.html#cb1181-2"></a>create_table(vrecid, vsurv).to_csv(<span class="st">&quot;data/table_vrecid.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1182-1"><a href="machine-learning.html#cb1182-1"></a><span class="kw">read.csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;table_vrecid.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>] <span class="op">%&gt;%</span></span>
-<span id="cb1182-2"><a href="machine-learning.html#cb1182-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Metrics, <span class="dt">y =</span> Scores)) <span class="op">+</span></span>
-<span id="cb1182-3"><a href="machine-learning.html#cb1182-3"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb1182-4"><a href="machine-learning.html#cb1182-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Violent recidivism&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1177"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1177-1"><a href="machine-learning.html#cb1177-1"></a></span>
+<span id="cb1177-2"><a href="machine-learning.html#cb1177-2"></a>vpeople <span class="op">=</span> []</span>
+<span id="cb1177-3"><a href="machine-learning.html#cb1177-3"></a></span>
+<span id="cb1177-4"><a href="machine-learning.html#cb1177-4"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;./data/cox-violent-parsed.csv&quot;</span>) <span class="im">as</span> f:</span>
+<span id="cb1177-5"><a href="machine-learning.html#cb1177-5"></a>    reader <span class="op">=</span> PeekyReader(DictReader(f))</span>
+<span id="cb1177-6"><a href="machine-learning.html#cb1177-6"></a>    <span class="cf">try</span>:</span>
+<span id="cb1177-7"><a href="machine-learning.html#cb1177-7"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb1177-8"><a href="machine-learning.html#cb1177-8"></a>            p <span class="op">=</span> Person(reader)</span>
+<span id="cb1177-9"><a href="machine-learning.html#cb1177-9"></a>            <span class="cf">if</span> p.valid:</span>
+<span id="cb1177-10"><a href="machine-learning.html#cb1177-10"></a>                vpeople.append(p)</span>
+<span id="cb1177-11"><a href="machine-learning.html#cb1177-11"></a>    <span class="cf">except</span> <span class="pp">StopIteration</span>:</span>
+<span id="cb1177-12"><a href="machine-learning.html#cb1177-12"></a>        <span class="cf">pass</span></span>
+<span id="cb1177-13"><a href="machine-learning.html#cb1177-13"></a></span>
+<span id="cb1177-14"><a href="machine-learning.html#cb1177-14"></a>vpop <span class="op">=</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> i: ((i.violent_recidivist <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> i.lifetime <span class="op">&lt;=</span> <span class="dv">730</span>) <span class="kw">or</span></span>
+<span id="cb1177-15"><a href="machine-learning.html#cb1177-15"></a>                              i.lifetime <span class="op">&gt;</span> <span class="dv">730</span>), <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> x: x.vscore_valid, vpeople))))</span>
+<span id="cb1177-16"><a href="machine-learning.html#cb1177-16"></a></span>
+<span id="cb1177-17"><a href="machine-learning.html#cb1177-17"></a>vrecid <span class="op">=</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> i: i.violent_recidivist <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> i.lifetime <span class="op">&lt;=</span> <span class="dv">730</span>, vpeople))</span>
+<span id="cb1177-18"><a href="machine-learning.html#cb1177-18"></a></span>
+<span id="cb1177-19"><a href="machine-learning.html#cb1177-19"></a>vrset <span class="op">=</span> <span class="bu">set</span>(vrecid)</span>
+<span id="cb1177-20"><a href="machine-learning.html#cb1177-20"></a></span>
+<span id="cb1177-21"><a href="machine-learning.html#cb1177-21"></a>vsurv <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> vpop <span class="cf">if</span> i <span class="kw">not</span> <span class="kw">in</span> vrset]</span></code></pre></div>
+<div class="sourceCode" id="cb1178"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1178-1"><a href="machine-learning.html#cb1178-1"></a></span>
+<span id="cb1178-2"><a href="machine-learning.html#cb1178-2"></a>create_table(vrecid, vsurv).to_csv(<span class="st">&quot;data/table_vrecid.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1179-1"><a href="machine-learning.html#cb1179-1"></a><span class="kw">read.csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;table_vrecid.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>] <span class="op">%&gt;%</span></span>
+<span id="cb1179-2"><a href="machine-learning.html#cb1179-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Metrics, <span class="dt">y =</span> Scores)) <span class="op">+</span></span>
+<span id="cb1179-3"><a href="machine-learning.html#cb1179-3"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb1179-4"><a href="machine-learning.html#cb1179-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Violent recidivism&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
 <p>Even more so for Black defendants.</p>
-<div class="sourceCode" id="cb1183"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1183-1"><a href="machine-learning.html#cb1183-1"></a></span>
-<span id="cb1183-2"><a href="machine-learning.html#cb1183-2"></a>create_comp_tables(vrecid, vsurv).to_csv(<span class="st">&quot;data/comp_tables_vrecid.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1184-1"><a href="machine-learning.html#cb1184-1"></a><span class="kw">read.csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;comp_tables_vrecid.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>] <span class="op">%&gt;%</span></span>
-<span id="cb1184-2"><a href="machine-learning.html#cb1184-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Metrics, <span class="dt">y =</span> Scores, <span class="dt">fill =</span> Group)) <span class="op">+</span></span>
-<span id="cb1184-3"><a href="machine-learning.html#cb1184-3"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
-<span id="cb1184-4"><a href="machine-learning.html#cb1184-4"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
-<span id="cb1184-5"><a href="machine-learning.html#cb1184-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Violent recidivism&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1180"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1180-1"><a href="machine-learning.html#cb1180-1"></a></span>
+<span id="cb1180-2"><a href="machine-learning.html#cb1180-2"></a>create_comp_tables(vrecid, vsurv).to_csv(<span class="st">&quot;data/comp_tables_vrecid.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1181-1"><a href="machine-learning.html#cb1181-1"></a><span class="kw">read.csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;comp_tables_vrecid.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>] <span class="op">%&gt;%</span></span>
+<span id="cb1181-2"><a href="machine-learning.html#cb1181-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Metrics, <span class="dt">y =</span> Scores, <span class="dt">fill =</span> Group)) <span class="op">+</span></span>
+<span id="cb1181-3"><a href="machine-learning.html#cb1181-3"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
+<span id="cb1181-4"><a href="machine-learning.html#cb1181-4"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb1181-5"><a href="machine-learning.html#cb1181-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Violent recidivism&quot;</span>)</span></code></pre></div>
 <p><img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
 </div>
 </div>

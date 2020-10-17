@@ -2141,13 +2141,7 @@ For more information on the ProPublica's Machine Bias project, we encourage to c
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-```
 
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
  tidyverse, # tidyverse packages 
  conflicted, # an alternative conflict resolution strategy 
@@ -2174,11 +2168,6 @@ conflict_prefer("select", "dplyr")
 
 ```
 ## [conflicted] Will prefer dplyr::select over any other package
-```
-
-```r
-# Set themes 
-theme_set(ggthemes::theme_fivethirtyeight())
 ```
 
 #### Load data 
@@ -3137,7 +3126,6 @@ read.csv(here("data", "table_vrecid.csv"))[,-1] %>%
 ```
 
 <img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-117-1.png" width="672" />
-
 
 Even more so for Black defendants.
 
