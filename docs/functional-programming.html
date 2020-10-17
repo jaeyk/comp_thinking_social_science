@@ -284,8 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.11" data-path="functional-programming.html"><a href="functional-programming.html#developing-your-own-data-tools"><i class="fa fa-check"></i><b>5.11</b> Developing your own data tools</a>
 <ul>
 <li class="chapter" data-level="5.11.1" data-path="functional-programming.html"><a href="functional-programming.html#developing-r-packages"><i class="fa fa-check"></i><b>5.11.1</b> Developing R packages</a></li>
-<li class="chapter" data-level="5.11.2" data-path="functional-programming.html"><a href="functional-programming.html#distributing-an-r-package"><i class="fa fa-check"></i><b>5.11.2</b> Distributing an R package</a></li>
-<li class="chapter" data-level="5.11.3" data-path="functional-programming.html"><a href="functional-programming.html#developing-shiny-apps"><i class="fa fa-check"></i><b>5.11.3</b> Developing Shiny apps</a></li>
+<li class="chapter" data-level="5.11.2" data-path="functional-programming.html"><a href="functional-programming.html#developing-shiny-apps"><i class="fa fa-check"></i><b>5.11.2</b> Developing Shiny apps</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="semi-structured-data.html"><a href="semi-structured-data.html"><i class="fa fa-check"></i><b>6</b> Semi-structured data</a>
@@ -1774,9 +1773,13 @@ Why the above solution is not efficient?</li>
 <span id="cb928-2"><a href="functional-programming.html#cb928-2"></a>usethis<span class="op">::</span><span class="kw">use_pkgdown</span>()</span>
 <span id="cb928-3"><a href="functional-programming.html#cb928-3"></a>pkgdown<span class="op">::</span><span class="kw">build_site</span>()</span></code></pre></div>
 <ul>
-<li><p>A package site includes information on METADATA, Function references, Articles, News, etc.
-### Building an R package</p></li>
-<li><p>CMD (in the terminal)</p></li>
+<li>A package site includes information on METADATA, Function references, Articles, News, etc.</li>
+</ul>
+</div>
+<div id="building-an-r-package" class="section level4" number="5.11.1.4">
+<h4><span class="header-section-number">5.11.1.4</span> Building an R package</h4>
+<ul>
+<li>CMD (in the terminal)</li>
 </ul>
 <p>You can run R commands in the terminal using R CMD.</p>
 <ul>
@@ -1788,9 +1791,8 @@ Why the above solution is not efficient?</li>
 <span id="cb929-4"><a href="functional-programming.html#cb929-4"></a><span class="co"># Install </span></span>
 <span id="cb929-5"><a href="functional-programming.html#cb929-5"></a>devtools<span class="op">::</span><span class="kw">install</span>()</span></code></pre></div>
 </div>
-</div>
-<div id="distributing-an-r-package" class="section level3" number="5.11.2">
-<h3><span class="header-section-number">5.11.2</span> Distributing an R package</h3>
+<div id="distributing-an-r-package" class="section level4" number="5.11.1.5">
+<h4><span class="header-section-number">5.11.1.5</span> Distributing an R package</h4>
 <div class="sourceCode" id="cb930"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb930-1"><a href="functional-programming.html#cb930-1"></a><span class="co"># Version update </span></span>
 <span id="cb930-2"><a href="functional-programming.html#cb930-2"></a>usethis<span class="op">::</span><span class="kw">use_version</span>()</span>
 <span id="cb930-3"><a href="functional-programming.html#cb930-3"></a></span>
@@ -1811,11 +1813,12 @@ Why the above solution is not efficient?</li>
 <li><p>I highly recommend connecting GitHub with SSH. For more information, visit <a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">this link</a>.</p></li>
 </ul>
 </div>
-<div id="developing-shiny-apps" class="section level3" number="5.11.3">
-<h3><span class="header-section-number">5.11.3</span> Developing Shiny apps</h3>
+</div>
+<div id="developing-shiny-apps" class="section level3" number="5.11.2">
+<h3><span class="header-section-number">5.11.2</span> Developing Shiny apps</h3>
 <p><a href="https://shiny.rstudio.com/">Shiny</a> is a “framework for creating web applications using R code”. You can create a dashboard or an interactive map without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise to learn from your data in an intuitive and interactive way.</p>
-<div id="workflow-1" class="section level4" number="5.11.3.1">
-<h4><span class="header-section-number">5.11.3.1</span> Workflow</h4>
+<div id="workflow-1" class="section level4" number="5.11.2.1">
+<h4><span class="header-section-number">5.11.2.1</span> Workflow</h4>
 <p>The workflow follows what Hadley Wickham recommened in his book on mastering shiny.</p>
 <ol style="list-style-type: decimal">
 <li>Install libraries</li>
@@ -1828,11 +1831,51 @@ Why the above solution is not efficient?</li>
 <p>The key objective here is defining your UI (how the app looks; front-end = INPUT) (defined in object <code>ui</code>) and server (how the app works; back-end = OUTPUT) (defined in object <code>server</code>).</p>
 <p>If you’re creating a complex app, you can achieve the same goal with two files: <code>ui.R</code> and <code>server.R</code>.</p>
 </div>
-<div id="app.r" class="section level4" number="5.11.3.2">
-<h4><span class="header-section-number">5.11.3.2</span> app.r</h4>
+<div id="app.r" class="section level4" number="5.11.2.2">
+<h4><span class="header-section-number">5.11.2.2</span> app.r</h4>
+<div class="sourceCode" id="cb932"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb932-1"><a href="functional-programming.html#cb932-1"></a><span class="co"># Load packages </span></span>
+<span id="cb932-2"><a href="functional-programming.html#cb932-2"></a></span>
+<span id="cb932-3"><a href="functional-programming.html#cb932-3"></a><span class="kw">require</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span>
+<span id="cb932-4"><a href="functional-programming.html#cb932-4"></a><span class="kw">require</span>(<span class="st">&quot;shiny&quot;</span>)</span>
+<span id="cb932-5"><a href="functional-programming.html#cb932-5"></a><span class="kw">require</span>(<span class="st">&quot;shinydashboard&quot;</span>)</span>
+<span id="cb932-6"><a href="functional-programming.html#cb932-6"></a><span class="kw">require</span>(<span class="st">&quot;colourpicker&quot;</span>)</span>
+<span id="cb932-7"><a href="functional-programming.html#cb932-7"></a></span>
+<span id="cb932-8"><a href="functional-programming.html#cb932-8"></a><span class="co"># Load data </span></span>
+<span id="cb932-9"><a href="functional-programming.html#cb932-9"></a></span>
+<span id="cb932-10"><a href="functional-programming.html#cb932-10"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">url</span>(<span class="st">&quot;https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb932-11"><a href="functional-programming.html#cb932-11"></a></span>
+<span id="cb932-12"><a href="functional-programming.html#cb932-12"></a><span class="co"># Defines the user interface; how the app looks</span></span>
+<span id="cb932-13"><a href="functional-programming.html#cb932-13"></a></span>
+<span id="cb932-14"><a href="functional-programming.html#cb932-14"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>( <span class="co"># This is a layout function </span></span>
+<span id="cb932-15"><a href="functional-programming.html#cb932-15"></a>  </span>
+<span id="cb932-16"><a href="functional-programming.html#cb932-16"></a>    <span class="kw">h1</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
+<span id="cb932-17"><a href="functional-programming.html#cb932-17"></a>  </span>
+<span id="cb932-18"><a href="functional-programming.html#cb932-18"></a>    <span class="kw">h4</span>(tags<span class="op">$</span><span class="kw">a</span>(<span class="dt">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
+<span id="cb932-19"><a href="functional-programming.html#cb932-19"></a>            </span>
+<span id="cb932-20"><a href="functional-programming.html#cb932-20"></a>    <span class="kw">mainPanel</span>(</span>
+<span id="cb932-21"><a href="functional-programming.html#cb932-21"></a>          </span>
+<span id="cb932-22"><a href="functional-programming.html#cb932-22"></a>          <span class="kw">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
+<span id="cb932-23"><a href="functional-programming.html#cb932-23"></a>        </span>
+<span id="cb932-24"><a href="functional-programming.html#cb932-24"></a>        )</span>
+<span id="cb932-25"><a href="functional-programming.html#cb932-25"></a>    </span>
+<span id="cb932-26"><a href="functional-programming.html#cb932-26"></a>    )</span>
+<span id="cb932-27"><a href="functional-programming.html#cb932-27"></a>  </span>
+<span id="cb932-28"><a href="functional-programming.html#cb932-28"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</span>
+<span id="cb932-29"><a href="functional-programming.html#cb932-29"></a>  </span>
+<span id="cb932-30"><a href="functional-programming.html#cb932-30"></a>  output<span class="op">$</span>cloud &lt;-<span class="st"> </span><span class="kw">renderWordcloud2</span>({ </span>
+<span id="cb932-31"><a href="functional-programming.html#cb932-31"></a>    </span>
+<span id="cb932-32"><a href="functional-programming.html#cb932-32"></a>    <span class="kw">wordcloud2</span>(df, </span>
+<span id="cb932-33"><a href="functional-programming.html#cb932-33"></a>               <span class="dt">size =</span> <span class="fl">2.5</span>, </span>
+<span id="cb932-34"><a href="functional-programming.html#cb932-34"></a>               <span class="dt">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
+<span id="cb932-35"><a href="functional-programming.html#cb932-35"></a>    </span>
+<span id="cb932-36"><a href="functional-programming.html#cb932-36"></a>    })</span>
+<span id="cb932-37"><a href="functional-programming.html#cb932-37"></a></span>
+<span id="cb932-38"><a href="functional-programming.html#cb932-38"></a>  }</span>
+<span id="cb932-39"><a href="functional-programming.html#cb932-39"></a></span>
+<span id="cb932-40"><a href="functional-programming.html#cb932-40"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
 </div>
-<div id="references-1" class="section level4" number="5.11.3.3">
-<h4><span class="header-section-number">5.11.3.3</span> References</h4>
+<div id="references-1" class="section level4" number="5.11.2.3">
+<h4><span class="header-section-number">5.11.2.3</span> References</h4>
 <p><a href="https://mastering-shiny.org/">Mastering Shiny</a> by Hadley Wickham. For newbies.</p>
 <p><a href="https://bookdown.org/yihui/rmarkdown/shiny-documents.html">Shiny Documents</a> by Yihui Xie</p>
 <p><a href="https://engineering-shiny.org/">Engineering Production-Grade Shiny Apps</a> by Colin Fay, Sébastien Rochette, Vincent Guyader, Cervan Girard. For experienced developers.</p>

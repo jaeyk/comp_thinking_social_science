@@ -1049,7 +1049,8 @@ pkgdown::build_site()
 ```
 
 - A package site includes information on METADATA, Function references, Articles, News, etc. 
-### Building an R package 
+
+#### Building an R package 
 
 - CMD (in the terminal)
 
@@ -1070,7 +1071,7 @@ devtools::build()
 devtools::install()
 ```
 
-### Distributing an R package 
+#### Distributing an R package 
 
 ```{r eval = FALSE}
 # Version update 
@@ -1123,7 +1124,7 @@ If you're creating a complex app, you can achieve the same goal with two files: 
 
 #### app.r 
 
-```{r eval=FALSE, include=FALSE}
+```{r eval=FALSE}
 
 # Load packages 
 

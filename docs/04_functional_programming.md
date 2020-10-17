@@ -1896,7 +1896,8 @@ pkgdown::build_site()
 ```
 
 - A package site includes information on METADATA, Function references, Articles, News, etc. 
-### Building an R package 
+
+#### Building an R package 
 
 - CMD (in the terminal)
 
@@ -1915,7 +1916,7 @@ devtools::build()
 devtools::install()
 ```
 
-### Distributing an R package 
+#### Distributing an R package 
 
 
 ```r
@@ -1964,6 +1965,48 @@ If you're creating a complex app, you can achieve the same goal with two files: 
 #### app.r 
 
 
+```r
+# Load packages 
+
+require("wordcloud2")
+require("shiny")
+require("shinydashboard")
+require("colourpicker")
+
+# Load data 
+
+df <- read.csv(url("https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv"))[,-1]
+
+# Defines the user interface; how the app looks
+
+ui <- fluidPage( # This is a layout function 
+  
+    h1("Word Cloud on the Hashtags of the Tweets related to COVID-19 & Asian|Chinese|Wuhan"),
+  
+    h4(tags$a(href = "https://jaeyk.github.io/", "Developer: Jae Yeon Kim")),
+            
+    mainPanel(
+          
+          wordcloud2Output("cloud"),
+        
+        )
+    
+    )
+  
+server <- function(input, output) {
+  
+  output$cloud <- renderWordcloud2({ 
+    
+    wordcloud2(df, 
+               size = 2.5, 
+               color = "random-dark") 
+    
+    })
+
+  }
+
+shinyApp(ui = ui, server = server)
+```
 
 #### References 
 

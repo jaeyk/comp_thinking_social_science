@@ -188,6 +188,7 @@ developing-r-packages
 workflow
 required-components
 optional-components
+building-an-r-package
 distributing-an-r-package
 developing-shiny-apps
 workflow-1
