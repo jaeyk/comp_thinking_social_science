@@ -1748,13 +1748,13 @@ url_lists[out[seq(out)] == "The URL is broken."]
 
 ## Developing your own data tools
 
-### Why developing R packages? 
+### Developing R packages 
 
 1. Reuse your code 
 2. Automate your workflow 
 3. Help others (be part of an open source development community)
 
-### Workflow 
+#### Workflow 
 
 1. Write code in `\R`
 2. Document code in `\man` (automated by `roxygen2` package)
@@ -1769,11 +1769,9 @@ url_lists[out[seq(out)] == "The URL is broken."]
 
 ![]http://r-pkgs.had.co.nz/diagrams/package-files.png
 
-### Developing an R package 
+#### Required Components
 
 The 4 required components are necessary to build and distribute a minimally viable R package. The other steps are optional.
-
-### Required Components
 
 - Package 
   - `\R`: R functions 
@@ -1851,7 +1849,8 @@ devtools::check()
 usethis::use_package("dplyr")
 ```
 
-### Optional Components  
+#### Optional Components  
+
 1. Test (**test**)
 
 
@@ -1861,7 +1860,7 @@ usethis::use_testthat()
 usethis::use_test("rbind_mutate")
 ```
 
-3. Add data (**data**)
+2. Add data (**data**)
 
 
 ```r
@@ -1872,7 +1871,7 @@ z <- "Jane"
 usethis::use_data(x, y, z, overwrite = TRUE)
 ```
 
-4. Teach (**vignetts**)
+3. Teach (**vignetts**)
 
 
 ```r
@@ -1882,7 +1881,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-10-16"
+date: "2020-10-17"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 
@@ -1897,17 +1896,13 @@ pkgdown::build_site()
 ```
 
 - A package site includes information on METADATA, Function references, Articles, News, etc. 
-
 ### Building an R package 
 
 - CMD (in the terminal)
 
 You can run R commands in the terminal using R CMD.
 
-```sh
-R CMD build mypkg 
-R CMD INSTALL mypkg 
-```
+
 
 - devtools 
 
@@ -1933,17 +1928,49 @@ usethis::use_spell_check()
 
 1. [CRAN (The Comprehensive R Archive Network)](https://cran.r-project.org/)
   - R package submission should comply with [the CRAN Repository Policy](https://cran.r-project.org/)
+
 2. GitHub 
   - Push everything to the Git repository (you can do it using command-line interface or RStudio).
 
-```sh 
-git add . 
-git commit -m "first push"
-git push 
-```
+
+
   - Don't forget that your repository should be `public`.
   - I highly recommend connecting GitHub with SSH. For more information, visit [this link](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
   
-```sh
-git remote set-url origin git@github.com:user/repo 
+
+
+### Developing Shiny apps
+
+[Shiny](https://shiny.rstudio.com/) is a "framework for creating web applications using R code". You can create a dashboard or an interactive map without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise to learn from your data in an intuitive and interactive way.
+
+#### Workflow 
+
+The workflow follows what Hadley Wickham recommened in his book on mastering shiny. 
+
+1. Install libraries 
+
+```r
+install.packages("shiny")
 ```
+
+2. Create app directory and file 
+
+Add an `app.R` file.
+
+The key objective here is defining your UI (how the app looks; front-end = INPUT) (defined in object `ui`) and server (how the app works; back-end = OUTPUT) (defined in object `server`).
+
+If you're creating a complex app, you can achieve the same goal with two files: `ui.R` and `server.R`.
+
+#### app.r 
+
+
+
+#### References 
+
+[Mastering Shiny](https://mastering-shiny.org/) by Hadley Wickham. For newbies. 
+
+[Shiny Documents](https://bookdown.org/yihui/rmarkdown/shiny-documents.html) by Yihui Xie
+
+[Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/) by Colin Fay, Sébastien Rochette, Vincent Guyader, Cervan Girard. For experienced developers.
+
+[Building Shiny Apps](https://stat545.com/shiny-tutorial.html) by Dean Attali.
