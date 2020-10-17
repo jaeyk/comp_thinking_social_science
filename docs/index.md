@@ -2,7 +2,7 @@
 knitr: "bookdown::render_book"
 title: "Computational Thinking for Social Scientists"
 author: ["[Jae Yeon Kim](https://jaeyk.github.io/)"]
-date: "2020-10-15"
+date: "2020-10-16"
 site: bookdown::bookdown_site
 github-repo: jaeyk/PS239T
 twitter-handle: JaeJaeykim2

@@ -2112,6 +2112,1052 @@ tidy_stm %>%
 
 ## Bias and fairness in machine learning 
 
+This section introduces the issues surrounding the fairness and bias in machine learning applications with a focus on the ProPublica's Analysis of the COMPAS algorithm. I revised [the ProPublica's original R and Python code](https://github.com/propublica/compas-analysis/blob/master/Compas%20Analysis.ipynb) to increase its code readability.
+
+![A gif of defendants being put into an algorithm by SELMAN DESIGN](https://wp.technologyreview.com/wp-content/uploads/2019/10/mit-alg-yb-02-7.gif?fit=1444,962)
+
+**Outline** 
+
+1. Bias in the data 
+  - Risk of Recidivism Data
+  - Risk of Violent Recidivism Data
+
+2. Bias in the algorithm 
+
+**References**
+
+For more information on the ProPublica's Machine Bias project, we encourage to check out the following references.
+
+* [Argument](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing/) by Julia Angwin, Jeff Larson, Surya Mattu and Lauren Kirchner
+
+* [Counterargument](https://www.washingtonpost.com/news/monkey-cage/wp/2016/10/17/can-an-algorithm-be-racist-our-analysis-is-more-cautious-than-propublicas/) by Sam Corbett-Davies, Emma Pierson, Avi Feller and Sharad Goel
+
+* [Methodology](https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm/)
+
+### Bias in the Data (Risk of Recidivism Analysis)
+
+#### Setup 
+
+
+```r
+if (!require("pacman")) install.packages("pacman")
+```
+
+```
+## Loading required package: pacman
+```
+
+```r
+pacman::p_load(
+ tidyverse, # tidyverse packages 
+ conflicted, # an alternative conflict resolution strategy 
+ ggthemes, # other themes for ggplot2 
+ patchwork, # arranging ggplots
+ scales, # rescaling 
+ survival, # survival analysis
+ broom, # for modeling
+ here, # reproducibility 
+ glue # pasting strings and objects 
+)
+
+# To avoid conflicts 
+conflict_prefer("filter", "dplyr") 
+```
+
+```
+## [conflicted] Will prefer dplyr::filter over any other package
+```
+
+```r
+conflict_prefer("select", "dplyr") 
+```
+
+```
+## [conflicted] Will prefer dplyr::select over any other package
+```
+
+```r
+# Set themes 
+theme_set(ggthemes::theme_fivethirtyeight())
+```
+
+#### Load data 
+
+We select fields for severity of charge, number of priors, demographics, age, sex, COMPAS scores, and whether each person was accused of a crime within two years.
+
+
+```r
+two_years <- read_csv(here("data", "compas-scores-two-years.csv"))
+```
+
+```
+## Warning: Duplicated column names deduplicated: 'decile_score' =>
+## 'decile_score_1' [40], 'priors_count' => 'priors_count_1' [49]
+```
+
+```r
+glue("N of observations (rows): {nrow(two_years)}
+      N of variables (columns): {ncol(two_years)}")
+```
+
+```
+## N of observations (rows): 7214
+## N of variables (columns): 53
+```
+
+#### Wrangling 
+
+- Not all of the observations are useable for the first round of analysis.
+- There are a number of reasons to remove rows because of missing data:
+    - If the charge date of a defendants COMPAS scored crime was not within 30 days from when the person was arrested, we assume that because of data quality reasons, that we do not have the right offense.
+    - We coded the recidivist flag -- is_recid -- to be -1 if we could not find a COMPAS case at all.
+    - In a similar vein, ordinary traffic offenses -- those with a c_charge_degree of 'O' -- will not result in Jail time are removed (only two of them).
+    - We filtered the underlying data from Broward county to include only those rows representing people who had either recidivated in two years, or had at least two years outside of a correctional facility.
+
+- Create a function 
+
+
+```r
+wrangle_data <- function(data){
+
+df <- data %>% 
+    
+    # Select variables 
+    select(age, c_charge_degree, race, age_cat, score_text, sex, priors_count, days_b_screening_arrest, decile_score, is_recid, two_year_recid, 
+         c_jail_in, c_jail_out) %>% 
+    # Filter rows 
+    filter(days_b_screening_arrest <= 30,
+           days_b_screening_arrest >= -30, 
+           is_recid != -1,
+           c_charge_degree != "O",
+           score_text != 'N/A') %>% 
+    # Mutate variables 
+    mutate(length_of_stay = as.numeric(as.Date(c_jail_out) - as.Date(c_jail_in)),
+           c_charge_degree = factor(c_charge_degree),
+           age_cat = factor(age_cat),
+           race = factor(race, levels = c("Caucasian","African-American","Hispanic","Other","Asian","Native American")),
+           sex = factor(sex, levels = c("Male","Female")),
+           score_text = factor(score_text, levels = c("Low", "Medium", "High")),
+           score = score_text,
+# I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference 
+           score_num = as.numeric(score_text)) %>% 
+    # Rename variables 
+    rename(crime = c_charge_degree,
+           gender = sex)
+        
+return(df)}
+```
+
+- Apply the function to the data 
+
+
+```r
+df <- wrangle_data(two_years)
+
+names(df)
+```
+
+```
+##  [1] "age"                     "crime"                  
+##  [3] "race"                    "age_cat"                
+##  [5] "score_text"              "gender"                 
+##  [7] "priors_count"            "days_b_screening_arrest"
+##  [9] "decile_score"            "is_recid"               
+## [11] "two_year_recid"          "c_jail_in"              
+## [13] "c_jail_out"              "length_of_stay"         
+## [15] "score"                   "score_num"
+```
+
+```r
+# Check whether the function works as expected
+head(df, 5)
+```
+
+```
+## # A tibble: 5 x 16
+##     age crime race  age_cat score_text gender priors_count days_b_screenin…
+##   <dbl> <fct> <fct> <fct>   <fct>      <fct>         <dbl>            <dbl>
+## 1    69 F     Other Greate… Low        Male              0               -1
+## 2    34 F     Afri… 25 - 45 Low        Male              0               -1
+## 3    24 F     Afri… Less t… Low        Male              4               -1
+## 4    44 M     Other 25 - 45 Low        Male              0                0
+## 5    41 F     Cauc… 25 - 45 Medium     Male             14               -1
+## # … with 8 more variables: decile_score <dbl>, is_recid <dbl>,
+## #   two_year_recid <dbl>, c_jail_in <dttm>, c_jail_out <dttm>,
+## #   length_of_stay <dbl>, score <fct>, score_num <dbl>
+```
+
+#### Descriptive analysis 
+
+- Higher COMPAS scores are slightly correlated with a longer length of stay.
+
+
+```r
+cor(df$length_of_stay, df$decile_score)
+```
+
+```
+## [1] 0.2073297
+```
+
+```r
+df %>%
+  group_by(score) %>%
+  count() %>%
+  ggplot(aes(x = score, y = n)) +
+    geom_col() +
+    labs(x = "Score",
+         y = "Count",
+         title = "Score distribution")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" width="672" />
+
+Judges are often presented with two sets of scores from the COMPAS system -- one that classifies people into High, Medium and Low risk, and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.
+
+
+```r
+df %>%
+  ggplot(aes(ordered(decile_score))) + 
+          geom_bar() +
+          facet_wrap(~race, nrow = 2) +
+          labs(x = "Decile Score",
+               y = "Count",
+               Title = "Defendant's Decile Score")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-79-1.png" width="672" />
+
+#### Modeling 
+
+After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. To do so we need to change some variables into factors, and run a logistic regression, comparing low scores to high scores.
+
+- Model building 
+
+
+```r
+model_data <- function(data){
+
+# Logistic regression model
+lr_model <- glm(score ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
+             family = "binomial", data = data)
+
+# OLS, DV = score_num
+ols_model1 <- lm(score_num ~ gender + age_cat + race + priors_count + crime + two_year_recid, data = data)
+
+# OLS, DV = decile_score 
+ols_model2 <- lm(decile_score ~ gender + age_cat + race + priors_count + crime + two_year_recid, data = data)
+
+# Extract model outcomes with confidence intervals 
+lr_est <- lr_model %>% 
+    tidy(conf.int = TRUE) 
+
+ols_est1 <- ols_model1 %>%
+    tidy(conf.int = TRUE) 
+
+ols_est2 <- ols_model2 %>%
+    tidy(conf.int = TRUE) 
+
+# AIC scores 
+lr_AIC <- AIC(lr_model)
+ols_AIC1 <- AIC(ols_model1)
+ols_AIC2 <- AIC(ols_model2)
+    
+list(lr_est, ols_est1, ols_est2, 
+     lr_AIC, ols_AIC1, ols_AIC2)
+
+}
+```
+
+- Model comparisons 
+
+
+```r
+glue("AIC score of logistic regression: {model_data(df)[4]} 
+      AIC score of OLS regression (with categorical DV):  {model_data(df)[5]}
+      AIC score of OLS regression (with continuous DV): {model_data(df)[6]}")
+```
+
+```
+## AIC score of logistic regression: 6192.40169473357 
+## AIC score of OLS regression (with categorical DV):  11772.1148541111
+## AIC score of OLS regression (with continuous DV): 26779.9512226999
+```
+
+- Logistic regression model 
+
+
+```r
+lr_model <- model_data(df)[1] %>% data.frame()
+
+lr_model %>%
+  filter(term != "(Intercept)") %>%
+  mutate(term = gsub("race|age_cat|gender|M","", term)) %>%
+  ggplot(aes(x = fct_reorder(term, estimate), y = estimate, ymax = conf.high, ymin = conf.low)) +
+  geom_pointrange() +
+  coord_flip() +
+  labs(y = "Estimate", x = "",
+      title = "Logistic regression") +
+  geom_hline(yintercept = 0, linetype = "dashed")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-82-1.png" width="672" />
+
+
+```r
+interpret_estimate <- function(model){
+    
+    # Control 
+    intercept <- model$estimate[model$term == "(Intercept)"]
+    control <- exp(intercept) / (1 + exp(intercept))
+    
+    # Likelihood 
+    model <- model %>% filter(term != "(Intercept)")
+    
+    model$likelihood <- (exp(model$estimate) / (1 - control + (control * exp(model$estimate))))
+    
+    return(model)
+}
+```
+
+
+```r
+interpret_estimate(lr_model) %>%
+    mutate(term = gsub("race|age_cat|gender","", term)) %>% 
+    ggplot(aes(x = fct_reorder(term, likelihood), y = likelihood)) +
+        geom_point(size = 3) +
+        coord_flip() +
+        labs(y = "Likelihood", x = "",
+            title ="Logistic regression") +
+        scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+        geom_hline(yintercept = 1, linetype = "dashed")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" width="672" />
+
+### Bias in the Data (Risk of Violent Recidivism Analysis)
+
+#### Setup 
+
+
+```r
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+ tidyverse, # tidyverse packages 
+ conflicted, # an alternative conflict resolution strategy 
+ ggthemes, # other themes for ggplot2 
+ patchwork, # arranging ggplots
+ scales, # rescaling 
+ survival, # survival analysis
+ broom, # for modeling
+ here, # reproducibility 
+ glue # pasting strings and objects 
+)
+
+# To avoid conflicts 
+conflict_prefer("filter", "dplyr") 
+```
+
+```
+## [conflicted] Removing existing preference
+```
+
+```
+## [conflicted] Will prefer dplyr::filter over any other package
+```
+
+```r
+conflict_prefer("select", "dplyr") 
+```
+
+```
+## [conflicted] Removing existing preference
+```
+
+```
+## [conflicted] Will prefer dplyr::select over any other package
+```
+
+```r
+# Set themes 
+theme_set(ggthemes::theme_fivethirtyeight())
+```
+
+#### Load data 
+
+
+```r
+two_years_violent <- read_csv(here("data" ,"compas-scores-two-years-violent.csv"))
+```
+
+```
+## Warning: Duplicated column names deduplicated: 'decile_score' =>
+## 'decile_score_1' [40], 'priors_count' => 'priors_count_1' [49], 'two_year_recid'
+## => 'two_year_recid_1' [54]
+```
+
+```
+## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_double(),
+##   name = col_character(),
+##   first = col_character(),
+##   last = col_character(),
+##   compas_screening_date = col_date(format = ""),
+##   sex = col_character(),
+##   dob = col_date(format = ""),
+##   age_cat = col_character(),
+##   race = col_character(),
+##   c_jail_in = col_datetime(format = ""),
+##   c_jail_out = col_datetime(format = ""),
+##   c_case_number = col_character(),
+##   c_offense_date = col_date(format = ""),
+##   c_arrest_date = col_date(format = ""),
+##   c_charge_degree = col_character(),
+##   c_charge_desc = col_character(),
+##   r_case_number = col_character(),
+##   r_charge_degree = col_character(),
+##   r_offense_date = col_date(format = ""),
+##   r_charge_desc = col_character(),
+##   r_jail_in = col_date(format = "")
+##   # ... with 14 more columns
+## )
+## ℹ Use `spec()` for the full column specifications.
+```
+
+```r
+glue("N of observations (rows): {nrow(two_years_violent)}
+      N of variables (columns): {ncol(two_years_violent)}")
+```
+
+```
+## N of observations (rows): 4743
+## N of variables (columns): 54
+```
+
+#### Wrangling
+
+- Create a function 
+
+
+```r
+wrangle_data <- function(data){
+
+df <- data %>% 
+    
+    # Select variables 
+    select(age, c_charge_degree, race, age_cat, v_score_text, sex, priors_count, 
+         days_b_screening_arrest, v_decile_score, is_recid, two_year_recid) %>%            
+    # Filter rows 
+    filter(days_b_screening_arrest <= 30,
+           days_b_screening_arrest >= -30, 
+           is_recid != -1,
+           c_charge_degree != "O",
+           v_score_text != 'N/A') %>% 
+    # Mutate variables 
+    mutate(c_charge_degree = factor(c_charge_degree),
+           age_cat = factor(age_cat),
+           race = factor(race, levels = c("Caucasian","African-American","Hispanic","Other","Asian","Native American")),
+           sex = factor(sex, levels = c("Male","Female")),
+           v_score_text = factor(v_score_text, levels = c("Low", "Medium", "High")),
+# I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference 
+           score_num = as.numeric(v_score_text)) %>%
+    # Rename variables 
+    rename(crime = c_charge_degree,
+           gender = sex,
+           score = v_score_text)
+        
+return(df)}
+```
+
+- Apply the function to the data 
+
+
+```r
+df <- wrangle_data(two_years_violent)
+
+names(df)
+```
+
+```
+##  [1] "age"                     "crime"                  
+##  [3] "race"                    "age_cat"                
+##  [5] "score"                   "gender"                 
+##  [7] "priors_count"            "days_b_screening_arrest"
+##  [9] "v_decile_score"          "is_recid"               
+## [11] "two_year_recid"          "score_num"
+```
+
+```r
+head(df, 5) # Check whether the function works as expected 
+```
+
+```
+## # A tibble: 5 x 12
+##     age crime race  age_cat score gender priors_count days_b_screenin…
+##   <dbl> <fct> <fct> <fct>   <fct> <fct>         <dbl>            <dbl>
+## 1    69 F     Other Greate… Low   Male              0               -1
+## 2    34 F     Afri… 25 - 45 Low   Male              0               -1
+## 3    44 M     Other 25 - 45 Low   Male              0                0
+## 4    43 F     Other 25 - 45 Low   Male              3               -1
+## 5    39 M     Cauc… 25 - 45 Low   Female            0               -1
+## # … with 4 more variables: v_decile_score <dbl>, is_recid <dbl>,
+## #   two_year_recid <dbl>, score_num <dbl>
+```
+
+#### Descriptive analysis 
+
+- Score distribution 
+
+
+```r
+df %>%
+  group_by(score) %>%
+  count() %>%
+  ggplot(aes(x = score, y = n)) +
+    geom_col() +
+    labs(x = "Score",
+         y = "Count",
+         title = "Score distribution")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-89-1.png" width="672" />
+
+- Score distribution by race
+
+
+```r
+df %>%
+  ggplot(aes(ordered(v_decile_score))) + 
+          geom_bar() +
+          facet_wrap(~race, nrow = 2) +
+          labs(x = "Decile Score",
+               y = "Count",
+               Title = "Defendant's Decile Score")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-90-1.png" width="672" />
+
+#### Modeling 
+
+After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. To do so we need to change some variables into factors, and run a logistic regression, comparing low scores to high scores.
+
+
+```r
+model_data <- function(data){
+
+# Logistic regression model
+lr_model <- glm(score ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
+             family = "binomial", data = data)
+
+# OLS
+ols_model1 <- lm(score_num ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
+             data = data)
+
+ols_model2 <- lm(v_decile_score ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
+             data = data)
+
+# Extract model outcomes with confidence intervals 
+lr_est <- lr_model %>% 
+    tidy(conf.int = TRUE) 
+
+ols_est1 <- ols_model1 %>%
+    tidy(conf.int = TRUE) 
+
+ols_est2 <- ols_model2 %>%
+    tidy(conf.int = TRUE) 
+
+# AIC scores 
+lr_AIC <- AIC(lr_model)
+ols_AIC1 <- AIC(ols_model1)
+ols_AIC2 <- AIC(ols_model2)
+    
+list(lr_est, ols_est1, ols_est2, lr_AIC, ols_AIC1, ols_AIC2)
+}
+```
+
+- Model comparisons 
+
+
+```r
+glue("AIC score of logistic regression: {model_data(df)[4]} 
+      AIC score of OLS regression (with categorical DV):  {model_data(df)[5]}
+      AIC score of OLS regression (with continuous DV): {model_data(df)[6]}")
+```
+
+```
+## AIC score of logistic regression: 3022.77943765996 
+## AIC score of OLS regression (with categorical DV):  5414.49127581608
+## AIC score of OLS regression (with continuous DV): 15458.3861723106
+```
+
+- Logistic regression model 
+
+
+```r
+lr_model <- model_data(df)[1] %>% 
+  data.frame()
+
+lr_model %>%
+  filter(term != "(Intercept)") %>%
+  mutate(term = gsub("race|age_cat|gender","", term)) %>%
+  ggplot(aes(x = fct_reorder(term, estimate), y = estimate, ymax = conf.high, ymin = conf.low)) +
+  geom_pointrange() +
+  coord_flip() +
+  labs(y = "Estimate", x = "",
+      title = "Logistic regression") +
+  geom_hline(yintercept = 0, linetype = "dashed")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-93-1.png" width="672" />
+
+
+```r
+interpret_estimate(lr_model) %>%
+    mutate(term = gsub("race|age_cat|gender","", term)) %>% 
+    ggplot(aes(x = fct_reorder(term, likelihood), y = likelihood)) +
+        geom_point(size = 3) +
+        coord_flip() +
+        labs(y = "Likelihood", x = "",
+            title ="Logistic regression") +
+        scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+        geom_hline(yintercept = 1, linetype = "dashed")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-94-1.png" width="672" />
+
+### Bias in the algorithm 
+
+- In order to test whether COMPAS scores do an accurate job of deciding whether an offender is Low, Medium or High risk, we ran a Cox Proportional Hazards model. Northpointe, the company that created COMPAS and markets it to Law Enforcement, also ran a Cox model in [their validation study](https://journals.sagepub.com/doi/abs/10.1177/0093854808326545).
+
+- We used the counting model and removed people when they were incarcerated. Due to errors in the underlying jail data, we need to filter out 32 rows that have an end date more than the start date. Considering that there are 13,334 total rows in the data, such a small amount of errors will not affect the results.
+
+#### Setup 
+
+
+```r
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(
+ tidyverse, # tidyverse packages 
+ conflicted, # an alternative conflict resolution strategy 
+ ggthemes, # other themes for ggplot2 
+ patchwork, # arranging ggplots
+ scales, # rescaling 
+ survival, # survival analysis
+ broom, # for modeling
+ here, # reproducibility 
+ glue, # pasting strings and objects 
+ reticulate # source python codes
+)
+
+# To avoid conflicts 
+conflict_prefer("filter", "dplyr") 
+```
+
+```
+## [conflicted] Removing existing preference
+```
+
+```
+## [conflicted] Will prefer dplyr::filter over any other package
+```
+
+```r
+conflict_prefer("select", "dplyr") 
+```
+
+```
+## [conflicted] Removing existing preference
+```
+
+```
+## [conflicted] Will prefer dplyr::select over any other package
+```
+
+```r
+# Set themes 
+theme_set(ggthemes::theme_fivethirtyeight())
+```
+
+#### Load data 
+
+
+```r
+cox_data <- read_csv(here("data" ,"cox-parsed.csv"))
+```
+
+```
+## Warning: Duplicated column names deduplicated: 'decile_score' =>
+## 'decile_score_1' [40], 'priors_count' => 'priors_count_1' [49]
+```
+
+```
+## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_character(),
+##   id = col_double(),
+##   compas_screening_date = col_date(format = ""),
+##   dob = col_date(format = ""),
+##   age = col_double(),
+##   juv_fel_count = col_double(),
+##   decile_score = col_double(),
+##   juv_misd_count = col_double(),
+##   juv_other_count = col_double(),
+##   priors_count = col_double(),
+##   days_b_screening_arrest = col_double(),
+##   c_jail_in = col_datetime(format = ""),
+##   c_jail_out = col_datetime(format = ""),
+##   c_offense_date = col_date(format = ""),
+##   c_arrest_date = col_date(format = ""),
+##   c_days_from_compas = col_double(),
+##   is_recid = col_double(),
+##   r_days_from_arrest = col_double(),
+##   r_offense_date = col_date(format = ""),
+##   r_jail_in = col_date(format = ""),
+##   r_jail_out = col_date(format = "")
+##   # ... with 13 more columns
+## )
+## ℹ Use `spec()` for the full column specifications.
+```
+
+```r
+glue("N of observations (rows): {nrow(cox_data)}
+      N of variables (columns): {ncol(cox_data)}")
+```
+
+```
+## N of observations (rows): 13419
+## N of variables (columns): 52
+```
+
+#### Wrangling
+
+
+```r
+df <- cox_data %>% 
+    filter(score_text != "N/A") %>%
+    filter(end > start) %>%
+    mutate(c_charge_degree = factor(c_charge_degree),
+           age_cat = factor(age_cat),
+           race = factor(race, levels = c("Caucasian","African-American","Hispanic","Other","Asian","Native American")),
+           sex = factor(sex, levels = c("Male","Female")),
+           score_factor = factor(score_text, levels = c("Low", "Medium", "High")))
+
+grp <- df[!duplicated(df$id),]
+```
+
+#### Descriptive analysis 
+
+- Score distribution 
+
+
+```r
+grp %>% 
+    group_by(score_factor) %>%
+      count() %>%
+      ggplot(aes(x = score_factor, y = n)) +
+        geom_col() +
+        labs(x = "Score",
+             y = "Count",
+             title = "Score distribution")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-98-1.png" width="672" />
+
+- Score distribution by race
+
+
+```r
+df %>%
+  ggplot(aes(ordered(score_factor))) + 
+          geom_bar() +
+          facet_wrap(~race, nrow = 2) +
+          labs(x = "Decile Score",
+               y = "Count",
+               Title = "Defendant's Decile Score")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-99-1.png" width="672" />
+
+#### Modeling 
+
+
+```r
+f2 <- Surv(start, end, event, type="counting") ~ race + score_factor + race * score_factor
+
+model <- coxph(f2, data = df)
+
+model %>%
+  broom::tidy(conf.int = TRUE) %>%
+  mutate(term = gsub("race|score_factor","", term)) %>% 
+  filter(term != "<chr>") %>%
+  ggplot(aes(x = fct_reorder(term, estimate), y = estimate, ymax = conf.high, ymin = conf.low)) +
+  geom_pointrange() +
+  coord_flip() +
+  labs(y = "Estimate", x = "")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-100-1.png" width="672" />
+
+The interaction term shows a similar disparity as the logistic regression above.
+
+High risk white defendants are 3.61 more likely than low risk white defendants, while High risk black defendants are 2.99 more likely than low.
+
+
+```r
+visualize_surv <- function(input){
+  
+f <- Surv(start, end, event, type="counting") ~ score_factor
+
+fit <- survfit(f, data = input)
+
+fit %>%
+    tidy(conf.int = TRUE) %>%
+    mutate(strata = gsub("score_factor=","", strata)) %>%
+    mutate(strata = factor(strata, levels = c("High","Medium","Low"))) %>%
+    ggplot(aes(x = time, y = estimate, ymax = conf.high, ymin = conf.low, group = strata, col = strata)) +
+    geom_pointrange(alpha = 0.1) +
+    guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+    ylim(c(0, 1)) +
+    labs(x = "Time", y = "Estimated survival rate", col = "Strata")}
+```
+
+
+```r
+visualize_surv(df) + ggtitle("Overall")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-102-1.png" width="672" />
+
+Black defendants do recidivate at higher rates according to race specific Kaplan Meier plots.
+
+
+```r
+(df %>% filter(race == "Caucasian") %>% visualize_surv() + ggtitle("Caucasian")) /
+(df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American")) 
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-103-1.png" width="672" />
+
+In terms of underlying recidivism rates, we can look at gender specific Kaplan Meier estimates. There is a striking difference between women and men.
+
+
+```r
+(df %>% filter(sex == "Female") %>% visualize_surv() + ggtitle("Female")) /
+
+(df %>% filter(sex == "Male") %>% visualize_surv() + ggtitle("Male"))
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-104-1.png" width="672" />
+
+As these plots show, the COMPAS score treats a High risk women the same as a Medium risk man.
+
+#### Risk of Recidivism accuracy 
+
+The above analysis shows that the COMPAS algorithm does overpredict African-American defendant's future recidivism, but we haven't yet explored the direction of the bias. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.
+
+
+```r
+# create a new environment 
+conda_create("r-reticulate")
+```
+
+```
+## [1] "/home/jae/.local/share/r-miniconda/envs/r-reticulate/bin/python"
+```
+
+```r
+# install libs 
+conda_install("r-reticulate", c("pandas"))
+
+# indicate that we want to use a specific condaenv
+use_condaenv("r-reticulate")
+```
+
+
+
+```python
+
+from truth_tables import PeekyReader, Person, table, is_race, count, vtable, hightable, vhightable
+from csv import DictReader
+
+people = []
+```
+
+
+```python
+
+with open("./data/cox-parsed.csv") as f:
+    reader = PeekyReader(DictReader(f))
+    try:
+        while True:
+            p = Person(reader)
+            if p.valid:
+                people.append(p)
+    except StopIteration:
+        pass
+```
+
+
+```python
+
+pop = list(filter(lambda i: ((i.recidivist == True and i.lifetime <= 730) or
+                              i.lifetime > 730), list(filter(lambda x: x.score_valid, people))))
+
+recid = list(filter(lambda i: i.recidivist == True and i.lifetime <= 730, pop))
+
+rset = set(recid)
+
+surv = [i for i in pop if i not in rset]
+```
+
+- Define a function for a table.
+
+
+```python
+
+import pandas as pd 
+
+def create_table(x, y):
+
+  t = table(list(x), list(y))
+  
+  df = pd.DataFrame(t.items(), 
+             columns = ['Metrics', 'Scores'])
+             
+  return(df)
+             
+```
+
+- All defenders 
+
+
+```python
+
+create_table(list(recid), list(surv)).to_csv("data/table_recid.csv")
+```
+
+
+```r
+read.csv(here("data", "table_recid.csv"))[,-1] %>%
+  ggplot(aes(x = Metrics, y = Scores)) +
+  geom_col() +
+  labs(title = "Recidivism")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-111-1.png" width="672" />
+
+That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
+
+
+```python
+
+def create_comp_tables(recid_data, surv_data):
+  
+    # filtering variables 
+    is_afam = is_race("African-American")
+    is_white = is_race("Caucasian")
+  
+    # dfs 
+    df1 = create_table(filter(is_afam, recid_data),
+                       filter(is_afam, surv_data))
+  
+    df2 = create_table(filter(is_white, recid_data), 
+                       filter(is_white, surv_data))
+  
+    # concat 
+    dfs = pd.concat([df1, df2])
+    
+    dfs['Group'] = ['African Americans','African Americans','Whites','Whites']
+    
+    return(dfs)
+    
+```
+
+
+```python
+
+create_comp_tables(recid, surv).to_csv("data/comp_tables_recid.csv")
+```
+
+
+```r
+read.csv(here("data", "comp_tables_recid.csv"))[,-1] %>%
+  ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  labs(title = "Recidivism")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-114-1.png" width="672" />
+
+#### Risk of Violent Recidivism accuracy
+
+COMPAS also offers a score that aims to measure a persons risk of violent recidivism, which has a similar overall accuracy to the Recidivism score.
+
+
+```python
+
+vpeople = []
+
+with open("./data/cox-violent-parsed.csv") as f:
+    reader = PeekyReader(DictReader(f))
+    try:
+        while True:
+            p = Person(reader)
+            if p.valid:
+                vpeople.append(p)
+    except StopIteration:
+        pass
+
+vpop = list(filter(lambda i: ((i.violent_recidivist == True and i.lifetime <= 730) or
+                              i.lifetime > 730), list(filter(lambda x: x.vscore_valid, vpeople))))
+
+vrecid = list(filter(lambda i: i.violent_recidivist == True and i.lifetime <= 730, vpeople))
+
+vrset = set(vrecid)
+
+vsurv = [i for i in vpop if i not in vrset]
+```
+
+
+```python
+
+create_table(vrecid, vsurv).to_csv("data/table_vrecid.csv")
+```
+
+
+```r
+read.csv(here("data", "table_vrecid.csv"))[,-1] %>%
+  ggplot(aes(x = Metrics, y = Scores)) +
+  geom_col() +
+  labs(title = "Violent recidivism")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-117-1.png" width="672" />
+
+
+Even more so for Black defendants.
+
+
+```python
+
+create_comp_tables(vrecid, vsurv).to_csv("data/comp_tables_vrecid.csv")
+```
+
+
+```r
+read.csv(here("data", "comp_tables_vrecid.csv"))[,-1] %>%
+  ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  labs(title = "Violent recidivism")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-119-1.png" width="672" />
+
 ## Resources
 
 ### Books 
