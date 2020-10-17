@@ -906,13 +906,13 @@ url_lists[out[seq(out)] == "The URL is broken."]
 
 ## Developing your own data tools
 
-### Why developing R packages? 
+### Developing R packages 
 
 1. Reuse your code 
 2. Automate your workflow 
 3. Help others (be part of an open source development community)
 
-### Workflow 
+#### Workflow 
 
 1. Write code in `\R`
 2. Document code in `\man` (automated by `roxygen2` package)
@@ -927,11 +927,9 @@ url_lists[out[seq(out)] == "The URL is broken."]
 
 ![]http://r-pkgs.had.co.nz/diagrams/package-files.png
 
-### Developing an R package 
+#### Required Components
 
 The 4 required components are necessary to build and distribute a minimally viable R package. The other steps are optional.
-
-### Required Components
 
 - Package 
   - `\R`: R functions 
@@ -1004,7 +1002,8 @@ devtools::check()
 usethis::use_package("dplyr")
 ```
 
-### Optional Components  
+#### Optional Components  
+
 1. Test (**test**)
 
 ```{r eval = FALSE}
@@ -1013,7 +1012,7 @@ usethis::use_testthat()
 usethis::use_test("rbind_mutate")
 ```
 
-3. Add data (**data**)
+2. Add data (**data**)
 
 ```{r eval = FALSE}
 
@@ -1025,7 +1024,7 @@ usethis::use_data(x, y, z, overwrite = TRUE)
 
 ```
 
-4. Teach (**vignetts**)
+3. Teach (**vignetts**)
 
 ```{r eval = FALSE}
 usethis::use_vignette("rbind_mutate")
@@ -1050,14 +1049,13 @@ pkgdown::build_site()
 ```
 
 - A package site includes information on METADATA, Function references, Articles, News, etc. 
-
 ### Building an R package 
 
 - CMD (in the terminal)
 
 You can run R commands in the terminal using R CMD.
 
-```sh
+```{sh eval=FALSE, include=FALSE}
 R CMD build mypkg 
 R CMD INSTALL mypkg 
 ```
@@ -1075,7 +1073,6 @@ devtools::install()
 ### Distributing an R package 
 
 ```{r eval = FALSE}
-
 # Version update 
 usethis::use_version()
 
@@ -1085,17 +1082,98 @@ usethis::use_spell_check()
 
 1. [CRAN (The Comprehensive R Archive Network)](https://cran.r-project.org/)
   - R package submission should comply with [the CRAN Repository Policy](https://cran.r-project.org/)
+
 2. GitHub 
   - Push everything to the Git repository (you can do it using command-line interface or RStudio).
 
-```sh 
+```{sh eval=FALSE, include=FALSE}
 git add . 
 git commit -m "first push"
 git push 
 ```
+
   - Don't forget that your repository should be `public`.
   - I highly recommend connecting GitHub with SSH. For more information, visit [this link](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
   
-```sh
+```{sh eval=FALSE, include=FALSE}
 git remote set-url origin git@github.com:user/repo 
 ```
+
+### Developing Shiny apps
+
+[Shiny](https://shiny.rstudio.com/) is a "framework for creating web applications using R code". You can create a dashboard or an interactive map without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise to learn from your data in an intuitive and interactive way.
+
+#### Workflow 
+
+The workflow follows what Hadley Wickham recommened in his book on mastering shiny. 
+
+1. Install libraries 
+
+```r
+install.packages("shiny")
+```
+
+2. Create app directory and file 
+
+Add an `app.R` file.
+
+The key objective here is defining your UI (how the app looks; front-end = INPUT) (defined in object `ui`) and server (how the app works; back-end = OUTPUT) (defined in object `server`).
+
+If you're creating a complex app, you can achieve the same goal with two files: `ui.R` and `server.R`.
+
+#### app.r 
+
+```{r eval=FALSE, include=FALSE}
+
+# Load packages 
+
+require("wordcloud2")
+require("shiny")
+require("shinydashboard")
+require("colourpicker")
+
+# Load data 
+
+df <- read.csv(url("https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv"))[,-1]
+
+# Defines the user interface; how the app looks
+
+ui <- fluidPage( # This is a layout function 
+  
+    h1("Word Cloud on the Hashtags of the Tweets related to COVID-19 & Asian|Chinese|Wuhan"),
+  
+    h4(tags$a(href = "https://jaeyk.github.io/", "Developer: Jae Yeon Kim")),
+            
+    mainPanel(
+          
+          wordcloud2Output("cloud"),
+        
+        )
+    
+    )
+  
+server <- function(input, output) {
+  
+  output$cloud <- renderWordcloud2({ 
+    
+    wordcloud2(df, 
+               size = 2.5, 
+               color = "random-dark") 
+    
+    })
+
+  }
+
+shinyApp(ui = ui, server = server)
+
+```
+
+#### References 
+
+[Mastering Shiny](https://mastering-shiny.org/) by Hadley Wickham. For newbies. 
+
+[Shiny Documents](https://bookdown.org/yihui/rmarkdown/shiny-documents.html) by Yihui Xie
+
+[Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/) by Colin Fay, Sébastien Rochette, Vincent Guyader, Cervan Girard. For experienced developers.
+
+[Building Shiny Apps](https://stat545.com/shiny-tutorial.html) by Dean Attali.
