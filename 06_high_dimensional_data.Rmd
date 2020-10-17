@@ -1531,8 +1531,6 @@ pacman::p_load(
 conflict_prefer("filter", "dplyr") 
 conflict_prefer("select", "dplyr") 
 
-# Set themes 
-theme_set(ggthemes::theme_fivethirtyeight())
 ```
 
 #### Load data 
@@ -2248,7 +2246,6 @@ read.csv(here("data", "table_vrecid.csv"))[,-1] %>%
   labs(title = "Violent recidivism")
 
 ```
-
 
 Even more so for Black defendants.
 
