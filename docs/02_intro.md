@@ -2,35 +2,15 @@
 
 
 
-## Project-oriented research
+## Getting started in R 
 
-### Computational reproducibility
-
-#### Setup
-
-
-```r
-pacman::p_load(
-  tidyverse, # tidyverse
-  here # computational reproducibility
-)
-```
-
-#### Motivation 
-
-Why do you need to make your research project computationally reproducible?
-
-For your self-interest and public benefits. 
-
-![](https://github.com/dlab-berkeley/efficient-reproducible-project-management-in-R/blob/master/misc/screenshot.png?raw=true)
-
-#### RStudio 
+### RStudio 
 
 There are two main ways of interacting with R: using the console or by using script files (plain text files that contain your code).
 
 If R is ready to accept commands, the R console shows a `>` prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using `Ctrl-Enter`; `Command-Enter` will also work on Macs), R will try to execute it, and when ready, show the results and come back with a new `>`-prompt to wait for new commands. This is the equivalent of the `$` in your terminal. 
 
-##### Basic Syntax
+### Basic Syntax
 
 **Comments**
 
@@ -100,9 +80,9 @@ example(ls) # provides example for how to use ls
 help.search("visualization") # search functions and packages that have "visualization" in their descriptions
 ```
 
-#### Environment 
+## Environment 
 
-##### Objects 
+### Objects 
 
 - List objects in your current environment
 
@@ -151,7 +131,7 @@ rm(list = ls())
 gc()
 ```
 
-##### Packages 
+### Packages 
 
 `install.packages(package-name)` will download a package from one of the CRAN mirrors assuming that a binary is available for your operating system. 
 
@@ -203,6 +183,50 @@ Note that `lapply()` applies (there's a family of apply functions) a function to
 inst <- lapply(pkgs, library, 
                character.only = TRUE)
 ```
+
+## Project-oriented research
+
+### Computational reproducibility
+
+* Replication = code + data 
+
+* Computational reproduciblity = code + data + environment + distribution 
+
+* Reproducibility checklist by [Roger Peng](http://www.biostat.jhsph.edu/~rpeng/)
+
+    1. Start with science (avoid vague questions and concepts)
+    
+    2. Don't do things by hand (not only about automation but also documentation)
+    
+    3. Don't point and click (same problem)
+    
+    4. Teach a computer (automation also solves documentation to some extent)
+    
+    5. Use some version control 
+    
+    6. Don't save output (instead keep the input and code)
+    
+    7. Set your seed 
+    
+    8. Think about the entire pipeline 
+
+#### Setup
+
+
+```r
+pacman::p_load(
+  tidyverse, # tidyverse
+  here # computational reproducibility
+)
+```
+
+#### Motivation 
+
+Why do you need to make your research project computationally reproducible?
+
+For your self-interest and public benefits. 
+
+![](https://github.com/dlab-berkeley/efficient-reproducible-project-management-in-R/blob/master/misc/screenshot.png?raw=true)
 
 #### How to organize files in a project 
 
