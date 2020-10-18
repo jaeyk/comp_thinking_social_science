@@ -3146,7 +3146,7 @@ read.csv(here("data", "comp_tables_vrecid.csv"))[,-1] %>%
 
 <img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-119-1.png" width="672" />
 
-## Resources
+## References
 
 ### Books 
 

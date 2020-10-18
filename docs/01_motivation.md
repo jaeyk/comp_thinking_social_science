@@ -1,5 +1,7 @@
 # Computational thinking {#motivation}
 
+
+
 ## Why computational thinking 
 
 - If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is **automation**. 

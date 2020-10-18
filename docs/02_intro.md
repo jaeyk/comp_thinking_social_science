@@ -1,5 +1,7 @@
 # Managing data and code {#git_bash}
 
+
+
 ## Getting started in R 
 
 ### RStudio 

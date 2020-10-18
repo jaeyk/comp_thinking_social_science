@@ -1,5 +1,7 @@
 # Big data {#big_data}
 
+
+
 ## Motivation
 
 - Big data problem: data is too big to fit into memory (=local environment).
@@ -666,7 +668,7 @@ origin_flights_plot <- ggplot(df) +
 origin_flights_plot
 ```
 
-<img src="07_big_data_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="07_big_data_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 ### Disconnect 
 

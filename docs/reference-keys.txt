@@ -316,7 +316,7 @@ descriptive-analysis-2
 modeling-2
 risk-of-recidivism-accuracy
 risk-of-violent-recidivism-accuracy
-resources
+references-2
 books
 lecture-slides
 blog-posts
@@ -335,4 +335,4 @@ quick-demonstrations
 tidy-way-dplyr---sql
 collect-pull
 disconnect
-references-2
+references-3
