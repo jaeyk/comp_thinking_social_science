@@ -166,6 +166,8 @@ FALSE <= 1
 
 While functions are defined in Python using the ```def``` reserved operator, R sees functions as just another type of named object.  Thus, they require explicit assignment to an object.  This is done using the function ```function()```, which creates a function taking the arguments specified in parentheses.  
 
+function = input + computation (begin -> end) + output 
+
 
 ```r
 simple.function <- function(x){
@@ -1041,7 +1043,7 @@ toc()
 ```
 
 ```
-## 0.006 sec elapsed
+## 0.008 sec elapsed
 ```
 
 
@@ -1052,7 +1054,7 @@ toc()
 ```
 
 ```
-## 0.002 sec elapsed
+## 0.003 sec elapsed
 ```
 
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
@@ -1691,7 +1693,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[1]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
 ## 
 ## 
 ## [[2]]
@@ -1894,7 +1896,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-10-17"
+date: "2020-10-18"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 

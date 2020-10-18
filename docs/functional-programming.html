@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-10-17" />
+<meta name="date" content="2020-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -462,6 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="functions" class="section level3" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Functions</h3>
 <p>While functions are defined in Python using the <code>def</code> reserved operator, R sees functions as just another type of named object. Thus, they require explicit assignment to an object. This is done using the function <code>function()</code>, which creates a function taking the arguments specified in parentheses.</p>
+<p>function = input + computation (begin -&gt; end) + output</p>
 <div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="functional-programming.html#cb794-1"></a>simple.function &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
 <span id="cb794-2"><a href="functional-programming.html#cb794-2"></a>  <span class="kw">print</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
 <span id="cb794-3"><a href="functional-programming.html#cb794-3"></a>}</span>
@@ -1130,11 +1131,11 @@ function(input){</p>
 <span id="cb856-12"><a href="functional-programming.html#cb856-12"></a>  out1[[i]] &lt;-<span class="st"> </span><span class="kw">mean</span>(airquality[[i]], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb856-13"><a href="functional-programming.html#cb856-13"></a>}</span>
 <span id="cb856-14"><a href="functional-programming.html#cb856-14"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.006 sec elapsed</code></pre>
+<pre><code>## 0.008 sec elapsed</code></pre>
 <div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb858-1"><a href="functional-programming.html#cb858-1"></a><span class="kw">tic</span>()</span>
 <span id="cb858-2"><a href="functional-programming.html#cb858-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb858-3"><a href="functional-programming.html#cb858-3"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.002 sec elapsed</code></pre>
+<pre><code>## 0.003 sec elapsed</code></pre>
 <ul>
 <li><p>In short, <code>map()</code> is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using <code>%&gt;%</code>.</p></li>
 <li><p>Final point: Why not base R <code>apply</code> family?</p></li>
@@ -1604,7 +1605,7 @@ Why the above solution is not efficient?</li>
 ## NULL
 ## 
 ## [[1]]$error
-## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds&gt;
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds&gt;
 ## 
 ## 
 ## [[2]]
@@ -1790,7 +1791,7 @@ Why the above solution is not efficient?</li>
 <div class="sourceCode" id="cb926"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb926-1"><a href="functional-programming.html#cb926-1"></a>usethis<span class="op">::</span><span class="kw">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb927"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb927-1"><a href="functional-programming.html#cb927-1"></a>title<span class="op">:</span><span class="st"> &quot;Vignette title&quot;</span></span>
 <span id="cb927-2"><a href="functional-programming.html#cb927-2"></a>author<span class="op">:</span><span class="st"> &quot;Vignette author&quot;</span></span>
-<span id="cb927-3"><a href="functional-programming.html#cb927-3"></a>date<span class="op">:</span><span class="st"> &quot;2020-10-17&quot;</span></span>
+<span id="cb927-3"><a href="functional-programming.html#cb927-3"></a>date<span class="op">:</span><span class="st"> &quot;2020-10-18&quot;</span></span>
 <span id="cb927-4"><a href="functional-programming.html#cb927-4"></a>output<span class="op">:</span><span class="st"> </span>rmarkdown<span class="op">::</span>html_vignette</span>
 <span id="cb927-5"><a href="functional-programming.html#cb927-5"></a>vignette<span class="op">:</span><span class="st"> </span>blah blah</span></code></pre></div>
 <ul>

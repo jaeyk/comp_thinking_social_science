@@ -1060,6 +1060,17 @@ rdd
     
 - Spacing 
 
+Some people do spacing by pressing the Tab key and others do it by pressing the Space key multiple times (and this is a serious subject).
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SsoOG6ZeyUI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> Tabs versus Spaces </p>
+
+```
+
+
 
 ```r
 # Good
@@ -1075,6 +1086,10 @@ mean (x, na.rm = TRUE)
 ```
 
 - Indenting 
+
+Indent at least 4 spaces. Note that some people, including none other than [Roger Peng](https://simplystatistics.org/2018/07/27/why-i-indent-my-code-8-spaces/), indent 8 spaces. The below example shows how you can change the default indentation setting using RStudio configuration.
+    
+![Roger Peng's tweet](https://pbs.twimg.com/media/CuHHs7yXgAAFWeh?format=jpg&name=360x360)
 
 
 ```r
