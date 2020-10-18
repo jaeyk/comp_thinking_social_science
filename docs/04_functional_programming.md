@@ -1028,7 +1028,7 @@ toc()
 ```
 
 ```
-## 0.007 sec elapsed
+## 0.009 sec elapsed
 ```
 
 
@@ -1686,7 +1686,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[2]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
 ## 
 ## 
 ## [[3]]
@@ -1694,7 +1694,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[3]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
 ## 
 ## 
 ## [[4]]
@@ -1744,7 +1744,9 @@ url_lists[out[seq(out)] == "The URL is broken."]
 ## [4] "https://DLAB"
 ```
 
-## Developing your own data tools
+## Developing your own data products
+
+> A data product is the production output from a statistical analysis. - [Brian Caffo](https://sites.google.com/view/bcaffo/home)
 
 ### Developing R packages 
 
@@ -1942,6 +1944,14 @@ usethis::use_spell_check()
 
 [Shiny](https://shiny.rstudio.com/) is a "framework for creating web applications using R code". You can create a dashboard or an interactive map without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise to learn from your data in an intuitive and interactive way.
 
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Wy3TY0gOmJw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Shiny in production: Principles, practices, and tools - Joe Cheng</p>
+
+```
+
 #### Workflow 
 
 The workflow follows what Hadley Wickham recommened in his book on mastering shiny. 
@@ -1962,9 +1972,12 @@ If you're creating a complex app, you can achieve the same goal with two files: 
 
 #### app.r 
 
+- Front-end
+
 
 ```r
 # Load packages 
+# Do not use install.packages(), pacman::p_load(), or library() if you intend to deploy the app using shinyapps.io 
 
 require("wordcloud2")
 require("shiny")
@@ -1979,18 +1992,23 @@ df <- read.csv(url("https://github.com/jaeyk/covid19antiasian/raw/master/process
 
 ui <- fluidPage( # This is a layout function 
   
+    # Input 
     h1("Word Cloud on the Hashtags of the Tweets related to COVID-19 & Asian|Chinese|Wuhan"),
   
     h4(tags$a(href = "https://jaeyk.github.io/", "Developer: Jae Yeon Kim")),
             
+    # Interactive part 
     mainPanel(
-          
-          wordcloud2Output("cloud"),
-        
+    wordcloud2Output("cloud"),
         )
     
     )
-  
+```
+
+- Back-end
+
+
+```r
 server <- function(input, output) {
   
   output$cloud <- renderWordcloud2({ 
@@ -2002,8 +2020,32 @@ server <- function(input, output) {
     })
 
   }
+```
 
+- Build a shiny app 
+
+
+```r
 shinyApp(ui = ui, server = server)
+```
+
+#### Deployment 
+
+- Deploy to [the shinyapps.io cloud](https://www.shinyapps.io/?_ga=2.5503866.871102833.1602978469-100003412.1602392815) 
+
+
+```r
+# Install packages 
+install.packages("devtools")
+devtools::install_github("rstudio/shinyapps")
+library(shinyapps)
+
+# Setup 
+shinyapps::setAccountInfo(name = "<Account name>", 
+                          token = "<Token>",
+                          secret = "<Secret>")
+
+deployApp(appNames = "<App name>")
 ```
 
 #### References 
@@ -2015,3 +2057,9 @@ shinyApp(ui = ui, server = server)
 [Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/) by Colin Fay, Sébastien Rochette, Vincent Guyader, Cervan Girard. For experienced developers.
 
 [Building Shiny Apps](https://stat545.com/shiny-tutorial.html) by Dean Attali.
+
+### Other useful data products 
+
+- Automating data reports using rmarkdown (called [parameterized reports](https://rmarkdown.rstudio.com/developer_parameterized_reports.html%23parameter_types%2F))
+- Automating R presentation using [slidify](http://slidify.org/index.html)
+- Creating interactive web apps using [leaflet](https://rstudio.github.io/leaflet/) 
