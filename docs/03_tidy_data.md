@@ -2614,7 +2614,7 @@ These two packages don't do anything new, but simplify most common tasks in data
 
 Practically, this approach is good because you're going to have consistency in the format of data across all the projects you're working on. Also, tidy data works well with key packages (e.g., dplyr, ggplot2) in R.
 
-Computationally, this approach is useful for vectorized programming because "different variables from the same observation are always paired". To remind you, vectorized means a function applies to a vector treats each element individually.
+Computationally, this approach is useful for vectorized programming because "different variables from the same observation are always paired". Vectorized means a function applies to a vector treats each element individually (=operations working in parallel).
 
 ## tidyr 
 
