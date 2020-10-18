@@ -1691,7 +1691,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[1]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
 ## 
 ## 
 ## [[2]]
