@@ -425,6 +425,14 @@ make.plural('apple')
 ## [1] "apples"
 ```
 
+* `apply()` : loop over the margins (1 = row, 2 = column) of an array 
+* `lapply()` : loop over a list then returns a list 
+* `sapply()` : loop over a list then returns a named vector 
+* `tapply()`: loop over subsets of a vector 
+* `mapply()`: multivariate version of `lapply()`. Use this if you have a function that takes in 2 or more arguments.
+
+
+
 ```r
 # apply that function to every element
 lapply(fruit, make.plural) # returns a list
@@ -814,8 +822,6 @@ map(integer(), paste) # return list
 ## list()
 ```
 
-The multivariate version of `sapply` is `mapply`. Use this if you have a function that takes in 2 or more arguments.
-
 ## purrr
 
 - Setup 
@@ -1035,7 +1041,7 @@ toc()
 ```
 
 ```
-## 0.005 sec elapsed
+## 0.006 sec elapsed
 ```
 
 
@@ -1299,7 +1305,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-27-1.png" width="672" />
 
 ```r
 airquality %>%
@@ -1315,7 +1321,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-26-2.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-27-2.png" width="672" />
 
 ```r
 airquality %>%
@@ -1331,7 +1337,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-26-3.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-27-3.png" width="672" />
 
 ### Solution 
 
@@ -1379,7 +1385,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 
 - The next step is to write an automatic plotting function. 
 
@@ -1413,7 +1419,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-1.png" width="672" />
 
 ```
 ## 
@@ -1424,7 +1430,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-30-2.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-2.png" width="672" />
 
 ```
 ## 
@@ -1435,7 +1441,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-30-3.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-3.png" width="672" />
 
 ```
 ## 
@@ -1446,7 +1452,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-30-4.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-4.png" width="672" />
 
 ```
 ## 
@@ -1457,7 +1463,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-30-5.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-5.png" width="672" />
 
 ## Automate joining
 
@@ -1685,7 +1691,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[1]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
 ## 
 ## 
 ## [[2]]

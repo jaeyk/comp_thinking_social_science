@@ -82,6 +82,8 @@ help.search("visualization") # search functions and packages that have "visualiz
 
 ## Environment 
 
+Environment = a collection of pairs 
+
 ### Objects 
 
 - List objects in your current environment

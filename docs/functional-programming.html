@@ -604,6 +604,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb827-8"><a href="functional-programming.html#cb827-8"></a></span>
 <span id="cb827-9"><a href="functional-programming.html#cb827-9"></a><span class="kw">make.plural</span>(<span class="st">&#39;apple&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;apples&quot;</code></pre>
+<ul>
+<li><code>apply()</code> : loop over the margins (1 = row, 2 = column) of an array</li>
+<li><code>lapply()</code> : loop over a list then returns a list</li>
+<li><code>sapply()</code> : loop over a list then returns a named vector</li>
+<li><code>tapply()</code>: loop over subsets of a vector</li>
+<li><code>mapply()</code>: multivariate version of <code>lapply()</code>. Use this if you have a function that takes in 2 or more arguments.</li>
+</ul>
 <div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="functional-programming.html#cb829-1"></a><span class="co"># apply that function to every element</span></span>
 <span id="cb829-2"><a href="functional-programming.html#cb829-2"></a><span class="kw">lapply</span>(fruit, make.plural) <span class="co"># returns a list</span></span></code></pre></div>
 <pre><code>## [[1]]
@@ -950,7 +957,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] &quot;100&quot;</code></pre>
 <div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="functional-programming.html#cb841-1"></a><span class="kw">map</span>(<span class="kw">integer</span>(), paste) <span class="co"># return list</span></span></code></pre></div>
 <pre><code>## list()</code></pre>
-<p>The multivariate version of <code>sapply</code> is <code>mapply</code>. Use this if you have a function that takes in 2 or more arguments.</p>
 </div>
 </div>
 <div id="purrr" class="section level2" number="5.2">
@@ -1124,7 +1130,7 @@ function(input){</p>
 <span id="cb856-12"><a href="functional-programming.html#cb856-12"></a>  out1[[i]] &lt;-<span class="st"> </span><span class="kw">mean</span>(airquality[[i]], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb856-13"><a href="functional-programming.html#cb856-13"></a>}</span>
 <span id="cb856-14"><a href="functional-programming.html#cb856-14"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.005 sec elapsed</code></pre>
+<pre><code>## 0.006 sec elapsed</code></pre>
 <div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb858-1"><a href="functional-programming.html#cb858-1"></a><span class="kw">tic</span>()</span>
 <span id="cb858-2"><a href="functional-programming.html#cb858-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb858-3"><a href="functional-programming.html#cb858-3"></a><span class="kw">toc</span>()</span></code></pre></div>
@@ -1327,7 +1333,7 @@ function(input){</p>
 <span id="cb875-8"><a href="functional-programming.html#cb875-8"></a>    <span class="dt">y =</span> <span class="st">&quot;Solar.R&quot;</span></span>
 <span id="cb875-9"><a href="functional-programming.html#cb875-9"></a>  )</span></code></pre></div>
 <pre><code>## Warning: Removed 42 rows containing missing values (geom_point).</code></pre>
-<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <div class="sourceCode" id="cb877"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb877-1"><a href="functional-programming.html#cb877-1"></a>airquality <span class="op">%&gt;%</span></span>
 <span id="cb877-2"><a href="functional-programming.html#cb877-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Ozone, <span class="dt">y =</span> Wind)) <span class="op">+</span></span>
 <span id="cb877-3"><a href="functional-programming.html#cb877-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
@@ -1336,7 +1342,7 @@ function(input){</p>
 <span id="cb877-6"><a href="functional-programming.html#cb877-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Wind&quot;</span></span>
 <span id="cb877-7"><a href="functional-programming.html#cb877-7"></a>  )</span></code></pre></div>
 <pre><code>## Warning: Removed 37 rows containing missing values (geom_point).</code></pre>
-<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
+<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
 <div class="sourceCode" id="cb879"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb879-1"><a href="functional-programming.html#cb879-1"></a>airquality <span class="op">%&gt;%</span></span>
 <span id="cb879-2"><a href="functional-programming.html#cb879-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Ozone, <span class="dt">y =</span> Temp)) <span class="op">+</span></span>
 <span id="cb879-3"><a href="functional-programming.html#cb879-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
@@ -1345,7 +1351,7 @@ function(input){</p>
 <span id="cb879-6"><a href="functional-programming.html#cb879-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Temp&quot;</span></span>
 <span id="cb879-7"><a href="functional-programming.html#cb879-7"></a>  )</span></code></pre></div>
 <pre><code>## Warning: Removed 37 rows containing missing values (geom_point).</code></pre>
-<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-26-3.png" width="672" /></p>
+<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-27-3.png" width="672" /></p>
 </div>
 <div id="solution" class="section level3" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> Solution</h3>
@@ -1377,7 +1383,7 @@ How can you make <code>ggplot2()</code> take strings as x and y variable names? 
 <span id="cb883-6"><a href="functional-programming.html#cb883-6"></a>    <span class="dt">y =</span> <span class="kw">glue</span>(<span class="st">&quot;{names(airquality)[2]}&quot;</span>)</span>
 <span id="cb883-7"><a href="functional-programming.html#cb883-7"></a>  )</span></code></pre></div>
 <pre><code>## Warning: Removed 42 rows containing missing values (geom_point).</code></pre>
-<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <ul>
 <li><p>The next step is to write an automatic plotting function.</p>
 <ul>
@@ -1399,23 +1405,23 @@ How can you make <code>ggplot2()</code> take strings as x and y variable names? 
 <div class="sourceCode" id="cb886"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb886-1"><a href="functional-programming.html#cb886-1"></a><span class="kw">map</span>(<span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(airquality), create_point_plot)</span></code></pre></div>
 <pre><code>## [[1]]</code></pre>
 <pre><code>## Warning: Removed 42 rows containing missing values (geom_point).</code></pre>
-<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <pre><code>## 
 ## [[2]]</code></pre>
 <pre><code>## Warning: Removed 37 rows containing missing values (geom_point).</code></pre>
-<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-30-2.png" width="672" /></p>
+<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-31-2.png" width="672" /></p>
 <pre><code>## 
 ## [[3]]</code></pre>
 <pre><code>## Warning: Removed 37 rows containing missing values (geom_point).</code></pre>
-<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-30-3.png" width="672" /></p>
+<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-31-3.png" width="672" /></p>
 <pre><code>## 
 ## [[4]]</code></pre>
 <pre><code>## Warning: Removed 37 rows containing missing values (geom_point).</code></pre>
-<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-30-4.png" width="672" /></p>
+<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-31-4.png" width="672" /></p>
 <pre><code>## 
 ## [[5]]</code></pre>
 <pre><code>## Warning: Removed 37 rows containing missing values (geom_point).</code></pre>
-<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-30-5.png" width="672" /></p>
+<p><img src="04_functional_programming_files/figure-html/unnamed-chunk-31-5.png" width="672" /></p>
 </div>
 </div>
 <div id="automate-joining" class="section level2" number="5.5">
@@ -1598,7 +1604,7 @@ Why the above solution is not efficient?</li>
 ## NULL
 ## 
 ## [[1]]$error
-## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds&gt;
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds&gt;
 ## 
 ## 
 ## [[2]]
