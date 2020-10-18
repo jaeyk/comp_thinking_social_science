@@ -5,14 +5,22 @@
 
 ## Flow control 
 
-Almost all the conditional operators used in Python also work in R.  The basic loop set up is also very similar, with some small syntax adjustments.  Note that ```if()``` is a function whose arguments must be specified inside parentheses.  ```else```, however, is a reserved operator that takes no arguments.  Note that there is no ```elif``` option --- one simply writes ```else if()```.  Whereas operations to be executed after conditional evaluations in Python come after a ```:```, R operations must only be enclosed in curly brackets: ```{}```.  Furthermore, there is no requirement for indentation.  The only thing to keep in mind is that **each new operation must be on a separate line**.
+* Control structures = putting logic in code to control flow (e.g., `if`, `else`, `for`, `while`, `repeat`, `break`, `next`)
+
+* Almost all the conditional operators used in Python also work in R. The basic loop set up is also very similar, with some small syntax adjustments. 
+
+* ```if()``` is a function whose arguments must be specified inside parentheses.
+
+* ```else```, however, is a reserved operator that takes no arguments. Note that there is no ```elif``` option --- one simply writes ```else if()```.  
+
+* Whereas operations to be executed after conditional evaluations in Python come after a ```:```, R operations must only be enclosed in curly brackets: ```{}```.  Furthermore, there is no requirement for indentation. 
 
 
 ```r
 x <- 5
 
-if(x < 0){
-  print("x is negative")
+if(x < 0){ # Condition 
+  print("x is negative") # Do something 
 } 
 
 x <- -5
@@ -43,12 +51,11 @@ if(x < 0){
 ```r
 x <- 0
 
-if(x < 0){
-  print("x is negative")
-} else if(x == 0){
-  print("x is zero")
-} else{
-  print("x is positive")
+if(x < 0){ # Condition 
+  print("x is negative") # Do something 
+} else if(x == 0){ 
+  print("x is zero") # Do something else 
+} else { print("x is positive") # Do something else 
 }
 ```
 
@@ -155,7 +162,7 @@ FALSE <= 1
 ## [1] TRUE
 ```
 
-## Functions 
+### Functions 
 
 While functions are defined in Python using the ```def``` reserved operator, R sees functions as just another type of named object.  Thus, they require explicit assignment to an object.  This is done using the function ```function()```, which creates a function taking the arguments specified in parentheses.  
 
@@ -355,12 +362,12 @@ g(2) # a equals still 1
 ## [1] 4
 ```
 
-## for loop 
+### for loop 
 
 Loops in R also work basically the same way as in Python, with just a few adjustments.  First, recall that index positions in R start at 1.  Second, ```while()``` and ```for()``` are functions rather than reserved operators, meaning they must take arguments in parentheses.  Third, just like ```else```, the ```in``` operator *is* reserved and takes no arguments in parentheses.  Fourth, the conditional execution must appear between curly brackets.  Finally, indentation is meaningless, but each new operation must appear on a new line.
 
 - `while()`: when we have no idea how many times loop needs to be executed.
-- `for()`: when we know how many times loop needs to be executed.
+- `for()`: when we know how many times loop needs to be executed. This is likely to be the loop you are going to use most frequently. 
 
 
 ```r
@@ -395,7 +402,7 @@ for(i in 1:length(fruits)){
 ## [1] "bananas"
 ```
 
-## apply family 
+### apply family 
 
 While and for loops in R can be very slow. For this reason, R has a number of built-in iteration methods to speed up execution times. In many cases, packages will have "behind-the-scenes" ways to avoid for loops, but what if you need to write your own function? 
 
@@ -1028,7 +1035,7 @@ toc()
 ```
 
 ```
-## 0.006 sec elapsed
+## 0.005 sec elapsed
 ```
 
 
@@ -1678,7 +1685,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[1]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
 ## 
 ## 
 ## [[2]]
