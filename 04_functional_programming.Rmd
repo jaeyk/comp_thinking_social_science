@@ -903,22 +903,6 @@ url_lists[out[seq(out)] == "The URL is broken."]
 
 > A data product is the production output from a statistical analysis. - [Brian Caffo](https://sites.google.com/view/bcaffo/home)
 
-- [A simple example from RStudio](https://support.rstudio.com/hc/en-us/articles/200551906-Interactive-Plotting-with-Manipulate)
-
-```{r}
-# Install and load manipulate package
-install.packages("manipulate")
-library(manipulate)
-
-# Try run the following code in the console 
-manipulate(
-  plot(cars, # Data  
-       xlim=c(0,x.max)),  # Xlim
-  # Slider control 
-  x.max=slider(15,25))
-
-```
-
 ### Developing R packages 
 
 1. Reuse your code 
