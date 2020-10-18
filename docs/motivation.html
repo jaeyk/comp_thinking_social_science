@@ -397,7 +397,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Let’s think about the following two cases.</p>
 <ul>
 <li><p>Case 1: Suppose a social scientist needs to collect data on civic organizations in the United States from websites, Internal Revenue Service reports, and social media posts. As the number of these organizations is large, the researcher could not collect a large volume of data from diverse sources, so they would hire undergraduates and distribute tasks among them. This is a typical data collection plan in social science research, and it is labor-intensive. Automation is not part of the game plan. Yet, it is critical for so many reasons. Because the process is costly, no one is likely to either replicate or update the data collection effort. Put differently, without making the process efficient, it is difficult for it to be reproducible and scalable.</p></li>
-<li><p>Case 2: An alternative is to write computer programs that collect such data automatically, parse them, and store them in interconnected databases. Additionally, someone may need to maintain and validate the quality of the data infrastructure. Nevertheless, this approach lowers the cost of the data collection process, thereby substantially increasing the reproducibility and scalability of the process. Furthermore, the researcher can document their code and publicly share it using their GitHub repository or even gather some of the functions they used and distribute them as open-source libraries.</p></li>
+<li><p>Case 2: An alternative is to write computer programs that collect such data automatically, parse them, and store them in interconnected databases. Additionally, someone may need to maintain and validate the quality of the data infrastructure. Nevertheless, this approach lowers the cost of the data collection process, thereby substantially increasing the <strong>reproducibility</strong> and <strong>scalability</strong> of the process. Furthermore, the researcher can document their code and publicly share it using their GitHub repository or even gather some of the functions they used and distribute them as open-source libraries.</p></li>
 </ul></li>
 <li><p>Programming is as valuable a skill as writing in social science research. The extent to which a researcher can automate the research process can determine its efficiency, reproducibility, and scalability.</p></li>
 </ul>
@@ -411,6 +411,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="https://bam.files.bbci.co.uk/bam/live/content/znmb87h/large" alt="" />
 <p class="caption">From BBC Bitesize</p>
 </div>
+<ul>
+<li>This book teaches how you to do that in R in incremental steps.</li>
+</ul>
+<blockquote>
+<p>“[W]e wanted users to be able to begin in an interactive environment, where they did not consciously think of themselves as progamming. Then as their needs became clearer and their sophistication increased, they should be able to slide gradually into programming, when the language and system aspects would become more important.” - <em>Stages in the Evolution of S</em> by John Chambers (S is the progenitor of R)</p>
+</blockquote>
 </div>
 <div id="computational-way-of-thinking-about-data" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Computational way of thinking about data</h2>
@@ -431,11 +437,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="dimension" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Dimension</h3>
 <ul>
-<li>Low-dimensional data (n &gt; p)
+<li><p>n = the number of observations</p></li>
+<li><p>p = the number of variables</p></li>
+<li><p>Low-dimensional data (n &gt; p)</p>
 <ul>
 <li>Survey, experimental, and administrative data</li>
 </ul></li>
-<li>High-dimensional data (n &lt; p)
+<li><p>High-dimensional data (n &lt; p)</p>
 <ul>
 <li>Text, speech, image, video, etc.</li>
 </ul></li>
@@ -459,7 +467,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Modeling</li>
 <li>Visualization</li>
 </ul></li>
-<li>Documentation and collaboration easier, faster, scalable, safer, and more experimental
+<li>Documentation and collaboration easier, faster and scalable
 <ul>
 <li>Dynamic reporting (markdown)</li>
 <li>Version control system (Git and GitHub)</li>
