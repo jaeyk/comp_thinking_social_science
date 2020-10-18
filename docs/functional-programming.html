@@ -1117,7 +1117,7 @@ function(input){</p>
 <span id="cb856-12"><a href="functional-programming.html#cb856-12"></a>  out1[[i]] &lt;-<span class="st"> </span><span class="kw">mean</span>(airquality[[i]], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb856-13"><a href="functional-programming.html#cb856-13"></a>}</span>
 <span id="cb856-14"><a href="functional-programming.html#cb856-14"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.006 sec elapsed</code></pre>
+<pre><code>## 0.007 sec elapsed</code></pre>
 <div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb858-1"><a href="functional-programming.html#cb858-1"></a><span class="kw">tic</span>()</span>
 <span id="cb858-2"><a href="functional-programming.html#cb858-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb858-3"><a href="functional-programming.html#cb858-3"></a><span class="kw">toc</span>()</span></code></pre></div>
@@ -1591,7 +1591,7 @@ Why the above solution is not efficient?</li>
 ## NULL
 ## 
 ## [[1]]$error
-## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds&gt;
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds&gt;
 ## 
 ## 
 ## [[2]]
@@ -1599,7 +1599,7 @@ Why the above solution is not efficient?</li>
 ## NULL
 ## 
 ## [[2]]$error
-## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds&gt;
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds&gt;
 ## 
 ## 
 ## [[3]]
@@ -1607,7 +1607,7 @@ Why the above solution is not efficient?</li>
 ## NULL
 ## 
 ## [[3]]$error
-## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds&gt;
+## &lt;simpleError in open.connection(x, &quot;rb&quot;): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds&gt;
 ## 
 ## 
 ## [[4]]
