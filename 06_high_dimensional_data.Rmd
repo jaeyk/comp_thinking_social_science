@@ -2265,7 +2265,7 @@ read.csv(here("data", "comp_tables_vrecid.csv"))[,-1] %>%
 
 ```
 
-## Resources
+## References
 
 ### Books 
 

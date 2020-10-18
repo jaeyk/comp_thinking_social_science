@@ -1,0 +1,16 @@
+base
+pacman
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+DBI
+RSQLite
+dbplyr
+glue
+nycflights13
