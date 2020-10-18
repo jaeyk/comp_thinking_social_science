@@ -1,5 +1,10 @@
 # Automating repeated things {#functional_programming}
 
+```{r include=FALSE}
+# To speed up building process 
+knitr::opts_chunk$set(cache = TRUE)
+```
+
 > Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions. 
 - Hadley Wickham
 
@@ -70,6 +75,8 @@ FALSE <= 1
 ### Functions 
 
 While functions are defined in Python using the ```def``` reserved operator, R sees functions as just another type of named object.  Thus, they require explicit assignment to an object.  This is done using the function ```function()```, which creates a function taking the arguments specified in parentheses.  
+
+function = input + computation (begin -> end) + output 
 
 ```{r}
 simple.function <- function(x){
