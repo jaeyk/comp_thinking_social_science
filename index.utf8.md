@@ -2,7 +2,7 @@
 knitr: "bookdown::render_book"
 title: "Computational Thinking for Social Scientists"
 author: ["[Jae Yeon Kim](https://jaeyk.github.io/)"]
-date: "`r Sys.Date()`"
+date: "2020-10-17"
 site: bookdown::bookdown_site
 github-repo: jaeyk/PS239T
 twitter-handle: JaeJaeykim2
@@ -19,8 +19,13 @@ description: "Computational Thinking for Social Scientists. Online textbook for 
 
 # Hello World 
 
-```{r}
+
+```r
 print("Hello, World!")
+```
+
+```
+## [1] "Hello, World!"
 ```
 
 This is the website for *Computational Thinking for Social Scientists*. This book intends to help social scientists to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let them to work on research projects that would previously seem impossible.
