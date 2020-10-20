@@ -20,7 +20,7 @@ The book is currently divided into two main subjects (fundamentals and applicati
 
 6. [How to analyze high-dimensional data (e.g., text) using machine learning](https://jaeyk.github.io/PS239T/machine_learning.html) 
 
-7. [How to access, query, and manage big data using SQL](https://jaeyk.github.io/PS239T/big_data.html) 
+7. [How to access, query, and manage big data using SQL and Spark](https://jaeyk.github.io/PS239T/big_data.html) 
 
 ## Feedback
 
