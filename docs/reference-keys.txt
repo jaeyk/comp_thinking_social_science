@@ -322,13 +322,13 @@ books
 lecture-slides
 blog-posts
 big_data
-motivation-3
-what-is-sql
+overview-1
+sql
 learning-objectives
-quick-overview
+sql-and-r
 setup-7
 packages-1
-datasets
+nyc-flights-data
 workflow-4
 create-a-database
 copy-an-object-as-a-table-to-the-database-push
@@ -337,3 +337,5 @@ tidy-way-dplyr---sql
 collect-pull
 disconnect
 references-3
+spark
+setup-8

@@ -1,6 +1,6 @@
 # Big data {#big_data}
 
-## Motivation
+## Overview
 
 - Big data problem: data is too big to fit into memory (=local environment).
 - R reads data into random-access memory (RAM) at once and this object lives in memory entirely. So, object > memory will crash R. 
@@ -24,7 +24,7 @@
 
 ![Relational Database. Source: MySQL Tutorial](https://sp.mysqltutorial.org/wp-content/uploads/2009/12/MySQL-Sample-Database-Schema.png)
 
-## What is SQL? 
+## SQL
 
 - Structured Query Language. Called SEQUEL and developed by IBM Corporation in the 1970s.
 
@@ -37,12 +37,13 @@
 SELECT COLUMN FROM TABLE 
 ```
 
-## Learning objectives 
+### Learning objectives 
+
 * Embracing a new mindset: shifting from ownership (opening CSVs in your laptop) to access (accessing data stored in a database)
 
 * Learning how to use R and SQL to access and query a database
 
-## Quick overview 
+### SQL and R
 
 * SQL and R
 
@@ -93,11 +94,11 @@ ORDER BY column # Arrange
 
 ![SQL Zine by by [Julia Evans](https://jvns.ca/)](https://wizardzines.com/zines/sql/samples/from.png)
 
-## Setup
+### Setup
 
 Let's get to work. 
 
-## Packages 
+### Packages 
 
 - `pacman::p_load()` reduces steps for installing and loading several packages simultaneously. 
 
@@ -129,13 +130,13 @@ pacman::p_load(
 )
 ```
 
-## Datasets 
+### NYC flights data 
 
 - [The flight on-time performance data](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236) from the Bureau of Transpiration Statistics of the U.S. government. The data goes back to 1987 and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.
 
 ![From RStudio.](https://d33wubrfki0l68.cloudfront.net/245292d1ea724f6c3fd8a92063dcd7bfb9758d02/5751b/diagrams/relational-nycflights.png)
 
-## Workflow 
+### Workflow 
 
 1. Create/connect to a database 
 
@@ -187,7 +188,7 @@ INSERT INTO students(name, birth, gpa, grad)
 
 5. Disconnect the database 
 
-### Create a database 
+#### Create a database 
 
 
 ```r
@@ -215,7 +216,7 @@ dbListTables(con)
 
 - Note that con is empty at this stage.
 
-### Copy an object as a table to the database (push)
+#### Copy an object as a table to the database (push)
 
 
 ```r
@@ -277,7 +278,7 @@ dbListFields(con, "weather")
 ## [11] "wind_gust"  "precip"     "pressure"   "visib"      "time_hour"
 ```
 
-### Quick demonstrations:
+#### Quick demonstrations:
 
 - SELECT desired columns 
 - FROM tables 
@@ -427,7 +428,7 @@ dbGetQuery(con,
 ## 1                       527
 ```
 
-### Tidy-way: dplyr -> SQL
+#### Tidy-way: dplyr -> SQL
 
 Thanks to the `dbplyr` package you can use the `dplyr` syntax to query SQL. 
 
@@ -633,7 +634,7 @@ flights %>%
 ## ON (`LHS`.`year` = `RHS`.`year` AND `LHS`.`month` = `RHS`.`month`)
 ```
 
-### Collect (pull)
+#### Collect (pull)
 
 * `collect()` is used to pull the data. Depending on the data size, it may take a long time to run.
 
@@ -668,14 +669,14 @@ origin_flights_plot
 
 <img src="07_big_data_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
-### Disconnect 
+#### Disconnect 
 
 
 ```r
 DBI::dbDisconnect(con)
 ```
 
-## References 
+### References 
 
 - [csv2db](https://github.com/csv2db/csv2db) - for loading large CSV files in to a database 
 - R Studio, [Database using R](https://db.rstudio.com/)
@@ -686,3 +687,36 @@ DBI::dbDisconnect(con)
 - Josh Erickson, [SQL in R](http://dept.stat.lsa.umich.edu/~jerrick/courses/stat701/notes/sql.html), STAT 701, University of Michigan
 - [SQL zine](https://wizardzines.com/zines/sql/) by Julia Evans
 - [q](http://harelba.github.io/q/) - a command line tool that allows direct execution of SQL-like queries on CSVs/TSVs (and any other tabular text files) 
+
+## Spark 
+
+### Setup 
+
+1. Install `sparklyr` package 
+2. Install `spark` using `sparklyr` package 
+3. (If you haven't) install Java 8 (see [this guideline](https://www.java.com/en/download/manual.jsp) from the Java website)
+
+
+```r
+if(!require("sparklyr")) install.packages("sparklyr")
+```
+
+```
+## Loading required package: sparklyr
+```
+
+```
+## 
+## Attaching package: 'sparklyr'
+```
+
+```
+## The following object is masked from 'package:purrr':
+## 
+##     invoke
+```
+
+```r
+# sparklyr::spark_install(version = "3.0.0")
+```
+

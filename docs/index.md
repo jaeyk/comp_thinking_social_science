@@ -2,7 +2,7 @@
 knitr: "bookdown::render_book"
 title: "Computational Thinking for Social Scientists"
 author: ["[Jae Yeon Kim](https://jaeyk.github.io/)"]
-date: "2020-10-19"
+date: "2020-10-20"
 site: bookdown::bookdown_site
 github-repo: jaeyk/PS239T
 twitter-handle: JaeJaeykim2
@@ -50,7 +50,7 @@ The book is currently divided into two main subjects (fundamentals and applicati
 
 6. [How to analyze high-dimensional data (e.g., text) using machine learning](#machine_learning) 
 
-7. [How to access, query, and manage big data using SQL](#big_data) 
+7. [How to access, query, and manage big data using SQL and Spark](#big_data) 
 
 The book teaches how to do all of these mostly in [**R**](https://www.r-project.org/about.html), and sometimes in [**bash**](https://www.gnu.org/software/bash/) and [**Python**](https://www.python.org/about/).
 
