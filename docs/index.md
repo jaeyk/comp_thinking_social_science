@@ -2,7 +2,7 @@
 knitr: "bookdown::render_book"
 title: "Computational Thinking for Social Scientists"
 author: ["[Jae Yeon Kim](https://jaeyk.github.io/)"]
-date: "2020-10-18"
+date: "2020-10-19"
 site: bookdown::bookdown_site
 github-repo: jaeyk/PS239T
 twitter-handle: JaeJaeykim2
@@ -68,7 +68,12 @@ The book teaches how to do all of these mostly in [**R**](https://www.r-project.
       
 ## Special thanks 
 
-This book is a remix version of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level computational methods course at UC Berkeley, originally developed by [Rochelle Terman](http://rochelleterman.com/) then revised by [Rachel Bernhard](http://rachelbernhard.com/). I have taught PS239T as lead instructor in Spring 2019 and TA in Spring 2018 and will co-teach it in Spring 2020. Other teaching materials draw from the workshops I have created for [D-Lab](https://dlab.berkeley.edu/) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley. 
+This book is collected as much as it is authored. It is a remix version of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level computational methods course at UC Berkeley, originally developed by [Rochelle Terman](http://rochelleterman.com/) then revised by [Rachel Bernhard](http://rachelbernhard.com/). I have taught PS239T as lead instructor in Spring 2019 and TA in Spring 2018 and will co-teach it in Spring 2020. Other teaching materials draw from the workshops I have created for [D-Lab](https://dlab.berkeley.edu/) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley. I also have cited all the other references whenever I am aware of related writings, blog posts, or YouTube video clips. 
+
+## Suggestions, questions, or comments 
+
+Please feel free to [create issues](https://github.com/jaeyk/PS239T/issues) if you find typos, errors, missing citations, etc via the GitHub repository associated with this book. 
+
 
 ## License 
 
