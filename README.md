@@ -22,13 +22,16 @@ The book is currently divided into two main subjects (fundamentals and applicati
 
 7. [How to access, query, and manage big data using SQL](https://jaeyk.github.io/PS239T/big_data.html) 
 
-## Feedback 
-If you have questions, comments, or suggestions, please [create an issue](https://github.com/jaeyk/ctss/issues). 
+## Feedback
+
+Please feel free to [create issues](https://github.com/jaeyk/PS239T/issues) if you find typos, errors, missing citations, etc via the GitHub repository associated with this book. 
 
 ## Contact
+
 Content developer: [Jae Yeon Kim](https://jaeyk.github.io/): jaeyeonkim@berkeley.edu
 
 ## Special thanks 
-This book is a remix version of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level computational methods course at UC Berkeley, originally developed by [Rochelle Terman](http://rochelleterman.com/) then revised by [Rachel Bernhard](http://rachelbernhard.com/). I have taught PS239T as lead instructor in Spring 2019 and TA in Spring 2018 and will co-teach it in Spring 2020. Other teaching materials draw from the workshops I have created for [D-Lab](https://dlab.berkeley.edu/) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley. 
+
+This book is collected as much as it is authored. It is a remix version of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level computational methods course at UC Berkeley, originally developed by [Rochelle Terman](http://rochelleterman.com/) then revised by [Rachel Bernhard](http://rachelbernhard.com/). I have taught PS239T as lead instructor in Spring 2019 and TA in Spring 2018 and will co-teach it in Spring 2020. Other teaching materials draw from the workshops I have created for [D-Lab](https://dlab.berkeley.edu/) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley. I also have cited all the other references whenever I am aware of related writings, blog posts, or YouTube video clips. 
 
 ![](https://i.creativecommons.org/l/by/4.0/88x31.png) This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
