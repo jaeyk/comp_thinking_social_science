@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-10-21" />
+<meta name="date" content="2020-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1792,7 +1792,7 @@ Why the above solution is not efficient?</li>
 <div class="sourceCode" id="cb924"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb924-1"><a href="functional-programming.html#cb924-1"></a>usethis<span class="op">::</span><span class="kw">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb925"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb925-1"><a href="functional-programming.html#cb925-1"></a>title<span class="op">:</span><span class="st"> &quot;Vignette title&quot;</span></span>
 <span id="cb925-2"><a href="functional-programming.html#cb925-2"></a>author<span class="op">:</span><span class="st"> &quot;Vignette author&quot;</span></span>
-<span id="cb925-3"><a href="functional-programming.html#cb925-3"></a>date<span class="op">:</span><span class="st"> &quot;2020-10-21&quot;</span></span>
+<span id="cb925-3"><a href="functional-programming.html#cb925-3"></a>date<span class="op">:</span><span class="st"> &quot;2020-10-22&quot;</span></span>
 <span id="cb925-4"><a href="functional-programming.html#cb925-4"></a>output<span class="op">:</span><span class="st"> </span>rmarkdown<span class="op">::</span>html_vignette</span>
 <span id="cb925-5"><a href="functional-programming.html#cb925-5"></a>vignette<span class="op">:</span><span class="st"> </span>blah blah</span></code></pre></div>
 <ul>
@@ -1851,6 +1851,10 @@ Why the above solution is not efficient?</li>
 
 <p>Shiny in production: Principles, practices, and tools - Joe Cheng</p>
 
+<div class="figure">
+<img src="https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.240702211.1091983227.1603295793-100003412.1602392815" alt="" />
+<p class="caption">COVID-19 tracker by Edward Parker</p>
+</div>
 <div id="workflow-1" class="section level4" number="5.8.2.1">
 <h4><span class="header-section-number">5.8.2.1</span> Workflow</h4>
 <p>The workflow follows what Hadley Wickham recommened in his book on mastering shiny.</p>
@@ -1884,28 +1888,40 @@ Why the above solution is not efficient?</li>
 <span id="cb930-12"><a href="functional-programming.html#cb930-12"></a></span>
 <span id="cb930-13"><a href="functional-programming.html#cb930-13"></a><span class="co"># Defines the user interface; how the app looks</span></span>
 <span id="cb930-14"><a href="functional-programming.html#cb930-14"></a></span>
-<span id="cb930-15"><a href="functional-programming.html#cb930-15"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>( <span class="co"># This is a layout function </span></span>
+<span id="cb930-15"><a href="functional-programming.html#cb930-15"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
 <span id="cb930-16"><a href="functional-programming.html#cb930-16"></a>  </span>
-<span id="cb930-17"><a href="functional-programming.html#cb930-17"></a>    <span class="co"># Input </span></span>
-<span id="cb930-18"><a href="functional-programming.html#cb930-18"></a>    <span class="kw">h1</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
+<span id="cb930-17"><a href="functional-programming.html#cb930-17"></a>    <span class="co"># Application title </span></span>
+<span id="cb930-18"><a href="functional-programming.html#cb930-18"></a>    <span class="kw">titlePanel</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
 <span id="cb930-19"><a href="functional-programming.html#cb930-19"></a>  </span>
 <span id="cb930-20"><a href="functional-programming.html#cb930-20"></a>    <span class="kw">h4</span>(tags<span class="op">$</span><span class="kw">a</span>(<span class="dt">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
 <span id="cb930-21"><a href="functional-programming.html#cb930-21"></a>            </span>
-<span id="cb930-22"><a href="functional-programming.html#cb930-22"></a>    <span class="co"># Interactive part </span></span>
-<span id="cb930-23"><a href="functional-programming.html#cb930-23"></a>    <span class="kw">mainPanel</span>(</span>
-<span id="cb930-24"><a href="functional-programming.html#cb930-24"></a>    <span class="kw">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
-<span id="cb930-25"><a href="functional-programming.html#cb930-25"></a>        )</span>
-<span id="cb930-26"><a href="functional-programming.html#cb930-26"></a>    </span>
-<span id="cb930-27"><a href="functional-programming.html#cb930-27"></a>    )</span></code></pre></div>
+<span id="cb930-22"><a href="functional-programming.html#cb930-22"></a>    <span class="kw">sidebarLayout</span>(</span>
+<span id="cb930-23"><a href="functional-programming.html#cb930-23"></a>      </span>
+<span id="cb930-24"><a href="functional-programming.html#cb930-24"></a>      <span class="co"># Sidebar with sliders </span></span>
+<span id="cb930-25"><a href="functional-programming.html#cb930-25"></a>      <span class="kw">sidebarPanel</span>(</span>
+<span id="cb930-26"><a href="functional-programming.html#cb930-26"></a>        <span class="kw">sliderInput</span>(<span class="st">&quot;size&quot;</span>, </span>
+<span id="cb930-27"><a href="functional-programming.html#cb930-27"></a>                    <span class="st">&quot;Font size:&quot;</span>,</span>
+<span id="cb930-28"><a href="functional-programming.html#cb930-28"></a>                    <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>,</span>
+<span id="cb930-29"><a href="functional-programming.html#cb930-29"></a>                    <span class="dt">value =</span> <span class="dv">2</span>)</span>
+<span id="cb930-30"><a href="functional-programming.html#cb930-30"></a>      ),</span>
+<span id="cb930-31"><a href="functional-programming.html#cb930-31"></a>    </span>
+<span id="cb930-32"><a href="functional-programming.html#cb930-32"></a>    <span class="kw">mainPanel</span>(</span>
+<span id="cb930-33"><a href="functional-programming.html#cb930-33"></a>          </span>
+<span id="cb930-34"><a href="functional-programming.html#cb930-34"></a>          <span class="kw">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
+<span id="cb930-35"><a href="functional-programming.html#cb930-35"></a>        </span>
+<span id="cb930-36"><a href="functional-programming.html#cb930-36"></a>        )</span>
+<span id="cb930-37"><a href="functional-programming.html#cb930-37"></a>    </span>
+<span id="cb930-38"><a href="functional-programming.html#cb930-38"></a>    )</span>
+<span id="cb930-39"><a href="functional-programming.html#cb930-39"></a>)</span></code></pre></div>
 <ul>
 <li>Back-end</li>
 </ul>
-<div class="sourceCode" id="cb931"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb931-1"><a href="functional-programming.html#cb931-1"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</span>
+<div class="sourceCode" id="cb931"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb931-1"><a href="functional-programming.html#cb931-1"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
 <span id="cb931-2"><a href="functional-programming.html#cb931-2"></a>  </span>
 <span id="cb931-3"><a href="functional-programming.html#cb931-3"></a>  output<span class="op">$</span>cloud &lt;-<span class="st"> </span><span class="kw">renderWordcloud2</span>({ </span>
 <span id="cb931-4"><a href="functional-programming.html#cb931-4"></a>    </span>
 <span id="cb931-5"><a href="functional-programming.html#cb931-5"></a>    <span class="kw">wordcloud2</span>(df, </span>
-<span id="cb931-6"><a href="functional-programming.html#cb931-6"></a>               <span class="dt">size =</span> <span class="fl">2.5</span>, </span>
+<span id="cb931-6"><a href="functional-programming.html#cb931-6"></a>               <span class="dt">size =</span> input<span class="op">$</span>size, </span>
 <span id="cb931-7"><a href="functional-programming.html#cb931-7"></a>               <span class="dt">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
 <span id="cb931-8"><a href="functional-programming.html#cb931-8"></a>    </span>
 <span id="cb931-9"><a href="functional-programming.html#cb931-9"></a>    })</span>
@@ -1922,16 +1938,15 @@ Why the above solution is not efficient?</li>
 <li>Deploy to <a href="https://www.shinyapps.io/?_ga=2.5503866.871102833.1602978469-100003412.1602392815">the shinyapps.io cloud</a></li>
 </ul>
 <div class="sourceCode" id="cb933"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb933-1"><a href="functional-programming.html#cb933-1"></a><span class="co"># Install packages </span></span>
-<span id="cb933-2"><a href="functional-programming.html#cb933-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb933-3"><a href="functional-programming.html#cb933-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;rstudio/shinyapps&quot;</span>)</span>
-<span id="cb933-4"><a href="functional-programming.html#cb933-4"></a><span class="kw">library</span>(shinyapps)</span>
-<span id="cb933-5"><a href="functional-programming.html#cb933-5"></a></span>
-<span id="cb933-6"><a href="functional-programming.html#cb933-6"></a><span class="co"># Setup </span></span>
-<span id="cb933-7"><a href="functional-programming.html#cb933-7"></a>shinyapps<span class="op">::</span><span class="kw">setAccountInfo</span>(<span class="dt">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
-<span id="cb933-8"><a href="functional-programming.html#cb933-8"></a>                          <span class="dt">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
-<span id="cb933-9"><a href="functional-programming.html#cb933-9"></a>                          <span class="dt">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
-<span id="cb933-10"><a href="functional-programming.html#cb933-10"></a></span>
-<span id="cb933-11"><a href="functional-programming.html#cb933-11"></a><span class="kw">deployApp</span>(<span class="dt">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
+<span id="cb933-2"><a href="functional-programming.html#cb933-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;rsconnect&quot;</span>)</span>
+<span id="cb933-3"><a href="functional-programming.html#cb933-3"></a><span class="kw">library</span>(rsconnect)</span>
+<span id="cb933-4"><a href="functional-programming.html#cb933-4"></a></span>
+<span id="cb933-5"><a href="functional-programming.html#cb933-5"></a><span class="co"># Setup </span></span>
+<span id="cb933-6"><a href="functional-programming.html#cb933-6"></a>rsconnect<span class="op">::</span><span class="kw">setAccountInfo</span>(<span class="dt">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
+<span id="cb933-7"><a href="functional-programming.html#cb933-7"></a>                          <span class="dt">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
+<span id="cb933-8"><a href="functional-programming.html#cb933-8"></a>                          <span class="dt">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
+<span id="cb933-9"><a href="functional-programming.html#cb933-9"></a></span>
+<span id="cb933-10"><a href="functional-programming.html#cb933-10"></a>rsconnect<span class="op">::</span><span class="kw">deployApp</span>(<span class="dt">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
 </div>
 <div id="references-1" class="section level4" number="5.8.2.4">
 <h4><span class="header-section-number">5.8.2.4</span> References</h4>

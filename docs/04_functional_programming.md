@@ -1892,7 +1892,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-10-21"
+date: "2020-10-22"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 
@@ -1963,6 +1963,10 @@ usethis::use_spell_check()
 
 ```
 
+
+![COVID-19 tracker by Edward Parker](https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.240702211.1091983227.1603295793-100003412.1602392815)
+
+
 #### Workflow 
 
 The workflow follows what Hadley Wickham recommened in his book on mastering shiny. 
@@ -2001,31 +2005,43 @@ df <- read.csv(url("https://github.com/jaeyk/covid19antiasian/raw/master/process
 
 # Defines the user interface; how the app looks
 
-ui <- fluidPage( # This is a layout function 
+ui <- fluidPage(
   
-    # Input 
-    h1("Word Cloud on the Hashtags of the Tweets related to COVID-19 & Asian|Chinese|Wuhan"),
+    # Application title 
+    titlePanel("Word Cloud on the Hashtags of the Tweets related to COVID-19 & Asian|Chinese|Wuhan"),
   
     h4(tags$a(href = "https://jaeyk.github.io/", "Developer: Jae Yeon Kim")),
             
-    # Interactive part 
+    sidebarLayout(
+      
+      # Sidebar with sliders 
+      sidebarPanel(
+        sliderInput("size", 
+                    "Font size:",
+                    min = 1, max = 10,
+                    value = 2)
+      ),
+    
     mainPanel(
-    wordcloud2Output("cloud"),
+          
+          wordcloud2Output("cloud"),
+        
         )
     
     )
+)
 ```
 
 - Back-end
 
 
 ```r
-server <- function(input, output) {
+server <- function(input, output, session) {
   
   output$cloud <- renderWordcloud2({ 
     
     wordcloud2(df, 
-               size = 2.5, 
+               size = input$size, 
                color = "random-dark") 
     
     })
@@ -2047,16 +2063,15 @@ shinyApp(ui = ui, server = server)
 
 ```r
 # Install packages 
-install.packages("devtools")
-devtools::install_github("rstudio/shinyapps")
-library(shinyapps)
+install.packages("rsconnect")
+library(rsconnect)
 
 # Setup 
-shinyapps::setAccountInfo(name = "<Account name>", 
+rsconnect::setAccountInfo(name = "<Account name>", 
                           token = "<Token>",
                           secret = "<Secret>")
 
-deployApp(appNames = "<App name>")
+rsconnect::deployApp(appNames = "<App name>")
 ```
 
 #### References 
