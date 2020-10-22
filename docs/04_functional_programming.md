@@ -1709,7 +1709,7 @@ map(url_lists, safely(read_html))
 ## NULL
 ## 
 ## [[3]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
 ## 
 ## 
 ## [[4]]
@@ -1967,13 +1967,17 @@ usethis::use_spell_check()
 
 ```
 
+```{=html}
 
-![COVID-19 tracker by Edward Parker](https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.240702211.1091983227.1603295793-100003412.1602392815)
+<iframe src="https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.240702211.1091983227.1603295793-100003412.1602392815" style="border: 1px solid #AAA; width: 600px; height: 500px"></iframe>
 
+<p>COVID-19 tracker by Edward Parker</p>
+
+```
 
 #### Workflow 
 
-The workflow follows what Hadley Wickham recommened in his book on mastering shiny. 
+The workflow follows what Hadley Wickham recommended in his book on mastering shiny. 
 
 1. Install libraries 
 
