@@ -1,10 +1,5 @@
 # Tidy data and its friends {#tidy_data}
 
-```{r include=FALSE}
-# To speed up building process 
-knitr::opts_chunk$set(cache = TRUE)
-```
-
 ## Setup
 
 -   Check your `dplyr` package is up-to-date by typing `packageVersion("dplyr")`. If the current installed version is less than 1.0, then update by typing `update.packages("dplyr")`. You may need to restart R to make it work.
@@ -1315,13 +1310,14 @@ table4a
 
 ```{r}
 
+table4a
+
 # Old way, less intuitive
 table4a %>%
-  gather(
-    key = "cases", # Current column names
-    value = "year", # The values matched to cases
-    c("1999", "2000")
-  ) # Selected columns
+  gather(key = "year", # Current column names
+         value = "cases", # The values matched to cases
+         c("1999", "2000")) # Selected columns
+
 ```
 
 ```{r}
@@ -1333,6 +1329,7 @@ table4a %>%
     names_to = "year", # Shorter columns (the columns going to be in one column called year)
     values_to = "cases"
   ) # Longer rows (the values are going to be in a separate column called named cases)
+
 ```
 
 -   There's another problem, did you catch it?
@@ -1608,12 +1605,10 @@ dplyr::arrange(mtcars, desc(mpg)) # High to Row
 
 df <- tibble(y = c(2011, 2012, 2013))
 
-df
+df %>% 
+  rename(Year = # NEW name
+                y) # OLD name
 
-df %>% rename(
-  Year = # OLD name
-  y
-) # NEW name
 ```
 
 ### Subset observations (rows)
@@ -1625,8 +1620,9 @@ df %>% rename(
 ```{r}
 
 starwars %>%
-  filter(gender == "female") %>%
+  filter(gender == "feminine") %>%
   arrange(desc(height))
+
 ```
 
 The following filtering example was inspired by [the suzanbert's dplyr blog post](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/).
