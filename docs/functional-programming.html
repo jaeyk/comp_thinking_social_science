@@ -1132,11 +1132,11 @@ function(input){</p>
 <span id="cb856-12"><a href="functional-programming.html#cb856-12"></a>  out1[[i]] &lt;-<span class="st"> </span><span class="kw">mean</span>(airquality[[i]], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb856-13"><a href="functional-programming.html#cb856-13"></a>}</span>
 <span id="cb856-14"><a href="functional-programming.html#cb856-14"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.007 sec elapsed</code></pre>
+<pre><code>## 0.015 sec elapsed</code></pre>
 <div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb858-1"><a href="functional-programming.html#cb858-1"></a><span class="kw">tic</span>()</span>
 <span id="cb858-2"><a href="functional-programming.html#cb858-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb858-3"><a href="functional-programming.html#cb858-3"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.002 sec elapsed</code></pre>
+<pre><code>## 0.005 sec elapsed</code></pre>
 <ul>
 <li><p>In short, <code>map()</code> is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using <code>%&gt;%</code>.</p></li>
 <li><p>Final point: Why not base R <code>apply</code> family?</p></li>

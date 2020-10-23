@@ -1043,7 +1043,7 @@ toc()
 ```
 
 ```
-## 0.007 sec elapsed
+## 0.015 sec elapsed
 ```
 
 
@@ -1054,7 +1054,7 @@ toc()
 ```
 
 ```
-## 0.002 sec elapsed
+## 0.005 sec elapsed
 ```
 
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 

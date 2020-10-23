@@ -1769,15 +1769,20 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <ul>
 <li>The pipe operator <code>%&gt;%</code> originally comes from the <code>magrittr</code> package. The idea behind the pipe operator is <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">similar to</a> what we learned about chaining functions in high school. f: B -&gt; C and g: A -&gt; B can be expressed as <span class="math inline">\(f(g(x))\)</span>. Basically, the pipe operator chains operations.</li>
 </ul>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="tidy-data.html#cb479-1"></a><span class="co"># Old way, less intuitive</span></span>
-<span id="cb479-2"><a href="tidy-data.html#cb479-2"></a>table4a <span class="op">%&gt;%</span></span>
-<span id="cb479-3"><a href="tidy-data.html#cb479-3"></a><span class="st">  </span><span class="kw">gather</span>(</span>
-<span id="cb479-4"><a href="tidy-data.html#cb479-4"></a>    <span class="dt">key =</span> <span class="st">&quot;cases&quot;</span>, <span class="co"># Current column names</span></span>
-<span id="cb479-5"><a href="tidy-data.html#cb479-5"></a>    <span class="dt">value =</span> <span class="st">&quot;year&quot;</span>, <span class="co"># The values matched to cases</span></span>
-<span id="cb479-6"><a href="tidy-data.html#cb479-6"></a>    <span class="kw">c</span>(<span class="st">&quot;1999&quot;</span>, <span class="st">&quot;2000&quot;</span>)</span>
-<span id="cb479-7"><a href="tidy-data.html#cb479-7"></a>  ) <span class="co"># Selected columns</span></span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="tidy-data.html#cb479-1"></a>table4a</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   country     `1999` `2000`
+## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766</code></pre>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="tidy-data.html#cb481-1"></a><span class="co"># Old way, less intuitive</span></span>
+<span id="cb481-2"><a href="tidy-data.html#cb481-2"></a>table4a <span class="op">%&gt;%</span></span>
+<span id="cb481-3"><a href="tidy-data.html#cb481-3"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="co"># Current column names</span></span>
+<span id="cb481-4"><a href="tidy-data.html#cb481-4"></a>         <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>, <span class="co"># The values matched to cases</span></span>
+<span id="cb481-5"><a href="tidy-data.html#cb481-5"></a>         <span class="kw">c</span>(<span class="st">&quot;1999&quot;</span>, <span class="st">&quot;2000&quot;</span>)) <span class="co"># Selected columns</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
-##   country     cases   year
+##   country     year   cases
 ##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
 ## 1 Afghanistan 1999     745
 ## 2 Brazil      1999   37737
@@ -1785,13 +1790,13 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 4 Afghanistan 2000    2666
 ## 5 Brazil      2000   80488
 ## 6 China       2000  213766</code></pre>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="tidy-data.html#cb481-1"></a><span class="co"># New way, more intuitive</span></span>
-<span id="cb481-2"><a href="tidy-data.html#cb481-2"></a>table4a <span class="op">%&gt;%</span></span>
-<span id="cb481-3"><a href="tidy-data.html#cb481-3"></a><span class="st">  </span><span class="kw">pivot_longer</span>(</span>
-<span id="cb481-4"><a href="tidy-data.html#cb481-4"></a>    <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;1999&quot;</span>, <span class="st">&quot;2000&quot;</span>), <span class="co"># Selected columns</span></span>
-<span id="cb481-5"><a href="tidy-data.html#cb481-5"></a>    <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="co"># Shorter columns (the columns going to be in one column called year)</span></span>
-<span id="cb481-6"><a href="tidy-data.html#cb481-6"></a>    <span class="dt">values_to =</span> <span class="st">&quot;cases&quot;</span></span>
-<span id="cb481-7"><a href="tidy-data.html#cb481-7"></a>  ) <span class="co"># Longer rows (the values are going to be in a separate column called named cases)</span></span></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="tidy-data.html#cb483-1"></a><span class="co"># New way, more intuitive</span></span>
+<span id="cb483-2"><a href="tidy-data.html#cb483-2"></a>table4a <span class="op">%&gt;%</span></span>
+<span id="cb483-3"><a href="tidy-data.html#cb483-3"></a><span class="st">  </span><span class="kw">pivot_longer</span>(</span>
+<span id="cb483-4"><a href="tidy-data.html#cb483-4"></a>    <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;1999&quot;</span>, <span class="st">&quot;2000&quot;</span>), <span class="co"># Selected columns</span></span>
+<span id="cb483-5"><a href="tidy-data.html#cb483-5"></a>    <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="co"># Shorter columns (the columns going to be in one column called year)</span></span>
+<span id="cb483-6"><a href="tidy-data.html#cb483-6"></a>    <span class="dt">values_to =</span> <span class="st">&quot;cases&quot;</span></span>
+<span id="cb483-7"><a href="tidy-data.html#cb483-7"></a>  ) <span class="co"># Longer rows (the values are going to be in a separate column called named cases)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country     year   cases
 ##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
@@ -1806,13 +1811,13 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <li><p>The data type of <code>year</code> variable should be <code>numeric</code> not <code>character</code>. By default, <code>pivot_longer()</code> transforms uninformative columns to character.</p></li>
 <li><p>You can fix this problem by using <code>names_transform</code> argument.</p></li>
 </ul>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="tidy-data.html#cb483-1"></a>table4a <span class="op">%&gt;%</span></span>
-<span id="cb483-2"><a href="tidy-data.html#cb483-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(</span>
-<span id="cb483-3"><a href="tidy-data.html#cb483-3"></a>    <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;1999&quot;</span>, <span class="st">&quot;2000&quot;</span>), <span class="co"># Put two columns together</span></span>
-<span id="cb483-4"><a href="tidy-data.html#cb483-4"></a>    <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="co"># Shorter columns (the columns going to be in one column called year)</span></span>
-<span id="cb483-5"><a href="tidy-data.html#cb483-5"></a>    <span class="dt">values_to =</span> <span class="st">&quot;cases&quot;</span>, <span class="co"># Longer rows (the values are going to be in a separate column called named cases)</span></span>
-<span id="cb483-6"><a href="tidy-data.html#cb483-6"></a>    <span class="dt">names_transform =</span> <span class="kw">list</span>(<span class="dt">year =</span> readr<span class="op">::</span>parse_number)</span>
-<span id="cb483-7"><a href="tidy-data.html#cb483-7"></a>  ) <span class="co"># Transform the variable</span></span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="tidy-data.html#cb485-1"></a>table4a <span class="op">%&gt;%</span></span>
+<span id="cb485-2"><a href="tidy-data.html#cb485-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(</span>
+<span id="cb485-3"><a href="tidy-data.html#cb485-3"></a>    <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;1999&quot;</span>, <span class="st">&quot;2000&quot;</span>), <span class="co"># Put two columns together</span></span>
+<span id="cb485-4"><a href="tidy-data.html#cb485-4"></a>    <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="co"># Shorter columns (the columns going to be in one column called year)</span></span>
+<span id="cb485-5"><a href="tidy-data.html#cb485-5"></a>    <span class="dt">values_to =</span> <span class="st">&quot;cases&quot;</span>, <span class="co"># Longer rows (the values are going to be in a separate column called named cases)</span></span>
+<span id="cb485-6"><a href="tidy-data.html#cb485-6"></a>    <span class="dt">names_transform =</span> <span class="kw">list</span>(<span class="dt">year =</span> readr<span class="op">::</span>parse_number)</span>
+<span id="cb485-7"><a href="tidy-data.html#cb485-7"></a>  ) <span class="co"># Transform the variable</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country      year  cases
 ##   &lt;chr&gt;       &lt;dbl&gt;  &lt;int&gt;
@@ -1824,7 +1829,7 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 6 China        2000 213766</code></pre>
 <p><strong>Additional tips</strong></p>
 <p><code>parse_number()</code> also keeps only numeric information in a variable.</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="tidy-data.html#cb485-1"></a><span class="kw">parse_number</span>(<span class="st">&quot;reply1994&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="tidy-data.html#cb487-1"></a><span class="kw">parse_number</span>(<span class="st">&quot;reply1994&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 1994</code></pre>
 <p>A flat file (e.g., CSV) is a rectangular shaped combination of strings. <a href="https://cran.r-project.org/web/packages/readr/vignettes/readr.html">Parsing</a> determines the type of each column and turns into a vector of a more specific type. Tidyverse has <code>parse_</code> functions (from <code>readr</code> package) that are flexible and fast (e.g., <code>parse_integer()</code>, <code>parse_double()</code>, <code>parse_logical()</code>, <code>parse_datetime()</code>, <code>parse_date()</code>, <code>parse_time()</code>, <code>parse_factor()</code>, etc).</p>
 <ul>
@@ -1834,7 +1839,7 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <ol style="list-style-type: decimal">
 <li>Why this data is not tidy? (This exercise comes from <a href="https://tidyr.tidyverse.org/articles/pivot.html"><code>pivot</code> function vigenette</a>.) Too long or too wide?</li>
 </ol>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="tidy-data.html#cb487-1"></a>billboard</span></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="tidy-data.html#cb489-1"></a>billboard</span></code></pre></div>
 <pre><code>## # A tibble: 317 x 79
 ##    artist track date.entered   wk1   wk2   wk3   wk4   wk5   wk6   wk7   wk8
 ##    &lt;chr&gt;  &lt;chr&gt; &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1863,14 +1868,14 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <ol start="2" style="list-style-type: decimal">
 <li>How can you fix it? Which pivot?</li>
 </ol>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="tidy-data.html#cb489-1"></a><span class="co"># Old way</span></span>
-<span id="cb489-2"><a href="tidy-data.html#cb489-2"></a>billboard <span class="op">%&gt;%</span></span>
-<span id="cb489-3"><a href="tidy-data.html#cb489-3"></a><span class="st">  </span><span class="kw">gather</span>(</span>
-<span id="cb489-4"><a href="tidy-data.html#cb489-4"></a>    <span class="dt">key =</span> <span class="st">&quot;week&quot;</span>,</span>
-<span id="cb489-5"><a href="tidy-data.html#cb489-5"></a>    <span class="dt">value =</span> <span class="st">&quot;rank&quot;</span>,</span>
-<span id="cb489-6"><a href="tidy-data.html#cb489-6"></a>    <span class="kw">starts_with</span>(<span class="st">&quot;wk&quot;</span>)</span>
-<span id="cb489-7"><a href="tidy-data.html#cb489-7"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Use regular expressions</span></span>
-<span id="cb489-8"><a href="tidy-data.html#cb489-8"></a><span class="st">  </span><span class="kw">drop_na</span>() <span class="co"># Drop NAs</span></span></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="tidy-data.html#cb491-1"></a><span class="co"># Old way</span></span>
+<span id="cb491-2"><a href="tidy-data.html#cb491-2"></a>billboard <span class="op">%&gt;%</span></span>
+<span id="cb491-3"><a href="tidy-data.html#cb491-3"></a><span class="st">  </span><span class="kw">gather</span>(</span>
+<span id="cb491-4"><a href="tidy-data.html#cb491-4"></a>    <span class="dt">key =</span> <span class="st">&quot;week&quot;</span>,</span>
+<span id="cb491-5"><a href="tidy-data.html#cb491-5"></a>    <span class="dt">value =</span> <span class="st">&quot;rank&quot;</span>,</span>
+<span id="cb491-6"><a href="tidy-data.html#cb491-6"></a>    <span class="kw">starts_with</span>(<span class="st">&quot;wk&quot;</span>)</span>
+<span id="cb491-7"><a href="tidy-data.html#cb491-7"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Use regular expressions</span></span>
+<span id="cb491-8"><a href="tidy-data.html#cb491-8"></a><span class="st">  </span><span class="kw">drop_na</span>() <span class="co"># Drop NAs</span></span></code></pre></div>
 <pre><code>## # A tibble: 5,307 x 5
 ##    artist         track                   date.entered week   rank
 ##    &lt;chr&gt;          &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
@@ -1888,14 +1893,14 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <ul>
 <li>Note that <code>pivot_longer()</code> is more versatile than <code>gather()</code>.</li>
 </ul>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="tidy-data.html#cb491-1"></a><span class="co"># New way</span></span>
-<span id="cb491-2"><a href="tidy-data.html#cb491-2"></a>billboard <span class="op">%&gt;%</span></span>
-<span id="cb491-3"><a href="tidy-data.html#cb491-3"></a><span class="st">  </span><span class="kw">pivot_longer</span>(</span>
-<span id="cb491-4"><a href="tidy-data.html#cb491-4"></a>    <span class="dt">cols =</span> <span class="kw">starts_with</span>(<span class="st">&quot;wk&quot;</span>), <span class="co"># Use regular expressions</span></span>
-<span id="cb491-5"><a href="tidy-data.html#cb491-5"></a>    <span class="dt">names_to =</span> <span class="st">&quot;week&quot;</span>,</span>
-<span id="cb491-6"><a href="tidy-data.html#cb491-6"></a>    <span class="dt">values_to =</span> <span class="st">&quot;rank&quot;</span>,</span>
-<span id="cb491-7"><a href="tidy-data.html#cb491-7"></a>    <span class="dt">values_drop_na =</span> <span class="ot">TRUE</span> <span class="co"># Drop NAs</span></span>
-<span id="cb491-8"><a href="tidy-data.html#cb491-8"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="tidy-data.html#cb493-1"></a><span class="co"># New way</span></span>
+<span id="cb493-2"><a href="tidy-data.html#cb493-2"></a>billboard <span class="op">%&gt;%</span></span>
+<span id="cb493-3"><a href="tidy-data.html#cb493-3"></a><span class="st">  </span><span class="kw">pivot_longer</span>(</span>
+<span id="cb493-4"><a href="tidy-data.html#cb493-4"></a>    <span class="dt">cols =</span> <span class="kw">starts_with</span>(<span class="st">&quot;wk&quot;</span>), <span class="co"># Use regular expressions</span></span>
+<span id="cb493-5"><a href="tidy-data.html#cb493-5"></a>    <span class="dt">names_to =</span> <span class="st">&quot;week&quot;</span>,</span>
+<span id="cb493-6"><a href="tidy-data.html#cb493-6"></a>    <span class="dt">values_to =</span> <span class="st">&quot;rank&quot;</span>,</span>
+<span id="cb493-7"><a href="tidy-data.html#cb493-7"></a>    <span class="dt">values_drop_na =</span> <span class="ot">TRUE</span> <span class="co"># Drop NAs</span></span>
+<span id="cb493-8"><a href="tidy-data.html#cb493-8"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 5,307 x 5
 ##    artist  track                   date.entered week   rank
 ##    &lt;chr&gt;   &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
@@ -1914,7 +1919,7 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <li><p>Make It Wider</p></li>
 <li><p>Why this data is not tidy?</p></li>
 </ul>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="tidy-data.html#cb493-1"></a>table2</span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="tidy-data.html#cb495-1"></a>table2</span></code></pre></div>
 <pre><code>## # A tibble: 12 x 4
 ##    country      year type            count
 ##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
@@ -1945,12 +1950,12 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <img src="https://www.storybench.org/wp-content/uploads/2019/08/pivot-wider-image.png" alt="" />
 <p class="caption">What pivot_wider() does (Source: <a href="https://www.storybench.org" class="uri">https://www.storybench.org</a>)</p>
 </div>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="tidy-data.html#cb495-1"></a><span class="co"># Old way</span></span>
-<span id="cb495-2"><a href="tidy-data.html#cb495-2"></a>table2 <span class="op">%&gt;%</span></span>
-<span id="cb495-3"><a href="tidy-data.html#cb495-3"></a><span class="st">  </span><span class="kw">spread</span>(</span>
-<span id="cb495-4"><a href="tidy-data.html#cb495-4"></a>    <span class="dt">key =</span> type,</span>
-<span id="cb495-5"><a href="tidy-data.html#cb495-5"></a>    <span class="dt">value =</span> count</span>
-<span id="cb495-6"><a href="tidy-data.html#cb495-6"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="tidy-data.html#cb497-1"></a><span class="co"># Old way</span></span>
+<span id="cb497-2"><a href="tidy-data.html#cb497-2"></a>table2 <span class="op">%&gt;%</span></span>
+<span id="cb497-3"><a href="tidy-data.html#cb497-3"></a><span class="st">  </span><span class="kw">spread</span>(</span>
+<span id="cb497-4"><a href="tidy-data.html#cb497-4"></a>    <span class="dt">key =</span> type,</span>
+<span id="cb497-5"><a href="tidy-data.html#cb497-5"></a>    <span class="dt">value =</span> count</span>
+<span id="cb497-6"><a href="tidy-data.html#cb497-6"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -1960,12 +1965,12 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="tidy-data.html#cb497-1"></a><span class="co"># New way</span></span>
-<span id="cb497-2"><a href="tidy-data.html#cb497-2"></a>table2 <span class="op">%&gt;%</span></span>
-<span id="cb497-3"><a href="tidy-data.html#cb497-3"></a><span class="st">  </span><span class="kw">pivot_wider</span>(</span>
-<span id="cb497-4"><a href="tidy-data.html#cb497-4"></a>    <span class="dt">names_from =</span> type, <span class="co"># first</span></span>
-<span id="cb497-5"><a href="tidy-data.html#cb497-5"></a>    <span class="dt">values_from =</span> count <span class="co"># second</span></span>
-<span id="cb497-6"><a href="tidy-data.html#cb497-6"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="tidy-data.html#cb499-1"></a><span class="co"># New way</span></span>
+<span id="cb499-2"><a href="tidy-data.html#cb499-2"></a>table2 <span class="op">%&gt;%</span></span>
+<span id="cb499-3"><a href="tidy-data.html#cb499-3"></a><span class="st">  </span><span class="kw">pivot_wider</span>(</span>
+<span id="cb499-4"><a href="tidy-data.html#cb499-4"></a>    <span class="dt">names_from =</span> type, <span class="co"># first</span></span>
+<span id="cb499-5"><a href="tidy-data.html#cb499-5"></a>    <span class="dt">values_from =</span> count <span class="co"># second</span></span>
+<span id="cb499-6"><a href="tidy-data.html#cb499-6"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -1984,13 +1989,13 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 </ul>
 <p><strong>Challenge</strong></p>
 <p>The example comes from <a href="https://r4ds.had.co.nz/tidy-data.html"><em>R for Data Science</em></a>.</p>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="tidy-data.html#cb499-1"></a>stocks &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb499-2"><a href="tidy-data.html#cb499-2"></a>  <span class="dt">year =</span> <span class="kw">c</span>(<span class="dv">2019</span>, <span class="dv">2019</span>, <span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2020</span>, <span class="dv">2020</span>),</span>
-<span id="cb499-3"><a href="tidy-data.html#cb499-3"></a>  <span class="dt">qtr =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
-<span id="cb499-4"><a href="tidy-data.html#cb499-4"></a>  <span class="dt">return =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">NA</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb499-5"><a href="tidy-data.html#cb499-5"></a>)</span>
-<span id="cb499-6"><a href="tidy-data.html#cb499-6"></a></span>
-<span id="cb499-7"><a href="tidy-data.html#cb499-7"></a>stocks</span></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="tidy-data.html#cb501-1"></a>stocks &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb501-2"><a href="tidy-data.html#cb501-2"></a>  <span class="dt">year =</span> <span class="kw">c</span>(<span class="dv">2019</span>, <span class="dv">2019</span>, <span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2020</span>, <span class="dv">2020</span>),</span>
+<span id="cb501-3"><a href="tidy-data.html#cb501-3"></a>  <span class="dt">qtr =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb501-4"><a href="tidy-data.html#cb501-4"></a>  <span class="dt">return =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">NA</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb501-5"><a href="tidy-data.html#cb501-5"></a>)</span>
+<span id="cb501-6"><a href="tidy-data.html#cb501-6"></a></span>
+<span id="cb501-7"><a href="tidy-data.html#cb501-7"></a>stocks</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##    year   qtr return
 ##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
@@ -2004,12 +2009,12 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <li><p>Where is explicit missing value?</p></li>
 <li><p>Does <code>stocks</code> have implicit missing values?</p></li>
 </ul>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="tidy-data.html#cb501-1"></a><span class="co"># implicit missing values become explicit</span></span>
-<span id="cb501-2"><a href="tidy-data.html#cb501-2"></a>stocks <span class="op">%&gt;%</span></span>
-<span id="cb501-3"><a href="tidy-data.html#cb501-3"></a><span class="st">  </span><span class="kw">pivot_wider</span>(</span>
-<span id="cb501-4"><a href="tidy-data.html#cb501-4"></a>    <span class="dt">names_from =</span> year,</span>
-<span id="cb501-5"><a href="tidy-data.html#cb501-5"></a>    <span class="dt">values_from =</span> return</span>
-<span id="cb501-6"><a href="tidy-data.html#cb501-6"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="tidy-data.html#cb503-1"></a><span class="co"># implicit missing values become explicit</span></span>
+<span id="cb503-2"><a href="tidy-data.html#cb503-2"></a>stocks <span class="op">%&gt;%</span></span>
+<span id="cb503-3"><a href="tidy-data.html#cb503-3"></a><span class="st">  </span><span class="kw">pivot_wider</span>(</span>
+<span id="cb503-4"><a href="tidy-data.html#cb503-4"></a>    <span class="dt">names_from =</span> year,</span>
+<span id="cb503-5"><a href="tidy-data.html#cb503-5"></a>    <span class="dt">values_from =</span> return</span>
+<span id="cb503-6"><a href="tidy-data.html#cb503-6"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##     qtr `2019` `2020`
 ##   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -2022,7 +2027,7 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <li><p>This exercise comes from <a href="https://tidyr.tidyverse.org/articles/pivot.html"><code>pivot</code> function vigenette</a>.</p></li>
 <li><p>Could you make <code>station</code> a series of dummy variables using <code>pivot_wider()</code>?</p></li>
 </ul>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="tidy-data.html#cb503-1"></a>fish_encounters</span></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="tidy-data.html#cb505-1"></a>fish_encounters</span></code></pre></div>
 <pre><code>## # A tibble: 114 x 3
 ##    fish  station  seen
 ##    &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;
@@ -2049,34 +2054,34 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <img src="https://garrettgman.github.io/images/tidy-6.png" alt="" />
 <p class="caption">Messy Data Case 2 (Source: R for Data Science)</p>
 </div>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="tidy-data.html#cb505-1"></a><span class="co"># Toy example</span></span>
-<span id="cb505-2"><a href="tidy-data.html#cb505-2"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;Dad.apple&quot;</span>, <span class="st">&quot;Mom.orange&quot;</span>, <span class="st">&quot;Daughter.banana&quot;</span>))</span>
-<span id="cb505-3"><a href="tidy-data.html#cb505-3"></a></span>
-<span id="cb505-4"><a href="tidy-data.html#cb505-4"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="tidy-data.html#cb507-1"></a><span class="co"># Toy example</span></span>
+<span id="cb507-2"><a href="tidy-data.html#cb507-2"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;Dad.apple&quot;</span>, <span class="st">&quot;Mom.orange&quot;</span>, <span class="st">&quot;Daughter.banana&quot;</span>))</span>
+<span id="cb507-3"><a href="tidy-data.html#cb507-3"></a></span>
+<span id="cb507-4"><a href="tidy-data.html#cb507-4"></a>df</span></code></pre></div>
 <pre><code>##                 x
 ## 1            &lt;NA&gt;
 ## 2       Dad.apple
 ## 3      Mom.orange
 ## 4 Daughter.banana</code></pre>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="tidy-data.html#cb507-1"></a><span class="co"># Separate</span></span>
-<span id="cb507-2"><a href="tidy-data.html#cb507-2"></a>df <span class="op">%&gt;%</span></span>
-<span id="cb507-3"><a href="tidy-data.html#cb507-3"></a><span class="st">  </span><span class="kw">separate</span>(x, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;Preferred_fruit&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="tidy-data.html#cb509-1"></a><span class="co"># Separate</span></span>
+<span id="cb509-2"><a href="tidy-data.html#cb509-2"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb509-3"><a href="tidy-data.html#cb509-3"></a><span class="st">  </span><span class="kw">separate</span>(x, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;Preferred_fruit&quot;</span>))</span></code></pre></div>
 <pre><code>##       Name Preferred_fruit
 ## 1     &lt;NA&gt;            &lt;NA&gt;
 ## 2      Dad           apple
 ## 3      Mom          orange
 ## 4 Daughter          banana</code></pre>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="tidy-data.html#cb509-1"></a><span class="co"># Don&#39;t need the first variable</span></span>
-<span id="cb509-2"><a href="tidy-data.html#cb509-2"></a></span>
-<span id="cb509-3"><a href="tidy-data.html#cb509-3"></a>df <span class="op">%&gt;%</span></span>
-<span id="cb509-4"><a href="tidy-data.html#cb509-4"></a><span class="st">  </span><span class="kw">separate</span>(x, <span class="dt">into =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;Preferred_fruit&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="tidy-data.html#cb511-1"></a><span class="co"># Don&#39;t need the first variable</span></span>
+<span id="cb511-2"><a href="tidy-data.html#cb511-2"></a></span>
+<span id="cb511-3"><a href="tidy-data.html#cb511-3"></a>df <span class="op">%&gt;%</span></span>
+<span id="cb511-4"><a href="tidy-data.html#cb511-4"></a><span class="st">  </span><span class="kw">separate</span>(x, <span class="dt">into =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;Preferred_fruit&quot;</span>))</span></code></pre></div>
 <pre><code>##   Preferred_fruit
 ## 1            &lt;NA&gt;
 ## 2           apple
 ## 3          orange
 ## 4          banana</code></pre>
 <p><strong>Practice</strong></p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="tidy-data.html#cb511-1"></a>table3</span></code></pre></div>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="tidy-data.html#cb513-1"></a>table3</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country      year rate             
 ## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
@@ -2089,11 +2094,11 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <ul>
 <li>Note <code>sep</code> argument. You can specify how to separate joined values.</li>
 </ul>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="tidy-data.html#cb513-1"></a>table3 <span class="op">%&gt;%</span></span>
-<span id="cb513-2"><a href="tidy-data.html#cb513-2"></a><span class="st">  </span><span class="kw">separate</span>(rate,</span>
-<span id="cb513-3"><a href="tidy-data.html#cb513-3"></a>    <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>),</span>
-<span id="cb513-4"><a href="tidy-data.html#cb513-4"></a>    <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span></span>
-<span id="cb513-5"><a href="tidy-data.html#cb513-5"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="tidy-data.html#cb515-1"></a>table3 <span class="op">%&gt;%</span></span>
+<span id="cb515-2"><a href="tidy-data.html#cb515-2"></a><span class="st">  </span><span class="kw">separate</span>(rate,</span>
+<span id="cb515-3"><a href="tidy-data.html#cb515-3"></a>    <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>),</span>
+<span id="cb515-4"><a href="tidy-data.html#cb515-4"></a>    <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span></span>
+<span id="cb515-5"><a href="tidy-data.html#cb515-5"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year cases  population
 ##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     
@@ -2106,12 +2111,12 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <ul>
 <li>Note <code>convert</code> argument. You can specify whether automatically convert the new values or not.</li>
 </ul>
-<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="tidy-data.html#cb515-1"></a>table3 <span class="op">%&gt;%</span></span>
-<span id="cb515-2"><a href="tidy-data.html#cb515-2"></a><span class="st">  </span><span class="kw">separate</span>(rate,</span>
-<span id="cb515-3"><a href="tidy-data.html#cb515-3"></a>    <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>),</span>
-<span id="cb515-4"><a href="tidy-data.html#cb515-4"></a>    <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>,</span>
-<span id="cb515-5"><a href="tidy-data.html#cb515-5"></a>    <span class="dt">convert =</span> <span class="ot">TRUE</span></span>
-<span id="cb515-6"><a href="tidy-data.html#cb515-6"></a>  ) <span class="co"># cases and population become integers</span></span></code></pre></div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="tidy-data.html#cb517-1"></a>table3 <span class="op">%&gt;%</span></span>
+<span id="cb517-2"><a href="tidy-data.html#cb517-2"></a><span class="st">  </span><span class="kw">separate</span>(rate,</span>
+<span id="cb517-3"><a href="tidy-data.html#cb517-3"></a>    <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>),</span>
+<span id="cb517-4"><a href="tidy-data.html#cb517-4"></a>    <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>,</span>
+<span id="cb517-5"><a href="tidy-data.html#cb517-5"></a>    <span class="dt">convert =</span> <span class="ot">TRUE</span></span>
+<span id="cb517-6"><a href="tidy-data.html#cb517-6"></a>  ) <span class="co"># cases and population become integers</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -2126,27 +2131,27 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 </ul>
 <p><code>pivot_longer()</code> &lt;-&gt; <code>pivot_wider()</code></p>
 <p><code>separate()</code> &lt;-&gt; <code>unite()</code></p>
-<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="tidy-data.html#cb517-1"></a><span class="co"># Create a toy example</span></span>
-<span id="cb517-2"><a href="tidy-data.html#cb517-2"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb517-3"><a href="tidy-data.html#cb517-3"></a>  <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Jae&quot;</span>, <span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Jane&quot;</span>, <span class="ot">NA</span>),</span>
-<span id="cb517-4"><a href="tidy-data.html#cb517-4"></a>  <span class="dt">birthmonth =</span> <span class="kw">c</span>(<span class="st">&quot;April&quot;</span>, <span class="st">&quot;April&quot;</span>, <span class="st">&quot;June&quot;</span>, <span class="ot">NA</span>)</span>
-<span id="cb517-5"><a href="tidy-data.html#cb517-5"></a>)</span>
-<span id="cb517-6"><a href="tidy-data.html#cb517-6"></a></span>
-<span id="cb517-7"><a href="tidy-data.html#cb517-7"></a><span class="co"># Include missing values</span></span>
-<span id="cb517-8"><a href="tidy-data.html#cb517-8"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unite</span>(</span>
-<span id="cb517-9"><a href="tidy-data.html#cb517-9"></a>  <span class="st">&quot;contact&quot;</span>,</span>
-<span id="cb517-10"><a href="tidy-data.html#cb517-10"></a>  <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;birthmonth&quot;</span>)</span>
-<span id="cb517-11"><a href="tidy-data.html#cb517-11"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="tidy-data.html#cb519-1"></a><span class="co"># Create a toy example</span></span>
+<span id="cb519-2"><a href="tidy-data.html#cb519-2"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb519-3"><a href="tidy-data.html#cb519-3"></a>  <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Jae&quot;</span>, <span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Jane&quot;</span>, <span class="ot">NA</span>),</span>
+<span id="cb519-4"><a href="tidy-data.html#cb519-4"></a>  <span class="dt">birthmonth =</span> <span class="kw">c</span>(<span class="st">&quot;April&quot;</span>, <span class="st">&quot;April&quot;</span>, <span class="st">&quot;June&quot;</span>, <span class="ot">NA</span>)</span>
+<span id="cb519-5"><a href="tidy-data.html#cb519-5"></a>)</span>
+<span id="cb519-6"><a href="tidy-data.html#cb519-6"></a></span>
+<span id="cb519-7"><a href="tidy-data.html#cb519-7"></a><span class="co"># Include missing values</span></span>
+<span id="cb519-8"><a href="tidy-data.html#cb519-8"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unite</span>(</span>
+<span id="cb519-9"><a href="tidy-data.html#cb519-9"></a>  <span class="st">&quot;contact&quot;</span>,</span>
+<span id="cb519-10"><a href="tidy-data.html#cb519-10"></a>  <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;birthmonth&quot;</span>)</span>
+<span id="cb519-11"><a href="tidy-data.html#cb519-11"></a>)</span></code></pre></div>
 <pre><code>##     contact
 ## 1 Jae_April
 ## 2 Sun_April
 ## 3 Jane_June
 ## 4     NA_NA</code></pre>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="tidy-data.html#cb519-1"></a><span class="co"># Do not include missing values</span></span>
-<span id="cb519-2"><a href="tidy-data.html#cb519-2"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unite</span>(<span class="st">&quot;contact&quot;</span>,</span>
-<span id="cb519-3"><a href="tidy-data.html#cb519-3"></a>  <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;birthmonth&quot;</span>),</span>
-<span id="cb519-4"><a href="tidy-data.html#cb519-4"></a>  <span class="dt">na.rm =</span> <span class="ot">TRUE</span></span>
-<span id="cb519-5"><a href="tidy-data.html#cb519-5"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="tidy-data.html#cb521-1"></a><span class="co"># Do not include missing values</span></span>
+<span id="cb521-2"><a href="tidy-data.html#cb521-2"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unite</span>(<span class="st">&quot;contact&quot;</span>,</span>
+<span id="cb521-3"><a href="tidy-data.html#cb521-3"></a>  <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;birthmonth&quot;</span>),</span>
+<span id="cb521-4"><a href="tidy-data.html#cb521-4"></a>  <span class="dt">na.rm =</span> <span class="ot">TRUE</span></span>
+<span id="cb521-5"><a href="tidy-data.html#cb521-5"></a>)</span></code></pre></div>
 <pre><code>##     contact
 ## 1 Jae_April
 ## 2 Sun_April
@@ -2170,7 +2175,7 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <li><p>Arrange</p></li>
 <li><p>Order rows</p></li>
 </ul>
-<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="tidy-data.html#cb521-1"></a>dplyr<span class="op">::</span><span class="kw">arrange</span>(mtcars, mpg) <span class="co"># Low to High (default)</span></span></code></pre></div>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="tidy-data.html#cb523-1"></a>dplyr<span class="op">::</span><span class="kw">arrange</span>(mtcars, mpg) <span class="co"># Low to High (default)</span></span></code></pre></div>
 <pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
 ## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
@@ -2204,7 +2209,7 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
 ## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
 ## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</code></pre>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="tidy-data.html#cb523-1"></a>dplyr<span class="op">::</span><span class="kw">arrange</span>(mtcars, <span class="kw">desc</span>(mpg)) <span class="co"># High to Row</span></span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="tidy-data.html#cb525-1"></a>dplyr<span class="op">::</span><span class="kw">arrange</span>(mtcars, <span class="kw">desc</span>(mpg)) <span class="co"># High to Row</span></span></code></pre></div>
 <pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
 ## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
@@ -2242,19 +2247,11 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <li><p>Rename</p></li>
 <li><p>Rename columns</p></li>
 </ul>
-<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="tidy-data.html#cb525-1"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">2011</span>, <span class="dv">2012</span>, <span class="dv">2013</span>))</span>
-<span id="cb525-2"><a href="tidy-data.html#cb525-2"></a></span>
-<span id="cb525-3"><a href="tidy-data.html#cb525-3"></a>df</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 1
-##       y
-##   &lt;dbl&gt;
-## 1  2011
-## 2  2012
-## 3  2013</code></pre>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="tidy-data.html#cb527-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(</span>
-<span id="cb527-2"><a href="tidy-data.html#cb527-2"></a>  <span class="dt">Year =</span> <span class="co"># OLD name</span></span>
-<span id="cb527-3"><a href="tidy-data.html#cb527-3"></a>  y</span>
-<span id="cb527-4"><a href="tidy-data.html#cb527-4"></a>) <span class="co"># NEW name</span></span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="tidy-data.html#cb527-1"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">2011</span>, <span class="dv">2012</span>, <span class="dv">2013</span>))</span>
+<span id="cb527-2"><a href="tidy-data.html#cb527-2"></a></span>
+<span id="cb527-3"><a href="tidy-data.html#cb527-3"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb527-4"><a href="tidy-data.html#cb527-4"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">Year =</span> <span class="co"># NEW name</span></span>
+<span id="cb527-5"><a href="tidy-data.html#cb527-5"></a>                y) <span class="co"># OLD name</span></span></code></pre></div>
 <pre><code>## # A tibble: 3 x 1
 ##    Year
 ##   &lt;dbl&gt;
@@ -2269,12 +2266,29 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <li><p>Single condition</p></li>
 </ul>
 <div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="tidy-data.html#cb529-1"></a>starwars <span class="op">%&gt;%</span></span>
-<span id="cb529-2"><a href="tidy-data.html#cb529-2"></a><span class="st">  </span><span class="kw">filter</span>(gender <span class="op">==</span><span class="st"> &quot;female&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb529-2"><a href="tidy-data.html#cb529-2"></a><span class="st">  </span><span class="kw">filter</span>(gender <span class="op">==</span><span class="st"> &quot;feminine&quot;</span>) <span class="op">%&gt;%</span></span>
 <span id="cb529-3"><a href="tidy-data.html#cb529-3"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(height))</span></code></pre></div>
-<pre><code>## # A tibble: 0 x 14
-## # … with 14 variables: name &lt;chr&gt;, height &lt;int&gt;, mass &lt;dbl&gt;, hair_color &lt;chr&gt;,
-## #   skin_color &lt;chr&gt;, eye_color &lt;chr&gt;, birth_year &lt;dbl&gt;, sex &lt;chr&gt;,
-## #   gender &lt;chr&gt;, homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+<pre><code>## # A tibble: 17 x 14
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Taun…    213  NA   none       grey       black             NA fema… femin…
+##  2 Adi …    184  50   none       dark       blue              NA fema… femin…
+##  3 Ayla…    178  55   none       blue       hazel             48 fema… femin…
+##  4 Shaa…    178  57   none       red, blue… black             NA fema… femin…
+##  5 Lumi…    170  56.2 black      yellow     blue              58 fema… femin…
+##  6 Zam …    168  55   blonde     fair, gre… yellow            NA fema… femin…
+##  7 Joca…    167  NA   white      fair       blue              NA fema… femin…
+##  8 Barr…    166  50   black      yellow     blue              40 fema… femin…
+##  9 Beru…    165  75   brown      light      blue              47 fema… femin…
+## 10 Dormé    165  NA   brown      light      brown             NA fema… femin…
+## 11 Padm…    165  45   brown      light      brown             46 fema… femin…
+## 12 Shmi…    163  NA   black      fair       brown             72 fema… femin…
+## 13 Cordé    157  NA   brown      light      brown             NA fema… femin…
+## 14 Leia…    150  49   brown      light      brown             19 fema… femin…
+## 15 Mon …    150  NA   auburn     fair       blue              48 fema… femin…
+## 16 R4-P…     96  NA   none       silver, r… red, blue         NA none  femin…
+## 17 Rey       NA  NA   brown      light      hazel             NA fema… femin…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <p>The following filtering example was inspired by <a href="https://suzan.rbind.io/2018/02/dplyr-tutorial-3/">the suzanbert’s dplyr blog post</a>.</p>
 <ul>
@@ -3010,7 +3024,7 @@ Oceania
 </table>
 <div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="tidy-data.html#cb601-1"></a><span class="co"># For HTML and MS Office suite</span></span>
 <span id="cb601-2"><a href="tidy-data.html#cb601-2"></a>tablea <span class="op">%&gt;%</span><span class="st"> </span>flextable<span class="op">::</span><span class="kw">flextable</span>()</span></code></pre></div>
-<div class="tabwid"><style>.cl-49e07254{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-49e08b40{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-49e08b72{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-49e0c7e0{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-49e0c7fe{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-49e0c812{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-49e0c81c{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-49e0c826{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-49e0c830{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-49e0c826"><p class="cl-49e08b40"><span class="cl-49e07254">continent</span></p></td><td class="cl-49e0c830"><p class="cl-49e08b72"><span class="cl-49e07254">n</span></p></td><td class="cl-49e0c830"><p class="cl-49e08b72"><span class="cl-49e07254">mean_gdp</span></p></td><td class="cl-49e0c830"><p class="cl-49e08b72"><span class="cl-49e07254">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-49e0c7e0"><p class="cl-49e08b40"><span class="cl-49e07254">Africa</span></p></td><td class="cl-49e0c7fe"><p class="cl-49e08b72"><span class="cl-49e07254">624</span></p></td><td class="cl-49e0c7fe"><p class="cl-49e08b72"><span class="cl-49e07254">2193.755</span></p></td><td class="cl-49e0c7fe"><p class="cl-49e08b72"><span class="cl-49e07254">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-49e0c7e0"><p class="cl-49e08b40"><span class="cl-49e07254">Americas</span></p></td><td class="cl-49e0c7fe"><p class="cl-49e08b72"><span class="cl-49e07254">300</span></p></td><td class="cl-49e0c7fe"><p class="cl-49e08b72"><span class="cl-49e07254">7136.110</span></p></td><td class="cl-49e0c7fe"><p class="cl-49e08b72"><span class="cl-49e07254">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-49e0c7e0"><p class="cl-49e08b40"><span class="cl-49e07254">Asia</span></p></td><td class="cl-49e0c7fe"><p class="cl-49e08b72"><span class="cl-49e07254">396</span></p></td><td class="cl-49e0c7fe"><p class="cl-49e08b72"><span class="cl-49e07254">7902.150</span></p></td><td class="cl-49e0c7fe"><p class="cl-49e08b72"><span class="cl-49e07254">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-49e0c7e0"><p class="cl-49e08b40"><span class="cl-49e07254">Europe</span></p></td><td class="cl-49e0c7fe"><p class="cl-49e08b72"><span class="cl-49e07254">360</span></p></td><td class="cl-49e0c7fe"><p class="cl-49e08b72"><span class="cl-49e07254">14469.476</span></p></td><td class="cl-49e0c7fe"><p class="cl-49e08b72"><span class="cl-49e07254">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-49e0c812"><p class="cl-49e08b40"><span class="cl-49e07254">Oceania</span></p></td><td class="cl-49e0c81c"><p class="cl-49e08b72"><span class="cl-49e07254">24</span></p></td><td class="cl-49e0c81c"><p class="cl-49e08b72"><span class="cl-49e07254">18621.609</span></p></td><td class="cl-49e0c81c"><p class="cl-49e08b72"><span class="cl-49e07254">6358.983</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-bbbe7d84{font-family:'Roboto';font-size:11px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;}.cl-bbbea174{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-bbbea1a6{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;line-height: 1.00;background-color:transparent;}.cl-bbbeedc8{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bbbeee0e{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bbbeee36{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bbbeee4a{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bbbeee68{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bbbeee86{width:54px;background-color:transparent;vertical-align: middle;border-bottom: 2.00px solid rgba(0, 0, 0, 1.00);border-top: 2.00px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table style='border-collapse:collapse;'><thead><tr style="overflow-wrap:break-word;"><td class="cl-bbbeee68"><p class="cl-bbbea174"><span class="cl-bbbe7d84">continent</span></p></td><td class="cl-bbbeee86"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">n</span></p></td><td class="cl-bbbeee86"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">mean_gdp</span></p></td><td class="cl-bbbeee86"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-bbbeedc8"><p class="cl-bbbea174"><span class="cl-bbbe7d84">Africa</span></p></td><td class="cl-bbbeee0e"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">624</span></p></td><td class="cl-bbbeee0e"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">2193.755</span></p></td><td class="cl-bbbeee0e"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">2827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bbbeedc8"><p class="cl-bbbea174"><span class="cl-bbbe7d84">Americas</span></p></td><td class="cl-bbbeee0e"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">300</span></p></td><td class="cl-bbbeee0e"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">7136.110</span></p></td><td class="cl-bbbeee0e"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">6396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bbbeedc8"><p class="cl-bbbea174"><span class="cl-bbbe7d84">Asia</span></p></td><td class="cl-bbbeee0e"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">396</span></p></td><td class="cl-bbbeee0e"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">7902.150</span></p></td><td class="cl-bbbeee0e"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">14045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bbbeedc8"><p class="cl-bbbea174"><span class="cl-bbbe7d84">Europe</span></p></td><td class="cl-bbbeee0e"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">360</span></p></td><td class="cl-bbbeee0e"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">14469.476</span></p></td><td class="cl-bbbeee0e"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">9355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bbbeee36"><p class="cl-bbbea174"><span class="cl-bbbe7d84">Oceania</span></p></td><td class="cl-bbbeee4a"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">24</span></p></td><td class="cl-bbbeee4a"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">18621.609</span></p></td><td class="cl-bbbeee4a"><p class="cl-bbbea1a6"><span class="cl-bbbe7d84">6358.983</span></p></td></tr></tbody></table></div>
 </div>
 <div id="scoped-summaries" class="section level4" number="4.9.8.2">
 <h4><span class="header-section-number">4.9.8.2</span> Scoped summaries</h4>
@@ -3609,7 +3623,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb680-2"><a href="tidy-data.html#cb680-2"></a><span class="st">  </span><span class="kw">unnest</span>(glance) <span class="op">%&gt;%</span></span>
 <span id="cb680-3"><a href="tidy-data.html#cb680-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(continent, BIC)) <span class="op">+</span></span>
 <span id="cb680-4"><a href="tidy-data.html#cb680-4"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
 </div>
 </div>
 <div id="mapping" class="section level3" number="4.10.2">
@@ -3679,7 +3693,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb687-16"><a href="tidy-data.html#cb687-16"></a>    <span class="dt">title =</span> <span class="st">&quot;Anscombe&#39;s quartet&quot;</span></span>
 <span id="cb687-17"><a href="tidy-data.html#cb687-17"></a>  )</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
 </div>
 <div id="the-grammar-of-graphics" class="section level3" number="4.11.2">
 <h3><span class="header-section-number">4.11.2</span> The grammar of graphics</h3>
@@ -3724,12 +3738,12 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb689-4"><a href="tidy-data.html#cb689-4"></a>) <span class="co"># ggplot or R in general takes positional arguments too. So, you don&#39;t need to name data, mapping each time you use ggplot2.</span></span>
 <span id="cb689-5"><a href="tidy-data.html#cb689-5"></a></span>
 <span id="cb689-6"><a href="tidy-data.html#cb689-6"></a>p</span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
 <div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="tidy-data.html#cb690-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-161-2.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-160-2.png" width="672" /></p>
 <div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="tidy-data.html#cb691-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>() <span class="co"># geom_smooth has calculated a smoothed line;</span></span></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-161-3.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-160-3.png" width="672" /></p>
 <div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="tidy-data.html#cb693-1"></a><span class="co"># the shaded area is the standard error for the line</span></span></code></pre></div>
 </div>
 <div id="univariate-distribution" class="section level3" number="4.11.5">
@@ -3769,18 +3783,18 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb697-2"><a href="tidy-data.html#cb697-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> area)) <span class="op">+</span></span>
 <span id="cb697-3"><a href="tidy-data.html#cb697-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="co"># stat_bin argument picks up 30 bins (or &quot;bucket&quot;) by default.</span></span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
 <div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="tidy-data.html#cb699-1"></a>midwest <span class="op">%&gt;%</span></span>
 <span id="cb699-2"><a href="tidy-data.html#cb699-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> area)) <span class="op">+</span></span>
 <span id="cb699-3"><a href="tidy-data.html#cb699-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">10</span>) <span class="co"># only 10 bins.</span></span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-164-2.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-163-2.png" width="672" /></p>
 <div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="tidy-data.html#cb700-1"></a><span class="kw">ggplot</span>(</span>
 <span id="cb700-2"><a href="tidy-data.html#cb700-2"></a>  <span class="dt">data =</span> <span class="kw">subset</span>(midwest, state <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;OH&quot;</span>, <span class="st">&quot;IN&quot;</span>)),</span>
 <span id="cb700-3"><a href="tidy-data.html#cb700-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> percollege, <span class="dt">fill =</span> state)</span>
 <span id="cb700-4"><a href="tidy-data.html#cb700-4"></a>) <span class="op">+</span></span>
 <span id="cb700-5"><a href="tidy-data.html#cb700-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">alpha =</span> <span class="fl">0.7</span>, <span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></span>
 <span id="cb700-6"><a href="tidy-data.html#cb700-6"></a><span class="st">  </span><span class="kw">scale_fill_viridis_d</span>()</span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-164-3.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-163-3.png" width="672" /></p>
 </div>
 <div id="density" class="section level4" number="4.11.5.2">
 <h4><span class="header-section-number">4.11.5.2</span> Density</h4>
@@ -3789,7 +3803,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb701-3"><a href="tidy-data.html#cb701-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
 <span id="cb701-4"><a href="tidy-data.html#cb701-4"></a><span class="st">  </span><span class="kw">scale_color_viridis_d</span>() <span class="op">+</span></span>
 <span id="cb701-5"><a href="tidy-data.html#cb701-5"></a><span class="st">  </span><span class="kw">scale_fill_viridis_d</span>()</span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
 </div>
 </div>
 <div id="advanced-aes-size-color" class="section level3" number="4.11.6">
@@ -3806,7 +3820,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb702-6"><a href="tidy-data.html#cb702-6"></a>  )</span>
 <span id="cb702-7"><a href="tidy-data.html#cb702-7"></a>) <span class="op">+</span></span>
 <span id="cb702-8"><a href="tidy-data.html#cb702-8"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
 <div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="tidy-data.html#cb703-1"></a><span class="kw">ggplot</span>(</span>
 <span id="cb703-2"><a href="tidy-data.html#cb703-2"></a>  <span class="dt">data =</span> gapminder,</span>
 <span id="cb703-3"><a href="tidy-data.html#cb703-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(</span>
@@ -3817,7 +3831,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb703-8"><a href="tidy-data.html#cb703-8"></a>) <span class="op">+</span></span>
 <span id="cb703-9"><a href="tidy-data.html#cb703-9"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb703-10"><a href="tidy-data.html#cb703-10"></a><span class="st">  </span><span class="kw">scale_color_viridis_d</span>()</span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
 <div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="tidy-data.html#cb704-1"></a><span class="co"># try red instead of &quot;red&quot;</span></span>
 <span id="cb704-2"><a href="tidy-data.html#cb704-2"></a><span class="kw">ggplot</span>(</span>
 <span id="cb704-3"><a href="tidy-data.html#cb704-3"></a>  <span class="dt">data =</span> gapminder,</span>
@@ -3828,20 +3842,20 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb704-8"><a href="tidy-data.html#cb704-8"></a>  )</span>
 <span id="cb704-9"><a href="tidy-data.html#cb704-9"></a>) <span class="op">+</span></span>
 <span id="cb704-10"><a href="tidy-data.html#cb704-10"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
 <p>Aesthetics also can be mapped per Geom.</p>
 <div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="tidy-data.html#cb705-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb705-2"><a href="tidy-data.html#cb705-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
 <div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="tidy-data.html#cb707-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># alpha controls transparency</span></span>
 <span id="cb707-2"><a href="tidy-data.html#cb707-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">size =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-169-2.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-168-2.png" width="672" /></p>
 <div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="tidy-data.html#cb709-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># alpha controls transparency</span></span>
 <span id="cb709-2"><a href="tidy-data.html#cb709-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-169-3.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-168-3.png" width="672" /></p>
 <div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="tidy-data.html#cb711-1"></a><span class="kw">ggplot</span>(</span>
 <span id="cb711-2"><a href="tidy-data.html#cb711-2"></a>  <span class="dt">data =</span> gapminder,</span>
 <span id="cb711-3"><a href="tidy-data.html#cb711-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(</span>
@@ -3859,7 +3873,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb711-15"><a href="tidy-data.html#cb711-15"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: Gapminder&quot;</span></span>
 <span id="cb711-16"><a href="tidy-data.html#cb711-16"></a>  )</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
 <div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="tidy-data.html#cb713-1"></a><span class="kw">ggplot</span>(</span>
 <span id="cb713-2"><a href="tidy-data.html#cb713-2"></a>  <span class="dt">data =</span> gapminder,</span>
 <span id="cb713-3"><a href="tidy-data.html#cb713-3"></a>  <span class="dt">mapping =</span> <span class="kw">aes</span>(</span>
@@ -3880,24 +3894,24 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb713-18"><a href="tidy-data.html#cb713-18"></a><span class="st">  </span><span class="kw">scale_color_viridis_d</span>() <span class="op">+</span></span>
 <span id="cb713-19"><a href="tidy-data.html#cb713-19"></a><span class="st">  </span><span class="kw">scale_fill_viridis_d</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-170-2.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-169-2.png" width="672" /></p>
 </div>
 <div id="co-ordinates-and-scales" class="section level3" number="4.11.7">
 <h3><span class="header-section-number">4.11.7</span> Co-ordinates and scales</h3>
 <div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="tidy-data.html#cb715-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb715-2"><a href="tidy-data.html#cb715-2"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="co"># coord_type</span></span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
 <p>The data is heavily bunched up against the left side.</p>
 <div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="tidy-data.html#cb716-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="co"># without scaling</span></span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
 <div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb717-1"><a href="tidy-data.html#cb717-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb717-2"><a href="tidy-data.html#cb717-2"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="co"># scales the axis of a plot to a log 10 basis</span></span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-172-2.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-171-2.png" width="672" /></p>
 <div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="tidy-data.html#cb718-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb718-2"><a href="tidy-data.html#cb718-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></span>
 <span id="cb718-3"><a href="tidy-data.html#cb718-3"></a><span class="st">  </span><span class="kw">scale_x_log10</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-172-3.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-171-3.png" width="672" /></p>
 </div>
 <div id="labels-and-guides" class="section level3" number="4.11.8">
 <h3><span class="header-section-number">4.11.8</span> Labels and guides</h3>
@@ -3913,7 +3927,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb720-9"><a href="tidy-data.html#cb720-9"></a>    <span class="dt">caption =</span> <span class="st">&quot;Source: Gapminder&quot;</span></span>
 <span id="cb720-10"><a href="tidy-data.html#cb720-10"></a>  )</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
 <ol start="6" style="list-style-type: decimal">
 <li>Themes</li>
 </ol>
@@ -3929,7 +3943,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb722-10"><a href="tidy-data.html#cb722-10"></a>  ) <span class="op">+</span></span>
 <span id="cb722-11"><a href="tidy-data.html#cb722-11"></a><span class="st">  </span><span class="kw">theme_economist</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
 </div>
 <div id="ggsave" class="section level3" number="4.11.9">
 <h3><span class="header-section-number">4.11.9</span> ggsave</h3>
@@ -3962,9 +3976,9 @@ function defines the strata that you’re going to use for summary statistics. T
 <div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="tidy-data.html#cb725-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> gdpPercap))</span>
 <span id="cb725-2"><a href="tidy-data.html#cb725-2"></a></span>
 <span id="cb725-3"><a href="tidy-data.html#cb725-3"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
 <div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="tidy-data.html#cb726-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-176-2.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-175-2.png" width="672" /></p>
 <p><code>geom_line</code> joins up all the lines for each particular year in the order they appear in the dataset. <code>ggplot2</code> does not know the yearly observations in your data are grouped by country.</p>
 <p>Note that you need grouping when the grouping information you need to tell is not built into the varaibles being mapped (like continent).</p>
 <div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="tidy-data.html#cb727-1"></a>gapminder</span></code></pre></div>
@@ -3993,9 +4007,9 @@ function defines the strata that you’re going to use for summary statistics. T
 <div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="tidy-data.html#cb729-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(gapminder, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> gdpPercap))</span>
 <span id="cb729-2"><a href="tidy-data.html#cb729-2"></a></span>
 <span id="cb729-3"><a href="tidy-data.html#cb729-3"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> country)) <span class="co"># group by, # The outlier is Kuwait.</span></span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 <div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="tidy-data.html#cb730-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> country)) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>continent) <span class="co"># facetting</span></span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-178-2.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-177-2.png" width="672" /></p>
 <div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="tidy-data.html#cb731-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> country), <span class="dt">color =</span> <span class="st">&quot;gray70&quot;</span>) <span class="op">+</span></span>
 <span id="cb731-2"><a href="tidy-data.html#cb731-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">size =</span> <span class="fl">1.1</span>, <span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
 <span id="cb731-3"><a href="tidy-data.html#cb731-3"></a><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
@@ -4007,7 +4021,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb731-9"><a href="tidy-data.html#cb731-9"></a>  ) <span class="op">+</span></span>
 <span id="cb731-10"><a href="tidy-data.html#cb731-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-178-3.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-177-3.png" width="672" /></p>
 <div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="tidy-data.html#cb733-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> country), <span class="dt">color =</span> <span class="st">&quot;gray70&quot;</span>) <span class="op">+</span></span>
 <span id="cb733-2"><a href="tidy-data.html#cb733-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">size =</span> <span class="fl">1.1</span>, <span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
 <span id="cb733-3"><a href="tidy-data.html#cb733-3"></a><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span></span>
@@ -4019,7 +4033,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb733-9"><a href="tidy-data.html#cb733-9"></a>  ) <span class="op">+</span></span>
 <span id="cb733-10"><a href="tidy-data.html#cb733-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 </div>
 </div>
 <div id="transforming" class="section level3" number="4.11.11">
@@ -4044,7 +4058,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb737-5"><a href="tidy-data.html#cb737-5"></a>    <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>,</span>
 <span id="cb737-6"><a href="tidy-data.html#cb737-6"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy on Five continents&quot;</span></span>
 <span id="cb737-7"><a href="tidy-data.html#cb737-7"></a>  )</span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
 <div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="tidy-data.html#cb738-1"></a>gapminder <span class="op">%&gt;%</span></span>
 <span id="cb738-2"><a href="tidy-data.html#cb738-2"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
 <span id="cb738-3"><a href="tidy-data.html#cb738-3"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
@@ -4060,7 +4074,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb738-13"><a href="tidy-data.html#cb738-13"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
 <span id="cb738-14"><a href="tidy-data.html#cb738-14"></a>  )</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-180-2.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-179-2.png" width="672" /></p>
 <div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="tidy-data.html#cb740-1"></a><span class="co"># geom point</span></span>
 <span id="cb740-2"><a href="tidy-data.html#cb740-2"></a>gapminder <span class="op">%&gt;%</span></span>
 <span id="cb740-3"><a href="tidy-data.html#cb740-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
@@ -4078,7 +4092,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb740-15"><a href="tidy-data.html#cb740-15"></a>  ) <span class="op">+</span></span>
 <span id="cb740-16"><a href="tidy-data.html#cb740-16"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>country)</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
 <div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="tidy-data.html#cb742-1"></a><span class="co"># geom bar</span></span>
 <span id="cb742-2"><a href="tidy-data.html#cb742-2"></a>gapminder <span class="op">%&gt;%</span></span>
 <span id="cb742-3"><a href="tidy-data.html#cb742-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
@@ -4096,7 +4110,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb742-15"><a href="tidy-data.html#cb742-15"></a>  ) <span class="op">+</span></span>
 <span id="cb742-16"><a href="tidy-data.html#cb742-16"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>country)</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-181-2.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-180-2.png" width="672" /></p>
 <div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="tidy-data.html#cb744-1"></a><span class="co"># no facet</span></span>
 <span id="cb744-2"><a href="tidy-data.html#cb744-2"></a>gapminder <span class="op">%&gt;%</span></span>
 <span id="cb744-3"><a href="tidy-data.html#cb744-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
@@ -4113,7 +4127,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb744-14"><a href="tidy-data.html#cb744-14"></a>    <span class="dt">title =</span> <span class="st">&quot;Life expectancy in Europe&quot;</span></span>
 <span id="cb744-15"><a href="tidy-data.html#cb744-15"></a>  )</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-181-3.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-180-3.png" width="672" /></p>
 <div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="tidy-data.html#cb746-1"></a>gapminder <span class="op">%&gt;%</span></span>
 <span id="cb746-2"><a href="tidy-data.html#cb746-2"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
 <span id="cb746-3"><a href="tidy-data.html#cb746-3"></a><span class="st">  </span><span class="kw">group_by</span>(country, year) <span class="op">%&gt;%</span></span>
@@ -4130,7 +4144,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb746-14"><a href="tidy-data.html#cb746-14"></a>  ) <span class="op">+</span></span>
 <span id="cb746-15"><a href="tidy-data.html#cb746-15"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
 <div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="tidy-data.html#cb748-1"></a><span class="co"># without ordering</span></span>
 <span id="cb748-2"><a href="tidy-data.html#cb748-2"></a>gapminder <span class="op">%&gt;%</span></span>
 <span id="cb748-3"><a href="tidy-data.html#cb748-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
@@ -4148,7 +4162,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb748-15"><a href="tidy-data.html#cb748-15"></a>  ) <span class="op">+</span></span>
 <span id="cb748-16"><a href="tidy-data.html#cb748-16"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
 <div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb750-1"><a href="tidy-data.html#cb750-1"></a><span class="co"># reorder</span></span>
 <span id="cb750-2"><a href="tidy-data.html#cb750-2"></a>gapminder <span class="op">%&gt;%</span></span>
 <span id="cb750-3"><a href="tidy-data.html#cb750-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>) <span class="op">%&gt;%</span></span>
@@ -4166,7 +4180,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb750-15"><a href="tidy-data.html#cb750-15"></a>  ) <span class="op">+</span></span>
 <span id="cb750-16"><a href="tidy-data.html#cb750-16"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-183-2.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-182-2.png" width="672" /></p>
 </div>
 <div id="plotting-text" class="section level4" number="4.11.11.2">
 <h4><span class="header-section-number">4.11.11.2</span> Plotting text</h4>
@@ -4183,7 +4197,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb752-11"><a href="tidy-data.html#cb752-11"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
 <span id="cb752-12"><a href="tidy-data.html#cb752-12"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>continent)</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;continent&#39; (override with `.groups` argument)</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
 <div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="tidy-data.html#cb754-1"></a><span class="co"># with label</span></span>
 <span id="cb754-2"><a href="tidy-data.html#cb754-2"></a>gapminder <span class="op">%&gt;%</span></span>
 <span id="cb754-3"><a href="tidy-data.html#cb754-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span> <span class="op">|</span><span class="st"> </span>continent <span class="op">==</span><span class="st"> &quot;Americas&quot;</span>) <span class="op">%&gt;%</span></span>
@@ -4198,7 +4212,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb754-12"><a href="tidy-data.html#cb754-12"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
 <span id="cb754-13"><a href="tidy-data.html#cb754-13"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>continent)</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;continent&#39; (override with `.groups` argument)</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
 <div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="tidy-data.html#cb756-1"></a><span class="co"># no overlaps</span></span>
 <span id="cb756-2"><a href="tidy-data.html#cb756-2"></a>gapminder <span class="op">%&gt;%</span></span>
 <span id="cb756-3"><a href="tidy-data.html#cb756-3"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Asia&quot;</span> <span class="op">|</span><span class="st"> </span>continent <span class="op">==</span><span class="st"> &quot;Americas&quot;</span>) <span class="op">%&gt;%</span></span>
@@ -4213,7 +4227,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb756-12"><a href="tidy-data.html#cb756-12"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
 <span id="cb756-13"><a href="tidy-data.html#cb756-13"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>continent)</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;continent&#39; (override with `.groups` argument)</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
 </div>
 </div>
 <div id="ploting-models" class="section level3" number="4.11.12">
@@ -4237,7 +4251,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb758-14"><a href="tidy-data.html#cb758-14"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Models&quot;</span>, <span class="dt">values =</span> model_colors)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
 ## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
 </div>
 <div id="extracting-model-outcomes" class="section level4" number="4.11.12.2">
 <h4><span class="header-section-number">4.11.12.2</span> Extracting model outcomes</h4>
@@ -4270,7 +4284,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb761-7"><a href="tidy-data.html#cb761-7"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb761-8"><a href="tidy-data.html#cb761-8"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
 <span id="cb761-9"><a href="tidy-data.html#cb761-9"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
 </div>
 <div id="confidence-intervals" class="section level5" number="4.11.12.2.2">
 <h5><span class="header-section-number">4.11.12.2.2</span> Confidence intervals</h5>
@@ -4284,7 +4298,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb762-8"><a href="tidy-data.html#cb762-8"></a><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
 <span id="cb762-9"><a href="tidy-data.html#cb762-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;OLS Estimate&quot;</span>) <span class="op">+</span></span>
 <span id="cb762-10"><a href="tidy-data.html#cb762-10"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
 <div class="sourceCode" id="cb763"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb763-1"><a href="tidy-data.html#cb763-1"></a><span class="co"># another way to do it (errorbar)</span></span>
 <span id="cb763-2"><a href="tidy-data.html#cb763-2"></a>out_conf <span class="op">%&gt;%</span></span>
 <span id="cb763-3"><a href="tidy-data.html#cb763-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> estimate, <span class="dt">y =</span> <span class="kw">reorder</span>(term, estimate))) <span class="op">+</span></span>
@@ -4292,7 +4306,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <span id="cb763-5"><a href="tidy-data.html#cb763-5"></a><span class="st">  </span><span class="kw">geom_errorbarh</span>(<span class="kw">aes</span>(<span class="dt">xmin =</span> conf.low, <span class="dt">xmax =</span> conf.high)) <span class="op">+</span></span>
 <span id="cb763-6"><a href="tidy-data.html#cb763-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;OLS Estimate&quot;</span>) <span class="op">+</span></span>
 <span id="cb763-7"><a href="tidy-data.html#cb763-7"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-190-2.png" width="672" /></p>
+<p><img src="03_tidy_data_files/figure-html/unnamed-chunk-189-2.png" width="672" /></p>
 <p>You can calculate marginal effects using <code>margins</code> package. For the sake of time, I’m not covering that here.</p>
 
 </div>
