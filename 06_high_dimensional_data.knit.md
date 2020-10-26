@@ -687,100 +687,1160 @@ rec_res %>%
 ##### Select 
 
 
+```r
+top_rmse <- show_best(rec_res, metric = "rmse")
+
+best_rmse <- select_best(rec_res, metric = "rmse")
 
+best_rmse 
+```
 
+```
+## # A tibble: 1 x 2
+##   penalty .config
+##     <dbl> <chr>  
+## 1   0.153 Model46
+```
 
+```r
+glue('The RMSE of the intiail model is 
+     {evals %>%
+  filter(type == "Lasso", .metric == "rmse") %>%
+  select(.estimate) %>%
+  round(2)}')
+```
 
+```
+## The RMSE of the intiail model is 
+##    7.87
+```
 
+```r
+glue('The RMSE of the tuned model is {rec_res %>%
+  collect_metrics() %>%
+  filter(.metric == "rmse") %>%
+  arrange(mean) %>%
+  dplyr::slice(1) %>%
+  select(mean) %>%
+  round(2)}')
+```
 
+```
+## The RMSE of the tuned model is 7.71
+```
 
+- Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
 
 
+```r
+finalize_lasso <- rec_wf %>%
+  finalize_workflow(best_rmse)
 
+finalize_lasso %>%
+  fit(train_x_reg %>% bind_cols(tibble(age = train_y_reg))) %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 
+##### Test fit 
 
+- Apply the tuned model to the test dataset 
 
 
+```r
+test_fit <- finalize_lasso %>% 
+  fit(test_x_reg %>% bind_cols(tibble(age = test_y_reg)))
 
+evaluate_reg(test_fit)
+```
 
+```
+## # A tibble: 3 x 3
+##   .metric .estimator .estimate
+##   <chr>   <chr>          <dbl>
+## 1 rmse    standard       7.09 
+## 2 mae     standard       5.84 
+## 3 rsq     standard       0.414
+```
 
+### Decision tree 
 
+#### parsnip 
 
+- Build a model 
 
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
 
 
+```r
+# workflow 
+tree_wf <- workflow() %>% add_formula(target~.)
 
+# spec 
+tree_spec <- decision_tree(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning hyperparameters
+           cost_complexity = NULL, 
+           tree_depth = NULL) %>%
+  set_engine("rpart") # rpart, c5.0, spark
 
+tree_wf <- tree_wf %>% add_model(tree_spec)
+```
 
+- Fit a model
 
 
+```r
+tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+```
 
+#### yardstick 
 
+- Let's formally test prediction performance. 
 
+**Metrics**
 
+- `accuracy`: The proportion of the data predicted correctly 
 
+- `precision`: Positive predictive value
 
+- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
 
+![From wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png)
 
+- To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html). 
 
 
+```r
+# Define performance metrics 
 
+metrics <- yardstick::metric_set(accuracy, precision, recall)
 
+# Visualize
 
+tree_fit_viz_metr <- visualize_class_eval(tree_fit)
 
+tree_fit_viz_metr
+```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-27-1.png" width="672" />
 
+```r
+tree_fit_viz_mat <- visualize_class_conf(tree_fit)
 
+tree_fit_viz_mat
+```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-27-2.png" width="672" />
 
+#### tune 
 
+##### tune ingredients 
 
+Decisions trees tend to overfit. Broadly speaking, there are two things we need to consider to reduce this problem: how to split and when to stop a tree.
 
+- **complexity parameter**: a high CP means a simple decision tree with few splits. 
 
+- **tree_depth** 
 
 
+```r
+tune_spec <- 
+  decision_tree(
+    cost_complexity = tune(), # how to split 
+    tree_depth = tune(), # when to stop 
+    mode = "classification"
+  ) %>%
+  set_engine("rpart")
 
+tree_grid <- grid_regular(cost_complexity(),
+                          tree_depth(),
+                          levels = 5) # 2 hyperparameters -> 5*5 = 25 combinations 
 
+tree_grid %>%
+  count(tree_depth)
+```
 
+```
+## # A tibble: 5 x 2
+##   tree_depth     n
+##        <int> <int>
+## 1          1     5
+## 2          4     5
+## 3          8     5
+## 4         11     5
+## 5         15     5
+```
 
+```r
+# 10-fold cross-validation
 
+set.seed(1234) # for reproducibility 
 
+tree_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
+                       strata = target)
+```
 
+##### Add these elements to a workflow 
 
 
+```r
+# Update workflow 
+tree_wf <- tree_wf %>% update_model(tune_spec)
 
+# Determine the number of cores
+no_cores <- detectCores() - 1
 
+# Initiate
+cl <- makeCluster(no_cores)
 
+registerDoParallel(cl)
 
+# Tuning results 
+tree_res <- tree_wf %>%
+  tune_grid(
+    resamples = tree_folds, 
+    grid = tree_grid,
+    metrics = metrics
+  )
+```
 
+##### Visualize 
 
+- The following plot draws on the [vignette](https://www.tidymodels.org/start/tuning/) of the tidymodels package. 
 
 
+```r
+tree_res %>%
+  collect_metrics() %>%
+  mutate(tree_depth = factor(tree_depth)) %>%
+  ggplot(aes(cost_complexity, mean, col = .metric)) +
+  geom_point(size = 3) +
+  # Subplots 
+  facet_wrap(~ tree_depth, 
+             scales = "free", 
+             nrow = 2) +
+  # Log scale x 
+  scale_x_log10(labels = scales::label_number()) +
+  # Discrete color scale 
+  scale_color_viridis_d(option = "plasma", begin = .9, end = 0) +
+  labs(x = "Cost complexity",
+       col = "Tree depth",
+       y = NULL) +
+  coord_flip()
+```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
+##### Select 
 
 
+```r
+# Optimal hyperparameter
+best_tree <- select_best(tree_res, "recall")
 
+# Add the hyperparameter to the workflow 
+finalize_tree <- tree_wf %>%
+  finalize_workflow(best_tree)
+```
 
 
+```r
+tree_fit_tuned <- finalize_tree %>% 
+  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
+# Metrics 
+(tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
+```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 
+```r
+# Confusion matrix 
+(tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
+```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-32-2.png" width="672" />
 
+- Visualize variable importance 
 
 
+```r
+tree_fit_tuned %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
+##### Test fit
 
+- Apply the tuned model to the test dataset 
 
 
+```r
+test_fit <- finalize_tree %>% 
+  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
 
+evaluate_class(test_fit)
+```
 
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.744
+## 2 precision binary         0.705
+## 3 recall    binary         0.756
+```
 
+In the next subsection, we will learn variants of ensemble models that improve decision tree model by putting models together.
 
+### Bagging (Random forest)
 
+Key idea applied across all ensemble models (bagging, boosting, and stacking): 
+single learner -> N learners (N > 1) 
+
+Many learners could perform better than a single learner as this approach reduces the **variance** of a single estimate and provides more stability.
+
+Here we focus on the difference between bagging and boosting. In short, boosting may reduce bias while increasing variance. Bagging may reduce variance but has nothing to do with bias. For more information, please check out [What is the difference between Bagging and Boosting?](https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/) by aporras.
+
+**bagging**
+
+- Data: Training data will be random sampled with replacement (bootstrapping samples + drawing random **subsets** of features for training individual trees)
+
+- Learning: Building models in parallel (independently)
+
+- Prediction: Simple average of the estimated responses (majority vote system)
+
+
+![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/bagging.png)
+
+
+**boosting** 
+
+
+- Data: Weighted training data will be random sampled
+
+- Learning: Building models sequentially (mispredicted cases would receive more weights) 
+
+- Prediction: Weighted average of the estimated responses 
+
+
+![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/boosting.png)
+
+
+#### parsnip 
+
+- Build a model 
+
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
+
+
+```r
+# workflow 
+rand_wf <- workflow() %>% add_formula(target~.)
+
+# spec 
+rand_spec <- rand_forest(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning hyperparameters
+           mtry = NULL, # The number of predictors to available for splitting at each node  
+           min_n = NULL, # The minimum number of data points needed to keep splitting nodes
+           trees = 500) %>% # The number of trees
+  set_engine("ranger", 
+             # We want the importance of predictors to be assessed.
+             seed = 1234, 
+             importance = "permutation") 
+
+rand_wf <- rand_wf %>% add_model(rand_spec)
+```
+
+- Fit a model
+
+
+```r
+rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+```
+
+#### yardstick 
+
+- Let's formally test prediction performance. 
+
+**Metrics**
+
+- `accuracy`: The proportion of the data predicted correctly 
+
+- `precision`: Positive predictive value
+
+- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
+
+
+```r
+# Define performance metrics 
+metrics <- yardstick::metric_set(accuracy, precision, recall)
+
+rand_fit_viz_metr <- visualize_class_eval(rand_fit)
+
+rand_fit_viz_metr
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+
+- Visualize the confusion matrix. 
+  
+
+```r
+rand_fit_viz_mat <- visualize_class_conf(rand_fit)
+
+rand_fit_viz_mat
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-38-1.png" width="672" />
+
+#### tune 
+
+##### tune ingredients 
+
+We focus on the following two hyperparameters:
+
+- `mtry`: The number of predictors to available for splitting at each node.
+
+- `min_n`: The minimum number of data points needed to keep splitting nodes. 
+
+
+```r
+tune_spec <- 
+  rand_forest(
+           mode = "classification",
+           
+           # Tuning hyperparameters
+           mtry = tune(), 
+           min_n = tune()) %>%
+  set_engine("ranger",
+             seed = 1234, 
+             importance = "permutation")
+
+rand_grid <- grid_regular(mtry(range = c(1, 10)),
+                          min_n(range = c(2, 10)),
+                          levels = 5)
+
+rand_grid %>%
+  count(min_n)
+```
+
+```
+## # A tibble: 5 x 2
+##   min_n     n
+##   <int> <int>
+## 1     2     5
+## 2     4     5
+## 3     6     5
+## 4     8     5
+## 5    10     5
+```
+
+
+```r
+# 10-fold cross-validation
+
+set.seed(1234) # for reproducibility 
+
+rand_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
+                       strata = target)
+```
+
+##### Add these elements to a workflow 
+
+
+```r
+# Update workflow 
+rand_wf <- rand_wf %>% update_model(tune_spec)
+
+# Tuning results 
+rand_res <- rand_wf %>%
+  tune_grid(
+    resamples = rand_folds, 
+    grid = rand_grid,
+    metrics = metrics
+  )
+```
+
+##### Visualize 
+
+
+```r
+rand_res %>%
+  collect_metrics() %>%
+  mutate(min_n = factor(min_n)) %>%
+  ggplot(aes(mtry, mean, color = min_n)) +
+  # Line + Point plot 
+  geom_line(size = 1.5, alpha = 0.6) +
+  geom_point(size = 2) +
+  # Subplots 
+  facet_wrap(~ .metric, 
+             scales = "free", 
+             nrow = 2) +
+  # Log scale x 
+  scale_x_log10(labels = scales::label_number()) +
+  # Discrete color scale 
+  scale_color_viridis_d(option = "plasma", begin = .9, end = 0) +
+  labs(x = "The number of predictors to be sampled",
+       col = "The minimum number of data points needed for splitting",
+       y = NULL) +
+  theme(legend.position="bottom")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+
+
+```r
+# Optimal hyperparameter
+best_tree <- select_best(rand_res, "accuracy")
+
+best_tree
+```
+
+```
+## # A tibble: 1 x 3
+##    mtry min_n .config
+##   <int> <int> <chr>  
+## 1     1     2 Model01
+```
+
+```r
+# Add the hyperparameter to the workflow 
+finalize_tree <- rand_wf %>%
+  finalize_workflow(best_tree)
+```
+
+
+```r
+rand_fit_tuned <- finalize_tree %>% 
+  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+
+# Metrics 
+(rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-44-1.png" width="672" />
+
+```r
+# Confusion matrix 
+(rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-44-2.png" width="672" />
+
+- Visualize variable importance 
+
+
+```r
+rand_fit_tuned %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-45-1.png" width="672" />
+
+##### Test fit
+
+- Apply the tuned model to the test dataset 
+
+
+```r
+test_fit <- finalize_tree %>%
+  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
+
+evaluate_class(test_fit)
+```
+
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.933
+## 2 precision binary         0.973
+## 3 recall    binary         0.878
+```
+
+### Boosting (XGboost)
+
+#### parsnip 
+
+- Build a model 
+
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
+
+
+```r
+# workflow 
+xg_wf <- workflow() %>% add_formula(target~.)
+
+# spec 
+xg_spec <- boost_tree(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning hyperparameters
+           
+           # The number of trees to fit, aka boosting iterations
+           trees = c(100, 300, 500, 700, 900),
+           # The depth of the decision tree (how many levels of splits).
+	         tree_depth = c(1, 6), 
+           # Learning rate: lower means the ensemble will adapt more slowly.
+           learn_rate = c(0.0001, 0.01, 0.2),
+           # Stop splitting a tree if we only have this many obs in a tree node.
+	         min_n = 10L
+          ) %>% 
+  set_engine("xgboost") 
+
+xg_wf <- xg_wf %>% add_model(xg_spec)
+```
+
+- Fit a model
+
+
+```r
+xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+```
+
+```
+## Warning in begin_iteration:end_iteration: numerical expression has 5 elements:
+## only the first used
+```
+
+#### yardstick 
+
+- Let's formally test prediction performance. 
+
+**Metrics**
+
+- `accuracy`: The proportion of the data predicted correctly 
+
+- `precision`: Positive predictive value
+
+- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
+
+
+```r
+metrics <- metric_set(yardstick::accuracy, 
+                      yardstick::precision, 
+                      yardstick::recall)
+
+evaluate_class(xg_fit)
+```
+
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.733
+## 2 precision binary         0.730
+## 3 recall    binary         0.659
+```
+
+
+```r
+xg_fit_viz_metr <- visualize_class_eval(xg_fit)
+
+xg_fit_viz_metr
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-50-1.png" width="672" />
+
+- Visualize the confusion matrix. 
+  
+
+```r
+xg_fit_viz_mat <- visualize_class_conf(xg_fit)
+
+xg_fit_viz_mat
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-51-1.png" width="672" />
+
+#### tune 
+
+##### tune ingredients 
+
+- We focus on the following hyperparameters: `trees,` `tree_depth,` `learn_rate,` `min_n,` `mtry,` `loss_reduction,` and `sample_size`
+
+
+```r
+tune_spec <- 
+  xg_spec <- boost_tree(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning hyperparameters
+           
+           # The number of trees to fit, aka boosting iterations
+           trees = tune(),
+           # The depth of the decision tree (how many levels of splits).
+	         tree_depth = tune(), 
+           # Learning rate: lower means the ensemble will adapt more slowly.
+           learn_rate = tune(),
+           # Stop splitting a tree if we only have this many obs in a tree node.
+	         min_n = tune(),
+           loss_reduction = tune(),
+           # The number of randomly selected hyperparameters 
+           mtry = tune(), 
+           # The size of the data set used for modeling within an iteration
+           sample_size = tune()
+          ) %>% 
+  set_engine("xgboost") 
+
+# Space-filling hyperparameter grids 
+xg_grid <- grid_latin_hypercube(
+  trees(),
+  tree_depth(),
+  learn_rate(),
+  min_n(),
+  loss_reduction(), 
+  sample_size = sample_prop(),
+  finalize(mtry(), train_x_class),
+  size = 30
+  )
+
+# 10-fold cross-validation
+
+set.seed(1234) # for reproducibility 
+
+xg_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
+                     strata = target)
+```
+
+##### Add these elements to a workflow 
+
+
+```r
+# Update workflow 
+xg_wf <- xg_wf %>% update_model(tune_spec)
+
+# Tuning results 
+xg_res <- xg_wf %>%
+  tune_grid(
+    resamples = xg_folds, 
+    grid = xg_grid,
+    control = control_grid(save_pred = TRUE)
+  )
+```
+
+##### Visualize 
+
+
+```r
+xg_res %>%
+  collect_metrics() %>% 
+  filter(.metric == "roc_auc") %>%
+  pivot_longer(mtry:sample_size,
+               values_to = "value",
+               names_to = "parameter") %>%
+  ggplot(aes(x = value, y = mean, color = parameter)) +
+    geom_point(alpha = 0.8, show.legend = FALSE) +
+    facet_wrap(~parameter, scales = "free_x") +
+    labs(y = "AUC",
+         x = NULL)
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-54-1.png" width="672" />
+
+
+```r
+# Optimal hyperparameter
+best_xg <- select_best(xg_res, "roc_auc")
+
+best_xg 
+```
+
+```
+## # A tibble: 1 x 8
+##    mtry trees min_n tree_depth  learn_rate loss_reduction sample_size .config
+##   <int> <int> <int>      <int>       <dbl>          <dbl>       <dbl> <chr>  
+## 1     6    98     4         13 0.000000211  0.00000000336       0.422 Model26
+```
+
+```r
+# Add the hyperparameter to the workflow 
+finalize_xg <- xg_wf %>%
+  finalize_workflow(best_xg)
+```
+
+
+```r
+xg_fit_tuned <- finalize_xg %>% 
+  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+
+# Metrics 
+(xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-56-1.png" width="672" />
+
+```r
+# Confusion matrix 
+(xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-56-2.png" width="672" />
+
+- Visualize variable importance 
+
+
+```r
+xg_fit_tuned %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+```
+
+```
+## Warning: `as.tibble()` is deprecated as of tibble 2.0.0.
+## Please use `as_tibble()` instead.
+## The signature and semantics have changed, see `?as_tibble`.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-57-1.png" width="672" />
+
+##### Test fit
+
+- Apply the tuned model to the test dataset 
+
+
+```r
+test_fit <- finalize_xg %>%
+  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
+
+evaluate_class(test_fit)
+```
+
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.8  
+## 2 precision binary         0.795
+## 3 recall    binary         0.756
+```
+
+### Stacking (SuperLearner)
+
+This stacking part of the book heavily relies on [Chris Kennedy's notebook](https://github.com/dlab-berkeley/Machine-Learning-in-R/blob/master/07-ensembles.Rmd).
+
+#### Overview
+
+##### Stacking
+
+Wolpert, D.H., 1992. [Stacked generalization](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.56.1533). *Neural networks*, 5(2), pp.241-259.
+
+Breiman, L., 1996. [Stacked regressions]((https://statistics.berkeley.edu/sites/default/files/tech-reports/367.pdf). *Machine learning*, 24(1), pp.49-64.
+
+##### SuperLearner 
+
+The ["SuperLearner" R package](https://cran.r-project.org/web/packages/SuperLearner/index.html) is a method that simplifies ensemble learning by allowing you to simultaneously evaluate the cross-validated performance of multiple algorithms and/or a single algorithm with differently tuned hyperparameters. This is a generally advisable approach to machine learning instead of fitting single algorithms.
+
+Let's see how the four classification algorithms you learned in this workshop (1-lasso, 2-decision tree, 3-random forest, and 4-gradient boosted trees) compare to each other and also to 5-binary logistic regression (`glm`) and to the 6-mean of Y as a benchmark algorithm, in terms of their cross-validated error!
+
+A "wrapper" is a short function that adapts an algorithm for the SuperLearner package. Check out the different algorithm wrappers offered by SuperLearner:
+
+#### Choose algorithms
+
+
+```r
+# Review available models 
+SuperLearner::listWrappers()
+```
+
+```
+## All prediction algorithm wrappers in SuperLearner:
+```
+
+```
+##  [1] "SL.bartMachine"      "SL.bayesglm"         "SL.biglasso"        
+##  [4] "SL.caret"            "SL.caret.rpart"      "SL.cforest"         
+##  [7] "SL.earth"            "SL.extraTrees"       "SL.gam"             
+## [10] "SL.gbm"              "SL.glm"              "SL.glm.interaction" 
+## [13] "SL.glmnet"           "SL.ipredbagg"        "SL.kernelKnn"       
+## [16] "SL.knn"              "SL.ksvm"             "SL.lda"             
+## [19] "SL.leekasso"         "SL.lm"               "SL.loess"           
+## [22] "SL.logreg"           "SL.mean"             "SL.nnet"            
+## [25] "SL.nnls"             "SL.polymars"         "SL.qda"             
+## [28] "SL.randomForest"     "SL.ranger"           "SL.ridge"           
+## [31] "SL.rpart"            "SL.rpartPrune"       "SL.speedglm"        
+## [34] "SL.speedlm"          "SL.step"             "SL.step.forward"    
+## [37] "SL.step.interaction" "SL.stepAIC"          "SL.svm"             
+## [40] "SL.template"         "SL.xgboost"
+```
+
+```
+## 
+## All screening algorithm wrappers in SuperLearner:
+```
+
+```
+## [1] "All"
+## [1] "screen.corP"           "screen.corRank"        "screen.glmnet"        
+## [4] "screen.randomForest"   "screen.SIS"            "screen.template"      
+## [7] "screen.ttest"          "write.screen.template"
+```
+
+
+```r
+# Compile the algorithm wrappers to be used.
+sl_lib <- c("SL.mean", # Marginal mean of the outcome () 
+            "SL.glmnet", # GLM with lasso/elasticnet regularization 
+            "SL.rpart", # Decision tree 
+            "SL.ranger", # Random forest  
+            "SL.xgboost") # Xgbboost 
+```
+
+#### Fit model
+
+Fit the ensemble!
+
+
+```r
+# This is a seed that is compatible with multicore parallel processing.
+# See ?set.seed for more information.
+set.seed(1, "L'Ecuyer-CMRG") 
+
+# This will take a few minutes to execute - take a look at the .html file to see the output!
+cv_sl <-  SuperLearner::CV.SuperLearner(
+  Y = as.numeric(as.character(train_y_class)),
+  X = train_x_class,
+  family = binomial(),
+  # For a real analysis we would use V = 10.
+  cvControl = list(V = 5L, stratifyCV = TRUE),
+  SL.library = sl_lib,
+  verbose = FALSE)
+```
+
+#### Risk
+
+Risk is the average loss, and loss is how far off the prediction was for an individual observation. The lower the risk, the fewer errors the model makes in its prediction. SuperLearner's default loss metric is squared error $(y_{actual} - y_{predicted})^2$, so the risk is the mean-squared error (just like in ordinary least *squares* regression). View the summary, plot results, and compute the Area Under the ROC Curve (AUC)!
+
+##### Summary 
+
+* `Discrete SL` chooses the best single learner (in this case, `SL.glmnet` or `lasso`).
+* `SuperLearner` takes a weighted average of the **models** using the coefficients (importance of each individual learner in the overall ensemble). Coefficient 0 means that learner is not used at all.
+* `SL.mean_All` (the weighted mean of $Y$) is a benchmark algorithm (ignoring features). 
+
+
+```r
+summary(cv_sl)
+```
+
+```
+## 
+## Call:  
+## SuperLearner::CV.SuperLearner(Y = as.numeric(as.character(train_y_class)),  
+##     X = train_x_class, family = binomial(), SL.library = sl_lib, verbose = FALSE,  
+##     cvControl = list(V = 5L, stratifyCV = TRUE)) 
+## 
+## Risk is based on: Mean Squared Error
+## 
+## All risk estimates are based on V =  5 
+## 
+##       Algorithm     Ave        se      Min     Max
+##   Super Learner 0.12957 0.0148125 0.071539 0.17522
+##     Discrete SL 0.12723 0.0149007 0.062996 0.17535
+##     SL.mean_All 0.24802 0.0030531 0.247747 0.24893
+##   SL.glmnet_All 0.12723 0.0149007 0.062996 0.17535
+##    SL.rpart_All 0.19518 0.0199566 0.160493 0.22434
+##   SL.ranger_All 0.14222 0.0131612 0.098495 0.17368
+##  SL.xgboost_All 0.15773 0.0169866 0.127853 0.17120
+```
+
+##### Plot
+
+
+```r
+# Plot the cross-validated risk estimate with 95% CIs.
+
+plot(cv_sl)
+```
+
+<img src="06_high_dimensional_data_files/figure-html/cvsl_review-1.png" width="672" />
+
+#### Compute AUC for all estimators
+
+**ROC**
+
+ROC: an ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis). 
+
+![Area Under the ROC Curve](https://developers.google.com/machine-learning/crash-course/images/AUC.svg)
+
+**AUC** 
+
+AUC: Area Under the ROC Curve 
+
+1 = perfect 
+
+0.5 = no better than chance 
+
+
+```r
+auc_table(cv_sl)
+```
+
+```
+##                      auc         se  ci_lower  ci_upper      p-value
+## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.138901e-09
+## SL.rpart_All   0.7815842 0.04218172 0.6989095 0.8642588 2.567149e-03
+## SL.xgboost_All 0.8465570 0.02821641 0.7912539 0.9018602 2.999314e-02
+## SL.ranger_All  0.8800486 0.02340520 0.8341753 0.9259220 2.014125e-01
+## SuperLearner   0.8953213 0.02142308 0.8533329 0.9373098 4.203175e-01
+## SL.glmnet_All  0.8996291 0.02102314 0.8584245 0.9408337 5.000000e-01
+## DiscreteSL     0.8996291 0.02102314 0.8584245 0.9408337 5.000000e-01
+```
+
+##### Plot the ROC curve for the best estimator (DiscretSL)
+
+
+```r
+plot_roc(cv_sl)
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-63-1.png" width="672" />
+
+##### Review weight distribution for the SuperLearner
+
+
+```r
+print(cvsl_weights(cv_sl), row.names = FALSE)
+```
+
+```
+##  # Learner    Mean      SD     Min     Max
+##  1  glmnet 0.90321 0.09141 0.81433 1.00000
+##  2  ranger 0.05835 0.08361 0.00000 0.18072
+##  3   rpart 0.03713 0.08303 0.00000 0.18567
+##  4 xgboost 0.00131 0.00181 0.00000 0.00358
+##  5    mean 0.00000 0.00000 0.00000 0.00000
+```
+
+General stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
+
+However, SuperLearner is currently not available in the tidymodels framework. If you'd like to, you can easily build and add a parsnip model. If you are interested in knowing more about it, please take a look at [this vignette](https://www.tidymodels.org/learn/develop/models/) of the tidymodels.
+
+### Applications 
+
+#### Bandit algorithm (optimizing an experiment)
+
+#### Causal forest (estimating heterogeneous treatment effect)
+
+## Unsupervised learning
+
+x -> f - > y (not defined)
+
+### Dimension reduction
+
+![Projecting 2D-data to a line (PCA). From vas3k.com](https://i.stack.imgur.com/Q7HIP.gif)
+
+#### Correlation analysis 
+
+- Notice some problems? 
+
+    - NAs 
+    
+    - Scaling issues 
+    
+
+```r
+data_original %>%
+  corrr::correlate()
+```
+
+```
+## 
+## Correlation method: 'pearson'
+## Missing treated using: 'pairwise.complete.obs'
+```
+
+```
+## # A tibble: 14 x 15
+##    rowname     age     sex      cp trestbps     chol      fbs restecg  thalach
+##    <chr>     <dbl>   <dbl>   <dbl>    <dbl>    <dbl>    <dbl>   <dbl>    <dbl>
+##  1 age     NA      -0.0984 -0.0687   0.279   0.214    0.121   -0.116  -0.399  
+##  2 sex     -0.0984 NA      -0.0494  -0.0568 -0.198    0.0450  -0.0582 -0.0440 
+##  3 cp      -0.0687 -0.0494 NA        0.0476 -0.0769   0.0944   0.0444  0.296  
+##  4 trestb…  0.279  -0.0568  0.0476  NA       0.123    0.178   -0.114  -0.0467 
+##  5 chol     0.214  -0.198  -0.0769   0.123  NA        0.0133  -0.151  -0.00994
+##  6 fbs      0.121   0.0450  0.0944   0.178   0.0133  NA       -0.0842 -0.00857
+##  7 restecg -0.116  -0.0582  0.0444  -0.114  -0.151   -0.0842  NA       0.0441 
+##  8 thalach -0.399  -0.0440  0.296   -0.0467 -0.00994 -0.00857  0.0441 NA      
+##  9 exang    0.0968  0.142  -0.394    0.0676  0.0670   0.0257  -0.0707 -0.379  
+## 10 oldpeak  0.210   0.0961 -0.149    0.193   0.0540   0.00575 -0.0588 -0.344  
+## 11 slope   -0.169  -0.0307  0.120   -0.121  -0.00404 -0.0599   0.0930  0.387  
+## 12 ca       0.276   0.118  -0.181    0.101   0.0705   0.138   -0.0720 -0.213  
+## 13 thal     0.0680  0.210  -0.162    0.0622  0.0988  -0.0320  -0.0120 -0.0964 
+## 14 target  -0.225  -0.281   0.434   -0.145  -0.0852  -0.0280   0.137   0.422  
+## # … with 6 more variables: exang <dbl>, oldpeak <dbl>, slope <dbl>, ca <dbl>,
+## #   thal <dbl>, target <dbl>
+```
+
+#### Preprocessing 
+
+`recipe` is essential for preprocesssing multiple features at once.
+
+
+```r
+pca_recipe <- recipe(~., data = data_original) %>%
+  # Imputing NAs using mean 
+  step_meanimpute(all_predictors()) %>%
+  # Normalize some numeric variables 
+  step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak")) 
+```
+
+#### PCA analysis 
+
+
+```r
+pca_res <- pca_recipe %>% 
+  step_pca(all_predictors(), 
+           id = "pca") %>% # id argument identifies each PCA step 
+  prep()
+
+pca_res %>%
+  tidy(id = "pca") 
+```
+
+```
+## # A tibble: 196 x 4
+##    terms        value component id   
+##    <chr>        <dbl> <chr>     <chr>
+##  1 age      -0.00101  PC1       pca  
+##  2 sex       0.216    PC1       pca  
+##  3 cp        0.321    PC1       pca  
+##  4 trestbps  0.00118  PC1       pca  
+##  5 chol     -0.000292 PC1       pca  
+##  6 fbs       0.0468   PC1       pca  
+##  7 restecg   0.166    PC1       pca  
+##  8 thalach   0.0137   PC1       pca  
+##  9 exang     0.0962   PC1       pca  
+## 10 oldpeak  -0.00863  PC1       pca  
+## # … with 186 more rows
+```
+
+##### Screeplot
 
 
 
