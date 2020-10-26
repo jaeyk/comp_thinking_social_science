@@ -1,5 +1,7 @@
 # Computational Thinking for Social Scientists
 
+![Jekyll site CI](https://github.com/jaeyk/PS239T/workflows/Jekyll%20site%20CI/badge.svg)
+
 This is the git repository for [*Computational Thinking for Social Scientists*](https://jaeyk.github.io/PS239T/). This book intends to help social scientists to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let them to work on research projects that would previously seem impossible.
 
 The book is currently divided into two main subjects (fundamentals and applications) and six main sessions. 
