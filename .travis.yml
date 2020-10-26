@@ -8,7 +8,7 @@ addons:
   - ghostscript
 
 before_script:
-  - chmod +x ./_build_deploy.sh
+  - chmod +x _build_deploy.sh
 
 script:
   - ./_build_deploy.sh
