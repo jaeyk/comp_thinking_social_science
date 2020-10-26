@@ -1,7 +1,6 @@
 # Semi-structured data {#semi_structured_data}
 
 
-
 ## Objectives
 
 -   Automating the process of turning semi-structured data (input) into structured data (output)
@@ -290,8 +289,24 @@ devtools::install_github("jaeyk/tidytweetjson",
 ```
 
 ```
-## Skipping install of 'tidytweetjson' from a github remote, the SHA1 (a1d9cf14) has not changed since last install.
-##   Use `force = TRUE` to force installation
+## Downloading GitHub repo jaeyk/tidytweetjson@HEAD
+```
+
+```
+## 
+##      checking for file ‘/tmp/RtmpObaTZn/remotes17153576b25fa/jaeyk-tidytweetjson-b598dcc/DESCRIPTION’ ...  ✓  checking for file ‘/tmp/RtmpObaTZn/remotes17153576b25fa/jaeyk-tidytweetjson-b598dcc/DESCRIPTION’
+##   ─  preparing ‘tidytweetjson’:
+##    checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
+##   ─  checking for LF line-endings in source and make files and shell scripts
+##   ─  checking for empty or unneeded directories
+## ─  building ‘tidytweetjson_0.2.0.tar.gz’
+##      
+## 
+```
+
+```
+## Installing package into '/home/jae/R/x86_64-pc-linux-gnu-library/4.0'
+## (as 'lib' is unspecified)
 ```
 
 ```r

@@ -1,7 +1,5 @@
 # High-dimensional data {#machine_learning}
 
-
-
 ## Overview 
 
 - The rise of high-dimensional data. The new data frontiers in social sciences---text ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf); [Grimmer and Stewart 2013](https://www.jstor.org/stable/pdf/24572662.pdf?casa_token=SQdSI4R_VdwAAAAA:4QiVLhCXqr9f0qNMM9U75EL5JbDxxnXxUxyIfDf0U8ZzQx9szc0xVqaU6DXG4nHyZiNkvcwGlgD6H0Lxj3y0ULHwgkf1MZt8-9TPVtkEH9I4AHgbTg)) and and image ([Joo and Steinert-Threlkeld 2018](https://arxiv.org/pdf/1810.01544))---are all high-dimensional data. 
@@ -96,7 +94,11 @@ pacman::p_load(here,
                tidyverse, 
                tidymodels,
                doParallel, # parallel processing 
-               patchwork) # arranging ggplots 
+               patchwork, # arranging ggplots
+               ck37r, 
+               SuperLearner, 
+               vip, 
+               tidymodels)
 
 ## Jae's custom functions 
 source(here("functions", "ml_utils.r"))
@@ -108,7 +110,7 @@ data_original <- read_csv(here("data", "heart.csv"))
 
 ```
 ## 
-## ── Column specification ─────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   age = col_double(),
 ##   sex = col_double(),
@@ -179,7 +181,7 @@ theme_set(theme_minimal())
     
     - [`parsnip`](https://www.tidyverse.org/blog/2018/11/parsnip-0-0-1/): for model building 
     
-        - [`tune`](https://github.com/tidymodels/tune): parameter tuning 
+        - [`tune`](https://github.com/tidymodels/tune): hyperparameter tuning 
     
     - [`yardstick`](https://github.com/tidymodels/yardstick): for model evaluations 
     
@@ -223,7 +225,7 @@ theme_set(theme_minimal())
 
     - decorrelate: Mitigating correlated predictors (e.g., principal component analysis)
 
-    - normalize: Centering and/or scaling predictors (e.g., log scaling)
+    - normalize: Centering and/or scaling predictors (e.g., log scaling). Scaling matters because many algorithms (e.g., lasso) are scale-variant (except tree-based algorithms). Remind you that normalization (sensitive to outliers) = $\frac{X - X_{min}}{X_{max} - X_{min}}$ and standardization (not sensitive to outliers) = $\frac{X - \mu}{\sigma}$
 
     - transform: Making predictors symmetric 
 
@@ -398,12 +400,12 @@ grep("impute", ls("package:recipes"), value = TRUE)
 ```
 
 ```
-##  [1] "step_bagimpute"          "step_knnimpute"         
-##  [3] "step_lowerimpute"        "step_meanimpute"        
-##  [5] "step_medianimpute"       "step_modeimpute"        
-##  [7] "step_rollimpute"         "tunable.step_bagimpute" 
-##  [9] "tunable.step_knnimpute"  "tunable.step_meanimpute"
-## [11] "tunable.step_rollimpute"
+##  [1] "step_bagimpute"          "step_impute_linear"     
+##  [3] "step_knnimpute"          "step_lowerimpute"       
+##  [5] "step_meanimpute"         "step_medianimpute"      
+##  [7] "step_modeimpute"         "step_rollimpute"        
+##  [9] "tunable.step_bagimpute"  "tunable.step_knnimpute" 
+## [11] "tunable.step_meanimpute" "tunable.step_rollimpute"
 ```
 
 - You can also create your own `step_` functions. For more information, see [tidymodels.org](https://www.tidymodels.org/learn/develop/recipes/).
@@ -517,7 +519,7 @@ ols_spec <- linear_reg() %>% # Specify a model
   set_mode("regression") # Declare a mode: regression or classification 
 
 # Lasso spec 
-lasso_spec <- linear_reg(penalty = 0.1, # tuning parameter 
+lasso_spec <- linear_reg(penalty = 0.1, # tuning hyperparameter 
                          mixture = 1) %>% # 1 = lasso, 0 = ridge 
   set_engine("glmnet") %>%
   set_mode("regression") 
@@ -565,14 +567,14 @@ map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit)
 ## [[1]]
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 ```
 ## 
 ## [[2]]
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-17-2.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-16-2.png" width="672" />
 
 
 ```r
@@ -593,10 +595,12 @@ evals %>%
     facet_wrap(~glue("{toupper(.metric)}"), scales = "free_y") 
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 - For more information, read [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
 
 #### tune 
+
+**Hyper**parameters are parameters which control the learning process.
 
 ##### tune ingredients 
 
@@ -604,8 +608,8 @@ evals %>%
 ```r
 # tune() = placeholder 
 
-tune_spec <- linear_reg(penalty = tune(), # tuning parameter 
-                         mixture = 1) %>% # 1 = lasso, 0 = ridge 
+tune_spec <- linear_reg(penalty = tune(), # tuning hyperparameter 
+                        mixture = 1) %>% # 1 = lasso, 0 = ridge 
   set_engine("glmnet") %>%
   set_mode("regression") 
 
@@ -678,7 +682,7 @@ rec_res %>%
   theme(legend.position = "none")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 ##### Select 
 
@@ -708,7 +712,7 @@ glue('The RMSE of the intiail model is
 
 ```
 ## The RMSE of the intiail model is 
-##    7.89
+##    7.88
 ```
 
 ```r
@@ -738,7 +742,7 @@ finalize_lasso %>%
   vip::vip()
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 
 ##### Test fit 
 
@@ -760,6 +764,7 @@ evaluate_reg(test_fit)
 ## 2 mae     standard       5.84 
 ## 3 rsq     standard       0.414
 ```
+
 ### Decision tree 
 
 #### parsnip 
@@ -781,7 +786,7 @@ tree_spec <- decision_tree(
            # Mode 
            mode = "classification",
            
-           # Tuning parameters
+           # Tuning hyperparameters
            cost_complexity = NULL, 
            tree_depth = NULL) %>%
   set_engine("rpart") # rpart, c5.0, spark
@@ -825,7 +830,7 @@ tree_fit_viz_metr <- visualize_class_eval(tree_fit)
 tree_fit_viz_metr
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-27-1.png" width="672" />
 
 ```r
 tree_fit_viz_mat <- visualize_class_conf(tree_fit)
@@ -833,11 +838,13 @@ tree_fit_viz_mat <- visualize_class_conf(tree_fit)
 tree_fit_viz_mat
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-28-2.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-27-2.png" width="672" />
 
 #### tune 
 
 ##### tune ingredients 
+
+Decisions trees tend to overfit. Broadly speaking, there are two things we need to consider to reduce this problem: how to split and when to stop a tree.
 
 - **complexity parameter**: a high CP means a simple decision tree with few splits. 
 
@@ -847,15 +854,15 @@ tree_fit_viz_mat
 ```r
 tune_spec <- 
   decision_tree(
-    cost_complexity = tune(), 
-    tree_depth = tune(),
+    cost_complexity = tune(), # how to split 
+    tree_depth = tune(), # when to stop 
     mode = "classification"
   ) %>%
   set_engine("rpart")
 
 tree_grid <- grid_regular(cost_complexity(),
                           tree_depth(),
-                          levels = 5) # 2 parameters -> 5*5 = 25 combinations 
+                          levels = 5) # 2 hyperparameters -> 5*5 = 25 combinations 
 
 tree_grid %>%
   count(tree_depth)
@@ -930,15 +937,16 @@ tree_res %>%
   coord_flip()
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+
 ##### Select 
 
 
 ```r
-# Optimal parameter
+# Optimal hyperparameter
 best_tree <- select_best(tree_res, "recall")
 
-# Add the parameter to the workflow 
+# Add the hyperparameter to the workflow 
 finalize_tree <- tree_wf %>%
   finalize_workflow(best_tree)
 ```
@@ -952,14 +960,14 @@ tree_fit_tuned <- finalize_tree %>%
 (tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 
 ```r
 # Confusion matrix 
 (tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-33-2.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-32-2.png" width="672" />
 
 - Visualize variable importance 
 
@@ -970,7 +978,7 @@ tree_fit_tuned %>%
   vip::vip()
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
 ##### Test fit
 
@@ -988,12 +996,45 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.744
-## 2 precision binary         0.705
+## 1 accuracy  binary         0.756
+## 2 precision binary         0.721
 ## 3 recall    binary         0.756
 ```
 
-### Random forest 
+In the next subsection, we will learn variants of ensemble models that improve decision tree model by putting models together.
+
+### Bagging (Random forest)
+
+Key idea applied across all ensemble models (bagging, boosting, and stacking): 
+single learner -> N learners (N > 1) 
+
+Many learners could perform better than a single learner as this approach reduces the **variance** of a single estimate and provides more stability.
+
+Here we focus on the difference between bagging and boosting. In short, boosting may reduce bias while increasing variance. Bagging may reduce variance but has nothing to do with bias. For more information, please check out [What is the difference between Bagging and Boosting?](https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/) by aporras.
+
+**bagging**
+
+- Data: Training data will be random sampled with replacement (bootstrapping samples + drawing random **subsets** of features for training individual trees)
+
+- Learning: Building models in parallel (independently)
+
+- Prediction: Simple average of the estimated responses (majority vote system)
+
+
+![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/bagging.png)
+
+
+**boosting** 
+
+
+- Data: Weighted training data will be random sampled
+
+- Learning: Building models sequentially (mispredicted cases would receive more weights) 
+
+- Prediction: Weighted average of the estimated responses 
+
+
+![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/boosting.png)
 
 
 #### parsnip 
@@ -1015,7 +1056,7 @@ rand_spec <- rand_forest(
            # Mode 
            mode = "classification",
            
-           # Tuning parameters
+           # Tuning hyperparameters
            mtry = NULL, # The number of predictors to available for splitting at each node  
            min_n = NULL, # The minimum number of data points needed to keep splitting nodes
            trees = 500) %>% # The number of trees
@@ -1056,7 +1097,7 @@ rand_fit_viz_metr <- visualize_class_eval(rand_fit)
 rand_fit_viz_metr
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-38-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" width="672" />
 
 - Visualize the confusion matrix. 
   
@@ -1067,13 +1108,13 @@ rand_fit_viz_mat <- visualize_class_conf(rand_fit)
 rand_fit_viz_mat
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-39-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-38-1.png" width="672" />
 
 #### tune 
 
 ##### tune ingredients 
 
-We focus on the following two parameters:
+We focus on the following two hyperparameters:
 
 - `mtry`: The number of predictors to available for splitting at each node.
 
@@ -1085,7 +1126,7 @@ tune_spec <-
   rand_forest(
            mode = "classification",
            
-           # Tuning parameters
+           # Tuning hyperparameters
            mtry = tune(), 
            min_n = tune()) %>%
   set_engine("ranger",
@@ -1162,10 +1203,11 @@ rand_res %>%
   theme(legend.position="bottom")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-43-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+
 
 ```r
-# Optimal parameter
+# Optimal hyperparameter
 best_tree <- select_best(rand_res, "accuracy")
 
 best_tree
@@ -1179,7 +1221,7 @@ best_tree
 ```
 
 ```r
-# Add the parameter to the workflow 
+# Add the hyperparameter to the workflow 
 finalize_tree <- rand_wf %>%
   finalize_workflow(best_tree)
 ```
@@ -1193,14 +1235,14 @@ rand_fit_tuned <- finalize_tree %>%
 (rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-45-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-44-1.png" width="672" />
 
 ```r
 # Confusion matrix 
 (rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-45-2.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-44-2.png" width="672" />
 
 - Visualize variable importance 
 
@@ -1211,7 +1253,7 @@ rand_fit_tuned %>%
   vip::vip()
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-46-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-45-1.png" width="672" />
 
 ##### Test fit
 
@@ -1234,7 +1276,7 @@ evaluate_class(test_fit)
 ## 3 recall    binary         0.878
 ```
 
-### XGboost 
+### Boosting (XGboost)
 
 #### parsnip 
 
@@ -1255,7 +1297,7 @@ xg_spec <- boost_tree(
            # Mode 
            mode = "classification",
            
-           # Tuning parameters
+           # Tuning hyperparameters
            
            # The number of trees to fit, aka boosting iterations
            trees = c(100, 300, 500, 700, 900),
@@ -1320,7 +1362,7 @@ xg_fit_viz_metr <- visualize_class_eval(xg_fit)
 xg_fit_viz_metr
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-51-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-50-1.png" width="672" />
 
 - Visualize the confusion matrix. 
   
@@ -1331,13 +1373,13 @@ xg_fit_viz_mat <- visualize_class_conf(xg_fit)
 xg_fit_viz_mat
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-52-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-51-1.png" width="672" />
 
 #### tune 
 
 ##### tune ingredients 
 
-- We focus on the following parameters: `trees,` `tree_depth,` `learn_rate,` `min_n,` `mtry,` `loss_reduction,` and `sample_size`
+- We focus on the following hyperparameters: `trees,` `tree_depth,` `learn_rate,` `min_n,` `mtry,` `loss_reduction,` and `sample_size`
 
 
 ```r
@@ -1347,7 +1389,7 @@ tune_spec <-
            # Mode 
            mode = "classification",
            
-           # Tuning parameters
+           # Tuning hyperparameters
            
            # The number of trees to fit, aka boosting iterations
            trees = tune(),
@@ -1358,14 +1400,14 @@ tune_spec <-
            # Stop splitting a tree if we only have this many obs in a tree node.
 	         min_n = tune(),
            loss_reduction = tune(),
-           # The number of randomly selected parameters 
+           # The number of randomly selected hyperparameters 
            mtry = tune(), 
            # The size of the data set used for modeling within an iteration
            sample_size = tune()
           ) %>% 
   set_engine("xgboost") 
 
-# Space-filling parameter grids 
+# Space-filling hyperparameter grids 
 xg_grid <- grid_latin_hypercube(
   trees(),
   tree_depth(),
@@ -1418,11 +1460,11 @@ xg_res %>%
          x = NULL)
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-55-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-54-1.png" width="672" />
 
 
 ```r
-# Optimal parameter
+# Optimal hyperparameter
 best_xg <- select_best(xg_res, "roc_auc")
 
 best_xg 
@@ -1436,7 +1478,7 @@ best_xg
 ```
 
 ```r
-# Add the parameter to the workflow 
+# Add the hyperparameter to the workflow 
 finalize_xg <- xg_wf %>%
   finalize_workflow(best_xg)
 ```
@@ -1450,14 +1492,14 @@ xg_fit_tuned <- finalize_xg %>%
 (xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-57-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-56-1.png" width="672" />
 
 ```r
 # Confusion matrix 
 (xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-57-2.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-56-2.png" width="672" />
 
 - Visualize variable importance 
 
@@ -1476,7 +1518,7 @@ xg_fit_tuned %>%
 ## Call `lifecycle::last_warnings()` to see where this warning was generated.
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-58-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-57-1.png" width="672" />
 
 ##### Test fit
 
@@ -1498,6 +1540,206 @@ evaluate_class(test_fit)
 ## 2 precision binary         0.795
 ## 3 recall    binary         0.756
 ```
+
+### Stacking (SuperLearner)
+
+This stacking part of the book heavily relies on [Chris Kennedy's notebook](https://github.com/dlab-berkeley/Machine-Learning-in-R/blob/master/07-ensembles.Rmd).
+
+#### Overview
+
+##### Stacking
+
+Wolpert, D.H., 1992. [Stacked generalization](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.56.1533). *Neural networks*, 5(2), pp.241-259.
+
+Breiman, L., 1996. [Stacked regressions]((https://statistics.berkeley.edu/sites/default/files/tech-reports/367.pdf). *Machine learning*, 24(1), pp.49-64.
+
+##### SuperLearner 
+
+The ["SuperLearner" R package](https://cran.r-project.org/web/packages/SuperLearner/index.html) is a method that simplifies ensemble learning by allowing you to simultaneously evaluate the cross-validated performance of multiple algorithms and/or a single algorithm with differently tuned hyperparameters. This is a generally advisable approach to machine learning instead of fitting single algorithms.
+
+Let's see how the four classification algorithms you learned in this workshop (1-lasso, 2-decision tree, 3-random forest, and 4-gradient boosted trees) compare to each other and also to 5-binary logistic regression (`glm`) and to the 6-mean of Y as a benchmark algorithm, in terms of their cross-validated error!
+
+A "wrapper" is a short function that adapts an algorithm for the SuperLearner package. Check out the different algorithm wrappers offered by SuperLearner:
+
+#### Choose algorithms
+
+
+```r
+# Review available models 
+SuperLearner::listWrappers()
+```
+
+```
+## All prediction algorithm wrappers in SuperLearner:
+```
+
+```
+##  [1] "SL.bartMachine"      "SL.bayesglm"         "SL.biglasso"        
+##  [4] "SL.caret"            "SL.caret.rpart"      "SL.cforest"         
+##  [7] "SL.earth"            "SL.extraTrees"       "SL.gam"             
+## [10] "SL.gbm"              "SL.glm"              "SL.glm.interaction" 
+## [13] "SL.glmnet"           "SL.ipredbagg"        "SL.kernelKnn"       
+## [16] "SL.knn"              "SL.ksvm"             "SL.lda"             
+## [19] "SL.leekasso"         "SL.lm"               "SL.loess"           
+## [22] "SL.logreg"           "SL.mean"             "SL.nnet"            
+## [25] "SL.nnls"             "SL.polymars"         "SL.qda"             
+## [28] "SL.randomForest"     "SL.ranger"           "SL.ridge"           
+## [31] "SL.rpart"            "SL.rpartPrune"       "SL.speedglm"        
+## [34] "SL.speedlm"          "SL.step"             "SL.step.forward"    
+## [37] "SL.step.interaction" "SL.stepAIC"          "SL.svm"             
+## [40] "SL.template"         "SL.xgboost"
+```
+
+```
+## 
+## All screening algorithm wrappers in SuperLearner:
+```
+
+```
+## [1] "All"
+## [1] "screen.corP"           "screen.corRank"        "screen.glmnet"        
+## [4] "screen.randomForest"   "screen.SIS"            "screen.template"      
+## [7] "screen.ttest"          "write.screen.template"
+```
+
+
+```r
+# Compile the algorithm wrappers to be used.
+sl_lib <- c("SL.mean", # Marginal mean of the outcome () 
+            "SL.glmnet", # GLM with lasso/elasticnet regularization 
+            "SL.rpart", # Decision tree 
+            "SL.ranger", # Random forest  
+            "SL.xgboost") # Xgbboost 
+```
+
+#### Fit model
+
+Fit the ensemble!
+
+
+```r
+# This is a seed that is compatible with multicore parallel processing.
+# See ?set.seed for more information.
+set.seed(1, "L'Ecuyer-CMRG") 
+
+# This will take a few minutes to execute - take a look at the .html file to see the output!
+cv_sl <-  SuperLearner::CV.SuperLearner(
+  Y = as.numeric(as.character(train_y_class)),
+  X = train_x_class,
+  family = binomial(),
+  # For a real analysis we would use V = 10.
+  cvControl = list(V = 5L, stratifyCV = TRUE),
+  SL.library = sl_lib,
+  verbose = FALSE)
+```
+
+#### Risk
+
+Risk is the average loss, and loss is how far off the prediction was for an individual observation. The lower the risk, the fewer errors the model makes in its prediction. SuperLearner's default loss metric is squared error $(y_{actual} - y_{predicted})^2$, so the risk is the mean-squared error (just like in ordinary least *squares* regression). View the summary, plot results, and compute the Area Under the ROC Curve (AUC)!
+
+##### Summary 
+
+* `Discrete SL` chooses the best single learner (in this case, `SL.glmnet` or `lasso`).
+* `SuperLearner` takes a weighted average of the **models** using the coefficients (importance of each individual learner in the overall ensemble). Coefficient 0 means that learner is not used at all.
+* `SL.mean_All` (the weighted mean of $Y$) is a benchmark algorithm (ignoring features). 
+
+
+```r
+summary(cv_sl)
+```
+
+```
+## 
+## Call:  
+## SuperLearner::CV.SuperLearner(Y = as.numeric(as.character(train_y_class)),  
+##     X = train_x_class, family = binomial(), SL.library = sl_lib, verbose = FALSE,  
+##     cvControl = list(V = 5L, stratifyCV = TRUE)) 
+## 
+## Risk is based on: Mean Squared Error
+## 
+## All risk estimates are based on V =  5 
+## 
+##       Algorithm     Ave        se      Min     Max
+##   Super Learner 0.12984 0.0148782 0.068572 0.17779
+##     Discrete SL 0.12816 0.0149828 0.063609 0.17779
+##     SL.mean_All 0.24802 0.0030531 0.247747 0.24893
+##   SL.glmnet_All 0.12816 0.0149828 0.063609 0.17779
+##    SL.rpart_All 0.18869 0.0196099 0.137814 0.22434
+##   SL.ranger_All 0.14299 0.0132094 0.099624 0.17694
+##  SL.xgboost_All 0.15969 0.0171095 0.134186 0.16898
+```
+
+##### Plot
+
+
+```r
+# Plot the cross-validated risk estimate with 95% CIs.
+
+plot(cv_sl)
+```
+
+<img src="06_high_dimensional_data_files/figure-html/cvsl_review-1.png" width="672" />
+
+#### Compute AUC for all estimators
+
+**ROC**
+
+ROC: an ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis). 
+
+![Area Under the ROC Curve](https://developers.google.com/machine-learning/crash-course/images/AUC.svg)
+
+**AUC** 
+
+AUC: Area Under the ROC Curve 
+
+1 = perfect 
+
+0.5 = no better than chance 
+
+
+```r
+auc_table(cv_sl)
+```
+
+```
+##                      auc         se  ci_lower  ci_upper      p-value
+## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.242915e-09
+## SL.rpart_All   0.7841586 0.04199286 0.7018541 0.8664630 3.064302e-03
+## SL.xgboost_All 0.8452203 0.02819121 0.7899665 0.9004740 2.764007e-02
+## SL.ranger_All  0.8779472 0.02366398 0.8315666 0.9243277 1.839626e-01
+## SuperLearner   0.8962958 0.02133296 0.8544839 0.9381076 4.448661e-01
+## SL.glmnet_All  0.8992534 0.02106286 0.8579710 0.9405359 5.000000e-01
+## DiscreteSL     0.8992534 0.02106286 0.8579710 0.9405359 5.000000e-01
+```
+
+##### Plot the ROC curve for the best estimator (DiscretSL)
+
+
+```r
+plot_roc(cv_sl)
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-63-1.png" width="672" />
+
+##### Review weight distribution for the SuperLearner
+
+
+```r
+print(cvsl_weights(cv_sl), row.names = FALSE)
+```
+
+```
+##  # Learner    Mean      SD     Min     Max
+##  1  glmnet 0.90465 0.08954 0.81412 1.00000
+##  2  ranger 0.07863 0.08095 0.00000 0.18588
+##  3 xgboost 0.01629 0.03642 0.00000 0.08143
+##  4    mean 0.00043 0.00095 0.00000 0.00213
+##  5   rpart 0.00000 0.00000 0.00000 0.00000
+```
+
+General stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
+
+However, SuperLearner is currently not available in the tidymodels framework. If you'd like to, you can easily build and add a parsnip model. If you are interested in knowing more about it, please take a look at [this vignette](https://www.tidymodels.org/learn/develop/models/) of the tidymodels.
 
 ### Applications 
 
@@ -1615,9 +1857,11 @@ pca_recipe %>%
          title = "Scree plot")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-63-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-68-1.png" width="672" />
 
 ##### View factor loadings 
+
+Loadings are the covariances between the features and the principal components (=eigenvectors).
 
 
 ```r
@@ -1636,7 +1880,9 @@ pca_recipe %>%
          fill = "PCAs") 
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-64-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-69-1.png" width="672" />
+
+You can use these low-dimensional data to solve prediction problems. Compressing feature space via dimension reduction techniques is called feature extraction. PCA is one way of doing this. 
 
 ### Topic modeling 
 
@@ -1760,7 +2006,7 @@ sherlock_words %>%
 ## Selecting by freq
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-67-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-72-1.png" width="672" />
 
 #### STM 
 
@@ -1800,42 +2046,46 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 1 (approx. per word bound = -7.570) 
+## Completing Iteration 1 (approx. per word bound = -7.581) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.482, relative change = 1.312e-02) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 2 (approx. per word bound = -7.481, relative change = 1.176e-02) 
+## Completing Iteration 3 (approx. per word bound = -7.408, relative change = 9.916e-03) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.383, relative change = 3.336e-03) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 3 (approx. per word bound = -7.400, relative change = 1.090e-02) 
+## Completing Iteration 5 (approx. per word bound = -7.372, relative change = 1.424e-03) 
+## Topic 1: holm, now, come, look, yes 
+##  Topic 2: upon, littl, man, hand, door 
+##  Topic 3: know, think, came, back, day 
+##  Topic 4: said, will, can, face, matter 
+##  Topic 5: one, see, shall, time, must 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 4 (approx. per word bound = -7.381, relative change = 2.581e-03) 
+## Completing Iteration 6 (approx. per word bound = -7.367, relative change = 6.889e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.365, relative change = 3.221e-04) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 5 (approx. per word bound = -7.375, relative change = 8.290e-04) 
-## Topic 1: come, time, might, know, must 
-##  Topic 2: one, said, well, matter, came 
-##  Topic 3: holm, upon, said, may, just 
-##  Topic 4: littl, will, man, see, think 
-##  Topic 5: case, yes, remark, noth, put 
+## Completing Iteration 8 (approx. per word bound = -7.364, relative change = 1.281e-04) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 6 (approx. per word bound = -7.371, relative change = 4.271e-04) 
+## Completing Iteration 9 (approx. per word bound = -7.364, relative change = 1.012e-05) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 7 (approx. per word bound = -7.370, relative change = 2.175e-04) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 8 (approx. per word bound = -7.369, relative change = 7.176e-05) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -1846,69 +2096,51 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 1 (approx. per word bound = -7.651) 
+## Completing Iteration 1 (approx. per word bound = -7.666) 
 ## ....................................................................................................
 ## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 2 (approx. per word bound = -7.480, relative change = 2.234e-02) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 3 (approx. per word bound = -7.378, relative change = 1.356e-02) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 4 (approx. per word bound = -7.354, relative change = 3.251e-03) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 5 (approx. per word bound = -7.347, relative change = 1.040e-03) 
-## Topic 1: holm, one, will, eye, across 
-##  Topic 2: may, upon, case, shall, remark 
-##  Topic 3: well, know, father, call, mind 
-##  Topic 4: littl, see, like, yes, might 
-##  Topic 5: said, man, see, watson, hard 
-##  Topic 6: hous, room, hand, man, without 
-##  Topic 7: come, came, even, back, tell 
-##  Topic 8: upon, day, door, look, may 
-##  Topic 9: said, ask, matter, noth, answer 
-##  Topic 10: sherlock, hand, glanc, howev, anoth 
+## Completing Iteration 2 (approx. per word bound = -7.481, relative change = 2.408e-02) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 6 (approx. per word bound = -7.344, relative change = 3.512e-04) 
+## Completing Iteration 3 (approx. per word bound = -7.387, relative change = 1.265e-02) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.361, relative change = 3.497e-03) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.351, relative change = 1.396e-03) 
+## Topic 1: upon, littl, paper, even, came 
+##  Topic 2: holm, back, two, busi, sat 
+##  Topic 3: one, case, word, remark, point 
+##  Topic 4: come, said, room, miss, say 
+##  Topic 5: said, man, eye, yes, took 
+##  Topic 6: may, just, away, fact, mind 
+##  Topic 7: see, one, time, face, look 
+##  Topic 8: know, now, can, hand, must 
+##  Topic 9: will, sherlock, two, might, famili 
+##  Topic 10: tabl, heard, die, might, record 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.346, relative change = 7.034e-04) 
 ## ....................................................................................................
 ## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 7 (approx. per word bound = -7.342, relative change = 2.888e-04) 
+## Completing Iteration 7 (approx. per word bound = -7.342, relative change = 5.221e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.338, relative change = 5.161e-04) 
 ## ....................................................................................................
 ## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 8 (approx. per word bound = -7.340, relative change = 2.464e-04) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 9 (approx. per word bound = -7.339, relative change = 1.991e-04) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 10 (approx. per word bound = -7.338, relative change = 1.230e-04) 
-## Topic 1: holm, one, will, eye, chair 
-##  Topic 2: may, case, shall, say, remark 
-##  Topic 3: know, well, never, thought, cri 
-##  Topic 4: littl, yes, like, might, see 
-##  Topic 5: said, man, see, can, watson 
-##  Topic 6: hous, room, young, ladi, without 
-##  Topic 7: come, came, back, even, just 
-##  Topic 8: upon, door, day, open, look 
-##  Topic 9: ask, matter, must, take, noth 
-##  Topic 10: hand, howev, sherlock, glanc, head 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 11 (approx. per word bound = -7.337, relative change = 5.576e-05) 
+## Completing Iteration 9 (approx. per word bound = -7.336, relative change = 2.460e-04) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
@@ -1923,116 +2155,108 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## ....................................................................................................
 ## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 1 (approx. per word bound = -7.737) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 2 (approx. per word bound = -7.500, relative change = 3.056e-02) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 3 (approx. per word bound = -7.388, relative change = 1.494e-02) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 4 (approx. per word bound = -7.356, relative change = 4.344e-03) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 5 (approx. per word bound = -7.345, relative change = 1.583e-03) 
-## Topic 1: holm, know, well, can, might 
-##  Topic 2: small, lay, known, form, power 
-##  Topic 3: time, seen, two, sherlock, anyth 
-##  Topic 4: said, man, shall, miss, word 
-##  Topic 5: look, face, man, first, eye 
-##  Topic 6: room, man, must, open, took 
-##  Topic 7: back, ask, came, way, come 
-##  Topic 8: littl, said, noth, last, sir 
-##  Topic 9: now, see, yes, like, think 
-##  Topic 10: street, hand, found, sudden, pass 
-##  Topic 11: someth, sure, went, mind, live 
-##  Topic 12: come, call, busi, gentleman, may 
-##  Topic 13: will, may, case, littl, find 
-##  Topic 14: one, side, two, year, famili 
-##  Topic 15: upon, tabl, finger, depend, wrist 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 6 (approx. per word bound = -7.340, relative change = 5.712e-04) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 7 (approx. per word bound = -7.338, relative change = 2.704e-04) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 8 (approx. per word bound = -7.336, relative change = 2.640e-04) 
+## Completing Iteration 1 (approx. per word bound = -7.738) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 9 (approx. per word bound = -7.335, relative change = 1.952e-04) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 10 (approx. per word bound = -7.333, relative change = 2.106e-04) 
-## Topic 1: holm, know, well, can, might 
-##  Topic 2: small, work, told, lay, fire 
-##  Topic 3: time, howev, day, sherlock, turn 
-##  Topic 4: said, man, miss, young, word 
-##  Topic 5: look, face, eye, tell, first 
-##  Topic 6: room, must, open, father, made 
-##  Topic 7: back, came, door, ask, way 
-##  Topic 8: littl, noth, last, paper, read 
-##  Topic 9: now, see, think, yes, like 
-##  Topic 10: found, street, hand, sudden, light 
-##  Topic 11: went, place, someth, mind, son 
-##  Topic 12: come, away, busi, call, reason 
-##  Topic 13: will, may, case, find, interest 
-##  Topic 14: one, side, year, thing, two 
-##  Topic 15: upon, tabl, besid, finger, bear 
+## Completing Iteration 2 (approx. per word bound = -7.461, relative change = 3.577e-02) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 11 (approx. per word bound = -7.332, relative change = 2.243e-04) 
+## Completing Iteration 3 (approx. per word bound = -7.367, relative change = 1.264e-02) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 12 (approx. per word bound = -7.331, relative change = 1.713e-04) 
+## Completing Iteration 4 (approx. per word bound = -7.343, relative change = 3.252e-03) 
 ## ....................................................................................................
 ## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 13 (approx. per word bound = -7.330, relative change = 1.282e-04) 
+## Completing Iteration 5 (approx. per word bound = -7.333, relative change = 1.367e-03) 
+## Topic 1: matter, like, made, much, street 
+##  Topic 2: look, door, face, room, saw 
+##  Topic 3: sir, someth, wife, mean, instant 
+##  Topic 4: said, holm, ask, well, miss 
+##  Topic 5: morn, littl, remark, quit, interest 
+##  Topic 6: back, chair, close, get, step 
+##  Topic 7: time, read, put, seen, part 
+##  Topic 8: two, now, case, cri, yet 
+##  Topic 9: upon, one, sherlock, famili, knew 
+##  Topic 10: may, howev, tell, long, clear 
+##  Topic 11: will, think, shall, good, came 
+##  Topic 12: see, littl, hand, yes, way 
+##  Topic 13: holm, answer, turn, return, mrs 
+##  Topic 14: man, reason, certain, strang, crime 
+##  Topic 15: might, twist, hand, never, come 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 14 (approx. per word bound = -7.329, relative change = 1.167e-04) 
+## Completing Iteration 6 (approx. per word bound = -7.328, relative change = 7.011e-04) 
 ## ....................................................................................................
 ## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 15 (approx. per word bound = -7.328, relative change = 6.326e-05) 
-## Topic 1: holm, know, well, can, might 
-##  Topic 2: small, work, told, lay, fire 
-##  Topic 3: time, day, much, howev, turn 
-##  Topic 4: said, man, miss, say, right 
-##  Topic 5: look, face, eye, tell, first 
-##  Topic 6: must, room, open, made, morn 
-##  Topic 7: door, came, back, ask, way 
-##  Topic 8: littl, noth, last, paper, sir 
-##  Topic 9: now, see, think, yes, like 
-##  Topic 10: found, street, hand, long, light 
-##  Topic 11: place, went, someth, mind, son 
-##  Topic 12: come, away, busi, call, certain 
-##  Topic 13: will, may, case, find, take 
-##  Topic 14: one, side, year, thing, two 
-##  Topic 15: upon, tabl, besid, sever, finger 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 16 (approx. per word bound = -7.328, relative change = 5.296e-05) 
+## Completing Iteration 7 (approx. per word bound = -7.324, relative change = 4.535e-04) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 17 (approx. per word bound = -7.328, relative change = 3.663e-05) 
+## Completing Iteration 8 (approx. per word bound = -7.322, relative change = 3.650e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.320, relative change = 2.220e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 10 (approx. per word bound = -7.318, relative change = 2.408e-04) 
+## Topic 1: matter, much, like, even, away 
+##  Topic 2: look, room, door, face, saw 
+##  Topic 3: sir, went, someth, wife, dark 
+##  Topic 4: said, holm, well, ask, heard 
+##  Topic 5: quit, morn, remark, left, give 
+##  Topic 6: back, get, chair, step, close 
+##  Topic 7: time, put, seen, paper, three 
+##  Topic 8: two, case, cri, seem, yet 
+##  Topic 9: upon, one, sherlock, knew, famili 
+##  Topic 10: may, howev, tell, long, clear 
+##  Topic 11: will, think, come, shall, can 
+##  Topic 12: see, littl, hand, yes, way 
+##  Topic 13: turn, holm, answer, return, observ 
+##  Topic 14: man, reason, certain, strang, lord 
+##  Topic 15: might, thing, follow, told, help 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 11 (approx. per word bound = -7.317, relative change = 1.808e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 12 (approx. per word bound = -7.316, relative change = 1.221e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 13 (approx. per word bound = -7.315, relative change = 8.460e-05) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 14 (approx. per word bound = -7.315, relative change = 4.530e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 15 (approx. per word bound = -7.315, relative change = 2.133e-05) 
+## Topic 1: matter, much, like, even, made 
+##  Topic 2: look, room, door, face, eye 
+##  Topic 3: sir, went, someth, wife, dark 
+##  Topic 4: said, holm, well, ask, know 
+##  Topic 5: quit, remark, morn, left, found 
+##  Topic 6: back, get, chair, step, close 
+##  Topic 7: time, year, paper, put, seen 
+##  Topic 8: two, case, seem, cri, yet 
+##  Topic 9: upon, one, sherlock, knew, famili 
+##  Topic 10: may, howev, tell, long, clear 
+##  Topic 11: will, come, think, now, can 
+##  Topic 12: littl, see, hand, yes, way 
+##  Topic 13: turn, answer, return, holm, observ 
+##  Topic 14: man, reason, certain, strang, lord 
+##  Topic 15: might, make, thing, word, follow 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
@@ -2060,7 +2284,7 @@ test_res$results %>%
 ## Try `df %>% unnest(c(K, exclus, semcoh))`, with `mutate()` if needed
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-70-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-75-1.png" width="672" />
 
 ##### Finalize 
 
@@ -2086,7 +2310,7 @@ final_stm <- stm(dtm$documents,
 plot(final_stm)
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-72-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-77-1.png" width="672" />
 
 - Using ggplot2 
 
@@ -2108,7 +2332,7 @@ tidy_stm %>%
     scale_fill_viridis_d()
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-73-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" width="672" />
 
 ## Bias and fairness in machine learning 
 
@@ -2141,7 +2365,13 @@ For more information on the ProPublica's Machine Bias project, we encourage to c
 
 ```r
 if (!require("pacman")) install.packages("pacman")
+```
 
+```
+## Loading required package: pacman
+```
+
+```r
 pacman::p_load(
  tidyverse, # tidyverse packages 
  conflicted, # an alternative conflict resolution strategy 
@@ -2300,7 +2530,7 @@ df %>%
          title = "Score distribution")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-83-1.png" width="672" />
 
 Judges are often presented with two sets of scores from the COMPAS system -- one that classifies people into High, Medium and Low risk, and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.
 
@@ -2315,7 +2545,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-79-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" width="672" />
 
 #### Modeling 
 
@@ -2390,7 +2620,7 @@ lr_model %>%
   geom_hline(yintercept = 0, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-82-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-87-1.png" width="672" />
 
 
 ```r
@@ -2422,7 +2652,7 @@ interpret_estimate(lr_model) %>%
         geom_hline(yintercept = 1, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-89-1.png" width="672" />
 
 ### Bias in the Data (Risk of Violent Recidivism Analysis)
 
@@ -2611,7 +2841,7 @@ df %>%
          title = "Score distribution")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-89-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-94-1.png" width="672" />
 
 - Score distribution by race
 
@@ -2626,7 +2856,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-90-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-95-1.png" width="672" />
 
 #### Modeling 
 
@@ -2699,7 +2929,7 @@ lr_model %>%
   geom_hline(yintercept = 0, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-93-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-98-1.png" width="672" />
 
 
 ```r
@@ -2714,7 +2944,7 @@ interpret_estimate(lr_model) %>%
         geom_hline(yintercept = 1, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-94-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-99-1.png" width="672" />
 
 ### Bias in the algorithm 
 
@@ -2853,7 +3083,7 @@ grp %>%
              title = "Score distribution")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-98-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-103-1.png" width="672" />
 
 - Score distribution by race
 
@@ -2868,7 +3098,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-99-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-104-1.png" width="672" />
 
 #### Modeling 
 
@@ -2888,7 +3118,7 @@ model %>%
   labs(y = "Estimate", x = "")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-100-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-105-1.png" width="672" />
 
 The interaction term shows a similar disparity as the logistic regression above.
 
@@ -2918,7 +3148,7 @@ fit %>%
 visualize_surv(df) + ggtitle("Overall")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-102-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-107-1.png" width="672" />
 
 Black defendants do recidivate at higher rates according to race specific Kaplan Meier plots.
 
@@ -2928,7 +3158,7 @@ Black defendants do recidivate at higher rates according to race specific Kaplan
 (df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American")) 
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-103-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-108-1.png" width="672" />
 
 In terms of underlying recidivism rates, we can look at gender specific Kaplan Meier estimates. There is a striking difference between women and men.
 
@@ -2939,7 +3169,7 @@ In terms of underlying recidivism rates, we can look at gender specific Kaplan M
 (df %>% filter(sex == "Male") %>% visualize_surv() + ggtitle("Male"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-104-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-109-1.png" width="672" />
 
 As these plots show, the COMPAS score treats a High risk women the same as a Medium risk man.
 
@@ -3036,7 +3266,7 @@ read.csv(here("data", "table_recid.csv"))[,-1] %>%
   labs(title = "Recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-111-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-116-1.png" width="672" />
 
 That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
 
@@ -3080,7 +3310,7 @@ read.csv(here("data", "comp_tables_recid.csv"))[,-1] %>%
   labs(title = "Recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-114-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-119-1.png" width="672" />
 
 #### Risk of Violent Recidivism accuracy
 
@@ -3125,7 +3355,7 @@ read.csv(here("data", "table_vrecid.csv"))[,-1] %>%
   labs(title = "Violent recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-117-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-122-1.png" width="672" />
 
 Even more so for Black defendants.
 
@@ -3144,7 +3374,7 @@ read.csv(here("data", "comp_tables_vrecid.csv"))[,-1] %>%
   labs(title = "Violent recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-119-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-124-1.png" width="672" />
 
 ## References
 

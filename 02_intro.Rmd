@@ -1,10 +1,5 @@
 # Managing data and code {#git_bash}
 
-```{r include=FALSE}
-# To speed up building process 
-knitr::opts_chunk$set(cache = TRUE)
-```
-
 ## Getting started in R 
 
 ### RStudio 
