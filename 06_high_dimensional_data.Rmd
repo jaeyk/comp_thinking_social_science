@@ -1,10 +1,5 @@
 # High-dimensional data {#machine_learning}
 
-```{r include=FALSE}
-# To speed up building process 
-knitr::opts_chunk$set(cache = TRUE)
-```
-
 ## Overview 
 
 - The rise of high-dimensional data. The new data frontiers in social sciences---text ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf); [Grimmer and Stewart 2013](https://www.jstor.org/stable/pdf/24572662.pdf?casa_token=SQdSI4R_VdwAAAAA:4QiVLhCXqr9f0qNMM9U75EL5JbDxxnXxUxyIfDf0U8ZzQx9szc0xVqaU6DXG4nHyZiNkvcwGlgD6H0Lxj3y0ULHwgkf1MZt8-9TPVtkEH9I4AHgbTg)) and and image ([Joo and Steinert-Threlkeld 2018](https://arxiv.org/pdf/1810.01544))---are all high-dimensional data. 
@@ -99,7 +94,11 @@ pacman::p_load(here,
                tidyverse, 
                tidymodels,
                doParallel, # parallel processing 
-               patchwork) # arranging ggplots 
+               patchwork, # arranging ggplots
+               ck37r, 
+               SuperLearner, 
+               vip, 
+               tidymodels)
 
 ## Jae's custom functions 
 source(here("functions", "ml_utils.r"))
@@ -146,7 +145,7 @@ glue("- {seq(workflow_list)}. {workflow_list}")
     
     - [`parsnip`](https://www.tidyverse.org/blog/2018/11/parsnip-0-0-1/): for model building 
     
-        - [`tune`](https://github.com/tidymodels/tune): parameter tuning 
+        - [`tune`](https://github.com/tidymodels/tune): hyperparameter tuning 
     
     - [`yardstick`](https://github.com/tidymodels/yardstick): for model evaluations 
     
@@ -190,7 +189,7 @@ glue("- {seq(workflow_list)}. {workflow_list}")
 
     - decorrelate: Mitigating correlated predictors (e.g., principal component analysis)
 
-    - normalize: Centering and/or scaling predictors (e.g., log scaling)
+    - normalize: Centering and/or scaling predictors (e.g., log scaling). Scaling matters because many algorithms (e.g., lasso) are scale-variant (except tree-based algorithms). Remind you that normalization (sensitive to outliers) = $\frac{X - X_{min}}{X_{max} - X_{min}}$ and standardization (not sensitive to outliers) = $\frac{X - \mu}{\sigma}$
 
     - transform: Making predictors symmetric 
 
@@ -396,7 +395,7 @@ ols_spec <- linear_reg() %>% # Specify a model
   set_mode("regression") # Declare a mode: regression or classification 
 
 # Lasso spec 
-lasso_spec <- linear_reg(penalty = 0.1, # tuning parameter 
+lasso_spec <- linear_reg(penalty = 0.1, # tuning hyperparameter 
                          mixture = 1) %>% # 1 = lasso, 0 = ridge 
   set_engine("glmnet") %>%
   set_mode("regression") 
@@ -452,14 +451,16 @@ evals %>%
 
 #### tune 
 
+**Hyper**parameters are parameters which control the learning process.
+
 ##### tune ingredients 
 
 ```{r, cache = TRUE}
 
 # tune() = placeholder 
 
-tune_spec <- linear_reg(penalty = tune(), # tuning parameter 
-                         mixture = 1) %>% # 1 = lasso, 0 = ridge 
+tune_spec <- linear_reg(penalty = tune(), # tuning hyperparameter 
+                        mixture = 1) %>% # 1 = lasso, 0 = ridge 
   set_engine("glmnet") %>%
   set_mode("regression") 
 
@@ -576,6 +577,7 @@ test_fit <- finalize_lasso %>%
 evaluate_reg(test_fit)
 
 ```
+
 ### Decision tree 
 
 #### parsnip 
@@ -597,7 +599,7 @@ tree_spec <- decision_tree(
            # Mode 
            mode = "classification",
            
-           # Tuning parameters
+           # Tuning hyperparameters
            cost_complexity = NULL, 
            tree_depth = NULL) %>%
   set_engine("rpart") # rpart, c5.0, spark
@@ -652,6 +654,8 @@ tree_fit_viz_mat
 
 ##### tune ingredients 
 
+Decisions trees tend to overfit. Broadly speaking, there are two things we need to consider to reduce this problem: how to split and when to stop a tree.
+
 - **complexity parameter**: a high CP means a simple decision tree with few splits. 
 
 - **tree_depth** 
@@ -660,15 +664,15 @@ tree_fit_viz_mat
 
 tune_spec <- 
   decision_tree(
-    cost_complexity = tune(), 
-    tree_depth = tune(),
+    cost_complexity = tune(), # how to split 
+    tree_depth = tune(), # when to stop 
     mode = "classification"
   ) %>%
   set_engine("rpart")
 
 tree_grid <- grid_regular(cost_complexity(),
                           tree_depth(),
-                          levels = 5) # 2 parameters -> 5*5 = 25 combinations 
+                          levels = 5) # 2 hyperparameters -> 5*5 = 25 combinations 
 
 tree_grid %>%
   count(tree_depth)
@@ -732,14 +736,15 @@ tree_res %>%
   coord_flip()
 
 ```
+
 ##### Select 
 
 ```{r, cache = TRUE}
 
-# Optimal parameter
+# Optimal hyperparameter
 best_tree <- select_best(tree_res, "recall")
 
-# Add the parameter to the workflow 
+# Add the hyperparameter to the workflow 
 finalize_tree <- tree_wf %>%
   finalize_workflow(best_tree)
 ```
@@ -780,7 +785,40 @@ evaluate_class(test_fit)
 
 ```
 
-### Random forest 
+In the next subsection, we will learn variants of ensemble models that improve decision tree model by putting models together.
+
+### Bagging (Random forest)
+
+Key idea applied across all ensemble models (bagging, boosting, and stacking): 
+single learner -> N learners (N > 1) 
+
+Many learners could perform better than a single learner as this approach reduces the **variance** of a single estimate and provides more stability.
+
+Here we focus on the difference between bagging and boosting. In short, boosting may reduce bias while increasing variance. Bagging may reduce variance but has nothing to do with bias. For more information, please check out [What is the difference between Bagging and Boosting?](https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/) by aporras.
+
+**bagging**
+
+- Data: Training data will be random sampled with replacement (bootstrapping samples + drawing random **subsets** of features for training individual trees)
+
+- Learning: Building models in parallel (independently)
+
+- Prediction: Simple average of the estimated responses (majority vote system)
+
+
+![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/bagging.png)
+
+
+**boosting** 
+
+
+- Data: Weighted training data will be random sampled
+
+- Learning: Building models sequentially (mispredicted cases would receive more weights) 
+
+- Prediction: Weighted average of the estimated responses 
+
+
+![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/boosting.png)
 
 
 #### parsnip 
@@ -802,7 +840,7 @@ rand_spec <- rand_forest(
            # Mode 
            mode = "classification",
            
-           # Tuning parameters
+           # Tuning hyperparameters
            mtry = NULL, # The number of predictors to available for splitting at each node  
            min_n = NULL, # The minimum number of data points needed to keep splitting nodes
            trees = 500) %>% # The number of trees
@@ -860,7 +898,7 @@ rand_fit_viz_mat
 
 ##### tune ingredients 
 
-We focus on the following two parameters:
+We focus on the following two hyperparameters:
 
 - `mtry`: The number of predictors to available for splitting at each node.
 
@@ -872,7 +910,7 @@ tune_spec <-
   rand_forest(
            mode = "classification",
            
-           # Tuning parameters
+           # Tuning hyperparameters
            mtry = tune(), 
            min_n = tune()) %>%
   set_engine("ranger",
@@ -941,14 +979,15 @@ rand_res %>%
   theme(legend.position="bottom")
 
 ```
+
 ```{r, cache = TRUE}
 
-# Optimal parameter
+# Optimal hyperparameter
 best_tree <- select_best(rand_res, "accuracy")
 
 best_tree
 
-# Add the parameter to the workflow 
+# Add the hyperparameter to the workflow 
 finalize_tree <- rand_wf %>%
   finalize_workflow(best_tree)
 
@@ -990,7 +1029,7 @@ evaluate_class(test_fit)
 
 ```
 
-### XGboost 
+### Boosting (XGboost)
 
 #### parsnip 
 
@@ -1011,7 +1050,7 @@ xg_spec <- boost_tree(
            # Mode 
            mode = "classification",
            
-           # Tuning parameters
+           # Tuning hyperparameters
            
            # The number of trees to fit, aka boosting iterations
            trees = c(100, 300, 500, 700, 900),
@@ -1080,7 +1119,7 @@ xg_fit_viz_mat
 
 ##### tune ingredients 
 
-- We focus on the following parameters: `trees,` `tree_depth,` `learn_rate,` `min_n,` `mtry,` `loss_reduction,` and `sample_size`
+- We focus on the following hyperparameters: `trees,` `tree_depth,` `learn_rate,` `min_n,` `mtry,` `loss_reduction,` and `sample_size`
 
 ```{r, cache = TRUE}
 
@@ -1090,7 +1129,7 @@ tune_spec <-
            # Mode 
            mode = "classification",
            
-           # Tuning parameters
+           # Tuning hyperparameters
            
            # The number of trees to fit, aka boosting iterations
            trees = tune(),
@@ -1101,14 +1140,14 @@ tune_spec <-
            # Stop splitting a tree if we only have this many obs in a tree node.
 	         min_n = tune(),
            loss_reduction = tune(),
-           # The number of randomly selected parameters 
+           # The number of randomly selected hyperparameters 
            mtry = tune(), 
            # The size of the data set used for modeling within an iteration
            sample_size = tune()
           ) %>% 
   set_engine("xgboost") 
 
-# Space-filling parameter grids 
+# Space-filling hyperparameter grids 
 xg_grid <- grid_latin_hypercube(
   trees(),
   tree_depth(),
@@ -1166,12 +1205,12 @@ xg_res %>%
 
 ```{r, cache = TRUE}
 
-# Optimal parameter
+# Optimal hyperparameter
 best_xg <- select_best(xg_res, "roc_auc")
 
 best_xg 
 
-# Add the parameter to the workflow 
+# Add the hyperparameter to the workflow 
 finalize_xg <- xg_wf %>%
   finalize_workflow(best_xg)
 
@@ -1212,6 +1251,124 @@ test_fit <- finalize_xg %>%
 evaluate_class(test_fit)
 
 ```
+
+### Stacking (SuperLearner)
+
+This stacking part of the book heavily relies on [Chris Kennedy's notebook](https://github.com/dlab-berkeley/Machine-Learning-in-R/blob/master/07-ensembles.Rmd).
+
+#### Overview
+
+##### Stacking
+
+Wolpert, D.H., 1992. [Stacked generalization](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.56.1533). *Neural networks*, 5(2), pp.241-259.
+
+Breiman, L., 1996. [Stacked regressions]((https://statistics.berkeley.edu/sites/default/files/tech-reports/367.pdf). *Machine learning*, 24(1), pp.49-64.
+
+##### SuperLearner 
+
+The ["SuperLearner" R package](https://cran.r-project.org/web/packages/SuperLearner/index.html) is a method that simplifies ensemble learning by allowing you to simultaneously evaluate the cross-validated performance of multiple algorithms and/or a single algorithm with differently tuned hyperparameters. This is a generally advisable approach to machine learning instead of fitting single algorithms.
+
+Let's see how the four classification algorithms you learned in this workshop (1-lasso, 2-decision tree, 3-random forest, and 4-gradient boosted trees) compare to each other and also to 5-binary logistic regression (`glm`) and to the 6-mean of Y as a benchmark algorithm, in terms of their cross-validated error!
+
+A "wrapper" is a short function that adapts an algorithm for the SuperLearner package. Check out the different algorithm wrappers offered by SuperLearner:
+
+#### Choose algorithms
+
+```{r}
+# Review available models 
+SuperLearner::listWrappers()
+```
+
+```{r cvsl_fit, cache = TRUE}
+# Compile the algorithm wrappers to be used.
+sl_lib <- c("SL.mean", # Marginal mean of the outcome () 
+            "SL.glmnet", # GLM with lasso/elasticnet regularization 
+            "SL.rpart", # Decision tree 
+            "SL.ranger", # Random forest  
+            "SL.xgboost") # Xgbboost 
+
+```
+
+#### Fit model
+
+Fit the ensemble!
+
+```{r}
+# This is a seed that is compatible with multicore parallel processing.
+# See ?set.seed for more information.
+set.seed(1, "L'Ecuyer-CMRG") 
+
+# This will take a few minutes to execute - take a look at the .html file to see the output!
+cv_sl <-  SuperLearner::CV.SuperLearner(
+  Y = as.numeric(as.character(train_y_class)),
+  X = train_x_class,
+  family = binomial(),
+  # For a real analysis we would use V = 10.
+  cvControl = list(V = 5L, stratifyCV = TRUE),
+  SL.library = sl_lib,
+  verbose = FALSE)
+```
+
+#### Risk
+
+Risk is the average loss, and loss is how far off the prediction was for an individual observation. The lower the risk, the fewer errors the model makes in its prediction. SuperLearner's default loss metric is squared error $(y_{actual} - y_{predicted})^2$, so the risk is the mean-squared error (just like in ordinary least *squares* regression). View the summary, plot results, and compute the Area Under the ROC Curve (AUC)!
+
+##### Summary 
+
+* `Discrete SL` chooses the best single learner (in this case, `SL.glmnet` or `lasso`).
+* `SuperLearner` takes a weighted average of the **models** using the coefficients (importance of each individual learner in the overall ensemble). Coefficient 0 means that learner is not used at all.
+* `SL.mean_All` (the weighted mean of $Y$) is a benchmark algorithm (ignoring features). 
+
+```{r}
+
+summary(cv_sl)
+
+```
+
+##### Plot
+
+```{r cvsl_review}
+# Plot the cross-validated risk estimate with 95% CIs.
+
+plot(cv_sl)
+
+```
+
+#### Compute AUC for all estimators
+
+**ROC**
+
+ROC: an ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis). 
+
+![Area Under the ROC Curve](https://developers.google.com/machine-learning/crash-course/images/AUC.svg)
+
+**AUC** 
+
+AUC: Area Under the ROC Curve 
+
+1 = perfect 
+
+0.5 = no better than chance 
+
+```{r}
+auc_table(cv_sl)
+```
+
+##### Plot the ROC curve for the best estimator (DiscretSL)
+
+```{r}
+plot_roc(cv_sl)
+```
+
+##### Review weight distribution for the SuperLearner
+
+```{r}
+print(cvsl_weights(cv_sl), row.names = FALSE)
+```
+
+General stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
+
+However, SuperLearner is currently not available in the tidymodels framework. If you'd like to, you can easily build and add a parsnip model. If you are interested in knowing more about it, please take a look at [this vignette](https://www.tidymodels.org/learn/develop/models/) of the tidymodels.
 
 ### Applications 
 
@@ -1288,6 +1445,8 @@ pca_recipe %>%
 
 ##### View factor loadings 
 
+Loadings are the covariances between the features and the principal components (=eigenvectors).
+
 ```{r, cache = TRUE}
 
 pca_recipe %>%
@@ -1305,6 +1464,8 @@ pca_recipe %>%
          fill = "PCAs") 
        
 ```
+
+You can use these low-dimensional data to solve prediction problems. Compressing feature space via dimension reduction techniques is called feature extraction. PCA is one way of doing this. 
 
 ### Topic modeling 
 
