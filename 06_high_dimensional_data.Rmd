@@ -1279,7 +1279,7 @@ A "wrapper" is a short function that adapts an algorithm for the SuperLearner pa
 SuperLearner::listWrappers()
 ```
 
-```{r cvsl_fit, cache = TRUE}
+```{r}
 # Compile the algorithm wrappers to be used.
 sl_lib <- c("SL.mean", # Marginal mean of the outcome () 
             "SL.glmnet", # GLM with lasso/elasticnet regularization 
@@ -2239,7 +2239,7 @@ As these plots show, the COMPAS score treats a High risk women the same as a Med
 
 The above analysis shows that the COMPAS algorithm does overpredict African-American defendant's future recidivism, but we haven't yet explored the direction of the bias. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.
 
-```{r cache=TRUE}
+```{r}
 
 # create a new environment 
 conda_create("r-reticulate")

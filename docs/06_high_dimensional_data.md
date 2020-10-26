@@ -726,7 +726,7 @@ glue('The RMSE of the tuned model is {rec_res %>%
 ```
 
 ```
-## The RMSE of the tuned model is 7.7
+## The RMSE of the tuned model is 7.71
 ```
 
 - Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
@@ -760,9 +760,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.09 
-## 2 mae     standard       5.84 
-## 3 rsq     standard       0.414
+## 1 rmse    standard       7.11 
+## 2 mae     standard       5.86 
+## 3 rsq     standard       0.410
 ```
 
 ### Decision tree 
@@ -996,8 +996,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.756
-## 2 precision binary         0.721
+## 1 accuracy  binary         0.744
+## 2 precision binary         0.705
 ## 3 recall    binary         0.756
 ```
 
@@ -1660,13 +1660,13 @@ summary(cv_sl)
 ## All risk estimates are based on V =  5 
 ## 
 ##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.12984 0.0148782 0.068572 0.17779
-##     Discrete SL 0.12816 0.0149828 0.063609 0.17779
+##   Super Learner 0.12966 0.0149979 0.065605 0.17767
+##     Discrete SL 0.12871 0.0150981 0.063205 0.17767
 ##     SL.mean_All 0.24802 0.0030531 0.247747 0.24893
-##   SL.glmnet_All 0.12816 0.0149828 0.063609 0.17779
-##    SL.rpart_All 0.18869 0.0196099 0.137814 0.22434
-##   SL.ranger_All 0.14299 0.0132094 0.099624 0.17694
-##  SL.xgboost_All 0.15969 0.0171095 0.134186 0.16898
+##   SL.glmnet_All 0.12871 0.0150981 0.063205 0.17767
+##    SL.rpart_All 0.18111 0.0197908 0.137814 0.22434
+##   SL.ranger_All 0.14390 0.0134090 0.098379 0.17742
+##  SL.xgboost_All 0.15584 0.0168627 0.121047 0.17071
 ```
 
 ##### Plot
@@ -1703,13 +1703,13 @@ auc_table(cv_sl)
 
 ```
 ##                      auc         se  ci_lower  ci_upper      p-value
-## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.242915e-09
-## SL.rpart_All   0.7841586 0.04199286 0.7018541 0.8664630 3.064302e-03
-## SL.xgboost_All 0.8452203 0.02819121 0.7899665 0.9004740 2.764007e-02
-## SL.ranger_All  0.8779472 0.02366398 0.8315666 0.9243277 1.839626e-01
-## SuperLearner   0.8962958 0.02133296 0.8544839 0.9381076 4.448661e-01
-## SL.glmnet_All  0.8992534 0.02106286 0.8579710 0.9405359 5.000000e-01
-## DiscreteSL     0.8992534 0.02106286 0.8579710 0.9405359 5.000000e-01
+## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.510583e-09
+## SL.rpart_All   0.7911151 0.04274540 0.7073356 0.8748945 6.063783e-03
+## SL.xgboost_All 0.8477489 0.02803903 0.7927934 0.9027043 3.559655e-02
+## SL.ranger_All  0.8784640 0.02355329 0.8323004 0.9246276 1.993921e-01
+## SuperLearner   0.8962367 0.02136205 0.8543678 0.9381055 4.608180e-01
+## SL.glmnet_All  0.8983381 0.02119261 0.8568013 0.9398749 5.000000e-01
+## DiscreteSL     0.8983381 0.02119261 0.8568013 0.9398749 5.000000e-01
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
@@ -1719,7 +1719,7 @@ auc_table(cv_sl)
 plot_roc(cv_sl)
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-63-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-64-1.png" width="672" />
 
 ##### Review weight distribution for the SuperLearner
 
@@ -1730,11 +1730,11 @@ print(cvsl_weights(cv_sl), row.names = FALSE)
 
 ```
 ##  # Learner    Mean      SD     Min     Max
-##  1  glmnet 0.90465 0.08954 0.81412 1.00000
-##  2  ranger 0.07863 0.08095 0.00000 0.18588
-##  3 xgboost 0.01629 0.03642 0.00000 0.08143
-##  4    mean 0.00043 0.00095 0.00000 0.00213
-##  5   rpart 0.00000 0.00000 0.00000 0.00000
+##  1  glmnet 0.92701 0.06884 0.86048 1.00000
+##  2  ranger 0.06278 0.06878 0.00000 0.13952
+##  3 xgboost 0.00681 0.01523 0.00000 0.03407
+##  4   rpart 0.00192 0.00429 0.00000 0.00959
+##  5    mean 0.00147 0.00330 0.00000 0.00737
 ```
 
 General stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
@@ -1857,7 +1857,7 @@ pca_recipe %>%
          title = "Scree plot")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-68-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-69-1.png" width="672" />
 
 ##### View factor loadings 
 
@@ -1880,7 +1880,7 @@ pca_recipe %>%
          fill = "PCAs") 
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-69-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-70-1.png" width="672" />
 
 You can use these low-dimensional data to solve prediction problems. Compressing feature space via dimension reduction techniques is called feature extraction. PCA is one way of doing this. 
 
@@ -2006,7 +2006,7 @@ sherlock_words %>%
 ## Selecting by freq
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-72-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-73-1.png" width="672" />
 
 #### STM 
 
@@ -2056,11 +2056,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.408, relative change = 9.916e-03) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.383, relative change = 3.336e-03) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 5 (approx. per word bound = -7.372, relative change = 1.424e-03) 
 ## Topic 1: holm, now, come, look, yes 
@@ -2073,11 +2073,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.367, relative change = 6.889e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.365, relative change = 3.221e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.364, relative change = 1.281e-04) 
 ## ....................................................................................................
@@ -2085,7 +2085,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.364, relative change = 1.012e-05) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -2096,7 +2096,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.666) 
 ## ....................................................................................................
@@ -2104,7 +2104,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.481, relative change = 2.408e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.387, relative change = 1.265e-02) 
 ## ....................................................................................................
@@ -2112,7 +2112,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.361, relative change = 3.497e-03) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 5 (approx. per word bound = -7.351, relative change = 1.396e-03) 
 ## Topic 1: upon, littl, paper, even, came 
@@ -2126,7 +2126,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 9: will, sherlock, two, might, famili 
 ##  Topic 10: tabl, heard, die, might, record 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.346, relative change = 7.034e-04) 
 ## ....................................................................................................
@@ -2142,7 +2142,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.336, relative change = 2.460e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -2153,19 +2153,19 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.738) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.461, relative change = 3.577e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.367, relative change = 1.264e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.343, relative change = 3.252e-03) 
 ## ....................................................................................................
@@ -2188,7 +2188,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 14: man, reason, certain, strang, crime 
 ##  Topic 15: might, twist, hand, never, come 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.328, relative change = 7.011e-04) 
 ## ....................................................................................................
@@ -2196,11 +2196,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.324, relative change = 4.535e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.322, relative change = 3.650e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.320, relative change = 2.220e-04) 
 ## ....................................................................................................
@@ -2239,7 +2239,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 14 (approx. per word bound = -7.315, relative change = 4.530e-05) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 15 (approx. per word bound = -7.315, relative change = 2.133e-05) 
 ## Topic 1: matter, much, like, even, made 
@@ -2258,7 +2258,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 14: man, reason, certain, strang, lord 
 ##  Topic 15: might, make, thing, word, follow 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Model Converged
 ```
@@ -2284,7 +2284,7 @@ test_res$results %>%
 ## Try `df %>% unnest(c(K, exclus, semcoh))`, with `mutate()` if needed
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-75-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-76-1.png" width="672" />
 
 ##### Finalize 
 
@@ -2310,7 +2310,7 @@ final_stm <- stm(dtm$documents,
 plot(final_stm)
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-77-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" width="672" />
 
 - Using ggplot2 
 
@@ -2332,7 +2332,7 @@ tidy_stm %>%
     scale_fill_viridis_d()
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-79-1.png" width="672" />
 
 ## Bias and fairness in machine learning 
 
@@ -2530,7 +2530,7 @@ df %>%
          title = "Score distribution")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-83-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" width="672" />
 
 Judges are often presented with two sets of scores from the COMPAS system -- one that classifies people into High, Medium and Low risk, and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.
 
@@ -2545,7 +2545,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-85-1.png" width="672" />
 
 #### Modeling 
 
@@ -2620,7 +2620,7 @@ lr_model %>%
   geom_hline(yintercept = 0, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-87-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-88-1.png" width="672" />
 
 
 ```r
@@ -2652,7 +2652,7 @@ interpret_estimate(lr_model) %>%
         geom_hline(yintercept = 1, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-89-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-90-1.png" width="672" />
 
 ### Bias in the Data (Risk of Violent Recidivism Analysis)
 
@@ -2841,7 +2841,7 @@ df %>%
          title = "Score distribution")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-94-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-95-1.png" width="672" />
 
 - Score distribution by race
 
@@ -2856,7 +2856,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-95-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-96-1.png" width="672" />
 
 #### Modeling 
 
@@ -2929,7 +2929,7 @@ lr_model %>%
   geom_hline(yintercept = 0, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-98-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-99-1.png" width="672" />
 
 
 ```r
@@ -2944,7 +2944,7 @@ interpret_estimate(lr_model) %>%
         geom_hline(yintercept = 1, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-99-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-100-1.png" width="672" />
 
 ### Bias in the algorithm 
 
@@ -3083,7 +3083,7 @@ grp %>%
              title = "Score distribution")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-103-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-104-1.png" width="672" />
 
 - Score distribution by race
 
@@ -3098,7 +3098,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-104-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-105-1.png" width="672" />
 
 #### Modeling 
 
@@ -3118,7 +3118,7 @@ model %>%
   labs(y = "Estimate", x = "")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-105-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-106-1.png" width="672" />
 
 The interaction term shows a similar disparity as the logistic regression above.
 
@@ -3148,7 +3148,7 @@ fit %>%
 visualize_surv(df) + ggtitle("Overall")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-107-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-108-1.png" width="672" />
 
 Black defendants do recidivate at higher rates according to race specific Kaplan Meier plots.
 
@@ -3158,7 +3158,7 @@ Black defendants do recidivate at higher rates according to race specific Kaplan
 (df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American")) 
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-108-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-109-1.png" width="672" />
 
 In terms of underlying recidivism rates, we can look at gender specific Kaplan Meier estimates. There is a striking difference between women and men.
 
@@ -3169,7 +3169,7 @@ In terms of underlying recidivism rates, we can look at gender specific Kaplan M
 (df %>% filter(sex == "Male") %>% visualize_surv() + ggtitle("Male"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-109-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-110-1.png" width="672" />
 
 As these plots show, the COMPAS score treats a High risk women the same as a Medium risk man.
 
@@ -3266,7 +3266,7 @@ read.csv(here("data", "table_recid.csv"))[,-1] %>%
   labs(title = "Recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-116-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-117-1.png" width="672" />
 
 That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
 
@@ -3310,7 +3310,7 @@ read.csv(here("data", "comp_tables_recid.csv"))[,-1] %>%
   labs(title = "Recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-119-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-120-1.png" width="672" />
 
 #### Risk of Violent Recidivism accuracy
 
@@ -3355,7 +3355,7 @@ read.csv(here("data", "table_vrecid.csv"))[,-1] %>%
   labs(title = "Violent recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-122-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-123-1.png" width="672" />
 
 Even more so for Black defendants.
 
@@ -3374,7 +3374,7 @@ read.csv(here("data", "comp_tables_vrecid.csv"))[,-1] %>%
   labs(title = "Violent recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-124-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-125-1.png" width="672" />
 
 ## References
 
