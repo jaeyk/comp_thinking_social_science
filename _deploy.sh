@@ -12,7 +12,7 @@ set -e
 
 cd docs
 
-#cp -r ../_book/* ./
+cp -r ../_book/* ./
 
 git add --all *
 
