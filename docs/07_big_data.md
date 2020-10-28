@@ -3,8 +3,8 @@
 ## Overview
 
 - Big data problem: data is too big to fit into memory (=local environment).
-- R reads data into random-access memory (RAM) at once and this object lives in memory entirely. So, object > memory will crash R. 
-- So, the key to deal with big data in R is reducing the size of data you want to bring into it.
+- R reads data into random-access memory (RAM) at once and this object lives in memory entirely. So, if object.size > memory.size, the process will crash R. 
+- Therefore, the key to deal with big data in R is reducing the size of data you want to bring into it.
 
 **Techniques to deal with big data**
 
@@ -16,11 +16,14 @@
 - Large file (> 2-10 GB)
    - Put the data into a database and **ACCESS** it 
    - Explore the data and pull the objects of interest 
-   - Types of databases
-      - Relational database = a collection of tables (fixed columns and rows): SQL is a staple tool to define and **query** (focus of the workshop today) this type of database
-      - Non-relational database = a collection of documents (MongoDB), key-values (Redis and DyanoDB), wide-column stores (Cassandra and HBase), or graph (Neo4j and JanusGraph). This type of database does not preclude SQL. Note that NoSQL stands for ["not only SQL."](https://www.mongodb.com/nosql-explained)
-     
-**Relational database**
+   
+**Databases**
+
+- Types of databases
+   - Relational database = a **collection** of **tables** (fixed columns and rows): SQL is a staple tool to define, **query** (focus of the workshop today), control, and manipulate this type of database
+   - Non-relational database = a collection of documents (MongoDB), key-values (Redis and DyanoDB), wide-column stores (Cassandra and HBase), or graph (Neo4j and JanusGraph). Note that this type of database does not preclude SQL. NoSQL stands for ["not only SQL."](https://www.mongodb.com/nosql-explained)
+  
+**Relational database example**
 
 ![Relational Database. Source: MySQL Tutorial](https://sp.mysqltutorial.org/wp-content/uploads/2009/12/MySQL-Sample-Database-Schema.png)
 
@@ -39,7 +42,7 @@ SELECT COLUMN FROM TABLE
 
 ### Learning objectives 
 
-* Embracing a new mindset: shifting from ownership (opening CSVs in your laptop) to access (accessing data stored in a database)
+* Embracing a new mindset: shifting from ownership (opening CSVs stored in your laptop) to access (accessing data stored in a database)
 
 * Learning how to use R and SQL to access and query a database
 
@@ -58,7 +61,7 @@ ORDER BY      | arrange()
 LIMIT         | head()
   
 **Challenge 1**
-1. Can you tell me the difference in the order in which the following `R` and `SQL` code were written to wrangle data? For instance, in R, what command comes first? In contrast, in SQL, what command comes first?
+1. Can you tell me the difference in the order in which the following `R` and `SQL` code were written to manipulate data? For instance, in R, what command comes first? In contrast, in SQL, what command comes first?
 
 - R example 
 
@@ -68,27 +71,27 @@ data %>% # Data
   select() %>% # Column
   filter() %>% # Row 
   group_by() %>% # Group by 
-  summarise(n = n()) %>% # Aggregation
+  summarise(n = n()) %>% # n() is one of the aggregate functions in r; it's count() used inside summarise() function 
   filter() %>% # Row 
   order_by() # Arrange 
 
 ```
 
-- SQL example 
+- SQL example (in a SQL chunk, use `--` instead of `#` to comment) 
 
 ```sql 
 
-SELECT column, aggregation (count())` # Column
+SELECT column, aggregation (count())` -- Column
 
 FROM data # Data 
 
-WHERE condition # Row 
+WHERE condition -- Filter rows 
 
-GROUP BY column # Group by
+GROUP BY column -- Group by
 
-HAVING condition # Row  
+HAVING condition -- Filter rows after group by  
 
-ORDER BY column # Arrange 
+ORDER BY column -- Arrange 
 
 ```
 
@@ -132,7 +135,7 @@ pacman::p_load(
 
 ### NYC flights data 
 
-- [The flight on-time performance data](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236) from the Bureau of Transpiration Statistics of the U.S. government. The data goes back to 1987 and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.
+- [The flight on-time performance data](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236) from the Bureau of Transportation Statistics of the U.S. government. The data goes back to 1987 and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.
 
 ![From RStudio.](https://d33wubrfki0l68.cloudfront.net/245292d1ea724f6c3fd8a92063dcd7bfb9758d02/5751b/diagrams/relational-nycflights.png)
 
@@ -144,11 +147,11 @@ pacman::p_load(
 
 - Short answer: To do so, you need interfaces between R and a database. We use [`RSQLite`](https://github.com/r-dbi/RSQLite) in this tutorial because it's easy to set up. 
 
-- Long answer: The `DBI` package in R provides a client-side interface that allows `dplyr` to work with databases. DBI is automatically installed when you installed `dbplyr`. However, you need to install a specific backend engine (a tool for communication between R and a database management system) for the database (e.g., `RMariaDB`, `RPostgres`, `RSQLite`). In this workshop, we use SQLite because it is the easiest to get started with. Personally, I love PostgreSQL because it's an open-source and also powerful to do [many amazing things](https://www.postgresql.org/docs/current/functions.html) (e.g., text mining, geospatial analysis).
+- Long answer: The `DBI` package in R provides a client-side interface that allows `dplyr` to work with databases. DBI is automatically installed when you installed `dbplyr`. However, you need to install a specific backend engine (a tool for communication between R and a database management system) for the database (e.g., `RMariaDB`, `RPostgres`, `RSQLite`). In this workshop, we use SQLite because it is the easiest to get started with. Personally, I love PostgreSQL because it's an open-source and also powerful to do [many amazing things](https://www.postgresql.org/docs/current/functions.html) (e.g., text mining, geospatial analysis). If you want to not only build a data warehouse, but an anlytical platform then consider using Spark (Hadoop).
 
 2. Copy a table to the database 
 
-- Option 1: You can create a table and insert rows manually.
+- Option 1: You can create a table and insert rows manually. In order to do that, you also need to define data schema (the structure of the database). 
 
 - Table
     - Collection of rows 
@@ -161,9 +164,14 @@ pacman::p_load(
     - **Schema**: the structure of the database
         - The table name
         - The names and types of its columns
-        - Various optional additional information (e.g., constraints)
+        - Various optional additional information 
+            - [Constraints](https://www.w3schools.com/sql/sql_constraints.asp)
+                - Syntax: `column datatype constraint`
+                - Examples: `NOT NULL`, `UNIQUE`, `INDEX`
         
 ```sql
+
+-- Create table 
 
 CREATE TABLE students (
     id INT AUTO_INCREMENT,
@@ -172,7 +180,9 @@ CREATE TABLE students (
     gpa FLOAT,
     grad INT,
     PRIMARY KEY(id));
-    
+
+-- Insert one additional row 
+
 INSERT INTO students(name, birth, gpa, grad)
       VALUES ('Adam', '2000-08-04', 4.0, 2020);
 
@@ -214,6 +224,10 @@ dbListTables(con)
 ## character(0)
 ```
 
+```r
+# character(0) = NULL
+```
+
 - Note that con is empty at this stage.
 
 #### Copy an object as a table to the database (push)
@@ -221,6 +235,7 @@ dbListTables(con)
 
 ```r
 # Copy objects to the data 
+# copy_to() comes from dplyr
 copy_to(dest = con, 
         df = flights)
 
@@ -233,7 +248,7 @@ copy_to(dest = con,
 copy_to(dest = con, 
         df = weather)
 
-# If you want you can also decide what columns you want to copy:
+# If you need, you can also select which columns you would like to copy:
 
 # copy_to(dest = con, 
 #          df = flights, 
@@ -290,8 +305,9 @@ dbListFields(con, "weather")
 
 
 ```r
-DBI::dbGetQuery(con, "SELECT * FROM flights;") %>%
-  head(10) 
+DBI::dbGetQuery(con, 
+                "SELECT * FROM flights;") %>% # SQL
+  head(10) # dplyr 
 ```
 
 ```
@@ -336,14 +352,16 @@ DBI::dbGetQuery(con, "SELECT * FROM flights;") %>%
 
 - Option 3 (automating workflow)
 
-  - When local variables are updated, the SQL query is also automatically updated.
+  - When local variables are updated, the SQL query is also automatically updated. This approach is called [parameterized query](https://www.php.net/manual/en/pdo.prepared-statements.php) (or prepared statement).
 
 
 ```r
+######################## PREPARATION ########################
+
 # Local variables 
 tbl <- "flights"
 var <- "dep_delay"
-num <- 5
+num <- 10
 
 # Glue SQL query string 
 # Note that to indicate a numeric value, you don't need ``
@@ -354,34 +372,42 @@ sql_query <- glue_sql("
   LIMIT {num} 
   ", .con = con)
 
+######################## EXECUTION ########################
+
 # Run the query 
 dbGetQuery(con, sql_query)
 ```
 
 ```
-##   dep_delay
-## 1         2
-## 2         4
-## 3         2
-## 4        -1
-## 5        -6
+##    dep_delay
+## 1          2
+## 2          4
+## 3          2
+## 4         -1
+## 5         -6
+## 6         -4
+## 7         -5
+## 8         -3
+## 9         -3
+## 10        -2
 ```
 
 **Challenge 2** 
-Can you rewrite the above code using `LIMIT` instead of `head(10)`
+Can you rewrite the above code using `LIMIT` instead of `head(10)`? 
 
 - You may notice that using only SQL code makes querying faster.
 
-- Select dep_delay and arr_delay from flights table, show the first ten rows, then turn the result into a tibble.
+- Select `dep_delay` and `arr_delay` from flights table, show the first ten rows, then turn the result into a tibble.
 
 **Challenge 3**
-Could you remind me how to see the list of attributes of a table? Let's say you want to see the attributes of `flights` table. 
+Could you remind me how to see the list of attributes of a table? Let's say you want to see the attributes of `flights` table. How can you do it?
 
 - Collect the selected columns and filtered rows 
 
 
 ```r
-df <- dbGetQuery(con, "SELECT dep_delay, arr_delay FROM flights;") %>%
+df <- dbGetQuery(con, 
+  "SELECT dep_delay, arr_delay FROM flights;") %>%
   head(10) %>%
   collect()
 ```
@@ -466,11 +492,11 @@ flights %>%
 ##  8        -3       -14
 ##  9        -3        -8
 ## 10        -2         8
-## # … with more rows
+## # ... with more rows
 ```
 
 **Challenge 4** 
-Your turn: write the same code in SQL 
+Your turn: write the same code in SQL. Don't forget to add `connection` argument to your SQL code chunk.
 
 - `mutate` = `SELECT` `AS`
 
@@ -496,18 +522,19 @@ flights %>%
 ##  8      229       53  259.
 ##  9      944      140  405.
 ## 10      733      138  319.
-## # … with more rows
+## # ... with more rows
 ```
 
 **Challenge 5** 
-Your turn: write the same code in SQL (hint: `mutate(new_var = var 1 * var2` = `SELECT var1 * var2 AS near_var`)
+Your turn: write the same code in SQL. (
+Hint: `mutate(new_var = var 1 * var2` (R) = `SELECT var1 * var2 AS near_var` (SQL)
 
 - `filter` = `WHERE` 
 
 
 ```r
 flights %>% 
-  filter(month == 1, day == 1)
+  filter(month == 1, day == 1) # filter(month ==1 & day == 1) Both work in the same way.
 ```
 
 ```
@@ -525,7 +552,7 @@ flights %>%
 ##  8  2013     1     1      557            600        -3      709            723
 ##  9  2013     1     1      557            600        -3      838            846
 ## 10  2013     1     1      558            600        -2      753            745
-## # … with more rows, and 11 more variables: arr_delay <dbl>, carrier <chr>,
+## # ... with more rows, and 11 more variables: arr_delay <dbl>, carrier <chr>,
 ## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,
 ## #   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dbl>
 ```
@@ -533,7 +560,32 @@ flights %>%
 **Challenge 6** 
 Your turn: write the same code in SQL (hint: `filter(condition1, condition2)` = `WHERE condition1 and condition2`)
 
-- Note that R and SQL operators are not exactly alike. R uses `!=` for `Not equal to`. SQL uses `<>` or `!=`. Furthermore, there are some cautions about using `NULL` (NA; unknown or missing): it should be `IS NULL` or `IS NOT NULL` not `=NULL` or `!=NULL`. 
+**Additional tips**
+
+Note that R and SQL operators are not exactly alike. R uses `!=` for `Not equal to`. SQL uses `<>` or `!=`. Furthermore, there are some cautions about using `NULL` (NA; unknown or missing): it should be `IS NULL` or `IS NOT NULL` not `=NULL` or `!=NULL`. 
+
+Another pro-tip is [`LIKE` operator](https://www.w3schools.com/sql/sql_like.asp), which is used in a `WHERE` statement to find values based on string patterns.
+
+
+```sql
+SELECT DISTINCT(origin) -- Distinct values from origin column
+FROM flights
+WHERE origin LIKE 'J%'; -- Find any origin values that start with "J"
+```
+
+
+\begin{table}
+
+\caption{(\#tab:unnamed-chunk-15)1 records}
+\centering
+\begin{tabular}[t]{l}
+\hline
+origin\\
+\hline
+JFK\\
+\hline
+\end{tabular}
+\end{table}
 
 - `arrange` = `ORDER BY`
 
@@ -552,7 +604,8 @@ flights %>%
 ```
 
 **Challenge 7** 
-Your turn: write the same code in SQL (hint: `arrange(var1, desc(var2)) = ORDER BY var1, var2 DESC`)
+Your turn: write the same code in SQL.
+Hint: `arrange(var1, desc(var2)` (R) = `ORDER BY var1, var2 DESC` (SQL)
 
 - `summarise` = `SELECT` `AS` and `group by` = `GROUP BY`
 
@@ -585,7 +638,7 @@ flights %>%
 ##  8     1     8  2.55
 ##  9     1     9  2.28
 ## 10     1    10  2.84
-## # … with more rows
+## # ... with more rows
 ```
 
 **Challenge 8** 
@@ -618,7 +671,52 @@ flights %>%
   - Some advanced joins available in SQL are not supported. 
   - For more information, check out [`tidyquery`](https://github.com/ianmcook/tidyquery/issues) to see the latest developments.
 
-  
+- SQL command 
+
+`FROM one table LEFT JOIN another table ON condition = condition` (`ON` in SQL = `BY` in R)
+
+
+```sql
+SELECT *
+FROM flights AS f
+LEFT JOIN weather AS w 
+ON f.year = w.year AND f.month = w.month
+```
+
+
+\begin{table}
+
+\caption{(\#tab:unnamed-chunk-19)Displaying records 1 - 10}
+\centering
+\begin{tabular}[t]{r|r|r|r|r|r|r|r|r|l|r|l|l|l|r|r|r|r|r|l|r|r|r|r|r|r|r|r|r|r|r|r|r|r}
+\hline
+year & month & day & dep\_time & sched\_dep\_time & dep\_delay & arr\_time & sched\_arr\_time & arr\_delay & carrier & flight & tailnum & origin & dest & air\_time & distance & hour & minute & time\_hour & origin & year & month & day & hour & temp & dewp & humid & wind\_dir & wind\_speed & wind\_gust & precip & pressure & visib & time\_hour\\
+\hline
+2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 1 & 39.02 & 26.06 & 59.37 & 270 & 10.35702 & NA & 0 & 1012.0 & 10 & 1357020000\\
+\hline
+2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 2 & 39.02 & 26.96 & 61.63 & 250 & 8.05546 & NA & 0 & 1012.3 & 10 & 1357023600\\
+\hline
+2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 3 & 39.02 & 28.04 & 64.43 & 240 & 11.50780 & NA & 0 & 1012.5 & 10 & 1357027200\\
+\hline
+2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 4 & 39.92 & 28.04 & 62.21 & 250 & 12.65858 & NA & 0 & 1012.2 & 10 & 1357030800\\
+\hline
+2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 5 & 39.02 & 28.04 & 64.43 & 260 & 12.65858 & NA & 0 & 1011.9 & 10 & 1357034400\\
+\hline
+2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 6 & 37.94 & 28.04 & 67.21 & 240 & 11.50780 & NA & 0 & 1012.4 & 10 & 1357038000\\
+\hline
+2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 7 & 39.02 & 28.04 & 64.43 & 240 & 14.96014 & NA & 0 & 1012.2 & 10 & 1357041600\\
+\hline
+2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 8 & 39.92 & 28.04 & 62.21 & 250 & 10.35702 & NA & 0 & 1012.2 & 10 & 1357045200\\
+\hline
+2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 9 & 39.92 & 28.04 & 62.21 & 260 & 14.96014 & NA & 0 & 1012.7 & 10 & 1357048800\\
+\hline
+2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 10 & 41.00 & 28.04 & 59.65 & 260 & 13.80936 & NA & 0 & 1012.4 & 10 & 1357052400\\
+\hline
+\end{tabular}
+\end{table}
+
+Can anyone explain why SQL query using `dplyr` then translated by `show_query()` looks so complex compared to the above? ([Hint](https://stackoverflow.com/questions/36808295/how-to-remove-duplicate-columns-from-join-in-sql))
+
 
 ```r
 flights %>% 
@@ -667,13 +765,57 @@ origin_flights_plot <- ggplot(df) +
 origin_flights_plot
 ```
 
-<img src="07_big_data_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+![](07_big_data_files/figure-latex/unnamed-chunk-22-1.pdf)<!-- --> 
 
 #### Disconnect 
 
 
 ```r
 DBI::dbDisconnect(con)
+```
+
+### Things we didn't cover 
+
+#### Subquery
+
+Subquery = a query nested inside a query 
+
+This is a hypothetical example inspired by [dofactory blog post](https://www.dofactory.com/sql/subquery).
+
+
+```sql
+SELECT names  -- Outer query 
+FROM consultants
+WHERE Id IN (SELECT ConsultingId
+                FROM consulting_cases 
+                WHERE category = 'r' AND category = 'sql'); -- Subquery 
+```
+
+#### Common table expression (WITH clauses)
+
+This is just a hypothetical example inspired by [James LeDoux's blog post](https://jamesrledoux.com/code/sql-cte-common-table-expressions.
+
+
+```sql
+-- cases about R and SQL from dlab-database 
+WITH r_sql_consulting_cases AS ( -- The name of the CTE expression 
+  -- The CTE query 
+  SELECT
+    id 
+  FROM 
+    dlab 
+  WHERE
+    tags LIKE '%sql%'
+  AND
+    tags LIKE '%r%'
+),
+-- count the number of open cases about this consulting category 
+-- The outer query 
+SELECT status, COUNT(status) AS open_status_count
+FROM dlab as d 
+INNER JOIN r_sql_consulting_cases as r
+  ON d.id = r.id 
+WHERE status = 'open'; 
 ```
 
 ### References 

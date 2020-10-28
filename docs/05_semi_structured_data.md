@@ -289,24 +289,8 @@ devtools::install_github("jaeyk/tidytweetjson",
 ```
 
 ```
-## Downloading GitHub repo jaeyk/tidytweetjson@HEAD
-```
-
-```
-## 
-##      checking for file ‘/tmp/RtmpObaTZn/remotes17153576b25fa/jaeyk-tidytweetjson-b598dcc/DESCRIPTION’ ...  ✓  checking for file ‘/tmp/RtmpObaTZn/remotes17153576b25fa/jaeyk-tidytweetjson-b598dcc/DESCRIPTION’
-##   ─  preparing ‘tidytweetjson’:
-##    checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
-##   ─  checking for LF line-endings in source and make files and shell scripts
-##   ─  checking for empty or unneeded directories
-## ─  building ‘tidytweetjson_0.2.0.tar.gz’
-##      
-## 
-```
-
-```
-## Installing package into '/home/jae/R/x86_64-pc-linux-gnu-library/4.0'
-## (as 'lib' is unspecified)
+## Skipping install of 'tidytweetjson' from a github remote, the SHA1 (b598dcc1) has not changed since last install.
+##   Use `force = TRUE` to force installation
 ```
 
 ```r
@@ -435,13 +419,13 @@ worldbank %>%
 ##  2           2 TN: DTF Social Protection Reforms Support                        
 ##  3           3 Tuvalu Aviation Investment Project - Additional Financing        
 ##  4           4 Gov't and Civil Society Organization Partnership                 
-##  5           5 Second Private Sector Competitiveness and Economic Diversificati…
-##  6           6 Additional Financing for Cash Transfers for Orphans and Vulnerab…
+##  5           5 Second Private Sector Competitiveness and Economic Diversificati~
+##  6           6 Additional Financing for Cash Transfers for Orphans and Vulnerab~
 ##  7           7 National Highways Interconnectivity Improvement Project          
 ##  8           8 China Renewable Energy Scale-Up Program Phase II                 
 ##  9           9 Rajasthan Road Sector Modernization Project                      
 ## 10          10 MA Accountability and Transparency DPL                           
-## # … with 490 more rows
+## # ... with 490 more rows
 ```
 
 -   The following example draws on my [tidytweetjson](https://github.com/jaeyk/tidytweetjson) R package. The package applies `tidyjson` to Tweets.

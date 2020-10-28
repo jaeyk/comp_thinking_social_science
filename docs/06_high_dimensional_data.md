@@ -110,7 +110,7 @@ data_original <- read_csv(here("data", "heart.csv"))
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification ---------------------------
 ## cols(
 ##   age = col_double(),
 ##   sex = col_double(),
@@ -136,20 +136,20 @@ glimpse(data_original)
 ```
 ## Rows: 303
 ## Columns: 14
-## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58, …
-## $ sex      <dbl> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, …
-## $ cp       <dbl> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3, …
-## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130, …
-## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275, …
-## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
-## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, …
-## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139, …
-## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, …
-## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2, …
-## $ slope    <dbl> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2, …
-## $ ca       <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, …
-## $ thal     <dbl> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
-## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58...
+## $ sex      <dbl> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0...
+## $ cp       <dbl> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3...
+## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130...
+## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275...
+## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0...
+## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1...
+## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139...
+## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0...
+## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2...
+## $ slope    <dbl> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2...
+## $ ca       <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2...
+## $ thal     <dbl> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2...
+## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
 ```
 
 ```r
@@ -249,20 +249,20 @@ glimpse(data)
 ```
 ## Rows: 303
 ## Columns: 14
-## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58, …
-## $ sex      <fct> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, …
-## $ cp       <fct> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3, …
-## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130, …
-## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275, …
-## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
-## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, …
-## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139, …
-## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, …
-## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2, …
-## $ slope    <fct> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2, …
-## $ ca       <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, …
-## $ thal     <fct> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
-## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58...
+## $ sex      <fct> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0...
+## $ cp       <fct> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3...
+## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130...
+## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275...
+## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0...
+## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1...
+## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139...
+## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0...
+## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2...
+## $ slope    <fct> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2...
+## $ ca       <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2...
+## $ thal     <fct> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2...
+## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
 ```
 - Imputation 
 
@@ -278,7 +278,7 @@ map_df(data, ~ is.na(.) %>% sum())
 ##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
 ##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
 ## 1     0     0     0        0     0     0       0       0     0       0     0
-## # … with 3 more variables: ca <int>, thal <int>, target <int>
+## # ... with 3 more variables: ca <int>, thal <int>, target <int>
 ```
 
 ```r
@@ -298,7 +298,7 @@ data %>%
 ##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
 ##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
 ## 1     0     0     0        0     0     0       0       0     0      10     0
-## # … with 3 more variables: ca <int>, thal <int>, target <int>
+## # ... with 3 more variables: ca <int>, thal <int>, target <int>
 ```
 
 ```r
@@ -312,7 +312,7 @@ data %>%
 ##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
 ##   <dbl> <dbl> <dbl>    <dbl> <dbl> <dbl>   <dbl>   <dbl> <dbl>   <dbl> <dbl>
 ## 1     0     0     0        0     0     0       0       0     0  0.0330     0
-## # … with 3 more variables: ca <dbl>, thal <dbl>, target <dbl>
+## # ... with 3 more variables: ca <dbl>, thal <dbl>, target <dbl>
 ```
  
 ### Regression setup 
@@ -567,14 +567,14 @@ map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit)
 ## [[1]]
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-16-1.pdf)<!-- --> 
 
 ```
 ## 
 ## [[2]]
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-16-2.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-16-2.pdf)<!-- --> 
 
 
 ```r
@@ -595,7 +595,7 @@ evals %>%
     facet_wrap(~glue("{toupper(.metric)}"), scales = "free_y") 
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
 - For more information, read [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
 
 #### tune 
@@ -682,7 +682,7 @@ rec_res %>%
   theme(legend.position = "none")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-21-1.pdf)<!-- --> 
 
 ##### Select 
 
@@ -712,7 +712,7 @@ glue('The RMSE of the intiail model is
 
 ```
 ## The RMSE of the intiail model is 
-##    7.88
+##    7.87
 ```
 
 ```r
@@ -742,7 +742,7 @@ finalize_lasso %>%
   vip::vip()
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-23-1.pdf)<!-- --> 
 
 ##### Test fit 
 
@@ -830,7 +830,7 @@ tree_fit_viz_metr <- visualize_class_eval(tree_fit)
 tree_fit_viz_metr
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-27-1.pdf)<!-- --> 
 
 ```r
 tree_fit_viz_mat <- visualize_class_conf(tree_fit)
@@ -838,7 +838,7 @@ tree_fit_viz_mat <- visualize_class_conf(tree_fit)
 tree_fit_viz_mat
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-27-2.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-27-2.pdf)<!-- --> 
 
 #### tune 
 
@@ -937,7 +937,7 @@ tree_res %>%
   coord_flip()
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-30-1.pdf)<!-- --> 
 
 ##### Select 
 
@@ -960,14 +960,14 @@ tree_fit_tuned <- finalize_tree %>%
 (tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-32-1.pdf)<!-- --> 
 
 ```r
 # Confusion matrix 
 (tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-32-2.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-32-2.pdf)<!-- --> 
 
 - Visualize variable importance 
 
@@ -978,7 +978,7 @@ tree_fit_tuned %>%
   vip::vip()
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-33-1.pdf)<!-- --> 
 
 ##### Test fit
 
@@ -996,8 +996,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.744
-## 2 precision binary         0.705
+## 1 accuracy  binary         0.733
+## 2 precision binary         0.689
 ## 3 recall    binary         0.756
 ```
 
@@ -1097,7 +1097,7 @@ rand_fit_viz_metr <- visualize_class_eval(rand_fit)
 rand_fit_viz_metr
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-37-1.pdf)<!-- --> 
 
 - Visualize the confusion matrix. 
   
@@ -1108,7 +1108,7 @@ rand_fit_viz_mat <- visualize_class_conf(rand_fit)
 rand_fit_viz_mat
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-38-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-38-1.pdf)<!-- --> 
 
 #### tune 
 
@@ -1203,7 +1203,7 @@ rand_res %>%
   theme(legend.position="bottom")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-42-1.pdf)<!-- --> 
 
 
 ```r
@@ -1217,7 +1217,7 @@ best_tree
 ## # A tibble: 1 x 3
 ##    mtry min_n .config
 ##   <int> <int> <chr>  
-## 1     1     2 Model01
+## 1     1    10 Model21
 ```
 
 ```r
@@ -1235,14 +1235,14 @@ rand_fit_tuned <- finalize_tree %>%
 (rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-44-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-44-1.pdf)<!-- --> 
 
 ```r
 # Confusion matrix 
 (rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-44-2.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-44-2.pdf)<!-- --> 
 
 - Visualize variable importance 
 
@@ -1253,7 +1253,7 @@ rand_fit_tuned %>%
   vip::vip()
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-45-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-45-1.pdf)<!-- --> 
 
 ##### Test fit
 
@@ -1271,9 +1271,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.933
-## 2 precision binary         0.973
-## 3 recall    binary         0.878
+## 1 accuracy  binary         0.922
+## 2 precision binary         0.972
+## 3 recall    binary         0.854
 ```
 
 ### Boosting (XGboost)
@@ -1362,7 +1362,7 @@ xg_fit_viz_metr <- visualize_class_eval(xg_fit)
 xg_fit_viz_metr
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-50-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-50-1.pdf)<!-- --> 
 
 - Visualize the confusion matrix. 
   
@@ -1373,7 +1373,7 @@ xg_fit_viz_mat <- visualize_class_conf(xg_fit)
 xg_fit_viz_mat
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-51-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-51-1.pdf)<!-- --> 
 
 #### tune 
 
@@ -1460,7 +1460,7 @@ xg_res %>%
          x = NULL)
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-54-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-54-1.pdf)<!-- --> 
 
 
 ```r
@@ -1492,14 +1492,14 @@ xg_fit_tuned <- finalize_xg %>%
 (xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-56-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-56-1.pdf)<!-- --> 
 
 ```r
 # Confusion matrix 
 (xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-56-2.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-56-2.pdf)<!-- --> 
 
 - Visualize variable importance 
 
@@ -1518,7 +1518,7 @@ xg_fit_tuned %>%
 ## Call `lifecycle::last_warnings()` to see where this warning was generated.
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-57-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-57-1.pdf)<!-- --> 
 
 ##### Test fit
 
@@ -1536,8 +1536,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.8  
-## 2 precision binary         0.795
+## 1 accuracy  binary         0.833
+## 2 precision binary         0.861
 ## 3 recall    binary         0.756
 ```
 
@@ -1660,13 +1660,13 @@ summary(cv_sl)
 ## All risk estimates are based on V =  5 
 ## 
 ##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.12966 0.0149979 0.065605 0.17767
-##     Discrete SL 0.12871 0.0150981 0.063205 0.17767
+##   Super Learner 0.12831 0.0147872 0.065689 0.17518
+##     Discrete SL 0.12712 0.0148904 0.062977 0.17531
 ##     SL.mean_All 0.24802 0.0030531 0.247747 0.24893
-##   SL.glmnet_All 0.12871 0.0150981 0.063205 0.17767
-##    SL.rpart_All 0.18111 0.0197908 0.137814 0.22434
-##   SL.ranger_All 0.14390 0.0134090 0.098379 0.17742
-##  SL.xgboost_All 0.15584 0.0168627 0.121047 0.17071
+##   SL.glmnet_All 0.12712 0.0148904 0.062977 0.17531
+##    SL.rpart_All 0.19077 0.0197215 0.137814 0.22434
+##   SL.ranger_All 0.14243 0.0131858 0.098400 0.17475
+##  SL.xgboost_All 0.15704 0.0169223 0.121860 0.17506
 ```
 
 ##### Plot
@@ -1678,7 +1678,7 @@ summary(cv_sl)
 plot(cv_sl)
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/cvsl_review-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/cvsl_review-1.pdf)<!-- --> 
 
 #### Compute AUC for all estimators
 
@@ -1703,13 +1703,13 @@ auc_table(cv_sl)
 
 ```
 ##                      auc         se  ci_lower  ci_upper      p-value
-## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.510583e-09
-## SL.rpart_All   0.7911151 0.04274540 0.7073356 0.8748945 6.063783e-03
-## SL.xgboost_All 0.8477489 0.02803903 0.7927934 0.9027043 3.559655e-02
-## SL.ranger_All  0.8784640 0.02355329 0.8323004 0.9246276 1.993921e-01
-## SuperLearner   0.8962367 0.02136205 0.8543678 0.9381055 4.608180e-01
-## SL.glmnet_All  0.8983381 0.02119261 0.8568013 0.9398749 5.000000e-01
-## DiscreteSL     0.8983381 0.02119261 0.8568013 0.9398749 5.000000e-01
+## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.138901e-09
+## SL.rpart_All   0.7852455 0.04203594 0.7028566 0.8676344 3.253351e-03
+## SL.xgboost_All 0.8469098 0.02790665 0.7922138 0.9016058 2.943716e-02
+## SL.ranger_All  0.8809411 0.02338011 0.8351169 0.9267652 2.120545e-01
+## SuperLearner   0.8966714 0.02131186 0.8549010 0.9384419 4.448119e-01
+## SL.glmnet_All  0.8996291 0.02102314 0.8584245 0.9408337 5.000000e-01
+## DiscreteSL     0.8996291 0.02102314 0.8584245 0.9408337 5.000000e-01
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
@@ -1719,7 +1719,7 @@ auc_table(cv_sl)
 plot_roc(cv_sl)
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-64-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-64-1.pdf)<!-- --> 
 
 ##### Review weight distribution for the SuperLearner
 
@@ -1730,11 +1730,11 @@ print(cvsl_weights(cv_sl), row.names = FALSE)
 
 ```
 ##  # Learner    Mean      SD     Min     Max
-##  1  glmnet 0.92701 0.06884 0.86048 1.00000
-##  2  ranger 0.06278 0.06878 0.00000 0.13952
-##  3 xgboost 0.00681 0.01523 0.00000 0.03407
-##  4   rpart 0.00192 0.00429 0.00000 0.00959
-##  5    mean 0.00147 0.00330 0.00000 0.00737
+##  1  glmnet 0.91558 0.07913 0.82193 1.00000
+##  2  ranger 0.08147 0.07881 0.00000 0.17807
+##  3    mean 0.00162 0.00362 0.00000 0.00810
+##  4 xgboost 0.00106 0.00154 0.00000 0.00339
+##  5   rpart 0.00026 0.00059 0.00000 0.00131
 ```
 
 General stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
@@ -1782,7 +1782,7 @@ data_original %>%
 ##  1 age     NA      -0.0984 -0.0687   0.279   0.214    0.121   -0.116  -0.399  
 ##  2 sex     -0.0984 NA      -0.0494  -0.0568 -0.198    0.0450  -0.0582 -0.0440 
 ##  3 cp      -0.0687 -0.0494 NA        0.0476 -0.0769   0.0944   0.0444  0.296  
-##  4 trestb…  0.279  -0.0568  0.0476  NA       0.123    0.178   -0.114  -0.0467 
+##  4 trestb~  0.279  -0.0568  0.0476  NA       0.123    0.178   -0.114  -0.0467 
 ##  5 chol     0.214  -0.198  -0.0769   0.123  NA        0.0133  -0.151  -0.00994
 ##  6 fbs      0.121   0.0450  0.0944   0.178   0.0133  NA       -0.0842 -0.00857
 ##  7 restecg -0.116  -0.0582  0.0444  -0.114  -0.151   -0.0842  NA       0.0441 
@@ -1793,7 +1793,7 @@ data_original %>%
 ## 12 ca       0.276   0.118  -0.181    0.101   0.0705   0.138   -0.0720 -0.213  
 ## 13 thal     0.0680  0.210  -0.162    0.0622  0.0988  -0.0320  -0.0120 -0.0964 
 ## 14 target  -0.225  -0.281   0.434   -0.145  -0.0852  -0.0280   0.137   0.422  
-## # … with 6 more variables: exang <dbl>, oldpeak <dbl>, slope <dbl>, ca <dbl>,
+## # ... with 6 more variables: exang <dbl>, oldpeak <dbl>, slope <dbl>, ca <dbl>,
 ## #   thal <dbl>, target <dbl>
 ```
 
@@ -1837,7 +1837,7 @@ pca_res %>%
 ##  8 thalach   0.0137   PC1       pca  
 ##  9 exang     0.0962   PC1       pca  
 ## 10 oldpeak  -0.00863  PC1       pca  
-## # … with 186 more rows
+## # ... with 186 more rows
 ```
 
 ##### Screeplot
@@ -1857,7 +1857,7 @@ pca_recipe %>%
          title = "Scree plot")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-69-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-69-1.pdf)<!-- --> 
 
 ##### View factor loadings 
 
@@ -1880,7 +1880,7 @@ pca_recipe %>%
          fill = "PCAs") 
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-70-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-70-1.pdf)<!-- --> 
 
 You can use these low-dimensional data to solve prediction problems. Compressing feature space via dimension reduction techniques is called feature extraction. PCA is one way of doing this. 
 
@@ -1920,8 +1920,8 @@ glimpse(sherlock_raw)
 ```
 ## Rows: 12,648
 ## Columns: 2
-## $ gutenberg_id <int> 1661, 1661, 1661, 1661, 1661, 1661, 1661, 1661, 1661, 16…
-## $ text         <chr> "THE ADVENTURES OF SHERLOCK HOLMES", "", "by", "", "SIR …
+## $ gutenberg_id <int> 1661, 1661, 1661, 1661, 1661, 1661, 1661, 1661, 1661, ...
+## $ text         <chr> "THE ADVENTURES OF SHERLOCK HOLMES", "", "by", "", "SI...
 ```
 
 ```r
@@ -2006,7 +2006,7 @@ sherlock_words %>%
 ## Selecting by freq
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-73-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-73-1.pdf)<!-- --> 
 
 #### STM 
 
@@ -2048,11 +2048,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.581) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.482, relative change = 1.312e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.408, relative change = 9.916e-03) 
 ## ....................................................................................................
@@ -2073,15 +2073,15 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.367, relative change = 6.889e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.365, relative change = 3.221e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.364, relative change = 1.281e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.364, relative change = 1.012e-05) 
 ## ....................................................................................................
@@ -2096,7 +2096,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.666) 
 ## ....................................................................................................
@@ -2126,7 +2126,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 9: will, sherlock, two, might, famili 
 ##  Topic 10: tabl, heard, die, might, record 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.346, relative change = 7.034e-04) 
 ## ....................................................................................................
@@ -2142,7 +2142,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.336, relative change = 2.460e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -2157,11 +2157,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.738) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.461, relative change = 3.577e-02) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.367, relative change = 1.264e-02) 
 ## ....................................................................................................
@@ -2188,11 +2188,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 14: man, reason, certain, strang, crime 
 ##  Topic 15: might, twist, hand, never, come 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.328, relative change = 7.011e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.324, relative change = 4.535e-04) 
 ## ....................................................................................................
@@ -2231,11 +2231,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 12 (approx. per word bound = -7.316, relative change = 1.221e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 13 (approx. per word bound = -7.315, relative change = 8.460e-05) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 14 (approx. per word bound = -7.315, relative change = 4.530e-05) 
 ## ....................................................................................................
@@ -2284,7 +2284,7 @@ test_res$results %>%
 ## Try `df %>% unnest(c(K, exclus, semcoh))`, with `mutate()` if needed
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-76-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-76-1.pdf)<!-- --> 
 
 ##### Finalize 
 
@@ -2310,7 +2310,7 @@ final_stm <- stm(dtm$documents,
 plot(final_stm)
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-78-1.pdf)<!-- --> 
 
 - Using ggplot2 
 
@@ -2332,7 +2332,7 @@ tidy_stm %>%
     scale_fill_viridis_d()
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-79-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-79-1.pdf)<!-- --> 
 
 ## Bias and fairness in machine learning 
 
@@ -2494,14 +2494,14 @@ head(df, 5)
 
 ```
 ## # A tibble: 5 x 16
-##     age crime race  age_cat score_text gender priors_count days_b_screenin…
+##     age crime race  age_cat score_text gender priors_count days_b_screenin~
 ##   <dbl> <fct> <fct> <fct>   <fct>      <fct>         <dbl>            <dbl>
-## 1    69 F     Other Greate… Low        Male              0               -1
-## 2    34 F     Afri… 25 - 45 Low        Male              0               -1
-## 3    24 F     Afri… Less t… Low        Male              4               -1
+## 1    69 F     Other Greate~ Low        Male              0               -1
+## 2    34 F     Afri~ 25 - 45 Low        Male              0               -1
+## 3    24 F     Afri~ Less t~ Low        Male              4               -1
 ## 4    44 M     Other 25 - 45 Low        Male              0                0
-## 5    41 F     Cauc… 25 - 45 Medium     Male             14               -1
-## # … with 8 more variables: decile_score <dbl>, is_recid <dbl>,
+## 5    41 F     Cauc~ 25 - 45 Medium     Male             14               -1
+## # ... with 8 more variables: decile_score <dbl>, is_recid <dbl>,
 ## #   two_year_recid <dbl>, c_jail_in <dttm>, c_jail_out <dttm>,
 ## #   length_of_stay <dbl>, score <fct>, score_num <dbl>
 ```
@@ -2530,7 +2530,7 @@ df %>%
          title = "Score distribution")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-84-1.pdf)<!-- --> 
 
 Judges are often presented with two sets of scores from the COMPAS system -- one that classifies people into High, Medium and Low risk, and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.
 
@@ -2545,7 +2545,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-85-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-85-1.pdf)<!-- --> 
 
 #### Modeling 
 
@@ -2620,7 +2620,7 @@ lr_model %>%
   geom_hline(yintercept = 0, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-88-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-88-1.pdf)<!-- --> 
 
 
 ```r
@@ -2652,7 +2652,7 @@ interpret_estimate(lr_model) %>%
         geom_hline(yintercept = 1, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-90-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-90-1.pdf)<!-- --> 
 
 ### Bias in the Data (Risk of Violent Recidivism Analysis)
 
@@ -2717,7 +2717,7 @@ two_years_violent <- read_csv(here("data" ,"compas-scores-two-years-violent.csv"
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification ---------------------------
 ## cols(
 ##   .default = col_double(),
 ##   name = col_character(),
@@ -2742,7 +2742,7 @@ two_years_violent <- read_csv(here("data" ,"compas-scores-two-years-violent.csv"
 ##   r_jail_in = col_date(format = "")
 ##   # ... with 14 more columns
 ## )
-## ℹ Use `spec()` for the full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 ```r
@@ -2814,14 +2814,14 @@ head(df, 5) # Check whether the function works as expected
 
 ```
 ## # A tibble: 5 x 12
-##     age crime race  age_cat score gender priors_count days_b_screenin…
+##     age crime race  age_cat score gender priors_count days_b_screenin~
 ##   <dbl> <fct> <fct> <fct>   <fct> <fct>         <dbl>            <dbl>
-## 1    69 F     Other Greate… Low   Male              0               -1
-## 2    34 F     Afri… 25 - 45 Low   Male              0               -1
+## 1    69 F     Other Greate~ Low   Male              0               -1
+## 2    34 F     Afri~ 25 - 45 Low   Male              0               -1
 ## 3    44 M     Other 25 - 45 Low   Male              0                0
 ## 4    43 F     Other 25 - 45 Low   Male              3               -1
-## 5    39 M     Cauc… 25 - 45 Low   Female            0               -1
-## # … with 4 more variables: v_decile_score <dbl>, is_recid <dbl>,
+## 5    39 M     Cauc~ 25 - 45 Low   Female            0               -1
+## # ... with 4 more variables: v_decile_score <dbl>, is_recid <dbl>,
 ## #   two_year_recid <dbl>, score_num <dbl>
 ```
 
@@ -2841,7 +2841,7 @@ df %>%
          title = "Score distribution")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-95-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-95-1.pdf)<!-- --> 
 
 - Score distribution by race
 
@@ -2856,7 +2856,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-96-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-96-1.pdf)<!-- --> 
 
 #### Modeling 
 
@@ -2929,7 +2929,7 @@ lr_model %>%
   geom_hline(yintercept = 0, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-99-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-99-1.pdf)<!-- --> 
 
 
 ```r
@@ -2944,7 +2944,7 @@ interpret_estimate(lr_model) %>%
         geom_hline(yintercept = 1, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-100-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-100-1.pdf)<!-- --> 
 
 ### Bias in the algorithm 
 
@@ -3013,7 +3013,7 @@ cox_data <- read_csv(here("data" ,"cox-parsed.csv"))
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification ---------------------------
 ## cols(
 ##   .default = col_character(),
 ##   id = col_double(),
@@ -3038,7 +3038,7 @@ cox_data <- read_csv(here("data" ,"cox-parsed.csv"))
 ##   r_jail_out = col_date(format = "")
 ##   # ... with 13 more columns
 ## )
-## ℹ Use `spec()` for the full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 ```r
@@ -3083,7 +3083,7 @@ grp %>%
              title = "Score distribution")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-104-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-104-1.pdf)<!-- --> 
 
 - Score distribution by race
 
@@ -3098,7 +3098,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-105-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-105-1.pdf)<!-- --> 
 
 #### Modeling 
 
@@ -3118,7 +3118,7 @@ model %>%
   labs(y = "Estimate", x = "")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-106-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-106-1.pdf)<!-- --> 
 
 The interaction term shows a similar disparity as the logistic regression above.
 
@@ -3148,7 +3148,7 @@ fit %>%
 visualize_surv(df) + ggtitle("Overall")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-108-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-108-1.pdf)<!-- --> 
 
 Black defendants do recidivate at higher rates according to race specific Kaplan Meier plots.
 
@@ -3158,7 +3158,7 @@ Black defendants do recidivate at higher rates according to race specific Kaplan
 (df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American")) 
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-109-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-109-1.pdf)<!-- --> 
 
 In terms of underlying recidivism rates, we can look at gender specific Kaplan Meier estimates. There is a striking difference between women and men.
 
@@ -3169,7 +3169,7 @@ In terms of underlying recidivism rates, we can look at gender specific Kaplan M
 (df %>% filter(sex == "Male") %>% visualize_surv() + ggtitle("Male"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-110-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-110-1.pdf)<!-- --> 
 
 As these plots show, the COMPAS score treats a High risk women the same as a Medium risk man.
 
@@ -3266,7 +3266,7 @@ read.csv(here("data", "table_recid.csv"))[,-1] %>%
   labs(title = "Recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-117-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-117-1.pdf)<!-- --> 
 
 That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
 
@@ -3310,7 +3310,7 @@ read.csv(here("data", "comp_tables_recid.csv"))[,-1] %>%
   labs(title = "Recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-120-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-120-1.pdf)<!-- --> 
 
 #### Risk of Violent Recidivism accuracy
 
@@ -3355,7 +3355,7 @@ read.csv(here("data", "table_vrecid.csv"))[,-1] %>%
   labs(title = "Violent recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-123-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-123-1.pdf)<!-- --> 
 
 Even more so for Black defendants.
 
@@ -3374,7 +3374,7 @@ read.csv(here("data", "comp_tables_vrecid.csv"))[,-1] %>%
   labs(title = "Violent recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-125-1.png" width="672" />
+![](06_high_dimensional_data_files/figure-latex/unnamed-chunk-125-1.pdf)<!-- --> 
 
 ## References
 

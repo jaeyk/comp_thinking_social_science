@@ -1043,7 +1043,7 @@ toc()
 ```
 
 ```
-## 0.05 sec elapsed
+## 0.006 sec elapsed
 ```
 
 
@@ -1307,7 +1307,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-27-1.pdf)<!-- --> 
 
 ```r
 airquality %>%
@@ -1323,7 +1323,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-27-2.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-27-2.pdf)<!-- --> 
 
 ```r
 airquality %>%
@@ -1339,7 +1339,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-27-3.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-27-3.pdf)<!-- --> 
 
 ### Solution 
 
@@ -1387,7 +1387,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-29-1.pdf)<!-- --> 
 
 - The next step is to write an automatic plotting function. 
 
@@ -1421,7 +1421,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-31-1.pdf)<!-- --> 
 
 ```
 ## 
@@ -1432,7 +1432,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-2.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-31-2.pdf)<!-- --> 
 
 ```
 ## 
@@ -1443,7 +1443,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-3.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-31-3.pdf)<!-- --> 
 
 ```
 ## 
@@ -1454,7 +1454,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-4.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-31-4.pdf)<!-- --> 
 
 ```
 ## 
@@ -1465,7 +1465,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-5.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-31-5.pdf)<!-- --> 
 
 ## Automate joining
 
@@ -1690,26 +1690,35 @@ map(url_lists, safely(read_html))
 ```
 ## [[1]]
 ## [[1]]$result
-## NULL
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ## 
 ## [[1]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
+## NULL
 ## 
 ## 
 ## [[2]]
 ## [[2]]$result
-## NULL
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ## 
 ## [[2]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
+## NULL
 ## 
 ## 
 ## [[3]]
 ## [[3]]$result
-## NULL
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ## 
 ## [[3]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
+## NULL
 ## 
 ## 
 ## [[4]]
@@ -1731,7 +1740,23 @@ map(url_lists, safely(read_html)) %>%
 ```
 
 ```
-## list()
+## [[1]]
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## 
+## [[2]]
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## 
+## [[3]]
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ```
 
 #### possibly 
@@ -1753,10 +1778,7 @@ url_lists[out[seq(out)] == "The URL is broken."]
 ```
 
 ```
-## [1] "https://en.wikipedia.org/wiki/University_of_California,_Berkeley"
-## [2] "https://en.wikipedia.org/wiki/Stanford_University"               
-## [3] "https://en.wikipedia.org/wiki/Carnegie_Mellon_University"        
-## [4] "https://DLAB"
+## [1] "https://DLAB"
 ```
 
 ## Developing your own data products
@@ -1896,7 +1918,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-10-26"
+date: "2020-10-28"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 

@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-10-23" />
+<meta name="date" content="2020-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -331,9 +331,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.6.1" data-path="machine-learning.html"><a href="machine-learning.html#ols-and-lasso"><i class="fa fa-check"></i><b>7.6.1</b> OLS and Lasso</a></li>
 <li class="chapter" data-level="7.6.2" data-path="machine-learning.html"><a href="machine-learning.html#decision-tree"><i class="fa fa-check"></i><b>7.6.2</b> Decision tree</a></li>
-<li class="chapter" data-level="7.6.3" data-path="machine-learning.html"><a href="machine-learning.html#random-forest"><i class="fa fa-check"></i><b>7.6.3</b> Random forest</a></li>
-<li class="chapter" data-level="7.6.4" data-path="machine-learning.html"><a href="machine-learning.html#xgboost"><i class="fa fa-check"></i><b>7.6.4</b> XGboost</a></li>
-<li class="chapter" data-level="7.6.5" data-path="machine-learning.html"><a href="machine-learning.html#applications-1"><i class="fa fa-check"></i><b>7.6.5</b> Applications</a></li>
+<li class="chapter" data-level="7.6.3" data-path="machine-learning.html"><a href="machine-learning.html#bagging-random-forest"><i class="fa fa-check"></i><b>7.6.3</b> Bagging (Random forest)</a></li>
+<li class="chapter" data-level="7.6.4" data-path="machine-learning.html"><a href="machine-learning.html#boosting-xgboost"><i class="fa fa-check"></i><b>7.6.4</b> Boosting (XGboost)</a></li>
+<li class="chapter" data-level="7.6.5" data-path="machine-learning.html"><a href="machine-learning.html#stacking-superlearner"><i class="fa fa-check"></i><b>7.6.5</b> Stacking (SuperLearner)</a></li>
+<li class="chapter" data-level="7.6.6" data-path="machine-learning.html"><a href="machine-learning.html#applications-1"><i class="fa fa-check"></i><b>7.6.6</b> Applications</a></li>
 </ul></li>
 <li class="chapter" data-level="7.7" data-path="machine-learning.html"><a href="machine-learning.html#unsupervised-learning"><i class="fa fa-check"></i><b>7.7</b> Unsupervised learning</a>
 <ul>
@@ -355,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="big-data.html"><a href="big-data.html"><i class="fa fa-check"></i><b>8</b> Big data</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="big-data.html"><a href="big-data.html#overview-1"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.1" data-path="big-data.html"><a href="big-data.html#overview-2"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
 <li class="chapter" data-level="8.2" data-path="big-data.html"><a href="big-data.html#sql"><i class="fa fa-check"></i><b>8.2</b> SQL</a>
 <ul>
 <li class="chapter" data-level="8.2.1" data-path="big-data.html"><a href="big-data.html#learning-objectives"><i class="fa fa-check"></i><b>8.2.1</b> Learning objectives</a></li>
@@ -364,7 +365,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2.4" data-path="big-data.html"><a href="big-data.html#packages-1"><i class="fa fa-check"></i><b>8.2.4</b> Packages</a></li>
 <li class="chapter" data-level="8.2.5" data-path="big-data.html"><a href="big-data.html#nyc-flights-data"><i class="fa fa-check"></i><b>8.2.5</b> NYC flights data</a></li>
 <li class="chapter" data-level="8.2.6" data-path="big-data.html"><a href="big-data.html#workflow-4"><i class="fa fa-check"></i><b>8.2.6</b> Workflow</a></li>
-<li class="chapter" data-level="8.2.7" data-path="big-data.html"><a href="big-data.html#references-3"><i class="fa fa-check"></i><b>8.2.7</b> References</a></li>
+<li class="chapter" data-level="8.2.7" data-path="big-data.html"><a href="big-data.html#things-we-didnt-cover"><i class="fa fa-check"></i><b>8.2.7</b> Things we didn’t cover</a></li>
+<li class="chapter" data-level="8.2.8" data-path="big-data.html"><a href="big-data.html#references-3"><i class="fa fa-check"></i><b>8.2.8</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="big-data.html"><a href="big-data.html#spark"><i class="fa fa-check"></i><b>8.3</b> Spark</a>
 <ul>
@@ -664,7 +666,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb959-7"><a href="semi-structured-data.html#cb959-7"></a><span class="co">## Install the current development version from GitHub</span></span>
 <span id="cb959-8"><a href="semi-structured-data.html#cb959-8"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;jaeyk/tidytweetjson&quot;</span>,</span>
 <span id="cb959-9"><a href="semi-structured-data.html#cb959-9"></a>                         <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## Skipping install of &#39;tidytweetjson&#39; from a github remote, the SHA1 (a1d9cf14) has not changed since last install.
+<pre><code>## Skipping install of &#39;tidytweetjson&#39; from a github remote, the SHA1 (b598dcc1) has not changed since last install.
 ##   Use `force = TRUE` to force installation</code></pre>
 <div class="sourceCode" id="cb961"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb961-1"><a href="semi-structured-data.html#cb961-1"></a><span class="kw">library</span>(tidytweetjson)</span></code></pre></div>
 <div id="objectives-6" class="section level4" number="6.5.3.1">
