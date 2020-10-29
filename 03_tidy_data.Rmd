@@ -13,7 +13,10 @@ ifelse(packageVersion("dplyr") >= 1,
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(
   tidyverse, # for the tidyverse framework
+  skimr, # for skimming data 
   here, # for computational reproducibility
+  infer, # statistical inference 
+  tidymodels, # statistical modeling 
   gapminder, # toy data
   nycflights13, # for exercise
   ggthemes, # additional themes
@@ -22,6 +25,7 @@ pacman::p_load(
   broom, # tidying model outputs
   waldo # side-by-side code comparison
 )
+
 ```
 
 The rest of the chapter follows the basic structure in [the Data Wrangling Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) created by RStudio.
@@ -1255,10 +1259,24 @@ For instance, in many data science applications, linear algebra-based computatio
 This is what a tidy data looks like.
 
 ```{r}
-
 library(tidyverse)
 
 table1
+```
+
+
+**Additional tips** 
+
+There are so many different ways of taking a look at data in R. Can you discuss the pros and cons of each approach? Which one do you prefer and why?
+
+```{r}
+
+str(table1)
+
+glimpse(table1) # similar ot str() clearner output 
+
+skim(table1) # str() + summary() + more 
+
 ```
 
 - The big picture 
@@ -1271,7 +1289,7 @@ Practically, this approach is good because you're going to have consistency in t
 
 Computationally, this approach is useful for vectorized programming because "different variables from the same observation are always paired". Vectorized means a function applies to a vector treats each element individually (=operations working in parallel).
 
-## tidyr 
+## Tidying (tidyr)
 
 ### Reshaping
 
@@ -1580,7 +1598,7 @@ df %>% unite("contact",
 
 ### Filling (TBD)
 
-## dplyr 
+## Manipulating (dplyr)
 
 dplyr is better than the base R approaches to data processing:
 
@@ -2365,7 +2383,7 @@ flights %>%
   count(tailnum, sort = TRUE)
 ```
 
-## broom 
+## Modeling (broom)
 
 ### Nesting
 
@@ -2398,7 +2416,8 @@ nested <- gapminder %>%
 
 head(nested)
 
-nested$data[[1]]
+nested$data %>% pluck(1)
+
 ```
 
 -   Custom function
@@ -2408,6 +2427,7 @@ nested$data[[1]]
 lm_model <- function(df) {
   lm(lifeExp ~ year, data = df)
 }
+
 ```
 
 -   Apply function to the nested data
@@ -2426,6 +2446,8 @@ S3 is part of R's object oriented systems. If you need more information, check [
 
 #### unnest
 
+- glance() 
+
 `glance()` function from `broom` package inspects the quality of a statistical model.
 
 **Additional tips**
@@ -2439,7 +2461,11 @@ S3 is part of R's object oriented systems. If you need more information, check [
 glanced <- nested %>%
   mutate(glance = map(models, broom::glance))
 
-glanced$glance[[1]]
+# Pluck the first item on the list 
+glanced$glance %>% pluck(1)
+
+# Pull p.value 
+glanced$glance %>% pluck(1) %>% pull(p.value)
 ```
 
 `unnest()` unpacks the list objects stored in glance column
@@ -2455,6 +2481,32 @@ glanced %>%
   ggplot(aes(continent, BIC)) +
   geom_jitter(width = 0.5)
 ```
+
+- tidy() 
+
+```{r}
+
+nested <- gapminder %>%
+  group_by(continent) %>%
+  nest()
+
+nested <- nested %>%
+  mutate(models = map(data, ~lm(lifeExp ~ year + country, data = .))) 
+
+tidied <- nested %>%
+  mutate(tidied = map(models, broom::tidy))
+
+model_out <- tidied %>%
+  unnest(tidied) %>%
+  mutate(term = str_replace(term, "country", "")) %>%
+  select(continent, term, estimate, p.value) %>%
+  mutate(p_threshold = ifelse(p.value < 0.05, 1, 0))
+
+model_out %>% filter(p_threshold == 1) %>% pull(term) %>% unique()
+model_out %>% filter(p_threshold == 0) %>% pull(term) %>% unique()
+
+```
+
 
 ### Mapping
 
@@ -2478,7 +2530,133 @@ Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between t
 
 If you want to know more about the power and joy of functional programming in R (e.g., `purrr::map()`), then please take ["How to Automate Repeated Things in R"](https://github.com/dlab-berkeley/R-functional-programming) workshop.
 
-## ggplot2 
+### Hypothesis testing 
+
+Statistical inference: does the effect/difference in observed data occur by chance?
+
+Null hypothesis: everything was random 
+Alternative hypothesis: everything was not random. Note that this does not mean that a particular factor influenced the outcome of interest. Statistical inference != Causal inference (causes and effects)
+
+$Y = X_{1} + X_{2} + X_{3} \epsilon$
+
+[`infer`](https://github.com/tidymodels/infer) is for tidyverse-friendly statistical inference. 
+
+**Workflow**
+
+1. `specify()` specify a formula 
+2. `hypothesize()` declare the null hypothesis 
+3. `generate()` generate data based on the null hypothesis 
+4. `calculate()` calculate a distribution of statistics from the generated data to form the null distribution 
+
+
+![From infer package](https://raw.githubusercontent.com/tidymodels/infer/master/figs/ht-diagram.png)
+
+```{r}
+
+gapminder <- gapminder %>%
+  mutate(log_pop = log(pop))
+
+ggplot(aes(x = log_pop, y = lifeExp), data = gapminder) +
+  geom_point() +
+  geom_smooth(method = "lm")
+  
+# Calculate the observed statistic: Observed slopes 
+observed_slopes <- gapminder %>%
+  # specify(formula = lifeExp ~ log_pop) %>% 
+  specify(formula = lifeExp ~ log_pop) %>%
+  calculate(stat = "slope")
+
+# Generate the null distribution: Null slopes 
+null_slopes <- gapminder %>%
+  # Specify a formula
+  specify(formula = lifeExp ~ log_pop) %>%
+  # Hypothesize (point estimation)
+  hypothesize(null = "point", mu = 0) %>%
+  # Generate sampling distributions (bootstrapping)
+  generate(reps = 1000, type = "bootstrap") %>%
+  # Calculate statistics 
+  calculate(stat = "slope") 
+
+# Return data 
+null_slopes %>%
+  # p-value is just the probability that observed pattern could arise if the null hypothesis was true 
+  # In social science convention, if alpha is below 0.005 (note: this is totally arbitrary), then the observed distribution is statistically significant.
+  get_p_value(obs_stat = observed_slopes, 
+              direction = "both")
+
+# Visualize output 
+visualize(null_slopes) +
+  shade_p_value(obs_stat = observed_slopes, 
+                direction = "both")
+
+
+```
+
+### Mixed models 
+
+This part heavily draws on [Gelman and Hill](http://www.stat.columbia.edu/~gelman/arm/) (2007), Michael Clark's [Mixed Models with R](https://m-clark.github.io/mixed-models-with-R/), and Basel R Bootcamp's [Statistics with R: Mixed Models](https://therbootcamp.github.io/SwR_2019Apr/_sessions/MixedModels/MixedModels_practical.html). For a quick review on mixed models, I recommend Xavier et al.'s ["A brief introduction to mixed effects modelling and multi-model inference in ecology"](https://peerj.com/articles/4794/) (2018).
+
+Why random effects model/mixed effects model?
+
+Fixed effects model assume that groups are independent from each other and sharing common residuals (same slope for fitted covariates). Limiting to a common slope can inflate Type I and Type II errors.  
+
+```{r}
+pacman::p_load(# Necessary  
+               lme4, 
+               broom.mixed, 
+               # Optional 
+               merTools,
+               glmmTMB, 
+               brms, 
+               modelr, 
+               nlme, 
+               sjstats)
+
+```
+
+```{r}
+
+# Base LM model 
+lm_out <- lm(lifeExp ~ pop + continent, 
+             data = gapminder)
+
+# Mixed effects 
+re_out <- lmer(lifeExp ~ pop + # Fixed effects
+                # Random effects 
+                # (design matrix|group_variables)
+                # (1|group_var) = random intercept 
+                # (1 + var | group_var) = random slope + random intercept 
+               (1|continent),
+               data = gapminder, # Data 
+               REML = FALSE) # Default computation engine is restricted maximal likelihood; the other option is maximum likelihood estimation 
+
+#re_out2 <- lmer(lifeExp ~ pop + # Fixed effects
+                # Random effects 
+                # (design matrix|group_variables)
+                # (1|group_var) = random intercept 
+                # (1 + var | group_var) = random slope + random intercept 
+ #              (country|continent),
+  #             data = gapminder, # Data 
+   #            REML = FALSE) # Default computation engine is restricted maximal likelihood; the other option is maximum likelihood estimation 
+
+summary(re_out)
+
+nlme::fixef(re_out) %>% as_tibble()
+nlme::ranef(re_out) %>% as_tibble()
+
+lm_out %>% 
+  broom::tidy() %>%
+  filter(term == "pop") %>%
+  pull(estimate)
+
+re_out %>%
+  broom.mixed::tidy() %>%
+  filter(term == "pop") %>%
+  pull(estimate)
+
+```
+
+## Visualizing (ggplot2)
 
 - The following material is adapted from Kieran Healy's wonderful book (2019) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful book on [ggplot2](https://link.springer.com/content/pdf/10.1007%2F978-0-387-98141-3.pdf). For more theoretical discussions, I recommend you to read [The Grammar of Graphics](https://link.springer.com/book/10.1007%2F0-387-28695-0) by Leland Wilkinson.
 
@@ -2580,6 +2758,7 @@ p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
 - `geom_density()`: Also for the probability distribution of a continuous variable. It calculates a [kernel density estimate](https://en.wikipedia.org/wiki/Kernel_density_estimation) of the underlying distribution. 
 
 #### Histogram 
+
 ```{r}
 
 data(midwest) # load midwest dataset
@@ -3059,6 +3238,7 @@ gapminder %>%
 In plotting models, we extensively use David Robinson's [broom package](https://cran.r-project.org/web/packages/broom/vignettes/broom.html) in R. The idea is to transform model outputs (i.e., predictions and estimations) into tidy objects so that we can easily combine, separate, and visualize these elements. 
 
 #### Plotting several fits at the same time
+
 ```{r}
 model_colors <- RColorBrewer::brewer.pal(3, "Set1") # select three qualitatively different colors from a larger palette.
 
@@ -3077,6 +3257,7 @@ gapminder %>%
 ```
 
 #### Extracting model outcomes 
+
 ```{r}
 
 # regression model
@@ -3103,6 +3284,7 @@ Try glance(out), what did you get from these commands? If you're curious, you ca
 The followings are to show your degree of confidence.
 
 ##### Coeffficients
+
 ```{r}
 # estimates
 out_comp <- tidy(out)
