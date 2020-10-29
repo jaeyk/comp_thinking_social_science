@@ -1307,7 +1307,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-27-1.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-27-1.png" width="672" />
 
 ```r
 airquality %>%
@@ -1323,7 +1323,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-27-2.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-27-2.png" width="672" />
 
 ```r
 airquality %>%
@@ -1339,7 +1339,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-27-3.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-27-3.png" width="672" />
 
 ### Solution 
 
@@ -1387,7 +1387,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-29-1.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 
 - The next step is to write an automatic plotting function. 
 
@@ -1421,7 +1421,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-31-1.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-1.png" width="672" />
 
 ```
 ## 
@@ -1432,7 +1432,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-31-2.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-2.png" width="672" />
 
 ```
 ## 
@@ -1443,7 +1443,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-31-3.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-3.png" width="672" />
 
 ```
 ## 
@@ -1454,7 +1454,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-31-4.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-4.png" width="672" />
 
 ```
 ## 
@@ -1465,7 +1465,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-31-5.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-5.png" width="672" />
 
 ## Automate joining
 
@@ -1918,7 +1918,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-10-28"
+date: "2020-10-29"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 

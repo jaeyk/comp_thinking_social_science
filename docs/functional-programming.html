@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-10-28" />
+<meta name="date" content="2020-10-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -212,12 +212,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="tidy-data.html"><a href="tidy-data.html#tidyverse"><i class="fa fa-check"></i><b>4.6</b> Tidyverse</a></li>
 <li class="chapter" data-level="4.7" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data"><i class="fa fa-check"></i><b>4.7</b> Tidy data</a></li>
-<li class="chapter" data-level="4.8" data-path="tidy-data.html"><a href="tidy-data.html#tidyr"><i class="fa fa-check"></i><b>4.8</b> tidyr</a>
+<li class="chapter" data-level="4.8" data-path="tidy-data.html"><a href="tidy-data.html#tidying-tidyr"><i class="fa fa-check"></i><b>4.8</b> Tidying (tidyr)</a>
 <ul>
 <li class="chapter" data-level="4.8.1" data-path="tidy-data.html"><a href="tidy-data.html#reshaping"><i class="fa fa-check"></i><b>4.8.1</b> Reshaping</a></li>
 <li class="chapter" data-level="4.8.2" data-path="tidy-data.html"><a href="tidy-data.html#filling-tbd"><i class="fa fa-check"></i><b>4.8.2</b> Filling (TBD)</a></li>
 </ul></li>
-<li class="chapter" data-level="4.9" data-path="tidy-data.html"><a href="tidy-data.html#dplyr"><i class="fa fa-check"></i><b>4.9</b> dplyr</a>
+<li class="chapter" data-level="4.9" data-path="tidy-data.html"><a href="tidy-data.html#manipulating-dplyr"><i class="fa fa-check"></i><b>4.9</b> Manipulating (dplyr)</a>
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="tidy-data.html"><a href="tidy-data.html#rearranging"><i class="fa fa-check"></i><b>4.9.1</b> Rearranging</a></li>
 <li class="chapter" data-level="4.9.2" data-path="tidy-data.html"><a href="tidy-data.html#subset-observations-rows"><i class="fa fa-check"></i><b>4.9.2</b> Subset observations (rows)</a></li>
@@ -230,12 +230,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9.9" data-path="tidy-data.html"><a href="tidy-data.html#grouping"><i class="fa fa-check"></i><b>4.9.9</b> Grouping</a></li>
 <li class="chapter" data-level="4.9.10" data-path="tidy-data.html"><a href="tidy-data.html#joining"><i class="fa fa-check"></i><b>4.9.10</b> Joining</a></li>
 </ul></li>
-<li class="chapter" data-level="4.10" data-path="tidy-data.html"><a href="tidy-data.html#broom"><i class="fa fa-check"></i><b>4.10</b> broom</a>
+<li class="chapter" data-level="4.10" data-path="tidy-data.html"><a href="tidy-data.html#modeling-broom"><i class="fa fa-check"></i><b>4.10</b> Modeling (broom)</a>
 <ul>
 <li class="chapter" data-level="4.10.1" data-path="tidy-data.html"><a href="tidy-data.html#nesting"><i class="fa fa-check"></i><b>4.10.1</b> Nesting</a></li>
 <li class="chapter" data-level="4.10.2" data-path="tidy-data.html"><a href="tidy-data.html#mapping"><i class="fa fa-check"></i><b>4.10.2</b> Mapping</a></li>
+<li class="chapter" data-level="4.10.3" data-path="tidy-data.html"><a href="tidy-data.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.10.3</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="4.10.4" data-path="tidy-data.html"><a href="tidy-data.html#mixed-models"><i class="fa fa-check"></i><b>4.10.4</b> Mixed models</a></li>
 </ul></li>
-<li class="chapter" data-level="4.11" data-path="tidy-data.html"><a href="tidy-data.html#ggplot2"><i class="fa fa-check"></i><b>4.11</b> ggplot2</a>
+<li class="chapter" data-level="4.11" data-path="tidy-data.html"><a href="tidy-data.html#visualizing-ggplot2"><i class="fa fa-check"></i><b>4.11</b> Visualizing (ggplot2)</a>
 <ul>
 <li class="chapter" data-level="4.11.1" data-path="tidy-data.html"><a href="tidy-data.html#motivation-2"><i class="fa fa-check"></i><b>4.11.1</b> Motivation</a></li>
 <li class="chapter" data-level="4.11.2" data-path="tidy-data.html"><a href="tidy-data.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>4.11.2</b> The grammar of graphics</a></li>
@@ -408,162 +410,162 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>else</code>, however, is a reserved operator that takes no arguments. Note that there is no <code>elif</code> option — one simply writes <code>else if()</code>.</p></li>
 <li><p>Whereas operations to be executed after conditional evaluations in Python come after a <code>:</code>, R operations must only be enclosed in curly brackets: <code>{}</code>. Furthermore, there is no requirement for indentation.</p></li>
 </ul>
-<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb777-1"><a href="functional-programming.html#cb777-1"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb777-2"><a href="functional-programming.html#cb777-2"></a></span>
-<span id="cb777-3"><a href="functional-programming.html#cb777-3"></a><span class="cf">if</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>){ <span class="co"># Condition </span></span>
-<span id="cb777-4"><a href="functional-programming.html#cb777-4"></a>  <span class="kw">print</span>(<span class="st">&quot;x is negative&quot;</span>) <span class="co"># Do something </span></span>
-<span id="cb777-5"><a href="functional-programming.html#cb777-5"></a>} </span>
-<span id="cb777-6"><a href="functional-programming.html#cb777-6"></a></span>
-<span id="cb777-7"><a href="functional-programming.html#cb777-7"></a>x &lt;-<span class="st"> </span><span class="dv">-5</span></span>
-<span id="cb777-8"><a href="functional-programming.html#cb777-8"></a></span>
-<span id="cb777-9"><a href="functional-programming.html#cb777-9"></a><span class="cf">if</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>){</span>
-<span id="cb777-10"><a href="functional-programming.html#cb777-10"></a>  <span class="kw">print</span>(<span class="st">&quot;x is negative&quot;</span>)</span>
-<span id="cb777-11"><a href="functional-programming.html#cb777-11"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="functional-programming.html#cb813-1"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb813-2"><a href="functional-programming.html#cb813-2"></a></span>
+<span id="cb813-3"><a href="functional-programming.html#cb813-3"></a><span class="cf">if</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>){ <span class="co"># Condition </span></span>
+<span id="cb813-4"><a href="functional-programming.html#cb813-4"></a>  <span class="kw">print</span>(<span class="st">&quot;x is negative&quot;</span>) <span class="co"># Do something </span></span>
+<span id="cb813-5"><a href="functional-programming.html#cb813-5"></a>} </span>
+<span id="cb813-6"><a href="functional-programming.html#cb813-6"></a></span>
+<span id="cb813-7"><a href="functional-programming.html#cb813-7"></a>x &lt;-<span class="st"> </span><span class="dv">-5</span></span>
+<span id="cb813-8"><a href="functional-programming.html#cb813-8"></a></span>
+<span id="cb813-9"><a href="functional-programming.html#cb813-9"></a><span class="cf">if</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>){</span>
+<span id="cb813-10"><a href="functional-programming.html#cb813-10"></a>  <span class="kw">print</span>(<span class="st">&quot;x is negative&quot;</span>)</span>
+<span id="cb813-11"><a href="functional-programming.html#cb813-11"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;x is negative&quot;</code></pre>
-<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb779-1"><a href="functional-programming.html#cb779-1"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb779-2"><a href="functional-programming.html#cb779-2"></a></span>
-<span id="cb779-3"><a href="functional-programming.html#cb779-3"></a><span class="cf">if</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>){</span>
-<span id="cb779-4"><a href="functional-programming.html#cb779-4"></a>  <span class="kw">print</span>(<span class="st">&quot;x is negative&quot;</span>)</span>
-<span id="cb779-5"><a href="functional-programming.html#cb779-5"></a>} <span class="cf">else</span>{</span>
-<span id="cb779-6"><a href="functional-programming.html#cb779-6"></a>  <span class="kw">print</span>(<span class="st">&quot;x is positive&quot;</span>)</span>
-<span id="cb779-7"><a href="functional-programming.html#cb779-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="functional-programming.html#cb815-1"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb815-2"><a href="functional-programming.html#cb815-2"></a></span>
+<span id="cb815-3"><a href="functional-programming.html#cb815-3"></a><span class="cf">if</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>){</span>
+<span id="cb815-4"><a href="functional-programming.html#cb815-4"></a>  <span class="kw">print</span>(<span class="st">&quot;x is negative&quot;</span>)</span>
+<span id="cb815-5"><a href="functional-programming.html#cb815-5"></a>} <span class="cf">else</span>{</span>
+<span id="cb815-6"><a href="functional-programming.html#cb815-6"></a>  <span class="kw">print</span>(<span class="st">&quot;x is positive&quot;</span>)</span>
+<span id="cb815-7"><a href="functional-programming.html#cb815-7"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;x is positive&quot;</code></pre>
-<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb781-1"><a href="functional-programming.html#cb781-1"></a>x &lt;-<span class="st"> </span><span class="dv">0</span></span>
-<span id="cb781-2"><a href="functional-programming.html#cb781-2"></a></span>
-<span id="cb781-3"><a href="functional-programming.html#cb781-3"></a><span class="cf">if</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>){ <span class="co"># Condition </span></span>
-<span id="cb781-4"><a href="functional-programming.html#cb781-4"></a>  <span class="kw">print</span>(<span class="st">&quot;x is negative&quot;</span>) <span class="co"># Do something </span></span>
-<span id="cb781-5"><a href="functional-programming.html#cb781-5"></a>} <span class="cf">else</span> <span class="cf">if</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>){ </span>
-<span id="cb781-6"><a href="functional-programming.html#cb781-6"></a>  <span class="kw">print</span>(<span class="st">&quot;x is zero&quot;</span>) <span class="co"># Do something else </span></span>
-<span id="cb781-7"><a href="functional-programming.html#cb781-7"></a>} <span class="cf">else</span> { <span class="kw">print</span>(<span class="st">&quot;x is positive&quot;</span>) <span class="co"># Do something else </span></span>
-<span id="cb781-8"><a href="functional-programming.html#cb781-8"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="functional-programming.html#cb817-1"></a>x &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb817-2"><a href="functional-programming.html#cb817-2"></a></span>
+<span id="cb817-3"><a href="functional-programming.html#cb817-3"></a><span class="cf">if</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>){ <span class="co"># Condition </span></span>
+<span id="cb817-4"><a href="functional-programming.html#cb817-4"></a>  <span class="kw">print</span>(<span class="st">&quot;x is negative&quot;</span>) <span class="co"># Do something </span></span>
+<span id="cb817-5"><a href="functional-programming.html#cb817-5"></a>} <span class="cf">else</span> <span class="cf">if</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>){ </span>
+<span id="cb817-6"><a href="functional-programming.html#cb817-6"></a>  <span class="kw">print</span>(<span class="st">&quot;x is zero&quot;</span>) <span class="co"># Do something else </span></span>
+<span id="cb817-7"><a href="functional-programming.html#cb817-7"></a>} <span class="cf">else</span> { <span class="kw">print</span>(<span class="st">&quot;x is positive&quot;</span>) <span class="co"># Do something else </span></span>
+<span id="cb817-8"><a href="functional-programming.html#cb817-8"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;x is zero&quot;</code></pre>
 <p>R also does some class coercion that makes Boolean evaluations harder to break than in Python. But be careful — R has a set of special coercion used for fast logical evaluation and subsetting. Specifically, <code>TRUE</code> is considered equal to <code>1</code>, while <code>FALSE</code> is equal to <code>0</code>. The Boolean logicals can also be specified as a full word in all caps, or simply as <code>T</code> or <code>F</code>.</p>
-<div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb783-1"><a href="functional-programming.html#cb783-1"></a><span class="dv">1</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="functional-programming.html#cb819-1"></a><span class="dv">1</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb785-1"><a href="functional-programming.html#cb785-1"></a><span class="st">&quot;1&quot;</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb821-1"><a href="functional-programming.html#cb821-1"></a><span class="st">&quot;1&quot;</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb787"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb787-1"><a href="functional-programming.html#cb787-1"></a><span class="st">&quot;a&quot;</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="functional-programming.html#cb823-1"></a><span class="st">&quot;a&quot;</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb789-1"><a href="functional-programming.html#cb789-1"></a><span class="ot">TRUE</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="functional-programming.html#cb825-1"></a><span class="ot">TRUE</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb791-1"><a href="functional-programming.html#cb791-1"></a><span class="ot">TRUE</span> <span class="op">==</span><span class="st"> &quot;TRUE&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="functional-programming.html#cb827-1"></a><span class="ot">TRUE</span> <span class="op">==</span><span class="st"> &quot;TRUE&quot;</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb793-1"><a href="functional-programming.html#cb793-1"></a>T <span class="op">==</span><span class="st"> &quot;TRUE&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="functional-programming.html#cb829-1"></a>T <span class="op">==</span><span class="st"> &quot;TRUE&quot;</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb795-1"><a href="functional-programming.html#cb795-1"></a><span class="ot">TRUE</span> <span class="op">==</span><span class="st"> &quot;T&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="functional-programming.html#cb831-1"></a><span class="ot">TRUE</span> <span class="op">==</span><span class="st"> &quot;T&quot;</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb797-1"><a href="functional-programming.html#cb797-1"></a><span class="ot">TRUE</span> <span class="op">==</span><span class="st"> &quot;FALSE&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="functional-programming.html#cb833-1"></a><span class="ot">TRUE</span> <span class="op">==</span><span class="st"> &quot;FALSE&quot;</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="functional-programming.html#cb799-1"></a><span class="ot">TRUE</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb835-1"><a href="functional-programming.html#cb835-1"></a><span class="ot">TRUE</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="functional-programming.html#cb801-1"></a><span class="ot">TRUE</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="functional-programming.html#cb837-1"></a><span class="ot">TRUE</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="functional-programming.html#cb803-1"></a><span class="ot">FALSE</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="functional-programming.html#cb839-1"></a><span class="ot">FALSE</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb805-1"><a href="functional-programming.html#cb805-1"></a><span class="ot">FALSE</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="functional-programming.html#cb841-1"></a><span class="ot">FALSE</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <div id="functions" class="section level3" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Functions</h3>
 <p>While functions are defined in Python using the <code>def</code> reserved operator, R sees functions as just another type of named object. Thus, they require explicit assignment to an object. This is done using the function <code>function()</code>, which creates a function taking the arguments specified in parentheses.</p>
 <p>function = input + computation (begin -&gt; end) + output</p>
-<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="functional-programming.html#cb807-1"></a>simple.function &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
-<span id="cb807-2"><a href="functional-programming.html#cb807-2"></a>  <span class="kw">print</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
-<span id="cb807-3"><a href="functional-programming.html#cb807-3"></a>}</span>
-<span id="cb807-4"><a href="functional-programming.html#cb807-4"></a></span>
-<span id="cb807-5"><a href="functional-programming.html#cb807-5"></a><span class="kw">simple.function</span>(<span class="dt">x =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="functional-programming.html#cb843-1"></a>simple.function &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb843-2"><a href="functional-programming.html#cb843-2"></a>  <span class="kw">print</span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb843-3"><a href="functional-programming.html#cb843-3"></a>}</span>
+<span id="cb843-4"><a href="functional-programming.html#cb843-4"></a></span>
+<span id="cb843-5"><a href="functional-programming.html#cb843-5"></a><span class="kw">simple.function</span>(<span class="dt">x =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="functional-programming.html#cb809-1"></a>less.simple.function &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){</span>
-<span id="cb809-2"><a href="functional-programming.html#cb809-2"></a>  <span class="kw">print</span>(x <span class="op">-</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
-<span id="cb809-3"><a href="functional-programming.html#cb809-3"></a>}</span>
-<span id="cb809-4"><a href="functional-programming.html#cb809-4"></a></span>
-<span id="cb809-5"><a href="functional-programming.html#cb809-5"></a><span class="kw">less.simple.function</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb845-1"><a href="functional-programming.html#cb845-1"></a>less.simple.function &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){</span>
+<span id="cb845-2"><a href="functional-programming.html#cb845-2"></a>  <span class="kw">print</span>(x <span class="op">-</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb845-3"><a href="functional-programming.html#cb845-3"></a>}</span>
+<span id="cb845-4"><a href="functional-programming.html#cb845-4"></a></span>
+<span id="cb845-5"><a href="functional-programming.html#cb845-5"></a><span class="kw">less.simple.function</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] -7</code></pre>
 <p>With respect to returning function output, most of the same rules apply as with Python. Be sure to remember that <code>return()</code> will only process a single object, so multiple items must usually be returned as a list. Note that your ordering of the functions matters, too.</p>
-<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="functional-programming.html#cb811-1"></a>dumbfun &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
-<span id="cb811-2"><a href="functional-programming.html#cb811-2"></a>  <span class="kw">return</span>(x)</span>
-<span id="cb811-3"><a href="functional-programming.html#cb811-3"></a>  <span class="kw">print</span>(<span class="st">&quot;This will never print :(&quot;</span>)</span>
-<span id="cb811-4"><a href="functional-programming.html#cb811-4"></a>}</span>
-<span id="cb811-5"><a href="functional-programming.html#cb811-5"></a></span>
-<span id="cb811-6"><a href="functional-programming.html#cb811-6"></a><span class="kw">dumbfun</span>(<span class="dt">x =</span> <span class="st">&quot;something&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="functional-programming.html#cb847-1"></a>dumbfun &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb847-2"><a href="functional-programming.html#cb847-2"></a>  <span class="kw">return</span>(x)</span>
+<span id="cb847-3"><a href="functional-programming.html#cb847-3"></a>  <span class="kw">print</span>(<span class="st">&quot;This will never print :(&quot;</span>)</span>
+<span id="cb847-4"><a href="functional-programming.html#cb847-4"></a>}</span>
+<span id="cb847-5"><a href="functional-programming.html#cb847-5"></a></span>
+<span id="cb847-6"><a href="functional-programming.html#cb847-6"></a><span class="kw">dumbfun</span>(<span class="dt">x =</span> <span class="st">&quot;something&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;something&quot;</code></pre>
-<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="functional-programming.html#cb813-1"></a>dumbfun &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
-<span id="cb813-2"><a href="functional-programming.html#cb813-2"></a>  <span class="kw">print</span>(<span class="st">&quot;Why did I print?&quot;</span>)</span>
-<span id="cb813-3"><a href="functional-programming.html#cb813-3"></a>  <span class="kw">return</span>(x)</span>
-<span id="cb813-4"><a href="functional-programming.html#cb813-4"></a>}</span>
-<span id="cb813-5"><a href="functional-programming.html#cb813-5"></a></span>
-<span id="cb813-6"><a href="functional-programming.html#cb813-6"></a><span class="kw">dumbfun</span>(<span class="dt">x =</span> <span class="st">&quot;something&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb849-1"><a href="functional-programming.html#cb849-1"></a>dumbfun &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb849-2"><a href="functional-programming.html#cb849-2"></a>  <span class="kw">print</span>(<span class="st">&quot;Why did I print?&quot;</span>)</span>
+<span id="cb849-3"><a href="functional-programming.html#cb849-3"></a>  <span class="kw">return</span>(x)</span>
+<span id="cb849-4"><a href="functional-programming.html#cb849-4"></a>}</span>
+<span id="cb849-5"><a href="functional-programming.html#cb849-5"></a></span>
+<span id="cb849-6"><a href="functional-programming.html#cb849-6"></a><span class="kw">dumbfun</span>(<span class="dt">x =</span> <span class="st">&quot;something&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Why did I print?&quot;</code></pre>
 <pre><code>## [1] &quot;something&quot;</code></pre>
-<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="functional-programming.html#cb816-1"></a>dumbfun &lt;-<span class="st"> </span><span class="cf">function</span>(x,y){</span>
-<span id="cb816-2"><a href="functional-programming.html#cb816-2"></a>  thing1 &lt;-<span class="st"> </span>x</span>
-<span id="cb816-3"><a href="functional-programming.html#cb816-3"></a>  thing2 &lt;-<span class="st"> </span>y</span>
-<span id="cb816-4"><a href="functional-programming.html#cb816-4"></a>  <span class="kw">return</span>(<span class="kw">list</span>(thing1, thing2))</span>
-<span id="cb816-5"><a href="functional-programming.html#cb816-5"></a>}</span>
-<span id="cb816-6"><a href="functional-programming.html#cb816-6"></a></span>
-<span id="cb816-7"><a href="functional-programming.html#cb816-7"></a><span class="kw">dumbfun</span>(<span class="dt">x =</span> <span class="st">&quot;some text&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;some data&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="functional-programming.html#cb852-1"></a>dumbfun &lt;-<span class="st"> </span><span class="cf">function</span>(x,y){</span>
+<span id="cb852-2"><a href="functional-programming.html#cb852-2"></a>  thing1 &lt;-<span class="st"> </span>x</span>
+<span id="cb852-3"><a href="functional-programming.html#cb852-3"></a>  thing2 &lt;-<span class="st"> </span>y</span>
+<span id="cb852-4"><a href="functional-programming.html#cb852-4"></a>  <span class="kw">return</span>(<span class="kw">list</span>(thing1, thing2))</span>
+<span id="cb852-5"><a href="functional-programming.html#cb852-5"></a>}</span>
+<span id="cb852-6"><a href="functional-programming.html#cb852-6"></a></span>
+<span id="cb852-7"><a href="functional-programming.html#cb852-7"></a><span class="kw">dumbfun</span>(<span class="dt">x =</span> <span class="st">&quot;some text&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;some data&quot;</span>)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;some text&quot;
 ## 
 ## [[2]]
 ## [1] &quot;some data&quot;</code></pre>
-<div class="sourceCode" id="cb818"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb818-1"><a href="functional-programming.html#cb818-1"></a><span class="kw">dumbfun</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>), <span class="dt">y =</span> <span class="st">&quot;some data&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="functional-programming.html#cb854-1"></a><span class="kw">dumbfun</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>), <span class="dt">y =</span> <span class="st">&quot;some data&quot;</span>)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1]  5 10 15
 ## 
 ## [[2]]
 ## [1] &quot;some data&quot;</code></pre>
 <p>R functions also allow you to set default argument values:</p>
-<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb820-1"><a href="functional-programming.html#cb820-1"></a>less.simple.function &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">y =</span> <span class="dv">0</span>){</span>
-<span id="cb820-2"><a href="functional-programming.html#cb820-2"></a>  <span class="kw">print</span>(x <span class="op">-</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
-<span id="cb820-3"><a href="functional-programming.html#cb820-3"></a>}</span>
-<span id="cb820-4"><a href="functional-programming.html#cb820-4"></a></span>
-<span id="cb820-5"><a href="functional-programming.html#cb820-5"></a><span class="kw">less.simple.function</span>(<span class="dt">x =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="functional-programming.html#cb856-1"></a>less.simple.function &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">y =</span> <span class="dv">0</span>){</span>
+<span id="cb856-2"><a href="functional-programming.html#cb856-2"></a>  <span class="kw">print</span>(x <span class="op">-</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb856-3"><a href="functional-programming.html#cb856-3"></a>}</span>
+<span id="cb856-4"><a href="functional-programming.html#cb856-4"></a></span>
+<span id="cb856-5"><a href="functional-programming.html#cb856-5"></a><span class="kw">less.simple.function</span>(<span class="dt">x =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="functional-programming.html#cb822-1"></a><span class="kw">less.simple.function</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb858-1"><a href="functional-programming.html#cb858-1"></a><span class="kw">less.simple.function</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] -7</code></pre>
 <p>With respect to specifying arguments, one can either use argument <strong>position</strong> specifications (i.e., the order) or argument <strong>name</strong> specifications. The latter is strongly preferred, as it is very easy to accidentally specify incorrect argument values.</p>
-<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb824-1"><a href="functional-programming.html#cb824-1"></a>send &lt;-<span class="st"> </span><span class="cf">function</span>(message, recipient, <span class="dt">cc=</span><span class="ot">NULL</span>, <span class="dt">bcc=</span><span class="ot">NULL</span>){</span>
-<span id="cb824-2"><a href="functional-programming.html#cb824-2"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(message, recipient, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>))</span>
-<span id="cb824-3"><a href="functional-programming.html#cb824-3"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;CC:&quot;</span>, cc, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb824-4"><a href="functional-programming.html#cb824-4"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;BCC:&quot;</span>, bcc, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>))</span>
-<span id="cb824-5"><a href="functional-programming.html#cb824-5"></a>}</span>
-<span id="cb824-6"><a href="functional-programming.html#cb824-6"></a></span>
-<span id="cb824-7"><a href="functional-programming.html#cb824-7"></a><span class="kw">send</span>(<span class="dt">message =</span> <span class="st">&quot;Hello&quot;</span>, <span class="dt">recipient =</span> <span class="st">&quot;World&quot;</span>, <span class="dt">cc =</span> <span class="st">&quot;Sun&quot;</span>, <span class="dt">bcc =</span> <span class="st">&quot;Jane&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb860"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb860-1"><a href="functional-programming.html#cb860-1"></a>send &lt;-<span class="st"> </span><span class="cf">function</span>(message, recipient, <span class="dt">cc=</span><span class="ot">NULL</span>, <span class="dt">bcc=</span><span class="ot">NULL</span>){</span>
+<span id="cb860-2"><a href="functional-programming.html#cb860-2"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(message, recipient, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>))</span>
+<span id="cb860-3"><a href="functional-programming.html#cb860-3"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;CC:&quot;</span>, cc, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb860-4"><a href="functional-programming.html#cb860-4"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;BCC:&quot;</span>, bcc, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb860-5"><a href="functional-programming.html#cb860-5"></a>}</span>
+<span id="cb860-6"><a href="functional-programming.html#cb860-6"></a></span>
+<span id="cb860-7"><a href="functional-programming.html#cb860-7"></a><span class="kw">send</span>(<span class="dt">message =</span> <span class="st">&quot;Hello&quot;</span>, <span class="dt">recipient =</span> <span class="st">&quot;World&quot;</span>, <span class="dt">cc =</span> <span class="st">&quot;Sun&quot;</span>, <span class="dt">bcc =</span> <span class="st">&quot;Jane&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello, World&quot;
 ## [1] &quot;CC: Sun&quot;
 ## [1] &quot;BCC: Jane&quot;</code></pre>
-<div class="sourceCode" id="cb826"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb826-1"><a href="functional-programming.html#cb826-1"></a><span class="kw">send</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;World&quot;</span>, <span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Jane&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb862-1"><a href="functional-programming.html#cb862-1"></a><span class="kw">send</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;World&quot;</span>, <span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Jane&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello, World&quot;
 ## [1] &quot;CC: Sun&quot;
 ## [1] &quot;BCC: Jane&quot;</code></pre>
-<div class="sourceCode" id="cb828"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb828-1"><a href="functional-programming.html#cb828-1"></a><span class="kw">send</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Jane&quot;</span>, <span class="st">&quot;World&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb864"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb864-1"><a href="functional-programming.html#cb864-1"></a><span class="kw">send</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Jane&quot;</span>, <span class="st">&quot;World&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello, Sun&quot;
 ## [1] &quot;CC: Jane&quot;
 ## [1] &quot;BCC: World&quot;</code></pre>
-<div class="sourceCode" id="cb830"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb830-1"><a href="functional-programming.html#cb830-1"></a><span class="kw">send</span>(<span class="dt">message =</span> <span class="st">&quot;Hello&quot;</span>, <span class="dt">cc =</span> <span class="st">&quot;Sun&quot;</span>, <span class="dt">bcc =</span> <span class="kw">c</span>(<span class="st">&quot;Jane&quot;</span>, <span class="st">&quot;Rochelle&quot;</span>), <span class="dt">recipient =</span> <span class="st">&quot;World&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb866"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb866-1"><a href="functional-programming.html#cb866-1"></a><span class="kw">send</span>(<span class="dt">message =</span> <span class="st">&quot;Hello&quot;</span>, <span class="dt">cc =</span> <span class="st">&quot;Sun&quot;</span>, <span class="dt">bcc =</span> <span class="kw">c</span>(<span class="st">&quot;Jane&quot;</span>, <span class="st">&quot;Rochelle&quot;</span>), <span class="dt">recipient =</span> <span class="st">&quot;World&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello, World&quot;
 ## [1] &quot;CC: Sun&quot;
 ## [1] &quot;BCC: Jane&quot;     &quot;BCC: Rochelle&quot;</code></pre>
 <p>Also, note that functions don’t have what CS people called side-effects. Functions only define local variables = They don’t change objects stored in the global environment. (Consider the difference between <code>&lt;-</code> and <code>=</code> for assignments.) That’s why you can use functions for reusable tasks since it does not interrupt other important things in your system.</p>
 <p>See <a href="https://darrenjw.wordpress.com/2011/11/23/lexical-scope-and-function-closures-in-r/">the following example</a> from Wilkinson.</p>
-<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="functional-programming.html#cb832-1"></a>a =<span class="st"> </span><span class="dv">1</span> </span>
-<span id="cb832-2"><a href="functional-programming.html#cb832-2"></a>b =<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb832-3"><a href="functional-programming.html#cb832-3"></a></span>
-<span id="cb832-4"><a href="functional-programming.html#cb832-4"></a>f &lt;-<span class="st"> </span><span class="cf">function</span>(x)</span>
-<span id="cb832-5"><a href="functional-programming.html#cb832-5"></a>{</span>
-<span id="cb832-6"><a href="functional-programming.html#cb832-6"></a>  a<span class="op">*</span>x <span class="op">+</span><span class="st"> </span>b</span>
-<span id="cb832-7"><a href="functional-programming.html#cb832-7"></a>}</span>
-<span id="cb832-8"><a href="functional-programming.html#cb832-8"></a></span>
-<span id="cb832-9"><a href="functional-programming.html#cb832-9"></a><span class="kw">f</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb868"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb868-1"><a href="functional-programming.html#cb868-1"></a>a =<span class="st"> </span><span class="dv">1</span> </span>
+<span id="cb868-2"><a href="functional-programming.html#cb868-2"></a>b =<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb868-3"><a href="functional-programming.html#cb868-3"></a></span>
+<span id="cb868-4"><a href="functional-programming.html#cb868-4"></a>f &lt;-<span class="st"> </span><span class="cf">function</span>(x)</span>
+<span id="cb868-5"><a href="functional-programming.html#cb868-5"></a>{</span>
+<span id="cb868-6"><a href="functional-programming.html#cb868-6"></a>  a<span class="op">*</span>x <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb868-7"><a href="functional-programming.html#cb868-7"></a>}</span>
+<span id="cb868-8"><a href="functional-programming.html#cb868-8"></a></span>
+<span id="cb868-9"><a href="functional-programming.html#cb868-9"></a><span class="kw">f</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="functional-programming.html#cb834-1"></a>g &lt;-<span class="st"> </span><span class="cf">function</span>(x)</span>
-<span id="cb834-2"><a href="functional-programming.html#cb834-2"></a>{</span>
-<span id="cb834-3"><a href="functional-programming.html#cb834-3"></a>  a =<span class="st"> </span><span class="dv">2</span></span>
-<span id="cb834-4"><a href="functional-programming.html#cb834-4"></a>  b =<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb834-5"><a href="functional-programming.html#cb834-5"></a>  <span class="kw">f</span>(x)</span>
-<span id="cb834-6"><a href="functional-programming.html#cb834-6"></a>}</span>
-<span id="cb834-7"><a href="functional-programming.html#cb834-7"></a></span>
-<span id="cb834-8"><a href="functional-programming.html#cb834-8"></a><span class="kw">g</span>(<span class="dv">2</span>) <span class="co"># a equals still 1 </span></span></code></pre></div>
+<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="functional-programming.html#cb870-1"></a>g &lt;-<span class="st"> </span><span class="cf">function</span>(x)</span>
+<span id="cb870-2"><a href="functional-programming.html#cb870-2"></a>{</span>
+<span id="cb870-3"><a href="functional-programming.html#cb870-3"></a>  a =<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb870-4"><a href="functional-programming.html#cb870-4"></a>  b =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb870-5"><a href="functional-programming.html#cb870-5"></a>  <span class="kw">f</span>(x)</span>
+<span id="cb870-6"><a href="functional-programming.html#cb870-6"></a>}</span>
+<span id="cb870-7"><a href="functional-programming.html#cb870-7"></a></span>
+<span id="cb870-8"><a href="functional-programming.html#cb870-8"></a><span class="kw">g</span>(<span class="dv">2</span>) <span class="co"># a equals still 1 </span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 </div>
 <div id="for-loop" class="section level3" number="5.1.2">
@@ -573,22 +575,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>while()</code>: when we have no idea how many times loop needs to be executed.</li>
 <li><code>for()</code>: when we know how many times loop needs to be executed. This is likely to be the loop you are going to use most frequently.</li>
 </ul>
-<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="functional-programming.html#cb836-1"></a>fruits &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apples&quot;</span>, <span class="st">&quot;oranges&quot;</span>, <span class="st">&quot;pears&quot;</span>, <span class="st">&quot;bananas&quot;</span>)</span>
-<span id="cb836-2"><a href="functional-programming.html#cb836-2"></a></span>
-<span id="cb836-3"><a href="functional-programming.html#cb836-3"></a><span class="co"># a while loop</span></span>
-<span id="cb836-4"><a href="functional-programming.html#cb836-4"></a>i &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb836-5"><a href="functional-programming.html#cb836-5"></a><span class="cf">while</span>(i <span class="op">&lt;=</span><span class="st"> </span><span class="kw">length</span>(fruits)){</span>
-<span id="cb836-6"><a href="functional-programming.html#cb836-6"></a>  <span class="kw">print</span>(fruits[i])</span>
-<span id="cb836-7"><a href="functional-programming.html#cb836-7"></a>  i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb836-8"><a href="functional-programming.html#cb836-8"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb872-1"><a href="functional-programming.html#cb872-1"></a>fruits &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apples&quot;</span>, <span class="st">&quot;oranges&quot;</span>, <span class="st">&quot;pears&quot;</span>, <span class="st">&quot;bananas&quot;</span>)</span>
+<span id="cb872-2"><a href="functional-programming.html#cb872-2"></a></span>
+<span id="cb872-3"><a href="functional-programming.html#cb872-3"></a><span class="co"># a while loop</span></span>
+<span id="cb872-4"><a href="functional-programming.html#cb872-4"></a>i &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb872-5"><a href="functional-programming.html#cb872-5"></a><span class="cf">while</span>(i <span class="op">&lt;=</span><span class="st"> </span><span class="kw">length</span>(fruits)){</span>
+<span id="cb872-6"><a href="functional-programming.html#cb872-6"></a>  <span class="kw">print</span>(fruits[i])</span>
+<span id="cb872-7"><a href="functional-programming.html#cb872-7"></a>  i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb872-8"><a href="functional-programming.html#cb872-8"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;apples&quot;
 ## [1] &quot;oranges&quot;
 ## [1] &quot;pears&quot;
 ## [1] &quot;bananas&quot;</code></pre>
-<div class="sourceCode" id="cb838"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb838-1"><a href="functional-programming.html#cb838-1"></a><span class="co"># a for loop</span></span>
-<span id="cb838-2"><a href="functional-programming.html#cb838-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(fruits)){</span>
-<span id="cb838-3"><a href="functional-programming.html#cb838-3"></a>  <span class="kw">print</span>(fruits[i])</span>
-<span id="cb838-4"><a href="functional-programming.html#cb838-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb874"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb874-1"><a href="functional-programming.html#cb874-1"></a><span class="co"># a for loop</span></span>
+<span id="cb874-2"><a href="functional-programming.html#cb874-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(fruits)){</span>
+<span id="cb874-3"><a href="functional-programming.html#cb874-3"></a>  <span class="kw">print</span>(fruits[i])</span>
+<span id="cb874-4"><a href="functional-programming.html#cb874-4"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;apples&quot;
 ## [1] &quot;oranges&quot;
 ## [1] &quot;pears&quot;
@@ -598,15 +600,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.1.3</span> apply family</h3>
 <p>While and for loops in R can be very slow. For this reason, R has a number of built-in iteration methods to speed up execution times. In many cases, packages will have “behind-the-scenes” ways to avoid for loops, but what if you need to write your own function?</p>
 <p>A common method of getting around for loops is the <strong>apply</strong> family of functions. These take a data structure and a function, and applies a function over all the elements in the object.</p>
-<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb840-1"><a href="functional-programming.html#cb840-1"></a>fruit &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;banana&quot;</span>)</span>
-<span id="cb840-2"><a href="functional-programming.html#cb840-2"></a></span>
-<span id="cb840-3"><a href="functional-programming.html#cb840-3"></a><span class="co"># make function that takes in only one element</span></span>
-<span id="cb840-4"><a href="functional-programming.html#cb840-4"></a>make.plural &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
-<span id="cb840-5"><a href="functional-programming.html#cb840-5"></a>   plural &lt;-<span class="st"> </span><span class="kw">paste</span>(x, <span class="st">&#39;s&#39;</span>, <span class="dt">sep =</span> <span class="st">&#39;&#39;</span>) <span class="co"># sep is for collapse, so collpase &#39;&#39;</span></span>
-<span id="cb840-6"><a href="functional-programming.html#cb840-6"></a>   <span class="kw">return</span>(plural)</span>
-<span id="cb840-7"><a href="functional-programming.html#cb840-7"></a>}</span>
-<span id="cb840-8"><a href="functional-programming.html#cb840-8"></a></span>
-<span id="cb840-9"><a href="functional-programming.html#cb840-9"></a><span class="kw">make.plural</span>(<span class="st">&#39;apple&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb876-1"><a href="functional-programming.html#cb876-1"></a>fruit &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;banana&quot;</span>)</span>
+<span id="cb876-2"><a href="functional-programming.html#cb876-2"></a></span>
+<span id="cb876-3"><a href="functional-programming.html#cb876-3"></a><span class="co"># make function that takes in only one element</span></span>
+<span id="cb876-4"><a href="functional-programming.html#cb876-4"></a>make.plural &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb876-5"><a href="functional-programming.html#cb876-5"></a>   plural &lt;-<span class="st"> </span><span class="kw">paste</span>(x, <span class="st">&#39;s&#39;</span>, <span class="dt">sep =</span> <span class="st">&#39;&#39;</span>) <span class="co"># sep is for collapse, so collpase &#39;&#39;</span></span>
+<span id="cb876-6"><a href="functional-programming.html#cb876-6"></a>   <span class="kw">return</span>(plural)</span>
+<span id="cb876-7"><a href="functional-programming.html#cb876-7"></a>}</span>
+<span id="cb876-8"><a href="functional-programming.html#cb876-8"></a></span>
+<span id="cb876-9"><a href="functional-programming.html#cb876-9"></a><span class="kw">make.plural</span>(<span class="st">&#39;apple&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;apples&quot;</code></pre>
 <ul>
 <li><code>apply()</code> : loop over the margins (1 = row, 2 = column) of an array</li>
@@ -615,8 +617,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>tapply()</code>: loop over subsets of a vector</li>
 <li><code>mapply()</code>: multivariate version of <code>lapply()</code>. Use this if you have a function that takes in 2 or more arguments.</li>
 </ul>
-<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="functional-programming.html#cb842-1"></a><span class="co"># apply that function to every element</span></span>
-<span id="cb842-2"><a href="functional-programming.html#cb842-2"></a><span class="kw">lapply</span>(fruit, make.plural) <span class="co"># returns a list</span></span></code></pre></div>
+<div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb878-1"><a href="functional-programming.html#cb878-1"></a><span class="co"># apply that function to every element</span></span>
+<span id="cb878-2"><a href="functional-programming.html#cb878-2"></a><span class="kw">lapply</span>(fruit, make.plural) <span class="co"># returns a list</span></span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;apples&quot;
 ## 
@@ -628,11 +630,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## [[4]]
 ## [1] &quot;bananas&quot;</code></pre>
-<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb844-1"><a href="functional-programming.html#cb844-1"></a><span class="kw">sapply</span>(fruit, make.plural) <span class="co"># returns a named vector</span></span></code></pre></div>
+<div class="sourceCode" id="cb880"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb880-1"><a href="functional-programming.html#cb880-1"></a><span class="kw">sapply</span>(fruit, make.plural) <span class="co"># returns a named vector</span></span></code></pre></div>
 <pre><code>##     apple    orange      pear    banana 
 ##  &quot;apples&quot; &quot;oranges&quot;   &quot;pears&quot; &quot;bananas&quot;</code></pre>
-<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="functional-programming.html#cb846-1"></a><span class="kw">library</span>(purrr) <span class="co"># load package</span></span>
-<span id="cb846-2"><a href="functional-programming.html#cb846-2"></a><span class="kw">map</span>(fruit, make.plural) <span class="co"># type consistent</span></span></code></pre></div>
+<div class="sourceCode" id="cb882"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb882-1"><a href="functional-programming.html#cb882-1"></a><span class="kw">library</span>(purrr) <span class="co"># load package</span></span>
+<span id="cb882-2"><a href="functional-programming.html#cb882-2"></a><span class="kw">map</span>(fruit, make.plural) <span class="co"># type consistent</span></span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;apples&quot;
 ## 
@@ -644,9 +646,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## [[4]]
 ## [1] &quot;bananas&quot;</code></pre>
-<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="functional-programming.html#cb848-1"></a><span class="co"># Why sapply is bad </span></span>
-<span id="cb848-2"><a href="functional-programming.html#cb848-2"></a></span>
-<span id="cb848-3"><a href="functional-programming.html#cb848-3"></a><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, paste) <span class="co"># return character </span></span></code></pre></div>
+<div class="sourceCode" id="cb884"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb884-1"><a href="functional-programming.html#cb884-1"></a><span class="co"># Why sapply is bad </span></span>
+<span id="cb884-2"><a href="functional-programming.html#cb884-2"></a></span>
+<span id="cb884-3"><a href="functional-programming.html#cb884-3"></a><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, paste) <span class="co"># return character </span></span></code></pre></div>
 <pre><code>##   [1] &quot;1&quot;   &quot;2&quot;   &quot;3&quot;   &quot;4&quot;   &quot;5&quot;   &quot;6&quot;   &quot;7&quot;   &quot;8&quot;   &quot;9&quot;   &quot;10&quot;  &quot;11&quot;  &quot;12&quot; 
 ##  [13] &quot;13&quot;  &quot;14&quot;  &quot;15&quot;  &quot;16&quot;  &quot;17&quot;  &quot;18&quot;  &quot;19&quot;  &quot;20&quot;  &quot;21&quot;  &quot;22&quot;  &quot;23&quot;  &quot;24&quot; 
 ##  [25] &quot;25&quot;  &quot;26&quot;  &quot;27&quot;  &quot;28&quot;  &quot;29&quot;  &quot;30&quot;  &quot;31&quot;  &quot;32&quot;  &quot;33&quot;  &quot;34&quot;  &quot;35&quot;  &quot;36&quot; 
@@ -656,10 +658,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [73] &quot;73&quot;  &quot;74&quot;  &quot;75&quot;  &quot;76&quot;  &quot;77&quot;  &quot;78&quot;  &quot;79&quot;  &quot;80&quot;  &quot;81&quot;  &quot;82&quot;  &quot;83&quot;  &quot;84&quot; 
 ##  [85] &quot;85&quot;  &quot;86&quot;  &quot;87&quot;  &quot;88&quot;  &quot;89&quot;  &quot;90&quot;  &quot;91&quot;  &quot;92&quot;  &quot;93&quot;  &quot;94&quot;  &quot;95&quot;  &quot;96&quot; 
 ##  [97] &quot;97&quot;  &quot;98&quot;  &quot;99&quot;  &quot;100&quot;</code></pre>
-<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="functional-programming.html#cb850-1"></a><span class="kw">sapply</span>(<span class="kw">integer</span>(), paste) <span class="co"># return list!</span></span></code></pre></div>
+<div class="sourceCode" id="cb886"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb886-1"><a href="functional-programming.html#cb886-1"></a><span class="kw">sapply</span>(<span class="kw">integer</span>(), paste) <span class="co"># return list!</span></span></code></pre></div>
 <pre><code>## list()</code></pre>
-<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="functional-programming.html#cb852-1"></a><span class="kw">library</span>(purrr)</span>
-<span id="cb852-2"><a href="functional-programming.html#cb852-2"></a><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, paste) <span class="co"># return list</span></span></code></pre></div>
+<div class="sourceCode" id="cb888"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb888-1"><a href="functional-programming.html#cb888-1"></a><span class="kw">library</span>(purrr)</span>
+<span id="cb888-2"><a href="functional-programming.html#cb888-2"></a><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, paste) <span class="co"># return list</span></span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;1&quot;
 ## 
@@ -959,7 +961,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## [[100]]
 ## [1] &quot;100&quot;</code></pre>
-<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="functional-programming.html#cb854-1"></a><span class="kw">map</span>(<span class="kw">integer</span>(), paste) <span class="co"># return list</span></span></code></pre></div>
+<div class="sourceCode" id="cb890"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb890-1"><a href="functional-programming.html#cb890-1"></a><span class="kw">map</span>(<span class="kw">integer</span>(), paste) <span class="co"># return list</span></span></code></pre></div>
 <pre><code>## list()</code></pre>
 </div>
 </div>
@@ -968,23 +970,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Setup</li>
 </ul>
-<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="functional-programming.html#cb856-1"></a><span class="co"># Install packages</span></span>
-<span id="cb856-2"><a href="functional-programming.html#cb856-2"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) {</span>
-<span id="cb856-3"><a href="functional-programming.html#cb856-3"></a>  <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
-<span id="cb856-4"><a href="functional-programming.html#cb856-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb892"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb892-1"><a href="functional-programming.html#cb892-1"></a><span class="co"># Install packages</span></span>
+<span id="cb892-2"><a href="functional-programming.html#cb892-2"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) {</span>
+<span id="cb892-3"><a href="functional-programming.html#cb892-3"></a>  <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb892-4"><a href="functional-programming.html#cb892-4"></a>}</span></code></pre></div>
 <pre><code>## Loading required package: pacman</code></pre>
-<div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb858-1"><a href="functional-programming.html#cb858-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(</span>
-<span id="cb858-2"><a href="functional-programming.html#cb858-2"></a>  tidyverse, <span class="co"># tidyverse pkgs including purrr</span></span>
-<span id="cb858-3"><a href="functional-programming.html#cb858-3"></a>  tictoc, <span class="co"># performance test</span></span>
-<span id="cb858-4"><a href="functional-programming.html#cb858-4"></a>  broom, <span class="co"># tidy modeling</span></span>
-<span id="cb858-5"><a href="functional-programming.html#cb858-5"></a>  glue, <span class="co"># paste string and objects</span></span>
-<span id="cb858-6"><a href="functional-programming.html#cb858-6"></a>  furrr, <span class="co"># parallel processing</span></span>
-<span id="cb858-7"><a href="functional-programming.html#cb858-7"></a>  rvest, <span class="co"># web scraping</span></span>
-<span id="cb858-8"><a href="functional-programming.html#cb858-8"></a>  devtools, <span class="co"># dev tools </span></span>
-<span id="cb858-9"><a href="functional-programming.html#cb858-9"></a>  usethis, <span class="co"># workflow     </span></span>
-<span id="cb858-10"><a href="functional-programming.html#cb858-10"></a>  roxygen2, <span class="co"># documentation </span></span>
-<span id="cb858-11"><a href="functional-programming.html#cb858-11"></a>            </span>
-<span id="cb858-12"><a href="functional-programming.html#cb858-12"></a>  testthat) <span class="co"># testing </span></span></code></pre></div>
+<div class="sourceCode" id="cb894"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb894-1"><a href="functional-programming.html#cb894-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(</span>
+<span id="cb894-2"><a href="functional-programming.html#cb894-2"></a>  tidyverse, <span class="co"># tidyverse pkgs including purrr</span></span>
+<span id="cb894-3"><a href="functional-programming.html#cb894-3"></a>  tictoc, <span class="co"># performance test</span></span>
+<span id="cb894-4"><a href="functional-programming.html#cb894-4"></a>  broom, <span class="co"># tidy modeling</span></span>
+<span id="cb894-5"><a href="functional-programming.html#cb894-5"></a>  glue, <span class="co"># paste string and objects</span></span>
+<span id="cb894-6"><a href="functional-programming.html#cb894-6"></a>  furrr, <span class="co"># parallel processing</span></span>
+<span id="cb894-7"><a href="functional-programming.html#cb894-7"></a>  rvest, <span class="co"># web scraping</span></span>
+<span id="cb894-8"><a href="functional-programming.html#cb894-8"></a>  devtools, <span class="co"># dev tools </span></span>
+<span id="cb894-9"><a href="functional-programming.html#cb894-9"></a>  usethis, <span class="co"># workflow     </span></span>
+<span id="cb894-10"><a href="functional-programming.html#cb894-10"></a>  roxygen2, <span class="co"># documentation </span></span>
+<span id="cb894-11"><a href="functional-programming.html#cb894-11"></a>            </span>
+<span id="cb894-12"><a href="functional-programming.html#cb894-12"></a>  testthat) <span class="co"># testing </span></span></code></pre></div>
 <div id="why-map" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Why map?</h3>
 <div id="objectives" class="section level4" number="5.2.1.1">
@@ -1007,23 +1009,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Your goal: replace <code>-99</code> with <code>NA</code></p></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb859-1"><a href="functional-programming.html#cb859-1"></a><span class="co"># Data</span></span>
-<span id="cb859-2"><a href="functional-programming.html#cb859-2"></a></span>
-<span id="cb859-3"><a href="functional-programming.html#cb859-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co"># for reproducibility</span></span>
-<span id="cb859-4"><a href="functional-programming.html#cb859-4"></a></span>
-<span id="cb859-5"><a href="functional-programming.html#cb859-5"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb859-6"><a href="functional-programming.html#cb859-6"></a>  <span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb859-7"><a href="functional-programming.html#cb859-7"></a>  <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb859-8"><a href="functional-programming.html#cb859-8"></a>  <span class="st">&quot;c&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb859-9"><a href="functional-programming.html#cb859-9"></a>  <span class="st">&quot;d&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb859-10"><a href="functional-programming.html#cb859-10"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb860"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb860-1"><a href="functional-programming.html#cb860-1"></a><span class="co"># Copy and paste</span></span>
-<span id="cb860-2"><a href="functional-programming.html#cb860-2"></a>df<span class="op">$</span>a[df<span class="op">$</span>a <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb860-3"><a href="functional-programming.html#cb860-3"></a>df<span class="op">$</span>b[df<span class="op">$</span>b <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb860-4"><a href="functional-programming.html#cb860-4"></a>df<span class="op">$</span>c[df<span class="op">$</span>c <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb860-5"><a href="functional-programming.html#cb860-5"></a>df<span class="op">$</span>d[df<span class="op">$</span>d <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb860-6"><a href="functional-programming.html#cb860-6"></a></span>
-<span id="cb860-7"><a href="functional-programming.html#cb860-7"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb895"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb895-1"><a href="functional-programming.html#cb895-1"></a><span class="co"># Data</span></span>
+<span id="cb895-2"><a href="functional-programming.html#cb895-2"></a></span>
+<span id="cb895-3"><a href="functional-programming.html#cb895-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb895-4"><a href="functional-programming.html#cb895-4"></a></span>
+<span id="cb895-5"><a href="functional-programming.html#cb895-5"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb895-6"><a href="functional-programming.html#cb895-6"></a>  <span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb895-7"><a href="functional-programming.html#cb895-7"></a>  <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb895-8"><a href="functional-programming.html#cb895-8"></a>  <span class="st">&quot;c&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb895-9"><a href="functional-programming.html#cb895-9"></a>  <span class="st">&quot;d&quot;</span> =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb895-10"><a href="functional-programming.html#cb895-10"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb896"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb896-1"><a href="functional-programming.html#cb896-1"></a><span class="co"># Copy and paste</span></span>
+<span id="cb896-2"><a href="functional-programming.html#cb896-2"></a>df<span class="op">$</span>a[df<span class="op">$</span>a <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb896-3"><a href="functional-programming.html#cb896-3"></a>df<span class="op">$</span>b[df<span class="op">$</span>b <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb896-4"><a href="functional-programming.html#cb896-4"></a>df<span class="op">$</span>c[df<span class="op">$</span>c <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb896-5"><a href="functional-programming.html#cb896-5"></a>df<span class="op">$</span>d[df<span class="op">$</span>d <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb896-6"><a href="functional-programming.html#cb896-6"></a></span>
+<span id="cb896-7"><a href="functional-programming.html#cb896-7"></a>df</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##       a     b     c     d
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1048,21 +1050,21 @@ function(input){</p>
 <p>return(output)
 }
 `</p>
-<div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb862-1"><a href="functional-programming.html#cb862-1"></a><span class="co"># Function</span></span>
-<span id="cb862-2"><a href="functional-programming.html#cb862-2"></a></span>
-<span id="cb862-3"><a href="functional-programming.html#cb862-3"></a>fix_missing &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb862-4"><a href="functional-programming.html#cb862-4"></a>  x[x <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb862-5"><a href="functional-programming.html#cb862-5"></a>  x</span>
-<span id="cb862-6"><a href="functional-programming.html#cb862-6"></a>}</span>
-<span id="cb862-7"><a href="functional-programming.html#cb862-7"></a></span>
-<span id="cb862-8"><a href="functional-programming.html#cb862-8"></a><span class="co"># Apply function to each column (vector)</span></span>
-<span id="cb862-9"><a href="functional-programming.html#cb862-9"></a></span>
-<span id="cb862-10"><a href="functional-programming.html#cb862-10"></a>df<span class="op">$</span>a &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>a)</span>
-<span id="cb862-11"><a href="functional-programming.html#cb862-11"></a>df<span class="op">$</span>b &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>b)</span>
-<span id="cb862-12"><a href="functional-programming.html#cb862-12"></a>df<span class="op">$</span>c &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>c)</span>
-<span id="cb862-13"><a href="functional-programming.html#cb862-13"></a>df<span class="op">$</span>d &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>d)</span>
-<span id="cb862-14"><a href="functional-programming.html#cb862-14"></a></span>
-<span id="cb862-15"><a href="functional-programming.html#cb862-15"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb898"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb898-1"><a href="functional-programming.html#cb898-1"></a><span class="co"># Function</span></span>
+<span id="cb898-2"><a href="functional-programming.html#cb898-2"></a></span>
+<span id="cb898-3"><a href="functional-programming.html#cb898-3"></a>fix_missing &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb898-4"><a href="functional-programming.html#cb898-4"></a>  x[x <span class="op">==</span><span class="st"> </span><span class="dv">-99</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb898-5"><a href="functional-programming.html#cb898-5"></a>  x</span>
+<span id="cb898-6"><a href="functional-programming.html#cb898-6"></a>}</span>
+<span id="cb898-7"><a href="functional-programming.html#cb898-7"></a></span>
+<span id="cb898-8"><a href="functional-programming.html#cb898-8"></a><span class="co"># Apply function to each column (vector)</span></span>
+<span id="cb898-9"><a href="functional-programming.html#cb898-9"></a></span>
+<span id="cb898-10"><a href="functional-programming.html#cb898-10"></a>df<span class="op">$</span>a &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>a)</span>
+<span id="cb898-11"><a href="functional-programming.html#cb898-11"></a>df<span class="op">$</span>b &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>b)</span>
+<span id="cb898-12"><a href="functional-programming.html#cb898-12"></a>df<span class="op">$</span>c &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>c)</span>
+<span id="cb898-13"><a href="functional-programming.html#cb898-13"></a>df<span class="op">$</span>d &lt;-<span class="st"> </span><span class="kw">fix_missing</span>(df<span class="op">$</span>d)</span>
+<span id="cb898-14"><a href="functional-programming.html#cb898-14"></a></span>
+<span id="cb898-15"><a href="functional-programming.html#cb898-15"></a>df</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##       a     b     c     d
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1077,9 +1079,9 @@ function(input){</p>
 <li><p>Here’s a tidy solution comes from <code>purrr</code> package.</p></li>
 <li><p>The power and joy of one-liner.</p></li>
 </ul>
-<div class="sourceCode" id="cb864"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb864-1"><a href="functional-programming.html#cb864-1"></a>df &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map_df</span>(df, fix_missing)</span>
-<span id="cb864-2"><a href="functional-programming.html#cb864-2"></a></span>
-<span id="cb864-3"><a href="functional-programming.html#cb864-3"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb900"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb900-1"><a href="functional-programming.html#cb900-1"></a>df &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">map_df</span>(df, fix_missing)</span>
+<span id="cb900-2"><a href="functional-programming.html#cb900-2"></a></span>
+<span id="cb900-3"><a href="functional-programming.html#cb900-3"></a>df</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##       a     b     c     d
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1101,7 +1103,7 @@ function(input){</p>
 <ul>
 <li><strong>Challenge</strong> If you run the code below, what’s going to be the data type of the output?</li>
 </ul>
-<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb867-1"><a href="functional-programming.html#cb867-1"></a><span class="kw">map</span>(df, fix_missing)</span></code></pre></div>
+<div class="sourceCode" id="cb903"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb903-1"><a href="functional-programming.html#cb903-1"></a><span class="kw">map</span>(df, fix_missing)</span></code></pre></div>
 <pre><code>## $a
 ## [1]  3  3  1  1 NA
 ## 
@@ -1120,24 +1122,24 @@ function(input){</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/bzUmK0Y07ck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p>The Joy of Functional Programming (for Data Science) - Hadley Wickham</p>
-<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="functional-programming.html#cb869-1"></a><span class="co"># Built-in data</span></span>
-<span id="cb869-2"><a href="functional-programming.html#cb869-2"></a><span class="kw">data</span>(<span class="st">&quot;airquality&quot;</span>)</span>
-<span id="cb869-3"><a href="functional-programming.html#cb869-3"></a></span>
-<span id="cb869-4"><a href="functional-programming.html#cb869-4"></a><span class="kw">tic</span>()</span>
-<span id="cb869-5"><a href="functional-programming.html#cb869-5"></a></span>
-<span id="cb869-6"><a href="functional-programming.html#cb869-6"></a><span class="co"># Placeholder</span></span>
-<span id="cb869-7"><a href="functional-programming.html#cb869-7"></a>out1 &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;double&quot;</span>, <span class="kw">ncol</span>(airquality))</span>
-<span id="cb869-8"><a href="functional-programming.html#cb869-8"></a><span class="co"># Sequence variable</span></span>
-<span id="cb869-9"><a href="functional-programming.html#cb869-9"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(airquality)) { <span class="co">#</span></span>
-<span id="cb869-10"><a href="functional-programming.html#cb869-10"></a></span>
-<span id="cb869-11"><a href="functional-programming.html#cb869-11"></a>  <span class="co"># Assign a computation result to each element</span></span>
-<span id="cb869-12"><a href="functional-programming.html#cb869-12"></a>  out1[[i]] &lt;-<span class="st"> </span><span class="kw">mean</span>(airquality[[i]], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb869-13"><a href="functional-programming.html#cb869-13"></a>}</span>
-<span id="cb869-14"><a href="functional-programming.html#cb869-14"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.005 sec elapsed</code></pre>
-<div class="sourceCode" id="cb871"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb871-1"><a href="functional-programming.html#cb871-1"></a><span class="kw">tic</span>()</span>
-<span id="cb871-2"><a href="functional-programming.html#cb871-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb871-3"><a href="functional-programming.html#cb871-3"></a><span class="kw">toc</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb905"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb905-1"><a href="functional-programming.html#cb905-1"></a><span class="co"># Built-in data</span></span>
+<span id="cb905-2"><a href="functional-programming.html#cb905-2"></a><span class="kw">data</span>(<span class="st">&quot;airquality&quot;</span>)</span>
+<span id="cb905-3"><a href="functional-programming.html#cb905-3"></a></span>
+<span id="cb905-4"><a href="functional-programming.html#cb905-4"></a><span class="kw">tic</span>()</span>
+<span id="cb905-5"><a href="functional-programming.html#cb905-5"></a></span>
+<span id="cb905-6"><a href="functional-programming.html#cb905-6"></a><span class="co"># Placeholder</span></span>
+<span id="cb905-7"><a href="functional-programming.html#cb905-7"></a>out1 &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;double&quot;</span>, <span class="kw">ncol</span>(airquality))</span>
+<span id="cb905-8"><a href="functional-programming.html#cb905-8"></a><span class="co"># Sequence variable</span></span>
+<span id="cb905-9"><a href="functional-programming.html#cb905-9"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(airquality)) { <span class="co">#</span></span>
+<span id="cb905-10"><a href="functional-programming.html#cb905-10"></a></span>
+<span id="cb905-11"><a href="functional-programming.html#cb905-11"></a>  <span class="co"># Assign a computation result to each element</span></span>
+<span id="cb905-12"><a href="functional-programming.html#cb905-12"></a>  out1[[i]] &lt;-<span class="st"> </span><span class="kw">mean</span>(airquality[[i]], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb905-13"><a href="functional-programming.html#cb905-13"></a>}</span>
+<span id="cb905-14"><a href="functional-programming.html#cb905-14"></a><span class="kw">toc</span>()</span></code></pre></div>
+<pre><code>## 0.006 sec elapsed</code></pre>
+<div class="sourceCode" id="cb907"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb907-1"><a href="functional-programming.html#cb907-1"></a><span class="kw">tic</span>()</span>
+<span id="cb907-2"><a href="functional-programming.html#cb907-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb907-3"><a href="functional-programming.html#cb907-3"></a><span class="kw">toc</span>()</span></code></pre></div>
 <pre><code>## 0.002 sec elapsed</code></pre>
 <ul>
 <li><p>In short, <code>map()</code> is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using <code>%&gt;%</code>.</p></li>
@@ -1151,26 +1153,26 @@ function(input){</p>
 <ul>
 <li>One popular application of <code>map()</code> is to run regression models (or whatever model you want to run) on list-columns. No more copying and pasting for running many regression models on subgroups!</li>
 </ul>
-<div class="sourceCode" id="cb873"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb873-1"><a href="functional-programming.html#cb873-1"></a><span class="co"># Have you ever tried this?</span></span>
-<span id="cb873-2"><a href="functional-programming.html#cb873-2"></a>lm_A &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="kw">subset</span>(data, subgroup <span class="op">==</span><span class="st"> &quot;group_A&quot;</span>))</span>
-<span id="cb873-3"><a href="functional-programming.html#cb873-3"></a>lm_B &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="kw">subset</span>(data, subgroup <span class="op">==</span><span class="st"> &quot;group_B&quot;</span>))</span>
-<span id="cb873-4"><a href="functional-programming.html#cb873-4"></a>lm_C &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="kw">subset</span>(data, subgroup <span class="op">==</span><span class="st"> &quot;group_C&quot;</span>))</span>
-<span id="cb873-5"><a href="functional-programming.html#cb873-5"></a>lm_D &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="kw">subset</span>(data, subgroup <span class="op">==</span><span class="st"> &quot;group_D&quot;</span>))</span>
-<span id="cb873-6"><a href="functional-programming.html#cb873-6"></a>lm_E &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="kw">subset</span>(data, subgroup <span class="op">==</span><span class="st"> &quot;group_E&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb909"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb909-1"><a href="functional-programming.html#cb909-1"></a><span class="co"># Have you ever tried this?</span></span>
+<span id="cb909-2"><a href="functional-programming.html#cb909-2"></a>lm_A &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="kw">subset</span>(data, subgroup <span class="op">==</span><span class="st"> &quot;group_A&quot;</span>))</span>
+<span id="cb909-3"><a href="functional-programming.html#cb909-3"></a>lm_B &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="kw">subset</span>(data, subgroup <span class="op">==</span><span class="st"> &quot;group_B&quot;</span>))</span>
+<span id="cb909-4"><a href="functional-programming.html#cb909-4"></a>lm_C &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="kw">subset</span>(data, subgroup <span class="op">==</span><span class="st"> &quot;group_C&quot;</span>))</span>
+<span id="cb909-5"><a href="functional-programming.html#cb909-5"></a>lm_D &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="kw">subset</span>(data, subgroup <span class="op">==</span><span class="st"> &quot;group_D&quot;</span>))</span>
+<span id="cb909-6"><a href="functional-programming.html#cb909-6"></a>lm_E &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="kw">subset</span>(data, subgroup <span class="op">==</span><span class="st"> &quot;group_E&quot;</span>))</span></code></pre></div>
 <ul>
 <li>For more information on this technique, read the Many Models subchapter of the <a href="https://r4ds.had.co.nz/many-models.html#creating-list-columns">R for Data Science</a>.</li>
 </ul>
-<div class="sourceCode" id="cb874"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb874-1"><a href="functional-programming.html#cb874-1"></a><span class="co"># Function</span></span>
-<span id="cb874-2"><a href="functional-programming.html#cb874-2"></a>lm_model &lt;-<span class="st"> </span><span class="cf">function</span>(df) {</span>
-<span id="cb874-3"><a href="functional-programming.html#cb874-3"></a>  <span class="kw">lm</span>(Temp <span class="op">~</span><span class="st"> </span>Ozone, <span class="dt">data =</span> df)</span>
-<span id="cb874-4"><a href="functional-programming.html#cb874-4"></a>}</span>
-<span id="cb874-5"><a href="functional-programming.html#cb874-5"></a></span>
-<span id="cb874-6"><a href="functional-programming.html#cb874-6"></a><span class="co"># Map</span></span>
-<span id="cb874-7"><a href="functional-programming.html#cb874-7"></a>models &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span></span>
-<span id="cb874-8"><a href="functional-programming.html#cb874-8"></a><span class="st">  </span><span class="kw">group_by</span>(Month) <span class="op">%&gt;%</span></span>
-<span id="cb874-9"><a href="functional-programming.html#cb874-9"></a><span class="st">  </span><span class="kw">nest</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Create list-columns</span></span>
-<span id="cb874-10"><a href="functional-programming.html#cb874-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ols =</span> <span class="kw">map</span>(data, lm_model)) <span class="co"># Map</span></span>
-<span id="cb874-11"><a href="functional-programming.html#cb874-11"></a>models<span class="op">$</span>ols[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb910"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb910-1"><a href="functional-programming.html#cb910-1"></a><span class="co"># Function</span></span>
+<span id="cb910-2"><a href="functional-programming.html#cb910-2"></a>lm_model &lt;-<span class="st"> </span><span class="cf">function</span>(df) {</span>
+<span id="cb910-3"><a href="functional-programming.html#cb910-3"></a>  <span class="kw">lm</span>(Temp <span class="op">~</span><span class="st"> </span>Ozone, <span class="dt">data =</span> df)</span>
+<span id="cb910-4"><a href="functional-programming.html#cb910-4"></a>}</span>
+<span id="cb910-5"><a href="functional-programming.html#cb910-5"></a></span>
+<span id="cb910-6"><a href="functional-programming.html#cb910-6"></a><span class="co"># Map</span></span>
+<span id="cb910-7"><a href="functional-programming.html#cb910-7"></a>models &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span></span>
+<span id="cb910-8"><a href="functional-programming.html#cb910-8"></a><span class="st">  </span><span class="kw">group_by</span>(Month) <span class="op">%&gt;%</span></span>
+<span id="cb910-9"><a href="functional-programming.html#cb910-9"></a><span class="st">  </span><span class="kw">nest</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Create list-columns</span></span>
+<span id="cb910-10"><a href="functional-programming.html#cb910-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ols =</span> <span class="kw">map</span>(data, lm_model)) <span class="co"># Map</span></span>
+<span id="cb910-11"><a href="functional-programming.html#cb910-11"></a>models<span class="op">$</span>ols[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [[1]]
 ## 
 ## Call:
@@ -1179,18 +1181,18 @@ function(input){</p>
 ## Coefficients:
 ## (Intercept)        Ozone  
 ##     62.8842       0.1629</code></pre>
-<div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb876-1"><a href="functional-programming.html#cb876-1"></a><span class="co"># Add tidying</span></span>
-<span id="cb876-2"><a href="functional-programming.html#cb876-2"></a>tidy_lm_model &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">compose</span>( <span class="co"># compose multiple functions</span></span>
-<span id="cb876-3"><a href="functional-programming.html#cb876-3"></a>  broom<span class="op">::</span>tidy, <span class="co"># convert lm objects into tidy tibbles</span></span>
-<span id="cb876-4"><a href="functional-programming.html#cb876-4"></a>  lm_model</span>
-<span id="cb876-5"><a href="functional-programming.html#cb876-5"></a>)</span>
-<span id="cb876-6"><a href="functional-programming.html#cb876-6"></a></span>
-<span id="cb876-7"><a href="functional-programming.html#cb876-7"></a>tidied_models &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span></span>
-<span id="cb876-8"><a href="functional-programming.html#cb876-8"></a><span class="st">  </span><span class="kw">group_by</span>(Month) <span class="op">%&gt;%</span></span>
-<span id="cb876-9"><a href="functional-programming.html#cb876-9"></a><span class="st">  </span><span class="kw">nest</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Create list-columns</span></span>
-<span id="cb876-10"><a href="functional-programming.html#cb876-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ols =</span> <span class="kw">map</span>(data, tidy_lm_model))</span>
-<span id="cb876-11"><a href="functional-programming.html#cb876-11"></a></span>
-<span id="cb876-12"><a href="functional-programming.html#cb876-12"></a>tidied_models<span class="op">$</span>ols[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb912"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb912-1"><a href="functional-programming.html#cb912-1"></a><span class="co"># Add tidying</span></span>
+<span id="cb912-2"><a href="functional-programming.html#cb912-2"></a>tidy_lm_model &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">compose</span>( <span class="co"># compose multiple functions</span></span>
+<span id="cb912-3"><a href="functional-programming.html#cb912-3"></a>  broom<span class="op">::</span>tidy, <span class="co"># convert lm objects into tidy tibbles</span></span>
+<span id="cb912-4"><a href="functional-programming.html#cb912-4"></a>  lm_model</span>
+<span id="cb912-5"><a href="functional-programming.html#cb912-5"></a>)</span>
+<span id="cb912-6"><a href="functional-programming.html#cb912-6"></a></span>
+<span id="cb912-7"><a href="functional-programming.html#cb912-7"></a>tidied_models &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span></span>
+<span id="cb912-8"><a href="functional-programming.html#cb912-8"></a><span class="st">  </span><span class="kw">group_by</span>(Month) <span class="op">%&gt;%</span></span>
+<span id="cb912-9"><a href="functional-programming.html#cb912-9"></a><span class="st">  </span><span class="kw">nest</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Create list-columns</span></span>
+<span id="cb912-10"><a href="functional-programming.html#cb912-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ols =</span> <span class="kw">map</span>(data, tidy_lm_model))</span>
+<span id="cb912-11"><a href="functional-programming.html#cb912-11"></a></span>
+<span id="cb912-12"><a href="functional-programming.html#cb912-12"></a>tidied_models<span class="op">$</span>ols[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [[1]]
 ## # A tibble: 2 x 5
 ##   term        estimate std.error statistic  p.value
@@ -1224,7 +1226,7 @@ function(input){</p>
 <ul>
 <li>The most manual way: You can copy and paste eight times.</li>
 </ul>
-<div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb878-1"><a href="functional-programming.html#cb878-1"></a><span class="kw">paste</span>(<span class="st">&quot;University = Berkeley | Department = CS&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb914"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb914-1"><a href="functional-programming.html#cb914-1"></a><span class="kw">paste</span>(<span class="st">&quot;University = Berkeley | Department = CS&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;University = Berkeley | Department = CS&quot;</code></pre>
 </div>
 <div id="for-loop-1" class="section level3" number="5.3.3">
@@ -1235,16 +1237,16 @@ function(input){</p>
 <li><p>Do we need a placeholder? No. We don’t need a placeholder because we don’t store the result of iterations.</p></li>
 <li><p><strong>Challenge</strong>: How many parameters do you need to solve the problem below?</p></li>
 </ul>
-<div class="sourceCode" id="cb880"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb880-1"><a href="functional-programming.html#cb880-1"></a><span class="co"># Outer loop</span></span>
-<span id="cb880-2"><a href="functional-programming.html#cb880-2"></a></span>
-<span id="cb880-3"><a href="functional-programming.html#cb880-3"></a><span class="cf">for</span> (univ <span class="cf">in</span> <span class="kw">c</span>(<span class="st">&quot;Berkeley&quot;</span>, <span class="st">&quot;Stanford&quot;</span>)) {</span>
-<span id="cb880-4"><a href="functional-programming.html#cb880-4"></a></span>
-<span id="cb880-5"><a href="functional-programming.html#cb880-5"></a>  <span class="co"># Inner loop</span></span>
-<span id="cb880-6"><a href="functional-programming.html#cb880-6"></a></span>
-<span id="cb880-7"><a href="functional-programming.html#cb880-7"></a>  <span class="cf">for</span> (dept <span class="cf">in</span> <span class="kw">c</span>(<span class="st">&quot;waterbenders&quot;</span>, <span class="st">&quot;earthbenders&quot;</span>, <span class="st">&quot;firebenders&quot;</span>, <span class="st">&quot;airbenders&quot;</span>)) {</span>
-<span id="cb880-8"><a href="functional-programming.html#cb880-8"></a>    <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;University = &quot;</span>, univ, <span class="st">&quot;|&quot;</span>, <span class="st">&quot;Department = &quot;</span>, dept))</span>
-<span id="cb880-9"><a href="functional-programming.html#cb880-9"></a>  }</span>
-<span id="cb880-10"><a href="functional-programming.html#cb880-10"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb916"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb916-1"><a href="functional-programming.html#cb916-1"></a><span class="co"># Outer loop</span></span>
+<span id="cb916-2"><a href="functional-programming.html#cb916-2"></a></span>
+<span id="cb916-3"><a href="functional-programming.html#cb916-3"></a><span class="cf">for</span> (univ <span class="cf">in</span> <span class="kw">c</span>(<span class="st">&quot;Berkeley&quot;</span>, <span class="st">&quot;Stanford&quot;</span>)) {</span>
+<span id="cb916-4"><a href="functional-programming.html#cb916-4"></a></span>
+<span id="cb916-5"><a href="functional-programming.html#cb916-5"></a>  <span class="co"># Inner loop</span></span>
+<span id="cb916-6"><a href="functional-programming.html#cb916-6"></a></span>
+<span id="cb916-7"><a href="functional-programming.html#cb916-7"></a>  <span class="cf">for</span> (dept <span class="cf">in</span> <span class="kw">c</span>(<span class="st">&quot;waterbenders&quot;</span>, <span class="st">&quot;earthbenders&quot;</span>, <span class="st">&quot;firebenders&quot;</span>, <span class="st">&quot;airbenders&quot;</span>)) {</span>
+<span id="cb916-8"><a href="functional-programming.html#cb916-8"></a>    <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;University = &quot;</span>, univ, <span class="st">&quot;|&quot;</span>, <span class="st">&quot;Department = &quot;</span>, dept))</span>
+<span id="cb916-9"><a href="functional-programming.html#cb916-9"></a>  }</span>
+<span id="cb916-10"><a href="functional-programming.html#cb916-10"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;University =  Berkeley | Department =  waterbenders&quot;
 ## [1] &quot;University =  Berkeley | Department =  earthbenders&quot;
 ## [1] &quot;University =  Berkeley | Department =  firebenders&quot;
@@ -1266,30 +1268,30 @@ function(input){</p>
 <li><p>Step 1: Define inputs and a function.</p></li>
 <li><p><strong>Challenge</strong> Why are we using <code>rep()</code> to create input vectors? For instance, for <code>univ_list</code> why not just use <code>c("Berkeley", "Stanford")</code>?</p></li>
 </ul>
-<div class="sourceCode" id="cb882"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb882-1"><a href="functional-programming.html#cb882-1"></a><span class="co"># Inputs (remember the length of these inputs should be identical)</span></span>
-<span id="cb882-2"><a href="functional-programming.html#cb882-2"></a></span>
-<span id="cb882-3"><a href="functional-programming.html#cb882-3"></a>univ_list &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Berkeley&quot;</span>, <span class="st">&quot;Stanford&quot;</span>), <span class="dv">4</span>)</span>
-<span id="cb882-4"><a href="functional-programming.html#cb882-4"></a>dept_list &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;waterbenders&quot;</span>, <span class="st">&quot;earthbenders&quot;</span>, <span class="st">&quot;firebenders&quot;</span>, <span class="st">&quot;airbenders&quot;</span>), <span class="dv">2</span>)</span>
-<span id="cb882-5"><a href="functional-programming.html#cb882-5"></a></span>
-<span id="cb882-6"><a href="functional-programming.html#cb882-6"></a><span class="co"># Function</span></span>
-<span id="cb882-7"><a href="functional-programming.html#cb882-7"></a></span>
-<span id="cb882-8"><a href="functional-programming.html#cb882-8"></a>print_lists &lt;-<span class="st"> </span><span class="cf">function</span>(univ, dept) {</span>
-<span id="cb882-9"><a href="functional-programming.html#cb882-9"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(</span>
-<span id="cb882-10"><a href="functional-programming.html#cb882-10"></a>    <span class="st">&quot;University = &quot;</span>, univ, <span class="st">&quot;|&quot;</span>,</span>
-<span id="cb882-11"><a href="functional-programming.html#cb882-11"></a>    <span class="st">&quot;Department = &quot;</span>, dept</span>
-<span id="cb882-12"><a href="functional-programming.html#cb882-12"></a>  ))</span>
-<span id="cb882-13"><a href="functional-programming.html#cb882-13"></a>}</span>
-<span id="cb882-14"><a href="functional-programming.html#cb882-14"></a></span>
-<span id="cb882-15"><a href="functional-programming.html#cb882-15"></a><span class="co"># Test</span></span>
-<span id="cb882-16"><a href="functional-programming.html#cb882-16"></a></span>
-<span id="cb882-17"><a href="functional-programming.html#cb882-17"></a><span class="kw">print_lists</span>(univ_list[<span class="dv">1</span>], dept_list[<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb918"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb918-1"><a href="functional-programming.html#cb918-1"></a><span class="co"># Inputs (remember the length of these inputs should be identical)</span></span>
+<span id="cb918-2"><a href="functional-programming.html#cb918-2"></a></span>
+<span id="cb918-3"><a href="functional-programming.html#cb918-3"></a>univ_list &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Berkeley&quot;</span>, <span class="st">&quot;Stanford&quot;</span>), <span class="dv">4</span>)</span>
+<span id="cb918-4"><a href="functional-programming.html#cb918-4"></a>dept_list &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;waterbenders&quot;</span>, <span class="st">&quot;earthbenders&quot;</span>, <span class="st">&quot;firebenders&quot;</span>, <span class="st">&quot;airbenders&quot;</span>), <span class="dv">2</span>)</span>
+<span id="cb918-5"><a href="functional-programming.html#cb918-5"></a></span>
+<span id="cb918-6"><a href="functional-programming.html#cb918-6"></a><span class="co"># Function</span></span>
+<span id="cb918-7"><a href="functional-programming.html#cb918-7"></a></span>
+<span id="cb918-8"><a href="functional-programming.html#cb918-8"></a>print_lists &lt;-<span class="st"> </span><span class="cf">function</span>(univ, dept) {</span>
+<span id="cb918-9"><a href="functional-programming.html#cb918-9"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(</span>
+<span id="cb918-10"><a href="functional-programming.html#cb918-10"></a>    <span class="st">&quot;University = &quot;</span>, univ, <span class="st">&quot;|&quot;</span>,</span>
+<span id="cb918-11"><a href="functional-programming.html#cb918-11"></a>    <span class="st">&quot;Department = &quot;</span>, dept</span>
+<span id="cb918-12"><a href="functional-programming.html#cb918-12"></a>  ))</span>
+<span id="cb918-13"><a href="functional-programming.html#cb918-13"></a>}</span>
+<span id="cb918-14"><a href="functional-programming.html#cb918-14"></a></span>
+<span id="cb918-15"><a href="functional-programming.html#cb918-15"></a><span class="co"># Test</span></span>
+<span id="cb918-16"><a href="functional-programming.html#cb918-16"></a></span>
+<span id="cb918-17"><a href="functional-programming.html#cb918-17"></a><span class="kw">print_lists</span>(univ_list[<span class="dv">1</span>], dept_list[<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## [1] &quot;University =  Berkeley | Department =  waterbenders&quot;</code></pre>
 <ul>
 <li>Step2: Using <code>map2()</code> or <code>pmap()</code></li>
 </ul>
 <p><img src="https://dcl-prog.stanford.edu/images/map2.png" /></p>
-<div class="sourceCode" id="cb884"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb884-1"><a href="functional-programming.html#cb884-1"></a><span class="co"># 2 arguments</span></span>
-<span id="cb884-2"><a href="functional-programming.html#cb884-2"></a>map2_output &lt;-<span class="st"> </span><span class="kw">map2</span>(univ_list, dept_list, print_lists)</span></code></pre></div>
+<div class="sourceCode" id="cb920"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb920-1"><a href="functional-programming.html#cb920-1"></a><span class="co"># 2 arguments</span></span>
+<span id="cb920-2"><a href="functional-programming.html#cb920-2"></a>map2_output &lt;-<span class="st"> </span><span class="kw">map2</span>(univ_list, dept_list, print_lists)</span></code></pre></div>
 <pre><code>## [1] &quot;University =  Berkeley | Department =  waterbenders&quot;
 ## [1] &quot;University =  Stanford | Department =  earthbenders&quot;
 ## [1] &quot;University =  Berkeley | Department =  firebenders&quot;
@@ -1299,8 +1301,8 @@ function(input){</p>
 ## [1] &quot;University =  Berkeley | Department =  firebenders&quot;
 ## [1] &quot;University =  Stanford | Department =  airbenders&quot;</code></pre>
 <p><img src="https://d33wubrfki0l68.cloudfront.net/e426c5755e2e65bdcc073d387775db79791f32fd/92902/diagrams/functionals/pmap.png" /></p>
-<div class="sourceCode" id="cb886"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb886-1"><a href="functional-programming.html#cb886-1"></a><span class="co"># 3+ arguments</span></span>
-<span id="cb886-2"><a href="functional-programming.html#cb886-2"></a>pmap_output &lt;-<span class="st"> </span><span class="kw">pmap</span>(<span class="kw">list</span>(univ_list, dept_list), print_lists)</span></code></pre></div>
+<div class="sourceCode" id="cb922"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb922-1"><a href="functional-programming.html#cb922-1"></a><span class="co"># 3+ arguments</span></span>
+<span id="cb922-2"><a href="functional-programming.html#cb922-2"></a>pmap_output &lt;-<span class="st"> </span><span class="kw">pmap</span>(<span class="kw">list</span>(univ_list, dept_list), print_lists)</span></code></pre></div>
 <pre><code>## [1] &quot;University =  Berkeley | Department =  waterbenders&quot;
 ## [1] &quot;University =  Stanford | Department =  earthbenders&quot;
 ## [1] &quot;University =  Berkeley | Department =  firebenders&quot;
@@ -1327,33 +1329,33 @@ function(input){</p>
 <ul>
 <li>Making the following data visualization process more efficient.</li>
 </ul>
-<div class="sourceCode" id="cb888"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb888-1"><a href="functional-programming.html#cb888-1"></a><span class="kw">data</span>(<span class="st">&quot;airquality&quot;</span>)</span>
-<span id="cb888-2"><a href="functional-programming.html#cb888-2"></a></span>
-<span id="cb888-3"><a href="functional-programming.html#cb888-3"></a>airquality <span class="op">%&gt;%</span></span>
-<span id="cb888-4"><a href="functional-programming.html#cb888-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Ozone, <span class="dt">y =</span> Solar.R)) <span class="op">+</span></span>
-<span id="cb888-5"><a href="functional-programming.html#cb888-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb888-6"><a href="functional-programming.html#cb888-6"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb888-7"><a href="functional-programming.html#cb888-7"></a>    <span class="dt">title =</span> <span class="st">&quot;Relationship between Ozone and Solar.R&quot;</span>,</span>
-<span id="cb888-8"><a href="functional-programming.html#cb888-8"></a>    <span class="dt">y =</span> <span class="st">&quot;Solar.R&quot;</span></span>
-<span id="cb888-9"><a href="functional-programming.html#cb888-9"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb924"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb924-1"><a href="functional-programming.html#cb924-1"></a><span class="kw">data</span>(<span class="st">&quot;airquality&quot;</span>)</span>
+<span id="cb924-2"><a href="functional-programming.html#cb924-2"></a></span>
+<span id="cb924-3"><a href="functional-programming.html#cb924-3"></a>airquality <span class="op">%&gt;%</span></span>
+<span id="cb924-4"><a href="functional-programming.html#cb924-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Ozone, <span class="dt">y =</span> Solar.R)) <span class="op">+</span></span>
+<span id="cb924-5"><a href="functional-programming.html#cb924-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb924-6"><a href="functional-programming.html#cb924-6"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb924-7"><a href="functional-programming.html#cb924-7"></a>    <span class="dt">title =</span> <span class="st">&quot;Relationship between Ozone and Solar.R&quot;</span>,</span>
+<span id="cb924-8"><a href="functional-programming.html#cb924-8"></a>    <span class="dt">y =</span> <span class="st">&quot;Solar.R&quot;</span></span>
+<span id="cb924-9"><a href="functional-programming.html#cb924-9"></a>  )</span></code></pre></div>
 <pre><code>## Warning: Removed 42 rows containing missing values (geom_point).</code></pre>
 <p><img src="04_functional_programming_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
-<div class="sourceCode" id="cb890"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb890-1"><a href="functional-programming.html#cb890-1"></a>airquality <span class="op">%&gt;%</span></span>
-<span id="cb890-2"><a href="functional-programming.html#cb890-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Ozone, <span class="dt">y =</span> Wind)) <span class="op">+</span></span>
-<span id="cb890-3"><a href="functional-programming.html#cb890-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb890-4"><a href="functional-programming.html#cb890-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb890-5"><a href="functional-programming.html#cb890-5"></a>    <span class="dt">title =</span> <span class="st">&quot;Relationship between Ozone and Wind&quot;</span>,</span>
-<span id="cb890-6"><a href="functional-programming.html#cb890-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Wind&quot;</span></span>
-<span id="cb890-7"><a href="functional-programming.html#cb890-7"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb926"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb926-1"><a href="functional-programming.html#cb926-1"></a>airquality <span class="op">%&gt;%</span></span>
+<span id="cb926-2"><a href="functional-programming.html#cb926-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Ozone, <span class="dt">y =</span> Wind)) <span class="op">+</span></span>
+<span id="cb926-3"><a href="functional-programming.html#cb926-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb926-4"><a href="functional-programming.html#cb926-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb926-5"><a href="functional-programming.html#cb926-5"></a>    <span class="dt">title =</span> <span class="st">&quot;Relationship between Ozone and Wind&quot;</span>,</span>
+<span id="cb926-6"><a href="functional-programming.html#cb926-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Wind&quot;</span></span>
+<span id="cb926-7"><a href="functional-programming.html#cb926-7"></a>  )</span></code></pre></div>
 <pre><code>## Warning: Removed 37 rows containing missing values (geom_point).</code></pre>
 <p><img src="04_functional_programming_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
-<div class="sourceCode" id="cb892"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb892-1"><a href="functional-programming.html#cb892-1"></a>airquality <span class="op">%&gt;%</span></span>
-<span id="cb892-2"><a href="functional-programming.html#cb892-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Ozone, <span class="dt">y =</span> Temp)) <span class="op">+</span></span>
-<span id="cb892-3"><a href="functional-programming.html#cb892-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb892-4"><a href="functional-programming.html#cb892-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb892-5"><a href="functional-programming.html#cb892-5"></a>    <span class="dt">title =</span> <span class="st">&quot;Relationship between Ozone and Temp&quot;</span>,</span>
-<span id="cb892-6"><a href="functional-programming.html#cb892-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Temp&quot;</span></span>
-<span id="cb892-7"><a href="functional-programming.html#cb892-7"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb928"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb928-1"><a href="functional-programming.html#cb928-1"></a>airquality <span class="op">%&gt;%</span></span>
+<span id="cb928-2"><a href="functional-programming.html#cb928-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Ozone, <span class="dt">y =</span> Temp)) <span class="op">+</span></span>
+<span id="cb928-3"><a href="functional-programming.html#cb928-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb928-4"><a href="functional-programming.html#cb928-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb928-5"><a href="functional-programming.html#cb928-5"></a>    <span class="dt">title =</span> <span class="st">&quot;Relationship between Ozone and Temp&quot;</span>,</span>
+<span id="cb928-6"><a href="functional-programming.html#cb928-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Temp&quot;</span></span>
+<span id="cb928-7"><a href="functional-programming.html#cb928-7"></a>  )</span></code></pre></div>
 <pre><code>## Warning: Removed 37 rows containing missing values (geom_point).</code></pre>
 <p><img src="04_functional_programming_files/figure-html/unnamed-chunk-27-3.png" width="672" /></p>
 </div>
@@ -1363,11 +1365,11 @@ function(input){</p>
 <li><p>Learn how <code>glue()</code> works.</p></li>
 <li><p><code>glue()</code> combines strings and objects and it works simpler and faster than <code>paste()</code> or <code>sprintif()</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb894"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb894-1"><a href="functional-programming.html#cb894-1"></a>names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jae&quot;</span>, <span class="st">&quot;Aniket&quot;</span>, <span class="st">&quot;Avery&quot;</span>)</span>
-<span id="cb894-2"><a href="functional-programming.html#cb894-2"></a></span>
-<span id="cb894-3"><a href="functional-programming.html#cb894-3"></a>fields &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Political Science&quot;</span>, <span class="st">&quot;Law&quot;</span>, <span class="st">&quot;Public Health&quot;</span>)</span>
-<span id="cb894-4"><a href="functional-programming.html#cb894-4"></a></span>
-<span id="cb894-5"><a href="functional-programming.html#cb894-5"></a><span class="kw">glue</span>(<span class="st">&quot;{names} studies {fields}.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb930"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb930-1"><a href="functional-programming.html#cb930-1"></a>names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jae&quot;</span>, <span class="st">&quot;Aniket&quot;</span>, <span class="st">&quot;Avery&quot;</span>)</span>
+<span id="cb930-2"><a href="functional-programming.html#cb930-2"></a></span>
+<span id="cb930-3"><a href="functional-programming.html#cb930-3"></a>fields &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Political Science&quot;</span>, <span class="st">&quot;Law&quot;</span>, <span class="st">&quot;Public Health&quot;</span>)</span>
+<span id="cb930-4"><a href="functional-programming.html#cb930-4"></a></span>
+<span id="cb930-5"><a href="functional-programming.html#cb930-5"></a><span class="kw">glue</span>(<span class="st">&quot;{names} studies {fields}.&quot;</span>)</span></code></pre></div>
 <pre><code>## Jae studies Political Science.
 ## Aniket studies Law.
 ## Avery studies Public Health.</code></pre>
@@ -1379,13 +1381,13 @@ How can you create the character vector of column names?</p></li>
 <li><p><strong>Challenge</strong>
 How can you make <code>ggplot2()</code> take strings as x and y variable names? (Hint: Type <code>?aes_string()</code>)</p></li>
 </ul>
-<div class="sourceCode" id="cb896"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb896-1"><a href="functional-programming.html#cb896-1"></a>airquality <span class="op">%&gt;%</span></span>
-<span id="cb896-2"><a href="functional-programming.html#cb896-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes_string</span>(<span class="dt">x =</span> <span class="kw">names</span>(airquality)[<span class="dv">1</span>], <span class="dt">y =</span> <span class="kw">names</span>(airquality)[<span class="dv">2</span>])) <span class="op">+</span></span>
-<span id="cb896-3"><a href="functional-programming.html#cb896-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb896-4"><a href="functional-programming.html#cb896-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb896-5"><a href="functional-programming.html#cb896-5"></a>    <span class="dt">title =</span> <span class="kw">glue</span>(<span class="st">&quot;Relationship between Ozone and {names(airquality)[2]}&quot;</span>),</span>
-<span id="cb896-6"><a href="functional-programming.html#cb896-6"></a>    <span class="dt">y =</span> <span class="kw">glue</span>(<span class="st">&quot;{names(airquality)[2]}&quot;</span>)</span>
-<span id="cb896-7"><a href="functional-programming.html#cb896-7"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb932"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb932-1"><a href="functional-programming.html#cb932-1"></a>airquality <span class="op">%&gt;%</span></span>
+<span id="cb932-2"><a href="functional-programming.html#cb932-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes_string</span>(<span class="dt">x =</span> <span class="kw">names</span>(airquality)[<span class="dv">1</span>], <span class="dt">y =</span> <span class="kw">names</span>(airquality)[<span class="dv">2</span>])) <span class="op">+</span></span>
+<span id="cb932-3"><a href="functional-programming.html#cb932-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb932-4"><a href="functional-programming.html#cb932-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb932-5"><a href="functional-programming.html#cb932-5"></a>    <span class="dt">title =</span> <span class="kw">glue</span>(<span class="st">&quot;Relationship between Ozone and {names(airquality)[2]}&quot;</span>),</span>
+<span id="cb932-6"><a href="functional-programming.html#cb932-6"></a>    <span class="dt">y =</span> <span class="kw">glue</span>(<span class="st">&quot;{names(airquality)[2]}&quot;</span>)</span>
+<span id="cb932-7"><a href="functional-programming.html#cb932-7"></a>  )</span></code></pre></div>
 <pre><code>## Warning: Removed 42 rows containing missing values (geom_point).</code></pre>
 <p><img src="04_functional_programming_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <ul>
@@ -1394,19 +1396,19 @@ How can you make <code>ggplot2()</code> take strings as x and y variable names? 
 <li>Note that in the function argument <code>i</code> (abstract) replaced 2 (specific): abstraction</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb898"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb898-1"><a href="functional-programming.html#cb898-1"></a>create_point_plot &lt;-<span class="st"> </span><span class="cf">function</span>(i) {</span>
-<span id="cb898-2"><a href="functional-programming.html#cb898-2"></a>  airquality <span class="op">%&gt;%</span></span>
-<span id="cb898-3"><a href="functional-programming.html#cb898-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes_string</span>(<span class="dt">x =</span> <span class="kw">names</span>(airquality)[<span class="dv">1</span>], <span class="dt">y =</span> <span class="kw">names</span>(airquality)[i])) <span class="op">+</span></span>
-<span id="cb898-4"><a href="functional-programming.html#cb898-4"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb898-5"><a href="functional-programming.html#cb898-5"></a><span class="st">    </span><span class="kw">labs</span>(</span>
-<span id="cb898-6"><a href="functional-programming.html#cb898-6"></a>      <span class="dt">title =</span> <span class="kw">glue</span>(<span class="st">&quot;Relationship between Ozone and {names(airquality)[i]}&quot;</span>),</span>
-<span id="cb898-7"><a href="functional-programming.html#cb898-7"></a>      <span class="dt">y =</span> <span class="kw">glue</span>(<span class="st">&quot;{names(airquality)[i]}&quot;</span>)</span>
-<span id="cb898-8"><a href="functional-programming.html#cb898-8"></a>    )</span>
-<span id="cb898-9"><a href="functional-programming.html#cb898-9"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb934"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb934-1"><a href="functional-programming.html#cb934-1"></a>create_point_plot &lt;-<span class="st"> </span><span class="cf">function</span>(i) {</span>
+<span id="cb934-2"><a href="functional-programming.html#cb934-2"></a>  airquality <span class="op">%&gt;%</span></span>
+<span id="cb934-3"><a href="functional-programming.html#cb934-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes_string</span>(<span class="dt">x =</span> <span class="kw">names</span>(airquality)[<span class="dv">1</span>], <span class="dt">y =</span> <span class="kw">names</span>(airquality)[i])) <span class="op">+</span></span>
+<span id="cb934-4"><a href="functional-programming.html#cb934-4"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb934-5"><a href="functional-programming.html#cb934-5"></a><span class="st">    </span><span class="kw">labs</span>(</span>
+<span id="cb934-6"><a href="functional-programming.html#cb934-6"></a>      <span class="dt">title =</span> <span class="kw">glue</span>(<span class="st">&quot;Relationship between Ozone and {names(airquality)[i]}&quot;</span>),</span>
+<span id="cb934-7"><a href="functional-programming.html#cb934-7"></a>      <span class="dt">y =</span> <span class="kw">glue</span>(<span class="st">&quot;{names(airquality)[i]}&quot;</span>)</span>
+<span id="cb934-8"><a href="functional-programming.html#cb934-8"></a>    )</span>
+<span id="cb934-9"><a href="functional-programming.html#cb934-9"></a>}</span></code></pre></div>
 <ul>
 <li>The final step is to put the function in <code>map()</code>.</li>
 </ul>
-<div class="sourceCode" id="cb899"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb899-1"><a href="functional-programming.html#cb899-1"></a><span class="kw">map</span>(<span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(airquality), create_point_plot)</span></code></pre></div>
+<div class="sourceCode" id="cb935"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb935-1"><a href="functional-programming.html#cb935-1"></a><span class="kw">map</span>(<span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(airquality), create_point_plot)</span></code></pre></div>
 <pre><code>## [[1]]</code></pre>
 <pre><code>## Warning: Removed 42 rows containing missing values (geom_point).</code></pre>
 <p><img src="04_functional_programming_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
@@ -1442,31 +1444,31 @@ How can you make <code>ggplot2()</code> take strings as x and y variable names? 
 <li><p>How can you make joining multiple dataframes more efficient?</p></li>
 <li><p>Note that we will use <code>dplyr::left_join() = merge(x, y, all.x = TRUE)</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb910"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb910-1"><a href="functional-programming.html#cb910-1"></a>df1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb910-2"><a href="functional-programming.html#cb910-2"></a>  <span class="dt">x =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb910-3"><a href="functional-programming.html#cb910-3"></a>  <span class="dt">y =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb910-4"><a href="functional-programming.html#cb910-4"></a>  <span class="dt">z =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb910-5"><a href="functional-programming.html#cb910-5"></a>)</span>
-<span id="cb910-6"><a href="functional-programming.html#cb910-6"></a></span>
-<span id="cb910-7"><a href="functional-programming.html#cb910-7"></a>df2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb910-8"><a href="functional-programming.html#cb910-8"></a>  <span class="dt">x =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb910-9"><a href="functional-programming.html#cb910-9"></a>  <span class="dt">y =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb910-10"><a href="functional-programming.html#cb910-10"></a>  <span class="dt">z =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb910-11"><a href="functional-programming.html#cb910-11"></a>)</span>
-<span id="cb910-12"><a href="functional-programming.html#cb910-12"></a></span>
-<span id="cb910-13"><a href="functional-programming.html#cb910-13"></a>df3 &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb910-14"><a href="functional-programming.html#cb910-14"></a>  <span class="dt">x =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb910-15"><a href="functional-programming.html#cb910-15"></a>  <span class="dt">y =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb910-16"><a href="functional-programming.html#cb910-16"></a>  <span class="dt">z =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb910-17"><a href="functional-programming.html#cb910-17"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb946"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb946-1"><a href="functional-programming.html#cb946-1"></a>df1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb946-2"><a href="functional-programming.html#cb946-2"></a>  <span class="dt">x =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb946-3"><a href="functional-programming.html#cb946-3"></a>  <span class="dt">y =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb946-4"><a href="functional-programming.html#cb946-4"></a>  <span class="dt">z =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb946-5"><a href="functional-programming.html#cb946-5"></a>)</span>
+<span id="cb946-6"><a href="functional-programming.html#cb946-6"></a></span>
+<span id="cb946-7"><a href="functional-programming.html#cb946-7"></a>df2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb946-8"><a href="functional-programming.html#cb946-8"></a>  <span class="dt">x =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb946-9"><a href="functional-programming.html#cb946-9"></a>  <span class="dt">y =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb946-10"><a href="functional-programming.html#cb946-10"></a>  <span class="dt">z =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb946-11"><a href="functional-programming.html#cb946-11"></a>)</span>
+<span id="cb946-12"><a href="functional-programming.html#cb946-12"></a></span>
+<span id="cb946-13"><a href="functional-programming.html#cb946-13"></a>df3 &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb946-14"><a href="functional-programming.html#cb946-14"></a>  <span class="dt">x =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb946-15"><a href="functional-programming.html#cb946-15"></a>  <span class="dt">y =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb946-16"><a href="functional-programming.html#cb946-16"></a>  <span class="dt">z =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb946-17"><a href="functional-programming.html#cb946-17"></a>)</span></code></pre></div>
 </div>
 <div id="copy-and-paste" class="section level3" number="5.5.3">
 <h3><span class="header-section-number">5.5.3</span> Copy and paste</h3>
-<div class="sourceCode" id="cb911"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb911-1"><a href="functional-programming.html#cb911-1"></a>first_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(df1, df2)</span></code></pre></div>
+<div class="sourceCode" id="cb947"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb947-1"><a href="functional-programming.html#cb947-1"></a>first_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(df1, df2)</span></code></pre></div>
 <pre><code>## Joining, by = c(&quot;x&quot;, &quot;y&quot;, &quot;z&quot;)</code></pre>
-<div class="sourceCode" id="cb913"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb913-1"><a href="functional-programming.html#cb913-1"></a>second_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(first_join, df3)</span></code></pre></div>
+<div class="sourceCode" id="cb949"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb949-1"><a href="functional-programming.html#cb949-1"></a>second_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(first_join, df3)</span></code></pre></div>
 <pre><code>## Joining, by = c(&quot;x&quot;, &quot;y&quot;, &quot;z&quot;)</code></pre>
-<div class="sourceCode" id="cb915"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb915-1"><a href="functional-programming.html#cb915-1"></a>second_join</span></code></pre></div>
+<div class="sourceCode" id="cb951"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb951-1"><a href="functional-programming.html#cb951-1"></a>second_join</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##       x     y     z
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -1489,10 +1491,10 @@ Why the above solution is not efficient?</li>
 - Computation: Calls a function with a pair of values at a time
 
 - Output: Returns a vector of length 1</code></pre>
-<div class="sourceCode" id="cb918"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb918-1"><a href="functional-programming.html#cb918-1"></a>reduced &lt;-<span class="st"> </span><span class="kw">reduce</span>(<span class="kw">list</span>(df1, df2, df3), left_join)</span></code></pre></div>
+<div class="sourceCode" id="cb954"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb954-1"><a href="functional-programming.html#cb954-1"></a>reduced &lt;-<span class="st"> </span><span class="kw">reduce</span>(<span class="kw">list</span>(df1, df2, df3), left_join)</span></code></pre></div>
 <pre><code>## Joining, by = c(&quot;x&quot;, &quot;y&quot;, &quot;z&quot;)
 ## Joining, by = c(&quot;x&quot;, &quot;y&quot;, &quot;z&quot;)</code></pre>
-<div class="sourceCode" id="cb920"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb920-1"><a href="functional-programming.html#cb920-1"></a>reduced</span></code></pre></div>
+<div class="sourceCode" id="cb956"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb956-1"><a href="functional-programming.html#cb956-1"></a>reduced</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##       x     y     z
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -1552,13 +1554,13 @@ Why the above solution is not efficient?</li>
 <li><p><strong>Challenge</strong></p></li>
 <li><p>Explain why we can’t run <code>map(url_lists, read_html)</code></p></li>
 </ul>
-<div class="sourceCode" id="cb922"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb922-1"><a href="functional-programming.html#cb922-1"></a>url_lists &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
-<span id="cb922-2"><a href="functional-programming.html#cb922-2"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/University_of_California,_Berkeley&quot;</span>,</span>
-<span id="cb922-3"><a href="functional-programming.html#cb922-3"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Stanford_University&quot;</span>,</span>
-<span id="cb922-4"><a href="functional-programming.html#cb922-4"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Carnegie_Mellon_University&quot;</span>,</span>
-<span id="cb922-5"><a href="functional-programming.html#cb922-5"></a>  <span class="st">&quot;https://DLAB&quot;</span></span>
-<span id="cb922-6"><a href="functional-programming.html#cb922-6"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb923"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb923-1"><a href="functional-programming.html#cb923-1"></a><span class="kw">map</span>(url_lists, read_html)</span></code></pre></div>
+<div class="sourceCode" id="cb958"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb958-1"><a href="functional-programming.html#cb958-1"></a>url_lists &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb958-2"><a href="functional-programming.html#cb958-2"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/University_of_California,_Berkeley&quot;</span>,</span>
+<span id="cb958-3"><a href="functional-programming.html#cb958-3"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Stanford_University&quot;</span>,</span>
+<span id="cb958-4"><a href="functional-programming.html#cb958-4"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Carnegie_Mellon_University&quot;</span>,</span>
+<span id="cb958-5"><a href="functional-programming.html#cb958-5"></a>  <span class="st">&quot;https://DLAB&quot;</span></span>
+<span id="cb958-6"><a href="functional-programming.html#cb958-6"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb959"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb959-1"><a href="functional-programming.html#cb959-1"></a><span class="kw">map</span>(url_lists, read_html)</span></code></pre></div>
 <ul>
 <li>This is a very simple problem so it’s easy to tell where the problem is. How can you make your error more informative?</li>
 </ul>
@@ -1576,20 +1578,20 @@ Why the above solution is not efficient?</li>
 </ul></li>
 <li><p>The basic logic of <code>try-catch</code>, R’s basic error handling function, works like the following.</p></li>
 </ul>
-<div class="sourceCode" id="cb924"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb924-1"><a href="functional-programming.html#cb924-1"></a><span class="kw">tryCatch</span>(</span>
-<span id="cb924-2"><a href="functional-programming.html#cb924-2"></a>  {</span>
-<span id="cb924-3"><a href="functional-programming.html#cb924-3"></a>    <span class="kw">map</span>(url_lists, read_html)</span>
-<span id="cb924-4"><a href="functional-programming.html#cb924-4"></a>  },</span>
-<span id="cb924-5"><a href="functional-programming.html#cb924-5"></a>  <span class="dt">warning =</span> <span class="cf">function</span>(w) {</span>
-<span id="cb924-6"><a href="functional-programming.html#cb924-6"></a>    <span class="st">&quot;Warning&quot;</span></span>
-<span id="cb924-7"><a href="functional-programming.html#cb924-7"></a>  },</span>
-<span id="cb924-8"><a href="functional-programming.html#cb924-8"></a>  <span class="dt">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb924-9"><a href="functional-programming.html#cb924-9"></a>    <span class="st">&quot;Error&quot;</span></span>
-<span id="cb924-10"><a href="functional-programming.html#cb924-10"></a>  },</span>
-<span id="cb924-11"><a href="functional-programming.html#cb924-11"></a>  <span class="dt">finally =</span> {</span>
-<span id="cb924-12"><a href="functional-programming.html#cb924-12"></a>    <span class="st">&quot;Message&quot;</span></span>
-<span id="cb924-13"><a href="functional-programming.html#cb924-13"></a>  }</span>
-<span id="cb924-14"><a href="functional-programming.html#cb924-14"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb960"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb960-1"><a href="functional-programming.html#cb960-1"></a><span class="kw">tryCatch</span>(</span>
+<span id="cb960-2"><a href="functional-programming.html#cb960-2"></a>  {</span>
+<span id="cb960-3"><a href="functional-programming.html#cb960-3"></a>    <span class="kw">map</span>(url_lists, read_html)</span>
+<span id="cb960-4"><a href="functional-programming.html#cb960-4"></a>  },</span>
+<span id="cb960-5"><a href="functional-programming.html#cb960-5"></a>  <span class="dt">warning =</span> <span class="cf">function</span>(w) {</span>
+<span id="cb960-6"><a href="functional-programming.html#cb960-6"></a>    <span class="st">&quot;Warning&quot;</span></span>
+<span id="cb960-7"><a href="functional-programming.html#cb960-7"></a>  },</span>
+<span id="cb960-8"><a href="functional-programming.html#cb960-8"></a>  <span class="dt">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb960-9"><a href="functional-programming.html#cb960-9"></a>    <span class="st">&quot;Error&quot;</span></span>
+<span id="cb960-10"><a href="functional-programming.html#cb960-10"></a>  },</span>
+<span id="cb960-11"><a href="functional-programming.html#cb960-11"></a>  <span class="dt">finally =</span> {</span>
+<span id="cb960-12"><a href="functional-programming.html#cb960-12"></a>    <span class="st">&quot;Message&quot;</span></span>
+<span id="cb960-13"><a href="functional-programming.html#cb960-13"></a>  }</span>
+<span id="cb960-14"><a href="functional-programming.html#cb960-14"></a>)</span></code></pre></div>
 <pre><code>## [1] &quot;Error&quot;</code></pre>
 <ul>
 <li>Here’s <code>purrr</code> version of the <code>try-catch</code> mechanism (evaluates code and assigns exception handlers).</li>
@@ -1602,7 +1604,7 @@ Why the above solution is not efficient?</li>
 <li>result: result or <code>NULL</code></li>
 <li>error: <code>NULL</code> or <code>error</code></li>
 </ul>
-<div class="sourceCode" id="cb926"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb926-1"><a href="functional-programming.html#cb926-1"></a><span class="kw">map</span>(url_lists, <span class="kw">safely</span>(read_html))</span></code></pre></div>
+<div class="sourceCode" id="cb962"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb962-1"><a href="functional-programming.html#cb962-1"></a><span class="kw">map</span>(url_lists, <span class="kw">safely</span>(read_html))</span></code></pre></div>
 <pre><code>## [[1]]
 ## [[1]]$result
 ## {html_document}
@@ -1645,10 +1647,10 @@ Why the above solution is not efficient?</li>
 <ul>
 <li>The easier way to solve this problem is just avoiding the error.</li>
 </ul>
-<div class="sourceCode" id="cb928"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb928-1"><a href="functional-programming.html#cb928-1"></a><span class="kw">map</span>(url_lists, <span class="kw">safely</span>(read_html)) <span class="op">%&gt;%</span></span>
-<span id="cb928-2"><a href="functional-programming.html#cb928-2"></a><span class="st">  </span><span class="kw">map</span>(<span class="st">&quot;result&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb928-3"><a href="functional-programming.html#cb928-3"></a><span class="st">  </span><span class="co"># = map(function(x) x[[&quot;result&quot;]]) = map(~.x[[&quot;name&quot;]])</span></span>
-<span id="cb928-4"><a href="functional-programming.html#cb928-4"></a><span class="st">  </span>purrr<span class="op">::</span><span class="kw">compact</span>() <span class="co"># Remove empty elements</span></span></code></pre></div>
+<div class="sourceCode" id="cb964"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb964-1"><a href="functional-programming.html#cb964-1"></a><span class="kw">map</span>(url_lists, <span class="kw">safely</span>(read_html)) <span class="op">%&gt;%</span></span>
+<span id="cb964-2"><a href="functional-programming.html#cb964-2"></a><span class="st">  </span><span class="kw">map</span>(<span class="st">&quot;result&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb964-3"><a href="functional-programming.html#cb964-3"></a><span class="st">  </span><span class="co"># = map(function(x) x[[&quot;result&quot;]]) = map(~.x[[&quot;name&quot;]])</span></span>
+<span id="cb964-4"><a href="functional-programming.html#cb964-4"></a><span class="st">  </span>purrr<span class="op">::</span><span class="kw">compact</span>() <span class="co"># Remove empty elements</span></span></code></pre></div>
 <pre><code>## [[1]]
 ## {html_document}
 ## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
@@ -1670,16 +1672,16 @@ Why the above solution is not efficient?</li>
 <div id="possibly" class="section level4" number="5.7.2.3">
 <h4><span class="header-section-number">5.7.2.3</span> possibly</h4>
 <p>What if the best way to solve the problem is not ignoring the error …</p>
-<div class="sourceCode" id="cb930"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb930-1"><a href="functional-programming.html#cb930-1"></a><span class="co"># If error occurred, &quot;The URL is broken.&quot; will be stored in that element(s).</span></span>
-<span id="cb930-2"><a href="functional-programming.html#cb930-2"></a>out &lt;-<span class="st"> </span><span class="kw">map</span>(</span>
-<span id="cb930-3"><a href="functional-programming.html#cb930-3"></a>  url_lists,</span>
-<span id="cb930-4"><a href="functional-programming.html#cb930-4"></a>  <span class="kw">possibly</span>(read_html,</span>
-<span id="cb930-5"><a href="functional-programming.html#cb930-5"></a>    <span class="dt">otherwise =</span> <span class="st">&quot;The URL is broken.&quot;</span></span>
-<span id="cb930-6"><a href="functional-programming.html#cb930-6"></a>  )</span>
-<span id="cb930-7"><a href="functional-programming.html#cb930-7"></a>)</span>
-<span id="cb930-8"><a href="functional-programming.html#cb930-8"></a></span>
-<span id="cb930-9"><a href="functional-programming.html#cb930-9"></a><span class="co"># Let&#39;s find the broken URL.</span></span>
-<span id="cb930-10"><a href="functional-programming.html#cb930-10"></a>url_lists[out[<span class="kw">seq</span>(out)] <span class="op">==</span><span class="st"> &quot;The URL is broken.&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb966"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb966-1"><a href="functional-programming.html#cb966-1"></a><span class="co"># If error occurred, &quot;The URL is broken.&quot; will be stored in that element(s).</span></span>
+<span id="cb966-2"><a href="functional-programming.html#cb966-2"></a>out &lt;-<span class="st"> </span><span class="kw">map</span>(</span>
+<span id="cb966-3"><a href="functional-programming.html#cb966-3"></a>  url_lists,</span>
+<span id="cb966-4"><a href="functional-programming.html#cb966-4"></a>  <span class="kw">possibly</span>(read_html,</span>
+<span id="cb966-5"><a href="functional-programming.html#cb966-5"></a>    <span class="dt">otherwise =</span> <span class="st">&quot;The URL is broken.&quot;</span></span>
+<span id="cb966-6"><a href="functional-programming.html#cb966-6"></a>  )</span>
+<span id="cb966-7"><a href="functional-programming.html#cb966-7"></a>)</span>
+<span id="cb966-8"><a href="functional-programming.html#cb966-8"></a></span>
+<span id="cb966-9"><a href="functional-programming.html#cb966-9"></a><span class="co"># Let&#39;s find the broken URL.</span></span>
+<span id="cb966-10"><a href="functional-programming.html#cb966-10"></a>url_lists[out[<span class="kw">seq</span>(out)] <span class="op">==</span><span class="st"> &quot;The URL is broken.&quot;</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;https://DLAB&quot;</code></pre>
 </div>
 </div>
@@ -1744,87 +1746,87 @@ Why the above solution is not efficient?</li>
 <ol style="list-style-type: decimal">
 <li>Setup (<strong>DESCRIPTION</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb932"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb932-1"><a href="functional-programming.html#cb932-1"></a><span class="co"># This function creates DESCRIPTION file </span></span>
-<span id="cb932-2"><a href="functional-programming.html#cb932-2"></a>usethis<span class="op">::</span><span class="kw">create_package</span>(<span class="kw">here</span>(<span class="st">&quot;mypkg&quot;</span>))</span>
-<span id="cb932-3"><a href="functional-programming.html#cb932-3"></a></span>
-<span id="cb932-4"><a href="functional-programming.html#cb932-4"></a><span class="co"># Initialize git repo </span></span>
-<span id="cb932-5"><a href="functional-programming.html#cb932-5"></a>usethis<span class="op">::</span><span class="kw">use_git</span>()</span>
-<span id="cb932-6"><a href="functional-programming.html#cb932-6"></a></span>
-<span id="cb932-7"><a href="functional-programming.html#cb932-7"></a><span class="co"># License the package </span></span>
-<span id="cb932-8"><a href="functional-programming.html#cb932-8"></a><span class="co"># You can use the MIT license by typing devtools::use_mit_license(&quot;author name&quot;). The function produces MIT license related files (LICENSE, LICENSE.md).</span></span>
-<span id="cb932-9"><a href="functional-programming.html#cb932-9"></a><span class="kw">use_mit_license</span>(<span class="st">&quot;Jae Yeon Kim&quot;</span>)</span>
-<span id="cb932-10"><a href="functional-programming.html#cb932-10"></a></span>
-<span id="cb932-11"><a href="functional-programming.html#cb932-11"></a><span class="co"># Add README (optional)</span></span>
-<span id="cb932-12"><a href="functional-programming.html#cb932-12"></a><span class="co"># Makes the package more use-friendly </span></span>
-<span id="cb932-13"><a href="functional-programming.html#cb932-13"></a><span class="kw">use_readme_md</span>()</span>
-<span id="cb932-14"><a href="functional-programming.html#cb932-14"></a></span>
-<span id="cb932-15"><a href="functional-programming.html#cb932-15"></a><span class="co"># Add news (optional) </span></span>
-<span id="cb932-16"><a href="functional-programming.html#cb932-16"></a><span class="co"># Helps track changes </span></span>
-<span id="cb932-17"><a href="functional-programming.html#cb932-17"></a><span class="kw">use_news_md</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb968"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb968-1"><a href="functional-programming.html#cb968-1"></a><span class="co"># This function creates DESCRIPTION file </span></span>
+<span id="cb968-2"><a href="functional-programming.html#cb968-2"></a>usethis<span class="op">::</span><span class="kw">create_package</span>(<span class="kw">here</span>(<span class="st">&quot;mypkg&quot;</span>))</span>
+<span id="cb968-3"><a href="functional-programming.html#cb968-3"></a></span>
+<span id="cb968-4"><a href="functional-programming.html#cb968-4"></a><span class="co"># Initialize git repo </span></span>
+<span id="cb968-5"><a href="functional-programming.html#cb968-5"></a>usethis<span class="op">::</span><span class="kw">use_git</span>()</span>
+<span id="cb968-6"><a href="functional-programming.html#cb968-6"></a></span>
+<span id="cb968-7"><a href="functional-programming.html#cb968-7"></a><span class="co"># License the package </span></span>
+<span id="cb968-8"><a href="functional-programming.html#cb968-8"></a><span class="co"># You can use the MIT license by typing devtools::use_mit_license(&quot;author name&quot;). The function produces MIT license related files (LICENSE, LICENSE.md).</span></span>
+<span id="cb968-9"><a href="functional-programming.html#cb968-9"></a><span class="kw">use_mit_license</span>(<span class="st">&quot;Jae Yeon Kim&quot;</span>)</span>
+<span id="cb968-10"><a href="functional-programming.html#cb968-10"></a></span>
+<span id="cb968-11"><a href="functional-programming.html#cb968-11"></a><span class="co"># Add README (optional)</span></span>
+<span id="cb968-12"><a href="functional-programming.html#cb968-12"></a><span class="co"># Makes the package more use-friendly </span></span>
+<span id="cb968-13"><a href="functional-programming.html#cb968-13"></a><span class="kw">use_readme_md</span>()</span>
+<span id="cb968-14"><a href="functional-programming.html#cb968-14"></a></span>
+<span id="cb968-15"><a href="functional-programming.html#cb968-15"></a><span class="co"># Add news (optional) </span></span>
+<span id="cb968-16"><a href="functional-programming.html#cb968-16"></a><span class="co"># Helps track changes </span></span>
+<span id="cb968-17"><a href="functional-programming.html#cb968-17"></a><span class="kw">use_news_md</span>() </span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Write code (<strong>R</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb933"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb933-1"><a href="functional-programming.html#cb933-1"></a>usethis<span class="op">::</span><span class="kw">use_r</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb934"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb934-1"><a href="functional-programming.html#cb934-1"></a><span class="co">#&#39; Add two numbers</span></span>
-<span id="cb934-2"><a href="functional-programming.html#cb934-2"></a><span class="co">#&#39;</span></span>
-<span id="cb934-3"><a href="functional-programming.html#cb934-3"></a><span class="co">#&#39; @param x A number</span></span>
-<span id="cb934-4"><a href="functional-programming.html#cb934-4"></a><span class="co">#&#39; @param y A number</span></span>
-<span id="cb934-5"><a href="functional-programming.html#cb934-5"></a><span class="co">#&#39; @return The sum of x and y </span></span>
-<span id="cb934-6"><a href="functional-programming.html#cb934-6"></a><span class="co">#&#39; @export</span></span>
-<span id="cb934-7"><a href="functional-programming.html#cb934-7"></a></span>
-<span id="cb934-8"><a href="functional-programming.html#cb934-8"></a>add &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){</span>
-<span id="cb934-9"><a href="functional-programming.html#cb934-9"></a>  </span>
-<span id="cb934-10"><a href="functional-programming.html#cb934-10"></a>  x <span class="op">+</span><span class="st"> </span>y</span>
-<span id="cb934-11"><a href="functional-programming.html#cb934-11"></a>  </span>
-<span id="cb934-12"><a href="functional-programming.html#cb934-12"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb969"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb969-1"><a href="functional-programming.html#cb969-1"></a>usethis<span class="op">::</span><span class="kw">use_r</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb970-1"><a href="functional-programming.html#cb970-1"></a><span class="co">#&#39; Add two numbers</span></span>
+<span id="cb970-2"><a href="functional-programming.html#cb970-2"></a><span class="co">#&#39;</span></span>
+<span id="cb970-3"><a href="functional-programming.html#cb970-3"></a><span class="co">#&#39; @param x A number</span></span>
+<span id="cb970-4"><a href="functional-programming.html#cb970-4"></a><span class="co">#&#39; @param y A number</span></span>
+<span id="cb970-5"><a href="functional-programming.html#cb970-5"></a><span class="co">#&#39; @return The sum of x and y </span></span>
+<span id="cb970-6"><a href="functional-programming.html#cb970-6"></a><span class="co">#&#39; @export</span></span>
+<span id="cb970-7"><a href="functional-programming.html#cb970-7"></a></span>
+<span id="cb970-8"><a href="functional-programming.html#cb970-8"></a>add &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){</span>
+<span id="cb970-9"><a href="functional-programming.html#cb970-9"></a>  </span>
+<span id="cb970-10"><a href="functional-programming.html#cb970-10"></a>  x <span class="op">+</span><span class="st"> </span>y</span>
+<span id="cb970-11"><a href="functional-programming.html#cb970-11"></a>  </span>
+<span id="cb970-12"><a href="functional-programming.html#cb970-12"></a>}</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Document (<strong>man</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb935"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb935-1"><a href="functional-programming.html#cb935-1"></a><span class="co"># Document </span></span>
-<span id="cb935-2"><a href="functional-programming.html#cb935-2"></a><span class="co"># The function creates documentation related files (NAMESPACE, function_name.rd)</span></span>
-<span id="cb935-3"><a href="functional-programming.html#cb935-3"></a>devtools<span class="op">::</span><span class="kw">document</span>()</span>
-<span id="cb935-4"><a href="functional-programming.html#cb935-4"></a></span>
-<span id="cb935-5"><a href="functional-programming.html#cb935-5"></a><span class="co"># Load all </span></span>
-<span id="cb935-6"><a href="functional-programming.html#cb935-6"></a>devtools<span class="op">::</span><span class="kw">load_all</span>()</span>
-<span id="cb935-7"><a href="functional-programming.html#cb935-7"></a></span>
-<span id="cb935-8"><a href="functional-programming.html#cb935-8"></a><span class="co"># Check </span></span>
-<span id="cb935-9"><a href="functional-programming.html#cb935-9"></a>devtools<span class="op">::</span><span class="kw">check</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb971"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb971-1"><a href="functional-programming.html#cb971-1"></a><span class="co"># Document </span></span>
+<span id="cb971-2"><a href="functional-programming.html#cb971-2"></a><span class="co"># The function creates documentation related files (NAMESPACE, function_name.rd)</span></span>
+<span id="cb971-3"><a href="functional-programming.html#cb971-3"></a>devtools<span class="op">::</span><span class="kw">document</span>()</span>
+<span id="cb971-4"><a href="functional-programming.html#cb971-4"></a></span>
+<span id="cb971-5"><a href="functional-programming.html#cb971-5"></a><span class="co"># Load all </span></span>
+<span id="cb971-6"><a href="functional-programming.html#cb971-6"></a>devtools<span class="op">::</span><span class="kw">load_all</span>()</span>
+<span id="cb971-7"><a href="functional-programming.html#cb971-7"></a></span>
+<span id="cb971-8"><a href="functional-programming.html#cb971-8"></a><span class="co"># Check </span></span>
+<span id="cb971-9"><a href="functional-programming.html#cb971-9"></a>devtools<span class="op">::</span><span class="kw">check</span>()</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Organize (<strong>NAMESPACE</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb936"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb936-1"><a href="functional-programming.html#cb936-1"></a>usethis<span class="op">::</span><span class="kw">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb972"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb972-1"><a href="functional-programming.html#cb972-1"></a>usethis<span class="op">::</span><span class="kw">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 </div>
 <div id="optional-components" class="section level4" number="5.8.1.3">
 <h4><span class="header-section-number">5.8.1.3</span> Optional Components</h4>
 <ol style="list-style-type: decimal">
 <li>Test (<strong>test</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb937"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb937-1"><a href="functional-programming.html#cb937-1"></a>usethis<span class="op">::</span><span class="kw">use_testthat</span>()</span>
-<span id="cb937-2"><a href="functional-programming.html#cb937-2"></a></span>
-<span id="cb937-3"><a href="functional-programming.html#cb937-3"></a>usethis<span class="op">::</span><span class="kw">use_test</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb973"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb973-1"><a href="functional-programming.html#cb973-1"></a>usethis<span class="op">::</span><span class="kw">use_testthat</span>()</span>
+<span id="cb973-2"><a href="functional-programming.html#cb973-2"></a></span>
+<span id="cb973-3"><a href="functional-programming.html#cb973-3"></a>usethis<span class="op">::</span><span class="kw">use_test</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Add data (<strong>data</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb938"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb938-1"><a href="functional-programming.html#cb938-1"></a>x &lt;-<span class="st"> &quot;Jae&quot;</span></span>
-<span id="cb938-2"><a href="functional-programming.html#cb938-2"></a>y &lt;-<span class="st"> &quot;Sun&quot;</span></span>
-<span id="cb938-3"><a href="functional-programming.html#cb938-3"></a>z &lt;-<span class="st"> &quot;Jane&quot;</span></span>
-<span id="cb938-4"><a href="functional-programming.html#cb938-4"></a></span>
-<span id="cb938-5"><a href="functional-programming.html#cb938-5"></a>usethis<span class="op">::</span><span class="kw">use_data</span>(x, y, z, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb974"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb974-1"><a href="functional-programming.html#cb974-1"></a>x &lt;-<span class="st"> &quot;Jae&quot;</span></span>
+<span id="cb974-2"><a href="functional-programming.html#cb974-2"></a>y &lt;-<span class="st"> &quot;Sun&quot;</span></span>
+<span id="cb974-3"><a href="functional-programming.html#cb974-3"></a>z &lt;-<span class="st"> &quot;Jane&quot;</span></span>
+<span id="cb974-4"><a href="functional-programming.html#cb974-4"></a></span>
+<span id="cb974-5"><a href="functional-programming.html#cb974-5"></a>usethis<span class="op">::</span><span class="kw">use_data</span>(x, y, z, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Teach (<strong>vignetts</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb939"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb939-1"><a href="functional-programming.html#cb939-1"></a>usethis<span class="op">::</span><span class="kw">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb940"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb940-1"><a href="functional-programming.html#cb940-1"></a>title<span class="op">:</span><span class="st"> &quot;Vignette title&quot;</span></span>
-<span id="cb940-2"><a href="functional-programming.html#cb940-2"></a>author<span class="op">:</span><span class="st"> &quot;Vignette author&quot;</span></span>
-<span id="cb940-3"><a href="functional-programming.html#cb940-3"></a>date<span class="op">:</span><span class="st"> &quot;2020-10-28&quot;</span></span>
-<span id="cb940-4"><a href="functional-programming.html#cb940-4"></a>output<span class="op">:</span><span class="st"> </span>rmarkdown<span class="op">::</span>html_vignette</span>
-<span id="cb940-5"><a href="functional-programming.html#cb940-5"></a>vignette<span class="op">:</span><span class="st"> </span>blah blah</span></code></pre></div>
+<div class="sourceCode" id="cb975"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb975-1"><a href="functional-programming.html#cb975-1"></a>usethis<span class="op">::</span><span class="kw">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb976"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb976-1"><a href="functional-programming.html#cb976-1"></a>title<span class="op">:</span><span class="st"> &quot;Vignette title&quot;</span></span>
+<span id="cb976-2"><a href="functional-programming.html#cb976-2"></a>author<span class="op">:</span><span class="st"> &quot;Vignette author&quot;</span></span>
+<span id="cb976-3"><a href="functional-programming.html#cb976-3"></a>date<span class="op">:</span><span class="st"> &quot;2020-10-29&quot;</span></span>
+<span id="cb976-4"><a href="functional-programming.html#cb976-4"></a>output<span class="op">:</span><span class="st"> </span>rmarkdown<span class="op">::</span>html_vignette</span>
+<span id="cb976-5"><a href="functional-programming.html#cb976-5"></a>vignette<span class="op">:</span><span class="st"> </span>blah blah</span></code></pre></div>
 <ul>
 <li>You can build a package website using <code>pkgdown</code></li>
 </ul>
-<div class="sourceCode" id="cb941"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb941-1"><a href="functional-programming.html#cb941-1"></a><span class="co"># install.packages(&quot;pkgdown&quot;)</span></span>
-<span id="cb941-2"><a href="functional-programming.html#cb941-2"></a>usethis<span class="op">::</span><span class="kw">use_pkgdown</span>()</span>
-<span id="cb941-3"><a href="functional-programming.html#cb941-3"></a>pkgdown<span class="op">::</span><span class="kw">build_site</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb977"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb977-1"><a href="functional-programming.html#cb977-1"></a><span class="co"># install.packages(&quot;pkgdown&quot;)</span></span>
+<span id="cb977-2"><a href="functional-programming.html#cb977-2"></a>usethis<span class="op">::</span><span class="kw">use_pkgdown</span>()</span>
+<span id="cb977-3"><a href="functional-programming.html#cb977-3"></a>pkgdown<span class="op">::</span><span class="kw">build_site</span>()</span></code></pre></div>
 <ul>
 <li>A package site includes information on METADATA, Function references, Articles, News, etc.</li>
 </ul>
@@ -1838,19 +1840,19 @@ Why the above solution is not efficient?</li>
 <ul>
 <li>devtools</li>
 </ul>
-<div class="sourceCode" id="cb942"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb942-1"><a href="functional-programming.html#cb942-1"></a><span class="co"># Build </span></span>
-<span id="cb942-2"><a href="functional-programming.html#cb942-2"></a>devtools<span class="op">::</span><span class="kw">build</span>()</span>
-<span id="cb942-3"><a href="functional-programming.html#cb942-3"></a></span>
-<span id="cb942-4"><a href="functional-programming.html#cb942-4"></a><span class="co"># Install </span></span>
-<span id="cb942-5"><a href="functional-programming.html#cb942-5"></a>devtools<span class="op">::</span><span class="kw">install</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb978"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb978-1"><a href="functional-programming.html#cb978-1"></a><span class="co"># Build </span></span>
+<span id="cb978-2"><a href="functional-programming.html#cb978-2"></a>devtools<span class="op">::</span><span class="kw">build</span>()</span>
+<span id="cb978-3"><a href="functional-programming.html#cb978-3"></a></span>
+<span id="cb978-4"><a href="functional-programming.html#cb978-4"></a><span class="co"># Install </span></span>
+<span id="cb978-5"><a href="functional-programming.html#cb978-5"></a>devtools<span class="op">::</span><span class="kw">install</span>()</span></code></pre></div>
 </div>
 <div id="distributing-an-r-package" class="section level4" number="5.8.1.5">
 <h4><span class="header-section-number">5.8.1.5</span> Distributing an R package</h4>
-<div class="sourceCode" id="cb943"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb943-1"><a href="functional-programming.html#cb943-1"></a><span class="co"># Version update </span></span>
-<span id="cb943-2"><a href="functional-programming.html#cb943-2"></a>usethis<span class="op">::</span><span class="kw">use_version</span>()</span>
-<span id="cb943-3"><a href="functional-programming.html#cb943-3"></a></span>
-<span id="cb943-4"><a href="functional-programming.html#cb943-4"></a><span class="co"># Spell check</span></span>
-<span id="cb943-5"><a href="functional-programming.html#cb943-5"></a>usethis<span class="op">::</span><span class="kw">use_spell_check</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb979"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb979-1"><a href="functional-programming.html#cb979-1"></a><span class="co"># Version update </span></span>
+<span id="cb979-2"><a href="functional-programming.html#cb979-2"></a>usethis<span class="op">::</span><span class="kw">use_version</span>()</span>
+<span id="cb979-3"><a href="functional-programming.html#cb979-3"></a></span>
+<span id="cb979-4"><a href="functional-programming.html#cb979-4"></a><span class="co"># Spell check</span></span>
+<span id="cb979-5"><a href="functional-programming.html#cb979-5"></a>usethis<span class="op">::</span><span class="kw">use_spell_check</span>()</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><a href="https://cran.r-project.org/">CRAN (The Comprehensive R Archive Network)</a></li>
 </ol>
@@ -1886,7 +1888,7 @@ Why the above solution is not efficient?</li>
 <ol style="list-style-type: decimal">
 <li>Install libraries</li>
 </ol>
-<div class="sourceCode" id="cb944"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb944-1"><a href="functional-programming.html#cb944-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb980"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb980-1"><a href="functional-programming.html#cb980-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Create app directory and file</li>
 </ol>
@@ -1899,79 +1901,79 @@ Why the above solution is not efficient?</li>
 <ul>
 <li>Front-end</li>
 </ul>
-<div class="sourceCode" id="cb945"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb945-1"><a href="functional-programming.html#cb945-1"></a><span class="co"># Load packages </span></span>
-<span id="cb945-2"><a href="functional-programming.html#cb945-2"></a><span class="co"># Do not use install.packages(), pacman::p_load(), or library() if you intend to deploy the app using shinyapps.io </span></span>
-<span id="cb945-3"><a href="functional-programming.html#cb945-3"></a></span>
-<span id="cb945-4"><a href="functional-programming.html#cb945-4"></a><span class="kw">require</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span>
-<span id="cb945-5"><a href="functional-programming.html#cb945-5"></a><span class="kw">require</span>(<span class="st">&quot;shiny&quot;</span>)</span>
-<span id="cb945-6"><a href="functional-programming.html#cb945-6"></a><span class="kw">require</span>(<span class="st">&quot;shinydashboard&quot;</span>)</span>
-<span id="cb945-7"><a href="functional-programming.html#cb945-7"></a><span class="kw">require</span>(<span class="st">&quot;colourpicker&quot;</span>)</span>
-<span id="cb945-8"><a href="functional-programming.html#cb945-8"></a></span>
-<span id="cb945-9"><a href="functional-programming.html#cb945-9"></a><span class="co"># Load data </span></span>
-<span id="cb945-10"><a href="functional-programming.html#cb945-10"></a></span>
-<span id="cb945-11"><a href="functional-programming.html#cb945-11"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">url</span>(<span class="st">&quot;https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb945-12"><a href="functional-programming.html#cb945-12"></a></span>
-<span id="cb945-13"><a href="functional-programming.html#cb945-13"></a><span class="co"># Defines the user interface; how the app looks</span></span>
-<span id="cb945-14"><a href="functional-programming.html#cb945-14"></a></span>
-<span id="cb945-15"><a href="functional-programming.html#cb945-15"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
-<span id="cb945-16"><a href="functional-programming.html#cb945-16"></a>  </span>
-<span id="cb945-17"><a href="functional-programming.html#cb945-17"></a>    <span class="co"># Application title </span></span>
-<span id="cb945-18"><a href="functional-programming.html#cb945-18"></a>    <span class="kw">titlePanel</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
-<span id="cb945-19"><a href="functional-programming.html#cb945-19"></a>  </span>
-<span id="cb945-20"><a href="functional-programming.html#cb945-20"></a>    <span class="kw">h4</span>(tags<span class="op">$</span><span class="kw">a</span>(<span class="dt">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
-<span id="cb945-21"><a href="functional-programming.html#cb945-21"></a>            </span>
-<span id="cb945-22"><a href="functional-programming.html#cb945-22"></a>    <span class="kw">sidebarLayout</span>(</span>
-<span id="cb945-23"><a href="functional-programming.html#cb945-23"></a>      </span>
-<span id="cb945-24"><a href="functional-programming.html#cb945-24"></a>      <span class="co"># Sidebar with sliders </span></span>
-<span id="cb945-25"><a href="functional-programming.html#cb945-25"></a>      <span class="kw">sidebarPanel</span>(</span>
-<span id="cb945-26"><a href="functional-programming.html#cb945-26"></a>        <span class="kw">sliderInput</span>(<span class="st">&quot;size&quot;</span>, </span>
-<span id="cb945-27"><a href="functional-programming.html#cb945-27"></a>                    <span class="st">&quot;Font size:&quot;</span>,</span>
-<span id="cb945-28"><a href="functional-programming.html#cb945-28"></a>                    <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>,</span>
-<span id="cb945-29"><a href="functional-programming.html#cb945-29"></a>                    <span class="dt">value =</span> <span class="dv">2</span>)</span>
-<span id="cb945-30"><a href="functional-programming.html#cb945-30"></a>      ),</span>
-<span id="cb945-31"><a href="functional-programming.html#cb945-31"></a>    </span>
-<span id="cb945-32"><a href="functional-programming.html#cb945-32"></a>    <span class="kw">mainPanel</span>(</span>
-<span id="cb945-33"><a href="functional-programming.html#cb945-33"></a>          </span>
-<span id="cb945-34"><a href="functional-programming.html#cb945-34"></a>          <span class="kw">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
-<span id="cb945-35"><a href="functional-programming.html#cb945-35"></a>        </span>
-<span id="cb945-36"><a href="functional-programming.html#cb945-36"></a>        )</span>
-<span id="cb945-37"><a href="functional-programming.html#cb945-37"></a>    </span>
-<span id="cb945-38"><a href="functional-programming.html#cb945-38"></a>    )</span>
-<span id="cb945-39"><a href="functional-programming.html#cb945-39"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb981"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb981-1"><a href="functional-programming.html#cb981-1"></a><span class="co"># Load packages </span></span>
+<span id="cb981-2"><a href="functional-programming.html#cb981-2"></a><span class="co"># Do not use install.packages(), pacman::p_load(), or library() if you intend to deploy the app using shinyapps.io </span></span>
+<span id="cb981-3"><a href="functional-programming.html#cb981-3"></a></span>
+<span id="cb981-4"><a href="functional-programming.html#cb981-4"></a><span class="kw">require</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span>
+<span id="cb981-5"><a href="functional-programming.html#cb981-5"></a><span class="kw">require</span>(<span class="st">&quot;shiny&quot;</span>)</span>
+<span id="cb981-6"><a href="functional-programming.html#cb981-6"></a><span class="kw">require</span>(<span class="st">&quot;shinydashboard&quot;</span>)</span>
+<span id="cb981-7"><a href="functional-programming.html#cb981-7"></a><span class="kw">require</span>(<span class="st">&quot;colourpicker&quot;</span>)</span>
+<span id="cb981-8"><a href="functional-programming.html#cb981-8"></a></span>
+<span id="cb981-9"><a href="functional-programming.html#cb981-9"></a><span class="co"># Load data </span></span>
+<span id="cb981-10"><a href="functional-programming.html#cb981-10"></a></span>
+<span id="cb981-11"><a href="functional-programming.html#cb981-11"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">url</span>(<span class="st">&quot;https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb981-12"><a href="functional-programming.html#cb981-12"></a></span>
+<span id="cb981-13"><a href="functional-programming.html#cb981-13"></a><span class="co"># Defines the user interface; how the app looks</span></span>
+<span id="cb981-14"><a href="functional-programming.html#cb981-14"></a></span>
+<span id="cb981-15"><a href="functional-programming.html#cb981-15"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb981-16"><a href="functional-programming.html#cb981-16"></a>  </span>
+<span id="cb981-17"><a href="functional-programming.html#cb981-17"></a>    <span class="co"># Application title </span></span>
+<span id="cb981-18"><a href="functional-programming.html#cb981-18"></a>    <span class="kw">titlePanel</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
+<span id="cb981-19"><a href="functional-programming.html#cb981-19"></a>  </span>
+<span id="cb981-20"><a href="functional-programming.html#cb981-20"></a>    <span class="kw">h4</span>(tags<span class="op">$</span><span class="kw">a</span>(<span class="dt">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
+<span id="cb981-21"><a href="functional-programming.html#cb981-21"></a>            </span>
+<span id="cb981-22"><a href="functional-programming.html#cb981-22"></a>    <span class="kw">sidebarLayout</span>(</span>
+<span id="cb981-23"><a href="functional-programming.html#cb981-23"></a>      </span>
+<span id="cb981-24"><a href="functional-programming.html#cb981-24"></a>      <span class="co"># Sidebar with sliders </span></span>
+<span id="cb981-25"><a href="functional-programming.html#cb981-25"></a>      <span class="kw">sidebarPanel</span>(</span>
+<span id="cb981-26"><a href="functional-programming.html#cb981-26"></a>        <span class="kw">sliderInput</span>(<span class="st">&quot;size&quot;</span>, </span>
+<span id="cb981-27"><a href="functional-programming.html#cb981-27"></a>                    <span class="st">&quot;Font size:&quot;</span>,</span>
+<span id="cb981-28"><a href="functional-programming.html#cb981-28"></a>                    <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>,</span>
+<span id="cb981-29"><a href="functional-programming.html#cb981-29"></a>                    <span class="dt">value =</span> <span class="dv">2</span>)</span>
+<span id="cb981-30"><a href="functional-programming.html#cb981-30"></a>      ),</span>
+<span id="cb981-31"><a href="functional-programming.html#cb981-31"></a>    </span>
+<span id="cb981-32"><a href="functional-programming.html#cb981-32"></a>    <span class="kw">mainPanel</span>(</span>
+<span id="cb981-33"><a href="functional-programming.html#cb981-33"></a>          </span>
+<span id="cb981-34"><a href="functional-programming.html#cb981-34"></a>          <span class="kw">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
+<span id="cb981-35"><a href="functional-programming.html#cb981-35"></a>        </span>
+<span id="cb981-36"><a href="functional-programming.html#cb981-36"></a>        )</span>
+<span id="cb981-37"><a href="functional-programming.html#cb981-37"></a>    </span>
+<span id="cb981-38"><a href="functional-programming.html#cb981-38"></a>    )</span>
+<span id="cb981-39"><a href="functional-programming.html#cb981-39"></a>)</span></code></pre></div>
 <ul>
 <li>Back-end</li>
 </ul>
-<div class="sourceCode" id="cb946"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb946-1"><a href="functional-programming.html#cb946-1"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
-<span id="cb946-2"><a href="functional-programming.html#cb946-2"></a>  </span>
-<span id="cb946-3"><a href="functional-programming.html#cb946-3"></a>  output<span class="op">$</span>cloud &lt;-<span class="st"> </span><span class="kw">renderWordcloud2</span>({ </span>
-<span id="cb946-4"><a href="functional-programming.html#cb946-4"></a>    </span>
-<span id="cb946-5"><a href="functional-programming.html#cb946-5"></a>    <span class="kw">wordcloud2</span>(df, </span>
-<span id="cb946-6"><a href="functional-programming.html#cb946-6"></a>               <span class="dt">size =</span> input<span class="op">$</span>size, </span>
-<span id="cb946-7"><a href="functional-programming.html#cb946-7"></a>               <span class="dt">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
-<span id="cb946-8"><a href="functional-programming.html#cb946-8"></a>    </span>
-<span id="cb946-9"><a href="functional-programming.html#cb946-9"></a>    })</span>
-<span id="cb946-10"><a href="functional-programming.html#cb946-10"></a></span>
-<span id="cb946-11"><a href="functional-programming.html#cb946-11"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb982"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb982-1"><a href="functional-programming.html#cb982-1"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb982-2"><a href="functional-programming.html#cb982-2"></a>  </span>
+<span id="cb982-3"><a href="functional-programming.html#cb982-3"></a>  output<span class="op">$</span>cloud &lt;-<span class="st"> </span><span class="kw">renderWordcloud2</span>({ </span>
+<span id="cb982-4"><a href="functional-programming.html#cb982-4"></a>    </span>
+<span id="cb982-5"><a href="functional-programming.html#cb982-5"></a>    <span class="kw">wordcloud2</span>(df, </span>
+<span id="cb982-6"><a href="functional-programming.html#cb982-6"></a>               <span class="dt">size =</span> input<span class="op">$</span>size, </span>
+<span id="cb982-7"><a href="functional-programming.html#cb982-7"></a>               <span class="dt">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
+<span id="cb982-8"><a href="functional-programming.html#cb982-8"></a>    </span>
+<span id="cb982-9"><a href="functional-programming.html#cb982-9"></a>    })</span>
+<span id="cb982-10"><a href="functional-programming.html#cb982-10"></a></span>
+<span id="cb982-11"><a href="functional-programming.html#cb982-11"></a>  }</span></code></pre></div>
 <ul>
 <li>Build a shiny app</li>
 </ul>
-<div class="sourceCode" id="cb947"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb947-1"><a href="functional-programming.html#cb947-1"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+<div class="sourceCode" id="cb983"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb983-1"><a href="functional-programming.html#cb983-1"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
 </div>
 <div id="deployment" class="section level4" number="5.8.2.3">
 <h4><span class="header-section-number">5.8.2.3</span> Deployment</h4>
 <ul>
 <li>Deploy to <a href="https://www.shinyapps.io/?_ga=2.5503866.871102833.1602978469-100003412.1602392815">the shinyapps.io cloud</a></li>
 </ul>
-<div class="sourceCode" id="cb948"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb948-1"><a href="functional-programming.html#cb948-1"></a><span class="co"># Install packages </span></span>
-<span id="cb948-2"><a href="functional-programming.html#cb948-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;rsconnect&quot;</span>)</span>
-<span id="cb948-3"><a href="functional-programming.html#cb948-3"></a><span class="kw">library</span>(rsconnect)</span>
-<span id="cb948-4"><a href="functional-programming.html#cb948-4"></a></span>
-<span id="cb948-5"><a href="functional-programming.html#cb948-5"></a><span class="co"># Setup </span></span>
-<span id="cb948-6"><a href="functional-programming.html#cb948-6"></a>rsconnect<span class="op">::</span><span class="kw">setAccountInfo</span>(<span class="dt">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
-<span id="cb948-7"><a href="functional-programming.html#cb948-7"></a>                          <span class="dt">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
-<span id="cb948-8"><a href="functional-programming.html#cb948-8"></a>                          <span class="dt">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
-<span id="cb948-9"><a href="functional-programming.html#cb948-9"></a></span>
-<span id="cb948-10"><a href="functional-programming.html#cb948-10"></a>rsconnect<span class="op">::</span><span class="kw">deployApp</span>(<span class="dt">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb984"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb984-1"><a href="functional-programming.html#cb984-1"></a><span class="co"># Install packages </span></span>
+<span id="cb984-2"><a href="functional-programming.html#cb984-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;rsconnect&quot;</span>)</span>
+<span id="cb984-3"><a href="functional-programming.html#cb984-3"></a><span class="kw">library</span>(rsconnect)</span>
+<span id="cb984-4"><a href="functional-programming.html#cb984-4"></a></span>
+<span id="cb984-5"><a href="functional-programming.html#cb984-5"></a><span class="co"># Setup </span></span>
+<span id="cb984-6"><a href="functional-programming.html#cb984-6"></a>rsconnect<span class="op">::</span><span class="kw">setAccountInfo</span>(<span class="dt">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
+<span id="cb984-7"><a href="functional-programming.html#cb984-7"></a>                          <span class="dt">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
+<span id="cb984-8"><a href="functional-programming.html#cb984-8"></a>                          <span class="dt">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
+<span id="cb984-9"><a href="functional-programming.html#cb984-9"></a></span>
+<span id="cb984-10"><a href="functional-programming.html#cb984-10"></a>rsconnect<span class="op">::</span><span class="kw">deployApp</span>(<span class="dt">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
 </div>
 <div id="references-1" class="section level4" number="5.8.2.4">
 <h4><span class="header-section-number">5.8.2.4</span> References</h4>
