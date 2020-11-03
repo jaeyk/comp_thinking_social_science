@@ -585,7 +585,7 @@ Table: (\#tab:unnamed-chunk-15)1 records
 
 </div>
 
-`%` is one of the wildcards that you can use for string matching. `%` matches any number of characters. So, `J%` matches Jae, JFK, Joseph, etc. `_` is another useful wildcard and it matches exactly one character. So `J_` matches only JA, JE, etc. If wildcards not enough, then you should consider using regular expressions.
+`%` is one of the wildcards that you can use for string matching. `%` matches any number of characters. So, `J%` matches Jae, JFK, Joseph, etc. `_` is another useful wildcard and it matches exactly one character. So `J_` matches only JA, JE, etc. If wildcards are not enough, then you should consider using regular expressions.
 
 - `arrange` = `ORDER BY`
 

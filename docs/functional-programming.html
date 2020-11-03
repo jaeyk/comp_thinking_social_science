@@ -1136,7 +1136,7 @@ function(input){</p>
 <span id="cb905-12"><a href="functional-programming.html#cb905-12"></a>  out1[[i]] &lt;-<span class="st"> </span><span class="kw">mean</span>(airquality[[i]], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb905-13"><a href="functional-programming.html#cb905-13"></a>}</span>
 <span id="cb905-14"><a href="functional-programming.html#cb905-14"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.006 sec elapsed</code></pre>
+<pre><code>## 0.007 sec elapsed</code></pre>
 <div class="sourceCode" id="cb907"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb907-1"><a href="functional-programming.html#cb907-1"></a><span class="kw">tic</span>()</span>
 <span id="cb907-2"><a href="functional-programming.html#cb907-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb907-3"><a href="functional-programming.html#cb907-3"></a><span class="kw">toc</span>()</span></code></pre></div>
