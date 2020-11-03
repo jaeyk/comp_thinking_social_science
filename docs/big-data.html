@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-10-29" />
+<meta name="date" content="2020-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -909,7 +909,7 @@ Hint: <code>mutate(new_var = var 1 * var2</code> (R) = <code>SELECT var1 * var2 
 <p><strong>Challenge 6</strong>
 Your turn: write the same code in SQL (hint: <code>filter(condition1, condition2)</code> = <code>WHERE condition1 and condition2</code>)</p>
 <p><strong>Additional tips</strong></p>
-<p>Note that R and SQL operators are not exactly alike. R uses <code>!=</code> for <code>Not equal to</code>. SQL uses <code>&lt;&gt;</code> or <code>!=</code>. Furthermore, there are some cautions about using <code>NULL</code> (NA; unknown or missing): it should be <code>IS NULL</code> or <code>IS NOT NULL</code> not <code>=NULL</code> or <code>!=NULL</code>.</p>
+<p>Note that R and SQL operators are not exactly alike. R uses <code>!=</code> for <code>Not equal to</code>. SQL uses <code>&lt;&gt;</code> or <code>!=</code>. Furthermore, there are some cautions about using <code>NULL</code> (NA; unknown or missing): it should be <code>IS NULL</code> or <code>IS NOT NULL</code> not <code>=NULL</code> or <code>!=NULL</code> (this makes sense because NULL represents an absence of a value).</p>
 <p>Another pro-tip is <a href="https://www.w3schools.com/sql/sql_like.asp"><code>LIKE</code> operator</a>, which is used in a <code>WHERE</code> statement to find values based on string patterns.</p>
 <div class="sourceCode" id="cb1285"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1285-1"><a href="big-data.html#cb1285-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span>(origin) <span class="co">-- Distinct values from origin column</span></span>
 <span id="cb1285-2"><a href="big-data.html#cb1285-2"></a><span class="kw">FROM</span> flights</span>
@@ -929,6 +929,7 @@ Your turn: write the same code in SQL (hint: <code>filter(condition1, condition2
 </tbody>
 </table>
 </div>
+<p><code>%</code> is one of the wildcards that you can use for string matching. <code>%</code> matches any number of characters. So, <code>J%</code> matches Jae, JFK, Joseph, etc. <code>_</code> is another useful wildcard and it matches exactly one character. So <code>J_</code> matches only JA, JE, etc. If wildcards not enough, then you should consider using regular expressions.</p>
 <ul>
 <li><code>arrange</code> = <code>ORDER BY</code></li>
 </ul>

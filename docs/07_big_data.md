@@ -562,7 +562,7 @@ Your turn: write the same code in SQL (hint: `filter(condition1, condition2)` = 
 
 **Additional tips**
 
-Note that R and SQL operators are not exactly alike. R uses `!=` for `Not equal to`. SQL uses `<>` or `!=`. Furthermore, there are some cautions about using `NULL` (NA; unknown or missing): it should be `IS NULL` or `IS NOT NULL` not `=NULL` or `!=NULL`. 
+Note that R and SQL operators are not exactly alike. R uses `!=` for `Not equal to`. SQL uses `<>` or `!=`. Furthermore, there are some cautions about using `NULL` (NA; unknown or missing): it should be `IS NULL` or `IS NOT NULL` not `=NULL` or `!=NULL` (this makes sense because NULL represents an absence of a value). 
 
 Another pro-tip is [`LIKE` operator](https://www.w3schools.com/sql/sql_like.asp), which is used in a `WHERE` statement to find values based on string patterns.
 
@@ -584,6 +584,8 @@ Table: (\#tab:unnamed-chunk-15)1 records
 |JFK    |
 
 </div>
+
+`%` is one of the wildcards that you can use for string matching. `%` matches any number of characters. So, `J%` matches Jae, JFK, Joseph, etc. `_` is another useful wildcard and it matches exactly one character. So `J_` matches only JA, JE, etc. If wildcards not enough, then you should consider using regular expressions.
 
 - `arrange` = `ORDER BY`
 
