@@ -63,6 +63,8 @@ The book teaches how to do all of these mostly in [**R**](https://www.r-project.
   
       - RStudio, especially the tidyverse team, has made heroic efforts to amend the problems listed above. Readers you will learn these recent advances in the R ecosystem and how to complement R with Python and Bash.
       
+      - If you're serious in programming, I strongly recommend learning Python. Learning Python also helps you to fill gaps in the software engineering knowledge that are useful to be highly proficient in R.
+      
 ## Special thanks 
 
 This book is collected as much as it is authored. It is a remix version of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level computational methods course at UC Berkeley, originally developed by [Rochelle Terman](http://rochelleterman.com/) then revised by [Rachel Bernhard](http://rachelbernhard.com/). I have taught PS239T as lead instructor in Spring 2019 and TA in Spring 2018 and will co-teach it in Spring 2020. Other teaching materials draw from the workshops I have created for [D-Lab](https://dlab.berkeley.edu/) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley. I also have cited all the other references whenever I am aware of related books, articles, slides, blog posts, or YouTube video clips. 

@@ -2589,7 +2589,6 @@ visualize(null_slopes) +
   shade_p_value(obs_stat = observed_slopes, 
                 direction = "both")
 
-
 ```
 
 ### Mixed models 
