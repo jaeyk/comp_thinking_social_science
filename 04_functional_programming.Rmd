@@ -40,19 +40,19 @@ pacman::p_load(
 ```{r}
 x <- 5
 
-if(x < 0){ # Condition 
+if (x < 0) { # Condition 
   print("x is negative") # Do something 
 } 
 
 x <- -5
 
-if(x < 0){
+if (x < 0) {
   print("x is negative")
 }
 
 x <- 5
 
-if(x < 0){
+if (x < 0) {
   print("x is negative")
 } else{
   print("x is positive")
@@ -60,12 +60,16 @@ if(x < 0){
 
 x <- 0
 
-if(x < 0){ # Condition 
+if (x < 0) { # Condition 
   print("x is negative") # Do something 
-} else if(x == 0){ 
-  print("x is zero") # Do something else 
-} else { print("x is positive") # Do something else 
-}
+
+  } else if (x == 0) { 
+  
+    print("x is zero") # Do something else 
+
+    } else {print("x is positive") # Do something else 
+
+      }
 
 ```
 R also does some class coercion that makes Boolean evaluations harder to break than in Python.  But be careful --- R has a set of special coercion used for fast logical evaluation and subsetting.  Specifically, ```TRUE``` is considered equal to ```1```, while ```FALSE``` is equal to ```0```. The Boolean logicals can also be specified as a full word in all caps, or simply as ```T``` or ```F```.
@@ -213,8 +217,10 @@ Data and env-variables
 
 ```{r}
 # df = environment variable 
-df <- data.frame(x = c(1:5), 
-                 y= c(6:10))
+df <- data.frame(
+  x = c(1:5),
+  y = c(6:10)
+  )
 
 # x, y = data variables 
 df$x
@@ -275,9 +281,9 @@ If you have a character vector input ...
 ```{r}
 mtcars_count <- mtcars %>%
   names() %>%
-  purrr::map(~count(mtcars, .data[[.x]]))
+  purrr::map(~count(mtcars, .data[[.x]])) # We're going to learn about map in the rest of this session.
 
-mtcars_count
+mtcars_count[[1]]
 ```
 
 
@@ -293,13 +299,13 @@ fruits <- c("apples", "oranges", "pears", "bananas")
 
 # a while loop
 i <- 1
-while(i <= length(fruits)){
+while (i <= length(fruits)) {
   print(fruits[i])
   i <- i + 1
 }
 
 # a for loop
-for(i in 1:length(fruits)){
+for (i in 1:length(fruits)) {
   print(fruits[i])
 }
 ```
