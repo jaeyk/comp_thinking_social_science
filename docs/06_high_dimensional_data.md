@@ -725,7 +725,7 @@ glue('The RMSE of the tuned model is {rec_res %>%
 ```
 
 ```
-## The RMSE of the tuned model is 7.71
+## The RMSE of the tuned model is 7.7
 ```
 
 - Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
@@ -759,9 +759,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.09 
-## 2 mae     standard       5.84 
-## 3 rsq     standard       0.414
+## 1 rmse    standard       7.11 
+## 2 mae     standard       5.86 
+## 3 rsq     standard       0.410
 ```
 
 ### Decision tree 
@@ -995,8 +995,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.756
-## 2 precision binary         0.721
+## 1 accuracy  binary         0.733
+## 2 precision binary         0.689
 ## 3 recall    binary         0.756
 ```
 
@@ -1216,7 +1216,7 @@ best_tree
 ## # A tibble: 1 x 3
 ##    mtry min_n .config
 ##   <int> <int> <chr>  
-## 1     1    10 Model21
+## 1     1     2 Model01
 ```
 
 ```r
@@ -1270,9 +1270,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.922
-## 2 precision binary         0.972
-## 3 recall    binary         0.854
+## 1 accuracy  binary         0.933
+## 2 precision binary         0.973
+## 3 recall    binary         0.878
 ```
 
 ### Boosting (XGboost)
@@ -1535,8 +1535,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.8  
-## 2 precision binary         0.795
+## 1 accuracy  binary         0.833
+## 2 precision binary         0.861
 ## 3 recall    binary         0.756
 ```
 
@@ -1659,13 +1659,13 @@ summary(cv_sl)
 ## All risk estimates are based on V =  5 
 ## 
 ##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.12950 0.0148134 0.071518 0.17528
-##     Discrete SL 0.12716 0.0148964 0.062965 0.17530
+##   Super Learner 0.12973 0.0148704 0.068518 0.17775
+##     Discrete SL 0.12810 0.0149794 0.063576 0.17775
 ##     SL.mean_All 0.24802 0.0030531 0.247747 0.24893
-##   SL.glmnet_All 0.12716 0.0148964 0.062965 0.17530
-##    SL.rpart_All 0.19518 0.0199566 0.160493 0.22434
-##   SL.ranger_All 0.14238 0.0131840 0.098815 0.17388
-##  SL.xgboost_All 0.15792 0.0169373 0.125348 0.17595
+##   SL.glmnet_All 0.12810 0.0149794 0.063576 0.17775
+##    SL.rpart_All 0.18869 0.0196099 0.137814 0.22434
+##   SL.ranger_All 0.14299 0.0132108 0.099527 0.17728
+##  SL.xgboost_All 0.15931 0.0170504 0.132480 0.17020
 ```
 
 ##### Plot
@@ -1702,13 +1702,13 @@ auc_table(cv_sl)
 
 ```
 ##                      auc         se  ci_lower  ci_upper      p-value
-## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.138901e-09
-## SL.rpart_All   0.7815842 0.04218172 0.6989095 0.8642588 2.567149e-03
-## SL.xgboost_All 0.8464521 0.02800206 0.7915691 0.9013352 2.877977e-02
-## SL.ranger_All  0.8804424 0.02338774 0.8346033 0.9262815 2.060015e-01
-## SuperLearner   0.8957561 0.02139154 0.8538295 0.9376828 4.281631e-01
-## SL.glmnet_All  0.8996291 0.02102314 0.8584245 0.9408337 5.000000e-01
-## DiscreteSL     0.8996291 0.02102314 0.8584245 0.9408337 5.000000e-01
+## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.242915e-09
+## SL.rpart_All   0.7841586 0.04199286 0.7018541 0.8664630 3.064302e-03
+## SL.xgboost_All 0.8483648 0.02779757 0.7938826 0.9028470 3.357370e-02
+## SL.ranger_All  0.8787986 0.02356809 0.8326060 0.9249912 1.927239e-01
+## SuperLearner   0.8962958 0.02133296 0.8544839 0.9381076 4.448661e-01
+## SL.glmnet_All  0.8992534 0.02106286 0.8579710 0.9405359 5.000000e-01
+## DiscreteSL     0.8992534 0.02106286 0.8579710 0.9405359 5.000000e-01
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
@@ -1729,11 +1729,11 @@ print(cvsl_weights(cv_sl), row.names = FALSE)
 
 ```
 ##  # Learner    Mean      SD     Min     Max
-##  1  glmnet 0.90398 0.09101 0.81427 1.00000
-##  2  ranger 0.05876 0.08287 0.00000 0.17496
-##  3   rpart 0.03715 0.08306 0.00000 0.18573
-##  4 xgboost 0.00011 0.00025 0.00000 0.00057
-##  5    mean 0.00000 0.00000 0.00000 0.00000
+##  1  glmnet 0.90496 0.08789 0.82193 1.00000
+##  2  ranger 0.07688 0.08050 0.00000 0.17807
+##  3 xgboost 0.01729 0.03866 0.00000 0.08644
+##  4    mean 0.00088 0.00196 0.00000 0.00439
+##  5   rpart 0.00000 0.00000 0.00000 0.00000
 ```
 
 General stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
@@ -2076,11 +2076,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.365, relative change = 3.221e-04) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.364, relative change = 1.281e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.364, relative change = 1.012e-05) 
 ## ....................................................................................................
@@ -2095,23 +2095,23 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.666) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.481, relative change = 2.408e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.387, relative change = 1.265e-02) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.361, relative change = 3.497e-03) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 5 (approx. per word bound = -7.351, relative change = 1.396e-03) 
 ## Topic 1: upon, littl, paper, even, came 
@@ -2129,7 +2129,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.346, relative change = 7.034e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.342, relative change = 5.221e-04) 
 ## ....................................................................................................
@@ -2152,19 +2152,19 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.738) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.461, relative change = 3.577e-02) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.367, relative change = 1.264e-02) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.343, relative change = 3.252e-03) 
 ## ....................................................................................................
@@ -2191,11 +2191,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.328, relative change = 7.011e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.324, relative change = 4.535e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.322, relative change = 3.650e-04) 
 ## ....................................................................................................
@@ -2203,7 +2203,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.320, relative change = 2.220e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 10 (approx. per word bound = -7.318, relative change = 2.408e-04) 
 ## Topic 1: matter, much, like, even, away 

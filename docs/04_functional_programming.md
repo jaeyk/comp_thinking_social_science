@@ -48,13 +48,13 @@ pacman::p_load(
 ```r
 x <- 5
 
-if(x < 0){ # Condition 
+if (x < 0) { # Condition 
   print("x is negative") # Do something 
 } 
 
 x <- -5
 
-if(x < 0){
+if (x < 0) {
   print("x is negative")
 }
 ```
@@ -66,7 +66,7 @@ if(x < 0){
 ```r
 x <- 5
 
-if(x < 0){
+if (x < 0) {
   print("x is negative")
 } else{
   print("x is positive")
@@ -80,12 +80,16 @@ if(x < 0){
 ```r
 x <- 0
 
-if(x < 0){ # Condition 
+if (x < 0) { # Condition 
   print("x is negative") # Do something 
-} else if(x == 0){ 
-  print("x is zero") # Do something else 
-} else { print("x is positive") # Do something else 
-}
+
+  } else if (x == 0) { 
+  
+    print("x is zero") # Do something else 
+
+    } else {print("x is positive") # Do something else 
+
+      }
 ```
 
 ```
@@ -415,8 +419,10 @@ Data and env-variables
 
 ```r
 # df = environment variable 
-df <- data.frame(x = c(1:5), 
-                 y= c(6:10))
+df <- data.frame(
+  x = c(1:5),
+  y = c(6:10)
+  )
 
 # x, y = data variables 
 df$x
@@ -502,13 +508,12 @@ If you have a character vector input ...
 ```r
 mtcars_count <- mtcars %>%
   names() %>%
-  purrr::map(~count(mtcars, .data[[.x]]))
+  purrr::map(~count(mtcars, .data[[.x]])) # We're going to learn about map in the rest of this session.
 
-mtcars_count
+mtcars_count[[1]]
 ```
 
 ```
-## [[1]]
 ##     mpg n
 ## 1  10.4 2
 ## 2  13.3 1
@@ -535,182 +540,6 @@ mtcars_count
 ## 23 30.4 2
 ## 24 32.4 1
 ## 25 33.9 1
-## 
-## [[2]]
-##   cyl  n
-## 1   4 11
-## 2   6  7
-## 3   8 14
-## 
-## [[3]]
-##     disp n
-## 1   71.1 1
-## 2   75.7 1
-## 3   78.7 1
-## 4   79.0 1
-## 5   95.1 1
-## 6  108.0 1
-## 7  120.1 1
-## 8  120.3 1
-## 9  121.0 1
-## 10 140.8 1
-## 11 145.0 1
-## 12 146.7 1
-## 13 160.0 2
-## 14 167.6 2
-## 15 225.0 1
-## 16 258.0 1
-## 17 275.8 3
-## 18 301.0 1
-## 19 304.0 1
-## 20 318.0 1
-## 21 350.0 1
-## 22 351.0 1
-## 23 360.0 2
-## 24 400.0 1
-## 25 440.0 1
-## 26 460.0 1
-## 27 472.0 1
-## 
-## [[4]]
-##     hp n
-## 1   52 1
-## 2   62 1
-## 3   65 1
-## 4   66 2
-## 5   91 1
-## 6   93 1
-## 7   95 1
-## 8   97 1
-## 9  105 1
-## 10 109 1
-## 11 110 3
-## 12 113 1
-## 13 123 2
-## 14 150 2
-## 15 175 3
-## 16 180 3
-## 17 205 1
-## 18 215 1
-## 19 230 1
-## 20 245 2
-## 21 264 1
-## 22 335 1
-## 
-## [[5]]
-##    drat n
-## 1  2.76 2
-## 2  2.93 1
-## 3  3.00 1
-## 4  3.07 3
-## 5  3.08 2
-## 6  3.15 2
-## 7  3.21 1
-## 8  3.23 1
-## 9  3.54 1
-## 10 3.62 1
-## 11 3.69 1
-## 12 3.70 1
-## 13 3.73 1
-## 14 3.77 1
-## 15 3.85 1
-## 16 3.90 2
-## 17 3.92 3
-## 18 4.08 2
-## 19 4.11 1
-## 20 4.22 2
-## 21 4.43 1
-## 22 4.93 1
-## 
-## [[6]]
-##       wt n
-## 1  1.513 1
-## 2  1.615 1
-## 3  1.835 1
-## 4  1.935 1
-## 5  2.140 1
-## 6  2.200 1
-## 7  2.320 1
-## 8  2.465 1
-## 9  2.620 1
-## 10 2.770 1
-## 11 2.780 1
-## 12 2.875 1
-## 13 3.150 1
-## 14 3.170 1
-## 15 3.190 1
-## 16 3.215 1
-## 17 3.435 1
-## 18 3.440 3
-## 19 3.460 1
-## 20 3.520 1
-## 21 3.570 2
-## 22 3.730 1
-## 23 3.780 1
-## 24 3.840 1
-## 25 3.845 1
-## 26 4.070 1
-## 27 5.250 1
-## 28 5.345 1
-## 29 5.424 1
-## 
-## [[7]]
-##     qsec n
-## 1  14.50 1
-## 2  14.60 1
-## 3  15.41 1
-## 4  15.50 1
-## 5  15.84 1
-## 6  16.46 1
-## 7  16.70 1
-## 8  16.87 1
-## 9  16.90 1
-## 10 17.02 2
-## 11 17.05 1
-## 12 17.30 1
-## 13 17.40 1
-## 14 17.42 1
-## 15 17.60 1
-## 16 17.82 1
-## 17 17.98 1
-## 18 18.00 1
-## 19 18.30 1
-## 20 18.52 1
-## 21 18.60 1
-## 22 18.61 1
-## 23 18.90 2
-## 24 19.44 1
-## 25 19.47 1
-## 26 19.90 1
-## 27 20.00 1
-## 28 20.01 1
-## 29 20.22 1
-## 30 22.90 1
-## 
-## [[8]]
-##   vs  n
-## 1  0 18
-## 2  1 14
-## 
-## [[9]]
-##   am  n
-## 1  0 19
-## 2  1 13
-## 
-## [[10]]
-##   gear  n
-## 1    3 15
-## 2    4 12
-## 3    5  5
-## 
-## [[11]]
-##   carb  n
-## 1    1  7
-## 2    2 10
-## 3    3  3
-## 4    4 10
-## 5    6  1
-## 6    8  1
 ```
 
 
@@ -727,7 +556,7 @@ fruits <- c("apples", "oranges", "pears", "bananas")
 
 # a while loop
 i <- 1
-while(i <= length(fruits)){
+while (i <= length(fruits)) {
   print(fruits[i])
   i <- i + 1
 }
@@ -742,7 +571,7 @@ while(i <= length(fruits)){
 
 ```r
 # a for loop
-for(i in 1:length(fruits)){
+for (i in 1:length(fruits)) {
   print(fruits[i])
 }
 ```
@@ -1366,7 +1195,7 @@ toc()
 ```
 
 ```
-## 0.009 sec elapsed
+## 0.006 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1409,7 +1238,7 @@ map_mark
 ## # A tibble: 1 x 6
 ##   expression                                           min median `itr/sec`
 ##   <bch:expr>                                         <bch> <bch:>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 132µs  158µs     1500.
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 127µs  140µs     6707.
 ## # … with 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
 ```
 
