@@ -3,6 +3,28 @@
 > Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions. 
 - Hadley Wickham
 
+- Setup 
+
+```{r}
+# Install packages
+if (!require("pacman")) {
+  install.packages("pacman")
+}
+
+pacman::p_load(
+  tidyverse, # tidyverse pkgs including purrr
+  bench, # performance test 
+  tictoc, # performance test
+  broom, # tidy modeling
+  glue, # paste string and objects
+  furrr, # parallel processing
+  rvest, # web scraping
+  devtools, # dev tools 
+  usethis, # workflow     
+  roxygen2, # documentation 
+  testthat) # testing 
+```
+
 ## Flow control 
 
 * Control structures = putting logic in code to control flow (e.g., `if`, `else`, `for`, `while`, `repeat`, `break`, `next`)
@@ -177,7 +199,7 @@ This part draws on one of the [the dplyr package articles](https://dplyr.tidyver
 
 In tidyverse, calling a variable with or without quotation mark (string or not) does make little difference because tidyeval is a type of non-standard evaluation. This flexibility runs into the following problem when it comes to programming. 
 
-```{r}
+```{r eval = FALSE}
 
 # Using `mpg` instead of `mtcars$mpg` is called data masking.
 
@@ -331,28 +353,6 @@ map(integer(), paste) # return list
 ```
 
 ## purrr
-
-- Setup 
-
-```{r}
-# Install packages
-if (!require("pacman")) {
-  install.packages("pacman")
-}
-
-pacman::p_load(
-  tidyverse, # tidyverse pkgs including purrr
-  bench, # performance test 
-  tictoc, # performance test
-  broom, # tidy modeling
-  glue, # paste string and objects
-  furrr, # parallel processing
-  rvest, # web scraping
-  devtools, # dev tools 
-  usethis, # workflow     
-  roxygen2, # documentation 
-  testthat) # testing 
-```
 
 ### Why map? 
 
