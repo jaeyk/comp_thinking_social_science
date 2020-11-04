@@ -3,6 +3,35 @@
 > Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions. 
 - Hadley Wickham
 
+- Setup 
+
+
+```r
+# Install packages
+if (!require("pacman")) {
+  install.packages("pacman")
+}
+```
+
+```
+## Loading required package: pacman
+```
+
+```r
+pacman::p_load(
+  tidyverse, # tidyverse pkgs including purrr
+  bench, # performance test 
+  tictoc, # performance test
+  broom, # tidy modeling
+  glue, # paste string and objects
+  furrr, # parallel processing
+  rvest, # web scraping
+  devtools, # dev tools 
+  usethis, # workflow     
+  roxygen2, # documentation 
+  testthat) # testing 
+```
+
 ## Flow control 
 
 * Control structures = putting logic in code to control flow (e.g., `if`, `else`, `for`, `while`, `repeat`, `break`, `next`)
@@ -62,7 +91,6 @@ if(x < 0){ # Condition
 ```
 ## [1] "x is zero"
 ```
-
 R also does some class coercion that makes Boolean evaluations harder to break than in Python.  But be careful --- R has a set of special coercion used for fast logical evaluation and subsetting.  Specifically, ```TRUE``` is considered equal to ```1```, while ```FALSE``` is equal to ```0```. The Boolean logicals can also be specified as a full word in all caps, or simply as ```T``` or ```F```.
 
 
@@ -363,6 +391,328 @@ g(2) # a equals still 1
 ```
 ## [1] 4
 ```
+**Additional tips**
+
+* Nonstandard evaluation 
+
+Nonstandard evaluation is an advanced subject. If you feel overwhelmed, you are more than welcome to skip this. But if you are serious in R programming, this is something you want to check out. For deeper understanding of this issue, I recommend reading [Ren Kun's very informative blog post](https://renkun.me/2014/12/03/tips-on-non-standard-evaluation-in-r/) carefully. 
+
+This part draws on one of the [the dplyr package articles](https://dplyr.tidyverse.org/articles/programming.html.
+
+In tidyverse, calling a variable with or without quotation mark (string or not) does make little difference because tidyeval is a type of non-standard evaluation. This flexibility runs into the following problem when it comes to programming. 
+
+
+```r
+# Using `mpg` instead of `mtcars$mpg` is called data masking.
+
+mtcars %>% select(mpg)
+
+mtcars %>% select("mpg")
+```
+
+Data and env-variables 
+
+
+```r
+# df = environment variable 
+df <- data.frame(x = c(1:5), 
+                 y= c(6:10))
+
+# x, y = data variables 
+df$x
+```
+
+```
+## [1] 1 2 3 4 5
+```
+
+```r
+df$y
+```
+
+```
+## [1]  6  7  8  9 10
+```
+
+- Problem 
+
+
+```r
+x <- NULL 
+
+var_summary <- function(env_var, data_var){
+ 
+   env_var %>%
+    summarise(mean = mean(data_var))
+
+}
+```
+
+You may expect that the output is mean = 2.5 ... but 
+
+It's because the mean() function doesn't take `df$x` for data_var but `x`. You need to link x with environment variable 
+
+
+```r
+var_summary(df, x)
+```
+
+```
+## Warning in mean.default(data_var): argument is not numeric or logical: returning
+## NA
+```
+
+```
+##   mean
+## 1   NA
+```
+
+This is how you can fix this. 
+
+
+
+```r
+# Solution
+vs_fix <- function(env_var, data_var){
+ 
+   env_var %>%
+    summarise(mean = mean({{data_var}}))
+
+}
+
+# You can also do this. 
+vs_fix_enhanced <- function(env_var, data_var){
+ 
+   env_var %>%
+    summarise("mean_{{data_var}}" := mean({{data_var}})) # If you use the glue package, this syntax is very intuitive.
+
+}
+
+vs_fix_enhanced(df, x)
+```
+
+```
+##   mean_x
+## 1      3
+```
+
+If you have a character vector input ... 
+
+
+```r
+mtcars_count <- mtcars %>%
+  names() %>%
+  purrr::map(~count(mtcars, .data[[.x]]))
+
+mtcars_count
+```
+
+```
+## [[1]]
+##     mpg n
+## 1  10.4 2
+## 2  13.3 1
+## 3  14.3 1
+## 4  14.7 1
+## 5  15.0 1
+## 6  15.2 2
+## 7  15.5 1
+## 8  15.8 1
+## 9  16.4 1
+## 10 17.3 1
+## 11 17.8 1
+## 12 18.1 1
+## 13 18.7 1
+## 14 19.2 2
+## 15 19.7 1
+## 16 21.0 2
+## 17 21.4 2
+## 18 21.5 1
+## 19 22.8 2
+## 20 24.4 1
+## 21 26.0 1
+## 22 27.3 1
+## 23 30.4 2
+## 24 32.4 1
+## 25 33.9 1
+## 
+## [[2]]
+##   cyl  n
+## 1   4 11
+## 2   6  7
+## 3   8 14
+## 
+## [[3]]
+##     disp n
+## 1   71.1 1
+## 2   75.7 1
+## 3   78.7 1
+## 4   79.0 1
+## 5   95.1 1
+## 6  108.0 1
+## 7  120.1 1
+## 8  120.3 1
+## 9  121.0 1
+## 10 140.8 1
+## 11 145.0 1
+## 12 146.7 1
+## 13 160.0 2
+## 14 167.6 2
+## 15 225.0 1
+## 16 258.0 1
+## 17 275.8 3
+## 18 301.0 1
+## 19 304.0 1
+## 20 318.0 1
+## 21 350.0 1
+## 22 351.0 1
+## 23 360.0 2
+## 24 400.0 1
+## 25 440.0 1
+## 26 460.0 1
+## 27 472.0 1
+## 
+## [[4]]
+##     hp n
+## 1   52 1
+## 2   62 1
+## 3   65 1
+## 4   66 2
+## 5   91 1
+## 6   93 1
+## 7   95 1
+## 8   97 1
+## 9  105 1
+## 10 109 1
+## 11 110 3
+## 12 113 1
+## 13 123 2
+## 14 150 2
+## 15 175 3
+## 16 180 3
+## 17 205 1
+## 18 215 1
+## 19 230 1
+## 20 245 2
+## 21 264 1
+## 22 335 1
+## 
+## [[5]]
+##    drat n
+## 1  2.76 2
+## 2  2.93 1
+## 3  3.00 1
+## 4  3.07 3
+## 5  3.08 2
+## 6  3.15 2
+## 7  3.21 1
+## 8  3.23 1
+## 9  3.54 1
+## 10 3.62 1
+## 11 3.69 1
+## 12 3.70 1
+## 13 3.73 1
+## 14 3.77 1
+## 15 3.85 1
+## 16 3.90 2
+## 17 3.92 3
+## 18 4.08 2
+## 19 4.11 1
+## 20 4.22 2
+## 21 4.43 1
+## 22 4.93 1
+## 
+## [[6]]
+##       wt n
+## 1  1.513 1
+## 2  1.615 1
+## 3  1.835 1
+## 4  1.935 1
+## 5  2.140 1
+## 6  2.200 1
+## 7  2.320 1
+## 8  2.465 1
+## 9  2.620 1
+## 10 2.770 1
+## 11 2.780 1
+## 12 2.875 1
+## 13 3.150 1
+## 14 3.170 1
+## 15 3.190 1
+## 16 3.215 1
+## 17 3.435 1
+## 18 3.440 3
+## 19 3.460 1
+## 20 3.520 1
+## 21 3.570 2
+## 22 3.730 1
+## 23 3.780 1
+## 24 3.840 1
+## 25 3.845 1
+## 26 4.070 1
+## 27 5.250 1
+## 28 5.345 1
+## 29 5.424 1
+## 
+## [[7]]
+##     qsec n
+## 1  14.50 1
+## 2  14.60 1
+## 3  15.41 1
+## 4  15.50 1
+## 5  15.84 1
+## 6  16.46 1
+## 7  16.70 1
+## 8  16.87 1
+## 9  16.90 1
+## 10 17.02 2
+## 11 17.05 1
+## 12 17.30 1
+## 13 17.40 1
+## 14 17.42 1
+## 15 17.60 1
+## 16 17.82 1
+## 17 17.98 1
+## 18 18.00 1
+## 19 18.30 1
+## 20 18.52 1
+## 21 18.60 1
+## 22 18.61 1
+## 23 18.90 2
+## 24 19.44 1
+## 25 19.47 1
+## 26 19.90 1
+## 27 20.00 1
+## 28 20.01 1
+## 29 20.22 1
+## 30 22.90 1
+## 
+## [[8]]
+##   vs  n
+## 1  0 18
+## 2  1 14
+## 
+## [[9]]
+##   am  n
+## 1  0 19
+## 2  1 13
+## 
+## [[10]]
+##   gear  n
+## 1    3 15
+## 2    4 12
+## 3    5  5
+## 
+## [[11]]
+##   carb  n
+## 1    1  7
+## 2    2 10
+## 3    3  3
+## 4    4 10
+## 5    6  1
+## 6    8  1
+```
+
 
 ### for loop 
 
@@ -826,35 +1176,6 @@ map(integer(), paste) # return list
 
 ## purrr
 
-- Setup 
-
-
-```r
-# Install packages
-if (!require("pacman")) {
-  install.packages("pacman")
-}
-```
-
-```
-## Loading required package: pacman
-```
-
-```r
-pacman::p_load(
-  tidyverse, # tidyverse pkgs including purrr
-  tictoc, # performance test
-  broom, # tidy modeling
-  glue, # paste string and objects
-  furrr, # parallel processing
-  rvest, # web scraping
-  devtools, # dev tools 
-  usethis, # workflow     
-  roxygen2, # documentation 
-            
-  testthat) # testing 
-```
-
 ### Why map? 
 
 #### Objectives 
@@ -1033,18 +1354,23 @@ tic()
 
 # Placeholder
 out1 <- vector("double", ncol(airquality))
-# Sequence variable
-for (i in seq_along(airquality)) { #
 
-  # Assign a computation result to each element
+# Sequence variable
+for (i in seq_along(airquality)) { 
+
+  # Assign an iteration result to each element of the placeholder list 
   out1[[i]] <- mean(airquality[[i]], na.rm = TRUE)
 }
+
 toc()
 ```
 
 ```
-## 0.007 sec elapsed
+## 0.009 sec elapsed
 ```
+
+`map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
+ 
 
 
 ```r
@@ -1063,7 +1389,29 @@ toc()
 
 - Short answer: `purrr::map()` is simpler to write. For instance, 
 
-`map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
+**Additional tips**
+
+Performance testing (profiling) is an important part of programming. `tictic()` measures the time that needs to take to run a target function for once. If you want a more robust measure of timing as well as information on memory (**speed** and **space** both matter for performance testing), consider using the [`bench` package](https://github.com/r-lib/bench) that is designed for high precising timing of R expressions. 
+
+
+
+```r
+map_mark <- bench::mark(
+
+  out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)
+
+  )
+
+map_mark
+```
+
+```
+## # A tibble: 1 x 6
+##   expression                                           min median `itr/sec`
+##   <bch:expr>                                         <bch> <bch:>     <dbl>
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 132µs  158µs     1500.
+## # … with 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
+```
 
 #### Application (many models)
 
@@ -1307,7 +1655,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 
 ```r
 airquality %>%
@@ -1323,7 +1671,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-27-2.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-34-2.png" width="672" />
 
 ```r
 airquality %>%
@@ -1339,7 +1687,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-27-3.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-34-3.png" width="672" />
 
 ### Solution 
 
@@ -1387,7 +1735,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 
 - The next step is to write an automatic plotting function. 
 
@@ -1421,7 +1769,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-38-1.png" width="672" />
 
 ```
 ## 
@@ -1432,7 +1780,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-2.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-38-2.png" width="672" />
 
 ```
 ## 
@@ -1443,7 +1791,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-3.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-38-3.png" width="672" />
 
 ```
 ## 
@@ -1454,7 +1802,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-4.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-38-4.png" width="672" />
 
 ```
 ## 
@@ -1465,7 +1813,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-5.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-38-5.png" width="672" />
 
 ## Automate joining
 
@@ -1918,7 +2266,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-11-03"
+date: "2020-11-04"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 

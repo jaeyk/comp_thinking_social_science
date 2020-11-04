@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-11-03" />
+<meta name="date" content="2020-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -590,7 +590,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Even though you don’t know how to write Python code or shell scripts, it’s really useful to know how to integrate them in your R workflow.</p></li>
 <li><p>I assume that you have already installed <a href="https://www.python.org/download/releases/3.0/">Python 3</a>.</p></li>
 </ul>
-<div class="sourceCode" id="cb985"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb985-1"><a href="semi-structured-data.html#cb985-1"></a><span class="ex">pip3</span> install twarc</span></code></pre></div>
+<div class="sourceCode" id="cb1000"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1000-1"><a href="semi-structured-data.html#cb1000-1"></a><span class="ex">pip3</span> install twarc</span></code></pre></div>
 <div id="applications" class="section level5" number="6.5.2.3.1">
 <h5><span class="header-section-number">6.5.2.3.1</span> Applications</h5>
 <p>The following examples are created by <a href="http://digitalcollecting.lib.virginia.edu/toolkit/docs/social-media/twarc-commands/">the University of Virginia library</a>.</p>
@@ -605,12 +605,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="https://github.com/jaeyk/digital_data_collection_workshop/raw/master/misc/terminal.png" alt="" />
 <p class="caption">You can type commands in the Terminal in R Studio.</p>
 </div>
-<div class="sourceCode" id="cb986"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb986-1"><a href="semi-structured-data.html#cb986-1"></a><span class="co"># Key word </span></span>
-<span id="cb986-2"><a href="semi-structured-data.html#cb986-2"></a><span class="ex">twarc</span> search blacklivesmatter <span class="op">&gt;</span> blm_tweets.jsonl</span></code></pre></div>
-<div class="sourceCode" id="cb987"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb987-1"><a href="semi-structured-data.html#cb987-1"></a><span class="co"># Hashtag </span></span>
-<span id="cb987-2"><a href="semi-structured-data.html#cb987-2"></a><span class="ex">twarc</span> search <span class="st">&#39;#blacklivesmatter&#39;</span> <span class="op">&gt;</span> blm_tweets_hash.jsonl</span></code></pre></div>
-<div class="sourceCode" id="cb988"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb988-1"><a href="semi-structured-data.html#cb988-1"></a><span class="co"># Hashtag + Language </span></span>
-<span id="cb988-2"><a href="semi-structured-data.html#cb988-2"></a><span class="ex">twarc</span> search <span class="st">&#39;#blacklivesmatter&#39;</span> --lang en <span class="op">&gt;</span> blm_tweets_hash.jsonl</span></code></pre></div>
+<div class="sourceCode" id="cb1001"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1001-1"><a href="semi-structured-data.html#cb1001-1"></a><span class="co"># Key word </span></span>
+<span id="cb1001-2"><a href="semi-structured-data.html#cb1001-2"></a><span class="ex">twarc</span> search blacklivesmatter <span class="op">&gt;</span> blm_tweets.jsonl</span></code></pre></div>
+<div class="sourceCode" id="cb1002"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1002-1"><a href="semi-structured-data.html#cb1002-1"></a><span class="co"># Hashtag </span></span>
+<span id="cb1002-2"><a href="semi-structured-data.html#cb1002-2"></a><span class="ex">twarc</span> search <span class="st">&#39;#blacklivesmatter&#39;</span> <span class="op">&gt;</span> blm_tweets_hash.jsonl</span></code></pre></div>
+<div class="sourceCode" id="cb1003"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1003-1"><a href="semi-structured-data.html#cb1003-1"></a><span class="co"># Hashtag + Language </span></span>
+<span id="cb1003-2"><a href="semi-structured-data.html#cb1003-2"></a><span class="ex">twarc</span> search <span class="st">&#39;#blacklivesmatter&#39;</span> --lang en <span class="op">&gt;</span> blm_tweets_hash.jsonl</span></code></pre></div>
 <ul>
 <li>It is really important to <strong>save these tweets into a <code>jsonl</code> format;</strong> <code>jsonl</code> extension refers to JSON <strong>Lines</strong> files. This structure is useful for splitting JSON data into smaller chunks, if it is too large.</li>
 </ul>
@@ -620,22 +620,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Download tweets meeting certain conditions as they happen.</li>
 </ul>
-<div class="sourceCode" id="cb989"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb989-1"><a href="semi-structured-data.html#cb989-1"></a><span class="co"># Key word</span></span>
-<span id="cb989-2"><a href="semi-structured-data.html#cb989-2"></a><span class="ex">twarc</span> filter blacklivesmatter <span class="op">&gt;</span> blm_tweets.jsonl</span></code></pre></div>
+<div class="sourceCode" id="cb1004"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1004-1"><a href="semi-structured-data.html#cb1004-1"></a><span class="co"># Key word</span></span>
+<span id="cb1004-2"><a href="semi-structured-data.html#cb1004-2"></a><span class="ex">twarc</span> filter blacklivesmatter <span class="op">&gt;</span> blm_tweets.jsonl</span></code></pre></div>
 </div>
 <div id="sample" class="section level6" number="6.5.2.3.1.3">
 <h6><span class="header-section-number">6.5.2.3.1.3</span> Sample</h6>
 <ul>
 <li>Use Twitter’s random sample of recent tweets.</li>
 </ul>
-<div class="sourceCode" id="cb990"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb990-1"><a href="semi-structured-data.html#cb990-1"></a><span class="ex">twarc</span> sample <span class="op">&gt;</span> tweets.jsonl </span></code></pre></div>
+<div class="sourceCode" id="cb1005"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1005-1"><a href="semi-structured-data.html#cb1005-1"></a><span class="ex">twarc</span> sample <span class="op">&gt;</span> tweets.jsonl </span></code></pre></div>
 </div>
 <div id="hydrate" class="section level6" number="6.5.2.3.1.4">
 <h6><span class="header-section-number">6.5.2.3.1.4</span> Hydrate</h6>
 <ul>
 <li>Tweet IDs -&gt; Tweets</li>
 </ul>
-<div class="sourceCode" id="cb991"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb991-1"><a href="semi-structured-data.html#cb991-1"></a><span class="ex">twarc</span> hydrate tweet_ids.txt <span class="op">&gt;</span> tweets.jsonl </span></code></pre></div>
+<div class="sourceCode" id="cb1006"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1006-1"><a href="semi-structured-data.html#cb1006-1"></a><span class="ex">twarc</span> hydrate tweet_ids.txt <span class="op">&gt;</span> tweets.jsonl </span></code></pre></div>
 </div>
 <div id="dehydrate" class="section level6" number="6.5.2.3.1.5">
 <h6><span class="header-section-number">6.5.2.3.1.5</span> Dehydrate</h6>
@@ -643,7 +643,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Hydrate &lt;&gt; Dehydrate</li>
 <li>Tweets -&gt; Tweet IDs</li>
 </ul>
-<div class="sourceCode" id="cb992"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb992-1"><a href="semi-structured-data.html#cb992-1"></a><span class="ex">twarc</span> dehydrate tweets.jsonl <span class="op">&gt;</span> tweet_ids.txt</span></code></pre></div>
+<div class="sourceCode" id="cb1007"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1007-1"><a href="semi-structured-data.html#cb1007-1"></a><span class="ex">twarc</span> dehydrate tweets.jsonl <span class="op">&gt;</span> tweet_ids.txt</span></code></pre></div>
 <p><strong>Challenge</strong></p>
 <ol style="list-style-type: decimal">
 <li><p>Collect tweets contain some key words of your choice using <code>twarc search</code> and save them as <code>tweets.jsonl</code>.</p></li>
@@ -656,21 +656,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="parsing-json" class="section level3" number="6.5.3">
 <h3><span class="header-section-number">6.5.3</span> Parsing JSON</h3>
-<div class="sourceCode" id="cb993"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb993-1"><a href="semi-structured-data.html#cb993-1"></a><span class="co"># Install packages </span></span>
-<span id="cb993-2"><a href="semi-structured-data.html#cb993-2"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1008"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1008-1"><a href="semi-structured-data.html#cb1008-1"></a><span class="co"># Install packages </span></span>
+<span id="cb1008-2"><a href="semi-structured-data.html#cb1008-2"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span></code></pre></div>
 <pre><code>## Loading required package: pacman</code></pre>
-<div class="sourceCode" id="cb995"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb995-1"><a href="semi-structured-data.html#cb995-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, <span class="co"># tidyverse pkgs including purrr</span></span>
-<span id="cb995-2"><a href="semi-structured-data.html#cb995-2"></a>               furrr, <span class="co"># parallel processing </span></span>
-<span id="cb995-3"><a href="semi-structured-data.html#cb995-3"></a>               tictoc, <span class="co"># performance test  </span></span>
-<span id="cb995-4"><a href="semi-structured-data.html#cb995-4"></a>               tcltk, <span class="co"># GUI for choosing a dir path </span></span>
-<span id="cb995-5"><a href="semi-structured-data.html#cb995-5"></a>               tidyjson) <span class="co"># tidying JSON files </span></span>
-<span id="cb995-6"><a href="semi-structured-data.html#cb995-6"></a></span>
-<span id="cb995-7"><a href="semi-structured-data.html#cb995-7"></a><span class="co">## Install the current development version from GitHub</span></span>
-<span id="cb995-8"><a href="semi-structured-data.html#cb995-8"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;jaeyk/tidytweetjson&quot;</span>,</span>
-<span id="cb995-9"><a href="semi-structured-data.html#cb995-9"></a>                         <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1010"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1010-1"><a href="semi-structured-data.html#cb1010-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, <span class="co"># tidyverse pkgs including purrr</span></span>
+<span id="cb1010-2"><a href="semi-structured-data.html#cb1010-2"></a>               furrr, <span class="co"># parallel processing </span></span>
+<span id="cb1010-3"><a href="semi-structured-data.html#cb1010-3"></a>               tictoc, <span class="co"># performance test  </span></span>
+<span id="cb1010-4"><a href="semi-structured-data.html#cb1010-4"></a>               tcltk, <span class="co"># GUI for choosing a dir path </span></span>
+<span id="cb1010-5"><a href="semi-structured-data.html#cb1010-5"></a>               tidyjson) <span class="co"># tidying JSON files </span></span>
+<span id="cb1010-6"><a href="semi-structured-data.html#cb1010-6"></a></span>
+<span id="cb1010-7"><a href="semi-structured-data.html#cb1010-7"></a><span class="co">## Install the current development version from GitHub</span></span>
+<span id="cb1010-8"><a href="semi-structured-data.html#cb1010-8"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;jaeyk/tidytweetjson&quot;</span>,</span>
+<span id="cb1010-9"><a href="semi-structured-data.html#cb1010-9"></a>                         <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## Skipping install of &#39;tidytweetjson&#39; from a github remote, the SHA1 (b598dcc1) has not changed since last install.
 ##   Use `force = TRUE` to force installation</code></pre>
-<div class="sourceCode" id="cb997"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb997-1"><a href="semi-structured-data.html#cb997-1"></a><span class="kw">library</span>(tidytweetjson)</span></code></pre></div>
+<div class="sourceCode" id="cb1012"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1012-1"><a href="semi-structured-data.html#cb1012-1"></a><span class="kw">library</span>(tidytweetjson)</span></code></pre></div>
 <div id="objectives-6" class="section level4" number="6.5.3.1">
 <h4><span class="header-section-number">6.5.3.1</span> Objectives</h4>
 <ul>
@@ -694,42 +694,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">Chunk and Pull. From Studio.</p>
 </div>
 <p>Step1: Split the large JSON file in small chunks.</p>
-<div class="sourceCode" id="cb998"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb998-1"><a href="semi-structured-data.html#cb998-1"></a><span class="co">#Divide the JSON file by 100 lines (tweets)</span></span>
-<span id="cb998-2"><a href="semi-structured-data.html#cb998-2"></a></span>
-<span id="cb998-3"><a href="semi-structured-data.html#cb998-3"></a><span class="co"># Linux and Windows (in Bash)</span></span>
-<span id="cb998-4"><a href="semi-structured-data.html#cb998-4"></a>$ <span class="fu">split</span> -100 search.jsonl</span>
-<span id="cb998-5"><a href="semi-structured-data.html#cb998-5"></a></span>
-<span id="cb998-6"><a href="semi-structured-data.html#cb998-6"></a><span class="co"># macOS</span></span>
-<span id="cb998-7"><a href="semi-structured-data.html#cb998-7"></a>$ <span class="ex">gsplit</span> -100 search.jsonl</span></code></pre></div>
+<div class="sourceCode" id="cb1013"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1013-1"><a href="semi-structured-data.html#cb1013-1"></a><span class="co">#Divide the JSON file by 100 lines (tweets)</span></span>
+<span id="cb1013-2"><a href="semi-structured-data.html#cb1013-2"></a></span>
+<span id="cb1013-3"><a href="semi-structured-data.html#cb1013-3"></a><span class="co"># Linux and Windows (in Bash)</span></span>
+<span id="cb1013-4"><a href="semi-structured-data.html#cb1013-4"></a>$ <span class="fu">split</span> -100 search.jsonl</span>
+<span id="cb1013-5"><a href="semi-structured-data.html#cb1013-5"></a></span>
+<span id="cb1013-6"><a href="semi-structured-data.html#cb1013-6"></a><span class="co"># macOS</span></span>
+<span id="cb1013-7"><a href="semi-structured-data.html#cb1013-7"></a>$ <span class="ex">gsplit</span> -100 search.jsonl</span></code></pre></div>
 <ul>
 <li>After that, you will see several files appeared in the directory. Each of these files should have 100 tweets or fewer. All of these file names <strong>should start with “x”, as in “xaa”.</strong></li>
 </ul>
 <p>Step 2: Apply the parsing function to each chunk and pull all of these chunks together.</p>
-<div class="sourceCode" id="cb999"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb999-1"><a href="semi-structured-data.html#cb999-1"></a><span class="co"># You need to choose a Tweet JSON file</span></span>
-<span id="cb999-2"><a href="semi-structured-data.html#cb999-2"></a>filepath &lt;-<span class="st"> </span><span class="kw">file.choose</span>()</span>
-<span id="cb999-3"><a href="semi-structured-data.html#cb999-3"></a></span>
-<span id="cb999-4"><a href="semi-structured-data.html#cb999-4"></a><span class="co"># Assign the parsed result to the `df` object</span></span>
-<span id="cb999-5"><a href="semi-structured-data.html#cb999-5"></a><span class="co"># 11.28 sec elapsed to parse 17,928 tweets </span></span>
-<span id="cb999-6"><a href="semi-structured-data.html#cb999-6"></a><span class="kw">tic</span>()</span>
-<span id="cb999-7"><a href="semi-structured-data.html#cb999-7"></a>df &lt;-<span class="st"> </span><span class="kw">jsonl_to_df</span>(filepath)</span>
-<span id="cb999-8"><a href="semi-structured-data.html#cb999-8"></a><span class="kw">toc</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb1000"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1000-1"><a href="semi-structured-data.html#cb1000-1"></a><span class="co"># Setup </span></span>
-<span id="cb1000-2"><a href="semi-structured-data.html#cb1000-2"></a>n_cores &lt;-<span class="st"> </span><span class="kw">availableCores</span>() <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb1000-3"><a href="semi-structured-data.html#cb1000-3"></a></span>
-<span id="cb1000-4"><a href="semi-structured-data.html#cb1000-4"></a>n_cores <span class="co"># This number depends on your computer spec.</span></span>
-<span id="cb1000-5"><a href="semi-structured-data.html#cb1000-5"></a></span>
-<span id="cb1000-6"><a href="semi-structured-data.html#cb1000-6"></a><span class="kw">plan</span>(multiprocess, <span class="co"># multicore, if supported, otherwise multisession</span></span>
-<span id="cb1000-7"><a href="semi-structured-data.html#cb1000-7"></a>     <span class="dt">workers =</span> n_cores) <span class="co"># the maximum number of workers</span></span>
-<span id="cb1000-8"><a href="semi-structured-data.html#cb1000-8"></a></span>
-<span id="cb1000-9"><a href="semi-structured-data.html#cb1000-9"></a><span class="co"># You need to designate a directory path where you saved the list of JSON files.</span></span>
-<span id="cb1000-10"><a href="semi-structured-data.html#cb1000-10"></a></span>
-<span id="cb1000-11"><a href="semi-structured-data.html#cb1000-11"></a><span class="co"># 9.385 sec elapsed to parse 17,928 tweets </span></span>
-<span id="cb1000-12"><a href="semi-structured-data.html#cb1000-12"></a></span>
-<span id="cb1000-13"><a href="semi-structured-data.html#cb1000-13"></a>dirpath &lt;-<span class="st"> </span>tcltk<span class="op">::</span><span class="kw">tk_choose.dir</span>()</span>
-<span id="cb1000-14"><a href="semi-structured-data.html#cb1000-14"></a></span>
-<span id="cb1000-15"><a href="semi-structured-data.html#cb1000-15"></a><span class="kw">tic</span>()</span>
-<span id="cb1000-16"><a href="semi-structured-data.html#cb1000-16"></a>df_all &lt;-<span class="st"> </span>tidytweetjson<span class="op">::</span><span class="kw">jsonl_to_df_all</span>(dirpath)</span>
-<span id="cb1000-17"><a href="semi-structured-data.html#cb1000-17"></a><span class="kw">toc</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1014"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1014-1"><a href="semi-structured-data.html#cb1014-1"></a><span class="co"># You need to choose a Tweet JSON file</span></span>
+<span id="cb1014-2"><a href="semi-structured-data.html#cb1014-2"></a>filepath &lt;-<span class="st"> </span><span class="kw">file.choose</span>()</span>
+<span id="cb1014-3"><a href="semi-structured-data.html#cb1014-3"></a></span>
+<span id="cb1014-4"><a href="semi-structured-data.html#cb1014-4"></a><span class="co"># Assign the parsed result to the `df` object</span></span>
+<span id="cb1014-5"><a href="semi-structured-data.html#cb1014-5"></a><span class="co"># 11.28 sec elapsed to parse 17,928 tweets </span></span>
+<span id="cb1014-6"><a href="semi-structured-data.html#cb1014-6"></a><span class="kw">tic</span>()</span>
+<span id="cb1014-7"><a href="semi-structured-data.html#cb1014-7"></a>df &lt;-<span class="st"> </span><span class="kw">jsonl_to_df</span>(filepath)</span>
+<span id="cb1014-8"><a href="semi-structured-data.html#cb1014-8"></a><span class="kw">toc</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1015"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1015-1"><a href="semi-structured-data.html#cb1015-1"></a><span class="co"># Setup </span></span>
+<span id="cb1015-2"><a href="semi-structured-data.html#cb1015-2"></a>n_cores &lt;-<span class="st"> </span><span class="kw">availableCores</span>() <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb1015-3"><a href="semi-structured-data.html#cb1015-3"></a></span>
+<span id="cb1015-4"><a href="semi-structured-data.html#cb1015-4"></a>n_cores <span class="co"># This number depends on your computer spec.</span></span>
+<span id="cb1015-5"><a href="semi-structured-data.html#cb1015-5"></a></span>
+<span id="cb1015-6"><a href="semi-structured-data.html#cb1015-6"></a><span class="kw">plan</span>(multiprocess, <span class="co"># multicore, if supported, otherwise multisession</span></span>
+<span id="cb1015-7"><a href="semi-structured-data.html#cb1015-7"></a>     <span class="dt">workers =</span> n_cores) <span class="co"># the maximum number of workers</span></span>
+<span id="cb1015-8"><a href="semi-structured-data.html#cb1015-8"></a></span>
+<span id="cb1015-9"><a href="semi-structured-data.html#cb1015-9"></a><span class="co"># You need to designate a directory path where you saved the list of JSON files.</span></span>
+<span id="cb1015-10"><a href="semi-structured-data.html#cb1015-10"></a></span>
+<span id="cb1015-11"><a href="semi-structured-data.html#cb1015-11"></a><span class="co"># 9.385 sec elapsed to parse 17,928 tweets </span></span>
+<span id="cb1015-12"><a href="semi-structured-data.html#cb1015-12"></a></span>
+<span id="cb1015-13"><a href="semi-structured-data.html#cb1015-13"></a>dirpath &lt;-<span class="st"> </span>tcltk<span class="op">::</span><span class="kw">tk_choose.dir</span>()</span>
+<span id="cb1015-14"><a href="semi-structured-data.html#cb1015-14"></a></span>
+<span id="cb1015-15"><a href="semi-structured-data.html#cb1015-15"></a><span class="kw">tic</span>()</span>
+<span id="cb1015-16"><a href="semi-structured-data.html#cb1015-16"></a>df_all &lt;-<span class="st"> </span>tidytweetjson<span class="op">::</span><span class="kw">jsonl_to_df_all</span>(dirpath)</span>
+<span id="cb1015-17"><a href="semi-structured-data.html#cb1015-17"></a><span class="kw">toc</span>()</span></code></pre></div>
 </div>
 <div id="tidyjson" class="section level5" number="6.5.3.2.3">
 <h5><span class="header-section-number">6.5.3.2.3</span> tidyjson</h5>
@@ -737,14 +737,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>toy example</li>
 </ul>
-<div class="sourceCode" id="cb1001"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1001-1"><a href="semi-structured-data.html#cb1001-1"></a><span class="co"># JSON collection; nested structure + keys and values </span></span>
-<span id="cb1001-2"><a href="semi-structured-data.html#cb1001-2"></a>worldbank[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb1016"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1016-1"><a href="semi-structured-data.html#cb1016-1"></a><span class="co"># JSON collection; nested structure + keys and values </span></span>
+<span id="cb1016-2"><a href="semi-structured-data.html#cb1016-2"></a>worldbank[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;{\&quot;_id\&quot;:{\&quot;$oid\&quot;:\&quot;52b213b38594d8a2be17c780\&quot;},\&quot;boardapprovaldate\&quot;:\&quot;2013-11-12T00:00:00Z\&quot;,\&quot;closingdate\&quot;:\&quot;2018-07-07T00:00:00Z\&quot;,\&quot;countryshortname\&quot;:\&quot;Ethiopia\&quot;,\&quot;majorsector_percent\&quot;:[{\&quot;Name\&quot;:\&quot;Education\&quot;,\&quot;Percent\&quot;:46},{\&quot;Name\&quot;:\&quot;Education\&quot;,\&quot;Percent\&quot;:26},{\&quot;Name\&quot;:\&quot;Public Administration, Law, and Justice\&quot;,\&quot;Percent\&quot;:16},{\&quot;Name\&quot;:\&quot;Education\&quot;,\&quot;Percent\&quot;:12}],\&quot;project_name\&quot;:\&quot;Ethiopia General Education Quality Improvement Project II\&quot;,\&quot;regionname\&quot;:\&quot;Africa\&quot;,\&quot;totalamt\&quot;:130000000}&quot;</code></pre>
-<div class="sourceCode" id="cb1003"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1003-1"><a href="semi-structured-data.html#cb1003-1"></a><span class="co"># Check out keys (objects)</span></span>
-<span id="cb1003-2"><a href="semi-structured-data.html#cb1003-2"></a>worldbank <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1003-3"><a href="semi-structured-data.html#cb1003-3"></a><span class="st">  </span><span class="kw">as.tbl_json</span>() <span class="op">%&gt;%</span></span>
-<span id="cb1003-4"><a href="semi-structured-data.html#cb1003-4"></a><span class="st">  </span><span class="kw">gather_object</span>() <span class="op">%&gt;%</span></span>
-<span id="cb1003-5"><a href="semi-structured-data.html#cb1003-5"></a><span class="st">  </span><span class="kw">filter</span>(document.id <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1018"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1018-1"><a href="semi-structured-data.html#cb1018-1"></a><span class="co"># Check out keys (objects)</span></span>
+<span id="cb1018-2"><a href="semi-structured-data.html#cb1018-2"></a>worldbank <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1018-3"><a href="semi-structured-data.html#cb1018-3"></a><span class="st">  </span><span class="kw">as.tbl_json</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1018-4"><a href="semi-structured-data.html#cb1018-4"></a><span class="st">  </span><span class="kw">gather_object</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1018-5"><a href="semi-structured-data.html#cb1018-5"></a><span class="st">  </span><span class="kw">filter</span>(document.id <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## # A tbl_json: 8 x 3 tibble with a &quot;JSON&quot; attribute
 ##   ..JSON                  document.id name               
 ##   &lt;chr&gt;                         &lt;int&gt; &lt;chr&gt;              
@@ -756,12 +756,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 &quot;\&quot;Ethiopia Gener...&quot;             1 project_name       
 ## 7 &quot;\&quot;Africa\&quot;&quot;                      1 regionname         
 ## 8 &quot;130000000&quot;                       1 totalamt</code></pre>
-<div class="sourceCode" id="cb1005"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1005-1"><a href="semi-structured-data.html#cb1005-1"></a><span class="co"># Get the values associated with the keys </span></span>
-<span id="cb1005-2"><a href="semi-structured-data.html#cb1005-2"></a>worldbank <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1005-3"><a href="semi-structured-data.html#cb1005-3"></a><span class="st">  </span><span class="kw">as.tbl_json</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Turn JSON into tbl_json object </span></span>
-<span id="cb1005-4"><a href="semi-structured-data.html#cb1005-4"></a><span class="st">  </span><span class="kw">enter_object</span>(<span class="st">&quot;project_name&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Enter the objects </span></span>
-<span id="cb1005-5"><a href="semi-structured-data.html#cb1005-5"></a><span class="st">  </span><span class="kw">append_values_string</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Append the values </span></span>
-<span id="cb1005-6"><a href="semi-structured-data.html#cb1005-6"></a><span class="st">  </span><span class="kw">as_tibble</span>() <span class="co"># To reduce the size of the file </span></span></code></pre></div>
+<div class="sourceCode" id="cb1020"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1020-1"><a href="semi-structured-data.html#cb1020-1"></a><span class="co"># Get the values associated with the keys </span></span>
+<span id="cb1020-2"><a href="semi-structured-data.html#cb1020-2"></a>worldbank <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1020-3"><a href="semi-structured-data.html#cb1020-3"></a><span class="st">  </span><span class="kw">as.tbl_json</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Turn JSON into tbl_json object </span></span>
+<span id="cb1020-4"><a href="semi-structured-data.html#cb1020-4"></a><span class="st">  </span><span class="kw">enter_object</span>(<span class="st">&quot;project_name&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Enter the objects </span></span>
+<span id="cb1020-5"><a href="semi-structured-data.html#cb1020-5"></a><span class="st">  </span><span class="kw">append_values_string</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Append the values </span></span>
+<span id="cb1020-6"><a href="semi-structured-data.html#cb1020-6"></a><span class="st">  </span><span class="kw">as_tibble</span>() <span class="co"># To reduce the size of the file </span></span></code></pre></div>
 <pre><code>## # A tibble: 500 x 2
 ##    document.id string                                                           
 ##          &lt;int&gt; &lt;chr&gt;                                                            
@@ -781,73 +781,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="individual-file" class="section level6" number="6.5.3.2.3.1">
 <h6><span class="header-section-number">6.5.3.2.3.1</span> Individual file</h6>
-<div class="sourceCode" id="cb1007"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1007-1"><a href="semi-structured-data.html#cb1007-1"></a>jsonl_to_df &lt;-<span class="st"> </span><span class="cf">function</span>(file_path){</span>
-<span id="cb1007-2"><a href="semi-structured-data.html#cb1007-2"></a></span>
-<span id="cb1007-3"><a href="semi-structured-data.html#cb1007-3"></a><span class="co"># Save file name </span></span>
-<span id="cb1007-4"><a href="semi-structured-data.html#cb1007-4"></a></span>
-<span id="cb1007-5"><a href="semi-structured-data.html#cb1007-5"></a>file_name &lt;-<span class="st"> </span><span class="kw">strsplit</span>(<span class="dt">x =</span> file_path, </span>
-<span id="cb1007-6"><a href="semi-structured-data.html#cb1007-6"></a>                     <span class="dt">split =</span> <span class="st">&quot;[/]&quot;</span>) </span>
-<span id="cb1007-7"><a href="semi-structured-data.html#cb1007-7"></a></span>
-<span id="cb1007-8"><a href="semi-structured-data.html#cb1007-8"></a>file_name &lt;-<span class="st"> </span>file_name[[<span class="dv">1</span>]][<span class="kw">length</span>(file_name[[<span class="dv">1</span>]])]</span>
-<span id="cb1007-9"><a href="semi-structured-data.html#cb1007-9"></a></span>
-<span id="cb1007-10"><a href="semi-structured-data.html#cb1007-10"></a><span class="co"># Import a Tweet JSON file</span></span>
-<span id="cb1007-11"><a href="semi-structured-data.html#cb1007-11"></a></span>
-<span id="cb1007-12"><a href="semi-structured-data.html#cb1007-12"></a>listed &lt;-<span class="st"> </span><span class="kw">read_json</span>(file_path, <span class="dt">format =</span> <span class="kw">c</span>(<span class="st">&quot;jsonl&quot;</span>))</span>
-<span id="cb1007-13"><a href="semi-structured-data.html#cb1007-13"></a></span>
-<span id="cb1007-14"><a href="semi-structured-data.html#cb1007-14"></a><span class="co"># IDs of the tweets with country codes</span></span>
-<span id="cb1007-15"><a href="semi-structured-data.html#cb1007-15"></a></span>
-<span id="cb1007-16"><a href="semi-structured-data.html#cb1007-16"></a>ccodes &lt;-<span class="st"> </span>listed <span class="op">%&gt;%</span></span>
-<span id="cb1007-17"><a href="semi-structured-data.html#cb1007-17"></a><span class="st">  </span><span class="kw">enter_object</span>(<span class="st">&quot;place&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1007-18"><a href="semi-structured-data.html#cb1007-18"></a><span class="st">  </span><span class="kw">enter_object</span>(<span class="st">&quot;country_code&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1007-19"><a href="semi-structured-data.html#cb1007-19"></a><span class="st">  </span><span class="kw">append_values_string</span>() <span class="op">%&gt;%</span></span>
-<span id="cb1007-20"><a href="semi-structured-data.html#cb1007-20"></a><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></span>
-<span id="cb1007-21"><a href="semi-structured-data.html#cb1007-21"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;country_code&quot;</span> =<span class="st"> &quot;string&quot;</span>)</span>
-<span id="cb1007-22"><a href="semi-structured-data.html#cb1007-22"></a></span>
-<span id="cb1007-23"><a href="semi-structured-data.html#cb1007-23"></a><span class="co"># IDs of the tweets with location</span></span>
-<span id="cb1007-24"><a href="semi-structured-data.html#cb1007-24"></a></span>
-<span id="cb1007-25"><a href="semi-structured-data.html#cb1007-25"></a>locations &lt;-<span class="st"> </span>listed <span class="op">%&gt;%</span></span>
-<span id="cb1007-26"><a href="semi-structured-data.html#cb1007-26"></a><span class="st">  </span><span class="kw">enter_object</span>(<span class="st">&quot;user&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1007-27"><a href="semi-structured-data.html#cb1007-27"></a><span class="st">  </span><span class="kw">enter_object</span>(<span class="st">&quot;location&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1007-28"><a href="semi-structured-data.html#cb1007-28"></a><span class="st">  </span><span class="kw">append_values_string</span>() <span class="op">%&gt;%</span></span>
-<span id="cb1007-29"><a href="semi-structured-data.html#cb1007-29"></a><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></span>
-<span id="cb1007-30"><a href="semi-structured-data.html#cb1007-30"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">location =</span> <span class="st">&quot;string&quot;</span>)</span>
-<span id="cb1007-31"><a href="semi-structured-data.html#cb1007-31"></a></span>
-<span id="cb1007-32"><a href="semi-structured-data.html#cb1007-32"></a><span class="co"># Extract other key elements from the JSON file</span></span>
-<span id="cb1007-33"><a href="semi-structured-data.html#cb1007-33"></a></span>
-<span id="cb1007-34"><a href="semi-structured-data.html#cb1007-34"></a>df &lt;-<span class="st"> </span>listed <span class="op">%&gt;%</span></span>
-<span id="cb1007-35"><a href="semi-structured-data.html#cb1007-35"></a><span class="st">  </span><span class="kw">spread_values</span>(</span>
-<span id="cb1007-36"><a href="semi-structured-data.html#cb1007-36"></a>    <span class="dt">id =</span> <span class="kw">jnumber</span>(<span class="st">&quot;id&quot;</span>),</span>
-<span id="cb1007-37"><a href="semi-structured-data.html#cb1007-37"></a>    <span class="dt">created_at =</span> <span class="kw">jstring</span>(<span class="st">&quot;created_at&quot;</span>),</span>
-<span id="cb1007-38"><a href="semi-structured-data.html#cb1007-38"></a>    <span class="dt">full_text =</span> <span class="kw">jstring</span>(<span class="st">&quot;full_text&quot;</span>),</span>
-<span id="cb1007-39"><a href="semi-structured-data.html#cb1007-39"></a>    <span class="dt">retweet_count =</span> <span class="kw">jnumber</span>(<span class="st">&quot;retweet_count&quot;</span>),</span>
-<span id="cb1007-40"><a href="semi-structured-data.html#cb1007-40"></a>    <span class="dt">favorite_count =</span> <span class="kw">jnumber</span>(<span class="st">&quot;favorite_count&quot;</span>),</span>
-<span id="cb1007-41"><a href="semi-structured-data.html#cb1007-41"></a>    <span class="dt">user.followers_count =</span> <span class="kw">jnumber</span>(<span class="st">&quot;user.followers_count&quot;</span>),</span>
-<span id="cb1007-42"><a href="semi-structured-data.html#cb1007-42"></a>    <span class="dt">user.friends_count =</span> <span class="kw">jnumber</span>(<span class="st">&quot;user.friends_count&quot;</span>)</span>
-<span id="cb1007-43"><a href="semi-structured-data.html#cb1007-43"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb1007-44"><a href="semi-structured-data.html#cb1007-44"></a><span class="st">      </span>as_tibble</span>
-<span id="cb1007-45"><a href="semi-structured-data.html#cb1007-45"></a></span>
-<span id="cb1007-46"><a href="semi-structured-data.html#cb1007-46"></a><span class="kw">message</span>(<span class="kw">paste</span>(<span class="st">&quot;Parsing&quot;</span>, file_name, <span class="st">&quot;done.&quot;</span>))</span>
-<span id="cb1007-47"><a href="semi-structured-data.html#cb1007-47"></a></span>
-<span id="cb1007-48"><a href="semi-structured-data.html#cb1007-48"></a><span class="co"># Full join</span></span>
-<span id="cb1007-49"><a href="semi-structured-data.html#cb1007-49"></a>outcome &lt;-<span class="st"> </span><span class="kw">full_join</span>(ccodes, df) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">full_join</span>(locations)</span>
-<span id="cb1007-50"><a href="semi-structured-data.html#cb1007-50"></a></span>
-<span id="cb1007-51"><a href="semi-structured-data.html#cb1007-51"></a><span class="co"># Or you can write this way: outcome &lt;- reduce(list(df, ccodes, locations), full_join)</span></span>
-<span id="cb1007-52"><a href="semi-structured-data.html#cb1007-52"></a></span>
-<span id="cb1007-53"><a href="semi-structured-data.html#cb1007-53"></a><span class="co"># Select</span></span>
-<span id="cb1007-54"><a href="semi-structured-data.html#cb1007-54"></a>outcome <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(<span class="st">&quot;document.id&quot;</span>))}</span></code></pre></div>
+<div class="sourceCode" id="cb1022"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1022-1"><a href="semi-structured-data.html#cb1022-1"></a>jsonl_to_df &lt;-<span class="st"> </span><span class="cf">function</span>(file_path){</span>
+<span id="cb1022-2"><a href="semi-structured-data.html#cb1022-2"></a></span>
+<span id="cb1022-3"><a href="semi-structured-data.html#cb1022-3"></a><span class="co"># Save file name </span></span>
+<span id="cb1022-4"><a href="semi-structured-data.html#cb1022-4"></a></span>
+<span id="cb1022-5"><a href="semi-structured-data.html#cb1022-5"></a>file_name &lt;-<span class="st"> </span><span class="kw">strsplit</span>(<span class="dt">x =</span> file_path, </span>
+<span id="cb1022-6"><a href="semi-structured-data.html#cb1022-6"></a>                     <span class="dt">split =</span> <span class="st">&quot;[/]&quot;</span>) </span>
+<span id="cb1022-7"><a href="semi-structured-data.html#cb1022-7"></a></span>
+<span id="cb1022-8"><a href="semi-structured-data.html#cb1022-8"></a>file_name &lt;-<span class="st"> </span>file_name[[<span class="dv">1</span>]][<span class="kw">length</span>(file_name[[<span class="dv">1</span>]])]</span>
+<span id="cb1022-9"><a href="semi-structured-data.html#cb1022-9"></a></span>
+<span id="cb1022-10"><a href="semi-structured-data.html#cb1022-10"></a><span class="co"># Import a Tweet JSON file</span></span>
+<span id="cb1022-11"><a href="semi-structured-data.html#cb1022-11"></a></span>
+<span id="cb1022-12"><a href="semi-structured-data.html#cb1022-12"></a>listed &lt;-<span class="st"> </span><span class="kw">read_json</span>(file_path, <span class="dt">format =</span> <span class="kw">c</span>(<span class="st">&quot;jsonl&quot;</span>))</span>
+<span id="cb1022-13"><a href="semi-structured-data.html#cb1022-13"></a></span>
+<span id="cb1022-14"><a href="semi-structured-data.html#cb1022-14"></a><span class="co"># IDs of the tweets with country codes</span></span>
+<span id="cb1022-15"><a href="semi-structured-data.html#cb1022-15"></a></span>
+<span id="cb1022-16"><a href="semi-structured-data.html#cb1022-16"></a>ccodes &lt;-<span class="st"> </span>listed <span class="op">%&gt;%</span></span>
+<span id="cb1022-17"><a href="semi-structured-data.html#cb1022-17"></a><span class="st">  </span><span class="kw">enter_object</span>(<span class="st">&quot;place&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1022-18"><a href="semi-structured-data.html#cb1022-18"></a><span class="st">  </span><span class="kw">enter_object</span>(<span class="st">&quot;country_code&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1022-19"><a href="semi-structured-data.html#cb1022-19"></a><span class="st">  </span><span class="kw">append_values_string</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1022-20"><a href="semi-structured-data.html#cb1022-20"></a><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1022-21"><a href="semi-structured-data.html#cb1022-21"></a><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;country_code&quot;</span> =<span class="st"> &quot;string&quot;</span>)</span>
+<span id="cb1022-22"><a href="semi-structured-data.html#cb1022-22"></a></span>
+<span id="cb1022-23"><a href="semi-structured-data.html#cb1022-23"></a><span class="co"># IDs of the tweets with location</span></span>
+<span id="cb1022-24"><a href="semi-structured-data.html#cb1022-24"></a></span>
+<span id="cb1022-25"><a href="semi-structured-data.html#cb1022-25"></a>locations &lt;-<span class="st"> </span>listed <span class="op">%&gt;%</span></span>
+<span id="cb1022-26"><a href="semi-structured-data.html#cb1022-26"></a><span class="st">  </span><span class="kw">enter_object</span>(<span class="st">&quot;user&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1022-27"><a href="semi-structured-data.html#cb1022-27"></a><span class="st">  </span><span class="kw">enter_object</span>(<span class="st">&quot;location&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1022-28"><a href="semi-structured-data.html#cb1022-28"></a><span class="st">  </span><span class="kw">append_values_string</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1022-29"><a href="semi-structured-data.html#cb1022-29"></a><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1022-30"><a href="semi-structured-data.html#cb1022-30"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">location =</span> <span class="st">&quot;string&quot;</span>)</span>
+<span id="cb1022-31"><a href="semi-structured-data.html#cb1022-31"></a></span>
+<span id="cb1022-32"><a href="semi-structured-data.html#cb1022-32"></a><span class="co"># Extract other key elements from the JSON file</span></span>
+<span id="cb1022-33"><a href="semi-structured-data.html#cb1022-33"></a></span>
+<span id="cb1022-34"><a href="semi-structured-data.html#cb1022-34"></a>df &lt;-<span class="st"> </span>listed <span class="op">%&gt;%</span></span>
+<span id="cb1022-35"><a href="semi-structured-data.html#cb1022-35"></a><span class="st">  </span><span class="kw">spread_values</span>(</span>
+<span id="cb1022-36"><a href="semi-structured-data.html#cb1022-36"></a>    <span class="dt">id =</span> <span class="kw">jnumber</span>(<span class="st">&quot;id&quot;</span>),</span>
+<span id="cb1022-37"><a href="semi-structured-data.html#cb1022-37"></a>    <span class="dt">created_at =</span> <span class="kw">jstring</span>(<span class="st">&quot;created_at&quot;</span>),</span>
+<span id="cb1022-38"><a href="semi-structured-data.html#cb1022-38"></a>    <span class="dt">full_text =</span> <span class="kw">jstring</span>(<span class="st">&quot;full_text&quot;</span>),</span>
+<span id="cb1022-39"><a href="semi-structured-data.html#cb1022-39"></a>    <span class="dt">retweet_count =</span> <span class="kw">jnumber</span>(<span class="st">&quot;retweet_count&quot;</span>),</span>
+<span id="cb1022-40"><a href="semi-structured-data.html#cb1022-40"></a>    <span class="dt">favorite_count =</span> <span class="kw">jnumber</span>(<span class="st">&quot;favorite_count&quot;</span>),</span>
+<span id="cb1022-41"><a href="semi-structured-data.html#cb1022-41"></a>    <span class="dt">user.followers_count =</span> <span class="kw">jnumber</span>(<span class="st">&quot;user.followers_count&quot;</span>),</span>
+<span id="cb1022-42"><a href="semi-structured-data.html#cb1022-42"></a>    <span class="dt">user.friends_count =</span> <span class="kw">jnumber</span>(<span class="st">&quot;user.friends_count&quot;</span>)</span>
+<span id="cb1022-43"><a href="semi-structured-data.html#cb1022-43"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb1022-44"><a href="semi-structured-data.html#cb1022-44"></a><span class="st">      </span>as_tibble</span>
+<span id="cb1022-45"><a href="semi-structured-data.html#cb1022-45"></a></span>
+<span id="cb1022-46"><a href="semi-structured-data.html#cb1022-46"></a><span class="kw">message</span>(<span class="kw">paste</span>(<span class="st">&quot;Parsing&quot;</span>, file_name, <span class="st">&quot;done.&quot;</span>))</span>
+<span id="cb1022-47"><a href="semi-structured-data.html#cb1022-47"></a></span>
+<span id="cb1022-48"><a href="semi-structured-data.html#cb1022-48"></a><span class="co"># Full join</span></span>
+<span id="cb1022-49"><a href="semi-structured-data.html#cb1022-49"></a>outcome &lt;-<span class="st"> </span><span class="kw">full_join</span>(ccodes, df) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">full_join</span>(locations)</span>
+<span id="cb1022-50"><a href="semi-structured-data.html#cb1022-50"></a></span>
+<span id="cb1022-51"><a href="semi-structured-data.html#cb1022-51"></a><span class="co"># Or you can write this way: outcome &lt;- reduce(list(df, ccodes, locations), full_join)</span></span>
+<span id="cb1022-52"><a href="semi-structured-data.html#cb1022-52"></a></span>
+<span id="cb1022-53"><a href="semi-structured-data.html#cb1022-53"></a><span class="co"># Select</span></span>
+<span id="cb1022-54"><a href="semi-structured-data.html#cb1022-54"></a>outcome <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(<span class="st">&quot;document.id&quot;</span>))}</span></code></pre></div>
 </div>
 <div id="many-files" class="section level6" number="6.5.3.2.3.2">
 <h6><span class="header-section-number">6.5.3.2.3.2</span> Many files</h6>
 <ul>
 <li>Set up parallel processing.</li>
 </ul>
-<div class="sourceCode" id="cb1008"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1008-1"><a href="semi-structured-data.html#cb1008-1"></a>n_cores &lt;-<span class="st"> </span><span class="kw">availableCores</span>() <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb1008-2"><a href="semi-structured-data.html#cb1008-2"></a></span>
-<span id="cb1008-3"><a href="semi-structured-data.html#cb1008-3"></a>n_cores <span class="co"># This number depends on your computer spec.</span></span></code></pre></div>
+<div class="sourceCode" id="cb1023"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1023-1"><a href="semi-structured-data.html#cb1023-1"></a>n_cores &lt;-<span class="st"> </span><span class="kw">availableCores</span>() <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb1023-2"><a href="semi-structured-data.html#cb1023-2"></a></span>
+<span id="cb1023-3"><a href="semi-structured-data.html#cb1023-3"></a>n_cores <span class="co"># This number depends on your computer spec.</span></span></code></pre></div>
 <pre><code>## system 
 ##      7</code></pre>
-<div class="sourceCode" id="cb1010"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1010-1"><a href="semi-structured-data.html#cb1010-1"></a><span class="kw">plan</span>(multiprocess, <span class="co"># multicore, if supported, otherwise multisession</span></span>
-<span id="cb1010-2"><a href="semi-structured-data.html#cb1010-2"></a>     <span class="dt">workers =</span> n_cores) <span class="co"># the maximum number of workers</span></span></code></pre></div>
+<div class="sourceCode" id="cb1025"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1025-1"><a href="semi-structured-data.html#cb1025-1"></a><span class="kw">plan</span>(multiprocess, <span class="co"># multicore, if supported, otherwise multisession</span></span>
+<span id="cb1025-2"><a href="semi-structured-data.html#cb1025-2"></a>     <span class="dt">workers =</span> n_cores) <span class="co"># the maximum number of workers</span></span></code></pre></div>
 <pre><code>## Warning: [ONE-TIME WARNING] Forked processing (&#39;multicore&#39;) is disabled
 ## in future (&gt;= 1.13.0) when running R from RStudio, because it is
 ## considered unstable. Because of this, plan(&quot;multicore&quot;) will fall
@@ -860,42 +860,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong>Review</strong></p>
 <p>There are at least three ways you can use function + <code>purrr::map()</code>.</p>
-<div class="sourceCode" id="cb1012"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1012-1"><a href="semi-structured-data.html#cb1012-1"></a>squared &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
-<span id="cb1012-2"><a href="semi-structured-data.html#cb1012-2"></a>  x<span class="op">*</span><span class="dv">2</span> </span>
-<span id="cb1012-3"><a href="semi-structured-data.html#cb1012-3"></a>}</span>
-<span id="cb1012-4"><a href="semi-structured-data.html#cb1012-4"></a></span>
-<span id="cb1012-5"><a href="semi-structured-data.html#cb1012-5"></a><span class="co"># Named function </span></span>
-<span id="cb1012-6"><a href="semi-structured-data.html#cb1012-6"></a><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, squared)</span>
-<span id="cb1012-7"><a href="semi-structured-data.html#cb1012-7"></a></span>
-<span id="cb1012-8"><a href="semi-structured-data.html#cb1012-8"></a><span class="co"># Anonymous function </span></span>
-<span id="cb1012-9"><a href="semi-structured-data.html#cb1012-9"></a><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="cf">function</span>(x){ x <span class="op">*</span><span class="dv">2</span> })</span>
-<span id="cb1012-10"><a href="semi-structured-data.html#cb1012-10"></a></span>
-<span id="cb1012-11"><a href="semi-structured-data.html#cb1012-11"></a><span class="co"># Using formula; ~ = formula, .x = input </span></span>
-<span id="cb1012-12"><a href="semi-structured-data.html#cb1012-12"></a><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="op">~</span>.x<span class="op">*</span><span class="dv">2</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1013"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1013-1"><a href="semi-structured-data.html#cb1013-1"></a><span class="co"># Create a list of file paths </span></span>
-<span id="cb1013-2"><a href="semi-structured-data.html#cb1013-2"></a>filename &lt;-<span class="st"> </span><span class="kw">list.files</span>(dir_path,</span>
-<span id="cb1013-3"><a href="semi-structured-data.html#cb1013-3"></a>          <span class="dt">pattern =</span> <span class="st">&#39;^x&#39;</span>,</span>
-<span id="cb1013-4"><a href="semi-structured-data.html#cb1013-4"></a>          <span class="dt">full.names =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb1013-5"><a href="semi-structured-data.html#cb1013-5"></a></span>
-<span id="cb1013-6"><a href="semi-structured-data.html#cb1013-6"></a>df &lt;-<span class="st"> </span>filename <span class="op">%&gt;%</span></span>
-<span id="cb1013-7"><a href="semi-structured-data.html#cb1013-7"></a></span>
-<span id="cb1013-8"><a href="semi-structured-data.html#cb1013-8"></a><span class="co"># Apply jsonl_to_df function to items on the list</span></span>
-<span id="cb1013-9"><a href="semi-structured-data.html#cb1013-9"></a><span class="kw">future_map</span>(<span class="op">~</span><span class="kw">jsonl_to_df</span>(.)) <span class="op">%&gt;%</span></span>
-<span id="cb1013-10"><a href="semi-structured-data.html#cb1013-10"></a></span>
-<span id="cb1013-11"><a href="semi-structured-data.html#cb1013-11"></a><span class="co"># Full join the list of dataframes</span></span>
-<span id="cb1013-12"><a href="semi-structured-data.html#cb1013-12"></a><span class="kw">reduce</span>(full_join,</span>
-<span id="cb1013-13"><a href="semi-structured-data.html#cb1013-13"></a>       <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>,</span>
-<span id="cb1013-14"><a href="semi-structured-data.html#cb1013-14"></a>              <span class="st">&quot;location&quot;</span>,</span>
-<span id="cb1013-15"><a href="semi-structured-data.html#cb1013-15"></a>              <span class="st">&quot;country_code&quot;</span>,</span>
-<span id="cb1013-16"><a href="semi-structured-data.html#cb1013-16"></a>              <span class="st">&quot;created_at&quot;</span>,</span>
-<span id="cb1013-17"><a href="semi-structured-data.html#cb1013-17"></a>              <span class="st">&quot;full_text&quot;</span>,</span>
-<span id="cb1013-18"><a href="semi-structured-data.html#cb1013-18"></a>              <span class="st">&quot;retweet_count&quot;</span>,</span>
-<span id="cb1013-19"><a href="semi-structured-data.html#cb1013-19"></a>              <span class="st">&quot;favorite_count&quot;</span>,</span>
-<span id="cb1013-20"><a href="semi-structured-data.html#cb1013-20"></a>              <span class="st">&quot;user.followers_count&quot;</span>,</span>
-<span id="cb1013-21"><a href="semi-structured-data.html#cb1013-21"></a>              <span class="st">&quot;user.friends_count&quot;</span>))</span>
-<span id="cb1013-22"><a href="semi-structured-data.html#cb1013-22"></a></span>
-<span id="cb1013-23"><a href="semi-structured-data.html#cb1013-23"></a><span class="co"># Output</span></span>
-<span id="cb1013-24"><a href="semi-structured-data.html#cb1013-24"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb1027"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1027-1"><a href="semi-structured-data.html#cb1027-1"></a>squared &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb1027-2"><a href="semi-structured-data.html#cb1027-2"></a>  x<span class="op">*</span><span class="dv">2</span> </span>
+<span id="cb1027-3"><a href="semi-structured-data.html#cb1027-3"></a>}</span>
+<span id="cb1027-4"><a href="semi-structured-data.html#cb1027-4"></a></span>
+<span id="cb1027-5"><a href="semi-structured-data.html#cb1027-5"></a><span class="co"># Named function </span></span>
+<span id="cb1027-6"><a href="semi-structured-data.html#cb1027-6"></a><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, squared)</span>
+<span id="cb1027-7"><a href="semi-structured-data.html#cb1027-7"></a></span>
+<span id="cb1027-8"><a href="semi-structured-data.html#cb1027-8"></a><span class="co"># Anonymous function </span></span>
+<span id="cb1027-9"><a href="semi-structured-data.html#cb1027-9"></a><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="cf">function</span>(x){ x <span class="op">*</span><span class="dv">2</span> })</span>
+<span id="cb1027-10"><a href="semi-structured-data.html#cb1027-10"></a></span>
+<span id="cb1027-11"><a href="semi-structured-data.html#cb1027-11"></a><span class="co"># Using formula; ~ = formula, .x = input </span></span>
+<span id="cb1027-12"><a href="semi-structured-data.html#cb1027-12"></a><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="op">~</span>.x<span class="op">*</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1028"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1028-1"><a href="semi-structured-data.html#cb1028-1"></a><span class="co"># Create a list of file paths </span></span>
+<span id="cb1028-2"><a href="semi-structured-data.html#cb1028-2"></a>filename &lt;-<span class="st"> </span><span class="kw">list.files</span>(dir_path,</span>
+<span id="cb1028-3"><a href="semi-structured-data.html#cb1028-3"></a>          <span class="dt">pattern =</span> <span class="st">&#39;^x&#39;</span>,</span>
+<span id="cb1028-4"><a href="semi-structured-data.html#cb1028-4"></a>          <span class="dt">full.names =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb1028-5"><a href="semi-structured-data.html#cb1028-5"></a></span>
+<span id="cb1028-6"><a href="semi-structured-data.html#cb1028-6"></a>df &lt;-<span class="st"> </span>filename <span class="op">%&gt;%</span></span>
+<span id="cb1028-7"><a href="semi-structured-data.html#cb1028-7"></a></span>
+<span id="cb1028-8"><a href="semi-structured-data.html#cb1028-8"></a><span class="co"># Apply jsonl_to_df function to items on the list</span></span>
+<span id="cb1028-9"><a href="semi-structured-data.html#cb1028-9"></a><span class="kw">future_map</span>(<span class="op">~</span><span class="kw">jsonl_to_df</span>(.)) <span class="op">%&gt;%</span></span>
+<span id="cb1028-10"><a href="semi-structured-data.html#cb1028-10"></a></span>
+<span id="cb1028-11"><a href="semi-structured-data.html#cb1028-11"></a><span class="co"># Full join the list of dataframes</span></span>
+<span id="cb1028-12"><a href="semi-structured-data.html#cb1028-12"></a><span class="kw">reduce</span>(full_join,</span>
+<span id="cb1028-13"><a href="semi-structured-data.html#cb1028-13"></a>       <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>,</span>
+<span id="cb1028-14"><a href="semi-structured-data.html#cb1028-14"></a>              <span class="st">&quot;location&quot;</span>,</span>
+<span id="cb1028-15"><a href="semi-structured-data.html#cb1028-15"></a>              <span class="st">&quot;country_code&quot;</span>,</span>
+<span id="cb1028-16"><a href="semi-structured-data.html#cb1028-16"></a>              <span class="st">&quot;created_at&quot;</span>,</span>
+<span id="cb1028-17"><a href="semi-structured-data.html#cb1028-17"></a>              <span class="st">&quot;full_text&quot;</span>,</span>
+<span id="cb1028-18"><a href="semi-structured-data.html#cb1028-18"></a>              <span class="st">&quot;retweet_count&quot;</span>,</span>
+<span id="cb1028-19"><a href="semi-structured-data.html#cb1028-19"></a>              <span class="st">&quot;favorite_count&quot;</span>,</span>
+<span id="cb1028-20"><a href="semi-structured-data.html#cb1028-20"></a>              <span class="st">&quot;user.followers_count&quot;</span>,</span>
+<span id="cb1028-21"><a href="semi-structured-data.html#cb1028-21"></a>              <span class="st">&quot;user.friends_count&quot;</span>))</span>
+<span id="cb1028-22"><a href="semi-structured-data.html#cb1028-22"></a></span>
+<span id="cb1028-23"><a href="semi-structured-data.html#cb1028-23"></a><span class="co"># Output</span></span>
+<span id="cb1028-24"><a href="semi-structured-data.html#cb1028-24"></a>df</span></code></pre></div>
 
 </div>
 </div>
