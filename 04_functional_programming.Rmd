@@ -46,7 +46,6 @@ if(x < 0){ # Condition
 }
 
 ```
-
 R also does some class coercion that makes Boolean evaluations harder to break than in Python.  But be careful --- R has a set of special coercion used for fast logical evaluation and subsetting.  Specifically, ```TRUE``` is considered equal to ```1```, while ```FALSE``` is equal to ```0```. The Boolean logicals can also be specified as a full word in all caps, or simply as ```T``` or ```F```.
 
 ```{r}
@@ -168,6 +167,97 @@ g <- function(x)
 
 g(2) # a equals still 1 
 ```
+**Additional tips**
+
+* Nonstandard evaluation 
+
+Nonstandard evaluation is an advanced subject. If you feel overwhelmed, you are more than welcome to skip this. But if you are serious in R programming, this is something you want to check out. For deeper understanding of this issue, I recommend reading [Ren Kun's very informative blog post](https://renkun.me/2014/12/03/tips-on-non-standard-evaluation-in-r/) carefully. 
+
+This part draws on one of the [the dplyr package articles](https://dplyr.tidyverse.org/articles/programming.html.
+
+In tidyverse, calling a variable with or without quotation mark (string or not) does make little difference because tidyeval is a type of non-standard evaluation. This flexibility runs into the following problem when it comes to programming. 
+
+```{r}
+
+# Using `mpg` instead of `mtcars$mpg` is called data masking.
+
+mtcars %>% select(mpg)
+
+mtcars %>% select("mpg")
+
+```
+
+Data and env-variables 
+
+```{r}
+# df = environment variable 
+df <- data.frame(x = c(1:5), 
+                 y= c(6:10))
+
+# x, y = data variables 
+df$x
+df$y
+```
+
+- Problem 
+
+```{r}
+x <- NULL 
+
+var_summary <- function(env_var, data_var){
+ 
+   env_var %>%
+    summarise(mean = mean(data_var))
+
+}
+
+```
+
+You may expect that the output is mean = 2.5 ... but 
+
+It's because the mean() function doesn't take `df$x` for data_var but `x`. You need to link x with environment variable 
+
+```{r}
+
+var_summary(df, x)
+
+```
+
+This is how you can fix this. 
+
+
+```{r}
+
+# Solution
+vs_fix <- function(env_var, data_var){
+ 
+   env_var %>%
+    summarise(mean = mean({{data_var}}))
+
+}
+
+# You can also do this. 
+vs_fix_enhanced <- function(env_var, data_var){
+ 
+   env_var %>%
+    summarise("mean_{{data_var}}" := mean({{data_var}})) # If you use the glue package, this syntax is very intuitive.
+
+}
+
+vs_fix_enhanced(df, x)
+
+```
+
+If you have a character vector input ... 
+
+```{r}
+mtcars_count <- mtcars %>%
+  names() %>%
+  purrr::map(~count(mtcars, .data[[.x]]))
+
+mtcars_count
+```
+
 
 ### for loop 
 
@@ -252,6 +342,7 @@ if (!require("pacman")) {
 
 pacman::p_load(
   tidyverse, # tidyverse pkgs including purrr
+  bench, # performance test 
   tictoc, # performance test
   broom, # tidy modeling
   glue, # paste string and objects
@@ -260,7 +351,6 @@ pacman::p_load(
   devtools, # dev tools 
   usethis, # workflow     
   roxygen2, # documentation 
-            
   testthat) # testing 
 ```
 
@@ -396,14 +486,19 @@ tic()
 
 # Placeholder
 out1 <- vector("double", ncol(airquality))
-# Sequence variable
-for (i in seq_along(airquality)) { #
 
-  # Assign a computation result to each element
+# Sequence variable
+for (i in seq_along(airquality)) { 
+
+  # Assign an iteration result to each element of the placeholder list 
   out1[[i]] <- mean(airquality[[i]], na.rm = TRUE)
 }
+
 toc()
 ```
+
+`map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
+ 
 
 ```{r}
 
@@ -418,7 +513,20 @@ toc()
 
 - Short answer: `purrr::map()` is simpler to write. For instance, 
 
-`map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
+**Additional tips**
+
+Performance testing (profiling) is an important part of programming. `tictic()` measures the time that needs to take to run a target function for once. If you want a more robust measure of timing as well as information on memory (**speed** and **space** both matter for performance testing), consider using the [`bench` package](https://github.com/r-lib/bench) that is designed for high precising timing of R expressions. 
+
+
+```{r}
+map_mark <- bench::mark(
+
+  out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)
+
+  )
+
+map_mark
+```
 
 #### Application (many models)
 
