@@ -586,7 +586,7 @@ A good friend of `map()` function is `rerun()` function. This comibination is re
 
 ```{r}
 
-small_n <- 100 ; k <- 1000
+small_n <- 100 ; k <- 1000 ; mu <- 500 ; sigma <- 20 
 
 y_list <- rep(list(NA), k)
 

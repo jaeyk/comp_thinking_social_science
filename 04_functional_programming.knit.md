@@ -1195,7 +1195,7 @@ toc()
 ```
 
 ```
-## 0.01 sec elapsed
+## 0.007 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1238,7 +1238,7 @@ map_mark
 ## # A tibble: 1 x 6
 ##   expression                                           min median `itr/sec`
 ##   <bch:expr>                                         <bch> <bch:>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 117µs  133µs     6787.
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 111µs  123µs     7846.
 ## # … with 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
 ```
 
@@ -1317,6 +1317,30 @@ A good friend of `map()` function is `rerun()` function. This comibination is re
 * Base R approach 
 
 
+```r
+small_n <- 100 ; k <- 1000 ; mu <- 500 ; sigma <- 20 
+
+y_list <- rep(list(NA), k)
+
+for (i in seq(k)) {
+        
+    y_list[[i]] <- rnorm(small_n, mu, sigma)
+        
+}
+
+y_means <- unlist(lapply(y_list, mean))
+
+qplot(y_means) +
+   geom_vline(xintercept = 500, linetype = "dotted", color = "red")
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+
+* rerun() + map()
 
 
 
