@@ -84,8 +84,8 @@
 
 - One of the popular datasets used in machine learning competitions 
 
-```{r}
 
+```r
 # Load packages 
 
 ## CRAN packages 
@@ -105,33 +105,69 @@ source(here("functions", "ml_utils.r"))
 # Import the dataset 
 
 data_original <- read_csv(here("data", "heart.csv"))
+```
 
+```
+## 
+## ── Column specification ────────────────────────────────────────────────────────────────────────────
+## cols(
+##   age = col_double(),
+##   sex = col_double(),
+##   cp = col_double(),
+##   trestbps = col_double(),
+##   chol = col_double(),
+##   fbs = col_double(),
+##   restecg = col_double(),
+##   thalach = col_double(),
+##   exang = col_double(),
+##   oldpeak = col_double(),
+##   slope = col_double(),
+##   ca = col_double(),
+##   thal = col_double(),
+##   target = col_double()
+## )
+```
+
+```r
 glimpse(data_original)
+```
 
+```
+## Rows: 303
+## Columns: 14
+## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58, …
+## $ sex      <dbl> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, …
+## $ cp       <dbl> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3, …
+## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130, …
+## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275, …
+## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
+## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, …
+## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139, …
+## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, …
+## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2, …
+## $ slope    <dbl> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2, …
+## $ ca       <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, …
+## $ thal     <dbl> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+```
+
+```r
 # Createa a copy 
 data <- data_original
 
 theme_set(theme_minimal())
-
 ```
 
 - For more information on the Iowa housing data, read [Cook (2011)](http://jse.amstat.org/v19n3/decock.pdf). This is one of the famous datastets used in many prediction modeling competitions.
 
 ## Workflow 
 
-```{r echo=FALSE, results='asis'}
-
-pacman::p_load(glue)
-
-workflow_list <- c("Preprocessing",
-                   "Model building",
-                   "Model fitting",
-                   "Model evaluation",
-                   "Model tuning",
-                   "Prediction")
-
-glue("- {seq(workflow_list)}. {workflow_list}")
-```
+- 1. Preprocessing
+- 2. Model building
+- 3. Model fitting
+- 4. Model evaluation
+- 5. Model tuning
+- 6. Prediction
 
 
 ## tidymodels 
@@ -200,23 +236,51 @@ In this course, we focus on two preprocessing tasks.
 
 - One-hot encoding (creating dummy/indicator variables)
 
-```{r}
 
+```r
 # Turn selected numeric variables into factor variables 
 data <- data %>%
   dplyr::mutate(across(c("sex", "ca", "cp", "slope", "thal"), as.factor)) 
 
 glimpse(data) 
+```
 
+```
+## Rows: 303
+## Columns: 14
+## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58, …
+## $ sex      <fct> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, …
+## $ cp       <fct> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3, …
+## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130, …
+## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275, …
+## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
+## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, …
+## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139, …
+## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, …
+## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2, …
+## $ slope    <fct> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2, …
+## $ ca       <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, …
+## $ thal     <fct> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
 ```
 - Imputation 
 
-```{r}
 
+```r
 # Check missing values 
 
 map_df(data, ~ is.na(.) %>% sum())
+```
 
+```
+## # A tibble: 1 x 14
+##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
+##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
+## 1     0     0     0        0     0     0       0       0     0       0     0
+## # … with 3 more variables: ca <int>, thal <int>, target <int>
+```
+
+```r
 # Add missing values 
 
 data$oldpeak[sample(seq(data), size = 10)] <- NA
@@ -226,27 +290,47 @@ data$oldpeak[sample(seq(data), size = 10)] <- NA
 # Check the number of missing values 
 data %>%
   map_df(~is.na(.) %>% sum())
+```
 
+```
+## # A tibble: 1 x 14
+##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
+##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
+## 1     0     0     0        0     0     0       0       0     0      10     0
+## # … with 3 more variables: ca <int>, thal <int>, target <int>
+```
+
+```r
 # Check the rate of missing values
 data %>%
   map_df(~is.na(.) %>% mean())
+```
 
+```
+## # A tibble: 1 x 14
+##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
+##   <dbl> <dbl> <dbl>    <dbl> <dbl> <dbl>   <dbl>   <dbl> <dbl>   <dbl> <dbl>
+## 1     0     0     0        0     0     0       0       0     0  0.0330     0
+## # … with 3 more variables: ca <dbl>, thal <dbl>, target <dbl>
 ```
  
 ### Regression setup 
 
 #### Outcome variable 
 
-```{r}
 
+```r
 # Continuous variable 
 data$age %>% class()
+```
 
+```
+## [1] "numeric"
 ```
 #### Data splitting using random sampling 
 
-```{r}
 
+```r
 # for reproducibility 
 set.seed(1234) 
 
@@ -258,13 +342,12 @@ raw_train_x_reg <- training(split_reg)
 
 # test set 
 raw_test_x_reg <- testing(split_reg)
-
 ```
 
 #### recipe 
 
-```{r}
 
+```r
 # Regression recipe 
 rec_reg <- raw_train_x_reg %>%
   # Define the outcome variable 
@@ -276,11 +359,10 @@ rec_reg <- raw_train_x_reg %>%
 
 # Prepare a dataset to base each step on
 prep_reg <- rec_reg %>% prep(retain = TRUE) 
-
 ```
 
-```{r}
 
+```r
 # x features 
 train_x_reg <- juice(prep_reg, all_predictors())
 
@@ -293,14 +375,36 @@ test_y_reg <- bake(prep_reg, raw_test_x_reg, all_outcomes())$age %>% as.numeric(
 
 # Checks
 names(train_x_reg) # Make sure there's no age variable!
+```
 
+```
+##  [1] "trestbps" "chol"     "fbs"      "restecg"  "thalach"  "exang"   
+##  [7] "oldpeak"  "target"   "sex_X1"   "ca_X1"    "ca_X2"    "ca_X3"   
+## [13] "ca_X4"    "cp_X1"    "cp_X2"    "cp_X3"    "slope_X1" "slope_X2"
+## [19] "thal_X1"  "thal_X2"  "thal_X3"
+```
+
+```r
 class(train_y_reg) # Make sure this is a continuous variable!
+```
 
+```
+## [1] "numeric"
 ```
 - Note that other imputation methods are also available. 
 
-```{r}
+
+```r
 grep("impute", ls("package:recipes"), value = TRUE)
+```
+
+```
+##  [1] "step_bagimpute"          "step_impute_linear"     
+##  [3] "step_knnimpute"          "step_lowerimpute"       
+##  [5] "step_meanimpute"         "step_medianimpute"      
+##  [7] "step_modeimpute"         "step_rollimpute"        
+##  [9] "tunable.step_bagimpute"  "tunable.step_knnimpute" 
+## [11] "tunable.step_meanimpute" "tunable.step_rollimpute"
 ```
 
 - You can also create your own `step_` functions. For more information, see [tidymodels.org](https://www.tidymodels.org/learn/develop/recipes/).
@@ -309,20 +413,29 @@ grep("impute", ls("package:recipes"), value = TRUE)
 
 #### Outcome variable 
 
-```{r}
 
+```r
 data$target %>% class() 
+```
 
+```
+## [1] "numeric"
+```
+
+```r
 data$target <- as.factor(data$target)
 
 data$target %>% class()
+```
 
+```
+## [1] "factor"
 ```
 
 #### Data splitting using stratified random sampling
 
-```{r}
 
+```r
 # split 
 split_class <- initial_split(data %>%
                              mutate(target = as.factor(target)), 
@@ -334,13 +447,12 @@ raw_train_x_class <- training(split_class)
 
 # testing set 
 raw_test_x_class <- testing(split_class)
-
 ```
 
 #### recipe 
 
-```{r}
 
+```r
 # Classification recipe 
 rec_class <- raw_train_x_class %>% 
   # Define the outcome variable 
@@ -353,11 +465,10 @@ rec_class <- raw_train_x_class %>%
 
 # Prepare a dataset to base each step on
 prep_class <- rec_class %>%prep(retain = TRUE) 
-
 ```
 
-```{r}
 
+```r
 # x features 
 train_x_class <- juice(prep_class, all_predictors()) 
 test_x_class <- bake(prep_class, raw_test_x_class, all_predictors())
@@ -368,8 +479,21 @@ test_y_class <- bake(prep_class, raw_test_x_class, all_outcomes())$target %>% as
 
 # Checks 
 names(train_x_class) # Make sure there's no target variable!
-class(train_y_class) # Make sure this is a factor variable!
+```
 
+```
+##  [1] "age"      "trestbps" "chol"     "fbs"      "restecg"  "thalach" 
+##  [7] "exang"    "oldpeak"  "sex_X1"   "ca_X1"    "ca_X2"    "ca_X3"   
+## [13] "ca_X4"    "cp_X1"    "cp_X2"    "cp_X3"    "slope_X1" "slope_X2"
+## [19] "thal_X1"  "thal_X2"  "thal_X3"
+```
+
+```r
+class(train_y_class) # Make sure this is a factor variable!
+```
+
+```
+## [1] "factor"
 ```
 
 ## Supervised learning
@@ -386,8 +510,8 @@ x -> f - > y (defined)
 2. Specify an engine 
 3. Specify a mode 
 
-```{r}
 
+```r
 # OLS spec 
 ols_spec <- linear_reg() %>% # Specify a model 
   set_engine("lm") %>% # Specify an engine: lm, glmnet, stan, keras, spark 
@@ -401,34 +525,58 @@ lasso_spec <- linear_reg(penalty = 0.1, # tuning hyperparameter
 
 # If you don't understand parsnip arguments 
 lasso_spec %>% translate() # See the documentation
+```
 
+```
+## Linear Regression Model Specification (regression)
+## 
+## Main Arguments:
+##   penalty = 0.1
+##   mixture = 1
+## 
+## Computational engine: glmnet 
+## 
+## Model fit template:
+## glmnet::glmnet(x = missing_arg(), y = missing_arg(), weights = missing_arg(), 
+##     alpha = 1, family = "gaussian")
 ```
 
 - Fit models 
 
-```{r}
 
+```r
 ols_fit <- ols_spec %>%
   fit_xy(x = train_x_reg, y= train_y_reg) 
   # fit(train_y_reg ~ ., train_x_reg) # When you data are not preprocessed 
 
 lasso_fit <- lasso_spec %>%
   fit_xy(x = train_x_reg, y= train_y_reg) 
-
 ```
 
 #### yardstick 
 
 - Visualize model fits 
 
-```{r}
 
+```r
 map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit) 
-
 ```
 
-```{r}
+```
+## [[1]]
+```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+
+```
+## 
+## [[2]]
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-16-2.png" width="672" />
+
+
+```r
 # Define performance metrics 
 metrics <- yardstick::metric_set(rmse, mae, rsq)
 
@@ -444,8 +592,9 @@ evals %>%
     labs(x = "Model",
          y = "Estimate") +
     facet_wrap(~glue("{toupper(.metric)}"), scales = "free_y") 
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 - For more information, read [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
 
 #### tune 
@@ -454,8 +603,8 @@ evals %>%
 
 ##### tune ingredients 
 
-```{r}
 
+```r
 # tune() = placeholder 
 
 tune_spec <- linear_reg(penalty = tune(), # tuning hyperparameter 
@@ -464,7 +613,19 @@ tune_spec <- linear_reg(penalty = tune(), # tuning hyperparameter
   set_mode("regression") 
 
 tune_spec
+```
 
+```
+## Linear Regression Model Specification (regression)
+## 
+## Main Arguments:
+##   penalty = tune()
+##   mixture = 1
+## 
+## Computational engine: glmnet
+```
+
+```r
 # penalty() searches 50 possible combinations 
 
 lambda_grid <- grid_regular(penalty(), levels = 50)
@@ -474,35 +635,32 @@ lambda_grid <- grid_regular(penalty(), levels = 50)
 set.seed(1234) # for reproducibility 
 
 rec_folds <- vfold_cv(train_x_reg %>% bind_cols(tibble(age = train_y_reg)))
-
 ```
 
 ##### Add these elements to a workflow 
 
-```{r}
 
+```r
 # Workflow 
 rec_wf <- workflow() %>%
   add_model(tune_spec) %>%
   add_formula(age~.)
-
 ```
 
-```{r}
 
+```r
 # Tuning results 
 rec_res <- rec_wf %>%
   tune_grid(
     resamples = rec_folds, 
     grid = lambda_grid
   )
-
 ```
 
 ##### Visualize 
 
-```{r}
 
+```r
 # Visualize
 
 rec_res %>%
@@ -521,25 +679,42 @@ rec_res %>%
              scales = "free",
              nrow = 2) +
   theme(legend.position = "none")
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 ##### Select 
 
-```{r}
 
+```r
 top_rmse <- show_best(rec_res, metric = "rmse")
 
 best_rmse <- select_best(rec_res, metric = "rmse")
 
 best_rmse 
+```
 
+```
+## # A tibble: 1 x 2
+##   penalty .config
+##     <dbl> <chr>  
+## 1   0.153 Model46
+```
+
+```r
 glue('The RMSE of the intiail model is 
      {evals %>%
   filter(type == "Lasso", .metric == "rmse") %>%
   select(.estimate) %>%
   round(2)}')
+```
 
+```
+## The RMSE of the intiail model is 
+##    7.88
+```
+
+```r
 glue('The RMSE of the tuned model is {rec_res %>%
   collect_metrics() %>%
   filter(.metric == "rmse") %>%
@@ -547,13 +722,16 @@ glue('The RMSE of the tuned model is {rec_res %>%
   dplyr::slice(1) %>%
   select(mean) %>%
   round(2)}')
+```
 
+```
+## The RMSE of the tuned model is 7.7
 ```
 
 - Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
 
-```{r}
 
+```r
 finalize_lasso <- rec_wf %>%
   finalize_workflow(best_rmse)
 
@@ -561,20 +739,29 @@ finalize_lasso %>%
   fit(train_x_reg %>% bind_cols(tibble(age = train_y_reg))) %>%
   pull_workflow_fit() %>%
   vip::vip()
-  
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 
 ##### Test fit 
 
 - Apply the tuned model to the test dataset 
 
-```{r}
 
+```r
 test_fit <- finalize_lasso %>% 
   fit(test_x_reg %>% bind_cols(tibble(age = test_y_reg)))
 
 evaluate_reg(test_fit)
+```
 
+```
+## # A tibble: 3 x 3
+##   .metric .estimator .estimate
+##   <chr>   <chr>          <dbl>
+## 1 rmse    standard       7.09 
+## 2 mae     standard       5.84 
+## 3 rsq     standard       0.414
 ```
 
 ### Decision tree 
@@ -587,8 +774,8 @@ evaluate_reg(test_fit)
 2. Specify an engine 
 3. Specify a mode 
 
-```{r}
 
+```r
 # workflow 
 tree_wf <- workflow() %>% add_formula(target~.)
 
@@ -604,15 +791,13 @@ tree_spec <- decision_tree(
   set_engine("rpart") # rpart, c5.0, spark
 
 tree_wf <- tree_wf %>% add_model(tree_spec)
-
 ```
 
 - Fit a model
 
-```{r}
 
+```r
 tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
-
 ```
 
 #### yardstick 
@@ -631,8 +816,8 @@ tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_
 
 - To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html). 
 
-```{r}
 
+```r
 # Define performance metrics 
 
 metrics <- yardstick::metric_set(accuracy, precision, recall)
@@ -642,12 +827,17 @@ metrics <- yardstick::metric_set(accuracy, precision, recall)
 tree_fit_viz_metr <- visualize_class_eval(tree_fit)
 
 tree_fit_viz_metr
+```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+
+```r
 tree_fit_viz_mat <- visualize_class_conf(tree_fit)
 
 tree_fit_viz_mat
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-27-2.png" width="672" />
 
 #### tune 
 
@@ -659,8 +849,8 @@ Decisions trees tend to overfit. Broadly speaking, there are two things we need 
 
 - **tree_depth** 
 
-```{r}
 
+```r
 tune_spec <- 
   decision_tree(
     cost_complexity = tune(), # how to split 
@@ -675,20 +865,32 @@ tree_grid <- grid_regular(cost_complexity(),
 
 tree_grid %>%
   count(tree_depth)
+```
 
+```
+## # A tibble: 5 x 2
+##   tree_depth     n
+##        <int> <int>
+## 1          1     5
+## 2          4     5
+## 3          8     5
+## 4         11     5
+## 5         15     5
+```
+
+```r
 # 10-fold cross-validation
 
 set.seed(1234) # for reproducibility 
 
 tree_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
                        strata = target)
-
 ```
 
 ##### Add these elements to a workflow 
 
-```{r}
 
+```r
 # Update workflow 
 tree_wf <- tree_wf %>% update_model(tune_spec)
 
@@ -707,15 +909,14 @@ tree_res <- tree_wf %>%
     grid = tree_grid,
     metrics = metrics
   )
-
 ```
 
 ##### Visualize 
 
 - The following plot draws on the [vignette](https://www.tidymodels.org/start/tuning/) of the tidymodels package. 
 
-```{r}
 
+```r
 tree_res %>%
   collect_metrics() %>%
   mutate(tree_depth = factor(tree_depth)) %>%
@@ -733,13 +934,14 @@ tree_res %>%
        col = "Tree depth",
        y = NULL) +
   coord_flip()
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
 ##### Select 
 
-```{r}
 
+```r
 # Optimal hyperparameter
 best_tree <- select_best(tree_res, "recall")
 
@@ -748,40 +950,54 @@ finalize_tree <- tree_wf %>%
   finalize_workflow(best_tree)
 ```
 
-```{r}
 
+```r
 tree_fit_tuned <- finalize_tree %>% 
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
 # Metrics 
 (tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
+```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+
+```r
 # Confusion matrix 
 (tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-32-2.png" width="672" />
 
 - Visualize variable importance 
 
-```{r}
 
+```r
 tree_fit_tuned %>%
   pull_workflow_fit() %>%
   vip::vip()
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
 ##### Test fit
 
 - Apply the tuned model to the test dataset 
 
-```{r}
 
+```r
 test_fit <- finalize_tree %>% 
   fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
 
 evaluate_class(test_fit)
+```
 
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.744
+## 2 precision binary         0.705
+## 3 recall    binary         0.756
 ```
 
 In the next subsection, we will learn variants of ensemble models that improve decision tree model by putting models together.
@@ -828,8 +1044,8 @@ Here we focus on the difference between bagging and boosting. In short, boosting
 2. Specify an engine 
 3. Specify a mode 
 
-```{r}
 
+```r
 # workflow 
 rand_wf <- workflow() %>% add_formula(target~.)
 
@@ -849,15 +1065,13 @@ rand_spec <- rand_forest(
              importance = "permutation") 
 
 rand_wf <- rand_wf %>% add_model(rand_spec)
-
 ```
 
 - Fit a model
 
-```{r}
 
+```r
 rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
-
 ```
 
 #### yardstick 
@@ -872,26 +1086,28 @@ rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_
 
 - `recall` (specificity): True positive rate (e.g., healthy people really healthy)
 
-```{r}
 
+```r
 # Define performance metrics 
 metrics <- yardstick::metric_set(accuracy, precision, recall)
 
 rand_fit_viz_metr <- visualize_class_eval(rand_fit)
 
 rand_fit_viz_metr
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" width="672" />
 
 - Visualize the confusion matrix. 
   
-```{r}
 
+```r
 rand_fit_viz_mat <- visualize_class_conf(rand_fit)
 
 rand_fit_viz_mat
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-38-1.png" width="672" />
 
 #### tune 
 
@@ -903,8 +1119,8 @@ We focus on the following two hyperparameters:
 
 - `min_n`: The minimum number of data points needed to keep splitting nodes. 
 
-```{r}
 
+```r
 tune_spec <- 
   rand_forest(
            mode = "classification",
@@ -922,24 +1138,33 @@ rand_grid <- grid_regular(mtry(range = c(1, 10)),
 
 rand_grid %>%
   count(min_n)
-
 ```
 
-```{r}
+```
+## # A tibble: 5 x 2
+##   min_n     n
+##   <int> <int>
+## 1     2     5
+## 2     4     5
+## 3     6     5
+## 4     8     5
+## 5    10     5
+```
+
+
+```r
 # 10-fold cross-validation
 
 set.seed(1234) # for reproducibility 
 
 rand_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
                        strata = target)
-
-
 ```
 
 ##### Add these elements to a workflow 
 
-```{r}
 
+```r
 # Update workflow 
 rand_wf <- rand_wf %>% update_model(tune_spec)
 
@@ -950,13 +1175,12 @@ rand_res <- rand_wf %>%
     grid = rand_grid,
     metrics = metrics
   )
-
 ```
 
 ##### Visualize 
 
-```{r}
 
+```r
 rand_res %>%
   collect_metrics() %>%
   mutate(min_n = factor(min_n)) %>%
@@ -976,56 +1200,79 @@ rand_res %>%
        col = "The minimum number of data points needed for splitting",
        y = NULL) +
   theme(legend.position="bottom")
-
 ```
 
-```{r}
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-42-1.png" width="672" />
 
+
+```r
 # Optimal hyperparameter
 best_tree <- select_best(rand_res, "accuracy")
 
 best_tree
+```
 
+```
+## # A tibble: 1 x 3
+##    mtry min_n .config
+##   <int> <int> <chr>  
+## 1     1     2 Model01
+```
+
+```r
 # Add the hyperparameter to the workflow 
 finalize_tree <- rand_wf %>%
   finalize_workflow(best_tree)
-
 ```
 
-```{r}
 
+```r
 rand_fit_tuned <- finalize_tree %>% 
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
 # Metrics 
 (rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
+```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-44-1.png" width="672" />
+
+```r
 # Confusion matrix 
 (rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-44-2.png" width="672" />
 
 - Visualize variable importance 
 
-```{r}
 
+```r
 rand_fit_tuned %>%
   pull_workflow_fit() %>%
   vip::vip()
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-45-1.png" width="672" />
 
 ##### Test fit
 
 - Apply the tuned model to the test dataset 
 
-```{r}
 
+```r
 test_fit <- finalize_tree %>%
   fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
 
 evaluate_class(test_fit)
+```
 
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.933
+## 2 precision binary         0.973
+## 3 recall    binary         0.878
 ```
 
 ### Boosting (XGboost)
@@ -1038,8 +1285,8 @@ evaluate_class(test_fit)
 2. Specify an engine 
 3. Specify a mode 
 
-```{r}
 
+```r
 # workflow 
 xg_wf <- workflow() %>% add_formula(target~.)
 
@@ -1063,15 +1310,18 @@ xg_spec <- boost_tree(
   set_engine("xgboost") 
 
 xg_wf <- xg_wf %>% add_model(xg_spec)
-
 ```
 
 - Fit a model
 
-```{r}
 
+```r
 xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+```
 
+```
+## Warning in begin_iteration:end_iteration: numerical expression has 5 elements:
+## only the first used
 ```
 
 #### yardstick 
@@ -1086,33 +1336,43 @@ xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_clas
 
 - `recall` (specificity): True positive rate (e.g., healthy people really healthy)
 
-```{r}
 
+```r
 metrics <- metric_set(yardstick::accuracy, 
                       yardstick::precision, 
                       yardstick::recall)
 
 evaluate_class(xg_fit)
-
 ```
 
-```{r}
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.733
+## 2 precision binary         0.730
+## 3 recall    binary         0.659
+```
 
+
+```r
 xg_fit_viz_metr <- visualize_class_eval(xg_fit)
 
 xg_fit_viz_metr
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-50-1.png" width="672" />
 
 - Visualize the confusion matrix. 
   
-```{r}
 
+```r
 xg_fit_viz_mat <- visualize_class_conf(xg_fit)
 
 xg_fit_viz_mat
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-51-1.png" width="672" />
 
 #### tune 
 
@@ -1120,8 +1380,8 @@ xg_fit_viz_mat
 
 - We focus on the following hyperparameters: `trees,` `tree_depth,` `learn_rate,` `min_n,` `mtry,` `loss_reduction,` and `sample_size`
 
-```{r}
 
+```r
 tune_spec <- 
   xg_spec <- boost_tree(
   
@@ -1164,13 +1424,12 @@ set.seed(1234) # for reproducibility
 
 xg_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
                      strata = target)
-
 ```
 
 ##### Add these elements to a workflow 
 
-```{r}
 
+```r
 # Update workflow 
 xg_wf <- xg_wf %>% update_model(tune_spec)
 
@@ -1181,13 +1440,12 @@ xg_res <- xg_wf %>%
     grid = xg_grid,
     control = control_grid(save_pred = TRUE)
   )
-
 ```
 
 ##### Visualize 
 
-```{r}
 
+```r
 xg_res %>%
   collect_metrics() %>% 
   filter(.metric == "roc_auc") %>%
@@ -1199,56 +1457,87 @@ xg_res %>%
     facet_wrap(~parameter, scales = "free_x") +
     labs(y = "AUC",
          x = NULL)
-
 ```
 
-```{r}
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-54-1.png" width="672" />
 
+
+```r
 # Optimal hyperparameter
 best_xg <- select_best(xg_res, "roc_auc")
 
 best_xg 
+```
 
+```
+## # A tibble: 1 x 8
+##    mtry trees min_n tree_depth learn_rate loss_reduction sample_size .config
+##   <int> <int> <int>      <int>      <dbl>          <dbl>       <dbl> <chr>  
+## 1    11   326     3         13     0.0176     0.00000254       0.544 Model27
+```
+
+```r
 # Add the hyperparameter to the workflow 
 finalize_xg <- xg_wf %>%
   finalize_workflow(best_xg)
-
 ```
 
-```{r}
 
+```r
 xg_fit_tuned <- finalize_xg %>% 
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
 # Metrics 
 (xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
+```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-56-1.png" width="672" />
+
+```r
 # Confusion matrix 
 (xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-56-2.png" width="672" />
 
 - Visualize variable importance 
 
-```{r}
 
+```r
 xg_fit_tuned %>%
   pull_workflow_fit() %>%
   vip::vip()
+```
 
 ```
+## Warning: `as.tibble()` is deprecated as of tibble 2.0.0.
+## Please use `as_tibble()` instead.
+## The signature and semantics have changed, see `?as_tibble`.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-57-1.png" width="672" />
 
 ##### Test fit
 
 - Apply the tuned model to the test dataset 
 
-```{r}
 
+```r
 test_fit <- finalize_xg %>%
   fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
 
 evaluate_class(test_fit)
+```
 
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.822
+## 2 precision binary         0.791
+## 3 recall    binary         0.829
 ```
 
 ### Stacking (SuperLearner)
@@ -1273,26 +1562,61 @@ A "wrapper" is a short function that adapts an algorithm for the SuperLearner pa
 
 #### Choose algorithms
 
-```{r}
+
+```r
 # Review available models 
 SuperLearner::listWrappers()
 ```
 
-```{r}
+```
+## All prediction algorithm wrappers in SuperLearner:
+```
+
+```
+##  [1] "SL.bartMachine"      "SL.bayesglm"         "SL.biglasso"        
+##  [4] "SL.caret"            "SL.caret.rpart"      "SL.cforest"         
+##  [7] "SL.earth"            "SL.extraTrees"       "SL.gam"             
+## [10] "SL.gbm"              "SL.glm"              "SL.glm.interaction" 
+## [13] "SL.glmnet"           "SL.ipredbagg"        "SL.kernelKnn"       
+## [16] "SL.knn"              "SL.ksvm"             "SL.lda"             
+## [19] "SL.leekasso"         "SL.lm"               "SL.loess"           
+## [22] "SL.logreg"           "SL.mean"             "SL.nnet"            
+## [25] "SL.nnls"             "SL.polymars"         "SL.qda"             
+## [28] "SL.randomForest"     "SL.ranger"           "SL.ridge"           
+## [31] "SL.rpart"            "SL.rpartPrune"       "SL.speedglm"        
+## [34] "SL.speedlm"          "SL.step"             "SL.step.forward"    
+## [37] "SL.step.interaction" "SL.stepAIC"          "SL.svm"             
+## [40] "SL.template"         "SL.xgboost"
+```
+
+```
+## 
+## All screening algorithm wrappers in SuperLearner:
+```
+
+```
+## [1] "All"
+## [1] "screen.corP"           "screen.corRank"        "screen.glmnet"        
+## [4] "screen.randomForest"   "screen.SIS"            "screen.template"      
+## [7] "screen.ttest"          "write.screen.template"
+```
+
+
+```r
 # Compile the algorithm wrappers to be used.
 sl_lib <- c("SL.mean", # Marginal mean of the outcome () 
             "SL.glmnet", # GLM with lasso/elasticnet regularization 
             "SL.rpart", # Decision tree 
             "SL.ranger", # Random forest  
             "SL.xgboost") # Xgbboost 
-
 ```
 
 #### Fit model
 
 Fit the ensemble!
 
-```{r}
+
+```r
 # This is a seed that is compatible with multicore parallel processing.
 # See ?set.seed for more information.
 set.seed(1, "L'Ecuyer-CMRG") 
@@ -1318,20 +1642,42 @@ Risk is the average loss, and loss is how far off the prediction was for an indi
 * `SuperLearner` takes a weighted average of the **models** using the coefficients (importance of each individual learner in the overall ensemble). Coefficient 0 means that learner is not used at all.
 * `SL.mean_All` (the weighted mean of $Y$) is a benchmark algorithm (ignoring features). 
 
-```{r}
 
+```r
 summary(cv_sl)
+```
 
+```
+## 
+## Call:  
+## SuperLearner::CV.SuperLearner(Y = as.numeric(as.character(train_y_class)),  
+##     X = train_x_class, family = binomial(), SL.library = sl_lib, verbose = FALSE,  
+##     cvControl = list(V = 5L, stratifyCV = TRUE)) 
+## 
+## Risk is based on: Mean Squared Error
+## 
+## All risk estimates are based on V =  5 
+## 
+##       Algorithm     Ave        se      Min     Max
+##   Super Learner 0.12973 0.0148704 0.068518 0.17775
+##     Discrete SL 0.12810 0.0149794 0.063576 0.17775
+##     SL.mean_All 0.24802 0.0030531 0.247747 0.24893
+##   SL.glmnet_All 0.12810 0.0149794 0.063576 0.17775
+##    SL.rpart_All 0.18869 0.0196099 0.137814 0.22434
+##   SL.ranger_All 0.14299 0.0132108 0.099527 0.17728
+##  SL.xgboost_All 0.15931 0.0170504 0.132480 0.17020
 ```
 
 ##### Plot
 
-```{r cvsl_review}
+
+```r
 # Plot the cross-validated risk estimate with 95% CIs.
 
 plot(cv_sl)
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/cvsl_review-1.png" width="672" />
 
 #### Compute AUC for all estimators
 
@@ -1349,20 +1695,45 @@ AUC: Area Under the ROC Curve
 
 0.5 = no better than chance 
 
-```{r}
+
+```r
 auc_table(cv_sl)
+```
+
+```
+##                      auc         se  ci_lower  ci_upper      p-value
+## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.242915e-09
+## SL.rpart_All   0.7841586 0.04199286 0.7018541 0.8664630 3.064302e-03
+## SL.xgboost_All 0.8483648 0.02779757 0.7938826 0.9028470 3.357370e-02
+## SL.ranger_All  0.8787986 0.02356809 0.8326060 0.9249912 1.927239e-01
+## SuperLearner   0.8962958 0.02133296 0.8544839 0.9381076 4.448661e-01
+## SL.glmnet_All  0.8992534 0.02106286 0.8579710 0.9405359 5.000000e-01
+## DiscreteSL     0.8992534 0.02106286 0.8579710 0.9405359 5.000000e-01
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
 
-```{r}
+
+```r
 plot_roc(cv_sl)
 ```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-64-1.png" width="672" />
+
 ##### Review weight distribution for the SuperLearner
 
-```{r}
+
+```r
 print(cvsl_weights(cv_sl), row.names = FALSE)
+```
+
+```
+##  # Learner    Mean      SD     Min     Max
+##  1  glmnet 0.90496 0.08789 0.82193 1.00000
+##  2  ranger 0.07688 0.08050 0.00000 0.17807
+##  3 xgboost 0.01729 0.03866 0.00000 0.08644
+##  4    mean 0.00088 0.00196 0.00000 0.00439
+##  5   rpart 0.00000 0.00000 0.00000 0.00000
 ```
 
 General stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
@@ -1391,31 +1762,57 @@ x -> f - > y (not defined)
     
     - Scaling issues 
     
-```{r}
 
+```r
 data_original %>%
   corrr::correlate()
+```
 
+```
+## 
+## Correlation method: 'pearson'
+## Missing treated using: 'pairwise.complete.obs'
+```
+
+```
+## # A tibble: 14 x 15
+##    rowname     age     sex      cp trestbps     chol      fbs restecg  thalach
+##    <chr>     <dbl>   <dbl>   <dbl>    <dbl>    <dbl>    <dbl>   <dbl>    <dbl>
+##  1 age     NA      -0.0984 -0.0687   0.279   0.214    0.121   -0.116  -0.399  
+##  2 sex     -0.0984 NA      -0.0494  -0.0568 -0.198    0.0450  -0.0582 -0.0440 
+##  3 cp      -0.0687 -0.0494 NA        0.0476 -0.0769   0.0944   0.0444  0.296  
+##  4 trestb…  0.279  -0.0568  0.0476  NA       0.123    0.178   -0.114  -0.0467 
+##  5 chol     0.214  -0.198  -0.0769   0.123  NA        0.0133  -0.151  -0.00994
+##  6 fbs      0.121   0.0450  0.0944   0.178   0.0133  NA       -0.0842 -0.00857
+##  7 restecg -0.116  -0.0582  0.0444  -0.114  -0.151   -0.0842  NA       0.0441 
+##  8 thalach -0.399  -0.0440  0.296   -0.0467 -0.00994 -0.00857  0.0441 NA      
+##  9 exang    0.0968  0.142  -0.394    0.0676  0.0670   0.0257  -0.0707 -0.379  
+## 10 oldpeak  0.210   0.0961 -0.149    0.193   0.0540   0.00575 -0.0588 -0.344  
+## 11 slope   -0.169  -0.0307  0.120   -0.121  -0.00404 -0.0599   0.0930  0.387  
+## 12 ca       0.276   0.118  -0.181    0.101   0.0705   0.138   -0.0720 -0.213  
+## 13 thal     0.0680  0.210  -0.162    0.0622  0.0988  -0.0320  -0.0120 -0.0964 
+## 14 target  -0.225  -0.281   0.434   -0.145  -0.0852  -0.0280   0.137   0.422  
+## # … with 6 more variables: exang <dbl>, oldpeak <dbl>, slope <dbl>, ca <dbl>,
+## #   thal <dbl>, target <dbl>
 ```
 
 #### Preprocessing 
 
 `recipe` is essential for preprocesssing multiple features at once.
 
-```{r}
 
+```r
 pca_recipe <- recipe(~., data = data_original) %>%
   # Imputing NAs using mean 
   step_meanimpute(all_predictors()) %>%
   # Normalize some numeric variables 
   step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak")) 
-
 ```
 
 #### PCA analysis 
 
-```{r}
 
+```r
 pca_res <- pca_recipe %>% 
   step_pca(all_predictors(), 
            id = "pca") %>% # id argument identifies each PCA step 
@@ -1423,12 +1820,29 @@ pca_res <- pca_recipe %>%
 
 pca_res %>%
   tidy(id = "pca") 
+```
 
+```
+## # A tibble: 196 x 4
+##    terms        value component id   
+##    <chr>        <dbl> <chr>     <chr>
+##  1 age      -0.00101  PC1       pca  
+##  2 sex       0.216    PC1       pca  
+##  3 cp        0.321    PC1       pca  
+##  4 trestbps  0.00118  PC1       pca  
+##  5 chol     -0.000292 PC1       pca  
+##  6 fbs       0.0468   PC1       pca  
+##  7 restecg   0.166    PC1       pca  
+##  8 thalach   0.0137   PC1       pca  
+##  9 exang     0.0962   PC1       pca  
+## 10 oldpeak  -0.00863  PC1       pca  
+## # … with 186 more rows
 ```
 
 ##### Screeplot
 
-```{r}
+
+```r
 pca_recipe %>%
   step_pca(all_predictors(), 
            id = "pca") %>% # id argument identifies each PCA step 
@@ -1442,12 +1856,14 @@ pca_recipe %>%
          title = "Scree plot")
 ```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-69-1.png" width="672" />
+
 ##### View factor loadings 
 
 Loadings are the covariances between the features and the principal components (=eigenvectors).
 
-```{r}
 
+```r
 pca_recipe %>%
   step_pca(all_predictors(), 
            id = "pca") %>% # id argument identifies each PCA step 
@@ -1461,8 +1877,9 @@ pca_recipe %>%
     labs(x = "Terms",
          y = "Contribtutions",
          fill = "PCAs") 
-       
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-70-1.png" width="672" />
 
 You can use these low-dimensional data to solve prediction problems. Compressing feature space via dimension reduction techniques is called feature extraction. PCA is one way of doing this. 
 
@@ -1470,7 +1887,8 @@ You can use these low-dimensional data to solve prediction problems. Compressing
 
 #### Setup 
 
-```{r}
+
+```r
 pacman::p_load(tidytext, # tidy text analysis
                glue, # paste string and objects                
                stm, # structural topic modeling
@@ -1481,12 +1899,31 @@ pacman::p_load(tidytext, # tidy text analysis
 
 The data munging process draws on [Julia Silge's blog post](https://juliasilge.com/blog/sherlock-holmes-stm/).
 
-```{r}
 
+```r
 sherlock_raw <- gutenberg_download(1661)
+```
 
+```
+## Determining mirror for Project Gutenberg from http://www.gutenberg.org/robot/harvest
+```
+
+```
+## Using mirror http://aleph.gutenberg.org
+```
+
+```r
 glimpse(sherlock_raw)
+```
 
+```
+## Rows: 12,648
+## Columns: 2
+## $ gutenberg_id <int> 1661, 1661, 1661, 1661, 1661, 1661, 1661, 1661, 1661, 16…
+## $ text         <chr> "THE ADVENTURES OF SHERLOCK HOLMES", "", "by", "", "SIR …
+```
+
+```r
 sherlock <- sherlock_raw %>%
   # Mutate story using a conditional statement 
   mutate(story = ifelse(str_starts(text, "ADVENTURE"), 
@@ -1499,7 +1936,6 @@ sherlock <- sherlock_raw %>%
   mutate(story = factor(story, levels = unique(story)))
 
 sherlock <- sherlock[,2:3]
-
 ```
 
 #### Key ideas 
@@ -1524,8 +1960,8 @@ sherlock <- sherlock[,2:3]
 
 #### Exploratory data analysis 
 
-```{r}
 
+```r
 sherlock_n <- sherlock %>%
   unnest_tokens(output = word,
                 input = text) %>%
@@ -1534,9 +1970,21 @@ sherlock_n <- sherlock %>%
 sherlock_total_n <- sherlock_n %>%
   group_by(story) %>%
   summarise(total = sum(n))
+```
 
+```
+## `summarise()` ungrouping output (override with `.groups` argument)
+```
+
+```r
 sherlock_words <- sherlock_n %>% left_join(sherlock_total_n)
+```
 
+```
+## Joining, by = "story"
+```
+
+```r
 sherlock_words %>%
   mutate(freq = n/total) %>%
   group_by(story) %>%
@@ -1551,8 +1999,13 @@ sherlock_words %>%
              scales = "free_y") +
   scale_fill_viridis_d() +
   labs(x = "")
+```
 
 ```
+## Selecting by freq
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-73-1.png" width="672" />
 
 #### STM 
 
@@ -1560,14 +2013,12 @@ sherlock_words %>%
 
 `stm` package has its own preprocessing function.
 
-```{r}
 
-
+```r
 dtm <- textProcessor(documents = sherlock$text,
                      metadata = sherlock, 
                      removestopwords = TRUE,
                      verbose = FALSE)
-
 ```
 
 ##### Tuning K
@@ -1575,21 +2026,248 @@ dtm <- textProcessor(documents = sherlock$text,
 - K is the number of topics. 
 - Let's try K = 5, 10, 15.
 
-```{r}
 
+```r
 test_res <- searchK(dtm$documents, dtm$vocab, 
                    K = c(5, 10, 15),
                    prevalence =~ story, 
                    data = dtm$meta)
+```
 
+```
+## Beginning Spectral Initialization 
+## 	 Calculating the gram matrix...
+## 	 Finding anchor words...
+##  	.....
+## 	 Recovering initialization...
+##  	........................................................
+## Initialization complete.
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.581) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.482, relative change = 1.312e-02) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.408, relative change = 9.916e-03) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.383, relative change = 3.336e-03) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.372, relative change = 1.424e-03) 
+## Topic 1: holm, now, come, look, yes 
+##  Topic 2: upon, littl, man, hand, door 
+##  Topic 3: know, think, came, back, day 
+##  Topic 4: said, will, can, face, matter 
+##  Topic 5: one, see, shall, time, must 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.367, relative change = 6.889e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.365, relative change = 3.221e-04) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.364, relative change = 1.281e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.364, relative change = 1.012e-05) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Model Converged 
+## Beginning Spectral Initialization 
+## 	 Calculating the gram matrix...
+## 	 Finding anchor words...
+##  	..........
+## 	 Recovering initialization...
+##  	........................................................
+## Initialization complete.
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.666) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.481, relative change = 2.408e-02) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.387, relative change = 1.265e-02) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.361, relative change = 3.497e-03) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.351, relative change = 1.396e-03) 
+## Topic 1: upon, littl, paper, even, came 
+##  Topic 2: holm, back, two, busi, sat 
+##  Topic 3: one, case, word, remark, point 
+##  Topic 4: come, said, room, miss, say 
+##  Topic 5: said, man, eye, yes, took 
+##  Topic 6: may, just, away, fact, mind 
+##  Topic 7: see, one, time, face, look 
+##  Topic 8: know, now, can, hand, must 
+##  Topic 9: will, sherlock, two, might, famili 
+##  Topic 10: tabl, heard, die, might, record 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.346, relative change = 7.034e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.342, relative change = 5.221e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.338, relative change = 5.161e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.336, relative change = 2.460e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Model Converged 
+## Beginning Spectral Initialization 
+## 	 Calculating the gram matrix...
+## 	 Finding anchor words...
+##  	...............
+## 	 Recovering initialization...
+##  	........................................................
+## Initialization complete.
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.738) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.461, relative change = 3.577e-02) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.367, relative change = 1.264e-02) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.343, relative change = 3.252e-03) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.333, relative change = 1.367e-03) 
+## Topic 1: matter, like, made, much, street 
+##  Topic 2: look, door, face, room, saw 
+##  Topic 3: sir, someth, wife, mean, instant 
+##  Topic 4: said, holm, ask, well, miss 
+##  Topic 5: morn, littl, remark, quit, interest 
+##  Topic 6: back, chair, close, get, step 
+##  Topic 7: time, read, put, seen, part 
+##  Topic 8: two, now, case, cri, yet 
+##  Topic 9: upon, one, sherlock, famili, knew 
+##  Topic 10: may, howev, tell, long, clear 
+##  Topic 11: will, think, shall, good, came 
+##  Topic 12: see, littl, hand, yes, way 
+##  Topic 13: holm, answer, turn, return, mrs 
+##  Topic 14: man, reason, certain, strang, crime 
+##  Topic 15: might, twist, hand, never, come 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.328, relative change = 7.011e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.324, relative change = 4.535e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.322, relative change = 3.650e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.320, relative change = 2.220e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 10 (approx. per word bound = -7.318, relative change = 2.408e-04) 
+## Topic 1: matter, much, like, even, away 
+##  Topic 2: look, room, door, face, saw 
+##  Topic 3: sir, went, someth, wife, dark 
+##  Topic 4: said, holm, well, ask, heard 
+##  Topic 5: quit, morn, remark, left, give 
+##  Topic 6: back, get, chair, step, close 
+##  Topic 7: time, put, seen, paper, three 
+##  Topic 8: two, case, cri, seem, yet 
+##  Topic 9: upon, one, sherlock, knew, famili 
+##  Topic 10: may, howev, tell, long, clear 
+##  Topic 11: will, think, come, shall, can 
+##  Topic 12: see, littl, hand, yes, way 
+##  Topic 13: turn, holm, answer, return, observ 
+##  Topic 14: man, reason, certain, strang, lord 
+##  Topic 15: might, thing, follow, told, help 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 11 (approx. per word bound = -7.317, relative change = 1.808e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 12 (approx. per word bound = -7.316, relative change = 1.221e-04) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 13 (approx. per word bound = -7.315, relative change = 8.460e-05) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 14 (approx. per word bound = -7.315, relative change = 4.530e-05) 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 15 (approx. per word bound = -7.315, relative change = 2.133e-05) 
+## Topic 1: matter, much, like, even, made 
+##  Topic 2: look, room, door, face, eye 
+##  Topic 3: sir, went, someth, wife, dark 
+##  Topic 4: said, holm, well, ask, know 
+##  Topic 5: quit, remark, morn, left, found 
+##  Topic 6: back, get, chair, step, close 
+##  Topic 7: time, year, paper, put, seen 
+##  Topic 8: two, case, seem, cri, yet 
+##  Topic 9: upon, one, sherlock, knew, famili 
+##  Topic 10: may, howev, tell, long, clear 
+##  Topic 11: will, come, think, now, can 
+##  Topic 12: littl, see, hand, yes, way 
+##  Topic 13: turn, answer, return, holm, observ 
+##  Topic 14: man, reason, certain, strang, lord 
+##  Topic 15: might, make, thing, word, follow 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Model Converged
 ```
 
 ##### Evaludating models 
 
 There are several metrics to assess the performance of topic models: the held-out likelihood, residuals, semantic coherence, and exclusivity. In this course, we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
 
-```{r}
 
+```r
 test_res$results %>%
   unnest(K, exclus, semcoh) %>%
   dplyr::select(K, exclus, semcoh) %>%
@@ -1598,12 +2276,19 @@ test_res$results %>%
     geom_text(label = glue("K = {test_res$results$K}"),
               size = 5,
               color = "red")
+```
 
 ```
+## Warning: unnest() has a new interface. See ?unnest for details.
+## Try `df %>% unnest(c(K, exclus, semcoh))`, with `mutate()` if needed
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-76-1.png" width="672" />
 
 ##### Finalize 
 
-```{r}
+
+```r
 final_stm <- stm(dtm$documents, 
                  dtm$vocab, 
                  K = 10, prevalence =~ story,
@@ -1618,16 +2303,18 @@ final_stm <- stm(dtm$documents,
 
 - Using the `stm` pacakge. 
 
-```{r}
 
+```r
 # plot
 plot(final_stm)
-
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" width="672" />
 
 - Using ggplot2 
 
-```{r}
+
+```r
 # tidy  
 tidy_stm <- tidy(final_stm)
 
@@ -1643,6 +2330,8 @@ tidy_stm %>%
     scale_y_continuous(labels = scales::percent) +
     scale_fill_viridis_d()
 ```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-79-1.png" width="672" />
 
 ## Bias and fairness in machine learning 
 
@@ -1672,9 +2361,16 @@ For more information on the ProPublica's Machine Bias project, we encourage to c
 
 #### Setup 
 
-```{r}
-if (!require("pacman")) install.packages("pacman")
 
+```r
+if (!require("pacman")) install.packages("pacman")
+```
+
+```
+## Loading required package: pacman
+```
+
+```r
 pacman::p_load(
  tidyverse, # tidyverse packages 
  conflicted, # an alternative conflict resolution strategy 
@@ -1689,20 +2385,42 @@ pacman::p_load(
 
 # To avoid conflicts 
 conflict_prefer("filter", "dplyr") 
-conflict_prefer("select", "dplyr") 
+```
 
+```
+## [conflicted] Will prefer dplyr::filter over any other package
+```
+
+```r
+conflict_prefer("select", "dplyr") 
+```
+
+```
+## [conflicted] Will prefer dplyr::select over any other package
 ```
 
 #### Load data 
 
 We select fields for severity of charge, number of priors, demographics, age, sex, COMPAS scores, and whether each person was accused of a crime within two years.
 
-```{r message=FALSE}
-two_years <- read_csv(here("data", "compas-scores-two-years.csv"))
 
+```r
+two_years <- read_csv(here("data", "compas-scores-two-years.csv"))
+```
+
+```
+## Warning: Duplicated column names deduplicated: 'decile_score' =>
+## 'decile_score_1' [40], 'priors_count' => 'priors_count_1' [49]
+```
+
+```r
 glue("N of observations (rows): {nrow(two_years)}
       N of variables (columns): {ncol(two_years)}")
+```
 
+```
+## N of observations (rows): 7214
+## N of variables (columns): 53
 ```
 
 #### Wrangling 
@@ -1716,8 +2434,8 @@ glue("N of observations (rows): {nrow(two_years)}
 
 - Create a function 
 
-```{r}
 
+```r
 wrangle_data <- function(data){
 
 df <- data %>% 
@@ -1750,22 +2468,57 @@ return(df)}
 
 - Apply the function to the data 
 
-```{r}
+
+```r
 df <- wrangle_data(two_years)
 
 names(df)
+```
 
+```
+##  [1] "age"                     "crime"                  
+##  [3] "race"                    "age_cat"                
+##  [5] "score_text"              "gender"                 
+##  [7] "priors_count"            "days_b_screening_arrest"
+##  [9] "decile_score"            "is_recid"               
+## [11] "two_year_recid"          "c_jail_in"              
+## [13] "c_jail_out"              "length_of_stay"         
+## [15] "score"                   "score_num"
+```
+
+```r
 # Check whether the function works as expected
 head(df, 5)
+```
+
+```
+## # A tibble: 5 x 16
+##     age crime race  age_cat score_text gender priors_count days_b_screenin…
+##   <dbl> <fct> <fct> <fct>   <fct>      <fct>         <dbl>            <dbl>
+## 1    69 F     Other Greate… Low        Male              0               -1
+## 2    34 F     Afri… 25 - 45 Low        Male              0               -1
+## 3    24 F     Afri… Less t… Low        Male              4               -1
+## 4    44 M     Other 25 - 45 Low        Male              0                0
+## 5    41 F     Cauc… 25 - 45 Medium     Male             14               -1
+## # … with 8 more variables: decile_score <dbl>, is_recid <dbl>,
+## #   two_year_recid <dbl>, c_jail_in <dttm>, c_jail_out <dttm>,
+## #   length_of_stay <dbl>, score <fct>, score_num <dbl>
 ```
 
 #### Descriptive analysis 
 
 - Higher COMPAS scores are slightly correlated with a longer length of stay.
 
-```{r}
-cor(df$length_of_stay, df$decile_score)
 
+```r
+cor(df$length_of_stay, df$decile_score)
+```
+
+```
+## [1] 0.2073297
+```
+
+```r
 df %>%
   group_by(score) %>%
   count() %>%
@@ -1776,9 +2529,12 @@ df %>%
          title = "Score distribution")
 ```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" width="672" />
+
 Judges are often presented with two sets of scores from the COMPAS system -- one that classifies people into High, Medium and Low risk, and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.
 
-```{r}
+
+```r
 df %>%
   ggplot(aes(ordered(decile_score))) + 
           geom_bar() +
@@ -1788,14 +2544,16 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-85-1.png" width="672" />
+
 #### Modeling 
 
 After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. To do so we need to change some variables into factors, and run a logistic regression, comparing low scores to high scores.
 
 - Model building 
 
-```{r}
 
+```r
 model_data <- function(data){
 
 # Logistic regression model
@@ -1827,22 +2585,27 @@ list(lr_est, ols_est1, ols_est2,
      lr_AIC, ols_AIC1, ols_AIC2)
 
 }
-
 ```
 
 - Model comparisons 
 
-```{r}
 
+```r
 glue("AIC score of logistic regression: {model_data(df)[4]} 
       AIC score of OLS regression (with categorical DV):  {model_data(df)[5]}
       AIC score of OLS regression (with continuous DV): {model_data(df)[6]}")
+```
 
+```
+## AIC score of logistic regression: 6192.40169473357 
+## AIC score of OLS regression (with categorical DV):  11772.1148541111
+## AIC score of OLS regression (with continuous DV): 26779.9512226999
 ```
 
 - Logistic regression model 
 
-```{r}
+
+```r
 lr_model <- model_data(df)[1] %>% data.frame()
 
 lr_model %>%
@@ -1856,13 +2619,16 @@ lr_model %>%
   geom_hline(yintercept = 0, linetype = "dashed")
 ```
 
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-88-1.png" width="672" />
+
 Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success and 1-p could be as a failure. Here, coefficient 1 indicates equal probability for the binary outcomes. Coefficient greater than 1 indicates strong chance for p and weak chance for 1-p. Coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
 
 (To refresh your memory, note that probability is bounded between [0, 1]. Odds ranges between 0 and infinity. Log odds ranges from negative to positive infinity. We're going through this hassle because we used log function to map predictor variables to probability to fit the model to the binary outcomes.)
 
 In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see [Grant](https://www.bmj.com/content/348/bmj.f7450) (2014), [Wang](https://www.jstatsoft.org/article/view/v055i05) (2013), and [Zhang and Yu](https://jamanetwork.com/journals/jama/fullarticle/188182) (1998). 
 
-```{r}
+
+```r
 odds_to_risk <- function(model){
     
     # Calculating p0 (baseline or control group)
@@ -1878,589 +2644,113 @@ odds_to_risk <- function(model){
 }
 ```
 
-```{r}
+
+```r
 odds_to_risk(lr_model) %>%
   relocate(relative_risk) %>%
   arrange(desc(relative_risk))
+```
+
+```
+##    relative_risk                   term   estimate  std.error   statistic
+## 1      2.6152880    raceNative American  1.3942077 0.76611816   1.8198338
+## 2      2.4961195    age_catLess than 25  1.3083903 0.07592869  17.2318308
+## 3      1.6882587         two_year_recid  0.6858625 0.06401955  10.7133288
+## 4      1.4528374   raceAfrican-American  0.4772070 0.06934914   6.8812245
+## 5      1.2402135           priors_count  0.2689453 0.01110379  24.2210342
+## 6      1.1947947           genderFemale  0.2212667 0.07951020   2.7828714
+## 7      0.8077863              raceAsian -0.2544147 0.47821105  -0.5320135
+## 8      0.7692955                 crimeM -0.3112408 0.06654750  -4.6769729
+## 9      0.6948050           raceHispanic -0.4283949 0.12812549  -3.3435572
+## 10     0.4865228              raceOther -0.8263469 0.16208006  -5.0983873
+## 11     0.2971899 age_catGreater than 45 -1.3556332 0.09908053 -13.6821355
+##          p.value    conf.low  conf.high
+## 1   6.878432e-02 -0.05694017  3.0383160
+## 2   1.532239e-66  1.16008750  1.4577645
+## 3   8.813460e-27  0.56039880  0.8113799
+## 4   5.934025e-12  0.34137020  0.6132514
+## 5  1.335783e-129  0.24750487  0.2910343
+## 6   5.388016e-03  0.06532360  0.3770591
+## 7   5.947167e-01 -1.25877950  0.6389894
+## 8   2.911407e-06 -0.44178937 -0.1808904
+## 9   8.271164e-04 -0.68190124 -0.1794075
+## 10  3.425594e-07 -1.15026143 -0.5142075
+## 11  1.298233e-42 -1.55226716 -1.1637224
 ```
 
 Relative risk score 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.
 
 The plot visualizes this and other results from the table. 
 
-```{r}
-interpret_estimate(lr_model) %>%
-    mutate(term = gsub("race|age_cat|gender","", term)) %>% 
-    ggplot(aes(x = fct_reorder(term, relative_risk), y = relative_risk)) +
-        geom_point(size = 3) +
-        coord_flip() +
-        labs(y = "Likelihood", x = "",
-             title = "Logistic regression") +
-        scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-        geom_hline(yintercept = 1, linetype = "dashed")
-```
-
-### Bias in the Data (Risk of Violent Recidivism Analysis)
-
-#### Setup 
-
-```{r}
-
-if (!require("pacman")) install.packages("pacman")
-
-pacman::p_load(
- tidyverse, # tidyverse packages 
- conflicted, # an alternative conflict resolution strategy 
- ggthemes, # other themes for ggplot2 
- patchwork, # arranging ggplots
- scales, # rescaling 
- survival, # survival analysis
- broom, # for modeling
- here, # reproducibility 
- glue # pasting strings and objects 
-)
 
-# To avoid conflicts 
-conflict_prefer("filter", "dplyr") 
-conflict_prefer("select", "dplyr") 
 
-# Set themes 
-theme_set(ggthemes::theme_fivethirtyeight())
-```
 
-#### Load data 
 
-```{r}
-two_years_violent <- read_csv(here("data" ,"compas-scores-two-years-violent.csv"))
 
-glue("N of observations (rows): {nrow(two_years_violent)}
-      N of variables (columns): {ncol(two_years_violent)}")
 
-```
 
-#### Wrangling
 
-- Create a function 
 
-```{r}
 
-wrangle_data <- function(data){
 
-df <- data %>% 
-    
-    # Select variables 
-    select(age, c_charge_degree, race, age_cat, v_score_text, sex, priors_count, 
-         days_b_screening_arrest, v_decile_score, is_recid, two_year_recid) %>%            
-    # Filter rows 
-    filter(days_b_screening_arrest <= 30,
-           days_b_screening_arrest >= -30, 
-           is_recid != -1,
-           c_charge_degree != "O",
-           v_score_text != 'N/A') %>% 
-    # Mutate variables 
-    mutate(c_charge_degree = factor(c_charge_degree),
-           age_cat = factor(age_cat),
-           race = factor(race, levels = c("Caucasian","African-American","Hispanic","Other","Asian","Native American")),
-           sex = factor(sex, levels = c("Male","Female")),
-           v_score_text = factor(v_score_text, levels = c("Low", "Medium", "High")),
-# I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference 
-           score_num = as.numeric(v_score_text)) %>%
-    # Rename variables 
-    rename(crime = c_charge_degree,
-           gender = sex,
-           score = v_score_text)
-        
-return(df)}
 
-```
 
-- Apply the function to the data 
 
-```{r}
 
-df <- wrangle_data(two_years_violent)
 
-names(df)
 
-head(df, 5) # Check whether the function works as expected 
 
-```
 
-#### Descriptive analysis 
 
-- Score distribution 
 
-```{r}
-df %>%
-  group_by(score) %>%
-  count() %>%
-  ggplot(aes(x = score, y = n)) +
-    geom_col() +
-    labs(x = "Score",
-         y = "Count",
-         title = "Score distribution")
-```
 
-- Score distribution by race
 
-```{r}
 
-df %>%
-  ggplot(aes(ordered(v_decile_score))) + 
-          geom_bar() +
-          facet_wrap(~race, nrow = 2) +
-          labs(x = "Decile Score",
-               y = "Count",
-               Title = "Defendant's Decile Score")
 
-```
 
-#### Modeling 
 
-After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. To do so we need to change some variables into factors, and run a logistic regression, comparing low scores to high scores.
 
-```{r}
 
-model_data <- function(data){
 
-# Logistic regression model
-lr_model <- glm(score ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
-             family = "binomial", data = data)
 
-# OLS
-ols_model1 <- lm(score_num ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
-             data = data)
 
-ols_model2 <- lm(v_decile_score ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
-             data = data)
 
-# Extract model outcomes with confidence intervals 
-lr_est <- lr_model %>% 
-    tidy(conf.int = TRUE) 
 
-ols_est1 <- ols_model1 %>%
-    tidy(conf.int = TRUE) 
 
-ols_est2 <- ols_model2 %>%
-    tidy(conf.int = TRUE) 
 
-# AIC scores 
-lr_AIC <- AIC(lr_model)
-ols_AIC1 <- AIC(ols_model1)
-ols_AIC2 <- AIC(ols_model2)
-    
-list(lr_est, ols_est1, ols_est2, lr_AIC, ols_AIC1, ols_AIC2)
-}
-    
-```
 
-- Model comparisons 
 
-```{r}
 
-glue("AIC score of logistic regression: {model_data(df)[4]} 
-      AIC score of OLS regression (with categorical DV):  {model_data(df)[5]}
-      AIC score of OLS regression (with continuous DV): {model_data(df)[6]}")
 
-```
 
-- Logistic regression model 
 
-```{r}
 
-lr_model <- model_data(df)[1] %>% 
-  data.frame()
 
-lr_model %>%
-  filter(term != "(Intercept)") %>%
-  mutate(term = gsub("race|age_cat|gender","", term)) %>%
-  ggplot(aes(x = fct_reorder(term, estimate), y = estimate, ymax = conf.high, ymin = conf.low)) +
-  geom_pointrange() +
-  coord_flip() +
-  labs(y = "Estimate", x = "",
-      title = "Logistic regression") +
-  geom_hline(yintercept = 0, linetype = "dashed")
 
-```
 
-```{r}
 
-interpret_estimate(lr_model) %>%
-    mutate(term = gsub("race|age_cat|gender","", term)) %>% 
-    ggplot(aes(x = fct_reorder(term, likelihood), y = likelihood)) +
-        geom_point(size = 3) +
-        coord_flip() +
-        labs(y = "Likelihood", x = "",
-            title ="Logistic regression") +
-        scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-        geom_hline(yintercept = 1, linetype = "dashed")
 
-```
 
-### Bias in the algorithm 
 
-- In order to test whether COMPAS scores do an accurate job of deciding whether an offender is Low, Medium or High risk, we ran a Cox Proportional Hazards model. Northpointe, the company that created COMPAS and markets it to Law Enforcement, also ran a Cox model in [their validation study](https://journals.sagepub.com/doi/abs/10.1177/0093854808326545).
 
-- We used the counting model and removed people when they were incarcerated. Due to errors in the underlying jail data, we need to filter out 32 rows that have an end date more than the start date. Considering that there are 13,334 total rows in the data, such a small amount of errors will not affect the results.
 
-#### Setup 
 
-```{r}
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(
- tidyverse, # tidyverse packages 
- conflicted, # an alternative conflict resolution strategy 
- ggthemes, # other themes for ggplot2 
- patchwork, # arranging ggplots
- scales, # rescaling 
- survival, # survival analysis
- broom, # for modeling
- here, # reproducibility 
- glue, # pasting strings and objects 
- reticulate # source python codes
-)
 
-# To avoid conflicts 
-conflict_prefer("filter", "dplyr") 
-conflict_prefer("select", "dplyr") 
 
-# Set themes 
-theme_set(ggthemes::theme_fivethirtyeight())
 
-```
 
-#### Load data 
 
-```{r}
-cox_data <- read_csv(here("data" ,"cox-parsed.csv"))
 
-glue("N of observations (rows): {nrow(cox_data)}
-      N of variables (columns): {ncol(cox_data)}")
 
-```
 
-#### Wrangling
 
-```{r}
 
-df <- cox_data %>% 
-    filter(score_text != "N/A") %>%
-    filter(end > start) %>%
-    mutate(c_charge_degree = factor(c_charge_degree),
-           age_cat = factor(age_cat),
-           race = factor(race, levels = c("Caucasian","African-American","Hispanic","Other","Asian","Native American")),
-           sex = factor(sex, levels = c("Male","Female")),
-           score_factor = factor(score_text, levels = c("Low", "Medium", "High")))
 
-grp <- df[!duplicated(df$id),]
 
-```
 
-#### Descriptive analysis 
 
-- Score distribution 
 
-```{r}
-grp %>% 
-    group_by(score_factor) %>%
-      count() %>%
-      ggplot(aes(x = score_factor, y = n)) +
-        geom_col() +
-        labs(x = "Score",
-             y = "Count",
-             title = "Score distribution")
-```
 
-- Score distribution by race
 
-```{r}
 
-df %>%
-  ggplot(aes(ordered(score_factor))) + 
-          geom_bar() +
-          facet_wrap(~race, nrow = 2) +
-          labs(x = "Decile Score",
-               y = "Count",
-               Title = "Defendant's Decile Score")
 
-```
-
-#### Modeling 
-
-```{r}
-
-f2 <- Surv(start, end, event, type="counting") ~ race + score_factor + race * score_factor
-
-model <- coxph(f2, data = df)
-
-model %>%
-  broom::tidy(conf.int = TRUE) %>%
-  mutate(term = gsub("race|score_factor","", term)) %>% 
-  filter(term != "<chr>") %>%
-  ggplot(aes(x = fct_reorder(term, estimate), y = estimate, ymax = conf.high, ymin = conf.low)) +
-  geom_pointrange() +
-  coord_flip() +
-  labs(y = "Estimate", x = "")
-    
-```
-
-The interaction term shows a similar disparity as the logistic regression above.
-
-High risk white defendants are 3.61 more likely than low risk white defendants, while High risk black defendants are 2.99 more likely than low.
-
-```{r}
-visualize_surv <- function(input){
-  
-f <- Surv(start, end, event, type="counting") ~ score_factor
-
-fit <- survfit(f, data = input)
-
-fit %>%
-    tidy(conf.int = TRUE) %>%
-    mutate(strata = gsub("score_factor=","", strata)) %>%
-    mutate(strata = factor(strata, levels = c("High","Medium","Low"))) %>%
-    ggplot(aes(x = time, y = estimate, ymax = conf.high, ymin = conf.low, group = strata, col = strata)) +
-    geom_pointrange(alpha = 0.1) +
-    guides(colour = guide_legend(override.aes = list(alpha = 1))) +
-    ylim(c(0, 1)) +
-    labs(x = "Time", y = "Estimated survival rate", col = "Strata")}
-```
-
-```{r}
-visualize_surv(df) + ggtitle("Overall")
-```
-
-Black defendants do recidivate at higher rates according to race specific Kaplan Meier plots.
-
-```{r}
-
-(df %>% filter(race == "Caucasian") %>% visualize_surv() + ggtitle("Caucasian")) /
-(df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American")) 
-
-```
-
-In terms of underlying recidivism rates, we can look at gender specific Kaplan Meier estimates. There is a striking difference between women and men.
-
-```{r}
-
-(df %>% filter(sex == "Female") %>% visualize_surv() + ggtitle("Female")) /
-
-(df %>% filter(sex == "Male") %>% visualize_surv() + ggtitle("Male"))
-
-```
-
-As these plots show, the COMPAS score treats a High risk women the same as a Medium risk man.
-
-#### Risk of Recidivism accuracy 
-
-The above analysis shows that the COMPAS algorithm does overpredict African-American defendant's future recidivism, but we haven't yet explored the direction of the bias. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.
-
-```{r}
-
-# create a new environment 
-conda_create("r-reticulate")
-
-# install libs 
-conda_install("r-reticulate", c("pandas"))
-
-# indicate that we want to use a specific condaenv
-use_condaenv("r-reticulate")
-
-```
-
-
-```{python}
-
-from truth_tables import PeekyReader, Person, table, is_race, count, vtable, hightable, vhightable
-from csv import DictReader
-
-people = []
-
-```
-
-```{python}
-
-with open("./data/cox-parsed.csv") as f:
-    reader = PeekyReader(DictReader(f))
-    try:
-        while True:
-            p = Person(reader)
-            if p.valid:
-                people.append(p)
-    except StopIteration:
-        pass
-
-```
-
-```{python}
-
-pop = list(filter(lambda i: ((i.recidivist == True and i.lifetime <= 730) or
-                              i.lifetime > 730), list(filter(lambda x: x.score_valid, people))))
-
-recid = list(filter(lambda i: i.recidivist == True and i.lifetime <= 730, pop))
-
-rset = set(recid)
-
-surv = [i for i in pop if i not in rset]
-
-```
-
-- Define a function for a table.
-
-```{python}
-
-import pandas as pd 
-
-def create_table(x, y):
-
-  t = table(list(x), list(y))
-  
-  df = pd.DataFrame(t.items(), 
-             columns = ['Metrics', 'Scores'])
-             
-  return(df)
-             
-```
-
-- All defenders 
-
-```{python}
-
-create_table(list(recid), list(surv)).to_csv("data/table_recid.csv")
-
-``` 
-
-```{r}
-
-read.csv(here("data", "table_recid.csv"))[,-1] %>%
-  ggplot(aes(x = Metrics, y = Scores)) +
-  geom_col() +
-  labs(title = "Recidivism")
-
-```
-
-That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
-
-```{python}
-
-def create_comp_tables(recid_data, surv_data):
-  
-    # filtering variables 
-    is_afam = is_race("African-American")
-    is_white = is_race("Caucasian")
-  
-    # dfs 
-    df1 = create_table(filter(is_afam, recid_data),
-                       filter(is_afam, surv_data))
-  
-    df2 = create_table(filter(is_white, recid_data), 
-                       filter(is_white, surv_data))
-  
-    # concat 
-    dfs = pd.concat([df1, df2])
-    
-    dfs['Group'] = ['African Americans','African Americans','Whites','Whites']
-    
-    return(dfs)
-    
-```
-
-```{python}
-
-create_comp_tables(recid, surv).to_csv("data/comp_tables_recid.csv")
-
-```
-
-```{r}
-
-read.csv(here("data", "comp_tables_recid.csv"))[,-1] %>%
-  ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
-  geom_col(position = "dodge") +
-  coord_flip() +
-  labs(title = "Recidivism")
-
-```
-
-#### Risk of Violent Recidivism accuracy
-
-COMPAS also offers a score that aims to measure a persons risk of violent recidivism, which has a similar overall accuracy to the Recidivism score.
-
-```{python}
-
-vpeople = []
-
-with open("./data/cox-violent-parsed.csv") as f:
-    reader = PeekyReader(DictReader(f))
-    try:
-        while True:
-            p = Person(reader)
-            if p.valid:
-                vpeople.append(p)
-    except StopIteration:
-        pass
-
-vpop = list(filter(lambda i: ((i.violent_recidivist == True and i.lifetime <= 730) or
-                              i.lifetime > 730), list(filter(lambda x: x.vscore_valid, vpeople))))
-
-vrecid = list(filter(lambda i: i.violent_recidivist == True and i.lifetime <= 730, vpeople))
-
-vrset = set(vrecid)
-
-vsurv = [i for i in vpop if i not in vrset]
-```
-
-```{python}
-
-create_table(vrecid, vsurv).to_csv("data/table_vrecid.csv")
-
-```
-
-```{r}
-
-read.csv(here("data", "table_vrecid.csv"))[,-1] %>%
-  ggplot(aes(x = Metrics, y = Scores)) +
-  geom_col() +
-  labs(title = "Violent recidivism")
-
-```
-
-Even more so for Black defendants.
-
-````{python}
-
-create_comp_tables(vrecid, vsurv).to_csv("data/comp_tables_vrecid.csv")
-
-```
-
-```{r}
-
-read.csv(here("data", "comp_tables_vrecid.csv"))[,-1] %>%
-  ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
-  geom_col(position = "dodge") +
-  coord_flip() +
-  labs(title = "Violent recidivism")
-
-```
-
-## References
-
-### Books 
-
-- *An Introduction to Statistical Learning - with Applications in R (2013)* by Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani. Springer: New York. [Amazon](https://www.amazon.com/Introduction-Statistical-Learning-Applications-Statistics/dp/1461471370) or [free PDF](http://www-bcf.usc.edu/~gareth/ISL/). 
-
-- *Hands-On Machine Learning with R (2020)* by Bradley Boehmke & Brandon Greenwell. [CRC Press](https://www.routledge.com/Hands-On-Machine-Learning-with-R/Boehmke-Greenwell/p/book/9781138495685) or [Amazon](https://www.amazon.com/gp/product/1138495689?pf_rd_p=ab873d20-a0ca-439b-ac45-cd78f07a84d8&pf_rd_r=JBRX0ZJ1WFSR9T3JPTQE)
-
-- *Applied Predictive Modeling (2013)* by Max Kuhn and Kjell Johnson. Springer: New York. [Amazon](https://www.amazon.com/Applied-Predictive-Modeling-Max-Kuhn/dp/1461468485?SubscriptionId=0ENGV10E9K9QDNSJ5C82&tag=apm0a-20&linkCode=xm2&camp=2025&creative=165953&creativeASIN=1461468485) 
-
-- *Feature Engineering and Selection: A Practical Approach for Predictive Models (2019)* by Kjell Johnson and Max Kuhn. Taylor & Francis. [Amazon](http://www.feat.engineering/) or [free HTML](http://www.feat.engineering/). 
-- *[Tidy Modeling with R](https://www.tmwr.org/) (2020)* by Max Kuhn and Julia Silge (work-in-progress)
-
-### Lecture slides 
-
-- [An introduction to supervised and unsupervised learning (2015)](https://www.nber.org/econometrics_minicourse_2015/nber_slides11.pdf) by Susan Athey and Guido Imbens 
-
-- [Introduction Machine Learning with the Tidyverse](https://education.rstudio.com/blog/2020/02/conf20-intro-ml/) by Alison Hill
-
-### Blog posts 
-
-- ["Using the recipes package for easy pre-processing"](http://www.rebeccabarter.com/blog/2019-06-06_pre_processing/) by Rebecca Barter
