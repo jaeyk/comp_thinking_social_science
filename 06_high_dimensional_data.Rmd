@@ -1889,7 +1889,7 @@ Relative risk score 1.45 (African American) indicates that black defendants are 
 The plot visualizes this and other results from the table. 
 
 ```{r}
-interpret_estimate(lr_model) %>%
+odds_to_risk(lr_model) %>%
     mutate(term = gsub("race|age_cat|gender","", term)) %>% 
     ggplot(aes(x = fct_reorder(term, relative_risk), y = relative_risk)) +
         geom_point(size = 3) +
@@ -2083,19 +2083,50 @@ lr_model %>%
 
 ```
 
-```{r}
+Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success and 1-p could be as a failure. Here, coefficient 1 indicates equal probability for the binary outcomes. Coefficient greater than 1 indicates strong chance for p and weak chance for 1-p. Coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
 
-interpret_estimate(lr_model) %>%
+(To refresh your memory, note that probability is bounded between [0, 1]. Odds ranges between 0 and infinity. Log odds ranges from negative to positive infinity. We're going through this hassle because we used log function to map predictor variables to probability to fit the model to the binary outcomes.)
+
+In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see [Grant](https://www.bmj.com/content/348/bmj.f7450) (2014), [Wang](https://www.jstatsoft.org/article/view/v055i05) (2013), and [Zhang and Yu](https://jamanetwork.com/journals/jama/fullarticle/188182) (1998). 
+
+```{r}
+odds_to_risk <- function(model){
+    
+    # Calculating p0 (baseline or control group)
+    intercept <- model$estimate[model$term == "(Intercept)"]
+    control <- exp(intercept) / (1 + exp(intercept)) 
+    
+    # Calculating relative risk 
+    model <- model %>% filter(term != "(Intercept)")
+    model$relative_risk <- (exp(model$estimate) / 
+                        (1 - control + (control * exp(model$estimate)))) 
+    
+    return(model)
+}
+```
+
+```{r}
+odds_to_risk(lr_model) %>%
+  relocate(relative_risk) %>%
+  arrange(desc(relative_risk))
+```
+
+Relative risk score 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.
+
+The plot visualizes this and other results from the table. 
+
+```{r}
+odds_to_risk(lr_model) %>%
     mutate(term = gsub("race|age_cat|gender","", term)) %>% 
-    ggplot(aes(x = fct_reorder(term, likelihood), y = likelihood)) +
+    ggplot(aes(x = fct_reorder(term, relative_risk), y = relative_risk)) +
         geom_point(size = 3) +
         coord_flip() +
         labs(y = "Likelihood", x = "",
-            title ="Logistic regression") +
+             title = "Logistic regression") +
         scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
         geom_hline(yintercept = 1, linetype = "dashed")
-
 ```
+
 
 ### Bias in the algorithm 
 
