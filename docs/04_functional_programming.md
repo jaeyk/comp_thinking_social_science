@@ -29,7 +29,8 @@ pacman::p_load(
   devtools, # dev tools 
   usethis, # workflow     
   roxygen2, # documentation 
-  testthat) # testing 
+  testthat, # testing 
+  patchwork) # arranging ggplots 
 ```
 
 ## Flow control 
@@ -1195,7 +1196,7 @@ toc()
 ```
 
 ```
-## 0.006 sec elapsed
+## 0.05 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1209,7 +1210,7 @@ toc()
 ```
 
 ```
-## 0.002 sec elapsed
+## 0.016 sec elapsed
 ```
 
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
@@ -1236,13 +1237,15 @@ map_mark
 
 ```
 ## # A tibble: 1 x 6
-##   expression                                           min median `itr/sec`
-##   <bch:expr>                                         <bch> <bch:>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 127µs  140µs     6707.
+##   expression                                            min median `itr/sec`
+##   <bch:expr>                                         <bch:> <bch:>     <dbl>
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 1.12ms 1.29ms      726.
 ## # … with 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
 ```
 
-#### Application (many models)
+#### Applications 
+
+1. Many models
 
 - One popular application of `map()` is to run regression models (or whatever model you want to run) on list-columns. No more copying and pasting for running many regression models on subgroups!
 
@@ -1307,6 +1310,62 @@ tidied_models$ols[1]
 ## 1 (Intercept)   62.9      1.61       39.2  2.88e-23
 ## 2 Ozone          0.163    0.0500      3.26 3.31e- 3
 ```
+
+2. Simulations 
+
+A good friend of `map()` function is `rerun()` function. This comibination is really useful for simulations. Consider the following example. 
+
+* Base R approach 
+
+
+```r
+set.seed(1234)
+
+small_n <- 100 ; k <- 1000 ; mu <- 500 ; sigma <- 20 
+
+y_list <- rep(list(NA), k)
+
+for (i in seq(k)) {
+        
+    y_list[[i]] <- rnorm(small_n, mu, sigma)
+        
+}
+
+y_means <- unlist(lapply(y_list, mean))
+
+qplot(y_means) +
+   geom_vline(xintercept = 500, linetype = "dotted", color = "red")
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+
+* rerun() + map()
+
+
+```r
+small_n <- 100 ; k <- 1000
+
+y_tidy <- rerun(k, rnorm(small_n, mu, sigma)) 
+
+y_means_tidy <- map_dbl(y_tidy, mean)
+
+# Visualize 
+(qplot(y_means) +
+   geom_vline(xintercept = 500, linetype = "dotted", color = "red")) +
+(qplot(y_means_tidy) +
+   geom_vline(xintercept = 500, linetype = "dotted", color = "red"))
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
 ## Automote 2 or 2+ tasks
 
@@ -1484,7 +1543,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 
 ```r
 airquality %>%
@@ -1500,7 +1559,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-34-2.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-36-2.png" width="672" />
 
 ```r
 airquality %>%
@@ -1516,7 +1575,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-34-3.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-36-3.png" width="672" />
 
 ### Solution 
 
@@ -1564,7 +1623,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-36-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-38-1.png" width="672" />
 
 - The next step is to write an automatic plotting function. 
 
@@ -1598,7 +1657,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-38-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-40-1.png" width="672" />
 
 ```
 ## 
@@ -1609,7 +1668,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-38-2.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-40-2.png" width="672" />
 
 ```
 ## 
@@ -1620,7 +1679,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-38-3.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-40-3.png" width="672" />
 
 ```
 ## 
@@ -1631,7 +1690,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-38-4.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-40-4.png" width="672" />
 
 ```
 ## 
@@ -1642,7 +1701,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-38-5.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-40-5.png" width="672" />
 
 ## Automate joining
 
@@ -1704,9 +1763,9 @@ second_join
 ## # A tibble: 3 x 3
 ##       x     y     z
 ##   <int> <int> <int>
-## 1     8     5     8
-## 2     4     8     3
-## 3     4     4     4
+## 1     7     3     7
+## 2     6     1     5
+## 3     2     1     6
 ```
 
 - **Challenge**
@@ -1740,9 +1799,9 @@ reduced
 ## # A tibble: 3 x 3
 ##       x     y     z
 ##   <int> <int> <int>
-## 1     8     5     8
-## 2     4     8     3
-## 3     4     4     4
+## 1     7     3     7
+## 2     6     1     5
+## 3     2     1     6
 ```
 
 ## Make automation slower or faster 
@@ -1981,7 +2040,11 @@ url_lists[out[seq(out)] == "The URL is broken."]
 5. (Optional) Test (`devtools::test()`), teach in `\vignettes`, and add data in `\data`
 6. Distribute the package either via CRAN or GitHub  
 
-![]http://r-pkgs.had.co.nz/diagrams/package-files.png
+![](http://r-pkgs.had.co.nz/diagrams/package-files.png)
+
+It's time to learn five states of R code: source, bundled, binary, installed, and in-memory. 
+
+If you're just using an R package, you're only concerned of the last two states: `install.packages("pkg")` and `library(pkg)` If you're developing an R package, you first write source code (`*.R`), bundle it (compressed file like `*.tar.gz`; done by `devtools::build()`), then make it binary (`devtools::build(binary = TRUE)`; This is how a package is stored in CRAN/GitHub, etc.).
 
 #### Required Components
 
@@ -2049,11 +2112,13 @@ add <- function(x, y){
 # The function creates documentation related files (NAMESPACE, function_name.rd)
 devtools::document()
 
-# Load all 
+# Load all; simulates installing and reloading the package 
 devtools::load_all()
 
-# Check 
+# Check; updates the documentation; builds and checks the package 
 devtools::check()
+
+devtools::bash()
 ```
 
 4. Organize (**NAMESPACE**)
@@ -2095,7 +2160,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-11-04"
+date: "2020-11-07"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 

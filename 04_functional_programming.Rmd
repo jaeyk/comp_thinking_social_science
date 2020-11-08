@@ -22,7 +22,8 @@ pacman::p_load(
   devtools, # dev tools 
   usethis, # workflow     
   roxygen2, # documentation 
-  testthat) # testing 
+  testthat, # testing 
+  patchwork) # arranging ggplots 
 ```
 
 ## Flow control 
@@ -585,6 +586,8 @@ A good friend of `map()` function is `rerun()` function. This comibination is re
 * Base R approach 
 
 ```{r}
+
+set.seed(1234)
 
 small_n <- 100 ; k <- 1000 ; mu <- 500 ; sigma <- 20 
 
