@@ -109,7 +109,7 @@ data_original <- read_csv(here("data", "heart.csv"))
 
 ```
 ## 
-## ── Column specification ────────────────
+## ── Column specification ────────────────────────────────────────────────────────────────────────────
 ## cols(
 ##   age = col_double(),
 ##   sex = col_double(),
@@ -725,7 +725,7 @@ glue('The RMSE of the tuned model is {rec_res %>%
 ```
 
 ```
-## The RMSE of the tuned model is 7.7
+## The RMSE of the tuned model is 7.71
 ```
 
 - Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
@@ -759,9 +759,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.11 
-## 2 mae     standard       5.86 
-## 3 rsq     standard       0.410
+## 1 rmse    standard       7.09 
+## 2 mae     standard       5.84 
+## 3 rsq     standard       0.414
 ```
 
 ### Decision tree 
@@ -1216,7 +1216,7 @@ best_tree
 ## # A tibble: 1 x 3
 ##    mtry min_n .config
 ##   <int> <int> <chr>  
-## 1     1     2 Model01
+## 1     1    10 Model21
 ```
 
 ```r
@@ -1270,9 +1270,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.933
-## 2 precision binary         0.973
-## 3 recall    binary         0.878
+## 1 accuracy  binary         0.922
+## 2 precision binary         0.972
+## 3 recall    binary         0.854
 ```
 
 ### Boosting (XGboost)
@@ -1535,8 +1535,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.833
-## 2 precision binary         0.861
+## 1 accuracy  binary         0.8  
+## 2 precision binary         0.795
 ## 3 recall    binary         0.756
 ```
 
@@ -1659,13 +1659,13 @@ summary(cv_sl)
 ## All risk estimates are based on V =  5 
 ## 
 ##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.12973 0.0148704 0.068518 0.17775
-##     Discrete SL 0.12810 0.0149794 0.063576 0.17775
+##   Super Learner 0.12953 0.0149722 0.070436 0.17496
+##     Discrete SL 0.12753 0.0150414 0.062630 0.17498
 ##     SL.mean_All 0.24802 0.0030531 0.247747 0.24893
-##   SL.glmnet_All 0.12810 0.0149794 0.063576 0.17775
-##    SL.rpart_All 0.18869 0.0196099 0.137814 0.22434
-##   SL.ranger_All 0.14299 0.0132108 0.099527 0.17728
-##  SL.xgboost_All 0.15931 0.0170504 0.132480 0.17020
+##   SL.glmnet_All 0.12753 0.0150414 0.062630 0.17498
+##    SL.rpart_All 0.18772 0.0201957 0.160493 0.22434
+##   SL.ranger_All 0.14306 0.0133741 0.097846 0.17378
+##  SL.xgboost_All 0.15479 0.0167355 0.118394 0.17014
 ```
 
 ##### Plot
@@ -1702,13 +1702,13 @@ auc_table(cv_sl)
 
 ```
 ##                      auc         se  ci_lower  ci_upper      p-value
-## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.242915e-09
-## SL.rpart_All   0.7841586 0.04199286 0.7018541 0.8664630 3.064302e-03
-## SL.xgboost_All 0.8483648 0.02779757 0.7938826 0.9028470 3.357370e-02
-## SL.ranger_All  0.8787986 0.02356809 0.8326060 0.9249912 1.927239e-01
-## SuperLearner   0.8962958 0.02133296 0.8544839 0.9381076 4.448661e-01
-## SL.glmnet_All  0.8992534 0.02106286 0.8579710 0.9405359 5.000000e-01
-## DiscreteSL     0.8992534 0.02106286 0.8579710 0.9405359 5.000000e-01
+## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.284204e-09
+## SL.rpart_All   0.7863668 0.04287761 0.7023282 0.8704054 4.277267e-03
+## SL.xgboost_All 0.8490351 0.02784877 0.7944525 0.9036177 3.608745e-02
+## SL.ranger_All  0.8809821 0.02335270 0.8352116 0.9267525 2.188267e-01
+## SuperLearner   0.8947588 0.02160866 0.8524066 0.9371110 4.202509e-01
+## SL.glmnet_All  0.8991076 0.02118212 0.8575914 0.9406237 5.000000e-01
+## DiscreteSL     0.8991076 0.02118212 0.8575914 0.9406237 5.000000e-01
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
@@ -1728,12 +1728,12 @@ print(cvsl_weights(cv_sl), row.names = FALSE)
 ```
 
 ```
-##  # Learner    Mean      SD     Min     Max
-##  1  glmnet 0.90496 0.08789 0.82193 1.00000
-##  2  ranger 0.07688 0.08050 0.00000 0.17807
-##  3 xgboost 0.01729 0.03866 0.00000 0.08644
-##  4    mean 0.00088 0.00196 0.00000 0.00439
-##  5   rpart 0.00000 0.00000 0.00000 0.00000
+##  # Learner    Mean      SD    Min     Max
+##  1  glmnet 0.91359 0.07746 0.8292 0.99943
+##  2  ranger 0.04781 0.06645 0.0000 0.13567
+##  3   rpart 0.03416 0.07638 0.0000 0.17080
+##  4 xgboost 0.00445 0.00617 0.0000 0.01366
+##  5    mean 0.00000 0.00000 0.0000 0.00000
 ```
 
 General stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
@@ -2047,7 +2047,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.581) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.482, relative change = 1.312e-02) 
 ## ....................................................................................................
@@ -2068,19 +2068,19 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 4: said, will, can, face, matter 
 ##  Topic 5: one, see, shall, time, must 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.367, relative change = 6.889e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.365, relative change = 3.221e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.364, relative change = 1.281e-04) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.364, relative change = 1.012e-05) 
 ## ....................................................................................................
@@ -2095,7 +2095,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.666) 
 ## ....................................................................................................
@@ -2103,15 +2103,15 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.481, relative change = 2.408e-02) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.387, relative change = 1.265e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.361, relative change = 3.497e-03) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 5 (approx. per word bound = -7.351, relative change = 1.396e-03) 
 ## Topic 1: upon, littl, paper, even, came 
@@ -2137,7 +2137,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.338, relative change = 5.161e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.336, relative change = 2.460e-04) 
 ## ....................................................................................................
@@ -2152,15 +2152,15 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.738) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.461, relative change = 3.577e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.367, relative change = 1.264e-02) 
 ## ....................................................................................................
@@ -2187,7 +2187,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 14: man, reason, certain, strang, crime 
 ##  Topic 15: might, twist, hand, never, come 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.328, relative change = 7.011e-04) 
 ## ....................................................................................................
@@ -2195,7 +2195,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.324, relative change = 4.535e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.322, relative change = 3.650e-04) 
 ## ....................................................................................................
@@ -2222,7 +2222,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 14: man, reason, certain, strang, lord 
 ##  Topic 15: might, thing, follow, told, help 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 11 (approx. per word bound = -7.317, relative change = 1.808e-04) 
 ## ....................................................................................................
@@ -2238,7 +2238,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 14 (approx. per word bound = -7.315, relative change = 4.530e-05) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 15 (approx. per word bound = -7.315, relative change = 2.133e-05) 
 ## Topic 1: matter, much, like, even, made 
@@ -2621,18 +2621,24 @@ lr_model %>%
 
 <img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-88-1.png" width="672" />
 
+Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success and 1-p could be as a failure. Here, coefficient 1 indicates equal probability for the binary outcomes. Coefficient greater than 1 indicates strong chance for p and weak chance for 1-p. Coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
+
+(To refresh your memory, note that probability is bounded between [0, 1]. Odds ranges between 0 and infinity. Log odds ranges from negative to positive infinity. We're going through this hassle because we used log function to map predictor variables to probability to fit the model to the binary outcomes.)
+
+In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see [Grant](https://www.bmj.com/content/348/bmj.f7450) (2014), [Wang](https://www.jstatsoft.org/article/view/v055i05) (2013), and [Zhang and Yu](https://jamanetwork.com/journals/jama/fullarticle/188182) (1998). 
+
 
 ```r
-interpret_estimate <- function(model){
+odds_to_risk <- function(model){
     
-    # Control 
+    # Calculating p0 (baseline or control group)
     intercept <- model$estimate[model$term == "(Intercept)"]
-    control <- exp(intercept) / (1 + exp(intercept))
+    control <- exp(intercept) / (1 + exp(intercept)) 
     
-    # Likelihood 
+    # Calculating relative risk 
     model <- model %>% filter(term != "(Intercept)")
-    
-    model$likelihood <- (exp(model$estimate) / (1 - control + (control * exp(model$estimate))))
+    model$relative_risk <- (exp(model$estimate) / 
+                        (1 - control + (control * exp(model$estimate)))) 
     
     return(model)
 }
@@ -2640,18 +2646,56 @@ interpret_estimate <- function(model){
 
 
 ```r
-interpret_estimate(lr_model) %>%
+odds_to_risk(lr_model) %>%
+  relocate(relative_risk) %>%
+  arrange(desc(relative_risk))
+```
+
+```
+##    relative_risk                   term   estimate  std.error   statistic
+## 1      2.6152880    raceNative American  1.3942077 0.76611816   1.8198338
+## 2      2.4961195    age_catLess than 25  1.3083903 0.07592869  17.2318308
+## 3      1.6882587         two_year_recid  0.6858625 0.06401955  10.7133288
+## 4      1.4528374   raceAfrican-American  0.4772070 0.06934914   6.8812245
+## 5      1.2402135           priors_count  0.2689453 0.01110379  24.2210342
+## 6      1.1947947           genderFemale  0.2212667 0.07951020   2.7828714
+## 7      0.8077863              raceAsian -0.2544147 0.47821105  -0.5320135
+## 8      0.7692955                 crimeM -0.3112408 0.06654750  -4.6769729
+## 9      0.6948050           raceHispanic -0.4283949 0.12812549  -3.3435572
+## 10     0.4865228              raceOther -0.8263469 0.16208006  -5.0983873
+## 11     0.2971899 age_catGreater than 45 -1.3556332 0.09908053 -13.6821355
+##          p.value    conf.low  conf.high
+## 1   6.878432e-02 -0.05694017  3.0383160
+## 2   1.532239e-66  1.16008750  1.4577645
+## 3   8.813460e-27  0.56039880  0.8113799
+## 4   5.934025e-12  0.34137020  0.6132514
+## 5  1.335783e-129  0.24750487  0.2910343
+## 6   5.388016e-03  0.06532360  0.3770591
+## 7   5.947167e-01 -1.25877950  0.6389894
+## 8   2.911407e-06 -0.44178937 -0.1808904
+## 9   8.271164e-04 -0.68190124 -0.1794075
+## 10  3.425594e-07 -1.15026143 -0.5142075
+## 11  1.298233e-42 -1.55226716 -1.1637224
+```
+
+Relative risk score 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.
+
+The plot visualizes this and other results from the table. 
+
+
+```r
+odds_to_risk(lr_model) %>%
     mutate(term = gsub("race|age_cat|gender","", term)) %>% 
-    ggplot(aes(x = fct_reorder(term, likelihood), y = likelihood)) +
+    ggplot(aes(x = fct_reorder(term, relative_risk), y = relative_risk)) +
         geom_point(size = 3) +
         coord_flip() +
         labs(y = "Likelihood", x = "",
-            title ="Logistic regression") +
+             title = "Logistic regression") +
         scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
         geom_hline(yintercept = 1, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-90-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-91-1.png" width="672" />
 
 ### Bias in the Data (Risk of Violent Recidivism Analysis)
 
@@ -2660,6 +2704,7 @@ interpret_estimate(lr_model) %>%
 
 ```r
 if (!require("pacman")) install.packages("pacman")
+
 pacman::p_load(
  tidyverse, # tidyverse packages 
  conflicted, # an alternative conflict resolution strategy 
@@ -2716,7 +2761,7 @@ two_years_violent <- read_csv(here("data" ,"compas-scores-two-years-violent.csv"
 
 ```
 ## 
-## ── Column specification ────────────────
+## ── Column specification ────────────────────────────────────────────────────────────────────────────
 ## cols(
 ##   .default = col_double(),
 ##   name = col_character(),
@@ -2840,7 +2885,7 @@ df %>%
          title = "Score distribution")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-95-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-96-1.png" width="672" />
 
 - Score distribution by race
 
@@ -2855,7 +2900,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-96-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-97-1.png" width="672" />
 
 #### Modeling 
 
@@ -2928,22 +2973,84 @@ lr_model %>%
   geom_hline(yintercept = 0, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-99-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-100-1.png" width="672" />
+
+Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success and 1-p could be as a failure. Here, coefficient 1 indicates equal probability for the binary outcomes. Coefficient greater than 1 indicates strong chance for p and weak chance for 1-p. Coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
+
+(To refresh your memory, note that probability is bounded between [0, 1]. Odds ranges between 0 and infinity. Log odds ranges from negative to positive infinity. We're going through this hassle because we used log function to map predictor variables to probability to fit the model to the binary outcomes.)
+
+In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see [Grant](https://www.bmj.com/content/348/bmj.f7450) (2014), [Wang](https://www.jstatsoft.org/article/view/v055i05) (2013), and [Zhang and Yu](https://jamanetwork.com/journals/jama/fullarticle/188182) (1998). 
 
 
 ```r
-interpret_estimate(lr_model) %>%
+odds_to_risk <- function(model){
+    
+    # Calculating p0 (baseline or control group)
+    intercept <- model$estimate[model$term == "(Intercept)"]
+    control <- exp(intercept) / (1 + exp(intercept)) 
+    
+    # Calculating relative risk 
+    model <- model %>% filter(term != "(Intercept)")
+    model$relative_risk <- (exp(model$estimate) / 
+                        (1 - control + (control * exp(model$estimate)))) 
+    
+    return(model)
+}
+```
+
+
+```r
+odds_to_risk(lr_model) %>%
+  relocate(relative_risk) %>%
+  arrange(desc(relative_risk))
+```
+
+```
+##    relative_risk                   term    estimate  std.error  statistic
+## 1      7.4142320    age_catLess than 25  3.14590906 0.11540998 27.2585528
+## 2      2.2169566         two_year_recid  0.93447949 0.11527216  8.1067232
+## 3      1.7739274   raceAfrican-American  0.65893450 0.10814991  6.0927885
+## 4      1.4845555    raceNative American  0.44792984 1.03546096  0.4325898
+## 5      1.1315392           priors_count  0.13764241 0.01161172 11.8537476
+## 6      0.9434828           raceHispanic -0.06415947 0.19132794 -0.3353377
+## 7      0.8615079                 crimeM -0.16366732 0.09806528 -1.6689631
+## 8      0.8290722              raceOther -0.20543235 0.22464062 -0.9144933
+## 9      0.5076551           genderFemale -0.72890371 0.12665509 -5.7550290
+## 10     0.3972545              raceAsian -0.98520588 0.70537045 -1.3967212
+## 11     0.1902151 age_catGreater than 45 -1.74207559 0.18414760 -9.4602135
+##          p.value   conf.low   conf.high
+## 1  1.315899e-163  2.9224937  3.37506621
+## 2   5.200316e-16  0.7084155  1.16039836
+## 3   1.109606e-09  0.4480948  0.87222287
+## 4   6.653128e-01 -1.9660912  2.24738803
+## 5   2.057779e-32  0.1151045  0.16064926
+## 6   7.373704e-01 -0.4439074  0.30657314
+## 7   9.512470e-02 -0.3563339  0.02822281
+## 8   3.604577e-01 -0.6533518  0.22789493
+## 9   8.662690e-09 -0.9800266 -0.48330469
+## 10  1.624974e-01 -2.4655693  0.33213464
+## 11  3.073150e-21 -2.1171742 -1.39384502
+```
+
+Relative risk score 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.
+
+The plot visualizes this and other results from the table. 
+
+
+```r
+odds_to_risk(lr_model) %>%
     mutate(term = gsub("race|age_cat|gender","", term)) %>% 
-    ggplot(aes(x = fct_reorder(term, likelihood), y = likelihood)) +
+    ggplot(aes(x = fct_reorder(term, relative_risk), y = relative_risk)) +
         geom_point(size = 3) +
         coord_flip() +
         labs(y = "Likelihood", x = "",
-            title ="Logistic regression") +
+             title = "Logistic regression") +
         scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
         geom_hline(yintercept = 1, linetype = "dashed")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-100-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-103-1.png" width="672" />
+
 
 ### Bias in the algorithm 
 
@@ -3012,7 +3119,7 @@ cox_data <- read_csv(here("data" ,"cox-parsed.csv"))
 
 ```
 ## 
-## ── Column specification ────────────────
+## ── Column specification ────────────────────────────────────────────────────────────────────────────
 ## cols(
 ##   .default = col_character(),
 ##   id = col_double(),
@@ -3082,7 +3189,7 @@ grp %>%
              title = "Score distribution")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-104-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-107-1.png" width="672" />
 
 - Score distribution by race
 
@@ -3097,7 +3204,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-105-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-108-1.png" width="672" />
 
 #### Modeling 
 
@@ -3117,7 +3224,7 @@ model %>%
   labs(y = "Estimate", x = "")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-106-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-109-1.png" width="672" />
 
 The interaction term shows a similar disparity as the logistic regression above.
 
@@ -3147,7 +3254,7 @@ fit %>%
 visualize_surv(df) + ggtitle("Overall")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-108-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-111-1.png" width="672" />
 
 Black defendants do recidivate at higher rates according to race specific Kaplan Meier plots.
 
@@ -3157,7 +3264,7 @@ Black defendants do recidivate at higher rates according to race specific Kaplan
 (df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American")) 
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-109-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-112-1.png" width="672" />
 
 In terms of underlying recidivism rates, we can look at gender specific Kaplan Meier estimates. There is a striking difference between women and men.
 
@@ -3168,7 +3275,7 @@ In terms of underlying recidivism rates, we can look at gender specific Kaplan M
 (df %>% filter(sex == "Male") %>% visualize_surv() + ggtitle("Male"))
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-110-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-113-1.png" width="672" />
 
 As these plots show, the COMPAS score treats a High risk women the same as a Medium risk man.
 
@@ -3265,7 +3372,7 @@ read.csv(here("data", "table_recid.csv"))[,-1] %>%
   labs(title = "Recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-117-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-120-1.png" width="672" />
 
 That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
 
@@ -3309,7 +3416,7 @@ read.csv(here("data", "comp_tables_recid.csv"))[,-1] %>%
   labs(title = "Recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-120-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-123-1.png" width="672" />
 
 #### Risk of Violent Recidivism accuracy
 
@@ -3354,7 +3461,7 @@ read.csv(here("data", "table_vrecid.csv"))[,-1] %>%
   labs(title = "Violent recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-123-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-126-1.png" width="672" />
 
 Even more so for Black defendants.
 
@@ -3373,7 +3480,7 @@ read.csv(here("data", "comp_tables_vrecid.csv"))[,-1] %>%
   labs(title = "Violent recidivism")
 ```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-125-1.png" width="672" />
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-128-1.png" width="672" />
 
 ## References
 

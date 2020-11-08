@@ -1196,7 +1196,7 @@ toc()
 ```
 
 ```
-## 0.05 sec elapsed
+## 0.005 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1210,7 +1210,7 @@ toc()
 ```
 
 ```
-## 0.016 sec elapsed
+## 0.001 sec elapsed
 ```
 
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
@@ -1237,9 +1237,9 @@ map_mark
 
 ```
 ## # A tibble: 1 x 6
-##   expression                                            min median `itr/sec`
-##   <bch:expr>                                         <bch:> <bch:>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 1.12ms 1.29ms      726.
+##   expression                                           min median `itr/sec`
+##   <bch:expr>                                         <bch> <bch:>     <dbl>
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 138µs  150µs     6489.
 ## # … with 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
 ```
 
@@ -2160,7 +2160,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-11-07"
+date: "2020-11-08"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 

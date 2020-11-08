@@ -512,13 +512,11 @@ plan(multiprocess, # multicore, if supported, otherwise multisession
 ```
 
 ```
-## Warning: [ONE-TIME WARNING] Forked processing ('multicore') is disabled
-## in future (>= 1.13.0) when running R from RStudio, because it is
-## considered unstable. Because of this, plan("multicore") will fall
-## back to plan("sequential"), and plan("multiprocess") will fall back to
-## plan("multisession") - not plan("multicore") as in the past. For more details,
-## how to control forked processing or not, and how to silence this warning in
-## future R sessions, see ?future::supportsMulticore
+## Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked
+## processing ('multicore') is not supported when running R from RStudio
+## because it is considered unstable. For more details, how to control forked
+## processing or not, and how to silence this warning in future R sessions, see ?
+## parallelly::supportsMulticore
 ```
 
 -   Parsing in parallel.
