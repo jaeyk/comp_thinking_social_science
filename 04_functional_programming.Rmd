@@ -534,7 +534,9 @@ map_mark <- bench::mark(
 map_mark
 ```
 
-#### Application (many models)
+#### Applications 
+
+1. Many models
 
 - One popular application of `map()` is to run regression models (or whatever model you want to run) on list-columns. No more copying and pasting for running many regression models on subgroups!
 
@@ -574,6 +576,47 @@ tidied_models <- airquality %>%
   mutate(ols = map(data, tidy_lm_model))
 
 tidied_models$ols[1]
+```
+
+2. Simulations 
+
+A good friend of `map()` function is `rerun()` function. This comibination is really useful for simulations. Consider the following example. 
+
+* Base R approach 
+
+```{r}
+
+small_n <- 100 ; k <- 1000
+
+y_list <- rep(list(NA), k)
+
+for (i in seq(k)) {
+        
+    y_list[[i]] <- rnorm(small_n, mu, sigma)
+        
+}
+
+y_means <- unlist(lapply(y_list, mean))
+
+qplot(y_means) +
+   geom_vline(xintercept = 500, linetype = "dotted", color = "red")
+```
+
+* rerun() + map()
+
+```{r}
+
+small_n <- 100 ; k <- 1000
+
+y_tidy <- rerun(k, rnorm(small_n, mu, sigma)) 
+
+y_means_tidy <- map_dbl(y_tidy, mean)
+
+# Visualize 
+(qplot(y_means) +
+   geom_vline(xintercept = 500, linetype = "dotted", color = "red")) +
+(qplot(y_means_tidy) +
+   geom_vline(xintercept = 500, linetype = "dotted", color = "red"))
 ```
 
 ## Automote 2 or 2+ tasks
@@ -1053,7 +1096,11 @@ url_lists[out[seq(out)] == "The URL is broken."]
 5. (Optional) Test (`devtools::test()`), teach in `\vignettes`, and add data in `\data`
 6. Distribute the package either via CRAN or GitHub  
 
-![]http://r-pkgs.had.co.nz/diagrams/package-files.png
+![](http://r-pkgs.had.co.nz/diagrams/package-files.png)
+
+It's time to learn five states of R code: source, bundled, binary, installed, and in-memory. 
+
+If you're just using an R package, you're only concerned of the last two states: `install.packages("pkg")` and `library(pkg)` If you're developing an R package, you first write source code (`*.R`), bundle it (compressed file like `*.tar.gz`; done by `devtools::build()`), then make it binary (`devtools::build(binary = TRUE)`; This is how a package is stored in CRAN/GitHub, etc.).
 
 #### Required Components
 
@@ -1117,11 +1164,13 @@ add <- function(x, y){
 # The function creates documentation related files (NAMESPACE, function_name.rd)
 devtools::document()
 
-# Load all 
+# Load all; simulates installing and reloading the package 
 devtools::load_all()
 
-# Check 
+# Check; updates the documentation; builds and checks the package 
 devtools::check()
+
+devtools::bash()
 ```
 
 4. Organize (**NAMESPACE**)
