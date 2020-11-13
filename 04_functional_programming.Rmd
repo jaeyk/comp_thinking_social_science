@@ -825,13 +825,11 @@ map(2:ncol(airquality), create_point_plot)
 
 ### Objective 
 
-- Learning how to use `reduce()` to automate joining multiple dataframes
+- Learning how to use `reduce()` to automate row-binding multiple dataframes
 
 ### Problem 
 
-- How can you make joining multiple dataframes more efficient?
-
-- Note that we will use `dplyr::left_join() = merge(x, y, all.x = TRUE)`.
+- How can you make row-binding multiple dataframes more efficient?
 
 ```{r}
 df1 <- tibble(
@@ -856,11 +854,11 @@ df3 <- tibble(
 ### Copy and paste
 
 ```{r}
-first_join <- left_join(df1, df2)
 
-second_join <- left_join(first_join, df3)
+first_bind <- bind_rows(df1, df2)
 
-second_join
+second_bind <- bind_rows(first_bind, df3)
+
 ```
 
 - **Challenge**
@@ -877,9 +875,9 @@ Why the above solution is not efficient?
     - Output: Returns a vector of length 1
     
 ```{r}
-reduced <- reduce(list(df1, df2, df3), left_join)
 
-reduced
+reduced <- reduce(list(df1, df2, df3), bind_rows)
+
 ```
 
 ## Make automation slower or faster 
