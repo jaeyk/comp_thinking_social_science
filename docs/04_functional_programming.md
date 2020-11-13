@@ -1196,7 +1196,7 @@ toc()
 ```
 
 ```
-## 0.005 sec elapsed
+## 0.007 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1210,7 +1210,7 @@ toc()
 ```
 
 ```
-## 0.001 sec elapsed
+## 0.002 sec elapsed
 ```
 
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
@@ -1239,7 +1239,7 @@ map_mark
 ## # A tibble: 1 x 6
 ##   expression                                           min median `itr/sec`
 ##   <bch:expr>                                         <bch> <bch:>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 138µs  150µs     6489.
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 147µs  167µs     5763.
 ## # … with 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
 ```
 
@@ -1707,13 +1707,11 @@ map(2:ncol(airquality), create_point_plot)
 
 ### Objective 
 
-- Learning how to use `reduce()` to automate joining multiple dataframes
+- Learning how to use `reduce()` to automate row-binding multiple dataframes
 
 ### Problem 
 
-- How can you make joining multiple dataframes more efficient?
-
-- Note that we will use `dplyr::left_join() = merge(x, y, all.x = TRUE)`.
+- How can you make row-binding multiple dataframes more efficient?
 
 
 ```r
@@ -1740,32 +1738,9 @@ df3 <- tibble(
 
 
 ```r
-first_join <- left_join(df1, df2)
-```
+first_bind <- bind_rows(df1, df2)
 
-```
-## Joining, by = c("x", "y", "z")
-```
-
-```r
-second_join <- left_join(first_join, df3)
-```
-
-```
-## Joining, by = c("x", "y", "z")
-```
-
-```r
-second_join
-```
-
-```
-## # A tibble: 3 x 3
-##       x     y     z
-##   <int> <int> <int>
-## 1     7     3     7
-## 2     6     1     5
-## 3     2     1     6
+second_bind <- bind_rows(first_bind, df3)
 ```
 
 - **Challenge**
@@ -1783,25 +1758,7 @@ Why the above solution is not efficient?
     
 
 ```r
-reduced <- reduce(list(df1, df2, df3), left_join)
-```
-
-```
-## Joining, by = c("x", "y", "z")
-## Joining, by = c("x", "y", "z")
-```
-
-```r
-reduced
-```
-
-```
-## # A tibble: 3 x 3
-##       x     y     z
-##   <int> <int> <int>
-## 1     7     3     7
-## 2     6     1     5
-## 3     2     1     6
+reduced <- reduce(list(df1, df2, df3), bind_rows)
 ```
 
 ## Make automation slower or faster 
@@ -2160,7 +2117,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-11-08"
+date: "2020-11-13"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 

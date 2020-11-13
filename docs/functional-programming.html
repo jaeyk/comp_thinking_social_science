@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-11-08" />
+<meta name="date" content="2020-11-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1237,12 +1237,12 @@ function(input){</p>
 <span id="cb918-14"><a href="functional-programming.html#cb918-14"></a>}</span>
 <span id="cb918-15"><a href="functional-programming.html#cb918-15"></a></span>
 <span id="cb918-16"><a href="functional-programming.html#cb918-16"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.005 sec elapsed</code></pre>
+<pre><code>## 0.007 sec elapsed</code></pre>
 <p><code>map</code> is faster because it applies function to the items on the list/vector in parallel. Also, using <code>map_dbl</code> reduces an extra step you need to take. Hint: <code>map_dbl(x, mean, na.rm = TRUE)</code> = <code>vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))</code></p>
 <div class="sourceCode" id="cb920"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb920-1"><a href="functional-programming.html#cb920-1"></a><span class="kw">tic</span>()</span>
 <span id="cb920-2"><a href="functional-programming.html#cb920-2"></a>out1 &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_dbl</span>(mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb920-3"><a href="functional-programming.html#cb920-3"></a><span class="kw">toc</span>()</span></code></pre></div>
-<pre><code>## 0.001 sec elapsed</code></pre>
+<pre><code>## 0.002 sec elapsed</code></pre>
 <ul>
 <li><p>In short, <code>map()</code> is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using <code>%&gt;%</code>.</p></li>
 <li><p>Final point: Why not base R <code>apply</code> family?</p></li>
@@ -1260,7 +1260,7 @@ function(input){</p>
 <pre><code>## # A tibble: 1 x 6
 ##   expression                                           min median `itr/sec`
 ##   &lt;bch:expr&gt;                                         &lt;bch&gt; &lt;bch:&gt;     &lt;dbl&gt;
-## 1 out1 &lt;- airquality %&gt;% map_dbl(mean, na.rm = TRUE) 138µs  150µs     6489.
+## 1 out1 &lt;- airquality %&gt;% map_dbl(mean, na.rm = TRUE) 147µs  167µs     5763.
 ## # … with 2 more variables: mem_alloc &lt;bch:byt&gt;, `gc/sec` &lt;dbl&gt;</code></pre>
 </div>
 <div id="applications" class="section level4" number="5.2.1.4">
@@ -1595,14 +1595,13 @@ How can you make <code>ggplot2()</code> take strings as x and y variable names? 
 <div id="objective-1" class="section level3" number="5.5.1">
 <h3><span class="header-section-number">5.5.1</span> Objective</h3>
 <ul>
-<li>Learning how to use <code>reduce()</code> to automate joining multiple dataframes</li>
+<li>Learning how to use <code>reduce()</code> to automate row-binding multiple dataframes</li>
 </ul>
 </div>
 <div id="problem-2" class="section level3" number="5.5.2">
 <h3><span class="header-section-number">5.5.2</span> Problem</h3>
 <ul>
-<li><p>How can you make joining multiple dataframes more efficient?</p></li>
-<li><p>Note that we will use <code>dplyr::left_join() = merge(x, y, all.x = TRUE)</code>.</p></li>
+<li>How can you make row-binding multiple dataframes more efficient?</li>
 </ul>
 <div class="sourceCode" id="cb965"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb965-1"><a href="functional-programming.html#cb965-1"></a>df1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
 <span id="cb965-2"><a href="functional-programming.html#cb965-2"></a>  <span class="dt">x =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
@@ -1624,17 +1623,9 @@ How can you make <code>ggplot2()</code> take strings as x and y variable names? 
 </div>
 <div id="copy-and-paste" class="section level3" number="5.5.3">
 <h3><span class="header-section-number">5.5.3</span> Copy and paste</h3>
-<div class="sourceCode" id="cb966"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb966-1"><a href="functional-programming.html#cb966-1"></a>first_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(df1, df2)</span></code></pre></div>
-<pre><code>## Joining, by = c(&quot;x&quot;, &quot;y&quot;, &quot;z&quot;)</code></pre>
-<div class="sourceCode" id="cb968"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb968-1"><a href="functional-programming.html#cb968-1"></a>second_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(first_join, df3)</span></code></pre></div>
-<pre><code>## Joining, by = c(&quot;x&quot;, &quot;y&quot;, &quot;z&quot;)</code></pre>
-<div class="sourceCode" id="cb970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb970-1"><a href="functional-programming.html#cb970-1"></a>second_join</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 3
-##       x     y     z
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1     7     3     7
-## 2     6     1     5
-## 3     2     1     6</code></pre>
+<div class="sourceCode" id="cb966"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb966-1"><a href="functional-programming.html#cb966-1"></a>first_bind &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(df1, df2)</span>
+<span id="cb966-2"><a href="functional-programming.html#cb966-2"></a></span>
+<span id="cb966-3"><a href="functional-programming.html#cb966-3"></a>second_bind &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(first_bind, df3)</span></code></pre></div>
 <ul>
 <li><strong>Challenge</strong>
 Why the above solution is not efficient?</li>
@@ -1651,16 +1642,7 @@ Why the above solution is not efficient?</li>
 - Computation: Calls a function with a pair of values at a time
 
 - Output: Returns a vector of length 1</code></pre>
-<div class="sourceCode" id="cb973"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb973-1"><a href="functional-programming.html#cb973-1"></a>reduced &lt;-<span class="st"> </span><span class="kw">reduce</span>(<span class="kw">list</span>(df1, df2, df3), left_join)</span></code></pre></div>
-<pre><code>## Joining, by = c(&quot;x&quot;, &quot;y&quot;, &quot;z&quot;)
-## Joining, by = c(&quot;x&quot;, &quot;y&quot;, &quot;z&quot;)</code></pre>
-<div class="sourceCode" id="cb975"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb975-1"><a href="functional-programming.html#cb975-1"></a>reduced</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 3
-##       x     y     z
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1     7     3     7
-## 2     6     1     5
-## 3     2     1     6</code></pre>
+<div class="sourceCode" id="cb968"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb968-1"><a href="functional-programming.html#cb968-1"></a>reduced &lt;-<span class="st"> </span><span class="kw">reduce</span>(<span class="kw">list</span>(df1, df2, df3), bind_rows)</span></code></pre></div>
 </div>
 </div>
 <div id="make-automation-slower-or-faster" class="section level2" number="5.6">
@@ -1714,13 +1696,13 @@ Why the above solution is not efficient?</li>
 <li><p><strong>Challenge</strong></p></li>
 <li><p>Explain why we can’t run <code>map(url_lists, read_html)</code></p></li>
 </ul>
-<div class="sourceCode" id="cb977"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb977-1"><a href="functional-programming.html#cb977-1"></a>url_lists &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
-<span id="cb977-2"><a href="functional-programming.html#cb977-2"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/University_of_California,_Berkeley&quot;</span>,</span>
-<span id="cb977-3"><a href="functional-programming.html#cb977-3"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Stanford_University&quot;</span>,</span>
-<span id="cb977-4"><a href="functional-programming.html#cb977-4"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Carnegie_Mellon_University&quot;</span>,</span>
-<span id="cb977-5"><a href="functional-programming.html#cb977-5"></a>  <span class="st">&quot;https://DLAB&quot;</span></span>
-<span id="cb977-6"><a href="functional-programming.html#cb977-6"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb978"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb978-1"><a href="functional-programming.html#cb978-1"></a><span class="kw">map</span>(url_lists, read_html)</span></code></pre></div>
+<div class="sourceCode" id="cb969"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb969-1"><a href="functional-programming.html#cb969-1"></a>url_lists &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb969-2"><a href="functional-programming.html#cb969-2"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/University_of_California,_Berkeley&quot;</span>,</span>
+<span id="cb969-3"><a href="functional-programming.html#cb969-3"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Stanford_University&quot;</span>,</span>
+<span id="cb969-4"><a href="functional-programming.html#cb969-4"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Carnegie_Mellon_University&quot;</span>,</span>
+<span id="cb969-5"><a href="functional-programming.html#cb969-5"></a>  <span class="st">&quot;https://DLAB&quot;</span></span>
+<span id="cb969-6"><a href="functional-programming.html#cb969-6"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb970-1"><a href="functional-programming.html#cb970-1"></a><span class="kw">map</span>(url_lists, read_html)</span></code></pre></div>
 <ul>
 <li>This is a very simple problem so it’s easy to tell where the problem is. How can you make your error more informative?</li>
 </ul>
@@ -1738,20 +1720,20 @@ Why the above solution is not efficient?</li>
 </ul></li>
 <li><p>The basic logic of <code>try-catch</code>, R’s basic error handling function, works like the following.</p></li>
 </ul>
-<div class="sourceCode" id="cb979"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb979-1"><a href="functional-programming.html#cb979-1"></a><span class="kw">tryCatch</span>(</span>
-<span id="cb979-2"><a href="functional-programming.html#cb979-2"></a>  {</span>
-<span id="cb979-3"><a href="functional-programming.html#cb979-3"></a>    <span class="kw">map</span>(url_lists, read_html)</span>
-<span id="cb979-4"><a href="functional-programming.html#cb979-4"></a>  },</span>
-<span id="cb979-5"><a href="functional-programming.html#cb979-5"></a>  <span class="dt">warning =</span> <span class="cf">function</span>(w) {</span>
-<span id="cb979-6"><a href="functional-programming.html#cb979-6"></a>    <span class="st">&quot;Warning&quot;</span></span>
-<span id="cb979-7"><a href="functional-programming.html#cb979-7"></a>  },</span>
-<span id="cb979-8"><a href="functional-programming.html#cb979-8"></a>  <span class="dt">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb979-9"><a href="functional-programming.html#cb979-9"></a>    <span class="st">&quot;Error&quot;</span></span>
-<span id="cb979-10"><a href="functional-programming.html#cb979-10"></a>  },</span>
-<span id="cb979-11"><a href="functional-programming.html#cb979-11"></a>  <span class="dt">finally =</span> {</span>
-<span id="cb979-12"><a href="functional-programming.html#cb979-12"></a>    <span class="st">&quot;Message&quot;</span></span>
-<span id="cb979-13"><a href="functional-programming.html#cb979-13"></a>  }</span>
-<span id="cb979-14"><a href="functional-programming.html#cb979-14"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb971"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb971-1"><a href="functional-programming.html#cb971-1"></a><span class="kw">tryCatch</span>(</span>
+<span id="cb971-2"><a href="functional-programming.html#cb971-2"></a>  {</span>
+<span id="cb971-3"><a href="functional-programming.html#cb971-3"></a>    <span class="kw">map</span>(url_lists, read_html)</span>
+<span id="cb971-4"><a href="functional-programming.html#cb971-4"></a>  },</span>
+<span id="cb971-5"><a href="functional-programming.html#cb971-5"></a>  <span class="dt">warning =</span> <span class="cf">function</span>(w) {</span>
+<span id="cb971-6"><a href="functional-programming.html#cb971-6"></a>    <span class="st">&quot;Warning&quot;</span></span>
+<span id="cb971-7"><a href="functional-programming.html#cb971-7"></a>  },</span>
+<span id="cb971-8"><a href="functional-programming.html#cb971-8"></a>  <span class="dt">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb971-9"><a href="functional-programming.html#cb971-9"></a>    <span class="st">&quot;Error&quot;</span></span>
+<span id="cb971-10"><a href="functional-programming.html#cb971-10"></a>  },</span>
+<span id="cb971-11"><a href="functional-programming.html#cb971-11"></a>  <span class="dt">finally =</span> {</span>
+<span id="cb971-12"><a href="functional-programming.html#cb971-12"></a>    <span class="st">&quot;Message&quot;</span></span>
+<span id="cb971-13"><a href="functional-programming.html#cb971-13"></a>  }</span>
+<span id="cb971-14"><a href="functional-programming.html#cb971-14"></a>)</span></code></pre></div>
 <pre><code>## [1] &quot;Error&quot;</code></pre>
 <ul>
 <li>Here’s <code>purrr</code> version of the <code>try-catch</code> mechanism (evaluates code and assigns exception handlers).</li>
@@ -1764,7 +1746,7 @@ Why the above solution is not efficient?</li>
 <li>result: result or <code>NULL</code></li>
 <li>error: <code>NULL</code> or <code>error</code></li>
 </ul>
-<div class="sourceCode" id="cb981"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb981-1"><a href="functional-programming.html#cb981-1"></a><span class="kw">map</span>(url_lists, <span class="kw">safely</span>(read_html))</span></code></pre></div>
+<div class="sourceCode" id="cb973"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb973-1"><a href="functional-programming.html#cb973-1"></a><span class="kw">map</span>(url_lists, <span class="kw">safely</span>(read_html))</span></code></pre></div>
 <pre><code>## [[1]]
 ## [[1]]$result
 ## {html_document}
@@ -1807,10 +1789,10 @@ Why the above solution is not efficient?</li>
 <ul>
 <li>The easier way to solve this problem is just avoiding the error.</li>
 </ul>
-<div class="sourceCode" id="cb983"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb983-1"><a href="functional-programming.html#cb983-1"></a><span class="kw">map</span>(url_lists, <span class="kw">safely</span>(read_html)) <span class="op">%&gt;%</span></span>
-<span id="cb983-2"><a href="functional-programming.html#cb983-2"></a><span class="st">  </span><span class="kw">map</span>(<span class="st">&quot;result&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb983-3"><a href="functional-programming.html#cb983-3"></a><span class="st">  </span><span class="co"># = map(function(x) x[[&quot;result&quot;]]) = map(~.x[[&quot;name&quot;]])</span></span>
-<span id="cb983-4"><a href="functional-programming.html#cb983-4"></a><span class="st">  </span>purrr<span class="op">::</span><span class="kw">compact</span>() <span class="co"># Remove empty elements</span></span></code></pre></div>
+<div class="sourceCode" id="cb975"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb975-1"><a href="functional-programming.html#cb975-1"></a><span class="kw">map</span>(url_lists, <span class="kw">safely</span>(read_html)) <span class="op">%&gt;%</span></span>
+<span id="cb975-2"><a href="functional-programming.html#cb975-2"></a><span class="st">  </span><span class="kw">map</span>(<span class="st">&quot;result&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb975-3"><a href="functional-programming.html#cb975-3"></a><span class="st">  </span><span class="co"># = map(function(x) x[[&quot;result&quot;]]) = map(~.x[[&quot;name&quot;]])</span></span>
+<span id="cb975-4"><a href="functional-programming.html#cb975-4"></a><span class="st">  </span>purrr<span class="op">::</span><span class="kw">compact</span>() <span class="co"># Remove empty elements</span></span></code></pre></div>
 <pre><code>## [[1]]
 ## {html_document}
 ## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
@@ -1832,16 +1814,16 @@ Why the above solution is not efficient?</li>
 <div id="possibly" class="section level4" number="5.7.2.3">
 <h4><span class="header-section-number">5.7.2.3</span> possibly</h4>
 <p>What if the best way to solve the problem is not ignoring the error …</p>
-<div class="sourceCode" id="cb985"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb985-1"><a href="functional-programming.html#cb985-1"></a><span class="co"># If error occurred, &quot;The URL is broken.&quot; will be stored in that element(s).</span></span>
-<span id="cb985-2"><a href="functional-programming.html#cb985-2"></a>out &lt;-<span class="st"> </span><span class="kw">map</span>(</span>
-<span id="cb985-3"><a href="functional-programming.html#cb985-3"></a>  url_lists,</span>
-<span id="cb985-4"><a href="functional-programming.html#cb985-4"></a>  <span class="kw">possibly</span>(read_html,</span>
-<span id="cb985-5"><a href="functional-programming.html#cb985-5"></a>    <span class="dt">otherwise =</span> <span class="st">&quot;The URL is broken.&quot;</span></span>
-<span id="cb985-6"><a href="functional-programming.html#cb985-6"></a>  )</span>
-<span id="cb985-7"><a href="functional-programming.html#cb985-7"></a>)</span>
-<span id="cb985-8"><a href="functional-programming.html#cb985-8"></a></span>
-<span id="cb985-9"><a href="functional-programming.html#cb985-9"></a><span class="co"># Let&#39;s find the broken URL.</span></span>
-<span id="cb985-10"><a href="functional-programming.html#cb985-10"></a>url_lists[out[<span class="kw">seq</span>(out)] <span class="op">==</span><span class="st"> &quot;The URL is broken.&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb977"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb977-1"><a href="functional-programming.html#cb977-1"></a><span class="co"># If error occurred, &quot;The URL is broken.&quot; will be stored in that element(s).</span></span>
+<span id="cb977-2"><a href="functional-programming.html#cb977-2"></a>out &lt;-<span class="st"> </span><span class="kw">map</span>(</span>
+<span id="cb977-3"><a href="functional-programming.html#cb977-3"></a>  url_lists,</span>
+<span id="cb977-4"><a href="functional-programming.html#cb977-4"></a>  <span class="kw">possibly</span>(read_html,</span>
+<span id="cb977-5"><a href="functional-programming.html#cb977-5"></a>    <span class="dt">otherwise =</span> <span class="st">&quot;The URL is broken.&quot;</span></span>
+<span id="cb977-6"><a href="functional-programming.html#cb977-6"></a>  )</span>
+<span id="cb977-7"><a href="functional-programming.html#cb977-7"></a>)</span>
+<span id="cb977-8"><a href="functional-programming.html#cb977-8"></a></span>
+<span id="cb977-9"><a href="functional-programming.html#cb977-9"></a><span class="co"># Let&#39;s find the broken URL.</span></span>
+<span id="cb977-10"><a href="functional-programming.html#cb977-10"></a>url_lists[out[<span class="kw">seq</span>(out)] <span class="op">==</span><span class="st"> &quot;The URL is broken.&quot;</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;https://DLAB&quot;</code></pre>
 </div>
 </div>
@@ -1908,89 +1890,89 @@ Why the above solution is not efficient?</li>
 <ol style="list-style-type: decimal">
 <li>Setup (<strong>DESCRIPTION</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb987"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb987-1"><a href="functional-programming.html#cb987-1"></a><span class="co"># This function creates DESCRIPTION file </span></span>
-<span id="cb987-2"><a href="functional-programming.html#cb987-2"></a>usethis<span class="op">::</span><span class="kw">create_package</span>(<span class="kw">here</span>(<span class="st">&quot;mypkg&quot;</span>))</span>
-<span id="cb987-3"><a href="functional-programming.html#cb987-3"></a></span>
-<span id="cb987-4"><a href="functional-programming.html#cb987-4"></a><span class="co"># Initialize git repo </span></span>
-<span id="cb987-5"><a href="functional-programming.html#cb987-5"></a>usethis<span class="op">::</span><span class="kw">use_git</span>()</span>
-<span id="cb987-6"><a href="functional-programming.html#cb987-6"></a></span>
-<span id="cb987-7"><a href="functional-programming.html#cb987-7"></a><span class="co"># License the package </span></span>
-<span id="cb987-8"><a href="functional-programming.html#cb987-8"></a><span class="co"># You can use the MIT license by typing devtools::use_mit_license(&quot;author name&quot;). The function produces MIT license related files (LICENSE, LICENSE.md).</span></span>
-<span id="cb987-9"><a href="functional-programming.html#cb987-9"></a><span class="kw">use_mit_license</span>(<span class="st">&quot;Jae Yeon Kim&quot;</span>)</span>
-<span id="cb987-10"><a href="functional-programming.html#cb987-10"></a></span>
-<span id="cb987-11"><a href="functional-programming.html#cb987-11"></a><span class="co"># Add README (optional)</span></span>
-<span id="cb987-12"><a href="functional-programming.html#cb987-12"></a><span class="co"># Makes the package more use-friendly </span></span>
-<span id="cb987-13"><a href="functional-programming.html#cb987-13"></a><span class="kw">use_readme_md</span>()</span>
-<span id="cb987-14"><a href="functional-programming.html#cb987-14"></a></span>
-<span id="cb987-15"><a href="functional-programming.html#cb987-15"></a><span class="co"># Add news (optional) </span></span>
-<span id="cb987-16"><a href="functional-programming.html#cb987-16"></a><span class="co"># Helps track changes </span></span>
-<span id="cb987-17"><a href="functional-programming.html#cb987-17"></a><span class="kw">use_news_md</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb979"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb979-1"><a href="functional-programming.html#cb979-1"></a><span class="co"># This function creates DESCRIPTION file </span></span>
+<span id="cb979-2"><a href="functional-programming.html#cb979-2"></a>usethis<span class="op">::</span><span class="kw">create_package</span>(<span class="kw">here</span>(<span class="st">&quot;mypkg&quot;</span>))</span>
+<span id="cb979-3"><a href="functional-programming.html#cb979-3"></a></span>
+<span id="cb979-4"><a href="functional-programming.html#cb979-4"></a><span class="co"># Initialize git repo </span></span>
+<span id="cb979-5"><a href="functional-programming.html#cb979-5"></a>usethis<span class="op">::</span><span class="kw">use_git</span>()</span>
+<span id="cb979-6"><a href="functional-programming.html#cb979-6"></a></span>
+<span id="cb979-7"><a href="functional-programming.html#cb979-7"></a><span class="co"># License the package </span></span>
+<span id="cb979-8"><a href="functional-programming.html#cb979-8"></a><span class="co"># You can use the MIT license by typing devtools::use_mit_license(&quot;author name&quot;). The function produces MIT license related files (LICENSE, LICENSE.md).</span></span>
+<span id="cb979-9"><a href="functional-programming.html#cb979-9"></a><span class="kw">use_mit_license</span>(<span class="st">&quot;Jae Yeon Kim&quot;</span>)</span>
+<span id="cb979-10"><a href="functional-programming.html#cb979-10"></a></span>
+<span id="cb979-11"><a href="functional-programming.html#cb979-11"></a><span class="co"># Add README (optional)</span></span>
+<span id="cb979-12"><a href="functional-programming.html#cb979-12"></a><span class="co"># Makes the package more use-friendly </span></span>
+<span id="cb979-13"><a href="functional-programming.html#cb979-13"></a><span class="kw">use_readme_md</span>()</span>
+<span id="cb979-14"><a href="functional-programming.html#cb979-14"></a></span>
+<span id="cb979-15"><a href="functional-programming.html#cb979-15"></a><span class="co"># Add news (optional) </span></span>
+<span id="cb979-16"><a href="functional-programming.html#cb979-16"></a><span class="co"># Helps track changes </span></span>
+<span id="cb979-17"><a href="functional-programming.html#cb979-17"></a><span class="kw">use_news_md</span>() </span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Write code (<strong>R</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb988"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb988-1"><a href="functional-programming.html#cb988-1"></a>usethis<span class="op">::</span><span class="kw">use_r</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb989"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb989-1"><a href="functional-programming.html#cb989-1"></a><span class="co">#&#39; Add two numbers</span></span>
-<span id="cb989-2"><a href="functional-programming.html#cb989-2"></a><span class="co">#&#39;</span></span>
-<span id="cb989-3"><a href="functional-programming.html#cb989-3"></a><span class="co">#&#39; @param x A number</span></span>
-<span id="cb989-4"><a href="functional-programming.html#cb989-4"></a><span class="co">#&#39; @param y A number</span></span>
-<span id="cb989-5"><a href="functional-programming.html#cb989-5"></a><span class="co">#&#39; @return The sum of x and y </span></span>
-<span id="cb989-6"><a href="functional-programming.html#cb989-6"></a><span class="co">#&#39; @export</span></span>
-<span id="cb989-7"><a href="functional-programming.html#cb989-7"></a></span>
-<span id="cb989-8"><a href="functional-programming.html#cb989-8"></a>add &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){</span>
-<span id="cb989-9"><a href="functional-programming.html#cb989-9"></a>  </span>
-<span id="cb989-10"><a href="functional-programming.html#cb989-10"></a>  x <span class="op">+</span><span class="st"> </span>y</span>
-<span id="cb989-11"><a href="functional-programming.html#cb989-11"></a>  </span>
-<span id="cb989-12"><a href="functional-programming.html#cb989-12"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb980"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb980-1"><a href="functional-programming.html#cb980-1"></a>usethis<span class="op">::</span><span class="kw">use_r</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb981"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb981-1"><a href="functional-programming.html#cb981-1"></a><span class="co">#&#39; Add two numbers</span></span>
+<span id="cb981-2"><a href="functional-programming.html#cb981-2"></a><span class="co">#&#39;</span></span>
+<span id="cb981-3"><a href="functional-programming.html#cb981-3"></a><span class="co">#&#39; @param x A number</span></span>
+<span id="cb981-4"><a href="functional-programming.html#cb981-4"></a><span class="co">#&#39; @param y A number</span></span>
+<span id="cb981-5"><a href="functional-programming.html#cb981-5"></a><span class="co">#&#39; @return The sum of x and y </span></span>
+<span id="cb981-6"><a href="functional-programming.html#cb981-6"></a><span class="co">#&#39; @export</span></span>
+<span id="cb981-7"><a href="functional-programming.html#cb981-7"></a></span>
+<span id="cb981-8"><a href="functional-programming.html#cb981-8"></a>add &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){</span>
+<span id="cb981-9"><a href="functional-programming.html#cb981-9"></a>  </span>
+<span id="cb981-10"><a href="functional-programming.html#cb981-10"></a>  x <span class="op">+</span><span class="st"> </span>y</span>
+<span id="cb981-11"><a href="functional-programming.html#cb981-11"></a>  </span>
+<span id="cb981-12"><a href="functional-programming.html#cb981-12"></a>}</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Document (<strong>man</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb990"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb990-1"><a href="functional-programming.html#cb990-1"></a><span class="co"># Document </span></span>
-<span id="cb990-2"><a href="functional-programming.html#cb990-2"></a><span class="co"># The function creates documentation related files (NAMESPACE, function_name.rd)</span></span>
-<span id="cb990-3"><a href="functional-programming.html#cb990-3"></a>devtools<span class="op">::</span><span class="kw">document</span>()</span>
-<span id="cb990-4"><a href="functional-programming.html#cb990-4"></a></span>
-<span id="cb990-5"><a href="functional-programming.html#cb990-5"></a><span class="co"># Load all; simulates installing and reloading the package </span></span>
-<span id="cb990-6"><a href="functional-programming.html#cb990-6"></a>devtools<span class="op">::</span><span class="kw">load_all</span>()</span>
-<span id="cb990-7"><a href="functional-programming.html#cb990-7"></a></span>
-<span id="cb990-8"><a href="functional-programming.html#cb990-8"></a><span class="co"># Check; updates the documentation; builds and checks the package </span></span>
-<span id="cb990-9"><a href="functional-programming.html#cb990-9"></a>devtools<span class="op">::</span><span class="kw">check</span>()</span>
-<span id="cb990-10"><a href="functional-programming.html#cb990-10"></a></span>
-<span id="cb990-11"><a href="functional-programming.html#cb990-11"></a>devtools<span class="op">::</span><span class="kw">bash</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb982"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb982-1"><a href="functional-programming.html#cb982-1"></a><span class="co"># Document </span></span>
+<span id="cb982-2"><a href="functional-programming.html#cb982-2"></a><span class="co"># The function creates documentation related files (NAMESPACE, function_name.rd)</span></span>
+<span id="cb982-3"><a href="functional-programming.html#cb982-3"></a>devtools<span class="op">::</span><span class="kw">document</span>()</span>
+<span id="cb982-4"><a href="functional-programming.html#cb982-4"></a></span>
+<span id="cb982-5"><a href="functional-programming.html#cb982-5"></a><span class="co"># Load all; simulates installing and reloading the package </span></span>
+<span id="cb982-6"><a href="functional-programming.html#cb982-6"></a>devtools<span class="op">::</span><span class="kw">load_all</span>()</span>
+<span id="cb982-7"><a href="functional-programming.html#cb982-7"></a></span>
+<span id="cb982-8"><a href="functional-programming.html#cb982-8"></a><span class="co"># Check; updates the documentation; builds and checks the package </span></span>
+<span id="cb982-9"><a href="functional-programming.html#cb982-9"></a>devtools<span class="op">::</span><span class="kw">check</span>()</span>
+<span id="cb982-10"><a href="functional-programming.html#cb982-10"></a></span>
+<span id="cb982-11"><a href="functional-programming.html#cb982-11"></a>devtools<span class="op">::</span><span class="kw">bash</span>()</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Organize (<strong>NAMESPACE</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb991"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb991-1"><a href="functional-programming.html#cb991-1"></a>usethis<span class="op">::</span><span class="kw">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb983"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb983-1"><a href="functional-programming.html#cb983-1"></a>usethis<span class="op">::</span><span class="kw">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 </div>
 <div id="optional-components" class="section level4" number="5.8.1.3">
 <h4><span class="header-section-number">5.8.1.3</span> Optional Components</h4>
 <ol style="list-style-type: decimal">
 <li>Test (<strong>test</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb992"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb992-1"><a href="functional-programming.html#cb992-1"></a>usethis<span class="op">::</span><span class="kw">use_testthat</span>()</span>
-<span id="cb992-2"><a href="functional-programming.html#cb992-2"></a></span>
-<span id="cb992-3"><a href="functional-programming.html#cb992-3"></a>usethis<span class="op">::</span><span class="kw">use_test</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb984"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb984-1"><a href="functional-programming.html#cb984-1"></a>usethis<span class="op">::</span><span class="kw">use_testthat</span>()</span>
+<span id="cb984-2"><a href="functional-programming.html#cb984-2"></a></span>
+<span id="cb984-3"><a href="functional-programming.html#cb984-3"></a>usethis<span class="op">::</span><span class="kw">use_test</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Add data (<strong>data</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb993"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb993-1"><a href="functional-programming.html#cb993-1"></a>x &lt;-<span class="st"> &quot;Jae&quot;</span></span>
-<span id="cb993-2"><a href="functional-programming.html#cb993-2"></a>y &lt;-<span class="st"> &quot;Sun&quot;</span></span>
-<span id="cb993-3"><a href="functional-programming.html#cb993-3"></a>z &lt;-<span class="st"> &quot;Jane&quot;</span></span>
-<span id="cb993-4"><a href="functional-programming.html#cb993-4"></a></span>
-<span id="cb993-5"><a href="functional-programming.html#cb993-5"></a>usethis<span class="op">::</span><span class="kw">use_data</span>(x, y, z, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb985"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb985-1"><a href="functional-programming.html#cb985-1"></a>x &lt;-<span class="st"> &quot;Jae&quot;</span></span>
+<span id="cb985-2"><a href="functional-programming.html#cb985-2"></a>y &lt;-<span class="st"> &quot;Sun&quot;</span></span>
+<span id="cb985-3"><a href="functional-programming.html#cb985-3"></a>z &lt;-<span class="st"> &quot;Jane&quot;</span></span>
+<span id="cb985-4"><a href="functional-programming.html#cb985-4"></a></span>
+<span id="cb985-5"><a href="functional-programming.html#cb985-5"></a>usethis<span class="op">::</span><span class="kw">use_data</span>(x, y, z, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Teach (<strong>vignetts</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb994"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb994-1"><a href="functional-programming.html#cb994-1"></a>usethis<span class="op">::</span><span class="kw">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb995"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb995-1"><a href="functional-programming.html#cb995-1"></a>title<span class="op">:</span><span class="st"> &quot;Vignette title&quot;</span></span>
-<span id="cb995-2"><a href="functional-programming.html#cb995-2"></a>author<span class="op">:</span><span class="st"> &quot;Vignette author&quot;</span></span>
-<span id="cb995-3"><a href="functional-programming.html#cb995-3"></a>date<span class="op">:</span><span class="st"> &quot;2020-11-08&quot;</span></span>
-<span id="cb995-4"><a href="functional-programming.html#cb995-4"></a>output<span class="op">:</span><span class="st"> </span>rmarkdown<span class="op">::</span>html_vignette</span>
-<span id="cb995-5"><a href="functional-programming.html#cb995-5"></a>vignette<span class="op">:</span><span class="st"> </span>blah blah</span></code></pre></div>
+<div class="sourceCode" id="cb986"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb986-1"><a href="functional-programming.html#cb986-1"></a>usethis<span class="op">::</span><span class="kw">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb987"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb987-1"><a href="functional-programming.html#cb987-1"></a>title<span class="op">:</span><span class="st"> &quot;Vignette title&quot;</span></span>
+<span id="cb987-2"><a href="functional-programming.html#cb987-2"></a>author<span class="op">:</span><span class="st"> &quot;Vignette author&quot;</span></span>
+<span id="cb987-3"><a href="functional-programming.html#cb987-3"></a>date<span class="op">:</span><span class="st"> &quot;2020-11-13&quot;</span></span>
+<span id="cb987-4"><a href="functional-programming.html#cb987-4"></a>output<span class="op">:</span><span class="st"> </span>rmarkdown<span class="op">::</span>html_vignette</span>
+<span id="cb987-5"><a href="functional-programming.html#cb987-5"></a>vignette<span class="op">:</span><span class="st"> </span>blah blah</span></code></pre></div>
 <ul>
 <li>You can build a package website using <code>pkgdown</code></li>
 </ul>
-<div class="sourceCode" id="cb996"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb996-1"><a href="functional-programming.html#cb996-1"></a><span class="co"># install.packages(&quot;pkgdown&quot;)</span></span>
-<span id="cb996-2"><a href="functional-programming.html#cb996-2"></a>usethis<span class="op">::</span><span class="kw">use_pkgdown</span>()</span>
-<span id="cb996-3"><a href="functional-programming.html#cb996-3"></a>pkgdown<span class="op">::</span><span class="kw">build_site</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb988"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb988-1"><a href="functional-programming.html#cb988-1"></a><span class="co"># install.packages(&quot;pkgdown&quot;)</span></span>
+<span id="cb988-2"><a href="functional-programming.html#cb988-2"></a>usethis<span class="op">::</span><span class="kw">use_pkgdown</span>()</span>
+<span id="cb988-3"><a href="functional-programming.html#cb988-3"></a>pkgdown<span class="op">::</span><span class="kw">build_site</span>()</span></code></pre></div>
 <ul>
 <li>A package site includes information on METADATA, Function references, Articles, News, etc.</li>
 </ul>
@@ -2004,19 +1986,19 @@ Why the above solution is not efficient?</li>
 <ul>
 <li>devtools</li>
 </ul>
-<div class="sourceCode" id="cb997"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb997-1"><a href="functional-programming.html#cb997-1"></a><span class="co"># Build </span></span>
-<span id="cb997-2"><a href="functional-programming.html#cb997-2"></a>devtools<span class="op">::</span><span class="kw">build</span>()</span>
-<span id="cb997-3"><a href="functional-programming.html#cb997-3"></a></span>
-<span id="cb997-4"><a href="functional-programming.html#cb997-4"></a><span class="co"># Install </span></span>
-<span id="cb997-5"><a href="functional-programming.html#cb997-5"></a>devtools<span class="op">::</span><span class="kw">install</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb989"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb989-1"><a href="functional-programming.html#cb989-1"></a><span class="co"># Build </span></span>
+<span id="cb989-2"><a href="functional-programming.html#cb989-2"></a>devtools<span class="op">::</span><span class="kw">build</span>()</span>
+<span id="cb989-3"><a href="functional-programming.html#cb989-3"></a></span>
+<span id="cb989-4"><a href="functional-programming.html#cb989-4"></a><span class="co"># Install </span></span>
+<span id="cb989-5"><a href="functional-programming.html#cb989-5"></a>devtools<span class="op">::</span><span class="kw">install</span>()</span></code></pre></div>
 </div>
 <div id="distributing-an-r-package" class="section level4" number="5.8.1.5">
 <h4><span class="header-section-number">5.8.1.5</span> Distributing an R package</h4>
-<div class="sourceCode" id="cb998"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb998-1"><a href="functional-programming.html#cb998-1"></a><span class="co"># Version update </span></span>
-<span id="cb998-2"><a href="functional-programming.html#cb998-2"></a>usethis<span class="op">::</span><span class="kw">use_version</span>()</span>
-<span id="cb998-3"><a href="functional-programming.html#cb998-3"></a></span>
-<span id="cb998-4"><a href="functional-programming.html#cb998-4"></a><span class="co"># Spell check</span></span>
-<span id="cb998-5"><a href="functional-programming.html#cb998-5"></a>usethis<span class="op">::</span><span class="kw">use_spell_check</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb990"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb990-1"><a href="functional-programming.html#cb990-1"></a><span class="co"># Version update </span></span>
+<span id="cb990-2"><a href="functional-programming.html#cb990-2"></a>usethis<span class="op">::</span><span class="kw">use_version</span>()</span>
+<span id="cb990-3"><a href="functional-programming.html#cb990-3"></a></span>
+<span id="cb990-4"><a href="functional-programming.html#cb990-4"></a><span class="co"># Spell check</span></span>
+<span id="cb990-5"><a href="functional-programming.html#cb990-5"></a>usethis<span class="op">::</span><span class="kw">use_spell_check</span>()</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><a href="https://cran.r-project.org/">CRAN (The Comprehensive R Archive Network)</a></li>
 </ol>
@@ -2052,7 +2034,7 @@ Why the above solution is not efficient?</li>
 <ol style="list-style-type: decimal">
 <li>Install libraries</li>
 </ol>
-<div class="sourceCode" id="cb999"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb999-1"><a href="functional-programming.html#cb999-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb991"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb991-1"><a href="functional-programming.html#cb991-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Create app directory and file</li>
 </ol>
@@ -2065,79 +2047,79 @@ Why the above solution is not efficient?</li>
 <ul>
 <li>Front-end</li>
 </ul>
-<div class="sourceCode" id="cb1000"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1000-1"><a href="functional-programming.html#cb1000-1"></a><span class="co"># Load packages </span></span>
-<span id="cb1000-2"><a href="functional-programming.html#cb1000-2"></a><span class="co"># Do not use install.packages(), pacman::p_load(), or library() if you intend to deploy the app using shinyapps.io </span></span>
-<span id="cb1000-3"><a href="functional-programming.html#cb1000-3"></a></span>
-<span id="cb1000-4"><a href="functional-programming.html#cb1000-4"></a><span class="kw">require</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span>
-<span id="cb1000-5"><a href="functional-programming.html#cb1000-5"></a><span class="kw">require</span>(<span class="st">&quot;shiny&quot;</span>)</span>
-<span id="cb1000-6"><a href="functional-programming.html#cb1000-6"></a><span class="kw">require</span>(<span class="st">&quot;shinydashboard&quot;</span>)</span>
-<span id="cb1000-7"><a href="functional-programming.html#cb1000-7"></a><span class="kw">require</span>(<span class="st">&quot;colourpicker&quot;</span>)</span>
-<span id="cb1000-8"><a href="functional-programming.html#cb1000-8"></a></span>
-<span id="cb1000-9"><a href="functional-programming.html#cb1000-9"></a><span class="co"># Load data </span></span>
-<span id="cb1000-10"><a href="functional-programming.html#cb1000-10"></a></span>
-<span id="cb1000-11"><a href="functional-programming.html#cb1000-11"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">url</span>(<span class="st">&quot;https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb1000-12"><a href="functional-programming.html#cb1000-12"></a></span>
-<span id="cb1000-13"><a href="functional-programming.html#cb1000-13"></a><span class="co"># Defines the user interface; how the app looks</span></span>
-<span id="cb1000-14"><a href="functional-programming.html#cb1000-14"></a></span>
-<span id="cb1000-15"><a href="functional-programming.html#cb1000-15"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
-<span id="cb1000-16"><a href="functional-programming.html#cb1000-16"></a>  </span>
-<span id="cb1000-17"><a href="functional-programming.html#cb1000-17"></a>    <span class="co"># Application title </span></span>
-<span id="cb1000-18"><a href="functional-programming.html#cb1000-18"></a>    <span class="kw">titlePanel</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
-<span id="cb1000-19"><a href="functional-programming.html#cb1000-19"></a>  </span>
-<span id="cb1000-20"><a href="functional-programming.html#cb1000-20"></a>    <span class="kw">h4</span>(tags<span class="op">$</span><span class="kw">a</span>(<span class="dt">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
-<span id="cb1000-21"><a href="functional-programming.html#cb1000-21"></a>            </span>
-<span id="cb1000-22"><a href="functional-programming.html#cb1000-22"></a>    <span class="kw">sidebarLayout</span>(</span>
-<span id="cb1000-23"><a href="functional-programming.html#cb1000-23"></a>      </span>
-<span id="cb1000-24"><a href="functional-programming.html#cb1000-24"></a>      <span class="co"># Sidebar with sliders </span></span>
-<span id="cb1000-25"><a href="functional-programming.html#cb1000-25"></a>      <span class="kw">sidebarPanel</span>(</span>
-<span id="cb1000-26"><a href="functional-programming.html#cb1000-26"></a>        <span class="kw">sliderInput</span>(<span class="st">&quot;size&quot;</span>, </span>
-<span id="cb1000-27"><a href="functional-programming.html#cb1000-27"></a>                    <span class="st">&quot;Font size:&quot;</span>,</span>
-<span id="cb1000-28"><a href="functional-programming.html#cb1000-28"></a>                    <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>,</span>
-<span id="cb1000-29"><a href="functional-programming.html#cb1000-29"></a>                    <span class="dt">value =</span> <span class="dv">2</span>)</span>
-<span id="cb1000-30"><a href="functional-programming.html#cb1000-30"></a>      ),</span>
-<span id="cb1000-31"><a href="functional-programming.html#cb1000-31"></a>    </span>
-<span id="cb1000-32"><a href="functional-programming.html#cb1000-32"></a>    <span class="kw">mainPanel</span>(</span>
-<span id="cb1000-33"><a href="functional-programming.html#cb1000-33"></a>          </span>
-<span id="cb1000-34"><a href="functional-programming.html#cb1000-34"></a>          <span class="kw">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
-<span id="cb1000-35"><a href="functional-programming.html#cb1000-35"></a>        </span>
-<span id="cb1000-36"><a href="functional-programming.html#cb1000-36"></a>        )</span>
-<span id="cb1000-37"><a href="functional-programming.html#cb1000-37"></a>    </span>
-<span id="cb1000-38"><a href="functional-programming.html#cb1000-38"></a>    )</span>
-<span id="cb1000-39"><a href="functional-programming.html#cb1000-39"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb992"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb992-1"><a href="functional-programming.html#cb992-1"></a><span class="co"># Load packages </span></span>
+<span id="cb992-2"><a href="functional-programming.html#cb992-2"></a><span class="co"># Do not use install.packages(), pacman::p_load(), or library() if you intend to deploy the app using shinyapps.io </span></span>
+<span id="cb992-3"><a href="functional-programming.html#cb992-3"></a></span>
+<span id="cb992-4"><a href="functional-programming.html#cb992-4"></a><span class="kw">require</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span>
+<span id="cb992-5"><a href="functional-programming.html#cb992-5"></a><span class="kw">require</span>(<span class="st">&quot;shiny&quot;</span>)</span>
+<span id="cb992-6"><a href="functional-programming.html#cb992-6"></a><span class="kw">require</span>(<span class="st">&quot;shinydashboard&quot;</span>)</span>
+<span id="cb992-7"><a href="functional-programming.html#cb992-7"></a><span class="kw">require</span>(<span class="st">&quot;colourpicker&quot;</span>)</span>
+<span id="cb992-8"><a href="functional-programming.html#cb992-8"></a></span>
+<span id="cb992-9"><a href="functional-programming.html#cb992-9"></a><span class="co"># Load data </span></span>
+<span id="cb992-10"><a href="functional-programming.html#cb992-10"></a></span>
+<span id="cb992-11"><a href="functional-programming.html#cb992-11"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">url</span>(<span class="st">&quot;https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb992-12"><a href="functional-programming.html#cb992-12"></a></span>
+<span id="cb992-13"><a href="functional-programming.html#cb992-13"></a><span class="co"># Defines the user interface; how the app looks</span></span>
+<span id="cb992-14"><a href="functional-programming.html#cb992-14"></a></span>
+<span id="cb992-15"><a href="functional-programming.html#cb992-15"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb992-16"><a href="functional-programming.html#cb992-16"></a>  </span>
+<span id="cb992-17"><a href="functional-programming.html#cb992-17"></a>    <span class="co"># Application title </span></span>
+<span id="cb992-18"><a href="functional-programming.html#cb992-18"></a>    <span class="kw">titlePanel</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
+<span id="cb992-19"><a href="functional-programming.html#cb992-19"></a>  </span>
+<span id="cb992-20"><a href="functional-programming.html#cb992-20"></a>    <span class="kw">h4</span>(tags<span class="op">$</span><span class="kw">a</span>(<span class="dt">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
+<span id="cb992-21"><a href="functional-programming.html#cb992-21"></a>            </span>
+<span id="cb992-22"><a href="functional-programming.html#cb992-22"></a>    <span class="kw">sidebarLayout</span>(</span>
+<span id="cb992-23"><a href="functional-programming.html#cb992-23"></a>      </span>
+<span id="cb992-24"><a href="functional-programming.html#cb992-24"></a>      <span class="co"># Sidebar with sliders </span></span>
+<span id="cb992-25"><a href="functional-programming.html#cb992-25"></a>      <span class="kw">sidebarPanel</span>(</span>
+<span id="cb992-26"><a href="functional-programming.html#cb992-26"></a>        <span class="kw">sliderInput</span>(<span class="st">&quot;size&quot;</span>, </span>
+<span id="cb992-27"><a href="functional-programming.html#cb992-27"></a>                    <span class="st">&quot;Font size:&quot;</span>,</span>
+<span id="cb992-28"><a href="functional-programming.html#cb992-28"></a>                    <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>,</span>
+<span id="cb992-29"><a href="functional-programming.html#cb992-29"></a>                    <span class="dt">value =</span> <span class="dv">2</span>)</span>
+<span id="cb992-30"><a href="functional-programming.html#cb992-30"></a>      ),</span>
+<span id="cb992-31"><a href="functional-programming.html#cb992-31"></a>    </span>
+<span id="cb992-32"><a href="functional-programming.html#cb992-32"></a>    <span class="kw">mainPanel</span>(</span>
+<span id="cb992-33"><a href="functional-programming.html#cb992-33"></a>          </span>
+<span id="cb992-34"><a href="functional-programming.html#cb992-34"></a>          <span class="kw">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
+<span id="cb992-35"><a href="functional-programming.html#cb992-35"></a>        </span>
+<span id="cb992-36"><a href="functional-programming.html#cb992-36"></a>        )</span>
+<span id="cb992-37"><a href="functional-programming.html#cb992-37"></a>    </span>
+<span id="cb992-38"><a href="functional-programming.html#cb992-38"></a>    )</span>
+<span id="cb992-39"><a href="functional-programming.html#cb992-39"></a>)</span></code></pre></div>
 <ul>
 <li>Back-end</li>
 </ul>
-<div class="sourceCode" id="cb1001"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1001-1"><a href="functional-programming.html#cb1001-1"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
-<span id="cb1001-2"><a href="functional-programming.html#cb1001-2"></a>  </span>
-<span id="cb1001-3"><a href="functional-programming.html#cb1001-3"></a>  output<span class="op">$</span>cloud &lt;-<span class="st"> </span><span class="kw">renderWordcloud2</span>({ </span>
-<span id="cb1001-4"><a href="functional-programming.html#cb1001-4"></a>    </span>
-<span id="cb1001-5"><a href="functional-programming.html#cb1001-5"></a>    <span class="kw">wordcloud2</span>(df, </span>
-<span id="cb1001-6"><a href="functional-programming.html#cb1001-6"></a>               <span class="dt">size =</span> input<span class="op">$</span>size, </span>
-<span id="cb1001-7"><a href="functional-programming.html#cb1001-7"></a>               <span class="dt">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
-<span id="cb1001-8"><a href="functional-programming.html#cb1001-8"></a>    </span>
-<span id="cb1001-9"><a href="functional-programming.html#cb1001-9"></a>    })</span>
-<span id="cb1001-10"><a href="functional-programming.html#cb1001-10"></a></span>
-<span id="cb1001-11"><a href="functional-programming.html#cb1001-11"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb993"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb993-1"><a href="functional-programming.html#cb993-1"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb993-2"><a href="functional-programming.html#cb993-2"></a>  </span>
+<span id="cb993-3"><a href="functional-programming.html#cb993-3"></a>  output<span class="op">$</span>cloud &lt;-<span class="st"> </span><span class="kw">renderWordcloud2</span>({ </span>
+<span id="cb993-4"><a href="functional-programming.html#cb993-4"></a>    </span>
+<span id="cb993-5"><a href="functional-programming.html#cb993-5"></a>    <span class="kw">wordcloud2</span>(df, </span>
+<span id="cb993-6"><a href="functional-programming.html#cb993-6"></a>               <span class="dt">size =</span> input<span class="op">$</span>size, </span>
+<span id="cb993-7"><a href="functional-programming.html#cb993-7"></a>               <span class="dt">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
+<span id="cb993-8"><a href="functional-programming.html#cb993-8"></a>    </span>
+<span id="cb993-9"><a href="functional-programming.html#cb993-9"></a>    })</span>
+<span id="cb993-10"><a href="functional-programming.html#cb993-10"></a></span>
+<span id="cb993-11"><a href="functional-programming.html#cb993-11"></a>  }</span></code></pre></div>
 <ul>
 <li>Build a shiny app</li>
 </ul>
-<div class="sourceCode" id="cb1002"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1002-1"><a href="functional-programming.html#cb1002-1"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+<div class="sourceCode" id="cb994"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb994-1"><a href="functional-programming.html#cb994-1"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
 </div>
 <div id="deployment" class="section level4" number="5.8.2.3">
 <h4><span class="header-section-number">5.8.2.3</span> Deployment</h4>
 <ul>
 <li>Deploy to <a href="https://www.shinyapps.io/?_ga=2.5503866.871102833.1602978469-100003412.1602392815">the shinyapps.io cloud</a></li>
 </ul>
-<div class="sourceCode" id="cb1003"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1003-1"><a href="functional-programming.html#cb1003-1"></a><span class="co"># Install packages </span></span>
-<span id="cb1003-2"><a href="functional-programming.html#cb1003-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;rsconnect&quot;</span>)</span>
-<span id="cb1003-3"><a href="functional-programming.html#cb1003-3"></a><span class="kw">library</span>(rsconnect)</span>
-<span id="cb1003-4"><a href="functional-programming.html#cb1003-4"></a></span>
-<span id="cb1003-5"><a href="functional-programming.html#cb1003-5"></a><span class="co"># Setup </span></span>
-<span id="cb1003-6"><a href="functional-programming.html#cb1003-6"></a>rsconnect<span class="op">::</span><span class="kw">setAccountInfo</span>(<span class="dt">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
-<span id="cb1003-7"><a href="functional-programming.html#cb1003-7"></a>                          <span class="dt">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
-<span id="cb1003-8"><a href="functional-programming.html#cb1003-8"></a>                          <span class="dt">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
-<span id="cb1003-9"><a href="functional-programming.html#cb1003-9"></a></span>
-<span id="cb1003-10"><a href="functional-programming.html#cb1003-10"></a>rsconnect<span class="op">::</span><span class="kw">deployApp</span>(<span class="dt">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb995"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb995-1"><a href="functional-programming.html#cb995-1"></a><span class="co"># Install packages </span></span>
+<span id="cb995-2"><a href="functional-programming.html#cb995-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;rsconnect&quot;</span>)</span>
+<span id="cb995-3"><a href="functional-programming.html#cb995-3"></a><span class="kw">library</span>(rsconnect)</span>
+<span id="cb995-4"><a href="functional-programming.html#cb995-4"></a></span>
+<span id="cb995-5"><a href="functional-programming.html#cb995-5"></a><span class="co"># Setup </span></span>
+<span id="cb995-6"><a href="functional-programming.html#cb995-6"></a>rsconnect<span class="op">::</span><span class="kw">setAccountInfo</span>(<span class="dt">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
+<span id="cb995-7"><a href="functional-programming.html#cb995-7"></a>                          <span class="dt">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
+<span id="cb995-8"><a href="functional-programming.html#cb995-8"></a>                          <span class="dt">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
+<span id="cb995-9"><a href="functional-programming.html#cb995-9"></a></span>
+<span id="cb995-10"><a href="functional-programming.html#cb995-10"></a>rsconnect<span class="op">::</span><span class="kw">deployApp</span>(<span class="dt">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
 </div>
 <div id="references-1" class="section level4" number="5.8.2.4">
 <h4><span class="header-section-number">5.8.2.4</span> References</h4>
