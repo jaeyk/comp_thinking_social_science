@@ -77,8 +77,13 @@ url_list <- c(
 
 Examine the Berkeley website so that we could identify a node which indicates the school's motto. If you're using Chrome, draw the elements of your interest, then `right click > inspect > copy full xpath`.
 
-```{r}
-target <- xml2::read_html("https://en.wikipedia.org/wiki/University_of_California,_Berkeley")
+```{r, eval = FALSE}
+
+url <- "https://en.wikipedia.org/wiki/University_of_California,_Berkeley"
+
+download.file(url, destfile = "scraped_page.html", quiet = TRUE)
+
+target <- read_html("scraped_page.html")
 
 # If you want character vector output
 target %>%
@@ -98,8 +103,10 @@ I highly recommend writing your fucntion workking slowly by wrapping the functio
 ```{r}
 get_table_from_wiki <- function(url){
   
-  target <- xml2::read_html(url)
+  download.file(url, destfile = "scraped_page.html", quiet = TRUE)
 
+  target <- read_html("scraped_page.html")
+  
   table <- target %>%
     html_nodes(xpath = "/html/body/div[3]/div[3]/div[5]/div[1]/table[1]") %>%
     html_table() 
