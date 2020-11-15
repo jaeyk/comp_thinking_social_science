@@ -1,5 +1,28 @@
 # Semi-structured data {#semi_structured_data}
 
+## Setup 
+
+
+```{r}
+# Install packages 
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse, # tidyverse pkgs including purrr
+               furrr, # parallel processing 
+               tictoc, # performance test  
+               tcltk, # GUI for choosing a dir path 
+               tidyjson, # tidying JSON files 
+               XML, # parsing XML
+               rvest, # parsing HTML
+               jsonlite, # downloading JSON file from web
+               glue, # pasting string and objects
+               xopen, # opepn URLs in browser 
+               urltools, # regex and url parsing 
+               here) # computational reproducibility
+
+## Install the current development version from GitHub
+devtools::install_github("jaeyk/tidytweetjson", dependencies = TRUE) ; library(tidytweetjson)
+```
 
 ## Objectives
 
@@ -38,9 +61,141 @@
 
 ## HTML/CSS: web scraping
 
-## XML/JSON: social media scraping
+Let's go back to the example we covered in the earlier chapter of the book. 
 
-### API
+```{r}
+
+url_list <- c(
+  "https://en.wikipedia.org/wiki/University_of_California,_Berkeley",
+  "https://en.wikipedia.org/wiki/Stanford_University",
+  "https://en.wikipedia.org/wiki/Carnegie_Mellon_University",
+  "https://DLAB"
+)
+```
+
+* Step 1: Inspection 
+
+Examine the Berkeley website so that we could identify a node which indicates the school's motto. If you're using Chrome, draw the elements of your interest, then `right click > inspect > copy full xpath`.
+
+```{r}
+target <- xml2::read_html("https://en.wikipedia.org/wiki/University_of_California,_Berkeley")
+
+# If you want character vector output
+target %>%
+  html_nodes(xpath = "/html/body/div[3]/div[3]/div[5]/div[1]/table[1]") %>%
+  html_text() 
+
+# If you want table output 
+target %>%
+  html_nodes(xpath = "/html/body/div[3]/div[3]/div[5]/div[1]/table[1]") %>%
+  html_table()
+```
+
+* Step 2: Write a function 
+
+I highly recommend writing your fucntion workking slowly by wrapping the function with [`slowly()`](https://purrr.tidyverse.org/reference/insistently.html).
+
+```{r}
+get_table_from_wiki <- function(url){
+  
+  target <- xml2::read_html(url)
+
+  table <- target %>%
+    html_nodes(xpath = "/html/body/div[3]/div[3]/div[5]/div[1]/table[1]") %>%
+    html_table() 
+  
+  return(table)
+}
+```
+
+* Step 3: Test
+
+```{r, eval = FALSE}
+get_table_from_wiki(url_list[[2]])
+```
+
+* Step 4: Automation 
+
+```{r, eval=FALSE}
+map(url_list, get_table_from_wiki)
+```
+
+* Step 5: Error handling 
+
+```{r, eval = FALSE}
+map(url_lists, safely(get_table_from_wiki)) %>%
+  map("result") %>% 
+  # = map(function(x) x[["result"]]) = map(~.x[["name"]])
+  purrr::compact() # Remove empty elements
+```
+
+```{r, eval = FALSE}
+# If error occurred, "The URL is broken." will be stored in that element(s).
+out <- map(
+  url_list,
+  possibly(get_table_from_wiki,
+    otherwise = "The URL is broken."
+  )
+)
+```
+
+## XML/JSON: government database/social media scraping
+
+### Governemnt database (XML) 
+
+The following tax return data example comes from the US Internal Revenue Service (IRS) Amazon database. [This PDf file](https://www.irs.gov/pub/irs-pdf/f990.pdf) shows what the original document looks like.
+
+**Workflow**
+
+1. Get the XML link and parse it
+2. Go to the root of the XML document 
+3. Identify a specific node you care about 
+4. Get values related to that node 
+
+![XML DOM (Document Object Model). Source: https://www.w3schools.com](https://www.w3schools.com/xml/nodetree.gif)
+
+Step1: Get an XML document link
+
+```{r}
+xml_link <- c("http://s3.amazonaws.com/irs-form-990/201910919349301206_public.xml")
+```
+
+Step 2: Get page and parse the XML document 
+
+```{r}
+xml_root <- xml_link %>%
+  # Get page and parse xml 
+  xmlTreeParse() %>%
+  # Get root
+  xmlRoot()
+
+# Data output: list 
+typeof(xml_root) 
+
+# Two elements. Our target is the second one.
+summary(xml_root)
+```
+
+Step 3: Get nodes 
+
+We grab the mission statement of this org from its tax report (990). `//` is an [XPath syntax](https://www.w3schools.com/xml/xpath_syntax.asp) that helps to "select nodes in the document from the current node that match the selection no matter where they are."
+
+```{r}
+xml_root %>%
+  purrr::pluck(2) %>% # Second element (Return Data)
+  getNodeSet("//MissionDesc") # Mission statement 
+```
+
+Step 4: Get values 
+
+```{r}
+xml_root %>%
+  purrr::pluck(2) %>% # Second element (Return Data)
+  getNodeSet("//MissionDesc") %>% # Mission statement 
+  xmlValue()
+```
+
+### Social media API (JSON)
 
 #### Objectives
 
@@ -257,22 +412,6 @@ twarc dehydrate tweets.jsonl > tweet_ids.txt
 3.  Using `less` command in the terminal, inspect `tweets.json`.
 
 ### Parsing JSON
-
-```{r}
-# Install packages 
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(tidyverse, # tidyverse pkgs including purrr
-               furrr, # parallel processing 
-               tictoc, # performance test  
-               tcltk, # GUI for choosing a dir path 
-               tidyjson) # tidying JSON files 
-
-## Install the current development version from GitHub
-devtools::install_github("jaeyk/tidytweetjson",
-                         dependencies = TRUE)
-
-library(tidytweetjson)
-```
 
 #### Objectives
 
