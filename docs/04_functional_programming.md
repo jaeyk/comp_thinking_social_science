@@ -1196,7 +1196,7 @@ toc()
 ```
 
 ```
-## 0.007 sec elapsed
+## 0.006 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1239,7 +1239,7 @@ map_mark
 ## # A tibble: 1 x 6
 ##   expression                                           min median `itr/sec`
 ##   <bch:expr>                                         <bch> <bch:>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 147µs  167µs     5763.
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 120µs  135µs     7360.
 ## # … with 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
 ```
 
@@ -1813,11 +1813,11 @@ In a different situation, you want to make your function run faster. This is a c
 
 - **Challenge**
 
-- Explain why we can't run `map(url_lists, read_html)`
+- Explain why we can't run `map(url_list, read_html)`
 
 
 ```r
-url_lists <- c(
+url_list <- c(
   "https://en.wikipedia.org/wiki/University_of_California,_Berkeley",
   "https://en.wikipedia.org/wiki/Stanford_University",
   "https://en.wikipedia.org/wiki/Carnegie_Mellon_University",
@@ -1827,7 +1827,7 @@ url_lists <- c(
 
 
 ```r
-map(url_lists, read_html)
+map(url_list, read_html)
 ```
 
 - This is a very simple problem so it's easy to tell where the problem is. How can you make your error more informative? 
@@ -1848,7 +1848,7 @@ map(url_lists, read_html)
 ```r
 tryCatch(
   {
-    map(url_lists, read_html)
+    map(url_list, read_html)
   },
   warning = function(w) {
     "Warning"
@@ -1877,41 +1877,32 @@ tryCatch(
 
 
 ```r
-map(url_lists, safely(read_html))
+map(url_list, safely(read_html))
 ```
 
 ```
 ## [[1]]
 ## [[1]]$result
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## NULL
 ## 
 ## [[1]]$error
-## NULL
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
 ## 
 ## 
 ## [[2]]
 ## [[2]]$result
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## NULL
 ## 
 ## [[2]]$error
-## NULL
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
 ## 
 ## 
 ## [[3]]
 ## [[3]]$result
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## NULL
 ## 
 ## [[3]]$error
-## NULL
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
 ## 
 ## 
 ## [[4]]
@@ -1926,30 +1917,14 @@ map(url_lists, safely(read_html))
 
 
 ```r
-map(url_lists, safely(read_html)) %>%
+map(url_list, safely(read_html)) %>%
   map("result") %>% 
   # = map(function(x) x[["result"]]) = map(~.x[["name"]])
   purrr::compact() # Remove empty elements
 ```
 
 ```
-## [[1]]
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
-## 
-## [[2]]
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
-## 
-## [[3]]
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## list()
 ```
 
 #### possibly 
@@ -1960,18 +1935,21 @@ What if the best way to solve the problem is not ignoring the error ...
 ```r
 # If error occurred, "The URL is broken." will be stored in that element(s).
 out <- map(
-  url_lists,
+  url_list,
   possibly(read_html,
     otherwise = "The URL is broken."
   )
 )
 
 # Let's find the broken URL.
-url_lists[out[seq(out)] == "The URL is broken."]
+url_list[out[seq(out)] == "The URL is broken."]
 ```
 
 ```
-## [1] "https://DLAB"
+## [1] "https://en.wikipedia.org/wiki/University_of_California,_Berkeley"
+## [2] "https://en.wikipedia.org/wiki/Stanford_University"               
+## [3] "https://en.wikipedia.org/wiki/Carnegie_Mellon_University"        
+## [4] "https://DLAB"
 ```
 
 ## Developing your own data products
@@ -2117,7 +2095,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-11-13"
+date: "2020-11-15"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 
