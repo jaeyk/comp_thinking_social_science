@@ -546,6 +546,8 @@ mtcars_count[[1]]
 
 ### for loop 
 
+![Concept map for a for loop. Source: https://teachtogether.tech/en/index.html#s:memory-concept-maps](https://teachtogether.tech/en/figures/for-loop.svg)
+
 Loops in R also work basically the same way as in Python, with just a few adjustments.  First, recall that index positions in R start at 1.  Second, ```while()``` and ```for()``` are functions rather than reserved operators, meaning they must take arguments in parentheses.  Third, just like ```else```, the ```in``` operator *is* reserved and takes no arguments in parentheses.  Fourth, the conditional execution must appear between curly brackets.  Finally, indentation is meaningless, but each new operation must appear on a new line.
 
 - `while()`: when we have no idea how many times loop needs to be executed.
@@ -1196,7 +1198,7 @@ toc()
 ```
 
 ```
-## 0.006 sec elapsed
+## 0.007 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1237,9 +1239,9 @@ map_mark
 
 ```
 ## # A tibble: 1 x 6
-##   expression                                           min median `itr/sec`
-##   <bch:expr>                                         <bch> <bch:>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 120µs  135µs     7360.
+##   expression                                            min median `itr/sec`
+##   <bch:expr>                                         <bch:> <bch:>     <dbl>
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 62.6µs 77.6µs    12873.
 ## # … with 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
 ```
 
@@ -1409,7 +1411,6 @@ paste("University = Berkeley | Department = CS")
 - A slightly more efficient way: using a for loop. 
 
 - Think about which part of the statement is constant and which part varies ( = parameters).  
-    
 - Do we need a placeholder? No. We don't need a placeholder because we don't store the result of iterations.
     
 - **Challenge**: How many parameters do you need to solve the problem below?
@@ -1883,26 +1884,35 @@ map(url_list, safely(read_html))
 ```
 ## [[1]]
 ## [[1]]$result
-## NULL
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ## 
 ## [[1]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
+## NULL
 ## 
 ## 
 ## [[2]]
 ## [[2]]$result
-## NULL
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ## 
 ## [[2]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
+## NULL
 ## 
 ## 
 ## [[3]]
 ## [[3]]$result
-## NULL
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ## 
 ## [[3]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
+## NULL
 ## 
 ## 
 ## [[4]]
@@ -1924,7 +1934,23 @@ map(url_list, safely(read_html)) %>%
 ```
 
 ```
-## list()
+## [[1]]
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## 
+## [[2]]
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## 
+## [[3]]
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ```
 
 #### possibly 
@@ -1946,10 +1972,7 @@ url_list[out[seq(out)] == "The URL is broken."]
 ```
 
 ```
-## [1] "https://en.wikipedia.org/wiki/University_of_California,_Berkeley"
-## [2] "https://en.wikipedia.org/wiki/Stanford_University"               
-## [3] "https://en.wikipedia.org/wiki/Carnegie_Mellon_University"        
-## [4] "https://DLAB"
+## [1] "https://DLAB"
 ```
 
 ## Developing your own data products
@@ -2095,7 +2118,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-11-15"
+date: "2020-12-03"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 
