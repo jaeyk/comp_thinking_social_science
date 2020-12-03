@@ -1275,7 +1275,7 @@ There are so many different ways of taking a look at data in R. Can you discuss 
 
 str(table1)
 
-glimpse(table1) # similar ot str() clearner output 
+glimpse(table1) # similar to str() cleaner output 
 
 skim(table1) # str() + summary() + more 
 
@@ -2711,6 +2711,125 @@ re_out %>%
 
 ```
 
+### Design Anaysis (optional)
+
+DeclareDesign provides a collection of packages (`fabricatr`, `randomizr`, `estimatr`) that are very useful for those interested in testing the strength of research design. DeclareDesign also helps share your research design along with your code and data. 
+
+```{r}
+pacman::p_load(DeclareDesign, #  
+               fabricatr, # Fabricate mock (fake) data  
+               randomizr, # Random sampling and assignment 
+               estimatr, # Fast estimation tools (IV, etc) 
+               DesignLibrary) # Research design library 
+```
+
+Model-Inquire-Data Strategy-Answer Strategy (MIDA) by Graeme Blair, Jasper Cooper, Alex Coppock, and Macartan Humphreys ([APSR 2019](https://declaredesign.org/declare.pdf)). The following instructions draw on the vignette available at [the package homepage](https://declaredesign.org/mida/). Also, take a look at [DeclareDesign cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/declaredesign.pdf).
+
+1. Setup 
+
+* Model: a speculatioin of how the world works (variables plus their relationships)
+
+```{r}
+population <- declare_population(N = 1000, 
+                                 noise = rnorm(N))
+
+population # class 
+population() %>% head() # instance 
+```
+
+
+```{r}
+# Note that Y_Z_0 and Y_Z_1 are argument names. 
+potential_outcomes <- declare_potential_outcomes(Y_Z_0 = 0, # Control group 
+                                                 Y_Z_1 = 1 + noise) # Treatment group 
+
+```
+
+* Inquiry: a description of the distributions of the variables (estimand = something we desire to know)
+
+You can add other estimators such as Conditional Average Treatment Effect (CATE).
+
+```{r}
+estimand_ate <- declare_estimand(ATE = mean(Y_Z_1 - Y_Z_0))
+```
+
+* Data strategy: a description of sampling (or case selection) + intervention strategy  
+
+```{r}
+
+sampling <- declare_sampling(n = 250) # Sampling 250 units 
+assignment <- declare_assignment(m = 50) # Assign 50 units 
+
+# If you don't do this, you will be missing Y 
+reveal_Y <- declare_reveal(Y, Z)
+```
+
+* Answer strategy: a description of how to use data to answer a question 
+
+```{r}
+estimator_ate <- declare_estimator(Y ~ Z, 
+                                   estimand = estimand_ate,
+                                   model = difference_in_means)
+```
+
+* Design 
+
+```{r}
+
+design <- population + potential_outcomes + estimand_ate + sampling + assignment + reveal_Y + estimator_ate
+
+# This should work. Otherwise, something is wrong with your code.
+design
+
+```
+
+2. Applications 
+
+* Simulating data 
+
+```{r}
+fake_data <- draw_data(design)
+
+head(fake_data)
+```
+
+* Estimation 
+
+```{r}
+estimates <- draw_estimates(design)
+
+estimates
+```
+
+* Diagnosis 
+
+Diagnosis is done using a Monte Carlo approach (=simulating many times using bootstrapped samples).
+
+```{r}
+
+diagnosis <- diagnose_design(design, 
+                             sims = 1000, 
+                             bootstrap_sims = 500)
+
+diagnosis$diagnosands_df %>%
+  select(bias, power, coverage)
+
+# Very weakly biased 
+# Well powered. Power = 1 - Type II error (False Negative Rate). Therefore, higher statistical power means lower false negative rate. 
+# Coverage (standard errors) is fine. 95% of the time right answers lie in the coverage. 
+```
+
+* Shortcuts 
+
+Doing the power analysis for a three-arm experiment.
+
+```{r}
+three_arm <- multi_arm_designer(N = 1000, m = 3, 
+                   outcome_means = c(0, 0.1, 0.2))
+
+diagnose_design(three_arm)
+```
+
 ## Visualizing (ggplot2)
 
 - The following material is adapted from Kieran Healy's wonderful book (2019) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful book on [ggplot2](https://link.springer.com/content/pdf/10.1007%2F978-0-387-98141-3.pdf). For more theoretical discussions, I recommend you to read [The Grammar of Graphics](https://link.springer.com/book/10.1007%2F0-387-28695-0) by Leland Wilkinson.
@@ -3044,7 +3163,7 @@ p + geom_line()
 
 `geom_line` joins up all the lines for each particular year in the order they appear in the dataset. `ggplot2` does not know the yearly observations in your data are grouped by country. 
 
-Note that you need grouping when the grouping information you need to tell is not built into the varaibles being mapped (like continent).
+Note that you need grouping when the grouping information you need to tell is not built into the variables being mapped (like continent).
 
 ```{r}
 gapminder
@@ -3332,7 +3451,7 @@ out <- lm(
 - `conf.high`: the high end of a confidence interval
 - `df`: degrees of freedom
 
-**Challege**
+**Challenge**
 
 Try glance(out), what did you get from these commands? If you're curious, you can try ?glance.
 
