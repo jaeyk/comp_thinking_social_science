@@ -2811,8 +2811,7 @@ diagnosis <- diagnose_design(design,
                              sims = 1000, 
                              bootstrap_sims = 500)
 
-diagnosis$diagnosands_df %>%
-  select(bias, power, coverage)
+diagnosis
 
 # Very weakly biased 
 # Well powered. Power = 1 - Type II error (False Negative Rate). Therefore, higher statistical power means lower false negative rate. 
