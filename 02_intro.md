@@ -318,6 +318,11 @@ Set a project structure for a project named "starwars".
     - Alison Hill is a co-author of [`blogdown: Creating Websites with R Markdown.`](https://bookdown.org/yihui/blogdown/) 
   - Key strengths: dynamic reporting + reproducible science + easy deployment
 
+
+![Concept map for R Markdown. By Gabriela Sandoval, Florencia D'Andrea, Yanina Bellini Saibene, Monica Alonso.](https://github.com/rstudio/concept-maps/raw/master/en/rmarkdown.svg)
+
+
+
 ```{=html}
 <iframe width="560" height="315" src="https://www.youtube.com/embed/s9aWmU0atlQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

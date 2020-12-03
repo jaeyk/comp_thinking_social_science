@@ -46,6 +46,10 @@ It is **critical** to understand because these are the objects you will manipula
 
 2. [Attributes](#attributes) takes a small detour to discuss attributes, R's flexible metadata specification. Here you'll learn about factors, an important data structure created by setting attributes of an atomic vector. R has many data structures: vector, list, matrix, data frame, factors, tables.
 
+
+![Concept map for data types. By Meghan Sposato, Brendan Cullen, Monica Alonso.](https://github.com/rstudio/concept-maps/raw/master/en/data-types.svg)
+
+
 ## 1D data: Vectors 
 
 ### Atomic classes
@@ -853,8 +857,6 @@ str(good)
 
 The conversion rules for `cbind()` are complicated and best avoided by ensuring all inputs are of the same type.
 
-#### List columns (TBD)
-
 **Other objects**
 
 Missing values are specified with `NA`, which is a logical vector of length 1. `NA` will always be coerced to the correct type if used inside `c()`
@@ -1322,15 +1324,22 @@ table4a
 
 -   Let's pivot (rotate by 90 degree).
 
+
+![Concept map for pivoting. By Florian Schmoll, Monica Alonso.](https://github.com/rstudio/concept-maps/raw/master/en/pivoting.svg)
+
+
 -   [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) increases the number of rows (longer) and decreases the number of columns. The inverse function is `pivot_wider()`. These functions improve the usability of `gather()` and `spread()`.
 
 ![What pivot\_longer() does (Source: <https://www.storybench.org>)](https://www.storybench.org/wp-content/uploads/2019/08/pivot-longer-image.png)
 
-- The pipe operator `%>%` originally comes from the `magrittr` package. The idea behind the pipe operator is [similar to](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) what we learned about chaining functions in high school. f: B -> C and g: A -> B can be expressed as $f(g(x))$. Basically, the pipe operator chains operations. 
+
+![Concept map for pipe operator. By Jeroen Janssens, Monica Alonso.](https://education.rstudio.com/blog/2020/09/concept-maps/pipe-operator.png)
+
+- The pipe operator `%>%` originally comes from the `magrittr` package. The idea behind the pipe operator is [similar to](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) what we learned about chaining functions in high school. f: B -> C and g: A -> B can be expressed as $f(g(x))$. Basically, the pipe operator chains operations. When you read pipe operator, read as "and then" (Wickham's recommendation). The keyboard shortcut is ctrl + shift + M. The key idea here is not creating temporary variables and focusing on verbs (functions). We'll learn more about this functional programming paradigm later on.
 
 ```{r}
 
-table4a
+table4a 
 
 # Old way, less intuitive
 table4a %>%
@@ -1600,10 +1609,14 @@ df %>% unite("contact",
 
 ## Manipulating (dplyr)
 
+
+![Concept map for dplyr. By Monica Alonso, Greg Wilson.](https://education.rstudio.com/blog/2020/09/concept-maps/dplyr.png)
+
+
 dplyr is better than the base R approaches to data processing:
 
 - fast to run (due to the C++ backed) and intuitive to type
-- works well with tidy data and databases
+- works well with tidy data and databases (thanks to [`dbplyr`](https://dbplyr.tidyverse.org/))
 
 ### Rearranging
 
@@ -1875,13 +1888,45 @@ msleep %>%
   select(num_range("week", c(1:12)))
 ```
 
-### Create variables (TBD)
+### Create variables 
 
-### Rename variables (TBD)
+```{r include=FALSE, eval=FALSE}
 
-#### Clean names (TBD)
+mutate(.data, # data.frame 
+       ...) # new column 
 
-### Recode values (TBD)
+mutate(mtcars, column0 = 0)
+
+```
+
+#### Change values using conditions 
+
+You can think of `case_when()` (multiple conditions) as an extended version of `ifelse()` (binary conditions). 
+
+```{r}
+
+mtcars <- mtcars %>%
+  mutate(cyl_dummy = case_when(cyl > median(cyl) ~ "High", # if condition
+                               cyl < median(cyl) ~ "Low", # else if condition 
+                               TRUE ~ 'Median')) # else condition 
+
+mtcars %>% pull(cyl_dummy)
+
+```
+
+#### Change values manually 
+
+```{r}
+
+mtcars %>%
+  mutate(cyl_dummy = recode(cyl_dummy, # Target column 
+                            "High" = "2", # Old - New
+                            "Low" = "0",
+                            "Median" = "1")) %>%
+  pull(cyl_dummy)
+
+```
+
 
 ### Counting
 
@@ -1971,7 +2016,8 @@ gapminder %>%
 
 #### Basic
 
--   Create a summary
+- Create a summary
+- Think of `summarise()` as an extended version of `count()`.
 
 ```{r}
 
@@ -2052,9 +2098,19 @@ wide_gapminder %>%
   )
 ```
 
+**Additional tips**
+
+
+![Concept map for regular expressions. By Monica Alonso, Greg Wilson.](https://github.com/rstudio/concept-maps/raw/master/en/regular-expressions.svg)
+
+
 -   New way
 
 -   `summarise()` + `across()`
+
+
+![Concept map for across. By Emma Vestesson](https://github.com/rstudio/concept-maps/raw/master/en/across.svg)
+
 
 -   If you find using `summarise_all()`, `summarise_if()` and `summarise_at()` confusing, here's a solution: use `summarise()` with `across()`.
 

@@ -290,6 +290,8 @@ mtcars_count[[1]]
 
 ### for loop 
 
+![Concept map for a for loop. Source: https://teachtogether.tech/en/index.html#s:memory-concept-maps](https://teachtogether.tech/en/figures/for-loop.svg)
+
 Loops in R also work basically the same way as in Python, with just a few adjustments.  First, recall that index positions in R start at 1.  Second, ```while()``` and ```for()``` are functions rather than reserved operators, meaning they must take arguments in parentheses.  Third, just like ```else```, the ```in``` operator *is* reserved and takes no arguments in parentheses.  Fourth, the conditional execution must appear between curly brackets.  Finally, indentation is meaningless, but each new operation must appear on a new line.
 
 - `while()`: when we have no idea how many times loop needs to be executed.
@@ -659,7 +661,6 @@ paste("University = Berkeley | Department = CS")
 - A slightly more efficient way: using a for loop. 
 
 - Think about which part of the statement is constant and which part varies ( = parameters).  
-    
 - Do we need a placeholder? No. We don't need a placeholder because we don't store the result of iterations.
     
 - **Challenge**: How many parameters do you need to solve the problem below?

@@ -58,6 +58,10 @@ It is **critical** to understand because these are the objects you will manipula
 
 2. [Attributes](#attributes) takes a small detour to discuss attributes, R's flexible metadata specification. Here you'll learn about factors, an important data structure created by setting attributes of an atomic vector. R has many data structures: vector, list, matrix, data frame, factors, tables.
 
+
+![Concept map for data types. By Meghan Sposato, Brendan Cullen, Monica Alonso.](https://github.com/rstudio/concept-maps/raw/master/en/data-types.svg)
+
+
 ## 1D data: Vectors 
 
 ### Atomic classes
@@ -1568,8 +1572,6 @@ str(good)
 
 The conversion rules for `cbind()` are complicated and best avoided by ensuring all inputs are of the same type.
 
-#### List columns (TBD)
-
 **Other objects**
 
 Missing values are specified with `NA`, which is a logical vector of length 1. `NA` will always be coerced to the correct type if used inside `c()`
@@ -2613,6 +2615,12 @@ table1
 **Additional tips** 
 
 There are so many different ways of taking a look at data in R. Can you discuss the pros and cons of each approach? Which one do you prefer and why?
+
+
+
+
+
+
 
 
 
