@@ -2630,7 +2630,7 @@ str(table1)
 ```
 
 ```r
-glimpse(table1) # similar ot str() clearner output 
+glimpse(table1) # similar to str() cleaner output 
 ```
 
 ```
@@ -4404,11 +4404,11 @@ tablea %>% flextable::flextable()
 ```
 
 ```{=html}
-<div class="tabwid"><style>.cl-c95fad52{border-collapse:collapse;}.cl-c926b11e{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c9275790{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-c927586c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-c92988a8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c92989ca{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c9298a2e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c9298a7e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c9298ad8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c9298b28{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-c95fad52'>
+<div class="tabwid"><style>.cl-dc914540{border-collapse:collapse;}.cl-dc8a75b2{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dc8a89c6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-dc8a89da{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-dc8abea0{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc8abebe{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc8abec8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc8abed2{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc8abedc{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc8abef0{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-dc914540'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-c9298ad8"><p class="cl-c9275790"><span class="cl-c926b11e">continent</span></p></td><td class="cl-c9298b28"><p class="cl-c927586c"><span class="cl-c926b11e">n</span></p></td><td class="cl-c9298b28"><p class="cl-c927586c"><span class="cl-c926b11e">mean_gdp</span></p></td><td class="cl-c9298b28"><p class="cl-c927586c"><span class="cl-c926b11e">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-c92988a8"><p class="cl-c9275790"><span class="cl-c926b11e">Africa</span></p></td><td class="cl-c92989ca"><p class="cl-c927586c"><span class="cl-c926b11e">624</span></p></td><td class="cl-c92989ca"><p class="cl-c927586c"><span class="cl-c926b11e">2,194</span></p></td><td class="cl-c92989ca"><p class="cl-c927586c"><span class="cl-c926b11e">2,828</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c92988a8"><p class="cl-c9275790"><span class="cl-c926b11e">Americas</span></p></td><td class="cl-c92989ca"><p class="cl-c927586c"><span class="cl-c926b11e">300</span></p></td><td class="cl-c92989ca"><p class="cl-c927586c"><span class="cl-c926b11e">7,136</span></p></td><td class="cl-c92989ca"><p class="cl-c927586c"><span class="cl-c926b11e">6,397</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c92988a8"><p class="cl-c9275790"><span class="cl-c926b11e">Asia</span></p></td><td class="cl-c92989ca"><p class="cl-c927586c"><span class="cl-c926b11e">396</span></p></td><td class="cl-c92989ca"><p class="cl-c927586c"><span class="cl-c926b11e">7,902</span></p></td><td class="cl-c92989ca"><p class="cl-c927586c"><span class="cl-c926b11e">14,045</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c92988a8"><p class="cl-c9275790"><span class="cl-c926b11e">Europe</span></p></td><td class="cl-c92989ca"><p class="cl-c927586c"><span class="cl-c926b11e">360</span></p></td><td class="cl-c92989ca"><p class="cl-c927586c"><span class="cl-c926b11e">14,469</span></p></td><td class="cl-c92989ca"><p class="cl-c927586c"><span class="cl-c926b11e">9,355</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c9298a2e"><p class="cl-c9275790"><span class="cl-c926b11e">Oceania</span></p></td><td class="cl-c9298a7e"><p class="cl-c927586c"><span class="cl-c926b11e">24</span></p></td><td class="cl-c9298a7e"><p class="cl-c927586c"><span class="cl-c926b11e">18,622</span></p></td><td class="cl-c9298a7e"><p class="cl-c927586c"><span class="cl-c926b11e">6,359</span></p></td></tr></tbody></table></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-dc8abedc"><p class="cl-dc8a89c6"><span class="cl-dc8a75b2">continent</span></p></td><td class="cl-dc8abef0"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">n</span></p></td><td class="cl-dc8abef0"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">mean_gdp</span></p></td><td class="cl-dc8abef0"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dc8abea0"><p class="cl-dc8a89c6"><span class="cl-dc8a75b2">Africa</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">624</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">2,194</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">2,828</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dc8abea0"><p class="cl-dc8a89c6"><span class="cl-dc8a75b2">Americas</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">300</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">7,136</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">6,397</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dc8abea0"><p class="cl-dc8a89c6"><span class="cl-dc8a75b2">Asia</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">396</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">7,902</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">14,045</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dc8abea0"><p class="cl-dc8a89c6"><span class="cl-dc8a75b2">Europe</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">360</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">14,469</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">9,355</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dc8abec8"><p class="cl-dc8a89c6"><span class="cl-dc8a75b2">Oceania</span></p></td><td class="cl-dc8abed2"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">24</span></p></td><td class="cl-dc8abed2"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">18,622</span></p></td><td class="cl-dc8abed2"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">6,359</span></p></td></tr></tbody></table></div>
 ```
 
 #### Scoped summaries
@@ -5764,6 +5764,309 @@ re_out %>%
 ## [1] 4.503537e-09
 ```
 
+### Design Anaysis (optional)
+
+DeclareDesign provides a collection of packages (`fabricatr`, `randomizr`, `estimatr`) that are very useful for those interested in testing the strength of research design. DeclareDesign also helps share your research design along with your code and data. 
+
+
+```r
+pacman::p_load(DeclareDesign, #  
+               fabricatr, # Fabricate mock (fake) data  
+               randomizr, # Random sampling and assignment 
+               estimatr, # Fast estimation tools (IV, etc) 
+               DesignLibrary) # Research design library 
+```
+
+Model-Inquire-Data Strategy-Answer Strategy (MIDA) by Graeme Blair, Jasper Cooper, Alex Coppock, and Macartan Humphreys ([APSR 2019](https://declaredesign.org/declare.pdf)). The following instructions draw on the vignette available at [the package homepage](https://declaredesign.org/mida/). Also, take a look at [DeclareDesign cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/declaredesign.pdf).
+
+1. Setup 
+
+* Model: a speculatioin of how the world works (variables plus their relationships)
+
+
+```r
+population <- declare_population(N = 1000, 
+                                 noise = rnorm(N))
+
+population # class 
+```
+
+```
+## declare_population(N = 1000, noise = rnorm(N))
+```
+
+```r
+population() %>% head() # instance 
+```
+
+```
+##     ID      noise
+## 1 0001  0.5952464
+## 2 0002  0.5847477
+## 3 0003  0.9645900
+## 4 0004  0.3194326
+## 5 0005 -1.2011572
+## 6 0006 -1.7892308
+```
+
+
+
+```r
+# Note that Y_Z_0 and Y_Z_1 are argument names. 
+potential_outcomes <- declare_potential_outcomes(Y_Z_0 = 0, # Control group 
+                                                 Y_Z_1 = 1 + noise) # Treatment group 
+```
+
+* Inquiry: a description of the distributions of the variables (estimand = something we desire to know)
+
+You can add other estimators such as Conditional Average Treatment Effect (CATE).
+
+
+```r
+estimand_ate <- declare_estimand(ATE = mean(Y_Z_1 - Y_Z_0))
+```
+
+* Data strategy: a description of sampling (or case selection) + intervention strategy  
+
+
+```r
+sampling <- declare_sampling(n = 250) # Sampling 250 units 
+assignment <- declare_assignment(m = 50) # Assign 50 units 
+
+# If you don't do this, you will be missing Y 
+reveal_Y <- declare_reveal(Y, Z)
+```
+
+* Answer strategy: a description of how to use data to answer a question 
+
+
+```r
+estimator_ate <- declare_estimator(Y ~ Z, 
+                                   estimand = estimand_ate,
+                                   model = difference_in_means)
+```
+
+* Design 
+
+
+```r
+design <- population + potential_outcomes + estimand_ate + sampling + assignment + reveal_Y + estimator_ate
+
+# This should work. Otherwise, something is wrong with your code.
+design
+```
+
+```
+## 
+## Design Summary
+## 
+## Step 1 (population): declare_population(N = 1000, noise = rnorm(N)) ------------
+## 
+## N = 1000 
+## 
+## Added variable: ID 
+##  N_missing N_unique     class
+##          0     1000 character
+## 
+## Added variable: noise 
+##    min median  mean  max   sd N_missing N_unique
+##  -3.85  -0.07 -0.04 3.36 1.02         0     1000
+## 
+## Step 2 (potential outcomes): declare_potential_outcomes(Y_Z_0 = 0, Y_Z_1 = 1 + noise) 
+## 
+## Added variable: Y_Z_0 
+##     0
+##  1000
+##  1.00
+## 
+## Added variable: Y_Z_1 
+##    min median mean  max   sd N_missing N_unique
+##  -2.85   0.93 0.96 4.36 1.02         0     1000
+## 
+## Step 3 (estimand): declare_estimand(ATE = mean(Y_Z_1 - Y_Z_0)) -----------------
+## 
+## A single draw of the estimand:
+##  estimand_label  estimand
+##             ATE 0.9600409
+## 
+## Step 4 (sampling): declare_sampling(n = 250) -----------------------------------
+## 
+## N = 250 (750 subtracted) 
+## 
+## Added variable: S_inclusion_prob 
+##  0.25
+##   250
+##  1.00
+## 
+## Altered variable: ID 
+##   Before: 
+##  N_missing N_unique     class
+##          0     1000 character
+## 
+##   After:
+##  N_missing N_unique     class
+##          0      250 character
+## 
+## Altered variable: noise 
+##   Before: 
+##    min median  mean  max   sd N_missing N_unique
+##  -3.85  -0.07 -0.04 3.36 1.02         0     1000
+## 
+##   After:
+##   min median  mean  max   sd N_missing N_unique
+##  -3.6  -0.08 -0.03 2.83 1.06         0      250
+## 
+## Altered variable: Y_Z_0 
+##   Before: 
+##     0
+##  1000
+##  1.00
+## 
+##   After:
+##     0
+##   250
+##  1.00
+## 
+## Altered variable: Y_Z_1 
+##   Before: 
+##    min median mean  max   sd N_missing N_unique
+##  -2.85   0.93 0.96 4.36 1.02         0     1000
+## 
+##   After:
+##   min median mean  max   sd N_missing N_unique
+##  -2.6   0.92 0.97 3.83 1.06         0      250
+## 
+## Step 5 (assignment): declare_assignment(m = 50) --------------------------------
+## 
+## Added variable: Z 
+##     0    1
+##   200   50
+##  0.80 0.20
+## 
+## Added variable: Z_cond_prob 
+##   0.2  0.8
+##    50  200
+##  0.20 0.80
+## 
+## Step 6 (reveal): declare_reveal(Y, Z) ------------------------------------------
+## 
+## Added variable: Y 
+##    min median mean  max   sd N_missing N_unique
+##  -1.44      0  0.2 3.08 0.59         0       51
+## 
+## Step 7 (estimator): declare_estimator(Y ~ Z, estimand = estimand_ate, model = difference_in_means) 
+## 
+## Formula: Y ~ Z 
+## 
+## Model:	difference_in_means 
+## 
+## A single draw of the estimator:
+##  estimator_label term estimate std.error statistic      p.value  conf.low
+##        estimator    Z 1.010462 0.1370808  7.371286 1.768003e-09 0.7349878
+##  conf.high df outcome estimand_label
+##   1.285936 49       Y            ATE
+```
+
+2. Applications 
+
+* Simulating data 
+
+
+```r
+fake_data <- draw_data(design)
+
+head(fake_data)
+```
+
+```
+##     ID      noise Y_Z_0      Y_Z_1 S_inclusion_prob Z Z_cond_prob          Y
+## 1 0001 -0.2533829     0  0.7466171             0.25 1         0.2  0.7466171
+## 2 0002  1.2077610     0  2.2077610             0.25 0         0.8  0.0000000
+## 3 0009 -0.5574354     0  0.4425646             0.25 0         0.8  0.0000000
+## 4 0010  1.2574286     0  2.2574286             0.25 1         0.2  2.2574286
+## 5 0011 -0.5511836     0  0.4488164             0.25 0         0.8  0.0000000
+## 6 0016 -1.1025132     0 -0.1025132             0.25 1         0.2 -0.1025132
+```
+
+* Estimation 
+
+
+```r
+estimates <- draw_estimates(design)
+
+estimates
+```
+
+```
+##   estimator_label term estimate std.error statistic      p.value  conf.low
+## 1       estimator    Z 1.194527 0.1361679   8.77246 1.290575e-11 0.9208878
+##   conf.high df outcome estimand_label
+## 1  1.468167 49       Y            ATE
+```
+
+* Diagnosis 
+
+Diagnosis is done using a Monte Carlo approach (=simulating many times using bootstrapped samples).
+
+
+```r
+diagnosis <- diagnose_design(design, 
+                             sims = 1000, 
+                             bootstrap_sims = 500)
+
+diagnosis
+```
+
+```
+## 
+## Research design diagnosis based on 1000 simulations. Diagnosand estimates with bootstrapped standard errors in parentheses (500 replicates).
+## 
+##  Design Label Estimand Label Estimator Label Term N Sims   Bias   RMSE  Power
+##        design            ATE       estimator    Z   1000  -0.00   0.13   1.00
+##                                                          (0.00) (0.00) (0.00)
+##  Coverage Mean Estimate SD Estimate Mean Se Type S Rate Mean Estimand
+##      0.96          1.00        0.14    0.14        0.00          1.00
+##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
+```
+
+```r
+# Very weakly biased 
+# Well powered. Power = 1 - Type II error (False Negative Rate). Therefore, higher statistical power means lower false negative rate. 
+# Coverage (standard errors) is fine. 95% of the time right answers lie in the coverage. 
+```
+
+* Shortcuts 
+
+Doing the power analysis for a three-arm experiment.
+
+
+```r
+three_arm <- multi_arm_designer(N = 1000, m = 3, 
+                   outcome_means = c(0, 0.1, 0.2))
+
+diagnose_design(three_arm)
+```
+
+```
+## 
+## Research design diagnosis based on 500 simulations. Diagnosand estimates with bootstrapped standard errors in parentheses (100 replicates).
+## 
+##  Design Label Estimand Label Estimator Label N Sims   Bias   RMSE  Power
+##     three_arm      ate_Y_2_1 DIM (Z_2 - Z_1)    500   0.00   0.07   0.26
+##                                                     (0.00) (0.00) (0.02)
+##     three_arm      ate_Y_3_1 DIM (Z_3 - Z_1)    500   0.00   0.07   0.75
+##                                                     (0.00) (0.00) (0.02)
+##     three_arm      ate_Y_3_2 DIM (Z_3 - Z_2)    500   0.00   0.08   0.26
+##                                                     (0.00) (0.00) (0.02)
+##  Coverage Mean Estimate SD Estimate Mean Se Type S Rate Mean Estimand
+##      0.97          0.10        0.07    0.08        0.00          0.10
+##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
+##      0.96          0.20        0.07    0.08        0.00          0.20
+##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
+##      0.96          0.10        0.08    0.08        0.00          0.10
+##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
+```
+
 ## Visualizing (ggplot2)
 
 - The following material is adapted from Kieran Healy's wonderful book (2019) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful book on [ggplot2](https://link.springer.com/content/pdf/10.1007%2F978-0-387-98141-3.pdf). For more theoretical discussions, I recommend you to read [The Grammar of Graphics](https://link.springer.com/book/10.1007%2F0-387-28695-0) by Leland Wilkinson.
@@ -5841,7 +6144,7 @@ anscombe_processed %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-172-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-183-1.png" width="672" />
 
 ### The grammar of graphics 
 
@@ -5885,13 +6188,13 @@ p <- ggplot(
 p
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-173-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-184-1.png" width="672" />
 
 ```r
 p + geom_point()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-173-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-184-2.png" width="672" />
 
 ```r
 p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
@@ -5901,7 +6204,7 @@ p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-173-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-184-3.png" width="672" />
 
 ```r
 # the shaded area is the standard error for the line
@@ -5961,7 +6264,7 @@ midwest %>%
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-176-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-187-1.png" width="672" />
 
 ```r
 midwest %>%
@@ -5969,7 +6272,7 @@ midwest %>%
   geom_histogram(bins = 10) # only 10 bins.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-176-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-187-2.png" width="672" />
 
 ```r
 ggplot(
@@ -5980,7 +6283,7 @@ ggplot(
   scale_fill_viridis_d()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-176-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-187-3.png" width="672" />
 
 #### Density 
 
@@ -5993,7 +6296,7 @@ midwest %>%
   scale_fill_viridis_d()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-177-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-188-1.png" width="672" />
 
 ### Advanced aes (size, color)
 
@@ -6013,7 +6316,7 @@ ggplot(
   geom_point()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-178-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-189-1.png" width="672" />
 
 
 ```r
@@ -6029,7 +6332,7 @@ ggplot(
   scale_color_viridis_d()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-179-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-190-1.png" width="672" />
 
 
 ```r
@@ -6045,7 +6348,7 @@ ggplot(
   geom_point()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-180-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-191-1.png" width="672" />
 
 Aesthetics also can be mapped per Geom. 
 
@@ -6059,7 +6362,7 @@ p + geom_point() +
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-181-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-1.png" width="672" />
 
 ```r
 p + geom_point(alpha = 0.3) + # alpha controls transparency
@@ -6070,7 +6373,7 @@ p + geom_point(alpha = 0.3) + # alpha controls transparency
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-181-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-2.png" width="672" />
 
 ```r
 p + geom_point(alpha = 0.3) + # alpha controls transparency
@@ -6081,7 +6384,7 @@ p + geom_point(alpha = 0.3) + # alpha controls transparency
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-181-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-3.png" width="672" />
 
 
 ```r
@@ -6107,7 +6410,7 @@ ggplot(
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-182-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-193-1.png" width="672" />
 
 ```r
 ggplot(
@@ -6135,7 +6438,7 @@ ggplot(
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-182-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-193-2.png" width="672" />
 
 ### Co-ordinates and scales 
 
@@ -6145,7 +6448,7 @@ p + geom_point() +
   coord_flip() # coord_type
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-183-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-194-1.png" width="672" />
 
 The data is heavily bunched up against the left side. 
 
@@ -6153,14 +6456,14 @@ The data is heavily bunched up against the left side.
 p + geom_point() # without scaling
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-184-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-1.png" width="672" />
 
 ```r
 p + geom_point() +
   scale_x_log10() # scales the axis of a plot to a log 10 basis
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-184-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-2.png" width="672" />
 
 ```r
 p + geom_point() +
@@ -6172,7 +6475,7 @@ p + geom_point() +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-184-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-3.png" width="672" />
 
 
 ### Labels and guides 
@@ -6197,7 +6500,7 @@ p + geom_point(alpha = 0.3) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-185-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-196-1.png" width="672" />
 
 6. Themes
 
@@ -6219,7 +6522,7 @@ p + geom_point(alpha = 0.3) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-186-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-197-1.png" width="672" />
 
 ### ggsave 
 
@@ -6258,17 +6561,17 @@ p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
 p + geom_point()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-188-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-199-1.png" width="672" />
 
 ```r
 p + geom_line()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-188-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-199-2.png" width="672" />
 
 `geom_line` joins up all the lines for each particular year in the order they appear in the dataset. `ggplot2` does not know the yearly observations in your data are grouped by country. 
 
-Note that you need grouping when the grouping information you need to tell is not built into the varaibles being mapped (like continent).
+Note that you need grouping when the grouping information you need to tell is not built into the variables being mapped (like continent).
 
 
 ```r
@@ -6307,13 +6610,13 @@ p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
 p + geom_line(aes(group = country)) # group by, # The outlier is Kuwait.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-190-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-201-1.png" width="672" />
 
 ```r
 p + geom_line(aes(group = country)) + facet_wrap(~continent) # facetting
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-190-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-201-2.png" width="672" />
 
 ```r
 p + geom_line(aes(group = country), color = "gray70") +
@@ -6332,7 +6635,7 @@ p + geom_line(aes(group = country), color = "gray70") +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-190-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-201-3.png" width="672" />
 
 
 ```r
@@ -6352,7 +6655,7 @@ p + geom_line(aes(group = country), color = "gray70") +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-191-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-202-1.png" width="672" />
 
 
 ### Transforming
@@ -6387,7 +6690,7 @@ ggplot(data = gapminder_formatted, aes(x = year, y = lifeExp_mean, color = conti
   )
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-203-1.png" width="672" />
 
 ```r
 gapminder %>%
@@ -6410,7 +6713,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-203-2.png" width="672" />
 
 
 ```r
@@ -6436,7 +6739,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-193-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-204-1.png" width="672" />
 
 ```r
 # geom bar
@@ -6461,7 +6764,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-193-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-204-2.png" width="672" />
 
 ```r
 # no facet
@@ -6485,7 +6788,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-193-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-204-3.png" width="672" />
 
 
 ```r
@@ -6510,7 +6813,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-194-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-205-1.png" width="672" />
 
 
 ```r
@@ -6536,7 +6839,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-206-1.png" width="672" />
 
 ```r
 # reorder
@@ -6561,7 +6864,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-206-2.png" width="672" />
 
 #### Plotting text
 
@@ -6585,7 +6888,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-196-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-207-1.png" width="672" />
 
 
 ```r
@@ -6608,7 +6911,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-197-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-208-1.png" width="672" />
 
 
 ```r
@@ -6631,7 +6934,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-198-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-209-1.png" width="672" />
 
 ### Ploting models 
 
@@ -6662,7 +6965,7 @@ gapminder %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-199-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-210-1.png" width="672" />
 
 #### Extracting model outcomes 
 
@@ -6685,7 +6988,7 @@ out <- lm(
 - `conf.high`: the high end of a confidence interval
 - `df`: degrees of freedom
 
-**Challege**
+**Challenge**
 
 Try glance(out), what did you get from these commands? If you're curious, you can try ?glance.
 
@@ -6706,7 +7009,7 @@ p + geom_point() +
   theme_bw()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-201-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-212-1.png" width="672" />
 
 ##### Confidence intervals
 
@@ -6724,7 +7027,7 @@ out_conf %>%
   theme_bw()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-202-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-213-1.png" width="672" />
 
 ```r
 # another way to do it (errorbar)
@@ -6736,6 +7039,6 @@ out_conf %>%
   theme_bw()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-202-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-213-2.png" width="672" />
 
 You can calculate marginal effects using `margins` package. For the sake of time, I'm not covering that here.
