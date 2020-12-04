@@ -109,7 +109,7 @@ data_original <- read_csv(here("data", "heart.csv"))
 
 ```
 ## 
-## ── Column specification ───────────────────────────────────────────────────────────────
+## ── Column specification ─────────────────────────────────
 ## cols(
 ##   age = col_double(),
 ##   sex = col_double(),
@@ -744,7 +744,7 @@ best_rmse
 ## # A tibble: 1 x 2
 ##   penalty .config              
 ##     <dbl> <chr>                
-## 1   0.244 Preprocessor1_Model47
+## 1   0.153 Preprocessor1_Model46
 ```
 
 ```r
@@ -757,7 +757,7 @@ glue('The RMSE of the intiail model is
 
 ```
 ## The RMSE of the intiail model is 
-##    7.86
+##    7.88
 ```
 
 ```r
@@ -805,9 +805,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.19 
-## 2 mae     standard       5.95 
-## 3 rsq     standard       0.401
+## 1 rmse    standard       7.09 
+## 2 mae     standard       5.84 
+## 3 rsq     standard       0.414
 ```
 
 ### Decision tree 
@@ -1041,8 +1041,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.744
-## 2 precision binary         0.705
+## 1 accuracy  binary         0.733
+## 2 precision binary         0.689
 ## 3 recall    binary         0.756
 ```
 
@@ -1262,7 +1262,7 @@ best_tree
 ## # A tibble: 1 x 3
 ##    mtry min_n .config              
 ##   <int> <int> <chr>                
-## 1     1     2 Preprocessor1_Model01
+## 1     1    10 Preprocessor1_Model21
 ```
 
 ```r
@@ -1316,9 +1316,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.933
-## 2 precision binary         0.973
-## 3 recall    binary         0.878
+## 1 accuracy  binary         0.922
+## 2 precision binary         0.972
+## 3 recall    binary         0.854
 ```
 
 ### Boosting (XGboost)
@@ -1581,8 +1581,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.778
-## 2 precision binary         0.889
+## 1 accuracy  binary         0.767
+## 2 precision binary         0.857
 ## 3 recall    binary         0.585
 ```
 
@@ -1705,13 +1705,13 @@ summary(cv_sl)
 ## All risk estimates are based on V =  5 
 ## 
 ##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.12790 0.0149325 0.064344 0.17486
-##     Discrete SL 0.12733 0.0149957 0.062865 0.17500
+##   Super Learner 0.12831 0.0147872 0.065689 0.17518
+##     Discrete SL 0.12712 0.0148904 0.062977 0.17531
 ##     SL.mean_All 0.24802 0.0030531 0.247747 0.24893
-##   SL.glmnet_All 0.12733 0.0149957 0.062865 0.17500
-##    SL.rpart_All 0.18318 0.0199052 0.137814 0.22434
-##   SL.ranger_All 0.14371 0.0133516 0.098903 0.17394
-##  SL.xgboost_All 0.15483 0.0167045 0.117434 0.16837
+##   SL.glmnet_All 0.12712 0.0148904 0.062977 0.17531
+##    SL.rpart_All 0.19077 0.0197215 0.137814 0.22434
+##   SL.ranger_All 0.14243 0.0131858 0.098400 0.17475
+##  SL.xgboost_All 0.15704 0.0169223 0.121860 0.17506
 ```
 
 ##### Plot
@@ -1748,13 +1748,13 @@ auc_table(cv_sl)
 
 ```
 ##                      auc         se  ci_lower  ci_upper      p-value
-## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.277693e-09
-## SL.rpart_All   0.7900281 0.04273421 0.7062706 0.8737856 5.339300e-03
-## SL.xgboost_All 0.8467973 0.02801612 0.7918867 0.9017079 3.088343e-02
-## SL.ranger_All  0.8809411 0.02347343 0.8349340 0.9269482 2.192019e-01
-## SuperLearner   0.8970061 0.02134623 0.8551683 0.9388439 4.603635e-01
-## SL.glmnet_All  0.8991304 0.02112031 0.8577354 0.9405255 5.000000e-01
-## DiscreteSL     0.8991304 0.02112031 0.8577354 0.9405255 5.000000e-01
+## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.138901e-09
+## SL.rpart_All   0.7852455 0.04203594 0.7028566 0.8676344 3.253351e-03
+## SL.xgboost_All 0.8469098 0.02790665 0.7922138 0.9016058 2.943716e-02
+## SL.ranger_All  0.8809411 0.02338011 0.8351169 0.9267652 2.120545e-01
+## SuperLearner   0.8966714 0.02131186 0.8549010 0.9384419 4.448119e-01
+## SL.glmnet_All  0.8996291 0.02102314 0.8584245 0.9408337 5.000000e-01
+## DiscreteSL     0.8996291 0.02102314 0.8584245 0.9408337 5.000000e-01
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
@@ -1774,12 +1774,12 @@ print(cvsl_weights(cv_sl), row.names = FALSE)
 ```
 
 ```
-##  # Learner    Mean      SD    Min     Max
-##  1  glmnet 0.94832 0.04156 0.9017 0.99661
-##  2  ranger 0.03567 0.04049 0.0000 0.09830
-##  3 xgboost 0.01152 0.01655 0.0000 0.03891
-##  4   rpart 0.00233 0.00521 0.0000 0.01165
-##  5    mean 0.00216 0.00482 0.0000 0.01078
+##  # Learner    Mean      SD     Min     Max
+##  1  glmnet 0.91558 0.07913 0.82193 1.00000
+##  2  ranger 0.08147 0.07881 0.00000 0.17807
+##  3    mean 0.00162 0.00362 0.00000 0.00810
+##  4 xgboost 0.00106 0.00154 0.00000 0.00339
+##  5   rpart 0.00026 0.00059 0.00000 0.00131
 ```
 
 General stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
@@ -2089,7 +2089,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.581) 
 ## ....................................................................................................
@@ -2097,7 +2097,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.482, relative change = 1.312e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.408, relative change = 9.916e-03) 
 ## ....................................................................................................
@@ -2118,19 +2118,19 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.367, relative change = 6.889e-04) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.365, relative change = 3.221e-04) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.364, relative change = 1.281e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.364, relative change = 1.012e-05) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -2141,7 +2141,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.666) 
 ## ....................................................................................................
@@ -2157,7 +2157,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.361, relative change = 3.497e-03) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 5 (approx. per word bound = -7.351, relative change = 1.396e-03) 
 ## Topic 1: upon, littl, paper, even, came 
@@ -2175,7 +2175,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.346, relative change = 7.034e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.342, relative change = 5.221e-04) 
 ## ....................................................................................................
@@ -2183,7 +2183,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.338, relative change = 5.161e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.336, relative change = 2.460e-04) 
 ## ....................................................................................................
@@ -2202,7 +2202,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.738) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.461, relative change = 3.577e-02) 
 ## ....................................................................................................
@@ -2210,7 +2210,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.367, relative change = 1.264e-02) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.343, relative change = 3.252e-03) 
 ## ....................................................................................................
@@ -2241,7 +2241,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.324, relative change = 4.535e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.322, relative change = 3.650e-04) 
 ## ....................................................................................................
@@ -2272,7 +2272,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 11 (approx. per word bound = -7.317, relative change = 1.808e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 12 (approx. per word bound = -7.316, relative change = 1.221e-04) 
 ## ....................................................................................................
@@ -2280,7 +2280,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 13 (approx. per word bound = -7.315, relative change = 8.460e-05) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 14 (approx. per word bound = -7.315, relative change = 4.530e-05) 
 ## ....................................................................................................
@@ -2303,7 +2303,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 14: man, reason, certain, strang, lord 
 ##  Topic 15: might, make, thing, word, follow 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Model Converged
 ```
@@ -2807,7 +2807,7 @@ two_years_violent <- read_csv(here("data" ,"compas-scores-two-years-violent.csv"
 
 ```
 ## 
-## ── Column specification ───────────────────────────────────────────────────────────────
+## ── Column specification ─────────────────────────────────
 ## cols(
 ##   .default = col_double(),
 ##   name = col_character(),
@@ -3165,7 +3165,7 @@ cox_data <- read_csv(here("data" ,"cox-parsed.csv"))
 
 ```
 ## 
-## ── Column specification ───────────────────────────────────────────────────────────────
+## ── Column specification ─────────────────────────────────
 ## cols(
 ##   .default = col_character(),
 ##   id = col_double(),

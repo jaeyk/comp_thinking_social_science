@@ -3289,7 +3289,96 @@ df %>% unite("contact",
 ## 4
 ```
 
-### Filling (TBD)
+### Filling
+
+This is a relatively less-known function of the tidyr package. I found this function super useful to complete time-series data. For instance, how can you replace NA in the following example (this use case is drawn from the [tidyr package vignette](https://tidyr.tidyverse.org/reference/fill.html).)?
+
+
+```r
+# Example 
+stock <- tibble::tribble(
+  ~ quarter, ~ year, ~stock_price, 
+  "Q1", 2000, 10000, 
+  "Q2", NA, 10001, # Replace NA with 2000  
+  "Q3", NA, 10002, # Replace NA with 2000 
+  "Q4", NA, 10003, # Replace NA with 2000 
+  "Q1", 2001, 10004, 
+  "Q2", NA, 10005, # Replace NA with 2001 
+  "Q3", NA, 10006, # Replace NA with 2001 
+  "Q4", NA, 10007, # Replace NA with 2001
+)
+
+fill(stock, year)
+```
+
+```
+## # A tibble: 8 x 3
+##   quarter  year stock_price
+##   <chr>   <dbl>       <dbl>
+## 1 Q1       2000       10000
+## 2 Q2       2000       10001
+## 3 Q3       2000       10002
+## 4 Q4       2000       10003
+## 5 Q1       2001       10004
+## 6 Q2       2001       10005
+## 7 Q3       2001       10006
+## 8 Q4       2001       10007
+```
+
+Let's take a slightly more complex example. 
+
+
+```r
+# Example 
+yelp_rate <- tibble::tribble(
+  ~ neighborhood, ~restraurant_type, ~popularity_rate, 
+  "N1", "Chinese", 5, 
+  "N2", NA, 4,   
+  "N3", NA, 3,  
+  "N4", NA, 2,  
+  "N1", "Indian", 1, 
+  "N2", NA, 2,  
+  "N3", NA, 3,  
+  "N4", NA, 4, 
+  "N1", "Mexican", 5
+)
+
+fill(yelp_rate, restraurant_type) # default is direction = .down 
+```
+
+```
+## # A tibble: 9 x 3
+##   neighborhood restraurant_type popularity_rate
+##   <chr>        <chr>                      <dbl>
+## 1 N1           Chinese                        5
+## 2 N2           Chinese                        4
+## 3 N3           Chinese                        3
+## 4 N4           Chinese                        2
+## 5 N1           Indian                         1
+## 6 N2           Indian                         2
+## 7 N3           Indian                         3
+## 8 N4           Indian                         4
+## 9 N1           Mexican                        5
+```
+
+```r
+fill(yelp_rate, restraurant_type, .direction = "up") 
+```
+
+```
+## # A tibble: 9 x 3
+##   neighborhood restraurant_type popularity_rate
+##   <chr>        <chr>                      <dbl>
+## 1 N1           Chinese                        5
+## 2 N2           Indian                         4
+## 3 N3           Indian                         3
+## 4 N4           Indian                         2
+## 5 N1           Indian                         1
+## 6 N2           Mexican                        2
+## 7 N3           Mexican                        3
+## 8 N4           Mexican                        4
+## 9 N1           Mexican                        5
+```
 
 ## Manipulating (dplyr)
 
@@ -4058,6 +4147,452 @@ msleep %>%
 ## # … with 73 more rows
 ```
 
+**Additional tips**
+
+`msleep` data has nicely cleaned column names. But real world data are usually messier. The `janitor` package is useful to fix this kind of problem.
+
+
+```r
+messy_df <- tibble::tribble(~"ColNum1", ~"COLNUM2", ~ "COL & NUM3",
+                            1, 2, 3)
+
+
+messy_df
+```
+
+```
+## # A tibble: 1 x 3
+##   ColNum1 COLNUM2 `COL & NUM3`
+##     <dbl>   <dbl>        <dbl>
+## 1       1       2            3
+```
+
+```r
+pacman::p_load(janitor)
+
+janitor::clean_names(messy_df) 
+```
+
+```
+## # A tibble: 1 x 3
+##   col_num1 colnum2 col_num3
+##      <dbl>   <dbl>    <dbl>
+## 1        1       2        3
+```
+
+`janitor::tabyl()` is helpful for doing crosstabulation and a nice alternative to `table()` function. 
+
+
+```r
+# Frequency table; The default output class is table 
+table(gapminder$country)
+```
+
+```
+## 
+##              Afghanistan                  Albania                  Algeria 
+##                       12                       12                       12 
+##                   Angola                Argentina                Australia 
+##                       12                       12                       12 
+##                  Austria                  Bahrain               Bangladesh 
+##                       12                       12                       12 
+##                  Belgium                    Benin                  Bolivia 
+##                       12                       12                       12 
+##   Bosnia and Herzegovina                 Botswana                   Brazil 
+##                       12                       12                       12 
+##                 Bulgaria             Burkina Faso                  Burundi 
+##                       12                       12                       12 
+##                 Cambodia                 Cameroon                   Canada 
+##                       12                       12                       12 
+## Central African Republic                     Chad                    Chile 
+##                       12                       12                       12 
+##                    China                 Colombia                  Comoros 
+##                       12                       12                       12 
+##         Congo, Dem. Rep.              Congo, Rep.               Costa Rica 
+##                       12                       12                       12 
+##            Cote d'Ivoire                  Croatia                     Cuba 
+##                       12                       12                       12 
+##           Czech Republic                  Denmark                 Djibouti 
+##                       12                       12                       12 
+##       Dominican Republic                  Ecuador                    Egypt 
+##                       12                       12                       12 
+##              El Salvador        Equatorial Guinea                  Eritrea 
+##                       12                       12                       12 
+##                 Ethiopia                  Finland                   France 
+##                       12                       12                       12 
+##                    Gabon                   Gambia                  Germany 
+##                       12                       12                       12 
+##                    Ghana                   Greece                Guatemala 
+##                       12                       12                       12 
+##                   Guinea            Guinea-Bissau                    Haiti 
+##                       12                       12                       12 
+##                 Honduras         Hong Kong, China                  Hungary 
+##                       12                       12                       12 
+##                  Iceland                    India                Indonesia 
+##                       12                       12                       12 
+##                     Iran                     Iraq                  Ireland 
+##                       12                       12                       12 
+##                   Israel                    Italy                  Jamaica 
+##                       12                       12                       12 
+##                    Japan                   Jordan                    Kenya 
+##                       12                       12                       12 
+##         Korea, Dem. Rep.              Korea, Rep.                   Kuwait 
+##                       12                       12                       12 
+##                  Lebanon                  Lesotho                  Liberia 
+##                       12                       12                       12 
+##                    Libya               Madagascar                   Malawi 
+##                       12                       12                       12 
+##                 Malaysia                     Mali               Mauritania 
+##                       12                       12                       12 
+##                Mauritius                   Mexico                 Mongolia 
+##                       12                       12                       12 
+##               Montenegro                  Morocco               Mozambique 
+##                       12                       12                       12 
+##                  Myanmar                  Namibia                    Nepal 
+##                       12                       12                       12 
+##              Netherlands              New Zealand                Nicaragua 
+##                       12                       12                       12 
+##                    Niger                  Nigeria                   Norway 
+##                       12                       12                       12 
+##                     Oman                 Pakistan                   Panama 
+##                       12                       12                       12 
+##                 Paraguay                     Peru              Philippines 
+##                       12                       12                       12 
+##                   Poland                 Portugal              Puerto Rico 
+##                       12                       12                       12 
+##                  Reunion                  Romania                   Rwanda 
+##                       12                       12                       12 
+##    Sao Tome and Principe             Saudi Arabia                  Senegal 
+##                       12                       12                       12 
+##                   Serbia             Sierra Leone                Singapore 
+##                       12                       12                       12 
+##          Slovak Republic                 Slovenia                  Somalia 
+##                       12                       12                       12 
+##             South Africa                    Spain                Sri Lanka 
+##                       12                       12                       12 
+##                    Sudan                Swaziland                   Sweden 
+##                       12                       12                       12 
+##              Switzerland                    Syria                   Taiwan 
+##                       12                       12                       12 
+##                 Tanzania                 Thailand                     Togo 
+##                       12                       12                       12 
+##      Trinidad and Tobago                  Tunisia                   Turkey 
+##                       12                       12                       12 
+##                   Uganda           United Kingdom            United States 
+##                       12                       12                       12 
+##                  Uruguay                Venezuela                  Vietnam 
+##                       12                       12                       12 
+##       West Bank and Gaza              Yemen, Rep.                   Zambia 
+##                       12                       12                       12 
+##                 Zimbabwe 
+##                       12
+```
+
+```r
+# Frequency table (unique value, n, percentage)
+janitor::tabyl(gapminder$country)
+```
+
+```
+##         gapminder$country  n     percent
+##               Afghanistan 12 0.007042254
+##                   Albania 12 0.007042254
+##                   Algeria 12 0.007042254
+##                    Angola 12 0.007042254
+##                 Argentina 12 0.007042254
+##                 Australia 12 0.007042254
+##                   Austria 12 0.007042254
+##                   Bahrain 12 0.007042254
+##                Bangladesh 12 0.007042254
+##                   Belgium 12 0.007042254
+##                     Benin 12 0.007042254
+##                   Bolivia 12 0.007042254
+##    Bosnia and Herzegovina 12 0.007042254
+##                  Botswana 12 0.007042254
+##                    Brazil 12 0.007042254
+##                  Bulgaria 12 0.007042254
+##              Burkina Faso 12 0.007042254
+##                   Burundi 12 0.007042254
+##                  Cambodia 12 0.007042254
+##                  Cameroon 12 0.007042254
+##                    Canada 12 0.007042254
+##  Central African Republic 12 0.007042254
+##                      Chad 12 0.007042254
+##                     Chile 12 0.007042254
+##                     China 12 0.007042254
+##                  Colombia 12 0.007042254
+##                   Comoros 12 0.007042254
+##          Congo, Dem. Rep. 12 0.007042254
+##               Congo, Rep. 12 0.007042254
+##                Costa Rica 12 0.007042254
+##             Cote d'Ivoire 12 0.007042254
+##                   Croatia 12 0.007042254
+##                      Cuba 12 0.007042254
+##            Czech Republic 12 0.007042254
+##                   Denmark 12 0.007042254
+##                  Djibouti 12 0.007042254
+##        Dominican Republic 12 0.007042254
+##                   Ecuador 12 0.007042254
+##                     Egypt 12 0.007042254
+##               El Salvador 12 0.007042254
+##         Equatorial Guinea 12 0.007042254
+##                   Eritrea 12 0.007042254
+##                  Ethiopia 12 0.007042254
+##                   Finland 12 0.007042254
+##                    France 12 0.007042254
+##                     Gabon 12 0.007042254
+##                    Gambia 12 0.007042254
+##                   Germany 12 0.007042254
+##                     Ghana 12 0.007042254
+##                    Greece 12 0.007042254
+##                 Guatemala 12 0.007042254
+##                    Guinea 12 0.007042254
+##             Guinea-Bissau 12 0.007042254
+##                     Haiti 12 0.007042254
+##                  Honduras 12 0.007042254
+##          Hong Kong, China 12 0.007042254
+##                   Hungary 12 0.007042254
+##                   Iceland 12 0.007042254
+##                     India 12 0.007042254
+##                 Indonesia 12 0.007042254
+##                      Iran 12 0.007042254
+##                      Iraq 12 0.007042254
+##                   Ireland 12 0.007042254
+##                    Israel 12 0.007042254
+##                     Italy 12 0.007042254
+##                   Jamaica 12 0.007042254
+##                     Japan 12 0.007042254
+##                    Jordan 12 0.007042254
+##                     Kenya 12 0.007042254
+##          Korea, Dem. Rep. 12 0.007042254
+##               Korea, Rep. 12 0.007042254
+##                    Kuwait 12 0.007042254
+##                   Lebanon 12 0.007042254
+##                   Lesotho 12 0.007042254
+##                   Liberia 12 0.007042254
+##                     Libya 12 0.007042254
+##                Madagascar 12 0.007042254
+##                    Malawi 12 0.007042254
+##                  Malaysia 12 0.007042254
+##                      Mali 12 0.007042254
+##                Mauritania 12 0.007042254
+##                 Mauritius 12 0.007042254
+##                    Mexico 12 0.007042254
+##                  Mongolia 12 0.007042254
+##                Montenegro 12 0.007042254
+##                   Morocco 12 0.007042254
+##                Mozambique 12 0.007042254
+##                   Myanmar 12 0.007042254
+##                   Namibia 12 0.007042254
+##                     Nepal 12 0.007042254
+##               Netherlands 12 0.007042254
+##               New Zealand 12 0.007042254
+##                 Nicaragua 12 0.007042254
+##                     Niger 12 0.007042254
+##                   Nigeria 12 0.007042254
+##                    Norway 12 0.007042254
+##                      Oman 12 0.007042254
+##                  Pakistan 12 0.007042254
+##                    Panama 12 0.007042254
+##                  Paraguay 12 0.007042254
+##                      Peru 12 0.007042254
+##               Philippines 12 0.007042254
+##                    Poland 12 0.007042254
+##                  Portugal 12 0.007042254
+##               Puerto Rico 12 0.007042254
+##                   Reunion 12 0.007042254
+##                   Romania 12 0.007042254
+##                    Rwanda 12 0.007042254
+##     Sao Tome and Principe 12 0.007042254
+##              Saudi Arabia 12 0.007042254
+##                   Senegal 12 0.007042254
+##                    Serbia 12 0.007042254
+##              Sierra Leone 12 0.007042254
+##                 Singapore 12 0.007042254
+##           Slovak Republic 12 0.007042254
+##                  Slovenia 12 0.007042254
+##                   Somalia 12 0.007042254
+##              South Africa 12 0.007042254
+##                     Spain 12 0.007042254
+##                 Sri Lanka 12 0.007042254
+##                     Sudan 12 0.007042254
+##                 Swaziland 12 0.007042254
+##                    Sweden 12 0.007042254
+##               Switzerland 12 0.007042254
+##                     Syria 12 0.007042254
+##                    Taiwan 12 0.007042254
+##                  Tanzania 12 0.007042254
+##                  Thailand 12 0.007042254
+##                      Togo 12 0.007042254
+##       Trinidad and Tobago 12 0.007042254
+##                   Tunisia 12 0.007042254
+##                    Turkey 12 0.007042254
+##                    Uganda 12 0.007042254
+##            United Kingdom 12 0.007042254
+##             United States 12 0.007042254
+##                   Uruguay 12 0.007042254
+##                 Venezuela 12 0.007042254
+##                   Vietnam 12 0.007042254
+##        West Bank and Gaza 12 0.007042254
+##               Yemen, Rep. 12 0.007042254
+##                    Zambia 12 0.007042254
+##                  Zimbabwe 12 0.007042254
+```
+
+```r
+# If you want to add percentage ... 
+gapminder %>%
+  tabyl(country) %>%
+  adorn_pct_formatting(digits = 0, affix_sign = TRUE)
+```
+
+```
+##                   country  n percent
+##               Afghanistan 12      1%
+##                   Albania 12      1%
+##                   Algeria 12      1%
+##                    Angola 12      1%
+##                 Argentina 12      1%
+##                 Australia 12      1%
+##                   Austria 12      1%
+##                   Bahrain 12      1%
+##                Bangladesh 12      1%
+##                   Belgium 12      1%
+##                     Benin 12      1%
+##                   Bolivia 12      1%
+##    Bosnia and Herzegovina 12      1%
+##                  Botswana 12      1%
+##                    Brazil 12      1%
+##                  Bulgaria 12      1%
+##              Burkina Faso 12      1%
+##                   Burundi 12      1%
+##                  Cambodia 12      1%
+##                  Cameroon 12      1%
+##                    Canada 12      1%
+##  Central African Republic 12      1%
+##                      Chad 12      1%
+##                     Chile 12      1%
+##                     China 12      1%
+##                  Colombia 12      1%
+##                   Comoros 12      1%
+##          Congo, Dem. Rep. 12      1%
+##               Congo, Rep. 12      1%
+##                Costa Rica 12      1%
+##             Cote d'Ivoire 12      1%
+##                   Croatia 12      1%
+##                      Cuba 12      1%
+##            Czech Republic 12      1%
+##                   Denmark 12      1%
+##                  Djibouti 12      1%
+##        Dominican Republic 12      1%
+##                   Ecuador 12      1%
+##                     Egypt 12      1%
+##               El Salvador 12      1%
+##         Equatorial Guinea 12      1%
+##                   Eritrea 12      1%
+##                  Ethiopia 12      1%
+##                   Finland 12      1%
+##                    France 12      1%
+##                     Gabon 12      1%
+##                    Gambia 12      1%
+##                   Germany 12      1%
+##                     Ghana 12      1%
+##                    Greece 12      1%
+##                 Guatemala 12      1%
+##                    Guinea 12      1%
+##             Guinea-Bissau 12      1%
+##                     Haiti 12      1%
+##                  Honduras 12      1%
+##          Hong Kong, China 12      1%
+##                   Hungary 12      1%
+##                   Iceland 12      1%
+##                     India 12      1%
+##                 Indonesia 12      1%
+##                      Iran 12      1%
+##                      Iraq 12      1%
+##                   Ireland 12      1%
+##                    Israel 12      1%
+##                     Italy 12      1%
+##                   Jamaica 12      1%
+##                     Japan 12      1%
+##                    Jordan 12      1%
+##                     Kenya 12      1%
+##          Korea, Dem. Rep. 12      1%
+##               Korea, Rep. 12      1%
+##                    Kuwait 12      1%
+##                   Lebanon 12      1%
+##                   Lesotho 12      1%
+##                   Liberia 12      1%
+##                     Libya 12      1%
+##                Madagascar 12      1%
+##                    Malawi 12      1%
+##                  Malaysia 12      1%
+##                      Mali 12      1%
+##                Mauritania 12      1%
+##                 Mauritius 12      1%
+##                    Mexico 12      1%
+##                  Mongolia 12      1%
+##                Montenegro 12      1%
+##                   Morocco 12      1%
+##                Mozambique 12      1%
+##                   Myanmar 12      1%
+##                   Namibia 12      1%
+##                     Nepal 12      1%
+##               Netherlands 12      1%
+##               New Zealand 12      1%
+##                 Nicaragua 12      1%
+##                     Niger 12      1%
+##                   Nigeria 12      1%
+##                    Norway 12      1%
+##                      Oman 12      1%
+##                  Pakistan 12      1%
+##                    Panama 12      1%
+##                  Paraguay 12      1%
+##                      Peru 12      1%
+##               Philippines 12      1%
+##                    Poland 12      1%
+##                  Portugal 12      1%
+##               Puerto Rico 12      1%
+##                   Reunion 12      1%
+##                   Romania 12      1%
+##                    Rwanda 12      1%
+##     Sao Tome and Principe 12      1%
+##              Saudi Arabia 12      1%
+##                   Senegal 12      1%
+##                    Serbia 12      1%
+##              Sierra Leone 12      1%
+##                 Singapore 12      1%
+##           Slovak Republic 12      1%
+##                  Slovenia 12      1%
+##                   Somalia 12      1%
+##              South Africa 12      1%
+##                     Spain 12      1%
+##                 Sri Lanka 12      1%
+##                     Sudan 12      1%
+##                 Swaziland 12      1%
+##                    Sweden 12      1%
+##               Switzerland 12      1%
+##                     Syria 12      1%
+##                    Taiwan 12      1%
+##                  Tanzania 12      1%
+##                  Thailand 12      1%
+##                      Togo 12      1%
+##       Trinidad and Tobago 12      1%
+##                   Tunisia 12      1%
+##                    Turkey 12      1%
+##                    Uganda 12      1%
+##            United Kingdom 12      1%
+##             United States 12      1%
+##                   Uruguay 12      1%
+##                 Venezuela 12      1%
+##                   Vietnam 12      1%
+##        West Bank and Gaza 12      1%
+##               Yemen, Rep. 12      1%
+##                    Zambia 12      1%
+##                  Zimbabwe 12      1%
+```
+
+
 ### Create variables 
 
 
@@ -4404,11 +4939,11 @@ tablea %>% flextable::flextable()
 ```
 
 ```{=html}
-<div class="tabwid"><style>.cl-dc914540{border-collapse:collapse;}.cl-dc8a75b2{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dc8a89c6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-dc8a89da{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-dc8abea0{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc8abebe{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc8abec8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc8abed2{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc8abedc{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc8abef0{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-dc914540'>
+<div class="tabwid"><style>.cl-7726c3ec{border-collapse:collapse;}.cl-77221220{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-772223c8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-772223dc{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-77225532{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-77225550{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7722555a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-77225564{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7722556e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-77225578{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-7726c3ec'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-dc8abedc"><p class="cl-dc8a89c6"><span class="cl-dc8a75b2">continent</span></p></td><td class="cl-dc8abef0"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">n</span></p></td><td class="cl-dc8abef0"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">mean_gdp</span></p></td><td class="cl-dc8abef0"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dc8abea0"><p class="cl-dc8a89c6"><span class="cl-dc8a75b2">Africa</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">624</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">2,194</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">2,828</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dc8abea0"><p class="cl-dc8a89c6"><span class="cl-dc8a75b2">Americas</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">300</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">7,136</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">6,397</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dc8abea0"><p class="cl-dc8a89c6"><span class="cl-dc8a75b2">Asia</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">396</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">7,902</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">14,045</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dc8abea0"><p class="cl-dc8a89c6"><span class="cl-dc8a75b2">Europe</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">360</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">14,469</span></p></td><td class="cl-dc8abebe"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">9,355</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dc8abec8"><p class="cl-dc8a89c6"><span class="cl-dc8a75b2">Oceania</span></p></td><td class="cl-dc8abed2"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">24</span></p></td><td class="cl-dc8abed2"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">18,622</span></p></td><td class="cl-dc8abed2"><p class="cl-dc8a89da"><span class="cl-dc8a75b2">6,359</span></p></td></tr></tbody></table></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-7722556e"><p class="cl-772223c8"><span class="cl-77221220">continent</span></p></td><td class="cl-77225578"><p class="cl-772223dc"><span class="cl-77221220">n</span></p></td><td class="cl-77225578"><p class="cl-772223dc"><span class="cl-77221220">mean_gdp</span></p></td><td class="cl-77225578"><p class="cl-772223dc"><span class="cl-77221220">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-77225532"><p class="cl-772223c8"><span class="cl-77221220">Africa</span></p></td><td class="cl-77225550"><p class="cl-772223dc"><span class="cl-77221220">624</span></p></td><td class="cl-77225550"><p class="cl-772223dc"><span class="cl-77221220">2,194</span></p></td><td class="cl-77225550"><p class="cl-772223dc"><span class="cl-77221220">2,828</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-77225532"><p class="cl-772223c8"><span class="cl-77221220">Americas</span></p></td><td class="cl-77225550"><p class="cl-772223dc"><span class="cl-77221220">300</span></p></td><td class="cl-77225550"><p class="cl-772223dc"><span class="cl-77221220">7,136</span></p></td><td class="cl-77225550"><p class="cl-772223dc"><span class="cl-77221220">6,397</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-77225532"><p class="cl-772223c8"><span class="cl-77221220">Asia</span></p></td><td class="cl-77225550"><p class="cl-772223dc"><span class="cl-77221220">396</span></p></td><td class="cl-77225550"><p class="cl-772223dc"><span class="cl-77221220">7,902</span></p></td><td class="cl-77225550"><p class="cl-772223dc"><span class="cl-77221220">14,045</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-77225532"><p class="cl-772223c8"><span class="cl-77221220">Europe</span></p></td><td class="cl-77225550"><p class="cl-772223dc"><span class="cl-77221220">360</span></p></td><td class="cl-77225550"><p class="cl-772223dc"><span class="cl-77221220">14,469</span></p></td><td class="cl-77225550"><p class="cl-772223dc"><span class="cl-77221220">9,355</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7722555a"><p class="cl-772223c8"><span class="cl-77221220">Oceania</span></p></td><td class="cl-77225564"><p class="cl-772223dc"><span class="cl-77221220">24</span></p></td><td class="cl-77225564"><p class="cl-772223dc"><span class="cl-77221220">18,622</span></p></td><td class="cl-77225564"><p class="cl-772223dc"><span class="cl-77221220">6,359</span></p></td></tr></tbody></table></div>
 ```
 
 #### Scoped summaries
@@ -5325,7 +5860,9 @@ S3 is part of R's object oriented systems. If you need more information, check [
 
 -   `broom::glance(model)`: for evaluating model quality and/or complexity
 -   `broom::tidy(model)`: for extracting each coefficient in the model (the estimates + its variability)
--   `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics)
+-   `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics). A really handy tool in case if you want to plot fitted values and raw data together. 
+
+![Broom: Converting Statistical Models to Tidy Data Frames by David Robinson](https://www.youtube.com/watch?v=7VGPUBWGv6g&ab_channel=Work-Bench)
 
 
 ```r
@@ -5360,7 +5897,7 @@ glanced$glance %>% pluck(1) %>% pull(p.value)
 ```r
 glanced %>%
   unnest(glance) %>%
-  arrange(BIC) # Low to High; Lower BIC indicates a better model fit
+  arrange(r.squared) 
 ```
 
 ```
@@ -5368,16 +5905,16 @@ glanced %>%
 ## # Groups:   country, continent [142]
 ##    country continent data  models r.squared adj.r.squared sigma statistic
 ##    <fct>   <fct>     <lis> <list>     <dbl>         <dbl> <dbl>     <dbl>
-##  1 Sweden  Europe    <tib… <lm>       0.995         0.995 0.212     2203.
-##  2 Switze… Europe    <tib… <lm>       0.997         0.997 0.215     3823.
-##  3 France  Europe    <tib… <lm>       0.998         0.997 0.220     4200.
-##  4 Canada  Americas  <tib… <lm>       0.996         0.996 0.249     2757.
-##  5 Argent… Americas  <tib… <lm>       0.996         0.995 0.292     2246.
-##  6 Belgium Europe    <tib… <lm>       0.995         0.994 0.293     1822.
-##  7 Brazil  Americas  <tib… <lm>       0.998         0.998 0.326     5111.
-##  8 Equato… Africa    <tib… <lm>       0.997         0.997 0.329     3184.
-##  9 Nether… Europe    <tib… <lm>       0.982         0.980 0.348      552.
-## 10 Finland Europe    <tib… <lm>       0.994         0.993 0.354     1613.
+##  1 Rwanda  Africa    <tib… <lm>      0.0172      -0.0811   6.56     0.175
+##  2 Botswa… Africa    <tib… <lm>      0.0340      -0.0626   6.11     0.352
+##  3 Zimbab… Africa    <tib… <lm>      0.0562      -0.0381   7.21     0.596
+##  4 Zambia  Africa    <tib… <lm>      0.0598      -0.0342   4.53     0.636
+##  5 Swazil… Africa    <tib… <lm>      0.0682      -0.0250   6.64     0.732
+##  6 Lesotho Africa    <tib… <lm>      0.0849      -0.00666  5.93     0.927
+##  7 Cote d… Africa    <tib… <lm>      0.283        0.212    3.93     3.95 
+##  8 South … Africa    <tib… <lm>      0.312        0.244    4.74     4.54 
+##  9 Uganda  Africa    <tib… <lm>      0.342        0.276    3.19     5.20 
+## 10 Congo,… Africa    <tib… <lm>      0.348        0.283    2.43     5.34 
 ## # … with 132 more rows, and 8 more variables: p.value <dbl>, df <dbl>,
 ## #   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>, df.residual <int>,
 ## #   nobs <int>
@@ -5386,11 +5923,11 @@ glanced %>%
 ```r
 glanced %>%
   unnest(glance) %>%
-  ggplot(aes(continent, BIC)) +
+  ggplot(aes(continent, r.squared)) +
   geom_jitter(width = 0.5)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-163-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-167-1.png" width="672" />
 
 - tidy() 
 
@@ -5551,7 +6088,7 @@ ggplot(aes(x = log_pop, y = lifeExp), data = gapminder) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-166-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-170-1.png" width="672" />
 
 ```r
 # Calculate the observed statistic: Observed slopes 
@@ -5593,7 +6130,7 @@ visualize(null_slopes) +
                 direction = "both")
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-166-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-170-2.png" width="672" />
 
 ### Mixed models 
 
@@ -6144,7 +6681,7 @@ anscombe_processed %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-183-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-187-1.png" width="672" />
 
 ### The grammar of graphics 
 
@@ -6188,13 +6725,13 @@ p <- ggplot(
 p
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-184-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-188-1.png" width="672" />
 
 ```r
 p + geom_point()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-184-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-188-2.png" width="672" />
 
 ```r
 p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
@@ -6204,7 +6741,7 @@ p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-184-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-188-3.png" width="672" />
 
 ```r
 # the shaded area is the standard error for the line
@@ -6264,7 +6801,7 @@ midwest %>%
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-187-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-191-1.png" width="672" />
 
 ```r
 midwest %>%
@@ -6272,7 +6809,7 @@ midwest %>%
   geom_histogram(bins = 10) # only 10 bins.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-187-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-191-2.png" width="672" />
 
 ```r
 ggplot(
@@ -6283,7 +6820,7 @@ ggplot(
   scale_fill_viridis_d()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-187-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-191-3.png" width="672" />
 
 #### Density 
 
@@ -6296,7 +6833,7 @@ midwest %>%
   scale_fill_viridis_d()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-188-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-1.png" width="672" />
 
 ### Advanced aes (size, color)
 
@@ -6316,7 +6853,7 @@ ggplot(
   geom_point()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-189-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-193-1.png" width="672" />
 
 
 ```r
@@ -6332,7 +6869,7 @@ ggplot(
   scale_color_viridis_d()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-190-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-194-1.png" width="672" />
 
 
 ```r
@@ -6348,7 +6885,7 @@ ggplot(
   geom_point()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-191-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-1.png" width="672" />
 
 Aesthetics also can be mapped per Geom. 
 
@@ -6362,7 +6899,7 @@ p + geom_point() +
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-196-1.png" width="672" />
 
 ```r
 p + geom_point(alpha = 0.3) + # alpha controls transparency
@@ -6373,7 +6910,7 @@ p + geom_point(alpha = 0.3) + # alpha controls transparency
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-196-2.png" width="672" />
 
 ```r
 p + geom_point(alpha = 0.3) + # alpha controls transparency
@@ -6384,7 +6921,7 @@ p + geom_point(alpha = 0.3) + # alpha controls transparency
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-196-3.png" width="672" />
 
 
 ```r
@@ -6410,7 +6947,7 @@ ggplot(
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-193-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-197-1.png" width="672" />
 
 ```r
 ggplot(
@@ -6438,7 +6975,7 @@ ggplot(
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-193-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-197-2.png" width="672" />
 
 ### Co-ordinates and scales 
 
@@ -6448,7 +6985,7 @@ p + geom_point() +
   coord_flip() # coord_type
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-194-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-198-1.png" width="672" />
 
 The data is heavily bunched up against the left side. 
 
@@ -6456,14 +6993,14 @@ The data is heavily bunched up against the left side.
 p + geom_point() # without scaling
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-199-1.png" width="672" />
 
 ```r
 p + geom_point() +
   scale_x_log10() # scales the axis of a plot to a log 10 basis
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-199-2.png" width="672" />
 
 ```r
 p + geom_point() +
@@ -6475,7 +7012,7 @@ p + geom_point() +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-199-3.png" width="672" />
 
 
 ### Labels and guides 
@@ -6500,7 +7037,7 @@ p + geom_point(alpha = 0.3) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-196-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-200-1.png" width="672" />
 
 6. Themes
 
@@ -6522,7 +7059,7 @@ p + geom_point(alpha = 0.3) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-197-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-201-1.png" width="672" />
 
 ### ggsave 
 
@@ -6561,13 +7098,13 @@ p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
 p + geom_point()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-199-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-203-1.png" width="672" />
 
 ```r
 p + geom_line()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-199-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-203-2.png" width="672" />
 
 `geom_line` joins up all the lines for each particular year in the order they appear in the dataset. `ggplot2` does not know the yearly observations in your data are grouped by country. 
 
@@ -6610,13 +7147,13 @@ p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
 p + geom_line(aes(group = country)) # group by, # The outlier is Kuwait.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-201-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-205-1.png" width="672" />
 
 ```r
 p + geom_line(aes(group = country)) + facet_wrap(~continent) # facetting
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-201-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-205-2.png" width="672" />
 
 ```r
 p + geom_line(aes(group = country), color = "gray70") +
@@ -6635,7 +7172,7 @@ p + geom_line(aes(group = country), color = "gray70") +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-201-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-205-3.png" width="672" />
 
 
 ```r
@@ -6655,7 +7192,7 @@ p + geom_line(aes(group = country), color = "gray70") +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-202-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-206-1.png" width="672" />
 
 
 ### Transforming
@@ -6690,7 +7227,7 @@ ggplot(data = gapminder_formatted, aes(x = year, y = lifeExp_mean, color = conti
   )
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-203-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-207-1.png" width="672" />
 
 ```r
 gapminder %>%
@@ -6713,7 +7250,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-203-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-207-2.png" width="672" />
 
 
 ```r
@@ -6739,7 +7276,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-204-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-208-1.png" width="672" />
 
 ```r
 # geom bar
@@ -6764,7 +7301,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-204-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-208-2.png" width="672" />
 
 ```r
 # no facet
@@ -6788,7 +7325,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-204-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-208-3.png" width="672" />
 
 
 ```r
@@ -6813,7 +7350,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-205-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-209-1.png" width="672" />
 
 
 ```r
@@ -6839,7 +7376,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-206-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-210-1.png" width="672" />
 
 ```r
 # reorder
@@ -6864,7 +7401,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'country' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-206-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-210-2.png" width="672" />
 
 #### Plotting text
 
@@ -6888,7 +7425,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-207-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-211-1.png" width="672" />
 
 
 ```r
@@ -6911,7 +7448,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-208-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-212-1.png" width="672" />
 
 
 ```r
@@ -6934,7 +7471,7 @@ gapminder %>%
 ## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-209-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-213-1.png" width="672" />
 
 ### Ploting models 
 
@@ -6965,7 +7502,7 @@ gapminder %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-210-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-214-1.png" width="672" />
 
 #### Extracting model outcomes 
 
@@ -7009,7 +7546,7 @@ p + geom_point() +
   theme_bw()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-212-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-216-1.png" width="672" />
 
 ##### Confidence intervals
 
@@ -7027,7 +7564,7 @@ out_conf %>%
   theme_bw()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-213-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-217-1.png" width="672" />
 
 ```r
 # another way to do it (errorbar)
@@ -7039,6 +7576,6 @@ out_conf %>%
   theme_bw()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-213-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-217-2.png" width="672" />
 
 You can calculate marginal effects using `margins` package. For the sake of time, I'm not covering that here.
