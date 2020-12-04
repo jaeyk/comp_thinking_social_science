@@ -2882,3 +2882,11 @@ There are so many different ways of taking a look at data in R. Can you discuss 
 
 
 
+
+
+
+
+
+
+
+
