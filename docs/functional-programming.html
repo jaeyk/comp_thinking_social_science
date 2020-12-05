@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-12-03" />
+<meta name="date" content="2020-12-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1241,7 +1241,7 @@ function(input){</p>
 <span id="cb958-14"><a href="functional-programming.html#cb958-14" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb958-15"><a href="functional-programming.html#cb958-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb958-16"><a href="functional-programming.html#cb958-16" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 0.005 sec elapsed</code></pre>
+<pre><code>## 0.007 sec elapsed</code></pre>
 <p><code>map</code> is faster because it applies function to the items on the list/vector in parallel. Also, using <code>map_dbl</code> reduces an extra step you need to take. Hint: <code>map_dbl(x, mean, na.rm = TRUE)</code> = <code>vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))</code></p>
 <div class="sourceCode" id="cb960"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb960-1"><a href="functional-programming.html#cb960-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tic</span>()</span>
 <span id="cb960-2"><a href="functional-programming.html#cb960-2" aria-hidden="true" tabindex="-1"></a>out1 <span class="ot">&lt;-</span> airquality <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -1264,7 +1264,7 @@ function(input){</p>
 <pre><code>## # A tibble: 1 x 6
 ##   expression                                            min median `itr/sec`
 ##   &lt;bch:expr&gt;                                         &lt;bch:&gt; &lt;bch:&gt;     &lt;dbl&gt;
-## 1 out1 &lt;- airquality %&gt;% map_dbl(mean, na.rm = TRUE) 63.2µs  106µs     9230.
+## 1 out1 &lt;- airquality %&gt;% map_dbl(mean, na.rm = TRUE) 63.8µs 78.1µs    12886.
 ## # … with 2 more variables: mem_alloc &lt;bch:byt&gt;, `gc/sec` &lt;dbl&gt;</code></pre>
 </div>
 <div id="applications" class="section level4" number="5.2.1.4">
@@ -1969,7 +1969,7 @@ Why the above solution is not efficient?</li>
 <div class="sourceCode" id="cb1026"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1026-1"><a href="functional-programming.html#cb1026-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb1027"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1027-1"><a href="functional-programming.html#cb1027-1" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Vignette title&quot;</span></span>
 <span id="cb1027-2"><a href="functional-programming.html#cb1027-2" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Vignette author&quot;</span></span>
-<span id="cb1027-3"><a href="functional-programming.html#cb1027-3" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;2020-12-03&quot;</span></span>
+<span id="cb1027-3"><a href="functional-programming.html#cb1027-3" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;2020-12-05&quot;</span></span>
 <span id="cb1027-4"><a href="functional-programming.html#cb1027-4" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> rmarkdown<span class="sc">::</span>html_vignette</span>
 <span id="cb1027-5"><a href="functional-programming.html#cb1027-5" aria-hidden="true" tabindex="-1"></a>vignette<span class="sc">:</span> blah blah</span></code></pre></div>
 <ul>

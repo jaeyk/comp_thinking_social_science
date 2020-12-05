@@ -1198,7 +1198,7 @@ toc()
 ```
 
 ```
-## 0.005 sec elapsed
+## 0.007 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1241,7 +1241,7 @@ map_mark
 ## # A tibble: 1 x 6
 ##   expression                                            min median `itr/sec`
 ##   <bch:expr>                                         <bch:> <bch:>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 63.2µs  106µs     9230.
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 63.8µs 78.1µs    12886.
 ## # … with 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
 ```
 
@@ -2118,7 +2118,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-12-03"
+date: "2020-12-05"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 
