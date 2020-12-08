@@ -19,7 +19,7 @@
 
 ![From BBC Bitesize](https://bam.files.bbci.co.uk/bam/live/content/znmb87h/large)
 
-- This book teaches how you to do that in R in incremental steps. 
+This book teaches how you to do that in R in incremental steps. 
 
 :::keyidea
 
