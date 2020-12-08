@@ -1,8 +1,9 @@
+
 # Computational thinking {#motivation}
 
 ## Why computational thinking 
 
-- If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is **automation**. 
+- If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is **automation**.
 
 - Let's think about the following two cases.
 
@@ -20,10 +21,14 @@
 
 - This book teaches how you to do that in R in incremental steps. 
 
+:::keyidea
+
   - From graphic user interface to command-line interface 
   - From short programs to long programs 
   - The ultimate goal is to solve complex problems at scale using computation 
   
+:::
+
 > "[W]e wanted users to be able to begin in an interactive environment, where they did not consciously think of themselves as progamming. Then as their needs became clearer and their sophistication increased, they should be able to slide gradually into programming, when the language and system aspects would become more important." - *Stages in the Evolution of S* by John Chambers (S is the progenitor of R)
 
 ## Computational way of thinking about data 

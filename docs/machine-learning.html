@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-12-05" />
+<meta name="date" content="2020-12-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="semi-structured-data.html"/>
 <link rel="next" href="big-data.html"/>
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6.0/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,8 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
 <script src="libs/tabwid-1.0.0/tabwid.js"></script>
 
@@ -121,7 +121,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -134,9 +133,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Computational Thinking for Social Scientists</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Hello World</a>
 <ul>
 <li class="chapter" data-level="1.0.1" data-path="index.html"><a href="index.html#part-i-fundamentals"><i class="fa fa-check"></i><b>1.0.1</b> Part I Fundamentals</a></li>
@@ -375,9 +371,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.1" data-path="big-data.html"><a href="big-data.html#setup-9"><i class="fa fa-check"></i><b>8.3.1</b> Setup</a></li>
 </ul></li>
 </ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/jaeyk/PS239T/" target="blank">Published with bookdown</a></li>
-
 </ul>
 
       </nav>
@@ -490,7 +483,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1080-18"><a href="machine-learning.html#cb1080-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1080-19"><a href="machine-learning.html#cb1080-19" aria-hidden="true" tabindex="-1"></a>data_original <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;heart.csv&quot;</span>))</span></code></pre></div>
 <pre><code>## 
-## ── Column specification ───────────────────────────────────────────────────────────────
+## ── Column specification ─────────────────────────────────
 ## cols(
 ##   age = col_double(),
 ##   sex = col_double(),
@@ -971,7 +964,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1137-4"><a href="machine-learning.html#cb1137-4" aria-hidden="true" tabindex="-1"></a><span class="st">  select(.estimate) %&gt;%</span></span>
 <span id="cb1137-5"><a href="machine-learning.html#cb1137-5" aria-hidden="true" tabindex="-1"></a><span class="st">  round(2)}&#39;</span>)</span></code></pre></div>
 <pre><code>## The RMSE of the intiail model is 
-##    7.88</code></pre>
+##    7.87</code></pre>
 <div class="sourceCode" id="cb1139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1139-1"><a href="machine-learning.html#cb1139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glue</span>(<span class="st">&#39;The RMSE of the tuned model is {rec_res %&gt;%</span></span>
 <span id="cb1139-2"><a href="machine-learning.html#cb1139-2" aria-hidden="true" tabindex="-1"></a><span class="st">  collect_metrics() %&gt;%</span></span>
 <span id="cb1139-3"><a href="machine-learning.html#cb1139-3" aria-hidden="true" tabindex="-1"></a><span class="st">  filter(.metric == &quot;rmse&quot;) %&gt;%</span></span>
@@ -1004,9 +997,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## # A tibble: 3 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 rmse    standard       7.09 
-## 2 mae     standard       5.84 
-## 3 rsq     standard       0.414</code></pre>
+## 1 rmse    standard       7.11 
+## 2 mae     standard       5.86 
+## 3 rsq     standard       0.410</code></pre>
 </div>
 </div>
 </div>
@@ -1195,8 +1188,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy  binary         0.756
-## 2 precision binary         0.721
+## 1 accuracy  binary         0.733
+## 2 precision binary         0.689
 ## 3 recall    binary         0.756</code></pre>
 <p>In the next subsection, we will learn variants of ensemble models that improve decision tree model by putting models together.</p>
 </div>
@@ -1608,8 +1601,8 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <pre><code>## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy  binary         0.778
-## 2 precision binary         0.889
+## 1 accuracy  binary         0.767
+## 2 precision binary         0.857
 ## 3 recall    binary         0.585</code></pre>
 </div>
 </div>
@@ -1702,13 +1695,13 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ## All risk estimates are based on V =  5 
 ## 
 ##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.12821 0.0149363 0.064090 0.17485
-##     Discrete SL 0.12749 0.0150349 0.062640 0.17499
+##   Super Learner 0.12831 0.0147872 0.065689 0.17518
+##     Discrete SL 0.12712 0.0148904 0.062977 0.17531
 ##     SL.mean_All 0.24802 0.0030531 0.247747 0.24893
-##   SL.glmnet_All 0.12749 0.0150349 0.062640 0.17499
-##    SL.rpart_All 0.18318 0.0199052 0.137814 0.22434
-##   SL.ranger_All 0.14314 0.0133757 0.097473 0.17447
-##  SL.xgboost_All 0.15434 0.0167353 0.115576 0.17014</code></pre>
+##   SL.glmnet_All 0.12712 0.0148904 0.062977 0.17531
+##    SL.rpart_All 0.19077 0.0197215 0.137814 0.22434
+##   SL.ranger_All 0.14243 0.0131858 0.098400 0.17475
+##  SL.xgboost_All 0.15704 0.0169223 0.121860 0.17506</code></pre>
 </div>
 <div id="plot" class="section level5" number="7.6.5.4.2">
 <h5><span class="header-section-number">7.6.5.4.2</span> Plot</h5>
@@ -1732,13 +1725,13 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <p>0.5 = no better than chance</p>
 <div class="sourceCode" id="cb1205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1205-1"><a href="machine-learning.html#cb1205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auc_table</span>(cv_sl)</span></code></pre></div>
 <pre><code>##                      auc         se  ci_lower  ci_upper      p-value
-## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.033357e-09
-## SL.rpart_All   0.7900281 0.04273421 0.7062706 0.8737856 5.027564e-03
-## SL.xgboost_All 0.8494928 0.02780567 0.7949946 0.9039909 3.458864e-02
-## SL.ranger_All  0.8805244 0.02331694 0.8348240 0.9262248 2.015110e-01
-## SuperLearner   0.8975048 0.02117906 0.8559946 0.9390150 4.526787e-01
-## SL.glmnet_All  0.9000229 0.02094549 0.8589705 0.9410753 5.000000e-01
-## DiscreteSL     0.9000229 0.02094549 0.8589705 0.9410753 5.000000e-01</code></pre>
+## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.138901e-09
+## SL.rpart_All   0.7852455 0.04203594 0.7028566 0.8676344 3.253351e-03
+## SL.xgboost_All 0.8469098 0.02790665 0.7922138 0.9016058 2.943716e-02
+## SL.ranger_All  0.8809411 0.02338011 0.8351169 0.9267652 2.120545e-01
+## SuperLearner   0.8966714 0.02131186 0.8549010 0.9384419 4.448119e-01
+## SL.glmnet_All  0.8996291 0.02102314 0.8584245 0.9408337 5.000000e-01
+## DiscreteSL     0.8996291 0.02102314 0.8584245 0.9408337 5.000000e-01</code></pre>
 <div id="plot-the-roc-curve-for-the-best-estimator-discretsl" class="section level5" number="7.6.5.5.1">
 <h5><span class="header-section-number">7.6.5.5.1</span> Plot the ROC curve for the best estimator (DiscretSL)</h5>
 <div class="sourceCode" id="cb1207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1207-1"><a href="machine-learning.html#cb1207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_roc</span>(cv_sl)</span></code></pre></div>
@@ -1748,11 +1741,11 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <h5><span class="header-section-number">7.6.5.5.2</span> Review weight distribution for the SuperLearner</h5>
 <div class="sourceCode" id="cb1208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1208-1"><a href="machine-learning.html#cb1208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cvsl_weights</span>(cv_sl), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>##  # Learner    Mean      SD     Min     Max
-##  1  glmnet 0.93779 0.06383 0.86048 0.99863
-##  2  ranger 0.05276 0.06455 0.00000 0.13952
-##  3 xgboost 0.00368 0.00575 0.00000 0.01366
-##  4   rpart 0.00297 0.00664 0.00000 0.01486
-##  5    mean 0.00279 0.00623 0.00000 0.01393</code></pre>
+##  1  glmnet 0.91558 0.07913 0.82193 1.00000
+##  2  ranger 0.08147 0.07881 0.00000 0.17807
+##  3    mean 0.00162 0.00362 0.00000 0.00810
+##  4 xgboost 0.00106 0.00154 0.00000 0.00339
+##  5   rpart 0.00026 0.00059 0.00000 0.00131</code></pre>
 <p>General stacking approach is available in the tidymodels framework through <a href="https://github.com/tidymodels/stacks"><code>stacks</code></a> package (developmental stage).</p>
 <p>However, SuperLearner is currently not available in the tidymodels framework. If you’d like to, you can easily build and add a parsnip model. If you are interested in knowing more about it, please take a look at <a href="https://www.tidymodels.org/learn/develop/models/">this vignette</a> of the tidymodels.</p>
 </div>
@@ -2041,11 +2034,11 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ##      ........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.666) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.481, relative change = 2.408e-02) 
 ## ....................................................................................................
@@ -2053,7 +2046,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.387, relative change = 1.265e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.361, relative change = 3.497e-03) 
 ## ....................................................................................................
@@ -2071,7 +2064,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ##  Topic 9: will, sherlock, two, might, famili 
 ##  Topic 10: tabl, heard, die, might, record 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.346, relative change = 7.034e-04) 
 ## ....................................................................................................
@@ -2087,7 +2080,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.336, relative change = 2.460e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -2106,7 +2099,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.461, relative change = 3.577e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.367, relative change = 1.264e-02) 
 ## ....................................................................................................
@@ -2133,7 +2126,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ##  Topic 14: man, reason, certain, strang, crime 
 ##  Topic 15: might, twist, hand, never, come 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.328, relative change = 7.011e-04) 
 ## ....................................................................................................
@@ -2141,7 +2134,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.324, relative change = 4.535e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.322, relative change = 3.650e-04) 
 ## ....................................................................................................
@@ -2184,7 +2177,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ## Completed M-Step. 
 ## Completing Iteration 14 (approx. per word bound = -7.315, relative change = 4.530e-05) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 15 (approx. per word bound = -7.315, relative change = 2.133e-05) 
 ## Topic 1: matter, much, like, even, made 
@@ -2571,7 +2564,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ## &#39;decile_score_1&#39; [40], &#39;priors_count&#39; =&gt; &#39;priors_count_1&#39; [49], &#39;two_year_recid&#39;
 ## =&gt; &#39;two_year_recid_1&#39; [54]</code></pre>
 <pre><code>## 
-## ── Column specification ───────────────────────────────────────────────────────────────
+## ── Column specification ─────────────────────────────────
 ## cols(
 ##   .default = col_double(),
 ##   name = col_character(),
@@ -2837,7 +2830,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <pre><code>## Warning: Duplicated column names deduplicated: &#39;decile_score&#39; =&gt;
 ## &#39;decile_score_1&#39; [40], &#39;priors_count&#39; =&gt; &#39;priors_count_1&#39; [49]</code></pre>
 <pre><code>## 
-## ── Column specification ───────────────────────────────────────────────────────────────
+## ── Column specification ─────────────────────────────────
 ## cols(
 ##   .default = col_character(),
 ##   id = col_double(),
@@ -3162,7 +3155,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf", "_main.epub"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }
