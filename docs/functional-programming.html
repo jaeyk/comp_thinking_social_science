@@ -1234,7 +1234,7 @@ function(input){</p>
 <span id="cb958-14"><a href="functional-programming.html#cb958-14" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb958-15"><a href="functional-programming.html#cb958-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb958-16"><a href="functional-programming.html#cb958-16" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()</span></code></pre></div>
-<pre><code>## 0.004 sec elapsed</code></pre>
+<pre><code>## 0.006 sec elapsed</code></pre>
 <p><code>map</code> is faster because it applies function to the items on the list/vector in parallel. Also, using <code>map_dbl</code> reduces an extra step you need to take. Hint: <code>map_dbl(x, mean, na.rm = TRUE)</code> = <code>vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))</code></p>
 <div class="sourceCode" id="cb960"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb960-1"><a href="functional-programming.html#cb960-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tic</span>()</span>
 <span id="cb960-2"><a href="functional-programming.html#cb960-2" aria-hidden="true" tabindex="-1"></a>out1 <span class="ot">&lt;-</span> airquality <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -1257,7 +1257,7 @@ function(input){</p>
 <pre><code>## # A tibble: 1 x 6
 ##   expression                                            min median `itr/sec`
 ##   &lt;bch:expr&gt;                                         &lt;bch:&gt; &lt;bch:&gt;     &lt;dbl&gt;
-## 1 out1 &lt;- airquality %&gt;% map_dbl(mean, na.rm = TRUE) 58.1µs 67.1µs    14461.
+## 1 out1 &lt;- airquality %&gt;% map_dbl(mean, na.rm = TRUE) 68.4µs 93.9µs     2594.
 ## # … with 2 more variables: mem_alloc &lt;bch:byt&gt;, `gc/sec` &lt;dbl&gt;</code></pre>
 </div>
 <div id="applications" class="section level4" number="5.2.1.4">
