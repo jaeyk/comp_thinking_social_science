@@ -1,7 +1,8 @@
-delete_merged_file: true
+book_filename: "PS239T"
+output_dir: "docs"
 repo: https://github.com/jaeyk/PS239T
-output_dir: docs
 new_session: true
+delete_merged_file: true
 language:
   ui:
     chapter_name: "Chapter "
