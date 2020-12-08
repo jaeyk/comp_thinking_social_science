@@ -23,9 +23,11 @@
 
 :::keyidea
 
-  - From graphic user interface to command-line interface 
-  - From short programs to long programs 
-  - The ultimate goal is to solve complex problems at scale using computation 
+* From graphic user interface to command-line interface 
+
+* From short programs to long programs 
+
+* The ultimate goal is to solve complex problems at scale using computation 
   
 :::
 
