@@ -101,7 +101,10 @@ pacman::p_load(here,
                ck37r, 
                SuperLearner, 
                vip, 
-               tidymodels)
+               tidymodels, 
+               conflicted)
+
+conflicted::conflict_prefer("dplyr", "filter")
 
 ```
 
