@@ -101,7 +101,8 @@ pacman::p_load(here,
                ck37r, 
                SuperLearner, 
                vip, 
-               tidymodels, 
+               tidymodels,
+               glmnet,
                conflicted)
 
 conflicted::conflict_prefer("dplyr", "filter")
@@ -421,11 +422,11 @@ lasso_spec %>% translate() # See the documentation
 ```{r}
 
 ols_fit <- ols_spec %>%
-  fit_xy(x = train_x_reg, y= train_y_reg) 
+  fit_xy(x = train_x_reg, y = train_y_reg) 
   # fit(train_y_reg ~ ., train_x_reg) # When you data are not preprocessed 
 
 lasso_fit <- lasso_spec %>%
-  fit_xy(x = train_x_reg, y= train_y_reg) 
+  fit_xy(x = train_x_reg, y = train_y_reg) 
 
 ```
 

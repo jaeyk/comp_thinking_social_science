@@ -99,7 +99,8 @@ pacman::p_load(here,
                ck37r, 
                SuperLearner, 
                vip, 
-               tidymodels, 
+               tidymodels,
+               glmnet,
                conflicted)
 ```
 
@@ -120,6 +121,20 @@ pacman::p_load(here,
 ```
 ## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
 ## logical.return = TRUE, : there is no package called 'ck37r'
+```
+
+```
+## also installing the dependency 'shape'
+```
+
+```
+## Updating HTML index of packages in '.Library'
+```
+
+```
+## Making 'packages.html' ... done
+## 
+## glmnet installed
 ```
 
 ```
@@ -148,7 +163,7 @@ data_original <- read_csv(here("data", "heart.csv"))
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## ── Column specification ───────────────────────────────────────────────────────────────────────────────────────────────
 ## cols(
 ##   age = col_double(),
 ##   sex = col_double(),
@@ -580,18 +595,176 @@ lasso_spec %>% translate() # See the documentation
 - Fit models 
 
 
+```r
+ols_fit <- ols_spec %>%
+  fit_xy(x = train_x_reg, y = train_y_reg) 
+  # fit(train_y_reg ~ ., train_x_reg) # When you data are not preprocessed 
+
+lasso_fit <- lasso_spec %>%
+  fit_xy(x = train_x_reg, y = train_y_reg) 
+```
+
+#### yardstick 
+
+- Visualize model fits 
 
 
+```r
+map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit) 
+```
+
+```
+## [[1]]
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+
+```
+## 
+## [[2]]
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-18-2.png" width="672" />
 
 
+```r
+# Define performance metrics 
+metrics <- yardstick::metric_set(rmse, mae, rsq)
+
+# Evaluate many models 
+evals <- purrr::map(list(ols_fit, lasso_fit), evaluate_reg) %>%
+  reduce(bind_rows) %>%
+  mutate(type = rep(c("OLS", "Lasso"), each = 3))
+
+# Visualize the test results 
+evals %>%
+  ggplot(aes(x = fct_reorder(type, .estimate), y = .estimate)) +
+    geom_point() +
+    labs(x = "Model",
+         y = "Estimate") +
+    facet_wrap(~glue("{toupper(.metric)}"), scales = "free_y") 
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+- For more information, read [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
+
+#### tune 
+
+**Hyper**parameters are parameters which control the learning process.
+
+##### tune ingredients 
 
 
+```r
+# tune() = placeholder 
+
+tune_spec <- linear_reg(penalty = tune(), # tuning hyperparameter 
+                        mixture = 1) %>% # 1 = lasso, 0 = ridge 
+  set_engine("glmnet") %>%
+  set_mode("regression") 
+
+tune_spec
+```
+
+```
+## Linear Regression Model Specification (regression)
+## 
+## Main Arguments:
+##   penalty = tune()
+##   mixture = 1
+## 
+## Computational engine: glmnet
+```
+
+```r
+# penalty() searches 50 possible combinations 
+
+lambda_grid <- grid_regular(penalty(), levels = 50)
+
+# 10-fold cross-validation
+
+set.seed(1234) # for reproducibility 
+
+rec_folds <- vfold_cv(train_x_reg %>% bind_cols(tibble(age = train_y_reg)))
+```
+
+##### Add these elements to a workflow 
 
 
+```r
+# Workflow 
+rec_wf <- workflow() %>%
+  add_model(tune_spec) %>%
+  add_formula(age~.)
+```
 
 
+```r
+# Tuning results 
+rec_res <- rec_wf %>%
+  tune_grid(
+    resamples = rec_folds, 
+    grid = lambda_grid
+  )
+```
+
+```
+## 
+## Attaching package: 'rlang'
+```
+
+```
+## The following objects are masked from 'package:purrr':
+## 
+##     %@%, as_function, flatten, flatten_chr, flatten_dbl, flatten_int,
+##     flatten_lgl, flatten_raw, invoke, list_along, modify, prepend,
+##     splice
+```
+
+```
+## 
+## Attaching package: 'vctrs'
+```
+
+```
+## The following object is masked from 'package:dplyr':
+## 
+##     data_frame
+```
+
+```
+## The following object is masked from 'package:tibble':
+## 
+##     data_frame
+```
+
+##### Visualize 
 
 
+```r
+# Visualize
+
+rec_res %>%
+  collect_metrics() %>%
+  ggplot(aes(penalty, mean, col = .metric)) +
+  geom_errorbar(aes(
+    ymin = mean - std_err,
+    ymax = mean + std_err
+  ),
+  alpha = 0.3
+  ) +
+  geom_line(size = 2) +
+  scale_x_log10() +
+  labs(x = "log(lambda)") +
+  facet_wrap(~glue("{toupper(.metric)}"), 
+             scales = "free",
+             nrow = 2) +
+  theme(legend.position = "none")
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+
+##### Select 
 
 
 
