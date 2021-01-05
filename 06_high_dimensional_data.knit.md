@@ -124,20 +124,6 @@ pacman::p_load(here,
 ```
 
 ```
-## also installing the dependency 'shape'
-```
-
-```
-## Updating HTML index of packages in '.Library'
-```
-
-```
-## Making 'packages.html' ... done
-## 
-## glmnet installed
-```
-
-```
 ## Warning in pacman::p_load(here, tidyverse, tidymodels, doParallel, patchwork, : Failed to install/load:
 ## ck37r
 ```
