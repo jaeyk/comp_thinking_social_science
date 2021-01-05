@@ -40,34 +40,6 @@ pacman::p_load(
 )
 ```
 
-```
-## Updating HTML index of packages in '.Library'
-```
-
-```
-## Making 'packages.html' ... done
-## 
-## skimr installed
-## Updating HTML index of packages in '.Library'
-## Making 'packages.html' ... done
-## 
-## infer installed
-## also installing the dependencies 'numDeriv', 'SQUAREM', 'lava', 'rpart', 'prodlim', 'warp', 'lhs', 'iterators', 'DiceDesign', 'gower', 'ipred', 'timeDate', 'slider', 'GPfit', 'foreach', 'hardhat', 'pROC', 'dials', 'modeldata', 'parsnip', 'recipes', 'rsample', 'tune', 'workflows', 'yardstick'
-## 
-## Updating HTML index of packages in '.Library'
-## Making 'packages.html' ... done
-## 
-## tidymodels installed
-## Updating HTML index of packages in '.Library'
-## Making 'packages.html' ... done
-## 
-## gapminder installed
-## Updating HTML index of packages in '.Library'
-## Making 'packages.html' ... done
-## 
-## nycflights13 installed
-```
-
 The rest of the chapter follows the basic structure in [the Data Wrangling Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) created by RStudio.
 
 ## R Data structures 
@@ -4197,23 +4169,7 @@ messy_df
 
 ```r
 pacman::p_load(janitor)
-```
 
-```
-## also installing the dependency 'snakecase'
-```
-
-```
-## Updating HTML index of packages in '.Library'
-```
-
-```
-## Making 'packages.html' ... done
-## 
-## janitor installed
-```
-
-```r
 janitor::clean_names(messy_df) 
 ```
 
