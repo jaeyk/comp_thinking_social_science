@@ -90,7 +90,6 @@ knitr::opts_chunk$set(cache = TRUE)
 - One of the popular datasets used in machine learning competitions 
 
 ```{r}
-
 # Load packages 
 
 ## CRAN packages 
@@ -103,6 +102,11 @@ pacman::p_load(here,
                SuperLearner, 
                vip, 
                tidymodels)
+
+```
+
+
+```{r}
 
 ## Jae's custom functions 
 source(here("functions", "ml_utils.r"))
