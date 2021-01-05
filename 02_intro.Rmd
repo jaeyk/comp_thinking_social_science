@@ -1,5 +1,10 @@
 # Managing data and code {#git_bash}
 
+```{r include = FALSE}
+# Caching this markdown file 
+knitr::opts_chunk$set(cache = TRUE)
+```
+
 ## Getting started in R 
 
 ### RStudio 

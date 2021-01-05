@@ -20,3 +20,5 @@ usethis
 devtools
 roxygen2
 testthat
+bench
+patchwork

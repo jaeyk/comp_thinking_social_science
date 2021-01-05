@@ -14,3 +14,11 @@ furrr
 tictoc
 tidyjson
 tidytweetjson
+XML
+xml2
+rvest
+jsonlite
+glue
+xopen
+urltools
+here

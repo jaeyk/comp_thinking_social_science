@@ -38,3 +38,7 @@ ck37r
 nnls
 SuperLearner
 vip
+rlang
+vctrs
+Matrix
+glmnet

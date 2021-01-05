@@ -1,7 +1,11 @@
 # Semi-structured data {#semi_structured_data}
 
-## Setup 
+```{r include = FALSE}
+# Caching this markdown file 
+knitr::opts_chunk$set(cache = TRUE)
+```
 
+## Setup 
 
 ```{r}
 # Install packages 
