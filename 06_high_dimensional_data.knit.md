@@ -129,11 +129,11 @@ pacman::p_load(here,
 ```
 
 ```r
-conflicted::conflict_prefer("dplyr", "filter")
+conflicted::conflict_prefer("filter", "dplyr")
 ```
 
 ```
-## [conflicted] Will prefer filter::dplyr over any other package
+## [conflicted] Will prefer dplyr::filter over any other package
 ```
 
 
@@ -753,32 +753,388 @@ rec_res %>%
 ##### Select 
 
 
+```r
+top_rmse <- show_best(rec_res, metric = "rmse")
+
+best_rmse <- select_best(rec_res, metric = "rmse")
+
+best_rmse 
+```
+
+```
+## # A tibble: 1 x 2
+##   penalty .config              
+##     <dbl> <fct>                
+## 1   0.153 Preprocessor1_Model46
+```
+
+```r
+glue('The RMSE of the intiail model is 
+     {evals %>%
+  filter(type == "Lasso", .metric == "rmse") %>%
+  select(.estimate) %>%
+  round(2)}')
+```
+
+```
+## The RMSE of the intiail model is 
+##    7.87
+```
+
+```r
+glue('The RMSE of the tuned model is {rec_res %>%
+  collect_metrics() %>%
+  filter(.metric == "rmse") %>%
+  arrange(mean) %>%
+  dplyr::slice(1) %>%
+  select(mean) %>%
+  round(2)}')
+```
+
+```
+## The RMSE of the tuned model is 7.71
+```
+
+- Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
 
 
+```r
+finalize_lasso <- rec_wf %>%
+  finalize_workflow(best_rmse)
+
+finalize_lasso %>%
+  fit(train_x_reg %>% bind_cols(tibble(age = train_y_reg))) %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+
+##### Test fit 
+
+- Apply the tuned model to the test dataset 
 
 
+```r
+test_fit <- finalize_lasso %>% 
+  fit(test_x_reg %>% bind_cols(tibble(age = test_y_reg)))
+
+evaluate_reg(test_fit)
+```
+
+```
+## # A tibble: 3 x 3
+##   .metric .estimator .estimate
+##   <chr>   <chr>          <dbl>
+## 1 rmse    standard       7.11 
+## 2 mae     standard       5.86 
+## 3 rsq     standard       0.410
+```
+
+### Decision tree 
+
+#### parsnip 
+
+- Build a model 
+
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
 
 
+```r
+# workflow 
+tree_wf <- workflow() %>% add_formula(target~.)
+
+# spec 
+tree_spec <- decision_tree(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning hyperparameters
+           cost_complexity = NULL, 
+           tree_depth = NULL) %>%
+  set_engine("rpart") # rpart, c5.0, spark
+
+tree_wf <- tree_wf %>% add_model(tree_spec)
+```
+
+- Fit a model
 
 
+```r
+tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+```
+
+#### yardstick 
+
+- Let's formally test prediction performance. 
+
+**Metrics**
+
+- `accuracy`: The proportion of the data predicted correctly 
+
+- `precision`: Positive predictive value
+
+- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
+
+![From wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png)
+
+- To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html). 
 
 
+```r
+# Define performance metrics 
+
+metrics <- yardstick::metric_set(accuracy, precision, recall)
+
+# Visualize
+
+tree_fit_viz_metr <- visualize_class_eval(tree_fit)
+
+tree_fit_viz_metr
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+
+```r
+tree_fit_viz_mat <- visualize_class_conf(tree_fit)
+
+tree_fit_viz_mat
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-29-2.png" width="672" />
+
+#### tune 
+
+##### tune ingredients 
+
+Decisions trees tend to overfit. Broadly speaking, there are two things we need to consider to reduce this problem: how to split and when to stop a tree.
+
+- **complexity parameter**: a high CP means a simple decision tree with few splits. 
+
+- **tree_depth** 
 
 
+```r
+tune_spec <- 
+  decision_tree(
+    cost_complexity = tune(), # how to split 
+    tree_depth = tune(), # when to stop 
+    mode = "classification"
+  ) %>%
+  set_engine("rpart")
+
+tree_grid <- grid_regular(cost_complexity(),
+                          tree_depth(),
+                          levels = 5) # 2 hyperparameters -> 5*5 = 25 combinations 
+
+tree_grid %>%
+  count(tree_depth)
+```
+
+```
+## # A tibble: 5 x 2
+##   tree_depth     n
+##        <int> <int>
+## 1          1     5
+## 2          4     5
+## 3          8     5
+## 4         11     5
+## 5         15     5
+```
+
+```r
+# 10-fold cross-validation
+
+set.seed(1234) # for reproducibility 
+
+tree_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
+                       strata = target)
+```
+
+##### Add these elements to a workflow 
 
 
+```r
+# Update workflow 
+tree_wf <- tree_wf %>% update_model(tune_spec)
+
+# Determine the number of cores
+no_cores <- detectCores() - 1
+
+# Initiate
+cl <- makeCluster(no_cores)
+
+registerDoParallel(cl)
+
+# Tuning results 
+tree_res <- tree_wf %>%
+  tune_grid(
+    resamples = tree_folds, 
+    grid = tree_grid,
+    metrics = metrics
+  )
+```
+
+##### Visualize 
+
+- The following plot draws on the [vignette](https://www.tidymodels.org/start/tuning/) of the tidymodels package. 
 
 
+```r
+tree_res %>%
+  collect_metrics() %>%
+  mutate(tree_depth = factor(tree_depth)) %>%
+  ggplot(aes(cost_complexity, mean, col = .metric)) +
+  geom_point(size = 3) +
+  # Subplots 
+  facet_wrap(~ tree_depth, 
+             scales = "free", 
+             nrow = 2) +
+  # Log scale x 
+  scale_x_log10(labels = scales::label_number()) +
+  # Discrete color scale 
+  scale_color_viridis_d(option = "plasma", begin = .9, end = 0) +
+  labs(x = "Cost complexity",
+       col = "Tree depth",
+       y = NULL) +
+  coord_flip()
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+
+##### Select 
 
 
+```r
+# Optimal hyperparameter
+best_tree <- select_best(tree_res, "recall")
+
+# Add the hyperparameter to the workflow 
+finalize_tree <- tree_wf %>%
+  finalize_workflow(best_tree)
+```
 
 
+```r
+tree_fit_tuned <- finalize_tree %>% 
+  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+
+# Metrics 
+(tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+
+```r
+# Confusion matrix 
+(tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-34-2.png" width="672" />
+
+- Visualize variable importance 
 
 
+```r
+tree_fit_tuned %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+```
+
+<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-35-1.png" width="672" />
+
+##### Test fit
+
+- Apply the tuned model to the test dataset 
 
 
+```r
+test_fit <- finalize_tree %>% 
+  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
+
+evaluate_class(test_fit)
+```
+
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.744
+## 2 precision binary         0.705
+## 3 recall    binary         0.756
+```
+
+In the next subsection, we will learn variants of ensemble models that improve decision tree model by putting models together.
+
+### Bagging (Random forest)
+
+Key idea applied across all ensemble models (bagging, boosting, and stacking): 
+single learner -> N learners (N > 1) 
+
+Many learners could perform better than a single learner as this approach reduces the **variance** of a single estimate and provides more stability.
+
+Here we focus on the difference between bagging and boosting. In short, boosting may reduce bias while increasing variance. Bagging may reduce variance but has nothing to do with bias. For more information, please check out [What is the difference between Bagging and Boosting?](https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/) by aporras.
+
+**bagging**
+
+- Data: Training data will be random sampled with replacement (bootstrapping samples + drawing random **subsets** of features for training individual trees)
+
+- Learning: Building models in parallel (independently)
+
+- Prediction: Simple average of the estimated responses (majority vote system)
 
 
+![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/bagging.png)
+
+
+**boosting** 
+
+
+- Data: Weighted training data will be random sampled
+
+- Learning: Building models sequentially (mispredicted cases would receive more weights) 
+
+- Prediction: Weighted average of the estimated responses 
+
+
+![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/boosting.png)
+
+
+#### parsnip 
+
+- Build a model 
+
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
+
+
+```r
+# workflow 
+rand_wf <- workflow() %>% add_formula(target~.)
+
+# spec 
+rand_spec <- rand_forest(
+  
+           # Mode 
+           mode = "classification",
+           
+           # Tuning hyperparameters
+           mtry = NULL, # The number of predictors to available for splitting at each node  
+           min_n = NULL, # The minimum number of data points needed to keep splitting nodes
+           trees = 500) %>% # The number of trees
+  set_engine("ranger", 
+             # We want the importance of predictors to be assessed.
+             seed = 1234, 
+             importance = "permutation") 
+
+rand_wf <- rand_wf %>% add_model(rand_spec)
+```
+
+- Fit a model
 
 
 
