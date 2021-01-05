@@ -61,7 +61,7 @@ The book teaches how to do all of these mostly in [**R**](https://www.r-project.
       
       >> Compared to other programming languages, the R community tends to be more focused on results instead of processes. Knowledge of software engineering best practices is patchy: for instance, not enough R programmers use source code control or automated testing. Inconsistency is rife across contributed packages, even within base R. You are confronted with over 20 years of evolution every time you use R. R is not a particularly fast programming language, and poorly written R code can be terribly slow. R is also a profligate user of memory. - Hadley Wickham
   
-      - RStudio, especially the tidyverse team, has made heroic efforts to amend the problems listed above. Readers you will learn these recent advances in the R ecosystem and how to complement R with Python and Bash.
+      - RStudio, especially the tidyverse team, has made heroic efforts to amend the problems listed above. Readers will learn these recent advances in the R ecosystem and how to complement R with Python and Bash.
       
       - If you're serious in programming, I strongly recommend learning Python. Learning Python also helps you to fill gaps in the software engineering knowledge that are useful to be highly proficient in R.
       
@@ -72,7 +72,6 @@ This book is collected as much as it is authored. It is a remix version of [PS23
 ## Suggestions, questions, or comments 
 
 Please feel free to [create issues](https://github.com/jaeyk/PS239T/issues) if you find typos, errors, missing citations, etc via the GitHub repository associated with this book. 
-
 
 ## License 
 
