@@ -2,7 +2,7 @@
 
 ```{r include = FALSE}
 # Caching this markdown file 
-knitr::opts_chunk$set(cache = TRUE)
+#knitr::opts_chunk$set(cache = TRUE)
 ```
 
 ## Overview 
@@ -1618,17 +1618,17 @@ test_res$results %>%
 ```{r}
 final_stm <- stm(dtm$documents, 
                  dtm$vocab, 
-                 K = 10, prevalence =~ story,
+                 K = 10, prevalence = ~story,
                  max.em.its = 75, 
                  data = dtm$meta, 
-                 init.type="Spectral",
+                 init.type = "Spectral",
                  seed = 1234567,
                  verbose = FALSE)
 ```
 
 ##### Explore the results 
 
-- Using the `stm` pacakge. 
+- Using the `stm` package. 
 
 ```{r}
 

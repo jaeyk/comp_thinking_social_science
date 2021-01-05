@@ -87,34 +87,497 @@
 - One of the popular datasets used in machine learning competitions 
 
 
+```r
+# Load packages 
+
+## CRAN packages 
+pacman::p_load(here,
+               tidyverse, 
+               tidymodels,
+               doParallel, # parallel processing 
+               patchwork, # arranging ggplots
+               ck37r, 
+               SuperLearner, 
+               vip, 
+               tidymodels, 
+               conflicted)
+```
+
+```
+## Warning: package 'ck37r' is not available (for R version 3.6.1)
+```
+
+```
+## Warning: 'BiocManager' not available.  Could not check Bioconductor.
+## 
+## Please use `install.packages('BiocManager')` and then retry.
+```
+
+```
+## Warning in p_install(package, character.only = TRUE, ...):
+```
+
+```
+## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+## logical.return = TRUE, : there is no package called 'ck37r'
+```
+
+```
+## Warning in pacman::p_load(here, tidyverse, tidymodels, doParallel, patchwork, : Failed to install/load:
+## ck37r
+```
+
+```r
+conflicted::conflict_prefer("dplyr", "filter")
+```
+
+```
+## [conflicted] Will prefer filter::dplyr over any other package
+```
 
 
 
+```r
+## Jae's custom functions 
+source(here("functions", "ml_utils.r"))
+
+# Import the dataset 
+
+data_original <- read_csv(here("data", "heart.csv"))
+```
+
+```
+## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   age = col_double(),
+##   sex = col_double(),
+##   cp = col_double(),
+##   trestbps = col_double(),
+##   chol = col_double(),
+##   fbs = col_double(),
+##   restecg = col_double(),
+##   thalach = col_double(),
+##   exang = col_double(),
+##   oldpeak = col_double(),
+##   slope = col_double(),
+##   ca = col_double(),
+##   thal = col_double(),
+##   target = col_double()
+## )
+```
+
+```r
+glimpse(data_original)
+```
+
+```
+## Rows: 303
+## Columns: 14
+## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58, …
+## $ sex      <dbl> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, …
+## $ cp       <dbl> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3, …
+## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130, …
+## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275, …
+## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
+## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, …
+## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139, …
+## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, …
+## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2, …
+## $ slope    <dbl> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2, …
+## $ ca       <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, …
+## $ thal     <dbl> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+```
+
+```r
+# Createa a copy 
+data <- data_original
+
+theme_set(theme_minimal())
+```
+
+- For more information on the Iowa housing data, read [Cook (2011)](http://jse.amstat.org/v19n3/decock.pdf). This is one of the famous datastets used in many prediction modeling competitions.
+
+## Workflow 
+
+- 1. Preprocessing
+- 2. Model building
+- 3. Model fitting
+- 4. Model evaluation
+- 5. Model tuning
+- 6. Prediction
 
 
+## tidymodels 
+
+- Like `tidyverse`, `tidymodels` is a collection of packages.
+
+    - [`rsample`](https://rsample.tidymodels.org/): for data splitting 
+    
+    - [`recipes`](https://recipes.tidymodels.org/index.html): for pre-processing
+    
+    - [`parsnip`](https://www.tidyverse.org/blog/2018/11/parsnip-0-0-1/): for model building 
+    
+        - [`tune`](https://github.com/tidymodels/tune): hyperparameter tuning 
+    
+    - [`yardstick`](https://github.com/tidymodels/yardstick): for model evaluations 
+    
+    - [`workflows`](https://github.com/tidymodels/workflows): for bundling a pieplne that bundles together pre-processing, modeling, and post-processing requests 
+    
+- Why taking a tidyverse approach to machine learning?
+
+- Benefits 
+
+    - Readable code 
+    
+    - Reusable data structures 
+    
+    - Extendable code
+
+![Tidymodels. From RStudio.](https://rviews.rstudio.com/post/2019-06-14-a-gentle-intro-to-tidymodels_files/figure-html/ds.png)
+
+> tidymodels are an **integrated, modular, extensible** set of packages that implement a framework that facilitates creating predicative stochastic models. - Joseph Rickert@RStudio
+
+- Currently, 238 models are [available](https://topepo.github.io/caret/available-models.html) 
+
+- The following materials are based on [the machine learning with tidymodels workshop](https://github.com/dlab-berkeley/Machine-Learning-with-tidymodels) I developed for D-Lab. [The original workshop](https://github.com/dlab-berkeley/Machine-Learning-in-R) was designed by [Chris Kennedy](https://ck37.com/) and [Evan Muzzall](https://dlab.berkeley.edu/people/evan-muzzall.
+
+## Pre-processing
+
+- [`recipes`](https://recipes.tidymodels.org/index.html): for pre-processing
+
+- [`textrecipes`](https://github.com/tidymodels/textrecipes) for text pre-processing
+
+- Step 1: `recipe()` defines target and predictor variables (ingredients).
+
+- Step 2: `step_*()` defines preprocessing steps to be taken (recipe).
+
+    The list of the preprocessing steps draws on the vignette of the [`parsnip`](https://www.tidymodels.org/find/parsnip/) package.
+
+    - dummy: Also called one-hot encoding
+
+    - zero variance: Removing columns (or features) with a single unique value  
+
+    - impute: Imputing missing values
+
+    - decorrelate: Mitigating correlated predictors (e.g., principal component analysis)
+
+    - normalize: Centering and/or scaling predictors (e.g., log scaling). Scaling matters because many algorithms (e.g., lasso) are scale-variant (except tree-based algorithms). Remind you that normalization (sensitive to outliers) = $\frac{X - X_{min}}{X_{max} - X_{min}}$ and standardization (not sensitive to outliers) = $\frac{X - \mu}{\sigma}$
+
+    - transform: Making predictors symmetric 
+
+- Step 3: `prep()` prepares a dataset to base each step on.
+
+- Step 4: `bake()` applies the pre-processing steps to your datasets. 
+
+In this course, we focus on two preprocessing tasks. 
+
+- One-hot encoding (creating dummy/indicator variables)
 
 
+```r
+# Turn selected numeric variables into factor variables 
+data <- data %>%
+  dplyr::mutate(across(c("sex", "ca", "cp", "slope", "thal"), as.factor)) 
+
+glimpse(data) 
+```
+
+```
+## Rows: 303
+## Columns: 14
+## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58, …
+## $ sex      <fct> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, …
+## $ cp       <fct> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3, …
+## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130, …
+## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275, …
+## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
+## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, …
+## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139, …
+## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, …
+## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2, …
+## $ slope    <fct> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2, …
+## $ ca       <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, …
+## $ thal     <fct> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+```
+- Imputation 
 
 
+```r
+# Check missing values 
+
+map_df(data, ~ is.na(.) %>% sum())
+```
+
+```
+## # A tibble: 1 x 14
+##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
+##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
+## 1     0     0     0        0     0     0       0       0     0       0     0
+## # … with 3 more variables: ca <int>, thal <int>, target <int>
+```
+
+```r
+# Add missing values 
+
+data$oldpeak[sample(seq(data), size = 10)] <- NA
+
+# Check missing values 
+
+# Check the number of missing values 
+data %>%
+  map_df(~is.na(.) %>% sum())
+```
+
+```
+## # A tibble: 1 x 14
+##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
+##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
+## 1     0     0     0        0     0     0       0       0     0      10     0
+## # … with 3 more variables: ca <int>, thal <int>, target <int>
+```
+
+```r
+# Check the rate of missing values
+data %>%
+  map_df(~is.na(.) %>% mean())
+```
+
+```
+## # A tibble: 1 x 14
+##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
+##   <dbl> <dbl> <dbl>    <dbl> <dbl> <dbl>   <dbl>   <dbl> <dbl>   <dbl> <dbl>
+## 1     0     0     0        0     0     0       0       0     0  0.0330     0
+## # … with 3 more variables: ca <dbl>, thal <dbl>, target <dbl>
+```
+ 
+### Regression setup 
+
+#### Outcome variable 
 
 
+```r
+# Continuous variable 
+data$age %>% class()
+```
+
+```
+## [1] "numeric"
+```
+#### Data splitting using random sampling 
 
 
+```r
+# for reproducibility 
+set.seed(1234) 
+
+# split 
+split_reg <- initial_split(data, prop = 0.7)
+
+# training set 
+raw_train_x_reg <- training(split_reg)
+
+# test set 
+raw_test_x_reg <- testing(split_reg)
+```
+
+#### recipe 
 
 
+```r
+# Regression recipe 
+rec_reg <- raw_train_x_reg %>%
+  # Define the outcome variable 
+  recipe(age ~ .) %>%
+  # Median impute oldpeak column 
+  step_medianimpute(oldpeak) %>%
+  # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators). 
+  step_dummy(c("sex", "ca", "cp", "slope", "thal"))
+
+# Prepare a dataset to base each step on
+prep_reg <- rec_reg %>% prep(retain = TRUE) 
+```
 
 
+```r
+# x features 
+train_x_reg <- juice(prep_reg, all_predictors())
+
+test_x_reg <- bake(object = prep_reg, 
+                   new_data = raw_test_x_reg, all_predictors())
+
+# y variables 
+train_y_reg <- juice(prep_reg, all_outcomes())$age %>% as.numeric()
+test_y_reg <- bake(prep_reg, raw_test_x_reg, all_outcomes())$age %>% as.numeric()
+
+# Checks
+names(train_x_reg) # Make sure there's no age variable!
+```
+
+```
+##  [1] "trestbps" "chol"     "fbs"      "restecg"  "thalach"  "exang"   
+##  [7] "oldpeak"  "target"   "sex_X1"   "ca_X1"    "ca_X2"    "ca_X3"   
+## [13] "ca_X4"    "cp_X1"    "cp_X2"    "cp_X3"    "slope_X1" "slope_X2"
+## [19] "thal_X1"  "thal_X2"  "thal_X3"
+```
+
+```r
+class(train_y_reg) # Make sure this is a continuous variable!
+```
+
+```
+## [1] "numeric"
+```
+- Note that other imputation methods are also available. 
 
 
+```r
+grep("impute", ls("package:recipes"), value = TRUE)
+```
+
+```
+## [1] "step_bagimpute"     "step_impute_linear" "step_knnimpute"    
+## [4] "step_lowerimpute"   "step_meanimpute"    "step_medianimpute" 
+## [7] "step_modeimpute"    "step_rollimpute"
+```
+
+- You can also create your own `step_` functions. For more information, see [tidymodels.org](https://www.tidymodels.org/learn/develop/recipes/).
+
+### Classification setup 
+
+#### Outcome variable 
 
 
+```r
+data$target %>% class() 
+```
+
+```
+## [1] "numeric"
+```
+
+```r
+data$target <- as.factor(data$target)
+
+data$target %>% class()
+```
+
+```
+## [1] "factor"
+```
+
+#### Data splitting using stratified random sampling
 
 
+```r
+# split 
+split_class <- initial_split(data %>%
+                             mutate(target = as.factor(target)), 
+                             prop = 0.7, 
+                             strata = target)
+
+# training set 
+raw_train_x_class <- training(split_class)
+
+# testing set 
+raw_test_x_class <- testing(split_class)
+```
+
+#### recipe 
 
 
+```r
+# Classification recipe 
+rec_class <- raw_train_x_class %>% 
+  # Define the outcome variable 
+  recipe(target ~ .) %>%
+  # Median impute oldpeak column 
+  step_medianimpute(oldpeak) %>%
+  # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators).
+  step_normalize(age) %>%
+  step_dummy(c("sex", "ca", "cp", "slope", "thal")) 
+
+# Prepare a dataset to base each step on
+prep_class <- rec_class %>%prep(retain = TRUE) 
+```
 
 
+```r
+# x features 
+train_x_class <- juice(prep_class, all_predictors()) 
+test_x_class <- bake(prep_class, raw_test_x_class, all_predictors())
 
+# y variables 
+train_y_class <- juice(prep_class, all_outcomes())$target %>% as.factor()
+test_y_class <- bake(prep_class, raw_test_x_class, all_outcomes())$target %>% as.factor()
+
+# Checks 
+names(train_x_class) # Make sure there's no target variable!
+```
+
+```
+##  [1] "age"      "trestbps" "chol"     "fbs"      "restecg"  "thalach" 
+##  [7] "exang"    "oldpeak"  "sex_X1"   "ca_X1"    "ca_X2"    "ca_X3"   
+## [13] "ca_X4"    "cp_X1"    "cp_X2"    "cp_X3"    "slope_X1" "slope_X2"
+## [19] "thal_X1"  "thal_X2"  "thal_X3"
+```
+
+```r
+class(train_y_class) # Make sure this is a factor variable!
+```
+
+```
+## [1] "factor"
+```
+
+## Supervised learning
+
+x -> f - > y (defined)
+
+### OLS and Lasso
+
+#### parsnip 
+
+- Build models (`parsnip`)
+
+1. Specify a model 
+2. Specify an engine 
+3. Specify a mode 
+
+
+```r
+# OLS spec 
+ols_spec <- linear_reg() %>% # Specify a model 
+  set_engine("lm") %>% # Specify an engine: lm, glmnet, stan, keras, spark 
+  set_mode("regression") # Declare a mode: regression or classification 
+
+# Lasso spec 
+lasso_spec <- linear_reg(penalty = 0.1, # tuning hyperparameter 
+                         mixture = 1) %>% # 1 = lasso, 0 = ridge 
+  set_engine("glmnet") %>%
+  set_mode("regression") 
+
+# If you don't understand parsnip arguments 
+lasso_spec %>% translate() # See the documentation
+```
+
+```
+## Linear Regression Model Specification (regression)
+## 
+## Main Arguments:
+##   penalty = 0.1
+##   mixture = 1
+## 
+## Computational engine: glmnet 
+## 
+## Model fit template:
+## glmnet::glmnet(x = missing_arg(), y = missing_arg(), weights = missing_arg(), 
+##     alpha = 1, family = "gaussian")
+```
+
+- Fit models 
 
 
 
