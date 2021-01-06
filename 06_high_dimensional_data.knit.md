@@ -828,9 +828,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.09 
-## 2 mae     standard       5.84 
-## 3 rsq     standard       0.414
+## 1 rmse    standard       7.11 
+## 2 mae     standard       5.86 
+## 3 rsq     standard       0.410
 ```
 
 ### Decision tree 
@@ -1063,8 +1063,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.744
-## 2 precision binary         0.705
+## 1 accuracy  binary         0.733
+## 2 precision binary         0.689
 ## 3 recall    binary         0.756
 ```
 
