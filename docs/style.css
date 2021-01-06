@@ -14,7 +14,6 @@
     color: #03537B ;
       background-color: #CDE7F5;
       border: solid 5px #03537B;
-    background-image: url("study.png")
   }
 
 
@@ -29,7 +28,6 @@
   color: #443F1F;
     background-color: #e5d468;
     border: solid 5px #443F1F;
-  background-image: url("list.png")
 }
 
 
@@ -45,7 +43,6 @@
   color: #441F29;
     background-color: #E56889;
     border: solid 5px #441F29;
-  background-image: url("important.png")
 }
 
 .center {

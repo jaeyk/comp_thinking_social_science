@@ -1,5 +1,7 @@
 # Big data {#big_data}
 
+
+
 ## Overview
 
 - Big data problem: data is too big to fit into memory (=local environment).
@@ -577,7 +579,7 @@ WHERE origin LIKE 'J%'; -- Find any origin values that start with "J"
 <div class="knitsql-table">
 
 
-Table: (\#tab:unnamed-chunk-15)1 records
+Table: (\#tab:unnamed-chunk-16)1 records
 
 |origin |
 |:------|
@@ -687,7 +689,7 @@ ON f.year = w.year AND f.month = w.month
 <div class="knitsql-table">
 
 
-Table: (\#tab:unnamed-chunk-19)Displaying records 1 - 10
+Table: (\#tab:unnamed-chunk-20)Displaying records 1 - 10
 
 | year| month| day| dep_time| sched_dep_time| dep_delay| arr_time| sched_arr_time| arr_delay|carrier | flight|tailnum |origin |dest | air_time| distance| hour| minute|  time_hour|origin | year| month| day| hour|  temp|  dewp| humid| wind_dir| wind_speed| wind_gust| precip| pressure| visib|  time_hour|
 |----:|-----:|---:|--------:|--------------:|---------:|--------:|--------------:|---------:|:-------|------:|:-------|:------|:----|--------:|--------:|----:|------:|----------:|:------|----:|-----:|---:|----:|-----:|-----:|-----:|--------:|----------:|---------:|------:|--------:|-----:|----------:|
@@ -754,7 +756,7 @@ origin_flights_plot <- ggplot(df) +
 origin_flights_plot
 ```
 
-<img src="07_big_data_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+<img src="07_big_data_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 
 #### Disconnect 
 

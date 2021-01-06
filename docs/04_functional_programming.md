@@ -1,5 +1,7 @@
 # Automating repeated things {#functional_programming}
 
+
+
 > Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions. 
 - Hadley Wickham
 
@@ -11,13 +13,7 @@
 if (!require("pacman")) {
   install.packages("pacman")
 }
-```
 
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
   tidyverse, # tidyverse pkgs including purrr
   bench, # performance test 
@@ -1241,7 +1237,7 @@ map_mark
 ## # A tibble: 1 x 6
 ##   expression                                            min median `itr/sec`
 ##   <bch:expr>                                         <bch:> <bch:>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 68.4µs 93.9µs     2594.
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 66.9µs 76.1µs     7956.
 ## # … with 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
 ```
 
@@ -1343,7 +1339,7 @@ qplot(y_means) +
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
 * rerun() + map()
 
@@ -1367,7 +1363,7 @@ y_means_tidy <- map_dbl(y_tidy, mean)
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-1.png" width="672" />
 
 ## Automote 2 or 2+ tasks
 
@@ -1544,7 +1540,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-36-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-37-1.png" width="672" />
 
 ```r
 airquality %>%
@@ -1560,7 +1556,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-36-2.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-37-2.png" width="672" />
 
 ```r
 airquality %>%
@@ -1576,7 +1572,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-36-3.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-37-3.png" width="672" />
 
 ### Solution 
 
@@ -1624,7 +1620,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-38-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-39-1.png" width="672" />
 
 - The next step is to write an automatic plotting function. 
 
@@ -1658,7 +1654,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-40-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-41-1.png" width="672" />
 
 ```
 ## 
@@ -1669,7 +1665,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-40-2.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-41-2.png" width="672" />
 
 ```
 ## 
@@ -1680,7 +1676,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-40-3.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-41-3.png" width="672" />
 
 ```
 ## 
@@ -1691,7 +1687,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-40-4.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-41-4.png" width="672" />
 
 ```
 ## 
@@ -1702,7 +1698,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-40-5.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-41-5.png" width="672" />
 
 ## Automate joining
 
@@ -2118,7 +2114,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2020-12-07"
+date: "2021-01-05"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 

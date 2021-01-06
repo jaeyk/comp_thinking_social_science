@@ -1,19 +1,14 @@
 # Semi-structured data {#semi_structured_data}
 
-## Setup 
 
+
+## Setup 
 
 
 ```r
 # Install packages 
 if (!require("pacman")) install.packages("pacman")
-```
 
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(tidyverse, # tidyverse pkgs including purrr
                furrr, # parallel processing 
                tictoc, # performance test  
