@@ -14,3 +14,4 @@ RSQLite
 dbplyr
 glue
 nycflights13
+sparklyr

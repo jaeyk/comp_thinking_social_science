@@ -103,6 +103,8 @@ pacman::p_load(here,
                vip, 
                tidymodels,
                glmnet,
+               xgboost, 
+               rpart, 
                conflicted)
 
 conflicted::conflict_prefer("filter", "dplyr")
@@ -674,8 +676,7 @@ Decisions trees tend to overfit. Broadly speaking, there are two things we need 
 
 ```{r}
 
-tune_spec <- 
-  decision_tree(
+tune_spec <- decision_tree(
     cost_complexity = tune(), # how to split 
     tree_depth = tune(), # when to stop 
     mode = "classification"

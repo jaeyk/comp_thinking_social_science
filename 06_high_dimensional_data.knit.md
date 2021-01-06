@@ -101,6 +101,8 @@ pacman::p_load(here,
                vip, 
                tidymodels,
                glmnet,
+               xgboost, 
+               rpart, 
                conflicted)
 ```
 
@@ -149,7 +151,7 @@ data_original <- read_csv(here("data", "heart.csv"))
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## ── Column specification ───────────────────────────────────────────────────────────────────────────────────────────────
 ## cols(
 ##   age = col_double(),
 ##   sex = col_double(),
@@ -826,9 +828,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.11 
-## 2 mae     standard       5.86 
-## 3 rsq     standard       0.410
+## 1 rmse    standard       7.09 
+## 2 mae     standard       5.84 
+## 3 rsq     standard       0.414
 ```
 
 ### Decision tree 
@@ -918,8 +920,7 @@ Decisions trees tend to overfit. Broadly speaking, there are two things we need 
 
 
 ```r
-tune_spec <- 
-  decision_tree(
+tune_spec <- decision_tree(
     cost_complexity = tune(), # how to split 
     tree_depth = tune(), # when to stop 
     mode = "classification"
