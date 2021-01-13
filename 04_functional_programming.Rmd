@@ -1149,6 +1149,7 @@ use_news_md()
 ```{r eval = FALSE}
 usethis::use_r("rbind_mutate")
 ```
+
 ```{r eval = FALSE}
 #' Add two numbers
 #'
@@ -1164,6 +1165,8 @@ add <- function(x, y){
 }
 ```
 
+If you used a function from other packages you need to reference it in the following way: `#' @importFrom <package> <function>`
+
 3. Document (**man**)
 
 ```{r eval = FALSE}
@@ -1171,13 +1174,8 @@ add <- function(x, y){
 # The function creates documentation related files (NAMESPACE, function_name.rd)
 devtools::document()
 
-# Load all; simulates installing and reloading the package 
-devtools::load_all()
-
 # Check; updates the documentation; builds and checks the package 
 devtools::check()
-
-devtools::bash()
 ```
 
 4. Organize (**NAMESPACE**)
@@ -1278,10 +1276,35 @@ git push
 ```
 
   - Don't forget that your repository should be `public`.
+  
   - I highly recommend connecting GitHub with SSH. For more information, visit [this link](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
   
 ```{sh eval=FALSE, include=FALSE}
 git remote set-url origin git@github.com:user/repo 
+```
+
+**Additional tips**
+
+1. If you want to use pipe operator (%) in your functions, save the following script as `utils-pipe.R.` 
+
+```{r}
+#' Pipe operator
+#'
+#' See \code{magrittr::\link[magrittr:pipe]{\%>\%}} for details.
+#'
+#' @name %>%
+#' @rdname pipe
+#' @keywords internal
+#' @export
+#' @importFrom magrittr %>%
+#' @usage lhs \%>\% rhs
+NULL
+```
+
+2. Sometimes, you get the following error: "Undefined global functions or variables" If you experience this problem, save the following script as `globals.r.`
+
+```{r}
+utils::globalVariables(c("<undefined variable name1>", "<undefined variable name2>", "<undefinedvariable name3"))
 ```
 
 ### Developing Shiny apps

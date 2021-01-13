@@ -2043,6 +2043,7 @@ use_news_md()
 usethis::use_r("rbind_mutate")
 ```
 
+
 ```r
 #' Add two numbers
 #'
@@ -2058,6 +2059,8 @@ add <- function(x, y){
 }
 ```
 
+If you used a function from other packages you need to reference it in the following way: `#' @importFrom <package> <function>`
+
 3. Document (**man**)
 
 
@@ -2066,13 +2069,8 @@ add <- function(x, y){
 # The function creates documentation related files (NAMESPACE, function_name.rd)
 devtools::document()
 
-# Load all; simulates installing and reloading the package 
-devtools::load_all()
-
 # Check; updates the documentation; builds and checks the package 
 devtools::check()
-
-devtools::bash()
 ```
 
 4. Organize (**NAMESPACE**)
@@ -2114,7 +2112,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2021-01-05"
+date: "2021-01-13"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 
@@ -2169,9 +2167,45 @@ usethis::use_spell_check()
 
 
   - Don't forget that your repository should be `public`.
+  
   - I highly recommend connecting GitHub with SSH. For more information, visit [this link](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
   
 
+
+**Additional tips**
+
+1. If you want to use pipe operator (%) in your functions, save the following script as `utils-pipe.R.` 
+
+
+```r
+#' Pipe operator
+#'
+#' See \code{magrittr::\link[magrittr:pipe]{\%>\%}} for details.
+#'
+#' @name %>%
+#' @rdname pipe
+#' @keywords internal
+#' @export
+#' @importFrom magrittr %>%
+#' @usage lhs \%>\% rhs
+NULL
+```
+
+```
+## NULL
+```
+
+2. Sometimes, you get the following error: "Undefined global functions or variables" If you experience this problem, save the following script as `globals.r.`
+
+
+```r
+utils::globalVariables(c("<undefined variable name1>", "<undefined variable name2>", "<undefinedvariable name3"))
+```
+
+```
+## [1] "<undefined variable name1>" "<undefined variable name2>"
+## [3] "<undefinedvariable name3"
+```
 
 ### Developing Shiny apps
 

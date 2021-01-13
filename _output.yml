@@ -6,7 +6,7 @@ bookdown::gitbook:
         <li><a href="./">Computational Thinking for Social Scientists</a></li>
       after: |
         <li><a href="https://github.com/jaeyk/PS239T/" target="blank">Published with bookdown</a></li>
-    download: ["pdf", "epub"]
+    download: ["pdf"]
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
