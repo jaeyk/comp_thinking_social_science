@@ -17,7 +17,7 @@ Create a plain text file that contains word "test"
 
 - `echo`: "Write arguments to the standard output" This is equivalent as using a text editor (e.g., nano, vim, emacs) and write something.
 - `> test` Save the expression in a file named test.   
-- In general, if you don't know what a command does, just type `<command name> --help` or `<command name> -h`. If you need more detailed information, you can do `man <command name>`. `man` stands for manual. Finally, you can get more user-friendly information by using [`tldr`](https://tldr.sh/). 
+- In general, if you don't know what a command does, just type `<command name> --help` or `<command name> -h`. If you need more detailed information, you can do `man <command name>`. `man` stands for manual. Finally, you can get more user-friendly information by using either [`tldr`](https://tldr.sh/). 
 
 ```{sh}
 
@@ -29,7 +29,7 @@ echo "test" > test
 - I did this using for loop (`for i in {1..100}`). Curly braces `{}` makes 1..100 integers from 1 to 100.  
 - `;` is used to use multiple commands without making line breaks. 
 - `$var` returns the value associated with variable. Type `name=<Your name>`. Then, type `echo $name`. You should see your name printed. Variable assignment is one of the most basic things you'll learn in any programming.  
-- For novice users, I warn you that these could be little advanced concepts. So, don't pay too much attention to this. For now, it's enough to have intuitions. 
+- For novice users, I warn you that these could be too much advanced concepts. If so, don't pay too much attention to this. For now, it's enough to have intuitions. 
 
 ```{sh}
 
@@ -45,7 +45,7 @@ echo "no_test" >> test_100
 
 ```
 
-Let's see (=`cat`) what's in test_100 
+Let's read (=`cat` (concatenate)) what's in test_100 
 
 ```{sh}
 
@@ -53,7 +53,15 @@ cat test_100
 
 ```
 
-Find which fine contains the character "no_test." This is literally equivalent to finding a needle in a haystack. This is a daunting task for a human researcher, but not for our robotic assistant. `grep` finds PATTERNS in each FIEL. What follows - are options (called flags): `r` (recursive), `n` (line number), `w` (match only whole words), `e` (use patterns for matching). `rnw` are for output control and `e` is for pattern selection.
+Find which fine contains the character "no_test." This is literally equivalent to finding a needle in a haystack. This is a daunting task for a human researcher, but not for our robotic assistant. `grep` finds PATTERNS in each FIEL. What follows - are options (called flags): `r` (recursive), `n` (line number), `w` (match only whole words), `e` (use patterns for matching). `rnw` are for output control and `e` is for pattern selection. 
+
+You can write `grep -r -n -w -e "no_test"`, but the simpler the better. 
+
+* `grep`: command 
+
+* `-rnw -e`: flags 
+
+* `no_test`: argument (usually file or file paths)
 
 ```{sh}
 
@@ -61,7 +69,7 @@ grep -rnw -e "no_test"
 
 ```
 
-Let's remove (=`rm`) all the duplicate files as well as the original file. `*` is a wild card. It finds every file whose name starts with `test_`.
+Let's remove (=`rm`) all the duplicate files as well as the original file. `*` (any number of characters) is a wildcard (if you want to identify a single number of character, use `?`). It finds every file whose name starts with `test_`.
 
 ```{sh}
 
@@ -71,7 +79,7 @@ rm test_* test
 
 This command should return "test_100:2:no_test." (file test_100; line number 2; no_test)
 
-What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don't need to write files from a website using your web browser. You can run `wget` command in the terminal. Better yet, you don't even need to run the command for the second time. You can write a shell script (`*.sh`) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. [`copy_syllabus.sh`](https://github.com/PS239T/spring_2021/blob/main/copy_syllabus.sh) automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this shell script again. (No worries! I will explain what is Shell shortly.)
+What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don't need to write files from a website using your web browser. You can run `wget` command in the terminal. Better yet, you don't even need to run the command for the second time. You can write a shell script (`*.sh`) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. [`copy_syllabus.sh`](https://github.com/PS239T/spring_2021/blob/main/copy_syllabus.sh) automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.
 
 ### What Is Bash?
 
@@ -79,11 +87,13 @@ The following materials on UNIX and Shell are adapted from [the software carpent
 
 #### Unix
 
-UNIX is an operating system which was first developed by AT & T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. 
+UNIX is an operating system which was first developed by AT & T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. For this reason, if you're using Max OS, then you don't need to do anything else. You're already all set. If you're using Windows. You need to install either GitBash (works if you only use Bash for Git and GitHub) or Windows Subsystem (strongly recommended if your use case goes beyond these limited usages). For more information, see [this installation guideline](https://github.com/PS239T/spring_2021/blob/main/B_Install.md) from the course repo. 
 
-UNIX is old, but it is still mainstream. Moreover, [the UNIX philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) ("Do One Thing And Do It Well")---minimalist, modular software development---is highly influential.  
+UNIX is old, but it is still mainstream. Moreover, [the UNIX philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) ("Do One Thing And Do It Well")---minimalist, modular software development---is highly and widely influential.  
 
-![](https://upload.wikimedia.org/wikipedia/commons/1/1b/Ken_Thompson_and_Dennis_Ritchie--1973.jpg)
+![Ken Thompson and Dennis Ritchie, key proponents of the Unix philosophy](https://upload.wikimedia.org/wikipedia/commons/1/1b/Ken_Thompson_and_Dennis_Ritchie--1973.jpg)
+
+
 
 #### Kernel
 
@@ -108,6 +118,8 @@ This kind of interface is called a **command-line interface**, or CLI,
 to distinguish it from the **graphical user interface**, or GUI, that most people now use.
 
 The heart of a CLI is a **read-evaluate-print loop**, or REPL: when the user types a command and then presses the enter (or return) key, the computer reads it, executes it, and prints its output. The user then types another command, and so on until the user logs off.
+
+If you're using RStudio, you can use terminal inside RStudio (next to the "Console"). (For instance, type Alt + Shift + M)
 
 #### The Shell
 
@@ -138,10 +150,16 @@ The part of the operating system responsible for managing files and directories 
 Several commands are frequently used to create, inspect, rename, and delete files and directories. To start exploring them, let's open a shell window:
 
 ```{sh}
-$
+jae@jae-X705UDR:~$ 
 ```
 
-The dollar sign is a **prompt**, which shows us that the shell is waiting for input; your shell may show something more elaborate.
+* jae: a specific user name 
+
+* jae-X705UDR: your computer/server name 
+
+* `~`: current directory (`~` = home)
+
+* `$`: a **prompt**, which shows us that the shell is waiting for input; your shell may show something more elaborate.
 
 Type the command `whoami`, then press the Enter key (sometimes marked Return) to send the command to the shell.
 
@@ -419,6 +437,10 @@ This is called **tab completion**, and we will see it in many other tools as we 
 > will appear. 
 
 ### References 
+
+- [The Unix Workbench](https://seankross.com/the-unix-workbench/) by Sean Kross 
+
+- [The Unix Shell](http://swcarpentry.github.io/shell-novice/), Software Carpentry 
 
 - [Shell Tools and Scripting](https://missing.csail.mit.edu/2020/shell-tools/), ./missing-semester, MIT  
 
