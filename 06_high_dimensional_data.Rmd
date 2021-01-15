@@ -98,7 +98,7 @@ pacman::p_load(here,
                tidymodels,
                doParallel, # parallel processing 
                patchwork, # arranging ggplots
-               ck37r, 
+               ck37r, # Chris Kennedy's personal package  
                SuperLearner, 
                vip, 
                tidymodels,
@@ -1365,7 +1365,9 @@ AUC: Area Under the ROC Curve
 0.5 = no better than chance 
 
 ```{r}
-auc_table(cv_sl)
+
+ck37r::auc_table(cv_sl)
+
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
