@@ -2,7 +2,7 @@
 
 ```{r include = FALSE}
 # Caching this markdown file 
-#knitr::opts_chunk$set(cache = TRUE)
+# knitr::opts_chunk$set(cache = TRUE)
 ```
 
 ## Overview 
@@ -368,7 +368,7 @@ rec_class <- raw_train_x_class %>%
   step_dummy(c("sex", "ca", "cp", "slope", "thal")) 
 
 # Prepare a dataset to base each step on
-prep_class <- rec_class %>%prep(retain = TRUE) 
+prep_class <- rec_class %>% prep(retain = TRUE) 
 
 ```
 
