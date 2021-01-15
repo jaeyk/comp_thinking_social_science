@@ -2,7 +2,7 @@
 
 ```{r include = FALSE}
 # Caching this markdown file 
-# knitr::opts_chunk$set(cache = TRUE)
+knitr::opts_chunk$set(cache = TRUE)
 ```
 
 ## Overview 
@@ -98,7 +98,7 @@ pacman::p_load(here,
                tidymodels,
                doParallel, # parallel processing 
                patchwork, # arranging ggplots
-               ck37r, # Chris Kennedy's personal package  
+               remotes, 
                SuperLearner, 
                vip, 
                tidymodels,
@@ -107,6 +107,8 @@ pacman::p_load(here,
                rpart, 
                ranger, 
                conflicted)
+
+remotes::install_github("ck37/ck37r")
 
 conflicted::conflict_prefer("filter", "dplyr")
 

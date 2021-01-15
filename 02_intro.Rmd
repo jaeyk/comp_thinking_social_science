@@ -1046,21 +1046,25 @@ here::here("project", "outputs")
 
 ### References 
 
-- Project-oriented research 
+- Code and data management 
 
-   - Computational reproducibility 
+  - ["Code and Data for the Social Sciences: A Practitioner's Guide"](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) by Matthew Gentkow and Jesse M. Shapiro 
+  
+- Project-oriented research
+   
+  - Computational reproducibility 
 
-      - ["Good Enough Practices in Scientific Computing"](https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf) by PLOS
+    - ["Good Enough Practices in Scientific Computing"](https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf) by PLOS
       
-      - [Project Management with RStudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/) by Software Carpentry
+    - [Project Management with RStudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/) by Software Carpentry
       
-      - [Initial steps toward reproducible research](https://kbroman.org/steps2rr/) by Karl Broman
+    - [Initial steps toward reproducible research](https://kbroman.org/steps2rr/) by Karl Broman
       
-   - Version control 
+  - Version control 
    
-      - [Version Control with Git](https://swcarpentry.github.io/git-novice/) by Software Carpentry
+    - [Version Control with Git](https://swcarpentry.github.io/git-novice/) by Software Carpentry
    
-      - [The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/) by Kieran Healy 
+    - [The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/) by Kieran Healy 
 
 ## Writing code: How to code like a professional
 

@@ -96,7 +96,7 @@ pacman::p_load(here,
                tidymodels,
                doParallel, # parallel processing 
                patchwork, # arranging ggplots
-               ck37r, # Chris Kennedy's personal package  
+               remotes, 
                SuperLearner, 
                vip, 
                tidymodels,
@@ -105,30 +105,81 @@ pacman::p_load(here,
                rpart, 
                ranger, 
                conflicted)
+
+remotes::install_github("ck37/ck37r")
 ```
 
 ```
-## Warning: package 'ck37r' is not available (for R version 3.6.1)
+## Downloading GitHub repo ck37/ck37r@HEAD
 ```
 
 ```
-## Warning: 'BiocManager' not available.  Could not check Bioconductor.
+## fansi        (0.4.1  -> 0.4.2   ) [CRAN]
+## vctrs        (0.3.5  -> 0.3.6   ) [CRAN]
+## tibble       (3.0.4  -> 3.0.5   ) [CRAN]
+## cpp11        (0.2.4  -> 0.2.5   ) [CRAN]
+## rlang        (0.4.9  -> 0.4.10  ) [CRAN]
+## Rcpp         (1.0.5  -> 1.0.6   ) [CRAN]
+## dplyr        (1.0.2  -> 1.0.3   ) [CRAN]
+## broom        (0.7.2  -> 0.7.3   ) [CRAN]
+## diffobj      (0.3.2  -> 0.3.3   ) [CRAN]
+## pkgbuild     (1.1.0  -> 1.2.0   ) [CRAN]
+## xfun         (0.19   -> 0.20    ) [CRAN]
+## testthat     (3.0.0  -> 3.0.1   ) [CRAN]
+## checkmate    (NA     -> 2.0.0   ) [CRAN]
+## htmltools    (0.5.0  -> 0.5.1   ) [CRAN]
+## viridis      (NA     -> 0.5.1   ) [CRAN]
+## htmlTable    (NA     -> 2.1.0   ) [CRAN]
+## data.table   (1.13.4 -> 1.13.6  ) [CRAN]
+## cluster      (NA     -> 2.1.0   ) [CRAN]
+## latticeExtra (NA     -> 0.6-29  ) [CRAN]
+## ggplot2      (3.3.2  -> 3.3.3   ) [CRAN]
+## Formula      (NA     -> 1.2-4   ) [CRAN]
+## caTools      (1.18.0 -> 1.18.1  ) [CRAN]
+## proftools    (NA     -> 0.99-3  ) [CRAN]
+## parallelly   (1.22.0 -> 1.23.0  ) [CRAN]
+## SQUAREM      (2020.5 -> 2021.1  ) [CRAN]
+## mice         (NA     -> 3.12.0  ) [CRAN]
+## gdata        (NA     -> 2.18.0  ) [CRAN]
+## Hmisc        (NA     -> 4.4-2   ) [CRAN]
+## glmnet       (4.0-2  -> 4.1     ) [CRAN]
+## NCmisc       (NA     -> 1.1.6   ) [CRAN]
+## RCurl        (NA     -> 1.98-1.2) [CRAN]
+## pROC         (1.16.2 -> 1.17.0.1) [CRAN]
+## ModelMetrics (NA     -> 1.2.2.2 ) [CRAN]
+## weights      (NA     -> 1.0.1   ) [CRAN]
+## tmle         (NA     -> 1.5.0-1 ) [CRAN]
+## rpart.plot   (NA     -> 3.0.9   ) [CRAN]
+## RhpcBLASctl  (NA     -> 0.20-137) [CRAN]
+## reader       (NA     -> 1.0.6   ) [CRAN]
+## pryr         (NA     -> 0.1.4   ) [CRAN]
+## precrec      (NA     -> 0.12.0  ) [CRAN]
+## h2o          (NA     -> 3.32.0.1) [CRAN]
+## future.apply (NA     -> 1.7.0   ) [CRAN]
+## caret        (NA     -> 6.0-86  ) [CRAN]
+```
+
+```
+## Installing 43 packages: fansi, vctrs, tibble, cpp11, rlang, Rcpp, dplyr, broom, diffobj, pkgbuild, xfun, testthat, checkmate, htmltools, viridis, htmlTable, data.table, cluster, latticeExtra, ggplot2, Formula, caTools, proftools, parallelly, SQUAREM, mice, gdata, Hmisc, glmnet, NCmisc, RCurl, pROC, ModelMetrics, weights, tmle, rpart.plot, RhpcBLASctl, reader, pryr, precrec, h2o, future.apply, caret
+```
+
+```
+## Updating HTML index of packages in '.Library'
+```
+
+```
+## Making 'packages.html' ... done
+```
+
+```
+##      checking for file ‘/tmp/RtmpMrIAWx/remotes205563c81d087/ck37-ck37r-24d1757/DESCRIPTION’ ...  ✔  checking for file ‘/tmp/RtmpMrIAWx/remotes205563c81d087/ck37-ck37r-24d1757/DESCRIPTION’
+##   ─  preparing ‘ck37r’:
+##      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
+##   ─  checking for LF line-endings in source and make files and shell scripts
+##   ─  checking for empty or unneeded directories
+##   ─  building ‘ck37r_1.0.3.tar.gz’
+##      
 ## 
-## Please use `install.packages('BiocManager')` and then retry.
-```
-
-```
-## Warning in p_install(package, character.only = TRUE, ...):
-```
-
-```
-## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
-## logical.return = TRUE, : there is no package called 'ck37r'
-```
-
-```
-## Warning in pacman::p_load(here, tidyverse, tidymodels, doParallel, patchwork, : Failed to install/load:
-## ck37r
 ```
 
 ```r
@@ -688,1147 +739,92 @@ rec_wf <- workflow() %>%
 ```
 
 
-```r
-# Tuning results 
-rec_res <- rec_wf %>%
-  tune_grid(
-    resamples = rec_folds, 
-    grid = lambda_grid
-  )
-```
-
-```
-## 
-## Attaching package: 'rlang'
-```
-
-```
-## The following objects are masked from 'package:purrr':
-## 
-##     %@%, as_function, flatten, flatten_chr, flatten_dbl, flatten_int,
-##     flatten_lgl, flatten_raw, invoke, list_along, modify, prepend,
-##     splice
-```
-
-```
-## 
-## Attaching package: 'vctrs'
-```
-
-```
-## The following object is masked from 'package:dplyr':
-## 
-##     data_frame
-```
-
-```
-## The following object is masked from 'package:tibble':
-## 
-##     data_frame
-```
-
-##### Visualize 
-
-
-```r
-# Visualize
-
-rec_res %>%
-  collect_metrics() %>%
-  ggplot(aes(penalty, mean, col = .metric)) +
-  geom_errorbar(aes(
-    ymin = mean - std_err,
-    ymax = mean + std_err
-  ),
-  alpha = 0.3
-  ) +
-  geom_line(size = 2) +
-  scale_x_log10() +
-  labs(x = "log(lambda)") +
-  facet_wrap(~glue("{toupper(.metric)}"), 
-             scales = "free",
-             nrow = 2) +
-  theme(legend.position = "none")
-```
-
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-23-1.png" width="672" />
-
-##### Select 
-
-
-```r
-top_rmse <- show_best(rec_res, metric = "rmse")
-
-best_rmse <- select_best(rec_res, metric = "rmse")
-
-best_rmse 
-```
-
-```
-## # A tibble: 1 x 2
-##   penalty .config              
-##     <dbl> <fct>                
-## 1   0.244 Preprocessor1_Model47
-```
-
-```r
-glue('The RMSE of the intiail model is 
-     {evals %>%
-  filter(type == "Lasso", .metric == "rmse") %>%
-  select(.estimate) %>%
-  round(2)}')
-```
-
-```
-## The RMSE of the intiail model is 
-##    7.86
-```
 
-```r
-glue('The RMSE of the tuned model is {rec_res %>%
-  collect_metrics() %>%
-  filter(.metric == "rmse") %>%
-  arrange(mean) %>%
-  dplyr::slice(1) %>%
-  select(mean) %>%
-  round(2)}')
-```
 
-```
-## The RMSE of the tuned model is 7.71
-```
 
-- Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
 
 
-```r
-finalize_lasso <- rec_wf %>%
-  finalize_workflow(best_rmse)
 
-finalize_lasso %>%
-  fit(train_x_reg %>% bind_cols(tibble(age = train_y_reg))) %>%
-  pull_workflow_fit() %>%
-  vip::vip()
-```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-25-1.png" width="672" />
 
-##### Test fit 
 
-- Apply the tuned model to the test dataset 
 
 
-```r
-test_fit <- finalize_lasso %>% 
-  fit(test_x_reg %>% bind_cols(tibble(age = test_y_reg)))
 
-evaluate_reg(test_fit)
-```
 
-```
-## # A tibble: 3 x 3
-##   .metric .estimator .estimate
-##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.17 
-## 2 mae     standard       5.93 
-## 3 rsq     standard       0.405
-```
 
-### Decision tree 
 
-#### parsnip 
 
-- Build a model 
 
-1. Specify a model 
-2. Specify an engine 
-3. Specify a mode 
 
 
-```r
-# workflow 
-tree_wf <- workflow() %>% add_formula(target~.)
 
-# spec 
-tree_spec <- decision_tree(
-  
-           # Mode 
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           cost_complexity = NULL, 
-           tree_depth = NULL) %>%
-  set_engine("rpart") # rpart, c5.0, spark
 
-tree_wf <- tree_wf %>% add_model(tree_spec)
-```
 
-- Fit a model
 
 
-```r
-tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
-```
 
-#### yardstick 
 
-- Let's formally test prediction performance. 
 
-**Metrics**
 
-- `accuracy`: The proportion of the data predicted correctly 
 
-- `precision`: Positive predictive value
 
-- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
 
-![From wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png)
 
-- To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html). 
 
 
-```r
-# Define performance metrics 
 
-metrics <- yardstick::metric_set(accuracy, precision, recall)
 
-# Visualize
 
-tree_fit_viz_metr <- visualize_class_eval(tree_fit)
 
-tree_fit_viz_metr
-```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 
-```r
-tree_fit_viz_mat <- visualize_class_conf(tree_fit)
 
-tree_fit_viz_mat
-```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-29-2.png" width="672" />
 
-#### tune 
 
-##### tune ingredients 
 
-Decisions trees tend to overfit. Broadly speaking, there are two things we need to consider to reduce this problem: how to split and when to stop a tree.
 
-- **complexity parameter**: a high CP means a simple decision tree with few splits. 
 
-- **tree_depth** 
 
 
-```r
-tune_spec <- decision_tree(
-    cost_complexity = tune(), # how to split 
-    tree_depth = tune(), # when to stop 
-    mode = "classification"
-  ) %>%
-  set_engine("rpart")
 
-tree_grid <- grid_regular(cost_complexity(),
-                          tree_depth(),
-                          levels = 5) # 2 hyperparameters -> 5*5 = 25 combinations 
 
-tree_grid %>%
-  count(tree_depth)
-```
 
-```
-## # A tibble: 5 x 2
-##   tree_depth     n
-##        <int> <int>
-## 1          1     5
-## 2          4     5
-## 3          8     5
-## 4         11     5
-## 5         15     5
-```
 
-```r
-# 10-fold cross-validation
 
-set.seed(1234) # for reproducibility 
 
-tree_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
-                       strata = target)
-```
 
-##### Add these elements to a workflow 
 
 
-```r
-# Update workflow 
-tree_wf <- tree_wf %>% update_model(tune_spec)
 
-# Determine the number of cores
-no_cores <- detectCores() - 1
 
-# Initiate
-cl <- makeCluster(no_cores)
 
-registerDoParallel(cl)
 
-# Tuning results 
-tree_res <- tree_wf %>%
-  tune_grid(
-    resamples = tree_folds, 
-    grid = tree_grid,
-    metrics = metrics
-  )
-```
 
-##### Visualize 
 
-- The following plot draws on the [vignette](https://www.tidymodels.org/start/tuning/) of the tidymodels package. 
 
 
-```r
-tree_res %>%
-  collect_metrics() %>%
-  mutate(tree_depth = factor(tree_depth)) %>%
-  ggplot(aes(cost_complexity, mean, col = .metric)) +
-  geom_point(size = 3) +
-  # Subplots 
-  facet_wrap(~ tree_depth, 
-             scales = "free", 
-             nrow = 2) +
-  # Log scale x 
-  scale_x_log10(labels = scales::label_number()) +
-  # Discrete color scale 
-  scale_color_viridis_d(option = "plasma", begin = .9, end = 0) +
-  labs(x = "Cost complexity",
-       col = "Tree depth",
-       y = NULL) +
-  coord_flip()
-```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 
-##### Select 
 
 
-```r
-# Optimal hyperparameter
-best_tree <- select_best(tree_res, "recall")
 
-# Add the hyperparameter to the workflow 
-finalize_tree <- tree_wf %>%
-  finalize_workflow(best_tree)
-```
 
 
-```r
-tree_fit_tuned <- finalize_tree %>% 
-  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
-# Metrics 
-(tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
-```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 
-```r
-# Confusion matrix 
-(tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
-```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-34-2.png" width="672" />
 
-- Visualize variable importance 
 
 
-```r
-tree_fit_tuned %>%
-  pull_workflow_fit() %>%
-  vip::vip()
-```
 
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-35-1.png" width="672" />
 
-##### Test fit
 
-- Apply the tuned model to the test dataset 
 
 
-```r
-test_fit <- finalize_tree %>% 
-  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
 
-evaluate_class(test_fit)
-```
-
-```
-## # A tibble: 3 x 3
-##   .metric   .estimator .estimate
-##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.756
-## 2 precision binary         0.721
-## 3 recall    binary         0.756
-```
-
-In the next subsection, we will learn variants of ensemble models that improve decision tree model by putting models together.
-
-### Bagging (Random forest)
-
-Key idea applied across all ensemble models (bagging, boosting, and stacking): 
-single learner -> N learners (N > 1) 
-
-Many learners could perform better than a single learner as this approach reduces the **variance** of a single estimate and provides more stability.
-
-Here we focus on the difference between bagging and boosting. In short, boosting may reduce bias while increasing variance. Bagging may reduce variance but has nothing to do with bias. For more information, please check out [What is the difference between Bagging and Boosting?](https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/) by aporras.
-
-**bagging**
-
-- Data: Training data will be random sampled with replacement (bootstrapping samples + drawing random **subsets** of features for training individual trees)
-
-- Learning: Building models in parallel (independently)
-
-- Prediction: Simple average of the estimated responses (majority vote system)
-
-
-![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/bagging.png)
-
-
-**boosting** 
-
-
-- Data: Weighted training data will be random sampled
-
-- Learning: Building models sequentially (mispredicted cases would receive more weights) 
-
-- Prediction: Weighted average of the estimated responses 
-
-
-![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/boosting.png)
-
-
-#### parsnip 
-
-- Build a model 
-
-1. Specify a model 
-2. Specify an engine 
-3. Specify a mode 
-
-
-```r
-# workflow 
-rand_wf <- workflow() %>% add_formula(target~.)
-
-# spec 
-rand_spec <- rand_forest(
-  
-           # Mode 
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           mtry = NULL, # The number of predictors to available for splitting at each node  
-           min_n = NULL, # The minimum number of data points needed to keep splitting nodes
-           trees = 500) %>% # The number of trees
-  set_engine("ranger", 
-             # We want the importance of predictors to be assessed.
-             seed = 1234, 
-             importance = "permutation") 
-
-rand_wf <- rand_wf %>% add_model(rand_spec)
-```
-
-- Fit a model
-
-
-```r
-rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
-```
-
-#### yardstick 
-
-- Let's formally test prediction performance. 
-
-**Metrics**
-
-- `accuracy`: The proportion of the data predicted correctly 
-
-- `precision`: Positive predictive value
-
-- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
-
-
-```r
-# Define performance metrics 
-metrics <- yardstick::metric_set(accuracy, precision, recall)
-
-rand_fit_viz_metr <- visualize_class_eval(rand_fit)
-
-rand_fit_viz_metr
-```
-
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-39-1.png" width="672" />
-
-- Visualize the confusion matrix. 
-  
-
-```r
-rand_fit_viz_mat <- visualize_class_conf(rand_fit)
-
-rand_fit_viz_mat
-```
-
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-40-1.png" width="672" />
-
-#### tune 
-
-##### tune ingredients 
-
-We focus on the following two hyperparameters:
-
-- `mtry`: The number of predictors to available for splitting at each node.
-
-- `min_n`: The minimum number of data points needed to keep splitting nodes. 
-
-
-```r
-tune_spec <- 
-  rand_forest(
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           mtry = tune(), 
-           min_n = tune()) %>%
-  set_engine("ranger",
-             seed = 1234, 
-             importance = "permutation")
-
-rand_grid <- grid_regular(mtry(range = c(1, 10)),
-                          min_n(range = c(2, 10)),
-                          levels = 5)
-
-rand_grid %>%
-  count(min_n)
-```
-
-```
-## # A tibble: 5 x 2
-##   min_n     n
-##   <int> <int>
-## 1     2     5
-## 2     4     5
-## 3     6     5
-## 4     8     5
-## 5    10     5
-```
-
-
-```r
-# 10-fold cross-validation
-
-set.seed(1234) # for reproducibility 
-
-rand_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
-                       strata = target)
-```
-
-##### Add these elements to a workflow 
-
-
-```r
-# Update workflow 
-rand_wf <- rand_wf %>% update_model(tune_spec)
-
-# Tuning results 
-rand_res <- rand_wf %>%
-  tune_grid(
-    resamples = rand_folds, 
-    grid = rand_grid,
-    metrics = metrics
-  )
-```
-
-##### Visualize 
-
-
-```r
-rand_res %>%
-  collect_metrics() %>%
-  mutate(min_n = factor(min_n)) %>%
-  ggplot(aes(mtry, mean, color = min_n)) +
-  # Line + Point plot 
-  geom_line(size = 1.5, alpha = 0.6) +
-  geom_point(size = 2) +
-  # Subplots 
-  facet_wrap(~ .metric, 
-             scales = "free", 
-             nrow = 2) +
-  # Log scale x 
-  scale_x_log10(labels = scales::label_number()) +
-  # Discrete color scale 
-  scale_color_viridis_d(option = "plasma", begin = .9, end = 0) +
-  labs(x = "The number of predictors to be sampled",
-       col = "The minimum number of data points needed for splitting",
-       y = NULL) +
-  theme(legend.position="bottom")
-```
-
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-44-1.png" width="672" />
-
-
-```r
-# Optimal hyperparameter
-best_tree <- select_best(rand_res, "accuracy")
-
-best_tree
-```
-
-```
-## # A tibble: 1 x 3
-##    mtry min_n .config              
-##   <int> <int> <fct>                
-## 1     1     2 Preprocessor1_Model01
-```
-
-```r
-# Add the hyperparameter to the workflow 
-finalize_tree <- rand_wf %>%
-  finalize_workflow(best_tree)
-```
-
-
-```r
-rand_fit_tuned <- finalize_tree %>% 
-  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
-
-# Metrics 
-(rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
-```
-
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-46-1.png" width="672" />
-
-```r
-# Confusion matrix 
-(rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
-```
-
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-46-2.png" width="672" />
-
-- Visualize variable importance 
-
-
-```r
-rand_fit_tuned %>%
-  pull_workflow_fit() %>%
-  vip::vip()
-```
-
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-47-1.png" width="672" />
-
-##### Test fit
-
-- Apply the tuned model to the test dataset 
-
-
-```r
-test_fit <- finalize_tree %>%
-  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
-
-evaluate_class(test_fit)
-```
-
-```
-## # A tibble: 3 x 3
-##   .metric   .estimator .estimate
-##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.933
-## 2 precision binary         0.973
-## 3 recall    binary         0.878
-```
-
-### Boosting (XGboost)
-
-#### parsnip 
-
-- Build a model 
-
-1. Specify a model 
-2. Specify an engine 
-3. Specify a mode 
-
-
-```r
-# workflow 
-xg_wf <- workflow() %>% add_formula(target~.)
-
-# spec 
-xg_spec <- boost_tree(
-  
-           # Mode 
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           
-           # The number of trees to fit, aka boosting iterations
-           trees = c(100, 300, 500, 700, 900),
-           # The depth of the decision tree (how many levels of splits).
-	         tree_depth = c(1, 6), 
-           # Learning rate: lower means the ensemble will adapt more slowly.
-           learn_rate = c(0.0001, 0.01, 0.2),
-           # Stop splitting a tree if we only have this many obs in a tree node.
-	         min_n = 10L
-          ) %>% 
-  set_engine("xgboost") 
-
-xg_wf <- xg_wf %>% add_model(xg_spec)
-```
-
-- Fit a model
-
-
-```r
-xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
-```
-
-```
-## Warning in begin_iteration:end_iteration: numerical expression has 5 elements:
-## only the first used
-```
-
-```
-## [14:25:24] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-```
-
-#### yardstick 
-
-- Let's formally test prediction performance. 
-
-**Metrics**
-
-- `accuracy`: The proportion of the data predicted correctly 
-
-- `precision`: Positive predictive value
-
-- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
-
-
-```r
-metrics <- metric_set(yardstick::accuracy, 
-                      yardstick::precision, 
-                      yardstick::recall)
-
-evaluate_class(xg_fit)
-```
-
-```
-## # A tibble: 3 x 3
-##   .metric   .estimator .estimate
-##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.733
-## 2 precision binary         0.730
-## 3 recall    binary         0.659
-```
-
-
-```r
-xg_fit_viz_metr <- visualize_class_eval(xg_fit)
-
-xg_fit_viz_metr
-```
-
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-52-1.png" width="672" />
-
-- Visualize the confusion matrix. 
-  
-
-```r
-xg_fit_viz_mat <- visualize_class_conf(xg_fit)
-
-xg_fit_viz_mat
-```
-
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-53-1.png" width="672" />
-
-#### tune 
-
-##### tune ingredients 
-
-- We focus on the following hyperparameters: `trees,` `tree_depth,` `learn_rate,` `min_n,` `mtry,` `loss_reduction,` and `sample_size`
-
-
-```r
-tune_spec <- 
-  xg_spec <- boost_tree(
-  
-           # Mode 
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           
-           # The number of trees to fit, aka boosting iterations
-           trees = tune(),
-           # The depth of the decision tree (how many levels of splits).
-	         tree_depth = tune(), 
-           # Learning rate: lower means the ensemble will adapt more slowly.
-           learn_rate = tune(),
-           # Stop splitting a tree if we only have this many obs in a tree node.
-	         min_n = tune(),
-           loss_reduction = tune(),
-           # The number of randomly selected hyperparameters 
-           mtry = tune(), 
-           # The size of the data set used for modeling within an iteration
-           sample_size = tune()
-          ) %>% 
-  set_engine("xgboost") 
-
-# Space-filling hyperparameter grids 
-xg_grid <- grid_latin_hypercube(
-  trees(),
-  tree_depth(),
-  learn_rate(),
-  min_n(),
-  loss_reduction(), 
-  sample_size = sample_prop(),
-  finalize(mtry(), train_x_class),
-  size = 30
-  )
-
-# 10-fold cross-validation
-
-set.seed(1234) # for reproducibility 
-
-xg_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
-                     strata = target)
-```
-
-##### Add these elements to a workflow 
-
-
-```r
-# Update workflow 
-xg_wf <- xg_wf %>% update_model(tune_spec)
-
-# Tuning results 
-xg_res <- xg_wf %>%
-  tune_grid(
-    resamples = xg_folds, 
-    grid = xg_grid,
-    control = control_grid(save_pred = TRUE)
-  )
-```
-
-##### Visualize 
-
-
-```r
-xg_res %>%
-  collect_metrics() %>% 
-  filter(.metric == "roc_auc") %>%
-  pivot_longer(mtry:sample_size,
-               values_to = "value",
-               names_to = "parameter") %>%
-  ggplot(aes(x = value, y = mean, color = parameter)) +
-    geom_point(alpha = 0.8, show.legend = FALSE) +
-    facet_wrap(~parameter, scales = "free_x") +
-    labs(y = "AUC",
-         x = NULL)
-```
-
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-56-1.png" width="672" />
-
-
-```r
-# Optimal hyperparameter
-best_xg <- select_best(xg_res, "roc_auc")
-
-best_xg 
-```
-
-```
-## # A tibble: 1 x 8
-##    mtry trees min_n tree_depth learn_rate loss_reduction sample_size .config    
-##   <int> <int> <int>      <int>      <dbl>          <dbl>       <dbl> <fct>      
-## 1     3   985     6         12  0.0000944    0.000000105       0.598 Preprocess…
-```
-
-```r
-# Add the hyperparameter to the workflow 
-finalize_xg <- xg_wf %>%
-  finalize_workflow(best_xg)
-```
-
-
-```r
-xg_fit_tuned <- finalize_xg %>% 
-  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
-```
-
-```
-## [14:26:58] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-```
-
-```r
-# Metrics 
-(xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
-```
-
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-58-1.png" width="672" />
-
-```r
-# Confusion matrix 
-(xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
-```
-
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-58-2.png" width="672" />
-
-- Visualize variable importance 
-
-
-```r
-xg_fit_tuned %>%
-  pull_workflow_fit() %>%
-  vip::vip()
-```
-
-<img src="06_high_dimensional_data_files/figure-html/unnamed-chunk-59-1.png" width="672" />
-
-##### Test fit
-
-- Apply the tuned model to the test dataset 
-
-
-```r
-test_fit <- finalize_xg %>%
-  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
-```
-
-```
-## [14:27:00] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-```
-
-```r
-evaluate_class(test_fit)
-```
-
-```
-## # A tibble: 3 x 3
-##   .metric   .estimator .estimate
-##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.778
-## 2 precision binary         0.889
-## 3 recall    binary         0.585
-```
-
-### Stacking (SuperLearner)
-
-This stacking part of the book heavily relies on [Chris Kennedy's notebook](https://github.com/dlab-berkeley/Machine-Learning-in-R/blob/master/07-ensembles.Rmd).
-
-#### Overview
-
-##### Stacking
-
-Wolpert, D.H., 1992. [Stacked generalization](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.56.1533). *Neural networks*, 5(2), pp.241-259.
-
-Breiman, L., 1996. [Stacked regressions]((https://statistics.berkeley.edu/sites/default/files/tech-reports/367.pdf). *Machine learning*, 24(1), pp.49-64.
-
-##### SuperLearner 
-
-The ["SuperLearner" R package](https://cran.r-project.org/web/packages/SuperLearner/index.html) is a method that simplifies ensemble learning by allowing you to simultaneously evaluate the cross-validated performance of multiple algorithms and/or a single algorithm with differently tuned hyperparameters. This is a generally advisable approach to machine learning instead of fitting single algorithms.
-
-Let's see how the four classification algorithms you learned in this workshop (1-lasso, 2-decision tree, 3-random forest, and 4-gradient boosted trees) compare to each other and also to 5-binary logistic regression (`glm`) and to the 6-mean of Y as a benchmark algorithm, in terms of their cross-validated error!
-
-A "wrapper" is a short function that adapts an algorithm for the SuperLearner package. Check out the different algorithm wrappers offered by SuperLearner:
-
-#### Choose algorithms
-
-
-```r
-# Review available models 
-SuperLearner::listWrappers()
-```
-
-```
-## All prediction algorithm wrappers in SuperLearner:
-```
-
-```
-##  [1] "SL.bartMachine"      "SL.bayesglm"         "SL.biglasso"        
-##  [4] "SL.caret"            "SL.caret.rpart"      "SL.cforest"         
-##  [7] "SL.earth"            "SL.extraTrees"       "SL.gam"             
-## [10] "SL.gbm"              "SL.glm"              "SL.glm.interaction" 
-## [13] "SL.glmnet"           "SL.ipredbagg"        "SL.kernelKnn"       
-## [16] "SL.knn"              "SL.ksvm"             "SL.lda"             
-## [19] "SL.leekasso"         "SL.lm"               "SL.loess"           
-## [22] "SL.logreg"           "SL.mean"             "SL.nnet"            
-## [25] "SL.nnls"             "SL.polymars"         "SL.qda"             
-## [28] "SL.randomForest"     "SL.ranger"           "SL.ridge"           
-## [31] "SL.rpart"            "SL.rpartPrune"       "SL.speedglm"        
-## [34] "SL.speedlm"          "SL.step"             "SL.step.forward"    
-## [37] "SL.step.interaction" "SL.stepAIC"          "SL.svm"             
-## [40] "SL.template"         "SL.xgboost"
-```
-
-```
-## 
-## All screening algorithm wrappers in SuperLearner:
-```
-
-```
-## [1] "All"
-## [1] "screen.corP"           "screen.corRank"        "screen.glmnet"        
-## [4] "screen.randomForest"   "screen.SIS"            "screen.template"      
-## [7] "screen.ttest"          "write.screen.template"
-```
-
-
-```r
-# Compile the algorithm wrappers to be used.
-sl_lib <- c("SL.mean", # Marginal mean of the outcome () 
-            "SL.glmnet", # GLM with lasso/elasticnet regularization 
-            "SL.rpart", # Decision tree 
-            "SL.ranger", # Random forest  
-            "SL.xgboost") # Xgbboost 
-```
-
-#### Fit model
-
-Fit the ensemble!
-
-
-```r
-# This is a seed that is compatible with multicore parallel processing.
-# See ?set.seed for more information.
-set.seed(1, "L'Ecuyer-CMRG") 
-
-# This will take a few minutes to execute - take a look at the .html file to see the output!
-cv_sl <-  SuperLearner::CV.SuperLearner(
-  Y = as.numeric(as.character(train_y_class)),
-  X = train_x_class,
-  family = binomial(),
-  # For a real analysis we would use V = 10.
-  cvControl = list(V = 5L, stratifyCV = TRUE),
-  SL.library = sl_lib,
-  verbose = FALSE)
-```
-
-```
-## [14:27:01] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:02] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:02] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:03] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:03] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:04] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:05] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:06] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:06] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:07] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:08] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:09] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:09] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:10] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:11] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:12] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:12] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:13] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:13] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:14] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:15] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:16] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:17] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:17] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:18] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:19] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:20] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:21] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:22] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:23] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:23] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:24] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:24] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:25] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:26] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:27] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:27] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:28] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:28] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:29] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:29] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:30] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:30] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:30] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:31] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:32] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:33] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:33] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:34] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:34] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:35] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:35] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:36] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:37] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:27:38] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-```
-
-#### Risk
-
-Risk is the average loss, and loss is how far off the prediction was for an individual observation. The lower the risk, the fewer errors the model makes in its prediction. SuperLearner's default loss metric is squared error $(y_{actual} - y_{predicted})^2$, so the risk is the mean-squared error (just like in ordinary least *squares* regression). View the summary, plot results, and compute the Area Under the ROC Curve (AUC)!
-
-##### Summary 
-
-* `Discrete SL` chooses the best single learner (in this case, `SL.glmnet` or `lasso`).
-* `SuperLearner` takes a weighted average of the **models** using the coefficients (importance of each individual learner in the overall ensemble). Coefficient 0 means that learner is not used at all.
-* `SL.mean_All` (the weighted mean of $Y$) is a benchmark algorithm (ignoring features). 
-
-
-```r
-summary(cv_sl)
-```
-
-```
-## 
-## Call:  
-## SuperLearner::CV.SuperLearner(Y = as.numeric(as.character(train_y_class)),  
-##     X = train_x_class, family = binomial(), SL.library = sl_lib, verbose = FALSE,  
-##     cvControl = list(V = 5L, stratifyCV = TRUE)) 
-## 
-## Risk is based on: Mean Squared Error
-## 
-## All risk estimates are based on V =  5 
-## 
-##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.12955 0.0149948 0.066463 0.17771
-##     Discrete SL 0.12861 0.0150648 0.063482 0.17771
-##     SL.mean_All 0.24802 0.0030531 0.247747 0.24893
-##   SL.glmnet_All 0.12861 0.0150648 0.063482 0.17771
-##    SL.rpart_All 0.18111 0.0197908 0.137814 0.22434
-##   SL.ranger_All 0.14414 0.0133564 0.100289 0.17626
-##  SL.xgboost_All 0.15672 0.0169218 0.127968 0.16863
-```
-
-##### Plot
-
-
-```r
-# Plot the cross-validated risk estimate with 95% CIs.
-
-plot(cv_sl)
-```
-
-<img src="06_high_dimensional_data_files/figure-html/cvsl_review-1.png" width="672" />
-
-#### Compute AUC for all estimators
-
-**ROC**
-
-ROC: an ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis). 
-
-![Area Under the ROC Curve](https://developers.google.com/machine-learning/crash-course/images/AUC.svg)
-
-**AUC** 
-
-AUC: Area Under the ROC Curve 
-
-1 = perfect 
-
-0.5 = no better than chance 
 
 
 
