@@ -19,7 +19,7 @@ Create a plain text file that contains word "test"
 - `> test` Save the expression in a file named test.   
 - In general, if you don't know what a command does, just type `<command name> --help` or `<command name> -h`. If you need more detailed information, you can do `man <command name>`. `man` stands for manual. Finally, you can get more user-friendly information by using either [`tldr`](https://tldr.sh/). 
 
-```{sh}
+```sh
 
 echo "test" > test 
 
@@ -31,7 +31,7 @@ echo "test" > test
 - `$var` returns the value associated with variable. Type `name=<Your name>`. Then, type `echo $name`. You should see your name printed. Variable assignment is one of the most basic things you'll learn in any programming.  
 - For novice users, I warn you that these could be too much advanced concepts. If so, don't pay too much attention to this. For now, it's enough to have intuitions. 
 
-```{sh}
+```sh
 
 for i in {1..100}; do cp test "test_$i"; done  
 
@@ -39,7 +39,7 @@ for i in {1..100}; do cp test "test_$i"; done
 
 Append "no_test" to the file named test_100. Note that I used `>>` (append) not `>`. 
 
-```{sh}
+```sh
 
 echo "no_test" >> test_100 
 
@@ -47,7 +47,7 @@ echo "no_test" >> test_100
 
 Let's read (=`cat` (concatenate)) what's in test_100 
 
-```{sh}
+```sh
 
 cat test_100 
 
@@ -63,7 +63,7 @@ You can write `grep -r -n -w -e "no_test"`, but the simpler the better.
 
 * `no_test`: argument (usually file or file paths)
 
-```{sh}
+```sh
 
 grep -rnw -e "no_test" 
 
@@ -71,7 +71,7 @@ grep -rnw -e "no_test"
 
 Let's remove (=`rm`) all the duplicate files as well as the original file. `*` (any number of characters) is a wildcard (if you want to identify a single number of character, use `?`). It finds every file whose name starts with `test_`.
 
-```{sh}
+```sh
 
 rm test_* test 
 
@@ -149,7 +149,7 @@ The part of the operating system responsible for managing files and directories 
 
 Several commands are frequently used to create, inspect, rename, and delete files and directories. To start exploring them, let's open a shell window:
 
-```{sh}
+```sh
 jae@jae-X705UDR:~$ 
 ```
 
@@ -165,7 +165,7 @@ Type the command `whoami`, then press the Enter key (sometimes marked Return) to
 
 The command's output is the ID of the current user, i.e., it shows us who the shell thinks we are:
 
-```{sh}
+```sh
 $ whoami
 
 # Should be your user name 
@@ -183,13 +183,13 @@ More specifically, when we type `whoami` the shell:
 
 In the next unit, we'll be focusing on the structure of our own operating systems. But our operating systems rarely work in isolation; often, we are relying on the Internet to communicate with others! You can visualize this sort of communication within your own shell by asking your computer to `ping` (based on the old term for submarine sonar) an IP address provided by Google (8.8.8.8); in effect, this will test whether your Internet (thanks Airbears2) is working. 
 
-```{sh}
+```sh
 $ ping 8.8.8.8
 ```
 
 Note: Windows users may have to try a slightly different alternative:
 
-```{sh}
+```sh
 $ ping -t 8.8.8.8
 ```
 
@@ -207,7 +207,7 @@ At any moment, our **current working directory** is our current default director
 
 Here, the computer's response is `/home/jae`, which is the **home directory**:
 
-```{sh}
+```sh
 $ pwd
 
 /home/jae
@@ -246,7 +246,7 @@ We know that our current working directory `/home/oski` is stored inside `/home`
 
 Let's see what's in your home directory by running `ls` (**list files and directories):
 
-```{sh}
+```sh
 $ ls
 
 Applications		Dropbox			Pictures
@@ -260,7 +260,7 @@ Downloads		Music			file.txt
 
 We can make its output more comprehensible by using the **flag** `-F`, which tells `ls` to add a trailing `/` to the names of directories:
 
-```{sh}
+```sh
 $ ls -F
 
 Applications		Dropbox			Pictures
@@ -283,7 +283,7 @@ And note that there is a space between `ls` and `-F`: without it, the shell thin
 
 Now let's take a look at what's in your `Desktop` directory by running `ls -F data`, i.e., the command `ls` with the **arguments** `-F` and `PS239T`. The second argument --- the one *without* a leading dash --- tells `ls` that we want a listing of the files in something other than our current working directory:
 
-```{sh}
+```sh
 $ ls -F PS239T
 
 A_Syllabus.html  C_final-projects.md  Dockerfile       LICENSE       README.md
@@ -305,7 +305,7 @@ Notice, by the way that we spelled the directory name `Desktop`. It doesn't have
 
 If we run `ls -F /Desktop` (*with* a leading slash) we get a different answer, because `/Desktop` is an **absolute path**:
 
-```{sh}
+```sh
 $ ls -F /Desktop
 
 ls: /Desktop: No such file or directory
@@ -315,7 +315,7 @@ The leading `/` tells the computer to follow the path from the root of the file 
 
 What if we want to change our current working directory? Before we do this, `pwd` shows us that we're in `/home/oski`, and `ls` without any arguments shows us that directory's contents:
 
-```{sh}
+```sh
 $ pwd
 
 /home/oski (/Users/rachel)
@@ -335,7 +335,7 @@ Use relative paths (e.g., ../PS239T/references.md) whenever it's possible so tha
 
 We can use `cd` (**change directory**) followed by a directory name to change our working directory. 
 
-```{sh}
+```sh
 $ cd Desktop
 ```
 
@@ -343,7 +343,7 @@ $ cd Desktop
 
 If we run `ls` without arguments now, it lists the contents of `/home/oski/Desktop`, because that's where we now are:
 
-```{sh}
+```sh
 $ pwd
 
 /home/oski/Desktop
@@ -352,13 +352,13 @@ $ pwd
 
 We now know how to go down the directory tree: how do we go up? We could use an absolute path:
 
-```{sh}
+```sh
 $ cd /home/oski/
 ```
 
 but it's almost always simpler to use `cd ..` to go up one level:
 
-```{sh}
+```sh
 $ pwd
 
 /home/oski/Desktop
@@ -369,7 +369,7 @@ $ cd ..
 `..` is a special directory name meaning "the directory containing this one",
 or more succinctly, the **parent** of the current directory. Sure enough, if we run `pwd` after running `cd ..`, we're back in `/home/oski/`:
 
-```{sh}
+```sh
 $ pwd
 
 /home/oski/
@@ -377,7 +377,7 @@ $ pwd
 
 The special directory `..` doesn't usually show up when we run `ls`. If we want to display it, we can give `ls` the `-a` flag:
 
-```{sh}
+```sh
 $ ls -a
 
 .		.localized	Shared
@@ -410,19 +410,19 @@ As you can see, it also displays another special directory that's just called `.
 
 If you are in you home directory, you can see what files you have on your `Desktop` using the command:
 
-```{sh}
+```sh
 $ ls ~/Desktop
 ```
 
 This is a lot to type, but she can let the shell do most of the work. If she types:
 
-```{sh}
+```sh
 $ ls ~/Des
 ```
 
 and then presses tab, the shell automatically completes the directory name for her:
 
-```{sh}
+```sh
 $ ls ~/Desktop
 ```
 
@@ -450,7 +450,7 @@ This is called **tab completion**, and we will see it in many other tools as we 
 
 Write a shell script that creates a subdirectory called `/pdfs` under `/Download` directory, then find PDF files in `/Download` and copy those files to `pdfs`. Essentially, this shell script creates a backup. Name this shell script as 'pdf_copy.sh.' You can make it executable by typing `chmod +x pdf_copy.sh`. Then, you can run it by typing `./pdf_copy_sh.` `.` refers the current working directory. Other options: `sh pdf_copy_sh.` or `bash pdf_copy_sh.` I use `./pdf_copy_sh.` Pay attention to this example as a similar exercise is going to be part of your second assignment. 
 
-```{sh}
+```sh
 
 #!/bin/sh
 
@@ -501,7 +501,7 @@ For more information on the varieties of version control systems, please read [P
 
 We'll start with telling Git who you are.
 
-```{sh}
+```sh
 $ git config --global user.name "Firstname Lastname"
 $ git config --global user.email username@company.extension
 ```
@@ -509,7 +509,7 @@ $ git config --global user.email username@company.extension
 
 Create a new directory and move to it. 
 
-```{sh} 
+```sh 
 $ mkdir code_exercise 
 $ cd code_exercise 
 ```
