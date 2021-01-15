@@ -90,7 +90,20 @@ UNIX is old, but it is still mainstream. Moreover, [the UNIX philosophy](https:/
 
 ![Ken Thompson and Dennis Ritchie, key proponents of the Unix philosophy](https://upload.wikimedia.org/wikipedia/commons/1/1b/Ken_Thompson_and_Dennis_Ritchie--1973.jpg)
 
+```{=html}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tc4ROCJYbm0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  
+<p>AT&T Archives: The UNIX Operating System</p>
+
+```
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xnCgoEyz31M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Unix50 - Unix Today and Tomorrow: The Languages </p>
+```
 
 #### Kernel
 
@@ -952,7 +965,6 @@ Set a project structure for a project named "starwars".
 ![Concept map for R Markdown. By Gabriela Sandoval, Florencia D'Andrea, Yanina Bellini Saibene, Monica Alonso.](https://github.com/rstudio/concept-maps/raw/master/en/rmarkdown.svg)
 
 
-
 ```{=html}
 <iframe width="560" height="315" src="https://www.youtube.com/embed/s9aWmU0atlQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -1062,21 +1074,25 @@ here::here("project", "outputs")
 
 ### References 
 
-- Project-oriented research 
+- Code and data management 
 
-   - Computational reproducibility 
+  - ["Code and Data for the Social Sciences: A Practitioner's Guide"](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) by Matthew Gentkow and Jesse M. Shapiro 
+  
+- Project-oriented research
+   
+  - Computational reproducibility 
 
-      - ["Good Enough Practices in Scientific Computing"](https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf) by PLOS
+    - ["Good Enough Practices in Scientific Computing"](https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf) by PLOS
       
-      - [Project Management with RStudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/) by Software Carpentry
+    - [Project Management with RStudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/) by Software Carpentry
       
-      - [Initial steps toward reproducible research](https://kbroman.org/steps2rr/) by Karl Broman
+    - [Initial steps toward reproducible research](https://kbroman.org/steps2rr/) by Karl Broman
       
-   - Version control 
+  - Version control 
    
-      - [Version Control with Git](https://swcarpentry.github.io/git-novice/) by Software Carpentry
+    - [Version Control with Git](https://swcarpentry.github.io/git-novice/) by Software Carpentry
    
-      - [The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/) by Kieran Healy 
+    - [The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/) by Kieran Healy 
 
 ## Writing code: How to code like a professional
 

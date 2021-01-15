@@ -93,7 +93,20 @@ UNIX is old, but it is still mainstream. Moreover, [the UNIX philosophy](https:/
 
 ![Ken Thompson and Dennis Ritchie, key proponents of the Unix philosophy](https://upload.wikimedia.org/wikipedia/commons/1/1b/Ken_Thompson_and_Dennis_Ritchie--1973.jpg)
 
+```{=html}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tc4ROCJYbm0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  
+<p>AT&T Archives: The UNIX Operating System</p>
+
+```
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xnCgoEyz31M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Unix50 - Unix Today and Tomorrow: The Languages </p>
+```
 
 #### Kernel
 
@@ -933,7 +946,6 @@ Set a project structure for a project named "starwars".
 
 
 ![Concept map for R Markdown. By Gabriela Sandoval, Florencia D'Andrea, Yanina Bellini Saibene, Monica Alonso.](https://github.com/rstudio/concept-maps/raw/master/en/rmarkdown.svg)
-
 
 
 ```{=html}
