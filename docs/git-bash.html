@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-12-07" />
+<meta name="date" content="2021-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,8 +53,6 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
-<script src="libs/tabwid-1.0.0/tabwid.js"></script>
 
 
 <style type="text/css">
@@ -121,6 +119,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -133,6 +132,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">Computational Thinking for Social Scientists</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Hello World</a>
 <ul>
 <li class="chapter" data-level="1.0.1" data-path="index.html"><a href="index.html#part-i-fundamentals"><i class="fa fa-check"></i><b>1.0.1</b> Part I Fundamentals</a></li>
@@ -154,32 +156,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="git-bash.html"><a href="git-bash.html"><i class="fa fa-check"></i><b>3</b> Managing data and code</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="git-bash.html"><a href="git-bash.html#getting-started-in-r"><i class="fa fa-check"></i><b>3.1</b> Getting started in R</a>
+<li class="chapter" data-level="3.1" data-path="git-bash.html"><a href="git-bash.html#using-bash-command-line-interface"><i class="fa fa-check"></i><b>3.1</b> Using Bash (command line interface)</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="git-bash.html"><a href="git-bash.html#rstudio"><i class="fa fa-check"></i><b>3.1.1</b> RStudio</a></li>
-<li class="chapter" data-level="3.1.2" data-path="git-bash.html"><a href="git-bash.html#basic-syntax"><i class="fa fa-check"></i><b>3.1.2</b> Basic Syntax</a></li>
+<li class="chapter" data-level="3.1.1" data-path="git-bash.html"><a href="git-bash.html#why-bother-using-command-line"><i class="fa fa-check"></i><b>3.1.1</b> Why bother using command line?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="git-bash.html"><a href="git-bash.html#what-is-bash"><i class="fa fa-check"></i><b>3.1.2</b> What Is Bash?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="git-bash.html"><a href="git-bash.html#references"><i class="fa fa-check"></i><b>3.1.3</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="git-bash.html"><a href="git-bash.html#environment"><i class="fa fa-check"></i><b>3.2</b> Environment</a>
+<li class="chapter" data-level="3.2" data-path="git-bash.html"><a href="git-bash.html#git-and-github"><i class="fa fa-check"></i><b>3.2</b> Git and GitHub</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="git-bash.html"><a href="git-bash.html#objects"><i class="fa fa-check"></i><b>3.2.1</b> Objects</a></li>
-<li class="chapter" data-level="3.2.2" data-path="git-bash.html"><a href="git-bash.html#packages"><i class="fa fa-check"></i><b>3.2.2</b> Packages</a></li>
+<li class="chapter" data-level="3.2.1" data-path="git-bash.html"><a href="git-bash.html#version-control-system"><i class="fa fa-check"></i><b>3.2.1</b> Version control system</a></li>
+<li class="chapter" data-level="3.2.2" data-path="git-bash.html"><a href="git-bash.html#setup"><i class="fa fa-check"></i><b>3.2.2</b> Setup</a></li>
+<li class="chapter" data-level="3.2.3" data-path="git-bash.html"><a href="git-bash.html#making-a-repository"><i class="fa fa-check"></i><b>3.2.3</b> Making a repository</a></li>
+<li class="chapter" data-level="3.2.4" data-path="git-bash.html"><a href="git-bash.html#commit-changes"><i class="fa fa-check"></i><b>3.2.4</b> Commit changes</a></li>
+<li class="chapter" data-level="3.2.5" data-path="git-bash.html"><a href="git-bash.html#other-useful-commands-for-tracking-history"><i class="fa fa-check"></i><b>3.2.5</b> Other useful commands for tracking history</a></li>
+<li class="chapter" data-level="3.2.6" data-path="git-bash.html"><a href="git-bash.html#doing-other-than-adding"><i class="fa fa-check"></i><b>3.2.6</b> Doing other than adding</a></li>
+<li class="chapter" data-level="3.2.7" data-path="git-bash.html"><a href="git-bash.html#push-and-pull-or-fetch"><i class="fa fa-check"></i><b>3.2.7</b> Push and pull (or fetch)</a></li>
+<li class="chapter" data-level="3.2.8" data-path="git-bash.html"><a href="git-bash.html#branching"><i class="fa fa-check"></i><b>3.2.8</b> Branching</a></li>
+<li class="chapter" data-level="3.2.9" data-path="git-bash.html"><a href="git-bash.html#collaborations"><i class="fa fa-check"></i><b>3.2.9</b> Collaborations</a></li>
+<li class="chapter" data-level="3.2.10" data-path="git-bash.html"><a href="git-bash.html#deployment-github-pages"><i class="fa fa-check"></i><b>3.2.10</b> Deployment: GitHub Pages</a></li>
+<li class="chapter" data-level="3.2.11" data-path="git-bash.html"><a href="git-bash.html#tracking-progress-github-issues"><i class="fa fa-check"></i><b>3.2.11</b> Tracking progress: GitHub Issues</a></li>
+<li class="chapter" data-level="3.2.12" data-path="git-bash.html"><a href="git-bash.html#project-management-github-dashboards"><i class="fa fa-check"></i><b>3.2.12</b> Project management: GitHub Dashboards</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="git-bash.html"><a href="git-bash.html#project-oriented-research"><i class="fa fa-check"></i><b>3.3</b> Project-oriented research</a>
+<li class="chapter" data-level="3.3" data-path="git-bash.html"><a href="git-bash.html#getting-started-in-r"><i class="fa fa-check"></i><b>3.3</b> Getting started in R</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="git-bash.html"><a href="git-bash.html#computational-reproducibility"><i class="fa fa-check"></i><b>3.3.1</b> Computational reproducibility</a></li>
-<li class="chapter" data-level="3.3.2" data-path="git-bash.html"><a href="git-bash.html#version-control-git-and-bash"><i class="fa fa-check"></i><b>3.3.2</b> Version control (Git and Bash)</a></li>
+<li class="chapter" data-level="3.3.1" data-path="git-bash.html"><a href="git-bash.html#rstudio"><i class="fa fa-check"></i><b>3.3.1</b> RStudio</a></li>
+<li class="chapter" data-level="3.3.2" data-path="git-bash.html"><a href="git-bash.html#basic-syntax"><i class="fa fa-check"></i><b>3.3.2</b> Basic Syntax</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="git-bash.html"><a href="git-bash.html#writing-code-how-to-code-like-a-professional"><i class="fa fa-check"></i><b>3.4</b> Writing code: How to code like a professional</a>
+<li class="chapter" data-level="3.4" data-path="git-bash.html"><a href="git-bash.html#environment"><i class="fa fa-check"></i><b>3.4</b> Environment</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="git-bash.html"><a href="git-bash.html#write-readable-code"><i class="fa fa-check"></i><b>3.4.1</b> Write readable code</a></li>
-<li class="chapter" data-level="3.4.2" data-path="git-bash.html"><a href="git-bash.html#write-reusable-code"><i class="fa fa-check"></i><b>3.4.2</b> Write reusable code</a></li>
-<li class="chapter" data-level="3.4.3" data-path="git-bash.html"><a href="git-bash.html#test-your-code-systematically"><i class="fa fa-check"></i><b>3.4.3</b> Test your code systematically</a></li>
+<li class="chapter" data-level="3.4.1" data-path="git-bash.html"><a href="git-bash.html#objects"><i class="fa fa-check"></i><b>3.4.1</b> Objects</a></li>
+<li class="chapter" data-level="3.4.2" data-path="git-bash.html"><a href="git-bash.html#packages"><i class="fa fa-check"></i><b>3.4.2</b> Packages</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="git-bash.html"><a href="git-bash.html#asking-questions-minimal-reproducible-example"><i class="fa fa-check"></i><b>3.5</b> Asking questions: Minimal reproducible example</a>
+<li class="chapter" data-level="3.5" data-path="git-bash.html"><a href="git-bash.html#project-oriented-research"><i class="fa fa-check"></i><b>3.5</b> Project-oriented research</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="git-bash.html"><a href="git-bash.html#how-to-create-a-minimal-reproducible-example"><i class="fa fa-check"></i><b>3.5.1</b> How to create a minimal reproducible example</a></li>
+<li class="chapter" data-level="3.5.1" data-path="git-bash.html"><a href="git-bash.html#computational-reproducibility"><i class="fa fa-check"></i><b>3.5.1</b> Computational reproducibility</a></li>
+<li class="chapter" data-level="3.5.2" data-path="git-bash.html"><a href="git-bash.html#references-1"><i class="fa fa-check"></i><b>3.5.2</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="git-bash.html"><a href="git-bash.html#references"><i class="fa fa-check"></i><b>3.6</b> References</a></li>
+<li class="chapter" data-level="3.6" data-path="git-bash.html"><a href="git-bash.html#writing-code-how-to-code-like-a-professional"><i class="fa fa-check"></i><b>3.6</b> Writing code: How to code like a professional</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="git-bash.html"><a href="git-bash.html#write-readable-code"><i class="fa fa-check"></i><b>3.6.1</b> Write readable code</a></li>
+<li class="chapter" data-level="3.6.2" data-path="git-bash.html"><a href="git-bash.html#write-reusable-code"><i class="fa fa-check"></i><b>3.6.2</b> Write reusable code</a></li>
+<li class="chapter" data-level="3.6.3" data-path="git-bash.html"><a href="git-bash.html#test-your-code-systematically"><i class="fa fa-check"></i><b>3.6.3</b> Test your code systematically</a></li>
+<li class="chapter" data-level="3.6.4" data-path="git-bash.html"><a href="git-bash.html#asking-questions-minimal-reproducible-example"><i class="fa fa-check"></i><b>3.6.4</b> Asking questions: Minimal reproducible example</a></li>
+<li class="chapter" data-level="3.6.5" data-path="git-bash.html"><a href="git-bash.html#references-2"><i class="fa fa-check"></i><b>3.6.5</b> References</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>4</b> Tidy data and its friends</a>
 <ul>
@@ -345,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.8.2" data-path="machine-learning.html"><a href="machine-learning.html#bias-in-the-data-risk-of-violent-recidivism-analysis"><i class="fa fa-check"></i><b>7.8.2</b> Bias in the Data (Risk of Violent Recidivism Analysis)</a></li>
 <li class="chapter" data-level="7.8.3" data-path="machine-learning.html"><a href="machine-learning.html#bias-in-the-algorithm"><i class="fa fa-check"></i><b>7.8.3</b> Bias in the algorithm</a></li>
 </ul></li>
-<li class="chapter" data-level="7.9" data-path="machine-learning.html"><a href="machine-learning.html#references-2"><i class="fa fa-check"></i><b>7.9</b> References</a>
+<li class="chapter" data-level="7.9" data-path="machine-learning.html"><a href="machine-learning.html#references-4"><i class="fa fa-check"></i><b>7.9</b> References</a>
 <ul>
 <li class="chapter" data-level="7.9.1" data-path="machine-learning.html"><a href="machine-learning.html#books"><i class="fa fa-check"></i><b>7.9.1</b> Books</a></li>
 <li class="chapter" data-level="7.9.2" data-path="machine-learning.html"><a href="machine-learning.html#lecture-slides"><i class="fa fa-check"></i><b>7.9.2</b> Lecture slides</a></li>
@@ -364,13 +384,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2.5" data-path="big-data.html"><a href="big-data.html#nyc-flights-data"><i class="fa fa-check"></i><b>8.2.5</b> NYC flights data</a></li>
 <li class="chapter" data-level="8.2.6" data-path="big-data.html"><a href="big-data.html#workflow-4"><i class="fa fa-check"></i><b>8.2.6</b> Workflow</a></li>
 <li class="chapter" data-level="8.2.7" data-path="big-data.html"><a href="big-data.html#things-we-didnt-cover"><i class="fa fa-check"></i><b>8.2.7</b> Things we didn’t cover</a></li>
-<li class="chapter" data-level="8.2.8" data-path="big-data.html"><a href="big-data.html#references-3"><i class="fa fa-check"></i><b>8.2.8</b> References</a></li>
+<li class="chapter" data-level="8.2.8" data-path="big-data.html"><a href="big-data.html#references-5"><i class="fa fa-check"></i><b>8.2.8</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="big-data.html"><a href="big-data.html#spark"><i class="fa fa-check"></i><b>8.3</b> Spark</a>
 <ul>
 <li class="chapter" data-level="8.3.1" data-path="big-data.html"><a href="big-data.html#setup-9"><i class="fa fa-check"></i><b>8.3.1</b> Setup</a></li>
 </ul></li>
 </ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/jaeyk/PS239T/" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -390,30 +413,487 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="git_bash" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Managing data and code</h1>
-<div id="getting-started-in-r" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Getting started in R</h2>
-<div id="rstudio" class="section level3" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> RStudio</h3>
+<div id="using-bash-command-line-interface" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Using Bash (command line interface)</h2>
+<p>As William Shotts the author of <em><a href="http://linuxcommand.org/tlcl.php">The Linux Command Line</a></em> put it:</p>
+<blockquote>
+<p>graphical user interfaces make easy tasks easy, while command line interfaces make difficult tasks possible.</p>
+</blockquote>
+<div id="why-bother-using-command-line" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Why bother using command line?</h3>
+<p>Create a plain text file that contains word “test”</p>
+<ul>
+<li><code>echo</code>: “Write arguments to the standard output” This is equivalent as using a text editor (e.g., nano, vim, emacs) and write something.</li>
+<li><code>&gt; test</code> Save the expression in a file named test.<br />
+</li>
+<li>In general, if you don’t know what a command does, just type <code>&lt;command name&gt; --help</code> or <code>&lt;command name&gt; -h</code>. If you need more detailed information, you can do <code>man &lt;command name&gt;</code>. <code>man</code> stands for manual. Finally, you can get more user-friendly information by using either <a href="https://tldr.sh/"><code>tldr</code></a>.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="git-bash.html#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="git-bash.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;test&quot;</span> <span class="op">&gt;</span> test </span></code></pre></div>
+<ul>
+<li>Make 100 duplicates of this file. Let’s break down the seemingly complex commands.</li>
+<li>I did this using for loop (<code>for i in {1..100}</code>). Curly braces <code>{}</code> makes 1..100 integers from 1 to 100.<br />
+</li>
+<li><code>;</code> is used to use multiple commands without making line breaks.</li>
+<li><code>$var</code> returns the value associated with variable. Type <code>name=&lt;Your name&gt;</code>. Then, type <code>echo $name</code>. You should see your name printed. Variable assignment is one of the most basic things you’ll learn in any programming.<br />
+</li>
+<li>For novice users, I warn you that these could be too much advanced concepts. If so, don’t pay too much attention to this. For now, it’s enough to have intuitions.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="git-bash.html#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="git-bash.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> <span class="ex">i</span> in <span class="dt">{1..100}</span><span class="kw">;</span> <span class="kw">do</span> <span class="fu">cp</span> test <span class="st">&quot;test_</span><span class="va">$i</span><span class="st">&quot;</span><span class="kw">;</span> <span class="kw">done</span>  </span></code></pre></div>
+<p>Append “no_test” to the file named test_100. Note that I used <code>&gt;&gt;</code> (append) not <code>&gt;</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="git-bash.html#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="git-bash.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;no_test&quot;</span> <span class="op">&gt;&gt;</span> test_100 </span></code></pre></div>
+<p>Let’s read (=<code>cat</code> (concatenate)) what’s in test_100</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="git-bash.html#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="git-bash.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> test_100 </span></code></pre></div>
+<p>Find which fine contains the character “no_test.” This is literally equivalent to finding a needle in a haystack. This is a daunting task for a human researcher, but not for our robotic assistant. <code>grep</code> finds PATTERNS in each FIEL. What follows - are options (called flags): <code>r</code> (recursive), <code>n</code> (line number), <code>w</code> (match only whole words), <code>e</code> (use patterns for matching). <code>rnw</code> are for output control and <code>e</code> is for pattern selection.</p>
+<p>You can write <code>grep -r -n -w -e "no_test"</code>, but the simpler the better.</p>
+<ul>
+<li><p><code>grep</code>: command</p></li>
+<li><p><code>-rnw -e</code>: flags</p></li>
+<li><p><code>no_test</code>: argument (usually file or file paths)</p></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="git-bash.html#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="git-bash.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> -rnw -e <span class="st">&quot;no_test&quot;</span> </span></code></pre></div>
+<p>Let’s remove (=<code>rm</code>) all the duplicate files as well as the original file. <code>*</code> (any number of characters) is a wildcard (if you want to identify a single number of character, use <code>?</code>). It finds every file whose name starts with <code>test_</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="git-bash.html#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="git-bash.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> test_* test </span></code></pre></div>
+<p>This command should return “test_100:2:no_test.” (file test_100; line number 2; no_test)</p>
+<p>What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don’t need to write files from a website using your web browser. You can run <code>wget</code> command in the terminal. Better yet, you don’t even need to run the command for the second time. You can write a shell script (<code>*.sh</code>) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. <a href="https://github.com/PS239T/spring_2021/blob/main/copy_syllabus.sh"><code>copy_syllabus.sh</code></a> automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.</p>
+</div>
+<div id="what-is-bash" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> What Is Bash?</h3>
+<p>The following materials on UNIX and Shell are adapted from [the software carpentry](<a href="https://bids.github.io/2015-06-04-berkeley/shell/00-intro.html" class="uri">https://bids.github.io/2015-06-04-berkeley/shell/00-intro.html</a>.</p>
+<div id="unix" class="section level4" number="3.1.2.1">
+<h4><span class="header-section-number">3.1.2.1</span> Unix</h4>
+<p>UNIX is an operating system which was first developed by AT &amp; T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. For this reason, if you’re using Max OS, then you don’t need to do anything else. You’re already all set. If you’re using Windows. You need to install either GitBash (works if you only use Bash for Git and GitHub) or Windows Subsystem (strongly recommended if your use case goes beyond these limited usages). For more information, see <a href="https://github.com/PS239T/spring_2021/blob/main/B_Install.md">this installation guideline</a> from the course repo.</p>
+<p>UNIX is old, but it is still mainstream. Moreover, <a href="https://en.wikipedia.org/wiki/Unix_philosophy">the UNIX philosophy</a> (“Do One Thing And Do It Well”)—minimalist, modular software development—is highly and widely influential.</p>
+<div class="figure">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Ken_Thompson_and_Dennis_Ritchie--1973.jpg" alt="" />
+<p class="caption">Ken Thompson and Dennis Ritchie, key proponents of the Unix philosophy</p>
+</div>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tc4ROCJYbm0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  
+<p>AT&T Archives: The UNIX Operating System</p>
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xnCgoEyz31M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Unix50 - Unix Today and Tomorrow: The Languages </p>
+</div>
+<div id="kernel" class="section level4" number="3.1.2.2">
+<h4><span class="header-section-number">3.1.2.2</span> Kernel</h4>
+<p>The kernel of UNIX is the hub of the operating system: it allocates time and memory to programs and handles the <a href="http://users.ox.ac.uk/~martinw/unix/chap3.html">filestore</a> (e.g., files and directories) and communications in response to system calls.</p>
+</div>
+<div id="shell" class="section level4" number="3.1.2.3">
+<h4><span class="header-section-number">3.1.2.3</span> Shell</h4>
+<p>The shell is an interactive program that provides an interface between the user and the kernel. The shell interprets commands entered by the user or supplied by a shell script, and passes them to the kernel for execution.</p>
+</div>
+<div id="human-computer-interfaces" class="section level4" number="3.1.2.4">
+<h4><span class="header-section-number">3.1.2.4</span> Human-Computer interfaces</h4>
+<p>At a high level, computers do four things:</p>
+<ul>
+<li>run programs</li>
+<li>store data</li>
+<li>communicate with each other</li>
+<li>interact with us (through either CLI or GUI)</li>
+</ul>
+</div>
+<div id="the-command-line" class="section level4" number="3.1.2.5">
+<h4><span class="header-section-number">3.1.2.5</span> The Command Line</h4>
+<p>This kind of interface is called a <strong>command-line interface</strong>, or CLI,
+to distinguish it from the <strong>graphical user interface</strong>, or GUI, that most people now use.</p>
+<p>The heart of a CLI is a <strong>read-evaluate-print loop</strong>, or REPL: when the user types a command and then presses the enter (or return) key, the computer reads it, executes it, and prints its output. The user then types another command, and so on until the user logs off.</p>
+<p>If you’re using RStudio, you can use terminal inside RStudio (next to the “Console”). (For instance, type Alt + Shift + M)</p>
+</div>
+<div id="the-shell" class="section level4" number="3.1.2.6">
+<h4><span class="header-section-number">3.1.2.6</span> The Shell</h4>
+<p>This description makes it sound as though the user sends commands directly to the computer, and the computer sends output directly to the user. In fact, there is usually a program in between called a <strong>command shell</strong>.</p>
+<p>What the user types goes into the shell; it figures out what commands to run and orders the computer to execute them.</p>
+<p>Note, the reason why the shell is called <em>the shell</em>: it encloses the operating system in order to hide some of its complexity and make it simpler to interact with.</p>
+<p>A shell is a program like any other. What’s special about it is that its job is to run other programs rather than to do calculations itself. The commands are themselves programs: when they terminate, the shell gives the user another prompt ($ on our systems).</p>
+</div>
+<div id="bash" class="section level4" number="3.1.2.7">
+<h4><span class="header-section-number">3.1.2.7</span> Bash</h4>
+<p>The most popular Unix shell is <strong>Bash</strong>, the Bourne Again Shell (so-called because it’s derived from a shell written by Stephen Bourne — this is what passes for wit among programmers). Bash is the default shell on most modern implementations of <strong>Unix</strong>, and in most packages that provide Unix-like tools for Windows.</p>
+</div>
+<div id="why-shell" class="section level4" number="3.1.2.8">
+<h4><span class="header-section-number">3.1.2.8</span> Why Shell?</h4>
+<p>Using Bash or any other shell sometimes feels more like programming than like using a mouse. Commands are terse (often only a couple of characters long), their names are frequently cryptic, and their output is lines of text rather than something visual like a graph.</p>
+<p>On the other hand, the shell allows us to combine existing tools in powerful ways with only a few keystrokes and to set up pipelines to handle large volumes of data automatically.</p>
+<p>In addition, the command line is often the easiest way to interact with remote machines (explains why we learn Bash before learning Git and GitHub). As clusters and cloud computing become more popular for scientific data crunching, being able to drive them is becoming a necessary skill.</p>
+</div>
+<div id="our-first-command" class="section level4" number="3.1.2.9">
+<h4><span class="header-section-number">3.1.2.9</span> Our first command</h4>
+<p>The part of the operating system responsible for managing files and directories is called the <strong>file system</strong>. It organizes our data into files, which hold information, and directories (also called “folders”), which hold files or other directories.</p>
+<p>Several commands are frequently used to create, inspect, rename, and delete files and directories. To start exploring them, let’s open a shell window:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="git-bash.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jae@jae-X705UDR</span>:~$ </span></code></pre></div>
+<ul>
+<li><p>jae: a specific user name</p></li>
+<li><p>jae-X705UDR: your computer/server name</p></li>
+<li><p><code>~</code>: current directory (<code>~</code> = home)</p></li>
+<li><p><code>$</code>: a <strong>prompt</strong>, which shows us that the shell is waiting for input; your shell may show something more elaborate.</p></li>
+</ul>
+<p>Type the command <code>whoami</code>, then press the Enter key (sometimes marked Return) to send the command to the shell.</p>
+<p>The command’s output is the ID of the current user, i.e., it shows us who the shell thinks we are:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="git-bash.html#cb10-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">whoami</span></span>
+<span id="cb10-2"><a href="git-bash.html#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="git-bash.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Should be your user name </span></span>
+<span id="cb10-4"><a href="git-bash.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">jae</span> </span></code></pre></div>
+<p>More specifically, when we type <code>whoami</code> the shell:</p>
+<ol style="list-style-type: decimal">
+<li>finds a program called <code>whoami</code>,</li>
+<li>runs that program,</li>
+<li>displays that program’s output, then</li>
+<li>displays a new prompt to tell us that it’s ready for more commands.</li>
+</ol>
+</div>
+<div id="communicating-to-other-systems" class="section level4" number="3.1.2.10">
+<h4><span class="header-section-number">3.1.2.10</span> Communicating to other systems</h4>
+<p>In the next unit, we’ll be focusing on the structure of our own operating systems. But our operating systems rarely work in isolation; often, we are relying on the Internet to communicate with others! You can visualize this sort of communication within your own shell by asking your computer to <code>ping</code> (based on the old term for submarine sonar) an IP address provided by Google (8.8.8.8); in effect, this will test whether your Internet (thanks Airbears2) is working.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="git-bash.html#cb11-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">ping</span> 8.8.8.8</span></code></pre></div>
+<p>Note: Windows users may have to try a slightly different alternative:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="git-bash.html#cb12-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">ping</span> -t 8.8.8.8</span></code></pre></div>
+<p>Your computer will begin continuously pinging this IP address and reporting back the “latency,” or how long it took for the ping data packet to go to that IP address and back. If your Internet isn’t working, it will instead report an error saying “No route to host.”</p>
+<p>Ping runs continuously, so when we want it to stop, we have to manually tell the kernel to stop executing the ping command. We do this simply by typing ctrl+c. </p>
+<p>(Thanks <a href="http://www.paulthissen.org/">Paul Thissen</a> for the suggestion!)</p>
+</div>
+<div id="file-system-organization" class="section level4" number="3.1.2.11">
+<h4><span class="header-section-number">3.1.2.11</span> File system organization</h4>
+<p>Next, let’s find out where we are by running a command called <code>pwd</code> (<strong>print working directory</strong>).</p>
+<p>At any moment, our <strong>current working directory</strong> is our current default directory, i.e., the directory that the computer assumes we want to run commands in unless we explicitly specify something else.</p>
+<p>Here, the computer’s response is <code>/home/jae</code>, which is the <strong>home directory</strong>:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="git-bash.html#cb13-1" aria-hidden="true" tabindex="-1"></a>$ <span class="bu">pwd</span></span>
+<span id="cb13-2"><a href="git-bash.html#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="git-bash.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/jae</span></span></code></pre></div>
+<blockquote>
+<h4 id="home-directory">Home Directory</h4>
+<p>The home directory path will look different on different operating systems. On Linux it will look like <code>/home/jae</code>, and on Windows it will be similar to <code>C:\Documents and Settings\jae</code>. Note that it may look slightly different for different versions of Windows.</p>
+</blockquote>
+<blockquote>
+<h4 id="alphabet-soup">Alphabet Soup</h4>
+<p>If the command to find out who we are is <code>whoami</code>, the command to find out where we are ought to be called <code>whereami</code>, so why is it <code>pwd</code> instead? The usual answer is that in the early 1970s, when Unix was</p>
+<p>first being developed, every keystroke counted: the devices of the day were slow, and backspacing on a teletype was so painful that cutting the number of keystrokes in order to cut the number of typing mistakes was actually a win for usability. The reality is that commands were added to Unix one by one, without any master plan, by people who were immersed in its jargon. The result is as inconsistent as the roolz uv Inglish speling, but we’re stuck with it now.</p>
+<p>The good news: because these basic commands were so integral to the development of early Unix, they have stuck around, and appear (in some form) in almost all programming languages.</p>
+</blockquote>
+<p>To understand what a “home directory” is, let’s have a look at how the file system as a whole is organized. At the top is the <strong>root directory</strong> that holds everything else.</p>
+<p>We refer to it using a slash character <code>/</code> on its own; this is the leading slash in <code>/home/jae</code>.</p>
+<p>Inside that directory are several other directories: <code>bin</code> (which is where some built-in programs are stored), <code>data</code> (holding miscellaneous data files) <code>etc</code> (where local configuration files are stored), <code>tmp</code> (for temporary files that don’t need to be stored long-term), and so on.</p>
+<blockquote>
+<p>If you’re working on a Mac, the file structure will look similar, but not
+identical. The following image shows a file system graph for the typical Mac.</p>
+</blockquote>
+<p><img src="https://swcarpentry.github.io/shell-novice/fig/home-directories.svg" alt="File Directory" />
+We know that our current working directory <code>/home/oski</code> is stored inside <code>/home</code> because <code>/home</code> is the first part of its name. Similarly, we know that <code>/home</code> is stored inside the root directory <code>/</code> because its name begins with <code>/</code>.</p>
+<blockquote>
+<h4 id="path">Path</h4>
+<p>Notice that there are two meanings for the <code>/</code> character.
+When it appears at the front of a file or directory name, it refers to the root directory. When it appears <em>inside</em> a name, it’s just a separator.</p>
+</blockquote>
+</div>
+<div id="listing" class="section level4" number="3.1.2.12">
+<h4><span class="header-section-number">3.1.2.12</span> Listing</h4>
+<p>Let’s see what’s in your home directory by running <code>ls</code> (**list files and directories):</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="git-bash.html#cb14-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">ls</span></span>
+<span id="cb14-2"><a href="git-bash.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="git-bash.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Applications</span>        Dropbox         Pictures</span>
+<span id="cb14-4"><a href="git-bash.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Creative</span> Cloud Files    Google Drive        Public</span>
+<span id="cb14-5"><a href="git-bash.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Desktop</span>         Library         Untitled.ipynb</span>
+<span id="cb14-6"><a href="git-bash.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Documents</span>       Movies          anaconda</span>
+<span id="cb14-7"><a href="git-bash.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Downloads</span>       Music           file.txt</span></code></pre></div>
+<p><code>ls</code> prints the names of the files and directories in the current directory in alphabetical order, arranged neatly into columns.</p>
+<p>We can make its output more comprehensible by using the <strong>flag</strong> <code>-F</code>, which tells <code>ls</code> to add a trailing <code>/</code> to the names of directories:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="git-bash.html#cb15-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">ls</span> -F</span>
+<span id="cb15-2"><a href="git-bash.html#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="git-bash.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Applications</span>        Dropbox         Pictures</span>
+<span id="cb15-4"><a href="git-bash.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Creative</span> Cloud Files    Google Drive        Public</span>
+<span id="cb15-5"><a href="git-bash.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Desktop</span>         Library         Untitled.ipynb</span>
+<span id="cb15-6"><a href="git-bash.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Documents</span>       Movies          anaconda</span>
+<span id="cb15-7"><a href="git-bash.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Downloads</span>       Music           file.txt</span></code></pre></div>
+<p>And note that there is a space between <code>ls</code> and <code>-F</code>: without it, the shell thinks we’re trying to run a command called <code>ls-F</code>, which doesn’t exist.</p>
+<blockquote>
+<h4 id="whats-in-a-name">What’s In A Name?</h4>
+<p>You may have noticed that all of our’s files’ names are “something dot something.” This is just a convention: we can call a file <code>file</code> or almost anything else we want. However, most people use two-part names most of the time to help them (and their programs) tell different kinds of files apart. The second part of such a name is called the <strong>filename extension</strong>, and indicates what type of data the file holds:
+<code>.txt</code> signals a plain text file, <code>.pdf</code> indicates a PDF document, <code>.cfg</code> is a configuration file full of parameters for some program or other, and so on.</p>
+<p>This is just a convention, albeit an important one. Files contain bytes: it’s up to us and our programs to interpret those bytes according to the rules for PDF documents, images, and so on.</p>
+<p>Naming a PNG image of a whale as <code>whale.mp3</code> doesn’t somehow magically turn it into a recording of whalesong, though it <em>might</em> cause the operating system to try to open it with a music player when someone double-clicks it.</p>
+</blockquote>
+<p>Now let’s take a look at what’s in your <code>Desktop</code> directory by running <code>ls -F data</code>, i.e., the command <code>ls</code> with the <strong>arguments</strong> <code>-F</code> and <code>PS239T</code>. The second argument — the one <em>without</em> a leading dash — tells <code>ls</code> that we want a listing of the files in something other than our current working directory:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="git-bash.html#cb16-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">ls</span> -F PS239T</span>
+<span id="cb16-2"><a href="git-bash.html#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="git-bash.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">A_Syllabus.html</span>  C_final-projects.md  Dockerfile       LICENSE       README.md</span>
+<span id="cb16-4"><a href="git-bash.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ex">A_Syllabus.pdf</span>   copy_syllabus.sh*    final_projects/  _logistics/   references.md</span>
+<span id="cb16-5"><a href="git-bash.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="ex">B_Install.md</span>     DESCRIPTION          lecture_notes/   PS239T.Rproj  style_guides.md</span></code></pre></div>
+<p>The output shows us that there are three files and fifteen sub-sub-directories. Organizing things hierarchically in this way helps us keep track of our work: it’s possible to put hundreds of files in our home directory, just as it’s possible to pile hundreds of printed papers on our desk, but it’s a self-defeating strategy.</p>
+<p>Notice, by the way that we spelled the directory name <code>Desktop</code>. It doesn’t have a trailing slash: that’s added to directory names by <code>ls</code> when we use the <code>-F</code> flag to help us tell things apart. And it doesn’t begin with a slash because it’s a <strong>relative path</strong>, i.e., it tells <code>ls</code> how to find something from where we are, rather than from the root of the file system.</p>
+<blockquote>
+<h4 id="parameters-vs.-arguments">Parameters vs. Arguments</h4>
+<p>According to <a href="https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments">Wikipedia</a>,
+the terms <strong>argument</strong> and <strong>parameter</strong> mean slightly different things.
+In practice, however, most people use them interchangeably or inconsistently,
+so we will too.</p>
+</blockquote>
+<p>If we run <code>ls -F /Desktop</code> (<em>with</em> a leading slash) we get a different answer, because <code>/Desktop</code> is an <strong>absolute path</strong>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="git-bash.html#cb17-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">ls</span> -F /Desktop</span>
+<span id="cb17-2"><a href="git-bash.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="git-bash.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ls</span>: /Desktop: No such file or directory</span></code></pre></div>
+<p>The leading <code>/</code> tells the computer to follow the path from the root of the file system, so it always refers to exactly one directory, no matter where we are when we run the command.</p>
+<p>What if we want to change our current working directory? Before we do this, <code>pwd</code> shows us that we’re in <code>/home/oski</code>, and <code>ls</code> without any arguments shows us that directory’s contents:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="git-bash.html#cb18-1" aria-hidden="true" tabindex="-1"></a>$ <span class="bu">pwd</span></span>
+<span id="cb18-2"><a href="git-bash.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="git-bash.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/oski</span> (/Users/rachel)</span>
+<span id="cb18-4"><a href="git-bash.html#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="git-bash.html#cb18-5" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">ls</span></span>
+<span id="cb18-6"><a href="git-bash.html#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="git-bash.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Applications</span>        Dropbox         Pictures</span>
+<span id="cb18-8"><a href="git-bash.html#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Creative</span> Cloud Files    Google Drive        Public</span>
+<span id="cb18-9"><a href="git-bash.html#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Desktop</span>         Library         Untitled.ipynb</span>
+<span id="cb18-10"><a href="git-bash.html#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Documents</span>       Movies          anaconda</span>
+<span id="cb18-11"><a href="git-bash.html#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Downloads</span>       Music           file.txt</span></code></pre></div>
+<p>Use relative paths (e.g., ../PS239T/references.md) whenever it’s possible so that your code is not dependable on how your system is configured.</p>
+</div>
+<div id="moving-around" class="section level4" number="3.1.2.13">
+<h4><span class="header-section-number">3.1.2.13</span> Moving around</h4>
+<p>We can use <code>cd</code> (<strong>change directory</strong>) followed by a directory name to change our working directory.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="git-bash.html#cb19-1" aria-hidden="true" tabindex="-1"></a>$ <span class="bu">cd</span> Desktop</span></code></pre></div>
+<p><code>cd</code> doesn’t print anything, but if we run <code>pwd</code> after it, we can see that we are now in <code>/home/oski/Desktop</code>.</p>
+<p>If we run <code>ls</code> without arguments now, it lists the contents of <code>/home/oski/Desktop</code>, because that’s where we now are:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="git-bash.html#cb20-1" aria-hidden="true" tabindex="-1"></a>$ <span class="bu">pwd</span></span>
+<span id="cb20-2"><a href="git-bash.html#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="git-bash.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/oski/Desktop</span></span></code></pre></div>
+<p>We now know how to go down the directory tree: how do we go up? We could use an absolute path:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="git-bash.html#cb21-1" aria-hidden="true" tabindex="-1"></a>$ <span class="bu">cd</span> /home/oski/</span></code></pre></div>
+<p>but it’s almost always simpler to use <code>cd ..</code> to go up one level:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="git-bash.html#cb22-1" aria-hidden="true" tabindex="-1"></a>$ <span class="bu">pwd</span></span>
+<span id="cb22-2"><a href="git-bash.html#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="git-bash.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/oski/Desktop</span></span>
+<span id="cb22-4"><a href="git-bash.html#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="git-bash.html#cb22-5" aria-hidden="true" tabindex="-1"></a>$ <span class="bu">cd</span> ..</span></code></pre></div>
+<p><code>..</code> is a special directory name meaning “the directory containing this one,”
+or more succinctly, the <strong>parent</strong> of the current directory. Sure enough, if we run <code>pwd</code> after running <code>cd ..</code>, we’re back in <code>/home/oski/</code>:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb23-1"><a href="git-bash.html#cb23-1" aria-hidden="true" tabindex="-1"></a>$ <span class="bu">pwd</span></span>
+<span id="cb23-2"><a href="git-bash.html#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="git-bash.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/oski/</span></span></code></pre></div>
+<p>The special directory <code>..</code> doesn’t usually show up when we run <code>ls</code>. If we want to display it, we can give <code>ls</code> the <code>-a</code> flag:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb24-1"><a href="git-bash.html#cb24-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">ls</span> -a</span>
+<span id="cb24-2"><a href="git-bash.html#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="git-bash.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span>       <span class="ex">.localized</span>  Shared</span>
+<span id="cb24-4"><a href="git-bash.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="ex">..</span>      Guest       rachel</span></code></pre></div>
+<p><code>-a</code> stands for “show all”; it forces <code>ls</code> to show us file and directory names that begin with <code>.</code>, such as <code>..</code>.</p>
+<blockquote>
+<h4 id="hidden-files-for-your-own-protection">Hidden Files: For Your Own Protection</h4>
+<p>As you can see, a bunch of other items just appeared when we enter <code>ls -a</code>.
+These files and directories begin with <code>.</code> followed by a name. These are
+usually files and directories that hold important programmatic information,
+not usually edited by the casual computer user. They are kept hidden so that
+users don’t accidentally delete or edit them without knowing what they’re
+doing.</p>
+</blockquote>
+<p>As you can see, it also displays another special directory that’s just called <code>.</code>, which means “the current working directory.” It may seem redundant to have a name for it, but we’ll see some uses for it soon.</p>
+<blockquote>
+<h4 id="phone-home">Phone Home</h4>
+<p>If you ever want to get to the home directory immediately, you can use the
+shortcut <code>~</code>. For example, type <code>cd ~</code> and you’ll get back home in a jiffy.
+<code>~</code> will also stand in for your home directory in paths, so for instance
+<code>~/Desktop</code> is the same as <code>/home/oski/Desktop</code>. This only works if it is
+the first character in the path: <code>here/there/~/elsewhere</code> is not
+<code>/home/oski/elsewhere</code>.</p>
+</blockquote>
+</div>
+<div id="tab-completion" class="section level4" number="3.1.2.14">
+<h4><span class="header-section-number">3.1.2.14</span> Tab completion</h4>
+<p>If you are in you home directory, you can see what files you have on your <code>Desktop</code> using the command:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb25-1"><a href="git-bash.html#cb25-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">ls</span> ~/Desktop</span></code></pre></div>
+<p>This is a lot to type, but she can let the shell do most of the work. If she types:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb26-1"><a href="git-bash.html#cb26-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">ls</span> ~/Des</span></code></pre></div>
+<p>and then presses tab, the shell automatically completes the directory name for her:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb27-1"><a href="git-bash.html#cb27-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">ls</span> ~/Desktop</span></code></pre></div>
+<p>Pressing tab again does nothing, since there are multiple possibilities. Pressing tab twice brings up a list of all the files and directories, and so on.</p>
+<p>This is called <strong>tab completion</strong>, and we will see it in many other tools as we go on.</p>
+<blockquote>
+<h4 id="quick-file-paths">Quick File Paths</h4>
+<p>If you quickly need the path of a file or directory, you can also copy the
+file/directory in the GUI and paste.The full path of the file or directory
+will appear.</p>
+</blockquote>
+</div>
+</div>
+<div id="references" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> References</h3>
+<ul>
+<li><p><a href="https://seankross.com/the-unix-workbench/">The Unix Workbench</a> by Sean Kross</p></li>
+<li><p><a href="http://swcarpentry.github.io/shell-novice/">The Unix Shell</a>, Software Carpentry</p></li>
+<li><p><a href="https://missing.csail.mit.edu/2020/shell-tools/">Shell Tools and Scripting</a>, ./missing-semester, MIT</p></li>
+<li><p><a href="https://missing.csail.mit.edu/2020/command-line/">Command-line Environment</a>, ./missing-semester, MIT</p></li>
+</ul>
+<div id="writing-your-first-shell-script" class="section level4" number="3.1.3.1">
+<h4><span class="header-section-number">3.1.3.1</span> Writing your first shell script</h4>
+<p>Write a shell script that creates a subdirectory called <code>/pdfs</code> under <code>/Download</code> directory, then find PDF files in <code>/Download</code> and copy those files to <code>pdfs</code>. Essentially, this shell script creates a backup. Name this shell script as ‘pdf_copy.sh.’ You can make it executable by typing <code>chmod +x pdf_copy.sh</code>. Then, you can run it by typing <code>./pdf_copy_sh.</code> <code>.</code> refers the current working directory. Other options: <code>sh pdf_copy_sh.</code> or <code>bash pdf_copy_sh.</code> I use <code>./pdf_copy_sh.</code> Pay attention to this example as a similar exercise is going to be part of your second assignment.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb28-1"><a href="git-bash.html#cb28-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-2"><a href="git-bash.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb28-3"><a href="git-bash.html#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="git-bash.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> /home/jae/Downloads/pdfs <span class="co"># Obviously, in your case this file path should be incorrect.</span></span>
+<span id="cb28-5"><a href="git-bash.html#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="git-bash.html#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Download</span>
+<span id="cb28-7"><a href="git-bash.html#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="git-bash.html#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> *.pdf pdfs/ </span>
+<span id="cb28-9"><a href="git-bash.html#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="git-bash.html#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Copied pdfs&quot;</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="git-and-github" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Git and GitHub</h2>
+<div id="version-control-system" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Version control system</h3>
+<div class="figure">
+<img src="https://i2.wp.com/cdn-images-1.medium.com/max/399/1*7HHA_UkjUK7wp7qP4CYu1g.png?zoom=1.75&amp;w=456&amp;ssl=1" alt="" />
+<p class="caption">Why you should do version control</p>
+</div>
+<p>According to <a href="https://guides.github.com">Github Guides</a>, a version control system “tracks the history of changes as people and teams collaborate on projects together.” Specifically, it helps to track the following information:</p>
+<ul>
+<li>Which changes were made?</li>
+<li>Who made the changes?</li>
+<li>When were the changes made?</li>
+<li>Why were changes needed?</li>
+</ul>
+<p>Git is a case of a <a href="https://en.wikipedia.org/wiki/Distributed_version_control">distributed version control system</a>, common in open source and commercial software development. This is no surprising given that Git <a href="https://lkml.org/lkml/2005/4/6/121">was originally created</a> to deal with Linux kernal development.</p>
+<ul>
+<li>If you’re curious about how the Internet works, learn one of the key ideas of the Internet: <a href="https://en.wikipedia.org/wiki/End-to-end_principle">end-to-end principle</a>. This also explains why <a href="https://en.wikipedia.org/wiki/Net_neutrality">net neutrality</a> matters.</li>
+</ul>
+<p>The following images, from <a href="git-scm.com">Pro Git</a>, show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS (e.g., Git, Mercurial, Bazzar or Darcs) works differently.</p>
+<div class="figure">
+<img src="https://git-scm.com/book/en/v2/images/centralized.png" alt="" />
+<p class="caption">Centralized version control system</p>
+</div>
+<p>Figure 2. Centralized VCS.</p>
+<div class="figure">
+<img src="https://git-scm.com/book/en/v2/images/distributed.png" alt="" />
+<p class="caption">Decentralized version control system</p>
+</div>
+<p>Figure 3. Decentralized VCS.</p>
+<p>For more information on the varieties of version control systems, please read <a href="https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf">Petr Baudis’s review</a> on that subject.</p>
+<div class="figure">
+<img src="https://plain-text.co/figures/git-basic.png" alt="" />
+<p class="caption">Figure 2.1. A schematic git workflow from Healy’s “The Plain Person’s Guide to Plain Text Social Science”</p>
+</div>
+</div>
+<div id="setup" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Setup</h3>
+<p>We’ll start with telling Git who you are.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb29-1"><a href="git-bash.html#cb29-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> config --global user.name <span class="st">&quot;Firstname Lastname&quot;</span></span>
+<span id="cb29-2"><a href="git-bash.html#cb29-2" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> config --global user.email username@company.extension</span></code></pre></div>
+</div>
+<div id="making-a-repository" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Making a repository</h3>
+<p>Create a new directory and move to it.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb30-1"><a href="git-bash.html#cb30-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">mkdir</span> code_exercise </span>
+<span id="cb30-2"><a href="git-bash.html#cb30-2" aria-hidden="true" tabindex="-1"></a>$ <span class="bu">cd</span> code_exercise </span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb31-1"><a href="git-bash.html#cb31-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> init </span></code></pre></div>
+<p>Alternatively, you can create a Git repository via Github and then clone it on your local machine.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb32-1"><a href="git-bash.html#cb32-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> clone /path/to/repository</span></code></pre></div>
+<p>If you’re unfamiliar with basic Git commands, then please refer to <a href="http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf">this Git cheet sheet</a>.</p>
+</div>
+<div id="commit-changes" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Commit changes</h3>
+<p>These feature show how Git works as a version control system.</p>
+<p>If you edited files or added new ones, then you need to update your repository. In Git terms, this action is called committing changes.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb33-1"><a href="git-bash.html#cb33-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> add . <span class="co"># update every change. In Git terms, you&#39;re staging. </span></span>
+<span id="cb33-2"><a href="git-bash.html#cb33-2" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> add file_name <span class="co"># or stage a specific file.</span></span>
+<span id="cb33-3"><a href="git-bash.html#cb33-3" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> commit -m <span class="st">&quot;your comment&quot;</span> <span class="co"># your comment for the commit. </span></span>
+<span id="cb33-4"><a href="git-bash.html#cb33-4" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> push origin master <span class="co"># commit the change. Origin is a default name given to a server by Git. </span></span></code></pre></div>
+<p>Another image from <a href="https://git-scm.com/about/staging-area">Pro Git</a> well illustrates this process.</p>
+<div class="figure">
+<img src="https://git-scm.com/images/about/index1@2x.png" alt="" />
+<p class="caption">Git Workflow</p>
+</div>
+</div>
+<div id="other-useful-commands-for-tracking-history" class="section level3" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Other useful commands for tracking history</h3>
+<div class="sourceCode" id="cb34"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb34-1"><a href="git-bash.html#cb34-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> diff <span class="co"># to see what changed (e.g., inside a file)</span></span>
+<span id="cb34-2"><a href="git-bash.html#cb34-2" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> log <span class="co"># to track who committed what</span></span>
+<span id="cb34-3"><a href="git-bash.html#cb34-3" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> checkout the commit hash (e.g., a5e556) <span class="fu">file</span> name (fruit_list.txt) # <span class="ex">to</span> recover old files </span>
+<span id="cb34-4"><a href="git-bash.html#cb34-4" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> revert 1q84 <span class="co"># revert to the previous commit </span></span></code></pre></div>
+</div>
+<div id="doing-other-than-adding" class="section level3" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> Doing other than adding</h3>
+<div class="sourceCode" id="cb35"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb35-1"><a href="git-bash.html#cb35-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> rm file_name <span class="co"># remove </span></span>
+<span id="cb35-2"><a href="git-bash.html#cb35-2" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> mv old_file_name new_file_name <span class="co"># rename a file </span></span></code></pre></div>
+</div>
+<div id="push-and-pull-or-fetch" class="section level3" number="3.2.7">
+<h3><span class="header-section-number">3.2.7</span> Push and pull (or fetch)</h3>
+<p>These features show how Git works as a collaboration tool.</p>
+<p>If you have not already done, let’s clone PS239T directory on your local machine.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb36-1"><a href="git-bash.html#cb36-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> clone https://github.com/jaeyk/PS239T <span class="co"># clone </span></span></code></pre></div>
+<p>Then, let’s learn more about the repository.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb37-1"><a href="git-bash.html#cb37-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> remote -v </span></code></pre></div>
+<p>Previously, we learned how to send your data save in the local machine to the remote (the Github server). You can do that by editing or creating files, committing, and then typing <strong>git push</strong>.</p>
+<p>Instead, if you want to update your local data with the remote data, then you can type <strong>git pull origin</strong> (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb38-1"><a href="git-bash.html#cb38-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> fetch origin</span></code></pre></div>
+</div>
+<div id="branching" class="section level3" number="3.2.8">
+<h3><span class="header-section-number">3.2.8</span> Branching</h3>
+<p>It’s an advanced feature of Git’s version control system that allows developers to “diverge from the main line of development and continue to do work without messing with that main line” according to <a href="https://git-scm.com/book/en/v1/Git-Branching">Scott Chacon and Ben Straub</a>.</p>
+<p>If you start working on a new feature, then create a new branch.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb39-1"><a href="git-bash.html#cb39-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> branch new_features</span>
+<span id="cb39-2"><a href="git-bash.html#cb39-2" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> checkout new_features</span></code></pre></div>
+<p>You can see the newly created branch by typing <strong>git branch</strong>.</p>
+<p>In short, branching makes Git <a href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics">works like</a> a mini file system.</p>
+</div>
+<div id="collaborations" class="section level3" number="3.2.9">
+<h3><span class="header-section-number">3.2.9</span> Collaborations</h3>
+<p>Two options.</p>
+<ul>
+<li>Sharing a repository (suitable for a private project).</li>
+<li>Fork and pull (suitable for an open source project).
+​ * The one who maintains the repository becomes the maintainer.
+​ * The others can <a href="https://help.github.com/articles/about-forks/">fork</a>, make changes, and even <a href="https://help.github.com/articles/about-pull-requests/">pull</a> them back.</li>
+</ul>
+<div id="other-stuff" class="section level4" number="3.2.9.1">
+<h4><span class="header-section-number">3.2.9.1</span> Other stuff</h4>
+<div class="sourceCode" id="cb40"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb40-1"><a href="git-bash.html#cb40-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> status <span class="co"># show the status of changes </span></span>
+<span id="cb40-2"><a href="git-bash.html#cb40-2" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> branch <span class="co"># show the branch being worked on locally</span></span>
+<span id="cb40-3"><a href="git-bash.html#cb40-3" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> merge <span class="co"># merge branches </span></span>
+<span id="cb40-4"><a href="git-bash.html#cb40-4" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> reset --hard <span class="co"># restore the pristine version</span></span>
+<span id="cb40-5"><a href="git-bash.html#cb40-5" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> commit -a -m <span class="st">&quot;additional backup&quot;</span> <span class="co"># to save the state again</span></span></code></pre></div>
+</div>
+</div>
+<div id="deployment-github-pages" class="section level3" number="3.2.10">
+<h3><span class="header-section-number">3.2.10</span> Deployment: GitHub Pages</h3>
+</div>
+<div id="tracking-progress-github-issues" class="section level3" number="3.2.11">
+<h3><span class="header-section-number">3.2.11</span> Tracking progress: GitHub Issues</h3>
+</div>
+<div id="project-management-github-dashboards" class="section level3" number="3.2.12">
+<h3><span class="header-section-number">3.2.12</span> Project management: GitHub Dashboards</h3>
+</div>
+</div>
+<div id="getting-started-in-r" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Getting started in R</h2>
+<div id="rstudio" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> RStudio</h3>
 <p>There are two main ways of interacting with R: using the console or by using script files (plain text files that contain your code).</p>
 <p>If R is ready to accept commands, the R console shows a <code>&gt;</code> prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using <code>Ctrl-Enter</code>; <code>Command-Enter</code> will also work on Macs), R will try to execute it, and when ready, show the results and come back with a new <code>&gt;</code>-prompt to wait for new commands. This is the equivalent of the <code>$</code> in your terminal.</p>
 </div>
-<div id="basic-syntax" class="section level3" number="3.1.2">
-<h3><span class="header-section-number">3.1.2</span> Basic Syntax</h3>
+<div id="basic-syntax" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Basic Syntax</h3>
 <p><strong>Comments</strong></p>
 <p>Use <code>#</code> signs to comment. Comment liberally in your R scripts. Anything to the right of a <code>#</code> is ignored by R. For those of you familiar with other languages, there is no doc string, or equivalent to <code>"""</code> in R.</p>
 <p><strong>Assignment operator</strong></p>
 <p><code>&lt;-</code> is the assignment operator. It assigns values on the right to objects on the left. So, after executing <code>x &lt;- 3</code>, the value of <code>x</code> is <code>3</code>. The arrow can be read as 3 <strong>goes into</strong> <code>x</code>. You can also use <code>=</code> for assignments.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="git-bash.html#cb3-1" aria-hidden="true" tabindex="-1"></a>USweird <span class="ot">&lt;-</span> <span class="st">&quot;Why use lb for pound!&quot;</span> <span class="co"># Use this</span></span>
-<span id="cb3-2"><a href="git-bash.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="git-bash.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Why use lb for pound!&quot;</span> <span class="ot">=</span> USweird</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="git-bash.html#cb41-1" aria-hidden="true" tabindex="-1"></a>USweird <span class="ot">&lt;-</span> <span class="st">&quot;Why use lb for pound!&quot;</span> <span class="co"># Use this</span></span>
+<span id="cb41-2"><a href="git-bash.html#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="git-bash.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Why use lb for pound!&quot;</span> <span class="ot">=</span> USweird</span></code></pre></div>
 <p>Nonetheless, <em>can</em> does not mean you <em>should</em>. It is good practice to use <code>&lt;-</code> for assignments. <code>=</code> should only be used to specify the values of arguments of functions. This is what Google and Hadley Wickham recommend as well. If they don’t convince you enough, here’s <a href="https://csgillespie.wordpress.com/2010/11/16/assignment-operators-in-r-vs/">a real example</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="git-bash.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># Does it save x?</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="git-bash.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># Does it save x?</span></span></code></pre></div>
 <pre><code>## [1] 5.5</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="git-bash.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="git-bash.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
 <pre><code>## Warning in rm(x): object &#39;x&#39; not found</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="git-bash.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># Does it save x?</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="git-bash.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># Does it save x?</span></span></code></pre></div>
 <pre><code>## [1] 5.5</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="git-bash.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="git-bash.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
 <p><strong>Printing</strong></p>
 <p>In R, the contents of an object can be printed by either simply executing the the object name or calling the <code>print()</code> function.</p>
 <p><strong>Help</strong></p>
@@ -421,95 +901,95 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>?</code> + object opens a help page for that specific object</li>
 <li><code>??</code> + object searches help pages containing the name of the object</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="git-bash.html#cb11-1" aria-hidden="true" tabindex="-1"></a>?mean</span>
-<span id="cb11-2"><a href="git-bash.html#cb11-2" aria-hidden="true" tabindex="-1"></a>??mean</span>
-<span id="cb11-3"><a href="git-bash.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(mean)</span>
-<span id="cb11-4"><a href="git-bash.html#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="git-bash.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The above three will do same. </span></span>
-<span id="cb11-6"><a href="git-bash.html#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="git-bash.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(ls) <span class="co"># provides example for how to use ls </span></span>
-<span id="cb11-8"><a href="git-bash.html#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="git-bash.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">&quot;visualization&quot;</span>) <span class="co"># search functions and packages that have &quot;visualization&quot; in their descriptions</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="git-bash.html#cb49-1" aria-hidden="true" tabindex="-1"></a>?mean</span>
+<span id="cb49-2"><a href="git-bash.html#cb49-2" aria-hidden="true" tabindex="-1"></a>??mean</span>
+<span id="cb49-3"><a href="git-bash.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(mean)</span>
+<span id="cb49-4"><a href="git-bash.html#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="git-bash.html#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The above three will do same. </span></span>
+<span id="cb49-6"><a href="git-bash.html#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="git-bash.html#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(ls) <span class="co"># provides example for how to use ls </span></span>
+<span id="cb49-8"><a href="git-bash.html#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="git-bash.html#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">&quot;visualization&quot;</span>) <span class="co"># search functions and packages that have &quot;visualization&quot; in their descriptions</span></span></code></pre></div>
 </div>
 </div>
-<div id="environment" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Environment</h2>
+<div id="environment" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Environment</h2>
 <p>Environment = a collection of pairs</p>
-<div id="objects" class="section level3" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> Objects</h3>
+<div id="objects" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Objects</h3>
 <ul>
 <li>List objects in your current environment</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="git-bash.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a numeric object </span></span>
-<span id="cb12-2"><a href="git-bash.html#cb12-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
-<span id="cb12-3"><a href="git-bash.html#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="git-bash.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># List the object </span></span>
-<span id="cb12-5"><a href="git-bash.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
-<span id="cb12-6"><a href="git-bash.html#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="git-bash.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the object </span></span>
-<span id="cb12-8"><a href="git-bash.html#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="git-bash.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a numeric object </span></span>
+<span id="cb50-2"><a href="git-bash.html#cb50-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb50-3"><a href="git-bash.html#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="git-bash.html#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co"># List the object </span></span>
+<span id="cb50-5"><a href="git-bash.html#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
+<span id="cb50-6"><a href="git-bash.html#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-7"><a href="git-bash.html#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the object </span></span>
+<span id="cb50-8"><a href="git-bash.html#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
 <ul>
 <li>Remove objects from your current environment</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="git-bash.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an object </span></span>
-<span id="cb13-2"><a href="git-bash.html#cb13-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb13-3"><a href="git-bash.html#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="git-bash.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the object </span></span>
-<span id="cb13-5"><a href="git-bash.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="git-bash.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an object </span></span>
+<span id="cb51-2"><a href="git-bash.html#cb51-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb51-3"><a href="git-bash.html#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="git-bash.html#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the object </span></span>
+<span id="cb51-5"><a href="git-bash.html#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
 <ul>
 <li>Remove all objects from your current environment</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="git-bash.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an object </span></span>
-<span id="cb14-2"><a href="git-bash.html#cb14-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">7</span></span>
-<span id="cb14-3"><a href="git-bash.html#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="git-bash.html#cb14-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb14-5"><a href="git-bash.html#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="git-bash.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the object </span></span>
-<span id="cb14-7"><a href="git-bash.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="git-bash.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an object </span></span>
+<span id="cb52-2"><a href="git-bash.html#cb52-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb52-3"><a href="git-bash.html#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="git-bash.html#cb52-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb52-5"><a href="git-bash.html#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="git-bash.html#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the object </span></span>
+<span id="cb52-7"><a href="git-bash.html#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div>
 <ul>
 <li>Force memory release</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="git-bash.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Garbage collect; for more information, type ?gc() </span></span>
-<span id="cb15-2"><a href="git-bash.html#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="git-bash.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="git-bash.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Garbage collect; for more information, type ?gc() </span></span>
+<span id="cb53-2"><a href="git-bash.html#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="git-bash.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
 </div>
-<div id="packages" class="section level3" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Packages</h3>
+<div id="packages" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Packages</h3>
 <p><code>install.packages(package-name)</code> will download a package from one of the CRAN mirrors assuming that a binary is available for your operating system.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="git-bash.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From CRAN</span></span>
-<span id="cb16-2"><a href="git-bash.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>) </span>
-<span id="cb16-3"><a href="git-bash.html#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="git-bash.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load package </span></span>
-<span id="cb16-5"><a href="git-bash.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb16-6"><a href="git-bash.html#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="git-bash.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># From GitHub </span></span>
-<span id="cb16-8"><a href="git-bash.html#cb16-8" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;jaeyk/tidytweetjson&quot;</span>) <span class="co"># my own package </span></span>
-<span id="cb16-9"><a href="git-bash.html#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="git-bash.html#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Unload package </span></span>
-<span id="cb16-11"><a href="git-bash.html#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># detach(&quot;package:stats&quot;, unload=TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="git-bash.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From CRAN</span></span>
+<span id="cb54-2"><a href="git-bash.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>) </span>
+<span id="cb54-3"><a href="git-bash.html#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="git-bash.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load package </span></span>
+<span id="cb54-5"><a href="git-bash.html#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb54-6"><a href="git-bash.html#cb54-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-7"><a href="git-bash.html#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co"># From GitHub </span></span>
+<span id="cb54-8"><a href="git-bash.html#cb54-8" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;jaeyk/tidytweetjson&quot;</span>) <span class="co"># my own package </span></span>
+<span id="cb54-9"><a href="git-bash.html#cb54-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-10"><a href="git-bash.html#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Unload package </span></span>
+<span id="cb54-11"><a href="git-bash.html#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="co"># detach(&quot;package:stats&quot;, unload=TRUE)</span></span></code></pre></div>
 <p><strong>Tips</strong></p>
 <p>If you have multiple packages to install, then please consider using pacman package. The following is the example. First, you install pacman. Then, you load several libraries by using <code>p_load()</code> method.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="git-bash.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
-<span id="cb17-2"><a href="git-bash.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="git-bash.html#cb17-3" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
-<span id="cb17-4"><a href="git-bash.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  ggplot2,</span>
-<span id="cb17-5"><a href="git-bash.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  dplyr, </span>
-<span id="cb17-6"><a href="git-bash.html#cb17-6" aria-hidden="true" tabindex="-1"></a>  broom</span>
-<span id="cb17-7"><a href="git-bash.html#cb17-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="git-bash.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb55-2"><a href="git-bash.html#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="git-bash.html#cb55-3" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb55-4"><a href="git-bash.html#cb55-4" aria-hidden="true" tabindex="-1"></a>  ggplot2,</span>
+<span id="cb55-5"><a href="git-bash.html#cb55-5" aria-hidden="true" tabindex="-1"></a>  dplyr, </span>
+<span id="cb55-6"><a href="git-bash.html#cb55-6" aria-hidden="true" tabindex="-1"></a>  broom</span>
+<span id="cb55-7"><a href="git-bash.html#cb55-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>If you don’t like to use <code>pacman</code>, then the other option is to create a list (we’re going to learn what is list soon).</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="git-bash.html#cb18-1" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;broom&quot;</span>)</span>
-<span id="cb18-2"><a href="git-bash.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="git-bash.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(pkgs)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="git-bash.html#cb56-1" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;broom&quot;</span>)</span>
+<span id="cb56-2"><a href="git-bash.html#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="git-bash.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(pkgs)</span></code></pre></div>
 <p>Still, we have to write two lines. The simpler, the better, right? Here’s another approach that can simplify the code further.</p>
 <p>Note that <code>lapply()</code> applies (there’s a family of apply functions) a function to a list. In this case, library to pkgs. apply is an advanced concept, which is related to anonymous functions. We will learn about it later when we study functions.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="git-bash.html#cb19-1" aria-hidden="true" tabindex="-1"></a>inst <span class="ot">&lt;-</span> <span class="fu">lapply</span>(pkgs, library, </span>
-<span id="cb19-2"><a href="git-bash.html#cb19-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="git-bash.html#cb57-1" aria-hidden="true" tabindex="-1"></a>inst <span class="ot">&lt;-</span> <span class="fu">lapply</span>(pkgs, library, </span>
+<span id="cb57-2"><a href="git-bash.html#cb57-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="project-oriented-research" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Project-oriented research</h2>
-<div id="computational-reproducibility" class="section level3" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Computational reproducibility</h3>
+<div id="project-oriented-research" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Project-oriented research</h2>
+<div id="computational-reproducibility" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Computational reproducibility</h3>
 <ul>
 <li><p>Replication = code + data</p></li>
 <li><p>Computational reproduciblity = code + data + environment + distribution</p></li>
@@ -525,21 +1005,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Think about the entire pipeline</p></li>
 </ol></li>
 </ul>
-<div id="setup" class="section level4" number="3.3.1.1">
-<h4><span class="header-section-number">3.3.1.1</span> Setup</h4>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="git-bash.html#cb20-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
-<span id="cb20-2"><a href="git-bash.html#cb20-2" aria-hidden="true" tabindex="-1"></a>  tidyverse, <span class="co"># tidyverse</span></span>
-<span id="cb20-3"><a href="git-bash.html#cb20-3" aria-hidden="true" tabindex="-1"></a>  here <span class="co"># computational reproducibility</span></span>
-<span id="cb20-4"><a href="git-bash.html#cb20-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div id="setup-1" class="section level4" number="3.5.1.1">
+<h4><span class="header-section-number">3.5.1.1</span> Setup</h4>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="git-bash.html#cb58-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb58-2"><a href="git-bash.html#cb58-2" aria-hidden="true" tabindex="-1"></a>  tidyverse, <span class="co"># tidyverse</span></span>
+<span id="cb58-3"><a href="git-bash.html#cb58-3" aria-hidden="true" tabindex="-1"></a>  here <span class="co"># computational reproducibility</span></span>
+<span id="cb58-4"><a href="git-bash.html#cb58-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-<div id="motivation-1" class="section level4" number="3.3.1.2">
-<h4><span class="header-section-number">3.3.1.2</span> Motivation</h4>
+<div id="motivation-1" class="section level4" number="3.5.1.2">
+<h4><span class="header-section-number">3.5.1.2</span> Motivation</h4>
 <p>Why do you need to make your research project computationally reproducible?</p>
 <p>For your self-interest and public benefits.</p>
 <p><img src="https://github.com/dlab-berkeley/efficient-reproducible-project-management-in-R/blob/master/misc/screenshot.png?raw=true" /></p>
 </div>
-<div id="how-to-organize-files-in-a-project" class="section level4" number="3.3.1.3">
-<h4><span class="header-section-number">3.3.1.3</span> How to organize files in a project</h4>
+<div id="how-to-organize-files-in-a-project" class="section level4" number="3.5.1.3">
+<h4><span class="header-section-number">3.5.1.3</span> How to organize files in a project</h4>
 <p>You won’t be able to reproduce your project unless it is efficiently organized.</p>
 <p>Step 1. <a href="https://environments.rstudio.com/"><strong>Environment</strong></a> is part of your project. If someone can’t reproduce your environment, they won’t be able to run your code.</p>
 <ul>
@@ -566,9 +1046,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="https://datacarpentry.org/R-ecology-lesson/img/working-directory-structure.png" alt="" />
 <p class="caption">Working directory structure example</p>
 </div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="git-bash.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Don&#39;t name it a project. Use a name that&#39;s more informative. For instance, us_election not my_project.</span></span>
-<span id="cb21-2"><a href="git-bash.html#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="git-bash.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;../us_election&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="git-bash.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Don&#39;t name it a project. Use a name that&#39;s more informative. For instance, us_election not my_project.</span></span>
+<span id="cb59-2"><a href="git-bash.html#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="git-bash.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;../us_election&quot;</span>)</span></code></pre></div>
 <p>Step 3. Launch R Studio. Choose File &gt; New project &gt; Browse existing directories &gt; Create project This allows each project has its own workspace.</p>
 <p>Step 4. Organize files by putting them in separate subdirectories and naming them in a sensible way.</p>
 <ul>
@@ -577,28 +1057,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Note that version control does not need replace backup. You still need to backup your raw data.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="git-bash.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;data&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="git-bash.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;data&quot;</span>))</span></code></pre></div>
 <ul>
 <li>Separate read-only data from processed data and put in the <code>processed_data</code> subdirectory.</li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="git-bash.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;processed_data&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="git-bash.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;processed_data&quot;</span>))</span></code></pre></div>
 <ul>
 <li>Put your code in the <code>src</code> subdirectory.</li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="git-bash.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;src&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="git-bash.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;src&quot;</span>))</span></code></pre></div>
 <ul>
 <li>Put generated outputs (e.g., tables, figures) in the <code>outputs</code> subdirectory and treat them as disposable.</li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="git-bash.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;outputs&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="git-bash.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;outputs&quot;</span>))</span></code></pre></div>
 <ul>
 <li>Put your custom functions in the <code>functions</code> subdirectory. You can gather some of these functions and distribute them as an open-source library.</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="git-bash.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;src&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="git-bash.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;src&quot;</span>))</span></code></pre></div>
 <p><strong>Challenge</strong></p>
 <p>Set a project structure for a project named “starwars.”</p>
 </div>
-<div id="how-to-organize-code-in-a-r-markdown-file" class="section level4" number="3.3.1.4">
-<h4><span class="header-section-number">3.3.1.4</span> How to organize code in a R markdown file</h4>
+<div id="how-to-organize-code-in-a-r-markdown-file" class="section level4" number="3.5.1.4">
+<h4><span class="header-section-number">3.5.1.4</span> How to organize code in a R markdown file</h4>
 <ul>
 <li><p>In addition to environment, <strong>workflow</strong> is an important component of project efficiency and reproducibility.</p></li>
 <li><p>What is R markdown? An R package, developed by <a href="https://yihui.org/en/">Yihui Xie</a>, that provides an authoring framework for data science. Xie is also a developer of many widely popular R packages such as <code>knitr</code>, <a href="https://github.com/yihui/xaringan"><code>xaringan</code></a> (cool kids use xaringan not <a href="https://en.wikipedia.org/wiki/Beamer_(LaTeX)">Beamer</a> these days), <code>blogdown</code> (used to create <a href="https://jaeyk.github.io/">my personal website</a>), and <code>bookdown</code> (used to create this book) among many others.</p>
@@ -625,17 +1105,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>R Markdown basic syntax</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="git-bash.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Header 1</span></span>
-<span id="cb27-2"><a href="git-bash.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Header 2</span></span>
-<span id="cb27-3"><a href="git-bash.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="do">### Header 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="git-bash.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Header 1</span></span>
+<span id="cb65-2"><a href="git-bash.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Header 2</span></span>
+<span id="cb65-3"><a href="git-bash.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="do">### Header 3</span></span></code></pre></div>
 <ul>
 <li>Use these section headers to indicate workflow.</li>
 </ul>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="git-bash.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages and data</span></span>
-<span id="cb28-2"><a href="git-bash.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy data</span></span>
-<span id="cb28-3"><a href="git-bash.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrangle data</span></span>
-<span id="cb28-4"><a href="git-bash.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model data</span></span>
-<span id="cb28-5"><a href="git-bash.html#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize data</span></span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="git-bash.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages and data</span></span>
+<span id="cb66-2"><a href="git-bash.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy data</span></span>
+<span id="cb66-3"><a href="git-bash.html#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrangle data</span></span>
+<span id="cb66-4"><a href="git-bash.html#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model data</span></span>
+<span id="cb66-5"><a href="git-bash.html#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize data</span></span></code></pre></div>
 <ul>
 <li><p>Press <code>ctrl + shift + o</code>. You can see a document outline based on these headers. This is a nice feature for finding code you need to focus.</p></li>
 <li><p>If your project’s scale is large, then divide these sections into files, number, and save them in <code>code</code> subdirectory.</p>
@@ -646,22 +1126,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
-<div id="making-a-project-computationally-reproducible" class="section level4" number="3.3.1.5">
-<h4><span class="header-section-number">3.3.1.5</span> Making a project computationally reproducible</h4>
+<div id="making-a-project-computationally-reproducible" class="section level4" number="3.5.1.5">
+<h4><span class="header-section-number">3.5.1.5</span> Making a project computationally reproducible</h4>
 <ul>
 <li><p><code>setwd()</code>: set a working directory.</p></li>
 <li><p>Note that using <code>setwd()</code> is not a reproducible way to set up your project. For instance, none will be able to run the following code except me.</p></li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="git-bash.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set a working directory </span></span>
-<span id="cb29-2"><a href="git-bash.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/home/jae/starwars&quot;</span>)</span>
-<span id="cb29-3"><a href="git-bash.html#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="git-bash.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Do something </span></span>
-<span id="cb29-5"><a href="git-bash.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span></span>
-<span id="cb29-6"><a href="git-bash.html#cb29-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>()</span>
-<span id="cb29-7"><a href="git-bash.html#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-8"><a href="git-bash.html#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Export the object. </span></span>
-<span id="cb29-9"><a href="git-bash.html#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># dot means the working directory set by setwd()</span></span>
-<span id="cb29-10"><a href="git-bash.html#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;./outputs/example.png&quot;</span>) <span class="co"># This is called relative path </span></span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="git-bash.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set a working directory </span></span>
+<span id="cb67-2"><a href="git-bash.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/home/jae/starwars&quot;</span>)</span>
+<span id="cb67-3"><a href="git-bash.html#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="git-bash.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Do something </span></span>
+<span id="cb67-5"><a href="git-bash.html#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span></span>
+<span id="cb67-6"><a href="git-bash.html#cb67-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>()</span>
+<span id="cb67-7"><a href="git-bash.html#cb67-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-8"><a href="git-bash.html#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Export the object. </span></span>
+<span id="cb67-9"><a href="git-bash.html#cb67-9" aria-hidden="true" tabindex="-1"></a><span class="co"># dot means the working directory set by setwd()</span></span>
+<span id="cb67-10"><a href="git-bash.html#cb67-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;./outputs/example.png&quot;</span>) <span class="co"># This is called relative path </span></span></code></pre></div>
 <ul>
 <li><p>Instead, learn how to use <code>here()</code>’.</p>
 <ul>
@@ -669,22 +1149,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Example</p></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="git-bash.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New: Reproducible </span></span>
-<span id="cb30-2"><a href="git-bash.html#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="git-bash.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="git-bash.html#cb30-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>()</span>
-<span id="cb30-5"><a href="git-bash.html#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-6"><a href="git-bash.html#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;outputs&quot;</span>, <span class="st">&quot;example.png&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="git-bash.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New: Reproducible </span></span>
+<span id="cb68-2"><a href="git-bash.html#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="git-bash.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span></span>
+<span id="cb68-4"><a href="git-bash.html#cb68-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>()</span>
+<span id="cb68-5"><a href="git-bash.html#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-6"><a href="git-bash.html#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;outputs&quot;</span>, <span class="st">&quot;example.png&quot;</span>))</span></code></pre></div>
 <ul>
 <li>How <code>here</code> works</li>
 </ul>
 <p><code>here()</code> function shows what’s the top-level project directory.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="git-bash.html#cb31-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="git-bash.html#cb69-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>()</span></code></pre></div>
 <ul>
 <li>Build a path including subdirectories</li>
 </ul>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="git-bash.html#cb32-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;outputs&quot;</span>)</span>
-<span id="cb32-2"><a href="git-bash.html#cb32-2" aria-hidden="true" tabindex="-1"></a>           <span class="co">#depth 1   #depth 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="git-bash.html#cb70-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;outputs&quot;</span>)</span>
+<span id="cb70-2"><a href="git-bash.html#cb70-2" aria-hidden="true" tabindex="-1"></a>           <span class="co">#depth 1   #depth 2</span></span></code></pre></div>
 <ul>
 <li><p>How <code>here</code> defines the top-level project directory. The following list came from <a href="https://github.com/jennybc/here_here">the here package vignette</a>).</p>
 <ul>
@@ -700,420 +1180,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Challenge</strong></p>
 <ol style="list-style-type: decimal">
 <li>Can you define computational reproducibility?</li>
-<li>Can you explain why sharing code and data is not enough for computational reproducibility?</li>
+<li>Can you explain why sharing code and data is not enough for computational reproducibility</li>
 </ol>
 </div>
 </div>
-<div id="version-control-git-and-bash" class="section level3" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Version control (Git and Bash)</h3>
-<p><img src="https://github.com/dlab-berkeley/BashGit/raw/master/octobash.png" /></p>
-<div id="what-is-bash" class="section level4" number="3.3.2.1">
-<h4><span class="header-section-number">3.3.2.1</span> What Is Bash?</h4>
-<p>The following materials on UNIX and Shell are adapted from [the software carpentry](<a href="https://bids.github.io/2015-06-04-berkeley/shell/00-intro.html" class="uri">https://bids.github.io/2015-06-04-berkeley/shell/00-intro.html</a>.</p>
-<div id="unix" class="section level5" number="3.3.2.1.1">
-<h5><span class="header-section-number">3.3.2.1.1</span> Unix</h5>
-<p>UNIX is an operating system which was first developed by AT &amp; T employees at Bell Labs (1969-1971). Bell Labs canceled the project (MULTICS) but was continued by the employees worked in a smaller scale. The new project was named UNICS (Uniplexed Information and Computation System) and then renamed UNIX. Due to <a href="https://en.wikipedia.org/wiki/Breakup_of_the_Bell_System">the anti-trust issue</a>, AT &amp; T gave away UNIX in 1975. Berkeley is one of the main places where UNIX was developed. <a href="https://en.wikipedia.org/wiki/Berkeley_Software_Distribution">The Berkeley Software Distribution</a>, one of the branches of UNIX, came out it 1977.</p>
-<p>From Mac OS X to Linux, many of current operation systems are some versions of UNIX.</p>
-<p>For more information on the history of UNIX, see <a href="https://docs.google.com/presentation/d/1kKt9V6rom55hU6SJ2_3nGluobjtScptlnJV9YFe6Jz4/pub?start=false&amp;loop=false&amp;delayms=3000&amp;slide=id.g163c5ae2ce_0_17">this link</a>.</p>
-<div class="figure">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Unix_history-simple.svg/1200px-Unix_history-simple.svg.png" alt="" />
-<p class="caption">Unix history</p>
-</div>
-</div>
-<div id="kernel" class="section level5" number="3.3.2.1.2">
-<h5><span class="header-section-number">3.3.2.1.2</span> Kernel</h5>
-<p>The kernel of UNIX is the hub of the operating system: it allocates time and memory to programs and handles the <a href="http://users.ox.ac.uk/~martinw/unix/chap3.html">filestore</a> (e.g., files and directories) and communications in response to system calls.</p>
-</div>
-<div id="shell" class="section level5" number="3.3.2.1.3">
-<h5><span class="header-section-number">3.3.2.1.3</span> Shell</h5>
-<p>The shell is an interactive program that provides an interface between the user and the kernel. The shell interprets commands entered by the user or supplied by a shell script, and passes them to the kernel for execution.</p>
-<p>As an illustration of the way that the shell and the kernel work together, suppose a user types <code>rm myfile</code> (which has the effect of removing the file <em>myfile</em>). The shell searches the filestore for the file containing the program <code>rm</code>, and then requests the kernel, through system calls, to execute the program <code>rm</code> on <em>myfile</em>. When the process <code>rm myfile</code> has finished running, the shell then returns the UNIX prompt % to the user, indicating that it is waiting for further commands.</p>
-<p>We’ll talk more about shells in a little bit.</p>
-</div>
-<div id="human-computer-interfaces" class="section level5" number="3.3.2.1.4">
-<h5><span class="header-section-number">3.3.2.1.4</span> Human-Computer interfaces</h5>
-<p>At a high level, computers do four things:</p>
+<div id="references-1" class="section level3" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> References</h3>
 <ul>
-<li><p>run programs</p></li>
-<li><p>store data</p></li>
-<li><p>communicate with each other</p></li>
-<li><p>interact with us</p>
-<p>They can do the last of these in many different ways, including direct brain-computer links and speech interfaces. Since these are still in their infancy, most of us use windows, icons, mice, and pointers. These technologies didn’t become widespread until the 1980s, but their roots go back to <a href="https://en.wikipedia.org/wiki/Douglas_Engelbart">Doug Engelbart</a> who received his Ph.D. in electrical engineering from the University of California, Berkeley in 1955 and was hired as an assistant professor at the same department for a year. He then left academia and joined the tech industry and became one of the founding fathers in HCI field (mouse, hypertext, GUI, etc.,).</p></li>
-</ul>
-<p>Going back even further, the only way to interact with early computers was to rewire them. But in between, from the 1950s to the 1980s, most people used line printers. These devices only allowed input and output of the letters, numbers, and punctuation found on a standard keyboard, so programming languages and interfaces had to be designed around that constraint.</p>
-</div>
-<div id="the-command-line" class="section level5" number="3.3.2.1.5">
-<h5><span class="header-section-number">3.3.2.1.5</span> The Command Line</h5>
-<p>This kind of interface is called a <strong>command-line interface</strong>, or CLI,
-to distinguish it from the <strong>graphical user interface</strong>, or GUI, that most people now use.</p>
-<p>The heart of a CLI is a <strong>read-evaluate-print loop</strong>, or REPL: when the user types a command and then presses the enter (or return) key, the computer reads it, executes it, and prints its output. The user then types another command,
-and so on until the user logs off.</p>
-<p>As William Shotts the author of <em><a href="http://linuxcommand.org/tlcl.php">The Linux Command Line</a></em> put it:
-&gt;graphical user interfaces make easy tasks easy, while command line interfaces make difficult tasks possible.</p>
-</div>
-<div id="the-shell" class="section level5" number="3.3.2.1.6">
-<h5><span class="header-section-number">3.3.2.1.6</span> The Shell</h5>
-<p>This description makes it sound as though the user sends commands directly to the computer, and the computer sends output directly to the user. In fact,
-there is usually a program in between called a <strong>command shell</strong>.</p>
-<p>What the user types goes into the shell; it figures out what commands to run and orders the computer to execute them.</p>
-<p>Note, the reason why the shell is called <em>the shell</em>: it encloses the operating system in order to hide some of its complexity and make it simpler to interact with.</p>
-<p>A shell is a program like any other. What’s special about it is that its job is to run other programs rather than to do calculations itself. The commands are themselves programs: when they terminate, the shell gives the user another prompt ($ on our systems).</p>
-</div>
-<div id="bash" class="section level5" number="3.3.2.1.7">
-<h5><span class="header-section-number">3.3.2.1.7</span> Bash</h5>
-<p>The most popular Unix shell is <strong>Bash</strong>, the Bourne Again Shell (so-called because it’s derived from a shell written by Stephen Bourne — this is what passes for wit among programmers). Bash is the default shell on most modern implementations of <strong>Unix</strong>, and in most packages that provide Unix-like tools for Windows.</p>
-</div>
-<div id="why-shell" class="section level5" number="3.3.2.1.8">
-<h5><span class="header-section-number">3.3.2.1.8</span> Why Shell?</h5>
-<p>Using Bash or any other shell sometimes feels more like programming than like using a mouse. Commands are terse (often only a couple of characters long), their names are frequently cryptic, and their output is lines of text rather than something visual like a graph.</p>
-<p>On the other hand, the shell allows us to combine existing tools in powerful ways with only a few keystrokes and to set up pipelines to handle large volumes of data automatically.</p>
-<p>In addition, the command line is often the easiest way to interact with remote machines. As clusters and cloud computing become more popular for scientific data crunching, being able to drive them is becoming a necessary skill.</p>
-</div>
-<div id="our-first-command" class="section level5" number="3.3.2.1.9">
-<h5><span class="header-section-number">3.3.2.1.9</span> Our first command</h5>
-<p>The part of the operating system responsible for managing files and directories is called the <strong>file system</strong>. It organizes our data into files, which hold information, and directories (also called “folders”), which hold files or other directories.</p>
-<p>Several commands are frequently used to create, inspect, rename, and delete files and directories. To start exploring them, let’s open a shell window:</p>
-<pre class="shell"><code>$</code></pre>
-<p>The dollar sign is a <strong>prompt</strong>, which shows us that the shell is waiting for input; your shell may show something more elaborate.</p>
-<p>Type the command <code>whoami</code>, then press the Enter key (sometimes marked Return) to send the command to the shell.</p>
-<p>The command’s output is the ID of the current user, i.e., it shows us who the shell thinks we are:</p>
-<pre class="shell"><code>$ whoami
-
-oski</code></pre>
-<p>More specifically, when we type <code>whoami</code> the shell:</p>
-<ol style="list-style-type: decimal">
-<li>finds a program called <code>whoami</code>,</li>
-<li>runs that program,</li>
-<li>displays that program’s output, then</li>
-<li>displays a new prompt to tell us that it’s ready for more commands.</li>
-</ol>
-</div>
-<div id="communicating-to-other-systems" class="section level5" number="3.3.2.1.10">
-<h5><span class="header-section-number">3.3.2.1.10</span> Communicating to other systems</h5>
-<p>In the next unit, we’ll be focusing on the structure of our own operating systems. But our operating systems rarely work in isolation; often, we are relying on the Internet to communicate with others! You can visualize this sort of communication within your own shell by asking your computer to <code>ping</code> (based on the old term for submarine sonar) an IP address provided by Google (8.8.8.8); in effect, this will test whether your Internet (thanks Airbears2) is working.</p>
-<pre class="shell"><code>$ ping 8.8.8.8</code></pre>
-<p>Note: Windows users may have to try a slightly different alternative:</p>
-<pre class="shell"><code>$ ping -t 8.8.8.8</code></pre>
-<p>Your computer will begin continuously pinging this IP address and reporting back the “latency,” or how long it took for the ping data packet to go to that IP address and back. If your Internet isn’t working, it will instead report an error saying “No route to host.”</p>
-<p>Ping runs continuously, so when we want it to stop, we have to manually tell the kernel to stop executing the ping command. We do this simply by typing ctrl+c. </p>
-<p>(Thanks <a href="http://www.paulthissen.org/">Paul Thissen</a> for the suggestion!)</p>
-</div>
-<div id="file-system-organization" class="section level5" number="3.3.2.1.11">
-<h5><span class="header-section-number">3.3.2.1.11</span> File system organization</h5>
-<p>Next, let’s find out where we are by running a command called <code>pwd</code> (<strong>print working directory</strong>).</p>
-<p>At any moment, our <strong>current working directory</strong> is our current default directory, i.e., the directory that the computer assumes we want to run commands in unless we explicitly specify something else.</p>
-<p>Here, the computer’s response is <code>/home/oski</code>, which is the <strong>home directory</strong>:</p>
-<pre class="shell"><code>$ pwd
-
-/home/oski</code></pre>
-<blockquote>
-<h4 id="home-directory">Home Directory</h4>
-<p>The home directory path will look different on different operating systems. On Linux it will look like <code>/home/oski</code>, and on Windows it will be similar to <code>C:\Documents and Settings\oski</code>. Note that it may look slightly different for different versions of Windows.</p>
-</blockquote>
-<blockquote>
-<h4 id="alphabet-soup">Alphabet Soup</h4>
-<p>If the command to find out who we are is <code>whoami</code>, the command to find out where we are ought to be called <code>whereami</code>, so why is it <code>pwd</code> instead? The usual answer is that in the early 1970s, when Unix was
-first being developed, every keystroke counted: the devices of the day were slow, and backspacing on a teletype was so painful that cutting the number of keystrokes in order to cut the number of typing mistakes was actually a win for usability. The reality is that commands were added to Unix one by one, without any master plan, by people who were immersed in its jargon. The result is as inconsistent as the roolz uv Inglish speling, but we’re stuck with it now.</p>
-<p>The good news: because these basic commands were so integral to the development of early Unix, they have stuck around, and appear (in some form) in almost all programming languages.</p>
-</blockquote>
-<p>To understand what a “home directory” is, let’s have a look at how the file system as a whole is organized. At the top is the <strong>root directory</strong> that holds everything else.</p>
-<p>We refer to it using a slash character <code>/</code> on its own; this is the leading slash in <code>/home/oski</code>.</p>
-<p>Inside that directory are several other directories: <code>bin</code> (which is where some built-in programs are stored), <code>data</code> (holding miscellaneous data files) <code>etc</code> (where local configuration files are stored), <code>tmp</code> (for temporary files that don’t need to be stored long-term), and so on.</p>
-<blockquote>
-<p>If you’re working on a Mac, the file structure will look similar, but not
-identical. The following image shows a file system graph for the typical Mac.</p>
-</blockquote>
-<div class="figure">
-<img src="https://swcarpentry.github.io/shell-novice/fig/home-directories.svg" alt="" />
-<p class="caption">File Directory</p>
-</div>
-<p>We know that our current working directory <code>/home/oski</code> is stored inside <code>/home</code> because <code>/home</code> is the first part of its name. Similarly, we know that <code>/home</code> is stored inside the root directory <code>/</code> because its name begins with <code>/</code>.</p>
-<blockquote>
-<h4 id="path">Path</h4>
-<p>Notice that there are two meanings for the <code>/</code> character.
-When it appears at the front of a file or directory name, it refers to the root directory. When it appears <em>inside</em> a name, it’s just a separator.</p>
-</blockquote>
-</div>
-<div id="listing" class="section level5" number="3.3.2.1.12">
-<h5><span class="header-section-number">3.3.2.1.12</span> Listing</h5>
-<p>Let’s see what’s in your home directory by running <code>ls</code> (**list files and directories):</p>
-<pre class="shell"><code>$ ls
-
-Applications        Dropbox         Pictures
-Creative Cloud Files    Google Drive        Public
-Desktop         Library         Untitled.ipynb
-Documents       Movies          anaconda
-Downloads       Music           file.txt</code></pre>
-<p><code>ls</code> prints the names of the files and directories in the current directory in alphabetical order, arranged neatly into columns.</p>
-<p>We can make its output more comprehensible by using the <strong>flag</strong> <code>-F</code>, which tells <code>ls</code> to add a trailing <code>/</code> to the names of directories:</p>
-<pre class="shell"><code>$ ls -F
-
-Applications        Dropbox         Pictures
-Creative Cloud Files    Google Drive        Public
-Desktop         Library         Untitled.ipynb
-Documents       Movies          anaconda
-Downloads       Music           file.txt</code></pre>
-<p>And note that there is a space between <code>ls</code> and <code>-F</code>: without it, the shell thinks we’re trying to run a command called <code>ls-F</code>, which doesn’t exist.</p>
-<blockquote>
-<h4 id="whats-in-a-name">What’s In A Name?</h4>
-<p>You may have noticed that all of our’s files’ names are “something dot something.” This is just a convention: we can call a file <code>file</code> or almost anything else we want. However, most people use two-part names most of the time to help them (and their programs) tell different kinds of files apart. The second part of such a name is called the <strong>filename extension</strong>, and indicates what type of data the file holds:
-<code>.txt</code> signals a plain text file, <code>.pdf</code> indicates a PDF document, <code>.cfg</code> is a configuration file full of parameters for some program or other, and so on.</p>
-<p>This is just a convention, albeit an important one. Files contain bytes: it’s up to us and our programs to interpret those bytes according to the rules for PDF documents, images, and so on.</p>
-<p>Naming a PNG image of a whale as <code>whale.mp3</code> doesn’t somehow magically turn it into a recording of whalesong, though it <em>might</em> cause the operating system to try to open it with a music player when someone double-clicks it.</p>
-</blockquote>
-<p>Now let’s take a look at what’s in your <code>Desktop</code> directory by running <code>ls -F data</code>, i.e., the command <code>ls</code> with the <strong>arguments</strong> <code>-F</code> and <code>PS239T</code>. The second argument — the one <em>without</em> a leading dash — tells <code>ls</code> that we want a listing of the files in something other than our current working directory:</p>
-<pre class="shell"><code>$ ls -F PS239T
-
-01_Introduction/            10_python-basics/
-02_Unix-Bash/               11_FINAL PROJECTS/
-03_r-basics/                12_text-analysis-python/
-04_r-data-analysis/         13_text-analysis-r/
-05_r-visualization/         14_machine-learning/
-06_APIs/                15_machine-learning-applications/
-07_html-css-javascript/         A_Syllabus.md
-08_webscraping/             B_Install.md
-09_qualtrics-mturk/         README.md</code></pre>
-<p>The output shows us that there are three files and fifteen sub-sub-directories. Organizing things hierarchically in this way helps us keep track of our work: it’s possible to put hundreds of files in our home directory, just as it’s possible to pile hundreds of printed papers on our desk, but it’s a self-defeating strategy.</p>
-<p>Notice, by the way that we spelled the directory name <code>Desktop</code>. It doesn’t have a trailing slash: that’s added to directory names by <code>ls</code> when we use the <code>-F</code> flag to help us tell things apart. And it doesn’t begin with a slash because it’s a <strong>relative path</strong>, i.e., it tells <code>ls</code> how to find something from where we are, rather than from the root of the file system.</p>
-<blockquote>
-<h4 id="parameters-vs.-arguments">Parameters vs. Arguments</h4>
-<p>According to <a href="https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments">Wikipedia</a>,
-the terms <strong>argument</strong> and <strong>parameter</strong> mean slightly different things.
-In practice, however, most people use them interchangeably or inconsistently,
-so we will too.</p>
-</blockquote>
-<p>If we run <code>ls -F /Desktop</code> (<em>with</em> a leading slash) we get a different answer, because <code>/Desktop</code> is an <strong>absolute path</strong>:</p>
-<pre class="shell"><code>$ ls -F /Desktop
-
-ls: /Desktop: No such file or directory</code></pre>
-<p>The leading <code>/</code> tells the computer to follow the path from the root of the file system, so it always refers to exactly one directory, no matter where we are when we run the command.</p>
-<p>What if we want to change our current working directory? Before we do this, <code>pwd</code> shows us that we’re in <code>/home/oski</code>, and <code>ls</code> without any arguments shows us that directory’s contents:</p>
-<pre class="shell"><code>$ pwd
-
-/home/oski (/Users/rachel)
-
-$ ls
-
-Applications        Dropbox         Pictures
-Creative Cloud Files    Google Drive        Public
-Desktop         Library         Untitled.ipynb
-Documents       Movies          anaconda
-Downloads       Music           file.txt</code></pre>
-<p>Use relative paths (e.g., ../PS239T/references.md) whenever it’s possible so that your code is not dependable on how your system is configured.</p>
-</div>
-<div id="moving-around" class="section level5" number="3.3.2.1.13">
-<h5><span class="header-section-number">3.3.2.1.13</span> Moving around</h5>
-<p>We can use <code>cd</code> (<strong>change directory</strong>) followed by a directory name to change our working directory.</p>
-<pre class="shell"><code>$ cd Desktop</code></pre>
-<p><code>cd</code> doesn’t print anything, but if we run <code>pwd</code> after it, we can see that we are now in <code>/home/oski/Desktop</code>.</p>
-<p>If we run <code>ls</code> without arguments now, it lists the contents of <code>/home/oski/Desktop</code>, because that’s where we now are:</p>
-<pre class="shell"><code>$ pwd
-
-/home/oski/Desktop
-</code></pre>
-<p>We now know how to go down the directory tree: how do we go up? We could use an absolute path:</p>
-<pre class="shell"><code>$ cd /home/oski/</code></pre>
-<p>but it’s almost always simpler to use <code>cd ..</code> to go up one level:</p>
-<pre class="shell"><code>$ pwd
-
-/home/oski/Desktop
-
-$ cd ..</code></pre>
-<p><code>..</code> is a special directory name meaning “the directory containing this one,”
-or more succinctly, the <strong>parent</strong> of the current directory. Sure enough, if we run <code>pwd</code> after running <code>cd ..</code>, we’re back in <code>/home/oski/</code>:</p>
-<pre class="shell"><code>$ pwd
-
-/home/oski/</code></pre>
-<p>The special directory <code>..</code> doesn’t usually show up when we run <code>ls</code>. If we want to display it, we can give <code>ls</code> the <code>-a</code> flag:</p>
-<pre class="shell"><code>$ ls -a
-
-.       .localized  Shared
-..      Guest       rachel</code></pre>
-<p><code>-a</code> stands for “show all”; it forces <code>ls</code> to show us file and directory names that begin with <code>.</code>, such as <code>..</code>.</p>
-<blockquote>
-<h4 id="hidden-files-for-your-own-protection">Hidden Files: For Your Own Protection</h4>
-<p>As you can see, a bunch of other items just appeared when we enter <code>ls -a</code>.
-These files and directories begin with <code>.</code> followed by a name. These are
-usually files and directories that hold important programmatic information,
-not usually edited by the casual computer user. They are kept hidden so that
-users don’t accidentally delete or edit them without knowing what they’re
-doing.</p>
-</blockquote>
-<p>As you can see, it also displays another special directory that’s just called <code>.</code>, which means “the current working directory.” It may seem redundant to have a name for it, but we’ll see some uses for it soon.</p>
-<blockquote>
-<h4 id="phone-home">Phone Home</h4>
-<p>If you ever want to get to the home directory immediately, you can use the
-shortcut <code>~</code>. For example, type <code>cd ~</code> and you’ll get back home in a jiffy.
-<code>~</code> will also stand in for your home directory in paths, so for instance
-<code>~/Desktop</code> is the same as <code>/home/oski/Desktop</code>. This only works if it is
-the first character in the path: <code>here/there/~/elsewhere</code> is not
-<code>/home/oski/elsewhere</code>.</p>
-</blockquote>
-</div>
-<div id="tab-completion" class="section level5" number="3.3.2.1.14">
-<h5><span class="header-section-number">3.3.2.1.14</span> Tab completion</h5>
-<p>If you are in you home directory, you can see what files you have on your <code>Desktop</code> using the command:</p>
-<pre class="shell"><code>$ ls ~/Desktop</code></pre>
-<p>This is a lot to type, but she can let the shell do most of the work. If she types:</p>
-<pre class="shell"><code>$ ls ~/Des</code></pre>
-<p>and then presses tab, the shell automatically completes the directory name for her:</p>
-<pre class="shell"><code>$ ls ~/Desktop</code></pre>
-<p>Pressing tab again does nothing, since there are multiple possibilities. Pressing tab twice brings up a list of all the files and directories, and so on.</p>
-<p>This is called <strong>tab completion</strong>, and we will see it in many other tools as we go on.</p>
-<blockquote>
-<h4 id="quick-file-paths">Quick File Paths</h4>
-<p>If you quickly need the path of a file or directory, you can also copy the
-file/directory in the GUI and paste.The full path of the file or directory
-will appear.</p>
-</blockquote>
-</div>
-<div id="writing-your-first-shell-script" class="section level5" number="3.3.2.1.15">
-<h5><span class="header-section-number">3.3.2.1.15</span> Writing your first shell script</h5>
-<p>Write a shell script that creates a directory called <code>/pdfs</code> under <code>/Download</code> directory, then find PDF files in <code>/Download</code> and copy those files to <code>pdfs</code>. This shell script creates a backup.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb52-1"><a href="git-bash.html#cb52-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-2"><a href="git-bash.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
-<span id="cb52-3"><a href="git-bash.html#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-4"><a href="git-bash.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> /home/jae/Downloads/pdfs </span>
-<span id="cb52-5"><a href="git-bash.html#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-6"><a href="git-bash.html#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Download</span>
-<span id="cb52-7"><a href="git-bash.html#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-8"><a href="git-bash.html#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> *.pdf pdfs/ </span>
-<span id="cb52-9"><a href="git-bash.html#cb52-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-10"><a href="git-bash.html#cb52-10" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Copied pdfs&quot;</span></span></code></pre></div>
-</div>
-</div>
-<div id="git-and-github" class="section level4" number="3.3.2.2">
-<h4><span class="header-section-number">3.3.2.2</span> Git and GitHub</h4>
-<div id="version-control-system" class="section level5" number="3.3.2.2.1">
-<h5><span class="header-section-number">3.3.2.2.1</span> Version control system</h5>
-<div class="figure">
-<img src="https://i2.wp.com/cdn-images-1.medium.com/max/399/1*7HHA_UkjUK7wp7qP4CYu1g.png?zoom=1.75&amp;w=456&amp;ssl=1" alt="" />
-<p class="caption">Why you should do version control</p>
-</div>
-<p>According to <a href="https://guides.github.com">Github Guides</a>, a versin control system “tracks the history of changes as people and teams collaborate on projects together.” Specifically, it helps to track the following information:</p>
+<li><p>Code and data management</p>
 <ul>
-<li>Which changes were made?</li>
-<li>Who made the changes?</li>
-<li>When were the changes made?</li>
-<li>Why were changes needed?</li>
-</ul>
-<p>Git is a case of a <a href="https://en.wikipedia.org/wiki/Distributed_version_control">distributed version control system</a>, common in open source and commercial software development. This is no surprising given that Git <a href="https://lkml.org/lkml/2005/4/6/121">was originally created</a> to deal with Linux kernal development.</p>
+<li><a href="https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf">“Code and Data for the Social Sciences: A Practitioner’s Guide”</a> by Matthew Gentkow and Jesse M. Shapiro</li>
+</ul></li>
+<li><p>Project-oriented research</p>
 <ul>
-<li>If you’re curious about how the Intenret works, learn one of the key ideas of the Internet: <a href="https://en.wikipedia.org/wiki/End-to-end_principle">end-to-end principle</a>. This also explains why <a href="https://en.wikipedia.org/wiki/Net_neutrality">net neutrality</a> matters.</li>
-</ul>
-<p>The following images, from <a href="git-scm.com">Pro Git</a>, show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS (e.g., Git, Mercurial, Bazzar or Darcs) works differently.</p>
-<div class="figure">
-<img src="https://git-scm.com/book/en/v2/images/centralized.png" alt="" />
-<p class="caption">Centralized version control system</p>
-</div>
-<p>Figure 2. Centralized VCS.</p>
-<div class="figure">
-<img src="https://git-scm.com/book/en/v2/images/distributed.png" alt="" />
-<p class="caption">Decentralized version control system</p>
-</div>
-<p>Figure 3. Decentralized VCS.</p>
-<p>For more information on the varieties of version control systems, please read <a href="https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf">Petr Baudis’s review</a> on that subject.</p>
-<div class="figure">
-<img src="https://plain-text.co/figures/git-basic.png" alt="" />
-<p class="caption">Figure 2.1. A schematic git workflow from Healy’s “The Plain Person’s Guide to Plain Text Social Science”</p>
-</div>
-</div>
-<div id="setup-1" class="section level5" number="3.3.2.2.2">
-<h5><span class="header-section-number">3.3.2.2.2</span> Setup</h5>
-<p>We’ll start with telling Git who you are.</p>
-<pre class="shell"><code>$ git config --global user.name &quot;Firstname Lastname&quot;
-$ git config --global user.email username@company.extension</code></pre>
-</div>
-<div id="making-a-repository" class="section level5" number="3.3.2.2.3">
-<h5><span class="header-section-number">3.3.2.2.3</span> Making a repository</h5>
-<p>Create a new directory and move to it.</p>
-<pre class="shell"><code>$ mkdir code_exercise 
-$ cd code_exercise </code></pre>
-<pre class="shell"><code>$ git init </code></pre>
-<p>Alternatively, you can create a Git repository via Github and then clone it on your local machine.</p>
-<pre class="shell"><code>$ git clone /path/to/repository</code></pre>
-<p>If you’re unfamiliar with basic Git commands, then please refer to <a href="http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf">this Git cheet sheet</a>.</p>
-</div>
-<div id="commit-changes" class="section level5" number="3.3.2.2.4">
-<h5><span class="header-section-number">3.3.2.2.4</span> Commit changes</h5>
-<p>These feature show how Git works as a version control system.</p>
-<p>If you edited files or added new ones, then you need to update your repository. In Git terms, this action is called committing changes.</p>
-<pre class="shell"><code>$ git add . # update every change. In Git terms, you&#39;re staging. 
-$ git add file_name # or stage a specific file.
-$ git commit -m &quot;your comment&quot; # your comment for the commit. 
-$ git push origin master # commit the change. Origin is a defaul name given to a server by Git. </code></pre>
-<p>Another image from <a href="https://git-scm.com/about/staging-area">Pro Git</a> well illustrates this process.</p>
-<div class="figure">
-<img src="https://git-scm.com/images/about/index1@2x.png" alt="" />
-<p class="caption">Git Workflow</p>
-</div>
-</div>
-<div id="other-useful-commands-for-tracking-history" class="section level5" number="3.3.2.2.5">
-<h5><span class="header-section-number">3.3.2.2.5</span> Other useful commands for tracking history</h5>
-<pre class="shell"><code>$ git diff # to see what changed (e.g., inside a file)
-$ git log # to track who committed what
-$ git checkout the commit hash (e.g., a5e556) file name (fruit_list.txt) # to recover old files 
-$ git revert 1q84 # revert to the previous commit </code></pre>
-</div>
-<div id="doing-other-than-adding" class="section level5" number="3.3.2.2.6">
-<h5><span class="header-section-number">3.3.2.2.6</span> Doing other than adding</h5>
-<pre class="shell"><code>$ git rm file_name # remove 
-$ git mv old_file_name new_file_name # rename a file </code></pre>
-</div>
-<div id="push-and-pull-or-fetch" class="section level5" number="3.3.2.2.7">
-<h5><span class="header-section-number">3.3.2.2.7</span> Push and pull (or fetch)</h5>
-<p>These features show how Git works as a collaboration tool.</p>
-<p>If you have not already done, let’s clone PS239T directory on your local machine.</p>
-<pre class="shell"><code>$ git clone https://github.com/jaeyk/PS239T # clone </code></pre>
-<p>Then, let’s learn more about the repository.</p>
-<pre class="shell"><code>$ git remote -v </code></pre>
-<p>Previously, we learned how to send your data save in the local machine to the remote (the Github server). You can do that by editing or creating files, committing, and then typing <strong>git push</strong>.</p>
-<p>Instead, if you want to update your local data with the remote data, then you can type <strong>git pull origin</strong> (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.</p>
-<pre class="shell"><code>$ git fetch origin</code></pre>
-</div>
-<div id="branching" class="section level5" number="3.3.2.2.8">
-<h5><span class="header-section-number">3.3.2.2.8</span> Branching</h5>
-<p>It’s an advanced feature of Git’s version control system that allows developers to “diverge from the main line of development and continue to do work without messing with that main line” according to <a href="https://git-scm.com/book/en/v1/Git-Branching">Scott Chacon and Ben Straub</a>.</p>
-<p>If you start working on a new feature, then create a new branch.</p>
-<pre class="shell"><code>$ git branch new_features
-$ git checkout new_features</code></pre>
-<p>You can see the newly created branch by typing <strong>git branch</strong>.</p>
-<p>In short, branching makes Git <a href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics">works like</a> a mini file system.</p>
-</div>
-<div id="collaborations" class="section level5" number="3.3.2.2.9">
-<h5><span class="header-section-number">3.3.2.2.9</span> Collaborations</h5>
-<p>Two options.</p>
+<li><p>Computational reproducibility</p>
 <ul>
-<li>Sharing a repository (suitable for a private project).</li>
-<li>Fork and pull (suitable for an open source project).
-​ * The one who maintains the repository becomes the maintainer.
-​ * The others can <a href="https://help.github.com/articles/about-forks/">fork</a>, make changes, and even <a href="https://help.github.com/articles/about-pull-requests/">pull</a> them back.</li>
+<li><p><a href="https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf">“Good Enough Practices in Scientific Computing”</a> by PLOS</p></li>
+<li><p><a href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/">Project Management with RStudio</a> by Software Carpentry</p></li>
+<li><p><a href="https://kbroman.org/steps2rr/">Initial steps toward reproducible research</a> by Karl Broman</p></li>
+</ul></li>
+<li><p>Version control</p>
+<ul>
+<li><p><a href="https://swcarpentry.github.io/git-novice/">Version Control with Git</a> by Software Carpentry</p></li>
+<li><p><a href="http://plain-text.co/">The Plain Person’s Guide to Plain Text Social Science</a> by Kieran Healy</p></li>
+</ul></li>
+</ul></li>
 </ul>
 </div>
-<div id="other-stuff" class="section level5" number="3.3.2.2.10">
-<h5><span class="header-section-number">3.3.2.2.10</span> Other stuff</h5>
-<pre class="shell"><code>$ git status # show the status of changes 
-$ git branch # show the branch being worked on locally
-$ git merge # merge branches 
-$ git reset --hard # restore the pristine version
-$ git commit -a -m &quot;additional backup&quot; # to save the state again</code></pre>
 </div>
-<div id="deployment-github-pages" class="section level5" number="3.3.2.2.11">
-<h5><span class="header-section-number">3.3.2.2.11</span> Deployment: GitHub Pages</h5>
-</div>
-<div id="tracking-progress-github-issues" class="section level5" number="3.3.2.2.12">
-<h5><span class="header-section-number">3.3.2.2.12</span> Tracking progress: GitHub Issues</h5>
-</div>
-<div id="project-management-github-dashboards" class="section level5" number="3.3.2.2.13">
-<h5><span class="header-section-number">3.3.2.2.13</span> Project management: GitHub Dashboards</h5>
-</div>
-</div>
-</div>
-</div>
-<div id="writing-code-how-to-code-like-a-professional" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Writing code: How to code like a professional</h2>
-<div id="write-readable-code" class="section level3" number="3.4.1">
-<h3><span class="header-section-number">3.4.1</span> Write readable code</h3>
+<div id="writing-code-how-to-code-like-a-professional" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Writing code: How to code like a professional</h2>
+<div id="write-readable-code" class="section level3" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Write readable code</h3>
 <ul>
 <li>What is code style?</li>
 </ul>
@@ -1148,11 +1246,11 @@ allowfullscreen></iframe>
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="git-bash.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
-<span id="cb65-2"><a href="git-bash.html#cb65-2" aria-hidden="true" tabindex="-1"></a>fit_models.R</span>
-<span id="cb65-3"><a href="git-bash.html#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-4"><a href="git-bash.html#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
-<span id="cb65-5"><a href="git-bash.html#cb65-5" aria-hidden="true" tabindex="-1"></a>fit models.R</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="git-bash.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb71-2"><a href="git-bash.html#cb71-2" aria-hidden="true" tabindex="-1"></a>fit_models.R</span>
+<span id="cb71-3"><a href="git-bash.html#cb71-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-4"><a href="git-bash.html#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb71-5"><a href="git-bash.html#cb71-5" aria-hidden="true" tabindex="-1"></a>fit models.R</span></code></pre></div>
 <ul>
 <li>When naming objects:
 <ul>
@@ -1160,11 +1258,11 @@ allowfullscreen></iframe>
 <li>Don’t capitalize.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="git-bash.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good </span></span>
-<span id="cb66-2"><a href="git-bash.html#cb66-2" aria-hidden="true" tabindex="-1"></a>day_one</span>
-<span id="cb66-3"><a href="git-bash.html#cb66-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb66-4"><a href="git-bash.html#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad </span></span>
-<span id="cb66-5"><a href="git-bash.html#cb66-5" aria-hidden="true" tabindex="-1"></a>DayOne</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="git-bash.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good </span></span>
+<span id="cb72-2"><a href="git-bash.html#cb72-2" aria-hidden="true" tabindex="-1"></a>day_one</span>
+<span id="cb72-3"><a href="git-bash.html#cb72-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb72-4"><a href="git-bash.html#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad </span></span>
+<span id="cb72-5"><a href="git-bash.html#cb72-5" aria-hidden="true" tabindex="-1"></a>DayOne</span></code></pre></div>
 <ul>
 <li>When naming functions:
 <ul>
@@ -1173,11 +1271,11 @@ allowfullscreen></iframe>
 <li>Use <code>verbs</code> instead of <code>nouns</code>. (Functions do something!)</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="git-bash.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good </span></span>
-<span id="cb67-2"><a href="git-bash.html#cb67-2" aria-hidden="true" tabindex="-1"></a>run_rdd </span>
-<span id="cb67-3"><a href="git-bash.html#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-4"><a href="git-bash.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad </span></span>
-<span id="cb67-5"><a href="git-bash.html#cb67-5" aria-hidden="true" tabindex="-1"></a>rdd</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="git-bash.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good </span></span>
+<span id="cb73-2"><a href="git-bash.html#cb73-2" aria-hidden="true" tabindex="-1"></a>run_rdd </span>
+<span id="cb73-3"><a href="git-bash.html#cb73-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-4"><a href="git-bash.html#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad </span></span>
+<span id="cb73-5"><a href="git-bash.html#cb73-5" aria-hidden="true" tabindex="-1"></a>rdd</span></code></pre></div>
 <ul>
 <li>Spacing</li>
 </ul>
@@ -1187,16 +1285,16 @@ allowfullscreen></iframe>
 
 <p> Tabs versus Spaces </p>
 
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="git-bash.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
-<span id="cb68-2"><a href="git-bash.html#cb68-2" aria-hidden="true" tabindex="-1"></a>x[, <span class="dv">1</span>] </span>
-<span id="cb68-3"><a href="git-bash.html#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-4"><a href="git-bash.html#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span>
-<span id="cb68-5"><a href="git-bash.html#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-6"><a href="git-bash.html#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
-<span id="cb68-7"><a href="git-bash.html#cb68-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-8"><a href="git-bash.html#cb68-8" aria-hidden="true" tabindex="-1"></a>x[,<span class="dv">1</span>]</span>
-<span id="cb68-9"><a href="git-bash.html#cb68-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-10"><a href="git-bash.html#cb68-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span> (x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="git-bash.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb74-2"><a href="git-bash.html#cb74-2" aria-hidden="true" tabindex="-1"></a>x[, <span class="dv">1</span>] </span>
+<span id="cb74-3"><a href="git-bash.html#cb74-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-4"><a href="git-bash.html#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb74-5"><a href="git-bash.html#cb74-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-6"><a href="git-bash.html#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb74-7"><a href="git-bash.html#cb74-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-8"><a href="git-bash.html#cb74-8" aria-hidden="true" tabindex="-1"></a>x[,<span class="dv">1</span>]</span>
+<span id="cb74-9"><a href="git-bash.html#cb74-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-10"><a href="git-bash.html#cb74-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span> (x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <ul>
 <li>Indenting</li>
 </ul>
@@ -1205,28 +1303,28 @@ allowfullscreen></iframe>
 <img src="https://pbs.twimg.com/media/CuHHs7yXgAAFWeh?format=jpg&amp;name=360x360" alt="" />
 <p class="caption">Roger Peng’s tweet</p>
 </div>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="git-bash.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
-<span id="cb69-2"><a href="git-bash.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
-<span id="cb69-3"><a href="git-bash.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;y is negative&quot;</span>)</span>
-<span id="cb69-4"><a href="git-bash.html#cb69-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb69-5"><a href="git-bash.html#cb69-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-6"><a href="git-bash.html#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
-<span id="cb69-7"><a href="git-bash.html#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
-<span id="cb69-8"><a href="git-bash.html#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">&quot;Y is negative&quot;</span>)}</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="git-bash.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb75-2"><a href="git-bash.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb75-3"><a href="git-bash.html#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;y is negative&quot;</span>)</span>
+<span id="cb75-4"><a href="git-bash.html#cb75-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb75-5"><a href="git-bash.html#cb75-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-6"><a href="git-bash.html#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb75-7"><a href="git-bash.html#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb75-8"><a href="git-bash.html#cb75-8" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">&quot;Y is negative&quot;</span>)}</span></code></pre></div>
 <ul>
 <li>Long lines</li>
 </ul>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="git-bash.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
-<span id="cb70-2"><a href="git-bash.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">do_something_very_complicated</span>(</span>
-<span id="cb70-3"><a href="git-bash.html#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">something =</span> <span class="st">&quot;that&quot;</span>,</span>
-<span id="cb70-4"><a href="git-bash.html#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">requires =</span> many,</span>
-<span id="cb70-5"><a href="git-bash.html#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">arguments =</span> <span class="st">&quot;some of which may be long&quot;</span></span>
-<span id="cb70-6"><a href="git-bash.html#cb70-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb70-7"><a href="git-bash.html#cb70-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-8"><a href="git-bash.html#cb70-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
-<span id="cb70-9"><a href="git-bash.html#cb70-9" aria-hidden="true" tabindex="-1"></a><span class="fu">do_something_very_complicated</span>(<span class="st">&quot;that&quot;</span>, <span class="at">requires =</span> many, <span class="at">arguments =</span></span>
-<span id="cb70-10"><a href="git-bash.html#cb70-10" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;some of which may be long&quot;</span></span>
-<span id="cb70-11"><a href="git-bash.html#cb70-11" aria-hidden="true" tabindex="-1"></a>                              )</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="git-bash.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb76-2"><a href="git-bash.html#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">do_something_very_complicated</span>(</span>
+<span id="cb76-3"><a href="git-bash.html#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">something =</span> <span class="st">&quot;that&quot;</span>,</span>
+<span id="cb76-4"><a href="git-bash.html#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">requires =</span> many,</span>
+<span id="cb76-5"><a href="git-bash.html#cb76-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">arguments =</span> <span class="st">&quot;some of which may be long&quot;</span></span>
+<span id="cb76-6"><a href="git-bash.html#cb76-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb76-7"><a href="git-bash.html#cb76-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-8"><a href="git-bash.html#cb76-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb76-9"><a href="git-bash.html#cb76-9" aria-hidden="true" tabindex="-1"></a><span class="fu">do_something_very_complicated</span>(<span class="st">&quot;that&quot;</span>, <span class="at">requires =</span> many, <span class="at">arguments =</span></span>
+<span id="cb76-10"><a href="git-bash.html#cb76-10" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;some of which may be long&quot;</span></span>
+<span id="cb76-11"><a href="git-bash.html#cb76-11" aria-hidden="true" tabindex="-1"></a>                              )</span></code></pre></div>
 <ul>
 <li>Comments
 <ul>
@@ -1235,27 +1333,27 @@ allowfullscreen></iframe>
 <li>Also, try to comment out rather than delete the code that you experiment with.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="git-bash.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Average sleep hours of Jae</span></span>
-<span id="cb71-2"><a href="git-bash.html#cb71-2" aria-hidden="true" tabindex="-1"></a>jae <span class="sc">%&gt;%</span></span>
-<span id="cb71-3"><a href="git-bash.html#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># By week</span></span>
-<span id="cb71-4"><a href="git-bash.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(week) <span class="sc">%&gt;%</span></span>
-<span id="cb71-5"><a href="git-bash.html#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Mean sleep hours </span></span>
-<span id="cb71-6"><a href="git-bash.html#cb71-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">week_sleep =</span> <span class="fu">mean</span>(sleep, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="git-bash.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Average sleep hours of Jae</span></span>
+<span id="cb77-2"><a href="git-bash.html#cb77-2" aria-hidden="true" tabindex="-1"></a>jae <span class="sc">%&gt;%</span></span>
+<span id="cb77-3"><a href="git-bash.html#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># By week</span></span>
+<span id="cb77-4"><a href="git-bash.html#cb77-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(week) <span class="sc">%&gt;%</span></span>
+<span id="cb77-5"><a href="git-bash.html#cb77-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Mean sleep hours </span></span>
+<span id="cb77-6"><a href="git-bash.html#cb77-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">week_sleep =</span> <span class="fu">mean</span>(sleep, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <ul>
 <li>Pipes (chaining commands)</li>
 </ul>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="git-bash.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
-<span id="cb72-2"><a href="git-bash.html#cb72-2" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb72-3"><a href="git-bash.html#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
-<span id="cb72-4"><a href="git-bash.html#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_if</span>(is.numeric, mean) <span class="sc">%&gt;%</span></span>
-<span id="cb72-5"><a href="git-bash.html#cb72-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb72-6"><a href="git-bash.html#cb72-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(measure, value, <span class="sc">-</span>Species) <span class="sc">%&gt;%</span></span>
-<span id="cb72-7"><a href="git-bash.html#cb72-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(value)</span>
-<span id="cb72-8"><a href="git-bash.html#cb72-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-9"><a href="git-bash.html#cb72-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
-<span id="cb72-10"><a href="git-bash.html#cb72-10" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span> <span class="fu">summarize_all</span>(mean) <span class="sc">%&gt;%</span></span>
-<span id="cb72-11"><a href="git-bash.html#cb72-11" aria-hidden="true" tabindex="-1"></a>ungroup <span class="sc">%&gt;%</span> <span class="fu">gather</span>(measure, value, <span class="sc">-</span>Species) <span class="sc">%&gt;%</span></span>
-<span id="cb72-12"><a href="git-bash.html#cb72-12" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(value)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="git-bash.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb78-2"><a href="git-bash.html#cb78-2" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb78-3"><a href="git-bash.html#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb78-4"><a href="git-bash.html#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_if</span>(is.numeric, mean) <span class="sc">%&gt;%</span></span>
+<span id="cb78-5"><a href="git-bash.html#cb78-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb78-6"><a href="git-bash.html#cb78-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(measure, value, <span class="sc">-</span>Species) <span class="sc">%&gt;%</span></span>
+<span id="cb78-7"><a href="git-bash.html#cb78-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(value)</span>
+<span id="cb78-8"><a href="git-bash.html#cb78-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-9"><a href="git-bash.html#cb78-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb78-10"><a href="git-bash.html#cb78-10" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span> <span class="fu">summarize_all</span>(mean) <span class="sc">%&gt;%</span></span>
+<span id="cb78-11"><a href="git-bash.html#cb78-11" aria-hidden="true" tabindex="-1"></a>ungroup <span class="sc">%&gt;%</span> <span class="fu">gather</span>(measure, value, <span class="sc">-</span>Species) <span class="sc">%&gt;%</span></span>
+<span id="cb78-12"><a href="git-bash.html#cb78-12" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(value)</span></code></pre></div>
 <ul>
 <li><p>Additional tips</p></li>
 <li><p>Use <code>lintr</code> to check whether your code complies with a recommended style guideline (e.g., <code>tidyverse</code>) and <code>styler</code> package to format your code according to the style guideline.</p></li>
@@ -1265,8 +1363,8 @@ allowfullscreen></iframe>
 <p class="caption">how lintr works</p>
 </div>
 </div>
-<div id="write-reusable-code" class="section level3" number="3.4.2">
-<h3><span class="header-section-number">3.4.2</span> Write reusable code</h3>
+<div id="write-reusable-code" class="section level3" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> Write reusable code</h3>
 <ul>
 <li>Pasting</li>
 </ul>
@@ -1283,21 +1381,21 @@ allowfullscreen></iframe>
 <li><p>Your goal: replace <code>-99</code> with <code>NA</code></p></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="git-bash.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data</span></span>
-<span id="cb73-2"><a href="git-bash.html#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-3"><a href="git-bash.html#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># for reproducibility </span></span>
-<span id="cb73-4"><a href="git-bash.html#cb73-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-5"><a href="git-bash.html#cb73-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="st">&quot;a&quot;</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), <span class="at">size =</span> <span class="dv">5</span> , <span class="at">replace=</span> <span class="cn">TRUE</span>),</span>
-<span id="cb73-6"><a href="git-bash.html#cb73-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;b&quot;</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), <span class="at">size =</span> <span class="dv">5</span> , <span class="at">replace=</span> <span class="cn">TRUE</span>),</span>
-<span id="cb73-7"><a href="git-bash.html#cb73-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;c&quot;</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), <span class="at">size =</span> <span class="dv">5</span> , <span class="at">replace=</span> <span class="cn">TRUE</span>),</span>
-<span id="cb73-8"><a href="git-bash.html#cb73-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;d&quot;</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), <span class="at">size =</span> <span class="dv">5</span> , <span class="at">replace=</span> <span class="cn">TRUE</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="git-bash.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy and paste </span></span>
-<span id="cb74-2"><a href="git-bash.html#cb74-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>a[df<span class="sc">$</span>a <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb74-3"><a href="git-bash.html#cb74-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>b[df<span class="sc">$</span>b <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb74-4"><a href="git-bash.html#cb74-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>c[df<span class="sc">$</span>c <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb74-5"><a href="git-bash.html#cb74-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>d[df<span class="sc">$</span>d <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb74-6"><a href="git-bash.html#cb74-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-7"><a href="git-bash.html#cb74-7" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="git-bash.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb79-2"><a href="git-bash.html#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-3"><a href="git-bash.html#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># for reproducibility </span></span>
+<span id="cb79-4"><a href="git-bash.html#cb79-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-5"><a href="git-bash.html#cb79-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="st">&quot;a&quot;</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), <span class="at">size =</span> <span class="dv">5</span> , <span class="at">replace=</span> <span class="cn">TRUE</span>),</span>
+<span id="cb79-6"><a href="git-bash.html#cb79-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;b&quot;</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), <span class="at">size =</span> <span class="dv">5</span> , <span class="at">replace=</span> <span class="cn">TRUE</span>),</span>
+<span id="cb79-7"><a href="git-bash.html#cb79-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;c&quot;</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), <span class="at">size =</span> <span class="dv">5</span> , <span class="at">replace=</span> <span class="cn">TRUE</span>),</span>
+<span id="cb79-8"><a href="git-bash.html#cb79-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;d&quot;</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">99</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), <span class="at">size =</span> <span class="dv">5</span> , <span class="at">replace=</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="git-bash.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy and paste </span></span>
+<span id="cb80-2"><a href="git-bash.html#cb80-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>a[df<span class="sc">$</span>a <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb80-3"><a href="git-bash.html#cb80-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>b[df<span class="sc">$</span>b <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb80-4"><a href="git-bash.html#cb80-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>c[df<span class="sc">$</span>c <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb80-5"><a href="git-bash.html#cb80-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>d[df<span class="sc">$</span>d <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb80-6"><a href="git-bash.html#cb80-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-7"><a href="git-bash.html#cb80-7" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##       a     b     c     d
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1313,20 +1411,20 @@ allowfullscreen></iframe>
 <li>If you write a function, you gain efficiency because you don’t need to copy and paste the computation part.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="git-bash.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a custom function</span></span>
-<span id="cb76-2"><a href="git-bash.html#cb76-2" aria-hidden="true" tabindex="-1"></a>fix_missing <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { <span class="co"># INPUT</span></span>
-<span id="cb76-3"><a href="git-bash.html#cb76-3" aria-hidden="true" tabindex="-1"></a>  x[x <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span> <span class="co"># COMPUTATION</span></span>
-<span id="cb76-4"><a href="git-bash.html#cb76-4" aria-hidden="true" tabindex="-1"></a>  x <span class="co"># OUTPUT </span></span>
-<span id="cb76-5"><a href="git-bash.html#cb76-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb76-6"><a href="git-bash.html#cb76-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-7"><a href="git-bash.html#cb76-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to each column (vector)</span></span>
-<span id="cb76-8"><a href="git-bash.html#cb76-8" aria-hidden="true" tabindex="-1"></a><span class="co"># This iterated part can and should be automated.</span></span>
-<span id="cb76-9"><a href="git-bash.html#cb76-9" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>a <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>a)</span>
-<span id="cb76-10"><a href="git-bash.html#cb76-10" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>b <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>b)</span>
-<span id="cb76-11"><a href="git-bash.html#cb76-11" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>c <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>c)</span>
-<span id="cb76-12"><a href="git-bash.html#cb76-12" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>d <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>d)</span>
-<span id="cb76-13"><a href="git-bash.html#cb76-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-14"><a href="git-bash.html#cb76-14" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="git-bash.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a custom function</span></span>
+<span id="cb82-2"><a href="git-bash.html#cb82-2" aria-hidden="true" tabindex="-1"></a>fix_missing <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { <span class="co"># INPUT</span></span>
+<span id="cb82-3"><a href="git-bash.html#cb82-3" aria-hidden="true" tabindex="-1"></a>  x[x <span class="sc">==</span> <span class="sc">-</span><span class="dv">99</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span> <span class="co"># COMPUTATION</span></span>
+<span id="cb82-4"><a href="git-bash.html#cb82-4" aria-hidden="true" tabindex="-1"></a>  x <span class="co"># OUTPUT </span></span>
+<span id="cb82-5"><a href="git-bash.html#cb82-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb82-6"><a href="git-bash.html#cb82-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-7"><a href="git-bash.html#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to each column (vector)</span></span>
+<span id="cb82-8"><a href="git-bash.html#cb82-8" aria-hidden="true" tabindex="-1"></a><span class="co"># This iterated part can and should be automated.</span></span>
+<span id="cb82-9"><a href="git-bash.html#cb82-9" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>a <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>a)</span>
+<span id="cb82-10"><a href="git-bash.html#cb82-10" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>b <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>b)</span>
+<span id="cb82-11"><a href="git-bash.html#cb82-11" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>c <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>c)</span>
+<span id="cb82-12"><a href="git-bash.html#cb82-12" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>d <span class="ot">&lt;-</span> <span class="fu">fix_missing</span>(df<span class="sc">$</span>d)</span>
+<span id="cb82-13"><a href="git-bash.html#cb82-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-14"><a href="git-bash.html#cb82-14" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <ul>
 <li>Automation
 <ul>
@@ -1335,9 +1433,9 @@ allowfullscreen></iframe>
 <li>The power and joy of one-liner.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="git-bash.html#cb77-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_df</span>(df, fix_missing) <span class="co"># What is this magic? We will unpack the blackbox (`map_df()`) later.</span></span>
-<span id="cb77-2"><a href="git-bash.html#cb77-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-3"><a href="git-bash.html#cb77-3" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="git-bash.html#cb83-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_df</span>(df, fix_missing) <span class="co"># What is this magic? We will unpack the blackbox (`map_df()`) later.</span></span>
+<span id="cb83-2"><a href="git-bash.html#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="git-bash.html#cb83-3" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <ul>
 <li>Takeaways</li>
 </ul>
@@ -1354,14 +1452,11 @@ allowfullscreen></iframe>
 <p>Code reuse aims to save time and resources and reduce redundancy by taking advantage of assets that have already been created in some form within the software product development process.[2] The key idea in reuse is that parts of a computer program written at one time can be or should be used in the construction of other programs written at a later time. - Wikipedia</p>
 </blockquote>
 </div>
-<div id="test-your-code-systematically" class="section level3" number="3.4.3">
-<h3><span class="header-section-number">3.4.3</span> Test your code systematically</h3>
+<div id="test-your-code-systematically" class="section level3" number="3.6.3">
+<h3><span class="header-section-number">3.6.3</span> Test your code systematically</h3>
 </div>
-</div>
-<div id="asking-questions-minimal-reproducible-example" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Asking questions: Minimal reproducible example</h2>
-<div id="how-to-create-a-minimal-reproducible-example" class="section level3" number="3.5.1">
-<h3><span class="header-section-number">3.5.1</span> How to create a minimal reproducible example</h3>
+<div id="asking-questions-minimal-reproducible-example" class="section level3" number="3.6.4">
+<h3><span class="header-section-number">3.6.4</span> Asking questions: Minimal reproducible example</h3>
 <ul>
 <li><p>Chances are you’re going to use StackOverFlow a lot to solve a pressing problem you face. However, other can’t understand/be interested in your problem unless you can provide an example which they can understand with minimal efforts. Such example is called a minimal reproducible example.</p></li>
 <li><p>Read <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example">this StackOverFlow post</a> to understand the concept and best practices.</p></li>
@@ -1374,24 +1469,9 @@ allowfullscreen></iframe>
 </ul></li>
 </ul>
 </div>
-</div>
-<div id="references" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> References</h2>
+<div id="references-2" class="section level3" number="3.6.5">
+<h3><span class="header-section-number">3.6.5</span> References</h3>
 <ul>
-<li><p>Project-oriented research</p>
-<ul>
-<li><p>Computational reproducibility</p>
-<ul>
-<li><p><a href="https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf">“Good Enough Practices in Scientific Computing”</a> by PLOS</p></li>
-<li><p><a href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/">Project Management with RStudio</a> by Software Carpentry</p></li>
-<li><p><a href="https://kbroman.org/steps2rr/">Initial steps toward reproducible research</a> by Karl Broman</p></li>
-</ul></li>
-<li><p>Version control</p>
-<ul>
-<li><p><a href="https://swcarpentry.github.io/git-novice/">Version Control with Git</a> by Software Carpentry</p></li>
-<li><p><a href="http://plain-text.co/">The Plain Person’s Guide to Plain Text Social Science</a> by Kieran Healy</p></li>
-</ul></li>
-</ul></li>
 <li><p>Writing code</p>
 <ul>
 <li>Style guides
@@ -1411,6 +1491,7 @@ allowfullscreen></iframe>
 </ul></li>
 </ul>
 
+</div>
 </div>
 </div>
             </section>
@@ -1461,7 +1542,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["PS239T.pdf"],
 "toc": {
 "collapse": "subsection"
 }

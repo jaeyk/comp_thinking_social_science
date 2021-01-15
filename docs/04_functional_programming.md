@@ -2112,7 +2112,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2021-01-13"
+date: "2021-01-15"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 
@@ -2195,15 +2195,16 @@ NULL
 ## NULL
 ```
 
-2. Sometimes, you get the following error: "Undefined global functions or variables: <variable name1>, <variable name2>, <variable name3>" If you experience this problem, save the following script as `globals.r.`
+2. Sometimes, you get the following error: "Undefined global functions or variables" If you experience this problem, save the following script as `globals.r.`
 
 
 ```r
-utils::globalVariables(c("<variable name1>", "<variable name2>", "<variable name3"))
+utils::globalVariables(c("<undefined variable name1>", "<undefined variable name2>", "<undefinedvariable name3"))
 ```
 
 ```
-## [1] "<variable name1>" "<variable name2>" "<variable name3"
+## [1] "<undefined variable name1>" "<undefined variable name2>"
+## [3] "<undefinedvariable name3"
 ```
 
 ### Developing Shiny apps

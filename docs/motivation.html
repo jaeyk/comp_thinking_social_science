@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-12-07" />
+<meta name="date" content="2021-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,8 +53,6 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
-<script src="libs/tabwid-1.0.0/tabwid.js"></script>
 
 
 <style type="text/css">
@@ -121,6 +119,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -133,6 +132,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">Computational Thinking for Social Scientists</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Hello World</a>
 <ul>
 <li class="chapter" data-level="1.0.1" data-path="index.html"><a href="index.html#part-i-fundamentals"><i class="fa fa-check"></i><b>1.0.1</b> Part I Fundamentals</a></li>
@@ -154,32 +156,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="git-bash.html"><a href="git-bash.html"><i class="fa fa-check"></i><b>3</b> Managing data and code</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="git-bash.html"><a href="git-bash.html#getting-started-in-r"><i class="fa fa-check"></i><b>3.1</b> Getting started in R</a>
+<li class="chapter" data-level="3.1" data-path="git-bash.html"><a href="git-bash.html#using-bash-command-line-interface"><i class="fa fa-check"></i><b>3.1</b> Using Bash (command line interface)</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="git-bash.html"><a href="git-bash.html#rstudio"><i class="fa fa-check"></i><b>3.1.1</b> RStudio</a></li>
-<li class="chapter" data-level="3.1.2" data-path="git-bash.html"><a href="git-bash.html#basic-syntax"><i class="fa fa-check"></i><b>3.1.2</b> Basic Syntax</a></li>
+<li class="chapter" data-level="3.1.1" data-path="git-bash.html"><a href="git-bash.html#why-bother-using-command-line"><i class="fa fa-check"></i><b>3.1.1</b> Why bother using command line?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="git-bash.html"><a href="git-bash.html#what-is-bash"><i class="fa fa-check"></i><b>3.1.2</b> What Is Bash?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="git-bash.html"><a href="git-bash.html#references"><i class="fa fa-check"></i><b>3.1.3</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="git-bash.html"><a href="git-bash.html#environment"><i class="fa fa-check"></i><b>3.2</b> Environment</a>
+<li class="chapter" data-level="3.2" data-path="git-bash.html"><a href="git-bash.html#git-and-github"><i class="fa fa-check"></i><b>3.2</b> Git and GitHub</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="git-bash.html"><a href="git-bash.html#objects"><i class="fa fa-check"></i><b>3.2.1</b> Objects</a></li>
-<li class="chapter" data-level="3.2.2" data-path="git-bash.html"><a href="git-bash.html#packages"><i class="fa fa-check"></i><b>3.2.2</b> Packages</a></li>
+<li class="chapter" data-level="3.2.1" data-path="git-bash.html"><a href="git-bash.html#version-control-system"><i class="fa fa-check"></i><b>3.2.1</b> Version control system</a></li>
+<li class="chapter" data-level="3.2.2" data-path="git-bash.html"><a href="git-bash.html#setup"><i class="fa fa-check"></i><b>3.2.2</b> Setup</a></li>
+<li class="chapter" data-level="3.2.3" data-path="git-bash.html"><a href="git-bash.html#making-a-repository"><i class="fa fa-check"></i><b>3.2.3</b> Making a repository</a></li>
+<li class="chapter" data-level="3.2.4" data-path="git-bash.html"><a href="git-bash.html#commit-changes"><i class="fa fa-check"></i><b>3.2.4</b> Commit changes</a></li>
+<li class="chapter" data-level="3.2.5" data-path="git-bash.html"><a href="git-bash.html#other-useful-commands-for-tracking-history"><i class="fa fa-check"></i><b>3.2.5</b> Other useful commands for tracking history</a></li>
+<li class="chapter" data-level="3.2.6" data-path="git-bash.html"><a href="git-bash.html#doing-other-than-adding"><i class="fa fa-check"></i><b>3.2.6</b> Doing other than adding</a></li>
+<li class="chapter" data-level="3.2.7" data-path="git-bash.html"><a href="git-bash.html#push-and-pull-or-fetch"><i class="fa fa-check"></i><b>3.2.7</b> Push and pull (or fetch)</a></li>
+<li class="chapter" data-level="3.2.8" data-path="git-bash.html"><a href="git-bash.html#branching"><i class="fa fa-check"></i><b>3.2.8</b> Branching</a></li>
+<li class="chapter" data-level="3.2.9" data-path="git-bash.html"><a href="git-bash.html#collaborations"><i class="fa fa-check"></i><b>3.2.9</b> Collaborations</a></li>
+<li class="chapter" data-level="3.2.10" data-path="git-bash.html"><a href="git-bash.html#deployment-github-pages"><i class="fa fa-check"></i><b>3.2.10</b> Deployment: GitHub Pages</a></li>
+<li class="chapter" data-level="3.2.11" data-path="git-bash.html"><a href="git-bash.html#tracking-progress-github-issues"><i class="fa fa-check"></i><b>3.2.11</b> Tracking progress: GitHub Issues</a></li>
+<li class="chapter" data-level="3.2.12" data-path="git-bash.html"><a href="git-bash.html#project-management-github-dashboards"><i class="fa fa-check"></i><b>3.2.12</b> Project management: GitHub Dashboards</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="git-bash.html"><a href="git-bash.html#project-oriented-research"><i class="fa fa-check"></i><b>3.3</b> Project-oriented research</a>
+<li class="chapter" data-level="3.3" data-path="git-bash.html"><a href="git-bash.html#getting-started-in-r"><i class="fa fa-check"></i><b>3.3</b> Getting started in R</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="git-bash.html"><a href="git-bash.html#computational-reproducibility"><i class="fa fa-check"></i><b>3.3.1</b> Computational reproducibility</a></li>
-<li class="chapter" data-level="3.3.2" data-path="git-bash.html"><a href="git-bash.html#version-control-git-and-bash"><i class="fa fa-check"></i><b>3.3.2</b> Version control (Git and Bash)</a></li>
+<li class="chapter" data-level="3.3.1" data-path="git-bash.html"><a href="git-bash.html#rstudio"><i class="fa fa-check"></i><b>3.3.1</b> RStudio</a></li>
+<li class="chapter" data-level="3.3.2" data-path="git-bash.html"><a href="git-bash.html#basic-syntax"><i class="fa fa-check"></i><b>3.3.2</b> Basic Syntax</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="git-bash.html"><a href="git-bash.html#writing-code-how-to-code-like-a-professional"><i class="fa fa-check"></i><b>3.4</b> Writing code: How to code like a professional</a>
+<li class="chapter" data-level="3.4" data-path="git-bash.html"><a href="git-bash.html#environment"><i class="fa fa-check"></i><b>3.4</b> Environment</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="git-bash.html"><a href="git-bash.html#write-readable-code"><i class="fa fa-check"></i><b>3.4.1</b> Write readable code</a></li>
-<li class="chapter" data-level="3.4.2" data-path="git-bash.html"><a href="git-bash.html#write-reusable-code"><i class="fa fa-check"></i><b>3.4.2</b> Write reusable code</a></li>
-<li class="chapter" data-level="3.4.3" data-path="git-bash.html"><a href="git-bash.html#test-your-code-systematically"><i class="fa fa-check"></i><b>3.4.3</b> Test your code systematically</a></li>
+<li class="chapter" data-level="3.4.1" data-path="git-bash.html"><a href="git-bash.html#objects"><i class="fa fa-check"></i><b>3.4.1</b> Objects</a></li>
+<li class="chapter" data-level="3.4.2" data-path="git-bash.html"><a href="git-bash.html#packages"><i class="fa fa-check"></i><b>3.4.2</b> Packages</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="git-bash.html"><a href="git-bash.html#asking-questions-minimal-reproducible-example"><i class="fa fa-check"></i><b>3.5</b> Asking questions: Minimal reproducible example</a>
+<li class="chapter" data-level="3.5" data-path="git-bash.html"><a href="git-bash.html#project-oriented-research"><i class="fa fa-check"></i><b>3.5</b> Project-oriented research</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="git-bash.html"><a href="git-bash.html#how-to-create-a-minimal-reproducible-example"><i class="fa fa-check"></i><b>3.5.1</b> How to create a minimal reproducible example</a></li>
+<li class="chapter" data-level="3.5.1" data-path="git-bash.html"><a href="git-bash.html#computational-reproducibility"><i class="fa fa-check"></i><b>3.5.1</b> Computational reproducibility</a></li>
+<li class="chapter" data-level="3.5.2" data-path="git-bash.html"><a href="git-bash.html#references-1"><i class="fa fa-check"></i><b>3.5.2</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="git-bash.html"><a href="git-bash.html#references"><i class="fa fa-check"></i><b>3.6</b> References</a></li>
+<li class="chapter" data-level="3.6" data-path="git-bash.html"><a href="git-bash.html#writing-code-how-to-code-like-a-professional"><i class="fa fa-check"></i><b>3.6</b> Writing code: How to code like a professional</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="git-bash.html"><a href="git-bash.html#write-readable-code"><i class="fa fa-check"></i><b>3.6.1</b> Write readable code</a></li>
+<li class="chapter" data-level="3.6.2" data-path="git-bash.html"><a href="git-bash.html#write-reusable-code"><i class="fa fa-check"></i><b>3.6.2</b> Write reusable code</a></li>
+<li class="chapter" data-level="3.6.3" data-path="git-bash.html"><a href="git-bash.html#test-your-code-systematically"><i class="fa fa-check"></i><b>3.6.3</b> Test your code systematically</a></li>
+<li class="chapter" data-level="3.6.4" data-path="git-bash.html"><a href="git-bash.html#asking-questions-minimal-reproducible-example"><i class="fa fa-check"></i><b>3.6.4</b> Asking questions: Minimal reproducible example</a></li>
+<li class="chapter" data-level="3.6.5" data-path="git-bash.html"><a href="git-bash.html#references-2"><i class="fa fa-check"></i><b>3.6.5</b> References</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>4</b> Tidy data and its friends</a>
 <ul>
@@ -345,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.8.2" data-path="machine-learning.html"><a href="machine-learning.html#bias-in-the-data-risk-of-violent-recidivism-analysis"><i class="fa fa-check"></i><b>7.8.2</b> Bias in the Data (Risk of Violent Recidivism Analysis)</a></li>
 <li class="chapter" data-level="7.8.3" data-path="machine-learning.html"><a href="machine-learning.html#bias-in-the-algorithm"><i class="fa fa-check"></i><b>7.8.3</b> Bias in the algorithm</a></li>
 </ul></li>
-<li class="chapter" data-level="7.9" data-path="machine-learning.html"><a href="machine-learning.html#references-2"><i class="fa fa-check"></i><b>7.9</b> References</a>
+<li class="chapter" data-level="7.9" data-path="machine-learning.html"><a href="machine-learning.html#references-4"><i class="fa fa-check"></i><b>7.9</b> References</a>
 <ul>
 <li class="chapter" data-level="7.9.1" data-path="machine-learning.html"><a href="machine-learning.html#books"><i class="fa fa-check"></i><b>7.9.1</b> Books</a></li>
 <li class="chapter" data-level="7.9.2" data-path="machine-learning.html"><a href="machine-learning.html#lecture-slides"><i class="fa fa-check"></i><b>7.9.2</b> Lecture slides</a></li>
@@ -364,13 +384,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2.5" data-path="big-data.html"><a href="big-data.html#nyc-flights-data"><i class="fa fa-check"></i><b>8.2.5</b> NYC flights data</a></li>
 <li class="chapter" data-level="8.2.6" data-path="big-data.html"><a href="big-data.html#workflow-4"><i class="fa fa-check"></i><b>8.2.6</b> Workflow</a></li>
 <li class="chapter" data-level="8.2.7" data-path="big-data.html"><a href="big-data.html#things-we-didnt-cover"><i class="fa fa-check"></i><b>8.2.7</b> Things we didn’t cover</a></li>
-<li class="chapter" data-level="8.2.8" data-path="big-data.html"><a href="big-data.html#references-3"><i class="fa fa-check"></i><b>8.2.8</b> References</a></li>
+<li class="chapter" data-level="8.2.8" data-path="big-data.html"><a href="big-data.html#references-5"><i class="fa fa-check"></i><b>8.2.8</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="big-data.html"><a href="big-data.html#spark"><i class="fa fa-check"></i><b>8.3</b> Spark</a>
 <ul>
 <li class="chapter" data-level="8.3.1" data-path="big-data.html"><a href="big-data.html#setup-9"><i class="fa fa-check"></i><b>8.3.1</b> Setup</a></li>
 </ul></li>
 </ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/jaeyk/PS239T/" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -394,7 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.1</span> Why computational thinking</h2>
 <ul>
 <li><p>If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is <strong>automation</strong>.</p></li>
-<li><p>Let’s think about the following two cases.</p>
+<li><p>Let’s think about the following two cases (these examples come from <a href="https://dlab.berkeley.edu/blog/why-teaching-social-scientists-how-code-professional-important">the column</a> I contributed to D-Lab website).</p>
 <ul>
 <li><p>Case 1: Suppose a social scientist needs to collect data on civic organizations in the United States from websites, Internal Revenue Service reports, and social media posts. As the number of these organizations is large, the researcher could not collect a large volume of data from diverse sources, so they would hire undergraduates and distribute tasks among them. This is a typical data collection plan in social science research, and it is labor-intensive. Automation is not part of the game plan. Yet, it is critical for so many reasons. Because the process is costly, no one is likely to either replicate or update the data collection effort. Put differently, without making the process efficient, it is difficult for it to be reproducible and scalable.</p></li>
 <li><p>Case 2: An alternative is to write computer programs that collect such data automatically, parse them, and store them in interconnected databases. Additionally, someone may need to maintain and validate the quality of the data infrastructure. Nevertheless, this approach lowers the cost of the data collection process, thereby substantially increasing the <strong>reproducibility</strong> and <strong>scalability</strong> of the process. Furthermore, the researcher can document their code and publicly share it using their GitHub repository or even gather some of the functions they used and distribute them as open-source libraries.</p></li>
@@ -405,20 +428,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Every modern statistical and data analysis problem needs code to solve it. You shouldn’t learn just the basics of programming, spend some time gaining mastery. Improving your programming skills pays off because code is a <strong>force multiplier</strong>: once you’ve solved a problem once, code allows you to solve it much faster in the future. As your programming skill increases, the generality of your solutions improves: you solve not just the precise problem you encountered, but a wider class of related problems (in this way programming skill is very much like mathematical skill). Finally, sharing your code with others allows them to benefit from your experience. - <a href="https://imstat.org/2014/12/16/hadley-wickham-impact-the-world-by-being-useful/">Hadley Wickham</a></p>
 </blockquote>
 <ul>
-<li>How can we automate our research process? How can we talk to and teach a machine?</li>
+<li>How can we automate our research process? How can we teach a machine?</li>
 </ul>
 <div class="figure">
 <img src="https://bam.files.bbci.co.uk/bam/live/content/znmb87h/large" alt="" />
 <p class="caption">From BBC Bitesize</p>
 </div>
 <p>This book teaches how you to do that in R in incremental steps.</p>
-<div class="keyidea">
 <ul>
 <li><p>From graphic user interface to command-line interface</p></li>
 <li><p>From short programs to long programs</p></li>
 <li><p>The ultimate goal is to solve complex problems at scale using computation</p></li>
 </ul>
-</div>
 <blockquote>
 <p>“[W]e wanted users to be able to begin in an interactive environment, where they did not consciously think of themselves as progamming. Then as their needs became clearer and their sophistication increased, they should be able to slide gradually into programming, when the language and system aspects would become more important.” - <em>Stages in the Evolution of S</em> by John Chambers (S is the progenitor of R)</p>
 </blockquote>
@@ -428,37 +449,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="structure" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Structure</h3>
 <ul>
-<li>Structured data (Excel spreadsheets, CSVs)
+<li>Fixed number of columns and rows?
 <ul>
-<li>Tidy data</li>
+<li>Yes: Structured data (e.g., Excel spreadsheets, CSVs)
+<ul>
+<li>Tidy data (a special case of structured data)</li>
 </ul></li>
-<li>Semi-structured data
-<ul>
-<li>HTML/CSS: Websites</li>
-<li>JSON/XML: APIs</li>
+<li>No: semi-structured data (e.g., PDFs, websites, and social media posts)
+unstructured data (e.g., plain texts)</li>
 </ul></li>
 </ul>
 </div>
 <div id="dimension" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Dimension</h3>
+<p>Suppose n = the number of observations and p = the number of variables</p>
 <ul>
-<li><p>n = the number of observations</p></li>
-<li><p>p = the number of variables</p></li>
-<li><p>Low-dimensional data (n &gt; p)</p>
+<li>Low-dimensional data (n &gt; p)
 <ul>
-<li>Survey, experimental, and administrative data</li>
+<li>Most survey, experimental, and administrative data</li>
 </ul></li>
-<li><p>High-dimensional data (n &lt; p)</p>
+<li>High-dimensional data (n &lt; p)
 <ul>
-<li>Text, speech, image, video, etc.</li>
+<li>Text, speech, image, video, etc</li>
 </ul></li>
 </ul>
 </div>
 <div id="size" class="section level3" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Size</h3>
 <ul>
-<li>Data fit in your laptop’s memory</li>
-<li>Data don’t fit in your laptop’s memory (=big data)</li>
+<li>Small and medium data: Data fit in your laptop’s memory</li>
+<li>Big data: Data don’t fit in your laptop’s memory</li>
 </ul>
 </div>
 </div>
@@ -466,7 +486,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.3</span> Computational way of thinking about research process</h2>
 <p>Computational tools and techniques make …</p>
 <ul>
-<li>Doing traditional research easier, faster, scalable, and more reproducible
+<li>Doing traditional research easier, faster, and scalable
 <ul>
 <li>Data wrangling</li>
 <li>Modeling</li>
@@ -479,11 +499,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>Collecting and analyzing large and complex data possible
 <ul>
-<li>Digital data collection (API and web scraping)
+<li>Digital data collection (web scraping and API)
 <ul>
 <li>Building a data infrastructure (SQL)</li>
 </ul></li>
-<li>Machine learning</li>
+<li>Machine learning
+<ul>
+<li>Text as data, image as data, etc</li>
+<li>Machine learning applications to surveys and experiments</li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -537,7 +561,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["PS239T.pdf"],
 "toc": {
 "collapse": "subsection"
 }

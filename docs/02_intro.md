@@ -2,6 +2,637 @@
 
 
 
+## Using Bash (command line interface)
+
+As William Shotts the author of *[The Linux Command Line](http://linuxcommand.org/tlcl.php)* put it: 
+
+> graphical user interfaces make easy tasks easy, while command line interfaces make difficult tasks possible.
+
+### Why bother using command line?
+
+Create a plain text file that contains word "test"
+
+- `echo`: "Write arguments to the standard output" This is equivalent as using a text editor (e.g., nano, vim, emacs) and write something.
+- `> test` Save the expression in a file named test.   
+- In general, if you don't know what a command does, just type `<command name> --help` or `<command name> -h`. If you need more detailed information, you can do `man <command name>`. `man` stands for manual. Finally, you can get more user-friendly information by using either [`tldr`](https://tldr.sh/). 
+
+```sh
+
+echo "test" > test 
+
+```
+
+- Make 100 duplicates of this file. Let's break down the seemingly complex commands. 
+- I did this using for loop (`for i in {1..100}`). Curly braces `{}` makes 1..100 integers from 1 to 100.  
+- `;` is used to use multiple commands without making line breaks. 
+- `$var` returns the value associated with variable. Type `name=<Your name>`. Then, type `echo $name`. You should see your name printed. Variable assignment is one of the most basic things you'll learn in any programming.  
+- For novice users, I warn you that these could be too much advanced concepts. If so, don't pay too much attention to this. For now, it's enough to have intuitions. 
+
+```sh
+
+for i in {1..100}; do cp test "test_$i"; done  
+
+```
+
+Append "no_test" to the file named test_100. Note that I used `>>` (append) not `>`. 
+
+```sh
+
+echo "no_test" >> test_100 
+
+```
+
+Let's read (=`cat` (concatenate)) what's in test_100 
+
+```sh
+
+cat test_100 
+
+```
+
+Find which fine contains the character "no_test." This is literally equivalent to finding a needle in a haystack. This is a daunting task for a human researcher, but not for our robotic assistant. `grep` finds PATTERNS in each FIEL. What follows - are options (called flags): `r` (recursive), `n` (line number), `w` (match only whole words), `e` (use patterns for matching). `rnw` are for output control and `e` is for pattern selection. 
+
+You can write `grep -r -n -w -e "no_test"`, but the simpler the better. 
+
+* `grep`: command 
+
+* `-rnw -e`: flags 
+
+* `no_test`: argument (usually file or file paths)
+
+```sh
+
+grep -rnw -e "no_test" 
+
+```
+
+Let's remove (=`rm`) all the duplicate files as well as the original file. `*` (any number of characters) is a wildcard (if you want to identify a single number of character, use `?`). It finds every file whose name starts with `test_`.
+
+```sh
+
+rm test_* test 
+
+```
+
+This command should return "test_100:2:no_test." (file test_100; line number 2; no_test)
+
+What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don't need to write files from a website using your web browser. You can run `wget` command in the terminal. Better yet, you don't even need to run the command for the second time. You can write a shell script (`*.sh`) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. [`copy_syllabus.sh`](https://github.com/PS239T/spring_2021/blob/main/copy_syllabus.sh) automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.
+
+### What Is Bash?
+
+The following materials on UNIX and Shell are adapted from [the software carpentry](https://bids.github.io/2015-06-04-berkeley/shell/00-intro.html.
+
+#### Unix
+
+UNIX is an operating system which was first developed by AT & T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. For this reason, if you're using Max OS, then you don't need to do anything else. You're already all set. If you're using Windows. You need to install either GitBash (works if you only use Bash for Git and GitHub) or Windows Subsystem (strongly recommended if your use case goes beyond these limited usages). For more information, see [this installation guideline](https://github.com/PS239T/spring_2021/blob/main/B_Install.md) from the course repo. 
+
+UNIX is old, but it is still mainstream. Moreover, [the UNIX philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) ("Do One Thing And Do It Well")---minimalist, modular software development---is highly and widely influential.  
+
+![Ken Thompson and Dennis Ritchie, key proponents of the Unix philosophy](https://upload.wikimedia.org/wikipedia/commons/1/1b/Ken_Thompson_and_Dennis_Ritchie--1973.jpg)
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tc4ROCJYbm0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  
+<p>AT&T Archives: The UNIX Operating System</p>
+
+```
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xnCgoEyz31M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Unix50 - Unix Today and Tomorrow: The Languages </p>
+```
+
+#### Kernel
+
+The kernel of UNIX is the hub of the operating system: it allocates time and memory to programs and handles the [filestore](http://users.ox.ac.uk/~martinw/unix/chap3.html) (e.g., files and directories) and communications in response to system calls. 
+
+#### Shell
+
+The shell is an interactive program that provides an interface between the user and the kernel. The shell interprets commands entered by the user or supplied by a shell script, and passes them to the kernel for execution. 
+
+#### Human-Computer interfaces
+
+At a high level, computers do four things:
+
+- run programs
+- store data
+- communicate with each other
+- interact with us (through either CLI or GUI)
+
+#### The Command Line
+
+This kind of interface is called a **command-line interface**, or CLI,
+to distinguish it from the **graphical user interface**, or GUI, that most people now use.
+
+The heart of a CLI is a **read-evaluate-print loop**, or REPL: when the user types a command and then presses the enter (or return) key, the computer reads it, executes it, and prints its output. The user then types another command, and so on until the user logs off.
+
+If you're using RStudio, you can use terminal inside RStudio (next to the "Console"). (For instance, type Alt + Shift + M)
+
+#### The Shell
+
+This description makes it sound as though the user sends commands directly to the computer, and the computer sends output directly to the user. In fact, there is usually a program in between called a **command shell**.
+
+What the user types goes into the shell; it figures out what commands to run and orders the computer to execute them. 
+
+Note, the reason why the shell is called *the shell*: it encloses the operating system in order to hide some of its complexity and make it simpler to interact with. 
+
+A shell is a program like any other. What's special about it is that its job is to run other programs rather than to do calculations itself. The commands are themselves programs: when they terminate, the shell gives the user another prompt ($ on our systems).
+
+#### Bash
+
+The most popular Unix shell is **Bash**, the Bourne Again Shell (so-called because it's derived from a shell written by Stephen Bourne --- this is what passes for wit among programmers). Bash is the default shell on most modern implementations of **Unix**, and in most packages that provide Unix-like tools for Windows.
+
+#### Why Shell?
+
+Using Bash or any other shell sometimes feels more like programming than like using a mouse. Commands are terse (often only a couple of characters long), their names are frequently cryptic, and their output is lines of text rather than something visual like a graph. 
+
+On the other hand, the shell allows us to combine existing tools in powerful ways with only a few keystrokes and to set up pipelines to handle large volumes of data automatically.
+
+In addition, the command line is often the easiest way to interact with remote machines (explains why we learn Bash before learning Git and GitHub). As clusters and cloud computing become more popular for scientific data crunching, being able to drive them is becoming a necessary skill.
+
+#### Our first command
+
+The part of the operating system responsible for managing files and directories is called the **file system**. It organizes our data into files, which hold information, and directories (also called "folders"), which hold files or other directories.
+
+Several commands are frequently used to create, inspect, rename, and delete files and directories. To start exploring them, let's open a shell window:
+
+```sh
+jae@jae-X705UDR:~$ 
+```
+
+* jae: a specific user name 
+
+* jae-X705UDR: your computer/server name 
+
+* `~`: current directory (`~` = home)
+
+* `$`: a **prompt**, which shows us that the shell is waiting for input; your shell may show something more elaborate.
+
+Type the command `whoami`, then press the Enter key (sometimes marked Return) to send the command to the shell.
+
+The command's output is the ID of the current user, i.e., it shows us who the shell thinks we are:
+
+```sh
+$ whoami
+
+# Should be your user name 
+jae 
+```
+
+More specifically, when we type `whoami` the shell:
+
+1.  finds a program called `whoami`,
+2.  runs that program,
+3.  displays that program's output, then
+4.  displays a new prompt to tell us that it's ready for more commands.
+
+#### Communicating to other systems
+
+In the next unit, we'll be focusing on the structure of our own operating systems. But our operating systems rarely work in isolation; often, we are relying on the Internet to communicate with others! You can visualize this sort of communication within your own shell by asking your computer to `ping` (based on the old term for submarine sonar) an IP address provided by Google (8.8.8.8); in effect, this will test whether your Internet (thanks Airbears2) is working. 
+
+```sh
+$ ping 8.8.8.8
+```
+
+Note: Windows users may have to try a slightly different alternative:
+
+```sh
+$ ping -t 8.8.8.8
+```
+
+Your computer will begin continuously pinging this IP address and reporting back the "latency," or how long it took for the ping data packet to go to that IP address and back. If your Internet isn't working, it will instead report an error saying "No route to host." 
+
+Ping runs continuously, so when we want it to stop, we have to manually tell the kernel to stop executing the ping command. We do this simply by typing ctrl+c. 
+
+(Thanks [Paul Thissen](http://www.paulthissen.org/) for the suggestion!)
+
+#### File system organization
+
+Next, let's find out where we are by running a command called `pwd` (**print working directory**).
+
+At any moment, our **current working directory** is our current default directory, i.e., the directory that the computer assumes we want to run commands in  unless we explicitly specify something else.
+
+Here, the computer's response is `/home/jae`, which is the **home directory**:
+
+```sh
+$ pwd
+
+/home/jae
+```
+
+> #### Home Directory
+>
+> The home directory path will look different on different operating systems. On Linux it will look like `/home/jae`, and on Windows it will be similar to `C:\Documents and Settings\jae`. Note that it may look slightly different for different versions of Windows.
+
+> #### Alphabet Soup
+>
+> If the command to find out who we are is `whoami`, the command to find out where we are ought to be called `whereami`, so why is it `pwd` instead? The usual answer is that in the early 1970s, when Unix was
+>
+> first being developed, every keystroke counted: the devices of the day were slow, and backspacing on a teletype was so painful that cutting the number of keystrokes in order to cut the number of typing mistakes was actually a win for usability. The reality is that commands were added to Unix one by one, without any master plan, by people who were immersed in its jargon. The result is as inconsistent as the roolz uv Inglish speling, but we're stuck with it now. 
+>
+> The good news: because these basic commands were so integral to the development of early Unix, they have stuck around, and appear (in some form) in almost all programming languages.
+
+To understand what a "home directory" is, let's have a look at how the file system as a whole is organized. At the top is the **root directory** that holds everything else.
+
+We refer to it using a slash character `/` on its own; this is the leading slash in `/home/jae`.
+
+Inside that directory are several other directories: `bin` (which is where some built-in programs are stored), `data` (holding miscellaneous data files) `etc` (where local configuration files are stored), `tmp` (for temporary files that don't need to be stored long-term), and so on.
+
+> If you're working on a Mac, the file structure will look similar, but not 
+> identical. The following image shows a file system graph for the typical Mac.
+
+![File Directory](https://swcarpentry.github.io/shell-novice/fig/home-directories.svg)
+We know that our current working directory `/home/oski` is stored inside `/home` because `/home` is the first part of its name. Similarly, we know that `/home` is stored inside the root directory `/` because its name begins with `/`.
+
+> #### Path
+>
+> Notice that there are two meanings for the `/` character.
+> When it appears at the front of a file or directory name, it refers to the root directory. When it appears *inside* a name, it's just a separator.
+
+#### Listing
+
+Let's see what's in your home directory by running `ls` (**list files and directories):
+
+```sh
+$ ls
+
+Applications		Dropbox			Pictures
+Creative Cloud Files	Google Drive		Public
+Desktop			Library			Untitled.ipynb
+Documents		Movies			anaconda
+Downloads		Music			file.txt
+```
+
+`ls` prints the names of the files and directories in the current directory in alphabetical order, arranged neatly into columns.
+
+We can make its output more comprehensible by using the **flag** `-F`, which tells `ls` to add a trailing `/` to the names of directories:
+
+```sh
+$ ls -F
+
+Applications		Dropbox			Pictures
+Creative Cloud Files	Google Drive		Public
+Desktop			Library			Untitled.ipynb
+Documents		Movies			anaconda
+Downloads		Music			file.txt
+```
+
+And note that there is a space between `ls` and `-F`: without it, the shell thinks we're trying to run a command called `ls-F`, which doesn't exist.
+
+> #### What's In A Name?
+>
+> You may have noticed that all of our's files' names are "something dot something". This is just a convention: we can call a file `file` or almost anything else we want. However, most people use two-part names most of the time to help them (and their programs) tell different kinds of files apart. The second part of such a name is called the **filename extension**, and indicates what type of data the file holds: 
+> `.txt` signals a plain text file, `.pdf` indicates a PDF document, `.cfg` is a configuration file full of parameters for some program or other, and so on.
+>
+> This is just a convention, albeit an important one. Files contain bytes: it's up to us and our programs to interpret those bytes according to the rules for PDF documents, images, and so on.
+>
+> Naming a PNG image of a whale as `whale.mp3` doesn't somehow magically turn it into a recording of whalesong, though it *might* cause the operating system to try to open it with a music player when someone double-clicks it.
+
+Now let's take a look at what's in your `Desktop` directory by running `ls -F data`, i.e., the command `ls` with the **arguments** `-F` and `PS239T`. The second argument --- the one *without* a leading dash --- tells `ls` that we want a listing of the files in something other than our current working directory:
+
+```sh
+$ ls -F PS239T
+
+A_Syllabus.html  C_final-projects.md  Dockerfile       LICENSE       README.md
+A_Syllabus.pdf   copy_syllabus.sh*    final_projects/  _logistics/   references.md
+B_Install.md     DESCRIPTION          lecture_notes/   PS239T.Rproj  style_guides.md
+
+```
+
+The output shows us that there are three files and fifteen sub-sub-directories. Organizing things hierarchically in this way helps us keep track of our work: it's possible to put hundreds of files in our home directory, just as it's possible to pile hundreds of printed papers on our desk, but it's a self-defeating strategy.
+
+Notice, by the way that we spelled the directory name `Desktop`. It doesn't have a trailing slash: that's added to directory names by `ls` when we use the `-F` flag to help us tell things apart. And it doesn't begin with a slash because it's a **relative path**, i.e., it tells `ls` how to find something from where we are, rather than from the root of the file system.
+
+> #### Parameters vs. Arguments
+>
+> According to [Wikipedia](https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments),
+> the terms **argument** and **parameter** mean slightly different things.
+> In practice, however, most people use them interchangeably or inconsistently,
+> so we will too.
+
+If we run `ls -F /Desktop` (*with* a leading slash) we get a different answer, because `/Desktop` is an **absolute path**:
+
+```sh
+$ ls -F /Desktop
+
+ls: /Desktop: No such file or directory
+```
+
+The leading `/` tells the computer to follow the path from the root of the file system, so it always refers to exactly one directory, no matter where we are when we run the command.
+
+What if we want to change our current working directory? Before we do this, `pwd` shows us that we're in `/home/oski`, and `ls` without any arguments shows us that directory's contents:
+
+```sh
+$ pwd
+
+/home/oski (/Users/rachel)
+
+$ ls
+
+Applications		Dropbox			Pictures
+Creative Cloud Files	Google Drive		Public
+Desktop			Library			Untitled.ipynb
+Documents		Movies			anaconda
+Downloads		Music			file.txt
+```
+
+Use relative paths (e.g., ../PS239T/references.md) whenever it's possible so that your code is not dependable on how your system is configured. 
+
+#### Moving around
+
+We can use `cd` (**change directory**) followed by a directory name to change our working directory. 
+
+```sh
+$ cd Desktop
+```
+
+`cd` doesn't print anything, but if we run `pwd` after it, we can see that we are now in `/home/oski/Desktop`.
+
+If we run `ls` without arguments now, it lists the contents of `/home/oski/Desktop`, because that's where we now are:
+
+```sh
+$ pwd
+
+/home/oski/Desktop
+
+```
+
+We now know how to go down the directory tree: how do we go up? We could use an absolute path:
+
+```sh
+$ cd /home/oski/
+```
+
+but it's almost always simpler to use `cd ..` to go up one level:
+
+```sh
+$ pwd
+
+/home/oski/Desktop
+
+$ cd ..
+```
+
+`..` is a special directory name meaning "the directory containing this one",
+or more succinctly, the **parent** of the current directory. Sure enough, if we run `pwd` after running `cd ..`, we're back in `/home/oski/`:
+
+```sh
+$ pwd
+
+/home/oski/
+```
+
+The special directory `..` doesn't usually show up when we run `ls`. If we want to display it, we can give `ls` the `-a` flag:
+
+```sh
+$ ls -a
+
+.		.localized	Shared
+..		Guest		rachel
+```
+
+`-a` stands for "show all"; it forces `ls` to show us file and directory names that begin with `.`, such as `..`.
+
+> #### Hidden Files: For Your Own Protection
+> 
+> As you can see, a bunch of other items just appeared when we enter `ls -a`. 
+> These files and directories begin with `.` followed by a name. These are 
+> usually files and directories that hold important programmatic information,
+> not usually edited by the casual computer user. They are kept hidden so that
+> users don't accidentally delete or edit them without knowing what they're
+> doing.
+
+As you can see, it also displays another special directory that's just called `.`, which means "the current working directory". It may seem redundant to have a name for it, but we'll see some uses for it soon.
+
+> #### Phone Home
+> 
+> If you ever want to get to the home directory immediately, you can use the 
+> shortcut `~`. For example, type `cd ~` and you'll get back home in a jiffy. 
+> `~` will also stand in for your home directory in paths, so for instance 
+> `~/Desktop` is the same as `/home/oski/Desktop`. This only works if it is 
+> the first character in the path: `here/there/~/elsewhere` is not 
+> `/home/oski/elsewhere`.
+
+#### Tab completion
+
+If you are in you home directory, you can see what files you have on your `Desktop` using the command:
+
+```sh
+$ ls ~/Desktop
+```
+
+This is a lot to type, but she can let the shell do most of the work. If she types:
+
+```sh
+$ ls ~/Des
+```
+
+and then presses tab, the shell automatically completes the directory name for her:
+
+```sh
+$ ls ~/Desktop
+```
+
+Pressing tab again does nothing, since there are multiple possibilities. Pressing tab twice brings up a list of all the files and directories, and so on.
+
+This is called **tab completion**, and we will see it in many other tools as we go on.
+
+> ####  Quick File Paths
+> 
+> If you quickly need the path of a file or directory, you can also copy the 
+> file/directory in the GUI and paste.The full path of the file or directory 
+> will appear. 
+
+### References 
+
+- [The Unix Workbench](https://seankross.com/the-unix-workbench/) by Sean Kross 
+
+- [The Unix Shell](http://swcarpentry.github.io/shell-novice/), Software Carpentry 
+
+- [Shell Tools and Scripting](https://missing.csail.mit.edu/2020/shell-tools/), ./missing-semester, MIT  
+
+- [Command-line Environment](https://missing.csail.mit.edu/2020/command-line/), ./missing-semester, MIT
+
+#### Writing your first shell script 
+
+Write a shell script that creates a subdirectory called `/pdfs` under `/Download` directory, then find PDF files in `/Download` and copy those files to `pdfs`. Essentially, this shell script creates a backup. Name this shell script as 'pdf_copy.sh.' You can make it executable by typing `chmod +x pdf_copy.sh`. Then, you can run it by typing `./pdf_copy_sh.` `.` refers the current working directory. Other options: `sh pdf_copy_sh.` or `bash pdf_copy_sh.` I use `./pdf_copy_sh.` Pay attention to this example as a similar exercise is going to be part of your second assignment. 
+
+```sh
+
+#!/bin/sh
+
+mkdir /home/jae/Downloads/pdfs # Obviously, in your case this file path should be incorrect.
+
+cd Download
+
+cp *.pdf pdfs/ 
+
+echo "Copied pdfs"
+
+```
+
+## Git and GitHub
+
+### Version control system 
+
+![Why you should do version control](https://i2.wp.com/cdn-images-1.medium.com/max/399/1*7HHA_UkjUK7wp7qP4CYu1g.png?zoom=1.75&w=456&ssl=1)
+
+
+According to [Github Guides](https://guides.github.com), a version control system "tracks the history of changes as people and teams collaborate on projects together". Specifically, it helps to track the following information:
+
+* Which changes were made?
+* Who made the changes?
+* When were the changes made?
+* Why were changes needed?
+
+Git is a case of a [distributed version control system](https://en.wikipedia.org/wiki/Distributed_version_control), common in open source and commercial software development. This is no surprising given that Git [was originally created](https://lkml.org/lkml/2005/4/6/121) to deal with Linux kernal development. 
+
+* If you're curious about how the Internet works, learn one of the key ideas of the Internet: [end-to-end principle](https://en.wikipedia.org/wiki/End-to-end_principle). This also explains why [net neutrality](https://en.wikipedia.org/wiki/Net_neutrality) matters. 
+
+The following images, from [Pro Git](git-scm.com), show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS (e.g., Git, Mercurial, Bazzar or Darcs) works differently. 
+
+![Centralized version control system](https://git-scm.com/book/en/v2/images/centralized.png)
+
+Figure 2. Centralized VCS.
+
+![Decentralized version control system](https://git-scm.com/book/en/v2/images/distributed.png)
+
+Figure 3. Decentralized VCS.
+
+For more information on the varieties of version control systems, please read [Petr Baudis's review](https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf) on that subject.
+
+
+![Figure 2.1. A schematic git workflow from Healy's "The Plain Person’s Guide to Plain Text Social Science"](https://plain-text.co/figures/git-basic.png)
+
+### Setup 
+
+We'll start with telling Git who you are.
+
+```sh
+$ git config --global user.name "Firstname Lastname"
+$ git config --global user.email username@company.extension
+```
+### Making a repository 
+
+Create a new directory and move to it. 
+
+```sh 
+$ mkdir code_exercise 
+$ cd code_exercise 
+```
+
+```sh
+$ git init 
+```
+
+Alternatively, you can create a Git repository via Github and then clone it on your local machine. 
+
+```sh
+$ git clone /path/to/repository
+```
+
+If you're unfamiliar with basic Git commands, then please refer to [this Git cheet sheet](http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf).
+
+### Commit changes 
+
+These feature show how Git works as a version control system. 
+
+If you edited files or added new ones, then you need to update your repository. In Git terms, this action is called committing changes. 
+
+```sh
+$ git add . # update every change. In Git terms, you're staging. 
+$ git add file_name # or stage a specific file.
+$ git commit -m "your comment" # your comment for the commit. 
+$ git push origin master # commit the change. Origin is a default name given to a server by Git. 
+```
+
+Another image from [Pro Git](https://git-scm.com/about/staging-area) well illustrates this process.
+
+![Git Workflow](https://git-scm.com/images/about/index1@2x.png)
+
+### Other useful commands for tracking history
+
+```sh
+$ git diff # to see what changed (e.g., inside a file)
+$ git log # to track who committed what
+$ git checkout the commit hash (e.g., a5e556) file name (fruit_list.txt) # to recover old files 
+$ git revert 1q84 # revert to the previous commit 
+```
+
+###  Doing other than adding 
+
+```sh
+$ git rm file_name # remove 
+$ git mv old_file_name new_file_name # rename a file 
+```
+
+### Push and pull (or fetch)
+
+These features show how Git works as a collaboration tool. 
+
+If you have not already done, let's clone PS239T directory on your local machine.
+
+```sh
+$ git clone https://github.com/jaeyk/PS239T # clone 
+```
+
+Then, let's learn more about the repository.
+
+```sh
+$ git remote -v 
+```
+
+Previously, we learned how to send your data save in the local machine to the remote (the Github server). You can do that by editing or creating files, committing, and then typing **git push**. 
+
+Instead, if you want to update your local data with the remote data, then you can type **git pull origin** (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.
+
+```sh
+$ git fetch origin
+```
+
+### Branching 
+
+It's an advanced feature of Git's version control system that allows developers to "diverge from the main line of development and continue to do work without messing with that main line" according to [Scott Chacon and Ben Straub](https://git-scm.com/book/en/v1/Git-Branching). 
+
+If you start working on a new feature, then create a new branch. 
+
+```sh
+$ git branch new_features
+$ git checkout new_features
+```
+
+You can see the newly created branch by typing **git branch**.
+
+In short, branching makes Git [works like](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics) a mini file system.
+
+### Collaborations 
+
+Two options. 
+
+* Sharing a repository (suitable for a private project).
+* Fork and pull (suitable for an open source project). 
+    ​    * The one who maintains the repository becomes the maintainer. 
+    ​    * The others can [fork](https://help.github.com/articles/about-forks/), make changes, and even [pull](https://help.github.com/articles/about-pull-requests/) them back.
+
+#### Other stuff 
+
+```sh
+$ git status # show the status of changes 
+$ git branch # show the branch being worked on locally
+$ git merge # merge branches 
+$ git reset --hard # restore the pristine version
+$ git commit -a -m "additional backup" # to save the state again
+```
+
+### Deployment: GitHub Pages 
+
+### Tracking progress: GitHub Issues 
+
+### Project management: GitHub Dashboards
+
 ## Getting started in R 
 
 ### RStudio 
@@ -324,7 +955,6 @@ Set a project structure for a project named "starwars".
 ![Concept map for R Markdown. By Gabriela Sandoval, Florencia D'Andrea, Yanina Bellini Saibene, Monica Alonso.](https://github.com/rstudio/concept-maps/raw/master/en/rmarkdown.svg)
 
 
-
 ```{=html}
 <iframe width="560" height="315" src="https://www.youtube.com/embed/s9aWmU0atlQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -430,567 +1060,29 @@ here::here("project", "outputs")
 **Challenge**
 
 1. Can you define computational reproducibility? 
-2. Can you explain why sharing code and data is not enough for computational reproducibility? 
-
-### Version control (Git and Bash)
-
-![](https://github.com/dlab-berkeley/BashGit/raw/master/octobash.png)
-
-#### What Is Bash?
-
-The following materials on UNIX and Shell are adapted from [the software carpentry](https://bids.github.io/2015-06-04-berkeley/shell/00-intro.html.
-
-##### Unix
-
-UNIX is an operating system which was first developed by AT & T employees at Bell Labs (1969-1971).  Bell Labs canceled the project (MULTICS) but was continued by the employees worked in a smaller scale. The new project was named UNICS (Uniplexed Information and Computation System) and then renamed UNIX. Due to [the anti-trust issue](https://en.wikipedia.org/wiki/Breakup_of_the_Bell_System), AT & T gave away UNIX in 1975. Berkeley is one of the main places where UNIX was developed. [The Berkeley Software Distribution](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution), one of the branches of UNIX, came out it 1977.
-
-From Mac OS X to Linux, many of current operation systems are some versions of UNIX. 
-
-For more information on the history of UNIX, see [this link](https://docs.google.com/presentation/d/1kKt9V6rom55hU6SJ2_3nGluobjtScptlnJV9YFe6Jz4/pub?start=false&loop=false&delayms=3000&slide=id.g163c5ae2ce_0_17).
-
-![Unix history](https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Unix_history-simple.svg/1200px-Unix_history-simple.svg.png)
-
-##### Kernel
-
-The kernel of UNIX is the hub of the operating system: it allocates time and memory to programs and handles the [filestore](http://users.ox.ac.uk/~martinw/unix/chap3.html) (e.g., files and directories) and communications in response to system calls. 
-
-##### Shell
-
-The shell is an interactive program that provides an interface between the user and the kernel. The shell interprets commands entered by the user or supplied by a shell script, and passes them to the kernel for execution. 
-
-As an illustration of the way that the shell and the kernel work together, suppose a user types `rm myfile` (which has the effect of removing the file *myfile*). The shell searches the filestore for the file containing the program `rm`, and then requests the kernel, through system calls, to execute the program `rm` on *myfile*. When the process `rm myfile` has finished running, the shell then returns the UNIX prompt % to the user, indicating that it is waiting for further commands.
-
-We'll talk more about shells in a little bit.
-
-##### Human-Computer interfaces
-
-At a high level, computers do four things:
-
--   run programs
--   store data
--   communicate with each other
-- interact with us
-
-  They can do the last of these in many different ways, including direct brain-computer links and speech interfaces. Since these are still in their infancy, most of us use windows, icons, mice, and pointers. These technologies didn't become widespread until the 1980s, but their roots go back to [Doug Engelbart](https://en.wikipedia.org/wiki/Douglas_Engelbart) who received his Ph.D. in electrical engineering from the University of California, Berkeley in 1955 and was hired as an assistant professor at the same department for a year. He then left academia and joined the tech industry and became one of the founding fathers in HCI field (mouse, hypertext, GUI, etc.,).
-
-Going back even further, the only way to interact with early computers was to rewire them. But in between, from the 1950s to the 1980s, most people used line printers. These devices only allowed input and output of the letters, numbers, and punctuation found on a standard keyboard, so programming languages and interfaces had to be designed around that constraint.
-
-##### The Command Line
-
-This kind of interface is called a **command-line interface**, or CLI,
-to distinguish it from the **graphical user interface**, or GUI, that most people now use.
-
-The heart of a CLI is a **read-evaluate-print loop**, or REPL: when the user types a command and then presses the enter (or return) key, the computer reads it, executes it, and prints its output. The user then types another command,
-and so on until the user logs off.
-
-As William Shotts the author of *[The Linux Command Line](http://linuxcommand.org/tlcl.php)* put it: 
->graphical user interfaces make easy tasks easy, while command line interfaces make difficult tasks possible.
-
-##### The Shell
-
-This description makes it sound as though the user sends commands directly to the computer, and the computer sends output directly to the user. In fact,
-there is usually a program in between called a **command shell**.
-
-What the user types goes into the shell; it figures out what commands to run and orders the computer to execute them. 
-
-Note, the reason why the shell is called *the shell*: it encloses the operating system in order to hide some of its complexity and make it simpler to interact with. 
-
-A shell is a program like any other. What's special about it is that its job is to run other programs rather than to do calculations itself. The commands are themselves programs: when they terminate, the shell gives the user another prompt ($ on our systems).
-
-##### Bash
-
-The most popular Unix shell is **Bash**, the Bourne Again Shell (so-called because it's derived from a shell written by Stephen Bourne --- this is what passes for wit among programmers). Bash is the default shell on most modern implementations of **Unix**, and in most packages that provide Unix-like tools for Windows.
-
-##### Why Shell?
-
-Using Bash or any other shell sometimes feels more like programming than like using a mouse. Commands are terse (often only a couple of characters long), their names are frequently cryptic, and their output is lines of text rather than something visual like a graph. 
-
-On the other hand, the shell allows us to combine existing tools in powerful ways with only a few keystrokes and to set up pipelines to handle large volumes of data automatically.
-
-In addition, the command line is often the easiest way to interact with remote machines. As clusters and cloud computing become more popular for scientific data crunching, being able to drive them is becoming a necessary skill.
-
-##### Our first command
-
-The part of the operating system responsible for managing files and directories is called the **file system**. It organizes our data into files, which hold information, and directories (also called "folders"), which hold files or other directories.
-
-Several commands are frequently used to create, inspect, rename, and delete files and directories. To start exploring them, let's open a shell window:
-
-```shell
-$
-```
-
-The dollar sign is a **prompt**, which shows us that the shell is waiting for input; your shell may show something more elaborate.
-
-Type the command `whoami`, then press the Enter key (sometimes marked Return) to send the command to the shell.
-
-The command's output is the ID of the current user, i.e., it shows us who the shell thinks we are:
-
-```shell
-$ whoami
-
-oski
-```
-
-More specifically, when we type `whoami` the shell:
-
-1.  finds a program called `whoami`,
-2.  runs that program,
-3.  displays that program's output, then
-4.  displays a new prompt to tell us that it's ready for more commands.
-
-##### Communicating to other systems
-
-In the next unit, we'll be focusing on the structure of our own operating systems. But our operating systems rarely work in isolation; often, we are relying on the Internet to communicate with others! You can visualize this sort of communication within your own shell by asking your computer to `ping` (based on the old term for submarine sonar) an IP address provided by Google (8.8.8.8); in effect, this will test whether your Internet (thanks Airbears2) is working. 
-
-```shell
-$ ping 8.8.8.8
-```
-
-Note: Windows users may have to try a slightly different alternative:
-
-```shell
-$ ping -t 8.8.8.8
-```
-
-Your computer will begin continuously pinging this IP address and reporting back the "latency," or how long it took for the ping data packet to go to that IP address and back. If your Internet isn't working, it will instead report an error saying "No route to host." 
-
-Ping runs continuously, so when we want it to stop, we have to manually tell the kernel to stop executing the ping command. We do this simply by typing ctrl+c. 
-
-(Thanks [Paul Thissen](http://www.paulthissen.org/) for the suggestion!)
-
-##### File system organization
-
-Next, let's find out where we are by running a command called `pwd` (**print working directory**).
-
-At any moment, our **current working directory** is our current default directory, i.e., the directory that the computer assumes we want to run commands in  unless we explicitly specify something else.
-
-Here, the computer's response is `/home/oski`, which is the **home directory**:
-
-```shell
-$ pwd
-
-/home/oski
-```
-
-> #### Home Directory
->
-> The home directory path will look different on different operating systems. On Linux it will look like `/home/oski`, and on Windows it will be similar to `C:\Documents and Settings\oski`. Note that it may look slightly different for different versions of Windows.
-
-> #### Alphabet Soup
->
-> If the command to find out who we are is `whoami`, the command to find out where we are ought to be called `whereami`, so why is it `pwd` instead? The usual answer is that in the early 1970s, when Unix was
-> first being developed, every keystroke counted: the devices of the day were slow, and backspacing on a teletype was so painful that cutting the number of keystrokes in order to cut the number of typing mistakes was actually a win for usability. The reality is that commands were added to Unix one by one, without any master plan, by people who were immersed in its jargon. The result is as inconsistent as the roolz uv Inglish speling, but we're stuck with it now. 
->
-> The good news: because these basic commands were so integral to the development of early Unix, they have stuck around, and appear (in some form) in almost all programming languages.
-
-To understand what a "home directory" is, let's have a look at how the file system as a whole is organized. At the top is the **root directory** that holds everything else.
-
-We refer to it using a slash character `/` on its own; this is the leading slash in `/home/oski`.
-
-Inside that directory are several other directories: `bin` (which is where some built-in programs are stored), `data` (holding miscellaneous data files) `etc` (where local configuration files are stored), `tmp` (for temporary files that don't need to be stored long-term), and so on.
-
-> If you're working on a Mac, the file structure will look similar, but not 
-> identical. The following image shows a file system graph for the typical Mac.
-
-![File Directory](https://swcarpentry.github.io/shell-novice/fig/home-directories.svg)
-
-We know that our current working directory `/home/oski` is stored inside `/home` because `/home` is the first part of its name. Similarly, we know that `/home` is stored inside the root directory `/` because its name begins with `/`.
-
-> #### Path
->
-> Notice that there are two meanings for the `/` character.
-> When it appears at the front of a file or directory name, it refers to the root directory. When it appears *inside* a name, it's just a separator.
-
-##### Listing
-
-Let's see what's in your home directory by running `ls` (**list files and directories):
-
-```shell
-$ ls
-
-Applications		Dropbox			Pictures
-Creative Cloud Files	Google Drive		Public
-Desktop			Library			Untitled.ipynb
-Documents		Movies			anaconda
-Downloads		Music			file.txt
-```
-
-`ls` prints the names of the files and directories in the current directory in alphabetical order, arranged neatly into columns.
-
-We can make its output more comprehensible by using the **flag** `-F`, which tells `ls` to add a trailing `/` to the names of directories:
-
-```shell
-$ ls -F
-
-Applications		Dropbox			Pictures
-Creative Cloud Files	Google Drive		Public
-Desktop			Library			Untitled.ipynb
-Documents		Movies			anaconda
-Downloads		Music			file.txt
-```
-
-And note that there is a space between `ls` and `-F`: without it, the shell thinks we're trying to run a command called `ls-F`, which doesn't exist.
-
-> #### What's In A Name?
->
-> You may have noticed that all of our's files' names are "something dot something". This is just a convention: we can call a file `file` or almost anything else we want. However, most people use two-part names most of the time to help them (and their programs) tell different kinds of files apart. The second part of such a name is called the **filename extension**, and indicates what type of data the file holds: 
-> `.txt` signals a plain text file, `.pdf` indicates a PDF document, `.cfg` is a configuration file full of parameters for some program or other, and so on.
->
-> This is just a convention, albeit an important one. Files contain bytes: it's up to us and our programs to interpret those bytes according to the rules for PDF documents, images, and so on.
->
-> Naming a PNG image of a whale as `whale.mp3` doesn't somehow magically turn it into a recording of whalesong, though it *might* cause the operating system to try to open it with a music player when someone double-clicks it.
-
-Now let's take a look at what's in your `Desktop` directory by running `ls -F data`, i.e., the command `ls` with the **arguments** `-F` and `PS239T`. The second argument --- the one *without* a leading dash --- tells `ls` that we want a listing of the files in something other than our current working directory:
-
-```shell
-$ ls -F PS239T
-
-01_Introduction/			10_python-basics/
-02_Unix-Bash/				11_FINAL PROJECTS/
-03_r-basics/				12_text-analysis-python/
-04_r-data-analysis/			13_text-analysis-r/
-05_r-visualization/			14_machine-learning/
-06_APIs/				15_machine-learning-applications/
-07_html-css-javascript/			A_Syllabus.md
-08_webscraping/				B_Install.md
-09_qualtrics-mturk/			README.md
-```
-
-The output shows us that there are three files and fifteen sub-sub-directories. Organizing things hierarchically in this way helps us keep track of our work: it's possible to put hundreds of files in our home directory, just as it's possible to pile hundreds of printed papers on our desk, but it's a self-defeating strategy.
-
-Notice, by the way that we spelled the directory name `Desktop`. It doesn't have a trailing slash: that's added to directory names by `ls` when we use the `-F` flag to help us tell things apart. And it doesn't begin with a slash because it's a **relative path**, i.e., it tells `ls` how to find something from where we are, rather than from the root of the file system.
-
-> #### Parameters vs. Arguments
->
-> According to [Wikipedia](https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments),
-> the terms **argument** and **parameter** mean slightly different things.
-> In practice, however, most people use them interchangeably or inconsistently,
-> so we will too.
-
-If we run `ls -F /Desktop` (*with* a leading slash) we get a different answer, because `/Desktop` is an **absolute path**:
-
-```shell
-$ ls -F /Desktop
-
-ls: /Desktop: No such file or directory
-```
-
-The leading `/` tells the computer to follow the path from the root of the file system, so it always refers to exactly one directory, no matter where we are when we run the command.
-
-What if we want to change our current working directory? Before we do this, `pwd` shows us that we're in `/home/oski`, and `ls` without any arguments shows us that directory's contents:
-
-```shell
-$ pwd
-
-/home/oski (/Users/rachel)
-
-$ ls
-
-Applications		Dropbox			Pictures
-Creative Cloud Files	Google Drive		Public
-Desktop			Library			Untitled.ipynb
-Documents		Movies			anaconda
-Downloads		Music			file.txt
-```
-
-Use relative paths (e.g., ../PS239T/references.md) whenever it's possible so that your code is not dependable on how your system is configured. 
-
-##### Moving around
-
-We can use `cd` (**change directory**) followed by a directory name to change our working directory. 
-
-```shell
-$ cd Desktop
-```
-
-`cd` doesn't print anything, but if we run `pwd` after it, we can see that we are now in `/home/oski/Desktop`.
-
-If we run `ls` without arguments now, it lists the contents of `/home/oski/Desktop`, because that's where we now are:
-
-```shell
-$ pwd
-
-/home/oski/Desktop
-
-```
-
-We now know how to go down the directory tree: how do we go up? We could use an absolute path:
-
-```shell
-$ cd /home/oski/
-```
-
-but it's almost always simpler to use `cd ..` to go up one level:
-
-```shell
-$ pwd
-
-/home/oski/Desktop
-
-$ cd ..
-```
-
-`..` is a special directory name meaning "the directory containing this one",
-or more succinctly, the **parent** of the current directory. Sure enough, if we run `pwd` after running `cd ..`, we're back in `/home/oski/`:
-
-```shell
-$ pwd
-
-/home/oski/
-```
-
-The special directory `..` doesn't usually show up when we run `ls`. If we want to display it, we can give `ls` the `-a` flag:
-
-```shell
-$ ls -a
-
-.		.localized	Shared
-..		Guest		rachel
-```
-
-`-a` stands for "show all"; it forces `ls` to show us file and directory names that begin with `.`, such as `..`.
-
-> #### Hidden Files: For Your Own Protection
-> 
-> As you can see, a bunch of other items just appeared when we enter `ls -a`. 
-> These files and directories begin with `.` followed by a name. These are 
-> usually files and directories that hold important programmatic information,
-> not usually edited by the casual computer user. They are kept hidden so that
-> users don't accidentally delete or edit them without knowing what they're
-> doing.
-
-As you can see, it also displays another special directory that's just called `.`, which means "the current working directory". It may seem redundant to have a name for it, but we'll see some uses for it soon.
-
-> #### Phone Home
-> 
-> If you ever want to get to the home directory immediately, you can use the 
-> shortcut `~`. For example, type `cd ~` and you'll get back home in a jiffy. 
-> `~` will also stand in for your home directory in paths, so for instance 
-> `~/Desktop` is the same as `/home/oski/Desktop`. This only works if it is 
-> the first character in the path: `here/there/~/elsewhere` is not 
-> `/home/oski/elsewhere`.
-
-##### Tab completion
-
-If you are in you home directory, you can see what files you have on your `Desktop` using the command:
-
-```shell
-$ ls ~/Desktop
-```
-
-This is a lot to type, but she can let the shell do most of the work. If she types:
-
-```shell
-$ ls ~/Des
-```
-
-and then presses tab, the shell automatically completes the directory name for her:
-
-```shell
-$ ls ~/Desktop
-```
-
-Pressing tab again does nothing, since there are multiple possibilities. Pressing tab twice brings up a list of all the files and directories, and so on.
-
-This is called **tab completion**, and we will see it in many other tools as we go on.
-
-> ####  Quick File Paths
-> 
-> If you quickly need the path of a file or directory, you can also copy the 
-> file/directory in the GUI and paste.The full path of the file or directory 
-> will appear. 
-
-
-
-##### Writing your first shell script 
-
-Write a shell script that creates a directory called `/pdfs` under `/Download` directory, then find PDF files in `/Download` and copy those files to `pdfs`. This shell script creates a backup.
-
-```bash
-
-#!/bin/sh
-
-mkdir /home/jae/Downloads/pdfs 
-
-cd Download
-
-cp *.pdf pdfs/ 
-
-echo "Copied pdfs"
-
-```
-
-#### Git and GitHub
-
-##### Version control system 
-
-![Why you should do version control](https://i2.wp.com/cdn-images-1.medium.com/max/399/1*7HHA_UkjUK7wp7qP4CYu1g.png?zoom=1.75&w=456&ssl=1)
-
-
-According to [Github Guides](https://guides.github.com), a versin control system "tracks the history of changes as people and teams collaborate on projects together". Specifically, it helps to track the following information:
-
-* Which changes were made?
-* Who made the changes?
-* When were the changes made?
-* Why were changes needed?
-
-Git is a case of a [distributed version control system](https://en.wikipedia.org/wiki/Distributed_version_control), common in open source and commercial software development. This is no surprising given that Git [was originally created](https://lkml.org/lkml/2005/4/6/121) to deal with Linux kernal development. 
-
-* If you're curious about how the Intenret works, learn one of the key ideas of the Internet: [end-to-end principle](https://en.wikipedia.org/wiki/End-to-end_principle). This also explains why [net neutrality](https://en.wikipedia.org/wiki/Net_neutrality) matters. 
-
-The following images, from [Pro Git](git-scm.com), show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS (e.g., Git, Mercurial, Bazzar or Darcs) works differently. 
-
-![Centralized version control system](https://git-scm.com/book/en/v2/images/centralized.png)
-
-Figure 2. Centralized VCS.
-
-![Decentralized version control system](https://git-scm.com/book/en/v2/images/distributed.png)
-
-Figure 3. Decentralized VCS.
-
-For more information on the varieties of version control systems, please read [Petr Baudis's review](https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf) on that subject.
-
-
-![Figure 2.1. A schematic git workflow from Healy's "The Plain Person’s Guide to Plain Text Social Science"](https://plain-text.co/figures/git-basic.png)
-
-
-##### Setup 
-
-We'll start with telling Git who you are.
-
-```shell
-$ git config --global user.name "Firstname Lastname"
-$ git config --global user.email username@company.extension
-```
-##### Making a repository 
-
-Create a new directory and move to it. 
-
-```shell 
-$ mkdir code_exercise 
-$ cd code_exercise 
-```
-
-
-```shell
-$ git init 
-```
-
-Alternatively, you can create a Git repository via Github and then clone it on your local machine. 
-
-
-```shell
-$ git clone /path/to/repository
-```
-
-If you're unfamiliar with basic Git commands, then please refer to [this Git cheet sheet](http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf).
-
-##### Commit changes 
-
-These feature show how Git works as a version control system. 
-
-If you edited files or added new ones, then you need to update your repository. In Git terms, this action is called committing changes. 
-
-
-```shell
-$ git add . # update every change. In Git terms, you're staging. 
-$ git add file_name # or stage a specific file.
-$ git commit -m "your comment" # your comment for the commit. 
-$ git push origin master # commit the change. Origin is a defaul name given to a server by Git. 
-```
-
-Another image from [Pro Git](https://git-scm.com/about/staging-area) well illustrates this process.
-
-![Git Workflow](https://git-scm.com/images/about/index1@2x.png)
-
-##### Other useful commands for tracking history
-
-
-```shell
-$ git diff # to see what changed (e.g., inside a file)
-$ git log # to track who committed what
-$ git checkout the commit hash (e.g., a5e556) file name (fruit_list.txt) # to recover old files 
-$ git revert 1q84 # revert to the previous commit 
-```
-
-#####  Doing other than adding 
-
-
-```shell
-$ git rm file_name # remove 
-$ git mv old_file_name new_file_name # rename a file 
-```
-
-##### Push and pull (or fetch)
-
-These features show how Git works as a collaboration tool. 
-
-If you have not already done, let's clone PS239T directory on your local machine.
-
-
-```shell
-$ git clone https://github.com/jaeyk/PS239T # clone 
-```
-
-Then, let's learn more about the repository.
-
-
-```shell
-$ git remote -v 
-```
-
-Previously, we learned how to send your data save in the local machine to the remote (the Github server). You can do that by editing or creating files, committing, and then typing **git push**. 
-
-Instead, if you want to update your local data with the remote data, then you can type **git pull origin** (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.
-
-
-```shell
-$ git fetch origin
-```
-
-##### Branching 
-
-It's an advanced feature of Git's version control system that allows developers to "diverge from the main line of development and continue to do work without messing with that main line" according to [Scott Chacon and Ben Straub](https://git-scm.com/book/en/v1/Git-Branching). 
-
-If you start working on a new feature, then create a new branch. 
-
-
-```shell
-$ git branch new_features
-$ git checkout new_features
-```
-
-You can see the newly created branch by typing **git branch**.
-
-In short, branching makes Git [works like](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics) a mini file system.
-
-##### Collaborations 
-
-Two options. 
-
-* Sharing a repository (suitable for a private project).
-* Fork and pull (suitable for an open source project). 
-    ​    * The one who maintains the repository becomes the maintainer. 
-    ​    * The others can [fork](https://help.github.com/articles/about-forks/), make changes, and even [pull](https://help.github.com/articles/about-pull-requests/) them back.
-
-##### Other stuff 
-
-
-```shell
-$ git status # show the status of changes 
-$ git branch # show the branch being worked on locally
-$ git merge # merge branches 
-$ git reset --hard # restore the pristine version
-$ git commit -a -m "additional backup" # to save the state again
-```
-
-
-
-##### Deployment: GitHub Pages 
-
-##### Tracking progress: GitHub Issues 
-
-##### Project management: GitHub Dashboards
+2. Can you explain why sharing code and data is not enough for computational reproducibility
+
+### References 
+
+- Code and data management 
+
+  - ["Code and Data for the Social Sciences: A Practitioner's Guide"](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) by Matthew Gentkow and Jesse M. Shapiro 
+  
+- Project-oriented research
+   
+  - Computational reproducibility 
+
+    - ["Good Enough Practices in Scientific Computing"](https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf) by PLOS
+      
+    - [Project Management with RStudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/) by Software Carpentry
+      
+    - [Initial steps toward reproducible research](https://kbroman.org/steps2rr/) by Karl Broman
+      
+  - Version control 
+   
+    - [Version Control with Git](https://swcarpentry.github.io/git-novice/) by Software Carpentry
+   
+    - [The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/) by Kieran Healy 
 
 ## Writing code: How to code like a professional
 
@@ -1264,9 +1356,7 @@ df
 
 ### Test your code systematically 
 
-## Asking questions: Minimal reproducible example
-
-### How to create a minimal reproducible example
+### Asking questions: Minimal reproducible example
 
 - Chances are you're going to use StackOverFlow a lot to solve a pressing problem you face. However, other can't understand/be interested in your problem unless you can provide an example which they can understand with minimal efforts. Such example is called a minimal reproducible example. 
 
@@ -1279,24 +1369,8 @@ df
     - The necessary information on package, R version, system (use `sessionInfo()`)
     - A seed for reproducibility (`set.seed()`), if you used a random process. 
 
-## References
+### References
 
-- Project-oriented research 
-
-   - Computational reproducibility 
-
-      - ["Good Enough Practices in Scientific Computing"](https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf) by PLOS
-      
-      - [Project Management with RStudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/) by Software Carpentry
-      
-      - [Initial steps toward reproducible research](https://kbroman.org/steps2rr/) by Karl Broman
-      
-   - Version control 
-   
-      - [Version Control with Git](https://swcarpentry.github.io/git-novice/) by Software Carpentry
-   
-      - [The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/) by Kieran Healy 
-      
 - Writing code 
 
    - Style guides 
