@@ -524,15 +524,13 @@ $ mkdir code_exercise
 $ cd code_exercise 
 ```
 
-
-```shell
+```sh
 $ git init 
 ```
 
 Alternatively, you can create a Git repository via Github and then clone it on your local machine. 
 
-
-```shell
+```sh
 $ git clone /path/to/repository
 ```
 
@@ -544,8 +542,7 @@ These feature show how Git works as a version control system.
 
 If you edited files or added new ones, then you need to update your repository. In Git terms, this action is called committing changes. 
 
-
-```shell
+```sh
 $ git add . # update every change. In Git terms, you're staging. 
 $ git add file_name # or stage a specific file.
 $ git commit -m "your comment" # your comment for the commit. 
@@ -558,8 +555,7 @@ Another image from [Pro Git](https://git-scm.com/about/staging-area) well illust
 
 ### Other useful commands for tracking history
 
-
-```shell
+```sh
 $ git diff # to see what changed (e.g., inside a file)
 $ git log # to track who committed what
 $ git checkout the commit hash (e.g., a5e556) file name (fruit_list.txt) # to recover old files 
@@ -568,8 +564,7 @@ $ git revert 1q84 # revert to the previous commit
 
 ###  Doing other than adding 
 
-
-```shell
+```sh
 $ git rm file_name # remove 
 $ git mv old_file_name new_file_name # rename a file 
 ```
@@ -580,15 +575,13 @@ These features show how Git works as a collaboration tool.
 
 If you have not already done, let's clone PS239T directory on your local machine.
 
-
-```shell
+```sh
 $ git clone https://github.com/jaeyk/PS239T # clone 
 ```
 
 Then, let's learn more about the repository.
 
-
-```shell
+```sh
 $ git remote -v 
 ```
 
@@ -596,8 +589,7 @@ Previously, we learned how to send your data save in the local machine to the re
 
 Instead, if you want to update your local data with the remote data, then you can type **git pull origin** (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.
 
-
-```shell
+```sh
 $ git fetch origin
 ```
 
@@ -607,8 +599,7 @@ It's an advanced feature of Git's version control system that allows developers 
 
 If you start working on a new feature, then create a new branch. 
 
-
-```shell
+```sh
 $ git branch new_features
 $ git checkout new_features
 ```
@@ -628,8 +619,7 @@ Two options.
 
 #### Other stuff 
 
-
-```shell
+```sh
 $ git status # show the status of changes 
 $ git branch # show the branch being worked on locally
 $ git merge # merge branches 
