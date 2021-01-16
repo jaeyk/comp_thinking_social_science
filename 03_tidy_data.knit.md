@@ -2656,70 +2656,1206 @@ Let's take a look at the cases of untidy data.
 **Challenge**: Why this data is not tidy?
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```r
+table4a
+```
+
+```
+## # A tibble: 3 x 3
+##   country     `1999` `2000`
+## * <chr>        <int>  <int>
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766
+```
+
+-   Let's pivot (rotate by 90 degree).
+
+
+![Concept map for pivoting. By Florian Schmoll, Monica Alonso.](https://github.com/rstudio/concept-maps/raw/master/en/pivoting.svg)
+
+
+-   [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) increases the number of rows (longer) and decreases the number of columns. The inverse function is `pivot_wider()`. These functions improve the usability of `gather()` and `spread()`.
+
+![What pivot\_longer() does (Source: <https://www.storybench.org>)](https://www.storybench.org/wp-content/uploads/2019/08/pivot-longer-image.png)
+
+
+![Concept map for pipe operator. By Jeroen Janssens, Monica Alonso.](https://education.rstudio.com/blog/2020/09/concept-maps/pipe-operator.png)
+
+- The pipe operator `%>%` originally comes from the `magrittr` package. The idea behind the pipe operator is [similar to](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) what we learned about chaining functions in high school. f: B -> C and g: A -> B can be expressed as $f(g(x))$. Basically, the pipe operator chains operations. When you read pipe operator, read as "and then" (Wickham's recommendation). The keyboard shortcut is ctrl + shift + M. The key idea here is not creating temporary variables and focusing on verbs (functions). We'll learn more about this functional programming paradigm later on.
+
+
+```r
+table4a 
+```
+
+```
+## # A tibble: 3 x 3
+##   country     `1999` `2000`
+## * <chr>        <int>  <int>
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766
+```
+
+```r
+# Old way, less intuitive
+table4a %>%
+  gather(
+    key = "year", # Current column names
+    value = "cases", # The values matched to cases
+    c("1999", "2000")
+  ) # Selected columns
+```
+
+```
+## # A tibble: 6 x 3
+##   country     year   cases
+##   <chr>       <chr>  <int>
+## 1 Afghanistan 1999     745
+## 2 Brazil      1999   37737
+## 3 China       1999  212258
+## 4 Afghanistan 2000    2666
+## 5 Brazil      2000   80488
+## 6 China       2000  213766
+```
+
+
+```r
+# New way, more intuitive
+table4a %>%
+  pivot_longer(
+    cols = c("1999", "2000"), # Selected columns
+    names_to = "year", # Shorter columns (the columns going to be in one column called year)
+    values_to = "cases"
+  ) # Longer rows (the values are going to be in a separate column called named cases)
+```
+
+```
+## # A tibble: 6 x 3
+##   country     year   cases
+##   <chr>       <chr>  <int>
+## 1 Afghanistan 1999     745
+## 2 Afghanistan 2000    2666
+## 3 Brazil      1999   37737
+## 4 Brazil      2000   80488
+## 5 China       1999  212258
+## 6 China       2000  213766
+```
+
+-   There's another problem, did you catch it?
+
+-   The data type of `year` variable should be `numeric` not `character`. By default, `pivot_longer()` transforms uninformative columns to character.
+
+-   You can fix this problem by using `names_transform` argument.
+
+
+```r
+table4a %>%
+  pivot_longer(
+    cols = c("1999", "2000"), # Put two columns together
+    names_to = "year", # Shorter columns (the columns going to be in one column called year)
+    values_to = "cases", # Longer rows (the values are going to be in a separate column called named cases)
+    names_transform = list(year = readr::parse_number)
+  ) # Transform the variable
+```
+
+```
+## # A tibble: 6 x 3
+##   country      year  cases
+##   <chr>       <dbl>  <int>
+## 1 Afghanistan  1999    745
+## 2 Afghanistan  2000   2666
+## 3 Brazil       1999  37737
+## 4 Brazil       2000  80488
+## 5 China        1999 212258
+## 6 China        2000 213766
+```
+
+**Additional tips**
+
+`parse_number()` also keeps only numeric information in a variable.
+
+
+```r
+parse_number("reply1994")
+```
+
+```
+## [1] 1994
+```
+
+A flat file (e.g., CSV) is a rectangular shaped combination of strings. [Parsing](https://cran.r-project.org/web/packages/readr/vignettes/readr.html) determines the type of each column and turns into a vector of a more specific type. Tidyverse has `parse_` functions (from `readr` package) that are flexible and fast (e.g., `parse_integer()`, `parse_double()`, `parse_logical()`, `parse_datetime()`, `parse_date()`, `parse_time()`, `parse_factor()`, etc).
+
+-   Let's do another practice.
+
+**Challenge**
+
+1.  Why this data is not tidy? (This exercise comes from [`pivot` function vigenette](https://tidyr.tidyverse.org/articles/pivot.html).) Too long or too wide?
+
+
+```r
+billboard
+```
+
+```
+## # A tibble: 317 x 79
+##    artist track date.entered   wk1   wk2   wk3   wk4   wk5   wk6   wk7   wk8
+##    <chr>  <chr> <date>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+##  1 2 Pac  Baby… 2000-02-26      87    82    72    77    87    94    99    NA
+##  2 2Ge+h… The … 2000-09-02      91    87    92    NA    NA    NA    NA    NA
+##  3 3 Doo… Kryp… 2000-04-08      81    70    68    67    66    57    54    53
+##  4 3 Doo… Loser 2000-10-21      76    76    72    69    67    65    55    59
+##  5 504 B… Wobb… 2000-04-15      57    34    25    17    17    31    36    49
+##  6 98^0   Give… 2000-08-19      51    39    34    26    26    19     2     2
+##  7 A*Tee… Danc… 2000-07-08      97    97    96    95   100    NA    NA    NA
+##  8 Aaliy… I Do… 2000-01-29      84    62    51    41    38    35    35    38
+##  9 Aaliy… Try … 2000-03-18      59    53    38    28    21    18    16    14
+## 10 Adams… Open… 2000-08-26      76    76    74    69    68    67    61    58
+## # … with 307 more rows, and 68 more variables: wk9 <dbl>, wk10 <dbl>,
+## #   wk11 <dbl>, wk12 <dbl>, wk13 <dbl>, wk14 <dbl>, wk15 <dbl>, wk16 <dbl>,
+## #   wk17 <dbl>, wk18 <dbl>, wk19 <dbl>, wk20 <dbl>, wk21 <dbl>, wk22 <dbl>,
+## #   wk23 <dbl>, wk24 <dbl>, wk25 <dbl>, wk26 <dbl>, wk27 <dbl>, wk28 <dbl>,
+## #   wk29 <dbl>, wk30 <dbl>, wk31 <dbl>, wk32 <dbl>, wk33 <dbl>, wk34 <dbl>,
+## #   wk35 <dbl>, wk36 <dbl>, wk37 <dbl>, wk38 <dbl>, wk39 <dbl>, wk40 <dbl>,
+## #   wk41 <dbl>, wk42 <dbl>, wk43 <dbl>, wk44 <dbl>, wk45 <dbl>, wk46 <dbl>,
+## #   wk47 <dbl>, wk48 <dbl>, wk49 <dbl>, wk50 <dbl>, wk51 <dbl>, wk52 <dbl>,
+## #   wk53 <dbl>, wk54 <dbl>, wk55 <dbl>, wk56 <dbl>, wk57 <dbl>, wk58 <dbl>,
+## #   wk59 <dbl>, wk60 <dbl>, wk61 <dbl>, wk62 <dbl>, wk63 <dbl>, wk64 <dbl>,
+## #   wk65 <dbl>, wk66 <lgl>, wk67 <lgl>, wk68 <lgl>, wk69 <lgl>, wk70 <lgl>,
+## #   wk71 <lgl>, wk72 <lgl>, wk73 <lgl>, wk74 <lgl>, wk75 <lgl>, wk76 <lgl>
+```
+
+2.  How can you fix it? Which pivot?
+
+
+```r
+# Old way
+billboard %>%
+  gather(
+    key = "week",
+    value = "rank",
+    starts_with("wk")
+  ) %>% # Use regular expressions
+  drop_na() # Drop NAs
+```
+
+```
+## # A tibble: 5,307 x 5
+##    artist         track                   date.entered week   rank
+##    <chr>          <chr>                   <date>       <chr> <dbl>
+##  1 2 Pac          Baby Don't Cry (Keep... 2000-02-26   wk1      87
+##  2 2Ge+her        The Hardest Part Of ... 2000-09-02   wk1      91
+##  3 3 Doors Down   Kryptonite              2000-04-08   wk1      81
+##  4 3 Doors Down   Loser                   2000-10-21   wk1      76
+##  5 504 Boyz       Wobble Wobble           2000-04-15   wk1      57
+##  6 98^0           Give Me Just One Nig... 2000-08-19   wk1      51
+##  7 A*Teens        Dancing Queen           2000-07-08   wk1      97
+##  8 Aaliyah        I Don't Wanna           2000-01-29   wk1      84
+##  9 Aaliyah        Try Again               2000-03-18   wk1      59
+## 10 Adams, Yolanda Open My Heart           2000-08-26   wk1      76
+## # … with 5,297 more rows
+```
+
+-   Note that `pivot_longer()` is more versatile than `gather()`.
+
+
+```r
+# New way
+billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"), # Use regular expressions
+    names_to = "week",
+    values_to = "rank",
+    values_drop_na = TRUE # Drop NAs
+  )
+```
+
+```
+## # A tibble: 5,307 x 5
+##    artist  track                   date.entered week   rank
+##    <chr>   <chr>                   <date>       <chr> <dbl>
+##  1 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk1      87
+##  2 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk2      82
+##  3 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk3      72
+##  4 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk4      77
+##  5 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk5      87
+##  6 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk6      94
+##  7 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk7      99
+##  8 2Ge+her The Hardest Part Of ... 2000-09-02   wk1      91
+##  9 2Ge+her The Hardest Part Of ... 2000-09-02   wk2      87
+## 10 2Ge+her The Hardest Part Of ... 2000-09-02   wk3      92
+## # … with 5,297 more rows
+```
+
+-   Make It Wider
+
+-   Why this data is not tidy?
+
+
+```r
+table2
+```
+
+```
+## # A tibble: 12 x 4
+##    country      year type            count
+##    <chr>       <int> <chr>           <int>
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583
+```
+
+-   Each observation is spread across two rows.
+
+-   How can you fix it?: `pivot_wider()`.
+
+**Two differences between `pivot_longer()` and `pivot_wider()`**
+
+-   In `pivot_longer()`, the arguments are named `names_to` and `values_to` (*to*).
+
+-   In `pivot_wider()`, this pattern is opposite. The arguments are named `names_from` and `values_from` (*from*).
+
+-   The number of required arguments for `pivot_longer()` is 3 (col, names\_to, values\_to).
+
+-   The number of required arguments for `pivot_wider()` is 2 (names\_from, values\_from).
+
+![What pivot\_wider() does (Source: <https://www.storybench.org>)](https://www.storybench.org/wp-content/uploads/2019/08/pivot-wider-image.png)
+
+
+```r
+# Old way
+table2 %>%
+  spread(
+    key = type,
+    value = count
+  )
+```
+
+```
+## # A tibble: 6 x 4
+##   country      year  cases population
+##   <chr>       <int>  <int>      <int>
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
+```
+
+
+```r
+# New way
+table2 %>%
+  pivot_wider(
+    names_from = type, # first
+    values_from = count # second
+  )
+```
+
+```
+## # A tibble: 6 x 4
+##   country      year  cases population
+##   <chr>       <int>  <int>      <int>
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
+```
+
+Sometimes, a consultee came to me and asked: "I don't have missing values in my original dataframe. Then R said that I have missing values after I've done some data transformations. What happened?"
+
+Here's an answer.
+
+R defines missing values in two ways.
+
+-   *Implicit missing values*: simply not present in the data.
+
+-   *Explicit missing values*: flagged with NA
+
+**Challenge**
+
+The example comes from [*R for Data Science*](https://r4ds.had.co.nz/tidy-data.html).
+
+
+```r
+stocks <- tibble(
+  year = c(2019, 2019, 2019, 2020, 2020, 2020),
+  qtr = c(1, 2, 3, 2, 3, 4),
+  return = c(1, 2, 3, NA, 2, 3)
+)
+
+stocks
+```
+
+```
+## # A tibble: 6 x 3
+##    year   qtr return
+##   <dbl> <dbl>  <dbl>
+## 1  2019     1      1
+## 2  2019     2      2
+## 3  2019     3      3
+## 4  2020     2     NA
+## 5  2020     3      2
+## 6  2020     4      3
+```
+
+-   Where is explicit missing value?
+
+-   Does `stocks` have implicit missing values?
+
+
+```r
+# implicit missing values become explicit
+stocks %>%
+  pivot_wider(
+    names_from = year,
+    values_from = return
+  )
+```
+
+```
+## # A tibble: 4 x 3
+##     qtr `2019` `2020`
+##   <dbl>  <dbl>  <dbl>
+## 1     1      1     NA
+## 2     2      2     NA
+## 3     3      3      2
+## 4     4     NA      3
+```
+
+**Challenge**
+
+-   This exercise comes from [`pivot` function vigenette](https://tidyr.tidyverse.org/articles/pivot.html).
+
+-   Could you make `station` a series of dummy variables using `pivot_wider()`?
+
+
+```r
+fish_encounters
+```
+
+```
+## # A tibble: 114 x 3
+##    fish  station  seen
+##    <fct> <fct>   <int>
+##  1 4842  Release     1
+##  2 4842  I80_1       1
+##  3 4842  Lisbon      1
+##  4 4842  Rstr        1
+##  5 4842  Base_TD     1
+##  6 4842  BCE         1
+##  7 4842  BCW         1
+##  8 4842  BCE2        1
+##  9 4842  BCW2        1
+## 10 4842  MAE         1
+## # … with 104 more rows
+```
+
+1.  Which pivot you should use?
+
+2.  Are there explicit missing values?
+
+3.  How could you turn these NAs into 0s? Check `values_fill` argument in the `pivot_wider()` function.
+
+-   Separate
+
+![Messy Data Case 2 (Source: R for Data Science)](https://garrettgman.github.io/images/tidy-6.png)
+
+
+```r
+# Toy example
+df <- data.frame(x = c(NA, "Dad.apple", "Mom.orange", "Daughter.banana"))
+
+df
+```
+
+```
+##                 x
+## 1            <NA>
+## 2       Dad.apple
+## 3      Mom.orange
+## 4 Daughter.banana
+```
+
+
+```r
+# Separate
+df %>%
+  separate(x, into = c("Name", "Preferred_fruit"))
+```
+
+```
+##       Name Preferred_fruit
+## 1     <NA>            <NA>
+## 2      Dad           apple
+## 3      Mom          orange
+## 4 Daughter          banana
+```
+
+```r
+# Don't need the first variable
+
+df %>%
+  separate(x, into = c(NA, "Preferred_fruit"))
+```
+
+```
+##   Preferred_fruit
+## 1            <NA>
+## 2           apple
+## 3          orange
+## 4          banana
+```
+
+**Practice**
+
+
+```r
+table3
+```
+
+```
+## # A tibble: 6 x 3
+##   country      year rate             
+## * <chr>       <int> <chr>            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583
+```
+
+-   Note `sep` argument. You can specify how to separate joined values.
+
+
+```r
+table3 %>%
+  separate(rate,
+    into = c("cases", "population"),
+    sep = "/"
+  )
+```
+
+```
+## # A tibble: 6 x 4
+##   country      year cases  population
+##   <chr>       <int> <chr>  <chr>     
+## 1 Afghanistan  1999 745    19987071  
+## 2 Afghanistan  2000 2666   20595360  
+## 3 Brazil       1999 37737  172006362 
+## 4 Brazil       2000 80488  174504898 
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
+```
+
+-   Note `convert` argument. You can specify whether automatically convert the new values or not.
+
+
+```r
+table3 %>%
+  separate(rate,
+    into = c("cases", "population"),
+    sep = "/",
+    convert = TRUE
+  ) # cases and population become integers
+```
+
+```
+## # A tibble: 6 x 4
+##   country      year  cases population
+##   <chr>       <int>  <int>      <int>
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
+```
+
+-   Unite
+
+`pivot_longer()` \<-\> `pivot_wider()`
+
+`separate()` \<-\> `unite()`
+
+
+```r
+# Create a toy example
+df <- data.frame(
+  name = c("Jae", "Sun", "Jane", NA),
+  birthmonth = c("April", "April", "June", NA)
+)
+
+# Include missing values
+df %>% unite(
+  "contact",
+  c("name", "birthmonth")
+)
+```
+
+```
+##     contact
+## 1 Jae_April
+## 2 Sun_April
+## 3 Jane_June
+## 4     NA_NA
+```
+
+```r
+# Do not include missing values
+df %>% unite("contact",
+  c("name", "birthmonth"),
+  na.rm = TRUE
+)
+```
+
+```
+##     contact
+## 1 Jae_April
+## 2 Sun_April
+## 3 Jane_June
+## 4
+```
+
+### Filling
+
+This is a relatively less-known function of the tidyr package. I found this function super useful to complete time-series data. For instance, how can you replace NA in the following example (this use case is drawn from the [tidyr package vignette](https://tidyr.tidyverse.org/reference/fill.html).)?
+
+
+```r
+# Example 
+stock <- tibble::tribble(
+  ~ quarter, ~ year, ~stock_price, 
+  "Q1", 2000, 10000, 
+  "Q2", NA, 10001, # Replace NA with 2000  
+  "Q3", NA, 10002, # Replace NA with 2000 
+  "Q4", NA, 10003, # Replace NA with 2000 
+  "Q1", 2001, 10004, 
+  "Q2", NA, 10005, # Replace NA with 2001 
+  "Q3", NA, 10006, # Replace NA with 2001 
+  "Q4", NA, 10007, # Replace NA with 2001
+)
+
+fill(stock, year)
+```
+
+```
+## # A tibble: 8 x 3
+##   quarter  year stock_price
+##   <chr>   <dbl>       <dbl>
+## 1 Q1       2000       10000
+## 2 Q2       2000       10001
+## 3 Q3       2000       10002
+## 4 Q4       2000       10003
+## 5 Q1       2001       10004
+## 6 Q2       2001       10005
+## 7 Q3       2001       10006
+## 8 Q4       2001       10007
+```
+
+Let's take a slightly more complex example. 
+
+
+```r
+# Example 
+yelp_rate <- tibble::tribble(
+  ~ neighborhood, ~restraurant_type, ~popularity_rate, 
+  "N1", "Chinese", 5, 
+  "N2", NA, 4,   
+  "N3", NA, 3,  
+  "N4", NA, 2,  
+  "N1", "Indian", 1, 
+  "N2", NA, 2,  
+  "N3", NA, 3,  
+  "N4", NA, 4, 
+  "N1", "Mexican", 5
+)
+
+fill(yelp_rate, restraurant_type) # default is direction = .down 
+```
+
+```
+## # A tibble: 9 x 3
+##   neighborhood restraurant_type popularity_rate
+##   <chr>        <chr>                      <dbl>
+## 1 N1           Chinese                        5
+## 2 N2           Chinese                        4
+## 3 N3           Chinese                        3
+## 4 N4           Chinese                        2
+## 5 N1           Indian                         1
+## 6 N2           Indian                         2
+## 7 N3           Indian                         3
+## 8 N4           Indian                         4
+## 9 N1           Mexican                        5
+```
+
+```r
+fill(yelp_rate, restraurant_type, .direction = "up") 
+```
+
+```
+## # A tibble: 9 x 3
+##   neighborhood restraurant_type popularity_rate
+##   <chr>        <chr>                      <dbl>
+## 1 N1           Chinese                        5
+## 2 N2           Indian                         4
+## 3 N3           Indian                         3
+## 4 N4           Indian                         2
+## 5 N1           Indian                         1
+## 6 N2           Mexican                        2
+## 7 N3           Mexican                        3
+## 8 N4           Mexican                        4
+## 9 N1           Mexican                        5
+```
+
+## Manipulating (dplyr)
+
+
+![Concept map for dplyr. By Monica Alonso, Greg Wilson.](https://education.rstudio.com/blog/2020/09/concept-maps/dplyr.png)
+
+
+dplyr is better than the base R approaches to data processing:
+
+- fast to run (due to the C++ backed) and intuitive to type
+- works well with tidy data and databases (thanks to [`dbplyr`](https://dbplyr.tidyverse.org/))
+
+### Rearranging
+
+-   Arrange
+
+-   Order rows
+
+
+```r
+dplyr::arrange(mtcars, mpg) # Low to High (default)
+```
+
+```
+##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+```
+
+```r
+dplyr::arrange(mtcars, desc(mpg)) # High to Row
+```
+
+```
+##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+```
+
+-   Rename
+
+-   Rename columns
+
+
+```r
+df <- tibble(y = c(2011, 2012, 2013))
+
+df %>%
+  rename(
+    Year = # NEW name
+    y
+  ) # OLD name
+```
+
+```
+## # A tibble: 3 x 1
+##    Year
+##   <dbl>
+## 1  2011
+## 2  2012
+## 3  2013
+```
+
+### Subset observations (rows)
+
+-   Choose row by logical condition
+
+-   Single condition
+
+
+```r
+starwars %>%
+  filter(gender == "feminine") %>%
+  arrange(desc(height))
+```
+
+```
+## # A tibble: 17 x 14
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Taun…    213  NA   none       grey       black             NA fema… femin…
+##  2 Adi …    184  50   none       dark       blue              NA fema… femin…
+##  3 Ayla…    178  55   none       blue       hazel             48 fema… femin…
+##  4 Shaa…    178  57   none       red, blue… black             NA fema… femin…
+##  5 Lumi…    170  56.2 black      yellow     blue              58 fema… femin…
+##  6 Zam …    168  55   blonde     fair, gre… yellow            NA fema… femin…
+##  7 Joca…    167  NA   white      fair       blue              NA fema… femin…
+##  8 Barr…    166  50   black      yellow     blue              40 fema… femin…
+##  9 Beru…    165  75   brown      light      blue              47 fema… femin…
+## 10 Dormé    165  NA   brown      light      brown             NA fema… femin…
+## 11 Padm…    165  45   brown      light      brown             46 fema… femin…
+## 12 Shmi…    163  NA   black      fair       brown             72 fema… femin…
+## 13 Cordé    157  NA   brown      light      brown             NA fema… femin…
+## 14 Leia…    150  49   brown      light      brown             19 fema… femin…
+## 15 Mon …    150  NA   auburn     fair       blue              48 fema… femin…
+## 16 R4-P…     96  NA   none       silver, r… red, blue         NA none  femin…
+## 17 Rey       NA  NA   brown      light      hazel             NA fema… femin…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+The following filtering example was inspired by [the suzanbert's dplyr blog post](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/).
+
+-   Multiple conditions (numeric)
+
+
+```r
+# First example
+starwars %>%
+  filter(height < 180, height > 160) %>%
+  nrow()
+```
+
+```
+## [1] 24
+```
+
+```r
+# Same as above
+starwars %>%
+  filter(height < 180 & height > 160) %>%
+  nrow()
+```
+
+```
+## [1] 24
+```
+
+```r
+# Not same as above
+starwars %>%
+  filter(height < 180 | height > 160) %>%
+  nrow()
+```
+
+```
+## [1] 81
+```
+
+**Challenge**
+
+(1) Use `filter(between())` to find characters whose heights are between 180 and 160 and (2) count the number of these observations.
+
+-   Minimum reproducible example
+
+
+```r
+df <- tibble(
+  heights = c(160:180),
+  char = rep("none", length(c(160:180)))
+)
+
+df %>%
+  filter(between(heights, 161, 179))
+```
+
+```
+## # A tibble: 19 x 2
+##    heights char 
+##      <int> <chr>
+##  1     161 none 
+##  2     162 none 
+##  3     163 none 
+##  4     164 none 
+##  5     165 none 
+##  6     166 none 
+##  7     167 none 
+##  8     168 none 
+##  9     169 none 
+## 10     170 none 
+## 11     171 none 
+## 12     172 none 
+## 13     173 none 
+## 14     174 none 
+## 15     175 none 
+## 16     176 none 
+## 17     177 none 
+## 18     178 none 
+## 19     179 none
+```
+
+-   Multiple conditions (character)
+
+
+```r
+# Filter names include ars; `grepl` is a base R function
+
+starwars %>%
+  filter(grepl("ars", tolower(name)))
+```
+
+```
+## # A tibble: 4 x 14
+##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##   <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+## 1 Owen…    178   120 brown, gr… light      blue              52 male  mascu…
+## 2 Beru…    165    75 brown      light      blue              47 fema… femin…
+## 3 Quar…    183    NA black      dark       brown             62 <NA>  <NA>  
+## 4 Clie…    183    NA brown      fair       blue              82 male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+```r
+# Or, if you prefer dplyr way
+
+starwars %>%
+  filter(str_detect(tolower(name), "ars"))
+```
+
+```
+## # A tibble: 4 x 14
+##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##   <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+## 1 Owen…    178   120 brown, gr… light      blue              52 male  mascu…
+## 2 Beru…    165    75 brown      light      blue              47 fema… femin…
+## 3 Quar…    183    NA black      dark       brown             62 <NA>  <NA>  
+## 4 Clie…    183    NA brown      fair       blue              82 male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+```r
+# Filter brown and black hair_color
+
+starwars %>%
+  filter(hair_color %in% c("black", "brown"))
+```
+
+```
+## # A tibble: 31 x 14
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Leia…    150  49   brown      light      brown           19   fema… femin…
+##  2 Beru…    165  75   brown      light      blue            47   fema… femin…
+##  3 Bigg…    183  84   black      light      brown           24   male  mascu…
+##  4 Chew…    228 112   brown      unknown    blue           200   male  mascu…
+##  5 Han …    180  80   brown      fair       brown           29   male  mascu…
+##  6 Wedg…    170  77   brown      fair       hazel           21   male  mascu…
+##  7 Jek …    180 110   brown      fair       blue            NA   male  mascu…
+##  8 Boba…    183  78.2 black      fair       brown           31.5 male  mascu…
+##  9 Land…    177  79   black      dark       brown           31   male  mascu…
+## 10 Arve…     NA  NA   brown      fair       brown           NA   male  mascu…
+## # … with 21 more rows, and 5 more variables: homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>, starships <list>
+```
+
+**Challenge**
+
+Use `str_detect()` to find characters whose names include "Han".
+
+-   Choose row by position (row index)
+
+
+```r
+starwars %>%
+  arrange(desc(height)) %>%
+  slice(1:6)
+```
+
+```
+## # A tibble: 6 x 14
+##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##   <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+## 1 Yara…    264    NA none       white      yellow            NA male  mascu…
+## 2 Tarf…    234   136 brown      brown      blue              NA male  mascu…
+## 3 Lama…    229    88 none       grey       black             NA male  mascu…
+## 4 Chew…    228   112 brown      unknown    blue             200 male  mascu…
+## 5 Roos…    224    82 none       grey       orange            NA male  mascu…
+## 6 Grie…    216   159 none       brown, wh… green, y…         NA male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+-   Sample by fraction
+
+
+```r
+# For reproducibility
+set.seed(1234)
+
+# Old way
+
+starwars %>%
+  sample_frac(0.10,
+    replace = FALSE
+  ) # Without replacement
+```
+
+```
+## # A tibble: 9 x 14
+##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##   <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+## 1 Arve…     NA    NA brown      fair       brown           NA   male  mascu…
+## 2 Sly …    178    48 none       pale       white           NA   <NA>  <NA>  
+## 3 IG-88    200   140 none       metal      red             15   none  mascu…
+## 4 Bigg…    183    84 black      light      brown           24   male  mascu…
+## 5 Leia…    150    49 brown      light      brown           19   fema… femin…
+## 6 Watto    137    NA black      blue, grey yellow          NA   male  mascu…
+## 7 Jabb…    175  1358 <NA>       green-tan… orange         600   herm… mascu…
+## 8 Dart…    202   136 none       white      yellow          41.9 male  mascu…
+## 9 Taun…    213    NA none       grey       black           NA   fema… femin…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+```r
+# New way
+
+starwars %>%
+  slice_sample(
+    prop = 0.10,
+    replace = FALSE
+  )
+```
+
+```
+## # A tibble: 8 x 14
+##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##   <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+## 1 Raym…    188  79   brown      light      brown           NA   male  mascu…
+## 2 Tarf…    234 136   brown      brown      blue            NA   male  mascu…
+## 3 Han …    180  80   brown      fair       brown           29   male  mascu…
+## 4 Mas …    196  NA   none       blue       blue            NA   male  mascu…
+## 5 Barr…    166  50   black      yellow     blue            40   fema… femin…
+## 6 Dart…    202 136   none       white      yellow          41.9 male  mascu…
+## 7 Finn      NA  NA   black      dark       dark            NA   male  mascu…
+## 8 Boba…    183  78.2 black      fair       brown           31.5 male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+-   Sample by number
+
+
+```r
+# Old way
+
+starwars %>%
+  sample_n(20,
+    replace = FALSE
+  ) # Without replacement
+```
+
+```
+## # A tibble: 20 x 14
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Quar…    183    NA black      dark       brown             62 <NA>  <NA>  
+##  2 Poe …     NA    NA brown      light      brown             NA male  mascu…
+##  3 Mas …    196    NA none       blue       blue              NA male  mascu…
+##  4 Zam …    168    55 blonde     fair, gre… yellow            NA fema… femin…
+##  5 Leia…    150    49 brown      light      brown             19 fema… femin…
+##  6 Jang…    183    79 black      tan        brown             66 male  mascu…
+##  7 Ben …    163    65 none       grey, gre… orange            NA male  mascu…
+##  8 Padm…    165    45 brown      light      brown             46 fema… femin…
+##  9 Mace…    188    84 none       dark       brown             72 male  mascu…
+## 10 R2-D2     96    32 <NA>       white, bl… red               33 none  mascu…
+## 11 Shmi…    163    NA black      fair       brown             72 fema… femin…
+## 12 Ratt…     79    15 none       grey, blue unknown           NA male  mascu…
+## 13 Nute…    191    90 none       mottled g… red               NA male  mascu…
+## 14 Dart…    175    80 none       red        yellow            54 male  mascu…
+## 15 Bib …    180    NA none       pale       pink              NA male  mascu…
+## 16 C-3PO    167    75 <NA>       gold       yellow           112 none  mascu…
+## 17 Yara…    264    NA none       white      yellow            NA male  mascu…
+## 18 Ki-A…    198    82 white      pale       yellow            92 male  mascu…
+## 19 BB8       NA    NA none       none       black             NA none  mascu…
+## 20 Eeth…    171    NA black      brown      brown             NA male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+```r
+# New way
+
+starwars %>%
+  slice_sample(
+    n = 20,
+    replace = FALSE
+  ) # Without replacement
+```
+
+```
+## # A tibble: 20 x 14
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Owen…    178   120 brown, gr… light      blue              52 male  mascu…
+##  2 Ki-A…    198    82 white      pale       yellow            92 male  mascu…
+##  3 Capt…     NA    NA unknown    unknown    unknown           NA <NA>  <NA>  
+##  4 Greg…    185    85 black      dark       brown             NA male  mascu…
+##  5 R5-D4     97    32 <NA>       white, red red               NA none  mascu…
+##  6 Ackb…    180    83 none       brown mot… orange            41 male  mascu…
+##  7 Wedg…    170    77 brown      fair       hazel             21 male  mascu…
+##  8 Dormé    165    NA brown      light      brown             NA fema… femin…
+##  9 Rey       NA    NA brown      light      hazel             NA fema… femin…
+## 10 IG-88    200   140 none       metal      red               15 none  mascu…
+## 11 Roos…    224    82 none       grey       orange            NA male  mascu…
+## 12 Shmi…    163    NA black      fair       brown             72 fema… femin…
+## 13 R2-D2     96    32 <NA>       white, bl… red               33 none  mascu…
+## 14 Poe …     NA    NA brown      light      brown             NA male  mascu…
+## 15 Obi-…    182    77 auburn, w… fair       blue-gray         57 male  mascu…
+## 16 Plo …    188    80 none       orange     black             22 male  mascu…
+## 17 Tarf…    234   136 brown      brown      blue              NA male  mascu…
+## 18 Lobot    175    79 none       light      blue              37 male  mascu…
+## 19 San …    191    NA none       grey       gold              NA male  mascu…
+## 20 Kit …    196    87 none       green      black             NA male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+-   Top 10 rows orderd by height
+
+
+```r
+# Old way
+starwars %>%
+  top_n(10, height)
+```
+
+```
+## # A tibble: 10 x 14
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Dart…    202   136 none       white      yellow          41.9 male  mascu…
+##  2 Chew…    228   112 brown      unknown    blue           200   male  mascu…
+##  3 Roos…    224    82 none       grey       orange          NA   male  mascu…
+##  4 Rugo…    206    NA none       green      orange          NA   male  mascu…
+##  5 Yara…    264    NA none       white      yellow          NA   male  mascu…
+##  6 Lama…    229    88 none       grey       black           NA   male  mascu…
+##  7 Taun…    213    NA none       grey       black           NA   fema… femin…
+##  8 Grie…    216   159 none       brown, wh… green, y…       NA   male  mascu…
+##  9 Tarf…    234   136 brown      brown      blue            NA   male  mascu…
+## 10 Tion…    206    80 none       grey       black           NA   male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+```r
+# New way
+starwars %>%
+  slice_max(height, n = 10) # Variable first, Argument second
+```
+
+```
+## # A tibble: 10 x 14
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##    <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+##  1 Yara…    264    NA none       white      yellow          NA   male  mascu…
+##  2 Tarf…    234   136 brown      brown      blue            NA   male  mascu…
+##  3 Lama…    229    88 none       grey       black           NA   male  mascu…
+##  4 Chew…    228   112 brown      unknown    blue           200   male  mascu…
+##  5 Roos…    224    82 none       grey       orange          NA   male  mascu…
+##  6 Grie…    216   159 none       brown, wh… green, y…       NA   male  mascu…
+##  7 Taun…    213    NA none       grey       black           NA   fema… femin…
+##  8 Rugo…    206    NA none       green      orange          NA   male  mascu…
+##  9 Tion…    206    80 none       grey       black           NA   male  mascu…
+## 10 Dart…    202   136 none       white      yellow          41.9 male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
+```
+
+### Subset variables (columns)
+
+
+```r
+names(msleep)
+```
+
+```
+##  [1] "name"         "genus"        "vore"         "order"        "conservation"
+##  [6] "sleep_total"  "sleep_rem"    "sleep_cycle"  "awake"        "brainwt"     
+## [11] "bodywt"
+```
+
+-   Select only numeric columns
 
 
 
