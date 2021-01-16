@@ -424,7 +424,7 @@ Yeah! We can actually do more cool things. How can you find the most recently do
 ls -t | find *.pdf | head -n1 
 ```
 
-#### Creating, copying, removing, and renaming files (TBD)
+#### Creating, copying, removing, and renaming files 
 
 ##### Creating files 
 
@@ -565,7 +565,68 @@ What's `-r`? It stands for recursion (e.g., . Recursion is a very powerful idea 
 
 ```
 
-##### Renaming files 
+##### Renaming files
+
+1. Using `mv`
+
+First, we will learn how to move files and see how it's relevant for renaming files. 
+
+```sh
+
+# Create two directories 
+mkdir exercise_1 ; mkdir exercise_2 
+
+# Check whether they were indeed created 
+find exer*
+
+# Create an empty file 
+touch exercise_1/test 
+
+# Move to exercise_1 and check 
+cd exercise_1 ; ls 
+
+# Move this file to exercise_2 
+mv test ../exercise_2 
+
+# Move to exercise_2 and check 
+cd exercise_2 ; ls 
+```
+
+What `mv` has something to do with renaming?
+
+* [mv] [source] [destination]
+
+```sh
+
+mv test new_test ; ls 
+
+```
+
+2. Using `rename`
+
+`mv` is a good tool to rename one file. But how about renaming many files? (Note that your pwd is still `exercise_2` where you have `new_test` file.)
+
+```sh
+
+for i in {1..100}; do cp new_test "test_$i.csv"; done  
+
+```
+
+Then install `rename`. Either `sudo apt-get install -y rename` or `brew install rename` (MacOS).
+
+Basic syntax: rename [flags] perlexpr (Perl Expression) files. Note that [Perl](https://en.wikipedia.org/wiki/Perl) is another programming language. 
+
+```sh
+# Rename every csv file to txt file 
+rename 's/.csv/.txt/' *.csv
+
+# Check 
+ls -l
+```
+
+The key part is `s/.csv/.txt/` = `s/FIND/REPLACE`
+
+Can you perform the same task using GUI? Yes, you can but it would be more time-consuming. Using the command line, you did this via just one-liner(!). [Keith Brandnam](http://korflab.ucdavis.edu/Bios/bio_keithb.html) wrote a wonderful book titled [UNIX and Perl to the Rescue! (Cambridge University Press 2012)](https://www.amazon.com/Unix-Perl-Rescue-Keith-Bradnam/dp/0521169828) that discusses how to use UNIX and Perl to do deal with massively large datasets.
 
 #### Working with CSV files (TBD)
 
