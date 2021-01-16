@@ -2,7 +2,7 @@
 
 ```{r include = FALSE}
 # Caching this markdown file 
-knitr::opts_chunk$set(cache = TRUE)
+# knitr::opts_chunk$set(cache = TRUE)
 ```
 
 ## Setup
@@ -620,7 +620,7 @@ f2 <- rev(factor(letters))
 f3 <- factor(letters, levels = rev(letters))
 ```
 
-## 2D data: matrices and dataframes 
+## 2D data: Matrices and dataframes 
 
 1. Matrices:  data structures for storing 2d data that is all the same class.
 2. Dataframes: teaches you about the dataframe, the most important data structure for storing data in R, because it stores different kinds of (2d) data.
@@ -2751,7 +2751,6 @@ pacman::p_load(# Necessary
                modelr, 
                nlme, 
                sjstats)
-
 ```
 
 ```{r}
@@ -2820,6 +2819,7 @@ population <- declare_population(N = 1000,
 
 population # class 
 population() %>% head() # instance 
+
 ```
 
 
