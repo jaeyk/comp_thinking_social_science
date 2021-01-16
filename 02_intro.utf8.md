@@ -78,15 +78,15 @@ This command should return "test_100:2:no_test." (file test_100; line number 2; 
 
 What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don't need to write files from a website using your web browser. You can run `wget` command in the terminal. Better yet, you don't even need to run the command for the second time. You can write a shell script (`*.sh`) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. [`copy_syllabus.sh`](https://GitHub.com/PS239T/spring_2021/blob/main/copy_syllabus.sh) automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.
 
-### What Is Bash?
+### UNIX Shell 
 
 The following materials on UNIX and Shell are adapted from [the software carpentry](https://bids.GitHub.io/2015-06-04-berkeley/shell/00-intro.html.
 
 #### Unix
 
-UNIX is an operating system which was first developed by AT & T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. For this reason, if you're using Max OS, then you don't need to do anything else. You're already all set. If you're using Windows. You need to install either GitBash (works if you only use Bash for Git and GitHub) or Windows Subsystem (strongly recommended if your use case goes beyond these limited usages). For more information, see [this installation guideline](https://GitHub.com/PS239T/spring_2021/blob/main/B_Install.md) from the course repo. 
+UNIX is an **operating system + a set of tools (utilities)**. It was developed by AT & T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. For this reason, if you're using Max OS, then you don't need to do anything else to experience UNIX. You're already all set. If you're using Windows, you need to install either GitBash (a good option if you only use Bash for Git and GitHub) or Windows Subsystem (highly recommended if your use case goes beyond Git and GitHub). For more information, see [this installation guideline](https://GitHub.com/PS239T/spring_2021/blob/main/B_Install.md) from the course repo. If you're an Windows user and don't use Windows 10, I recommend installing [VirtualBox](https://www.virtualbox.org/).
 
-UNIX is old, but it is still mainstream. Moreover, [the UNIX philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) ("Do One Thing And Do It Well")---minimalist, modular software development---is highly and widely influential.  
+UNIX is old, but it is still mainstream and it will be. Moreover, [the UNIX philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) ("Do One Thing And Do It Well")---minimalist, modular software development---is highly and widely influential.  
 
 ![Ken Thompson and Dennis Ritchie, key proponents of the Unix philosophy](https://upload.wikimedia.org/wikipedia/commons/1/1b/Ken_Thompson_and_Dennis_Ritchie--1973.jpg)
 
@@ -134,6 +134,8 @@ If you're using RStudio, you can use terminal inside RStudio (next to the "Conso
 #### The Shell 
 
 This description makes it sound as though the user sends commands directly to the computer, and the computer sends output directly to the user. In fact, there is usually a program in between called a **command shell**.
+
+![Source: Prashant Lakhera](https://miro.medium.com/max/1032/1*GuB5q_bWOSZa-8sDg1lEDA.png)
 
 What the user types goes into the shell; it figures out what commands to run and orders the computer to execute them. 
 
@@ -203,10 +205,6 @@ Note: Windows users may have to try a slightly different alternative:
 $ ping -t 8.8.8.8
 ```
 
-Your computer will begin continuously pinging this IP address and reporting back the "latency," or how long it took for the ping data packet to go to that IP address and back. If your Internet isn't working, it will instead report an error saying "No route to host." 
-
-Ping runs continuously, so when we want it to stop, we have to manually tell the kernel to stop executing the ping command. We do this simply by typing ctrl+c. 
-
 (Thanks [Paul Thissen](http://www.paulthissen.org/) for the suggestion!)
 
 #### File system organization
@@ -244,7 +242,6 @@ wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1103-amd64.d
 
 ![](misc/wget.png)
 
-
 > #### Home Directory
 >
 > The home directory path will look different on different operating systems. On Linux it will look like `/home/jae`, and on Windows it will be similar to `C:\Documents and Settings\jae`. Note that it may look slightly different for different versions of Windows.
@@ -279,7 +276,6 @@ This hierarchical way of thinking about organizing things is prevalent in the de
 
 <p Reimagining the Internet 10: Amy Zhang, University of Washington, The Institute for Digital Public Infrastructure /p>
 ```
-
 
 > #### Path
 >
@@ -427,6 +423,147 @@ ls -t | find *.pdf | head -n1
 
 #### Creating, copying, removing, and renaming files (TBD)
 
+##### Creating files 
+
+1. First, let's create an empty directory named exercise 
+
+```sh
+
+mkdir exercise 
+
+```
+
+2. You can check whether the directory is created by typing `ls`. If the print format is difficult to read, add `-l` flag. Did you notice the difference?
+
+3. Let's move to `exercise` subdirectory and create a file named test 
+
+```sh 
+
+cd exercise ; touch test ; ls 
+
+```
+
+4. Read test 
+
+```sh
+
+cat test 
+
+```
+
+5. Hmn. It's empty. Let's add something there. `>` = overwrite 
+
+```sh 
+
+echo "something" > test ; cat test 
+
+```
+
+6. Yeah! Can you add more? `>>` = append 
+
+```sh 
+
+echo "anything" >> test ; cat test 
+
+```
+
+7. Removing "anything" from `test` is a little bit more complex because you need to know how to use `grep` (remember that we used this command in the very first example). Here, I just demonstrate that you can do this task using Bash and let's dig into this more when we talk about working with text files.  
+
+```sh 
+
+grep -v 'anything' test
+
+```
+
+##### Copying and Removing Files 
+
+1. Can we make a copy of `test`? Yes!
+
+```sh
+
+cp test test_1; cat 
+
+```
+
+2. Can we make 100 copies of `test?` Yes!
+
+You can do this 
+
+```sh
+
+cp test test_1 
+cp test test_2
+cp test test_3 
+
+... 
+
+```
+
+or 
+
+```sh 
+
+for i in {1..100}; do cp test "test_$i"; done  
+
+```
+
+Which one do you like? (Again, don't focus on for loop. We'll learn it and other similar tools to deal with iterations in the later chapters.)
+
+3. Can you remove all of `test_` files?
+
+You can do this 
+
+```sh 
+rm test_1
+rm test_2
+rm test_3 
+
+...
+
+```
+
+or 
+
+```
+
+rm test_*
+
+```
+
+Which one do you like?
+
+4. Let's remove the directory. 
+
+```sh
+
+cd .. 
+
+rm exercise/
+
+```
+
+The `rm` command should not work because `exercise` is not a file. Type `rm --help` and see which flag is going to be helpful. It might be `-d` (remove empty directories).
+
+```
+rm -d exercise/  
+```
+
+Oops. Still not working because the directory is not empty. Try this. Now, it works. 
+
+```
+rm -r exercise/ 
+```
+
+What's `-r`? It stands for recursion (e.g., . Recursion is a very powerful idea in programming and helps solving complex problems. We'll come back to it many times (e.g., `purrr::reduce` in R). 
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Mv9NEXX1VHc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+```
+
+##### Renaming files 
+
 #### Working with CSV files (TBD)
 
 #### Working with text files (TBD)
@@ -439,7 +576,7 @@ Finally, we're learning how to write a shell script (a file that ends with .sh).
 
 ```sh
 
-#!/bin/sh
+#!/bin/sh # Stating this is a Shell script. 
 
 mkdir /home/jae/Downloads/pdfs # Obviously, in your case this file path should be incorrect.
 
