@@ -122,7 +122,7 @@ At a high level, computers do four things:
 - communicate with each other
 - interact with us (through either CLI or GUI)
 
-#### The Command Line
+#### The Command Line 
 
 This kind of interface is called a **command-line interface**, or CLI,
 to distinguish it from the **graphical user interface**, or GUI, that most people now use.
@@ -131,7 +131,7 @@ The heart of a CLI is a **read-evaluate-print loop**, or REPL: when the user typ
 
 If you're using RStudio, you can use terminal inside RStudio (next to the "Console"). (For instance, type Alt + Shift + M)
 
-#### The Shell
+#### The Shell 
 
 This description makes it sound as though the user sends commands directly to the computer, and the computer sends output directly to the user. In fact, there is usually a program in between called a **command shell**.
 
@@ -461,6 +461,13 @@ Using Make [TBD]
 
 - [Data Science at the Command Line](https://www.datascienceatthecommandline.com/2e/) by Jeroen Janssens 
 
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QxpOKbv-KQU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p Obtaining, Scrubbing, and Exploring Data at the Command Line by Jeroen Janssens from YPlan, Data Council /p>
+```
+
 - [Shell Tools and Scripting](https://missing.csail.mit.edu/2020/shell-tools/), ./missing-semester, MIT  
 
 - [Command-line Environment](https://missing.csail.mit.edu/2020/command-line/), ./missing-semester, MIT
@@ -470,7 +477,6 @@ Using Make [TBD]
 ### Version control system 
 
 ![Why you should do version control](https://i2.wp.com/cdn-images-1.medium.com/max/399/1*7HHA_UkjUK7wp7qP4CYu1g.png?zoom=1.75&w=456&ssl=1)
-
 
 According to [Github Guides](https://guides.github.com), a version control system "tracks the history of changes as people and teams collaborate on projects together". Specifically, it helps to track the following information:
 
@@ -702,11 +708,11 @@ example(ls) # provides example for how to use ls
 help.search("visualization") # search functions and packages that have "visualization" in their descriptions
 ```
 
-## Environment 
+### Environment 
 
 Environment = a collection of pairs 
 
-### Objects 
+#### Objects 
 
 - List objects in your current environment
 
@@ -755,7 +761,7 @@ rm(list = ls())
 gc()
 ```
 
-### Packages 
+#### Packages 
 
 `install.packages(package-name)` will download a package from one of the CRAN mirrors assuming that a binary is available for your operating system. 
 
