@@ -2,7 +2,7 @@
 
 ```{r include = FALSE}
 # Caching this markdown file 
-# knitr::opts_chunk$set(cache = TRUE)
+knitr::opts_chunk$set(cache = TRUE)
 ```
 
 ## Setup
@@ -17,9 +17,9 @@ ifelse(packageVersion("dplyr") >= 1,
 
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(
-  tidyverse, # for the tidyverse framework
-  skimr, # for skimming data 
-  here, # for computational reproducibility
+  tidyverse, # the tidyverse framework
+  skimr, # skimming data 
+  here, # computational reproducibility
   infer, # statistical inference 
   tidymodels, # statistical modeling 
   gapminder, # toy data
@@ -1844,7 +1844,8 @@ names(msleep)
 
 # Only numeric
 msleep %>%
-  select(where(is.numeric))
+  dplyr::select(where(is.numeric))
+
 ```
 
 **Challenge**
@@ -1856,7 +1857,7 @@ Use `select(where())` to find only non-numeric columns
 ```{r}
 
 msleep %>%
-  select(contains("sleep"))
+  dplyr::select(contains("sleep"))
 ```
 
 -   Select the columns that include either "sleep" or "wt" in their names
@@ -1879,7 +1880,8 @@ Use `select(match())` to find columns whose names include either "sleep" or "wt"
 ```{r}
 
 msleep %>%
-  select(starts_with("b"))
+  dplyr::select(starts_with("b"))
+
 ```
 
 -   Select the columns that ends with "wt"
@@ -1887,7 +1889,7 @@ msleep %>%
 ```{r}
 
 msleep %>%
-  select(ends_with("wt"))
+  dplyr::select(ends_with("wt"))
 ```
 
 -   Select the columns using both beginning and end string patterns
@@ -1897,7 +1899,7 @@ The key idea is you can use Boolean operators (`!`, `&`, `|`)to combine differen
 ```{r}
 
 msleep %>%
-  select(starts_with("b") & ends_with("wt"))
+  dplyr::select(starts_with("b") & ends_with("wt"))
 ```
 
 -   Select order and move it before everything
@@ -1906,7 +1908,7 @@ msleep %>%
 
 # By specifying a column
 msleep %>%
-  select(order, everything())
+  dplyr::select(order, everything())
 ```
 
 -   Select variables from a character vector.
@@ -1914,7 +1916,7 @@ msleep %>%
 ```{r}
 
 msleep %>%
-  select(any_of(c("name", "order"))) %>%
+  dplyr::select(any_of(c("name", "order"))) %>%
   colnames()
 ```
 
@@ -1929,7 +1931,7 @@ msleep$week12 <- NA
 msleep$week_extra <- 0
 
 msleep %>%
-  select(num_range("week", c(1:12)))
+  dplyr::select(num_range("week", c(1:12)))
 ```
 
 **Additional tips**
@@ -2057,7 +2059,7 @@ What does n in the below example represent?
 ```{r}
 
 gapminder %>%
-  select(continent, country) %>%
+  dplyr::select(continent, country) %>%
   add_tally()
 ```
 
@@ -2147,7 +2149,7 @@ wide_gapminder <- gapminder %>%
 
 # Apply summarise_all
 wide_gapminder %>%
-  select(-c(1:4)) %>%
+  dplyr::select(-c(1:4)) %>%
   summarise_all(mean, na.rm = TRUE)
 ```
 

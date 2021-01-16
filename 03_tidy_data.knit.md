@@ -19,17 +19,10 @@ ifelse(packageVersion("dplyr") >= 1,
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-```
-
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
-  tidyverse, # for the tidyverse framework
-  skimr, # for skimming data 
-  here, # for computational reproducibility
+  tidyverse, # the tidyverse framework
+  skimr, # skimming data 
+  here, # computational reproducibility
   infer, # statistical inference 
   tidymodels, # statistical modeling 
   gapminder, # toy data
@@ -1296,7 +1289,7 @@ str(df)
 ```
 ## 'data.frame':	3 obs. of  2 variables:
 ##  $ vec1: int  1 2 3
-##  $ vec2: Factor w/ 3 levels "a","b","c": 1 2 3
+##  $ vec2: chr  "a" "b" "c"
 ```
 
 Beware: `data.frame()`'s default behavior which turns strings into factors. Remember to use `stringAsFactors = FALSE` to suppress this behavior as needed:
@@ -1335,7 +1328,7 @@ str(df)
 ```
 ## 'data.frame':	3 obs. of  2 variables:
 ##  $ vec1: int  1 2 3
-##  $ vec2: Factor w/ 3 levels "a","b","c": 1 2 3
+##  $ vec2: chr  "a" "b" "c"
 ```
 
 This means that a dataframe has `names()`, `colnames()`, and `rownames()`, although `names()` and `colnames()` are the same thing. 
@@ -3868,7 +3861,7 @@ names(msleep)
 ```r
 # Only numeric
 msleep %>%
-  select(where(is.numeric))
+  dplyr::select(where(is.numeric))
 ```
 
 ```
@@ -3897,7 +3890,7 @@ Use `select(where())` to find only non-numeric columns
 
 ```r
 msleep %>%
-  select(contains("sleep"))
+  dplyr::select(contains("sleep"))
 ```
 
 ```
@@ -3954,7 +3947,7 @@ Use `select(match())` to find columns whose names include either "sleep" or "wt"
 
 ```r
 msleep %>%
-  select(starts_with("b"))
+  dplyr::select(starts_with("b"))
 ```
 
 ```
@@ -3979,7 +3972,7 @@ msleep %>%
 
 ```r
 msleep %>%
-  select(ends_with("wt"))
+  dplyr::select(ends_with("wt"))
 ```
 
 ```
@@ -4006,7 +3999,7 @@ The key idea is you can use Boolean operators (`!`, `&`, `|`)to combine differen
 
 ```r
 msleep %>%
-  select(starts_with("b") & ends_with("wt"))
+  dplyr::select(starts_with("b") & ends_with("wt"))
 ```
 
 ```
@@ -4032,7 +4025,7 @@ msleep %>%
 ```r
 # By specifying a column
 msleep %>%
-  select(order, everything())
+  dplyr::select(order, everything())
 ```
 
 ```
@@ -4057,7 +4050,7 @@ msleep %>%
 
 ```r
 msleep %>%
-  select(any_of(c("name", "order"))) %>%
+  dplyr::select(any_of(c("name", "order"))) %>%
   colnames()
 ```
 
@@ -4076,7 +4069,7 @@ msleep$week12 <- NA
 msleep$week_extra <- 0
 
 msleep %>%
-  select(num_range("week", c(1:12)))
+  dplyr::select(num_range("week", c(1:12)))
 ```
 
 ```
@@ -4676,7 +4669,7 @@ What does n in the below example represent?
 
 ```r
 gapminder %>%
-  select(continent, country) %>%
+  dplyr::select(continent, country) %>%
   add_tally()
 ```
 
@@ -4826,6 +4819,124 @@ tablea <- gapminder %>%
 -   Produce publishable tables
 
 
+```r
+# For HTML and LaTeX
+tablea %>% kableExtra::kable()
+```
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> continent </th>
+   <th style="text-align:right;"> n </th>
+   <th style="text-align:right;"> mean_gdp </th>
+   <th style="text-align:right;"> sd_gdp </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Africa </td>
+   <td style="text-align:right;"> 624 </td>
+   <td style="text-align:right;"> 2193.755 </td>
+   <td style="text-align:right;"> 2827.930 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Americas </td>
+   <td style="text-align:right;"> 300 </td>
+   <td style="text-align:right;"> 7136.110 </td>
+   <td style="text-align:right;"> 6396.764 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Asia </td>
+   <td style="text-align:right;"> 396 </td>
+   <td style="text-align:right;"> 7902.150 </td>
+   <td style="text-align:right;"> 14045.373 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Europe </td>
+   <td style="text-align:right;"> 360 </td>
+   <td style="text-align:right;"> 14469.476 </td>
+   <td style="text-align:right;"> 9355.213 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Oceania </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 18621.609 </td>
+   <td style="text-align:right;"> 6358.983 </td>
+  </tr>
+</tbody>
+</table>
+
+```r
+# For HTML and MS Office suite
+tablea %>% flextable::flextable()
+```
+
+```{=html}
+<template id="e9a11526-ab6f-4707-9cfc-51bd96648eca"><style>
+.tabwid table{
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  table-layout: fixed;
+  border-spacing: 0;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-d0aa6542{border-collapse:collapse;}.cl-d0a3c0d4{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-d0a3d4a2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-d0a3d4b6{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-d0a4088c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d0a408aa{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d0a408be{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d0a408c8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d0a408d2{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d0a408dc{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-d0aa6542'>
+```
+
+```{=html}
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-d0a408d2"><p class="cl-d0a3d4a2"><span class="cl-d0a3c0d4">continent</span></p></td><td class="cl-d0a408dc"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">n</span></p></td><td class="cl-d0a408dc"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">mean_gdp</span></p></td><td class="cl-d0a408dc"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-d0a4088c"><p class="cl-d0a3d4a2"><span class="cl-d0a3c0d4">Africa</span></p></td><td class="cl-d0a408aa"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">624</span></p></td><td class="cl-d0a408aa"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">2,194</span></p></td><td class="cl-d0a408aa"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">2,828</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d0a4088c"><p class="cl-d0a3d4a2"><span class="cl-d0a3c0d4">Americas</span></p></td><td class="cl-d0a408aa"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">300</span></p></td><td class="cl-d0a408aa"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">7,136</span></p></td><td class="cl-d0a408aa"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">6,397</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d0a4088c"><p class="cl-d0a3d4a2"><span class="cl-d0a3c0d4">Asia</span></p></td><td class="cl-d0a408aa"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">396</span></p></td><td class="cl-d0a408aa"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">7,902</span></p></td><td class="cl-d0a408aa"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">14,045</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d0a4088c"><p class="cl-d0a3d4a2"><span class="cl-d0a3c0d4">Europe</span></p></td><td class="cl-d0a408aa"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">360</span></p></td><td class="cl-d0a408aa"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">14,469</span></p></td><td class="cl-d0a408aa"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">9,355</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d0a408be"><p class="cl-d0a3d4a2"><span class="cl-d0a3c0d4">Oceania</span></p></td><td class="cl-d0a408c8"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">24</span></p></td><td class="cl-d0a408c8"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">18,622</span></p></td><td class="cl-d0a408c8"><p class="cl-d0a3d4b6"><span class="cl-d0a3c0d4">6,359</span></p></td></tr></tbody></table></div></template>
+<div id="0cbc193f-8102-42c0-bfae-71d0a11353ed"></div>
+<script>
+var dest = document.getElementById("0cbc193f-8102-42c0-bfae-71d0a11353ed");
+var template = document.getElementById("e9a11526-ab6f-4707-9cfc-51bd96648eca");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;"
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+fantome.appendChild(templateContent);
+</script>
+
+```
+
+#### Scoped summaries
+
+-   Old way
+
+-   `summarise_all()`
 
 
 
