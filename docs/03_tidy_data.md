@@ -19,10 +19,17 @@ ifelse(packageVersion("dplyr") >= 1,
 
 ```r
 if (!require("pacman")) install.packages("pacman")
+```
+
+```
+## Loading required package: pacman
+```
+
+```r
 pacman::p_load(
-  tidyverse, # for the tidyverse framework
-  skimr, # for skimming data 
-  here, # for computational reproducibility
+  tidyverse, # the tidyverse framework
+  skimr, # skimming data 
+  here, # computational reproducibility
   infer, # statistical inference 
   tidymodels, # statistical modeling 
   gapminder, # toy data
@@ -2612,65 +2619,12 @@ table1
 There are so many different ways of taking a look at data in R. Can you discuss the pros and cons of each approach? Which one do you prefer and why?
 
 
-```r
-str(table1)
-```
+* `str(table1)`
 
-```
-## tibble [6 × 4] (S3: tbl_df/tbl/data.frame)
-##  $ country   : chr [1:6] "Afghanistan" "Afghanistan" "Brazil" "Brazil" ...
-##  $ year      : int [1:6] 1999 2000 1999 2000 1999 2000
-##  $ cases     : int [1:6] 745 2666 37737 80488 212258 213766
-##  $ population: int [1:6] 19987071 20595360 172006362 174504898 1272915272 1280428583
-```
+* `glimpse(table1)`: similar to `str()` cleaner output 
 
-```r
-glimpse(table1) # similar to str() cleaner output 
-```
+* `skim(table1)`: `str()` + `summary()` + more 
 
-```
-## Rows: 6
-## Columns: 4
-## $ country    <chr> "Afghanistan", "Afghanistan", "Brazil", "Brazil", "China",…
-## $ year       <int> 1999, 2000, 1999, 2000, 1999, 2000
-## $ cases      <int> 745, 2666, 37737, 80488, 212258, 213766
-## $ population <int> 19987071, 20595360, 172006362, 174504898, 1272915272, 1280…
-```
-
-```r
-skim(table1) # str() + summary() + more 
-```
-
-
-Table: (\#tab:unnamed-chunk-82)Data summary
-
-|                         |       |
-|:------------------------|:------|
-|Name                     |table1 |
-|Number of rows           |6      |
-|Number of columns        |4      |
-|_______________________  |       |
-|Column type frequency:   |       |
-|character                |1      |
-|numeric                  |3      |
-|________________________ |       |
-|Group variables          |None   |
-
-
-**Variable type: character**
-
-|skim_variable | n_missing| complete_rate| min| max| empty| n_unique| whitespace|
-|:-------------|---------:|-------------:|---:|---:|-----:|--------:|----------:|
-|country       |         0|             1|   5|  11|     0|        3|          0|
-
-
-**Variable type: numeric**
-
-|skim_variable | n_missing| complete_rate|         mean|           sd|       p0|         p25|         p50|         p75|       p100|hist  |
-|:-------------|---------:|-------------:|------------:|------------:|--------:|-----------:|-----------:|-----------:|----------:|:-----|
-|year          |         0|             1|      1999.50|         0.55|     1999|     1999.00|      1999.5|      2000.0|       2000|▇▁▁▁▇ |
-|cases         |         0|             1|     91276.67|     98661.89|      745|    11433.75|     59112.5|    179315.5|     213766|▇▂▁▁▅ |
-|population    |         0|             1| 490072924.33| 613130266.54| 19987071| 58448110.50| 173255630.0| 998312678.5| 1280428583|▇▁▁▁▃ |
 
 - The big picture 
     - Tidying data with **tidyr**
@@ -3914,7 +3868,7 @@ names(msleep)
 ```r
 # Only numeric
 msleep %>%
-  select(where(is.numeric))
+  dplyr::select(where(is.numeric))
 ```
 
 ```
@@ -3943,7 +3897,7 @@ Use `select(where())` to find only non-numeric columns
 
 ```r
 msleep %>%
-  select(contains("sleep"))
+  dplyr::select(contains("sleep"))
 ```
 
 ```
@@ -4000,7 +3954,7 @@ Use `select(match())` to find columns whose names include either "sleep" or "wt"
 
 ```r
 msleep %>%
-  select(starts_with("b"))
+  dplyr::select(starts_with("b"))
 ```
 
 ```
@@ -4025,7 +3979,7 @@ msleep %>%
 
 ```r
 msleep %>%
-  select(ends_with("wt"))
+  dplyr::select(ends_with("wt"))
 ```
 
 ```
@@ -4052,7 +4006,7 @@ The key idea is you can use Boolean operators (`!`, `&`, `|`)to combine differen
 
 ```r
 msleep %>%
-  select(starts_with("b") & ends_with("wt"))
+  dplyr::select(starts_with("b") & ends_with("wt"))
 ```
 
 ```
@@ -4078,7 +4032,7 @@ msleep %>%
 ```r
 # By specifying a column
 msleep %>%
-  select(order, everything())
+  dplyr::select(order, everything())
 ```
 
 ```
@@ -4103,7 +4057,7 @@ msleep %>%
 
 ```r
 msleep %>%
-  select(any_of(c("name", "order"))) %>%
+  dplyr::select(any_of(c("name", "order"))) %>%
   colnames()
 ```
 
@@ -4122,7 +4076,7 @@ msleep$week12 <- NA
 msleep$week_extra <- 0
 
 msleep %>%
-  select(num_range("week", c(1:12)))
+  dplyr::select(num_range("week", c(1:12)))
 ```
 
 ```
@@ -4644,7 +4598,7 @@ gapminder %>%
 ```
 ## # A tibble: 5 x 2
 ##   continent     n
-##   <fct>     <int>
+## * <fct>     <int>
 ## 1 Africa      624
 ## 2 Americas    300
 ## 3 Asia        396
@@ -4722,7 +4676,7 @@ What does n in the below example represent?
 
 ```r
 gapminder %>%
-  select(continent, country) %>%
+  dplyr::select(continent, country) %>%
   add_tally()
 ```
 
@@ -4849,13 +4803,9 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 5 x 4
 ##   continent     n mean_gdp sd_gdp
-##   <fct>     <int>    <dbl>  <dbl>
+## * <fct>     <int>    <dbl>  <dbl>
 ## 1 Africa      624    2194.  2828.
 ## 2 Americas    300    7136.  6397.
 ## 3 Asia        396    7902. 14045.
@@ -4871,10 +4821,6 @@ tablea <- gapminder %>%
     mean_gdp = mean(gdpPercap),
     sd_gdp = sd(gdpPercap)
   )
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 -   Produce publishable tables
@@ -4934,7 +4880,7 @@ tablea %>% flextable::flextable()
 ```
 
 ```{=html}
-<template id="249b0f1d-c97a-49ec-9d38-3eb2d366f9d4"><style>
+<template id="17df241b-d19e-4467-ba99-123fdd441348"><style>
 .tabwid table{
   border-collapse:collapse;
   line-height:1;
@@ -4969,15 +4915,15 @@ tablea %>% flextable::flextable()
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-dacd8c54{border-collapse:collapse;}.cl-dac88e66{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dac8a360{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-dac8a374{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-dac8d510{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dac8d52e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dac8d538{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dac8d542{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dac8d54c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dac8d556{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-dacd8c54'>
+</style><div class="tabwid"><style>.cl-4ed2cc3c{border-collapse:collapse;}.cl-4ece2812{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-4ece392e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-4ece3942{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-4ece67aa{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4ece67c8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4ece67d2{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4ece67e6{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4ece67e7{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4ece67f0{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-4ed2cc3c'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-dac8d54c"><p class="cl-dac8a360"><span class="cl-dac88e66">continent</span></p></td><td class="cl-dac8d556"><p class="cl-dac8a374"><span class="cl-dac88e66">n</span></p></td><td class="cl-dac8d556"><p class="cl-dac8a374"><span class="cl-dac88e66">mean_gdp</span></p></td><td class="cl-dac8d556"><p class="cl-dac8a374"><span class="cl-dac88e66">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dac8d510"><p class="cl-dac8a360"><span class="cl-dac88e66">Africa</span></p></td><td class="cl-dac8d52e"><p class="cl-dac8a374"><span class="cl-dac88e66">624</span></p></td><td class="cl-dac8d52e"><p class="cl-dac8a374"><span class="cl-dac88e66">2,194</span></p></td><td class="cl-dac8d52e"><p class="cl-dac8a374"><span class="cl-dac88e66">2,828</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dac8d510"><p class="cl-dac8a360"><span class="cl-dac88e66">Americas</span></p></td><td class="cl-dac8d52e"><p class="cl-dac8a374"><span class="cl-dac88e66">300</span></p></td><td class="cl-dac8d52e"><p class="cl-dac8a374"><span class="cl-dac88e66">7,136</span></p></td><td class="cl-dac8d52e"><p class="cl-dac8a374"><span class="cl-dac88e66">6,397</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dac8d510"><p class="cl-dac8a360"><span class="cl-dac88e66">Asia</span></p></td><td class="cl-dac8d52e"><p class="cl-dac8a374"><span class="cl-dac88e66">396</span></p></td><td class="cl-dac8d52e"><p class="cl-dac8a374"><span class="cl-dac88e66">7,902</span></p></td><td class="cl-dac8d52e"><p class="cl-dac8a374"><span class="cl-dac88e66">14,045</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dac8d510"><p class="cl-dac8a360"><span class="cl-dac88e66">Europe</span></p></td><td class="cl-dac8d52e"><p class="cl-dac8a374"><span class="cl-dac88e66">360</span></p></td><td class="cl-dac8d52e"><p class="cl-dac8a374"><span class="cl-dac88e66">14,469</span></p></td><td class="cl-dac8d52e"><p class="cl-dac8a374"><span class="cl-dac88e66">9,355</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dac8d538"><p class="cl-dac8a360"><span class="cl-dac88e66">Oceania</span></p></td><td class="cl-dac8d542"><p class="cl-dac8a374"><span class="cl-dac88e66">24</span></p></td><td class="cl-dac8d542"><p class="cl-dac8a374"><span class="cl-dac88e66">18,622</span></p></td><td class="cl-dac8d542"><p class="cl-dac8a374"><span class="cl-dac88e66">6,359</span></p></td></tr></tbody></table></div></template>
-<div id="2da83e04-ee9b-431c-8ec1-b72abfd313d2"></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-4ece67e7"><p class="cl-4ece392e"><span class="cl-4ece2812">continent</span></p></td><td class="cl-4ece67f0"><p class="cl-4ece3942"><span class="cl-4ece2812">n</span></p></td><td class="cl-4ece67f0"><p class="cl-4ece3942"><span class="cl-4ece2812">mean_gdp</span></p></td><td class="cl-4ece67f0"><p class="cl-4ece3942"><span class="cl-4ece2812">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-4ece67aa"><p class="cl-4ece392e"><span class="cl-4ece2812">Africa</span></p></td><td class="cl-4ece67c8"><p class="cl-4ece3942"><span class="cl-4ece2812">624</span></p></td><td class="cl-4ece67c8"><p class="cl-4ece3942"><span class="cl-4ece2812">2,194</span></p></td><td class="cl-4ece67c8"><p class="cl-4ece3942"><span class="cl-4ece2812">2,828</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-4ece67aa"><p class="cl-4ece392e"><span class="cl-4ece2812">Americas</span></p></td><td class="cl-4ece67c8"><p class="cl-4ece3942"><span class="cl-4ece2812">300</span></p></td><td class="cl-4ece67c8"><p class="cl-4ece3942"><span class="cl-4ece2812">7,136</span></p></td><td class="cl-4ece67c8"><p class="cl-4ece3942"><span class="cl-4ece2812">6,397</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-4ece67aa"><p class="cl-4ece392e"><span class="cl-4ece2812">Asia</span></p></td><td class="cl-4ece67c8"><p class="cl-4ece3942"><span class="cl-4ece2812">396</span></p></td><td class="cl-4ece67c8"><p class="cl-4ece3942"><span class="cl-4ece2812">7,902</span></p></td><td class="cl-4ece67c8"><p class="cl-4ece3942"><span class="cl-4ece2812">14,045</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-4ece67aa"><p class="cl-4ece392e"><span class="cl-4ece2812">Europe</span></p></td><td class="cl-4ece67c8"><p class="cl-4ece3942"><span class="cl-4ece2812">360</span></p></td><td class="cl-4ece67c8"><p class="cl-4ece3942"><span class="cl-4ece2812">14,469</span></p></td><td class="cl-4ece67c8"><p class="cl-4ece3942"><span class="cl-4ece2812">9,355</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-4ece67d2"><p class="cl-4ece392e"><span class="cl-4ece2812">Oceania</span></p></td><td class="cl-4ece67e6"><p class="cl-4ece3942"><span class="cl-4ece2812">24</span></p></td><td class="cl-4ece67e6"><p class="cl-4ece3942"><span class="cl-4ece2812">18,622</span></p></td><td class="cl-4ece67e6"><p class="cl-4ece3942"><span class="cl-4ece2812">6,359</span></p></td></tr></tbody></table></div></template>
+<div id="6cc242ad-79e7-4bdb-ab38-b5b09dae7c9e"></div>
 <script>
-var dest = document.getElementById("2da83e04-ee9b-431c-8ec1-b72abfd313d2");
-var template = document.getElementById("249b0f1d-c97a-49ec-9d38-3eb2d366f9d4");
+var dest = document.getElementById("6cc242ad-79e7-4bdb-ab38-b5b09dae7c9e");
+var template = document.getElementById("17df241b-d19e-4467-ba99-123fdd441348");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;"
@@ -5011,7 +4957,7 @@ wide_gapminder <- gapminder %>%
 
 # Apply summarise_all
 wide_gapminder %>%
-  select(-c(1:4)) %>%
+  dplyr::select(-c(1:4)) %>%
   summarise_all(mean, na.rm = TRUE)
 ```
 
@@ -5269,13 +5215,9 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 5 x 2
 ##   continent mean_gdp
-##   <fct>        <dbl>
+## * <fct>        <dbl>
 ## 1 Africa       2194.
 ## 2 Americas     7136.
 ## 3 Asia         7902.
@@ -5296,13 +5238,9 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 5 x 3
 ##   continent mean_gdp count
-##   <fct>        <dbl> <int>
+## * <fct>        <dbl> <int>
 ## 1 Africa       2194.   624
 ## 2 Americas     7136.   300
 ## 3 Asia         7902.   396
@@ -5326,13 +5264,9 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 5 x 2
 ##   continent IQR_gdp
-##   <fct>       <dbl>
+## * <fct>       <dbl>
 ## 1 Africa      1616.
 ## 2 Americas    4402.
 ## 3 Asia        7492.
@@ -5353,13 +5287,9 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 5 x 3
 ##   continent min_gdp max_gdp
-##   <fct>       <dbl>   <dbl>
+## * <fct>       <dbl>   <dbl>
 ## 1 Africa       241.  21951.
 ## 2 Americas    1202.  42952.
 ## 3 Asia         331  113523.
@@ -5380,13 +5310,9 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 5 x 3
 ##   continent first_gdp last_gdp
-##   <fct>         <dbl>    <dbl>
+## * <fct>         <dbl>    <dbl>
 ## 1 Africa        2449.     470.
 ## 2 Americas      5911.   11416.
 ## 3 Asia           779.    2281.
@@ -5402,10 +5328,6 @@ gapminder %>%
     first_gdp = first(gdpPercap),
     last_gdp = last(gdpPercap)
   )
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
@@ -5429,13 +5351,9 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 5 x 2
 ##   continent    ns
-##   <fct>     <int>
+## * <fct>     <int>
 ## 1 Africa      624
 ## 2 Americas    300
 ## 3 Asia        396
@@ -5453,13 +5371,9 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 5 x 2
 ##   continent rich_countries
-##   <fct>              <dbl>
+## * <fct>              <dbl>
 ## 1 Africa           0.00481
 ## 2 Americas         0.05   
 ## 3 Asia             0.111  
@@ -5974,7 +5888,7 @@ glanced %>%
   geom_jitter(width = 0.5)
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-168-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-167-1.png" width="672" />
 
 - tidy() 
 
@@ -6135,7 +6049,7 @@ ggplot(aes(x = log_pop, y = lifeExp), data = gapminder) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-171-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-170-1.png" width="672" />
 
 ```r
 # Calculate the observed statistic: Observed slopes 
@@ -6177,7 +6091,7 @@ visualize(null_slopes) +
                 direction = "both")
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-171-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-170-2.png" width="672" />
 
 ### Mixed models 
 
@@ -6728,7 +6642,7 @@ anscombe_processed %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-188-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-187-1.png" width="672" />
 
 ### The grammar of graphics 
 
@@ -6772,13 +6686,13 @@ p <- ggplot(
 p
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-189-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-188-1.png" width="672" />
 
 ```r
 p + geom_point()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-189-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-188-2.png" width="672" />
 
 ```r
 p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
@@ -6788,7 +6702,7 @@ p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-189-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-188-3.png" width="672" />
 
 ```r
 # the shaded area is the standard error for the line
@@ -6848,7 +6762,7 @@ midwest %>%
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-191-1.png" width="672" />
 
 ```r
 midwest %>%
@@ -6856,7 +6770,7 @@ midwest %>%
   geom_histogram(bins = 10) # only 10 bins.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-191-2.png" width="672" />
 
 ```r
 ggplot(
@@ -6867,7 +6781,7 @@ ggplot(
   scale_fill_viridis_d()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-191-3.png" width="672" />
 
 #### Density 
 
@@ -6880,7 +6794,7 @@ midwest %>%
   scale_fill_viridis_d()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-193-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-1.png" width="672" />
 
 ### Advanced aes (size, color)
 
@@ -6900,7 +6814,7 @@ ggplot(
   geom_point()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-194-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-193-1.png" width="672" />
 
 
 ```r
@@ -6916,7 +6830,7 @@ ggplot(
   scale_color_viridis_d()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-194-1.png" width="672" />
 
 
 ```r
@@ -6932,7 +6846,7 @@ ggplot(
   geom_point()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-196-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-1.png" width="672" />
 
 Aesthetics also can be mapped per Geom. 
 
@@ -6946,7 +6860,7 @@ p + geom_point() +
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-197-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-196-1.png" width="672" />
 
 ```r
 p + geom_point(alpha = 0.3) + # alpha controls transparency
@@ -6957,7 +6871,7 @@ p + geom_point(alpha = 0.3) + # alpha controls transparency
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-197-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-196-2.png" width="672" />
 
 ```r
 p + geom_point(alpha = 0.3) + # alpha controls transparency
@@ -6968,7 +6882,7 @@ p + geom_point(alpha = 0.3) + # alpha controls transparency
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-197-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-196-3.png" width="672" />
 
 
 ```r
@@ -6994,7 +6908,7 @@ ggplot(
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-198-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-197-1.png" width="672" />
 
 ```r
 ggplot(
@@ -7022,7 +6936,7 @@ ggplot(
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-198-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-197-2.png" width="672" />
 
 ### Co-ordinates and scales 
 
@@ -7032,7 +6946,7 @@ p + geom_point() +
   coord_flip() # coord_type
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-199-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-198-1.png" width="672" />
 
 The data is heavily bunched up against the left side. 
 
@@ -7040,14 +6954,14 @@ The data is heavily bunched up against the left side.
 p + geom_point() # without scaling
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-200-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-199-1.png" width="672" />
 
 ```r
 p + geom_point() +
   scale_x_log10() # scales the axis of a plot to a log 10 basis
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-200-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-199-2.png" width="672" />
 
 ```r
 p + geom_point() +
@@ -7059,7 +6973,7 @@ p + geom_point() +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-200-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-199-3.png" width="672" />
 
 
 ### Labels and guides 
@@ -7084,7 +6998,7 @@ p + geom_point(alpha = 0.3) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-201-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-200-1.png" width="672" />
 
 6. Themes
 
@@ -7106,7 +7020,7 @@ p + geom_point(alpha = 0.3) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-202-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-201-1.png" width="672" />
 
 ### ggsave 
 
@@ -7145,13 +7059,13 @@ p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
 p + geom_point()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-204-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-203-1.png" width="672" />
 
 ```r
 p + geom_line()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-204-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-203-2.png" width="672" />
 
 `geom_line` joins up all the lines for each particular year in the order they appear in the dataset. `ggplot2` does not know the yearly observations in your data are grouped by country. 
 
@@ -7194,13 +7108,13 @@ p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
 p + geom_line(aes(group = country)) # group by, # The outlier is Kuwait.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-206-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-205-1.png" width="672" />
 
 ```r
 p + geom_line(aes(group = country)) + facet_wrap(~continent) # facetting
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-206-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-205-2.png" width="672" />
 
 ```r
 p + geom_line(aes(group = country), color = "gray70") +
@@ -7219,7 +7133,7 @@ p + geom_line(aes(group = country), color = "gray70") +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-206-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-205-3.png" width="672" />
 
 
 ```r
@@ -7239,7 +7153,7 @@ p + geom_line(aes(group = country), color = "gray70") +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-207-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-206-1.png" width="672" />
 
 
 ### Transforming
@@ -7261,7 +7175,7 @@ gapminder_formatted <- gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
+## `summarise()` has grouped output by 'continent'. You can override using the `.groups` argument.
 ```
 
 ```r
@@ -7274,7 +7188,7 @@ ggplot(data = gapminder_formatted, aes(x = year, y = lifeExp_mean, color = conti
   )
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-208-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-207-1.png" width="672" />
 
 ```r
 gapminder %>%
@@ -7294,10 +7208,10 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-208-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-207-2.png" width="672" />
 
 
 ```r
@@ -7320,10 +7234,10 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-209-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-208-1.png" width="672" />
 
 ```r
 # geom bar
@@ -7345,10 +7259,10 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-209-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-208-2.png" width="672" />
 
 ```r
 # no facet
@@ -7369,10 +7283,10 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-209-3.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-208-3.png" width="672" />
 
 
 ```r
@@ -7394,10 +7308,10 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-210-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-209-1.png" width="672" />
 
 
 ```r
@@ -7420,10 +7334,10 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-211-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-210-1.png" width="672" />
 
 ```r
 # reorder
@@ -7445,10 +7359,10 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-211-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-210-2.png" width="672" />
 
 #### Plotting text
 
@@ -7469,10 +7383,10 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
+## `summarise()` has grouped output by 'continent'. You can override using the `.groups` argument.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-212-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-211-1.png" width="672" />
 
 
 ```r
@@ -7492,10 +7406,10 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
+## `summarise()` has grouped output by 'continent'. You can override using the `.groups` argument.
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-213-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-212-1.png" width="672" />
 
 
 ```r
@@ -7515,7 +7429,7 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
+## `summarise()` has grouped output by 'continent'. You can override using the `.groups` argument.
 ```
 
 ```
@@ -7528,7 +7442,7 @@ gapminder %>%
 ## increasing max.overlaps
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-214-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-213-1.png" width="672" />
 
 ### Ploting models 
 
@@ -7559,7 +7473,7 @@ gapminder %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-215-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-214-1.png" width="672" />
 
 #### Extracting model outcomes 
 
@@ -7603,7 +7517,7 @@ p + geom_point() +
   theme_bw()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-217-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-216-1.png" width="672" />
 
 ##### Confidence intervals
 
@@ -7621,7 +7535,7 @@ out_conf %>%
   theme_bw()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-218-1.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-217-1.png" width="672" />
 
 ```r
 # another way to do it (errorbar)
@@ -7633,6 +7547,6 @@ out_conf %>%
   theme_bw()
 ```
 
-<img src="03_tidy_data_files/figure-html/unnamed-chunk-218-2.png" width="672" />
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-217-2.png" width="672" />
 
 You can calculate marginal effects using `margins` package. For the sake of time, I'm not covering that here.
