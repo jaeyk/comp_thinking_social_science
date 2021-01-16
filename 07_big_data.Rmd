@@ -615,7 +615,7 @@ WHERE status = 'open';
 3. (If you haven't) install Java 8 (see [this guideline](https://www.java.com/en/download/manual.jsp) from the Java website)
 
 ```{r}
-if(!require("sparklyr")) install.packages("sparklyr")
+# if(!require("sparklyr")) install.packages("sparklyr")
 
 # sparklyr::spark_install(version = "3.0.0")
 ```
