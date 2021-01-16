@@ -78,12 +78,20 @@ Computational tools and techniques make ...
       
 ## References 
 
-Here are a couple of useful videos that introduce computational social science. (Full disclaimer: I'm a former participant (Princeton 2019) and local organizer ([Bay Area 2020](https://sicss.io/2020/bay_area/)) of the Summer Institute in Computational Social Science. If you become interested in computational social science and wonder what should be your next steps, I would highly recommend applying for the program.)
+Here are a couple of useful videos that introduce computational social science. (Full disclaimer: I'm a former participant (Princeton 2019) and local organizer ([Bay Area 2020](https://sicss.io/2020/bay_area/)) of the [Summer Institute in Computational Social Science](https://sicss.io/). If you become interested in computational social science and wonder what should be your next steps, I would highly recommend applying for the program.) [Data Science for Social Good](https://www.dssgfellowship.org/) is another cool program that deserves your attention.
 
 ```{=html}
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zGG9wPl1C5E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p An Introduction to Computational Social Science, Summer Institute in Computational Social Science /p>
+
+```
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GTUozT9qxVw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p Rayid Ghani | Keynote: Using Data Science for Social Good: Examples, Opportunities, and Challenges /p>
 
 ```
