@@ -79,15 +79,15 @@ rm test_* test
 
 This command should return "test_100:2:no_test." (file test_100; line number 2; no_test)
 
-What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don't need to write files from a website using your web browser. You can run `wget` command in the terminal. Better yet, you don't even need to run the command for the second time. You can write a shell script (`*.sh`) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. [`copy_syllabus.sh`](https://github.com/PS239T/spring_2021/blob/main/copy_syllabus.sh) automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.
+What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don't need to write files from a website using your web browser. You can run `wget` command in the terminal. Better yet, you don't even need to run the command for the second time. You can write a shell script (`*.sh`) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. [`copy_syllabus.sh`](https://GitHub.com/PS239T/spring_2021/blob/main/copy_syllabus.sh) automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.
 
 ### What Is Bash?
 
-The following materials on UNIX and Shell are adapted from [the software carpentry](https://bids.github.io/2015-06-04-berkeley/shell/00-intro.html.
+The following materials on UNIX and Shell are adapted from [the software carpentry](https://bids.GitHub.io/2015-06-04-berkeley/shell/00-intro.html.
 
 #### Unix
 
-UNIX is an operating system which was first developed by AT & T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. For this reason, if you're using Max OS, then you don't need to do anything else. You're already all set. If you're using Windows. You need to install either GitBash (works if you only use Bash for Git and GitHub) or Windows Subsystem (strongly recommended if your use case goes beyond these limited usages). For more information, see [this installation guideline](https://github.com/PS239T/spring_2021/blob/main/B_Install.md) from the course repo. 
+UNIX is an operating system which was first developed by AT & T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. For this reason, if you're using Max OS, then you don't need to do anything else. You're already all set. If you're using Windows. You need to install either GitBash (works if you only use Bash for Git and GitHub) or Windows Subsystem (strongly recommended if your use case goes beyond these limited usages). For more information, see [this installation guideline](https://GitHub.com/PS239T/spring_2021/blob/main/B_Install.md) from the course repo. 
 
 UNIX is old, but it is still mainstream. Moreover, [the UNIX philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) ("Do One Thing And Do It Well")---minimalist, modular software development---is highly and widely influential.  
 
@@ -246,6 +246,8 @@ wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1103-amd64.d
 ```
 
 ![](misc/wget.png)
+
+
 > #### Home Directory
 >
 > The home directory path will look different on different operating systems. On Linux it will look like `/home/jae`, and on Windows it will be similar to `C:\Documents and Settings\jae`. Note that it may look slightly different for different versions of Windows.
@@ -266,7 +268,7 @@ Inside that directory are several other directories: `bin` (which is where some 
 
 > If you're working on a Mac, the file structure will look similar, but not identical. The following image shows a file system graph for the typical Mac.
 
-![File Directory](https://swcarpentry.github.io/shell-novice/fig/home-directories.svg)
+![File Directory](https://swcarpentry.GitHub.io/shell-novice/fig/home-directories.svg)
 
 We know that our current working directory `/home/jae` is stored inside `/home` because `/home` is the first part of its name. Similarly, we know that `/home` is stored inside the root directory `/` because its name begins with `/`.
 
@@ -460,7 +462,7 @@ Using Make [TBD]
 
 - [The Unix Workbench](https://seankross.com/the-unix-workbench/) by Sean Kross 
 
-- [The Unix Shell](http://swcarpentry.github.io/shell-novice/), Software Carpentry 
+- [The Unix Shell](http://swcarpentry.GitHub.io/shell-novice/), Software Carpentry 
 
 - [Data Science at the Command Line](https://www.datascienceatthecommandline.com/2e/) by Jeroen Janssens 
 
@@ -481,12 +483,13 @@ Using Make [TBD]
 
 ![Why you should do version control](https://i2.wp.com/cdn-images-1.medium.com/max/399/1*7HHA_UkjUK7wp7qP4CYu1g.png?zoom=1.75&w=456&ssl=1)
 
-According to [Github Guides](https://guides.github.com), a version control system "tracks the history of changes as people and teams collaborate on projects together". Specifically, it helps to track the following information:
+According to [GitHub Guides](https://guides.GitHub.com), a version control system "tracks the history of changes as people and teams collaborate on projects together". Specifically, it helps to track the following information:
 
 * Which changes were made?
 * Who made the changes?
 * When were the changes made?
 * Why were changes needed?
+
 
 Git is a case of a [distributed version control system](https://en.wikipedia.org/wiki/Distributed_version_control), common in open source and commercial software development. This is no surprising given that Git [was originally created](https://lkml.org/lkml/2005/4/6/121) to deal with Linux kernal development. 
 
@@ -505,6 +508,14 @@ Figure 3. Decentralized VCS.
 For more information on the varieties of version control systems, please read [Petr Baudis's review](https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf) on that subject.
 
 
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PFwUHTE6mFc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p Webcast • Introduction to Git and GitHub • Featuring Mehan Jayasuriya, GitHub Training & Guides/p>
+```
+
+
 ![Figure 2.1. A schematic git workflow from Healy's "The Plain Person’s Guide to Plain Text Social Science"](https://plain-text.co/figures/git-basic.png)
 
 ### Setup 
@@ -512,10 +523,22 @@ For more information on the varieties of version control systems, please read [P
 We'll start with telling Git who you are.
 
 ```sh
+
 $ git config --global user.name "Firstname Lastname"
 $ git config --global user.email username@company.extension
+
 ```
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/u6G3fbmpWr8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p The Basics of Git and GitHub, GitHub Training & Guides /p>
+
+```
+
 ### Making a repository 
+
 
 Create a new directory and move to it. 
 
@@ -528,13 +551,13 @@ $ cd code_exercise
 $ git init 
 ```
 
-Alternatively, you can create a Git repository via Github and then clone it on your local machine. 
+Alternatively, you can create a Git repository via GitHub and then clone it on your local machine. 
 
 ```sh
 $ git clone /path/to/repository
 ```
 
-If you're unfamiliar with basic Git commands, then please refer to [this Git cheet sheet](http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf).
+If you're unfamiliar with basic Git commands, then please refer to [this Git cheet sheet](http://rogerdudler.GitHub.io/git-guide/files/git_cheat_sheet.pdf).
 
 ### Commit changes 
 
@@ -548,10 +571,17 @@ $ git add file_name # or stage a specific file.
 $ git commit -m "your comment" # your comment for the commit. 
 $ git push origin master # commit the change. Origin is a default name given to a server by Git. 
 ```
-
 Another image from [Pro Git](https://git-scm.com/about/staging-area) well illustrates this process.
 
 ![Git Workflow](https://git-scm.com/images/about/index1@2x.png)
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/m0t1mOeAJgs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p Your Commits Should Tell a Story • Featuring Eliza Brock Marcum, GitHub Training & Guides /p>
+
+```
 
 ### Other useful commands for tracking history
 
@@ -576,7 +606,7 @@ These features show how Git works as a collaboration tool.
 If you have not already done, let's clone PS239T directory on your local machine.
 
 ```sh
-$ git clone https://github.com/jaeyk/PS239T # clone 
+$ git clone https://GitHub.com/jaeyk/PS239T # clone 
 ```
 
 Then, let's learn more about the repository.
@@ -585,7 +615,7 @@ Then, let's learn more about the repository.
 $ git remote -v 
 ```
 
-Previously, we learned how to send your data save in the local machine to the remote (the Github server). You can do that by editing or creating files, committing, and then typing **git push**. 
+Previously, we learned how to send your data save in the local machine to the remote (the GitHub server). You can do that by editing or creating files, committing, and then typing **git push**. 
 
 Instead, if you want to update your local data with the remote data, then you can type **git pull origin** (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.
 
@@ -615,7 +645,7 @@ Two options.
 * Sharing a repository (suitable for a private project).
 * Fork and pull (suitable for an open source project). 
     ​    * The one who maintains the repository becomes the maintainer. 
-    ​    * The others can [fork](https://help.github.com/articles/about-forks/), make changes, and even [pull](https://help.github.com/articles/about-pull-requests/) them back.
+    ​    * The others can [fork](https://help.GitHub.com/articles/about-forks/), make changes, and even [pull](https://help.GitHub.com/articles/about-pull-requests/) them back.
 
 #### Other stuff 
 
@@ -629,7 +659,19 @@ $ git commit -a -m "additional backup" # to save the state again
 
 ### Deployment: GitHub Pages 
 
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4TrOCv5Kukk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p Webcast • Get Started with GitHub Pages • Featuring Dani Traphagen, GitHub Training & Guides /p>
+
+```
+
 ### Tracking progress: GitHub Issues 
+
+```{=html}
+
+```
 
 ### Project management: GitHub Dashboards
 
@@ -762,7 +804,7 @@ install.packages("dplyr")
 library(dplyr)
 
 # From GitHub 
-devtools::install_github("jaeyk/tidytweetjson") # my own package 
+devtools::install_GitHub("jaeyk/tidytweetjson") # my own package 
 
 # Unload package 
 # detach("package:stats", unload=TRUE)
@@ -843,7 +885,7 @@ Why do you need to make your research project computationally reproducible?
 
 For your self-interest and public benefits. 
 
-![](https://github.com/dlab-berkeley/efficient-reproducible-project-management-in-R/blob/master/misc/screenshot.png?raw=true)
+![](https://GitHub.com/dlab-berkeley/efficient-reproducible-project-management-in-R/blob/master/misc/screenshot.png?raw=true)
 
 #### How to organize files in a project 
 
@@ -934,15 +976,15 @@ Set a project structure for a project named "starwars".
 
 - In addition to environment, **workflow** is an important component of project efficiency and reproducibility. 
 
-- What is R markdown? An R package, developed by [Yihui Xie](https://yihui.org/en/), that provides an authoring framework for data science. Xie is also a developer of many widely popular R packages such as `knitr`, [`xaringan`](https://github.com/yihui/xaringan) (cool kids use xaringan not [Beamer](https://en.wikipedia.org/wiki/Beamer_(LaTeX)) these days), `blogdown` (used to create [my personal website](https://jaeyk.github.io/)), and `bookdown` (used to create this book) among many others.
+- What is R markdown? An R package, developed by [Yihui Xie](https://yihui.org/en/), that provides an authoring framework for data science. Xie is also a developer of many widely popular R packages such as `knitr`, [`xaringan`](https://GitHub.com/yihui/xaringan) (cool kids use xaringan not [Beamer](https://en.wikipedia.org/wiki/Beamer_(LaTeX)) these days), `blogdown` (used to create [my personal website](https://jaeyk.GitHub.io/)), and `bookdown` (used to create this book) among many others.
 
-  - Many applications: [reports](https://rstudio.github.io/distill/basics.html), [presentations](https://bookdown.org/yihui/rmarkdown/xaringan.html), [dashboards](https://rmarkdown.rstudio.com/flexdashboard/), [websites](https://bookdown.org/yihui/rmarkdown/websites.html)  
+  - Many applications: [reports](https://rstudio.GitHub.io/distill/basics.html), [presentations](https://bookdown.org/yihui/rmarkdown/xaringan.html), [dashboards](https://rmarkdown.rstudio.com/flexdashboard/), [websites](https://bookdown.org/yihui/rmarkdown/websites.html)  
   - Check out [Communicating with R markdown workshop](https://ysc-rmarkdown.netlify.app/) by [Alison Hill](https://alison.rbind.io/) (RStudio)
     - Alison Hill is a co-author of [`blogdown: Creating Websites with R Markdown.`](https://bookdown.org/yihui/blogdown/) 
   - Key strengths: dynamic reporting + reproducible science + easy deployment
 
 
-![Concept map for R Markdown. By Gabriela Sandoval, Florencia D'Andrea, Yanina Bellini Saibene, Monica Alonso.](https://github.com/rstudio/concept-maps/raw/master/en/rmarkdown.svg)
+![Concept map for R Markdown. By Gabriela Sandoval, Florencia D'Andrea, Yanina Bellini Saibene, Monica Alonso.](https://GitHub.com/rstudio/concept-maps/raw/master/en/rmarkdown.svg)
 
 
 ```{=html}
@@ -1037,7 +1079,7 @@ here::here()
 here::here("project", "outputs")
            #depth 1   #depth 2
 ```
-   - How `here` defines the top-level project directory. The following list came from [the here package vignette](https://github.com/jennybc/here_here)).
+   - How `here` defines the top-level project directory. The following list came from [the here package vignette](https://GitHub.com/jennybc/here_here)).
 
       - Is a file named .here present?
       - Is this an RStudio Project? (**Note that we already set up an RStudio Project!** So, if you use RStudio's project feature, then you are ready to use `here`.)
@@ -1063,15 +1105,15 @@ here::here("project", "outputs")
    
   - Computational reproducibility 
 
-    - ["Good Enough Practices in Scientific Computing"](https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf) by PLOS
+    - ["Good Enough Practices in Scientific Computing"](https://GitHub.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf) by PLOS
       
-    - [Project Management with RStudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/) by Software Carpentry
+    - [Project Management with RStudio](https://swcarpentry.GitHub.io/r-novice-gapminder/02-project-intro/) by Software Carpentry
       
     - [Initial steps toward reproducible research](https://kbroman.org/steps2rr/) by Karl Broman
       
   - Version control 
    
-    - [Version Control with Git](https://swcarpentry.github.io/git-novice/) by Software Carpentry
+    - [Version Control with Git](https://swcarpentry.GitHub.io/git-novice/) by Software Carpentry
    
     - [The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/) by Kieran Healy 
 
@@ -1081,7 +1123,7 @@ here::here("project", "outputs")
 
 - What is code style?
 
-> Every major open-source project has its own style guide: a set of conventions (sometimes arbitrary) about how to write code for that project. It is much easier to understand a large codebase when all the code in it is in a consistent style. - [Google Style Guides](https://google.github.io/styleguide/) 
+> Every major open-source project has its own style guide: a set of conventions (sometimes arbitrary) about how to write code for that project. It is much easier to understand a large codebase when all the code in it is in a consistent style. - [Google Style Guides](https://google.GitHub.io/styleguide/) 
 
 ```{=html}
 
@@ -1094,7 +1136,7 @@ allowfullscreen></iframe>
 
 - How to avoid smelly code? 
 
-  - Check out [the code-smells Git repository](https://github.com/jennybc/code-smells-and-feels#readme) by Jenny Bryan. 
+  - Check out [the code-smells Git repository](https://GitHub.com/jennybc/code-smells-and-feels#readme) by Jenny Bryan. 
   
 ```{=html}
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7oyiPBjLAWY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -1241,7 +1283,7 @@ arrange(value)
 
 - Use `lintr` to check whether your code complies with a recommended style guideline (e.g., `tidyverse`) and `styler` package to format your code according to the style guideline.
 
-![how lintr works](https://camo.githubusercontent.com/6cb80270269165a8d3046d2da03cbf2b8f19ee2f/687474703a2f2f692e696d6775722e636f6d2f61635632374e562e676966)
+![how lintr works](https://camo.GitHubusercontent.com/6cb80270269165a8d3046d2da03cbf2b8f19ee2f/687474703a2f2f692e696d6775722e636f6d2f61635632374e562e676966)
 
 ### Write reusable code 
 
@@ -1349,9 +1391,9 @@ df
 
    - Style guides 
       - R 
-         - [Google's R style guide](https://google.github.io/styleguide/Rguide.xml)
+         - [Google's R style guide](https://google.GitHub.io/styleguide/Rguide.xml)
          - [R code style guide](http://r-pkgs.had.co.nz/r.html) by Hadley Wickham 
          - [The tidyverse style guide](http://style.tidyverse.org/) by Hadley Wickham
       - Python 
-         - [Google Python Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md)
+         - [Google Python Style Guide](https://GitHub.com/google/styleguide/blob/gh-pages/pyguide.md)
          - [Code Style](https://docs.python-guide.org/writing/style/#zen-of-python) by the Hitchhiker's Guide to Python
