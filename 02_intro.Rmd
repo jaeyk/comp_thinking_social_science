@@ -17,7 +17,7 @@ Create a plain text file that contains word "test"
 
 - `echo`: "Write arguments to the standard output" This is equivalent as using a text editor (e.g., nano, vim, emacs) and write something.
 - `> test` Save the expression in a file named test.   
-- In general, if you don't know what a command does, just type `<command name> --help` or `<command name> -h`. If you need more detailed information, you can do `man <command name>`. `man` stands for manual. Finally, you can get more user-friendly information by using either [`tldr`](https://tldr.sh/). 
+- In general, if you don't know what a command does, just type `<command name> --help`. If you need more detailed information, you can do `man <command name>`. `man` stands for manual. Finally, you can get more user-friendly information by using either [`tldr`](https://tldr.sh/). 
 
 ```sh
 
@@ -194,7 +194,7 @@ More specifically, when we type `whoami` the shell:
 
 #### Communicating to other systems
 
-In the next unit, we'll be focusing on the structure of our own operating systems. But our operating systems rarely work in isolation; often, we are relying on the Internet to communicate with others! You can visualize this sort of communication within your own shell by asking your computer to `ping` (based on the old term for submarine sonar) an IP address provided by Google (8.8.8.8); in effect, this will test whether your Internet (thanks Airbears2) is working. 
+In the next unit, we'll be focusing on the structure of our own operating systems. But our operating systems rarely work in isolation; often, we are relying on the Internet to communicate with others! You can visualize this sort of communication within your own shell by asking your computer to `ping` (based on the old term for submarine sonar) an IP address provided by Google (8.8.8.8); in effect, this will test whether your Internet is working. 
 
 ```sh
 $ ping 8.8.8.8
@@ -226,6 +226,26 @@ $ pwd
 /home/jae
 ```
 
+**Additional tips**
+
+You can also download files in the terminal. 
+
+1. Install wget utility 
+
+```sh
+
+sudo apt-get install wget 
+
+```
+2. Download target files 
+
+```sh 
+
+wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1103-amd64.deb
+
+```
+
+![](misc/wget.png)
 > #### Home Directory
 >
 > The home directory path will look different on different operating systems. On Linux it will look like `/home/jae`, and on Windows it will be similar to `C:\Documents and Settings\jae`. Note that it may look slightly different for different versions of Windows.
@@ -244,11 +264,23 @@ We refer to it using a slash character `/` on its own; this is the leading slash
 
 Inside that directory are several other directories: `bin` (which is where some built-in programs are stored), `data` (holding miscellaneous data files) `etc` (where local configuration files are stored), `tmp` (for temporary files that don't need to be stored long-term), and so on.
 
-> If you're working on a Mac, the file structure will look similar, but not 
-> identical. The following image shows a file system graph for the typical Mac.
+> If you're working on a Mac, the file structure will look similar, but not identical. The following image shows a file system graph for the typical Mac.
 
 ![File Directory](https://swcarpentry.github.io/shell-novice/fig/home-directories.svg)
-We know that our current working directory `/home/oski` is stored inside `/home` because `/home` is the first part of its name. Similarly, we know that `/home` is stored inside the root directory `/` because its name begins with `/`.
+
+We know that our current working directory `/home/jae` is stored inside `/home` because `/home` is the first part of its name. Similarly, we know that `/home` is stored inside the root directory `/` because its name begins with `/`.
+
+**Food for thought**
+
+This hierarchical way of thinking about organizing things is prevalent in the design of computation systems. However, it doesn't need to be that way, especially when the system concerns something like conversations. 
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/P0H1m14Krmc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p Reimagining the Internet 10: Amy Zhang, University of Washington, The Institute for Digital Public Infrastructure /p>
+```
+
 
 > #### Path
 >
@@ -271,67 +303,20 @@ Downloads		Music			file.txt
 
 `ls` prints the names of the files and directories in the current directory in alphabetical order, arranged neatly into columns.
 
-We can make its output more comprehensible by using the **flag** `-F`, which tells `ls` to add a trailing `/` to the names of directories:
+We can make `ls` more useful by adding flags. For instance, you can make your computer show only directories in the file system using the following command. Here `-F` flag classifies files based on some types. `/` indicates directories. 
 
 ```sh
-$ ls -F
-
-Applications		Dropbox			Pictures
-Creative Cloud Files	Google Drive		Public
-Desktop			Library			Untitled.ipynb
-Documents		Movies			anaconda
-Downloads		Music			file.txt
-```
-
-And note that there is a space between `ls` and `-F`: without it, the shell thinks we're trying to run a command called `ls-F`, which doesn't exist.
-
-> #### What's In A Name?
->
-> You may have noticed that all of our's files' names are "something dot something". This is just a convention: we can call a file `file` or almost anything else we want. However, most people use two-part names most of the time to help them (and their programs) tell different kinds of files apart. The second part of such a name is called the **filename extension**, and indicates what type of data the file holds: 
-> `.txt` signals a plain text file, `.pdf` indicates a PDF document, `.cfg` is a configuration file full of parameters for some program or other, and so on.
->
-> This is just a convention, albeit an important one. Files contain bytes: it's up to us and our programs to interpret those bytes according to the rules for PDF documents, images, and so on.
->
-> Naming a PNG image of a whale as `whale.mp3` doesn't somehow magically turn it into a recording of whalesong, though it *might* cause the operating system to try to open it with a music player when someone double-clicks it.
-
-Now let's take a look at what's in your `Desktop` directory by running `ls -F data`, i.e., the command `ls` with the **arguments** `-F` and `PS239T`. The second argument --- the one *without* a leading dash --- tells `ls` that we want a listing of the files in something other than our current working directory:
-
-```sh
-$ ls -F PS239T
-
-A_Syllabus.html  C_final-projects.md  Dockerfile       LICENSE       README.md
-A_Syllabus.pdf   copy_syllabus.sh*    final_projects/  _logistics/   references.md
-B_Install.md     DESCRIPTION          lecture_notes/   PS239T.Rproj  style_guides.md
-
-```
-
-The output shows us that there are three files and fifteen sub-sub-directories. Organizing things hierarchically in this way helps us keep track of our work: it's possible to put hundreds of files in our home directory, just as it's possible to pile hundreds of printed papers on our desk, but it's a self-defeating strategy.
-
-Notice, by the way that we spelled the directory name `Desktop`. It doesn't have a trailing slash: that's added to directory names by `ls` when we use the `-F` flag to help us tell things apart. And it doesn't begin with a slash because it's a **relative path**, i.e., it tells `ls` how to find something from where we are, rather than from the root of the file system.
-
-> #### Parameters vs. Arguments
->
-> According to [Wikipedia](https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments),
-> the terms **argument** and **parameter** mean slightly different things.
-> In practice, however, most people use them interchangeably or inconsistently,
-> so we will too.
-
-If we run `ls -F /Desktop` (*with* a leading slash) we get a different answer, because `/Desktop` is an **absolute path**:
-
-```sh
-$ ls -F /Desktop
-
-ls: /Desktop: No such file or directory
+ls -F /
 ```
 
 The leading `/` tells the computer to follow the path from the root of the file system, so it always refers to exactly one directory, no matter where we are when we run the command.
 
-What if we want to change our current working directory? Before we do this, `pwd` shows us that we're in `/home/oski`, and `ls` without any arguments shows us that directory's contents:
+What if we want to change our current working directory? Before we do this, `pwd` shows us that we're in `/home/jae`, and `ls` without any arguments shows us that directory's contents:
 
 ```sh
 $ pwd
 
-/home/oski (/Users/rachel)
+/home/jae
 
 $ ls
 
@@ -342,7 +327,18 @@ Documents		Movies			anaconda
 Downloads		Music			file.txt
 ```
 
-Use relative paths (e.g., ../PS239T/references.md) whenever it's possible so that your code is not dependable on how your system is configured. 
+Use relative paths (e.g., `../spring_2021/references.md`) whenever it's possible so that your code is not dependable on how your system is configured. 
+
+**Additional tips**
+
+How can I find pdf files in `Downloads` using the terminal? Remember `*` wildcard?
+
+```sh
+cd Downloads/ 
+
+find *.pdf
+```
+Also, note that you don't need to type every character. Type the first few characters then press TAB (autocomplete). This is called **tab completion**, and we will see it in many other tools as we go on.
 
 #### Moving around
 
@@ -352,40 +348,42 @@ We can use `cd` (**change directory**) followed by a directory name to change ou
 $ cd Desktop
 ```
 
-`cd` doesn't print anything, but if we run `pwd` after it, we can see that we are now in `/home/oski/Desktop`.
+`cd` doesn't print anything, but if we run `pwd` after it, we can see that we are now in `/home/jae/Desktop`.
 
-If we run `ls` without arguments now, it lists the contents of `/home/oski/Desktop`, because that's where we now are:
+If we run `ls` without arguments now, it lists the contents of `/home/jae/Desktop`, because that's where we now are:
 
 ```sh
+
 $ pwd
 
-/home/oski/Desktop
+/home/jae/Desktop
 
 ```
 
 We now know how to go down the directory tree: how do we go up? We could use an absolute path:
 
 ```sh
-$ cd /home/oski/
+$ cd /home/jae/
 ```
 
 but it's almost always simpler to use `cd ..` to go up one level:
 
 ```sh
+
 $ pwd
 
-/home/oski/Desktop
+/home/jae/Desktop
 
 $ cd ..
+
 ```
 
-`..` is a special directory name meaning "the directory containing this one",
-or more succinctly, the **parent** of the current directory. Sure enough, if we run `pwd` after running `cd ..`, we're back in `/home/oski/`:
+`..` is a special directory name meaning "the directory containing this one", or more succinctly, the **parent** of the current directory. Sure enough, if we run `pwd` after running `cd ..`, we're back in `/home/jae/`:
 
 ```sh
 $ pwd
 
-/home/oski/
+/home/jae/
 ```
 
 The special directory `..` doesn't usually show up when we run `ls`. If we want to display it, we can give `ls` the `-a` flag:
@@ -401,67 +399,44 @@ $ ls -a
 
 > #### Hidden Files: For Your Own Protection
 > 
-> As you can see, a bunch of other items just appeared when we enter `ls -a`. 
-> These files and directories begin with `.` followed by a name. These are 
-> usually files and directories that hold important programmatic information,
-> not usually edited by the casual computer user. They are kept hidden so that
-> users don't accidentally delete or edit them without knowing what they're
-> doing.
+> As you can see, a bunch of other items just appeared when we enter `ls -a`. These files and directories begin with `.` followed by a name. These areusually files and directories that hold important programmatic information, not usually edited by the casual computer user. They are kept hidden so that users don't accidentally delete or edit them without knowing what they're doing.
 
 As you can see, it also displays another special directory that's just called `.`, which means "the current working directory". It may seem redundant to have a name for it, but we'll see some uses for it soon.
 
 > #### Phone Home
 > 
-> If you ever want to get to the home directory immediately, you can use the 
-> shortcut `~`. For example, type `cd ~` and you'll get back home in a jiffy. 
-> `~` will also stand in for your home directory in paths, so for instance 
-> `~/Desktop` is the same as `/home/oski/Desktop`. This only works if it is 
-> the first character in the path: `here/there/~/elsewhere` is not 
-> `/home/oski/elsewhere`.
+> If you ever want to get to the home directory immediately, you can use theshortcut `~`. For example, type `cd ~` and you'll get back home in a jiffy. `~` will also stand in for your home directory in paths, so for instance`~/Desktop` is the same as `/home/jae/Desktop`. This only works if it isthe first character in the path: `here/there/~/elsewhere` is not `/home/jae/elsewhere`.
 
-#### Tab completion
+**Additional tips**
 
-If you are in you home directory, you can see what files you have on your `Desktop` using the command:
+Okay. These exercises help us get to know about `cd` command, but not very exciting. Let's do something more concrete and potentially useful. Let's say you downloaded a file using your web browser and locate that file. How could you do that?
+
+Your first step should be learning more about `ls` command. You can do that by Googling or typing `ls --help`. By taking a look at the documentation, you can recognize that you need to add `-t` (sort by time). Then, what's `|`? It's called pipe and it chains commands. For instance, if `<command 1> | <command 2>`, then command1's output will be command2's input. `head` list the first ten lines of a file. `-n1` flag makes it show only the first line of the output (n1).
 
 ```sh
-$ ls ~/Desktop
+# Don't forget using TAB completion
+cd Downloads/ 
+
+ls -t | head -n1
 ```
 
-This is a lot to type, but she can let the shell do most of the work. If she types:
+Yeah! We can actually do more cool things. How can you find the most recently downloaded PDF file? You can do this by combining the two neat tricks you learned earlier. 
 
 ```sh
-$ ls ~/Des
+ls -t | find *.pdf | head -n1 
 ```
 
-and then presses tab, the shell automatically completes the directory name for her:
+#### Creating, copying, removing, and renaming files (TBD)
 
-```sh
-$ ls ~/Desktop
-```
+#### Working with CSV files (TBD)
 
-Pressing tab again does nothing, since there are multiple possibilities. Pressing tab twice brings up a list of all the files and directories, and so on.
+#### Working with text files (TBD)
 
-This is called **tab completion**, and we will see it in many other tools as we go on.
+#### User roles and file permissions
 
-> ####  Quick File Paths
-> 
-> If you quickly need the path of a file or directory, you can also copy the 
-> file/directory in the GUI and paste.The full path of the file or directory 
-> will appear. 
+#### Writing your first shell script (.sh)
 
-### References 
-
-- [The Unix Workbench](https://seankross.com/the-unix-workbench/) by Sean Kross 
-
-- [The Unix Shell](http://swcarpentry.github.io/shell-novice/), Software Carpentry 
-
-- [Shell Tools and Scripting](https://missing.csail.mit.edu/2020/shell-tools/), ./missing-semester, MIT  
-
-- [Command-line Environment](https://missing.csail.mit.edu/2020/command-line/), ./missing-semester, MIT
-
-#### Writing your first shell script 
-
-Write a shell script that creates a subdirectory called `/pdfs` under `/Download` directory, then find PDF files in `/Download` and copy those files to `pdfs`. Essentially, this shell script creates a backup. Name this shell script as 'pdf_copy.sh.' You can make it executable by typing `chmod +x pdf_copy.sh`. Then, you can run it by typing `./pdf_copy_sh.` `.` refers the current working directory. Other options: `sh pdf_copy_sh.` or `bash pdf_copy_sh.` I use `./pdf_copy_sh.` Pay attention to this example as a similar exercise is going to be part of your second assignment. 
+Finally, we're learning how to write a shell script (a file that ends with .sh). Here I show how to write a shell script that creates a subdirectory called `/pdfs` under `/Download` directory, then find PDF files in `/Download` and copy those files to `pdfs`. Essentially, this shell script creates a backup. Name this shell script as 'pdf_copy.sh.' You can make it executable by typing `chmod +x pdf_copy.sh`. Then, you can run it by typing `./pdf_copy_sh.` `.` refers the current working directory. Other options: `sh pdf_copy_sh.` or `bash pdf_copy_sh.` I use `./pdf_copy_sh.` Pay attention to this example as a similar exercise is going to be part of your second assignment. 
 
 ```sh
 
@@ -476,6 +451,22 @@ cp *.pdf pdfs/
 echo "Copied pdfs"
 
 ```
+
+**Additional tips**
+
+Using Make [TBD]
+
+### References 
+
+- [The Unix Workbench](https://seankross.com/the-unix-workbench/) by Sean Kross 
+
+- [The Unix Shell](http://swcarpentry.github.io/shell-novice/), Software Carpentry 
+
+- [Data Science at the Command Line](https://www.datascienceatthecommandline.com/2e/) by Jeroen Janssens 
+
+- [Shell Tools and Scripting](https://missing.csail.mit.edu/2020/shell-tools/), ./missing-semester, MIT  
+
+- [Command-line Environment](https://missing.csail.mit.edu/2020/command-line/), ./missing-semester, MIT
 
 ## Git and GitHub
 
