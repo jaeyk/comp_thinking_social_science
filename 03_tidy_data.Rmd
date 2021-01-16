@@ -1276,15 +1276,13 @@ table1
 
 There are so many different ways of taking a look at data in R. Can you discuss the pros and cons of each approach? Which one do you prefer and why?
 
-```{r}
 
-str(table1)
+* `str(table1)`
 
-glimpse(table1) # similar to str() cleaner output 
+* `glimpse(table1)`: similar to `str()` cleaner output 
 
-skim(table1) # str() + summary() + more 
+* `skim(table1)`: `str()` + `summary()` + more 
 
-```
 
 - The big picture 
     - Tidying data with **tidyr**

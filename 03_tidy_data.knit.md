@@ -19,13 +19,6 @@ ifelse(packageVersion("dplyr") >= 1,
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-```
-
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
   tidyverse, # for the tidyverse framework
   skimr, # for skimming data 
@@ -2619,6 +2612,48 @@ table1
 There are so many different ways of taking a look at data in R. Can you discuss the pros and cons of each approach? Which one do you prefer and why?
 
 
+* `str(table1)`
+
+* `glimpse(table1)`: similar to `str()` cleaner output 
+
+* `skim(table1)`: `str()` + `summary()` + more 
+
+
+- The big picture 
+    - Tidying data with **tidyr**
+    - Processing data with **dplyr**
+    
+These two packages don't do anything new, but simplify most common tasks in data manipulation. Plus, they are fast, consistent, and more readable.
+
+Practically, this approach is good because you're going to have consistency in the format of data across all the projects you're working on. Also, tidy data works well with key packages (e.g., dplyr, ggplot2) in R.
+
+Computationally, this approach is useful for vectorized programming because "different variables from the same observation are always paired". Vectorized means a function applies to a vector treats each element individually (=operations working in parallel).
+
+## Tidying (tidyr)
+
+### Reshaping
+
+**Signs of messy datasets**
+
+* 1. Column headers are values, not variable names.
+* 2. Multiple variables are not stored in one column.
+* 3. Variables are stored in both rows and columns.
+* 4. Multiple types of observational units are stored in the same table.
+* 5. A single observational unit is stored in multiple tables.
+
+Let's take a look at the cases of untidy data.
+
+![Messy Data Case 1 (Source: R for Data Science)](https://garrettgman.github.io/images/tidy-5.png)
+
+-   Make It Longer
+
+    | Col1 | Col2 | Col3 |
+    |------|------|------|
+    |      |      |      |
+    |      |      |      |
+    |      |      |      |
+
+**Challenge**: Why this data is not tidy?
 
 
 
