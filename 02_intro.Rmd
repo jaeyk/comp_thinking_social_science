@@ -15,7 +15,7 @@ As William Shotts the author of *[The Linux Command Line](http://linuxcommand.or
 
 Create a plain text file that contains word "test"
 
-- `echo`: "Write arguments to the standard output" This is equivalent as using a text editor (e.g., n￣ano, vim, emacs) and write something.
+- `echo`: "Write arguments to the standard output" This is equivalent as using a text editor (e.g., nano, vim, emacs) and write something.
 - `> test` Save the expression in a file named test.   
 - In general, if you don't know what a command does, just type `<command name> --help`. If you need more detailed information, you can do `man <command name>`. `man` stands for manual. Finally, you can get more user-friendly information by using either [`tldr`](https://tldr.sh/). 
 
