@@ -19,6 +19,13 @@ ifelse(packageVersion("dplyr") >= 1,
 
 ```r
 if (!require("pacman")) install.packages("pacman")
+```
+
+```
+## Loading required package: pacman
+```
+
+```r
 pacman::p_load(
   tidyverse, # for the tidyverse framework
   skimr, # for skimming data 
@@ -1289,7 +1296,7 @@ str(df)
 ```
 ## 'data.frame':	3 obs. of  2 variables:
 ##  $ vec1: int  1 2 3
-##  $ vec2: chr  "a" "b" "c"
+##  $ vec2: Factor w/ 3 levels "a","b","c": 1 2 3
 ```
 
 Beware: `data.frame()`'s default behavior which turns strings into factors. Remember to use `stringAsFactors = FALSE` to suppress this behavior as needed:
@@ -1328,7 +1335,7 @@ str(df)
 ```
 ## 'data.frame':	3 obs. of  2 variables:
 ##  $ vec1: int  1 2 3
-##  $ vec2: chr  "a" "b" "c"
+##  $ vec2: Factor w/ 3 levels "a","b","c": 1 2 3
 ```
 
 This means that a dataframe has `names()`, `colnames()`, and `rownames()`, although `names()` and `colnames()` are the same thing. 
@@ -3858,46 +3865,965 @@ names(msleep)
 -   Select only numeric columns
 
 
+```r
+# Only numeric
+msleep %>%
+  select(where(is.numeric))
+```
+
+```
+## # A tibble: 83 x 6
+##    sleep_total sleep_rem sleep_cycle awake  brainwt  bodywt
+##          <dbl>     <dbl>       <dbl> <dbl>    <dbl>   <dbl>
+##  1        12.1      NA        NA      11.9 NA        50    
+##  2        17         1.8      NA       7    0.0155    0.48 
+##  3        14.4       2.4      NA       9.6 NA         1.35 
+##  4        14.9       2.3       0.133   9.1  0.00029   0.019
+##  5         4         0.7       0.667  20    0.423   600    
+##  6        14.4       2.2       0.767   9.6 NA         3.85 
+##  7         8.7       1.4       0.383  15.3 NA        20.5  
+##  8         7        NA        NA      17   NA         0.045
+##  9        10.1       2.9       0.333  13.9  0.07     14    
+## 10         3        NA        NA      21    0.0982   14.8  
+## # … with 73 more rows
+```
+
+**Challenge**
+
+Use `select(where())` to find only non-numeric columns
+
+-   Select the columns that include "sleep" in their names
+
+
+```r
+msleep %>%
+  select(contains("sleep"))
+```
+
+```
+## # A tibble: 83 x 3
+##    sleep_total sleep_rem sleep_cycle
+##          <dbl>     <dbl>       <dbl>
+##  1        12.1      NA        NA    
+##  2        17         1.8      NA    
+##  3        14.4       2.4      NA    
+##  4        14.9       2.3       0.133
+##  5         4         0.7       0.667
+##  6        14.4       2.2       0.767
+##  7         8.7       1.4       0.383
+##  8         7        NA        NA    
+##  9        10.1       2.9       0.333
+## 10         3        NA        NA    
+## # … with 73 more rows
+```
+
+-   Select the columns that include either "sleep" or "wt" in their names
+
+-   Basic R way
+
+`grepl` is one of the R base pattern matching functions.
+
+
+```r
+msleep[grepl("sleep|wt", names(msleep))]
+```
+
+```
+## # A tibble: 83 x 5
+##    sleep_total sleep_rem sleep_cycle  brainwt  bodywt
+##          <dbl>     <dbl>       <dbl>    <dbl>   <dbl>
+##  1        12.1      NA        NA     NA        50    
+##  2        17         1.8      NA      0.0155    0.48 
+##  3        14.4       2.4      NA     NA         1.35 
+##  4        14.9       2.3       0.133  0.00029   0.019
+##  5         4         0.7       0.667  0.423   600    
+##  6        14.4       2.2       0.767 NA         3.85 
+##  7         8.7       1.4       0.383 NA        20.5  
+##  8         7        NA        NA     NA         0.045
+##  9        10.1       2.9       0.333  0.07     14    
+## 10         3        NA        NA      0.0982   14.8  
+## # … with 73 more rows
+```
+
+**Challenge**
+
+Use `select(match())` to find columns whose names include either "sleep" or "wt".
+
+-   Select the columns that starts with "b"
+
+
+```r
+msleep %>%
+  select(starts_with("b"))
+```
+
+```
+## # A tibble: 83 x 2
+##     brainwt  bodywt
+##       <dbl>   <dbl>
+##  1 NA        50    
+##  2  0.0155    0.48 
+##  3 NA         1.35 
+##  4  0.00029   0.019
+##  5  0.423   600    
+##  6 NA         3.85 
+##  7 NA        20.5  
+##  8 NA         0.045
+##  9  0.07     14    
+## 10  0.0982   14.8  
+## # … with 73 more rows
+```
+
+-   Select the columns that ends with "wt"
+
+
+```r
+msleep %>%
+  select(ends_with("wt"))
+```
+
+```
+## # A tibble: 83 x 2
+##     brainwt  bodywt
+##       <dbl>   <dbl>
+##  1 NA        50    
+##  2  0.0155    0.48 
+##  3 NA         1.35 
+##  4  0.00029   0.019
+##  5  0.423   600    
+##  6 NA         3.85 
+##  7 NA        20.5  
+##  8 NA         0.045
+##  9  0.07     14    
+## 10  0.0982   14.8  
+## # … with 73 more rows
+```
+
+-   Select the columns using both beginning and end string patterns
+
+The key idea is you can use Boolean operators (`!`, `&`, `|`)to combine different string pattern matching statements.
+
+
+```r
+msleep %>%
+  select(starts_with("b") & ends_with("wt"))
+```
+
+```
+## # A tibble: 83 x 2
+##     brainwt  bodywt
+##       <dbl>   <dbl>
+##  1 NA        50    
+##  2  0.0155    0.48 
+##  3 NA         1.35 
+##  4  0.00029   0.019
+##  5  0.423   600    
+##  6 NA         3.85 
+##  7 NA        20.5  
+##  8 NA         0.045
+##  9  0.07     14    
+## 10  0.0982   14.8  
+## # … with 73 more rows
+```
+
+-   Select order and move it before everything
+
+
+```r
+# By specifying a column
+msleep %>%
+  select(order, everything())
+```
+
+```
+## # A tibble: 83 x 11
+##    order name  genus vore  conservation sleep_total sleep_rem sleep_cycle awake
+##    <chr> <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
+##  1 Carn… Chee… Acin… carni lc                  12.1      NA        NA      11.9
+##  2 Prim… Owl … Aotus omni  <NA>                17         1.8      NA       7  
+##  3 Rode… Moun… Aplo… herbi nt                  14.4       2.4      NA       9.6
+##  4 Sori… Grea… Blar… omni  lc                  14.9       2.3       0.133   9.1
+##  5 Arti… Cow   Bos   herbi domesticated         4         0.7       0.667  20  
+##  6 Pilo… Thre… Brad… herbi <NA>                14.4       2.2       0.767   9.6
+##  7 Carn… Nort… Call… carni vu                   8.7       1.4       0.383  15.3
+##  8 Rode… Vesp… Calo… <NA>  <NA>                 7        NA        NA      17  
+##  9 Carn… Dog   Canis carni domesticated        10.1       2.9       0.333  13.9
+## 10 Arti… Roe … Capr… herbi lc                   3        NA        NA      21  
+## # … with 73 more rows, and 2 more variables: brainwt <dbl>, bodywt <dbl>
+```
+
+-   Select variables from a character vector.
+
+
+```r
+msleep %>%
+  select(any_of(c("name", "order"))) %>%
+  colnames()
+```
+
+```
+## [1] "name"  "order"
+```
+
+-   Select the variables named in the character + number pattern
+
+
+```r
+msleep$week8 <- NA
+
+msleep$week12 <- NA
+
+msleep$week_extra <- 0
+
+msleep %>%
+  select(num_range("week", c(1:12)))
+```
+
+```
+## # A tibble: 83 x 2
+##    week8 week12
+##    <lgl> <lgl> 
+##  1 NA    NA    
+##  2 NA    NA    
+##  3 NA    NA    
+##  4 NA    NA    
+##  5 NA    NA    
+##  6 NA    NA    
+##  7 NA    NA    
+##  8 NA    NA    
+##  9 NA    NA    
+## 10 NA    NA    
+## # … with 73 more rows
+```
+
+**Additional tips**
+
+`msleep` data has nicely cleaned column names. But real world data are usually messier. The `janitor` package is useful to fix this kind of problem.
+
+
+```r
+messy_df <- tibble::tribble(~"ColNum1", ~"COLNUM2", ~ "COL & NUM3",
+                            1, 2, 3)
+
+
+messy_df
+```
+
+```
+## # A tibble: 1 x 3
+##   ColNum1 COLNUM2 `COL & NUM3`
+##     <dbl>   <dbl>        <dbl>
+## 1       1       2            3
+```
+
+```r
+pacman::p_load(janitor)
+
+janitor::clean_names(messy_df) 
+```
+
+```
+## # A tibble: 1 x 3
+##   col_num1 colnum2 col_num3
+##      <dbl>   <dbl>    <dbl>
+## 1        1       2        3
+```
+
+`janitor::tabyl()` is helpful for doing crosstabulation and a nice alternative to `table()` function. 
+
+
+```r
+# Frequency table; The default output class is table 
+table(gapminder$country)
+```
+
+```
+## 
+##              Afghanistan                  Albania                  Algeria 
+##                       12                       12                       12 
+##                   Angola                Argentina                Australia 
+##                       12                       12                       12 
+##                  Austria                  Bahrain               Bangladesh 
+##                       12                       12                       12 
+##                  Belgium                    Benin                  Bolivia 
+##                       12                       12                       12 
+##   Bosnia and Herzegovina                 Botswana                   Brazil 
+##                       12                       12                       12 
+##                 Bulgaria             Burkina Faso                  Burundi 
+##                       12                       12                       12 
+##                 Cambodia                 Cameroon                   Canada 
+##                       12                       12                       12 
+## Central African Republic                     Chad                    Chile 
+##                       12                       12                       12 
+##                    China                 Colombia                  Comoros 
+##                       12                       12                       12 
+##         Congo, Dem. Rep.              Congo, Rep.               Costa Rica 
+##                       12                       12                       12 
+##            Cote d'Ivoire                  Croatia                     Cuba 
+##                       12                       12                       12 
+##           Czech Republic                  Denmark                 Djibouti 
+##                       12                       12                       12 
+##       Dominican Republic                  Ecuador                    Egypt 
+##                       12                       12                       12 
+##              El Salvador        Equatorial Guinea                  Eritrea 
+##                       12                       12                       12 
+##                 Ethiopia                  Finland                   France 
+##                       12                       12                       12 
+##                    Gabon                   Gambia                  Germany 
+##                       12                       12                       12 
+##                    Ghana                   Greece                Guatemala 
+##                       12                       12                       12 
+##                   Guinea            Guinea-Bissau                    Haiti 
+##                       12                       12                       12 
+##                 Honduras         Hong Kong, China                  Hungary 
+##                       12                       12                       12 
+##                  Iceland                    India                Indonesia 
+##                       12                       12                       12 
+##                     Iran                     Iraq                  Ireland 
+##                       12                       12                       12 
+##                   Israel                    Italy                  Jamaica 
+##                       12                       12                       12 
+##                    Japan                   Jordan                    Kenya 
+##                       12                       12                       12 
+##         Korea, Dem. Rep.              Korea, Rep.                   Kuwait 
+##                       12                       12                       12 
+##                  Lebanon                  Lesotho                  Liberia 
+##                       12                       12                       12 
+##                    Libya               Madagascar                   Malawi 
+##                       12                       12                       12 
+##                 Malaysia                     Mali               Mauritania 
+##                       12                       12                       12 
+##                Mauritius                   Mexico                 Mongolia 
+##                       12                       12                       12 
+##               Montenegro                  Morocco               Mozambique 
+##                       12                       12                       12 
+##                  Myanmar                  Namibia                    Nepal 
+##                       12                       12                       12 
+##              Netherlands              New Zealand                Nicaragua 
+##                       12                       12                       12 
+##                    Niger                  Nigeria                   Norway 
+##                       12                       12                       12 
+##                     Oman                 Pakistan                   Panama 
+##                       12                       12                       12 
+##                 Paraguay                     Peru              Philippines 
+##                       12                       12                       12 
+##                   Poland                 Portugal              Puerto Rico 
+##                       12                       12                       12 
+##                  Reunion                  Romania                   Rwanda 
+##                       12                       12                       12 
+##    Sao Tome and Principe             Saudi Arabia                  Senegal 
+##                       12                       12                       12 
+##                   Serbia             Sierra Leone                Singapore 
+##                       12                       12                       12 
+##          Slovak Republic                 Slovenia                  Somalia 
+##                       12                       12                       12 
+##             South Africa                    Spain                Sri Lanka 
+##                       12                       12                       12 
+##                    Sudan                Swaziland                   Sweden 
+##                       12                       12                       12 
+##              Switzerland                    Syria                   Taiwan 
+##                       12                       12                       12 
+##                 Tanzania                 Thailand                     Togo 
+##                       12                       12                       12 
+##      Trinidad and Tobago                  Tunisia                   Turkey 
+##                       12                       12                       12 
+##                   Uganda           United Kingdom            United States 
+##                       12                       12                       12 
+##                  Uruguay                Venezuela                  Vietnam 
+##                       12                       12                       12 
+##       West Bank and Gaza              Yemen, Rep.                   Zambia 
+##                       12                       12                       12 
+##                 Zimbabwe 
+##                       12
+```
+
+```r
+# Frequency table (unique value, n, percentage)
+janitor::tabyl(gapminder$country)
+```
+
+```
+##         gapminder$country  n     percent
+##               Afghanistan 12 0.007042254
+##                   Albania 12 0.007042254
+##                   Algeria 12 0.007042254
+##                    Angola 12 0.007042254
+##                 Argentina 12 0.007042254
+##                 Australia 12 0.007042254
+##                   Austria 12 0.007042254
+##                   Bahrain 12 0.007042254
+##                Bangladesh 12 0.007042254
+##                   Belgium 12 0.007042254
+##                     Benin 12 0.007042254
+##                   Bolivia 12 0.007042254
+##    Bosnia and Herzegovina 12 0.007042254
+##                  Botswana 12 0.007042254
+##                    Brazil 12 0.007042254
+##                  Bulgaria 12 0.007042254
+##              Burkina Faso 12 0.007042254
+##                   Burundi 12 0.007042254
+##                  Cambodia 12 0.007042254
+##                  Cameroon 12 0.007042254
+##                    Canada 12 0.007042254
+##  Central African Republic 12 0.007042254
+##                      Chad 12 0.007042254
+##                     Chile 12 0.007042254
+##                     China 12 0.007042254
+##                  Colombia 12 0.007042254
+##                   Comoros 12 0.007042254
+##          Congo, Dem. Rep. 12 0.007042254
+##               Congo, Rep. 12 0.007042254
+##                Costa Rica 12 0.007042254
+##             Cote d'Ivoire 12 0.007042254
+##                   Croatia 12 0.007042254
+##                      Cuba 12 0.007042254
+##            Czech Republic 12 0.007042254
+##                   Denmark 12 0.007042254
+##                  Djibouti 12 0.007042254
+##        Dominican Republic 12 0.007042254
+##                   Ecuador 12 0.007042254
+##                     Egypt 12 0.007042254
+##               El Salvador 12 0.007042254
+##         Equatorial Guinea 12 0.007042254
+##                   Eritrea 12 0.007042254
+##                  Ethiopia 12 0.007042254
+##                   Finland 12 0.007042254
+##                    France 12 0.007042254
+##                     Gabon 12 0.007042254
+##                    Gambia 12 0.007042254
+##                   Germany 12 0.007042254
+##                     Ghana 12 0.007042254
+##                    Greece 12 0.007042254
+##                 Guatemala 12 0.007042254
+##                    Guinea 12 0.007042254
+##             Guinea-Bissau 12 0.007042254
+##                     Haiti 12 0.007042254
+##                  Honduras 12 0.007042254
+##          Hong Kong, China 12 0.007042254
+##                   Hungary 12 0.007042254
+##                   Iceland 12 0.007042254
+##                     India 12 0.007042254
+##                 Indonesia 12 0.007042254
+##                      Iran 12 0.007042254
+##                      Iraq 12 0.007042254
+##                   Ireland 12 0.007042254
+##                    Israel 12 0.007042254
+##                     Italy 12 0.007042254
+##                   Jamaica 12 0.007042254
+##                     Japan 12 0.007042254
+##                    Jordan 12 0.007042254
+##                     Kenya 12 0.007042254
+##          Korea, Dem. Rep. 12 0.007042254
+##               Korea, Rep. 12 0.007042254
+##                    Kuwait 12 0.007042254
+##                   Lebanon 12 0.007042254
+##                   Lesotho 12 0.007042254
+##                   Liberia 12 0.007042254
+##                     Libya 12 0.007042254
+##                Madagascar 12 0.007042254
+##                    Malawi 12 0.007042254
+##                  Malaysia 12 0.007042254
+##                      Mali 12 0.007042254
+##                Mauritania 12 0.007042254
+##                 Mauritius 12 0.007042254
+##                    Mexico 12 0.007042254
+##                  Mongolia 12 0.007042254
+##                Montenegro 12 0.007042254
+##                   Morocco 12 0.007042254
+##                Mozambique 12 0.007042254
+##                   Myanmar 12 0.007042254
+##                   Namibia 12 0.007042254
+##                     Nepal 12 0.007042254
+##               Netherlands 12 0.007042254
+##               New Zealand 12 0.007042254
+##                 Nicaragua 12 0.007042254
+##                     Niger 12 0.007042254
+##                   Nigeria 12 0.007042254
+##                    Norway 12 0.007042254
+##                      Oman 12 0.007042254
+##                  Pakistan 12 0.007042254
+##                    Panama 12 0.007042254
+##                  Paraguay 12 0.007042254
+##                      Peru 12 0.007042254
+##               Philippines 12 0.007042254
+##                    Poland 12 0.007042254
+##                  Portugal 12 0.007042254
+##               Puerto Rico 12 0.007042254
+##                   Reunion 12 0.007042254
+##                   Romania 12 0.007042254
+##                    Rwanda 12 0.007042254
+##     Sao Tome and Principe 12 0.007042254
+##              Saudi Arabia 12 0.007042254
+##                   Senegal 12 0.007042254
+##                    Serbia 12 0.007042254
+##              Sierra Leone 12 0.007042254
+##                 Singapore 12 0.007042254
+##           Slovak Republic 12 0.007042254
+##                  Slovenia 12 0.007042254
+##                   Somalia 12 0.007042254
+##              South Africa 12 0.007042254
+##                     Spain 12 0.007042254
+##                 Sri Lanka 12 0.007042254
+##                     Sudan 12 0.007042254
+##                 Swaziland 12 0.007042254
+##                    Sweden 12 0.007042254
+##               Switzerland 12 0.007042254
+##                     Syria 12 0.007042254
+##                    Taiwan 12 0.007042254
+##                  Tanzania 12 0.007042254
+##                  Thailand 12 0.007042254
+##                      Togo 12 0.007042254
+##       Trinidad and Tobago 12 0.007042254
+##                   Tunisia 12 0.007042254
+##                    Turkey 12 0.007042254
+##                    Uganda 12 0.007042254
+##            United Kingdom 12 0.007042254
+##             United States 12 0.007042254
+##                   Uruguay 12 0.007042254
+##                 Venezuela 12 0.007042254
+##                   Vietnam 12 0.007042254
+##        West Bank and Gaza 12 0.007042254
+##               Yemen, Rep. 12 0.007042254
+##                    Zambia 12 0.007042254
+##                  Zimbabwe 12 0.007042254
+```
+
+```r
+# If you want to add percentage ... 
+gapminder %>%
+  tabyl(country) %>%
+  adorn_pct_formatting(digits = 0, affix_sign = TRUE)
+```
+
+```
+##                   country  n percent
+##               Afghanistan 12      1%
+##                   Albania 12      1%
+##                   Algeria 12      1%
+##                    Angola 12      1%
+##                 Argentina 12      1%
+##                 Australia 12      1%
+##                   Austria 12      1%
+##                   Bahrain 12      1%
+##                Bangladesh 12      1%
+##                   Belgium 12      1%
+##                     Benin 12      1%
+##                   Bolivia 12      1%
+##    Bosnia and Herzegovina 12      1%
+##                  Botswana 12      1%
+##                    Brazil 12      1%
+##                  Bulgaria 12      1%
+##              Burkina Faso 12      1%
+##                   Burundi 12      1%
+##                  Cambodia 12      1%
+##                  Cameroon 12      1%
+##                    Canada 12      1%
+##  Central African Republic 12      1%
+##                      Chad 12      1%
+##                     Chile 12      1%
+##                     China 12      1%
+##                  Colombia 12      1%
+##                   Comoros 12      1%
+##          Congo, Dem. Rep. 12      1%
+##               Congo, Rep. 12      1%
+##                Costa Rica 12      1%
+##             Cote d'Ivoire 12      1%
+##                   Croatia 12      1%
+##                      Cuba 12      1%
+##            Czech Republic 12      1%
+##                   Denmark 12      1%
+##                  Djibouti 12      1%
+##        Dominican Republic 12      1%
+##                   Ecuador 12      1%
+##                     Egypt 12      1%
+##               El Salvador 12      1%
+##         Equatorial Guinea 12      1%
+##                   Eritrea 12      1%
+##                  Ethiopia 12      1%
+##                   Finland 12      1%
+##                    France 12      1%
+##                     Gabon 12      1%
+##                    Gambia 12      1%
+##                   Germany 12      1%
+##                     Ghana 12      1%
+##                    Greece 12      1%
+##                 Guatemala 12      1%
+##                    Guinea 12      1%
+##             Guinea-Bissau 12      1%
+##                     Haiti 12      1%
+##                  Honduras 12      1%
+##          Hong Kong, China 12      1%
+##                   Hungary 12      1%
+##                   Iceland 12      1%
+##                     India 12      1%
+##                 Indonesia 12      1%
+##                      Iran 12      1%
+##                      Iraq 12      1%
+##                   Ireland 12      1%
+##                    Israel 12      1%
+##                     Italy 12      1%
+##                   Jamaica 12      1%
+##                     Japan 12      1%
+##                    Jordan 12      1%
+##                     Kenya 12      1%
+##          Korea, Dem. Rep. 12      1%
+##               Korea, Rep. 12      1%
+##                    Kuwait 12      1%
+##                   Lebanon 12      1%
+##                   Lesotho 12      1%
+##                   Liberia 12      1%
+##                     Libya 12      1%
+##                Madagascar 12      1%
+##                    Malawi 12      1%
+##                  Malaysia 12      1%
+##                      Mali 12      1%
+##                Mauritania 12      1%
+##                 Mauritius 12      1%
+##                    Mexico 12      1%
+##                  Mongolia 12      1%
+##                Montenegro 12      1%
+##                   Morocco 12      1%
+##                Mozambique 12      1%
+##                   Myanmar 12      1%
+##                   Namibia 12      1%
+##                     Nepal 12      1%
+##               Netherlands 12      1%
+##               New Zealand 12      1%
+##                 Nicaragua 12      1%
+##                     Niger 12      1%
+##                   Nigeria 12      1%
+##                    Norway 12      1%
+##                      Oman 12      1%
+##                  Pakistan 12      1%
+##                    Panama 12      1%
+##                  Paraguay 12      1%
+##                      Peru 12      1%
+##               Philippines 12      1%
+##                    Poland 12      1%
+##                  Portugal 12      1%
+##               Puerto Rico 12      1%
+##                   Reunion 12      1%
+##                   Romania 12      1%
+##                    Rwanda 12      1%
+##     Sao Tome and Principe 12      1%
+##              Saudi Arabia 12      1%
+##                   Senegal 12      1%
+##                    Serbia 12      1%
+##              Sierra Leone 12      1%
+##                 Singapore 12      1%
+##           Slovak Republic 12      1%
+##                  Slovenia 12      1%
+##                   Somalia 12      1%
+##              South Africa 12      1%
+##                     Spain 12      1%
+##                 Sri Lanka 12      1%
+##                     Sudan 12      1%
+##                 Swaziland 12      1%
+##                    Sweden 12      1%
+##               Switzerland 12      1%
+##                     Syria 12      1%
+##                    Taiwan 12      1%
+##                  Tanzania 12      1%
+##                  Thailand 12      1%
+##                      Togo 12      1%
+##       Trinidad and Tobago 12      1%
+##                   Tunisia 12      1%
+##                    Turkey 12      1%
+##                    Uganda 12      1%
+##            United Kingdom 12      1%
+##             United States 12      1%
+##                   Uruguay 12      1%
+##                 Venezuela 12      1%
+##                   Vietnam 12      1%
+##        West Bank and Gaza 12      1%
+##               Yemen, Rep. 12      1%
+##                    Zambia 12      1%
+##                  Zimbabwe 12      1%
+```
+
+
+### Create variables 
 
 
 
+#### Change values using conditions 
+
+You can think of `case_when()` (multiple conditions) as an extended version of `ifelse()` (binary conditions). 
 
 
+```r
+mtcars <- mtcars %>%
+  mutate(cyl_dummy = case_when(cyl > median(cyl) ~ "High", # if condition
+                               cyl < median(cyl) ~ "Low", # else if condition 
+                               TRUE ~ 'Median')) # else condition 
+
+mtcars %>% pull(cyl_dummy)
+```
+
+```
+##  [1] "Median" "Median" "Low"    "Median" "High"   "Median" "High"   "Low"   
+##  [9] "Low"    "Median" "Median" "High"   "High"   "High"   "High"   "High"  
+## [17] "High"   "Low"    "Low"    "Low"    "Low"    "High"   "High"   "High"  
+## [25] "High"   "Low"    "Low"    "Low"    "High"   "Median" "High"   "Low"
+```
+
+#### Change values manually 
 
 
+```r
+mtcars %>%
+  mutate(cyl_dummy = recode(cyl_dummy, # Target column 
+                            "High" = "2", # Old - New
+                            "Low" = "0",
+                            "Median" = "1")) %>%
+  pull(cyl_dummy)
+```
+
+```
+##  [1] "1" "1" "0" "1" "2" "1" "2" "0" "0" "1" "1" "2" "2" "2" "2" "2" "2" "0" "0"
+## [20] "0" "0" "2" "2" "2" "2" "0" "0" "0" "2" "1" "2" "0"
+```
 
 
+### Counting
+
+-   How may countries in each continent?
 
 
+```r
+gapminder %>%
+  count(continent)
+```
+
+```
+## # A tibble: 5 x 2
+##   continent     n
+## * <fct>     <int>
+## 1 Africa      624
+## 2 Americas    300
+## 3 Asia        396
+## 4 Europe      360
+## 5 Oceania      24
+```
+
+-   Let's arrange the result.
 
 
+```r
+# Just add a new argument `sort = TRUE`
+gapminder %>%
+  count(continent, sort = TRUE)
+```
+
+```
+## # A tibble: 5 x 2
+##   continent     n
+##   <fct>     <int>
+## 1 Africa      624
+## 2 Asia        396
+## 3 Europe      360
+## 4 Americas    300
+## 5 Oceania      24
+```
+
+```r
+# Same as above; How nice!
+gapminder %>%
+  count(continent) %>%
+  arrange(desc(n))
+```
+
+```
+## # A tibble: 5 x 2
+##   continent     n
+##   <fct>     <int>
+## 1 Africa      624
+## 2 Asia        396
+## 3 Europe      360
+## 4 Americas    300
+## 5 Oceania      24
+```
+
+**Challenge**
+
+Count the number of observations per `continent` as well as `year` and arrange them with descending order.
+
+Let's take a deeper look at how things work under the hood.
+
+-   `tally()` works similar to `nrow()`: Calculate the total number of cases in a dataframe
+
+-   `count` = `group_by()` + `tally()`
 
 
+```r
+gapminder %>%
+  tally()
+```
+
+```
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1  1704
+```
+
+-   `add_tally()` = `mutate(n = n())`
+
+**Challenge**
+
+What does n in the below example represent?
 
 
+```r
+gapminder %>%
+  select(continent, country) %>%
+  add_tally()
+```
+
+```
+## # A tibble: 1,704 x 3
+##    continent country         n
+##    <fct>     <fct>       <int>
+##  1 Asia      Afghanistan  1704
+##  2 Asia      Afghanistan  1704
+##  3 Asia      Afghanistan  1704
+##  4 Asia      Afghanistan  1704
+##  5 Asia      Afghanistan  1704
+##  6 Asia      Afghanistan  1704
+##  7 Asia      Afghanistan  1704
+##  8 Asia      Afghanistan  1704
+##  9 Asia      Afghanistan  1704
+## 10 Asia      Afghanistan  1704
+## # … with 1,694 more rows
+```
+
+-   `add_count`
+
+Add count as a column
 
 
+```r
+# Add count as a column
+gapminder %>%
+  group_by(continent) %>%
+  add_count(year)
+```
+
+```
+## # A tibble: 1,704 x 7
+## # Groups:   continent [5]
+##    country     continent  year lifeExp      pop gdpPercap     n
+##    <fct>       <fct>     <int>   <dbl>    <int>     <dbl> <int>
+##  1 Afghanistan Asia       1952    28.8  8425333      779.    33
+##  2 Afghanistan Asia       1957    30.3  9240934      821.    33
+##  3 Afghanistan Asia       1962    32.0 10267083      853.    33
+##  4 Afghanistan Asia       1967    34.0 11537966      836.    33
+##  5 Afghanistan Asia       1972    36.1 13079460      740.    33
+##  6 Afghanistan Asia       1977    38.4 14880372      786.    33
+##  7 Afghanistan Asia       1982    39.9 12881816      978.    33
+##  8 Afghanistan Asia       1987    40.8 13867957      852.    33
+##  9 Afghanistan Asia       1992    41.7 16317921      649.    33
+## 10 Afghanistan Asia       1997    41.8 22227415      635.    33
+## # … with 1,694 more rows
+```
+
+**Challenge**
+
+Do the cases 1 and 2 in the below code chunk produce same outputs? If so, why?
 
 
+```r
+# Case 1
+gapminder %>%
+  group_by(continent, year) %>%
+  count()
+```
+
+```
+## # A tibble: 60 x 3
+## # Groups:   continent, year [60]
+##    continent  year     n
+##    <fct>     <int> <int>
+##  1 Africa     1952    52
+##  2 Africa     1957    52
+##  3 Africa     1962    52
+##  4 Africa     1967    52
+##  5 Africa     1972    52
+##  6 Africa     1977    52
+##  7 Africa     1982    52
+##  8 Africa     1987    52
+##  9 Africa     1992    52
+## 10 Africa     1997    52
+## # … with 50 more rows
+```
+
+```r
+# Case 2
+gapminder %>%
+  group_by(continent) %>%
+  count(year)
+```
+
+```
+## # A tibble: 60 x 3
+## # Groups:   continent [5]
+##    continent  year     n
+##    <fct>     <int> <int>
+##  1 Africa     1952    52
+##  2 Africa     1957    52
+##  3 Africa     1962    52
+##  4 Africa     1967    52
+##  5 Africa     1972    52
+##  6 Africa     1977    52
+##  7 Africa     1982    52
+##  8 Africa     1987    52
+##  9 Africa     1992    52
+## 10 Africa     1997    52
+## # … with 50 more rows
+```
+
+`count()` is a simple function, but it is still helpful to learn a very important concept underlying complex data wrangling: split-apply-combine strategy. For more information, read Wickham's article (2011) ["The Split-Apply-Combine Strategy for Data Analysis"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.182.5667&rep=rep1&type=pdf) published in the *Journal of Statistical Software* (especially pages 7-8). [`plyr`](https://github.com/hadley/plyr) was the package (retired) that demonstrated this idea, which has evolved into two directions: [dplyr](https://dplyr.tidyverse.org/) (for data frames) and [purrr](https://purrr.tidyverse.org/) (for lists)
+
+### Summarizing
+
+#### Basic
+
+- Create a summary
+- Think of `summarise()` as an extended version of `count()`.
 
 
+```r
+gapminder %>%
+  group_by(continent) %>%
+  summarise(
+    n = n(),
+    mean_gdp = mean(gdpPercap),
+    sd_gdp = sd(gdpPercap)
+  )
+```
 
+```
+## # A tibble: 5 x 4
+##   continent     n mean_gdp sd_gdp
+## * <fct>     <int>    <dbl>  <dbl>
+## 1 Africa      624    2194.  2828.
+## 2 Americas    300    7136.  6397.
+## 3 Asia        396    7902. 14045.
+## 4 Europe      360   14469.  9355.
+## 5 Oceania      24   18622.  6359.
+```
 
+```r
+tablea <- gapminder %>%
+  group_by(continent) %>%
+  summarise(
+    n = n(),
+    mean_gdp = mean(gdpPercap),
+    sd_gdp = sd(gdpPercap)
+  )
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-   Produce publishable tables
 
 
 
