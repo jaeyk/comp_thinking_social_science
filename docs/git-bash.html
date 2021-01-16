@@ -455,14 +455,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="git-bash.html#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-2"><a href="git-bash.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> test_* test </span></code></pre></div>
 <p>This command should return “test_100:2:no_test.” (file test_100; line number 2; no_test)</p>
-<p>What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don’t need to write files from a website using your web browser. You can run <code>wget</code> command in the terminal. Better yet, you don’t even need to run the command for the second time. You can write a shell script (<code>*.sh</code>) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. <a href="https://github.com/PS239T/spring_2021/blob/main/copy_syllabus.sh"><code>copy_syllabus.sh</code></a> automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.</p>
+<p>What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don’t need to write files from a website using your web browser. You can run <code>wget</code> command in the terminal. Better yet, you don’t even need to run the command for the second time. You can write a shell script (<code>*.sh</code>) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. <a href="https://GitHub.com/PS239T/spring_2021/blob/main/copy_syllabus.sh"><code>copy_syllabus.sh</code></a> automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.</p>
 </div>
 <div id="what-is-bash" class="section level3" number="3.1.2">
 <h3><span class="header-section-number">3.1.2</span> What Is Bash?</h3>
-<p>The following materials on UNIX and Shell are adapted from [the software carpentry](<a href="https://bids.github.io/2015-06-04-berkeley/shell/00-intro.html" class="uri">https://bids.github.io/2015-06-04-berkeley/shell/00-intro.html</a>.</p>
+<p>The following materials on UNIX and Shell are adapted from [the software carpentry](<a href="https://bids.GitHub.io/2015-06-04-berkeley/shell/00-intro.html" class="uri">https://bids.GitHub.io/2015-06-04-berkeley/shell/00-intro.html</a>.</p>
 <div id="unix" class="section level4" number="3.1.2.1">
 <h4><span class="header-section-number">3.1.2.1</span> Unix</h4>
-<p>UNIX is an operating system which was first developed by AT &amp; T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. For this reason, if you’re using Max OS, then you don’t need to do anything else. You’re already all set. If you’re using Windows. You need to install either GitBash (works if you only use Bash for Git and GitHub) or Windows Subsystem (strongly recommended if your use case goes beyond these limited usages). For more information, see <a href="https://github.com/PS239T/spring_2021/blob/main/B_Install.md">this installation guideline</a> from the course repo.</p>
+<p>UNIX is an operating system which was first developed by AT &amp; T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. For this reason, if you’re using Max OS, then you don’t need to do anything else. You’re already all set. If you’re using Windows. You need to install either GitBash (works if you only use Bash for Git and GitHub) or Windows Subsystem (strongly recommended if your use case goes beyond these limited usages). For more information, see <a href="https://GitHub.com/PS239T/spring_2021/blob/main/B_Install.md">this installation guideline</a> from the course repo.</p>
 <p>UNIX is old, but it is still mainstream. Moreover, <a href="https://en.wikipedia.org/wiki/Unix_philosophy">the UNIX philosophy</a> (“Do One Thing And Do It Well”)—minimalist, modular software development—is highly and widely influential.</p>
 <div class="figure">
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Ken_Thompson_and_Dennis_Ritchie--1973.jpg" alt="" />
@@ -575,10 +575,11 @@ to distinguish it from the <strong>graphical user interface</strong>, or GUI, th
 </ol>
 <div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="git-bash.html#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-2"><a href="git-bash.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1103-amd64.deb</span></code></pre></div>
-<p><img src="misc/wget.png" />
-&gt; #### Home Directory
-&gt;
-&gt; The home directory path will look different on different operating systems. On Linux it will look like <code>/home/jae</code>, and on Windows it will be similar to <code>C:\Documents and Settings\jae</code>. Note that it may look slightly different for different versions of Windows.</p>
+<p><img src="misc/wget.png" /></p>
+<blockquote>
+<h4 id="home-directory">Home Directory</h4>
+<p>The home directory path will look different on different operating systems. On Linux it will look like <code>/home/jae</code>, and on Windows it will be similar to <code>C:\Documents and Settings\jae</code>. Note that it may look slightly different for different versions of Windows.</p>
+</blockquote>
 <blockquote>
 <h4 id="alphabet-soup">Alphabet Soup</h4>
 <p>If the command to find out who we are is <code>whoami</code>, the command to find out where we are ought to be called <code>whereami</code>, so why is it <code>pwd</code> instead? The usual answer is that in the early 1970s, when Unix was</p>
@@ -592,7 +593,7 @@ to distinguish it from the <strong>graphical user interface</strong>, or GUI, th
 <p>If you’re working on a Mac, the file structure will look similar, but not identical. The following image shows a file system graph for the typical Mac.</p>
 </blockquote>
 <div class="figure">
-<img src="https://swcarpentry.github.io/shell-novice/fig/home-directories.svg" alt="" />
+<img src="https://swcarpentry.GitHub.io/shell-novice/fig/home-directories.svg" alt="" />
 <p class="caption">File Directory</p>
 </div>
 <p>We know that our current working directory <code>/home/jae</code> is stored inside <code>/home</code> because <code>/home</code> is the first part of its name. Similarly, we know that <code>/home</code> is stored inside the root directory <code>/</code> because its name begins with <code>/</code>.</p>
@@ -723,7 +724,7 @@ When it appears at the front of a file or directory name, it refers to the root 
 <h3><span class="header-section-number">3.1.3</span> References</h3>
 <ul>
 <li><p><a href="https://seankross.com/the-unix-workbench/">The Unix Workbench</a> by Sean Kross</p></li>
-<li><p><a href="http://swcarpentry.github.io/shell-novice/">The Unix Shell</a>, Software Carpentry</p></li>
+<li><p><a href="http://swcarpentry.GitHub.io/shell-novice/">The Unix Shell</a>, Software Carpentry</p></li>
 <li><p><a href="https://www.datascienceatthecommandline.com/2e/">Data Science at the Command Line</a> by Jeroen Janssens</p></li>
 </ul>
 
@@ -744,7 +745,7 @@ When it appears at the front of a file or directory name, it refers to the root 
 <img src="https://i2.wp.com/cdn-images-1.medium.com/max/399/1*7HHA_UkjUK7wp7qP4CYu1g.png?zoom=1.75&amp;w=456&amp;ssl=1" alt="" />
 <p class="caption">Why you should do version control</p>
 </div>
-<p>According to <a href="https://guides.github.com">Github Guides</a>, a version control system “tracks the history of changes as people and teams collaborate on projects together.” Specifically, it helps to track the following information:</p>
+<p>According to <a href="https://guides.GitHub.com">GitHub Guides</a>, a version control system “tracks the history of changes as people and teams collaborate on projects together.” Specifically, it helps to track the following information:</p>
 <ul>
 <li>Which changes were made?</li>
 <li>Who made the changes?</li>
@@ -767,6 +768,10 @@ When it appears at the front of a file or directory name, it refers to the root 
 </div>
 <p>Figure 3. Decentralized VCS.</p>
 <p>For more information on the varieties of version control systems, please read <a href="https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf">Petr Baudis’s review</a> on that subject.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PFwUHTE6mFc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p Webcast • Introduction to Git and GitHub • Featuring Mehan Jayasuriya, GitHub Training & Guides/p>
 <div class="figure">
 <img src="https://plain-text.co/figures/git-basic.png" alt="" />
 <p class="caption">Figure 2.1. A schematic git workflow from Healy’s “The Plain Person’s Guide to Plain Text Social Science”</p>
@@ -775,8 +780,14 @@ When it appears at the front of a file or directory name, it refers to the root 
 <div id="setup" class="section level3" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Setup</h3>
 <p>We’ll start with telling Git who you are.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb29-1"><a href="git-bash.html#cb29-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> config --global user.name <span class="st">&quot;Firstname Lastname&quot;</span></span>
-<span id="cb29-2"><a href="git-bash.html#cb29-2" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> config --global user.email username@company.extension</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb29-1"><a href="git-bash.html#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-2"><a href="git-bash.html#cb29-2" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> config --global user.name <span class="st">&quot;Firstname Lastname&quot;</span></span>
+<span id="cb29-3"><a href="git-bash.html#cb29-3" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> config --global user.email username@company.extension</span></code></pre></div>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/u6G3fbmpWr8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p The Basics of Git and GitHub, GitHub Training & Guides /p>
+
 </div>
 <div id="making-a-repository" class="section level3" number="3.2.3">
 <h3><span class="header-section-number">3.2.3</span> Making a repository</h3>
@@ -784,9 +795,9 @@ When it appears at the front of a file or directory name, it refers to the root 
 <div class="sourceCode" id="cb30"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb30-1"><a href="git-bash.html#cb30-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">mkdir</span> code_exercise </span>
 <span id="cb30-2"><a href="git-bash.html#cb30-2" aria-hidden="true" tabindex="-1"></a>$ <span class="bu">cd</span> code_exercise </span></code></pre></div>
 <div class="sourceCode" id="cb31"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb31-1"><a href="git-bash.html#cb31-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> init </span></code></pre></div>
-<p>Alternatively, you can create a Git repository via Github and then clone it on your local machine.</p>
+<p>Alternatively, you can create a Git repository via GitHub and then clone it on your local machine.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb32-1"><a href="git-bash.html#cb32-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> clone /path/to/repository</span></code></pre></div>
-<p>If you’re unfamiliar with basic Git commands, then please refer to <a href="http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf">this Git cheet sheet</a>.</p>
+<p>If you’re unfamiliar with basic Git commands, then please refer to <a href="http://rogerdudler.GitHub.io/git-guide/files/git_cheat_sheet.pdf">this Git cheet sheet</a>.</p>
 </div>
 <div id="commit-changes" class="section level3" number="3.2.4">
 <h3><span class="header-section-number">3.2.4</span> Commit changes</h3>
@@ -801,6 +812,11 @@ When it appears at the front of a file or directory name, it refers to the root 
 <img src="https://git-scm.com/images/about/index1@2x.png" alt="" />
 <p class="caption">Git Workflow</p>
 </div>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/m0t1mOeAJgs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p Your Commits Should Tell a Story • Featuring Eliza Brock Marcum, GitHub Training & Guides /p>
+
 </div>
 <div id="other-useful-commands-for-tracking-history" class="section level3" number="3.2.5">
 <h3><span class="header-section-number">3.2.5</span> Other useful commands for tracking history</h3>
@@ -818,10 +834,10 @@ When it appears at the front of a file or directory name, it refers to the root 
 <h3><span class="header-section-number">3.2.7</span> Push and pull (or fetch)</h3>
 <p>These features show how Git works as a collaboration tool.</p>
 <p>If you have not already done, let’s clone PS239T directory on your local machine.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb36-1"><a href="git-bash.html#cb36-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> clone https://github.com/jaeyk/PS239T <span class="co"># clone </span></span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb36-1"><a href="git-bash.html#cb36-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> clone https://GitHub.com/jaeyk/PS239T <span class="co"># clone </span></span></code></pre></div>
 <p>Then, let’s learn more about the repository.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb37-1"><a href="git-bash.html#cb37-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> remote -v </span></code></pre></div>
-<p>Previously, we learned how to send your data save in the local machine to the remote (the Github server). You can do that by editing or creating files, committing, and then typing <strong>git push</strong>.</p>
+<p>Previously, we learned how to send your data save in the local machine to the remote (the GitHub server). You can do that by editing or creating files, committing, and then typing <strong>git push</strong>.</p>
 <p>Instead, if you want to update your local data with the remote data, then you can type <strong>git pull origin</strong> (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb38-1"><a href="git-bash.html#cb38-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> fetch origin</span></code></pre></div>
 </div>
@@ -841,7 +857,7 @@ When it appears at the front of a file or directory name, it refers to the root 
 <li>Sharing a repository (suitable for a private project).</li>
 <li>Fork and pull (suitable for an open source project).
 ​ * The one who maintains the repository becomes the maintainer.
-​ * The others can <a href="https://help.github.com/articles/about-forks/">fork</a>, make changes, and even <a href="https://help.github.com/articles/about-pull-requests/">pull</a> them back.</li>
+​ * The others can <a href="https://help.GitHub.com/articles/about-forks/">fork</a>, make changes, and even <a href="https://help.GitHub.com/articles/about-pull-requests/">pull</a> them back.</li>
 </ul>
 <div id="other-stuff" class="section level4" number="3.2.9.1">
 <h4><span class="header-section-number">3.2.9.1</span> Other stuff</h4>
@@ -854,9 +870,15 @@ When it appears at the front of a file or directory name, it refers to the root 
 </div>
 <div id="deployment-github-pages" class="section level3" number="3.2.10">
 <h3><span class="header-section-number">3.2.10</span> Deployment: GitHub Pages</h3>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4TrOCv5Kukk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p Webcast • Get Started with GitHub Pages • Featuring Dani Traphagen, GitHub Training & Guides /p>
+
 </div>
 <div id="tracking-progress-github-issues" class="section level3" number="3.2.11">
 <h3><span class="header-section-number">3.2.11</span> Tracking progress: GitHub Issues</h3>
+
 </div>
 <div id="project-management-github-dashboards" class="section level3" number="3.2.12">
 <h3><span class="header-section-number">3.2.12</span> Project management: GitHub Dashboards</h3>
@@ -954,7 +976,7 @@ When it appears at the front of a file or directory name, it refers to the root 
 <span id="cb54-5"><a href="git-bash.html#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb54-6"><a href="git-bash.html#cb54-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-7"><a href="git-bash.html#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co"># From GitHub </span></span>
-<span id="cb54-8"><a href="git-bash.html#cb54-8" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;jaeyk/tidytweetjson&quot;</span>) <span class="co"># my own package </span></span>
+<span id="cb54-8"><a href="git-bash.html#cb54-8" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_GitHub</span>(<span class="st">&quot;jaeyk/tidytweetjson&quot;</span>) <span class="co"># my own package </span></span>
 <span id="cb54-9"><a href="git-bash.html#cb54-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-10"><a href="git-bash.html#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Unload package </span></span>
 <span id="cb54-11"><a href="git-bash.html#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="co"># detach(&quot;package:stats&quot;, unload=TRUE)</span></span></code></pre></div>
@@ -1008,7 +1030,7 @@ When it appears at the front of a file or directory name, it refers to the root 
 <h4><span class="header-section-number">3.4.1.2</span> Motivation</h4>
 <p>Why do you need to make your research project computationally reproducible?</p>
 <p>For your self-interest and public benefits.</p>
-<p><img src="https://github.com/dlab-berkeley/efficient-reproducible-project-management-in-R/blob/master/misc/screenshot.png?raw=true" /></p>
+<p><img src="https://GitHub.com/dlab-berkeley/efficient-reproducible-project-management-in-R/blob/master/misc/screenshot.png?raw=true" /></p>
 </div>
 <div id="how-to-organize-files-in-a-project" class="section level4" number="3.4.1.3">
 <h4><span class="header-section-number">3.4.1.3</span> How to organize files in a project</h4>
@@ -1073,9 +1095,9 @@ When it appears at the front of a file or directory name, it refers to the root 
 <h4><span class="header-section-number">3.4.1.4</span> How to organize code in a R markdown file</h4>
 <ul>
 <li><p>In addition to environment, <strong>workflow</strong> is an important component of project efficiency and reproducibility.</p></li>
-<li><p>What is R markdown? An R package, developed by <a href="https://yihui.org/en/">Yihui Xie</a>, that provides an authoring framework for data science. Xie is also a developer of many widely popular R packages such as <code>knitr</code>, <a href="https://github.com/yihui/xaringan"><code>xaringan</code></a> (cool kids use xaringan not <a href="https://en.wikipedia.org/wiki/Beamer_(LaTeX)">Beamer</a> these days), <code>blogdown</code> (used to create <a href="https://jaeyk.github.io/">my personal website</a>), and <code>bookdown</code> (used to create this book) among many others.</p>
+<li><p>What is R markdown? An R package, developed by <a href="https://yihui.org/en/">Yihui Xie</a>, that provides an authoring framework for data science. Xie is also a developer of many widely popular R packages such as <code>knitr</code>, <a href="https://GitHub.com/yihui/xaringan"><code>xaringan</code></a> (cool kids use xaringan not <a href="https://en.wikipedia.org/wiki/Beamer_(LaTeX)">Beamer</a> these days), <code>blogdown</code> (used to create <a href="https://jaeyk.GitHub.io/">my personal website</a>), and <code>bookdown</code> (used to create this book) among many others.</p>
 <ul>
-<li>Many applications: <a href="https://rstudio.github.io/distill/basics.html">reports</a>, <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html">presentations</a>, <a href="https://rmarkdown.rstudio.com/flexdashboard/">dashboards</a>, <a href="https://bookdown.org/yihui/rmarkdown/websites.html">websites</a><br />
+<li>Many applications: <a href="https://rstudio.GitHub.io/distill/basics.html">reports</a>, <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html">presentations</a>, <a href="https://rmarkdown.rstudio.com/flexdashboard/">dashboards</a>, <a href="https://bookdown.org/yihui/rmarkdown/websites.html">websites</a><br />
 </li>
 <li>Check out <a href="https://ysc-rmarkdown.netlify.app/">Communicating with R markdown workshop</a> by <a href="https://alison.rbind.io/">Alison Hill</a> (RStudio)
 <ul>
@@ -1085,7 +1107,7 @@ When it appears at the front of a file or directory name, it refers to the root 
 </ul></li>
 </ul>
 <div class="figure">
-<img src="https://github.com/rstudio/concept-maps/raw/master/en/rmarkdown.svg" alt="" />
+<img src="https://GitHub.com/rstudio/concept-maps/raw/master/en/rmarkdown.svg" alt="" />
 <p class="caption">Concept map for R Markdown. By Gabriela Sandoval, Florencia D’Andrea, Yanina Bellini Saibene, Monica Alonso.</p>
 </div>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/s9aWmU0atlQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -1158,7 +1180,7 @@ When it appears at the front of a file or directory name, it refers to the root 
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="git-bash.html#cb70-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;project&quot;</span>, <span class="st">&quot;outputs&quot;</span>)</span>
 <span id="cb70-2"><a href="git-bash.html#cb70-2" aria-hidden="true" tabindex="-1"></a>           <span class="co">#depth 1   #depth 2</span></span></code></pre></div>
 <ul>
-<li><p>How <code>here</code> defines the top-level project directory. The following list came from <a href="https://github.com/jennybc/here_here">the here package vignette</a>).</p>
+<li><p>How <code>here</code> defines the top-level project directory. The following list came from <a href="https://GitHub.com/jennybc/here_here">the here package vignette</a>).</p>
 <ul>
 <li><p>Is a file named .here present?</p></li>
 <li><p>Is this an RStudio Project? (<strong>Note that we already set up an RStudio Project!</strong> So, if you use RStudio’s project feature, then you are ready to use <code>here</code>.)</p></li>
@@ -1187,13 +1209,13 @@ When it appears at the front of a file or directory name, it refers to the root 
 <ul>
 <li><p>Computational reproducibility</p>
 <ul>
-<li><p><a href="https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf">“Good Enough Practices in Scientific Computing”</a> by PLOS</p></li>
-<li><p><a href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/">Project Management with RStudio</a> by Software Carpentry</p></li>
+<li><p><a href="https://GitHub.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf">“Good Enough Practices in Scientific Computing”</a> by PLOS</p></li>
+<li><p><a href="https://swcarpentry.GitHub.io/r-novice-gapminder/02-project-intro/">Project Management with RStudio</a> by Software Carpentry</p></li>
 <li><p><a href="https://kbroman.org/steps2rr/">Initial steps toward reproducible research</a> by Karl Broman</p></li>
 </ul></li>
 <li><p>Version control</p>
 <ul>
-<li><p><a href="https://swcarpentry.github.io/git-novice/">Version Control with Git</a> by Software Carpentry</p></li>
+<li><p><a href="https://swcarpentry.GitHub.io/git-novice/">Version Control with Git</a> by Software Carpentry</p></li>
 <li><p><a href="http://plain-text.co/">The Plain Person’s Guide to Plain Text Social Science</a> by Kieran Healy</p></li>
 </ul></li>
 </ul></li>
@@ -1208,7 +1230,7 @@ When it appears at the front of a file or directory name, it refers to the root 
 <li>What is code style?</li>
 </ul>
 <blockquote>
-<p>Every major open-source project has its own style guide: a set of conventions (sometimes arbitrary) about how to write code for that project. It is much easier to understand a large codebase when all the code in it is in a consistent style. - <a href="https://google.github.io/styleguide/">Google Style Guides</a></p>
+<p>Every major open-source project has its own style guide: a set of conventions (sometimes arbitrary) about how to write code for that project. It is much easier to understand a large codebase when all the code in it is in a consistent style. - <a href="https://google.GitHub.io/styleguide/">Google Style Guides</a></p>
 </blockquote>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UjhX2sVf0eg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -1219,7 +1241,7 @@ allowfullscreen></iframe>
 <ul>
 <li><p>How to avoid smelly code?</p>
 <ul>
-<li>Check out <a href="https://github.com/jennybc/code-smells-and-feels#readme">the code-smells Git repository</a> by Jenny Bryan.</li>
+<li>Check out <a href="https://GitHub.com/jennybc/code-smells-and-feels#readme">the code-smells Git repository</a> by Jenny Bryan.</li>
 </ul></li>
 </ul>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7oyiPBjLAWY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -1351,7 +1373,7 @@ allowfullscreen></iframe>
 <li><p>Use <code>lintr</code> to check whether your code complies with a recommended style guideline (e.g., <code>tidyverse</code>) and <code>styler</code> package to format your code according to the style guideline.</p></li>
 </ul>
 <div class="figure">
-<img src="https://camo.githubusercontent.com/6cb80270269165a8d3046d2da03cbf2b8f19ee2f/687474703a2f2f692e696d6775722e636f6d2f61635632374e562e676966" alt="" />
+<img src="https://camo.GitHubusercontent.com/6cb80270269165a8d3046d2da03cbf2b8f19ee2f/687474703a2f2f692e696d6775722e636f6d2f61635632374e562e676966" alt="" />
 <p class="caption">how lintr works</p>
 </div>
 </div>
@@ -1470,13 +1492,13 @@ allowfullscreen></iframe>
 <ul>
 <li>R
 <ul>
-<li><a href="https://google.github.io/styleguide/Rguide.xml">Google’s R style guide</a></li>
+<li><a href="https://google.GitHub.io/styleguide/Rguide.xml">Google’s R style guide</a></li>
 <li><a href="http://r-pkgs.had.co.nz/r.html">R code style guide</a> by Hadley Wickham</li>
 <li><a href="http://style.tidyverse.org/">The tidyverse style guide</a> by Hadley Wickham</li>
 </ul></li>
 <li>Python
 <ul>
-<li><a href="https://github.com/google/styleguide/blob/gh-pages/pyguide.md">Google Python Style Guide</a></li>
+<li><a href="https://GitHub.com/google/styleguide/blob/gh-pages/pyguide.md">Google Python Style Guide</a></li>
 <li><a href="https://docs.python-guide.org/writing/style/#zen-of-python">Code Style</a> by the Hitchhiker’s Guide to Python</li>
 </ul></li>
 </ul></li>
