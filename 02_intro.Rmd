@@ -79,7 +79,7 @@ rm test_* test
 
 This command should return "test_100:2:no_test." (file test_100; line number 2; no_test)
 
-What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don't need to write files from a website using your web browser. You can run `wget` command in the terminal. Better yet, you don't even need to run the command for the second time. You can write a shell script (`*.sh`) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. [`copy_syllabus.sh`](https://GitHub.com/PS239T/spring_2021/blob/main/copy_syllabus.sh) automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.
+What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don't need to write files from a website using your web browser. You can run `wget` command in the terminal. Better yet, you don't even need to run the command for the second time. You can write a Shell script (`*.sh`) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. [`copy_syllabus.sh`](https://GitHub.com/PS239T/spring_2021/blob/main/copy_syllabus.sh) automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this Shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.
 
 ### UNIX Shell 
 
@@ -114,7 +114,7 @@ The kernel of UNIX is the hub of the operating system: it allocates time and mem
 
 #### Shell
 
-The shell is an interactive program that provides an interface between the user and the kernel. The shell interprets commands entered by the user or supplied by a shell script, and passes them to the kernel for execution. 
+The shell is an interactive program that provides an interface between the user and the kernel. The shell interprets commands entered by the user or supplied by a Shell script, and passes them to the kernel for execution. 
 
 #### Human-Computer interfaces
 
@@ -626,17 +626,43 @@ ls -l
 
 The key part is `s/.csv/.txt/` = `s/FIND/REPLACE`
 
-Can you perform the same task using GUI? Yes, you can but it would be more time-consuming. Using the command line, you did this via just one-liner(!). [Keith Brandnam](http://korflab.ucdavis.edu/Bios/bio_keithb.html) wrote a wonderful book titled [UNIX and Perl to the Rescue! (Cambridge University Press 2012)](https://www.amazon.com/Unix-Perl-Rescue-Keith-Bradnam/dp/0521169828) that discusses how to use UNIX and Perl to do deal with massively large datasets.
+Can you perform the same task using GUI? Yes, you can but it would be more time-consuming. Using the command line, you did this via just one-liner(!). [Keith Brandnam](http://korflab.ucdavis.edu/Bios/bio_keithb.html) wrote a wonderful book titled [UNIX and Perl to the Rescue! (Cambridge University Press 2012)](https://www.amazon.com/Unix-Perl-Rescue-Keith-Bradnam/dp/0521169828) that discusses how to use UNIX and Perl to deal with massively large datasets.
 
-#### Working with CSV files (TBD)
+#### Working with CSV and text files 
 
-#### Working with text files (TBD)
+1. Download a CSV file (Forbes World’s Billionaires lists from 1996-2014). For more on the data source, see [this site](https://corgis-edu.github.io/corgis/csv/billionaires/).
+
+```sh
+wget https://corgis-edu.github.io/corgis/datasets/csv/billionaires/billionaires.csv
+```
+
+2. Read the first two lines. We have learned `cat`, `|`, and `head` already. So, there's nothing new here.
+
+```sh
+cat billionaires.csv | head -n2
+```
+
+3. Check the size of the dataset (2615 rows). So, there are 2014 observations (n-1 because of the header). `wc` prints newline, word, and byte counts for each file. If you run `wc` without `-l` flag, you get the following: `2615 (line) 20433 (word) 607861 (byte) billionaires.csv`
+
+```sh
+wc -l billionaires.csv
+```
+
+4. How about the number of columns? `sed` is a stream editor and very powerful when it's used to filter text in a pipeline. For more information, see [this article](https://www.gnu.org/software/sed/manual/sed.html). You've already seen `s/FIND/REPLACE`. Here, the pattern we are using is `s/delimiter/\n/g`. We've seen that the delimiter is `,`, so that's what I plugged in the command below. 
+
+```sh
+head -1 billionaires.csv | sed 's/,/\n/g' | nl
+```
 
 #### User roles and file permissions
 
-#### Writing your first shell script (.sh)
+1. If you need admin access, use `sudo`. For instance, `sudo apt-get install <package name>`.
 
-Finally, we're learning how to write a shell script (a file that ends with .sh). Here I show how to write a shell script that creates a subdirectory called `/pdfs` under `/Download` directory, then find PDF files in `/Download` and copy those files to `pdfs`. Essentially, this shell script creates a backup. Name this shell script as 'pdf_copy.sh.' You can make it executable by typing `chmod +x pdf_copy.sh`. Then, you can run it by typing `./pdf_copy_sh.` `.` refers the current working directory. Other options: `sh pdf_copy_sh.` or `bash pdf_copy_sh.` I use `./pdf_copy_sh.` Pay attention to this example as a similar exercise is going to be part of your second assignment. 
+2. To run a Shell script (.sh), you need to change its file mode. You can make the script executable by typing `chmod +x <Shell script>`. Then, you can run it by typing `./pdf_copy_sh.` `.` refers the current working directory. Other options: `sh pdf_copy_sh.` or `bash pdf_copy_sh.` I use `./pdf_copy_sh.`
+
+#### Writing your first Shell script (.sh)
+
+Finally, we're learning how to write a Shell script (a file that ends with .sh). Here I show how to write a Shell script that creates a subdirectory called `/pdfs` under `/Download` directory, then find PDF files in `/Download` and copy those files to `pdfs`. Essentially, this Shell script creates a backup. Name this Shell script as 'pdf_copy.sh.' Pay attention to this example as a similar exercise is going to be part of your second assignment. 
 
 ```sh
 
@@ -662,7 +688,7 @@ Using Make [TBD]
 
 - [The Unix Shell](http://swcarpentry.GitHub.io/shell-novice/), Software Carpentry 
 
-- [Data Science at the Command Line](https://www.datascienceatthecommandline.com/2e/) by Jeroen Janssens 
+- [Data Science at the Command Line](https://www.datascienceatthecommandline.com/1e/) by Jeroen Janssens 
 
 ```{=html}
 
@@ -687,7 +713,6 @@ According to [GitHub Guides](https://guides.GitHub.com), a version control syste
 * Who made the changes?
 * When were the changes made?
 * Why were changes needed?
-
 
 Git is a case of a [distributed version control system](https://en.wikipedia.org/wiki/Distributed_version_control), common in open source and commercial software development. This is no surprising given that Git [was originally created](https://lkml.org/lkml/2005/4/6/121) to deal with Linux kernal development. 
 

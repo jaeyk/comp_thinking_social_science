@@ -1,0 +1,8 @@
+--2021-01-16 12:12:17--  https://www2.census.gov/programs-surveys/cps/datasets/2019/supp/dec19pub.csv
+Resolving www2.census.gov (www2.census.gov)... 104.100.64.12, 2600:1406:1400:68d::208c, 2600:1406:1400:6a7::208c
+Connecting to www2.census.gov (www2.census.gov)|104.100.64.12|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/csv]
+Saving to: ‘dec19pub.csv’
+
+dec19pub.csv            [   <=>              ] 166.72M  34.2KB/s               
