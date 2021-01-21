@@ -34,11 +34,11 @@ for i in {1..100}; do cp test "test_$i"; done
 
 ```
 
-Append "no_test" to the file named test_100. Note that I used `>>` (append) not `>`. 
+Append "COVID" to the file named test_100. Note that I used `>>` (append) not `>`. 
 
 ```sh
 
-echo "no_test" >> test_100 
+echo "COVID" >> test_100 
 
 ```
 
@@ -50,19 +50,19 @@ cat test_100
 
 ```
 
-Find which fine contains the character "no_test." This is literally equivalent to finding a needle in a haystack. This is a daunting task for a human researcher, but not for our robotic assistant. `grep` finds PATTERNS in each FIEL. What follows - are options (called flags): `r` (recursive), `n` (line number), `w` (match only whole words), `e` (use patterns for matching). `rnw` are for output control and `e` is for pattern selection. 
+Find which fine contains the character "COVID." This is literally equivalent to finding a needle in a haystack. This is a daunting task for a human researcher, but not for our robotic assistant. `grep` finds PATTERNS in each FIEL. What follows - are options (called flags): `r` (recursive), `n` (line number), `w` (match only whole words), `e` (use patterns for matching). `rnw` are for output control and `e` is for pattern selection. 
 
-You can write `grep -r -n -w -e "no_test"`, but the simpler the better. 
+You can write `grep -r -n -w -e "COVID"`, but the simpler the better. 
 
 * `grep`: command 
 
 * `-rnw -e`: flags 
 
-* `no_test`: argument (usually file or file paths)
+* `COVID`: argument (usually file or file paths)
 
 ```sh
 
-grep -rnw -e "no_test" 
+grep -rnw -e "COVID" 
 
 ```
 
@@ -74,7 +74,7 @@ rm test_* test
 
 ```
 
-This command should return "test_100:2:no_test." (file test_100; line number 2; no_test)
+This command should return "test_100:2:COVID." (file test_100; line number 2; COVID)
 
 What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don't need to write files from a website using your web browser. You can run `wget` command in the terminal. Better yet, you don't even need to run the command for the second time. You can write a Shell script (`*.sh`) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. [`copy_syllabus.sh`](https://GitHub.com/PS239T/spring_2021/blob/main/copy_syllabus.sh) automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this Shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.
 
@@ -635,6 +635,9 @@ wget https://corgis-edu.github.io/corgis/datasets/csv/billionaires/billionaires.
 
 2. Read the first two lines. We have learned `cat`, `|`, and `head` already. So, there's nothing new here.
 
+**Additional tips**
+If you have a large text file, the fact that `cat` prints everything at once is inconvenient. The alternative using `less`. 
+
 ```sh
 cat billionaires.csv | head -n2
 ```
@@ -649,6 +652,33 @@ wc -l billionaires.csv
 
 ```sh
 head -1 billionaires.csv | sed 's/,/\n/g' | nl
+```
+
+**Additional tips**
+The other cool command for text parsing is `awk`. This command is especially useful for filtering.
+
+1. This is same as using `cat` (basically, printing). So, what's new? 
+
+```sh
+awk '{print}' billionaires.csv 
+```
+
+2. This is new. 
+
+```sh
+awk '/China/ {print}' billionaires.csv
+```
+
+3. Let's see only the five rows. We filtered rows so that the every row in the final dataset contains 'China'. 
+
+```sh
+awk '/China/ {print}' billionaires.csv | head -n5 
+```
+
+4. You can also get the numbers of these rows. 
+
+```sh
+awk '/China/ {print NR}' billionaires.csv 
 ```
 
 #### User roles and file permissions
@@ -679,6 +709,13 @@ echo "Copied pdfs"
 
 Using Make [TBD]
 
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aw9wHbFTnAQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p Using make and writing Makefile (in C++ or C) by Programming Knowledge/p>
+```
+
 ### References 
 
 - [The Unix Workbench](https://seankross.com/the-unix-workbench/) by Sean Kross 
@@ -701,6 +738,12 @@ Using Make [TBD]
 ## Git and GitHub
 
 ### Version control system 
+
+**The most important point**
+
+* Backup != Version control
+
+* If you do version control, you need to save your **raw data** in your hard disk, external drive, or cloud, but nothing else. In other words, anything that you are going to change should be subject to version control (also, it's not same as saving your code with names like 20200120_Kim or something like that). Below, I will explain what is version control and how to do it using Git and GitHub. 
 
 ![Why you should do version control](https://i2.wp.com/cdn-images-1.medium.com/max/399/1*7HHA_UkjUK7wp7qP4CYu1g.png?zoom=1.75&w=456&ssl=1)
 
@@ -1163,7 +1206,7 @@ Step 4. Organize files by putting them in separate subdirectories and naming the
 
 - Treat raw data as read only (raw data should be RAW!) and put in the `data` subdirectory.
 
-    - Note that version control does not need replace backup. You still need to backup your raw data. 
+    - Again, note that version control does not need replace backup. You still need to backup your raw data. 
 
 
 ```r
@@ -1616,7 +1659,7 @@ df
 
 > Code reuse aims to save time and resources and reduce redundancy by taking advantage of assets that have already been created in some form within the software product development process.[2] The key idea in reuse is that parts of a computer program written at one time can be or should be used in the construction of other programs written at a later time. - Wikipedia 
 
-### Test your code systematically 
+### Test your code systematically [TBD]
 
 ### Asking questions: Minimal reproducible example
 
