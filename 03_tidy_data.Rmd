@@ -2819,7 +2819,6 @@ population <- declare_population(N = 1000,
 
 population # class 
 population() %>% head() # instance 
-
 ```
 
 
@@ -2913,6 +2912,16 @@ three_arm <- multi_arm_designer(N = 1000, m = 3,
 
 diagnose_design(three_arm)
 ```
+
+**Additional tips**
+
+Experimenters! Consider writing and registering a pre-analysis before running your experiment. Here are tools that can help creating a pre-registration so easy. The following information comes from David Broockman's [very helpful Twitter thread](https://twitter.com/dbroockman/status/1350897814499336192). 
+
+1. Write code using fake data. If you are using Qualtrics, you can generate test responses using the platform: https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/
+
+2. Register the pre-analysis using [ASPREDICTED](https://aspredicted.org/), "a platform that makes it easy for researchers to pre-register their studies, and easy for others to read and evaluate those pre-registrations." It creates an anonymized PDF file filled with the answers you provided and a blinded link.  
+
+3. Upload the anonymized code and the PDF to a new project in [osf.io](https://osf.io/) and describe your pre-analysis briefly. 
 
 ## Visualizing (ggplot2)
 
