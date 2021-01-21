@@ -797,19 +797,81 @@ For more information, watch the following video:
 
 #### Signup 
 
-1. If you haven't, sign up a GitHub account: https://github.com/
+1. Make sure you have installed Git ([[tutorial]](https://happygitwithr.com/install-git.html#install-git)). 
+
+```sh
+git --version 
+# git version 2.xx.x
+```
+
+2. If you haven't, sign up a GitHub account: https://github.com/
   - If you're a student, also sign up for GitHub Student Developer Pack: https://education.github.com/pack Basically, you can get a GitHub pro account for free (so why not?).
   
-2. Next, try to connect GitHub using Secure Shell (SSH): https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh This could be challenging for some people. If you face difficulties, see [this tutorial](https://happygitwithr.com/ssh-keys.html). Some people save their GitHub credentials (e.g., password) in their machine permanently but that's considered not safe (see [this stack overflow thread](https://stackoverflow.com/questions/7773181/git-keeps-prompting-me-for-a-password)). Using SSH is safer and also makes connecting GitHub easier. I will explain more about this later.
+3. Access GitHub either using Hypertext Transfer Protocol Secure (HTTPS) or Secure Sheel (SSH).
+
+**HTTPS**
+
+1. Create a personal access token. Follow this guideline: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
+
+2. Store your credential somewhere safe. You can use an R package like this [gitcreds](https://gitcreds.r-lib.org/) and [credentials](https://docs.ropensci.org/credentials/) to do so.
+
+
+```r
+pacman::p_load(gitcreds)
+
+# First time only 
+# gitcreds_set()
+
+# Check 
+gitcreds_get()
+```
+
+```
+## <gitcreds>
+##   protocol: https
+##   host    : github.com
+##   username: PersonalAccessToken
+##   password: <-- hidden -->
+```
+3. If you get asked to provide your password when you pull or push, the password should be your GitHub token (to be precise, personal access token). 
+
+**SSH**
+
+If possible, I highly recommend using SSH. Using SSH is safer and also makes connecting GitHub easier. SSH has two keys (public and private). Public key could be stored on any server (e.g., GitHub) and private key could be saved in your client (e.g., your laptop). Only when the two are matched, the system unlocks. 
+
+1. First, read [this tutorial](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh ) and create SSH keys.
+
+2. Second, read [this tutorial](https://happygitwithr.com/ssh-keys.html) and check the keys and provide the public key to GitHub and add private key to ssh-agent.
+
+Next time, if you want to use SSH, remember the following.
+
+```sh
+# SSH
+git@github.com:<user>/<repo>.git
+
+# HTTPS
+https://github.com/<user>/<repo>.git
+```
 
 #### Configurations 
+
+1. Method 1: using the terminal 
 
 ```sh
 
 # User name and email 
 $ git config --global user.name "Firstname Lastname"
-$ git config --global user.email username@company.extension
+$ git config --global user.email username@school.extension
 
+```
+
+2. Method 2: using RStudio (if you insist using R)
+
+
+```r
+pacman::p_load(usethis)
+use_git_config(user.name = "<Firstname Lastname>",
+               user.email = "<username@school.extension>")
 ```
 
 You're all set!
@@ -873,7 +935,7 @@ $ cd code_exercise
 $ git init 
 ```
 
-Alternatively, you can create a Git repository via GitHub and then clone it on your local machine. Perhaps, it is an easier path for new users (I also do this all the time).
+Alternatively, you can create a Git repository via GitHub and then clone it on your local machine. Perhaps, it is an easier path for new users (I also do this all the time). When you do this, I highly recommend add README (more on why we do this in the following subection).
 
 ```sh
 $ git clone /path/to/repository
@@ -888,18 +950,30 @@ These feature show how Git works as a version control system.
 
 If you edited files or added new ones, then you need to update your repository. In Git terms, this action is called committing changes. 
 
+My current pwd is `spring_2021`. I created a text file named `test` that contains text `jae`. You can check the file exists by typing `find "test"`.
+
+The following is a typical workflow to reflect this change to the remote. 
+
 ```sh
+$ git status # check what's changed. 
 $ git add . # update every change. In Git terms, you're staging. 
 $ git add file_name # or stage a specific file.
 $ git commit -m "your comment" # your comment for the commit. 
-$ git push origin main # commit the change. Origin is a default name given to a server by Git.
+$ git push origin main # commit the change. Origin is a default name given to a server by Git. `origin main` are optional. 
 ```
 
 Another image from [Pro Git](https://git-scm.com/about/staging-area) well illustrates this process.
 
 ![Git Workflow](https://git-scm.com/images/about/index1@2x.png)
 
-For tips on writing commits, see the following video: 
+If you made a mistake, don't panic. You can't revert the process.
+
+```sh
+git reset --soft HEAD~1 # if you still want to keep the change, but you go back to t-1 
+git reset --hard HEAD~1 # if you're sure the change is unnecessary 
+```
+
+Writing an informative commit is important. To learn how to do this better, see the following video: 
 
 ```{=html}
 
@@ -909,22 +983,6 @@ For tips on writing commits, see the following video:
 
 ```
 
-### Other useful commands for tracking history
-
-```sh
-$ git diff # to see what changed (e.g., inside a file)
-$ git log # to track who committed what
-$ git checkout # to recover old files 
-$ git revert # revert to the previous commit 
-```
-
-###  Doing other than adding 
-
-```sh
-$ git rm file_name # remove 
-$ git mv old_file_name new_file_name # rename a file 
-```
-
 ### Push and pull (or fetch)
 
 These features show how Git works as a collaboration tool. 
@@ -932,14 +990,26 @@ These features show how Git works as a collaboration tool.
 If you have not already done, let's clone PS239T directory on your local machine.
 
 ```sh
-$ git clone https://GitHub.com/jaeyk/PS239T # clone 
+$ git clone https://github.com/PS239T/spring_2021 # clone 
 ```
+
+**Additional tips**
+If you try to remove `spring_2021` using `rm -r spring_2021/`, you will get an error about write-protected regular file. Then, try `rm -rf spring_2021/`. 
 
 Then, let's learn more about the repository.
 
 ```sh
 $ git remote -v 
 ```
+
+You should see something like the following:
+
+```sh
+origin	git@github.com:PS239T/spring_2021 (fetch)
+origin	git@github.com:PS239T/spring_2021 (push)
+```
+
+If you want to see more information, then type `git remote show origin`
 
 Previously, we learned how to send your data save in the local machine to the remote (the GitHub server). You can do that by editing or creating files, committing, and then typing **git push**. 
 
@@ -963,6 +1033,34 @@ $ git checkout new_features
 You can see the newly created branch by typing **git branch**.
 
 In short, branching makes Git [works like](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics) a mini file system.
+
+
+### Other useful commands 
+
+1. For tracking history
+
+```sh
+$ git diff # to see what changed (e.g., inside a file)
+$ git log # to track who committed what
+$ git log -S <pattern> # you can find a log that contains the pattern 
+$ git checkout # to recover old files 
+$ git revert # revert to the previous commit 
+```
+
+2. For removing and renaming files 
+
+```sh
+$ git rm file_name # remove 
+$ git mv old_file_name new_file_name # rename a file 
+```
+
+How about removing a directory only from the GitHub but not local?
+
+```sh
+git rm -r --cached <directory>
+git commit -m "<message>"
+git push
+```
 
 ### Collaborations 
 
@@ -1007,6 +1105,12 @@ I use GitHub dashboards for almost every project that I have done.
 
 <p GitHub Projects Demo: Automation, Kanban, Scrum, Issues, Pull Request, Milestones, Issues, Tasks by Brandan Jones/p>
 ```
+
+### Using Git clients
+
+Okay. Using command line Git helps you understand how Git works. Also, you know that if possible I'd love to do almost everything in the terminal. However, using command line Git is sometimes too complex or too buggy. An alternative is using Git clients (GUI). 
+
+I use [Git Kraken](https://www.gitkraken.com/) because it's free, works on almost every OS (Windows, Mac and Linux) and quite versatile. It's especially useful to trace and understand your development process (e.g., commits, branches, pull requests, comments). I heard also positive things about [GitHub Desktop](https://desktop.github.com/) (Windows and Mac) and [Sourcetree](https://www.sourcetreeapp.com/) (Windows). 
 
 ## Getting started in R 
 
