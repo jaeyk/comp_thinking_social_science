@@ -6541,6 +6541,16 @@ diagnose_design(three_arm)
 ##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
 ```
 
+**Additional tips**
+
+Experimenters! Consider writing and registering a pre-analysis before running your experiment. Here are tools that can help creating a pre-registration so easy. The following information comes from David Broockman's [very helpful Twitter thread](https://twitter.com/dbroockman/status/1350897814499336192). 
+
+1. Write code using fake data. If you are using Qualtrics, you can generate test responses using the platform: https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/
+
+2. Register the pre-analysis using [ASPREDICTED](https://aspredicted.org/), "a platform that makes it easy for researchers to pre-register their studies, and easy for others to read and evaluate those pre-registrations." It creates an anonymized PDF file filled with the answers you provided and a blinded link.  
+
+3. Upload the anonymized code and the PDF to a new project in [osf.io](https://osf.io/) and describe your pre-analysis briefly. 
+
 ## Visualizing (ggplot2)
 
 - The following material is adapted from Kieran Healy's wonderful book (2019) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful book on [ggplot2](https://link.springer.com/content/pdf/10.1007%2F978-0-387-98141-3.pdf). For more theoretical discussions, I recommend you to read [The Grammar of Graphics](https://link.springer.com/book/10.1007%2F0-387-28695-0) by Leland Wilkinson.
