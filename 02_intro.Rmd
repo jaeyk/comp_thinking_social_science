@@ -818,11 +818,11 @@ git --version
 
 2. Store your credential somewhere safe. You can use an R package like this [gitcreds](https://gitcreds.r-lib.org/) and [credentials](https://docs.ropensci.org/credentials/) to do so.
 
-```{r}
+```{r eval = FALSE}
 pacman::p_load(gitcreds)
 
 # First time only 
-# gitcreds_set()
+gitcreds_set()
 
 # Check 
 gitcreds_get()

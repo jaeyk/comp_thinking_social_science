@@ -820,18 +820,10 @@ git --version
 pacman::p_load(gitcreds)
 
 # First time only 
-# gitcreds_set()
+gitcreds_set()
 
 # Check 
 gitcreds_get()
-```
-
-```
-## <gitcreds>
-##   protocol: https
-##   host    : github.com
-##   username: PersonalAccessToken
-##   password: <-- hidden -->
 ```
 3. If you get asked to provide your password when you pull or push, the password should be your GitHub token (to be precise, personal access token). 
 

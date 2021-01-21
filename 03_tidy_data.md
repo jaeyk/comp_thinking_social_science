@@ -6553,7 +6553,7 @@ Experimenters! Consider writing and registering a pre-analysis before running yo
 
 ## Visualizing (ggplot2)
 
-- The following material is adapted from Kieran Healy's wonderful book (2019) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful book on [ggplot2](https://link.springer.com/content/pdf/10.1007%2F978-0-387-98141-3.pdf). For more theoretical discussions, I recommend you to read [The Grammar of Graphics](https://link.springer.com/book/10.1007%2F0-387-28695-0) by Leland Wilkinson.
+- The following material is adapted from Kieran Healy's wonderful book (2019) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful book on [ggplot2](https://ggplot2-book.org/). For more theoretical discussions, I recommend you to read [The Grammar of Graphics](https://link.springer.com/book/10.1007%2F0-387-28695-0) by Leland Wilkinson.
 
 - Why should we care data visualization? More precisely, why should we learn the grammar of statistical graphics?
 - Sometimes, pictures are better tools than words in 1) exploring, 2) understanding, and 3) explaining data.
@@ -7537,3 +7537,4 @@ out_conf %>%
 ![](03_tidy_data_files/figure-latex/unnamed-chunk-217-2.pdf)<!-- --> 
 
 You can calculate marginal effects using `margins` package. For the sake of time, I'm not covering that here.
+
