@@ -839,7 +839,7 @@ rm test_*
 <ol start="2" style="list-style-type: decimal">
 <li>Read the first two lines. We have learned <code>cat</code>, <code>|</code>, and <code>head</code> already. So, there’s nothing new here.</li>
 </ol>
-<p><strong>Additional tips</strong>
+<p><strong>Additional tips 1</strong>
 If you have a large text file, the fact that <code>cat</code> prints everything at once is inconvenient. The alternative using <code>less</code>.</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb47-1"><a href="git-bash.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> billionaires.csv <span class="kw">|</span> <span class="fu">head</span> -n2</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
@@ -850,7 +850,7 @@ If you have a large text file, the fact that <code>cat</code> prints everything 
 <li>How about the number of columns? <code>sed</code> is a stream editor and very powerful when it’s used to filter text in a pipeline. For more information, see <a href="https://www.gnu.org/software/sed/manual/sed.html">this article</a>. You’ve already seen <code>s/FIND/REPLACE</code>. Here, the pattern we are using is <code>s/delimiter/\n/g</code>. We’ve seen that the delimiter is <code>,</code>, so that’s what I plugged in the command below.</li>
 </ol>
 <div class="sourceCode" id="cb49"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb49-1"><a href="git-bash.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> -1 billionaires.csv <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;s/,/\n/g&#39;</span> <span class="kw">|</span> <span class="fu">nl</span></span></code></pre></div>
-<p><strong>Additional tips</strong>
+<p><strong>Additional tips 2</strong>
 The other cool command for text parsing is <code>awk</code>. This command is especially useful for filtering.</p>
 <ol style="list-style-type: decimal">
 <li>This is same as using <code>cat</code> (basically, printing). So, what’s new?</li>

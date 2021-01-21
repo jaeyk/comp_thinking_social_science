@@ -635,7 +635,7 @@ wget https://corgis-edu.github.io/corgis/datasets/csv/billionaires/billionaires.
 
 2. Read the first two lines. We have learned `cat`, `|`, and `head` already. So, there's nothing new here.
 
-**Additional tips**
+**Additional tips 1**
 If you have a large text file, the fact that `cat` prints everything at once is inconvenient. The alternative using `less`. 
 
 ```sh
@@ -654,7 +654,7 @@ wc -l billionaires.csv
 head -1 billionaires.csv | sed 's/,/\n/g' | nl
 ```
 
-**Additional tips**
+**Additional tips 2**
 The other cool command for text parsing is `awk`. This command is especially useful for filtering.
 
 1. This is same as using `cat` (basically, printing). So, what's new? 
