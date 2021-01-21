@@ -756,7 +756,9 @@ According to [GitHub Guides](https://guides.GitHub.com), a version control syste
 
 Git is a case of a [distributed version control system](https://en.wikipedia.org/wiki/Distributed_version_control), common in open source and commercial software development. This is no surprising given that Git [was originally created](https://lkml.org/lkml/2005/4/6/121) to deal with Linux kernal development. 
 
-* If you're curious about how the Internet works, learn one of the key ideas of the Internet: [end-to-end principle](https://en.wikipedia.org/wiki/End-to-end_principle). This also explains why [net neutrality](https://en.wikipedia.org/wiki/Net_neutrality) matters. 
+**Food for thought**
+
+If you're curious about how the Internet works, learn one of the key ideas of the Internet: [end-to-end principle](https://en.wikipedia.org/wiki/End-to-end_principle). This also explains why [net neutrality](https://en.wikipedia.org/wiki/Net_neutrality) matters. 
 
 The following images, from [Pro Git](git-scm.com), show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS (e.g., Git, Mercurial, Bazzar or Darcs) works differently. 
 
@@ -781,16 +783,7 @@ For more information on the varieties of version control systems, please read [P
 
 ![Figure 2.1. A schematic git workflow from Healy's "The Plain Person’s Guide to Plain Text Social Science"](https://plain-text.co/figures/git-basic.png)
 
-### Setup 
-
-We'll start with telling Git who you are.
-
-```sh
-
-$ git config --global user.name "Firstname Lastname"
-$ git config --global user.email username@company.extension
-
-```
+For more information, watch the following video:
 
 ```{=html}
 
@@ -800,8 +793,74 @@ $ git config --global user.email username@company.extension
 
 ```
 
-### Making a repository 
+### Setup 
 
+#### Signup 
+
+1. If you haven't, sign up a GitHub account: https://github.com/
+  - If you're a student, also sign up for GitHub Student Developer Pack: https://education.github.com/pack Basically, you can get a GitHub pro account for free (so why not?).
+  
+2. Next, try to connect GitHub using Secure Shell (SSH): https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh This could be challenging for some people. If you face difficulties, see [this tutorial](https://happygitwithr.com/ssh-keys.html). Some people save their GitHub credentials (e.g., password) in their machine permanently but that's considered not safe (see [this stack overflow thread](https://stackoverflow.com/questions/7773181/git-keeps-prompting-me-for-a-password)). Using SSH is safer and also makes connecting GitHub easier. I will explain more about this later.
+
+#### Configurations 
+
+```sh
+
+# User name and email 
+$ git config --global user.name "Firstname Lastname"
+$ git config --global user.email username@company.extension
+
+```
+
+You're all set!
+
+### Cloning a repository 
+
+Let's clone a repository. As a test, I will clone the GitHub repository for the course I'm co-teaching in Spring 2021.
+
+```sh
+git clone https://github.com/PS239T/spring_2021
+```
+
+If you `cd spring_2021/` you can move to the cloned course repository. Cloning: copying a public GitHub repo (remote) -> Your machine 
+
+If I made some changes in the remote repo, you can make them applied to your local copy by typing `git pull`. You may get promoted to provide password. Then type the following to switch the remote URL's address from HTTPS to SSH.
+
+```sh
+git remote set-url origin git@github.com:[user]/[repo]
+```
+
+If this doesn't work and get the following error, then try the following (this assumes that your SSH key was removed). If you're using Mac, try this instead: `ssh-add -k ~/.ssh/id_rsa` 
+
+```sh
+ssh-add ~/.ssh/id_rsa
+```
+
+If you still face difficulties, see [this stack overflow thread](https://stackoverflow.com/questions/13509293/git-fatal-could-not-read-from-remote-repository).
+
+If you screwed something up in your local copy, you can just overwrite the local copy using the remote repo and make it exactly looks like the latter. 
+
+```sh
+# Download content from a remote repo 
+git fetch origin
+
+# Going back to origin/main
+git reset --hard origin/main 
+
+# Remove local files 
+git clean -f
+```
+
+Note that the default branch name changed from master to main: https://github.com/github/renaming (Finally!) For this reason, if you're interacting with old repositories, the main branch name is likely master.
+
+**Additional tips**
+You can see cloning and forking on GitHub and they sound similar. Let me differentiate them.
+
+* Cloning: creating a local copy of a **public** GitHub repo. In this case, you have writing access to the repo.
+
+* Forking (for open source projects): creating a copy of a **public** GitHub repo to your GitHub account then you can clone it. In this case, you don't have writing access to the repo. If you want your changes reflected in the original repo, you need to create pull requests. Don't worry about pull requests as I will explain the concept shortly. For more information, see [this documentation](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/cloning-and-forking-repositories-from-github-desktop). 
+
+### Making a repository 
 
 Create a new directory and move to it. 
 
@@ -814,12 +873,13 @@ $ cd code_exercise
 $ git init 
 ```
 
-Alternatively, you can create a Git repository via GitHub and then clone it on your local machine. 
+Alternatively, you can create a Git repository via GitHub and then clone it on your local machine. Perhaps, it is an easier path for new users (I also do this all the time).
 
 ```sh
 $ git clone /path/to/repository
 ```
 
+**Additional tips**
 If you're unfamiliar with basic Git commands, then please refer to [this Git cheet sheet](http://rogerdudler.GitHub.io/git-guide/files/git_cheat_sheet.pdf).
 
 ### Commit changes 
@@ -832,11 +892,14 @@ If you edited files or added new ones, then you need to update your repository. 
 $ git add . # update every change. In Git terms, you're staging. 
 $ git add file_name # or stage a specific file.
 $ git commit -m "your comment" # your comment for the commit. 
-$ git push origin master # commit the change. Origin is a default name given to a server by Git. 
+$ git push origin main # commit the change. Origin is a default name given to a server by Git.
 ```
+
 Another image from [Pro Git](https://git-scm.com/about/staging-area) well illustrates this process.
 
 ![Git Workflow](https://git-scm.com/images/about/index1@2x.png)
+
+For tips on writing commits, see the following video: 
 
 ```{=html}
 
@@ -851,8 +914,8 @@ Another image from [Pro Git](https://git-scm.com/about/staging-area) well illust
 ```sh
 $ git diff # to see what changed (e.g., inside a file)
 $ git log # to track who committed what
-$ git checkout the commit hash (e.g., a5e556) file name (fruit_list.txt) # to recover old files 
-$ git revert 1q84 # revert to the previous commit 
+$ git checkout # to recover old files 
+$ git revert # revert to the previous commit 
 ```
 
 ###  Doing other than adding 
@@ -910,17 +973,9 @@ Two options.
     ​    * The one who maintains the repository becomes the maintainer. 
     ​    * The others can [fork](https://help.GitHub.com/articles/about-forks/), make changes, and even [pull](https://help.GitHub.com/articles/about-pull-requests/) them back.
 
-#### Other stuff 
-
-```sh
-$ git status # show the status of changes 
-$ git branch # show the branch being worked on locally
-$ git merge # merge branches 
-$ git reset --hard # restore the pristine version
-$ git commit -a -m "additional backup" # to save the state again
-```
-
 ### Deployment: GitHub Pages 
+
+GitHub pages are also useful to deploy websites. This book is deployed by GitHub Pages. 
 
 ```{=html}
 
@@ -932,11 +987,26 @@ $ git commit -a -m "additional backup" # to save the state again
 
 ### Tracking progress: GitHub Issues 
 
+I use GitHub issues to collect and respond questions on the projects and classes in which I am involved. 
+
 ```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TJlYiMp8FuY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p Webcast • GitHub Issues • A Quick Look, GitHub Training & Guides /p>
 
 ```
 
 ### Project management: GitHub Dashboards
+
+I use GitHub dashboards for almost every project that I have done. 
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YxKhb3fxtsU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p GitHub Projects Demo: Automation, Kanban, Scrum, Issues, Pull Request, Milestones, Issues, Tasks by Brandan Jones/p>
+```
 
 ## Getting started in R 
 
