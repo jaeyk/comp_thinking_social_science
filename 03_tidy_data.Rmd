@@ -3588,3 +3588,12 @@ out_conf %>%
 ```
 
 You can calculate marginal effects using `margins` package. For the sake of time, I'm not covering that here.
+
+### References 
+
+Two canons on data visualization in R. 
+
+* [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) by Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen.
+
+* [Data Visualization: A Practical Introduction](https://socviz.co/) by Kieran Healy
+
