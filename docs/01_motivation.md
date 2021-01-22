@@ -16,9 +16,11 @@
 
 > Every modern statistical and data analysis problem needs code to solve it. You shouldn't learn just the basics of programming, spend some time gaining mastery. Improving your programming skills pays off because code is a **force multiplier**: once you've solved a problem once, code allows you to solve it much faster in the future. As your programming skill increases, the generality of your solutions improves: you solve not just the precise problem you encountered, but a wider class of related problems (in this way programming skill is very much like mathematical skill). Finally, sharing your code with others allows them to benefit from your experience. - [Hadley Wickham](https://imstat.org/2014/12/16/hadley-wickham-impact-the-world-by-being-useful/)
 
--   What aspects of the research process can be automated and how? How can we teach a machine to perform these tasks for us?
+-   What aspects of the social science research process can be automated? How can we teach a machine to perform these tasks for us?
 
 ![From BBC Bitesize](https://bam.files.bbci.co.uk/bam/live/content/znmb87h/large)
+
+-   This question touches the essence of computational thinking: "formulating a problem and expressing its solution in a way that a computer—human or machine—can effectively carry out" (defined by [Jeannette M. Wing](http://www.cs.cmu.edu/afs/cs/usr/wing/www/publications/Wing06.pdf))
 
 This book teaches how you to do that in R in incremental steps.
 
@@ -30,7 +32,7 @@ This book teaches how you to do that in R in incremental steps.
 
 > "[W]e wanted users to be able to begin in an interactive environment, where they did not consciously think of themselves as progamming. Then as their needs became clearer and their sophistication increased, they should be able to slide gradually into programming, when the language and system aspects would become more important." - *Stages in the Evolution of S* by John Chambers (S is the progenitor of R)
 
--   Beginners! Learning programming is a long game. The most important method is consistency. Never stop writing code because your current code falls far short of the perfection.\
+-   Beginners! Learning programming is a long game. The most important learning method (for almost any training) is consistency. Never stop writing code because your current code falls far short of the perfection.
     ![](misc/wickham.png)
 
 -   Intermediate programmers! Try to empower, not intimidate, newbies. The most important rule in computational social science community (at least, in my opinion) is being nice. Read David Robinson's ["A Million Lines of Bad Code"](http://varianceexplained.org/programming/bad-code/) for more insights.
@@ -38,6 +40,8 @@ This book teaches how you to do that in R in incremental steps.
 ![](http://imgs.xkcd.com/comics/code_quality.png)
 
 ## Computational way of thinking about data
+
+-   Berkeley's widely praised data science undergraduate education is built upon both inferential (statistics) and computational thinking. [The textbook](https://www.inferentialthinking.com/chapters/intro) used for teaching its most fundamental course (Data8) underscores computational thinking because "programming allows us to apply analysis techniques to the large and diverse data sets that arise in real-world applications: not just numbers, but text, images, videos, and sensor readings." This is also exactly the point of this textbook and explains how it is organized.
 
 ### Structure
 
