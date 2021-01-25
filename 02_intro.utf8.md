@@ -306,6 +306,12 @@ ls -F /
 
 The leading `/` tells the computer to follow the path from the root of the file system, so it always refers to exactly one directory, no matter where we are when we run the command.
 
+If you want to see only directories in the current working directory, you can do the following. (Remember `^`? This wildcard identifies a single number of character. In this case, `d`.)
+
+```sh
+ls -l | grep "^d"
+```
+
 What if we want to change our current working directory? Before we do this, `pwd` shows us that we're in `/home/jae`, and `ls` without any arguments shows us that directory's contents:
 
 ```sh

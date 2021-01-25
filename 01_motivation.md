@@ -41,7 +41,7 @@ This book teaches how you to do that in R in incremental steps.
 
 ## Computational way of thinking about data
 
--   Berkeley's widely praised data science undergraduate education is built upon both inferential (statistics) and computational thinking. [The textbook](https://www.inferentialthinking.com/chapters/intro) used for teaching its most fundamental course (Data8) underscores computational thinking because "programming allows us to apply analysis techniques to the large and diverse data sets that arise in real-world applications: not just numbers, but text, images, videos, and sensor readings." This is also exactly the point of this textbook and explains how it is organized.
+-   Berkeley's widely praised data science undergraduate education is built upon both inferential (statistics) and computational thinking. [The textbook](https://www.inferentialthinking.com/chapters/intro) used for teaching its most fundamental course (Data8) underscores computational thinking because "programming allows us to apply analysis techniques to the large and diverse data sets that arise in real-world applications: not just numbers, but text, images, videos, and sensor readings." This is also exactly the point of this textbook and explains how its content is organized.
 
 ### Structure
 
