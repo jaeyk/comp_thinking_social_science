@@ -991,7 +991,8 @@ If you have not already done, let's clone PS239T directory on your local machine
 $ git clone https://github.com/PS239T/spring_2021 # clone 
 ```
 
-**Additional tips**
+**Additional tips 1**
+
 If you try to remove `spring_2021` using `rm -r spring_2021/`, you will get an error about write-protected regular file. Then, try `rm -rf spring_2021/`. 
 
 Then, let's learn more about the repository.
@@ -1016,6 +1017,10 @@ Instead, if you want to update your local data with the remote data, then you ca
 ```sh
 $ git fetch origin
 ```
+
+**Additional tips 2**
+
+Developers usually use PR to refer pull requests. When you are making PRs, it's recommend to scope down (small PRs) because they are easier on reviewers and to test. To learn about how to accomplish this, see [this blog post](https://www.netlify.com/blog/2020/03/31/how-to-scope-down-prs/) by Sarah Drasner.
 
 ### Branching 
 

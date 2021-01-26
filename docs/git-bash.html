@@ -1100,8 +1100,8 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <p>These features show how Git works as a collaboration tool.</p>
 <p>If you have not already done, let’s clone PS239T directory on your local machine.</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb70-1"><a href="git-bash.html#cb70-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> clone https://github.com/PS239T/spring_2021 <span class="co"># clone </span></span></code></pre></div>
-<p><strong>Additional tips</strong>
-If you try to remove <code>spring_2021</code> using <code>rm -r spring_2021/</code>, you will get an error about write-protected regular file. Then, try <code>rm -rf spring_2021/</code>.</p>
+<p><strong>Additional tips 1</strong></p>
+<p>If you try to remove <code>spring_2021</code> using <code>rm -r spring_2021/</code>, you will get an error about write-protected regular file. Then, try <code>rm -rf spring_2021/</code>.</p>
 <p>Then, let’s learn more about the repository.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb71-1"><a href="git-bash.html#cb71-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> remote -v </span></code></pre></div>
 <p>You should see something like the following:</p>
@@ -1111,6 +1111,8 @@ If you try to remove <code>spring_2021</code> using <code>rm -r spring_2021/</co
 <p>Previously, we learned how to send your data save in the local machine to the remote (the GitHub server). You can do that by editing or creating files, committing, and then typing <strong>git push</strong>.</p>
 <p>Instead, if you want to update your local data with the remote data, then you can type <strong>git pull origin</strong> (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb73-1"><a href="git-bash.html#cb73-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> fetch origin</span></code></pre></div>
+<p><strong>Additional tips 2</strong></p>
+<p>Developers usually use PR to refer pull requests. When you are making PRs, it’s recommend to scope down (small PRs) because they are easier on reviewers and to test. To learn about how to accomplish this, see <a href="https://www.netlify.com/blog/2020/03/31/how-to-scope-down-prs/">this blog post</a> by Sarah Drasner.</p>
 </div>
 <div id="branching" class="section level3" number="3.2.7">
 <h3><span class="header-section-number">3.2.7</span> Branching</h3>
