@@ -32,7 +32,7 @@ This book teaches how you to do that in R in incremental steps.
 
 > "[W]e wanted users to be able to begin in an interactive environment, where they did not consciously think of themselves as progamming. Then as their needs became clearer and their sophistication increased, they should be able to slide gradually into programming, when the language and system aspects would become more important." - *Stages in the Evolution of S* by John Chambers (S is the progenitor of R)
 
--   Beginners! Learning programming is a long game. The most important learning method (for almost any training) is consistency. Never stop writing code because your current code falls far short of the perfection.
+-   Beginners! Learning programming is a long game. The most important learning method (for almost any training) is consistency. Never stop writing code even though your current code may fall far short of the perfection.
     ![](misc/wickham.png)
 
 -   Intermediate programmers! Try to empower, not intimidate, newbies. The most important rule in computational social science community (at least, in my opinion) is being nice. Read David Robinson's ["A Million Lines of Bad Code"](http://varianceexplained.org/programming/bad-code/) for more insights.
@@ -98,7 +98,7 @@ Computational tools and techniques make ...
 
 ## References
 
-Here are a couple of useful videos that introduce the main concepts of computational social science. Matthew Salganik (Professor of Sociology at Princeton) is co-founder of the [Summer Institute in Computational Social Science](https://sicss.io/) and Rayid Ghani (Professor of Machine Learning and Public Policy at Carnegie Mellon) is founder of the [Data Science for Social Good](https://www.dssgfellowship.org/). (Full disclaimer: I'm a former participant (Princeton 2019) and local organizer ([Bay Area 2020](https://sicss.io/2020/bay_area/)) of the Summer Institute in Computational Social Science. If you become interested in computational social science and wonder what should be your next steps, I would highly recommend applying for the program.) Data Science for Social Good is another cool program that deserves your attention.
+Here are a couple of useful videos that introduce the main concepts of computational social science. Matthew Salganik (Professor of Sociology at Princeton) is co-founder of the [Summer Institute in Computational Social Science](https://sicss.io/) and Rayid Ghani (Professor of Machine Learning and Public Policy at Carnegie Mellon) is founder of the [Data Science for Social Good](https://www.dssgfellowship.org/). (Full disclaimer: I'm a former participant (Princeton 2019) and local organizer ([Bay Area 2020](https://sicss.io/2020/bay_area/)) of the Summer Institute in Computational Social Science. If you become interested in computational social science and wonder what should be your next step, I would highly recommend applying for the program.) Data Science for Social Good is another cool program that deserves your attention.
 
 ```{=html}
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zGG9wPl1C5E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
