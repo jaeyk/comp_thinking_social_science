@@ -853,6 +853,12 @@ git@github.com:<user>/<repo>.git
 https://github.com/<user>/<repo>.git
 ```
 
+**Additional tips**
+
+When you try to clone a git repo, you cna get the links like the above by clicking CODE action button on GitHub.
+
+![](misc/ssh.png)
+
 #### Configurations 
 
 1. Method 1: using the terminal 
