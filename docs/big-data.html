@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2021-01-25" />
+<meta name="date" content="2021-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -859,7 +859,7 @@ Could you remind me how to see the list of attributes of a table? Let’s say yo
 <div class="sourceCode" id="cb1386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1386-1"><a href="big-data.html#cb1386-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
 <span id="cb1386-2"><a href="big-data.html#cb1386-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">&quot;delay&quot;</span>))</span></code></pre></div>
 <pre><code>## # Source:   lazy query [?? x 2]
-## # Database: sqlite 3.34.0 [:memory:]
+## # Database: sqlite 3.34.1 [:memory:]
 ##    dep_delay arr_delay
 ##        &lt;dbl&gt;     &lt;dbl&gt;
 ##  1         2        11
@@ -882,7 +882,7 @@ Your turn: write the same code in SQL. Don’t forget to add <code>connection</c
 <span id="cb1388-2"><a href="big-data.html#cb1388-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(distance, air_time) <span class="sc">%&gt;%</span>  </span>
 <span id="cb1388-3"><a href="big-data.html#cb1388-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">speed =</span> distance <span class="sc">/</span> (air_time <span class="sc">/</span> <span class="dv">60</span>)) </span></code></pre></div>
 <pre><code>## # Source:   lazy query [?? x 3]
-## # Database: sqlite 3.34.0 [:memory:]
+## # Database: sqlite 3.34.1 [:memory:]
 ##    distance air_time speed
 ##       &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
 ##  1     1400      227  370.
@@ -905,7 +905,7 @@ Hint: <code>mutate(new_var = var 1 * var2</code> (R) = <code>SELECT var1 * var2 
 <div class="sourceCode" id="cb1390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1390-1"><a href="big-data.html#cb1390-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">%&gt;%</span> </span>
 <span id="cb1390-2"><a href="big-data.html#cb1390-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">1</span>, day <span class="sc">==</span> <span class="dv">1</span>) <span class="co"># filter(month ==1 &amp; day == 1) Both work in the same way.</span></span></code></pre></div>
 <pre><code>## # Source:   lazy query [?? x 19]
-## # Database: sqlite 3.34.0 [:memory:]
+## # Database: sqlite 3.34.1 [:memory:]
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
 ##  1  2013     1     1      517            515         2      830            819
@@ -968,7 +968,7 @@ Hint: <code>arrange(var1, desc(var2)</code> (R) = <code>ORDER BY var1, var2 DESC
 ## Use `mean(x, na.rm = TRUE)` to silence this warning
 ## This warning is displayed only once per session.</code></pre>
 <pre><code>## # Source:   lazy query [?? x 3]
-## # Database: sqlite 3.34.0 [:memory:]
+## # Database: sqlite 3.34.1 [:memory:]
 ## # Groups:   month
 ##    month   day delay
 ##    &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
