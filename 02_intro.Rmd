@@ -816,7 +816,7 @@ git --version
 2. If you haven't, sign up a GitHub account: https://github.com/
   - If you're a student, also sign up for GitHub Student Developer Pack: https://education.github.com/pack Basically, you can get a GitHub pro account for free (so why not?).
   
-3. Access GitHub either using Hypertext Transfer Protocol Secure (HTTPS) or Secure Sheel (SSH).
+3. Access GitHub either using Hypertext Transfer Protocol Secure (HTTPS) or Secure Shell (SSH).
 
 **HTTPS**
 
