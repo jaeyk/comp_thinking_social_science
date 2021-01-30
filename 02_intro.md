@@ -1355,7 +1355,7 @@ You won't be able to reproduce your project unless it is efficiently organized.
 
 Step 1. [**Environment**](https://environments.rstudio.com/) is part of your project. If someone can't reproduce your environment, they won't be able to run your code.
 
-- Launch R Studio. Choose Tools > Global Options. You should not check `Restor .RData into workspace at startup` and set saving workspace option to `NEVER`.
+- Launch R Studio. Tools > Global Options. You **should not** check Restore .RData into workspace at startup. Also, set saving workspace option to **NEVER.**
 
 Step 2. For each project, create a project directory named after the project. 
 
