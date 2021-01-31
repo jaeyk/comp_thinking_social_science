@@ -1373,8 +1373,6 @@ name_of_the_project
 - name_of_project.Rproj (for R)
 - README.md (for Git) 
 
-![Working directory structure example](https://datacarpentry.org/R-ecology-lesson/img/working-directory-structure.png)
-
 
 
 ```r
@@ -1421,7 +1419,7 @@ dir.create(here::here("us_election", "outputs"))
 
 
 ```r
-dir.create(here::here("us_election", "src"))
+dir.create(here::here("us_election", "functions"))
 ```
 
 **Challenge**
