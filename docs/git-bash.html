@@ -1360,10 +1360,6 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <li>name_of_project.Rproj (for R)</li>
 <li>README.md (for Git)</li>
 </ul>
-<div class="figure">
-<img src="https://datacarpentry.org/R-ecology-lesson/img/working-directory-structure.png" alt="" />
-<p class="caption">Working directory structure example</p>
-</div>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="git-bash.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Don&#39;t name it a project. Use a name that&#39;s more informative. For instance, us_election not my_project.</span></span>
 <span id="cb96-2"><a href="git-bash.html#cb96-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb96-3"><a href="git-bash.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;../us_election&quot;</span>)</span></code></pre></div>
@@ -1391,7 +1387,7 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <ul>
 <li>Put your custom functions in the <code>functions</code> subdirectory. You can gather some of these functions and distribute them as an open-source library.</li>
 </ul>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="git-bash.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;src&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="git-bash.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;functions&quot;</span>))</span></code></pre></div>
 <p><strong>Challenge</strong></p>
 <p>Set a project structure for a project named “starwars.”</p>
 </div>
