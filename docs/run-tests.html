@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2021-02-03" />
+<meta name="date" content="2021-02-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -415,11 +415,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="run-tests" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Run tests</h1>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="run-tests.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_file</span>(<span class="fu">file.choose</span>()) <span class="co"># file </span></span>
-<span id="cb132-2"><a href="run-tests.html#cb132-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb132-3"><a href="run-tests.html#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test_dir</span>() <span class="co"># directory</span></span>
-<span id="cb132-4"><a href="run-tests.html#cb132-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb132-5"><a href="run-tests.html#cb132-5" aria-hidden="true" tabindex="-1"></a><span class="fu">auto_test</span>() <span class="co"># the test code tested when you save file </span></span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="run-tests.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_file</span>(<span class="fu">file.choose</span>()) <span class="co"># file </span></span>
+<span id="cb131-2"><a href="run-tests.html#cb131-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-3"><a href="run-tests.html#cb131-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test_dir</span>() <span class="co"># directory</span></span>
+<span id="cb131-4"><a href="run-tests.html#cb131-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-5"><a href="run-tests.html#cb131-5" aria-hidden="true" tabindex="-1"></a><span class="fu">auto_test</span>() <span class="co"># the test code tested when you save file </span></span></code></pre></div>
 <div id="asking-questions-minimal-reproducible-example" class="section level3" number="4.0.1">
 <h3><span class="header-section-number">4.0.1</span> Asking questions: Minimal reproducible example</h3>
 <ul>
@@ -434,10 +434,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p>In practice, use <code>reprex</code> package to create the code component of the MRE.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="run-tests.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(reprex)) <span class="fu">install.packages</span>(<span class="st">&quot;reprex&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="run-tests.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(reprex)) <span class="fu">install.packages</span>(<span class="st">&quot;reprex&quot;</span>)</span></code></pre></div>
 <p>Copy the following code and type <code>reprex()</code> in the console.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="run-tests.html#cb134-1" aria-hidden="true" tabindex="-1"></a>gpa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>)</span>
-<span id="cb134-2"><a href="run-tests.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gpa)</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="run-tests.html#cb133-1" aria-hidden="true" tabindex="-1"></a>gpa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>)</span>
+<span id="cb133-2"><a href="run-tests.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gpa)</span></code></pre></div>
 </div>
 <div id="references-3" class="section level3" number="4.0.2">
 <h3><span class="header-section-number">4.0.2</span> References</h3>
