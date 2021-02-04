@@ -274,7 +274,7 @@ This hierarchical way of thinking about organizing things is prevalent in the de
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/P0H1m14Krmc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<p Reimagining the Internet 10: Amy Zhang, University of Washington, The Institute for Digital Public Infrastructure /p>
+<p> Reimagining the Internet 10: Amy Zhang, University of Washington, The Institute for Digital Public Infrastructure /p>
 ```
 
 > #### Path
@@ -566,6 +566,7 @@ What's `-r`? It stands for recursion (e.g., . Recursion is a very powerful idea 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Mv9NEXX1VHc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+<p> What on Earth is Recursion? - Computerphile </p>
 ```
 
 ##### Renaming files
@@ -719,7 +720,7 @@ Using Make [TBD]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/aw9wHbFTnAQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<p Using make and writing Makefile (in C++ or C) by Programming Knowledge/p>
+<p> Using make and writing Makefile (in C++ or C) by Programming Knowledge </p>
 ```
 
 ### References 
@@ -734,7 +735,7 @@ Using Make [TBD]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QxpOKbv-KQU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<p Obtaining, Scrubbing, and Exploring Data at the Command Line by Jeroen Janssens from YPlan, Data Council /p>
+<p> Obtaining, Scrubbing, and Exploring Data at the Command Line by Jeroen Janssens from YPlan, Data Council </p>
 ```
 
 - [Shell Tools and Scripting](https://missing.csail.mit.edu/2020/shell-tools/), ./missing-semester, MIT  
@@ -783,7 +784,7 @@ For more information on the varieties of version control systems, please read [P
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PFwUHTE6mFc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<p Webcast • Introduction to Git and GitHub • Featuring Mehan Jayasuriya, GitHub Training & Guides/p>
+<p> Webcast • Introduction to Git and GitHub • Featuring Mehan Jayasuriya, GitHub Training & Guides </p>
 ```
 
 
@@ -795,7 +796,7 @@ For more information, watch the following video:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/u6G3fbmpWr8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<p The Basics of Git and GitHub, GitHub Training & Guides /p>
+<p> The Basics of Git and GitHub, GitHub Training & Guides </p>
 
 ```
 
@@ -983,7 +984,7 @@ Writing an informative commit is important. To learn how to do this better, see 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/m0t1mOeAJgs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<p Your Commits Should Tell a Story • Featuring Eliza Brock Marcum, GitHub Training & Guides /p>
+<p> Your Commits Should Tell a Story • Featuring Eliza Brock Marcum, GitHub Training & Guides </p>
 
 ```
 
@@ -1088,7 +1089,7 @@ GitHub pages are also useful to deploy websites. This book is deployed by GitHub
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4TrOCv5Kukk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<p Webcast • Get Started with GitHub Pages • Featuring Dani Traphagen, GitHub Training & Guides /p>
+<p> Webcast • Get Started with GitHub Pages • Featuring Dani Traphagen, GitHub Training & Guides </p>
 
 ```
 
@@ -1100,7 +1101,7 @@ I use GitHub issues to collect and respond questions on the projects and classes
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TJlYiMp8FuY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<p Webcast • GitHub Issues • A Quick Look, GitHub Training & Guides /p>
+<p> Webcast • GitHub Issues • A Quick Look, GitHub Training & Guides </p>
 
 ```
 
@@ -1112,7 +1113,7 @@ I use GitHub dashboards for almost every project that I have done.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/YxKhb3fxtsU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<p GitHub Projects Demo: Automation, Kanban, Scrum, Issues, Pull Request, Milestones, Issues, Tasks by Brandan Jones/p>
+<p> GitHub Projects Demo: Automation, Kanban, Scrum, Issues, Pull Request, Milestones, Issues, Tasks by Brandan Jones </p>
 ```
 
 ### Using Git clients
@@ -1420,6 +1421,27 @@ dir.create(here::here("us_election", "outputs"))
 
 ```r
 dir.create(here::here("us_election", "functions"))
+```
+
+Tired of creating these directories one by one? Why not automate? See the following example. You can save this function as an rscript (e.g., `setup.r`) and run in the terminal using `Rscript <script name>`.
+
+
+```r
+if (!require(pacman)) install.packages("pacman")
+
+# Load here
+pacman::p_load(
+  purrr, # functional programming
+  here # computational reproducibility
+)
+
+# Custom function
+create_dirs <- function(name) {
+  dir.create(here(name))
+}
+
+# Apply function 
+purrr::map(c("data", "processed_data", "src", "outputs", "functions"), create_dirs)
 ```
 
 **Challenge**
@@ -1840,7 +1862,105 @@ df
 
 > Code reuse aims to save time and resources and reduce redundancy by taking advantage of assets that have already been created in some form within the software product development process.[2] The key idea in reuse is that parts of a computer program written at one time can be or should be used in the construction of other programs written at a later time. - Wikipedia 
 
-### Test your code systematically [TBD]
+### Test your code systematically 
+
+I strongly recommend switching from adhoc testing to formal automated testing (i.e., unit testing).
+
+> Whenever you are tempted to type something into a print statement or a debugger expression, write it as a test instead. — Martin Fowler the author of *Refactoring* 
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bx92oCMxUhg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> R language tip: Test your code with testthat by InfoWorld /p>
+```
+
+
+```r
+if (!require(testthat)) install.packages("testthat")
+```
+
+```
+## Loading required package: testthat
+```
+
+```
+## 
+## Attaching package: 'testthat'
+```
+
+```
+## The following object is masked from 'package:dplyr':
+## 
+##     matches
+```
+
+```
+## The following object is masked from 'package:purrr':
+## 
+##     is_null
+```
+
+```
+## The following object is masked from 'package:tidyr':
+## 
+##     matches
+```
+
+```r
+pacman::p_load(testthat)
+
+context("Variable check")
+
+test_that("Check whether instructor variable is setup correctly", {
+  
+  instructors <- c("Jae", "Nick")
+
+  expect_equal(class(instructors), "character")
+
+}
+)
+```
+
+```
+## Test passed
+```
+
+Inspired by an example in Hadley Wickham's [R Journal paper](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf
+) (2011).
+
+
+```r
+context("Model check")
+
+test_that("Check whether the model is lm", {
+  
+  model <- lm(mpg ~ wt, data = mtcars)
+  
+  # Passes
+  expect_that(model, is_a("lm"))
+
+  # Fails
+  expect_that(model, is_a("glm"))
+
+})
+```
+
+```
+## -- Failure (<text>:12:3): Check whether the model is lm ------------------------
+## `x` inherits from `lm` not `glm`.
+```
+
+# Run tests 
+
+
+```r
+test_file(file.choose()) # file 
+
+test_dir() # directory
+
+auto_test() # the test code tested when you save file 
+```
 
 ### Asking questions: Minimal reproducible example
 
@@ -1854,6 +1974,21 @@ df
     - The minimal burnable code
     - The necessary information on package, R version, system (use `sessionInfo()`)
     - A seed for reproducibility (`set.seed()`), if you used a random process. 
+
+In practice, use `reprex` package to create the code component of the MRE.
+
+
+```r
+if (!require(reprex)) install.packages("reprex")
+```
+
+Copy the following code and type `reprex()` in the console.
+
+
+```r
+gpa <- c(3, 4, 4, 3)
+mean(gpa)
+```
 
 ### References
 
