@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Computational thinking | Computational Thinking for Social Scientists</title>
-  <meta name="description" content="Chapter 2 Computational thinking | Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
+  <title>Chapter 4 Run tests | Computational Thinking for Social Scientists</title>
+  <meta name="description" content="Chapter 4 Run tests | Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Computational thinking | Computational Thinking for Social Scientists" />
+  <meta property="og:title" content="Chapter 4 Run tests | Computational Thinking for Social Scientists" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Chapter 2 Computational thinking | Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
+  <meta property="og:description" content="Chapter 4 Run tests | Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
   <meta name="github-repo" content="jaeyk/PS239T" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Computational thinking | Computational Thinking for Social Scientists" />
+  <meta name="twitter:title" content="Chapter 4 Run tests | Computational Thinking for Social Scientists" />
   <meta name="twitter:site" content="@JaeJaeykim2" />
-  <meta name="twitter:description" content="Chapter 2 Computational thinking | Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
+  <meta name="twitter:description" content="Chapter 4 Run tests | Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
   
 
 <meta name="author" content="Jae Yeon Kim" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="git-bash.html"/>
+<link rel="prev" href="git-bash.html"/>
+<link rel="next" href="tidy-data.html"/>
 <script src="libs/header-attrs-2.6.0/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -413,126 +413,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="motivation" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Computational thinking</h1>
-<div id="why-computational-thinking" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Why computational thinking</h2>
+<div id="run-tests" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Run tests</h1>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="run-tests.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_file</span>(<span class="fu">file.choose</span>()) <span class="co"># file </span></span>
+<span id="cb132-2"><a href="run-tests.html#cb132-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-3"><a href="run-tests.html#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test_dir</span>() <span class="co"># directory</span></span>
+<span id="cb132-4"><a href="run-tests.html#cb132-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-5"><a href="run-tests.html#cb132-5" aria-hidden="true" tabindex="-1"></a><span class="fu">auto_test</span>() <span class="co"># the test code tested when you save file </span></span></code></pre></div>
+<div id="asking-questions-minimal-reproducible-example" class="section level3" number="4.0.1">
+<h3><span class="header-section-number">4.0.1</span> Asking questions: Minimal reproducible example</h3>
 <ul>
-<li><p>If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is <strong>automation</strong>.</p></li>
-<li><p>Let’s think about the following two cases (these examples come from <a href="https://dlab.berkeley.edu/blog/why-teaching-social-scientists-how-code-professional-important">the column</a> I contributed to D-Lab website).</p>
+<li><p>Chances are you’re going to use StackOverFlow a lot to solve a pressing problem you face. However, other can’t understand/be interested in your problem unless you can provide an example which they can understand with minimal efforts. Such example is called a minimal reproducible example.</p></li>
+<li><p>Read <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example">this StackOverFlow post</a> to understand the concept and best practices.</p></li>
+<li><p>Simply put, a MRE consists of the following items:</p>
 <ul>
-<li><p>Case 1: Suppose a social scientist needs to collect data on civic organizations in the United States from websites, Internal Revenue Service reports, and social media posts. As the number of these organizations is large, the researcher could not collect a large volume of data from diverse sources, so they would hire undergraduates and distribute tasks among them. This is a typical data collection plan in social science research, and it is labor-intensive. Automation is not part of the game plan. Yet, it is critical for so many reasons. Because the process is costly, no one is likely to either replicate or update the data collection effort. Put differently, without making the process efficient, it is difficult for it to be reproducible and scalable.</p></li>
-<li><p>Case 2: An alternative is to write computer programs that collect such data automatically, parse them, and store them in interconnected databases. Additionally, someone may need to maintain and validate the quality of the data infrastructure. Nevertheless, this approach lowers the cost of the data collection process, thereby substantially increasing the <strong>reproducibility</strong> and <strong>scalability</strong> of the process. Furthermore, the researcher can document their code and publicly share it using their GitHub repository or even gather some of the functions they used and distribute them as open-source libraries.</p></li>
+<li>A minimal dataset</li>
+<li>The minimal burnable code</li>
+<li>The necessary information on package, R version, system (use <code>sessionInfo()</code>)</li>
+<li>A seed for reproducibility (<code>set.seed()</code>), if you used a random process.</li>
 </ul></li>
-<li><p>Programming is as valuable a skill as writing in social science research. The extent to which a researcher can automate the research process can determine its efficiency, reproducibility, and scalability.</p></li>
 </ul>
-<blockquote>
-<p>Every modern statistical and data analysis problem needs code to solve it. You shouldn’t learn just the basics of programming, spend some time gaining mastery. Improving your programming skills pays off because code is a <strong>force multiplier</strong>: once you’ve solved a problem once, code allows you to solve it much faster in the future. As your programming skill increases, the generality of your solutions improves: you solve not just the precise problem you encountered, but a wider class of related problems (in this way programming skill is very much like mathematical skill). Finally, sharing your code with others allows them to benefit from your experience. - <a href="https://imstat.org/2014/12/16/hadley-wickham-impact-the-world-by-being-useful/">Hadley Wickham</a></p>
-</blockquote>
-<ul>
-<li>What aspects of the social science research process can be automated? How can we teach a machine to perform these tasks for us?</li>
-</ul>
-<div class="figure">
-<img src="https://bam.files.bbci.co.uk/bam/live/content/znmb87h/large" alt="" />
-<p class="caption">From BBC Bitesize</p>
+<p>In practice, use <code>reprex</code> package to create the code component of the MRE.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="run-tests.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(reprex)) <span class="fu">install.packages</span>(<span class="st">&quot;reprex&quot;</span>)</span></code></pre></div>
+<p>Copy the following code and type <code>reprex()</code> in the console.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="run-tests.html#cb134-1" aria-hidden="true" tabindex="-1"></a>gpa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>)</span>
+<span id="cb134-2"><a href="run-tests.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gpa)</span></code></pre></div>
 </div>
+<div id="references-3" class="section level3" number="4.0.2">
+<h3><span class="header-section-number">4.0.2</span> References</h3>
 <ul>
-<li>This question touches the essence of computational thinking: “formulating a problem and expressing its solution in a way that a computer—human or machine—can effectively carry out” (defined by <a href="http://www.cs.cmu.edu/afs/cs/usr/wing/www/publications/Wing06.pdf">Jeannette M. Wing</a>)</li>
-</ul>
-<p>This book teaches how you to do that in R in incremental steps.</p>
+<li><p>Writing code</p>
 <ul>
-<li><p>From graphic user interface to command-line interface (ch 3)</p></li>
-<li><p>From short programs to long programs (ch 4-5)</p></li>
-<li><p>The ultimate goal is to solve complex problems at scale using computation (ch 6-7)</p></li>
-</ul>
-<blockquote>
-<p>“[W]e wanted users to be able to begin in an interactive environment, where they did not consciously think of themselves as progamming. Then as their needs became clearer and their sophistication increased, they should be able to slide gradually into programming, when the language and system aspects would become more important.” - <em>Stages in the Evolution of S</em> by John Chambers (S is the progenitor of R)</p>
-</blockquote>
+<li>Style guides
 <ul>
-<li><p>Beginners! Learning programming is a long game. The most important learning method (for almost any training) is consistency. Never stop writing code even though your current code may fall far short of the perfection.
-<img src="misc/wickham.png" /></p></li>
-<li><p>Intermediate programmers! Try to empower, not intimidate, newbies. The most important rule in computational social science community (at least, in my opinion) is being nice. Read David Robinson’s <a href="http://varianceexplained.org/programming/bad-code/">“A Million Lines of Bad Code”</a> for more insights.</p></li>
-</ul>
-<p><img src="http://imgs.xkcd.com/comics/code_quality.png" /></p>
-</div>
-<div id="computational-way-of-thinking-about-data" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Computational way of thinking about data</h2>
+<li>R
 <ul>
-<li>Berkeley’s widely praised data science undergraduate education is built upon both inferential (statistics) and computational thinking. <a href="https://www.inferentialthinking.com/chapters/intro">The textbook</a> used for teaching its most fundamental course (Data8) underscores computational thinking because “programming allows us to apply analysis techniques to the large and diverse data sets that arise in real-world applications: not just numbers, but text, images, videos, and sensor readings.” This is also exactly the point of this textbook and explains how its content is organized.</li>
-</ul>
-<div id="structure" class="section level3" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> Structure</h3>
-<ul>
-<li><p>Fixed number of columns and rows?</p>
-<ul>
-<li><p>Yes!: Structured data (e.g., Excel spreadsheets, CSVs)</p>
-<ul>
-<li>Tidy data (a special case of structured data)</li>
+<li><a href="https://google.GitHub.io/styleguide/Rguide.xml">Google’s R style guide</a></li>
+<li><a href="http://r-pkgs.had.co.nz/r.html">R code style guide</a> by Hadley Wickham</li>
+<li><a href="http://style.tidyverse.org/">The tidyverse style guide</a> by Hadley Wickham</li>
 </ul></li>
-<li><p>No!: semi-structured data (e.g., PDFs, websites, and social media posts) unstructured data (e.g., plain texts)</p></li>
+<li>Python
+<ul>
+<li><a href="https://GitHub.com/google/styleguide/blob/gh-pages/pyguide.md">Google Python Style Guide</a></li>
+<li><a href="https://docs.python-guide.org/writing/style/#zen-of-python">Code Style</a> by the Hitchhiker’s Guide to Python</li>
 </ul></li>
-</ul>
-</div>
-<div id="dimension" class="section level3" number="2.2.2">
-<h3><span class="header-section-number">2.2.2</span> Dimension</h3>
-<p>Suppose n = the number of observations and p = the number of variables</p>
-<ul>
-<li><p>Low-dimensional data (n &gt; p)</p>
-<ul>
-<li>Most survey, experimental, and administrative data</li>
-</ul></li>
-<li><p>High-dimensional data (n &lt; p)</p>
-<ul>
-<li>Text, speech, image, video, etc</li>
-</ul></li>
-</ul>
-</div>
-<div id="size" class="section level3" number="2.2.3">
-<h3><span class="header-section-number">2.2.3</span> Size</h3>
-<ul>
-<li>Small and medium data: Data fit in your laptop’s memory</li>
-<li>Big data: Data don’t fit in your laptop’s memory</li>
-</ul>
-</div>
-</div>
-<div id="computational-way-of-thinking-about-research-process" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Computational way of thinking about research process</h2>
-<p>Computational tools and techniques make …</p>
-<ul>
-<li><p>Doing traditional research easier, faster, and scalable</p>
-<ul>
-<li>Data wrangling</li>
-<li>Modeling</li>
-<li>Visualization</li>
-</ul></li>
-<li><p>Documentation and collaboration easier, faster and scalable</p>
-<ul>
-<li>Dynamic reporting (markdown)</li>
-<li>Version control system (Git and GitHub)</li>
-</ul></li>
-<li><p>Collecting and analyzing large and complex data feasible</p>
-<ul>
-<li><p>Digital data collection (web scraping and API)</p>
-<ul>
-<li>Building a data infrastructure (SQL)</li>
-</ul></li>
-<li><p>Machine learning</p>
-<ul>
-<li>Text as data, image as data, etc</li>
-<li>Machine learning applications to surveys and experiments</li>
 </ul></li>
 </ul></li>
 </ul>
-</div>
-<div id="references" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> References</h2>
-<p>Here are a couple of useful videos that introduce the main concepts of computational social science. Matthew Salganik (Professor of Sociology at Princeton) is co-founder of the <a href="https://sicss.io/">Summer Institute in Computational Social Science</a> and Rayid Ghani (Professor of Machine Learning and Public Policy at Carnegie Mellon) is founder of the <a href="https://www.dssgfellowship.org/">Data Science for Social Good</a>. (Full disclaimer: I’m a former participant (Princeton 2019) and local organizer (<a href="https://sicss.io/2020/bay_area/">Bay Area 2020</a>) of the Summer Institute in Computational Social Science. If you become interested in computational social science and wonder what should be your next step, I would highly recommend applying for the program.) Data Science for Social Good is another cool program that deserves your attention.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zGG9wPl1C5E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p An Introduction to Computational Social Science, Summer Institute in Computational Social Science /p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/GTUozT9qxVw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p Rayid Ghani | Keynote: Using Data Science for Social Good: Examples, Opportunities, and Challenges /p>
 
 </div>
 </div>
@@ -541,8 +468,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="git-bash.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="git-bash.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tidy-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
