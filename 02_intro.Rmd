@@ -1873,7 +1873,7 @@ test_that("Check whether instructor variable is setup correctly", {
 Inspired by an example in Hadley Wickham's [R Journal paper](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf
 ) (2011).
 
-```{r}
+```{r eval = FALSE}
 
 context("Model check")
 

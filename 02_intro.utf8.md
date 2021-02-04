@@ -1946,11 +1946,6 @@ test_that("Check whether the model is lm", {
 })
 ```
 
-```
-## -- Failure (<text>:12:3): Check whether the model is lm ------------------------
-## `x` inherits from `lm` not `glm`.
-```
-
 # Run tests 
 
 
