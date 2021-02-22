@@ -2811,7 +2811,7 @@ Model-Inquire-Data Strategy-Answer Strategy (MIDA) by Graeme Blair, Jasper Coope
 
 1. Setup 
 
-* Model: a speculatioin of how the world works (variables plus their relationships)
+* Model: a speculation of how the world works (variables plus their relationships)
 
 ```{r}
 population <- declare_population(N = 1000, 
@@ -2917,7 +2917,7 @@ diagnose_design(three_arm)
 
 Experimenters! Consider writing and registering a pre-analysis before running your experiment. Here are tools that can help creating a pre-registration so easy. The following information comes from David Broockman's [very helpful Twitter thread](https://twitter.com/dbroockman/status/1350897814499336192). 
 
-1. Write code using fake data. If you are using Qualtrics, you can generate test responses using the platform: https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/
+1. Write code using fake data. If you are using , you can generate test responses using the platform: https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/
 
 2. Register the pre-analysis using [ASPREDICTED](https://aspredicted.org/), "a platform that makes it easy for researchers to pre-register their studies, and easy for others to read and evaluate those pre-registrations." It creates an anonymized PDF file filled with the answers you provided and a blinded link.  
 
@@ -3546,11 +3546,11 @@ out <- lm(
 
 **Challenge**
 
-Try glance(out), what did you get from these commands? If you're curious, you can try ?glance.
+Try `glance(out)`, what did you get from these commands? If you're curious, you can try `?glance`.
 
 The followings are to show your degree of confidence.
 
-##### Coeffficients
+##### Coefficients
 
 ```{r}
 # estimates
