@@ -625,6 +625,10 @@ flights %>%
 ```
 
 ```
+## `summarise()` has grouped output by 'month'. You can override using the `.groups` argument.
+```
+
+```
 ## # Source:   lazy query [?? x 3]
 ## # Database: sqlite 3.34.1 [:memory:]
 ## # Groups:   month
@@ -654,6 +658,10 @@ flights %>%
   group_by(month, day) %>%
   summarise(delay = mean(dep_delay)) %>%
   show_query() # Show the SQL equivalent!
+```
+
+```
+## `summarise()` has grouped output by 'month'. You can override using the `.groups` argument.
 ```
 
 ```

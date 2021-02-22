@@ -1946,7 +1946,7 @@ test_that("Check whether the model is lm", {
 })
 ```
 
-# Run tests 
+## Run tests 
 
 
 ```r

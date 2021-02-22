@@ -4880,7 +4880,7 @@ tablea %>% flextable::flextable()
 ```
 
 ```{=html}
-<template id="5b4900f8-a88b-4321-8cdc-02a4f1faa34d"><style>
+<template id="0cc0c353-0941-47b7-b218-dde88a461b5c"><style>
 .tabwid table{
   border-collapse:collapse;
   line-height:1;
@@ -4914,15 +4914,15 @@ tablea %>% flextable::flextable()
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-8e6551e4{border-collapse:collapse;}.cl-8e5eaa7e{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-8e5ec95a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-8e5ec982{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-8e5f0820{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8e5f0848{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8e5f0852{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8e5f085c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8e5f0866{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8e5f087a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}caption {color: #777;margin-top: 10px;margin-bottom: 10px;text-align: center;}</style><table class='cl-8e6551e4'>
+</style><div class="tabwid"><style>.cl-a8b18206{border-collapse:collapse;}.cl-a8a8321e{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a8a85258{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-a8a85280{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-a8a8a456{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a8a8a47e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a8a8a492{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a8a8a4a6{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a8a8a4b0{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a8a8a4ba{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}caption {color: #777;margin-top: 10px;margin-bottom: 10px;text-align: center;}</style><table class='cl-a8b18206'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-8e5f0866"><p class="cl-8e5ec95a"><span class="cl-8e5eaa7e">continent</span></p></td><td class="cl-8e5f087a"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">n</span></p></td><td class="cl-8e5f087a"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">mean_gdp</span></p></td><td class="cl-8e5f087a"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-8e5f0820"><p class="cl-8e5ec95a"><span class="cl-8e5eaa7e">Africa</span></p></td><td class="cl-8e5f0848"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">624</span></p></td><td class="cl-8e5f0848"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">2,193.8</span></p></td><td class="cl-8e5f0848"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">2,827.9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-8e5f0820"><p class="cl-8e5ec95a"><span class="cl-8e5eaa7e">Americas</span></p></td><td class="cl-8e5f0848"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">300</span></p></td><td class="cl-8e5f0848"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">7,136.1</span></p></td><td class="cl-8e5f0848"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">6,396.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-8e5f0820"><p class="cl-8e5ec95a"><span class="cl-8e5eaa7e">Asia</span></p></td><td class="cl-8e5f0848"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">396</span></p></td><td class="cl-8e5f0848"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">7,902.2</span></p></td><td class="cl-8e5f0848"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">14,045.4</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-8e5f0820"><p class="cl-8e5ec95a"><span class="cl-8e5eaa7e">Europe</span></p></td><td class="cl-8e5f0848"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">360</span></p></td><td class="cl-8e5f0848"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">14,469.5</span></p></td><td class="cl-8e5f0848"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">9,355.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-8e5f0852"><p class="cl-8e5ec95a"><span class="cl-8e5eaa7e">Oceania</span></p></td><td class="cl-8e5f085c"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">24</span></p></td><td class="cl-8e5f085c"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">18,621.6</span></p></td><td class="cl-8e5f085c"><p class="cl-8e5ec982"><span class="cl-8e5eaa7e">6,359.0</span></p></td></tr></tbody></table></div></template>
-<div id="a0eadf9e-d75d-4852-b278-d03f2d038371"></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-a8a8a4b0"><p class="cl-a8a85258"><span class="cl-a8a8321e">continent</span></p></td><td class="cl-a8a8a4ba"><p class="cl-a8a85280"><span class="cl-a8a8321e">n</span></p></td><td class="cl-a8a8a4ba"><p class="cl-a8a85280"><span class="cl-a8a8321e">mean_gdp</span></p></td><td class="cl-a8a8a4ba"><p class="cl-a8a85280"><span class="cl-a8a8321e">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-a8a8a456"><p class="cl-a8a85258"><span class="cl-a8a8321e">Africa</span></p></td><td class="cl-a8a8a47e"><p class="cl-a8a85280"><span class="cl-a8a8321e">624</span></p></td><td class="cl-a8a8a47e"><p class="cl-a8a85280"><span class="cl-a8a8321e">2,193.755</span></p></td><td class="cl-a8a8a47e"><p class="cl-a8a85280"><span class="cl-a8a8321e">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a8a8a456"><p class="cl-a8a85258"><span class="cl-a8a8321e">Americas</span></p></td><td class="cl-a8a8a47e"><p class="cl-a8a85280"><span class="cl-a8a8321e">300</span></p></td><td class="cl-a8a8a47e"><p class="cl-a8a85280"><span class="cl-a8a8321e">7,136.110</span></p></td><td class="cl-a8a8a47e"><p class="cl-a8a85280"><span class="cl-a8a8321e">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a8a8a456"><p class="cl-a8a85258"><span class="cl-a8a8321e">Asia</span></p></td><td class="cl-a8a8a47e"><p class="cl-a8a85280"><span class="cl-a8a8321e">396</span></p></td><td class="cl-a8a8a47e"><p class="cl-a8a85280"><span class="cl-a8a8321e">7,902.150</span></p></td><td class="cl-a8a8a47e"><p class="cl-a8a85280"><span class="cl-a8a8321e">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a8a8a456"><p class="cl-a8a85258"><span class="cl-a8a8321e">Europe</span></p></td><td class="cl-a8a8a47e"><p class="cl-a8a85280"><span class="cl-a8a8321e">360</span></p></td><td class="cl-a8a8a47e"><p class="cl-a8a85280"><span class="cl-a8a8321e">14,469.476</span></p></td><td class="cl-a8a8a47e"><p class="cl-a8a85280"><span class="cl-a8a8321e">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a8a8a492"><p class="cl-a8a85258"><span class="cl-a8a8321e">Oceania</span></p></td><td class="cl-a8a8a4a6"><p class="cl-a8a85280"><span class="cl-a8a8321e">24</span></p></td><td class="cl-a8a8a4a6"><p class="cl-a8a85280"><span class="cl-a8a8321e">18,621.609</span></p></td><td class="cl-a8a8a4a6"><p class="cl-a8a85280"><span class="cl-a8a8321e">6,358.983</span></p></td></tr></tbody></table></div></template>
+<div id="5eefdaae-0c3f-42db-905b-3c7aafa50be1"></div>
 <script>
-var dest = document.getElementById("a0eadf9e-d75d-4852-b278-d03f2d038371");
-var template = document.getElementById("5b4900f8-a88b-4321-8cdc-02a4f1faa34d");
+var dest = document.getElementById("5eefdaae-0c3f-42db-905b-3c7aafa50be1");
+var template = document.getElementById("0cc0c353-0941-47b7-b218-dde88a461b5c");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -6322,6 +6322,12 @@ You can add other estimators such as Conditional Average Treatment Effect (CATE)
 estimand_ate <- declare_estimand(ATE = mean(Y_Z_1 - Y_Z_0))
 ```
 
+```
+## Warning: 'declare_estimand' is deprecated.
+## Use 'declare_inquiry' instead.
+## See help("Deprecated")
+```
+
 * Data strategy: a description of sampling (or case selection) + intervention strategy  
 
 
@@ -6353,6 +6359,11 @@ design
 ```
 
 ```
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+```
+
+```
 ## 
 ## Design Summary
 ## 
@@ -6379,11 +6390,11 @@ design
 ##    min median mean  max   sd N_missing N_unique
 ##  -2.85   0.93 0.96 4.36 1.02         0     1000
 ## 
-## Step 3 (estimand): declare_estimand(ATE = mean(Y_Z_1 - Y_Z_0)) -----------------
+## Step 3 (inquiry): declare_inquiry(ATE = ..1) -----------------------------------
 ## 
-## A single draw of the estimand:
-##  estimand_label  estimand
-##             ATE 0.9600409
+## A single draw of the inquiry:
+##  inquiry_label  estimand
+##            ATE 0.9600409
 ## 
 ## Step 4 (sampling): declare_sampling(n = 250) -----------------------------------
 ## 
@@ -6459,8 +6470,8 @@ design
 ## A single draw of the estimator:
 ##  estimator_label term estimate std.error statistic      p.value  conf.low
 ##        estimator    Z 1.010462 0.1370808  7.371286 1.768003e-09 0.7349878
-##  conf.high df outcome estimand_label
-##   1.285936 49       Y            ATE
+##  conf.high df outcome inquiry_label
+##   1.285936 49       Y           ATE
 ```
 
 2. Applications 
@@ -6489,15 +6500,22 @@ head(fake_data)
 
 ```r
 estimates <- draw_estimates(design)
+```
 
+```
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+```
+
+```r
 estimates
 ```
 
 ```
 ##   estimator_label term estimate std.error statistic      p.value  conf.low
 ## 1       estimator    Z 1.194527 0.1361679   8.77246 1.290575e-11 0.9208878
-##   conf.high df outcome estimand_label
-## 1  1.468167 49       Y            ATE
+##   conf.high df outcome inquiry_label
+## 1  1.468167 49       Y           ATE
 ```
 
 * Diagnosis 
@@ -6509,7 +6527,3011 @@ Diagnosis is done using a Monte Carlo approach (=simulating many times using boo
 diagnosis <- diagnose_design(design, 
                              sims = 1000, 
                              bootstrap_sims = 500)
+```
 
+```
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+
+## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
+## instead.
+```
+
+```r
 diagnosis
 ```
 
@@ -6517,12 +9539,12 @@ diagnosis
 ## 
 ## Research design diagnosis based on 1000 simulations. Diagnosand estimates with bootstrapped standard errors in parentheses (500 replicates).
 ## 
-##  Design Label Estimand Label Estimator Label Term N Sims   Bias   RMSE  Power
-##        design            ATE       estimator    Z   1000  -0.00   0.13   1.00
-##                                                          (0.00) (0.00) (0.00)
-##  Coverage Mean Estimate SD Estimate Mean Se Type S Rate Mean Estimand
-##      0.96          1.00        0.14    0.14        0.00          1.00
-##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
+##  Design Label Inquiry Label Estimator Label Term N Sims   Bias   RMSE  Power
+##        design           ATE       estimator    Z   1000  -0.00   0.13   1.00
+##                                                         (0.00) (0.00) (0.00)
+##  Coverage Mean Estimate SD Estimate Mean Se Type S Rate Mean Inquiry
+##      0.96          1.00        0.14    0.14        0.00         1.00
+##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
 ```
 
 ```r
@@ -6539,28 +9561,65 @@ Doing the power analysis for a three-arm experiment.
 ```r
 three_arm <- multi_arm_designer(N = 1000, m = 3, 
                    outcome_means = c(0, 0.1, 0.2))
+```
 
+```
+## Warning: 'declare_estimands' is deprecated.
+## Use 'declare_inquiry' instead.
+## See help("Deprecated")
+```
+
+```r
 diagnose_design(three_arm)
+```
+
+```
+## Warning in (function (design, sims, low_simulations_warning = TRUE) : Estimators
+## lack inquiry/term labels for matching, a many-to-many merge was performed.
 ```
 
 ```
 ## 
 ## Research design diagnosis based on 500 simulations. Diagnosand estimates with bootstrapped standard errors in parentheses (100 replicates).
 ## 
-##  Design Label Estimand Label Estimator Label N Sims   Bias   RMSE  Power
-##     three_arm      ate_Y_2_1 DIM (Z_2 - Z_1)    500   0.00   0.07   0.26
-##                                                     (0.00) (0.00) (0.02)
-##     three_arm      ate_Y_3_1 DIM (Z_3 - Z_1)    500   0.00   0.07   0.75
-##                                                     (0.00) (0.00) (0.02)
-##     three_arm      ate_Y_3_2 DIM (Z_3 - Z_2)    500   0.00   0.08   0.26
-##                                                     (0.00) (0.00) (0.02)
-##  Coverage Mean Estimate SD Estimate Mean Se Type S Rate Mean Estimand
-##      0.97          0.10        0.07    0.08        0.00          0.10
-##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
-##      0.96          0.20        0.07    0.08        0.00          0.20
-##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
-##      0.96          0.10        0.08    0.08        0.00          0.10
-##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
+##  Design Label Inquiry Label Estimator Label N Sims   Bias   RMSE  Power
+##     three_arm     ate_Y_2_1 DIM (Z_2 - Z_1)    500   0.00   0.07   0.26
+##                                                    (0.00) (0.00) (0.02)
+##     three_arm     ate_Y_2_1 DIM (Z_3 - Z_1)    500   0.10   0.13   0.75
+##                                                    (0.00) (0.00) (0.02)
+##     three_arm     ate_Y_2_1 DIM (Z_3 - Z_2)    500   0.00   0.08   0.26
+##                                                    (0.00) (0.00) (0.02)
+##     three_arm     ate_Y_3_1 DIM (Z_2 - Z_1)    500  -0.10   0.12   0.26
+##                                                    (0.00) (0.00) (0.02)
+##     three_arm     ate_Y_3_1 DIM (Z_3 - Z_1)    500   0.00   0.07   0.75
+##                                                    (0.00) (0.00) (0.02)
+##     three_arm     ate_Y_3_1 DIM (Z_3 - Z_2)    500  -0.10   0.13   0.26
+##                                                    (0.00) (0.00) (0.02)
+##     three_arm     ate_Y_3_2 DIM (Z_2 - Z_1)    500   0.00   0.07   0.26
+##                                                    (0.00) (0.00) (0.02)
+##     three_arm     ate_Y_3_2 DIM (Z_3 - Z_1)    500   0.10   0.13   0.75
+##                                                    (0.00) (0.00) (0.02)
+##     three_arm     ate_Y_3_2 DIM (Z_3 - Z_2)    500   0.00   0.08   0.26
+##                                                    (0.00) (0.00) (0.02)
+##  Coverage Mean Estimate SD Estimate Mean Se Type S Rate Mean Inquiry
+##      0.97          0.10        0.07    0.08        0.00         0.10
+##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
+##      0.75          0.20        0.07    0.08        0.00         0.10
+##    (0.02)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
+##      0.96          0.10        0.08    0.08        0.00         0.10
+##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
+##      0.77          0.10        0.07    0.08        0.00         0.20
+##    (0.02)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
+##      0.96          0.20        0.07    0.08        0.00         0.20
+##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
+##      0.76          0.10        0.08    0.08        0.00         0.20
+##    (0.02)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
+##      0.97          0.10        0.07    0.08        0.00         0.10
+##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
+##      0.75          0.20        0.07    0.08        0.00         0.10
+##    (0.02)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
+##      0.96          0.10        0.08    0.08        0.00         0.10
+##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
 ```
 
 **Additional tips**
