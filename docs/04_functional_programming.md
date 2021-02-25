@@ -56,7 +56,7 @@ pacman::p_load(
 
 * Whereas operations to be executed after conditional evaluations in Python come after a ```:```, R operations must only be enclosed in curly brackets: ```{}```.  Furthermore, there is no requirement for indentation. 
 
-#### if (one condition) 
+### if (one condition) 
 
 
 ```r
@@ -81,7 +81,7 @@ if (x < 0) {
 ## [1] "x is negative"
 ```
 
-#### if + else (two conditions)
+### if + else (two conditions)
 
 
 ```r
@@ -98,7 +98,7 @@ if (x < 0) {
 ## [1] "x is positive"
 ```
 
-#### if + else if + else (three conditions)
+### if + else if + else (three conditions)
 
 
 ```r

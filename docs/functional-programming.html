@@ -272,9 +272,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="functional-programming.html"><a href="functional-programming.html#learning-objectives"><i class="fa fa-check"></i><b>5.1</b> Learning objectives</a></li>
 <li class="chapter" data-level="5.2" data-path="functional-programming.html"><a href="functional-programming.html#flow"><i class="fa fa-check"></i><b>5.2</b> Flow control</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="functional-programming.html"><a href="functional-programming.html#functions"><i class="fa fa-check"></i><b>5.2.1</b> Functions</a></li>
-<li class="chapter" data-level="5.2.2" data-path="functional-programming.html"><a href="functional-programming.html#for-loop"><i class="fa fa-check"></i><b>5.2.2</b> for loop</a></li>
-<li class="chapter" data-level="5.2.3" data-path="functional-programming.html"><a href="functional-programming.html#apply-family"><i class="fa fa-check"></i><b>5.2.3</b> apply family</a></li>
+<li class="chapter" data-level="5.2.1" data-path="functional-programming.html"><a href="functional-programming.html#if-one-condition"><i class="fa fa-check"></i><b>5.2.1</b> if (one condition)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="functional-programming.html"><a href="functional-programming.html#if-else-two-conditions"><i class="fa fa-check"></i><b>5.2.2</b> if + else (two conditions)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="functional-programming.html"><a href="functional-programming.html#if-else-if-else-three-conditions"><i class="fa fa-check"></i><b>5.2.3</b> if + else if + else (three conditions)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="functional-programming.html"><a href="functional-programming.html#functions"><i class="fa fa-check"></i><b>5.2.4</b> Functions</a></li>
+<li class="chapter" data-level="5.2.5" data-path="functional-programming.html"><a href="functional-programming.html#for-loop"><i class="fa fa-check"></i><b>5.2.5</b> for loop</a></li>
+<li class="chapter" data-level="5.2.6" data-path="functional-programming.html"><a href="functional-programming.html#apply-family"><i class="fa fa-check"></i><b>5.2.6</b> apply family</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="functional-programming.html"><a href="functional-programming.html#purrr"><i class="fa fa-check"></i><b>5.3</b> purrr</a>
 <ul>
@@ -464,8 +467,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>else</code>, however, is a reserved operator that takes no arguments. Note that there is no <code>elif</code> option — one simply writes <code>else if()</code>.</p></li>
 <li><p>Whereas operations to be executed after conditional evaluations in Python come after a <code>:</code>, R operations must only be enclosed in curly brackets: <code>{}</code>. Furthermore, there is no requirement for indentation.</p></li>
 </ul>
-<div id="if-one-condition" class="section level4" number="5.2.0.1">
-<h4><span class="header-section-number">5.2.0.1</span> if (one condition)</h4>
+<div id="if-one-condition" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> if (one condition)</h3>
 <div class="sourceCode" id="cb906"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb906-1"><a href="functional-programming.html#cb906-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
 <span id="cb906-2"><a href="functional-programming.html#cb906-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb906-3"><a href="functional-programming.html#cb906-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) { <span class="co"># Condition </span></span>
@@ -478,8 +481,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb907-5"><a href="functional-programming.html#cb907-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;x is negative&quot;</code></pre>
 </div>
-<div id="if-else-two-conditions" class="section level4" number="5.2.0.2">
-<h4><span class="header-section-number">5.2.0.2</span> if + else (two conditions)</h4>
+<div id="if-else-two-conditions" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> if + else (two conditions)</h3>
 <div class="sourceCode" id="cb909"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb909-1"><a href="functional-programming.html#cb909-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
 <span id="cb909-2"><a href="functional-programming.html#cb909-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb909-3"><a href="functional-programming.html#cb909-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
@@ -489,8 +492,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb909-7"><a href="functional-programming.html#cb909-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;x is positive&quot;</code></pre>
 </div>
-<div id="if-else-if-else-three-conditions" class="section level4" number="5.2.0.3">
-<h4><span class="header-section-number">5.2.0.3</span> if + else if + else (three conditions)</h4>
+<div id="if-else-if-else-three-conditions" class="section level3" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> if + else if + else (three conditions)</h3>
 <div class="sourceCode" id="cb911"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb911-1"><a href="functional-programming.html#cb911-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb911-2"><a href="functional-programming.html#cb911-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb911-3"><a href="functional-programming.html#cb911-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) { <span class="co"># Condition </span></span>
@@ -509,8 +512,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Instead, write functions and, if necessary, use <code>if()</code> only. We’ll come back to this later.</li>
 </ul>
 </div>
-<div id="functions" class="section level3" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Functions</h3>
+<div id="functions" class="section level3" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> Functions</h3>
 <p>While functions are defined in Python using the <code>def</code> reserved operator, R sees functions as just another type of named object. Thus, they require explicit assignment to an object. This is done using the function <code>function()</code>, which creates a function taking the arguments specified in parentheses.</p>
 <p>function = input + computation (begin -&gt; end) + output</p>
 <div class="sourceCode" id="cb913"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb913-1"><a href="functional-programming.html#cb913-1" aria-hidden="true" tabindex="-1"></a>simple.function <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
@@ -707,8 +710,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 24 32.4 1
 ## 25 33.9 1</code></pre>
 </div>
-<div id="for-loop" class="section level3" number="5.2.2">
-<h3><span class="header-section-number">5.2.2</span> for loop</h3>
+<div id="for-loop" class="section level3" number="5.2.5">
+<h3><span class="header-section-number">5.2.5</span> for loop</h3>
 <div class="figure">
 <img src="https://teachtogether.tech/en/figures/for-loop.svg" alt="" />
 <p class="caption">Concept map for a for loop. Source: <a href="https://teachtogether.tech/en/index.html#s:memory-concept-maps" class="uri">https://teachtogether.tech/en/index.html#s:memory-concept-maps</a></p>
@@ -739,8 +742,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] &quot;pears&quot;
 ## [1] &quot;bananas&quot;</code></pre>
 </div>
-<div id="apply-family" class="section level3" number="5.2.3">
-<h3><span class="header-section-number">5.2.3</span> apply family</h3>
+<div id="apply-family" class="section level3" number="5.2.6">
+<h3><span class="header-section-number">5.2.6</span> apply family</h3>
 <p>While and for loops in R can be very slow. For this reason, R has a number of built-in iteration methods to speed up execution times. In many cases, packages will have “behind-the-scenes” ways to avoid for loops, but what if you need to write your own function?</p>
 <p>A common method of getting around for loops is the <strong>apply</strong> family of functions. These take a data structure and a function, and applies a function over all the elements in the object.</p>
 <div class="sourceCode" id="cb959"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb959-1"><a href="functional-programming.html#cb959-1" aria-hidden="true" tabindex="-1"></a>fruit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;banana&quot;</span>)</span>
