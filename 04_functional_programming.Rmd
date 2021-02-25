@@ -14,7 +14,7 @@ This chapter helps you to step up your R skills with functional programming. The
 
 ## Learning objectives
 
-0.  How to use control flow in R using `if_`, `for loop`, and `apply` \ref{flow}
+0.  How to use control flow in R using `if_`, `for loop`, and `apply` 
 1.  How to use `map()` to automate workflow in a cleaner, faster, and more extendable way  
 2.  How to use `map2()` and `pmap()` to avoid writing nested loops
 3.  How to use `map()` and `glue()` to automate creating multiple plots
@@ -23,7 +23,7 @@ This chapter helps you to step up your R skills with functional programming. The
 6.  How to use `safely()` and `possibly()` to make error handling easier
 7.  How to develop your own data products (e.g., R packages, Shiny apps) 
 
-- Setup 
+## Setup 
 
 ```{r}
 # Install packages

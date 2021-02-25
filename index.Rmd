@@ -31,7 +31,7 @@ The book is not intended to be a comprehensive guide for computational social sc
 
 The book is currently divided into two main subjects (fundamentals and applications) and seven main sessions.
 
-### Part I Fundamentals
+## Part I Fundamentals
 
 1. [Why computational thinking](#motivation)
 
@@ -41,7 +41,7 @@ The book is currently divided into two main subjects (fundamentals and applicati
 
 4. [How to use functions to automate repeated things and develop data products (e.g., packages and apps)](#functional_programming) 
 
-### Part II Applications
+## Part II Applications
 
 5. [How to collect and parse semi-structured data at scale (e.g., using APIs and webscraping)](#semi_structured_data) 
 
