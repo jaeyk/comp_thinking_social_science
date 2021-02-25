@@ -41,14 +41,20 @@ pacman::p_load(
 
 * Whereas operations to be executed after conditional evaluations in Python come after a ```:```, R operations must only be enclosed in curly brackets: ```{}```.  Furthermore, there is no requirement for indentation. 
 
+#### if (one condition) 
+
 
 ```r
 x <- 5
 
 if (x < 0) { # Condition 
   print("x is negative") # Do something 
-} 
+}
+```
 
+
+
+```r
 x <- -5
 
 if (x < 0) {
@@ -59,6 +65,9 @@ if (x < 0) {
 ```
 ## [1] "x is negative"
 ```
+
+#### if + else (two conditions)
+
 
 ```r
 x <- 5
@@ -73,6 +82,9 @@ if (x < 0) {
 ```
 ## [1] "x is positive"
 ```
+
+#### if + else if + else (three conditions)
+
 
 ```r
 x <- 0
@@ -92,104 +104,9 @@ if (x < 0) { # Condition
 ```
 ## [1] "x is zero"
 ```
-R also does some class coercion that makes Boolean evaluations harder to break than in Python.  But be careful --- R has a set of special coercion used for fast logical evaluation and subsetting.  Specifically, ```TRUE``` is considered equal to ```1```, while ```FALSE``` is equal to ```0```. The Boolean logicals can also be specified as a full word in all caps, or simply as ```T``` or ```F```.
 
-
-```r
-1 < 2
-```
-
-```
-## [1] TRUE
-```
-
-```r
-"1" < 2
-```
-
-```
-## [1] TRUE
-```
-
-```r
-"a" < 2
-```
-
-```
-## [1] FALSE
-```
-
-```r
-TRUE < 2
-```
-
-```
-## [1] TRUE
-```
-
-```r
-TRUE == "TRUE"
-```
-
-```
-## [1] TRUE
-```
-
-```r
-T == "TRUE"
-```
-
-```
-## [1] TRUE
-```
-
-```r
-TRUE == "T"
-```
-
-```
-## [1] FALSE
-```
-
-```r
-TRUE == "FALSE"
-```
-
-```
-## [1] FALSE
-```
-
-```r
-TRUE == 0
-```
-
-```
-## [1] FALSE
-```
-
-```r
-TRUE == 1
-```
-
-```
-## [1] TRUE
-```
-
-```r
-FALSE == 0
-```
-
-```
-## [1] TRUE
-```
-
-```r
-FALSE <= 1
-```
-
-```
-## [1] TRUE
-```
+- In general, it's not a good idea to write nested code (lots of `else_if()` or `ifelse()`). It's difficult to read, debug, modulize, and extend. 
+- Instead, write functions and, if necessary, use `if()` only. We'll come back to this later.
 
 ### Functions 
 
@@ -392,6 +309,7 @@ g(2) # a equals still 1
 ```
 ## [1] 4
 ```
+
 **Additional tips**
 
 * Nonstandard evaluation 
@@ -1194,7 +1112,7 @@ toc()
 ```
 
 ```
-## 0.006 sec elapsed
+## 0.008 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1219,7 +1137,7 @@ toc()
 
 **Additional tips**
 
-Performance testing (profiling) is an important part of programming. `tictic()` measures the time that needs to take to run a target function for once. If you want a more robust measure of timing as well as information on memory (**speed** and **space** both matter for performance testing), consider using the [`bench` package](https://github.com/r-lib/bench) that is designed for high precising timing of R expressions. 
+Performance testing (profiling) is an important part of programming. `tictoc()` measures the time that needs to take to run a target function for once. If you want a more robust measure of timing as well as information on memory (**speed** and **space** both matter for performance testing), consider using the [`bench` package](https://github.com/r-lib/bench) that is designed for high precising timing of R expressions. 
 
 
 
@@ -1235,10 +1153,11 @@ map_mark
 
 ```
 ## # A tibble: 1 x 6
-##   expression                                            min median `itr/sec`
-##   <bch:expr>                                         <bch:> <bch:>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 66.9µs 76.1µs     7956.
-## # … with 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
+##   expression                                              min   median `itr/sec`
+##   <bch:expr>                                         <bch:tm> <bch:tm>     <dbl>
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)   67.8µs   76.1µs    10614.
+## # … with 2 more variables: mem_alloc <bch:byt>,
+## #   gc/sec <dbl>
 ```
 
 #### Applications 
@@ -1339,7 +1258,7 @@ qplot(y_means) +
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 
 * rerun() + map()
 
@@ -1363,7 +1282,7 @@ y_means_tidy <- map_dbl(y_tidy, mean)
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
 ## Automote 2 or 2+ tasks
 
@@ -1540,7 +1459,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-39-1.png" width="672" />
 
 ```r
 airquality %>%
@@ -1556,7 +1475,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-37-2.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-39-2.png" width="672" />
 
 ```r
 airquality %>%
@@ -1572,7 +1491,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-37-3.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-39-3.png" width="672" />
 
 ### Solution 
 
@@ -1620,7 +1539,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-39-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-41-1.png" width="672" />
 
 - The next step is to write an automatic plotting function. 
 
@@ -1654,7 +1573,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-1.png" width="672" />
 
 ```
 ## 
@@ -1665,7 +1584,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-41-2.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-2.png" width="672" />
 
 ```
 ## 
@@ -1676,7 +1595,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-41-3.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-3.png" width="672" />
 
 ```
 ## 
@@ -1687,7 +1606,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-41-4.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-4.png" width="672" />
 
 ```
 ## 
@@ -1698,7 +1617,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-41-5.png" width="672" />
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-5.png" width="672" />
 
 ## Automate joining
 
@@ -2112,7 +2031,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2021-02-22"
+date: "2021-02-25"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 
