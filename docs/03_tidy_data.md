@@ -2819,24 +2819,18 @@ billboard
 ##  8 Aaliyah  I Don'… 2000-01-29      84    62    51    41    38    35    35    38
 ##  9 Aaliyah  Try Ag… 2000-03-18      59    53    38    28    21    18    16    14
 ## 10 Adams, … Open M… 2000-08-26      76    76    74    69    68    67    61    58
-## # … with 307 more rows, and 68 more variables: wk9 <dbl>,
-## #   wk10 <dbl>, wk11 <dbl>, wk12 <dbl>, wk13 <dbl>,
-## #   wk14 <dbl>, wk15 <dbl>, wk16 <dbl>, wk17 <dbl>,
-## #   wk18 <dbl>, wk19 <dbl>, wk20 <dbl>, wk21 <dbl>,
-## #   wk22 <dbl>, wk23 <dbl>, wk24 <dbl>, wk25 <dbl>,
-## #   wk26 <dbl>, wk27 <dbl>, wk28 <dbl>, wk29 <dbl>,
-## #   wk30 <dbl>, wk31 <dbl>, wk32 <dbl>, wk33 <dbl>,
-## #   wk34 <dbl>, wk35 <dbl>, wk36 <dbl>, wk37 <dbl>,
-## #   wk38 <dbl>, wk39 <dbl>, wk40 <dbl>, wk41 <dbl>,
-## #   wk42 <dbl>, wk43 <dbl>, wk44 <dbl>, wk45 <dbl>,
-## #   wk46 <dbl>, wk47 <dbl>, wk48 <dbl>, wk49 <dbl>,
-## #   wk50 <dbl>, wk51 <dbl>, wk52 <dbl>, wk53 <dbl>,
-## #   wk54 <dbl>, wk55 <dbl>, wk56 <dbl>, wk57 <dbl>,
-## #   wk58 <dbl>, wk59 <dbl>, wk60 <dbl>, wk61 <dbl>,
-## #   wk62 <dbl>, wk63 <dbl>, wk64 <dbl>, wk65 <dbl>,
-## #   wk66 <lgl>, wk67 <lgl>, wk68 <lgl>, wk69 <lgl>,
-## #   wk70 <lgl>, wk71 <lgl>, wk72 <lgl>, wk73 <lgl>,
-## #   wk74 <lgl>, wk75 <lgl>, wk76 <lgl>
+## # … with 307 more rows, and 68 more variables: wk9 <dbl>, wk10 <dbl>,
+## #   wk11 <dbl>, wk12 <dbl>, wk13 <dbl>, wk14 <dbl>, wk15 <dbl>, wk16 <dbl>,
+## #   wk17 <dbl>, wk18 <dbl>, wk19 <dbl>, wk20 <dbl>, wk21 <dbl>, wk22 <dbl>,
+## #   wk23 <dbl>, wk24 <dbl>, wk25 <dbl>, wk26 <dbl>, wk27 <dbl>, wk28 <dbl>,
+## #   wk29 <dbl>, wk30 <dbl>, wk31 <dbl>, wk32 <dbl>, wk33 <dbl>, wk34 <dbl>,
+## #   wk35 <dbl>, wk36 <dbl>, wk37 <dbl>, wk38 <dbl>, wk39 <dbl>, wk40 <dbl>,
+## #   wk41 <dbl>, wk42 <dbl>, wk43 <dbl>, wk44 <dbl>, wk45 <dbl>, wk46 <dbl>,
+## #   wk47 <dbl>, wk48 <dbl>, wk49 <dbl>, wk50 <dbl>, wk51 <dbl>, wk52 <dbl>,
+## #   wk53 <dbl>, wk54 <dbl>, wk55 <dbl>, wk56 <dbl>, wk57 <dbl>, wk58 <dbl>,
+## #   wk59 <dbl>, wk60 <dbl>, wk61 <dbl>, wk62 <dbl>, wk63 <dbl>, wk64 <dbl>,
+## #   wk65 <dbl>, wk66 <lgl>, wk67 <lgl>, wk68 <lgl>, wk69 <lgl>, wk70 <lgl>,
+## #   wk71 <lgl>, wk72 <lgl>, wk73 <lgl>, wk74 <lgl>, wk75 <lgl>, wk76 <lgl>
 ```
 
 2.  How can you fix it? Which pivot?
@@ -3491,8 +3485,8 @@ starwars %>%
 ## 15 Mon Mo…    150  NA   auburn     fair        blue              48 fema… femin…
 ## 16 R4-P17      96  NA   none       silver, red red, blue         NA none  femin…
 ## 17 Rey         NA  NA   brown      light       hazel             NA fema… femin…
-## # … with 5 more variables: homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>, starships <list>
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 The following filtering example was inspired by [the suzanbert's dplyr blog post](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/).
@@ -3593,8 +3587,8 @@ starwars %>%
 ## 2 Beru Wh…    165    75 brown       light      blue              47 fema… femin…
 ## 3 Quarsh …    183    NA black       dark       brown             62 <NA>  <NA>  
 ## 4 Cliegg …    183    NA brown       fair       blue              82 male  mascu…
-## # … with 5 more variables: homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>, starships <list>
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 ```r
@@ -3612,8 +3606,8 @@ starwars %>%
 ## 2 Beru Wh…    165    75 brown       light      blue              47 fema… femin…
 ## 3 Quarsh …    183    NA black       dark       brown             62 <NA>  <NA>  
 ## 4 Cliegg …    183    NA brown       fair       blue              82 male  mascu…
-## # … with 5 more variables: homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>, starships <list>
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 ```r
@@ -3637,9 +3631,8 @@ starwars %>%
 ##  8 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…
 ##  9 Lando C…    177  79   black      dark       brown           31   male  mascu…
 ## 10 Arvel C…     NA  NA   brown      fair       brown           NA   male  mascu…
-## # … with 21 more rows, and 5 more variables:
-## #   homeworld <chr>, species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
+## # … with 21 more rows, and 5 more variables: homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>, starships <list>
 ```
 
 **Challenge**
@@ -3665,8 +3658,8 @@ starwars %>%
 ## 4 Chewba…    228   112 brown      unknown     blue              200 male  mascu…
 ## 5 Roos T…    224    82 none       grey        orange             NA male  mascu…
 ## 6 Grievo…    216   159 none       brown, whi… green, ye…         NA male  mascu…
-## # … with 5 more variables: homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>, starships <list>
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 -   Sample by fraction
@@ -3697,8 +3690,8 @@ starwars %>%
 ## 7 Jabba …    175  1358 <NA>       green-tan,… orange         600   herma… mascu…
 ## 8 Darth …    202   136 none       white       yellow          41.9 male   mascu…
 ## 9 Taun We    213    NA none       grey        black           NA   female femin…
-## # … with 5 more variables: homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>, starships <list>
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 ```r
@@ -3723,8 +3716,8 @@ starwars %>%
 ## 6 Darth V…    202 136   none       white      yellow          41.9 male   mascu…
 ## 7 Finn         NA  NA   black      dark       dark            NA   male   mascu…
 ## 8 Boba Fe…    183  78.2 black      fair       brown           31.5 male   mascu…
-## # … with 5 more variables: homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>, starships <list>
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 -   Sample by number
@@ -3763,8 +3756,8 @@ starwars %>%
 ## 18 Ki-Adi…    198    82 white      pale        yellow            92 male  mascu…
 ## 19 BB8         NA    NA none       none        black             NA none  mascu…
 ## 20 Eeth K…    171    NA black      brown       brown             NA male  mascu…
-## # … with 5 more variables: homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>, starships <list>
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 ```r
@@ -3801,8 +3794,8 @@ starwars %>%
 ## 18 Lobot      175    79 none        light      blue              37 male  mascu…
 ## 19 San Hi…    191    NA none        grey       gold              NA male  mascu…
 ## 20 Kit Fi…    196    87 none        green      black             NA male  mascu…
-## # … with 5 more variables: homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>, starships <list>
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 -   Top 10 rows orderd by height
@@ -3828,8 +3821,8 @@ starwars %>%
 ##  8 Grievo…    216   159 none       brown, whi… green, y…       NA   male  mascu…
 ##  9 Tarfful    234   136 brown      brown       blue            NA   male  mascu…
 ## 10 Tion M…    206    80 none       grey        black           NA   male  mascu…
-## # … with 5 more variables: homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>, starships <list>
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 ```r
@@ -3852,8 +3845,8 @@ starwars %>%
 ##  8 Rugor …    206    NA none       green       orange          NA   male  mascu…
 ##  9 Tion M…    206    80 none       grey        black           NA   male  mascu…
 ## 10 Darth …    202   136 none       white       yellow          41.9 male  mascu…
-## # … with 5 more variables: homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>, starships <list>
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 ### Subset variables (columns)
@@ -4056,8 +4049,7 @@ msleep %>%
 ##  8 Roden… Vesp… Calo… <NA>  <NA>                 7        NA        NA      17  
 ##  9 Carni… Dog   Canis carni domesticated        10.1       2.9       0.333  13.9
 ## 10 Artio… Roe … Capr… herbi lc                   3        NA        NA      21  
-## # … with 73 more rows, and 2 more variables:
-## #   brainwt <dbl>, bodywt <dbl>
+## # … with 73 more rows, and 2 more variables: brainwt <dbl>, bodywt <dbl>
 ```
 
 -   Select variables from a character vector.
@@ -4888,7 +4880,7 @@ tablea %>% flextable::flextable()
 ```
 
 ```{=html}
-<template id="5a4bccca-ff7c-42bd-ba18-6ea60031025f"><style>
+<template id="3e0524e1-491f-463d-8430-8adfacbd711a"><style>
 .tabwid table{
   border-collapse:collapse;
   line-height:1;
@@ -4922,15 +4914,15 @@ tablea %>% flextable::flextable()
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-64a808b0{border-collapse:collapse;}.cl-64a296f0{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-64a2ab0e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-64a2ab2c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-64a2dffc{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-64a2e01a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-64a2e024{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-64a2e038{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-64a2e042{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-64a2e04c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}caption {color: #777;margin-top: 10px;margin-bottom: 10px;text-align: center;}</style><table class='cl-64a808b0'>
+</style><div class="tabwid"><style>.cl-f57b9be6{border-collapse:collapse;}.cl-f5763ca0{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f576503c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f5765050{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f57684c6{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f57684da{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f57684e4{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f57684f8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f5768502{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f576850c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}caption {color: #777;margin-top: 10px;margin-bottom: 10px;text-align: center;}</style><table class='cl-f57b9be6'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-64a2e042"><p class="cl-64a2ab0e"><span class="cl-64a296f0">continent</span></p></td><td class="cl-64a2e04c"><p class="cl-64a2ab2c"><span class="cl-64a296f0">n</span></p></td><td class="cl-64a2e04c"><p class="cl-64a2ab2c"><span class="cl-64a296f0">mean_gdp</span></p></td><td class="cl-64a2e04c"><p class="cl-64a2ab2c"><span class="cl-64a296f0">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-64a2dffc"><p class="cl-64a2ab0e"><span class="cl-64a296f0">Africa</span></p></td><td class="cl-64a2e01a"><p class="cl-64a2ab2c"><span class="cl-64a296f0">624</span></p></td><td class="cl-64a2e01a"><p class="cl-64a2ab2c"><span class="cl-64a296f0">2,193.755</span></p></td><td class="cl-64a2e01a"><p class="cl-64a2ab2c"><span class="cl-64a296f0">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-64a2dffc"><p class="cl-64a2ab0e"><span class="cl-64a296f0">Americas</span></p></td><td class="cl-64a2e01a"><p class="cl-64a2ab2c"><span class="cl-64a296f0">300</span></p></td><td class="cl-64a2e01a"><p class="cl-64a2ab2c"><span class="cl-64a296f0">7,136.110</span></p></td><td class="cl-64a2e01a"><p class="cl-64a2ab2c"><span class="cl-64a296f0">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-64a2dffc"><p class="cl-64a2ab0e"><span class="cl-64a296f0">Asia</span></p></td><td class="cl-64a2e01a"><p class="cl-64a2ab2c"><span class="cl-64a296f0">396</span></p></td><td class="cl-64a2e01a"><p class="cl-64a2ab2c"><span class="cl-64a296f0">7,902.150</span></p></td><td class="cl-64a2e01a"><p class="cl-64a2ab2c"><span class="cl-64a296f0">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-64a2dffc"><p class="cl-64a2ab0e"><span class="cl-64a296f0">Europe</span></p></td><td class="cl-64a2e01a"><p class="cl-64a2ab2c"><span class="cl-64a296f0">360</span></p></td><td class="cl-64a2e01a"><p class="cl-64a2ab2c"><span class="cl-64a296f0">14,469.476</span></p></td><td class="cl-64a2e01a"><p class="cl-64a2ab2c"><span class="cl-64a296f0">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-64a2e024"><p class="cl-64a2ab0e"><span class="cl-64a296f0">Oceania</span></p></td><td class="cl-64a2e038"><p class="cl-64a2ab2c"><span class="cl-64a296f0">24</span></p></td><td class="cl-64a2e038"><p class="cl-64a2ab2c"><span class="cl-64a296f0">18,621.609</span></p></td><td class="cl-64a2e038"><p class="cl-64a2ab2c"><span class="cl-64a296f0">6,358.983</span></p></td></tr></tbody></table></div></template>
-<div id="a97bc5c6-a4c2-4bb6-8a45-8de9ebe706c2"></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-f5768502"><p class="cl-f576503c"><span class="cl-f5763ca0">continent</span></p></td><td class="cl-f576850c"><p class="cl-f5765050"><span class="cl-f5763ca0">n</span></p></td><td class="cl-f576850c"><p class="cl-f5765050"><span class="cl-f5763ca0">mean_gdp</span></p></td><td class="cl-f576850c"><p class="cl-f5765050"><span class="cl-f5763ca0">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-f57684c6"><p class="cl-f576503c"><span class="cl-f5763ca0">Africa</span></p></td><td class="cl-f57684da"><p class="cl-f5765050"><span class="cl-f5763ca0">624</span></p></td><td class="cl-f57684da"><p class="cl-f5765050"><span class="cl-f5763ca0">2,193.755</span></p></td><td class="cl-f57684da"><p class="cl-f5765050"><span class="cl-f5763ca0">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f57684c6"><p class="cl-f576503c"><span class="cl-f5763ca0">Americas</span></p></td><td class="cl-f57684da"><p class="cl-f5765050"><span class="cl-f5763ca0">300</span></p></td><td class="cl-f57684da"><p class="cl-f5765050"><span class="cl-f5763ca0">7,136.110</span></p></td><td class="cl-f57684da"><p class="cl-f5765050"><span class="cl-f5763ca0">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f57684c6"><p class="cl-f576503c"><span class="cl-f5763ca0">Asia</span></p></td><td class="cl-f57684da"><p class="cl-f5765050"><span class="cl-f5763ca0">396</span></p></td><td class="cl-f57684da"><p class="cl-f5765050"><span class="cl-f5763ca0">7,902.150</span></p></td><td class="cl-f57684da"><p class="cl-f5765050"><span class="cl-f5763ca0">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f57684c6"><p class="cl-f576503c"><span class="cl-f5763ca0">Europe</span></p></td><td class="cl-f57684da"><p class="cl-f5765050"><span class="cl-f5763ca0">360</span></p></td><td class="cl-f57684da"><p class="cl-f5765050"><span class="cl-f5763ca0">14,469.476</span></p></td><td class="cl-f57684da"><p class="cl-f5765050"><span class="cl-f5763ca0">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f57684e4"><p class="cl-f576503c"><span class="cl-f5763ca0">Oceania</span></p></td><td class="cl-f57684f8"><p class="cl-f5765050"><span class="cl-f5763ca0">24</span></p></td><td class="cl-f57684f8"><p class="cl-f5765050"><span class="cl-f5763ca0">18,621.609</span></p></td><td class="cl-f57684f8"><p class="cl-f5765050"><span class="cl-f5763ca0">6,358.983</span></p></td></tr></tbody></table></div></template>
+<div id="18cd0f1a-b3ab-4f0f-96c2-f2465fee5939"></div>
 <script>
-var dest = document.getElementById("a97bc5c6-a4c2-4bb6-8a45-8de9ebe706c2");
-var template = document.getElementById("5a4bccca-ff7c-42bd-ba18-6ea60031025f");
+var dest = document.getElementById("18cd0f1a-b3ab-4f0f-96c2-f2465fee5939");
+var template = document.getElementById("3e0524e1-491f-463d-8430-8adfacbd711a");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -4972,13 +4964,11 @@ wide_gapminder %>%
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark <dbl>, Finland <dbl>,
-## #   France <dbl>, Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
-## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
 ## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
@@ -4995,15 +4985,12 @@ wide_gapminder %>%
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     <dbl>   <dbl>   <dbl>   <dbl>                    <dbl>    <dbl>   <dbl>
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # … with 24 more variables: Czech Republic <dbl>,
-## #   Denmark <dbl>, Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>,
-## #   Iceland <dbl>, Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
-## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # … with 24 more variables: Czech Republic <dbl>, Denmark <dbl>, Finland <dbl>,
+## #   France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
+## #   Ireland <dbl>, Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
+## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_at()`
@@ -5024,13 +5011,11 @@ wide_gapminder %>%
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark <dbl>, Finland <dbl>,
-## #   France <dbl>, Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
-## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
 ## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
@@ -5078,13 +5063,11 @@ wide_gapminder %>%
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark <dbl>, Finland <dbl>,
-## #   France <dbl>, Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
-## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
 ## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
@@ -5098,13 +5081,11 @@ wide_gapminder %>%
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark <dbl>, Finland <dbl>,
-## #   France <dbl>, Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
-## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
 ## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
@@ -5134,15 +5115,12 @@ wide_gapminder %>%
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     <dbl>   <dbl>   <dbl>   <dbl>                    <dbl>    <dbl>   <dbl>
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # … with 24 more variables: Czech Republic <dbl>,
-## #   Denmark <dbl>, Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>,
-## #   Iceland <dbl>, Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
-## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # … with 24 more variables: Czech Republic <dbl>, Denmark <dbl>, Finland <dbl>,
+## #   France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
+## #   Ireland <dbl>, Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
+## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_at()`
@@ -5161,13 +5139,11 @@ wide_gapminder %>%
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark <dbl>, Finland <dbl>,
-## #   France <dbl>, Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
-## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
 ## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
@@ -5859,8 +5835,7 @@ glanced$glance %>% pluck(1)
 ##   r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>        <dbl> <dbl>  <dbl> <dbl> <dbl>
 ## 1     0.948         0.942  1.22      181. 0.0000000984     1  -18.3  42.7  44.1
-## # … with 3 more variables: deviance <dbl>,
-## #   df.residual <int>, nobs <int>
+## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 ```r
@@ -5897,9 +5872,8 @@ glanced %>%
 ##  8 South Afr… Africa    <tibble … <lm>      0.312        0.244    4.74     4.54 
 ##  9 Uganda     Africa    <tibble … <lm>      0.342        0.276    3.19     5.20 
 ## 10 Congo, De… Africa    <tibble … <lm>      0.348        0.283    2.43     5.34 
-## # … with 132 more rows, and 8 more variables:
-## #   p.value <dbl>, df <dbl>, logLik <dbl>, AIC <dbl>,
-## #   BIC <dbl>, deviance <dbl>, df.residual <int>,
+## # … with 132 more rows, and 8 more variables: p.value <dbl>, df <dbl>,
+## #   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>, df.residual <int>,
 ## #   nobs <int>
 ```
 
@@ -9827,15 +9801,12 @@ midwest
 ##  8   568 CARROLL IL    0.027    16805       622.    16519      111            30
 ##  9   569 CASS    IL    0.024    13437       560.    13384       16             8
 ## 10   570 CHAMPA… IL    0.058   173025      2983.   146506    16559           331
-## # … with 427 more rows, and 19 more variables:
-## #   popasian <int>, popother <int>, percwhite <dbl>,
-## #   percblack <dbl>, percamerindan <dbl>, percasian <dbl>,
-## #   percother <dbl>, popadults <int>, perchsd <dbl>,
-## #   percollege <dbl>, percprof <dbl>,
-## #   poppovertyknown <int>, percpovertyknown <dbl>,
-## #   percbelowpoverty <dbl>, percchildbelowpovert <dbl>,
-## #   percadultpoverty <dbl>, percelderlypoverty <dbl>,
-## #   inmetro <int>, category <chr>
+## # … with 427 more rows, and 19 more variables: popasian <int>, popother <int>,
+## #   percwhite <dbl>, percblack <dbl>, percamerindan <dbl>, percasian <dbl>,
+## #   percother <dbl>, popadults <int>, perchsd <dbl>, percollege <dbl>,
+## #   percprof <dbl>, poppovertyknown <int>, percpovertyknown <dbl>,
+## #   percbelowpoverty <dbl>, percchildbelowpovert <dbl>, percadultpoverty <dbl>,
+## #   percelderlypoverty <dbl>, inmetro <int>, category <chr>
 ```
 
 
