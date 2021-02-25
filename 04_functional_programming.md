@@ -47,14 +47,20 @@ pacman::p_load(
 
 * Whereas operations to be executed after conditional evaluations in Python come after a ```:```, R operations must only be enclosed in curly brackets: ```{}```.  Furthermore, there is no requirement for indentation. 
 
+#### if (one condition) 
+
 
 ```r
 x <- 5
 
 if (x < 0) { # Condition 
   print("x is negative") # Do something 
-} 
+}
+```
 
+
+
+```r
 x <- -5
 
 if (x < 0) {
@@ -65,6 +71,9 @@ if (x < 0) {
 ```
 ## [1] "x is negative"
 ```
+
+#### if + else (two conditions)
+
 
 ```r
 x <- 5
@@ -79,6 +88,9 @@ if (x < 0) {
 ```
 ## [1] "x is positive"
 ```
+
+#### if + else if + else (three conditions)
+
 
 ```r
 x <- 0
@@ -98,104 +110,9 @@ if (x < 0) { # Condition
 ```
 ## [1] "x is zero"
 ```
-R also does some class coercion that makes Boolean evaluations harder to break than in Python.  But be careful --- R has a set of special coercion used for fast logical evaluation and subsetting.  Specifically, ```TRUE``` is considered equal to ```1```, while ```FALSE``` is equal to ```0```. The Boolean logicals can also be specified as a full word in all caps, or simply as ```T``` or ```F```.
 
-
-```r
-1 < 2
-```
-
-```
-## [1] TRUE
-```
-
-```r
-"1" < 2
-```
-
-```
-## [1] TRUE
-```
-
-```r
-"a" < 2
-```
-
-```
-## [1] FALSE
-```
-
-```r
-TRUE < 2
-```
-
-```
-## [1] TRUE
-```
-
-```r
-TRUE == "TRUE"
-```
-
-```
-## [1] TRUE
-```
-
-```r
-T == "TRUE"
-```
-
-```
-## [1] TRUE
-```
-
-```r
-TRUE == "T"
-```
-
-```
-## [1] FALSE
-```
-
-```r
-TRUE == "FALSE"
-```
-
-```
-## [1] FALSE
-```
-
-```r
-TRUE == 0
-```
-
-```
-## [1] FALSE
-```
-
-```r
-TRUE == 1
-```
-
-```
-## [1] TRUE
-```
-
-```r
-FALSE == 0
-```
-
-```
-## [1] TRUE
-```
-
-```r
-FALSE <= 1
-```
-
-```
-## [1] TRUE
-```
+- In general, it's not a good idea to write nested code (lots of `else_if()` or `ifelse()`). It's difficult to read, debug, modulize, and extend. 
+- Instead, write functions and, if necessary, use `if()` only. We'll come back to this later.
 
 ### Functions 
 
@@ -398,6 +315,7 @@ g(2) # a equals still 1
 ```
 ## [1] 4
 ```
+
 **Additional tips**
 
 * Nonstandard evaluation 
@@ -1214,7 +1132,7 @@ toc()
 ```
 
 ```
-## 0.001 sec elapsed
+## 0.002 sec elapsed
 ```
 
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
@@ -1225,7 +1143,7 @@ toc()
 
 **Additional tips**
 
-Performance testing (profiling) is an important part of programming. `tictic()` measures the time that needs to take to run a target function for once. If you want a more robust measure of timing as well as information on memory (**speed** and **space** both matter for performance testing), consider using the [`bench` package](https://github.com/r-lib/bench) that is designed for high precising timing of R expressions. 
+Performance testing (profiling) is an important part of programming. `tictoc()` measures the time that needs to take to run a target function for once. If you want a more robust measure of timing as well as information on memory (**speed** and **space** both matter for performance testing), consider using the [`bench` package](https://github.com/r-lib/bench) that is designed for high precising timing of R expressions. 
 
 
 
@@ -1241,10 +1159,11 @@ map_mark
 
 ```
 ## # A tibble: 1 x 6
-##   expression                                            min median `itr/sec`
-##   <bch:expr>                                         <bch:> <bch:>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE) 61.8us 70.1us    13690.
-## # ... with 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
+##   expression                                              min   median `itr/sec`
+##   <bch:expr>                                         <bch:tm> <bch:tm>     <dbl>
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)   74.1us   82.1us    10631.
+## # ... with 2 more variables: mem_alloc <bch:byt>,
+## #   gc/sec <dbl>
 ```
 
 #### Applications 
@@ -1345,7 +1264,7 @@ qplot(y_means) +
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-30-1.pdf)<!-- --> 
+![](04_functional_programming_files/figure-latex/unnamed-chunk-32-1.pdf)<!-- --> 
 
 * rerun() + map()
 
@@ -1369,7 +1288,7 @@ y_means_tidy <- map_dbl(y_tidy, mean)
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-31-1.pdf)<!-- --> 
+![](04_functional_programming_files/figure-latex/unnamed-chunk-33-1.pdf)<!-- --> 
 
 ## Automote 2 or 2+ tasks
 
@@ -1546,7 +1465,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-37-1.pdf)<!-- --> 
+![](04_functional_programming_files/figure-latex/unnamed-chunk-39-1.pdf)<!-- --> 
 
 ```r
 airquality %>%
@@ -1562,7 +1481,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-37-2.pdf)<!-- --> 
+![](04_functional_programming_files/figure-latex/unnamed-chunk-39-2.pdf)<!-- --> 
 
 ```r
 airquality %>%
@@ -1578,7 +1497,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-37-3.pdf)<!-- --> 
+![](04_functional_programming_files/figure-latex/unnamed-chunk-39-3.pdf)<!-- --> 
 
 ### Solution 
 
@@ -1626,7 +1545,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-39-1.pdf)<!-- --> 
+![](04_functional_programming_files/figure-latex/unnamed-chunk-41-1.pdf)<!-- --> 
 
 - The next step is to write an automatic plotting function. 
 
@@ -1660,7 +1579,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-41-1.pdf)<!-- --> 
+![](04_functional_programming_files/figure-latex/unnamed-chunk-43-1.pdf)<!-- --> 
 
 ```
 ## 
@@ -1671,7 +1590,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-41-2.pdf)<!-- --> 
+![](04_functional_programming_files/figure-latex/unnamed-chunk-43-2.pdf)<!-- --> 
 
 ```
 ## 
@@ -1682,7 +1601,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-41-3.pdf)<!-- --> 
+![](04_functional_programming_files/figure-latex/unnamed-chunk-43-3.pdf)<!-- --> 
 
 ```
 ## 
@@ -1693,7 +1612,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-41-4.pdf)<!-- --> 
+![](04_functional_programming_files/figure-latex/unnamed-chunk-43-4.pdf)<!-- --> 
 
 ```
 ## 
@@ -1704,7 +1623,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-41-5.pdf)<!-- --> 
+![](04_functional_programming_files/figure-latex/unnamed-chunk-43-5.pdf)<!-- --> 
 
 ## Automate joining
 
@@ -1886,10 +1805,13 @@ map(url_list, safely(read_html))
 ```
 ## [[1]]
 ## [[1]]$result
-## NULL
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ## 
 ## [[1]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10002 milliseconds>
+## NULL
 ## 
 ## 
 ## [[2]]
@@ -1897,7 +1819,7 @@ map(url_list, safely(read_html))
 ## NULL
 ## 
 ## [[2]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
 ## 
 ## 
 ## [[3]]
@@ -1905,7 +1827,7 @@ map(url_list, safely(read_html))
 ## NULL
 ## 
 ## [[3]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10001 milliseconds>
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
 ## 
 ## 
 ## [[4]]
@@ -2096,7 +2018,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2021-02-22"
+date: "2021-02-25"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 

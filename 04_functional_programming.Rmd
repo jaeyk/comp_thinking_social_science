@@ -43,19 +43,28 @@ pacman::p_load(
 
 * Whereas operations to be executed after conditional evaluations in Python come after a ```:```, R operations must only be enclosed in curly brackets: ```{}```.  Furthermore, there is no requirement for indentation. 
 
+#### if (one condition) 
+
 ```{r}
 x <- 5
 
 if (x < 0) { # Condition 
   print("x is negative") # Do something 
-} 
+}
+```
 
+
+```{r}
 x <- -5
 
 if (x < 0) {
   print("x is negative")
 }
+```
 
+#### if + else (two conditions)
+
+```{r}
 x <- 5
 
 if (x < 0) {
@@ -63,7 +72,11 @@ if (x < 0) {
 } else{
   print("x is positive")
 }
+```
 
+#### if + else if + else (three conditions)
+
+```{r}
 x <- 0
 
 if (x < 0) { # Condition 
@@ -78,25 +91,9 @@ if (x < 0) { # Condition
       }
 
 ```
-R also does some class coercion that makes Boolean evaluations harder to break than in Python.  But be careful --- R has a set of special coercion used for fast logical evaluation and subsetting.  Specifically, ```TRUE``` is considered equal to ```1```, while ```FALSE``` is equal to ```0```. The Boolean logicals can also be specified as a full word in all caps, or simply as ```T``` or ```F```.
 
-```{r}
-1 < 2
-"1" < 2
-"a" < 2
-
-TRUE < 2
-
-TRUE == "TRUE"
-T == "TRUE"
-TRUE == "T"
-TRUE == "FALSE"
-
-TRUE == 0
-TRUE == 1
-FALSE == 0
-FALSE <= 1
-```
+- In general, it's not a good idea to write nested code (lots of `else_if()` or `ifelse()`). It's difficult to read, debug, modulize, and extend. 
+- Instead, write functions and, if necessary, use `if()` only. We'll come back to this later.
 
 ### Functions 
 
@@ -199,6 +196,7 @@ g <- function(x)
 
 g(2) # a equals still 1 
 ```
+
 **Additional tips**
 
 * Nonstandard evaluation 
@@ -529,7 +527,7 @@ toc()
 
 **Additional tips**
 
-Performance testing (profiling) is an important part of programming. `tictic()` measures the time that needs to take to run a target function for once. If you want a more robust measure of timing as well as information on memory (**speed** and **space** both matter for performance testing), consider using the [`bench` package](https://github.com/r-lib/bench) that is designed for high precising timing of R expressions. 
+Performance testing (profiling) is an important part of programming. `tictoc()` measures the time that needs to take to run a target function for once. If you want a more robust measure of timing as well as information on memory (**speed** and **space** both matter for performance testing), consider using the [`bench` package](https://github.com/r-lib/bench) that is designed for high precising timing of R expressions. 
 
 
 ```{r}
