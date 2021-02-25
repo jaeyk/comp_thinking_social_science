@@ -5,6 +5,21 @@
 > Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions. 
 - Hadley Wickham
 
+This chapter helps you to step up your R skills with functional programming. The `purrr` package provides easy-to-use tools to automate repeated things in your entire R workflow (e.g., wrangling, modeling, and visualization). The end result is cleaner, faster, more readable and extendable code.
+
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmywiiOutD0NPieYCKxaD2wN9Fbt2I3iS87A&usqp=CAU)
+
+## Learning objectives
+
+0.  How to use control flow in R using `if_`, `for loop`, and `apply`
+1.  How to use `map()` to automate workflow in a cleaner, faster, and more extendable way  
+2.  How to use `map2()` and `pmap()` to avoid writing nested loops
+3.  How to use `map()` and `glue()` to automate creating multiple plots
+4.  How to use `reduce()` to automate joining multiple dataframes
+5.  How to use `slowly()` and `future_` to make automation process either slower or faster
+6.  How to use `safely()` and `possibly()` to make error handling easier
+7.  How to develop your own data products (e.g., R packages, Shiny apps) 
+
 - Setup 
 
 
@@ -35,7 +50,7 @@ pacman::p_load(
   patchwork) # arranging ggplots 
 ```
 
-## Flow control 
+## Flow control {#flow}
 
 * Control structures = putting logic in code to control flow (e.g., `if`, `else`, `for`, `while`, `repeat`, `break`, `next`)
 
@@ -926,7 +941,7 @@ map(integer(), paste) # return list
 ## list()
 ```
 
-## purrr
+## purrr {#purrr}
 
 ### Why map? 
 
@@ -1089,7 +1104,6 @@ map(df, fix_missing)
 ```
 
 - Why `map()` is a good alternative to `for loop`. 
-
 ```{=html}
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/bzUmK0Y07ck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -1139,7 +1153,7 @@ toc()
 
 - Final point: Why not base R `apply` family? 
 
-- Short answer: `purrr::map()` is simpler to write. For instance, 
+- Short answer: `purrr::map()` is simpler to write. 
 
 **Additional tips**
 
@@ -1236,7 +1250,7 @@ tidied_models$ols[1]
 
 2. Simulations 
 
-A good friend of `map()` function is `rerun()` function. This comibination is really useful for simulations. Consider the following example. 
+A good friend of `map()` function is `rerun()` function. This combination is really useful for simulations. Consider the following example. 
 
 * Base R approach 
 
@@ -1270,7 +1284,7 @@ qplot(y_means) +
 
 
 ```r
-small_n <- 100 ; k <- 1000
+small_n <- 100 ; k <- 1000; mu <- 500 ; sigma <- 20 
 
 y_tidy <- rerun(k, rnorm(small_n, mu, sigma)) 
 
@@ -1290,7 +1304,7 @@ y_means_tidy <- map_dbl(y_tidy, mean)
 
 ![](04_functional_programming_files/figure-latex/unnamed-chunk-33-1.pdf)<!-- --> 
 
-## Automote 2 or 2+ tasks
+## Automote 2 or 2+ tasks {#map2}
 
 ### Objectives 
 
@@ -1330,7 +1344,6 @@ paste("University = Berkeley | Department = CS")
 ### For loop 
 
 - A slightly more efficient way: using a for loop. 
-
 - Think about which part of the statement is constant and which part varies ( = parameters).  
 - Do we need a placeholder? No. We don't need a placeholder because we don't store the result of iterations.
     
@@ -1438,7 +1451,7 @@ pmap_output <- pmap(list(univ_list, dept_list), print_lists)
 
 - **Challenge** Have you noticed that we used a slightly different input for `pmap()` compared to `map()` or `map2()`? What is the difference?
 
-## Automate plotting
+## Automate plotting {#glue}
 
 ### Objective 
 
@@ -1625,7 +1638,7 @@ map(2:ncol(airquality), create_point_plot)
 
 ![](04_functional_programming_files/figure-latex/unnamed-chunk-43-5.pdf)<!-- --> 
 
-## Automate joining
+## Automate joining {#reduce}
 
 ### Objective 
 
@@ -1683,7 +1696,7 @@ Why the above solution is not efficient?
 reduced <- reduce(list(df1, df2, df3), bind_rows)
 ```
 
-## Make automation slower or faster 
+## Make automation slower or faster {#speed}
 
 ### Objectives 
 
@@ -1726,7 +1739,7 @@ In a different situation, you want to make your function run faster. This is a c
 
 
 
-## Make error handling easier
+## Make error handling easier {#robustness}
 
 ### Learning objective 
 
@@ -1877,7 +1890,7 @@ url_list[out[seq(out)] == "The URL is broken."]
 ## [4] "https://DLAB"
 ```
 
-## Developing your own data products
+## Developing your own data products {#products}
 
 > A data product is the production output from a statistical analysis. - [Brian Caffo](https://sites.google.com/view/bcaffo/home)
 
