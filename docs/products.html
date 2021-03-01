@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Computational Thinking for Social Scientists</title>
-  <meta name="description" content="Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
+  <title>Chapter 6 Developing data products | Computational Thinking for Social Scientists</title>
+  <meta name="description" content="Chapter 6 Developing data products | Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Computational Thinking for Social Scientists" />
+  <meta property="og:title" content="Chapter 6 Developing data products | Computational Thinking for Social Scientists" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
+  <meta property="og:description" content="Chapter 6 Developing data products | Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
   <meta name="github-repo" content="jaeyk/PS239T" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Computational Thinking for Social Scientists" />
+  <meta name="twitter:title" content="Chapter 6 Developing data products | Computational Thinking for Social Scientists" />
   <meta name="twitter:site" content="@JaeJaeykim2" />
-  <meta name="twitter:description" content="Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
+  <meta name="twitter:description" content="Chapter 6 Developing data products | Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
   
 
 <meta name="author" content="Jae Yeon Kim" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="motivation.html"/>
+<link rel="prev" href="functional-programming.html"/>
+<link rel="next" href="semi-structured-data.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -435,71 +435,332 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Computational Thinking for Social Scientists</h1>
-<p class="author"><em><a href="https://jaeyk.github.io/">Jae Yeon Kim</a></em></p>
-<p class="date"><em>2021-03-01</em></p>
-</div>
-<div id="hello-world" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Hello World</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;Hello, World!&quot;</code></pre>
+<div id="products" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Developing data products</h1>
 <blockquote>
-<p>Make simple things simple, and complex things possible. - <a href="https://www.quora.com/What-is-the-story-behind-Alan-Kay-s-adage-Simple-things-should-be-simple-complex-things-should-be-possible">Alan Kay</a></p>
+<p>A data product is the production output from a statistical analysis. - <a href="https://sites.google.com/view/bcaffo/home">Brian Caffo</a></p>
 </blockquote>
-<p>This is the website for <em>Computational Thinking for Social Scientists</em>. This book intends to help social scientists to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let them to work on research projects that would previously seem impossible.</p>
-<p>The book is not intended to be a comprehensive guide for computational social science or any particular programming language, computational tool or technique. For general introduction to computational social science, I recommend <a href="http://www.princeton.edu/~mjs3/">Matthew Salganik</a>’s <a href="https://www.bitbybitbook.com/">Bit By Bit (2017)</a>.</p>
-<p>The book is currently divided into two main subjects (fundamentals and applications) and seven main sessions.</p>
-<div id="part-i-fundamentals" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Part I Fundamentals</h2>
+<div id="developing-r-packages-1" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Developing R packages</h2>
 <ol style="list-style-type: decimal">
-<li><p><a href="motivation.html#motivation">Why computational thinking</a></p></li>
-<li><p><a href="git-bash.html#git_bash">Best practices in data and code management using Git and Bash</a></p></li>
-<li><p><a href="tidy-data.html#tidy_data">How to wrangle, model, and visualize data easier and faster</a></p></li>
-<li><p><a href="functional-programming.html#functional_programming">How to use functions to automate repeated things and develop data products (e.g., packages and apps)</a></p></li>
+<li>Reuse your code</li>
+<li>Automate your workflow</li>
+<li>Help others (be part of an open source development community)</li>
 </ol>
-</div>
-<div id="part-ii-applications" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Part II Applications</h2>
-<ol start="5" style="list-style-type: decimal">
-<li><p><a href="semi-structured-data.html#semi_structured_data">How to collect and parse semi-structured data at scale (e.g., using APIs and webscraping)</a></p></li>
-<li><p><a href="machine-learning.html#machine_learning">How to analyze high-dimensional data (e.g., text) using machine learning</a></p></li>
-<li><p><a href="big-data.html#big_data">How to access, query, and manage big data using SQL and Spark</a></p></li>
+<div id="workflow-2" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Workflow</h3>
+<ol style="list-style-type: decimal">
+<li>Write code in <code>\R</code></li>
+<li>Document code in <code>\man</code> (automated by <code>roxygen2</code> package)</li>
 </ol>
-<p>The book teaches how to do all of these mostly in <a href="https://www.r-project.org/about.html"><strong>R</strong></a>, and sometimes in <a href="https://www.gnu.org/software/bash/"><strong>bash</strong></a> and <a href="https://www.python.org/about/"><strong>Python</strong></a>.</p>
 <ul>
-<li><p>Why R? R is free, easy to learn (thanks to <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> and <a href="https://rstudio.com/">RStudio</a>), fast (thanks to <a href="https://cran.r-project.org/web/packages/Rcpp/index.html"><code>Rcpp</code></a>), runs everywhere, <strong>open</strong> (16,000+ packages; counting only ones <a href="https://cran.r-project.org/web/packages/">available at CRAN</a>), and has a growing massive and inclusive community (<a href="https://twitter.com/search?q=%23rstats&amp;src=typed_query"><code>#rstats</code></a>).</p></li>
-<li><p>Why R + Python + bash?</p>
-<blockquote>
-<blockquote>
-<p>“For R and Python, Python is first and foremost a programming language. And that has a lot of good features, but it tends to mean, that if you are going to do data science in Python, you have to first learn how to program in Python. Whereas I think you are going to get up and running faster with R, than with Python because there’s just a bunch more stuff built in and you don’t have to learn as many programming concepts. You can focus on being a great political scientist or whatever you do and learning enough R that you don’t have to become an expert programmer as well to get stuff done.” - Hadley Wickham</p>
-</blockquote>
-</blockquote>
-<ul>
-<li>However, this feature of the R community also raises a challenge.</li>
+<li><code>devtools::document()</code></li>
 </ul>
-<blockquote>
-<blockquote>
-<p>Compared to other programming languages, the R community tends to be more focused on results instead of processes. Knowledge of software engineering best practices is patchy: for instance, not enough R programmers use source code control or automated testing. Inconsistency is rife across contributed packages, even within base R. You are confronted with over 20 years of evolution every time you use R. R is not a particularly fast programming language, and poorly written R code can be terribly slow. R is also a profligate user of memory. - Hadley Wickham</p>
-</blockquote>
-</blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>Check dependencies in <code>NAMESPACE</code></li>
+</ol>
 <ul>
-<li><p>RStudio, especially the tidyverse team, has made heroic efforts to amend the problems listed above. Readers will learn these recent advances in the R ecosystem and how to complement R with Python and Bash.</p></li>
-<li><p>If you’re serious in programming, I strongly recommend learning Python. Learning Python also helps you to fill gaps in the software engineering knowledge that are useful to be highly proficient in R.</p></li>
+<li><code>devtools::update()</code> updates the documentation</li>
+<li><code>devtools::check()</code> to see whether your package is ready to be submitted to CRAN</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>Build a package (for more information, read <a href="http://r-pkgs.had.co.nz/package.html">this section</a> in Hadley’s R package development book)</li>
+</ol>
+<ul>
+<li><code>devtools::build()</code></li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>(Optional) Test (<code>devtools::test()</code>), teach in <code>\vignettes</code>, and add data in <code>\data</code></li>
+<li>Distribute the package either via CRAN or GitHub</li>
+</ol>
+<p><img src="http://r-pkgs.had.co.nz/diagrams/package-files.png" /></p>
+<p>It’s time to learn five states of R code: source, bundled, binary, installed, and in-memory.</p>
+<p>If you’re just using an R package, you’re only concerned of the last two states: <code>install.packages("pkg")</code> and <code>library(pkg)</code> If you’re developing an R package, you first write source code (<code>*.R</code>), bundle it (compressed file like <code>*.tar.gz</code>; done by <code>devtools::build()</code>), then make it binary (<code>devtools::build(binary = TRUE)</code>; This is how a package is stored in CRAN/GitHub, etc.).</p>
+</div>
+<div id="required-components-1" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Required Components</h3>
+<p>The 4 required components are necessary to build and distribute a minimally viable R package. The other steps are optional.</p>
+<ul>
+<li>Package
+<ul>
+<li><code>\R</code>: R functions</li>
+<li><code>\man</code>: function documentations</li>
+<li>DESCRIPTION: provides meta data about the package (e.g., author)</li>
+<li>LICENSE
+<ul>
+<li>GNU, MIT, etc.</li>
+</ul></li>
+<li>NAMESPACE: package dependencies (to make your package self-contained)</li>
+<li>README (optional)</li>
 </ul></li>
 </ul>
+<ol style="list-style-type: decimal">
+<li>Setup (<strong>DESCRIPTION</strong>)</li>
+</ol>
+<div class="sourceCode" id="cb1060"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1060-1"><a href="products.html#cb1060-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This function creates DESCRIPTION file </span></span>
+<span id="cb1060-2"><a href="products.html#cb1060-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="fu">here</span>(<span class="st">&quot;mypkg&quot;</span>))</span>
+<span id="cb1060-3"><a href="products.html#cb1060-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1060-4"><a href="products.html#cb1060-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize git repo </span></span>
+<span id="cb1060-5"><a href="products.html#cb1060-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()</span>
+<span id="cb1060-6"><a href="products.html#cb1060-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1060-7"><a href="products.html#cb1060-7" aria-hidden="true" tabindex="-1"></a><span class="co"># License the package </span></span>
+<span id="cb1060-8"><a href="products.html#cb1060-8" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use the MIT license by typing devtools::use_mit_license(&quot;author name&quot;). The function produces MIT license related files (LICENSE, LICENSE.md).</span></span>
+<span id="cb1060-9"><a href="products.html#cb1060-9" aria-hidden="true" tabindex="-1"></a><span class="fu">use_mit_license</span>(<span class="st">&quot;Jae Yeon Kim&quot;</span>)</span>
+<span id="cb1060-10"><a href="products.html#cb1060-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1060-11"><a href="products.html#cb1060-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add README (optional)</span></span>
+<span id="cb1060-12"><a href="products.html#cb1060-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Makes the package more use-friendly </span></span>
+<span id="cb1060-13"><a href="products.html#cb1060-13" aria-hidden="true" tabindex="-1"></a><span class="fu">use_readme_md</span>()</span>
+<span id="cb1060-14"><a href="products.html#cb1060-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1060-15"><a href="products.html#cb1060-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add news (optional) </span></span>
+<span id="cb1060-16"><a href="products.html#cb1060-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Helps track changes </span></span>
+<span id="cb1060-17"><a href="products.html#cb1060-17" aria-hidden="true" tabindex="-1"></a><span class="fu">use_news_md</span>() </span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Write code (<strong>R</strong>)</li>
+</ol>
+<div class="sourceCode" id="cb1061"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1061-1"><a href="products.html#cb1061-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_r</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1062"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1062-1"><a href="products.html#cb1062-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Add two numbers</span></span>
+<span id="cb1062-2"><a href="products.html#cb1062-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb1062-3"><a href="products.html#cb1062-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param x A number</span></span>
+<span id="cb1062-4"><a href="products.html#cb1062-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param y A number</span></span>
+<span id="cb1062-5"><a href="products.html#cb1062-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return The sum of x and y </span></span>
+<span id="cb1062-6"><a href="products.html#cb1062-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb1062-7"><a href="products.html#cb1062-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1062-8"><a href="products.html#cb1062-8" aria-hidden="true" tabindex="-1"></a>add <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb1062-9"><a href="products.html#cb1062-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1062-10"><a href="products.html#cb1062-10" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
+<span id="cb1062-11"><a href="products.html#cb1062-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1062-12"><a href="products.html#cb1062-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>If you used a function from other packages you need to reference it in the following way: <code>#' @importFrom &lt;package&gt; &lt;function&gt;</code></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Document (<strong>man</strong>)</li>
+</ol>
+<div class="sourceCode" id="cb1063"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1063-1"><a href="products.html#cb1063-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Document </span></span>
+<span id="cb1063-2"><a href="products.html#cb1063-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The function creates documentation related files (NAMESPACE, function_name.rd)</span></span>
+<span id="cb1063-3"><a href="products.html#cb1063-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span>
+<span id="cb1063-4"><a href="products.html#cb1063-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1063-5"><a href="products.html#cb1063-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check; updates the documentation; builds and checks the package </span></span>
+<span id="cb1063-6"><a href="products.html#cb1063-6" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Organize (<strong>NAMESPACE</strong>)</li>
+</ol>
+<div class="sourceCode" id="cb1064"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1064-1"><a href="products.html#cb1064-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 </div>
-<div id="special-thanks" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Special thanks</h2>
-<p>This book is collected as much as it is authored. It is a remix version of <a href="https://github.com/rochelleterman/PS239T">PS239T</a>, a graduate-level computational methods course at UC Berkeley, originally developed by <a href="http://rochelleterman.com/">Rochelle Terman</a> then revised by <a href="http://rachelbernhard.com/">Rachel Bernhard</a>. I have taught PS239T as lead instructor in Spring 2019 and TA in Spring 2018 and will co-teach it in Spring 2020. Other teaching materials draw from the workshops I have created for <a href="https://dlab.berkeley.edu/">D-Lab</a> (Summer - Fall 2020) and <a href="https://data.berkeley.edu/research/discovery-program-home">Data Science Discovery Program</a> (Spring 2020) at UC Berkeley. I also have cited all the other references whenever I am aware of related books, articles, slides, blog posts, or YouTube video clips.</p>
+<div id="optional-components-1" class="section level3" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Optional Components</h3>
+<ol style="list-style-type: decimal">
+<li>Test (<strong>test</strong>)</li>
+</ol>
+<div class="sourceCode" id="cb1065"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1065-1"><a href="products.html#cb1065-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_testthat</span>()</span>
+<span id="cb1065-2"><a href="products.html#cb1065-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1065-3"><a href="products.html#cb1065-3" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Add data (<strong>data</strong>)</li>
+</ol>
+<div class="sourceCode" id="cb1066"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1066-1"><a href="products.html#cb1066-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;Jae&quot;</span></span>
+<span id="cb1066-2"><a href="products.html#cb1066-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">&quot;Sun&quot;</span></span>
+<span id="cb1066-3"><a href="products.html#cb1066-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="st">&quot;Jane&quot;</span></span>
+<span id="cb1066-4"><a href="products.html#cb1066-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1066-5"><a href="products.html#cb1066-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_data</span>(x, y, z, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Teach (<strong>vignetts</strong>)</li>
+</ol>
+<div class="sourceCode" id="cb1067"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1067-1"><a href="products.html#cb1067-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1068"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1068-1"><a href="products.html#cb1068-1" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Vignette title&quot;</span></span>
+<span id="cb1068-2"><a href="products.html#cb1068-2" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Vignette author&quot;</span></span>
+<span id="cb1068-3"><a href="products.html#cb1068-3" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;2021-03-01&quot;</span></span>
+<span id="cb1068-4"><a href="products.html#cb1068-4" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> rmarkdown<span class="sc">::</span>html_vignette</span>
+<span id="cb1068-5"><a href="products.html#cb1068-5" aria-hidden="true" tabindex="-1"></a>vignette<span class="sc">:</span> blah blah</span></code></pre></div>
+<ul>
+<li>You can build a package website using <code>pkgdown</code></li>
+</ul>
+<div class="sourceCode" id="cb1069"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1069-1"><a href="products.html#cb1069-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;pkgdown&quot;)</span></span>
+<span id="cb1069-2"><a href="products.html#cb1069-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_pkgdown</span>()</span>
+<span id="cb1069-3"><a href="products.html#cb1069-3" aria-hidden="true" tabindex="-1"></a>pkgdown<span class="sc">::</span><span class="fu">build_site</span>()</span></code></pre></div>
+<ul>
+<li>A package site includes information on METADATA, Function references, Articles, News, etc.</li>
+</ul>
 </div>
-<div id="suggestions-questions-or-comments" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Suggestions, questions, or comments</h2>
-<p>Please feel free to <a href="https://github.com/jaeyk/PS239T/issues">create issues</a> if you find typos, errors, missing citations, etc via the GitHub repository associated with this book.</p>
+<div id="building-an-r-package-1" class="section level3" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> Building an R package</h3>
+<ul>
+<li>CMD (in the terminal)</li>
+</ul>
+<p>You can run R commands in the terminal using R CMD.</p>
+<ul>
+<li>devtools</li>
+</ul>
+<div class="sourceCode" id="cb1070"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1070-1"><a href="products.html#cb1070-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build </span></span>
+<span id="cb1070-2"><a href="products.html#cb1070-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">build</span>()</span>
+<span id="cb1070-3"><a href="products.html#cb1070-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1070-4"><a href="products.html#cb1070-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install </span></span>
+<span id="cb1070-5"><a href="products.html#cb1070-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div>
 </div>
-<div id="license" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> License</h2>
-<p><img src="https://i.creativecommons.org/l/by/4.0/88x31.png" /> This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+<div id="distributing-an-r-package-1" class="section level3" number="6.1.5">
+<h3><span class="header-section-number">6.1.5</span> Distributing an R package</h3>
+<div class="sourceCode" id="cb1071"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1071-1"><a href="products.html#cb1071-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Version update </span></span>
+<span id="cb1071-2"><a href="products.html#cb1071-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_version</span>()</span>
+<span id="cb1071-3"><a href="products.html#cb1071-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1071-4"><a href="products.html#cb1071-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Spell check</span></span>
+<span id="cb1071-5"><a href="products.html#cb1071-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_spell_check</span>()</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><a href="https://cran.r-project.org/">CRAN (The Comprehensive R Archive Network)</a></li>
+</ol>
+<ul>
+<li>R package submission should comply with <a href="https://cran.r-project.org/">the CRAN Repository Policy</a></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>GitHub</li>
+</ol>
+<ul>
+<li><p>Push everything to the Git repository (you can do it using command-line interface or RStudio).</p></li>
+<li><p>Don’t forget that your repository should be <code>public</code>.</p></li>
+<li><p>I highly recommend connecting GitHub with SSH. For more information, visit <a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">this link</a>.</p></li>
+</ul>
+<p><strong>Additional tips</strong></p>
+<ol style="list-style-type: decimal">
+<li>If you want to use pipe operator (%) in your functions, save the following script as <code>utils-pipe.R.</code></li>
+</ol>
+<div class="sourceCode" id="cb1072"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1072-1"><a href="products.html#cb1072-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Pipe operator</span></span>
+<span id="cb1072-2"><a href="products.html#cb1072-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb1072-3"><a href="products.html#cb1072-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; See \code{magrittr::\link[magrittr:pipe]{\%&gt;\%}} for details.</span></span>
+<span id="cb1072-4"><a href="products.html#cb1072-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb1072-5"><a href="products.html#cb1072-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @name %&gt;%</span></span>
+<span id="cb1072-6"><a href="products.html#cb1072-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @rdname pipe</span></span>
+<span id="cb1072-7"><a href="products.html#cb1072-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @keywords internal</span></span>
+<span id="cb1072-8"><a href="products.html#cb1072-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb1072-9"><a href="products.html#cb1072-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom magrittr %&gt;%</span></span>
+<span id="cb1072-10"><a href="products.html#cb1072-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @usage lhs \%&gt;\% rhs</span></span>
+<span id="cb1072-11"><a href="products.html#cb1072-11" aria-hidden="true" tabindex="-1"></a><span class="cn">NULL</span></span></code></pre></div>
+<pre><code>## NULL</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Sometimes, you get the following error: “Undefined global functions or variables” If you experience this problem, save the following script as <code>globals.r.</code></li>
+</ol>
+<div class="sourceCode" id="cb1074"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1074-1"><a href="products.html#cb1074-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">globalVariables</span>(<span class="fu">c</span>(<span class="st">&quot;&lt;undefined variable name1&gt;&quot;</span>, <span class="st">&quot;&lt;undefined variable name2&gt;&quot;</span>, <span class="st">&quot;&lt;undefinedvariable name3&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;&lt;undefined variable name1&gt;&quot; &quot;&lt;undefined variable name2&gt;&quot;
+## [3] &quot;&lt;undefinedvariable name3&quot;</code></pre>
+</div>
+</div>
+<div id="developing-shiny-apps-1" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Developing Shiny apps</h2>
+<p><a href="https://shiny.rstudio.com/">Shiny</a> is a “framework for creating web applications using R code.” You can create a dashboard or an interactive map without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise to learn from your data in an intuitive and interactive way.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Wy3TY0gOmJw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Shiny in production: Principles, practices, and tools - Joe Cheng</p>
+
+
+<iframe src="https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.240702211.1091983227.1603295793-100003412.1602392815" style="border: 1px solid #AAA; width: 800px; height: 700px"></iframe>
+
+<p>COVID-19 tracker by Edward Parker</p>
+
+<div id="workflow-3" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Workflow</h3>
+<p>The workflow follows what Hadley Wickham recommended in his book on mastering shiny.</p>
+<ol style="list-style-type: decimal">
+<li>Install libraries</li>
+</ol>
+<div class="sourceCode" id="cb1076"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1076-1"><a href="products.html#cb1076-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Create app directory and file</li>
+</ol>
+<p>Add an <code>app.R</code> file.</p>
+<p>The key objective here is defining your UI (how the app looks; front-end = INPUT) (defined in object <code>ui</code>) and server (how the app works; back-end = OUTPUT) (defined in object <code>server</code>).</p>
+<p>If you’re creating a complex app, you can achieve the same goal with two files: <code>ui.R</code> and <code>server.R</code>.</p>
+</div>
+<div id="app.r-1" class="section level3" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> app.r</h3>
+<ul>
+<li>Front-end</li>
+</ul>
+<div class="sourceCode" id="cb1077"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1077-1"><a href="products.html#cb1077-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages </span></span>
+<span id="cb1077-2"><a href="products.html#cb1077-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Do not use install.packages(), pacman::p_load(), or library() if you intend to deploy the app using shinyapps.io </span></span>
+<span id="cb1077-3"><a href="products.html#cb1077-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1077-4"><a href="products.html#cb1077-4" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span>
+<span id="cb1077-5"><a href="products.html#cb1077-5" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;shiny&quot;</span>)</span>
+<span id="cb1077-6"><a href="products.html#cb1077-6" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;shinydashboard&quot;</span>)</span>
+<span id="cb1077-7"><a href="products.html#cb1077-7" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;colourpicker&quot;</span>)</span>
+<span id="cb1077-8"><a href="products.html#cb1077-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1077-9"><a href="products.html#cb1077-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data </span></span>
+<span id="cb1077-10"><a href="products.html#cb1077-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1077-11"><a href="products.html#cb1077-11" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">&quot;https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv&quot;</span>))[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb1077-12"><a href="products.html#cb1077-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1077-13"><a href="products.html#cb1077-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Defines the user interface; how the app looks</span></span>
+<span id="cb1077-14"><a href="products.html#cb1077-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1077-15"><a href="products.html#cb1077-15" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb1077-16"><a href="products.html#cb1077-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1077-17"><a href="products.html#cb1077-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Application title </span></span>
+<span id="cb1077-18"><a href="products.html#cb1077-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
+<span id="cb1077-19"><a href="products.html#cb1077-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1077-20"><a href="products.html#cb1077-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">h4</span>(tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
+<span id="cb1077-21"><a href="products.html#cb1077-21" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1077-22"><a href="products.html#cb1077-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
+<span id="cb1077-23"><a href="products.html#cb1077-23" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb1077-24"><a href="products.html#cb1077-24" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Sidebar with sliders </span></span>
+<span id="cb1077-25"><a href="products.html#cb1077-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sidebarPanel</span>(</span>
+<span id="cb1077-26"><a href="products.html#cb1077-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;size&quot;</span>, </span>
+<span id="cb1077-27"><a href="products.html#cb1077-27" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Font size:&quot;</span>,</span>
+<span id="cb1077-28"><a href="products.html#cb1077-28" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">10</span>,</span>
+<span id="cb1077-29"><a href="products.html#cb1077-29" aria-hidden="true" tabindex="-1"></a>                    <span class="at">value =</span> <span class="dv">2</span>)</span>
+<span id="cb1077-30"><a href="products.html#cb1077-30" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb1077-31"><a href="products.html#cb1077-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1077-32"><a href="products.html#cb1077-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb1077-33"><a href="products.html#cb1077-33" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb1077-34"><a href="products.html#cb1077-34" aria-hidden="true" tabindex="-1"></a>          <span class="fu">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
+<span id="cb1077-35"><a href="products.html#cb1077-35" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1077-36"><a href="products.html#cb1077-36" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1077-37"><a href="products.html#cb1077-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1077-38"><a href="products.html#cb1077-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1077-39"><a href="products.html#cb1077-39" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<ul>
+<li>Back-end</li>
+</ul>
+<div class="sourceCode" id="cb1078"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1078-1"><a href="products.html#cb1078-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb1078-2"><a href="products.html#cb1078-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1078-3"><a href="products.html#cb1078-3" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>cloud <span class="ot">&lt;-</span> <span class="fu">renderWordcloud2</span>({ </span>
+<span id="cb1078-4"><a href="products.html#cb1078-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1078-5"><a href="products.html#cb1078-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wordcloud2</span>(df, </span>
+<span id="cb1078-6"><a href="products.html#cb1078-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> input<span class="sc">$</span>size, </span>
+<span id="cb1078-7"><a href="products.html#cb1078-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
+<span id="cb1078-8"><a href="products.html#cb1078-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1078-9"><a href="products.html#cb1078-9" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1078-10"><a href="products.html#cb1078-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1078-11"><a href="products.html#cb1078-11" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+<ul>
+<li>Build a shiny app</li>
+</ul>
+<div class="sourceCode" id="cb1079"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1079-1"><a href="products.html#cb1079-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+</div>
+<div id="deployment-1" class="section level3" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Deployment</h3>
+<ul>
+<li>Deploy to <a href="https://www.shinyapps.io/?_ga=2.5503866.871102833.1602978469-100003412.1602392815">the shinyapps.io cloud</a></li>
+</ul>
+<div class="sourceCode" id="cb1080"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1080-1"><a href="products.html#cb1080-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages </span></span>
+<span id="cb1080-2"><a href="products.html#cb1080-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rsconnect&quot;</span>)</span>
+<span id="cb1080-3"><a href="products.html#cb1080-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsconnect)</span>
+<span id="cb1080-4"><a href="products.html#cb1080-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1080-5"><a href="products.html#cb1080-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup </span></span>
+<span id="cb1080-6"><a href="products.html#cb1080-6" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">setAccountInfo</span>(<span class="at">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
+<span id="cb1080-7"><a href="products.html#cb1080-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
+<span id="cb1080-8"><a href="products.html#cb1080-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
+<span id="cb1080-9"><a href="products.html#cb1080-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1080-10"><a href="products.html#cb1080-10" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployApp</span>(<span class="at">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
+</div>
+<div id="references-5" class="section level3" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> References</h3>
+<p><a href="https://mastering-shiny.org/">Mastering Shiny</a> by Hadley Wickham. For newbies.</p>
+<p><a href="https://bookdown.org/yihui/rmarkdown/shiny-documents.html">Shiny Documents</a> by Yihui Xie</p>
+<p><a href="https://engineering-shiny.org/">Engineering Production-Grade Shiny Apps</a> by Colin Fay, Sébastien Rochette, Vincent Guyader, Cervan Girard. For experienced developers.</p>
+<p><a href="https://stat545.com/shiny-tutorial.html">Building Shiny Apps</a> by Dean Attali.</p>
+</div>
+</div>
+<div id="other-useful-data-products-1" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Other useful data products</h2>
+<ul>
+<li>Automating data reports using rmarkdown (called <a href="https://rmarkdown.rstudio.com/developer_parameterized_reports.html%23parameter_types%2F">parameterized reports</a>)</li>
+<li>Automating R presentation using <a href="http://slidify.org/index.html">slidify</a></li>
+<li>Creating interactive web apps using <a href="https://rstudio.github.io/leaflet/">leaflet</a></li>
+</ul>
 
 </div>
 </div>
@@ -508,8 +769,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="motivation.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="functional-programming.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="semi-structured-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

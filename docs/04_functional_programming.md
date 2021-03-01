@@ -28,7 +28,13 @@ This chapter helps you to step up your R skills with functional programming. The
 if (!require("pacman")) {
   install.packages("pacman")
 }
+```
 
+```
+## Loading required package: pacman
+```
+
+```r
 pacman::p_load(
   tidyverse, # tidyverse pkgs including purrr
   bench, # performance test 
@@ -1126,7 +1132,7 @@ toc()
 ```
 
 ```
-## 0.008 sec elapsed
+## 0.006 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1169,8 +1175,8 @@ map_mark
 ## # A tibble: 1 x 6
 ##   expression                                              min   median `itr/sec`
 ##   <bch:expr>                                         <bch:tm> <bch:tm>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)   67.8µs   76.1µs    10614.
-## # … with 2 more variables: mem_alloc <bch:byt>,
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)   74.1us   82.1us    10631.
+## # ... with 2 more variables: mem_alloc <bch:byt>,
 ## #   gc/sec <dbl>
 ```
 
@@ -1272,7 +1278,7 @@ qplot(y_means) +
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-32-1.pdf)<!-- --> 
 
 * rerun() + map()
 
@@ -1296,7 +1302,7 @@ y_means_tidy <- map_dbl(y_tidy, mean)
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-33-1.pdf)<!-- --> 
 
 ## Automote 2 or 2+ tasks {#map2}
 
@@ -1472,7 +1478,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-39-1.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-39-1.pdf)<!-- --> 
 
 ```r
 airquality %>%
@@ -1488,7 +1494,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-39-2.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-39-2.pdf)<!-- --> 
 
 ```r
 airquality %>%
@@ -1504,7 +1510,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-39-3.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-39-3.pdf)<!-- --> 
 
 ### Solution 
 
@@ -1552,7 +1558,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-41-1.pdf)<!-- --> 
 
 - The next step is to write an automatic plotting function. 
 
@@ -1586,7 +1592,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-1.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-43-1.pdf)<!-- --> 
 
 ```
 ## 
@@ -1597,7 +1603,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-2.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-43-2.pdf)<!-- --> 
 
 ```
 ## 
@@ -1608,7 +1614,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-3.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-43-3.pdf)<!-- --> 
 
 ```
 ## 
@@ -1619,7 +1625,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-4.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-43-4.pdf)<!-- --> 
 
 ```
 ## 
@@ -1630,7 +1636,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-5.png" width="672" />
+![](04_functional_programming_files/figure-latex/unnamed-chunk-43-5.pdf)<!-- --> 
 
 ## Automate joining {#reduce}
 
@@ -1823,24 +1829,18 @@ map(url_list, safely(read_html))
 ## 
 ## [[2]]
 ## [[2]]$result
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## NULL
 ## 
 ## [[2]]$error
-## NULL
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
 ## 
 ## 
 ## [[3]]
 ## [[3]]$result
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## NULL
 ## 
 ## [[3]]$error
-## NULL
+## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
 ## 
 ## 
 ## [[4]]
@@ -1862,23 +1862,7 @@ map(url_list, safely(read_html)) %>%
 ```
 
 ```
-## [[1]]
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
-## 
-## [[2]]
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
-## 
-## [[3]]
-## {html_document}
-## <html class="client-nojs" lang="en" dir="ltr">
-## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## list()
 ```
 
 #### possibly 
@@ -1900,7 +1884,10 @@ url_list[out[seq(out)] == "The URL is broken."]
 ```
 
 ```
-## [1] "https://DLAB"
+## [1] "https://en.wikipedia.org/wiki/University_of_California,_Berkeley"
+## [2] "https://en.wikipedia.org/wiki/Stanford_University"               
+## [3] "https://en.wikipedia.org/wiki/Carnegie_Mellon_University"        
+## [4] "https://DLAB"
 ```
 
 ## Developing your own data products {#products}
@@ -2044,7 +2031,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2021-02-25"
+date: "2021-03-01"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 
