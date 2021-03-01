@@ -4880,7 +4880,7 @@ tablea %>% flextable::flextable()
 ```
 
 ```{=html}
-<template id="efa39423-1834-4401-8a6e-e0ff2fbf168f"><style>
+<template id="9e644550-0a3d-433c-9a69-e455aad4af01"><style>
 .tabwid table{
   border-collapse:collapse;
   line-height:1;
@@ -4914,15 +4914,15 @@ tablea %>% flextable::flextable()
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-b070476a{border-collapse:collapse;}.cl-b069883a{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b069ab62{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b069ab8a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b069ea32{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b069ea50{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b069ea64{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b069ea6e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b069ea78{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b069ea82{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}caption {color: #777;margin-top: 10px;margin-bottom: 10px;text-align: center;}</style><table class='cl-b070476a'>
+</style><div class="tabwid"><style>.cl-5725df2e{border-collapse:collapse;}.cl-5720370e{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-57204b04{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-57204b18{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-57208272{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-57208290{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5720829a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-572082a4{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-572082ae{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-572082b8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}caption {color: #777;margin-top: 10px;margin-bottom: 10px;text-align: center;}</style><table class='cl-5725df2e'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-b069ea78"><p class="cl-b069ab62"><span class="cl-b069883a">continent</span></p></td><td class="cl-b069ea82"><p class="cl-b069ab8a"><span class="cl-b069883a">n</span></p></td><td class="cl-b069ea82"><p class="cl-b069ab8a"><span class="cl-b069883a">mean_gdp</span></p></td><td class="cl-b069ea82"><p class="cl-b069ab8a"><span class="cl-b069883a">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b069ea32"><p class="cl-b069ab62"><span class="cl-b069883a">Africa</span></p></td><td class="cl-b069ea50"><p class="cl-b069ab8a"><span class="cl-b069883a">624</span></p></td><td class="cl-b069ea50"><p class="cl-b069ab8a"><span class="cl-b069883a">2,193.755</span></p></td><td class="cl-b069ea50"><p class="cl-b069ab8a"><span class="cl-b069883a">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b069ea32"><p class="cl-b069ab62"><span class="cl-b069883a">Americas</span></p></td><td class="cl-b069ea50"><p class="cl-b069ab8a"><span class="cl-b069883a">300</span></p></td><td class="cl-b069ea50"><p class="cl-b069ab8a"><span class="cl-b069883a">7,136.110</span></p></td><td class="cl-b069ea50"><p class="cl-b069ab8a"><span class="cl-b069883a">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b069ea32"><p class="cl-b069ab62"><span class="cl-b069883a">Asia</span></p></td><td class="cl-b069ea50"><p class="cl-b069ab8a"><span class="cl-b069883a">396</span></p></td><td class="cl-b069ea50"><p class="cl-b069ab8a"><span class="cl-b069883a">7,902.150</span></p></td><td class="cl-b069ea50"><p class="cl-b069ab8a"><span class="cl-b069883a">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b069ea32"><p class="cl-b069ab62"><span class="cl-b069883a">Europe</span></p></td><td class="cl-b069ea50"><p class="cl-b069ab8a"><span class="cl-b069883a">360</span></p></td><td class="cl-b069ea50"><p class="cl-b069ab8a"><span class="cl-b069883a">14,469.476</span></p></td><td class="cl-b069ea50"><p class="cl-b069ab8a"><span class="cl-b069883a">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b069ea64"><p class="cl-b069ab62"><span class="cl-b069883a">Oceania</span></p></td><td class="cl-b069ea6e"><p class="cl-b069ab8a"><span class="cl-b069883a">24</span></p></td><td class="cl-b069ea6e"><p class="cl-b069ab8a"><span class="cl-b069883a">18,621.609</span></p></td><td class="cl-b069ea6e"><p class="cl-b069ab8a"><span class="cl-b069883a">6,358.983</span></p></td></tr></tbody></table></div></template>
-<div id="a9998ed6-632e-49eb-b948-3eafce08064f"></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-572082ae"><p class="cl-57204b04"><span class="cl-5720370e">continent</span></p></td><td class="cl-572082b8"><p class="cl-57204b18"><span class="cl-5720370e">n</span></p></td><td class="cl-572082b8"><p class="cl-57204b18"><span class="cl-5720370e">mean_gdp</span></p></td><td class="cl-572082b8"><p class="cl-57204b18"><span class="cl-5720370e">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-57208272"><p class="cl-57204b04"><span class="cl-5720370e">Africa</span></p></td><td class="cl-57208290"><p class="cl-57204b18"><span class="cl-5720370e">624</span></p></td><td class="cl-57208290"><p class="cl-57204b18"><span class="cl-5720370e">2,193.755</span></p></td><td class="cl-57208290"><p class="cl-57204b18"><span class="cl-5720370e">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-57208272"><p class="cl-57204b04"><span class="cl-5720370e">Americas</span></p></td><td class="cl-57208290"><p class="cl-57204b18"><span class="cl-5720370e">300</span></p></td><td class="cl-57208290"><p class="cl-57204b18"><span class="cl-5720370e">7,136.110</span></p></td><td class="cl-57208290"><p class="cl-57204b18"><span class="cl-5720370e">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-57208272"><p class="cl-57204b04"><span class="cl-5720370e">Asia</span></p></td><td class="cl-57208290"><p class="cl-57204b18"><span class="cl-5720370e">396</span></p></td><td class="cl-57208290"><p class="cl-57204b18"><span class="cl-5720370e">7,902.150</span></p></td><td class="cl-57208290"><p class="cl-57204b18"><span class="cl-5720370e">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-57208272"><p class="cl-57204b04"><span class="cl-5720370e">Europe</span></p></td><td class="cl-57208290"><p class="cl-57204b18"><span class="cl-5720370e">360</span></p></td><td class="cl-57208290"><p class="cl-57204b18"><span class="cl-5720370e">14,469.476</span></p></td><td class="cl-57208290"><p class="cl-57204b18"><span class="cl-5720370e">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5720829a"><p class="cl-57204b04"><span class="cl-5720370e">Oceania</span></p></td><td class="cl-572082a4"><p class="cl-57204b18"><span class="cl-5720370e">24</span></p></td><td class="cl-572082a4"><p class="cl-57204b18"><span class="cl-5720370e">18,621.609</span></p></td><td class="cl-572082a4"><p class="cl-57204b18"><span class="cl-5720370e">6,358.983</span></p></td></tr></tbody></table></div></template>
+<div id="eb4ae0c4-6ec0-4d17-a297-c32b424aa0b5"></div>
 <script>
-var dest = document.getElementById("a9998ed6-632e-49eb-b948-3eafce08064f");
-var template = document.getElementById("efa39423-1834-4401-8a6e-e0ff2fbf168f");
+var dest = document.getElementById("eb4ae0c4-6ec0-4d17-a297-c32b424aa0b5");
+var template = document.getElementById("9e644550-0a3d-433c-9a69-e455aad4af01");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -5835,7 +5835,8 @@ glanced$glance %>% pluck(1)
 ##   r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>        <dbl> <dbl>  <dbl> <dbl> <dbl>
 ## 1     0.948         0.942  1.22      181. 0.0000000984     1  -18.3  42.7  44.1
-## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # … with 3 more variables: deviance <dbl>,
+## #   df.residual <int>, nobs <int>
 ```
 
 ```r
@@ -5872,9 +5873,10 @@ glanced %>%
 ##  8 South Afr… Africa    <tibble … <lm>      0.312        0.244    4.74     4.54 
 ##  9 Uganda     Africa    <tibble … <lm>      0.342        0.276    3.19     5.20 
 ## 10 Congo, De… Africa    <tibble … <lm>      0.348        0.283    2.43     5.34 
-## # … with 132 more rows, and 8 more variables: p.value <dbl>, df <dbl>,
-## #   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>, df.residual <int>,
-## #   nobs <int>
+## # … with 132 more rows, and 8 more variables:
+## #   p.value <dbl>, df <dbl>, logLik <dbl>,
+## #   AIC <dbl>, BIC <dbl>, deviance <dbl>,
+## #   df.residual <int>, nobs <int>
 ```
 
 ```r
@@ -9801,12 +9803,19 @@ midwest
 ##  8   568 CARROLL IL    0.027    16805       622.    16519      111            30
 ##  9   569 CASS    IL    0.024    13437       560.    13384       16             8
 ## 10   570 CHAMPA… IL    0.058   173025      2983.   146506    16559           331
-## # … with 427 more rows, and 19 more variables: popasian <int>, popother <int>,
-## #   percwhite <dbl>, percblack <dbl>, percamerindan <dbl>, percasian <dbl>,
-## #   percother <dbl>, popadults <int>, perchsd <dbl>, percollege <dbl>,
-## #   percprof <dbl>, poppovertyknown <int>, percpovertyknown <dbl>,
-## #   percbelowpoverty <dbl>, percchildbelowpovert <dbl>, percadultpoverty <dbl>,
-## #   percelderlypoverty <dbl>, inmetro <int>, category <chr>
+## # … with 427 more rows, and 19 more variables:
+## #   popasian <int>, popother <int>,
+## #   percwhite <dbl>, percblack <dbl>,
+## #   percamerindan <dbl>, percasian <dbl>,
+## #   percother <dbl>, popadults <int>,
+## #   perchsd <dbl>, percollege <dbl>,
+## #   percprof <dbl>, poppovertyknown <int>,
+## #   percpovertyknown <dbl>,
+## #   percbelowpoverty <dbl>,
+## #   percchildbelowpovert <dbl>,
+## #   percadultpoverty <dbl>,
+## #   percelderlypoverty <dbl>, inmetro <int>,
+## #   category <chr>
 ```
 
 
