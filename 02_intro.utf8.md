@@ -1923,7 +1923,7 @@ test_that("Check whether instructor variable is setup correctly", {
 ```
 
 ```
-## Test passed
+## Test passed 🎉
 ```
 
 Inspired by an example in Hadley Wickham's [R Journal paper](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf
