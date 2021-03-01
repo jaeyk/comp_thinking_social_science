@@ -2127,10 +2127,10 @@ tablea <- gapminder %>%
 pacman::p_load(kableExtra,
                flextable)
 
-# For HTML and LaTeX
+# For HTML and LaTeX￣
 tablea %>% kableExtra::kable()
 
-# For HTML and MS Office suite
+# For HTML and MS Office suite￣
 tablea %>% flextable::flextable()
 ```
 
@@ -2750,7 +2750,6 @@ pacman::p_load(# Necessary
                # Optional 
                merTools,
                glmmTMB, 
-               brms, 
                modelr, 
                nlme, 
                sjstats)
