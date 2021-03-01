@@ -1383,7 +1383,7 @@ ck37r::plot_roc(cv_sl)
 ##### Review weight distribution for the SuperLearner
 
 ```{r}
-print(cvsl_weights(cv_sl), row.names = FALSE)
+print(ck37r::cvsl_weights(cv_sl), row.names = FALSE)
 ```
 
 General stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 

@@ -1849,12 +1849,130 @@ ck37r::plot_roc(cv_sl)
 ##### Review weight distribution for the SuperLearner
 
 
+```r
+print(ck37r::cvsl_weights(cv_sl), row.names = FALSE)
+```
+
+```
+## Registered S3 method overwritten by 'pryr':
+##   method      from
+##   print.bytes Rcpp
+```
+
+```
+##  # Learner    Mean      SD     Min     Max
+##  1  glmnet 0.93581 0.06548 0.84928 0.99863
+##  2  ranger 0.05429 0.06625 0.00000 0.15072
+##  3 xgboost 0.00465 0.00691 0.00000 0.01632
+##  4   rpart 0.00267 0.00598 0.00000 0.01337
+##  5    mean 0.00257 0.00575 0.00000 0.01285
+```
+
+General stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
+
+However, SuperLearner is currently not available in the tidymodels framework. If you'd like to, you can easily build and add a parsnip model. If you are interested in knowing more about it, please take a look at [this vignette](https://www.tidymodels.org/learn/develop/models/) of the tidymodels.
+
+### Applications 
+
+#### Bandit algorithm (optimizing an experiment)
+
+#### Causal forest (estimating heterogeneous treatment effect)
+
+## Unsupervised learning
+
+x -> f - > y (not defined)
+
+### Dimension reduction
+
+![Projecting 2D-data to a line (PCA). From vas3k.com](https://i.stack.imgur.com/Q7HIP.gif)
+
+#### Correlation analysis 
+
+- Notice some problems? 
+
+    - NAs 
+    
+    - Scaling issues 
+    
+
+```r
+data_original %>%
+  corrr::correlate()
+```
+
+```
+## 
+## Correlation method: 'pearson'
+## Missing treated using: 'pairwise.complete.obs'
+```
+
+```
+## # A tibble: 14 x 15
+##    term         age     sex      cp trestbps     chol      fbs restecg  thalach
+##    <chr>      <dbl>   <dbl>   <dbl>    <dbl>    <dbl>    <dbl>   <dbl>    <dbl>
+##  1 age      NA      -0.0984 -0.0687   0.279   0.214    0.121   -0.116  -0.399  
+##  2 sex      -0.0984 NA      -0.0494  -0.0568 -0.198    0.0450  -0.0582 -0.0440 
+##  3 cp       -0.0687 -0.0494 NA        0.0476 -0.0769   0.0944   0.0444  0.296  
+##  4 trestbps  0.279  -0.0568  0.0476  NA       0.123    0.178   -0.114  -0.0467 
+##  5 chol      0.214  -0.198  -0.0769   0.123  NA        0.0133  -0.151  -0.00994
+##  6 fbs       0.121   0.0450  0.0944   0.178   0.0133  NA       -0.0842 -0.00857
+##  7 restecg  -0.116  -0.0582  0.0444  -0.114  -0.151   -0.0842  NA       0.0441 
+##  8 thalach  -0.399  -0.0440  0.296   -0.0467 -0.00994 -0.00857  0.0441 NA      
+##  9 exang     0.0968  0.142  -0.394    0.0676  0.0670   0.0257  -0.0707 -0.379  
+## 10 oldpeak   0.210   0.0961 -0.149    0.193   0.0540   0.00575 -0.0588 -0.344  
+## 11 slope    -0.169  -0.0307  0.120   -0.121  -0.00404 -0.0599   0.0930  0.387  
+## 12 ca        0.276   0.118  -0.181    0.101   0.0705   0.138   -0.0720 -0.213  
+## 13 thal      0.0680  0.210  -0.162    0.0622  0.0988  -0.0320  -0.0120 -0.0964 
+## 14 target   -0.225  -0.281   0.434   -0.145  -0.0852  -0.0280   0.137   0.422  
+## # … with 6 more variables: exang <dbl>,
+## #   oldpeak <dbl>, slope <dbl>, ca <dbl>,
+## #   thal <dbl>, target <dbl>
+```
+
+#### Preprocessing 
+
+`recipe` is essential for preprocesssing multiple features at once.
 
 
+```r
+pca_recipe <- recipe(~., data = data_original) %>%
+  # Imputing NAs using mean 
+  step_meanimpute(all_predictors()) %>%
+  # Normalize some numeric variables 
+  step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak")) 
+```
+
+#### PCA analysis 
 
 
+```r
+pca_res <- pca_recipe %>% 
+  step_pca(all_predictors(), 
+           id = "pca") %>% # id argument identifies each PCA step 
+  prep()
 
+pca_res %>%
+  tidy(id = "pca") 
+```
 
+```
+## # A tibble: 196 x 4
+##    terms        value component id   
+##    <chr>        <dbl> <chr>     <chr>
+##  1 age      -0.00101  PC1       pca  
+##  2 sex       0.216    PC1       pca  
+##  3 cp        0.321    PC1       pca  
+##  4 trestbps  0.00118  PC1       pca  
+##  5 chol     -0.000292 PC1       pca  
+##  6 fbs       0.0468   PC1       pca  
+##  7 restecg   0.166    PC1       pca  
+##  8 thalach   0.0137   PC1       pca  
+##  9 exang     0.0962   PC1       pca  
+## 10 oldpeak  -0.00863  PC1       pca  
+## # … with 186 more rows
+```
+
+##### Screeplot
 
 
 
