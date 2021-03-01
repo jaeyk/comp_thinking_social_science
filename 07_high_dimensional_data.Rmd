@@ -1450,6 +1450,10 @@ pca_res %>%
 ##### Screeplot
 
 ```{r}
+# To avoid conflicts 
+conflict_prefer("filter", "dplyr") 
+conflict_prefer("select", "dplyr") 
+
 pca_recipe %>%
   step_pca(all_predictors(), 
            id = "pca") %>% # id argument identifies each PCA step 
@@ -2171,10 +2175,6 @@ pacman::p_load(
  glue, # pasting strings and objects 
  reticulate # source python codes
 )
-
-# To avoid conflicts 
-conflict_prefer("filter", "dplyr") 
-conflict_prefer("select", "dplyr") 
 
 # Set themes 
 theme_set(ggthemes::theme_fivethirtyeight())
