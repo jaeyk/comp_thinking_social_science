@@ -17376,14 +17376,14 @@ What if the best way to solve the problem is not ignoring the error \ldots{}
 \end{verbatim}
 
 \hypertarget{products}{%
-\section{Developing your own data products}\label{products}}
+\chapter{Developing data products}\label{products}}
 
 \begin{quote}
 A data product is the production output from a statistical analysis. - \href{https://sites.google.com/view/bcaffo/home}{Brian Caffo}
 \end{quote}
 
 \hypertarget{developing-r-packages}{%
-\subsection{Developing R packages}\label{developing-r-packages}}
+\section{Developing R packages}\label{developing-r-packages}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -17397,7 +17397,7 @@ A data product is the production output from a statistical analysis. - \href{htt
 \end{enumerate}
 
 \hypertarget{workflow}{%
-\subsubsection{Workflow}\label{workflow}}
+\subsection{Workflow}\label{workflow}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -17461,7 +17461,7 @@ It's time to learn five states of R code: source, bundled, binary, installed, an
 If you're just using an R package, you're only concerned of the last two states: \texttt{install.packages("pkg")} and \texttt{library(pkg)} If you're developing an R package, you first write source code (\texttt{*.R}), bundle it (compressed file like \texttt{*.tar.gz}; done by \texttt{devtools::build()}), then make it binary (\texttt{devtools::build(binary\ =\ TRUE)}; This is how a package is stored in CRAN/GitHub, etc.).
 
 \hypertarget{required-components}{%
-\subsubsection{Required Components}\label{required-components}}
+\subsection{Required Components}\label{required-components}}
 
 The 4 required components are necessary to build and distribute a minimally viable R package. The other steps are optional.
 
@@ -17589,7 +17589,7 @@ If you used a function from other packages you need to reference it in the follo
 \end{Shaded}
 
 \hypertarget{optional-components}{%
-\subsubsection{Optional Components}\label{optional-components}}
+\subsection{Optional Components}\label{optional-components}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -17669,7 +17669,7 @@ If you used a function from other packages you need to reference it in the follo
 \end{itemize}
 
 \hypertarget{building-an-r-package}{%
-\subsubsection{Building an R package}\label{building-an-r-package}}
+\subsection{Building an R package}\label{building-an-r-package}}
 
 \begin{itemize}
 \tightlist
@@ -17696,7 +17696,7 @@ You can run R commands in the terminal using R CMD.
 \end{Shaded}
 
 \hypertarget{distributing-an-r-package}{%
-\subsubsection{Distributing an R package}\label{distributing-an-r-package}}
+\subsection{Distributing an R package}\label{distributing-an-r-package}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -17787,12 +17787,12 @@ You can run R commands in the terminal using R CMD.
 \end{verbatim}
 
 \hypertarget{developing-shiny-apps}{%
-\subsection{Developing Shiny apps}\label{developing-shiny-apps}}
+\section{Developing Shiny apps}\label{developing-shiny-apps}}
 
 \href{https://shiny.rstudio.com/}{Shiny} is a ``framework for creating web applications using R code''. You can create a dashboard or an interactive map without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise to learn from your data in an intuitive and interactive way.
 
 \hypertarget{workflow-1}{%
-\subsubsection{Workflow}\label{workflow-1}}
+\subsection{Workflow}\label{workflow-1}}
 
 The workflow follows what Hadley Wickham recommended in his book on mastering shiny.
 
@@ -17824,7 +17824,7 @@ The key objective here is defining your UI (how the app looks; front-end = INPUT
 If you're creating a complex app, you can achieve the same goal with two files: \texttt{ui.R} and \texttt{server.R}.
 
 \hypertarget{app.r}{%
-\subsubsection{app.r}\label{app.r}}
+\subsection{app.r}\label{app.r}}
 
 \begin{itemize}
 \tightlist
@@ -17911,7 +17911,7 @@ If you're creating a complex app, you can achieve the same goal with two files: 
 \end{Shaded}
 
 \hypertarget{deployment}{%
-\subsubsection{Deployment}\label{deployment}}
+\subsection{Deployment}\label{deployment}}
 
 \begin{itemize}
 \tightlist
@@ -17935,7 +17935,7 @@ If you're creating a complex app, you can achieve the same goal with two files: 
 \end{Shaded}
 
 \hypertarget{references-4}{%
-\subsubsection{References}\label{references-4}}
+\subsection{References}\label{references-4}}
 
 \href{https://mastering-shiny.org/}{Mastering Shiny} by Hadley Wickham. For newbies.
 
@@ -17946,590 +17946,7 @@ If you're creating a complex app, you can achieve the same goal with two files: 
 \href{https://stat545.com/shiny-tutorial.html}{Building Shiny Apps} by Dean Attali.
 
 \hypertarget{other-useful-data-products}{%
-\subsection{Other useful data products}\label{other-useful-data-products}}
-
-\begin{itemize}
-\tightlist
-\item
-  Automating data reports using rmarkdown (called \href{https://rmarkdown.rstudio.com/developer_parameterized_reports.html\%23parameter_types\%2F}{parameterized reports})
-\item
-  Automating R presentation using \href{http://slidify.org/index.html}{slidify}
-\item
-  Creating interactive web apps using \href{https://rstudio.github.io/leaflet/}{leaflet}
-\end{itemize}
-
-\hypertarget{products}{%
-\chapter{Developing data products}\label{products}}
-
-\begin{quote}
-A data product is the production output from a statistical analysis. - \href{https://sites.google.com/view/bcaffo/home}{Brian Caffo}
-\end{quote}
-
-\hypertarget{developing-r-packages-1}{%
-\section{Developing R packages}\label{developing-r-packages-1}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Reuse your code
-\item
-  Automate your workflow
-\item
-  Help others (be part of an open source development community)
-\end{enumerate}
-
-\hypertarget{workflow-2}{%
-\subsection{Workflow}\label{workflow-2}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Write code in \texttt{\textbackslash{}R}
-\item
-  Document code in \texttt{\textbackslash{}man} (automated by \texttt{roxygen2} package)
-\end{enumerate}
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{devtools::document()}
-\end{itemize}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
-\item
-  Check dependencies in \texttt{NAMESPACE}
-\end{enumerate}
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{devtools::update()} updates the documentation
-\item
-  \texttt{devtools::check()} to see whether your package is ready to be submitted to CRAN
-\end{itemize}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{3}
-\tightlist
-\item
-  Build a package (for more information, read \href{http://r-pkgs.had.co.nz/package.html}{this section} in Hadley's R package development book)
-\end{enumerate}
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{devtools::build()}
-\end{itemize}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{4}
-\tightlist
-\item
-  (Optional) Test (\texttt{devtools::test()}), teach in \texttt{\textbackslash{}vignettes}, and add data in \texttt{\textbackslash{}data}
-\item
-  Distribute the package either via CRAN or GitHub
-\end{enumerate}
-
-\includegraphics{http://r-pkgs.had.co.nz/diagrams/package-files.png}
-
-It's time to learn five states of R code: source, bundled, binary, installed, and in-memory.
-
-If you're just using an R package, you're only concerned of the last two states: \texttt{install.packages("pkg")} and \texttt{library(pkg)} If you're developing an R package, you first write source code (\texttt{*.R}), bundle it (compressed file like \texttt{*.tar.gz}; done by \texttt{devtools::build()}), then make it binary (\texttt{devtools::build(binary\ =\ TRUE)}; This is how a package is stored in CRAN/GitHub, etc.).
-
-\hypertarget{required-components-1}{%
-\subsection{Required Components}\label{required-components-1}}
-
-The 4 required components are necessary to build and distribute a minimally viable R package. The other steps are optional.
-
-\begin{itemize}
-\tightlist
-\item
-  Package
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \texttt{\textbackslash{}R}: R functions
-  \item
-    \texttt{\textbackslash{}man}: function documentations
-  \item
-    DESCRIPTION: provides meta data about the package (e.g., author)
-  \item
-    LICENSE
-
-    \begin{itemize}
-    \tightlist
-    \item
-      GNU, MIT, etc.
-    \end{itemize}
-  \item
-    NAMESPACE: package dependencies (to make your package self-contained)
-  \item
-    README (optional)
-  \end{itemize}
-\end{itemize}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Setup (\textbf{DESCRIPTION})
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# This function creates DESCRIPTION file }
-\NormalTok{usethis}\SpecialCharTok{::}\FunctionTok{create\_package}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"mypkg"}\NormalTok{))}
-
-\CommentTok{\# Initialize git repo }
-\NormalTok{usethis}\SpecialCharTok{::}\FunctionTok{use\_git}\NormalTok{()}
-
-\CommentTok{\# License the package }
-\CommentTok{\# You can use the MIT license by typing devtools::use\_mit\_license("author name"). The function produces MIT license related files (LICENSE, LICENSE.md).}
-\FunctionTok{use\_mit\_license}\NormalTok{(}\StringTok{"Jae Yeon Kim"}\NormalTok{)}
-
-\CommentTok{\# Add README (optional)}
-\CommentTok{\# Makes the package more use{-}friendly }
-\FunctionTok{use\_readme\_md}\NormalTok{()}
-
-\CommentTok{\# Add news (optional) }
-\CommentTok{\# Helps track changes }
-\FunctionTok{use\_news\_md}\NormalTok{() }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Write code (\textbf{R})
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{usethis}\SpecialCharTok{::}\FunctionTok{use\_r}\NormalTok{(}\StringTok{"rbind\_mutate"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#\textquotesingle{} Add two numbers}
-\CommentTok{\#\textquotesingle{}}
-\CommentTok{\#\textquotesingle{} @param x A number}
-\CommentTok{\#\textquotesingle{} @param y A number}
-\CommentTok{\#\textquotesingle{} @return The sum of x and y }
-\CommentTok{\#\textquotesingle{} @export}
-
-\NormalTok{add }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, y)\{}
-  
-\NormalTok{  x }\SpecialCharTok{+}\NormalTok{ y}
-  
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-If you used a function from other packages you need to reference it in the following way: \texttt{\#\textquotesingle{}\ @importFrom\ \textless{}package\textgreater{}\ \textless{}function\textgreater{}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
-\item
-  Document (\textbf{man})
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Document }
-\CommentTok{\# The function creates documentation related files (NAMESPACE, function\_name.rd)}
-\NormalTok{devtools}\SpecialCharTok{::}\FunctionTok{document}\NormalTok{()}
-
-\CommentTok{\# Check; updates the documentation; builds and checks the package }
-\NormalTok{devtools}\SpecialCharTok{::}\FunctionTok{check}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{3}
-\tightlist
-\item
-  Organize (\textbf{NAMESPACE})
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{usethis}\SpecialCharTok{::}\FunctionTok{use\_package}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{optional-components-1}{%
-\subsection{Optional Components}\label{optional-components-1}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Test (\textbf{test})
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{usethis}\SpecialCharTok{::}\FunctionTok{use\_testthat}\NormalTok{()}
-
-\NormalTok{usethis}\SpecialCharTok{::}\FunctionTok{use\_test}\NormalTok{(}\StringTok{"rbind\_mutate"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Add data (\textbf{data})
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x }\OtherTok{\textless{}{-}} \StringTok{"Jae"}
-\NormalTok{y }\OtherTok{\textless{}{-}} \StringTok{"Sun"}
-\NormalTok{z }\OtherTok{\textless{}{-}} \StringTok{"Jane"}
-
-\NormalTok{usethis}\SpecialCharTok{::}\FunctionTok{use\_data}\NormalTok{(x, y, z, }\AttributeTok{overwrite =} \ConstantTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
-\item
-  Teach (\textbf{vignetts})
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{usethis}\SpecialCharTok{::}\FunctionTok{use\_vignette}\NormalTok{(}\StringTok{"rbind\_mutate"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{title}\SpecialCharTok{:} \StringTok{"Vignette title"}
-\NormalTok{author}\SpecialCharTok{:} \StringTok{"Vignette author"}
-\NormalTok{date}\SpecialCharTok{:} \StringTok{"2021{-}03{-}01"}
-\NormalTok{output}\SpecialCharTok{:}\NormalTok{ rmarkdown}\SpecialCharTok{::}\NormalTok{html\_vignette}
-\NormalTok{vignette}\SpecialCharTok{:}\NormalTok{ blah blah}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  You can build a package website using \texttt{pkgdown}
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# install.packages("pkgdown")}
-\NormalTok{usethis}\SpecialCharTok{::}\FunctionTok{use\_pkgdown}\NormalTok{()}
-\NormalTok{pkgdown}\SpecialCharTok{::}\FunctionTok{build\_site}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  A package site includes information on METADATA, Function references, Articles, News, etc.
-\end{itemize}
-
-\hypertarget{building-an-r-package-1}{%
-\subsection{Building an R package}\label{building-an-r-package-1}}
-
-\begin{itemize}
-\tightlist
-\item
-  CMD (in the terminal)
-\end{itemize}
-
-You can run R commands in the terminal using R CMD.
-
-\begin{itemize}
-\tightlist
-\item
-  devtools
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Build }
-\NormalTok{devtools}\SpecialCharTok{::}\FunctionTok{build}\NormalTok{()}
-
-\CommentTok{\# Install }
-\NormalTok{devtools}\SpecialCharTok{::}\FunctionTok{install}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{distributing-an-r-package-1}{%
-\subsection{Distributing an R package}\label{distributing-an-r-package-1}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Version update }
-\NormalTok{usethis}\SpecialCharTok{::}\FunctionTok{use\_version}\NormalTok{()}
-
-\CommentTok{\# Spell check}
-\NormalTok{usethis}\SpecialCharTok{::}\FunctionTok{use\_spell\_check}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \href{https://cran.r-project.org/}{CRAN (The Comprehensive R Archive Network)}
-\end{enumerate}
-
-\begin{itemize}
-\tightlist
-\item
-  R package submission should comply with \href{https://cran.r-project.org/}{the CRAN Repository Policy}
-\end{itemize}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  GitHub
-\end{enumerate}
-
-\begin{itemize}
-\item
-  Push everything to the Git repository (you can do it using command-line interface or RStudio).
-\item
-  Don't forget that your repository should be \texttt{public}.
-\item
-  I highly recommend connecting GitHub with SSH. For more information, visit \href{https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh}{this link}.
-\end{itemize}
-
-\textbf{Additional tips}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  If you want to use pipe operator (\%) in your functions, save the following script as \texttt{utils-pipe.R.}
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#\textquotesingle{} Pipe operator}
-\CommentTok{\#\textquotesingle{}}
-\CommentTok{\#\textquotesingle{} See \textbackslash{}code\{magrittr::\textbackslash{}link[magrittr:pipe]\{\textbackslash{}\%\textgreater{}\textbackslash{}\%\}\} for details.}
-\CommentTok{\#\textquotesingle{}}
-\CommentTok{\#\textquotesingle{} @name \%\textgreater{}\%}
-\CommentTok{\#\textquotesingle{} @rdname pipe}
-\CommentTok{\#\textquotesingle{} @keywords internal}
-\CommentTok{\#\textquotesingle{} @export}
-\CommentTok{\#\textquotesingle{} @importFrom magrittr \%\textgreater{}\%}
-\CommentTok{\#\textquotesingle{} @usage lhs \textbackslash{}\%\textgreater{}\textbackslash{}\% rhs}
-\ConstantTok{NULL}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## NULL
-\end{verbatim}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Sometimes, you get the following error: ``Undefined global functions or variables'' If you experience this problem, save the following script as \texttt{globals.r.}
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{utils}\SpecialCharTok{::}\FunctionTok{globalVariables}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"\textless{}undefined variable name1\textgreater{}"}\NormalTok{, }\StringTok{"\textless{}undefined variable name2\textgreater{}"}\NormalTok{, }\StringTok{"\textless{}undefinedvariable name3"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "<undefined variable name1>" "<undefined variable name2>"
-## [3] "<undefinedvariable name3"
-\end{verbatim}
-
-\hypertarget{developing-shiny-apps-1}{%
-\section{Developing Shiny apps}\label{developing-shiny-apps-1}}
-
-\href{https://shiny.rstudio.com/}{Shiny} is a ``framework for creating web applications using R code''. You can create a dashboard or an interactive map without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise to learn from your data in an intuitive and interactive way.
-
-\hypertarget{workflow-3}{%
-\subsection{Workflow}\label{workflow-3}}
-
-The workflow follows what Hadley Wickham recommended in his book on mastering shiny.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Install libraries
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"shiny"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Create app directory and file
-\end{enumerate}
-
-Add an \texttt{app.R} file.
-
-The key objective here is defining your UI (how the app looks; front-end = INPUT) (defined in object \texttt{ui}) and server (how the app works; back-end = OUTPUT) (defined in object \texttt{server}).
-
-If you're creating a complex app, you can achieve the same goal with two files: \texttt{ui.R} and \texttt{server.R}.
-
-\hypertarget{app.r-1}{%
-\subsection{app.r}\label{app.r-1}}
-
-\begin{itemize}
-\tightlist
-\item
-  Front-end
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Load packages }
-\CommentTok{\# Do not use install.packages(), pacman::p\_load(), or library() if you intend to deploy the app using shinyapps.io }
-
-\FunctionTok{require}\NormalTok{(}\StringTok{"wordcloud2"}\NormalTok{)}
-\FunctionTok{require}\NormalTok{(}\StringTok{"shiny"}\NormalTok{)}
-\FunctionTok{require}\NormalTok{(}\StringTok{"shinydashboard"}\NormalTok{)}
-\FunctionTok{require}\NormalTok{(}\StringTok{"colourpicker"}\NormalTok{)}
-
-\CommentTok{\# Load data }
-
-\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\FunctionTok{url}\NormalTok{(}\StringTok{"https://github.com/jaeyk/covid19antiasian/raw/master/processed\_data/hash\_counts.csv"}\NormalTok{))[,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]}
-
-\CommentTok{\# Defines the user interface; how the app looks}
-
-\NormalTok{ui }\OtherTok{\textless{}{-}} \FunctionTok{fluidPage}\NormalTok{(}
-  
-    \CommentTok{\# Application title }
-    \FunctionTok{titlePanel}\NormalTok{(}\StringTok{"Word Cloud on the Hashtags of the Tweets related to COVID{-}19 \& Asian|Chinese|Wuhan"}\NormalTok{),}
-  
-    \FunctionTok{h4}\NormalTok{(tags}\SpecialCharTok{$}\FunctionTok{a}\NormalTok{(}\AttributeTok{href =} \StringTok{"https://jaeyk.github.io/"}\NormalTok{, }\StringTok{"Developer: Jae Yeon Kim"}\NormalTok{)),}
-            
-    \FunctionTok{sidebarLayout}\NormalTok{(}
-      
-      \CommentTok{\# Sidebar with sliders }
-      \FunctionTok{sidebarPanel}\NormalTok{(}
-        \FunctionTok{sliderInput}\NormalTok{(}\StringTok{"size"}\NormalTok{, }
-                    \StringTok{"Font size:"}\NormalTok{,}
-                    \AttributeTok{min =} \DecValTok{1}\NormalTok{, }\AttributeTok{max =} \DecValTok{10}\NormalTok{,}
-                    \AttributeTok{value =} \DecValTok{2}\NormalTok{)}
-\NormalTok{      ),}
-    
-    \FunctionTok{mainPanel}\NormalTok{(}
-          
-          \FunctionTok{wordcloud2Output}\NormalTok{(}\StringTok{"cloud"}\NormalTok{),}
-        
-\NormalTok{        )}
-    
-\NormalTok{    )}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  Back-end
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{server }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(input, output, session) \{}
-  
-\NormalTok{  output}\SpecialCharTok{$}\NormalTok{cloud }\OtherTok{\textless{}{-}} \FunctionTok{renderWordcloud2}\NormalTok{(\{ }
-    
-    \FunctionTok{wordcloud2}\NormalTok{(df, }
-               \AttributeTok{size =}\NormalTok{ input}\SpecialCharTok{$}\NormalTok{size, }
-               \AttributeTok{color =} \StringTok{"random{-}dark"}\NormalTok{) }
-    
-\NormalTok{    \})}
-
-\NormalTok{  \}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  Build a shiny app
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{shinyApp}\NormalTok{(}\AttributeTok{ui =}\NormalTok{ ui, }\AttributeTok{server =}\NormalTok{ server)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{deployment-1}{%
-\subsection{Deployment}\label{deployment-1}}
-
-\begin{itemize}
-\tightlist
-\item
-  Deploy to \href{https://www.shinyapps.io/?_ga=2.5503866.871102833.1602978469-100003412.1602392815}{the shinyapps.io cloud}
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Install packages }
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"rsconnect"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(rsconnect)}
-
-\CommentTok{\# Setup }
-\NormalTok{rsconnect}\SpecialCharTok{::}\FunctionTok{setAccountInfo}\NormalTok{(}\AttributeTok{name =} \StringTok{"\textless{}Account name\textgreater{}"}\NormalTok{, }
-                          \AttributeTok{token =} \StringTok{"\textless{}Token\textgreater{}"}\NormalTok{,}
-                          \AttributeTok{secret =} \StringTok{"\textless{}Secret\textgreater{}"}\NormalTok{)}
-
-\NormalTok{rsconnect}\SpecialCharTok{::}\FunctionTok{deployApp}\NormalTok{(}\AttributeTok{appNames =} \StringTok{"\textless{}App name\textgreater{}"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{references-5}{%
-\subsection{References}\label{references-5}}
-
-\href{https://mastering-shiny.org/}{Mastering Shiny} by Hadley Wickham. For newbies.
-
-\href{https://bookdown.org/yihui/rmarkdown/shiny-documents.html}{Shiny Documents} by Yihui Xie
-
-\href{https://engineering-shiny.org/}{Engineering Production-Grade Shiny Apps} by Colin Fay, Sébastien Rochette, Vincent Guyader, Cervan Girard. For experienced developers.
-
-\href{https://stat545.com/shiny-tutorial.html}{Building Shiny Apps} by Dean Attali.
-
-\hypertarget{other-useful-data-products-1}{%
-\section{Other useful data products}\label{other-useful-data-products-1}}
+\section{Other useful data products}\label{other-useful-data-products}}
 
 \begin{itemize}
 \tightlist
@@ -18614,8 +18031,8 @@ Semi-structured data is a form of structured data that does not obey the tabular
   \end{itemize}
 \end{itemize}
 
-\hypertarget{workflow-4}{%
-\section{Workflow}\label{workflow-4}}
+\hypertarget{workflow-2}{%
+\section{Workflow}\label{workflow-2}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -19584,6 +19001,8 @@ There are at least three ways you can use function + \texttt{purrr::map()}.
 \hypertarget{machine_learning}{%
 \chapter{High-dimensional data}\label{machine_learning}}
 
+￣
+
 \hypertarget{overview}{%
 \section{Overview}\label{overview}}
 
@@ -19821,8 +19240,8 @@ There are at least three ways you can use function + \texttt{purrr::map()}.
   For more information on the Iowa housing data, read \href{http://jse.amstat.org/v19n3/decock.pdf}{Cook (2011)}. This is one of the famous datastets used in many prediction modeling competitions.
 \end{itemize}
 
-\hypertarget{workflow-5}{%
-\section{Workflow}\label{workflow-5}}
+\hypertarget{workflow-3}{%
+\section{Workflow}\label{workflow-3}}
 
 \begin{itemize}
 \item
@@ -23917,8 +23336,8 @@ Even more so for Black defendants.
 
 \includegraphics{07_high_dimensional_data_files/figure-latex/unnamed-chunk-130-1.pdf}
 
-\hypertarget{references-6}{%
-\section{References}\label{references-6}}
+\hypertarget{references-5}{%
+\section{References}\label{references-5}}
 
 \hypertarget{books}{%
 \subsection{Books}\label{books}}
@@ -24230,8 +23649,8 @@ Let's get to work.
 \caption{From RStudio.}
 \end{figure}
 
-\hypertarget{workflow-6}{%
-\subsection{Workflow}\label{workflow-6}}
+\hypertarget{workflow-4}{%
+\subsection{Workflow}\label{workflow-4}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -25107,8 +24526,8 @@ This is just a hypothetical example inspired by {[}James LeDoux's blog post{]}(\
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{references-7}{%
-\subsection{References}\label{references-7}}
+\hypertarget{references-6}{%
+\subsection{References}\label{references-6}}
 
 \begin{itemize}
 \tightlist
