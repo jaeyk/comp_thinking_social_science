@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/Debian) (preloaded format=xelatex 2020.12.15)  1 MAR 2021 14:51
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/Debian) (preloaded format=xelatex 2020.12.15)  1 MAR 2021 15:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -961,13 +961,13 @@ Chapter 1.
 [5] [6]
 
 LaTeX Warning: File `https://i.creativecommons.org/l/by/4.0/88x31.png' not foun
-d on input line 260.
+d on input line 263.
 
 ! Unable to load picture or PDF file 'https://i.creativecommons.org/l/by/4.0/88
 x31.png'.
 <to be read again> 
                    }
-l.260 ...i.creativecommons.org/l/by/4.0/88x31.png}
+l.263 ...i.creativecommons.org/l/by/4.0/88x31.png}
                                                    This work is licensed und...
  
 Here is how much of TeX's memory you used:
