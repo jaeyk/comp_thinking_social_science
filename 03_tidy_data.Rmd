@@ -2124,6 +2124,9 @@ tablea <- gapminder %>%
 
 ```{r}
 
+pacman::p_load(kableExtra,
+               flextable)
+
 # For HTML and LaTeX
 tablea %>% kableExtra::kable()
 

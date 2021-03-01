@@ -4826,76 +4826,1491 @@ tablea <- gapminder %>%
 -   Produce publishable tables
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```r
+pacman::p_load(kableExtra,
+               flextable)
+```
+
+```
+## also installing the dependencies 'officer', 'gdtools'
+```
+
+```
+## Updating HTML index of packages in '.Library'
+```
+
+```
+## Making 'packages.html' ... done
+## 
+## flextable installed
+```
+
+```r
+# For HTML and LaTeX
+tablea %>% kableExtra::kable()
+```
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> continent </th>
+   <th style="text-align:right;"> n </th>
+   <th style="text-align:right;"> mean_gdp </th>
+   <th style="text-align:right;"> sd_gdp </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Africa </td>
+   <td style="text-align:right;"> 624 </td>
+   <td style="text-align:right;"> 2193.755 </td>
+   <td style="text-align:right;"> 2827.930 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Americas </td>
+   <td style="text-align:right;"> 300 </td>
+   <td style="text-align:right;"> 7136.110 </td>
+   <td style="text-align:right;"> 6396.764 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Asia </td>
+   <td style="text-align:right;"> 396 </td>
+   <td style="text-align:right;"> 7902.150 </td>
+   <td style="text-align:right;"> 14045.373 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Europe </td>
+   <td style="text-align:right;"> 360 </td>
+   <td style="text-align:right;"> 14469.476 </td>
+   <td style="text-align:right;"> 9355.213 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Oceania </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 18621.609 </td>
+   <td style="text-align:right;"> 6358.983 </td>
+  </tr>
+</tbody>
+</table>
+
+```r
+# For HTML and MS Office suite
+tablea %>% flextable::flextable()
+```
+
+```{=html}
+<template id="1a985730-f978-4c7a-978e-aa02e71ac829"><style>
+.tabwid table{
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-spacing: 0;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-2c675fb8{border-collapse:collapse;}.cl-2c62381c{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2c624bf4{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2c624c12{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2c627ffc{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c628024{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c62802e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c628038{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c628042{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c628056{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}caption {color: #777;margin-top: 10px;margin-bottom: 10px;text-align: center;}</style><table class='cl-2c675fb8'>
+```
+
+```{=html}
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-2c628042"><p class="cl-2c624bf4"><span class="cl-2c62381c">continent</span></p></td><td class="cl-2c628056"><p class="cl-2c624c12"><span class="cl-2c62381c">n</span></p></td><td class="cl-2c628056"><p class="cl-2c624c12"><span class="cl-2c62381c">mean_gdp</span></p></td><td class="cl-2c628056"><p class="cl-2c624c12"><span class="cl-2c62381c">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2c627ffc"><p class="cl-2c624bf4"><span class="cl-2c62381c">Africa</span></p></td><td class="cl-2c628024"><p class="cl-2c624c12"><span class="cl-2c62381c">624</span></p></td><td class="cl-2c628024"><p class="cl-2c624c12"><span class="cl-2c62381c">2,193.755</span></p></td><td class="cl-2c628024"><p class="cl-2c624c12"><span class="cl-2c62381c">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c627ffc"><p class="cl-2c624bf4"><span class="cl-2c62381c">Americas</span></p></td><td class="cl-2c628024"><p class="cl-2c624c12"><span class="cl-2c62381c">300</span></p></td><td class="cl-2c628024"><p class="cl-2c624c12"><span class="cl-2c62381c">7,136.110</span></p></td><td class="cl-2c628024"><p class="cl-2c624c12"><span class="cl-2c62381c">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c627ffc"><p class="cl-2c624bf4"><span class="cl-2c62381c">Asia</span></p></td><td class="cl-2c628024"><p class="cl-2c624c12"><span class="cl-2c62381c">396</span></p></td><td class="cl-2c628024"><p class="cl-2c624c12"><span class="cl-2c62381c">7,902.150</span></p></td><td class="cl-2c628024"><p class="cl-2c624c12"><span class="cl-2c62381c">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c627ffc"><p class="cl-2c624bf4"><span class="cl-2c62381c">Europe</span></p></td><td class="cl-2c628024"><p class="cl-2c624c12"><span class="cl-2c62381c">360</span></p></td><td class="cl-2c628024"><p class="cl-2c624c12"><span class="cl-2c62381c">14,469.476</span></p></td><td class="cl-2c628024"><p class="cl-2c624c12"><span class="cl-2c62381c">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c62802e"><p class="cl-2c624bf4"><span class="cl-2c62381c">Oceania</span></p></td><td class="cl-2c628038"><p class="cl-2c624c12"><span class="cl-2c62381c">24</span></p></td><td class="cl-2c628038"><p class="cl-2c624c12"><span class="cl-2c62381c">18,621.609</span></p></td><td class="cl-2c628038"><p class="cl-2c624c12"><span class="cl-2c62381c">6,358.983</span></p></td></tr></tbody></table></div></template>
+<div id="5e78d8f4-ff9b-4129-a9ba-547043e3e6ab"></div>
+<script>
+var dest = document.getElementById("5e78d8f4-ff9b-4129-a9ba-547043e3e6ab");
+var template = document.getElementById("1a985730-f978-4c7a-978e-aa02e71ac829");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+```
+
+#### Scoped summaries
+
+-   Old way
+
+-   `summarise_all()`
+
+
+```r
+# Create a wide-shaped data example
+wide_gapminder <- gapminder %>%
+  filter(continent == "Europe") %>%
+  pivot_wider(
+    names_from = country,
+    values_from = gdpPercap
+  )
+
+# Apply summarise_all
+wide_gapminder %>%
+  dplyr::select(-c(1:4)) %>%
+  summarise_all(mean, na.rm = TRUE)
+```
+
+```
+## # A tibble: 1 x 30
+##   Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia `Czech Republic`
+##     <dbl>   <dbl>   <dbl>            <dbl>    <dbl>   <dbl>            <dbl>
+## 1   3255.  20412.  19901.            3485.    6384.   9332.           13920.
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>, `Slovak
+## #   Republic` <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, `United Kingdom` <dbl>
+```
+
+-   `summarise_if()`: using a logical condition
+
+
+```r
+wide_gapminder %>%
+  summarise_if(is.double, mean, na.rm = TRUE)
+```
+
+```
+## # A tibble: 1 x 31
+##   lifeExp Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia
+##     <dbl>   <dbl>   <dbl>   <dbl>            <dbl>    <dbl>   <dbl>
+## 1    71.9   3255.  20412.  19901.            3485.    6384.   9332.
+## # … with 24 more variables: `Czech Republic` <dbl>, Denmark <dbl>,
+## #   Finland <dbl>, France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>,
+## #   Iceland <dbl>, Ireland <dbl>, Italy <dbl>, Montenegro <dbl>,
+## #   Netherlands <dbl>, Norway <dbl>, Poland <dbl>, Portugal <dbl>,
+## #   Romania <dbl>, Serbia <dbl>, `Slovak Republic` <dbl>, Slovenia <dbl>,
+## #   Spain <dbl>, Sweden <dbl>, Switzerland <dbl>, Turkey <dbl>, `United
+## #   Kingdom` <dbl>
+```
+
+-   `summarise_at()`
+
+-   `vars() = select()`
+
+
+```r
+wide_gapminder %>%
+  summarise_at(vars(-c(1:4)),
+    mean,
+    na.rm = TRUE
+  )
+```
+
+```
+## # A tibble: 1 x 30
+##   Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia `Czech Republic`
+##     <dbl>   <dbl>   <dbl>            <dbl>    <dbl>   <dbl>            <dbl>
+## 1   3255.  20412.  19901.            3485.    6384.   9332.           13920.
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>, `Slovak
+## #   Republic` <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, `United Kingdom` <dbl>
+```
+
+```r
+wide_gapminder %>%
+  summarise_at(vars(contains("life")),
+    mean,
+    na.rm = TRUE
+  )
+```
+
+```
+## # A tibble: 1 x 1
+##   lifeExp
+##     <dbl>
+## 1    71.9
+```
+
+**Additional tips**
+
+
+![Concept map for regular expressions. By Monica Alonso, Greg Wilson.](https://github.com/rstudio/concept-maps/raw/master/en/regular-expressions.svg)
+
+
+-   New way
+
+-   `summarise()` + `across()`
+
+
+![Concept map for across. By Emma Vestesson](https://github.com/rstudio/concept-maps/raw/master/en/across.svg)
+
+
+-   If you find using `summarise_all()`, `summarise_if()` and `summarise_at()` confusing, here's a solution: use `summarise()` with `across()`.
+
+-   `summarise_all()`
+
+
+```r
+wide_gapminder %>%
+  summarise(across(Albania:`United Kingdom`, mean, na.rm = TRUE))
+```
+
+```
+## # A tibble: 1 x 30
+##   Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia `Czech Republic`
+##     <dbl>   <dbl>   <dbl>            <dbl>    <dbl>   <dbl>            <dbl>
+## 1   3255.  20412.  19901.            3485.    6384.   9332.           13920.
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>, `Slovak
+## #   Republic` <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, `United Kingdom` <dbl>
+```
+
+```r
+wide_gapminder %>%
+  summarise(across(-c(1:4), mean, na.rm = TRUE))
+```
+
+```
+## # A tibble: 1 x 30
+##   Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia `Czech Republic`
+##     <dbl>   <dbl>   <dbl>            <dbl>    <dbl>   <dbl>            <dbl>
+## 1   3255.  20412.  19901.            3485.    6384.   9332.           13920.
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>, `Slovak
+## #   Republic` <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, `United Kingdom` <dbl>
+```
+
+-   `summarise_if()`
+
+
+```r
+wide_gapminder %>%
+  summarise(across(is.double, mean, na.rm = TRUE))
+```
+
+```
+## Warning: Predicate functions must be wrapped in `where()`.
+## 
+##   # Bad
+##   data %>% select(is.double)
+## 
+##   # Good
+##   data %>% select(where(is.double))
+## 
+## ℹ Please update your code.
+## This message is displayed once per session.
+```
+
+```
+## # A tibble: 1 x 31
+##   lifeExp Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia
+##     <dbl>   <dbl>   <dbl>   <dbl>            <dbl>    <dbl>   <dbl>
+## 1    71.9   3255.  20412.  19901.            3485.    6384.   9332.
+## # … with 24 more variables: `Czech Republic` <dbl>, Denmark <dbl>,
+## #   Finland <dbl>, France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>,
+## #   Iceland <dbl>, Ireland <dbl>, Italy <dbl>, Montenegro <dbl>,
+## #   Netherlands <dbl>, Norway <dbl>, Poland <dbl>, Portugal <dbl>,
+## #   Romania <dbl>, Serbia <dbl>, `Slovak Republic` <dbl>, Slovenia <dbl>,
+## #   Spain <dbl>, Sweden <dbl>, Switzerland <dbl>, Turkey <dbl>, `United
+## #   Kingdom` <dbl>
+```
+
+-   `summarise_at()`
+
+
+```r
+wide_gapminder %>%
+  summarise(across(-c(1:4),
+    mean,
+    na.rm = TRUE
+  ))
+```
+
+```
+## # A tibble: 1 x 30
+##   Albania Austria Belgium `Bosnia and Her… Bulgaria Croatia `Czech Republic`
+##     <dbl>   <dbl>   <dbl>            <dbl>    <dbl>   <dbl>            <dbl>
+## 1   3255.  20412.  19901.            3485.    6384.   9332.           13920.
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>, `Slovak
+## #   Republic` <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, `United Kingdom` <dbl>
+```
+
+```r
+wide_gapminder %>%
+  summarise(across(contains("life"),
+    mean,
+    na.rm = TRUE
+  ))
+```
+
+```
+## # A tibble: 1 x 1
+##   lifeExp
+##     <dbl>
+## 1    71.9
+```
+
+```r
+wide_gapminder %>%
+  summarise(across(contains("A", ignore.case = FALSE)))
+```
+
+```
+## # A tibble: 360 x 2
+##    Albania Austria
+##      <dbl>   <dbl>
+##  1   1601.      NA
+##  2   1942.      NA
+##  3   2313.      NA
+##  4   2760.      NA
+##  5   3313.      NA
+##  6   3533.      NA
+##  7   3631.      NA
+##  8   3739.      NA
+##  9   2497.      NA
+## 10   3193.      NA
+## # … with 350 more rows
+```
+
+Note that this workshop does not cover creating and manipulating variables using `mutate()` because many techniques you learned from playing with `summarise()` can be directly applied to `mutate()`.
+
+**Challenge**
+
+1.  Summarize average GDP of countries whose names starting with alphabet "A".
+
+2.  Turn the summary dataframe into a publishable table using either `kableExtra` or `flextable` package.
+
+#### Tabulation (TBD)
+
+### Grouping
+
+#### Grouped summaries
+
+- Calculate the mean of `gdpPercap`.
+
+- Some functions are designed to work together. For instance, the group_by
+function defines the strata that you're going to use for summary statistics. Then, use summarise() or summarize() for producing summary statistics.
+
+
+```r
+gapminder %>%
+  group_by(continent) %>% #
+  summarise(mean_gdp = mean(gdpPercap))
+```
+
+```
+## # A tibble: 5 x 2
+##   continent mean_gdp
+## * <fct>        <dbl>
+## 1 Africa       2194.
+## 2 Americas     7136.
+## 3 Asia         7902.
+## 4 Europe      14469.
+## 5 Oceania     18622.
+```
+
+-   Calculate multiple summary statistics.
+
+
+```r
+gapminder %>%
+  group_by(continent) %>% #
+  summarise(
+    mean_gdp = mean(gdpPercap),
+    count = n()
+  )
+```
+
+```
+## # A tibble: 5 x 3
+##   continent mean_gdp count
+## * <fct>        <dbl> <int>
+## 1 Africa       2194.   624
+## 2 Americas     7136.   300
+## 3 Asia         7902.   396
+## 4 Europe      14469.   360
+## 5 Oceania     18622.    24
+```
+
+**Optional**
+
+-   Other summary statistics
+
+1.  Measures of spread: `median(x)`, `sd(x)`, `IQR(x)`, `mad(x)` (the median absolute deviation)
+
+
+```r
+# The Interquartile Range = The Difference Between 75t and 25t Percentiles
+
+gapminder %>%
+  group_by(continent) %>% #
+  summarise(IQR_gdp = IQR(gdpPercap))
+```
+
+```
+## # A tibble: 5 x 2
+##   continent IQR_gdp
+## * <fct>       <dbl>
+## 1 Africa      1616.
+## 2 Americas    4402.
+## 3 Asia        7492.
+## 4 Europe     13248.
+## 5 Oceania     8072.
+```
+
+2.  Measures of rank: `min(x)`, `quantile(x, 0.25)`, `max(x)`
+
+
+```r
+gapminder %>%
+  group_by(continent) %>% #
+  summarise(
+    min_gdp = min(gdpPercap),
+    max_gdp = max(gdpPercap)
+  )
+```
+
+```
+## # A tibble: 5 x 3
+##   continent min_gdp max_gdp
+## * <fct>       <dbl>   <dbl>
+## 1 Africa       241.  21951.
+## 2 Americas    1202.  42952.
+## 3 Asia         331  113523.
+## 4 Europe       974.  49357.
+## 5 Oceania    10040.  34435.
+```
+
+3.  Measures of position: `first(x)`, `last(x)`, `nth(x, 2)`
+
+
+```r
+gapminder %>%
+  group_by(continent) %>%
+  summarise(
+    first_gdp = first(gdpPercap),
+    last_gdp = last(gdpPercap)
+  )
+```
+
+```
+## # A tibble: 5 x 3
+##   continent first_gdp last_gdp
+## * <fct>         <dbl>    <dbl>
+## 1 Africa        2449.     470.
+## 2 Americas      5911.   11416.
+## 3 Asia           779.    2281.
+## 4 Europe        1601.   33203.
+## 5 Oceania      10040.   25185.
+```
+
+```r
+gapminder %>%
+  group_by(continent) %>%
+  arrange(gdpPercap) %>% # Adding arrange
+  summarise(
+    first_gdp = first(gdpPercap),
+    last_gdp = last(gdpPercap)
+  )
+```
+
+```
+## # A tibble: 5 x 3
+##   continent first_gdp last_gdp
+##   <fct>         <dbl>    <dbl>
+## 1 Africa         241.   21951.
+## 2 Americas      1202.   42952.
+## 3 Asia           331   113523.
+## 4 Europe         974.   49357.
+## 5 Oceania      10040.   34435.
+```
+
+4.  Measures of counts: `n(x)` (all rows), `sum(!is.na(x))` (only non-missing rows) = `n_distinct(x)`
+
+
+```r
+gapminder %>%
+  group_by(continent) %>%
+  summarise(ns = n())
+```
+
+```
+## # A tibble: 5 x 2
+##   continent    ns
+## * <fct>     <int>
+## 1 Africa      624
+## 2 Americas    300
+## 3 Asia        396
+## 4 Europe      360
+## 5 Oceania      24
+```
+
+5.  Counts and proportions of logical values: `sum(condition about x)` (the number of TRUEs in x), `mean(condition about x)` (the proportion of TRUEs in x)
+
+
+```r
+gapminder %>%
+  group_by(continent) %>%
+  summarise(rich_countries = mean(gdpPercap > 20000))
+```
+
+```
+## # A tibble: 5 x 2
+##   continent rich_countries
+## * <fct>              <dbl>
+## 1 Africa           0.00481
+## 2 Americas         0.05   
+## 3 Asia             0.111  
+## 4 Europe           0.261  
+## 5 Oceania          0.333
+```
+
+**Additional tips**
+
+Also, check out window functions such as `cumsum()` and `lag()`. Window functions are a variant of aggregate functions that take a vector as an input then returns a vector of the same length as an output. 
+
+
+```r
+vec <- c(1:10)
+
+# Typical aggregate function
+sum(vec) # The output length is one
+```
+
+```
+## [1] 55
+```
+
+```r
+# Window function
+cumsum(vec) # The output length is ten
+```
+
+```
+##  [1]  1  3  6 10 15 21 28 36 45 55
+```
+
+```r
+# Let's compare them side-by-side
+compare(
+  sum(vec),
+  cumsum(vec)
+)
+```
+
+```
+## `old`:                         55
+## `new`: 1 3 6 10 15 21 28 36 45 55
+```
+
+### Joining
+
+Relational data = multiple tables of data
+
+![Relational data example](https://d33wubrfki0l68.cloudfront.net/245292d1ea724f6c3fd8a92063dcd7bfb9758d02/5751b/diagrams/relational-nycflights.png)
+
+**Key ideas**
+
+- A **primary key** "uniquely identifies an observation in its own table"
+
+
+```r
+# Example
+planes$tailnum %>% head()
+```
+
+```
+## [1] "N10156" "N102UW" "N103US" "N104UW" "N10575" "N105UW"
+```
+Verify primary key
+
+`tailnum` should be unique. 
+
+**Challenge**
+
+What do you expect the outcome?
+
+
+```r
+planes %>%
+  count(tailnum) %>%
+  filter(n > 1)
+```
+
+```
+## # A tibble: 0 x 2
+## # … with 2 variables: tailnum <chr>, n <int>
+```
+**Optional**
+
+If a dataframe doesn't have primary key, you can add one called a **surrogate** key.
+
+
+```r
+# Toy example
+df <- tibble(
+  x = c(1:3),
+  y = c(4:6)
+)
+
+# Add a row_index column
+df <- df %>% rowid_to_column("ID")
+```
+
+- A **foreign** key "uniquely identifies an observation in another table."
+
+
+```r
+flights$tailnum %>% head()
+```
+
+```
+## [1] "N14228" "N24211" "N619AA" "N804JB" "N668DN" "N39463"
+```
+For joining, don't be distracted by other details and focus on KEYS!
+
+#### Mutating joins
+
+> Add new variables to one data frame from matching observations in another"
+
+Using a simple toy example is great because it is easy to see how things work in that much narrow context.
+
+-   Toy example
+
+
+```r
+# Table 1
+x <- tibble(
+  key = c(1:4),
+  val_x = c("x1", "x2", "x3", "x4")
+)
+
+# Table 2
+y <- tibble(
+  key = c(1:5),
+  val_y = c("y1", "y2", "y3", "y4", "y5")
+)
+```
+
+-   Inner Join
+
+`inner_join()` keeps the matched values in both tables. If the left table is a subset of the right table, then the result of `left_join()` is same as `inner_join()`.
+
+**Challenge**
+
+What are going to be the shared keys?
+
+
+```r
+inner_join(x, y)
+```
+
+```
+## Joining, by = "key"
+```
+
+```
+## # A tibble: 4 x 3
+##     key val_x val_y
+##   <int> <chr> <chr>
+## 1     1 x1    y1   
+## 2     2 x2    y2   
+## 3     3 x3    y3   
+## 4     4 x4    y4
+```
+
+![Mutating joins](https://d33wubrfki0l68.cloudfront.net/aeab386461820b029b7e7606ccff1286f623bae1/ef0d4/diagrams/join-venn.png)
+
+-   Left Join
+
+`left_join()`, `right_join()` and `full_join()` are outer join functions. Unlike `inner_join()`, outer join functions keep observations that appear in at least one of the tables.
+
+`left_join()` keeps only the matched observations in the right table.
+
+
+```r
+left_join(x, y)
+```
+
+```
+## Joining, by = "key"
+```
+
+```
+## # A tibble: 4 x 3
+##     key val_x val_y
+##   <int> <chr> <chr>
+## 1     1 x1    y1   
+## 2     2 x2    y2   
+## 3     3 x3    y3   
+## 4     4 x4    y4
+```
+
+-   Right Join
+
+`right_join()` does the opposite. 
+
+
+```r
+right_join(x, y)
+```
+
+```
+## Joining, by = "key"
+```
+
+```
+## # A tibble: 5 x 3
+##     key val_x val_y
+##   <int> <chr> <chr>
+## 1     1 x1    y1   
+## 2     2 x2    y2   
+## 3     3 x3    y3   
+## 4     4 x4    y4   
+## 5     5 <NA>  y5
+```
+
+-   Full Join
+
+`full_join()` keeps the observations from both tables. If they were unmatched, then NAs were recoded in one of the two tables.
+
+
+```r
+full_join(x, y)
+```
+
+```
+## Joining, by = "key"
+```
+
+```
+## # A tibble: 5 x 3
+##     key val_x val_y
+##   <int> <chr> <chr>
+## 1     1 x1    y1   
+## 2     2 x2    y2   
+## 3     3 x3    y3   
+## 4     4 x4    y4   
+## 5     5 <NA>  y5
+```
+
+#### Filtering joins
+
+> Filter observations from one data frame based on whether or not they match an observation in the other table.
+
+-   Semi Join
+
+In SQL, this type of query is also called subqueries.
+
+-   Filtering without joining
+
+
+```r
+# Create the list of the top 10 destinations
+top_dest <- flights %>%
+  count(dest, sort = TRUE) %>%
+  top_n(10)
+```
+
+```
+## Selecting by n
+```
+
+```r
+# Filter
+filtered <- flights %>%
+  filter(dest %in% top_dest$dest)
+```
+
+-   Using semi join: only keep (INCLUDE) the rows that were matched between the two tables
+
+
+```r
+joined <- flights %>%
+  semi_join(top_dest)
+```
+
+```
+## Joining, by = "dest"
+```
+
+```r
+head(filtered == joined)
+```
+
+```
+##      year month  day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+## [1,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+## [2,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+## [3,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+## [4,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+## [5,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+## [6,] TRUE  TRUE TRUE     TRUE           TRUE      TRUE     TRUE           TRUE
+##      arr_delay carrier flight tailnum origin dest air_time distance hour minute
+## [1,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+## [2,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+## [3,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+## [4,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+## [5,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+## [6,]      TRUE    TRUE   TRUE    TRUE   TRUE TRUE     TRUE     TRUE TRUE   TRUE
+##      time_hour
+## [1,]      TRUE
+## [2,]      TRUE
+## [3,]      TRUE
+## [4,]      TRUE
+## [5,]      TRUE
+## [6,]      TRUE
+```
+
+-   Anti Join
+
+`anti_join()` dose the opposite. Exclude the rows that were matched between the two tables. Great technique to filter stopwords when you do a computational text analysis.
+
+
+```r
+flights %>%
+  anti_join(planes, by = "tailnum") %>%
+  count(tailnum, sort = TRUE)
+```
+
+```
+## # A tibble: 722 x 2
+##    tailnum     n
+##    <chr>   <int>
+##  1 <NA>     2512
+##  2 N725MQ    575
+##  3 N722MQ    513
+##  4 N723MQ    507
+##  5 N713MQ    483
+##  6 N735MQ    396
+##  7 N0EGMQ    371
+##  8 N534MQ    364
+##  9 N542MQ    363
+## 10 N531MQ    349
+## # … with 712 more rows
+```
+
+## Modeling (broom)
+
+### Nesting
+
+#### nest
+
+The following example comes from [R for Data Science](https://r4ds.had.co.nz/many-models.html) by by Garrett Grolemund and Hadley Wickham.
+
+-   How can you run multiple models simultaneously? Using a nested data frame.
+
+```{=html}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rz3_FDVt9eg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> Hadley Wickham: Managing many models with R </p>
+```
+
+-   **Grouped data: each row = an observation**
+
+-   **Nested data: each row = a group**
+
+**Challenge**
+
+In the following example, why did we use `country` and `continent` for nesting variables?
+
+
+```r
+nested <- gapminder %>%
+  group_by(country, continent) %>%
+  nest()
+
+head(nested)
+```
+
+```
+## # A tibble: 6 x 3
+## # Groups:   country, continent [6]
+##   country     continent data             
+##   <fct>       <fct>     <list>           
+## 1 Afghanistan Asia      <tibble [12 × 4]>
+## 2 Albania     Europe    <tibble [12 × 4]>
+## 3 Algeria     Africa    <tibble [12 × 4]>
+## 4 Angola      Africa    <tibble [12 × 4]>
+## 5 Argentina   Americas  <tibble [12 × 4]>
+## 6 Australia   Oceania   <tibble [12 × 4]>
+```
+
+```r
+nested$data %>% pluck(1)
+```
+
+```
+## # A tibble: 12 x 4
+##     year lifeExp      pop gdpPercap
+##    <int>   <dbl>    <int>     <dbl>
+##  1  1952    28.8  8425333      779.
+##  2  1957    30.3  9240934      821.
+##  3  1962    32.0 10267083      853.
+##  4  1967    34.0 11537966      836.
+##  5  1972    36.1 13079460      740.
+##  6  1977    38.4 14880372      786.
+##  7  1982    39.9 12881816      978.
+##  8  1987    40.8 13867957      852.
+##  9  1992    41.7 16317921      649.
+## 10  1997    41.8 22227415      635.
+## 11  2002    42.1 25268405      727.
+## 12  2007    43.8 31889923      975.
+```
+
+-   Custom function
+
+
+```r
+lm_model <- function(df) {
+  lm(lifeExp ~ year, data = df)
+}
+```
+
+-   Apply function to the nested data
+
+
+```r
+# Apply m_model to the nested data
+
+nested <- nested %>%
+  mutate(models = map(data, lm_model)) # Add the list object as a new column
+
+head(nested)
+```
+
+```
+## # A tibble: 6 x 4
+## # Groups:   country, continent [6]
+##   country     continent data              models
+##   <fct>       <fct>     <list>            <list>
+## 1 Afghanistan Asia      <tibble [12 × 4]> <lm>  
+## 2 Albania     Europe    <tibble [12 × 4]> <lm>  
+## 3 Algeria     Africa    <tibble [12 × 4]> <lm>  
+## 4 Angola      Africa    <tibble [12 × 4]> <lm>  
+## 5 Argentina   Americas  <tibble [12 × 4]> <lm>  
+## 6 Australia   Oceania   <tibble [12 × 4]> <lm>
+```
+
+S3 is part of R's object oriented systems. If you need more information, check [this section](http://adv-r.had.co.nz/S3.html) in Hadley's Advanced R out.
+
+#### unnest
+
+- glance() 
+
+`glance()` function from `broom` package inspects the quality of a statistical model.
+
+**Additional tips**
+
+-   `broom::glance(model)`: for evaluating model quality and/or complexity
+-   `broom::tidy(model)`: for extracting each coefficient in the model (the estimates + its variability)
+-   `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics). A really handy tool in case if you want to plot fitted values and raw data together. 
+
+![Broom: Converting Statistical Models to Tidy Data Frames by David Robinson](https://www.youtube.com/watch?v=7VGPUBWGv6g&ab_channel=Work-Bench)
+
+
+```r
+glanced <- nested %>%
+  mutate(glance = map(models, broom::glance))
+
+# Pluck the first item on the list 
+glanced$glance %>% pluck(1)
+```
+
+```
+## # A tibble: 1 x 12
+##   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+##       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>
+## 1     0.948         0.942  1.22      181. 9.84e-8     1  -18.3  42.7  44.1
+## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+```
+
+```r
+# Pull p.value 
+glanced$glance %>% pluck(1) %>% pull(p.value)
+```
+
+```
+##        value 
+## 9.835213e-08
+```
+
+`unnest()` unpacks the list objects stored in glance column
+
+
+```r
+glanced %>%
+  unnest(glance) %>%
+  arrange(r.squared) 
+```
+
+```
+## # A tibble: 142 x 16
+## # Groups:   country, continent [142]
+##    country continent data  models r.squared adj.r.squared sigma statistic
+##    <fct>   <fct>     <lis> <list>     <dbl>         <dbl> <dbl>     <dbl>
+##  1 Rwanda  Africa    <tib… <lm>      0.0172      -0.0811   6.56     0.175
+##  2 Botswa… Africa    <tib… <lm>      0.0340      -0.0626   6.11     0.352
+##  3 Zimbab… Africa    <tib… <lm>      0.0562      -0.0381   7.21     0.596
+##  4 Zambia  Africa    <tib… <lm>      0.0598      -0.0342   4.53     0.636
+##  5 Swazil… Africa    <tib… <lm>      0.0682      -0.0250   6.64     0.732
+##  6 Lesotho Africa    <tib… <lm>      0.0849      -0.00666  5.93     0.927
+##  7 Cote d… Africa    <tib… <lm>      0.283        0.212    3.93     3.95 
+##  8 South … Africa    <tib… <lm>      0.312        0.244    4.74     4.54 
+##  9 Uganda  Africa    <tib… <lm>      0.342        0.276    3.19     5.20 
+## 10 Congo,… Africa    <tib… <lm>      0.348        0.283    2.43     5.34 
+## # … with 132 more rows, and 8 more variables: p.value <dbl>, df <dbl>,
+## #   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>, df.residual <int>,
+## #   nobs <int>
+```
+
+```r
+glanced %>%
+  unnest(glance) %>%
+  ggplot(aes(continent, r.squared)) +
+  geom_jitter(width = 0.5)
+```
+
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-167-1.png" width="672" />
+
+- tidy() 
+
+
+```r
+nested <- gapminder %>%
+  group_by(continent) %>%
+  nest()
+
+nested <- nested %>%
+  mutate(models = map(data, ~lm(lifeExp ~ year + country, data = .))) 
+
+tidied <- nested %>%
+  mutate(tidied = map(models, broom::tidy))
+
+model_out <- tidied %>%
+  unnest(tidied) %>%
+  mutate(term = str_replace(term, "country", "")) %>%
+  select(continent, term, estimate, p.value) %>%
+  mutate(p_threshold = ifelse(p.value < 0.05, 1, 0))
+
+model_out %>% filter(p_threshold == 1) %>% pull(term) %>% unique()
+```
+
+```
+##   [1] "(Intercept)"              "year"                    
+##   [3] "Bahrain"                  "Bangladesh"              
+##   [5] "Cambodia"                 "China"                   
+##   [7] "Hong Kong, China"         "India"                   
+##   [9] "Indonesia"                "Iran"                    
+##  [11] "Iraq"                     "Israel"                  
+##  [13] "Japan"                    "Jordan"                  
+##  [15] "Korea, Dem. Rep."         "Korea, Rep."             
+##  [17] "Kuwait"                   "Lebanon"                 
+##  [19] "Malaysia"                 "Mongolia"                
+##  [21] "Myanmar"                  "Nepal"                   
+##  [23] "Oman"                     "Pakistan"                
+##  [25] "Philippines"              "Saudi Arabia"            
+##  [27] "Singapore"                "Sri Lanka"               
+##  [29] "Syria"                    "Taiwan"                  
+##  [31] "Thailand"                 "Vietnam"                 
+##  [33] "West Bank and Gaza"       "Yemen, Rep."             
+##  [35] "Austria"                  "Belgium"                 
+##  [37] "Croatia"                  "Czech Republic"          
+##  [39] "Denmark"                  "Finland"                 
+##  [41] "France"                   "Germany"                 
+##  [43] "Greece"                   "Iceland"                 
+##  [45] "Ireland"                  "Italy"                   
+##  [47] "Montenegro"               "Netherlands"             
+##  [49] "Norway"                   "Poland"                  
+##  [51] "Portugal"                 "Slovak Republic"         
+##  [53] "Slovenia"                 "Spain"                   
+##  [55] "Sweden"                   "Switzerland"             
+##  [57] "Turkey"                   "United Kingdom"          
+##  [59] "Angola"                   "Benin"                   
+##  [61] "Botswana"                 "Burkina Faso"            
+##  [63] "Burundi"                  "Cameroon"                
+##  [65] "Central African Republic" "Chad"                    
+##  [67] "Comoros"                  "Congo, Dem. Rep."        
+##  [69] "Congo, Rep."              "Cote d'Ivoire"           
+##  [71] "Djibouti"                 "Equatorial Guinea"       
+##  [73] "Eritrea"                  "Ethiopia"                
+##  [75] "Gabon"                    "Gambia"                  
+##  [77] "Ghana"                    "Guinea"                  
+##  [79] "Guinea-Bissau"            "Kenya"                   
+##  [81] "Lesotho"                  "Liberia"                 
+##  [83] "Madagascar"               "Malawi"                  
+##  [85] "Mali"                     "Mauritania"              
+##  [87] "Mauritius"                "Mozambique"              
+##  [89] "Namibia"                  "Niger"                   
+##  [91] "Nigeria"                  "Reunion"                 
+##  [93] "Rwanda"                   "Senegal"                 
+##  [95] "Sierra Leone"             "Somalia"                 
+##  [97] "South Africa"             "Sudan"                   
+##  [99] "Swaziland"                "Tanzania"                
+## [101] "Togo"                     "Uganda"                  
+## [103] "Zambia"                   "Zimbabwe"                
+## [105] "Bolivia"                  "Brazil"                  
+## [107] "Canada"                   "Colombia"                
+## [109] "Dominican Republic"       "Ecuador"                 
+## [111] "El Salvador"              "Guatemala"               
+## [113] "Haiti"                    "Honduras"                
+## [115] "Mexico"                   "Nicaragua"               
+## [117] "Paraguay"                 "Peru"                    
+## [119] "Puerto Rico"              "Trinidad and Tobago"     
+## [121] "United States"            "Venezuela"               
+## [123] "New Zealand"
+```
+
+```r
+model_out %>% filter(p_threshold == 0) %>% pull(term) %>% unique()
+```
+
+```
+##  [1] "Bosnia and Herzegovina" "Bulgaria"               "Hungary"               
+##  [4] "Romania"                "Serbia"                 "Egypt"                 
+##  [7] "Libya"                  "Morocco"                "Sao Tome and Principe" 
+## [10] "Tunisia"                "Chile"                  "Costa Rica"            
+## [13] "Cuba"                   "Jamaica"                "Panama"                
+## [16] "Uruguay"
+```
+
+
+### Mapping
+
+We tasted a little bit about how `map()` function works. Let's dig into it deeper as this family of functions is really useful. For more information, see Rebecca Barter's wonderful tutorial on the `purrr` package. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
+
+
+```r
+multiply <- function(x) {
+  x * x
+}
+
+df <- list(
+  first_obs = rnorm(7, 1, sd = 1),
+  second_obs = rnorm(7, 2, sd = 2)
+) # normal distribution
+```
+
+**Challenge**
+
+Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between the output you got and what you saw earlier.
+
+If you want to know more about the power and joy of functional programming in R (e.g., `purrr::map()`), then please take ["How to Automate Repeated Things in R"](https://github.com/dlab-berkeley/R-functional-programming) workshop.
+
+### Hypothesis testing 
+
+Statistical inference: does the effect/difference in observed data occur by chance?
+
+Null hypothesis: everything was random 
+Alternative hypothesis: everything was not random. Note that this does not mean that a particular factor influenced the outcome of interest. Statistical inference != Causal inference (causes and effects)
+
+$Y = X_{1} + X_{2} + X_{3} \epsilon$
+
+[`infer`](https://github.com/tidymodels/infer) is for tidyverse-friendly statistical inference. 
+
+**Workflow**
+
+1. `specify()` specify a formula 
+2. `hypothesize()` declare the null hypothesis 
+3. `generate()` generate data based on the null hypothesis 
+4. `calculate()` calculate a distribution of statistics from the generated data to form the null distribution 
+
+
+![From infer package](https://raw.githubusercontent.com/tidymodels/infer/master/figs/ht-diagram.png)
+
+
+```r
+gapminder <- gapminder %>%
+  mutate(log_pop = log(pop))
+
+ggplot(aes(x = log_pop, y = lifeExp), data = gapminder) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-170-1.png" width="672" />
+
+```r
+# Calculate the observed statistic: Observed slopes 
+observed_slopes <- gapminder %>%
+  # specify(formula = lifeExp ~ log_pop) %>% 
+  specify(formula = lifeExp ~ log_pop) %>%
+  calculate(stat = "slope")
+
+# Generate the null distribution: Null slopes 
+null_slopes <- gapminder %>%
+  # Specify a formula
+  specify(formula = lifeExp ~ log_pop) %>%
+  # Hypothesize (point estimation)
+  hypothesize(null = "point", mu = 0) %>%
+  # Generate sampling distributions (bootstrapping)
+  generate(reps = 1000, type = "bootstrap") %>%
+  # Calculate statistics 
+  calculate(stat = "slope") 
+
+# Return data 
+null_slopes %>%
+  # p-value is just the probability that observed pattern could arise if the null hypothesis was true 
+  # In social science convention, if alpha is below 0.005 (note: this is totally arbitrary), then the observed distribution is statistically significant.
+  get_p_value(obs_stat = observed_slopes, 
+              direction = "both")
+```
+
+```
+## # A tibble: 1 x 1
+##   p_value
+##     <dbl>
+## 1   0.972
+```
+
+```r
+# Visualize output 
+visualize(null_slopes) +
+  shade_p_value(obs_stat = observed_slopes, 
+                direction = "both")
+```
+
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-170-2.png" width="672" />
+
+### Mixed models 
+
+This part heavily draws on [Gelman and Hill](http://www.stat.columbia.edu/~gelman/arm/) (2007), Michael Clark's [Mixed Models with R](https://m-clark.github.io/mixed-models-with-R/), and Basel R Bootcamp's [Statistics with R: Mixed Models](https://therbootcamp.github.io/SwR_2019Apr/_sessions/MixedModels/MixedModels_practical.html). For a quick review on mixed models, I recommend Xavier et al.'s ["A brief introduction to mixed effects modelling and multi-model inference in ecology"](https://peerj.com/articles/4794/) (2018).
+
+Why random effects model/mixed effects model?
+
+Fixed effects model assume that groups are independent from each other and sharing common residuals (same slope for fitted covariates). Limiting to a common slope can inflate Type I and Type II errors.  
+
+
+```r
+pacman::p_load(# Necessary  
+               lme4, 
+               broom.mixed, 
+               # Optional 
+               merTools,
+               glmmTMB, 
+               brms, 
+               modelr, 
+               nlme, 
+               sjstats)
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package 'lme4'
+## had non-zero exit status
+```
+
+```
+## Updating HTML index of packages in '.Library'
+```
+
+```
+## Making 'packages.html' ... done
+```
+
+```
+## Warning in p_install(package, character.only = TRUE, ...):
+```
+
+```
+## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+## logical.return = TRUE, : there is no package called 'lme4'
+```
+
+```
+## also installing the dependencies 'TMB', 'cubelyr'
+## 
+## Updating HTML index of packages in '.Library'
+## Making 'packages.html' ... done
+## 
+## broom.mixed installed
+## also installing the dependencies 'sass', 'jquerylib', 'xtable', 'sourcetools', 'bslib', 'cachem', 'arm', 'lme4', 'mvtnorm', 'shiny', 'blme'
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package 'lme4'
+## had non-zero exit status
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package 'arm'
+## had non-zero exit status
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package 'blme'
+## had non-zero exit status
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package
+## 'merTools' had non-zero exit status
+```
+
+```
+## Updating HTML index of packages in '.Library'
+## Making 'packages.html' ... done
+```
+
+```
+## Warning in p_install(package, character.only = TRUE, ...):
+```
+
+```
+## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+## logical.return = TRUE, : there is no package called 'merTools'
+```
+
+```
+## also installing the dependency 'lme4'
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package 'lme4'
+## had non-zero exit status
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package
+## 'glmmTMB' had non-zero exit status
+```
+
+```
+## Updating HTML index of packages in '.Library'
+## Making 'packages.html' ... done
+```
+
+```
+## Warning in p_install(package, character.only = TRUE, ...):
+```
+
+```
+## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+## logical.return = TRUE, : there is no package called 'glmmTMB'
+```
+
+```
+## also installing the dependencies 'miniUI', 'packrat', 'igraph', 'StanHeaders', 'inline', 'V8', 'ggridges', 'colourpicker', 'dygraphs', 'rsconnect', 'shinyjs', 'shinythemes', 'threejs', 'xts', 'lme4', 'optimx', 'rngtools', 'gamm4', 'Brobdingnag', 'rstan', 'loo', 'rstantools', 'bayesplot', 'shinystan', 'projpred', 'bridgesampling', 'nleqslv'
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package 'V8'
+## had non-zero exit status
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package 'lme4'
+## had non-zero exit status
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package
+## 'gamm4' had non-zero exit status
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package
+## 'rstan' had non-zero exit status
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package
+## 'shinystan' had non-zero exit status
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package
+## 'projpred' had non-zero exit status
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package 'brms'
+## had non-zero exit status
+```
+
+```
+## Updating HTML index of packages in '.Library'
+## Making 'packages.html' ... done
+```
+
+```
+## Warning in p_install(package, character.only = TRUE, ...):
+```
+
+```
+## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+## logical.return = TRUE, : there is no package called 'brms'
+```
+
+```
+## also installing the dependencies 'insight', 'estimability', 'bayestestR', 'effectsize', 'emmeans', 'lme4', 'parameters', 'performance', 'sjmisc'
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package 'lme4'
+## had non-zero exit status
+```
+
+```
+## Warning in utils::install.packages(package, ...): installation of package
+## 'sjstats' had non-zero exit status
+```
+
+```
+## Updating HTML index of packages in '.Library'
+## Making 'packages.html' ... done
+```
+
+```
+## Warning in p_install(package, character.only = TRUE, ...):
+```
+
+```
+## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+## logical.return = TRUE, : there is no package called 'sjstats'
+```
+
+```
+## Warning in pacman::p_load(lme4, broom.mixed, merTools, glmmTMB, brms, modelr, : Failed to install/load:
+## lme4, merTools, glmmTMB, brms, sjstats
+```
 
 
 
