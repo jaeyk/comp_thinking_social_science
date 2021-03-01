@@ -41,12 +41,14 @@ The book is currently divided into two main subjects (fundamentals and applicati
 
 4. [How to use functional programming to automate repeated things](#functional_programming) 
 
-4. [How to develop data products (e.g., packages and apps)](#products) 
+5. [How to develop data products (e.g., packages and apps)](#products) 
 
 ## Part II Applications
 
 6. [How to collect and parse semi-structured data at scale (e.g., using APIs and webscraping)](#semi_structured_data) 
+
 7. [How to analyze high-dimensional data (e.g., text, image) using machine learning](#machine_learning) 
+
 8. [How to access, query, and manage big data using SQL and Spark](#big_data) 
 
 The book teaches how to do all of these mostly in [**R**](https://www.r-project.org/about.html), and sometimes in [**bash**](https://www.gnu.org/software/bash/) and [**Python**](https://www.python.org/about/).
