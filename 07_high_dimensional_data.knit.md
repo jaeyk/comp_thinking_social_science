@@ -1483,26 +1483,355 @@ xg_res <- xg_wf %>%
 ##### Visualize 
 
 
+```r
+conflict_prefer("filter", "dplyr")
+```
+
+```
+## [conflicted] Will prefer dplyr::filter over any other package
+```
+
+```r
+xg_res %>%
+  collect_metrics() %>% 
+  filter(.metric == "roc_auc") %>%
+  pivot_longer(mtry:sample_size,
+               values_to = "value",
+               names_to = "parameter") %>%
+  ggplot(aes(x = value, y = mean, color = parameter)) +
+    geom_point(alpha = 0.8, show.legend = FALSE) +
+    facet_wrap(~parameter, scales = "free_x") +
+    labs(y = "AUC",
+         x = NULL)
+```
+
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-56-1.png" width="672" />
 
 
+```r
+# Optimal hyperparameter
+best_xg <- select_best(xg_res, "roc_auc")
+
+best_xg 
+```
+
+```
+## # A tibble: 1 x 8
+##    mtry trees min_n tree_depth  learn_rate loss_reduction sample_size .config   
+##   <int> <int> <int>      <int>       <dbl>          <dbl>       <dbl> <chr>     
+## 1     2  1827     6         10     2.54e-9           16.2       0.759 Preproces…
+```
+
+```r
+# Add the hyperparameter to the workflow 
+finalize_xg <- xg_wf %>%
+  finalize_workflow(best_xg)
+```
 
 
+```r
+xg_fit_tuned <- finalize_xg %>% 
+  fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+```
+
+```
+## [13:03:58] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+```
+
+```r
+# Metrics 
+(xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-58-1.png" width="672" />
+
+```r
+# Confusion matrix 
+(xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
+```
+
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-58-2.png" width="672" />
+
+- Visualize variable importance 
 
 
+```r
+xg_fit_tuned %>%
+  pull_workflow_fit() %>%
+  vip::vip()
+```
+
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-59-1.png" width="672" />
+
+##### Test fit
+
+- Apply the tuned model to the test dataset 
 
 
+```r
+test_fit <- finalize_xg %>%
+  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
+```
+
+```
+## [13:04:01] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+```
+
+```r
+evaluate_class(test_fit)
+```
+
+```
+## Warning: While computing binary `precision()`, no predicted events were detected (i.e. `true_positive + false_positive = 0`). 
+## Precision is undefined in this case, and `NA` will be returned.
+## Note that 41 true event(s) actually occured for the problematic event level, '0'.
+```
+
+```
+## # A tibble: 3 x 3
+##   .metric   .estimator .estimate
+##   <chr>     <chr>          <dbl>
+## 1 accuracy  binary         0.544
+## 2 precision binary        NA    
+## 3 recall    binary         0
+```
+
+### Stacking (SuperLearner)
+
+This stacking part of the book heavily relies on [Chris Kennedy's notebook](https://github.com/dlab-berkeley/Machine-Learning-in-R/blob/master/07-ensembles.Rmd).
+
+#### Overview
+
+##### Stacking
+
+Wolpert, D.H., 1992. [Stacked generalization](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.56.1533). *Neural networks*, 5(2), pp.241-259.
+
+Breiman, L., 1996. [Stacked regressions]((https://statistics.berkeley.edu/sites/default/files/tech-reports/367.pdf). *Machine learning*, 24(1), pp.49-64.
+
+##### SuperLearner 
+
+The ["SuperLearner" R package](https://cran.r-project.org/web/packages/SuperLearner/index.html) is a method that simplifies ensemble learning by allowing you to simultaneously evaluate the cross-validated performance of multiple algorithms and/or a single algorithm with differently tuned hyperparameters. This is a generally advisable approach to machine learning instead of fitting single algorithms.
+
+Let's see how the four classification algorithms you learned in this workshop (1-lasso, 2-decision tree, 3-random forest, and 4-gradient boosted trees) compare to each other and also to 5-binary logistic regression (`glm`) and to the 6-mean of Y as a benchmark algorithm, in terms of their cross-validated error!
+
+A "wrapper" is a short function that adapts an algorithm for the SuperLearner package. Check out the different algorithm wrappers offered by SuperLearner:
+
+#### Choose algorithms
 
 
+```r
+# Review available models 
+SuperLearner::listWrappers()
+```
+
+```
+## All prediction algorithm wrappers in SuperLearner:
+```
+
+```
+##  [1] "SL.bartMachine"      "SL.bayesglm"         "SL.biglasso"        
+##  [4] "SL.caret"            "SL.caret.rpart"      "SL.cforest"         
+##  [7] "SL.earth"            "SL.extraTrees"       "SL.gam"             
+## [10] "SL.gbm"              "SL.glm"              "SL.glm.interaction" 
+## [13] "SL.glmnet"           "SL.ipredbagg"        "SL.kernelKnn"       
+## [16] "SL.knn"              "SL.ksvm"             "SL.lda"             
+## [19] "SL.leekasso"         "SL.lm"               "SL.loess"           
+## [22] "SL.logreg"           "SL.mean"             "SL.nnet"            
+## [25] "SL.nnls"             "SL.polymars"         "SL.qda"             
+## [28] "SL.randomForest"     "SL.ranger"           "SL.ridge"           
+## [31] "SL.rpart"            "SL.rpartPrune"       "SL.speedglm"        
+## [34] "SL.speedlm"          "SL.step"             "SL.step.forward"    
+## [37] "SL.step.interaction" "SL.stepAIC"          "SL.svm"             
+## [40] "SL.template"         "SL.xgboost"
+```
+
+```
+## 
+## All screening algorithm wrappers in SuperLearner:
+```
+
+```
+## [1] "All"
+## [1] "screen.corP"           "screen.corRank"        "screen.glmnet"        
+## [4] "screen.randomForest"   "screen.SIS"            "screen.template"      
+## [7] "screen.ttest"          "write.screen.template"
+```
 
 
+```r
+# Compile the algorithm wrappers to be used.
+sl_lib <- c("SL.mean", # Marginal mean of the outcome () 
+            "SL.glmnet", # GLM with lasso/elasticnet regularization 
+            "SL.rpart", # Decision tree 
+            "SL.ranger", # Random forest  
+            "SL.xgboost") # Xgbboost 
+```
+
+#### Fit model
+
+Fit the ensemble!
 
 
+```r
+# This is a seed that is compatible with multicore parallel processing.
+# See ?set.seed for more information.
+set.seed(1, "L'Ecuyer-CMRG") 
+
+# This will take a few minutes to execute - take a look at the .html file to see the output!
+cv_sl <-  SuperLearner::CV.SuperLearner(
+  Y = as.numeric(as.character(train_y_class)),
+  X = train_x_class,
+  family = binomial(),
+  # For a real analysis we would use V = 10.
+  cvControl = list(V = 5L, stratifyCV = TRUE),
+  SL.library = sl_lib,
+  verbose = FALSE)
+```
+
+```
+## [13:04:02] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:03] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:03] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:04] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:04] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:05] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:05] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:06] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:06] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:08] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:08] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:09] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:10] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:11] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:11] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:12] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:13] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:14] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:15] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:15] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:17] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:17] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:18] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:20] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:21] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:21] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:22] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:23] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:24] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:25] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:25] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:26] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:26] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:27] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:28] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:29] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:30] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:30] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:31] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:32] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:33] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:33] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:34] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:35] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:36] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:37] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:37] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:38] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:39] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:40] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:40] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:41] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:42] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:43] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [13:04:43] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+```
+
+#### Risk
+
+Risk is the average loss, and loss is how far off the prediction was for an individual observation. The lower the risk, the fewer errors the model makes in its prediction. SuperLearner's default loss metric is squared error $(y_{actual} - y_{predicted})^2$, so the risk is the mean-squared error (just like in ordinary least *squares* regression). View the summary, plot results, and compute the Area Under the ROC Curve (AUC)!
+
+##### Summary 
+
+* `Discrete SL` chooses the best single learner (in this case, `SL.glmnet` or `lasso`).
+* `SuperLearner` takes a weighted average of the **models** using the coefficients (importance of each individual learner in the overall ensemble). Coefficient 0 means that learner is not used at all.
+* `SL.mean_All` (the weighted mean of $Y$) is a benchmark algorithm (ignoring features). 
 
 
+```r
+summary(cv_sl)
+```
+
+```
+## 
+## Call:  
+## SuperLearner::CV.SuperLearner(Y = as.numeric(as.character(train_y_class)),  
+##     X = train_x_class, family = binomial(), SL.library = sl_lib, verbose = FALSE,  
+##     cvControl = list(V = 5L, stratifyCV = TRUE)) 
+## 
+## Risk is based on: Mean Squared Error
+## 
+## All risk estimates are based on V =  5 
+## 
+##       Algorithm     Ave        se      Min     Max
+##   Super Learner 0.12832 0.0149371 0.064124 0.17480
+##     Discrete SL 0.12756 0.0150393 0.062667 0.17505
+##     SL.mean_All 0.24802 0.0030531 0.247747 0.24893
+##   SL.glmnet_All 0.12756 0.0150393 0.062667 0.17505
+##    SL.rpart_All 0.18318 0.0199052 0.137814 0.22434
+##   SL.ranger_All 0.14305 0.0133634 0.097407 0.17396
+##  SL.xgboost_All 0.15428 0.0167609 0.116143 0.17076
+```
+
+##### Plot
 
 
+```r
+# Plot the cross-validated risk estimate with 95% CIs.
+
+plot(cv_sl)
+```
+
+<img src="07_high_dimensional_data_files/figure-html/cvsl_review-1.png" width="672" />
+
+#### Compute AUC for all estimators
+
+**ROC**
+
+ROC: an ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis). 
+
+![Area Under the ROC Curve](https://developers.google.com/machine-learning/crash-course/images/AUC.svg)
+
+**AUC** 
+
+AUC: Area Under the ROC Curve 
+
+1 = perfect 
+
+0.5 = no better than chance 
 
 
+```r
+ck37r::auc_table(cv_sl)
+```
+
+```
+## Registered S3 method overwritten by 'pryr':
+##   method      from
+##   print.bytes Rcpp
+```
+
+```
+##                      auc         se  ci_lower  ci_upper      p-value
+## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.033357e-09
+## SL.rpart_All   0.7900281 0.04273421 0.7062706 0.8737856 5.027564e-03
+## SL.xgboost_All 0.8463396 0.02829842 0.7908757 0.9018035 2.891129e-02
+## SL.ranger_All  0.8809411 0.02327459 0.8353237 0.9265584 2.061491e-01
+## SuperLearner   0.8975048 0.02117906 0.8559946 0.9390150 4.526787e-01
+## SL.glmnet_All  0.9000229 0.02094549 0.8589705 0.9410753 5.000000e-01
+## DiscreteSL     0.9000229 0.02094549 0.8589705 0.9410753 5.000000e-01
+```
+
+##### Plot the ROC curve for the best estimator (DiscretSL)
 
 
 

@@ -1205,6 +1205,8 @@ xg_res <- xg_wf %>%
 
 ```{r}
 
+conflict_prefer("filter", "dplyr")
+
 xg_res %>%
   collect_metrics() %>% 
   filter(.metric == "roc_auc") %>%
