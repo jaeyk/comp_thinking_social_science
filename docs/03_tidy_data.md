@@ -2820,20 +2820,17 @@ billboard
 ##  9 Aaliyah  Try Ag… 2000-03-18      59    53    38    28    21    18    16    14
 ## 10 Adams, … Open M… 2000-08-26      76    76    74    69    68    67    61    58
 ## # … with 307 more rows, and 68 more variables: wk9 <dbl>, wk10 <dbl>,
-## #   wk11 <dbl>, wk12 <dbl>, wk13 <dbl>, wk14 <dbl>, wk15 <dbl>,
-## #   wk16 <dbl>, wk17 <dbl>, wk18 <dbl>, wk19 <dbl>, wk20 <dbl>,
-## #   wk21 <dbl>, wk22 <dbl>, wk23 <dbl>, wk24 <dbl>, wk25 <dbl>,
-## #   wk26 <dbl>, wk27 <dbl>, wk28 <dbl>, wk29 <dbl>, wk30 <dbl>,
-## #   wk31 <dbl>, wk32 <dbl>, wk33 <dbl>, wk34 <dbl>, wk35 <dbl>,
-## #   wk36 <dbl>, wk37 <dbl>, wk38 <dbl>, wk39 <dbl>, wk40 <dbl>,
-## #   wk41 <dbl>, wk42 <dbl>, wk43 <dbl>, wk44 <dbl>, wk45 <dbl>,
-## #   wk46 <dbl>, wk47 <dbl>, wk48 <dbl>, wk49 <dbl>, wk50 <dbl>,
-## #   wk51 <dbl>, wk52 <dbl>, wk53 <dbl>, wk54 <dbl>, wk55 <dbl>,
-## #   wk56 <dbl>, wk57 <dbl>, wk58 <dbl>, wk59 <dbl>, wk60 <dbl>,
-## #   wk61 <dbl>, wk62 <dbl>, wk63 <dbl>, wk64 <dbl>, wk65 <dbl>,
-## #   wk66 <lgl>, wk67 <lgl>, wk68 <lgl>, wk69 <lgl>, wk70 <lgl>,
-## #   wk71 <lgl>, wk72 <lgl>, wk73 <lgl>, wk74 <lgl>, wk75 <lgl>,
-## #   wk76 <lgl>
+## #   wk11 <dbl>, wk12 <dbl>, wk13 <dbl>, wk14 <dbl>, wk15 <dbl>, wk16 <dbl>,
+## #   wk17 <dbl>, wk18 <dbl>, wk19 <dbl>, wk20 <dbl>, wk21 <dbl>, wk22 <dbl>,
+## #   wk23 <dbl>, wk24 <dbl>, wk25 <dbl>, wk26 <dbl>, wk27 <dbl>, wk28 <dbl>,
+## #   wk29 <dbl>, wk30 <dbl>, wk31 <dbl>, wk32 <dbl>, wk33 <dbl>, wk34 <dbl>,
+## #   wk35 <dbl>, wk36 <dbl>, wk37 <dbl>, wk38 <dbl>, wk39 <dbl>, wk40 <dbl>,
+## #   wk41 <dbl>, wk42 <dbl>, wk43 <dbl>, wk44 <dbl>, wk45 <dbl>, wk46 <dbl>,
+## #   wk47 <dbl>, wk48 <dbl>, wk49 <dbl>, wk50 <dbl>, wk51 <dbl>, wk52 <dbl>,
+## #   wk53 <dbl>, wk54 <dbl>, wk55 <dbl>, wk56 <dbl>, wk57 <dbl>, wk58 <dbl>,
+## #   wk59 <dbl>, wk60 <dbl>, wk61 <dbl>, wk62 <dbl>, wk63 <dbl>, wk64 <dbl>,
+## #   wk65 <dbl>, wk66 <lgl>, wk67 <lgl>, wk68 <lgl>, wk69 <lgl>, wk70 <lgl>,
+## #   wk71 <lgl>, wk72 <lgl>, wk73 <lgl>, wk74 <lgl>, wk75 <lgl>, wk76 <lgl>
 ```
 
 2.  How can you fix it? Which pivot?
@@ -3634,8 +3631,8 @@ starwars %>%
 ##  8 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…
 ##  9 Lando C…    177  79   black      dark       brown           31   male  mascu…
 ## 10 Arvel C…     NA  NA   brown      fair       brown           NA   male  mascu…
-## # … with 21 more rows, and 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>, vehicles <list>, starships <list>
+## # … with 21 more rows, and 5 more variables: homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>, starships <list>
 ```
 
 **Challenge**
@@ -4830,7 +4827,10 @@ tablea <- gapminder %>%
 
 
 ```r
-# For HTML and LaTeX
+pacman::p_load(kableExtra,
+               flextable)
+
+# For HTML and LaTeX￣
 tablea %>% kableExtra::kable()
 ```
 
@@ -4878,12 +4878,12 @@ tablea %>% kableExtra::kable()
 </table>
 
 ```r
-# For HTML and MS Office suite
+# For HTML and MS Office suite￣
 tablea %>% flextable::flextable()
 ```
 
 ```{=html}
-<template id="94e7678c-fe50-4152-a6f2-73a92ab4ad22"><style>
+<template id="4486c5cb-a178-4bb6-bce5-304166dff86d"><style>
 .tabwid table{
   border-collapse:collapse;
   line-height:1;
@@ -4917,15 +4917,15 @@ tablea %>% flextable::flextable()
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-9d34ca24{border-collapse:collapse;}.cl-9d2f729a{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-9d2f85aa{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-9d2f85c8{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-9d2fba5c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9d2fba70{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9d2fba84{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9d2fba8e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9d2fba98{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9d2fba99{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}caption {color: #777;margin-top: 10px;margin-bottom: 10px;text-align: center;}</style><table class='cl-9d34ca24'>
+</style><div class="tabwid"><style>.cl-dad27104{border-collapse:collapse;}.cl-dac8f3d6{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dac91924{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dac91956{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dac97f7c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dac97fc2{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dac97fd6{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dac97fea{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dac97ffe{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dac98012{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}caption {color: #777;margin-top: 10px;margin-bottom: 10px;text-align: center;}</style><table class='cl-dad27104'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-9d2fba98"><p class="cl-9d2f85aa"><span class="cl-9d2f729a">continent</span></p></td><td class="cl-9d2fba99"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">n</span></p></td><td class="cl-9d2fba99"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">mean_gdp</span></p></td><td class="cl-9d2fba99"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-9d2fba5c"><p class="cl-9d2f85aa"><span class="cl-9d2f729a">Africa</span></p></td><td class="cl-9d2fba70"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">624</span></p></td><td class="cl-9d2fba70"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">2,193.755</span></p></td><td class="cl-9d2fba70"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9d2fba5c"><p class="cl-9d2f85aa"><span class="cl-9d2f729a">Americas</span></p></td><td class="cl-9d2fba70"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">300</span></p></td><td class="cl-9d2fba70"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">7,136.110</span></p></td><td class="cl-9d2fba70"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9d2fba5c"><p class="cl-9d2f85aa"><span class="cl-9d2f729a">Asia</span></p></td><td class="cl-9d2fba70"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">396</span></p></td><td class="cl-9d2fba70"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">7,902.150</span></p></td><td class="cl-9d2fba70"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9d2fba5c"><p class="cl-9d2f85aa"><span class="cl-9d2f729a">Europe</span></p></td><td class="cl-9d2fba70"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">360</span></p></td><td class="cl-9d2fba70"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">14,469.476</span></p></td><td class="cl-9d2fba70"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9d2fba84"><p class="cl-9d2f85aa"><span class="cl-9d2f729a">Oceania</span></p></td><td class="cl-9d2fba8e"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">24</span></p></td><td class="cl-9d2fba8e"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">18,621.609</span></p></td><td class="cl-9d2fba8e"><p class="cl-9d2f85c8"><span class="cl-9d2f729a">6,358.983</span></p></td></tr></tbody></table></div></template>
-<div id="18c4aa32-765e-4301-89d6-f16006ec4c36"></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-dac97ffe"><p class="cl-dac91924"><span class="cl-dac8f3d6">continent</span></p></td><td class="cl-dac98012"><p class="cl-dac91956"><span class="cl-dac8f3d6">n</span></p></td><td class="cl-dac98012"><p class="cl-dac91956"><span class="cl-dac8f3d6">mean_gdp</span></p></td><td class="cl-dac98012"><p class="cl-dac91956"><span class="cl-dac8f3d6">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dac97f7c"><p class="cl-dac91924"><span class="cl-dac8f3d6">Africa</span></p></td><td class="cl-dac97fc2"><p class="cl-dac91956"><span class="cl-dac8f3d6">624</span></p></td><td class="cl-dac97fc2"><p class="cl-dac91956"><span class="cl-dac8f3d6">2,193.755</span></p></td><td class="cl-dac97fc2"><p class="cl-dac91956"><span class="cl-dac8f3d6">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dac97f7c"><p class="cl-dac91924"><span class="cl-dac8f3d6">Americas</span></p></td><td class="cl-dac97fc2"><p class="cl-dac91956"><span class="cl-dac8f3d6">300</span></p></td><td class="cl-dac97fc2"><p class="cl-dac91956"><span class="cl-dac8f3d6">7,136.110</span></p></td><td class="cl-dac97fc2"><p class="cl-dac91956"><span class="cl-dac8f3d6">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dac97f7c"><p class="cl-dac91924"><span class="cl-dac8f3d6">Asia</span></p></td><td class="cl-dac97fc2"><p class="cl-dac91956"><span class="cl-dac8f3d6">396</span></p></td><td class="cl-dac97fc2"><p class="cl-dac91956"><span class="cl-dac8f3d6">7,902.150</span></p></td><td class="cl-dac97fc2"><p class="cl-dac91956"><span class="cl-dac8f3d6">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dac97f7c"><p class="cl-dac91924"><span class="cl-dac8f3d6">Europe</span></p></td><td class="cl-dac97fc2"><p class="cl-dac91956"><span class="cl-dac8f3d6">360</span></p></td><td class="cl-dac97fc2"><p class="cl-dac91956"><span class="cl-dac8f3d6">14,469.476</span></p></td><td class="cl-dac97fc2"><p class="cl-dac91956"><span class="cl-dac8f3d6">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dac97fd6"><p class="cl-dac91924"><span class="cl-dac8f3d6">Oceania</span></p></td><td class="cl-dac97fea"><p class="cl-dac91956"><span class="cl-dac8f3d6">24</span></p></td><td class="cl-dac97fea"><p class="cl-dac91956"><span class="cl-dac8f3d6">18,621.609</span></p></td><td class="cl-dac97fea"><p class="cl-dac91956"><span class="cl-dac8f3d6">6,358.983</span></p></td></tr></tbody></table></div></template>
+<div id="23728395-3d28-4cbd-9e1d-f9a807c68d6b"></div>
 <script>
-var dest = document.getElementById("18c4aa32-765e-4301-89d6-f16006ec4c36");
-var template = document.getElementById("94e7678c-fe50-4152-a6f2-73a92ab4ad22");
+var dest = document.getElementById("23728395-3d28-4cbd-9e1d-f9a807c68d6b");
+var template = document.getElementById("4486c5cb-a178-4bb6-bce5-304166dff86d");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -4968,11 +4968,11 @@ wide_gapminder %>%
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
 ## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_if()`: using a logical condition
@@ -4988,13 +4988,12 @@ wide_gapminder %>%
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     <dbl>   <dbl>   <dbl>   <dbl>                    <dbl>    <dbl>   <dbl>
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # … with 24 more variables: Czech Republic <dbl>, Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>, Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>, Poland <dbl>,
-## #   Portugal <dbl>, Romania <dbl>, Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>, Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # … with 24 more variables: Czech Republic <dbl>, Denmark <dbl>, Finland <dbl>,
+## #   France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
+## #   Ireland <dbl>, Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
+## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_at()`
@@ -5016,11 +5015,11 @@ wide_gapminder %>%
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
 ## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 ```r
@@ -5068,11 +5067,11 @@ wide_gapminder %>%
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
 ## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 ```r
@@ -5086,11 +5085,11 @@ wide_gapminder %>%
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
 ## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_if()`
@@ -5119,13 +5118,12 @@ wide_gapminder %>%
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     <dbl>   <dbl>   <dbl>   <dbl>                    <dbl>    <dbl>   <dbl>
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # … with 24 more variables: Czech Republic <dbl>, Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>, Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>, Poland <dbl>,
-## #   Portugal <dbl>, Romania <dbl>, Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>, Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # … with 24 more variables: Czech Republic <dbl>, Denmark <dbl>, Finland <dbl>,
+## #   France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
+## #   Ireland <dbl>, Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
+## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_at()`
@@ -5145,11 +5143,11 @@ wide_gapminder %>%
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
 ## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 ```r
@@ -5878,8 +5876,8 @@ glanced %>%
 ##  9 Uganda     Africa    <tibble … <lm>      0.342        0.276    3.19     5.20 
 ## 10 Congo, De… Africa    <tibble … <lm>      0.348        0.283    2.43     5.34 
 ## # … with 132 more rows, and 8 more variables: p.value <dbl>, df <dbl>,
-## #   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>,
-## #   df.residual <int>, nobs <int>
+## #   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>, df.residual <int>,
+## #   nobs <int>
 ```
 
 ```r
@@ -6110,43 +6108,9 @@ pacman::p_load(# Necessary
                # Optional 
                merTools,
                glmmTMB, 
-               brms, 
                modelr, 
                nlme, 
                sjstats)
-```
-
-```
-## Installing package into '/home/jae/R/x86_64-pc-linux-gnu-library/4.0'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependency 'rstan'
-```
-
-```
-## Warning in utils::install.packages(package, ...): installation of package
-## 'rstan' had non-zero exit status
-```
-
-```
-## Warning in utils::install.packages(package, ...): installation of package 'brms'
-## had non-zero exit status
-```
-
-```
-## Warning in p_install(package, character.only = TRUE, ...):
-```
-
-```
-## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
-## logical.return = TRUE, : there is no package called 'brms'
-```
-
-```
-## Warning in pacman::p_load(lme4, broom.mixed, merTools, glmmTMB, brms, modelr, : Failed to install/load:
-## brms
 ```
 
 
@@ -9806,14 +9770,12 @@ midwest
 ##  8   568 CARROLL IL    0.027    16805       622.    16519      111            30
 ##  9   569 CASS    IL    0.024    13437       560.    13384       16             8
 ## 10   570 CHAMPA… IL    0.058   173025      2983.   146506    16559           331
-## # … with 427 more rows, and 19 more variables: popasian <int>,
-## #   popother <int>, percwhite <dbl>, percblack <dbl>,
-## #   percamerindan <dbl>, percasian <dbl>, percother <dbl>,
-## #   popadults <int>, perchsd <dbl>, percollege <dbl>, percprof <dbl>,
-## #   poppovertyknown <int>, percpovertyknown <dbl>,
-## #   percbelowpoverty <dbl>, percchildbelowpovert <dbl>,
-## #   percadultpoverty <dbl>, percelderlypoverty <dbl>, inmetro <int>,
-## #   category <chr>
+## # … with 427 more rows, and 19 more variables: popasian <int>, popother <int>,
+## #   percwhite <dbl>, percblack <dbl>, percamerindan <dbl>, percasian <dbl>,
+## #   percother <dbl>, popadults <int>, perchsd <dbl>, percollege <dbl>,
+## #   percprof <dbl>, poppovertyknown <int>, percpovertyknown <dbl>,
+## #   percbelowpoverty <dbl>, percchildbelowpovert <dbl>, percadultpoverty <dbl>,
+## #   percelderlypoverty <dbl>, inmetro <int>, category <chr>
 ```
 
 
