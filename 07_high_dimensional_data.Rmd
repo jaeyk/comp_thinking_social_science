@@ -1377,7 +1377,7 @@ ck37r::auc_table(cv_sl)
 ##### Plot the ROC curve for the best estimator (DiscretSL)
 
 ```{r}
-plot_roc(cv_sl)
+ck37r::plot_roc(cv_sl)
 ```
 
 ##### Review weight distribution for the SuperLearner

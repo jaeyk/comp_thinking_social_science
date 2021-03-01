@@ -1834,6 +1834,19 @@ ck37r::auc_table(cv_sl)
 ##### Plot the ROC curve for the best estimator (DiscretSL)
 
 
+```r
+ck37r::plot_roc(cv_sl)
+```
+
+```
+## Registered S3 method overwritten by 'pryr':
+##   method      from
+##   print.bytes Rcpp
+```
+
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-66-1.png" width="672" />
+
+##### Review weight distribution for the SuperLearner
 
 
 
