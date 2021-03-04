@@ -307,10 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.8" data-path="functional-programming.html"><a href="functional-programming.html#speed"><i class="fa fa-check"></i><b>5.8</b> Make automation slower or faster</a>
 <ul>
 <li class="chapter" data-level="5.8.1" data-path="functional-programming.html"><a href="functional-programming.html#objectives-2"><i class="fa fa-check"></i><b>5.8.1</b> Objectives</a></li>
-<li class="chapter" data-level="5.8.2" data-path="functional-programming.html"><a href="functional-programming.html#how-to-make-automation-slower"><i class="fa fa-check"></i><b>5.8.2</b> How to make automation slower</a></li>
-<li class="chapter" data-level="5.8.3" data-path="functional-programming.html"><a href="functional-programming.html#for-loop-2"><i class="fa fa-check"></i><b>5.8.3</b> For loop</a></li>
-<li class="chapter" data-level="5.8.4" data-path="functional-programming.html"><a href="functional-programming.html#map"><i class="fa fa-check"></i><b>5.8.4</b> Map</a></li>
-<li class="chapter" data-level="5.8.5" data-path="functional-programming.html"><a href="functional-programming.html#how-to-make-automation-faster"><i class="fa fa-check"></i><b>5.8.5</b> How to make automation Faster</a></li>
+<li class="chapter" data-level="5.8.2" data-path="functional-programming.html"><a href="functional-programming.html#how-to-make-automation-slower"><i class="fa fa-check"></i><b>5.8.2</b> How to Make Automation Slower</a></li>
+<li class="chapter" data-level="5.8.3" data-path="functional-programming.html"><a href="functional-programming.html#how-to-make-automation-faster"><i class="fa fa-check"></i><b>5.8.3</b> How to Make Automation Faster</a></li>
 </ul></li>
 <li class="chapter" data-level="5.9" data-path="functional-programming.html"><a href="functional-programming.html#robustness"><i class="fa fa-check"></i><b>5.9</b> Make error handling easier</a>
 <ul>
@@ -1690,6 +1688,11 @@ Why is the above solution not efficient?</li>
 </div>
 <div id="speed" class="section level2" number="5.8">
 <h2><span class="header-section-number">5.8</span> Make automation slower or faster</h2>
+<div class="sourceCode" id="cb1026"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1026-1"><a href="functional-programming.html#cb1026-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages </span></span>
+<span id="cb1026-2"><a href="functional-programming.html#cb1026-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb1026-3"><a href="functional-programming.html#cb1026-3" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co"># tidyverse pkgs including purrr</span></span>
+<span id="cb1026-4"><a href="functional-programming.html#cb1026-4" aria-hidden="true" tabindex="-1"></a>               tictoc, <span class="co"># performance test </span></span>
+<span id="cb1026-5"><a href="functional-programming.html#cb1026-5" aria-hidden="true" tabindex="-1"></a>               furrr) <span class="co"># parallel processing  reproducibility </span></span></code></pre></div>
 <div id="objectives-2" class="section level3" number="5.8.1">
 <h3><span class="header-section-number">5.8.1</span> Objectives</h3>
 <ul>
@@ -1697,29 +1700,47 @@ Why is the above solution not efficient?</li>
 </ul>
 </div>
 <div id="how-to-make-automation-slower" class="section level3" number="5.8.2">
-<h3><span class="header-section-number">5.8.2</span> How to make automation slower</h3>
+<h3><span class="header-section-number">5.8.2</span> How to Make Automation Slower</h3>
 <ul>
-<li>Scraping 50 pages from a website, and you don’t want to overload the server. How can you do that?</li>
+<li>Scraping 50 pages from a website and you don’t want to overload the server. How can you do that?</li>
 </ul>
+<div id="for-loop-2" class="section level4" number="5.8.2.1">
+<h4><span class="header-section-number">5.8.2.1</span> For loop</h4>
 </div>
-<div id="for-loop-2" class="section level3" number="5.8.3">
-<h3><span class="header-section-number">5.8.3</span> For loop</h3>
-</div>
-<div id="map" class="section level3" number="5.8.4">
-<h3><span class="header-section-number">5.8.4</span> Map</h3>
+<div id="map" class="section level4" number="5.8.2.2">
+<h4><span class="header-section-number">5.8.2.2</span> Map</h4>
 <ul>
 <li><p><code>walk()</code> works the same as <code>map()</code> but doesn’t store its output.</p></li>
 <li><p>If you’re web scraping, one problem with this approach is it’s too fast by human standards.</p></li>
-<li><p>If you want to make the function run slowly …</p></li>
+</ul>
+<div class="sourceCode" id="cb1027"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1027-1"><a href="functional-programming.html#cb1027-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tic</span>(<span class="st">&quot;Scraping pages&quot;</span>)</span>
+<span id="cb1027-2"><a href="functional-programming.html#cb1027-2" aria-hidden="true" tabindex="-1"></a><span class="fu">walk</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="cf">function</span>(x){<span class="fu">message</span>(<span class="st">&quot;Scraping page&quot;</span>, x)}) <span class="co"># Anonymous function; I don&#39;t name the function </span></span></code></pre></div>
+<pre><code>## Scraping page1</code></pre>
+<pre><code>## Scraping page2</code></pre>
+<pre><code>## Scraping page3</code></pre>
+<pre><code>## Scraping page4</code></pre>
+<pre><code>## Scraping page5</code></pre>
+<pre><code>## Scraping page6</code></pre>
+<pre><code>## Scraping page7</code></pre>
+<pre><code>## Scraping page8</code></pre>
+<pre><code>## Scraping page9</code></pre>
+<pre><code>## Scraping page10</code></pre>
+<div class="sourceCode" id="cb1038"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1038-1"><a href="functional-programming.html#cb1038-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>(<span class="at">log =</span> <span class="cn">TRUE</span>) <span class="co"># save toc </span></span></code></pre></div>
+<pre><code>## Scraping pages: 0.006 sec elapsed</code></pre>
+<ul>
+<li>If you want to make the function run slowly …</li>
 </ul>
 <blockquote>
-<p>slowly() takes a function and modifies it to wait a given amount of time between each call. - <code>purrr</code> package vignette
-- If a function is a verb, then a helper function is an adverb (modifying the verb’s behavior).</p>
+<p>slowly() takes a function and modifies it to wait a given amount of time between each call. - <code>purrr</code> package vignette</p>
 </blockquote>
+<ul>
+<li>If a function is a verb, then a helper function is an adverb (modifying the behavior of the verb).</li>
+</ul>
 </div>
-<div id="how-to-make-automation-faster" class="section level3" number="5.8.5">
-<h3><span class="header-section-number">5.8.5</span> How to make automation Faster</h3>
-<p>In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data a large-scale. You can solve this problem using parallel processing. For more on the parallel processing in R, read <a href="https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/">this review</a>.</p>
+</div>
+<div id="how-to-make-automation-faster" class="section level3" number="5.8.3">
+<h3><span class="header-section-number">5.8.3</span> How to Make Automation Faster</h3>
+<p>In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data a large-scale. You can solve this problem using parallel processing. A modern processor has a multi-core. You can divide tasks among these cores. R uses a single thread or only core. You can configure this default setting by the following code. For further information on the parallel processing in R (there are many other options), read <a href="https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/">this review</a>.</p>
 <ul>
 <li><p>Parallel processing setup</p>
 <ul>
@@ -1727,6 +1748,38 @@ Why is the above solution not efficient?</li>
 <li><p>Step2: Determine the parallel processing mode (<code>plan()</code>)</p></li>
 </ul></li>
 </ul>
+<p>We do <code>availableCores() - 1</code> to save some processing power for other programs.</p>
+<div class="sourceCode" id="cb1040"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1040-1"><a href="functional-programming.html#cb1040-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup </span></span>
+<span id="cb1040-2"><a href="functional-programming.html#cb1040-2" aria-hidden="true" tabindex="-1"></a>n_cores <span class="ot">&lt;-</span> <span class="fu">availableCores</span>() <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb1040-3"><a href="functional-programming.html#cb1040-3" aria-hidden="true" tabindex="-1"></a>n_cores <span class="co"># This number depends on your computer spec.</span></span></code></pre></div>
+<pre><code>## system 
+##      7</code></pre>
+<div class="sourceCode" id="cb1042"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1042-1"><a href="functional-programming.html#cb1042-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(multiprocess, <span class="co"># multicore, if supported, otherwise multisession</span></span>
+<span id="cb1042-2"><a href="functional-programming.html#cb1042-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">workers =</span> n_cores) <span class="co"># the maximum number of workers</span></span></code></pre></div>
+<pre><code>## Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked
+## processing (&#39;multicore&#39;) is not supported when running R from RStudio
+## because it is considered unstable. For more details, how to control forked
+## processing or not, and how to silence this warning in future R sessions, see ?
+## parallelly::supportsMulticore</code></pre>
+<p><strong>What’s the difference between multisession and multicore?</strong></p>
+<p>I skip technical explanations and only focus on their usages.</p>
+<ul>
+<li>multisession : fast, and relatively stable. It works across different OSs and also for RStudio.</li>
+<li>multicore : faster, but unstable. It doesn’t work for Windows/RStudio.</li>
+</ul>
+<div class="sourceCode" id="cb1044"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1044-1"><a href="functional-programming.html#cb1044-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tic.log</span>(<span class="at">format =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;Scraping pages: 0.006 sec elapsed&quot;
+## 
+## [[2]]
+## [1] &quot;scraping pages with deplay: 9.022 sec elapsed&quot;
+## 
+## [[3]]
+## [1] &quot;averaging 100000 without parallel processing: 1.308 sec elapsed&quot;
+## 
+## [[4]]
+## [1] &quot;averaging 100000 with parallel processing: 0.882 sec elapsed&quot;</code></pre>
+<p>Because of the overhead cost (e.g., time spent communicating data between processing), parallel processing does not always increase performance. Use this technique either when the computation part is heavy or when you need to repeat the process a large number of times.</p>
 </div>
 </div>
 <div id="robustness" class="section level2" number="5.9">
@@ -1739,13 +1792,13 @@ Why is the above solution not efficient?</li>
 <li><p><strong>Challenge</strong></p></li>
 <li><p>Explain why we can’t run <code>map(url_list, read_html)</code></p></li>
 </ul>
-<div class="sourceCode" id="cb1026"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1026-1"><a href="functional-programming.html#cb1026-1" aria-hidden="true" tabindex="-1"></a>url_list <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1026-2"><a href="functional-programming.html#cb1026-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/University_of_California,_Berkeley&quot;</span>,</span>
-<span id="cb1026-3"><a href="functional-programming.html#cb1026-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Stanford_University&quot;</span>,</span>
-<span id="cb1026-4"><a href="functional-programming.html#cb1026-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Carnegie_Mellon_University&quot;</span>,</span>
-<span id="cb1026-5"><a href="functional-programming.html#cb1026-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://DLAB&quot;</span></span>
-<span id="cb1026-6"><a href="functional-programming.html#cb1026-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<div class="sourceCode" id="cb1027"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1027-1"><a href="functional-programming.html#cb1027-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(url_list, read_html)</span></code></pre></div>
+<div class="sourceCode" id="cb1046"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1046-1"><a href="functional-programming.html#cb1046-1" aria-hidden="true" tabindex="-1"></a>url_list <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1046-2"><a href="functional-programming.html#cb1046-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/University_of_California,_Berkeley&quot;</span>,</span>
+<span id="cb1046-3"><a href="functional-programming.html#cb1046-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Stanford_University&quot;</span>,</span>
+<span id="cb1046-4"><a href="functional-programming.html#cb1046-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://en.wikipedia.org/wiki/Carnegie_Mellon_University&quot;</span>,</span>
+<span id="cb1046-5"><a href="functional-programming.html#cb1046-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://DLAB&quot;</span></span>
+<span id="cb1046-6"><a href="functional-programming.html#cb1046-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1047"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1047-1"><a href="functional-programming.html#cb1047-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(url_list, read_html)</span></code></pre></div>
 <ul>
 <li>This is a straightforward problem, so it’s easy to tell where the problem is. How can you make your error more informative?</li>
 </ul>
@@ -1763,20 +1816,20 @@ Why is the above solution not efficient?</li>
 </ul></li>
 <li><p>The basic logic of <code>try-catch</code>, R’s basic error handling function, works like the following.</p></li>
 </ul>
-<div class="sourceCode" id="cb1028"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1028-1"><a href="functional-programming.html#cb1028-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>(</span>
-<span id="cb1028-2"><a href="functional-programming.html#cb1028-2" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb1028-3"><a href="functional-programming.html#cb1028-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map</span>(url_list, read_html)</span>
-<span id="cb1028-4"><a href="functional-programming.html#cb1028-4" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb1028-5"><a href="functional-programming.html#cb1028-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">warning =</span> <span class="cf">function</span>(w) {</span>
-<span id="cb1028-6"><a href="functional-programming.html#cb1028-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Warning&quot;</span></span>
-<span id="cb1028-7"><a href="functional-programming.html#cb1028-7" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb1028-8"><a href="functional-programming.html#cb1028-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb1028-9"><a href="functional-programming.html#cb1028-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Error&quot;</span></span>
-<span id="cb1028-10"><a href="functional-programming.html#cb1028-10" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb1028-11"><a href="functional-programming.html#cb1028-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">finally =</span> {</span>
-<span id="cb1028-12"><a href="functional-programming.html#cb1028-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Message&quot;</span></span>
-<span id="cb1028-13"><a href="functional-programming.html#cb1028-13" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1028-14"><a href="functional-programming.html#cb1028-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1048"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1048-1"><a href="functional-programming.html#cb1048-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>(</span>
+<span id="cb1048-2"><a href="functional-programming.html#cb1048-2" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1048-3"><a href="functional-programming.html#cb1048-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map</span>(url_list, read_html)</span>
+<span id="cb1048-4"><a href="functional-programming.html#cb1048-4" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb1048-5"><a href="functional-programming.html#cb1048-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">warning =</span> <span class="cf">function</span>(w) {</span>
+<span id="cb1048-6"><a href="functional-programming.html#cb1048-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Warning&quot;</span></span>
+<span id="cb1048-7"><a href="functional-programming.html#cb1048-7" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb1048-8"><a href="functional-programming.html#cb1048-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb1048-9"><a href="functional-programming.html#cb1048-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Error&quot;</span></span>
+<span id="cb1048-10"><a href="functional-programming.html#cb1048-10" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb1048-11"><a href="functional-programming.html#cb1048-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">finally =</span> {</span>
+<span id="cb1048-12"><a href="functional-programming.html#cb1048-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Message&quot;</span></span>
+<span id="cb1048-13"><a href="functional-programming.html#cb1048-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1048-14"><a href="functional-programming.html#cb1048-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## [1] &quot;Error&quot;</code></pre>
 <ul>
 <li>Here’s <code>purrr</code> version of the <code>try-catch</code> mechanism (evaluates code and assigns exception handlers).</li>
@@ -1789,7 +1842,7 @@ Why is the above solution not efficient?</li>
 <li>result: result or <code>NULL</code></li>
 <li>error: <code>NULL</code> or <code>error</code></li>
 </ul>
-<div class="sourceCode" id="cb1030"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1030-1"><a href="functional-programming.html#cb1030-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(url_list, <span class="fu">safely</span>(read_html))</span></code></pre></div>
+<div class="sourceCode" id="cb1050"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1050-1"><a href="functional-programming.html#cb1050-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(url_list, <span class="fu">safely</span>(read_html))</span></code></pre></div>
 <pre><code>## [[1]]
 ## [[1]]$result
 ## {html_document}
@@ -1832,10 +1885,10 @@ Why is the above solution not efficient?</li>
 <ul>
 <li>The easier way to solve this problem is just to avoid the error.</li>
 </ul>
-<div class="sourceCode" id="cb1032"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1032-1"><a href="functional-programming.html#cb1032-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(url_list, <span class="fu">safely</span>(read_html)) <span class="sc">%&gt;%</span></span>
-<span id="cb1032-2"><a href="functional-programming.html#cb1032-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="st">&quot;result&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1032-3"><a href="functional-programming.html#cb1032-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># = map(function(x) x[[&quot;result&quot;]]) = map(~.x[[&quot;name&quot;]])</span></span>
-<span id="cb1032-4"><a href="functional-programming.html#cb1032-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">compact</span>() <span class="co"># Remove empty elements</span></span></code></pre></div>
+<div class="sourceCode" id="cb1052"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1052-1"><a href="functional-programming.html#cb1052-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(url_list, <span class="fu">safely</span>(read_html)) <span class="sc">%&gt;%</span></span>
+<span id="cb1052-2"><a href="functional-programming.html#cb1052-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="st">&quot;result&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1052-3"><a href="functional-programming.html#cb1052-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># = map(function(x) x[[&quot;result&quot;]]) = map(~.x[[&quot;name&quot;]])</span></span>
+<span id="cb1052-4"><a href="functional-programming.html#cb1052-4" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">compact</span>() <span class="co"># Remove empty elements</span></span></code></pre></div>
 <pre><code>## [[1]]
 ## {html_document}
 ## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
@@ -1857,16 +1910,16 @@ Why is the above solution not efficient?</li>
 <div id="possibly" class="section level4" number="5.9.2.3">
 <h4><span class="header-section-number">5.9.2.3</span> possibly</h4>
 <p>What if the best way to solve the problem is not to ignore the error …</p>
-<div class="sourceCode" id="cb1034"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1034-1"><a href="functional-programming.html#cb1034-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If error occurred, &quot;The URL is broken.&quot; will be stored in that element(s).</span></span>
-<span id="cb1034-2"><a href="functional-programming.html#cb1034-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">map</span>(</span>
-<span id="cb1034-3"><a href="functional-programming.html#cb1034-3" aria-hidden="true" tabindex="-1"></a>  url_list,</span>
-<span id="cb1034-4"><a href="functional-programming.html#cb1034-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">possibly</span>(read_html,</span>
-<span id="cb1034-5"><a href="functional-programming.html#cb1034-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">otherwise =</span> <span class="st">&quot;The URL is broken.&quot;</span></span>
-<span id="cb1034-6"><a href="functional-programming.html#cb1034-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1034-7"><a href="functional-programming.html#cb1034-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1034-8"><a href="functional-programming.html#cb1034-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1034-9"><a href="functional-programming.html#cb1034-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s find the broken URL.</span></span>
-<span id="cb1034-10"><a href="functional-programming.html#cb1034-10" aria-hidden="true" tabindex="-1"></a>url_list[out[<span class="fu">seq</span>(out)] <span class="sc">==</span> <span class="st">&quot;The URL is broken.&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb1054"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1054-1"><a href="functional-programming.html#cb1054-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If error occurred, &quot;The URL is broken.&quot; will be stored in that element(s).</span></span>
+<span id="cb1054-2"><a href="functional-programming.html#cb1054-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">map</span>(</span>
+<span id="cb1054-3"><a href="functional-programming.html#cb1054-3" aria-hidden="true" tabindex="-1"></a>  url_list,</span>
+<span id="cb1054-4"><a href="functional-programming.html#cb1054-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">possibly</span>(read_html,</span>
+<span id="cb1054-5"><a href="functional-programming.html#cb1054-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">otherwise =</span> <span class="st">&quot;The URL is broken.&quot;</span></span>
+<span id="cb1054-6"><a href="functional-programming.html#cb1054-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1054-7"><a href="functional-programming.html#cb1054-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1054-8"><a href="functional-programming.html#cb1054-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1054-9"><a href="functional-programming.html#cb1054-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s find the broken URL.</span></span>
+<span id="cb1054-10"><a href="functional-programming.html#cb1054-10" aria-hidden="true" tabindex="-1"></a>url_list[out[<span class="fu">seq</span>(out)] <span class="sc">==</span> <span class="st">&quot;The URL is broken.&quot;</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;https://DLAB&quot;</code></pre>
 
 </div>

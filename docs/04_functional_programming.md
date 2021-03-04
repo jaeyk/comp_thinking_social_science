@@ -1698,19 +1698,28 @@ reduced <- reduce(list(df1, df2, df3), bind_rows)
 
 ## Make automation slower or faster {#speed}
 
+
+```r
+# Install packages 
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, # tidyverse pkgs including purrr
+               tictoc, # performance test 
+               furrr) # parallel processing  reproducibility 
+```
+
 ### Objectives 
 
 - Learning how to use `slowly()` and `future_` to make the automation process either slower or faster
 
-### How to make automation slower
+### How to Make Automation Slower
 
-- Scraping 50 pages from a website, and you don't want to overload the server. How can you do that?
+- Scraping 50 pages from a website and you don't want to overload the server. How can you do that?
 
-### For loop 
+#### For loop 
 
 
 
-### Map 
+#### Map 
 
 - `walk()` works the same as `map()` but doesn't store its output. 
 
@@ -1719,17 +1728,70 @@ reduced <- reduce(list(df1, df2, df3), bind_rows)
 - If you're web scraping, one problem with this approach is it's too fast by human standards.
 
 
+```r
+tic("Scraping pages")
+walk(1:10, function(x){message("Scraping page", x)}) # Anonymous function; I don't name the function 
+```
+
+```
+## Scraping page1
+```
+
+```
+## Scraping page2
+```
+
+```
+## Scraping page3
+```
+
+```
+## Scraping page4
+```
+
+```
+## Scraping page5
+```
+
+```
+## Scraping page6
+```
+
+```
+## Scraping page7
+```
+
+```
+## Scraping page8
+```
+
+```
+## Scraping page9
+```
+
+```
+## Scraping page10
+```
+
+```r
+toc(log = TRUE) # save toc 
+```
+
+```
+## Scraping pages: 0.005 sec elapsed
+```
 
 - If you want to make the function run slowly ... 
 
 > slowly() takes a function and modifies it to wait a given amount of time between each call. - `purrr` package vignette 
-- If a function is a verb, then a helper function is an adverb (modifying the verb's behavior). 
+
+- If a function is a verb, then a helper function is an adverb (modifying the behavior of the verb). 
 
 
 
-### How to make automation Faster 
+### How to Make Automation Faster 
 
-In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data a large-scale. You can solve this problem using parallel processing. For more on the parallel processing in R, read [this review](https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/).
+In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data a large-scale. You can solve this problem using parallel processing. A modern processor has a multi-core. You can divide tasks among these cores. R uses a single thread or only core. You can configure this default setting by the following code. For further information on the parallel processing in R (there are many other options), read [this review](https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/).
 
 - Parallel processing setup 
 
@@ -1737,7 +1799,66 @@ In a different situation, you want to make your function run faster. This is a c
     
     - Step2: Determine the parallel processing mode (`plan()`) 
 
+We do `availableCores() - 1` to save some processing power for other programs.
 
+
+```r
+# Setup 
+n_cores <- availableCores() - 1
+n_cores # This number depends on your computer spec.
+```
+
+```
+## system 
+##      7
+```
+
+
+```r
+plan(multiprocess, # multicore, if supported, otherwise multisession
+     workers = n_cores) # the maximum number of workers
+```
+
+```
+## Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked
+## processing ('multicore') is not supported when running R from RStudio
+## because it is considered unstable. For more details, how to control forked
+## processing or not, and how to silence this warning in future R sessions, see ?
+## parallelly::supportsMulticore
+```
+
+**What's the difference between multisession and multicore?**
+
+I skip technical explanations and only focus on their usages.
+
+- multisession : fast, and relatively stable. It works across different OSs and also for RStudio.
+- multicore :	faster, but unstable. It doesn't work for Windows/RStudio.
+
+
+
+
+
+
+
+```r
+tic.log(format = TRUE)
+```
+
+```
+## [[1]]
+## [1] "Scraping pages: 0.005 sec elapsed"
+## 
+## [[2]]
+## [1] "scraping pages with deplay: 9.023 sec elapsed"
+## 
+## [[3]]
+## [1] "averaging 100000 without parallel processing: 0.423 sec elapsed"
+## 
+## [[4]]
+## [1] "averaging 100000 with parallel processing: 0.877 sec elapsed"
+```
+
+Because of the overhead cost (e.g., time spent communicating data between processing), parallel processing does not always increase performance. Use this technique either when the computation part is heavy or when you need to repeat the process a large number of times.  
 
 ## Make error handling easier {#robustness}
 
@@ -1829,18 +1950,24 @@ map(url_list, safely(read_html))
 ## 
 ## [[2]]
 ## [[2]]$result
-## NULL
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ## 
 ## [[2]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
+## NULL
 ## 
 ## 
 ## [[3]]
 ## [[3]]$result
-## NULL
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ## 
 ## [[3]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
+## NULL
 ## 
 ## 
 ## [[4]]
@@ -1862,7 +1989,23 @@ map(url_list, safely(read_html)) %>%
 ```
 
 ```
-## list()
+## [[1]]
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## 
+## [[2]]
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## 
+## [[3]]
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ```
 
 #### possibly 
@@ -1884,8 +2027,5 @@ url_list[out[seq(out)] == "The URL is broken."]
 ```
 
 ```
-## [1] "https://en.wikipedia.org/wiki/University_of_California,_Berkeley"
-## [2] "https://en.wikipedia.org/wiki/Stanford_University"               
-## [3] "https://en.wikipedia.org/wiki/Carnegie_Mellon_University"        
-## [4] "https://DLAB"
+## [1] "https://DLAB"
 ```
