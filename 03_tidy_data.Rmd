@@ -47,9 +47,9 @@ It is **critical** to understand because these are the objects you will manipula
   
 > __John Chambers__the creator of S (the mother of R)
 
-1. [Main Classes](#main-classes) introduces you to R's one-dimensional or atomic classes and data structures. R has five basic atomic classes: logical, integer, numeric, complex, character. Social scientists don't use complex class. (Also, remember that we rarely use trigonometry.)
+1. [Main Classes](#main-classes) introduces you to R's one-dimensional or atomic classes and data structures. R has five basic atomic classes: logical, integer, numeric, complex, character. Social scientists don't use complex classes. (Also, remember that we rarely use trigonometry.)
 
-2. [Attributes](#attributes) takes a small detour to discuss attributes, R's flexible metadata specification. Here you'll learn about factors, an important data structure created by setting attributes of an atomic vector. R has many data structures: vector, list, matrix, data frame, factors, tables.
+2. [Attributes](#attributes) takes a small detour to discuss attributes, R's flexible metadata specification. Here, you'll learn about factors, an important data structure created by setting attributes of an atomic vector. R has many data structures: vector, list, matrix, data frame, factors, tables.
 
 
 ![Concept map for data types. By Meghan Sposato, Brendan Cullen, Monica Alonso.](https://github.com/rstudio/concept-maps/raw/master/en/data-types.svg)
@@ -81,7 +81,7 @@ What is a class?
 
 ![from https://brilliant.org/](https://ds055uzetaobb.cloudfront.net/brioche/uploads/pJZt3mh3Ht-prettycars.png?width=2400)
 
-- Second, R has some different names for the types string, integer, and float --- specifically **character**, **integer** (not different), and **numeric**. Because there is no "float" class in R, users tend to default to the "numeric" class when they want to work with numerical data.
+- Second, R has different names for the types string, integer, and float --- specifically **character**, **integer** (not different), and **numeric**. Because there is no "float" class in R, users tend to default to the "numeric" class when they want to work with numerical data.
 
 The function for recovering object classes is ```class()```. L suffix to qualify any number with the intent of making it an explicit integer. See more from the [R language definition](https://cran.r-project.org/doc/manuals/R-lang.html).
 
@@ -102,7 +102,7 @@ R's base data structures can be organized by their dimensionality (1d, 2d, or nd
 | 2d | Matrix        | Data frame    |
 | nd | Array         |               |
 
-Each data structure has its own specifications and behavior. For our purposes, an important thing to remember is that R is always **faster** (more efficient) working with homogeneous (**vectorized**) data.
+Each data structure has its specifications and behavior. For our purposes, an important thing to remember is that R is always **faster** (more efficient) working with homogeneous (**vectorized**) data.
 
 #### Vector properties
 
@@ -112,7 +112,7 @@ Vectors have three common properties:
 * Length, `length()`, how many elements it contains (same as `len()` in Python).
 * Attributes, `attributes()`, additional arbitrary metadata.
 
-They differ in the types of their elements: all elements of an atomic vector must be the same type, whereas the elements of a list can have different types.
+They differ in the types of their elements: all atomic vector elements must be the same type, whereas the elements of a list can have different types.
 
 #### Creating different types of atomic vectors
 
@@ -122,7 +122,7 @@ Remember, there are four common types of vectors:
 * `numeric` (same as `double`)
 * `character`.
 
-You can create an empty vector with `vector()` (By default the mode is `logical`. You can be more explicit as shown in the examples below.) It is more common to use direct constructors such as `character()`, `numeric()`, etc.
+You can create an empty vector with `vector()` (By default, the mode is `logical`. You can be more explicit as shown in the examples below.) It is more common to use direct constructors such as `character()`, `numeric()`, etc.
 
 ```{r}
 
@@ -176,11 +176,11 @@ typeof(kim_family) # what's the type?
 
 **Short exercise: Create and examine your vector**  
 
-Create a character vector called `fruit` that contain 4 of your favorite fruits. Then evaluate its structure using the commands below.
+Create a character vector called `fruit` that contains 4 of your favorite fruits. Then evaluate its structure using the commands below.
 
 ```{r, eval = FALSE}
 
-# First create your fruit vector
+# First, create your fruit vector
 # YOUR CODE HERE
 fruit <-
 
@@ -262,11 +262,11 @@ is.numeric(num_var)
 is.atomic(num_var)
 ```
 
-NB: `is.vector()` does not test if an object is a vector. Instead it returns `TRUE` only if the object is a vector with no attributes apart from names. Use `is.atomic(x) || is.list(x)` to test if an object is actually a vector.
+NB: `is.vector()` does not test if an object is a vector. Instead, it returns `TRUE` only if the object is a vector with no attributes apart from names. Use `is.atomic(x) || is.list(x)` to test if an object is actually a vector.
 
 **Coercion**
 
-All elements of an atomic vector must be the same type, so when you attempt to combine different types they will be __coerced__ to the most flexible type. Types from least to most flexible are: logical, integer, double, and character. 
+All atomic vector elements must be the same type, so when you attempt to combine different types, they will be __coerced__ to the most flexible type. Types from least to most flexible are: logical, integer, double, and character. 
 
 For example, combining a character and an integer yields a character:
 
@@ -407,7 +407,7 @@ mod <- lm(mpg ~ wt, data = mtcars)
 is.list(mod)
 ```
 
-For this reason, lists are extremely useful inside functions. You can "staple" together lots of different kinds of results into a single object that a function can return.
+For this reason, lists are handy inside functions. You can "staple" together many different kinds of results into a single object that a function can return.
 
 A list does not print to the console like a vector. Instead, each element of the list starts on a new line.
 
@@ -455,7 +455,7 @@ You can name a vector when you create it:
 x <- c(a = 1, b = 2, c = 3)
 ```
 
-You can also modifying an existing vector: 
+You can also modify an existing vector: 
 
 ```{r}
 
@@ -468,7 +468,7 @@ names(x) <- c("e", "f", "g")
 names(x)
 ```
 
-Names don't have to be unique. However, character subsetting, described in the next lesson, is the most important reason to use names and it is most useful when the names are unique. (For Python users: when names are unique, a vector behaves kind of like a Python dictionary key.)
+Names don't have to be unique. However, character subsetting, described in the next lesson, is the most important reason to use names, and it is most useful when the names are unique. (For Python users: when names are unique, a vector behaves like a Python dictionary key.)
 
 Not all elements of a vector need to have a name. If some names are missing, `names()` will return an empty string for those elements. If all names are missing, `names()` will return `NULL`.
 
@@ -490,7 +490,7 @@ You can create a new vector without names using `unname(x)`, or remove names in 
 Factors are special vectors that represent categorical data. Factors can be ordered (ordinal variable) or unordered (nominal or categorical variable) and are important for modeling functions such as `lm()` and `glm()` and also in plot methods.
 
 **Quiz**
-1. If you want to enter dummy variables (Democrats = 1, Non-democrats = 0) in your regression model, should you use numeric or factor variable?
+1. If you want to enter dummy variables (Democrats = 1, Non-democrats = 0) in your regression model, should you use a numeric or factor variable?
 
 Factors can only contain pre-defined values. Set allowed values using the `levels()` attribute. Note that a factor's levels will always be character values. 
 
@@ -525,7 +525,7 @@ x <- factor(c("a", "b", "b", "a"))
 str(x)
 ```
 
-They are better than using simple integer labels because factors are what are called self describing. For example, `democrat` and `republican` is more descriptive than `1`s and `2`s. 
+They are better than using simple integer labels because factors are what are called self-describing. For example, `democrat` and `republican` is more descriptive than `1`s and `2`s. 
 
 Factors are useful when you know the possible values a variable may take, even if you don't see all values in a given dataset. Using a factor instead of a character vector makes it obvious when some groups contain no observations:
 
@@ -561,7 +561,7 @@ y <- ordered(c("low", "medium", "high"), levels = c("high", "medium", "low"))
 is.ordered(y)
 ```
 
-While factors look (and often behave) like character vectors, they are actually integers. Be careful when treating them like strings. Some string methods (like `gsub()` and `grepl()`) will coerce factors to strings, while others (like `nchar()`) will throw an error, and still others (like `c()`) will use the underlying integer values. 
+While factors look (and often behave) like character vectors, they are integers. Be careful when treating them like strings. Some string methods (like `gsub()` and `grepl()`) will coerce factors to strings, while others (like `nchar()`) will throw an error, and still others (like `c()`) will use the underlying integer values. 
 
 ```{r}
 
@@ -578,7 +578,7 @@ x
 c(x, "c")
 ```
 
-For this reason, it's usually best to explicitly convert factors to character vectors if you need string-like behavior. In early versions of R, there was a memory advantage to using factors instead of character vectors, but this is no longer the case.
+For this reason, it's usually best to explicitly convert factors to character vectors if you need string-like behavior. There was a memory advantage to using factors instead of character vectors in early versions of R, but this is no longer the case.
 
 Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there's no way for those functions to know the set of all possible levels or their optimal order. If this becomes a problem, use the argument `stringsAsFactors = FALSE` to suppress this behavior, and then manually convert character vectors to factors using your knowledge of the data.
 
@@ -627,7 +627,7 @@ f3 <- factor(letters, levels = rev(letters))
 
 ### Matrices
 
-Matrices are created when we combine multiple vectors that all have the same class (e.g., numeric). This creates a dataset with rows and columns. By definition, if you want to combine multiple classes of vectors, you want a dataframe. You can coerce a matrix to become a dataframe, and vice-versa, but as with all vector coercions, the results can be unpredictable, so be sure you know how each variable (column) will convert.
+Matrices are created when we combine multiple vectors with the same class (e.g., numeric). This creates a dataset with rows and columns. By definition, if you want to combine multiple classes of vectors, you want a dataframe. You can coerce a matrix to become a dataframe, and vice-versa, but as with all vector coercions, the results can be unpredictable, so be sure you know how each variable (column) will convert.
 
 ```{r}
 
@@ -719,7 +719,7 @@ colnames(mdat)
 
 ### Dataframes 
 
-A data frame is a very important data type in R. It's pretty much the **de facto** data structure for most tabular data and what we use for statistics. 
+A data frame is an essential data type in R. It's pretty much the **de facto** data structure for most tabular data and what we use for statistics. 
 
 #### Creation
 
@@ -744,7 +744,7 @@ df <- data.frame(
 str(df)
 ```
 
-In reality, we rarely type up our datasets ourselves, and certainly not in R. The most common way to make a data.frame is by calling a file using `read.csv` (which relies on the `foreign` package), `read.dta` (if you're using a Stata file), or some other kind of data file input.
+In reality, we rarely type up our datasets ourselves, and certainly not in R. The most common way to make a data.frame is by calling a file using `read.csv` (which relies on the `foreign` package), `read.dta` (if you're using a Stata file), or some other kinds of data file input.
 
 #### Structure and Attributes
 
@@ -843,7 +843,7 @@ cbind(df, data.frame(z = 3:1))
 rbind(df, data.frame(x = 10, y = "z"))
 ```
 
-When combining column-wise, the number of rows must match, but row names are ignored. When combining row-wise, both the number and names of columns must match. (If you want to combine rows that don't have the same columns, there are other functions / packages in R that can help.)
+When combining column-wise, the number of rows must match, but row names are ignored. When combining row-wise, both the number and names of columns must match. (If you want to combine rows that don't have the same columns, there are other functions/packages in R that can help.)
 
 It's a common mistake to try and create a dataframe by `cbind()`ing vectors together. This doesn't work because `cbind()` will create a matrix unless one of the arguments is already a dataframe. Instead use `data.frame()` directly:
 
@@ -888,7 +888,7 @@ typeof(x)
 
 ## Subset
 
-When working with data, you'll need to subset objects early and often. Luckily, R's subsetting operators are powerful and fast. Mastery of subsetting allows you to succinctly express complex operations in a way that few other languages can match. Subsetting is hard to learn because you need to master a number of interrelated concepts:
+When working with data, you'll need to subset objects early and often. Luckily, R's subsetting operators are powerful and fast. Mastery of subsetting allows you to succinctly express complex operations in a way that few other languages can match. Subsetting is hard to learn because you need to master several interrelated concepts:
 
 * The three subsetting operators, `[`, `[[`, and `$`.
 
@@ -1032,7 +1032,7 @@ print(fullName)
 length(fullName)
 ```
 
-In order to combine two or more character strings into one larger character string, we use the ```paste()``` function.  This function takes character strings or vectors and collapses their values into a single character string, with each value separated by a character string selected by the user.
+To combine two or more character strings into one larger character string, we use the ```paste()``` function.  This function takes character strings or vectors and collapses their values into a single character string, with each value separated by a character string selected by the user.
 
 ```{r eval = FALSE}
 fullName <- paste(firstName, lastName)
@@ -1047,7 +1047,7 @@ fullName <- paste(firstName, lastName, sep = "___")
 print(fullName)
 ```
 
-As with Python, R can also extract substrings based on the index position of its characters.  There are, however, two critical differences.  First, **index positions in R start at 1**.  This is in contrast to Python, where indexation starts at 0.  
+As with Python, R can also extract substrings based on the index position of its characters.  There are, however, two critical differences.  First, **index positions in R start at 1**.  This is in contrast to Python, where indexation begins at 0.  
 
 Second, **object subsets using index positions in R contain all the elements in the specified range**.  If some object called ```data``` contains five elements, ```data[2:4]``` will return the elements at the second, third, and fourth positions.  By contrast, the same subset in Python would return the objects at the third and fourth positions (or second and third positions, depending upon whether your index starts at 0 or 1).  
 
@@ -1087,7 +1087,7 @@ gsub(pattern = " ", replacement = "", x = fullName) # The same function is used 
 
 ### Lists
 
-Subsetting a list works in the same way as subsetting an atomic vector. Using `[` will always return a list; `[[` and `$`, as described below, let you pull out the components of the list.
+Subsetting a list works in the same way as subsetting an atomic vector. Using `[` will always return a list; `[[` and `$`, as described below, let you pull out the list's components.
 
 ```{r}
 l <- list("a" = 1, "b" = 2)
@@ -1128,11 +1128,11 @@ df[df$x == 6, ]
 # return the first and third row
 df[c(1, 3), ]
 
-# return the first and third row, and the first and second column
+# return the first and third row and the first and second column
 df[c(1, 3), c(1, 2)]
 ```
 
-Data frames possess the characteristics of both lists and matrices: if you subset with a single vector, they behave like lists, and return only the columns.
+Data frames possess both lists and matrices' characteristics: if you subset with a single vector, they behave like lists and return only the columns.
 
 ```{r}
 # There are two ways to select columns from a data frame
@@ -1142,7 +1142,7 @@ df[c("x", "z")]
 df[, c("x", "z")]
 ```
 
-But there's an important difference when you select a single column: matrix subsetting simplifies by default, list subsetting does not.
+But there's a significant difference when selecting a single column: matrix subsetting simplifies by default, list subsetting does not.
 
 ```{r}
 (df["x"])
@@ -1158,12 +1158,12 @@ See the bottom section on [Simplying and Preserving to know more](#simplify-pres
 
 There are two other subsetting operators: `[[` and `$`. 
 
-* `[[` is similar to `[`, except it can only return a single value and it allows you to pull pieces out of a list. 
+* `[[` is similar to `[`, except it can only return a single value, and it allows you to pull pieces out of a list. 
 * `$` is a useful shorthand for `[[` combined with character subsetting. 
 
 ##### `[[`
 
-You need `[[` when working with lists. This is because when `[` is applied to a list it always returns a list: it never gives you the contents of the list. To get the contents, you need `[[`:
+You need `[[` when working with lists. When `[` is applied to a list it always returns a list: it never gives you the contents of the list. To get the contents, you need `[[`:
 
 >  "If list `x` is a train carrying objects, then `x[[5]]` is
 > the object in car 5; `x[4:6]` is a train of cars 4-6." 
@@ -1206,7 +1206,7 @@ mtcars[[var]]
 
 ### Subassignment
 
-All subsetting operators can be combined with assignment to modify selected values of the input vector.
+All subsetting operators can be combined with an assignment operator to modify selected values of the input vector.
 
 ```{r, error = TRUE}
 x <- 1:5
@@ -1233,11 +1233,11 @@ df
 
 -   [Tidyverse design guide](https://design.tidyverse.org/unifying-principles.html)
 
-    -   Human centered
+    -   Human-centered
 
     -   Consistent
 
-    -   Composable (modualized)
+    -   Composable (modularized)
 
     -   Inclusive
 
@@ -1288,9 +1288,9 @@ There are so many different ways of taking a look at data in R. Can you discuss 
     - Tidying data with **tidyr**
     - Processing data with **dplyr**
     
-These two packages don't do anything new, but simplify most common tasks in data manipulation. Plus, they are fast, consistent, and more readable.
+These two packages don't do anything new but simplify most common tasks in data manipulation. Plus, they are fast, consistent, and more readable.
 
-Practically, this approach is good because you're going to have consistency in the format of data across all the projects you're working on. Also, tidy data works well with key packages (e.g., dplyr, ggplot2) in R.
+Practically, this approach is right because you're going to have consistency in data format across all the projects you're working on. Also, tidy data works well with key packages (e.g., dplyr, ggplot2) in R.
 
 Computationally, this approach is useful for vectorized programming because "different variables from the same observation are always paired". Vectorized means a function applies to a vector treats each element individually (=operations working in parallel).
 
@@ -1318,14 +1318,14 @@ Let's take a look at the cases of untidy data.
     |      |      |      |
     |      |      |      |
 
-**Challenge**: Why this data is not tidy?
+**Challenge**: Why is this data not tidy?
 
 ```{r}
 
 table4a
 ```
 
--   Let's pivot (rotate by 90 degree).
+-   Let's pivot (rotate by 90 degrees).
 
 
 ![Concept map for pivoting. By Florian Schmoll, Monica Alonso.](https://github.com/rstudio/concept-maps/raw/master/en/pivoting.svg)
@@ -1338,7 +1338,7 @@ table4a
 
 ![Concept map for pipe operator. By Jeroen Janssens, Monica Alonso.](https://education.rstudio.com/blog/2020/09/concept-maps/pipe-operator.png)
 
-- The pipe operator `%>%` originally comes from the `magrittr` package. The idea behind the pipe operator is [similar to](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) what we learned about chaining functions in high school. f: B -> C and g: A -> B can be expressed as $f(g(x))$. Basically, the pipe operator chains operations. When you read pipe operator, read as "and then" (Wickham's recommendation). The keyboard shortcut is ctrl + shift + M. The key idea here is not creating temporary variables and focusing on verbs (functions). We'll learn more about this functional programming paradigm later on.
+- The pipe operator `%>%` originally comes from the `magrittr` package. The idea behind the pipe operator is [similar to](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) what we learned about chaining functions in high school. f: B -> C and g: A -> B can be expressed as $f(g(x))$. The pipe operator chains operations. When you read pipe operator, read as "and then" (Wickham's recommendation). The keyboard shortcut is ctrl + shift + M. The key idea here is not creating temporary variables and focusing on verbs (functions). We'll learn more about this functional programming paradigm later on.
 
 ```{r}
 
@@ -1397,7 +1397,7 @@ A flat file (e.g., CSV) is a rectangular shaped combination of strings. [Parsing
 
 **Challenge**
 
-1.  Why this data is not tidy? (This exercise comes from [`pivot` function vigenette](https://tidyr.tidyverse.org/articles/pivot.html).) Too long or too wide?
+1.  Why is this data not tidy? (This exercise comes from [`pivot` function vigenette](https://tidyr.tidyverse.org/articles/pivot.html).) Too long or too wide?
 
 ```{r}
 
@@ -1434,7 +1434,7 @@ billboard %>%
 
 -   Make It Wider
 
--   Why this data is not tidy?
+-   Why is this data not tidy?
 
 ```{r}
 table2
@@ -1501,7 +1501,7 @@ stocks <- tibble(
 stocks
 ```
 
--   Where is explicit missing value?
+-   Where is the explicit missing value?
 
 -   Does `stocks` have implicit missing values?
 
@@ -1524,7 +1524,7 @@ stocks %>%
 fish_encounters
 ```
 
-1.  Which pivot you should use?
+1.  Which pivot should you use?
 
 2.  Are there explicit missing values?
 
@@ -1655,8 +1655,7 @@ fill(yelp_rate, restraurant_type, .direction = "up")
 
 ![Concept map for dplyr. By Monica Alonso, Greg Wilson.](https://education.rstudio.com/blog/2020/09/concept-maps/dplyr.png)
 
-
-dplyr is better than the base R approaches to data processing:
+`dplyr` is better than the base R approaches to data processing:
 
 - fast to run (due to the C++ backed) and intuitive to type
 - works well with tidy data and databases (thanks to [`dbplyr`](https://dbplyr.tidyverse.org/))
@@ -1774,7 +1773,7 @@ starwars %>%
   slice(1:6)
 ```
 
--   Sample by fraction
+-   Sample by a fraction
 
 ```{r}
 
@@ -1875,7 +1874,7 @@ msleep[grepl("sleep|wt", names(msleep))]
 
 Use `select(match())` to find columns whose names include either "sleep" or "wt".
 
--   Select the columns that starts with "b"
+-   Select the columns that start with "b"
 
 ```{r}
 
@@ -1884,7 +1883,7 @@ msleep %>%
 
 ```
 
--   Select the columns that ends with "wt"
+-   Select the columns that end with "wt"
 
 ```{r}
 
@@ -1902,7 +1901,7 @@ msleep %>%
   dplyr::select(starts_with("b") & ends_with("wt"))
 ```
 
--   Select order and move it before everything
+-   Select the order and move it before everything
 
 ```{r}
 
@@ -1920,7 +1919,7 @@ msleep %>%
   colnames()
 ```
 
--   Select the variables named in the character + number pattern
+-   Select the variables named in character + number pattern
 
 ```{r}
 
@@ -1936,7 +1935,7 @@ msleep %>%
 
 **Additional tips**
 
-`msleep` data has nicely cleaned column names. But real world data are usually messier. The `janitor` package is useful to fix this kind of problem.
+`msleep` data has nicely cleaned column names. But real-world data are usually messier. The `janitor` package is useful to fix this kind of problem.
 
 ```{r}
 
@@ -2036,7 +2035,7 @@ gapminder %>%
 
 **Challenge**
 
-Count the number of observations per `continent` as well as `year` and arrange them with descending order.
+Count the number of observations per `continent` and `year` and arrange them in descending order.
 
 Let's take a deeper look at how things work under the hood.
 
@@ -2065,7 +2064,7 @@ gapminder %>%
 
 -   `add_count`
 
-Add count as a column
+Add count as a column.
 
 ```{r}
 
@@ -2077,7 +2076,7 @@ gapminder %>%
 
 **Challenge**
 
-Do the cases 1 and 2 in the below code chunk produce same outputs? If so, why?
+Do cases 1 and 2 in the below code chunk produce the same outputs? If so, why?
 
 ```{r}
 
@@ -2092,7 +2091,7 @@ gapminder %>%
   count(year)
 ```
 
-`count()` is a simple function, but it is still helpful to learn a very important concept underlying complex data wrangling: split-apply-combine strategy. For more information, read Wickham's article (2011) ["The Split-Apply-Combine Strategy for Data Analysis"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.182.5667&rep=rep1&type=pdf) published in the *Journal of Statistical Software* (especially pages 7-8). [`plyr`](https://github.com/hadley/plyr) was the package (retired) that demonstrated this idea, which has evolved into two directions: [dplyr](https://dplyr.tidyverse.org/) (for data frames) and [purrr](https://purrr.tidyverse.org/) (for lists)
+`count()` is a simple function, but it is still helpful to learn an essential concept underlying complex data wrangling: split-apply-combine strategy. For more information, read Wickham's article (2011) ["The Split-Apply-Combine Strategy for Data Analysis"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.182.5667&rep=rep1&type=pdf) published in the *Journal of Statistical Software* (especially pages 7-8). [`plyr`](https://github.com/hadley/plyr) was the package (retired) that demonstrated this idea, which has evolved into two directions: [dplyr](https://dplyr.tidyverse.org/) (for data frames) and [purrr](https://purrr.tidyverse.org/) (for lists)
 
 ### Summarizing
 
@@ -2127,10 +2126,10 @@ tablea <- gapminder %>%
 pacman::p_load(kableExtra,
                flextable)
 
-# For HTML and LaTeX￣
+# For HTML and LaTeX
 tablea %>% kableExtra::kable()
 
-# For HTML and MS Office suite￣
+# For HTML and MS Office suite
 tablea %>% flextable::flextable()
 ```
 
@@ -2242,7 +2241,7 @@ Note that this workshop does not cover creating and manipulating variables using
 
 **Challenge**
 
-1.  Summarize average GDP of countries whose names starting with alphabet "A".
+1.  Summarize the average GDP of countries whose names starting with the alphabet "A".
 
 2.  Turn the summary dataframe into a publishable table using either `kableExtra` or `flextable` package.
 
@@ -2343,7 +2342,7 @@ gapminder %>%
 
 **Additional tips**
 
-Also, check out window functions such as `cumsum()` and `lag()`. Window functions are a variant of aggregate functions that take a vector as an input then returns a vector of the same length as an output. 
+Also, check out window functions such as `cumsum()` and `lag()`. Window functions are a variant of aggregate functions that take a vector as input then return a vector of the same length as an output. 
 
 ```{r}
 
@@ -2370,7 +2369,7 @@ Relational data = multiple tables of data
 
 **Key ideas**
 
-- A **primary key** "uniquely identifies an observation in its own table"
+- A **primary key** "uniquely identifies an observation in its table"
 
 ```{r}
 
@@ -2392,7 +2391,7 @@ planes %>%
 ```
 **Optional**
 
-If a dataframe doesn't have primary key, you can add one called a **surrogate** key.
+If a dataframe doesn't have a primary key, you can add one called a **surrogate** key.
 
 ```{r}
 
@@ -2439,11 +2438,11 @@ y <- tibble(
 
 -   Inner Join
 
-`inner_join()` keeps the matched values in both tables. If the left table is a subset of the right table, then the result of `left_join()` is same as `inner_join()`.
+`inner_join()` keeps the matched values in both tables. If the left table is a subset of the right table, then `left_join()` is the same as `inner_join()`.
 
 **Challenge**
 
-What are going to be the shared keys?
+What is going to be the shared keys?
 
 ```{r}
 
@@ -2483,7 +2482,7 @@ full_join(x, y)
 
 #### Filtering joins
 
-> Filter observations from one data frame based on whether or not they match an observation in the other table.
+> Filter observations from one data frame based on whether they match an observation in the other table.
 
 -   Semi Join
 
@@ -2515,7 +2514,7 @@ head(filtered == joined)
 
 -   Anti Join
 
-`anti_join()` dose the opposite. Exclude the rows that were matched between the two tables. Great technique to filter stopwords when you do a computational text analysis.
+`anti_join()` does the opposite. Exclude the rows that were matched between the two tables. A great technique to filter stopwords when you do computational text analysis.
 
 ```{r}
 
@@ -2530,7 +2529,7 @@ flights %>%
 
 #### nest
 
-The following example comes from [R for Data Science](https://r4ds.had.co.nz/many-models.html) by by Garrett Grolemund and Hadley Wickham.
+The following example comes from [R for Data Science](https://r4ds.had.co.nz/many-models.html) by Garrett Grolemund and Hadley Wickham.
 
 -   How can you run multiple models simultaneously? Using a nested data frame.
 
@@ -2583,7 +2582,7 @@ nested <- nested %>%
 head(nested)
 ```
 
-S3 is part of R's object oriented systems. If you need more information, check [this section](http://adv-r.had.co.nz/S3.html) in Hadley's Advanced R out.
+S3 is part of R's object-oriented systems. If you need further information, check out [this section](http://adv-r.had.co.nz/S3.html) in Hadley's Advanced R.
 
 #### unnest
 
@@ -2595,7 +2594,7 @@ S3 is part of R's object oriented systems. If you need more information, check [
 
 -   `broom::glance(model)`: for evaluating model quality and/or complexity
 -   `broom::tidy(model)`: for extracting each coefficient in the model (the estimates + its variability)
--   `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics). A really handy tool in case if you want to plot fitted values and raw data together. 
+-   `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics). A convenient tool in case if you want to plot fitted values and raw data together. 
 
 ![Broom: Converting Statistical Models to Tidy Data Frames by David Robinson](https://www.youtube.com/watch?v=7VGPUBWGv6g&ab_channel=Work-Bench)
 
@@ -2611,7 +2610,7 @@ glanced$glance %>% pluck(1)
 glanced$glance %>% pluck(1) %>% pull(p.value)
 ```
 
-`unnest()` unpacks the list objects stored in glance column
+`unnest()` unpacks the list objects stored in the `glanced` column
 
 ```{r}
 
@@ -2654,7 +2653,7 @@ model_out %>% filter(p_threshold == 0) %>% pull(term) %>% unique()
 
 ### Mapping
 
-We tasted a little bit about how `map()` function works. Let's dig into it deeper as this family of functions is really useful. For more information, see Rebecca Barter's wonderful tutorial on the `purrr` package. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
+We tasted a little bit about how `map()` function works. Let's dig into it more in-depth as this family of functions is useful. For more information, see Rebecca Barter's excellent tutorial on the `purrr` package. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
 
 ```{r}
 
@@ -2741,7 +2740,7 @@ This part heavily draws on [Gelman and Hill](http://www.stat.columbia.edu/~gelma
 
 Why random effects model/mixed effects model?
 
-Fixed effects model assume that groups are independent from each other and sharing common residuals (same slope for fitted covariates). Limiting to a common slope can inflate Type I and Type II errors.  
+Fixed effects model assumes that groups are independent of each other and sharing common residuals (same slope for fitted covariates). Limiting to a common slope can inflate Type I and Type II errors.  
 
 ```{r}
 pacman::p_load(# Necessary  
@@ -2813,7 +2812,7 @@ Model-Inquire-Data Strategy-Answer Strategy (MIDA) by Graeme Blair, Jasper Coope
 
 1. Setup 
 
-* Model: a speculation of how the world works (variables plus their relationships)
+* Model: speculation of how the world works (variables plus their relationships)
 
 ```{r}
 population <- declare_population(N = 1000, 
@@ -2889,7 +2888,7 @@ estimates
 
 * Diagnosis 
 
-Diagnosis is done using a Monte Carlo approach (=simulating many times using bootstrapped samples).
+Diagnosis is made using a Monte Carlo approach (=simulating many times using bootstrapped samples).
 
 ```{r}
 
@@ -2900,7 +2899,7 @@ diagnosis <- diagnose_design(design,
 diagnosis
 
 # Very weakly biased 
-# Well powered. Power = 1 - Type II error (False Negative Rate). Therefore, higher statistical power means lower false negative rate. 
+# Well powered. Power = 1 - Type II error (False Negative Rate). Therefore, higher statistical power means a lower false-negative rate. 
 # Coverage (standard errors) is fine. 95% of the time right answers lie in the coverage. 
 ```
 
@@ -2917,7 +2916,7 @@ diagnose_design(three_arm)
 
 **Additional tips**
 
-Experimenters! Consider writing and registering a pre-analysis before running your experiment. Here are tools that can help creating a pre-registration so easy. The following information comes from David Broockman's [very helpful Twitter thread](https://twitter.com/dbroockman/status/1350897814499336192). 
+Experimenters! Consider writing and registering a pre-analysis before running your experiment. Here are tools that can help to create a pre-registration so easily. The following information comes from David Broockman's [very helpful Twitter thread](https://twitter.com/dbroockman/status/1350897814499336192). 
 
 1. Write code using fake data. If you are using , you can generate test responses using the platform: https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/
 
@@ -2927,9 +2926,9 @@ Experimenters! Consider writing and registering a pre-analysis before running yo
 
 ## Visualizing (ggplot2)
 
-- The following material is adapted from Kieran Healy's wonderful book (2019) on [data visualization](https://socviz.co/) and Hadley Wickham's equally wonderful book on [ggplot2](https://ggplot2-book.org/). For more theoretical discussions, I recommend you to read [The Grammar of Graphics](https://link.springer.com/book/10.1007%2F0-387-28695-0) by Leland Wilkinson.
+- The following material is adapted from Kieran Healy's excellent book (2019) on [data visualization](https://socviz.co/) and Hadley Wickham's equally excellent book on [ggplot2](https://ggplot2-book.org/). For more theoretical discussions, I recommend you to read [The Grammar of Graphics](https://link.springer.com/book/10.1007%2F0-387-28695-0) by Leland Wilkinson.
 
-- Why should we care data visualization? More precisely, why should we learn the grammar of statistical graphics?
+- Why should we care about data visualization? More precisely, why should we learn the grammar of statistical graphics?
 - Sometimes, pictures are better tools than words in 1) exploring, 2) understanding, and 3) explaining data.
 
 ### Motivation 
@@ -2986,7 +2985,7 @@ anscombe_processed %>%
     - coord (data coordinates)
     - facet (facetting specifications)
     
-No worries for new terms. We're going to learn them by actually plotting. 
+No worries about new terms. We're going to learn them by actually plotting. 
 
 - Workflow: 
 
@@ -3070,7 +3069,7 @@ midwest %>%
 
 ### Advanced aes (size, color)
 
-- There's also fill argument (mostly used in `geom_bar()`). Color `aes` affects the appearance of lines and points, fill is for the filled areas of bars, polygons, and in some cases, the interior of a smoother's standard error ribbon.
+- There's also `fill` argument (mostly used in `geom_bar()`). Color `aes` affects the appearance of lines and points, fill is for the filled areas of bars, polygons, and in some cases, the interior of a smoother's standard error ribbon.
 
 - The property size/color/fill represents... 
 
@@ -3258,7 +3257,7 @@ p + geom_line()
 
 `geom_line` joins up all the lines for each particular year in the order they appear in the dataset. `ggplot2` does not know the yearly observations in your data are grouped by country. 
 
-Note that you need grouping when the grouping information you need to tell is not built into the variables being mapped (like continent).
+Note that you need grouping when the grouping information you need to tell is not built into the mapped variables (like continent).
 
 ```{r}
 gapminder
@@ -3589,5 +3588,4 @@ out_conf %>%
   theme_bw()
 ```
 
-You can calculate marginal effects using `margins` package. For the sake of time, I'm not covering that here.
-
+You can calculate marginal effects using the `margins` package. For the sake of time, I'm not covering that here.

@@ -8,7 +8,7 @@ knitr::opts_chunk$set(cache = TRUE)
 > Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions. 
 - Hadley Wickham
 
-This chapter helps you to step up your R skills with functional programming. The `purrr` package provides easy-to-use tools to automate repeated things in your entire R workflow (e.g., wrangling, modeling, and visualization). The end result is cleaner, faster, more readable and extendable code.
+This chapter helps you to step up your R skills with functional programming. The `purrr` package provides easy-to-use tools to automate repeated things in your entire R workflow (e.g., wrangling, modeling, and visualization). The result is cleaner, faster, more readable, and extendable code.
 
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmywiiOutD0NPieYCKxaD2wN9Fbt2I3iS87A&usqp=CAU)
 
@@ -19,9 +19,9 @@ This chapter helps you to step up your R skills with functional programming. The
 2.  How to use `map2()` and `pmap()` to avoid writing nested loops
 3.  How to use `map()` and `glue()` to automate creating multiple plots
 4.  How to use `reduce()` to automate joining multiple dataframes
-5.  How to use `slowly()` and `future_` to make automation process either slower or faster
+5.  How to use `slowly()` and `future_` to make the automation process either slower or faster
 6.  How to use `safely()` and `possibly()` to make error handling easier
-7.  How to develop your own data products (e.g., R packages, Shiny apps) 
+7.  How to develop your data products (e.g., R packages, Shiny apps) 
 
 ## Setup 
 
@@ -50,7 +50,7 @@ pacman::p_load(
 
 * Control structures = putting logic in code to control flow (e.g., `if`, `else`, `for`, `while`, `repeat`, `break`, `next`)
 
-* Almost all the conditional operators used in Python also work in R. The basic loop set up is also very similar, with some small syntax adjustments. 
+* Almost all the conditional operators used in Python also work in R. The basic loop setup is also very similar, with some small syntax adjustments. 
 
 * ```if()``` is a function whose arguments must be specified inside parentheses.
 
@@ -107,7 +107,7 @@ if (x < 0) { # Condition
 
 ```
 
-- In general, it's not a good idea to write nested code (lots of `else_if()` or `ifelse()`). It's difficult to read, debug, modulize, and extend. 
+- In general, it's not a good idea to write nested code (lots of `else_if()` or `ifelse()`). It is not easy to read, debug, modulize, and extend. 
 - Instead, write functions and, if necessary, use `if()` only. We'll come back to this later.
 
 ### Functions 
@@ -130,7 +130,7 @@ less.simple.function <- function(x, y){
 less.simple.function(x = 2, y = 10)
 ```
 
-With respect to returning function output, most of the same rules apply as with Python. Be sure to remember that ```return()``` will only process a single object, so multiple items must usually be returned as a list. Note that your ordering of the functions matters, too. 
+Concerning returning function output, most of the same rules apply as with Python. Be sure to remember that ```return()``` will only process a single object, so multiple items must usually be returned as a list. Note that your ordering of the functions matters, too. 
 
 ```{r}
 dumbfun <- function(x){
@@ -169,7 +169,7 @@ less.simple.function(x = 2)
 less.simple.function(x = 2, y = 10)
 ```
 
-With respect to specifying arguments, one can either use argument **position** specifications (i.e., the order) or argument **name** specifications.  The latter is strongly preferred, as it is very easy to accidentally specify incorrect argument values.
+Concerning specifying arguments, one can either use argument **position** specifications (i.e., the order) or argument **name** specifications.  The latter is strongly preferred, as it is straightforward to specify incorrect argument values accidentally.
 
 ```{r}
 send <- function(message, recipient, cc=NULL, bcc=NULL){
@@ -187,7 +187,7 @@ send("Hello", "Sun", "Jane", "World")
 send(message = "Hello", cc = "Sun", bcc = c("Jane", "Rochelle"), recipient = "World")
 ```
 
-Also, note that functions don't have what CS people called side-effects. Functions only define local variables = They don't change objects stored in the global environment. (Consider the difference between `<-` and `=` for assignments.) That's why you can use functions for reusable tasks since it does not interrupt other important things in your system.
+Also, note that functions don't have what CS people called side-effects. Functions only define local variables = They don't change objects stored in the global environment. (Consider the difference between `<-` and `=` for assignments.) That's why you can use functions for reusable tasks since it does not interrupt other essential things in your system.
 
 See [the following example](https://darrenjw.wordpress.com/2011/11/23/lexical-scope-and-function-closures-in-r/) from Wilkinson.
 
@@ -216,11 +216,11 @@ g(2) # a equals still 1
 
 * Nonstandard evaluation 
 
-Nonstandard evaluation is an advanced subject. If you feel overwhelmed, you are more than welcome to skip this. But if you are serious in R programming, this is something you want to check out. For deeper understanding of this issue, I recommend reading [Ren Kun's very informative blog post](https://renkun.me/2014/12/03/tips-on-non-standard-evaluation-in-r/) carefully. 
+Nonstandard evaluation is an advanced subject. If you feel overwhelmed, you are more than welcome to skip this. But if you are serious about R programming, this is something you want to check out. For a deeper understanding of this issue, I recommend reading [Ren Kun's very informative blog post](https://renkun.me/2014/12/03/tips-on-non-standard-evaluation-in-r/) carefully. 
 
 This part draws on one of the [the dplyr package articles](https://dplyr.tidyverse.org/articles/programming.html.
 
-In tidyverse, calling a variable with or without quotation mark (string or not) does make little difference because tidyeval is a type of non-standard evaluation. This flexibility runs into the following problem when it comes to programming. 
+In tidyverse, calling a variable with or without quotation mark (string or not) makes little difference because tidyeval is a non-standard evaluation. This flexibility runs into the following problem when it comes to programming. 
 
 ```{r eval = FALSE}
 
@@ -262,7 +262,7 @@ var_summary <- function(env_var, data_var){
 
 You may expect that the output is mean = 2.5 ... but 
 
-It's because the mean() function doesn't take `df$x` for data_var but `x`. You need to link x with environment variable 
+It's because the mean() function doesn't take `df$x` for data_var but `x`. It would be best if you linked x with the environment variable.
 
 ```{r}
 
@@ -310,7 +310,7 @@ mtcars_count[[1]]
 
 ![Concept map for a for loop. Source: https://teachtogether.tech/en/index.html#s:memory-concept-maps](https://teachtogether.tech/en/figures/for-loop.svg)
 
-Loops in R also work basically the same way as in Python, with just a few adjustments.  First, recall that index positions in R start at 1.  Second, ```while()``` and ```for()``` are functions rather than reserved operators, meaning they must take arguments in parentheses.  Third, just like ```else```, the ```in``` operator *is* reserved and takes no arguments in parentheses.  Fourth, the conditional execution must appear between curly brackets.  Finally, indentation is meaningless, but each new operation must appear on a new line.
+Loops in R also work the same way as in Python, with just a few adjustments.  First, recall that index positions in R start at 1.  Second, ```while()``` and ```for()``` are functions rather than reserved operators, meaning they must take arguments in parentheses.  Third, just like ```else```, the ```in``` operator *is* reserved and takes no arguments in parentheses.  Fourth, the conditional execution must appear between curly brackets.  Finally, indentation is meaningless, but each new operation must appear on a new line.
 
 - `while()`: when we have no idea how many times loop needs to be executed.
 - `for()`: when we know how many times loop needs to be executed. This is likely to be the loop you are going to use most frequently. 
@@ -333,9 +333,9 @@ for (i in 1:length(fruits)) {
 
 ### apply family 
 
-While and for loops in R can be very slow. For this reason, R has a number of built-in iteration methods to speed up execution times. In many cases, packages will have "behind-the-scenes" ways to avoid for loops, but what if you need to write your own function? 
+While and for loops in R can be very slow. For this reason, R has many built-in iteration methods to speed up execution times. In many cases, packages will have "behind-the-scenes" ways to avoid `for loops`, but what if you need to write your function? 
 
-A common method of getting around for loops is the **apply** family of functions. These take a data structure and a function, and applies a function over all the elements in the object.
+A common method of getting around for loops is the **apply** family of functions. These take a data structure and a function and apply a function over all the object elements.
 
 ```{r}
 fruit <- c("apple", "orange", "pear", "banana")

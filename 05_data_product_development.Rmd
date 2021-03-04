@@ -11,7 +11,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Reuse your code 
 2. Automate your workflow 
-3. Help others (be part of an open source development community)
+3. Help others (be part of an open-source development community)
 
 ### Workflow 
 
@@ -28,9 +28,9 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ![](http://r-pkgs.had.co.nz/diagrams/package-files.png)
 
-It's time to learn five states of R code: source, bundled, binary, installed, and in-memory. 
+It's time to learn five R code states: source, bundled, binary, installed, and in-memory. 
 
-If you're just using an R package, you're only concerned of the last two states: `install.packages("pkg")` and `library(pkg)` If you're developing an R package, you first write source code (`*.R`), bundle it (compressed file like `*.tar.gz`; done by `devtools::build()`), then make it binary (`devtools::build(binary = TRUE)`; This is how a package is stored in CRAN/GitHub, etc.).
+If you're using an R package, you're only concerned of the last two states: `install.packages("pkg")` and `library(pkg)` If you're developing an R package, you first write source code (`*.R`), bundle it (compressed file like `*.tar.gz`; done by `devtools::build()`), then make it binary (`devtools::build(binary = TRUE)`; This is how a package is stored in CRAN/GitHub, etc.).
 
 ### Required Components
 
@@ -55,7 +55,7 @@ usethis::create_package(here("mypkg"))
 usethis::use_git()
 
 # License the package 
-# You can use the MIT license by typing devtools::use_mit_license("author name"). The function produces MIT license related files (LICENSE, LICENSE.md).
+# You can use the MIT license by typing devtools::use_mit_license("author name"). The function produces MIT license-related files (LICENSE, LICENSE.md).
 use_mit_license("Jae Yeon Kim")
 
 # Add README (optional)
@@ -88,7 +88,7 @@ add <- function(x, y){
 }
 ```
 
-If you used a function from other packages you need to reference it in the following way: `#' @importFrom <package> <function>`
+If you used a function from other packages, you need to reference it in the following way: `#' @importFrom <package> <function>`
 
 3. Document (**man**)
 
@@ -232,7 +232,7 @@ utils::globalVariables(c("<undefined variable name1>", "<undefined variable name
 
 ## Developing Shiny apps
 
-[Shiny](https://shiny.rstudio.com/) is a "framework for creating web applications using R code". You can create a dashboard or an interactive map without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise to learn from your data in an intuitive and interactive way.
+[Shiny](https://shiny.rstudio.com/) is a "framework for creating web applications using R code". You can create a dashboard or an interactive map without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise to learn from your data intuitively and interactively.
 
 ```{=html}
 
@@ -362,7 +362,7 @@ rsconnect::deployApp(appNames = "<App name>")
 
 [Shiny Documents](https://bookdown.org/yihui/rmarkdown/shiny-documents.html) by Yihui Xie
 
-[Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/) by Colin Fay, Sébastien Rochette, Vincent Guyader, Cervan Girard. For experienced developers.
+[Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/) by Colin Fay, Sébastien Rochette, Vincent Guyader, Cervan Girard.
 
 [Building Shiny Apps](https://stat545.com/shiny-tutorial.html) by Dean Attali.
 

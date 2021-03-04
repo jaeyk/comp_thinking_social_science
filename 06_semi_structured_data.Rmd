@@ -38,7 +38,7 @@ devtools::install_github("jaeyk/tidytweetjson", dependencies = TRUE) ; library(t
 
 -   Examples: `HTML (Hypertext Markup Language)` files (e.g., websites) and `JSON (JavaScript Object Notation)` files (e.g., tweets)
 
--   Why should we care semi-structured data?
+-   Why should we care about semi-structured data?
 
     -   Because this is what the data frontier looks like: \# of unstructured data \> \# of semi-structured data \> \# of structured data
     -   There are easy and fast ways to turn semi-structured data into structured data (ideally in a tidy format) using R, Python, and command-line tools. See my own examples ([tidyethnicnews](https://github.com/jaeyk/tidyethnicnews) and [tidytweetjson](https://github.com/jaeyk/tidytweetjson)).
@@ -47,7 +47,7 @@ devtools::install_github("jaeyk/tidytweetjson", dependencies = TRUE) ; library(t
 
 1.  Import/connect to a semi-structured file using `rvest,` `jsonlite,` `xml2,` `pdftools,` `tidyjson`, etc.
 
-2.  Define target elements in the single file and extract them
+2.  Define target elements in a single file and extract them
 
 -   [`readr`](https://readr.tidyverse.org/) package providers `parse_` functions that are useful for vector parsing.
 
@@ -79,7 +79,7 @@ url_list <- c(
 
 * Step 1: Inspection 
 
-Examine the Berkeley website so that we could identify a node which indicates the school's motto. If you're using Chrome, draw the elements of your interest, then `right click > inspect > copy full xpath`.
+Examine the Berkeley website so that we could identify a node that indicates the school's motto. If you're using Chrome, draw your interest elements, then `right click > inspect > copy full xpath`.
 
 ```{r, eval = FALSE}
 
@@ -102,7 +102,7 @@ target %>%
 
 * Step 2: Write a function 
 
-I highly recommend writing your fucntion workking slowly by wrapping the function with [`slowly()`](https://purrr.tidyverse.org/reference/insistently.html).
+I highly recommend writing your function working slowly by wrapping the function with [`slowly()`](https://purrr.tidyverse.org/reference/insistently.html).
 
 ```{r}
 get_table_from_wiki <- function(url){
@@ -154,7 +154,7 @@ out <- map(
 
 ### Governemnt database (XML) 
 
-The following tax return data example comes from the US Internal Revenue Service (IRS) Amazon database. [This PDf file](https://www.irs.gov/pub/irs-pdf/f990.pdf) shows what the original document looks like.
+The following tax return data example comes from the U.S. Internal Revenue Service (IRS) Amazon database. [This PDf file](https://www.irs.gov/pub/irs-pdf/f990.pdf) shows what the original document looks like.
 
 **Workflow**
 
@@ -171,7 +171,7 @@ Step1: Get an XML document link
 xml_link <- c("http://s3.amazonaws.com/irs-form-990/201910919349301206_public.xml")
 ```
 
-Step 2: Get page and parse the XML document 
+Step 2: Get page and parse the XML document. 
 
 ```{r}
 xml_root <- xml_link %>%
@@ -189,7 +189,7 @@ summary(xml_root)
 
 Step 3: Get nodes 
 
-We grab the mission statement of this org from its tax report (990). `//` is an [XPath syntax](https://www.w3schools.com/xml/xpath_syntax.asp) that helps to "select nodes in the document from the current node that match the selection no matter where they are."
+We grab the mission statement of this org from its tax report (990). `//` is an [XPath syntax](https://www.w3schools.com/xml/xpath_syntax.asp) that helps to "select nodes in the document from the current node that matches the selection no matter where they are."
 
 ```{r}
 xml_root %>%
@@ -226,13 +226,13 @@ In the previous session, we learned the difference between semi-structured data 
 
     -   Getting **target data** from a remote server
 
-        -   The target data is usually huge (\>10GB) by the traditional social science standard.
+        -   The target data is usually massive (\>10 G.B.) by the traditional social science standard.
 
     -   Parsing the target data your laptop/database
 
-        -   Laptop (sample-parse): Downsamle the large target data and parse it on your laptop. This is just one option to [deal with big data in R](https://rviews.rstudio.com/2019/07/17/3-big-data-strategies-for-r/). It's a simple strategy as it doesn't require storing target data in your own database.
+        -   Laptop (sample-parse): Downsamle the large target data and parse it on your laptop. This is just one option to [deal with big data in R](https://rviews.rstudio.com/2019/07/17/3-big-data-strategies-for-r/). It's a simple strategy as it doesn't require storing target data in your database.
 
-    -   Database (push-parse): Push the large target data to a database, then explore, select, and filter it. If you were interested in using this option, then check out my [SQL for R Users](https://github.com/dlab-berkeley/sql-for-r-users) workshop.
+    -   Database (push-parse): Push the large target data to a database, then explore, select, and filter it. If you were interested in using this option, check out my [SQL for R Users](https://github.com/dlab-berkeley/sql-for-r-users) workshop.
 
 ![Sample-Parse. From RStudio.](https://rviews.rstudio.com/post/2019-07-01-3-big-data-paradigms-for-r_files/sample_model.png)
 
@@ -273,7 +273,7 @@ This explanation draws on Pablo Barbara's [LSE social media workshop slides](htt
 
 > Twitter data is unique from data shared by most other social platforms because it reflects information that users *choose* to share publicly. Our API platform provides broad access to public Twitter data that users have chosen to share with the world. - Twitter Help Center
 
--   What does this policy mean? If Twitter users don't share the locations of their tweets (e.g., GPS), you can't collect them.
+-   What does this policy mean? If Twitter users don't share their tweets' locations (e.g., GPS), you can't collect them.
 
 -   Facebook API access has become much constrained with [the exception of Social Science One](https://socialscience.one/blog/unprecedented-facebook-urls-dataset-now-available-research-through-social-science-one) since the 2016 U.S. election.
 
@@ -285,7 +285,7 @@ This explanation draws on Pablo Barbara's [LSE social media workshop slides](htt
 
 Web scraping (Wild Wild West) \<\> API (Big Gated Garden)
 
--   You have legal but limited access to (growing) big data that can be divided into text, image, and video and transformed into cross-sectional (geocodes), longitudinal (timestamps), and event historical data (hashtags). For more information, see Zachary C. Steinert-Threlkeld's [2020 APSA Short Course Generating Event Data From Social Media](https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia).
+-   You have legal but limited access to (growing) big data that can be divided into text, image, and video and transformed into cross-sectional (geocodes), longitudinal (timestamps), and event historical data (hashtags). See Zachary C. Steinert-Threlkeld's [2020 APSA Short Course Generating Event Data From Social Media](https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia).
 
 -   Social media data are also well-organized, managed, and curated data. It's easy to navigate because XML and JSON have keys and values. If you find keys, you will find observations you look for.
 
@@ -293,13 +293,13 @@ Web scraping (Wild Wild West) \<\> API (Big Gated Garden)
 
 1.  Rate-limited.
 
-2.  If you want to access to more and various data than those available, you need to pay for premium access.
+2.  If you want to access more and various data than those available, you need to pay for premium access.
 
 #### Next steps
 
--   If you want to know how to sign up a new Twitter developer account and access Twitter API, then see Steinert-Threlkeld's [APSA workshop slides](https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia/blob/master/Presentation/02_AccessTwitter.pdf).
+-   If you want to know how to sign up for a new Twitter developer account and access Twitter API, see Steinert-Threlkeld's [APSA workshop slides](https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia/blob/master/Presentation/02_AccessTwitter.pdf).
 
--   If you want to know about how to use `tweetscore` package, then see Pablo Barbara's R markdown file for [scraping data from Twitter's REST API](http://pablobarbera.com/social-media-workshop/code/02-twitter-REST-data-collection.html)
+-   If you want to know about how to use the `tweetscore` package, then see Pablo Barbara's R markdown file for [scraping data from Twitter's REST API](http://pablobarbera.com/social-media-workshop/code/02-twitter-REST-data-collection.html)
 
 ### Hydrating
 
@@ -314,34 +314,34 @@ What are the main two types of Twitter's API?
 
 #### Hydrating: An Alternative Way to Collect Historical Twitter Data
 
--   You can collect Twitter data using Twitter's API or you can hydrate Tweet IDs collected by other researchers. This is a good resource to collect historical Twitter data.
+-   You can collect Twitter data using Twitter's API, or you can hydrate Tweet I.D.s collected by other researchers. This is an excellent resource to collect historical Twitter data.
 
 -   [Covid-19 Twitter chatter dataset for scientic use](http://www.panacealab.org/covid19/) by Panacealab
 
 -   [Women's March Dataset](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/5ZVMOR) by Littman and Park
 
--   Harvard Dataverse has a number of dehydrated Tweet IDs that could be of interest to social scientists.
+-   Harvard Dataverse has many dehydrated Tweet I.D.s that could be of interest to social scientists.
 
-![Dehydrated Tweet IDs](https://github.com/jaeyk/digital_data_collection_workshop/raw/master/misc/dehydrated_tweets.png)
+![Dehydrated Tweet I.D.s](https://github.com/jaeyk/digital_data_collection_workshop/raw/master/misc/dehydrated_tweets.png)
 
 #### Twarc: one solution to (almost) all Twitter's API problems
 
 -   Why Twarc?
 
-    -   A command-line tool and Python library that works for almost every Twitter's API related problem.
+    -   A command-line tool and Python library that works for almost every Twitter API-related problem.
 
     -   It's really well-documented, tested, and maintained.
 
         -   [Twarc documentation](https://scholarslab.github.io/learn-twarc/06-twarc-command-basics) covers basic commands.
         -   [Tward-cloud documentation](https://twarc-cloud.readthedocs.io/_/downloads/en/stable/pdf/) explains how to collect data from Twitter's API using Twarc running in [Amazon Web Services](https://aws.amazon.com/) (AWS).
 
-    -   Twarc was developed as part of the [Documenting the Now](https://www.docnow.io/) project which was funded by the Mellon Foundation.
+    -   Twarc was developed as part of the [Documenting the Now](https://www.docnow.io/) project, which was funded by the Mellon Foundation.
 
 ![One ring that rules them all.](https://vignette.wikia.nocookie.net/lotr/images/8/8b/DOiAi2WUEAE3A1Y.0.jpg/revision/latest/scale-to-width-down/699?cb=20200305221819)
 
 -   There's no reason to be afraid of using a command-line tool and Python library, even though you primarily use R. It's easy to embed [Python code](https://bookdown.org/yihui/rmarkdown/language-engines.html#python) and [shell scripts](https://bookdown.org/yihui/rmarkdown/language-engines.html#shell-scripts) in R Markdown.
 
--   Even though you don't know how to write Python code or shell scripts, it's really useful to know how to integrate them in your R workflow.
+-   Even though you don't know how to write Python code or shell scripts, it's handy to learn how to integrate them into your R workflow.
 
 -   I assume that you have already installed [Python 3](https://www.python.org/download/releases/3.0/).
 
@@ -399,7 +399,7 @@ twarc sample > tweets.jsonl
 
 ###### Hydrate
 
--   Tweet IDs -\> Tweets
+-   Tweet I.D.s -\> Tweets
 
 ```{bash eval=FALSE}
 twarc hydrate tweet_ids.txt > tweets.jsonl 
@@ -408,7 +408,7 @@ twarc hydrate tweet_ids.txt > tweets.jsonl
 ###### Dehydrate
 
 -   Hydrate \<\> Dehydrate
--   Tweets -\> Tweet IDs
+-   Tweets -\> Tweet I.D.s
 
 ```{bash eval=FALSE}
 twarc dehydrate tweets.jsonl > tweet_ids.txt
@@ -416,7 +416,7 @@ twarc dehydrate tweets.jsonl > tweet_ids.txt
 
 **Challenge**
 
-1.  Collect tweets contain some key words of your choice using `twarc search` and save them as `tweets.jsonl`.
+1.  Collect tweets that contain some keywords of your choice using `twarc search` and save them as `tweets.jsonl`.
 
 2.  Using `less` command in the terminal, inspect `twarc.log`.
 
@@ -434,7 +434,7 @@ twarc dehydrate tweets.jsonl > tweet_ids.txt
 
 ##### Problem
 
--   What if the size of the Twitter data you downloaded is too big (e.g., \>10GB) to do complex wrangling in R?
+-   What if the size of the Twitter data you downloaded is too big (e.g., \>10 G.B.) to do complex wrangling in R?
 
 ##### Solution
 
@@ -539,7 +539,7 @@ file_name <- file_name[[1]][length(file_name[[1]])]
 
 listed <- read_json(file_path, format = c("jsonl"))
 
-# IDs of the tweets with country codes
+# I.D.s of the tweets with country codes
 
 ccodes <- listed %>%
   enter_object("place") %>%
@@ -548,7 +548,7 @@ ccodes <- listed %>%
   as_tibble() %>%
   rename("country_code" = "string")
 
-# IDs of the tweets with location
+# I.D.s of the tweets with location
 
 locations <- listed %>%
   enter_object("user") %>%
