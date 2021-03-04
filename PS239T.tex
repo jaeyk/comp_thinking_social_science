@@ -17023,6 +17023,16 @@ To become significantly more reliable, code must become more transparent. In par
 \hypertarget{speed}{%
 \section{Make automation slower or faster}\label{speed}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Install packages }
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(}\StringTok{"pacman"}\NormalTok{)) }\FunctionTok{install.packages}\NormalTok{(}\StringTok{"pacman"}\NormalTok{)}
+\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(tidyverse, }\CommentTok{\# tidyverse pkgs including purrr}
+\NormalTok{               tictoc, }\CommentTok{\# performance test }
+\NormalTok{               furrr) }\CommentTok{\# parallel processing  reproducibility }
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{objectives-2}{%
 \subsection{Objectives}\label{objectives-2}}
 
@@ -17033,38 +17043,104 @@ To become significantly more reliable, code must become more transparent. In par
 \end{itemize}
 
 \hypertarget{how-to-make-automation-slower}{%
-\subsection{How to make automation slower}\label{how-to-make-automation-slower}}
+\subsection{How to Make Automation Slower}\label{how-to-make-automation-slower}}
 
 \begin{itemize}
 \tightlist
 \item
-  Scraping 50 pages from a website, and you don't want to overload the server. How can you do that?
+  Scraping 50 pages from a website and you don't want to overload the server. How can you do that?
 \end{itemize}
 
 \hypertarget{for-loop-2}{%
-\subsection{For loop}\label{for-loop-2}}
+\subsubsection{For loop}\label{for-loop-2}}
 
 \hypertarget{map}{%
-\subsection{Map}\label{map}}
+\subsubsection{Map}\label{map}}
 
 \begin{itemize}
 \item
   \texttt{walk()} works the same as \texttt{map()} but doesn't store its output.
 \item
   If you're web scraping, one problem with this approach is it's too fast by human standards.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tic}\NormalTok{(}\StringTok{"Scraping pages"}\NormalTok{)}
+\FunctionTok{walk}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x)\{}\FunctionTok{message}\NormalTok{(}\StringTok{"Scraping page"}\NormalTok{, x)\}) }\CommentTok{\# Anonymous function; I don\textquotesingle{}t name the function }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Scraping page1
+\end{verbatim}
+
+\begin{verbatim}
+## Scraping page2
+\end{verbatim}
+
+\begin{verbatim}
+## Scraping page3
+\end{verbatim}
+
+\begin{verbatim}
+## Scraping page4
+\end{verbatim}
+
+\begin{verbatim}
+## Scraping page5
+\end{verbatim}
+
+\begin{verbatim}
+## Scraping page6
+\end{verbatim}
+
+\begin{verbatim}
+## Scraping page7
+\end{verbatim}
+
+\begin{verbatim}
+## Scraping page8
+\end{verbatim}
+
+\begin{verbatim}
+## Scraping page9
+\end{verbatim}
+
+\begin{verbatim}
+## Scraping page10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{toc}\NormalTok{(}\AttributeTok{log =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# save toc }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Scraping pages: 0.005 sec elapsed
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
 \item
   If you want to make the function run slowly \ldots{}
 \end{itemize}
 
 \begin{quote}
 slowly() takes a function and modifies it to wait a given amount of time between each call. - \texttt{purrr} package vignette
-- If a function is a verb, then a helper function is an adverb (modifying the verb's behavior).
 \end{quote}
 
-\hypertarget{how-to-make-automation-faster}{%
-\subsection{How to make automation Faster}\label{how-to-make-automation-faster}}
+\begin{itemize}
+\tightlist
+\item
+  If a function is a verb, then a helper function is an adverb (modifying the behavior of the verb).
+\end{itemize}
 
-In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data a large-scale. You can solve this problem using parallel processing. For more on the parallel processing in R, read \href{https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/}{this review}.
+\hypertarget{how-to-make-automation-faster}{%
+\subsection{How to Make Automation Faster}\label{how-to-make-automation-faster}}
+
+In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data a large-scale. You can solve this problem using parallel processing. A modern processor has a multi-core. You can divide tasks among these cores. R uses a single thread or only core. You can configure this default setting by the following code. For further information on the parallel processing in R (there are many other options), read \href{https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/}{this review}.
 
 \begin{itemize}
 \item
@@ -17077,6 +17153,70 @@ In a different situation, you want to make your function run faster. This is a c
     Step2: Determine the parallel processing mode (\texttt{plan()})
   \end{itemize}
 \end{itemize}
+
+We do \texttt{availableCores()\ -\ 1} to save some processing power for other programs.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Setup }
+\NormalTok{n\_cores }\OtherTok{\textless{}{-}} \FunctionTok{availableCores}\NormalTok{() }\SpecialCharTok{{-}} \DecValTok{1}
+\NormalTok{n\_cores }\CommentTok{\# This number depends on your computer spec.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## system 
+##      7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plan}\NormalTok{(multiprocess, }\CommentTok{\# multicore, if supported, otherwise multisession}
+     \AttributeTok{workers =}\NormalTok{ n\_cores) }\CommentTok{\# the maximum number of workers}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked
+## processing ('multicore') is not supported when running R from RStudio
+## because it is considered unstable. For more details, how to control forked
+## processing or not, and how to silence this warning in future R sessions, see ?
+## parallelly::supportsMulticore
+\end{verbatim}
+
+\textbf{What's the difference between multisession and multicore?}
+
+I skip technical explanations and only focus on their usages.
+
+\begin{itemize}
+\tightlist
+\item
+  multisession : fast, and relatively stable. It works across different OSs and also for RStudio.
+\item
+  multicore : faster, but unstable. It doesn't work for Windows/RStudio.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tic.log}\NormalTok{(}\AttributeTok{format =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] "Scraping pages: 0.005 sec elapsed"
+## 
+## [[2]]
+## [1] "scraping pages with deplay: 9.023 sec elapsed"
+## 
+## [[3]]
+## [1] "averaging 100000 without parallel processing: 0.423 sec elapsed"
+## 
+## [[4]]
+## [1] "averaging 100000 with parallel processing: 0.877 sec elapsed"
+\end{verbatim}
+
+Because of the overhead cost (e.g., time spent communicating data between processing), parallel processing does not always increase performance. Use this technique either when the computation part is heavy or when you need to repeat the process a large number of times.
 
 \hypertarget{robustness}{%
 \section{Make error handling easier}\label{robustness}}
@@ -17202,18 +17342,24 @@ In a different situation, you want to make your function run faster. This is a c
 ## 
 ## [[2]]
 ## [[2]]$result
-## NULL
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ## 
 ## [[2]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
+## NULL
 ## 
 ## 
 ## [[3]]
 ## [[3]]$result
-## NULL
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 ## 
 ## [[3]]$error
-## <simpleError in open.connection(x, "rb"): Timeout was reached: [en.wikipedia.org] Connection timed out after 10000 milliseconds>
+## NULL
 ## 
 ## 
 ## [[4]]
@@ -17240,7 +17386,23 @@ In a different situation, you want to make your function run faster. This is a c
 \end{Shaded}
 
 \begin{verbatim}
-## list()
+## [[1]]
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## 
+## [[2]]
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
+## 
+## [[3]]
+## {html_document}
+## <html class="client-nojs" lang="en" dir="ltr">
+## [1] <head>\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...
 \end{verbatim}
 
 \hypertarget{possibly}{%
@@ -17264,10 +17426,7 @@ What if the best way to solve the problem is not to ignore the error \ldots{}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "https://en.wikipedia.org/wiki/University_of_California,_Berkeley"
-## [2] "https://en.wikipedia.org/wiki/Stanford_University"               
-## [3] "https://en.wikipedia.org/wiki/Carnegie_Mellon_University"        
-## [4] "https://DLAB"
+## [1] "https://DLAB"
 \end{verbatim}
 
 \hypertarget{products}{%

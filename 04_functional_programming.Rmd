@@ -900,77 +900,85 @@ reduced <- reduce(list(df1, df2, df3), bind_rows)
 
 ## Make automation slower or faster {#speed}
 
+```{r}
+# Install packages 
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, # tidyverse pkgs including purrr
+               tictoc, # performance test 
+               furrr) # parallel processing  reproducibility 
+```
+
 ### Objectives 
 
 - Learning how to use `slowly()` and `future_` to make the automation process either slower or faster
 
-### How to make automation slower
+### How to Make Automation Slower
 
-- Scraping 50 pages from a website, and you don't want to overload the server. How can you do that?
+- Scraping 50 pages from a website and you don't want to overload the server. How can you do that?
 
-### For loop 
+#### For loop 
 
 ```{r, include=FALSE}
 
 for (i in 1:50) {
-  message("Scraping page ", i)
-
+  
+  message("Scraping page ",i)
+  
   if ((i %% 10) == 0) {
+    
     message("Break time")
-
-    Sys.sleep(1) # 1 second
+    
+    Sys.sleep(1) # 1 second 
   }
+  
 }
+
 ```
 
-### Map 
+#### Map 
 
 - `walk()` works the same as `map()` but doesn't store its output. 
 
 ```{r,include=FALSE}
-walk(1:50, function(x) {
-  message("Scraping page", x)
-})
+
+walk(1:50, function(x){message("Scraping page", x)})
+
 ```
 
 - If you're web scraping, one problem with this approach is it's too fast by human standards.
 
-```{r,include=FALSE}
+```{r}
 
-tic()
+tic("Scraping pages")
+walk(1:10, function(x){message("Scraping page", x)}) # Anonymous function; I don't name the function 
+toc(log = TRUE) # save toc 
 
-# Anonymous function; I don't name the function
-walk(1:50, function(x) {
-  message("Scraping 
-                               page", x)
-})
-toc()
 ```
 
 - If you want to make the function run slowly ... 
 
 > slowly() takes a function and modifies it to wait a given amount of time between each call. - `purrr` package vignette 
-- If a function is a verb, then a helper function is an adverb (modifying the verb's behavior). 
+
+- If a function is a verb, then a helper function is an adverb (modifying the behavior of the verb). 
 
 ```{r,include=FALSE}
 
-tic()
+# 49.05 sec elapsed
 
-walk(
-  1:50,
-  slowly(function(x) {
-    message("Scraping page", x)
-  },
-  rate = rate_delay(pause = 1)
-  )
-) # pause = Delay between attempts in seconds
+tic("scraping pages with deplay", log = TRUE)
 
-toc()
+walk(1:10, slowly(function(x){message("Scraping page", x)},   
+                    rate = rate_delay(pause = 1))) # pause = Delay between attempts in seconds
+
+toc(log = TRUE)
+
+tic.log(format = TRUE)
+
 ```
 
-### How to make automation Faster 
+### How to Make Automation Faster 
 
-In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data a large-scale. You can solve this problem using parallel processing. For more on the parallel processing in R, read [this review](https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/).
+In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data a large-scale. You can solve this problem using parallel processing. A modern processor has a multi-core. You can divide tasks among these cores. R uses a single thread or only core. You can configure this default setting by the following code. For further information on the parallel processing in R (there are many other options), read [this review](https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/).
 
 - Parallel processing setup 
 
@@ -978,24 +986,49 @@ In a different situation, you want to make your function run faster. This is a c
     
     - Step2: Determine the parallel processing mode (`plan()`) 
 
-```{r include = FALSE}
-# Setup
+We do `availableCores() - 1` to save some processing power for other programs.
+
+```{r}
+# Setup 
 n_cores <- availableCores() - 1
-
 n_cores # This number depends on your computer spec.
-
-plan(multiprocess, # multicore, if supported, otherwise multisession
-  workers = n_cores
-) # the maximum number of workers
-
-tic()
-mean100 <- map(1:1000000, mean)
-toc()
-
-tic()
-mean100 <- future_map(1:1000000, mean)
-toc()
 ```
+
+```{r}
+plan(multiprocess, # multicore, if supported, otherwise multisession
+     workers = n_cores) # the maximum number of workers
+```
+
+**What's the difference between multisession and multicore?**
+
+I skip technical explanations and only focus on their usages.
+
+- multisession : fast, and relatively stable. It works across different OSs and also for RStudio.
+- multicore :	faster, but unstable. It doesn't work for Windows/RStudio.
+
+```{r include=FALSE}
+plan(sequential)
+
+tic("averaging 100000 without parallel processing", log = TRUE)
+map100000 <- future_map(1:100000, mean)
+toc(log = TRUE)
+```
+
+
+```{r include=FALSE}
+plan(multiprocess, # multicore, if supported, otherwise multisession
+     workers = n_cores) # the maximum number of workers
+
+tic("averaging 100000 with parallel processing", log = TRUE)
+map100000 <- future_map(1:100000, mean)
+toc(log = TRUE)
+```
+
+```{r}
+tic.log(format = TRUE)
+```
+
+Because of the overhead cost (e.g., time spent communicating data between processing), parallel processing does not always increase performance. Use this technique either when the computation part is heavy or when you need to repeat the process a large number of times.  
 
 ## Make error handling easier {#robustness}
 
