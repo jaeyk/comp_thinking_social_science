@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2021-03-01" />
+<meta name="date" content="2021-03-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.2" data-path="motivation.html"><a href="motivation.html#dimension"><i class="fa fa-check"></i><b>2.2.2</b> Dimension</a></li>
 <li class="chapter" data-level="2.2.3" data-path="motivation.html"><a href="motivation.html#size"><i class="fa fa-check"></i><b>2.2.3</b> Size</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="motivation.html"><a href="motivation.html#computational-way-of-thinking-about-research-process"><i class="fa fa-check"></i><b>2.3</b> Computational way of thinking about research process</a></li>
+<li class="chapter" data-level="2.3" data-path="motivation.html"><a href="motivation.html#computational-way-of-thinking-about-the-research-process"><i class="fa fa-check"></i><b>2.3</b> Computational way of thinking about the research process</a></li>
 <li class="chapter" data-level="2.4" data-path="motivation.html"><a href="motivation.html#references"><i class="fa fa-check"></i><b>2.4</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="git-bash.html"><a href="git-bash.html"><i class="fa fa-check"></i><b>3</b> Managing data and code</a>
@@ -491,85 +491,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Setup (<strong>DESCRIPTION</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb1039"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1039-1"><a href="products.html#cb1039-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This function creates DESCRIPTION file </span></span>
-<span id="cb1039-2"><a href="products.html#cb1039-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="fu">here</span>(<span class="st">&quot;mypkg&quot;</span>))</span>
-<span id="cb1039-3"><a href="products.html#cb1039-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1039-4"><a href="products.html#cb1039-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize git repo </span></span>
-<span id="cb1039-5"><a href="products.html#cb1039-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()</span>
-<span id="cb1039-6"><a href="products.html#cb1039-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1039-7"><a href="products.html#cb1039-7" aria-hidden="true" tabindex="-1"></a><span class="co"># License the package </span></span>
-<span id="cb1039-8"><a href="products.html#cb1039-8" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use the MIT license by typing devtools::use_mit_license(&quot;author name&quot;). The function produces MIT license related files (LICENSE, LICENSE.md).</span></span>
-<span id="cb1039-9"><a href="products.html#cb1039-9" aria-hidden="true" tabindex="-1"></a><span class="fu">use_mit_license</span>(<span class="st">&quot;Jae Yeon Kim&quot;</span>)</span>
-<span id="cb1039-10"><a href="products.html#cb1039-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1039-11"><a href="products.html#cb1039-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add README (optional)</span></span>
-<span id="cb1039-12"><a href="products.html#cb1039-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Makes the package more use-friendly </span></span>
-<span id="cb1039-13"><a href="products.html#cb1039-13" aria-hidden="true" tabindex="-1"></a><span class="fu">use_readme_md</span>()</span>
-<span id="cb1039-14"><a href="products.html#cb1039-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1039-15"><a href="products.html#cb1039-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add news (optional) </span></span>
-<span id="cb1039-16"><a href="products.html#cb1039-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Helps track changes </span></span>
-<span id="cb1039-17"><a href="products.html#cb1039-17" aria-hidden="true" tabindex="-1"></a><span class="fu">use_news_md</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb1036"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1036-1"><a href="products.html#cb1036-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This function creates DESCRIPTION file </span></span>
+<span id="cb1036-2"><a href="products.html#cb1036-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="fu">here</span>(<span class="st">&quot;mypkg&quot;</span>))</span>
+<span id="cb1036-3"><a href="products.html#cb1036-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1036-4"><a href="products.html#cb1036-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize git repo </span></span>
+<span id="cb1036-5"><a href="products.html#cb1036-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()</span>
+<span id="cb1036-6"><a href="products.html#cb1036-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1036-7"><a href="products.html#cb1036-7" aria-hidden="true" tabindex="-1"></a><span class="co"># License the package </span></span>
+<span id="cb1036-8"><a href="products.html#cb1036-8" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use the MIT license by typing devtools::use_mit_license(&quot;author name&quot;). The function produces MIT license related files (LICENSE, LICENSE.md).</span></span>
+<span id="cb1036-9"><a href="products.html#cb1036-9" aria-hidden="true" tabindex="-1"></a><span class="fu">use_mit_license</span>(<span class="st">&quot;Jae Yeon Kim&quot;</span>)</span>
+<span id="cb1036-10"><a href="products.html#cb1036-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1036-11"><a href="products.html#cb1036-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add README (optional)</span></span>
+<span id="cb1036-12"><a href="products.html#cb1036-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Makes the package more use-friendly </span></span>
+<span id="cb1036-13"><a href="products.html#cb1036-13" aria-hidden="true" tabindex="-1"></a><span class="fu">use_readme_md</span>()</span>
+<span id="cb1036-14"><a href="products.html#cb1036-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1036-15"><a href="products.html#cb1036-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add news (optional) </span></span>
+<span id="cb1036-16"><a href="products.html#cb1036-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Helps track changes </span></span>
+<span id="cb1036-17"><a href="products.html#cb1036-17" aria-hidden="true" tabindex="-1"></a><span class="fu">use_news_md</span>() </span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Write code (<strong>R</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb1040"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1040-1"><a href="products.html#cb1040-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_r</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1041"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1041-1"><a href="products.html#cb1041-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Add two numbers</span></span>
-<span id="cb1041-2"><a href="products.html#cb1041-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
-<span id="cb1041-3"><a href="products.html#cb1041-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param x A number</span></span>
-<span id="cb1041-4"><a href="products.html#cb1041-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param y A number</span></span>
-<span id="cb1041-5"><a href="products.html#cb1041-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return The sum of x and y </span></span>
-<span id="cb1041-6"><a href="products.html#cb1041-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
-<span id="cb1041-7"><a href="products.html#cb1041-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1041-8"><a href="products.html#cb1041-8" aria-hidden="true" tabindex="-1"></a>add <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
-<span id="cb1041-9"><a href="products.html#cb1041-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1041-10"><a href="products.html#cb1041-10" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
-<span id="cb1041-11"><a href="products.html#cb1041-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1041-12"><a href="products.html#cb1041-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1037"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1037-1"><a href="products.html#cb1037-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_r</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1038"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1038-1"><a href="products.html#cb1038-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Add two numbers</span></span>
+<span id="cb1038-2"><a href="products.html#cb1038-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb1038-3"><a href="products.html#cb1038-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param x A number</span></span>
+<span id="cb1038-4"><a href="products.html#cb1038-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param y A number</span></span>
+<span id="cb1038-5"><a href="products.html#cb1038-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return The sum of x and y </span></span>
+<span id="cb1038-6"><a href="products.html#cb1038-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb1038-7"><a href="products.html#cb1038-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1038-8"><a href="products.html#cb1038-8" aria-hidden="true" tabindex="-1"></a>add <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb1038-9"><a href="products.html#cb1038-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1038-10"><a href="products.html#cb1038-10" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
+<span id="cb1038-11"><a href="products.html#cb1038-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1038-12"><a href="products.html#cb1038-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>If you used a function from other packages you need to reference it in the following way: <code>#' @importFrom &lt;package&gt; &lt;function&gt;</code></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Document (<strong>man</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb1042"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1042-1"><a href="products.html#cb1042-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Document </span></span>
-<span id="cb1042-2"><a href="products.html#cb1042-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The function creates documentation related files (NAMESPACE, function_name.rd)</span></span>
-<span id="cb1042-3"><a href="products.html#cb1042-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span>
-<span id="cb1042-4"><a href="products.html#cb1042-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1042-5"><a href="products.html#cb1042-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check; updates the documentation; builds and checks the package </span></span>
-<span id="cb1042-6"><a href="products.html#cb1042-6" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1039"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1039-1"><a href="products.html#cb1039-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Document </span></span>
+<span id="cb1039-2"><a href="products.html#cb1039-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The function creates documentation related files (NAMESPACE, function_name.rd)</span></span>
+<span id="cb1039-3"><a href="products.html#cb1039-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span>
+<span id="cb1039-4"><a href="products.html#cb1039-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1039-5"><a href="products.html#cb1039-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check; updates the documentation; builds and checks the package </span></span>
+<span id="cb1039-6"><a href="products.html#cb1039-6" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Organize (<strong>NAMESPACE</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb1043"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1043-1"><a href="products.html#cb1043-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1040"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1040-1"><a href="products.html#cb1040-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 </div>
 <div id="optional-components" class="section level3" number="6.1.3">
 <h3><span class="header-section-number">6.1.3</span> Optional Components</h3>
 <ol style="list-style-type: decimal">
 <li>Test (<strong>test</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb1044"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1044-1"><a href="products.html#cb1044-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_testthat</span>()</span>
-<span id="cb1044-2"><a href="products.html#cb1044-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1044-3"><a href="products.html#cb1044-3" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1041"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1041-1"><a href="products.html#cb1041-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_testthat</span>()</span>
+<span id="cb1041-2"><a href="products.html#cb1041-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1041-3"><a href="products.html#cb1041-3" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Add data (<strong>data</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb1045"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1045-1"><a href="products.html#cb1045-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;Jae&quot;</span></span>
-<span id="cb1045-2"><a href="products.html#cb1045-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">&quot;Sun&quot;</span></span>
-<span id="cb1045-3"><a href="products.html#cb1045-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="st">&quot;Jane&quot;</span></span>
-<span id="cb1045-4"><a href="products.html#cb1045-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1045-5"><a href="products.html#cb1045-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_data</span>(x, y, z, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1042"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1042-1"><a href="products.html#cb1042-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;Jae&quot;</span></span>
+<span id="cb1042-2"><a href="products.html#cb1042-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">&quot;Sun&quot;</span></span>
+<span id="cb1042-3"><a href="products.html#cb1042-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="st">&quot;Jane&quot;</span></span>
+<span id="cb1042-4"><a href="products.html#cb1042-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1042-5"><a href="products.html#cb1042-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_data</span>(x, y, z, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Teach (<strong>vignetts</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb1046"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1046-1"><a href="products.html#cb1046-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1047"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1047-1"><a href="products.html#cb1047-1" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Vignette title&quot;</span></span>
-<span id="cb1047-2"><a href="products.html#cb1047-2" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Vignette author&quot;</span></span>
-<span id="cb1047-3"><a href="products.html#cb1047-3" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;2021-03-01&quot;</span></span>
-<span id="cb1047-4"><a href="products.html#cb1047-4" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> rmarkdown<span class="sc">::</span>html_vignette</span>
-<span id="cb1047-5"><a href="products.html#cb1047-5" aria-hidden="true" tabindex="-1"></a>vignette<span class="sc">:</span> blah blah</span></code></pre></div>
+<div class="sourceCode" id="cb1043"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1043-1"><a href="products.html#cb1043-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1044"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1044-1"><a href="products.html#cb1044-1" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Vignette title&quot;</span></span>
+<span id="cb1044-2"><a href="products.html#cb1044-2" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Vignette author&quot;</span></span>
+<span id="cb1044-3"><a href="products.html#cb1044-3" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;2021-03-04&quot;</span></span>
+<span id="cb1044-4"><a href="products.html#cb1044-4" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> rmarkdown<span class="sc">::</span>html_vignette</span>
+<span id="cb1044-5"><a href="products.html#cb1044-5" aria-hidden="true" tabindex="-1"></a>vignette<span class="sc">:</span> blah blah</span></code></pre></div>
 <ul>
 <li>You can build a package website using <code>pkgdown</code></li>
 </ul>
-<div class="sourceCode" id="cb1048"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1048-1"><a href="products.html#cb1048-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;pkgdown&quot;)</span></span>
-<span id="cb1048-2"><a href="products.html#cb1048-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_pkgdown</span>()</span>
-<span id="cb1048-3"><a href="products.html#cb1048-3" aria-hidden="true" tabindex="-1"></a>pkgdown<span class="sc">::</span><span class="fu">build_site</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1045"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1045-1"><a href="products.html#cb1045-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;pkgdown&quot;)</span></span>
+<span id="cb1045-2"><a href="products.html#cb1045-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_pkgdown</span>()</span>
+<span id="cb1045-3"><a href="products.html#cb1045-3" aria-hidden="true" tabindex="-1"></a>pkgdown<span class="sc">::</span><span class="fu">build_site</span>()</span></code></pre></div>
 <ul>
 <li>A package site includes information on METADATA, Function references, Articles, News, etc.</li>
 </ul>
@@ -583,19 +583,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>devtools</li>
 </ul>
-<div class="sourceCode" id="cb1049"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1049-1"><a href="products.html#cb1049-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build </span></span>
-<span id="cb1049-2"><a href="products.html#cb1049-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">build</span>()</span>
-<span id="cb1049-3"><a href="products.html#cb1049-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1049-4"><a href="products.html#cb1049-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install </span></span>
-<span id="cb1049-5"><a href="products.html#cb1049-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1046"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1046-1"><a href="products.html#cb1046-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build </span></span>
+<span id="cb1046-2"><a href="products.html#cb1046-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">build</span>()</span>
+<span id="cb1046-3"><a href="products.html#cb1046-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1046-4"><a href="products.html#cb1046-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install </span></span>
+<span id="cb1046-5"><a href="products.html#cb1046-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div>
 </div>
 <div id="distributing-an-r-package" class="section level3" number="6.1.5">
 <h3><span class="header-section-number">6.1.5</span> Distributing an R package</h3>
-<div class="sourceCode" id="cb1050"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1050-1"><a href="products.html#cb1050-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Version update </span></span>
-<span id="cb1050-2"><a href="products.html#cb1050-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_version</span>()</span>
-<span id="cb1050-3"><a href="products.html#cb1050-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1050-4"><a href="products.html#cb1050-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Spell check</span></span>
-<span id="cb1050-5"><a href="products.html#cb1050-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_spell_check</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1047"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1047-1"><a href="products.html#cb1047-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Version update </span></span>
+<span id="cb1047-2"><a href="products.html#cb1047-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_version</span>()</span>
+<span id="cb1047-3"><a href="products.html#cb1047-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1047-4"><a href="products.html#cb1047-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Spell check</span></span>
+<span id="cb1047-5"><a href="products.html#cb1047-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_spell_check</span>()</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><a href="https://cran.r-project.org/">CRAN (The Comprehensive R Archive Network)</a></li>
 </ol>
@@ -614,22 +614,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>If you want to use pipe operator (%) in your functions, save the following script as <code>utils-pipe.R.</code></li>
 </ol>
-<div class="sourceCode" id="cb1051"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1051-1"><a href="products.html#cb1051-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Pipe operator</span></span>
-<span id="cb1051-2"><a href="products.html#cb1051-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
-<span id="cb1051-3"><a href="products.html#cb1051-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; See \code{magrittr::\link[magrittr:pipe]{\%&gt;\%}} for details.</span></span>
-<span id="cb1051-4"><a href="products.html#cb1051-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
-<span id="cb1051-5"><a href="products.html#cb1051-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @name %&gt;%</span></span>
-<span id="cb1051-6"><a href="products.html#cb1051-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @rdname pipe</span></span>
-<span id="cb1051-7"><a href="products.html#cb1051-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @keywords internal</span></span>
-<span id="cb1051-8"><a href="products.html#cb1051-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
-<span id="cb1051-9"><a href="products.html#cb1051-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom magrittr %&gt;%</span></span>
-<span id="cb1051-10"><a href="products.html#cb1051-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @usage lhs \%&gt;\% rhs</span></span>
-<span id="cb1051-11"><a href="products.html#cb1051-11" aria-hidden="true" tabindex="-1"></a><span class="cn">NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb1048"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1048-1"><a href="products.html#cb1048-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Pipe operator</span></span>
+<span id="cb1048-2"><a href="products.html#cb1048-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb1048-3"><a href="products.html#cb1048-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; See \code{magrittr::\link[magrittr:pipe]{\%&gt;\%}} for details.</span></span>
+<span id="cb1048-4"><a href="products.html#cb1048-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb1048-5"><a href="products.html#cb1048-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @name %&gt;%</span></span>
+<span id="cb1048-6"><a href="products.html#cb1048-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @rdname pipe</span></span>
+<span id="cb1048-7"><a href="products.html#cb1048-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @keywords internal</span></span>
+<span id="cb1048-8"><a href="products.html#cb1048-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb1048-9"><a href="products.html#cb1048-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @importFrom magrittr %&gt;%</span></span>
+<span id="cb1048-10"><a href="products.html#cb1048-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @usage lhs \%&gt;\% rhs</span></span>
+<span id="cb1048-11"><a href="products.html#cb1048-11" aria-hidden="true" tabindex="-1"></a><span class="cn">NULL</span></span></code></pre></div>
 <pre><code>## NULL</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Sometimes, you get the following error: “Undefined global functions or variables” If you experience this problem, save the following script as <code>globals.r.</code></li>
 </ol>
-<div class="sourceCode" id="cb1053"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1053-1"><a href="products.html#cb1053-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">globalVariables</span>(<span class="fu">c</span>(<span class="st">&quot;&lt;undefined variable name1&gt;&quot;</span>, <span class="st">&quot;&lt;undefined variable name2&gt;&quot;</span>, <span class="st">&quot;&lt;undefinedvariable name3&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1050"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1050-1"><a href="products.html#cb1050-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">globalVariables</span>(<span class="fu">c</span>(<span class="st">&quot;&lt;undefined variable name1&gt;&quot;</span>, <span class="st">&quot;&lt;undefined variable name2&gt;&quot;</span>, <span class="st">&quot;&lt;undefinedvariable name3&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;&lt;undefined variable name1&gt;&quot; &quot;&lt;undefined variable name2&gt;&quot;
 ## [3] &quot;&lt;undefinedvariable name3&quot;</code></pre>
 </div>
@@ -653,7 +653,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Install libraries</li>
 </ol>
-<div class="sourceCode" id="cb1055"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1055-1"><a href="products.html#cb1055-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1052"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1052-1"><a href="products.html#cb1052-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Create app directory and file</li>
 </ol>
@@ -666,79 +666,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Front-end</li>
 </ul>
-<div class="sourceCode" id="cb1056"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1056-1"><a href="products.html#cb1056-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages </span></span>
-<span id="cb1056-2"><a href="products.html#cb1056-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Do not use install.packages(), pacman::p_load(), or library() if you intend to deploy the app using shinyapps.io </span></span>
-<span id="cb1056-3"><a href="products.html#cb1056-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1056-4"><a href="products.html#cb1056-4" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span>
-<span id="cb1056-5"><a href="products.html#cb1056-5" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;shiny&quot;</span>)</span>
-<span id="cb1056-6"><a href="products.html#cb1056-6" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;shinydashboard&quot;</span>)</span>
-<span id="cb1056-7"><a href="products.html#cb1056-7" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;colourpicker&quot;</span>)</span>
-<span id="cb1056-8"><a href="products.html#cb1056-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1056-9"><a href="products.html#cb1056-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data </span></span>
-<span id="cb1056-10"><a href="products.html#cb1056-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1056-11"><a href="products.html#cb1056-11" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">&quot;https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv&quot;</span>))[,<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb1056-12"><a href="products.html#cb1056-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1056-13"><a href="products.html#cb1056-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Defines the user interface; how the app looks</span></span>
-<span id="cb1056-14"><a href="products.html#cb1056-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1056-15"><a href="products.html#cb1056-15" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb1056-16"><a href="products.html#cb1056-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1056-17"><a href="products.html#cb1056-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Application title </span></span>
-<span id="cb1056-18"><a href="products.html#cb1056-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
-<span id="cb1056-19"><a href="products.html#cb1056-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1056-20"><a href="products.html#cb1056-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">h4</span>(tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
-<span id="cb1056-21"><a href="products.html#cb1056-21" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb1056-22"><a href="products.html#cb1056-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
-<span id="cb1056-23"><a href="products.html#cb1056-23" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb1056-24"><a href="products.html#cb1056-24" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Sidebar with sliders </span></span>
-<span id="cb1056-25"><a href="products.html#cb1056-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sidebarPanel</span>(</span>
-<span id="cb1056-26"><a href="products.html#cb1056-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;size&quot;</span>, </span>
-<span id="cb1056-27"><a href="products.html#cb1056-27" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Font size:&quot;</span>,</span>
-<span id="cb1056-28"><a href="products.html#cb1056-28" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">10</span>,</span>
-<span id="cb1056-29"><a href="products.html#cb1056-29" aria-hidden="true" tabindex="-1"></a>                    <span class="at">value =</span> <span class="dv">2</span>)</span>
-<span id="cb1056-30"><a href="products.html#cb1056-30" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb1056-31"><a href="products.html#cb1056-31" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1056-32"><a href="products.html#cb1056-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb1056-33"><a href="products.html#cb1056-33" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb1056-34"><a href="products.html#cb1056-34" aria-hidden="true" tabindex="-1"></a>          <span class="fu">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
-<span id="cb1056-35"><a href="products.html#cb1056-35" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb1056-36"><a href="products.html#cb1056-36" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb1056-37"><a href="products.html#cb1056-37" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1056-38"><a href="products.html#cb1056-38" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1056-39"><a href="products.html#cb1056-39" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1053"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1053-1"><a href="products.html#cb1053-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages </span></span>
+<span id="cb1053-2"><a href="products.html#cb1053-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Do not use install.packages(), pacman::p_load(), or library() if you intend to deploy the app using shinyapps.io </span></span>
+<span id="cb1053-3"><a href="products.html#cb1053-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1053-4"><a href="products.html#cb1053-4" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span>
+<span id="cb1053-5"><a href="products.html#cb1053-5" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;shiny&quot;</span>)</span>
+<span id="cb1053-6"><a href="products.html#cb1053-6" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;shinydashboard&quot;</span>)</span>
+<span id="cb1053-7"><a href="products.html#cb1053-7" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;colourpicker&quot;</span>)</span>
+<span id="cb1053-8"><a href="products.html#cb1053-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1053-9"><a href="products.html#cb1053-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data </span></span>
+<span id="cb1053-10"><a href="products.html#cb1053-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1053-11"><a href="products.html#cb1053-11" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">&quot;https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv&quot;</span>))[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb1053-12"><a href="products.html#cb1053-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1053-13"><a href="products.html#cb1053-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Defines the user interface; how the app looks</span></span>
+<span id="cb1053-14"><a href="products.html#cb1053-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1053-15"><a href="products.html#cb1053-15" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb1053-16"><a href="products.html#cb1053-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1053-17"><a href="products.html#cb1053-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Application title </span></span>
+<span id="cb1053-18"><a href="products.html#cb1053-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
+<span id="cb1053-19"><a href="products.html#cb1053-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1053-20"><a href="products.html#cb1053-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">h4</span>(tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
+<span id="cb1053-21"><a href="products.html#cb1053-21" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1053-22"><a href="products.html#cb1053-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
+<span id="cb1053-23"><a href="products.html#cb1053-23" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb1053-24"><a href="products.html#cb1053-24" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Sidebar with sliders </span></span>
+<span id="cb1053-25"><a href="products.html#cb1053-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sidebarPanel</span>(</span>
+<span id="cb1053-26"><a href="products.html#cb1053-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;size&quot;</span>, </span>
+<span id="cb1053-27"><a href="products.html#cb1053-27" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Font size:&quot;</span>,</span>
+<span id="cb1053-28"><a href="products.html#cb1053-28" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">10</span>,</span>
+<span id="cb1053-29"><a href="products.html#cb1053-29" aria-hidden="true" tabindex="-1"></a>                    <span class="at">value =</span> <span class="dv">2</span>)</span>
+<span id="cb1053-30"><a href="products.html#cb1053-30" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb1053-31"><a href="products.html#cb1053-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1053-32"><a href="products.html#cb1053-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb1053-33"><a href="products.html#cb1053-33" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb1053-34"><a href="products.html#cb1053-34" aria-hidden="true" tabindex="-1"></a>          <span class="fu">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
+<span id="cb1053-35"><a href="products.html#cb1053-35" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1053-36"><a href="products.html#cb1053-36" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1053-37"><a href="products.html#cb1053-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1053-38"><a href="products.html#cb1053-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1053-39"><a href="products.html#cb1053-39" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <ul>
 <li>Back-end</li>
 </ul>
-<div class="sourceCode" id="cb1057"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1057-1"><a href="products.html#cb1057-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb1057-2"><a href="products.html#cb1057-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1057-3"><a href="products.html#cb1057-3" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>cloud <span class="ot">&lt;-</span> <span class="fu">renderWordcloud2</span>({ </span>
-<span id="cb1057-4"><a href="products.html#cb1057-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1057-5"><a href="products.html#cb1057-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wordcloud2</span>(df, </span>
-<span id="cb1057-6"><a href="products.html#cb1057-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> input<span class="sc">$</span>size, </span>
-<span id="cb1057-7"><a href="products.html#cb1057-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
-<span id="cb1057-8"><a href="products.html#cb1057-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1057-9"><a href="products.html#cb1057-9" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb1057-10"><a href="products.html#cb1057-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1057-11"><a href="products.html#cb1057-11" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb1054"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1054-1"><a href="products.html#cb1054-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb1054-2"><a href="products.html#cb1054-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1054-3"><a href="products.html#cb1054-3" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>cloud <span class="ot">&lt;-</span> <span class="fu">renderWordcloud2</span>({ </span>
+<span id="cb1054-4"><a href="products.html#cb1054-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1054-5"><a href="products.html#cb1054-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wordcloud2</span>(df, </span>
+<span id="cb1054-6"><a href="products.html#cb1054-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> input<span class="sc">$</span>size, </span>
+<span id="cb1054-7"><a href="products.html#cb1054-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
+<span id="cb1054-8"><a href="products.html#cb1054-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1054-9"><a href="products.html#cb1054-9" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1054-10"><a href="products.html#cb1054-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1054-11"><a href="products.html#cb1054-11" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
 <ul>
 <li>Build a shiny app</li>
 </ul>
-<div class="sourceCode" id="cb1058"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1058-1"><a href="products.html#cb1058-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<div class="sourceCode" id="cb1055"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1055-1"><a href="products.html#cb1055-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
 </div>
 <div id="deployment" class="section level3" number="6.2.3">
 <h3><span class="header-section-number">6.2.3</span> Deployment</h3>
 <ul>
 <li>Deploy to <a href="https://www.shinyapps.io/?_ga=2.5503866.871102833.1602978469-100003412.1602392815">the shinyapps.io cloud</a></li>
 </ul>
-<div class="sourceCode" id="cb1059"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1059-1"><a href="products.html#cb1059-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages </span></span>
-<span id="cb1059-2"><a href="products.html#cb1059-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rsconnect&quot;</span>)</span>
-<span id="cb1059-3"><a href="products.html#cb1059-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsconnect)</span>
-<span id="cb1059-4"><a href="products.html#cb1059-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1059-5"><a href="products.html#cb1059-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup </span></span>
-<span id="cb1059-6"><a href="products.html#cb1059-6" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">setAccountInfo</span>(<span class="at">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
-<span id="cb1059-7"><a href="products.html#cb1059-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
-<span id="cb1059-8"><a href="products.html#cb1059-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
-<span id="cb1059-9"><a href="products.html#cb1059-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1059-10"><a href="products.html#cb1059-10" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployApp</span>(<span class="at">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1056"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1056-1"><a href="products.html#cb1056-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages </span></span>
+<span id="cb1056-2"><a href="products.html#cb1056-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rsconnect&quot;</span>)</span>
+<span id="cb1056-3"><a href="products.html#cb1056-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsconnect)</span>
+<span id="cb1056-4"><a href="products.html#cb1056-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1056-5"><a href="products.html#cb1056-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup </span></span>
+<span id="cb1056-6"><a href="products.html#cb1056-6" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">setAccountInfo</span>(<span class="at">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
+<span id="cb1056-7"><a href="products.html#cb1056-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
+<span id="cb1056-8"><a href="products.html#cb1056-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
+<span id="cb1056-9"><a href="products.html#cb1056-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1056-10"><a href="products.html#cb1056-10" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployApp</span>(<span class="at">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
 </div>
 <div id="references-4" class="section level3" number="6.2.4">
 <h3><span class="header-section-number">6.2.4</span> References</h3>

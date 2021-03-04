@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2021-03-01" />
+<meta name="date" content="2021-03-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.2" data-path="motivation.html"><a href="motivation.html#dimension"><i class="fa fa-check"></i><b>2.2.2</b> Dimension</a></li>
 <li class="chapter" data-level="2.2.3" data-path="motivation.html"><a href="motivation.html#size"><i class="fa fa-check"></i><b>2.2.3</b> Size</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="motivation.html"><a href="motivation.html#computational-way-of-thinking-about-research-process"><i class="fa fa-check"></i><b>2.3</b> Computational way of thinking about research process</a></li>
+<li class="chapter" data-level="2.3" data-path="motivation.html"><a href="motivation.html#computational-way-of-thinking-about-the-research-process"><i class="fa fa-check"></i><b>2.3</b> Computational way of thinking about the research process</a></li>
 <li class="chapter" data-level="2.4" data-path="motivation.html"><a href="motivation.html#references"><i class="fa fa-check"></i><b>2.4</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="git-bash.html"><a href="git-bash.html"><i class="fa fa-check"></i><b>3</b> Managing data and code</a>
@@ -435,10 +435,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.1</span> Why computational thinking</h2>
 <ul>
 <li><p>If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is <strong>automation</strong>.</p></li>
-<li><p>Let’s think about the following two cases (these examples come from <a href="https://dlab.berkeley.edu/blog/why-teaching-social-scientists-how-code-professional-important">the column</a> I contributed to D-Lab website).</p>
+<li><p>Let’s think about the following two cases (these examples come from <a href="https://dlab.berkeley.edu/blog/why-teaching-social-scientists-how-code-professional-important">the column</a> I contributed to the D-Lab website).</p>
 <ul>
-<li><p>Case 1: Suppose a social scientist needs to collect data on civic organizations in the United States from websites, Internal Revenue Service reports, and social media posts. As the number of these organizations is large, the researcher could not collect a large volume of data from diverse sources, so they would hire undergraduates and distribute tasks among them. This is a typical data collection plan in social science research, and it is labor-intensive. Automation is not part of the game plan. Yet, it is critical for so many reasons. Because the process is costly, no one is likely to either replicate or update the data collection effort. Put differently, without making the process efficient, it is difficult for it to be reproducible and scalable.</p></li>
-<li><p>Case 2: An alternative is to write computer programs that collect such data automatically, parse them, and store them in interconnected databases. Additionally, someone may need to maintain and validate the quality of the data infrastructure. Nevertheless, this approach lowers the cost of the data collection process, thereby substantially increasing the <strong>reproducibility</strong> and <strong>scalability</strong> of the process. Furthermore, the researcher can document their code and publicly share it using their GitHub repository or even gather some of the functions they used and distribute them as open-source libraries.</p></li>
+<li><p>Case 1: Suppose a social scientist needs to collect data on civic organizations in the United States from websites, Internal Revenue Service reports, and social media posts. As the number of these organizations is large, the researcher could not collect a large volume of data from diverse sources, so they would hire undergraduates and distribute tasks. This is a typical data collection plan in social science research, and it is labor-intensive. Automation is not part of the game plan. Yet, it is critical for so many reasons. Because the process is costly, no one is likely to either replicate or update the data collection effort. Put differently, without making the process efficient, and it is difficult for it to be reproducible and scalable.</p></li>
+<li><p>Case 2: An alternative is to write computer programs that collect such data automatically, parse them, and store them in interconnected databases. Additionally, someone may need to maintain and validate the quality of the data infrastructure. Nevertheless, this approach lowers the cost of the data collection process, thereby substantially increasing the <strong>reproducibility</strong> and <strong>scalability</strong>. Furthermore, the researcher can document their code and publicly share it using their GitHub repository or even gather some of the functions they used and distribute them as open-source libraries.</p></li>
 </ul></li>
 <li><p>Programming is as valuable a skill as writing in social science research. The extent to which a researcher can automate the research process can determine its efficiency, reproducibility, and scalability.</p></li>
 </ul>
@@ -462,7 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>The ultimate goal is to solve complex problems at scale using computation (ch 6-7)</p></li>
 </ul>
 <blockquote>
-<p>“[W]e wanted users to be able to begin in an interactive environment, where they did not consciously think of themselves as progamming. Then as their needs became clearer and their sophistication increased, they should be able to slide gradually into programming, when the language and system aspects would become more important.” - <em>Stages in the Evolution of S</em> by John Chambers (S is the progenitor of R)</p>
+<p>“[W]e wanted users to be able to begin in an interactive environment, where they did not consciously think of themselves as programming. Then as their needs became clearer and their sophistication increased, they should be able to slide gradually into programming, when the language and system aspects would become more important.” - <em>Stages in the Evolution of S</em> by John Chambers (S is the progenitor of R)</p>
 </blockquote>
 <ul>
 <li><p>Beginners! Learning programming is a long game. The most important learning method (for almost any training) is consistency. Never stop writing code even though your current code may fall far short of the perfection.
@@ -474,7 +474,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="computational-way-of-thinking-about-data" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Computational way of thinking about data</h2>
 <ul>
-<li>Berkeley’s widely praised data science undergraduate education is built upon both inferential (statistics) and computational thinking. <a href="https://www.inferentialthinking.com/chapters/intro">The textbook</a> used for teaching its most fundamental course (Data8) underscores computational thinking because “programming allows us to apply analysis techniques to the large and diverse data sets that arise in real-world applications: not just numbers, but text, images, videos, and sensor readings.” This is also exactly the point of this textbook and explains how its content is organized.</li>
+<li>Berkeley’s widely praised data science undergraduate education is built upon inferential (statistics) and computational thinking. <a href="https://www.inferentialthinking.com/chapters/intro">The textbook</a> used for teaching its most fundamental course (Data8) underscores computational thinking because “programming allows us to apply analysis techniques to the large and diverse data sets that arise in real-world applications: not just numbers, but text, images, videos, and sensor readings.” This is also exactly the point of this textbook and explains how its content is organized.</li>
 </ul>
 <div id="structure" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Structure</h3>
@@ -491,7 +491,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="dimension" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Dimension</h3>
-<p>Suppose n = the number of observations and p = the number of variables</p>
+<p>Suppose n = the number of observations and p = the number of variables.</p>
 <ul>
 <li><p>Low-dimensional data (n &gt; p)</p>
 <ul>
@@ -511,8 +511,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 </div>
-<div id="computational-way-of-thinking-about-research-process" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Computational way of thinking about research process</h2>
+<div id="computational-way-of-thinking-about-the-research-process" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Computational way of thinking about the research process</h2>
 <p>Computational tools and techniques make …</p>
 <ul>
 <li><p>Doing traditional research easier, faster, and scalable</p>
@@ -542,7 +542,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="references" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> References</h2>
-<p>Here are a couple of useful videos that introduce the main concepts of computational social science. Matthew Salganik (Professor of Sociology at Princeton) is co-founder of the <a href="https://sicss.io/">Summer Institute in Computational Social Science</a> and Rayid Ghani (Professor of Machine Learning and Public Policy at Carnegie Mellon) is founder of the <a href="https://www.dssgfellowship.org/">Data Science for Social Good</a>. (Full disclaimer: I’m a former participant (Princeton 2019) and local organizer (<a href="https://sicss.io/2020/bay_area/">Bay Area 2020</a>) of the Summer Institute in Computational Social Science. If you become interested in computational social science and wonder what should be your next step, I would highly recommend applying for the program.) Data Science for Social Good is another cool program that deserves your attention.</p>
+<p>Here are a couple of useful videos that introduce the main concepts of computational social science. Matthew Salganik (Professor of Sociology at Princeton) is co-founder of the <a href="https://sicss.io/">Summer Institute in Computational Social Science</a>, and Rayid Ghani (Professor of Machine Learning and Public Policy at Carnegie Mellon) is founder of the <a href="https://www.dssgfellowship.org/">Data Science for Social Good</a>. (Full disclaimer: I’m a former participant (Princeton 2019) and local organizer (<a href="https://sicss.io/2020/bay_area/">Bay Area 2020</a>) of the Summer Institute in Computational Social Science. If you become interested in computational social science and wonder what should be your next step, I would highly recommend applying for the program.) Data Science for Social Good is another cool program that deserves your attention.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zGG9wPl1C5E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p An Introduction to Computational Social Science, Summer Institute in Computational Social Science /p>

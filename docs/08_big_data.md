@@ -554,11 +554,9 @@ flights %>%
 ##  8  2013     1     1      557            600        -3      709            723
 ##  9  2013     1     1      557            600        -3      838            846
 ## 10  2013     1     1      558            600        -2      753            745
-## # ... with more rows, and 11 more variables:
-## #   arr_delay <dbl>, carrier <chr>,
-## #   flight <int>, tailnum <chr>, origin <chr>,
-## #   dest <chr>, air_time <dbl>, distance <dbl>,
-## #   hour <dbl>, minute <dbl>, time_hour <dbl>
+## # ... with more rows, and 11 more variables: arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,
+## #   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dbl>
 ```
 
 **Challenge 6** 
