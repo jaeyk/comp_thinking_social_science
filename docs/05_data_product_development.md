@@ -10,18 +10,28 @@
 2. Automate your workflow 
 3. Help others (be part of an open-source development community)
 
+
+### Objectives 
+
+1. Reuse your code 
+2. Automate your workflow 
+3. Help others (be part of an open-source development community)
+
 ### Workflow 
 
-1. Write code in `\R`
-2. Document code in `\man` (automated by `roxygen2` package)
+1. Create a GitHub repo 
+2. Clone the GitHub repo 
+3. Make the cloned repo R package project using `usethis::create_package(here())` 
+4. Write code in `\R`
+5. Document code in `\man` (automated by `roxygen2` package)
   - `devtools::document()` 
-3. Check dependencies in `NAMESPACE`
-  - `devtools::update()` updates the documentation 
+6. Check dependencies in `NAMESPACE`
+  - `devtools::update()` updates the documentation (if you made changes) 
   - `devtools::check()` to see whether your package is ready to be submitted to CRAN
-4. Build a package (for more information, read [this section](http://r-pkgs.had.co.nz/package.html) in Hadley's R package development book)
+7. Build a package (for more information, read [this section](http://r-pkgs.had.co.nz/package.html) in Hadley's R package development book)
   - `devtools::build()` 
-5. (Optional) Test (`devtools::test()`), teach in `\vignettes`, and add data in `\data`
-6. Distribute the package either via CRAN or GitHub  
+8. (Optional) Test (`devtools::test()`), teach in `\vignettes`, and add data in `\data`
+9. Distribute the package either via CRAN or GitHub (don't forget to make sure your repo is public.)
 
 ![](http://r-pkgs.had.co.nz/diagrams/package-files.png)
 
@@ -44,21 +54,16 @@ The 4 required components are necessary to build and distribute a minimally viab
   
 1. Setup (**DESCRIPTION**)
 
+I assume that you've already created and cloned a git repo. Move to your cloned repo file path in the file system.
+
 
 ```r
 # This function creates DESCRIPTION file 
-usethis::create_package(here("mypkg"))
-
-# Initialize git repo 
-usethis::use_git()
+usethis::create_package(here())
 
 # License the package 
 # You can use the MIT license by typing devtools::use_mit_license("author name"). The function produces MIT license-related files (LICENSE, LICENSE.md).
 use_mit_license("Jae Yeon Kim")
-
-# Add README (optional)
-# Makes the package more use-friendly 
-use_readme_md()
 
 # Add news (optional) 
 # Helps track changes 
@@ -66,6 +71,9 @@ use_news_md()
 ```
 
 2. Write code (**R**)
+
+If you want to turn your R markdown file into R script use `knitr::purl(input = "x.Rmd",
+output = "x.R"). The [fusen package](https://thinkr-open.github.io/fusen/) helps to develop an R package based on R markdown files. 
 
 
 ```r
@@ -90,7 +98,11 @@ add <- function(x, y){
 
 If you used a function from other packages, you need to reference it in the following way: `#' @importFrom <package> <function>`
 
+Many of us, use `%>%` operator. If you want to add this to your documentation, do `usethis::use_pipe()`.
+
 3. Document (**man**)
+
+This documentation is for the function manual. 
 
 
 ```r
@@ -104,6 +116,8 @@ devtools::check()
 
 4. Organize (**NAMESPACE**)
 
+This documentation is for [namespace](https://en.wikipedia.org/wiki/Namespace). 
+
 
 ```r
 usethis::use_package("dplyr")
@@ -113,11 +127,28 @@ usethis::use_package("dplyr")
 
 1. Test (**test**)
 
+Although I said optional, automated unit testing is not option, when you're writing a complex package. Testing will you save tons of time and energy.
+
+- Setup 
+
 
 ```r
 usethis::use_testthat()
 
 usethis::use_test("rbind_mutate")
+```
+
+- Testing 
+
+
+```r
+# Make changes 
+
+# Load functions 
+devtools::load_all()
+
+# Test 
+devtools::test()
 ```
 
 2. Add data (**data**)
@@ -203,28 +234,7 @@ usethis::use_spell_check()
 
 **Additional tips**
 
-1. If you want to use pipe operator (%) in your functions, save the following script as `utils-pipe.R.` 
-
-
-```r
-#' Pipe operator
-#'
-#' See \code{magrittr::\link[magrittr:pipe]{\%>\%}} for details.
-#'
-#' @name %>%
-#' @rdname pipe
-#' @keywords internal
-#' @export
-#' @importFrom magrittr %>%
-#' @usage lhs \%>\% rhs
-NULL
-```
-
-```
-## NULL
-```
-
-2. Sometimes, you get the following error: "Undefined global functions or variables" If you experience this problem, save the following script as `globals.r.`
+Sometimes, you get the following error: "Undefined global functions or variables" If you experience this problem, save the following script as `globals.r.`
 
 
 ```r

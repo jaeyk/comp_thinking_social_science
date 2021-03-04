@@ -320,11 +320,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="products.html"><a href="products.html#developing-r-packages"><i class="fa fa-check"></i><b>6.1</b> Developing R packages</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="products.html"><a href="products.html#workflow"><i class="fa fa-check"></i><b>6.1.1</b> Workflow</a></li>
-<li class="chapter" data-level="6.1.2" data-path="products.html"><a href="products.html#required-components"><i class="fa fa-check"></i><b>6.1.2</b> Required Components</a></li>
-<li class="chapter" data-level="6.1.3" data-path="products.html"><a href="products.html#optional-components"><i class="fa fa-check"></i><b>6.1.3</b> Optional Components</a></li>
-<li class="chapter" data-level="6.1.4" data-path="products.html"><a href="products.html#building-an-r-package"><i class="fa fa-check"></i><b>6.1.4</b> Building an R package</a></li>
-<li class="chapter" data-level="6.1.5" data-path="products.html"><a href="products.html#distributing-an-r-package"><i class="fa fa-check"></i><b>6.1.5</b> Distributing an R package</a></li>
+<li class="chapter" data-level="6.1.1" data-path="products.html"><a href="products.html#objectives-3"><i class="fa fa-check"></i><b>6.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.1.2" data-path="products.html"><a href="products.html#workflow"><i class="fa fa-check"></i><b>6.1.2</b> Workflow</a></li>
+<li class="chapter" data-level="6.1.3" data-path="products.html"><a href="products.html#required-components"><i class="fa fa-check"></i><b>6.1.3</b> Required Components</a></li>
+<li class="chapter" data-level="6.1.4" data-path="products.html"><a href="products.html#optional-components"><i class="fa fa-check"></i><b>6.1.4</b> Optional Components</a></li>
+<li class="chapter" data-level="6.1.5" data-path="products.html"><a href="products.html#building-an-r-package"><i class="fa fa-check"></i><b>6.1.5</b> Building an R package</a></li>
+<li class="chapter" data-level="6.1.6" data-path="products.html"><a href="products.html#distributing-an-r-package"><i class="fa fa-check"></i><b>6.1.6</b> Distributing an R package</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="products.html"><a href="products.html#developing-shiny-apps"><i class="fa fa-check"></i><b>6.2</b> Developing Shiny apps</a>
 <ul>
@@ -338,7 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="semi-structured-data.html"><a href="semi-structured-data.html"><i class="fa fa-check"></i><b>7</b> Semi-structured data</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="semi-structured-data.html"><a href="semi-structured-data.html#setup-4"><i class="fa fa-check"></i><b>7.1</b> Setup</a></li>
-<li class="chapter" data-level="7.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#objectives-3"><i class="fa fa-check"></i><b>7.2</b> Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#objectives-4"><i class="fa fa-check"></i><b>7.2</b> Objectives</a></li>
 <li class="chapter" data-level="7.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#what-is-semi-structured-data"><i class="fa fa-check"></i><b>7.3</b> What is semi-structured data?</a></li>
 <li class="chapter" data-level="7.4" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow-2"><i class="fa fa-check"></i><b>7.4</b> Workflow</a></li>
 <li class="chapter" data-level="7.5" data-path="semi-structured-data.html"><a href="semi-structured-data.html#htmlcss-web-scraping"><i class="fa fa-check"></i><b>7.5</b> HTML/CSS: web scraping</a></li>
@@ -1911,18 +1912,30 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ##  8 Aaliyah  I Don&#39;… 2000-01-29      84    62    51    41    38    35    35    38
 ##  9 Aaliyah  Try Ag… 2000-03-18      59    53    38    28    21    18    16    14
 ## 10 Adams, … Open M… 2000-08-26      76    76    74    69    68    67    61    58
-## # … with 307 more rows, and 68 more variables: wk9 &lt;dbl&gt;, wk10 &lt;dbl&gt;,
-## #   wk11 &lt;dbl&gt;, wk12 &lt;dbl&gt;, wk13 &lt;dbl&gt;, wk14 &lt;dbl&gt;, wk15 &lt;dbl&gt;, wk16 &lt;dbl&gt;,
-## #   wk17 &lt;dbl&gt;, wk18 &lt;dbl&gt;, wk19 &lt;dbl&gt;, wk20 &lt;dbl&gt;, wk21 &lt;dbl&gt;, wk22 &lt;dbl&gt;,
-## #   wk23 &lt;dbl&gt;, wk24 &lt;dbl&gt;, wk25 &lt;dbl&gt;, wk26 &lt;dbl&gt;, wk27 &lt;dbl&gt;, wk28 &lt;dbl&gt;,
-## #   wk29 &lt;dbl&gt;, wk30 &lt;dbl&gt;, wk31 &lt;dbl&gt;, wk32 &lt;dbl&gt;, wk33 &lt;dbl&gt;, wk34 &lt;dbl&gt;,
-## #   wk35 &lt;dbl&gt;, wk36 &lt;dbl&gt;, wk37 &lt;dbl&gt;, wk38 &lt;dbl&gt;, wk39 &lt;dbl&gt;, wk40 &lt;dbl&gt;,
-## #   wk41 &lt;dbl&gt;, wk42 &lt;dbl&gt;, wk43 &lt;dbl&gt;, wk44 &lt;dbl&gt;, wk45 &lt;dbl&gt;, wk46 &lt;dbl&gt;,
-## #   wk47 &lt;dbl&gt;, wk48 &lt;dbl&gt;, wk49 &lt;dbl&gt;, wk50 &lt;dbl&gt;, wk51 &lt;dbl&gt;, wk52 &lt;dbl&gt;,
-## #   wk53 &lt;dbl&gt;, wk54 &lt;dbl&gt;, wk55 &lt;dbl&gt;, wk56 &lt;dbl&gt;, wk57 &lt;dbl&gt;, wk58 &lt;dbl&gt;,
-## #   wk59 &lt;dbl&gt;, wk60 &lt;dbl&gt;, wk61 &lt;dbl&gt;, wk62 &lt;dbl&gt;, wk63 &lt;dbl&gt;, wk64 &lt;dbl&gt;,
-## #   wk65 &lt;dbl&gt;, wk66 &lt;lgl&gt;, wk67 &lt;lgl&gt;, wk68 &lt;lgl&gt;, wk69 &lt;lgl&gt;, wk70 &lt;lgl&gt;,
-## #   wk71 &lt;lgl&gt;, wk72 &lt;lgl&gt;, wk73 &lt;lgl&gt;, wk74 &lt;lgl&gt;, wk75 &lt;lgl&gt;, wk76 &lt;lgl&gt;</code></pre>
+## # … with 307 more rows, and 68 more variables:
+## #   wk9 &lt;dbl&gt;, wk10 &lt;dbl&gt;, wk11 &lt;dbl&gt;,
+## #   wk12 &lt;dbl&gt;, wk13 &lt;dbl&gt;, wk14 &lt;dbl&gt;,
+## #   wk15 &lt;dbl&gt;, wk16 &lt;dbl&gt;, wk17 &lt;dbl&gt;,
+## #   wk18 &lt;dbl&gt;, wk19 &lt;dbl&gt;, wk20 &lt;dbl&gt;,
+## #   wk21 &lt;dbl&gt;, wk22 &lt;dbl&gt;, wk23 &lt;dbl&gt;,
+## #   wk24 &lt;dbl&gt;, wk25 &lt;dbl&gt;, wk26 &lt;dbl&gt;,
+## #   wk27 &lt;dbl&gt;, wk28 &lt;dbl&gt;, wk29 &lt;dbl&gt;,
+## #   wk30 &lt;dbl&gt;, wk31 &lt;dbl&gt;, wk32 &lt;dbl&gt;,
+## #   wk33 &lt;dbl&gt;, wk34 &lt;dbl&gt;, wk35 &lt;dbl&gt;,
+## #   wk36 &lt;dbl&gt;, wk37 &lt;dbl&gt;, wk38 &lt;dbl&gt;,
+## #   wk39 &lt;dbl&gt;, wk40 &lt;dbl&gt;, wk41 &lt;dbl&gt;,
+## #   wk42 &lt;dbl&gt;, wk43 &lt;dbl&gt;, wk44 &lt;dbl&gt;,
+## #   wk45 &lt;dbl&gt;, wk46 &lt;dbl&gt;, wk47 &lt;dbl&gt;,
+## #   wk48 &lt;dbl&gt;, wk49 &lt;dbl&gt;, wk50 &lt;dbl&gt;,
+## #   wk51 &lt;dbl&gt;, wk52 &lt;dbl&gt;, wk53 &lt;dbl&gt;,
+## #   wk54 &lt;dbl&gt;, wk55 &lt;dbl&gt;, wk56 &lt;dbl&gt;,
+## #   wk57 &lt;dbl&gt;, wk58 &lt;dbl&gt;, wk59 &lt;dbl&gt;,
+## #   wk60 &lt;dbl&gt;, wk61 &lt;dbl&gt;, wk62 &lt;dbl&gt;,
+## #   wk63 &lt;dbl&gt;, wk64 &lt;dbl&gt;, wk65 &lt;dbl&gt;,
+## #   wk66 &lt;lgl&gt;, wk67 &lt;lgl&gt;, wk68 &lt;lgl&gt;,
+## #   wk69 &lt;lgl&gt;, wk70 &lt;lgl&gt;, wk71 &lt;lgl&gt;,
+## #   wk72 &lt;lgl&gt;, wk73 &lt;lgl&gt;, wk74 &lt;lgl&gt;,
+## #   wk75 &lt;lgl&gt;, wk76 &lt;lgl&gt;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>How can you fix it? Which pivot?</li>
 </ol>
@@ -2419,7 +2432,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 15 Mon Mo…    150  NA   auburn     fair        blue              48 fema… femin…
 ## 16 R4-P17      96  NA   none       silver, red red, blue         NA none  femin…
 ## 17 Rey         NA  NA   brown      light       hazel             NA fema… femin…
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## # … with 5 more variables: homeworld &lt;chr&gt;,
+## #   species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <p>The following filtering example was inspired by <a href="https://suzan.rbind.io/2018/02/dplyr-tutorial-3/">the suzanbert’s dplyr blog post</a>.</p>
 <ul>
@@ -2490,7 +2504,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 2 Beru Wh…    165    75 brown       light      blue              47 fema… femin…
 ## 3 Quarsh …    183    NA black       dark       brown             62 &lt;NA&gt;  &lt;NA&gt;  
 ## 4 Cliegg …    183    NA brown       fair       blue              82 male  mascu…
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## # … with 5 more variables: homeworld &lt;chr&gt;,
+## #   species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="tidy-data.html#cb603-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or, if you prefer dplyr way</span></span>
 <span id="cb603-2"><a href="tidy-data.html#cb603-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2503,7 +2518,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 2 Beru Wh…    165    75 brown       light      blue              47 fema… femin…
 ## 3 Quarsh …    183    NA black       dark       brown             62 &lt;NA&gt;  &lt;NA&gt;  
 ## 4 Cliegg …    183    NA brown       fair       blue              82 male  mascu…
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## # … with 5 more variables: homeworld &lt;chr&gt;,
+## #   species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="tidy-data.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter brown and black hair_color</span></span>
 <span id="cb605-2"><a href="tidy-data.html#cb605-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2522,8 +2538,10 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ##  8 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…
 ##  9 Lando C…    177  79   black      dark       brown           31   male  mascu…
 ## 10 Arvel C…     NA  NA   brown      fair       brown           NA   male  mascu…
-## # … with 21 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
-## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+## # … with 21 more rows, and 5 more variables:
+## #   homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;,
+## #   starships &lt;list&gt;</code></pre>
 <p><strong>Challenge</strong></p>
 <p>Use <code>str_detect()</code> to find characters whose names include “Han.”</p>
 <ul>
@@ -2541,7 +2559,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 4 Chewba…    228   112 brown      unknown     blue              200 male  mascu…
 ## 5 Roos T…    224    82 none       grey        orange             NA male  mascu…
 ## 6 Grievo…    216   159 none       brown, whi… green, ye…         NA male  mascu…
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## # … with 5 more variables: homeworld &lt;chr&gt;,
+## #   species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <ul>
 <li>Sample by a fraction</li>
@@ -2567,7 +2586,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 7 Jabba …    175  1358 &lt;NA&gt;       green-tan,… orange         600   herma… mascu…
 ## 8 Darth …    202   136 none       white       yellow          41.9 male   mascu…
 ## 9 Taun We    213    NA none       grey        black           NA   female femin…
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## # … with 5 more variables: homeworld &lt;chr&gt;,
+## #   species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="tidy-data.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New way</span></span>
 <span id="cb611-2"><a href="tidy-data.html#cb611-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2587,7 +2607,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 6 Darth V…    202 136   none       white      yellow          41.9 male   mascu…
 ## 7 Finn         NA  NA   black      dark       dark            NA   male   mascu…
 ## 8 Boba Fe…    183  78.2 black      fair       brown           31.5 male   mascu…
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## # … with 5 more variables: homeworld &lt;chr&gt;,
+## #   species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <ul>
 <li>Sample by number</li>
@@ -2621,7 +2642,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 18 Ki-Adi…    198    82 white      pale        yellow            92 male  mascu…
 ## 19 BB8         NA    NA none       none        black             NA none  mascu…
 ## 20 Eeth K…    171    NA black      brown       brown             NA male  mascu…
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## # … with 5 more variables: homeworld &lt;chr&gt;,
+## #   species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="tidy-data.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New way</span></span>
 <span id="cb615-2"><a href="tidy-data.html#cb615-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2653,7 +2675,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 18 Lobot      175    79 none        light      blue              37 male  mascu…
 ## 19 San Hi…    191    NA none        grey       gold              NA male  mascu…
 ## 20 Kit Fi…    196    87 none        green      black             NA male  mascu…
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## # … with 5 more variables: homeworld &lt;chr&gt;,
+## #   species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <ul>
 <li>Top 10 rows orderd by height</li>
@@ -2674,7 +2697,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ##  8 Grievo…    216   159 none       brown, whi… green, y…       NA   male  mascu…
 ##  9 Tarfful    234   136 brown      brown       blue            NA   male  mascu…
 ## 10 Tion M…    206    80 none       grey        black           NA   male  mascu…
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## # … with 5 more variables: homeworld &lt;chr&gt;,
+## #   species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="tidy-data.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New way</span></span>
 <span id="cb619-2"><a href="tidy-data.html#cb619-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
@@ -2692,7 +2716,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ##  8 Rugor …    206    NA none       green       orange          NA   male  mascu…
 ##  9 Tion M…    206    80 none       grey        black           NA   male  mascu…
 ## 10 Darth …    202   136 none       white       yellow          41.9 male  mascu…
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## # … with 5 more variables: homeworld &lt;chr&gt;,
+## #   species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 </div>
 <div id="subset-variables-columns" class="section level3" number="4.9.3">
@@ -2841,7 +2866,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ##  8 Roden… Vesp… Calo… &lt;NA&gt;  &lt;NA&gt;                 7        NA        NA      17  
 ##  9 Carni… Dog   Canis carni domesticated        10.1       2.9       0.333  13.9
 ## 10 Artio… Roe … Capr… herbi lc                   3        NA        NA      21  
-## # … with 73 more rows, and 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+## # … with 73 more rows, and 2 more variables:
+## #   brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
 <ul>
 <li>Select variables from a character vector.</li>
 </ul>
@@ -3584,7 +3610,7 @@ Oceania
 </table>
 <div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="tidy-data.html#cb675-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For HTML and MS Office suite</span></span>
 <span id="cb675-2"><a href="tidy-data.html#cb675-2" aria-hidden="true" tabindex="-1"></a>tablea <span class="sc">%&gt;%</span> flextable<span class="sc">::</span><span class="fu">flextable</span>()</span></code></pre></div>
-<template id="9b4a0596-1a54-40a7-b6f3-c51b0eba03f6"><style>
+<template id="4e141b67-8b73-4c5b-b371-30d7f3722926"><style>
 .tabwid table{
   border-collapse:collapse;
   line-height:1;
@@ -3618,12 +3644,12 @@ Oceania
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-2a9073e2{border-collapse:collapse;}.cl-2a8addec{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2a8af246{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2a8af264{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2a8b2a22{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2a8b2a40{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2a8b2a4a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2a8b2a54{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2a8b2a5e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2a8b2a68{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}caption {color: #777;margin-top: 10px;margin-bottom: 10px;text-align: center;}</style><table class='cl-2a9073e2'>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-2a8b2a5e"><p class="cl-2a8af246"><span class="cl-2a8addec">continent</span></p></td><td class="cl-2a8b2a68"><p class="cl-2a8af264"><span class="cl-2a8addec">n</span></p></td><td class="cl-2a8b2a68"><p class="cl-2a8af264"><span class="cl-2a8addec">mean_gdp</span></p></td><td class="cl-2a8b2a68"><p class="cl-2a8af264"><span class="cl-2a8addec">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2a8b2a22"><p class="cl-2a8af246"><span class="cl-2a8addec">Africa</span></p></td><td class="cl-2a8b2a40"><p class="cl-2a8af264"><span class="cl-2a8addec">624</span></p></td><td class="cl-2a8b2a40"><p class="cl-2a8af264"><span class="cl-2a8addec">2,193.755</span></p></td><td class="cl-2a8b2a40"><p class="cl-2a8af264"><span class="cl-2a8addec">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2a8b2a22"><p class="cl-2a8af246"><span class="cl-2a8addec">Americas</span></p></td><td class="cl-2a8b2a40"><p class="cl-2a8af264"><span class="cl-2a8addec">300</span></p></td><td class="cl-2a8b2a40"><p class="cl-2a8af264"><span class="cl-2a8addec">7,136.110</span></p></td><td class="cl-2a8b2a40"><p class="cl-2a8af264"><span class="cl-2a8addec">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2a8b2a22"><p class="cl-2a8af246"><span class="cl-2a8addec">Asia</span></p></td><td class="cl-2a8b2a40"><p class="cl-2a8af264"><span class="cl-2a8addec">396</span></p></td><td class="cl-2a8b2a40"><p class="cl-2a8af264"><span class="cl-2a8addec">7,902.150</span></p></td><td class="cl-2a8b2a40"><p class="cl-2a8af264"><span class="cl-2a8addec">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2a8b2a22"><p class="cl-2a8af246"><span class="cl-2a8addec">Europe</span></p></td><td class="cl-2a8b2a40"><p class="cl-2a8af264"><span class="cl-2a8addec">360</span></p></td><td class="cl-2a8b2a40"><p class="cl-2a8af264"><span class="cl-2a8addec">14,469.476</span></p></td><td class="cl-2a8b2a40"><p class="cl-2a8af264"><span class="cl-2a8addec">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2a8b2a4a"><p class="cl-2a8af246"><span class="cl-2a8addec">Oceania</span></p></td><td class="cl-2a8b2a54"><p class="cl-2a8af264"><span class="cl-2a8addec">24</span></p></td><td class="cl-2a8b2a54"><p class="cl-2a8af264"><span class="cl-2a8addec">18,621.609</span></p></td><td class="cl-2a8b2a54"><p class="cl-2a8af264"><span class="cl-2a8addec">6,358.983</span></p></td></tr></tbody></table></div></template>
-<div id="b6391b69-8259-4000-a199-5d548e60641a"></div>
+</style><div class="tabwid"><style>.cl-045c8394{border-collapse:collapse;}.cl-0455ca68{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-0455e71e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-0455e746{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-04562602{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-04562620{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-04562634{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0456263e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-04562648{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-04562652{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}caption {color: #777;margin-top: 10px;margin-bottom: 10px;text-align: center;}</style><table class='cl-045c8394'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-04562648"><p class="cl-0455e71e"><span class="cl-0455ca68">continent</span></p></td><td class="cl-04562652"><p class="cl-0455e746"><span class="cl-0455ca68">n</span></p></td><td class="cl-04562652"><p class="cl-0455e746"><span class="cl-0455ca68">mean_gdp</span></p></td><td class="cl-04562652"><p class="cl-0455e746"><span class="cl-0455ca68">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-04562602"><p class="cl-0455e71e"><span class="cl-0455ca68">Africa</span></p></td><td class="cl-04562620"><p class="cl-0455e746"><span class="cl-0455ca68">624</span></p></td><td class="cl-04562620"><p class="cl-0455e746"><span class="cl-0455ca68">2,193.755</span></p></td><td class="cl-04562620"><p class="cl-0455e746"><span class="cl-0455ca68">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-04562602"><p class="cl-0455e71e"><span class="cl-0455ca68">Americas</span></p></td><td class="cl-04562620"><p class="cl-0455e746"><span class="cl-0455ca68">300</span></p></td><td class="cl-04562620"><p class="cl-0455e746"><span class="cl-0455ca68">7,136.110</span></p></td><td class="cl-04562620"><p class="cl-0455e746"><span class="cl-0455ca68">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-04562602"><p class="cl-0455e71e"><span class="cl-0455ca68">Asia</span></p></td><td class="cl-04562620"><p class="cl-0455e746"><span class="cl-0455ca68">396</span></p></td><td class="cl-04562620"><p class="cl-0455e746"><span class="cl-0455ca68">7,902.150</span></p></td><td class="cl-04562620"><p class="cl-0455e746"><span class="cl-0455ca68">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-04562602"><p class="cl-0455e71e"><span class="cl-0455ca68">Europe</span></p></td><td class="cl-04562620"><p class="cl-0455e746"><span class="cl-0455ca68">360</span></p></td><td class="cl-04562620"><p class="cl-0455e746"><span class="cl-0455ca68">14,469.476</span></p></td><td class="cl-04562620"><p class="cl-0455e746"><span class="cl-0455ca68">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-04562634"><p class="cl-0455e71e"><span class="cl-0455ca68">Oceania</span></p></td><td class="cl-0456263e"><p class="cl-0455e746"><span class="cl-0455ca68">24</span></p></td><td class="cl-0456263e"><p class="cl-0455e746"><span class="cl-0455ca68">18,621.609</span></p></td><td class="cl-0456263e"><p class="cl-0455e746"><span class="cl-0455ca68">6,358.983</span></p></td></tr></tbody></table></div></template>
+<div id="4c022662-17bf-4eb3-b598-c7d2ab3e7b07"></div>
 <script>
-var dest = document.getElementById("b6391b69-8259-4000-a199-5d548e60641a");
-var template = document.getElementById("9b4a0596-1a54-40a7-b6f3-c51b0eba03f6");
+var dest = document.getElementById("4c022662-17bf-4eb3-b598-c7d2ab3e7b07");
+var template = document.getElementById("4e141b67-8b73-4c5b-b371-30d7f3722926");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -3659,12 +3685,17 @@ fantome.appendChild(templateContent);
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;                &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark &lt;dbl&gt;, Finland &lt;dbl&gt;, France &lt;dbl&gt;,
-## #   Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;, Ireland &lt;dbl&gt;,
-## #   Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;, Norway &lt;dbl&gt;,
-## #   Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;, Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
-## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;, Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
-## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, United Kingdom &lt;dbl&gt;</code></pre>
+## # … with 23 more variables: Denmark &lt;dbl&gt;,
+## #   Finland &lt;dbl&gt;, France &lt;dbl&gt;, Germany &lt;dbl&gt;,
+## #   Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;,
+## #   Ireland &lt;dbl&gt;, Italy &lt;dbl&gt;,
+## #   Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;,
+## #   Norway &lt;dbl&gt;, Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;,
+## #   Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
+## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;,
+## #   Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
+## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;,
+## #   United Kingdom &lt;dbl&gt;</code></pre>
 <ul>
 <li><code>summarise_if()</code>: using a logical condition</li>
 </ul>
@@ -3674,12 +3705,18 @@ fantome.appendChild(templateContent);
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;                    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # … with 24 more variables: Czech Republic &lt;dbl&gt;, Denmark &lt;dbl&gt;, Finland &lt;dbl&gt;,
-## #   France &lt;dbl&gt;, Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;,
-## #   Ireland &lt;dbl&gt;, Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;,
-## #   Norway &lt;dbl&gt;, Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;, Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
-## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;, Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
-## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, United Kingdom &lt;dbl&gt;</code></pre>
+## # … with 24 more variables:
+## #   Czech Republic &lt;dbl&gt;, Denmark &lt;dbl&gt;,
+## #   Finland &lt;dbl&gt;, France &lt;dbl&gt;, Germany &lt;dbl&gt;,
+## #   Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;,
+## #   Ireland &lt;dbl&gt;, Italy &lt;dbl&gt;,
+## #   Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;,
+## #   Norway &lt;dbl&gt;, Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;,
+## #   Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
+## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;,
+## #   Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
+## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;,
+## #   United Kingdom &lt;dbl&gt;</code></pre>
 <ul>
 <li><p><code>summarise_at()</code></p></li>
 <li><p><code>vars() = select()</code></p></li>
@@ -3693,12 +3730,17 @@ fantome.appendChild(templateContent);
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;                &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark &lt;dbl&gt;, Finland &lt;dbl&gt;, France &lt;dbl&gt;,
-## #   Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;, Ireland &lt;dbl&gt;,
-## #   Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;, Norway &lt;dbl&gt;,
-## #   Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;, Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
-## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;, Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
-## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, United Kingdom &lt;dbl&gt;</code></pre>
+## # … with 23 more variables: Denmark &lt;dbl&gt;,
+## #   Finland &lt;dbl&gt;, France &lt;dbl&gt;, Germany &lt;dbl&gt;,
+## #   Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;,
+## #   Ireland &lt;dbl&gt;, Italy &lt;dbl&gt;,
+## #   Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;,
+## #   Norway &lt;dbl&gt;, Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;,
+## #   Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
+## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;,
+## #   Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
+## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;,
+## #   United Kingdom &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="tidy-data.html#cb682-1" aria-hidden="true" tabindex="-1"></a>wide_gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb682-2"><a href="tidy-data.html#cb682-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span>(<span class="fu">vars</span>(<span class="fu">contains</span>(<span class="st">&quot;life&quot;</span>)),</span>
 <span id="cb682-3"><a href="tidy-data.html#cb682-3" aria-hidden="true" tabindex="-1"></a>    mean,</span>
@@ -3731,24 +3773,34 @@ fantome.appendChild(templateContent);
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;                &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark &lt;dbl&gt;, Finland &lt;dbl&gt;, France &lt;dbl&gt;,
-## #   Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;, Ireland &lt;dbl&gt;,
-## #   Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;, Norway &lt;dbl&gt;,
-## #   Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;, Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
-## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;, Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
-## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, United Kingdom &lt;dbl&gt;</code></pre>
+## # … with 23 more variables: Denmark &lt;dbl&gt;,
+## #   Finland &lt;dbl&gt;, France &lt;dbl&gt;, Germany &lt;dbl&gt;,
+## #   Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;,
+## #   Ireland &lt;dbl&gt;, Italy &lt;dbl&gt;,
+## #   Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;,
+## #   Norway &lt;dbl&gt;, Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;,
+## #   Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
+## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;,
+## #   Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
+## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;,
+## #   United Kingdom &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="tidy-data.html#cb686-1" aria-hidden="true" tabindex="-1"></a>wide_gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb686-2"><a href="tidy-data.html#cb686-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 30
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;                &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark &lt;dbl&gt;, Finland &lt;dbl&gt;, France &lt;dbl&gt;,
-## #   Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;, Ireland &lt;dbl&gt;,
-## #   Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;, Norway &lt;dbl&gt;,
-## #   Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;, Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
-## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;, Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
-## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, United Kingdom &lt;dbl&gt;</code></pre>
+## # … with 23 more variables: Denmark &lt;dbl&gt;,
+## #   Finland &lt;dbl&gt;, France &lt;dbl&gt;, Germany &lt;dbl&gt;,
+## #   Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;,
+## #   Ireland &lt;dbl&gt;, Italy &lt;dbl&gt;,
+## #   Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;,
+## #   Norway &lt;dbl&gt;, Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;,
+## #   Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
+## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;,
+## #   Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
+## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;,
+## #   United Kingdom &lt;dbl&gt;</code></pre>
 <ul>
 <li><code>summarise_if()</code></li>
 </ul>
@@ -3768,12 +3820,18 @@ fantome.appendChild(templateContent);
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;                    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # … with 24 more variables: Czech Republic &lt;dbl&gt;, Denmark &lt;dbl&gt;, Finland &lt;dbl&gt;,
-## #   France &lt;dbl&gt;, Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;,
-## #   Ireland &lt;dbl&gt;, Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;,
-## #   Norway &lt;dbl&gt;, Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;, Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
-## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;, Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
-## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, United Kingdom &lt;dbl&gt;</code></pre>
+## # … with 24 more variables:
+## #   Czech Republic &lt;dbl&gt;, Denmark &lt;dbl&gt;,
+## #   Finland &lt;dbl&gt;, France &lt;dbl&gt;, Germany &lt;dbl&gt;,
+## #   Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;,
+## #   Ireland &lt;dbl&gt;, Italy &lt;dbl&gt;,
+## #   Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;,
+## #   Norway &lt;dbl&gt;, Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;,
+## #   Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
+## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;,
+## #   Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
+## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;,
+## #   United Kingdom &lt;dbl&gt;</code></pre>
 <ul>
 <li><code>summarise_at()</code></li>
 </ul>
@@ -3786,12 +3844,17 @@ fantome.appendChild(templateContent);
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;                &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark &lt;dbl&gt;, Finland &lt;dbl&gt;, France &lt;dbl&gt;,
-## #   Germany &lt;dbl&gt;, Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;, Ireland &lt;dbl&gt;,
-## #   Italy &lt;dbl&gt;, Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;, Norway &lt;dbl&gt;,
-## #   Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;, Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
-## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;, Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
-## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;, United Kingdom &lt;dbl&gt;</code></pre>
+## # … with 23 more variables: Denmark &lt;dbl&gt;,
+## #   Finland &lt;dbl&gt;, France &lt;dbl&gt;, Germany &lt;dbl&gt;,
+## #   Greece &lt;dbl&gt;, Hungary &lt;dbl&gt;, Iceland &lt;dbl&gt;,
+## #   Ireland &lt;dbl&gt;, Italy &lt;dbl&gt;,
+## #   Montenegro &lt;dbl&gt;, Netherlands &lt;dbl&gt;,
+## #   Norway &lt;dbl&gt;, Poland &lt;dbl&gt;, Portugal &lt;dbl&gt;,
+## #   Romania &lt;dbl&gt;, Serbia &lt;dbl&gt;,
+## #   Slovak Republic &lt;dbl&gt;, Slovenia &lt;dbl&gt;,
+## #   Spain &lt;dbl&gt;, Sweden &lt;dbl&gt;,
+## #   Switzerland &lt;dbl&gt;, Turkey &lt;dbl&gt;,
+## #   United Kingdom &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="tidy-data.html#cb693-1" aria-hidden="true" tabindex="-1"></a>wide_gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb693-2"><a href="tidy-data.html#cb693-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">contains</span>(<span class="st">&quot;life&quot;</span>),</span>
 <span id="cb693-3"><a href="tidy-data.html#cb693-3" aria-hidden="true" tabindex="-1"></a>    mean,</span>
@@ -4277,7 +4340,8 @@ function defines the strata that you’re going to use for summary statistics. T
 ##   r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     0.948         0.942  1.22      181. 0.0000000984     1  -18.3  42.7  44.1
-## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+## # … with 3 more variables: deviance &lt;dbl&gt;,
+## #   df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="tidy-data.html#cb757-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull p.value </span></span>
 <span id="cb757-2"><a href="tidy-data.html#cb757-2" aria-hidden="true" tabindex="-1"></a>glanced<span class="sc">$</span>glance <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(p.value)</span></code></pre></div>
 <pre><code>##        value 
@@ -4300,9 +4364,10 @@ function defines the strata that you’re going to use for summary statistics. T
 ##  8 South Afr… Africa    &lt;tibble … &lt;lm&gt;      0.312        0.244    4.74     4.54 
 ##  9 Uganda     Africa    &lt;tibble … &lt;lm&gt;      0.342        0.276    3.19     5.20 
 ## 10 Congo, De… Africa    &lt;tibble … &lt;lm&gt;      0.348        0.283    2.43     5.34 
-## # … with 132 more rows, and 8 more variables: p.value &lt;dbl&gt;, df &lt;dbl&gt;,
-## #   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;,
-## #   nobs &lt;int&gt;</code></pre>
+## # … with 132 more rows, and 8 more variables:
+## #   p.value &lt;dbl&gt;, df &lt;dbl&gt;, logLik &lt;dbl&gt;,
+## #   AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
+## #   df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <div class="sourceCode" id="cb761"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb761-1"><a href="tidy-data.html#cb761-1" aria-hidden="true" tabindex="-1"></a>glanced <span class="sc">%&gt;%</span></span>
 <span id="cb761-2"><a href="tidy-data.html#cb761-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(glance) <span class="sc">%&gt;%</span></span>
 <span id="cb761-3"><a href="tidy-data.html#cb761-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(continent, r.squared)) <span class="sc">+</span></span>
@@ -7943,12 +8008,19 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 ##  8   568 CARROLL IL    0.027    16805       622.    16519      111            30
 ##  9   569 CASS    IL    0.024    13437       560.    13384       16             8
 ## 10   570 CHAMPA… IL    0.058   173025      2983.   146506    16559           331
-## # … with 427 more rows, and 19 more variables: popasian &lt;int&gt;, popother &lt;int&gt;,
-## #   percwhite &lt;dbl&gt;, percblack &lt;dbl&gt;, percamerindan &lt;dbl&gt;, percasian &lt;dbl&gt;,
-## #   percother &lt;dbl&gt;, popadults &lt;int&gt;, perchsd &lt;dbl&gt;, percollege &lt;dbl&gt;,
-## #   percprof &lt;dbl&gt;, poppovertyknown &lt;int&gt;, percpovertyknown &lt;dbl&gt;,
-## #   percbelowpoverty &lt;dbl&gt;, percchildbelowpovert &lt;dbl&gt;, percadultpoverty &lt;dbl&gt;,
-## #   percelderlypoverty &lt;dbl&gt;, inmetro &lt;int&gt;, category &lt;chr&gt;</code></pre>
+## # … with 427 more rows, and 19 more variables:
+## #   popasian &lt;int&gt;, popother &lt;int&gt;,
+## #   percwhite &lt;dbl&gt;, percblack &lt;dbl&gt;,
+## #   percamerindan &lt;dbl&gt;, percasian &lt;dbl&gt;,
+## #   percother &lt;dbl&gt;, popadults &lt;int&gt;,
+## #   perchsd &lt;dbl&gt;, percollege &lt;dbl&gt;,
+## #   percprof &lt;dbl&gt;, poppovertyknown &lt;int&gt;,
+## #   percpovertyknown &lt;dbl&gt;,
+## #   percbelowpoverty &lt;dbl&gt;,
+## #   percchildbelowpovert &lt;dbl&gt;,
+## #   percadultpoverty &lt;dbl&gt;,
+## #   percelderlypoverty &lt;dbl&gt;, inmetro &lt;int&gt;,
+## #   category &lt;chr&gt;</code></pre>
 <div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="tidy-data.html#cb825-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
 <span id="cb825-2"><a href="tidy-data.html#cb825-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> area)) <span class="sc">+</span></span>
 <span id="cb825-3"><a href="tidy-data.html#cb825-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="co"># not working.</span></span></code></pre></div>
