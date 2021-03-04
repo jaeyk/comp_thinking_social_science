@@ -439,7 +439,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Reuse your code</li>
 <li>Automate your workflow</li>
-<li>Help others (be part of an open source development community)</li>
+<li>Help others (be part of an open-source development community)</li>
 </ol>
 <div id="workflow" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Workflow</h3>
@@ -468,8 +468,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Distribute the package either via CRAN or GitHub</li>
 </ol>
 <p><img src="http://r-pkgs.had.co.nz/diagrams/package-files.png" /></p>
-<p>It’s time to learn five states of R code: source, bundled, binary, installed, and in-memory.</p>
-<p>If you’re just using an R package, you’re only concerned of the last two states: <code>install.packages("pkg")</code> and <code>library(pkg)</code> If you’re developing an R package, you first write source code (<code>*.R</code>), bundle it (compressed file like <code>*.tar.gz</code>; done by <code>devtools::build()</code>), then make it binary (<code>devtools::build(binary = TRUE)</code>; This is how a package is stored in CRAN/GitHub, etc.).</p>
+<p>It’s time to learn five R code states: source, bundled, binary, installed, and in-memory.</p>
+<p>If you’re using an R package, you’re only concerned of the last two states: <code>install.packages("pkg")</code> and <code>library(pkg)</code> If you’re developing an R package, you first write source code (<code>*.R</code>), bundle it (compressed file like <code>*.tar.gz</code>; done by <code>devtools::build()</code>), then make it binary (<code>devtools::build(binary = TRUE)</code>; This is how a package is stored in CRAN/GitHub, etc.).</p>
 </div>
 <div id="required-components" class="section level3" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Required Components</h3>
@@ -498,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1036-5"><a href="products.html#cb1036-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()</span>
 <span id="cb1036-6"><a href="products.html#cb1036-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1036-7"><a href="products.html#cb1036-7" aria-hidden="true" tabindex="-1"></a><span class="co"># License the package </span></span>
-<span id="cb1036-8"><a href="products.html#cb1036-8" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use the MIT license by typing devtools::use_mit_license(&quot;author name&quot;). The function produces MIT license related files (LICENSE, LICENSE.md).</span></span>
+<span id="cb1036-8"><a href="products.html#cb1036-8" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use the MIT license by typing devtools::use_mit_license(&quot;author name&quot;). The function produces MIT license-related files (LICENSE, LICENSE.md).</span></span>
 <span id="cb1036-9"><a href="products.html#cb1036-9" aria-hidden="true" tabindex="-1"></a><span class="fu">use_mit_license</span>(<span class="st">&quot;Jae Yeon Kim&quot;</span>)</span>
 <span id="cb1036-10"><a href="products.html#cb1036-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1036-11"><a href="products.html#cb1036-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add README (optional)</span></span>
@@ -524,7 +524,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1038-10"><a href="products.html#cb1038-10" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
 <span id="cb1038-11"><a href="products.html#cb1038-11" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb1038-12"><a href="products.html#cb1038-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>If you used a function from other packages you need to reference it in the following way: <code>#' @importFrom &lt;package&gt; &lt;function&gt;</code></p>
+<p>If you used a function from other packages, you need to reference it in the following way: <code>#' @importFrom &lt;package&gt; &lt;function&gt;</code></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Document (<strong>man</strong>)</li>
 </ol>
@@ -636,7 +636,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="developing-shiny-apps" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Developing Shiny apps</h2>
-<p><a href="https://shiny.rstudio.com/">Shiny</a> is a “framework for creating web applications using R code.” You can create a dashboard or an interactive map without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise to learn from your data in an intuitive and interactive way.</p>
+<p><a href="https://shiny.rstudio.com/">Shiny</a> is a “framework for creating web applications using R code.” You can create a dashboard or an interactive map without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise to learn from your data intuitively and interactively.</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Wy3TY0gOmJw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -744,7 +744,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.2.4</span> References</h3>
 <p><a href="https://mastering-shiny.org/">Mastering Shiny</a> by Hadley Wickham. For newbies.</p>
 <p><a href="https://bookdown.org/yihui/rmarkdown/shiny-documents.html">Shiny Documents</a> by Yihui Xie</p>
-<p><a href="https://engineering-shiny.org/">Engineering Production-Grade Shiny Apps</a> by Colin Fay, Sébastien Rochette, Vincent Guyader, Cervan Girard. For experienced developers.</p>
+<p><a href="https://engineering-shiny.org/">Engineering Production-Grade Shiny Apps</a> by Colin Fay, Sébastien Rochette, Vincent Guyader, Cervan Girard.</p>
 <p><a href="https://stat545.com/shiny-tutorial.html">Building Shiny Apps</a> by Dean Attali.</p>
 </div>
 </div>

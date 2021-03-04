@@ -467,7 +467,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <ul>
 <li><p>Examples: <code>HTML (Hypertext Markup Language)</code> files (e.g., websites) and <code>JSON (JavaScript Object Notation)</code> files (e.g., tweets)</p></li>
-<li><p>Why should we care semi-structured data?</p>
+<li><p>Why should we care about semi-structured data?</p>
 <ul>
 <li>Because this is what the data frontier looks like: # of unstructured data &gt; # of semi-structured data &gt; # of structured data</li>
 <li>There are easy and fast ways to turn semi-structured data into structured data (ideally in a tidy format) using R, Python, and command-line tools. See my own examples (<a href="https://github.com/jaeyk/tidyethnicnews">tidyethnicnews</a> and <a href="https://github.com/jaeyk/tidytweetjson">tidytweetjson</a>).</li>
@@ -478,7 +478,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.4</span> Workflow</h2>
 <ol style="list-style-type: decimal">
 <li><p>Import/connect to a semi-structured file using <code>rvest,</code> <code>jsonlite,</code> <code>xml2,</code> <code>pdftools,</code> <code>tidyjson</code>, etc.</p></li>
-<li><p>Define target elements in the single file and extract them</p></li>
+<li><p>Define target elements in a single file and extract them</p></li>
 </ol>
 <ul>
 <li><p><a href="https://readr.tidyverse.org/"><code>readr</code></a> package providers <code>parse_</code> functions that are useful for vector parsing.</p></li>
@@ -504,7 +504,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Step 1: Inspection</li>
 </ul>
-<p>Examine the Berkeley website so that we could identify a node which indicates the school’s motto. If you’re using Chrome, draw the elements of your interest, then <code>right click &gt; inspect &gt; copy full xpath</code>.</p>
+<p>Examine the Berkeley website so that we could identify a node that indicates the school’s motto. If you’re using Chrome, draw your interest elements, then <code>right click &gt; inspect &gt; copy full xpath</code>.</p>
 <div class="sourceCode" id="cb1062"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1062-1"><a href="semi-structured-data.html#cb1062-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://en.wikipedia.org/wiki/University_of_California,_Berkeley&quot;</span></span>
 <span id="cb1062-2"><a href="semi-structured-data.html#cb1062-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1062-3"><a href="semi-structured-data.html#cb1062-3" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(url, <span class="at">destfile =</span> <span class="st">&quot;scraped_page.html&quot;</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
@@ -523,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Step 2: Write a function</li>
 </ul>
-<p>I highly recommend writing your fucntion workking slowly by wrapping the function with <a href="https://purrr.tidyverse.org/reference/insistently.html"><code>slowly()</code></a>.</p>
+<p>I highly recommend writing your function working slowly by wrapping the function with <a href="https://purrr.tidyverse.org/reference/insistently.html"><code>slowly()</code></a>.</p>
 <div class="sourceCode" id="cb1063"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1063-1"><a href="semi-structured-data.html#cb1063-1" aria-hidden="true" tabindex="-1"></a>get_table_from_wiki <span class="ot">&lt;-</span> <span class="cf">function</span>(url){</span>
 <span id="cb1063-2"><a href="semi-structured-data.html#cb1063-2" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb1063-3"><a href="semi-structured-data.html#cb1063-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(url, <span class="at">destfile =</span> <span class="st">&quot;scraped_page.html&quot;</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
@@ -563,7 +563,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.6</span> XML/JSON: government database/social media scraping</h2>
 <div id="governemnt-database-xml" class="section level3" number="7.6.1">
 <h3><span class="header-section-number">7.6.1</span> Governemnt database (XML)</h3>
-<p>The following tax return data example comes from the US Internal Revenue Service (IRS) Amazon database. <a href="https://www.irs.gov/pub/irs-pdf/f990.pdf">This PDf file</a> shows what the original document looks like.</p>
+<p>The following tax return data example comes from the U.S. Internal Revenue Service (IRS) Amazon database. <a href="https://www.irs.gov/pub/irs-pdf/f990.pdf">This PDf file</a> shows what the original document looks like.</p>
 <p><strong>Workflow</strong></p>
 <ol style="list-style-type: decimal">
 <li>Get the XML link and parse it</li>
@@ -577,7 +577,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Step1: Get an XML document link</p>
 <div class="sourceCode" id="cb1068"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1068-1"><a href="semi-structured-data.html#cb1068-1" aria-hidden="true" tabindex="-1"></a>xml_link <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;http://s3.amazonaws.com/irs-form-990/201910919349301206_public.xml&quot;</span>)</span></code></pre></div>
-<p>Step 2: Get page and parse the XML document</p>
+<p>Step 2: Get page and parse the XML document.</p>
 <div class="sourceCode" id="cb1069"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1069-1"><a href="semi-structured-data.html#cb1069-1" aria-hidden="true" tabindex="-1"></a>xml_root <span class="ot">&lt;-</span> xml_link <span class="sc">%&gt;%</span></span>
 <span id="cb1069-2"><a href="semi-structured-data.html#cb1069-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get page and parse xml </span></span>
 <span id="cb1069-3"><a href="semi-structured-data.html#cb1069-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xmlTreeParse</span>() <span class="sc">%&gt;%</span></span>
@@ -593,7 +593,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ReturnHeader 11     XMLNode list
 ## ReturnData    6     XMLNode list</code></pre>
 <p>Step 3: Get nodes</p>
-<p>We grab the mission statement of this org from its tax report (990). <code>//</code> is an <a href="https://www.w3schools.com/xml/xpath_syntax.asp">XPath syntax</a> that helps to “select nodes in the document from the current node that match the selection no matter where they are.”</p>
+<p>We grab the mission statement of this org from its tax report (990). <code>//</code> is an <a href="https://www.w3schools.com/xml/xpath_syntax.asp">XPath syntax</a> that helps to “select nodes in the document from the current node that matches the selection no matter where they are.”</p>
 <div class="sourceCode" id="cb1073"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1073-1"><a href="semi-structured-data.html#cb1073-1" aria-hidden="true" tabindex="-1"></a>xml_root <span class="sc">%&gt;%</span></span>
 <span id="cb1073-2"><a href="semi-structured-data.html#cb1073-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">pluck</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="co"># Second element (Return Data)</span></span>
 <span id="cb1073-3"><a href="semi-structured-data.html#cb1073-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">getNodeSet</span>(<span class="st">&quot;//MissionDesc&quot;</span>) <span class="co"># Mission statement </span></span></code></pre></div>
@@ -625,13 +625,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p>Getting <strong>target data</strong> from a remote server</p>
 <ul>
-<li>The target data is usually huge (&gt;10GB) by the traditional social science standard.</li>
+<li>The target data is usually massive (&gt;10 G.B.) by the traditional social science standard.</li>
 </ul></li>
 <li><p>Parsing the target data your laptop/database</p>
 <ul>
-<li>Laptop (sample-parse): Downsamle the large target data and parse it on your laptop. This is just one option to <a href="https://rviews.rstudio.com/2019/07/17/3-big-data-strategies-for-r/">deal with big data in R</a>. It’s a simple strategy as it doesn’t require storing target data in your own database.</li>
+<li>Laptop (sample-parse): Downsamle the large target data and parse it on your laptop. This is just one option to <a href="https://rviews.rstudio.com/2019/07/17/3-big-data-strategies-for-r/">deal with big data in R</a>. It’s a simple strategy as it doesn’t require storing target data in your database.</li>
 </ul></li>
-<li><p>Database (push-parse): Push the large target data to a database, then explore, select, and filter it. If you were interested in using this option, then check out my <a href="https://github.com/dlab-berkeley/sql-for-r-users">SQL for R Users</a> workshop.</p></li>
+<li><p>Database (push-parse): Push the large target data to a database, then explore, select, and filter it. If you were interested in using this option, check out my <a href="https://github.com/dlab-berkeley/sql-for-r-users">SQL for R Users</a> workshop.</p></li>
 </ul></li>
 </ol>
 <div class="figure">
@@ -682,7 +682,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Twitter data is unique from data shared by most other social platforms because it reflects information that users <em>choose</em> to share publicly. Our API platform provides broad access to public Twitter data that users have chosen to share with the world. - Twitter Help Center</p>
 </blockquote>
 <ul>
-<li><p>What does this policy mean? If Twitter users don’t share the locations of their tweets (e.g., GPS), you can’t collect them.</p></li>
+<li><p>What does this policy mean? If Twitter users don’t share their tweets’ locations (e.g., GPS), you can’t collect them.</p></li>
 <li><p>Facebook API access has become much constrained with <a href="https://socialscience.one/blog/unprecedented-facebook-urls-dataset-now-available-research-through-social-science-one">the exception of Social Science One</a> since the 2016 U.S. election.</p></li>
 <li><p><a href="https://developers.google.com/youtube/v3">YouTube API</a> access is somewhat limited (but you need to check as I’m not updated on this).</p></li>
 </ul>
@@ -692,20 +692,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Web scraping (Wild Wild West) &lt;&gt; API (Big Gated Garden)</p>
 <ul>
-<li><p>You have legal but limited access to (growing) big data that can be divided into text, image, and video and transformed into cross-sectional (geocodes), longitudinal (timestamps), and event historical data (hashtags). For more information, see Zachary C. Steinert-Threlkeld’s <a href="https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia">2020 APSA Short Course Generating Event Data From Social Media</a>.</p></li>
+<li><p>You have legal but limited access to (growing) big data that can be divided into text, image, and video and transformed into cross-sectional (geocodes), longitudinal (timestamps), and event historical data (hashtags). See Zachary C. Steinert-Threlkeld’s <a href="https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia">2020 APSA Short Course Generating Event Data From Social Media</a>.</p></li>
 <li><p>Social media data are also well-organized, managed, and curated data. It’s easy to navigate because XML and JSON have keys and values. If you find keys, you will find observations you look for.</p></li>
 </ul>
 <p><strong>Downside</strong></p>
 <ol style="list-style-type: decimal">
 <li><p>Rate-limited.</p></li>
-<li><p>If you want to access to more and various data than those available, you need to pay for premium access.</p></li>
+<li><p>If you want to access more and various data than those available, you need to pay for premium access.</p></li>
 </ol>
 </div>
 <div id="next-steps" class="section level4" number="7.6.2.4">
 <h4><span class="header-section-number">7.6.2.4</span> Next steps</h4>
 <ul>
-<li><p>If you want to know how to sign up a new Twitter developer account and access Twitter API, then see Steinert-Threlkeld’s <a href="https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia/blob/master/Presentation/02_AccessTwitter.pdf">APSA workshop slides</a>.</p></li>
-<li><p>If you want to know about how to use <code>tweetscore</code> package, then see Pablo Barbara’s R markdown file for <a href="http://pablobarbera.com/social-media-workshop/code/02-twitter-REST-data-collection.html">scraping data from Twitter’s REST API</a></p></li>
+<li><p>If you want to know how to sign up for a new Twitter developer account and access Twitter API, see Steinert-Threlkeld’s <a href="https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia/blob/master/Presentation/02_AccessTwitter.pdf">APSA workshop slides</a>.</p></li>
+<li><p>If you want to know about how to use the <code>tweetscore</code> package, then see Pablo Barbara’s R markdown file for <a href="http://pablobarbera.com/social-media-workshop/code/02-twitter-REST-data-collection.html">scraping data from Twitter’s REST API</a></p></li>
 </ul>
 </div>
 </div>
@@ -723,14 +723,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="hydrating-an-alternative-way-to-collect-historical-twitter-data" class="section level4" number="7.6.3.2">
 <h4><span class="header-section-number">7.6.3.2</span> Hydrating: An Alternative Way to Collect Historical Twitter Data</h4>
 <ul>
-<li><p>You can collect Twitter data using Twitter’s API or you can hydrate Tweet IDs collected by other researchers. This is a good resource to collect historical Twitter data.</p></li>
+<li><p>You can collect Twitter data using Twitter’s API, or you can hydrate Tweet I.D.s collected by other researchers. This is an excellent resource to collect historical Twitter data.</p></li>
 <li><p><a href="http://www.panacealab.org/covid19/">Covid-19 Twitter chatter dataset for scientic use</a> by Panacealab</p></li>
 <li><p><a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/5ZVMOR">Women’s March Dataset</a> by Littman and Park</p></li>
-<li><p>Harvard Dataverse has a number of dehydrated Tweet IDs that could be of interest to social scientists.</p></li>
+<li><p>Harvard Dataverse has many dehydrated Tweet I.D.s that could be of interest to social scientists.</p></li>
 </ul>
 <div class="figure">
 <img src="https://github.com/jaeyk/digital_data_collection_workshop/raw/master/misc/dehydrated_tweets.png" alt="" />
-<p class="caption">Dehydrated Tweet IDs</p>
+<p class="caption">Dehydrated Tweet I.D.s</p>
 </div>
 </div>
 <div id="twarc-one-solution-to-almost-all-twitters-api-problems" class="section level4" number="7.6.3.3">
@@ -738,13 +738,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p>Why Twarc?</p>
 <ul>
-<li><p>A command-line tool and Python library that works for almost every Twitter’s API related problem.</p></li>
+<li><p>A command-line tool and Python library that works for almost every Twitter API-related problem.</p></li>
 <li><p>It’s really well-documented, tested, and maintained.</p>
 <ul>
 <li><a href="https://scholarslab.github.io/learn-twarc/06-twarc-command-basics">Twarc documentation</a> covers basic commands.</li>
 <li><a href="https://twarc-cloud.readthedocs.io/_/downloads/en/stable/pdf/">Tward-cloud documentation</a> explains how to collect data from Twitter’s API using Twarc running in <a href="https://aws.amazon.com/">Amazon Web Services</a> (AWS).</li>
 </ul></li>
-<li><p>Twarc was developed as part of the <a href="https://www.docnow.io/">Documenting the Now</a> project which was funded by the Mellon Foundation.</p></li>
+<li><p>Twarc was developed as part of the <a href="https://www.docnow.io/">Documenting the Now</a> project, which was funded by the Mellon Foundation.</p></li>
 </ul></li>
 </ul>
 <div class="figure">
@@ -753,7 +753,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <ul>
 <li><p>There’s no reason to be afraid of using a command-line tool and Python library, even though you primarily use R. It’s easy to embed <a href="https://bookdown.org/yihui/rmarkdown/language-engines.html#python">Python code</a> and <a href="https://bookdown.org/yihui/rmarkdown/language-engines.html#shell-scripts">shell scripts</a> in R Markdown.</p></li>
-<li><p>Even though you don’t know how to write Python code or shell scripts, it’s really useful to know how to integrate them in your R workflow.</p></li>
+<li><p>Even though you don’t know how to write Python code or shell scripts, it’s handy to learn how to integrate them into your R workflow.</p></li>
 <li><p>I assume that you have already installed <a href="https://www.python.org/download/releases/3.0/">Python 3</a>.</p></li>
 </ul>
 <div class="sourceCode" id="cb1077"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1077-1"><a href="semi-structured-data.html#cb1077-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install twarc</span></code></pre></div>
@@ -799,7 +799,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="hydrate" class="section level6" number="7.6.3.3.1.4">
 <h6><span class="header-section-number">7.6.3.3.1.4</span> Hydrate</h6>
 <ul>
-<li>Tweet IDs -&gt; Tweets</li>
+<li>Tweet I.D.s -&gt; Tweets</li>
 </ul>
 <div class="sourceCode" id="cb1083"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1083-1"><a href="semi-structured-data.html#cb1083-1" aria-hidden="true" tabindex="-1"></a><span class="ex">twarc</span> hydrate tweet_ids.txt <span class="op">&gt;</span> tweets.jsonl </span></code></pre></div>
 </div>
@@ -807,12 +807,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h6><span class="header-section-number">7.6.3.3.1.5</span> Dehydrate</h6>
 <ul>
 <li>Hydrate &lt;&gt; Dehydrate</li>
-<li>Tweets -&gt; Tweet IDs</li>
+<li>Tweets -&gt; Tweet I.D.s</li>
 </ul>
 <div class="sourceCode" id="cb1084"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1084-1"><a href="semi-structured-data.html#cb1084-1" aria-hidden="true" tabindex="-1"></a><span class="ex">twarc</span> dehydrate tweets.jsonl <span class="op">&gt;</span> tweet_ids.txt</span></code></pre></div>
 <p><strong>Challenge</strong></p>
 <ol style="list-style-type: decimal">
-<li><p>Collect tweets contain some key words of your choice using <code>twarc search</code> and save them as <code>tweets.jsonl</code>.</p></li>
+<li><p>Collect tweets that contain some keywords of your choice using <code>twarc search</code> and save them as <code>tweets.jsonl</code>.</p></li>
 <li><p>Using <code>less</code> command in the terminal, inspect <code>twarc.log</code>.</p></li>
 <li><p>Using <code>less</code> command in the terminal, inspect <code>tweets.json</code>.</p></li>
 </ol>
@@ -835,7 +835,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="problem-3" class="section level5" number="7.6.4.2.1">
 <h5><span class="header-section-number">7.6.4.2.1</span> Problem</h5>
 <ul>
-<li>What if the size of the Twitter data you downloaded is too big (e.g., &gt;10GB) to do complex wrangling in R?</li>
+<li>What if the size of the Twitter data you downloaded is too big (e.g., &gt;10 G.B.) to do complex wrangling in R?</li>
 </ul>
 </div>
 <div id="solution-2" class="section level5" number="7.6.4.2.2">
@@ -945,7 +945,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1094-11"><a href="semi-structured-data.html#cb1094-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1094-12"><a href="semi-structured-data.html#cb1094-12" aria-hidden="true" tabindex="-1"></a>listed <span class="ot">&lt;-</span> <span class="fu">read_json</span>(file_path, <span class="at">format =</span> <span class="fu">c</span>(<span class="st">&quot;jsonl&quot;</span>))</span>
 <span id="cb1094-13"><a href="semi-structured-data.html#cb1094-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1094-14"><a href="semi-structured-data.html#cb1094-14" aria-hidden="true" tabindex="-1"></a><span class="co"># IDs of the tweets with country codes</span></span>
+<span id="cb1094-14"><a href="semi-structured-data.html#cb1094-14" aria-hidden="true" tabindex="-1"></a><span class="co"># I.D.s of the tweets with country codes</span></span>
 <span id="cb1094-15"><a href="semi-structured-data.html#cb1094-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1094-16"><a href="semi-structured-data.html#cb1094-16" aria-hidden="true" tabindex="-1"></a>ccodes <span class="ot">&lt;-</span> listed <span class="sc">%&gt;%</span></span>
 <span id="cb1094-17"><a href="semi-structured-data.html#cb1094-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enter_object</span>(<span class="st">&quot;place&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -954,7 +954,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1094-20"><a href="semi-structured-data.html#cb1094-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb1094-21"><a href="semi-structured-data.html#cb1094-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">&quot;country_code&quot;</span> <span class="ot">=</span> <span class="st">&quot;string&quot;</span>)</span>
 <span id="cb1094-22"><a href="semi-structured-data.html#cb1094-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1094-23"><a href="semi-structured-data.html#cb1094-23" aria-hidden="true" tabindex="-1"></a><span class="co"># IDs of the tweets with location</span></span>
+<span id="cb1094-23"><a href="semi-structured-data.html#cb1094-23" aria-hidden="true" tabindex="-1"></a><span class="co"># I.D.s of the tweets with location</span></span>
 <span id="cb1094-24"><a href="semi-structured-data.html#cb1094-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1094-25"><a href="semi-structured-data.html#cb1094-25" aria-hidden="true" tabindex="-1"></a>locations <span class="ot">&lt;-</span> listed <span class="sc">%&gt;%</span></span>
 <span id="cb1094-26"><a href="semi-structured-data.html#cb1094-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enter_object</span>(<span class="st">&quot;user&quot;</span>) <span class="sc">%&gt;%</span></span>
