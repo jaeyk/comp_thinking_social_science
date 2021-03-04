@@ -457,27 +457,27 @@ Here are a couple of useful videos that introduce the main concepts of computati
 \chapter{Managing data and code}\label{git_bash}}
 
 \hypertarget{using-bash-command-line-interface}{%
-\section{Using Bash (command line interface)}\label{using-bash-command-line-interface}}
+\section{Using Bash (command-line interface)}\label{using-bash-command-line-interface}}
 
 As William Shotts the author of \emph{\href{http://linuxcommand.org/tlcl.php}{The Linux Command Line}} put it:
 
 \begin{quote}
-graphical user interfaces make easy tasks easy, while command line interfaces make difficult tasks possible.
+graphical user interfaces make easy tasks easy, while command-line interfaces make difficult tasks possible.
 \end{quote}
 
-\hypertarget{why-bother-using-command-line}{%
-\subsection{Why bother using command line?}\label{why-bother-using-command-line}}
+\hypertarget{why-bother-using-the-command-line}{%
+\subsection{Why bother using the command line?}\label{why-bother-using-the-command-line}}
 
-Create a plain text file that contains word ``test''
+Create a plain text file that contains the word ``test.''
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{echo}: ``Write arguments to the standard output'' This is equivalent as using a text editor (e.g., nano, vim, emacs) and write something.
+  \texttt{echo}: ``Write arguments to the standard output'' This is equivalent to using a text editor (e.g., nano, vim, emacs) and write something.
 \item
   \texttt{\textgreater{}\ test} Save the expression in a file named test.\\
 \item
-  In general, if you don't know what a command does, just type \texttt{\textless{}command\ name\textgreater{}\ -\/-help}. If you need more detailed information, you can do \texttt{man\ \textless{}command\ name\textgreater{}}. \texttt{man} stands for manual. Finally, you can get more user-friendly information by using either \href{https://tldr.sh/}{\texttt{tldr}}.
+  In general, if you don't know what a command does, just type \texttt{\textless{}command\ name\textgreater{}\ -\/-help.} If you need further information, you can do \texttt{man\ \textless{}command\ name\textgreater{}.} \texttt{man} stands for manual. Finally, you can get more user-friendly information by using either \href{https://tldr.sh/}{\texttt{tldr}}.
 \end{itemize}
 
 \begin{Shaded}
@@ -492,13 +492,13 @@ Create a plain text file that contains word ``test''
 \item
   Make 100 duplicates of this file. Let's break down the seemingly complex commands.
 \item
-  I did this using for loop (\texttt{for\ i\ in\ \{1..100\}}). Curly braces \texttt{\{\}} makes 1..100 integers from 1 to 100.\\
+  I did this using for loop (\texttt{for\ i\ in\ \{1..100\}}). Curly braces \texttt{\{\}} make 1..100 integers from 1 to 100.\\
 \item
   \texttt{;} is used to use multiple commands without making line breaks.
 \item
-  \texttt{\$var} returns the value associated with variable. Type \texttt{name=\textless{}Your\ name\textgreater{}}. Then, type \texttt{echo\ \$name}. You should see your name printed. Variable assignment is one of the most basic things you'll learn in any programming.\\
+  \texttt{\$var} returns the value associated with a variable. Type \texttt{name=\textless{}Your\ name\textgreater{}}. Then, type \texttt{echo\ \$name.} You should see your name printed. Variable assignment is one of the most basic things you'll learn in any programming.\\
 \item
-  For novice users, I warn you that these could be too much advanced concepts. If so, don't pay too much attention to this. For now, it's enough to have intuitions.
+  For novice users, I warn you that there could be too many advanced concepts. If so, don't pay too much attention to this. For now, it's enough to have intuitions.
 \end{itemize}
 
 \begin{Shaded}
@@ -508,7 +508,7 @@ Create a plain text file that contains word ``test''
 \end{Highlighting}
 \end{Shaded}
 
-Append ``COVID'' to the file named test\_100. Note that I used \texttt{\textgreater{}\textgreater{}} (append) not \texttt{\textgreater{}}.
+Append ``COVID'' to the file named test\_100. Note that I used \texttt{\textgreater{}\textgreater{}} (append) not \texttt{\textgreater{}.}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -526,9 +526,9 @@ Let's read (=\texttt{cat} (concatenate)) what's in test\_100
 \end{Highlighting}
 \end{Shaded}
 
-Find which fine contains the character ``COVID.'' This is literally equivalent to finding a needle in a haystack. This is a daunting task for a human researcher, but not for our robotic assistant. \texttt{grep} finds PATTERNS in each FIEL. What follows - are options (called flags): \texttt{r} (recursive), \texttt{n} (line number), \texttt{w} (match only whole words), \texttt{e} (use patterns for matching). \texttt{rnw} are for output control and \texttt{e} is for pattern selection.
+Find which fine contains the character ``COVID.'' This is equivalent to finding a needle in a haystack. This is a daunting task for a human researcher, but not for our robotic assistant. \texttt{grep} finds PATTERNS in each FIEL. What follows - are options (called flags): \texttt{r} (recursive), \texttt{n} (line number), \texttt{w} (match only whole words), \texttt{e} (use patterns for matching). \texttt{rnw} are for output control and \texttt{e} is for pattern selection.
 
-You can write \texttt{grep\ -r\ -n\ -w\ -e\ "COVID"}, but the simpler the better.
+You can write \texttt{grep\ -r\ -n\ -w\ -e\ "COVID",} but the simpler, the better.
 
 \begin{itemize}
 \item
@@ -546,7 +546,7 @@ You can write \texttt{grep\ -r\ -n\ -w\ -e\ "COVID"}, but the simpler the better
 \end{Highlighting}
 \end{Shaded}
 
-Let's remove (=\texttt{rm}) all the duplicate files as well as the original file. \texttt{*} (any number of characters) is a wildcard (if you want to identify a single number of character, use \texttt{?}). It finds every file whose name starts with \texttt{test\_}.
+Let's remove (=\texttt{rm}) all the duplicate files as well as the original file. \texttt{*} (any number of characters) is a wildcard (if you want to identify a single number of characters, use \texttt{?}). It finds every file whose name starts with \texttt{test\_}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -557,7 +557,7 @@ Let's remove (=\texttt{rm}) all the duplicate files as well as the original file
 
 This command should return ``test\_100:2:COVID.'' (file test\_100; line number 2; COVID)
 
-What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don't need to write files from a website using your web browser. You can run \texttt{wget} command in the terminal. Better yet, you don't even need to run the command for the second time. You can write a Shell script (\texttt{*.sh}) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. \href{https://GitHub.com/PS239T/spring_2021/blob/main/copy_syllabus.sh}{\texttt{copy\_syllabus.sh}} automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this Shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.
+What is this black magic? Can you do the same thing using a graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning the command line could be incredibly useful. In my experience, mastering the command line helps to automate your research process almost from end to end. For instance, you don't need to write files from a website using your web browser. You can run the \texttt{wget} command in the terminal. Better yet, you don't even need to run the command for the second time. You can write a Shell script (\texttt{*.sh}) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. \href{https://GitHub.com/PS239T/spring_2021/blob/main/copy_syllabus.sh}{\texttt{copy\_syllabus.sh}} automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to the desired location. When I modified something in the syllabus, I just need to run this Shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.
 
 \hypertarget{unix-shell}{%
 \subsection{UNIX Shell}\label{unix-shell}}
@@ -567,7 +567,7 @@ The following materials on UNIX and Shell are adapted from {[}the software carpe
 \hypertarget{unix}{%
 \subsubsection{Unix}\label{unix}}
 
-UNIX is an \textbf{operating system + a set of tools (utilities)}. It was developed by AT \& T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. For this reason, if you're using Max OS, then you don't need to do anything else to experience UNIX. You're already all set. If you're using Windows, you need to install either GitBash (a good option if you only use Bash for Git and GitHub) or Windows Subsystem (highly recommended if your use case goes beyond Git and GitHub)￣. For more information, see \href{https://GitHub.com/PS239T/spring_2021/blob/main/B_Install.md}{this installation guideline} from the course repo. If you're an Windows user and don't use Windows 10, I recommend installing \href{https://www.virtualbox.org/}{VirtualBox}.
+UNIX is an \textbf{operating system + a set of tools (utilities)}. It was developed by AT \& T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of the current operation systems are some versions of UNIX. For this reason, if you're using Max OS, then you don't need to do anything else to experience UNIX. You're already all set. If you're using Windows, you need to install either GitBash (a good option if you only use Bash for Git and GitHub) or Windows Subsystem (highly recommended if your use case goes beyond Git and GitHub)￣. For more information, see \href{https://GitHub.com/PS239T/spring_2021/blob/main/B_Install.md}{this installation guideline} from the course repo. If you're a Windows user and don't use Windows 10, I recommend installing \href{https://www.virtualbox.org/}{VirtualBox}.
 
 UNIX is old, but it is still mainstream and it will be. Moreover, \href{https://en.wikipedia.org/wiki/Unix_philosophy}{the UNIX philosophy} (``Do One Thing And Do It Well'')---minimalist, modular software development---is highly and widely influential.
 
@@ -585,7 +585,7 @@ The kernel of UNIX is the hub of the operating system: it allocates time and mem
 \hypertarget{shell}{%
 \subsubsection{Shell}\label{shell}}
 
-The shell is an interactive program that provides an interface between the user and the kernel. The shell interprets commands entered by the user or supplied by a Shell script, and passes them to the kernel for execution.
+The shell is an interactive program that provides an interface between the user and the kernel. The shell interprets commands entered by the user or supplied by a Shell script and passes them to the kernel for execution.
 
 \hypertarget{human-computer-interfaces}{%
 \subsubsection{Human-Computer interfaces}\label{human-computer-interfaces}}
@@ -617,7 +617,7 @@ If you're using RStudio, you can use terminal inside RStudio (next to the ``Cons
 \hypertarget{the-shell}{%
 \subsubsection{The Shell}\label{the-shell}}
 
-This description makes it sound as though the user sends commands directly to the computer, and the computer sends output directly to the user. In fact, there is usually a program in between called a \textbf{command shell}.
+This description makes it sound as though the user sends commands directly to the computer, and the computer sends the output directly to the user. In fact, there is usually a program in between called a \textbf{command shell}.
 
 \begin{figure}
 \centering
@@ -625,7 +625,7 @@ This description makes it sound as though the user sends commands directly to th
 \caption{Source: Prashant Lakhera}
 \end{figure}
 
-What the user types goes into the shell; it figures out what commands to run and orders the computer to execute them.
+What the user types go into the shell; it figures out what commands to run and orders the computer to execute them.
 
 Note, the reason why the shell is called \emph{the shell}: it encloses the operating system in order to hide some of its complexity and make it simpler to interact with.
 
@@ -671,7 +671,7 @@ Several commands are frequently used to create, inspect, rename, and delete file
 
 Type the command \texttt{whoami}, then press the Enter key (sometimes marked Return) to send the command to the shell.
 
-The command's output is the ID of the current user, i.e., it shows us who the shell thinks we are:
+The command's output is the ID of the current user, i.e., it shows us whom the shell thinks we are:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -783,7 +783,7 @@ The home directory path will look different on different operating systems. On L
 
 If the command to find out who we are is \texttt{whoami}, the command to find out where we are ought to be called \texttt{whereami}, so why is it \texttt{pwd} instead? The usual answer is that in the early 1970s, when Unix was
 
-first being developed, every keystroke counted: the devices of the day were slow, and backspacing on a teletype was so painful that cutting the number of keystrokes in order to cut the number of typing mistakes was actually a win for usability. The reality is that commands were added to Unix one by one, without any master plan, by people who were immersed in its jargon. The result is as inconsistent as the roolz uv Inglish speling, but we're stuck with it now.
+first being developed, every keystroke counted: the devices of the day were slow, and backspacing on a teletype was so painful that cutting the number of keystrokes in order to cut the number of typing mistakes was actually a win for usability. The reality is that commands were added to Unix one by one, without any master plan, by people who were immersed in its jargon.
 
 The good news: because these basic commands were so integral to the development of early Unix, they have stuck around, and appear (in some form) in almost all programming languages.
 \end{quote}
@@ -847,7 +847,7 @@ We can make \texttt{ls} more useful by adding flags. For instance, you can make 
 
 The leading \texttt{/} tells the computer to follow the path from the root of the file system, so it always refers to exactly one directory, no matter where we are when we run the command.
 
-If you want to see only directories in the current working directory, you can do the following. (Remember \texttt{\^{}}? This wildcard identifies a single number of character. In this case, \texttt{d}.)
+If you want to see only directories in the current working directory, you can do the following. (Remember \texttt{\^{}}? This wildcard identifies a single number of characters. In this case, \texttt{d}.)
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -887,7 +887,7 @@ How can I find pdf files in \texttt{Downloads} using the terminal? Remember \tex
 \end{Highlighting}
 \end{Shaded}
 
-Also, note that you don't need to type every character. Type the first few characters then press TAB (autocomplete). This is called \textbf{tab completion}, and we will see it in many other tools as we go on.
+Also, note that you don't need to type every character. Type the first few characters then press TAB (autocomplete). This is called \textbf{tab-completion}, and we will see it in many other tools as we go on.
 
 \hypertarget{moving-around}{%
 \subsubsection{Moving around}\label{moving-around}}
@@ -961,7 +961,7 @@ The special directory \texttt{..} doesn't usually show up when we run \texttt{ls
 \hypertarget{hidden-files-for-your-own-protection}{%
 \subsubsection{Hidden Files: For Your Own Protection}\label{hidden-files-for-your-own-protection}}
 
-As you can see, a bunch of other items just appeared when we enter \texttt{ls\ -a}. These files and directories begin with \texttt{.} followed by a name. These areusually files and directories that hold important programmatic information, not usually edited by the casual computer user. They are kept hidden so that users don't accidentally delete or edit them without knowing what they're doing.
+As you can see, a bunch of other items just appeared when we enter \texttt{ls\ -a}. These files and directories begin with \texttt{.} followed by a name. These are usually files and directories that hold important programmatic information, not usually edited by the casual computer user. They are kept hidden so that users don't accidentally delete or edit them without knowing what they're doing.
 \end{quote}
 
 As you can see, it also displays another special directory that's just called \texttt{.}, which means ``the current working directory''. It may seem redundant to have a name for it, but we'll see some uses for it soon.
@@ -970,7 +970,7 @@ As you can see, it also displays another special directory that's just called \t
 \hypertarget{phone-home}{%
 \subsubsection{Phone Home}\label{phone-home}}
 
-If you ever want to get to the home directory immediately, you can use theshortcut \texttt{\textasciitilde{}}. For example, type \texttt{cd\ \textasciitilde{}} and you'll get back home in a jiffy. \texttt{\textasciitilde{}} will also stand in for your home directory in paths, so for instance\texttt{\textasciitilde{}/Desktop} is the same as \texttt{/home/jae/Desktop}. This only works if it isthe first character in the path: \texttt{here/there/\textasciitilde{}/elsewhere} is not \texttt{/home/jae/elsewhere}.
+If you ever want to get to the home directory immediately, you can use the shortcut\textasciitilde{}\texttt{.\ For\ example,\ type}cd \textsubscript{\texttt{and\ you\textquotesingle{}ll\ get\ back\ home\ in\ a\ jiffy.}}\texttt{will\ also\ stand\ in\ for\ your\ home\ directory\ in\ paths,\ so\ for\ instance}\textsubscript{/Desktop\texttt{is\ tstand-inas}/home/jae/Desktop\texttt{.\ This\ only\ works\ if\ it\ is\ the\ first\ character\ in\ the\ path:}here/there/}/elsewhere\texttt{is\ not}/home/jae/elsewhere`.
 \end{quote}
 
 \textbf{Additional tips}
@@ -981,7 +981,7 @@ Your first step should be learning more about \texttt{ls} command. You can do th
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Don\textquotesingle{}t forget using TAB completion}
+\CommentTok{\# Don\textquotesingle{}t forget to use TAB completion}
 \BuiltInTok{cd}\NormalTok{ Downloads/ }
 
 \FunctionTok{ls}\NormalTok{ {-}t }\KeywordTok{|} \FunctionTok{head}\NormalTok{ {-}n1}
@@ -997,7 +997,7 @@ Yeah! We can actually do more cool things. How can you find the most recently do
 \end{Shaded}
 
 \hypertarget{creating-copying-removing-and-renaming-files}{%
-\subsubsection{Creating, copying, removing, and renaming files}\label{creating-copying-removing-and-renaming-files}}
+\subsubsection{Creating, copying, removing and renaming files}\label{creating-copying-removing-and-renaming-files}}
 
 \hypertarget{creating-files}{%
 \paragraph{Creating files}\label{creating-files}}
@@ -1198,7 +1198,7 @@ Oops. Still not working because the directory is not empty. Try this. Now, it wo
 rm -r exercise/ 
 \end{verbatim}
 
-What's \texttt{-r}? It stands for recursion (e.g., . Recursion is a very powerful idea in programming and helps solving complex problems. We'll come back to it many times (e.g., \texttt{purrr::reduce} in R).
+What's \texttt{-r}? It stands for recursion (e.g., . Recursion is a very powerful idea in programming and helps to solve complex problems. We'll come back to it many times (e.g., \texttt{purrr::reduce} in R).
 
 \hypertarget{renaming-files}{%
 \paragraph{Renaming files}\label{renaming-files}}
@@ -1353,7 +1353,7 @@ The other cool command for text parsing is \texttt{awk}. This command is especia
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  This is same as using \texttt{cat} (basically, printing). So, what's new?
+  This is the same as using \texttt{cat} (basically, printing). So, what's new?
 \end{enumerate}
 
 \begin{Shaded}
@@ -1381,7 +1381,7 @@ The other cool command for text parsing is \texttt{awk}. This command is especia
 \setcounter{enumi}{2}
 \tightlist
 \item
-  Let's see only the five rows. We filtered rows so that the every row in the final dataset contains `China'.
+  Let's see only the five rows. We filtered rows so that every row in the final dataset contains `China'.
 \end{enumerate}
 
 \begin{Shaded}
@@ -1412,7 +1412,7 @@ The other cool command for text parsing is \texttt{awk}. This command is especia
 \item
   If you need admin access, use \texttt{sudo}. For instance, \texttt{sudo\ apt-get\ install\ \textless{}package\ name\textgreater{}}.
 \item
-  To run a Shell script (.sh), you need to change its file mode. You can make the script executable by typing \texttt{chmod\ +x\ \textless{}Shell\ script\textgreater{}}. Then, you can run it by typing \texttt{./pdf\_copy\_sh.} \texttt{.} refers the current working directory. Other options: \texttt{sh\ pdf\_copy\_sh.} or \texttt{bash\ pdf\_copy\_sh.} I use \texttt{./pdf\_copy\_sh.}
+  To run a Shell script (.sh), you need to change its file mode. You can make the script executable by typing \texttt{chmod\ +x\ \textless{}Shell\ script\textgreater{}}. Then, you can run it by typing \texttt{./pdf\_copy\_sh.} \texttt{.} refers to the current working directory. Other options: \texttt{sh\ pdf\_copy\_sh.} or \texttt{bash\ pdf\_copy\_sh.} I use \texttt{./pdf\_copy\_sh.}
 \end{enumerate}
 
 \hypertarget{writing-your-first-shell-script-.sh}{%
@@ -1470,7 +1470,7 @@ Using Make {[}TBD{]}
 \item
   Backup != Version control
 \item
-  If you do version control, you need to save your \textbf{raw data} in your hard disk, external drive, or cloud, but nothing else. In other words, anything that you are going to change should be subject to version control (also, it's not same as saving your code with names like 20200120\_Kim or something like that). Below, I will explain what is version control and how to do it using Git and GitHub.
+  If you do version control, you need to save your \textbf{raw data} in your hard disk, external drive, or cloud, but nothing else. In other words, anything that you are going to change should be subject to version control (also, it's not the same as saving your code with names like 20200120\_Kim or something like that). Below, I will explain what is version control and how to do it using Git and GitHub.
 \end{itemize}
 
 \begin{figure}
@@ -1493,7 +1493,7 @@ According to \href{https://guides.GitHub.com}{GitHub Guides}, a version control 
   Why were changes needed?
 \end{itemize}
 
-Git is a case of a \href{https://en.wikipedia.org/wiki/Distributed_version_control}{distributed version control system}, common in open source and commercial software development. This is no surprising given that Git \href{https://lkml.org/lkml/2005/4/6/121}{was originally created} to deal with Linux kernal development.
+Git is a case of a \href{https://en.wikipedia.org/wiki/Distributed_version_control}{distributed version control system}, common in open source and commercial software development. This is no surprise given that Git \href{https://lkml.org/lkml/2005/4/6/121}{was originally created} to deal with Linux kernel development.
 
 \textbf{Food for thought}
 
@@ -1552,7 +1552,7 @@ For more information, watch the following video:
 \setcounter{enumi}{1}
 \tightlist
 \item
-  If you haven't, sign up a GitHub account: \url{https://github.com/}
+  If you haven't, sign up for a GitHub account: \url{https://github.com/}
 \end{enumerate}
 
 \begin{itemize}
@@ -1601,14 +1601,14 @@ For more information, watch the following video:
 
 \textbf{SSH}
 
-If possible, I highly recommend using SSH. Using SSH is safer and also makes connecting GitHub easier. SSH has two keys (public and private). Public key could be stored on any server (e.g., GitHub) and private key could be saved in your client (e.g., your laptop). Only when the two are matched, the system unlocks.
+If possible, I highly recommend using SSH. Using SSH is safer and also makes connecting GitHub easier. SSH has two keys (public and private). The public key could be stored on any server (e.g., GitHub) and the private key could be saved in your client (e.g., your laptop). Only when the two are matched, the system unlocks.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
   First, read \href{https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh}{this tutorial} and create SSH keys.
 \item
-  Second, read \href{https://happygitwithr.com/ssh-keys.html}{this tutorial} and check the keys and provide the public key to GitHub and add private key to ssh-agent.
+  Second, read \href{https://happygitwithr.com/ssh-keys.html}{this tutorial} and check the keys and provide the public key to GitHub and add the private key to ssh-agent.
 \end{enumerate}
 
 Next time, if you want to use SSH, remember the following.
@@ -1625,7 +1625,7 @@ Next time, if you want to use SSH, remember the following.
 
 \textbf{Additional tips}
 
-When you try to clone a git repo, you cna get the links like the above by clicking CODE action button on GitHub.
+When you try to clone a git repo, you can get the links like the above by clicking CODE action button on GitHub.
 
 \includegraphics{misc/ssh.png}
 
@@ -1653,7 +1653,7 @@ When you try to clone a git repo, you cna get the links like the above by clicki
 \setcounter{enumi}{1}
 \tightlist
 \item
-  Method 2: using RStudio (if you insist using R)
+  Method 2: using RStudio (if you insist on using R)
 \end{enumerate}
 
 \begin{Shaded}
@@ -1712,7 +1712,7 @@ If you screwed something up in your local copy, you can just overwrite the local
 \end{Highlighting}
 \end{Shaded}
 
-Note that the default branch name changed from master to main: \url{https://github.com/github/renaming} (Finally!) For this reason, if you're interacting with old repositories, the main branch name is likely master.
+Note that the default branch name changed from master to main: \url{https://github.com/github/renaming} (Finally!) For this reason, if you're interacting with old repositories, the main branch name is likely to master.
 
 \textbf{Additional tips}
 You can see cloning and forking on GitHub and they sound similar. Let me differentiate them.
@@ -1742,7 +1742,7 @@ Create a new directory and move to it.
 \end{Highlighting}
 \end{Shaded}
 
-Alternatively, you can create a Git repository via GitHub and then clone it on your local machine. Perhaps, it is an easier path for new users (I also do this all the time). When you do this, I highly recommend add README (more on why we do this in the following subection).
+Alternatively, you can create a Git repository via GitHub and then clone it on your local machine. Perhaps, it is an easier path for new users (I also do this all the time). When you do this, I highly recommend adding README (more on why we do this in the following subsection).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1751,12 +1751,12 @@ Alternatively, you can create a Git repository via GitHub and then clone it on y
 \end{Shaded}
 
 \textbf{Additional tips}
-If you're unfamiliar with basic Git commands, then please refer to \href{http://rogerdudler.GitHub.io/git-guide/files/git_cheat_sheet.pdf}{this Git cheet sheet}.
+If you're unfamiliar with basic Git commands, then please refer to \href{http://rogerdudler.GitHub.io/git-guide/files/git_cheat_sheet.pdf}{this Git cheat sheet}.
 
 \hypertarget{commit-changes}{%
 \subsection{Commit changes}\label{commit-changes}}
 
-These feature show how Git works as a version control system.
+These features show how Git works as a version control system.
 
 If you edited files or added new ones, then you need to update your repository. In Git terms, this action is called committing changes.
 
@@ -1798,7 +1798,7 @@ Writing an informative commit is important. To learn how to do this better, see 
 
 These features show how Git works as a collaboration tool.
 
-If you have not already done, let's clone PS239T directory on your local machine.
+If you have not already done it, let's clone the PS239T directory on your local machine.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1808,7 +1808,7 @@ If you have not already done, let's clone PS239T directory on your local machine
 
 \textbf{Additional tips 1}
 
-If you try to remove \texttt{spring\_2021} using \texttt{rm\ -r\ spring\_2021/}, you will get an error about write-protected regular file. Then, try \texttt{rm\ -rf\ spring\_2021/}.
+If you try to remove \texttt{spring\_2021} using \texttt{rm\ -r\ spring\_2021/}, you will get an error about the write-protected regular file. Then, try \texttt{rm\ -rf\ spring\_2021/}.
 
 Then, let's learn more about the repository.
 
@@ -1829,9 +1829,9 @@ You should see something like the following:
 
 If you want to see more information, then type \texttt{git\ remote\ show\ origin}
 
-Previously, we learned how to send your data save in the local machine to the remote (the GitHub server). You can do that by editing or creating files, committing, and then typing \textbf{git push}.
+Previously, we learned how to send your data to save in the local machine to the remote (the GitHub server). You can do that by editing or creating files, committing, and then typing \textbf{git push}.
 
-Instead, if you want to update your local data with the remote data, then you can type \textbf{git pull origin} (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.
+Instead, if you want to update your local data with the remote data, you can type \textbf{git pull origin} (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merges it into your local data.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1841,7 +1841,7 @@ Instead, if you want to update your local data with the remote data, then you ca
 
 \textbf{Additional tips 2}
 
-Developers usually use PR to refer pull requests. When you are making PRs, it's recommend to scope down (small PRs) because they are easier on reviewers and to test. To learn about how to accomplish this, see \href{https://www.netlify.com/blog/2020/03/31/how-to-scope-down-prs/}{this blog post} by Sarah Drasner.
+Developers usually use PR to refer pull requests. When you are making PRs, it's recommended to scope down (small PRs) because they are easier on reviewers and to test. To learn about how to accomplish this, see \href{https://www.netlify.com/blog/2020/03/31/how-to-scope-down-prs/}{this blog post} by Sarah Drasner.
 
 \hypertarget{branching}{%
 \subsection{Branching}\label{branching}}
@@ -1896,7 +1896,7 @@ In short, branching makes Git \href{https://git-scm.com/book/en/v2/Getting-Start
 \end{Highlighting}
 \end{Shaded}
 
-How about removing a directory only from the GitHub but not local?
+How about removing a directory only from GitHub but not local?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1916,7 +1916,7 @@ Two options.
 \item
   Sharing a repository (suitable for a private project).
 \item
-  Fork and pull (suitable for an open source project).
+  Fork and pull (suitable for an open-source project).
   \hspace{0pt} * The one who maintains the repository becomes the maintainer.
   \hspace{0pt} * The others can \href{https://help.GitHub.com/articles/about-forks/}{fork}, make changes, and even \href{https://help.GitHub.com/articles/about-pull-requests/}{pull} them back.
 \end{itemize}
@@ -1924,12 +1924,12 @@ Two options.
 \hypertarget{deployment-github-pages}{%
 \subsection{Deployment: GitHub Pages}\label{deployment-github-pages}}
 
-GitHub pages are also useful to deploy websites. This book is deployed by GitHub Pages.
+GitHub pages are also useful to deploy websites. GitHub Pages deploy this book.
 
 \hypertarget{tracking-progress-github-issues}{%
 \subsection{Tracking progress: GitHub Issues}\label{tracking-progress-github-issues}}
 
-I use GitHub issues to collect and respond questions on the projects and classes in which I am involved.
+I use GitHub issues to collect and respond to questions on the projects and classes I am involved in.
 
 \hypertarget{project-management-github-dashboards}{%
 \subsection{Project management: GitHub Dashboards}\label{project-management-github-dashboards}}
@@ -1939,9 +1939,9 @@ I use GitHub dashboards for almost every project that I have done.
 \hypertarget{using-git-clients}{%
 \subsection{Using Git clients}\label{using-git-clients}}
 
-Okay. Using command line Git helps you understand how Git works. Also, you know that if possible I'd love to do almost everything in the terminal. However, using command line Git is sometimes too complex or too buggy. An alternative is using Git clients (GUI).
+Okay. Using command-line Git helps you understand how Git works. Also, you know that if possible, I'd love to do almost everything in the terminal. However, using the command-line Git is sometimes too complicated or too buggy. An alternative is using Git clients (GUI).
 
-I use \href{https://www.gitkraken.com/}{Git Kraken} because it's free, works on almost every OS (Windows, Mac and Linux) and quite versatile. It's especially useful to trace and understand your development process (e.g., commits, branches, pull requests, comments). I heard also positive things about \href{https://desktop.github.com/}{GitHub Desktop} (Windows and Mac) and \href{https://www.sourcetreeapp.com/}{Sourcetree} (Windows).
+I use \href{https://www.gitkraken.com/}{Git Kraken} because it's free, works on almost every OS (Windows, Mac, and Linux), and quite versatile. It's instrumental in tracing and understand your development process (e.g., commits, branches, pull requests, comments). I also heard positive things about \href{https://desktop.github.com/}{GitHub Desktop} (Windows and Mac) and \href{https://www.sourcetreeapp.com/}{Sourcetree} (Windows).
 
 \hypertarget{getting-started-in-r}{%
 \section{Getting started in R}\label{getting-started-in-r}}
@@ -1949,9 +1949,9 @@ I use \href{https://www.gitkraken.com/}{Git Kraken} because it's free, works on 
 \hypertarget{rstudio}{%
 \subsection{RStudio}\label{rstudio}}
 
-There are two main ways of interacting with R: using the console or by using script files (plain text files that contain your code).
+There are two main ways of interacting with R: using the console or using script files (plain text files containing your code).
 
-If R is ready to accept commands, the R console shows a \texttt{\textgreater{}} prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using \texttt{Ctrl-Enter}; \texttt{Command-Enter} will also work on Macs), R will try to execute it, and when ready, show the results and come back with a new \texttt{\textgreater{}}-prompt to wait for new commands. This is the equivalent of the \texttt{\$} in your terminal.
+If R is ready to accept commands, the R console shows a \texttt{\textgreater{}} prompt. If it receives a command (by typing, copy-pasting, or sent from the script editor using \texttt{Ctrl-Enter}; \texttt{Command-Enter} will also work on Macs), R will try to execute it, and when ready, show the results and come back with a new \texttt{\textgreater{}}-prompt to wait for further commands. This is the equivalent of the \texttt{\$} in your terminal.
 
 \hypertarget{basic-syntax}{%
 \subsection{Basic Syntax}\label{basic-syntax}}
@@ -1972,7 +1972,7 @@ Use \texttt{\#} signs to comment. Comment liberally in your R scripts. Anything 
 \end{Highlighting}
 \end{Shaded}
 
-Nonetheless, \emph{can} does not mean you \emph{should}. It is good practice to use \texttt{\textless{}-} for assignments. \texttt{=} should only be used to specify the values of arguments of functions. This is what Google and Hadley Wickham recommend as well. If they don't convince you enough, here's \href{https://csgillespie.wordpress.com/2010/11/16/assignment-operators-in-r-vs/}{a real example}.
+Nonetheless, \emph{can} do not mean you \emph{should}. It is good practice to use \texttt{\textless{}-} for assignments. \texttt{=} should only be used to specify the values of arguments of functions. This is what Google and Hadley Wickham recommend as well. If they don't convince you enough, here's \href{https://csgillespie.wordpress.com/2010/11/16/assignment-operators-in-r-vs/}{a real example}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2012,7 +2012,7 @@ Nonetheless, \emph{can} does not mean you \emph{should}. It is good practice to 
 
 \textbf{Printing}
 
-In R, the contents of an object can be printed by either simply executing the the object name or calling the \texttt{print()} function.
+In R, an object's contents can be printed by either simply executing the object name or calling the \texttt{print()} function.
 
 \textbf{Help}
 
@@ -2030,9 +2030,9 @@ In R, the contents of an object can be printed by either simply executing the th
 \NormalTok{??mean}
 \FunctionTok{help}\NormalTok{(mean)}
 
-\CommentTok{\# The above three will do same. }
+\CommentTok{\# The above three will do the same. }
 
-\FunctionTok{example}\NormalTok{(ls) }\CommentTok{\# provides example for how to use ls }
+\FunctionTok{example}\NormalTok{(ls) }\CommentTok{\# provides an example(s) for how to use ls }
 
 \FunctionTok{help.search}\NormalTok{(}\StringTok{"visualization"}\NormalTok{) }\CommentTok{\# search functions and packages that have "visualization" in their descriptions}
 \end{Highlighting}
@@ -2116,7 +2116,7 @@ Environment = a collection of pairs
 \hypertarget{packages}{%
 \subsubsection{Packages}\label{packages}}
 
-\texttt{install.packages(package-name)} will download a package from one of the CRAN mirrors assuming that a binary is available for your operating system.
+\texttt{install.packages(package-name)} will download a package from one of the CRAN mirrors, assuming that a binary is available for your operating system.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2198,7 +2198,7 @@ Note that \texttt{lapply()} applies (there's a family of apply functions) a func
   \item
     Use some version control
   \item
-    Don't save output (instead keep the input and code)
+    Don't save output (instead, keep the input and code)
   \item
     Set your seed
   \item
@@ -2237,7 +2237,7 @@ Step 1. \href{https://environments.rstudio.com/}{\textbf{Environment}} is part o
 \begin{itemize}
 \tightlist
 \item
-  Launch R Studio. Tools \textgreater{} Global Options. You \textbf{should not} check Restore .RData into workspace at startup. Also, set saving workspace option to \textbf{NEVER.}
+  Launch R Studio. Tools \textgreater{} Global Options. You \textbf{should not} check Restore .RData into workspace at startup. Also, set the saving workspace option to \textbf{NEVER.}
 \end{itemize}
 
 Step 2. For each project, create a project directory named after the project.
@@ -2276,24 +2276,24 @@ name\_of\_the\_project
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Don\textquotesingle{}t name it a project. Use a name that\textquotesingle{}s more informative. For instance, us\_election not my\_project.}
+\CommentTok{\# Don\textquotesingle{}t name it a project. Use a more informative name. For instance, \textasciigrave{}us\_election\textasciigrave{}, not \textasciigrave{}my\_project.\textasciigrave{}}
 
 \FunctionTok{dir.create}\NormalTok{(}\StringTok{"../us\_election"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-Step 3. Launch R Studio. Choose File \textgreater{} New project \textgreater{} Browse existing directories \textgreater{} Create project This allows each project has its own workspace.
+Step 3. Launch R Studio. Choose File \textgreater{} New project \textgreater{} Browse existing directories \textgreater{} Create project. This allows each project has its workspace.
 
-Step 4. Organize files by putting them in separate subdirectories and naming them in a sensible way.
+Step 4. Organize files by putting them in separate subdirectories and sensibly naming them.
 
 \begin{itemize}
 \item
-  Treat raw data as read only (raw data should be RAW!) and put in the \texttt{data} subdirectory.
+  Treat raw data as read-only (raw data should be RAW!) and put it in the \texttt{data} subdirectory.
 
   \begin{itemize}
   \tightlist
   \item
-    Again, note that version control does not need replace backup. You still need to backup your raw data.
+    Again, note that version control does not need to replace backup. You still need to back up your raw data.
   \end{itemize}
 \end{itemize}
 
@@ -2351,7 +2351,7 @@ Step 4. Organize files by putting them in separate subdirectories and naming the
 \end{Highlighting}
 \end{Shaded}
 
-Tired of creating these directories one by one? Why not automate? See the following example. You can save this function as an rscript (e.g., \texttt{setup.r}) and run in the terminal using \texttt{Rscript\ \textless{}script\ name\textgreater{}}.
+Are you tired of creating these directories one by one? Why not automate? See the following example. You can save this function as a rscript (e.g., \texttt{setup.r}) and run it in the terminal using \texttt{Rscript\ \textless{}script\ name\textgreater{}.}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2377,14 +2377,14 @@ Tired of creating these directories one by one? Why not automate? See the follow
 
 Set a project structure for a project named ``starwars''.
 
-\hypertarget{how-to-organize-code-in-a-r-markdown-file}{%
-\subsubsection{How to organize code in a R markdown file}\label{how-to-organize-code-in-a-r-markdown-file}}
+\hypertarget{how-to-organize-code-in-an-r-markdown-file}{%
+\subsubsection{How to organize code in an R markdown file}\label{how-to-organize-code-in-an-r-markdown-file}}
 
 \begin{itemize}
 \item
-  In addition to environment, \textbf{workflow} is an important component of project efficiency and reproducibility.
+  In addition to environment, \textbf{workflow} is an essential component of project efficiency and reproducibility.
 \item
-  What is R markdown? An R package, developed by \href{https://yihui.org/en/}{Yihui Xie}, that provides an authoring framework for data science. Xie is also a developer of many widely popular R packages such as \texttt{knitr}, \href{https://GitHub.com/yihui/xaringan}{\texttt{xaringan}} (cool kids use xaringan not \href{https://en.wikipedia.org/wiki/Beamer_(LaTeX)}{Beamer} these days), \texttt{blogdown} (used to create \href{https://jaeyk.GitHub.io/}{my personal website}), and \texttt{bookdown} (used to create this book) among many others.
+  What is R markdown? An R package, developed by \href{https://yihui.org/en/}{Yihui Xie}, provides an authoring framework for data science. Xie is also a developer of many widely popular R packages such as \texttt{knitr}, \href{https://GitHub.com/yihui/xaringan}{\texttt{xaringan}} (cool kids use xaringan not \href{https://en.wikipedia.org/wiki/Beamer_(LaTeX)}{Beamer} these days), \texttt{blogdown} (used to create \href{https://jaeyk.GitHub.io/}{my personal website}), and \texttt{bookdown} (used to create this book) among many others.
 
   \begin{itemize}
   \tightlist
@@ -2441,9 +2441,9 @@ Set a project structure for a project named ``starwars''.
 
 \begin{itemize}
 \item
-  Press \texttt{ctrl\ +\ shift\ +\ o}. You can see a document outline based on these headers. This is a nice feature for finding code you need to focus.
+  Press \texttt{ctrl\ +\ shift\ +\ o}. You can see a document outline based on these headers. This is a nice feature for finding the code you need to focus on.
 \item
-  If your project's scale is large, then divide these sections into files, number, and save them in \texttt{code} subdirectory.
+  If your project's scale is large, divide these sections into files, numbers, and save them in the \texttt{code} subdirectory.
 
   \begin{itemize}
   \tightlist
@@ -2486,7 +2486,7 @@ Set a project structure for a project named ``starwars''.
 
   \begin{itemize}
   \item
-    Key idea: separate workflow (e.g., workspace information) from products (code and data). For more information, read Jenny Bryan's wonderful piece on \href{https://www.tidyverse.org/blog/2017/12/workflow-vs-script/}{project-oriented workflow}.
+    Key idea: separate workflow (e.g., workspace information) from products (code and data). For more information, read Jenny Bryan's excellent piece on \href{https://www.tidyverse.org/blog/2017/12/workflow-vs-script/}{project-oriented workflow}.
   \item
     Example
   \end{itemize}
@@ -2615,7 +2615,7 @@ Set a project structure for a project named ``starwars''.
 \end{itemize}
 
 \begin{quote}
-Every major open-source project has its own style guide: a set of conventions (sometimes arbitrary) about how to write code for that project. It is much easier to understand a large codebase when all the code in it is in a consistent style. - \href{https://google.GitHub.io/styleguide/}{Google Style Guides}
+Every major open-source project has its style guide: a set of conventions (sometimes arbitrary) about writing code for that project. It is much easier to understand a large codebase when all the code in it is in a consistent style. - \href{https://google.GitHub.io/styleguide/}{Google Style Guides}
 \end{quote}
 
 \begin{itemize}
@@ -2641,7 +2641,7 @@ Every major open-source project has its own style guide: a set of conventions (s
     \begin{itemize}
     \tightlist
     \item
-      Machine readable (avoid spaces, punctuation, periods, and any other special characters except \_ and -)
+      Machine-readable (avoid spaces, punctuation, periods, and any other special characters except \_ and -)
     \item
       Human readable (should be meaningful. No text1, image1, etc.,)
     \item
@@ -2739,7 +2739,7 @@ Some people do spacing by pressing the Tab key and others do it by pressing the 
   Indenting
 \end{itemize}
 
-Indent at least 4 spaces. Note that some people, including none other than \href{https://simplystatistics.org/2018/07/27/why-i-indent-my-code-8-spaces/}{Roger Peng}, indent 8 spaces. The below example shows how you can change the default indentation setting using RStudio configuration.
+Indent at least 4 spaces. Note that some people, including none other than \href{https://simplystatistics.org/2018/07/27/why-i-indent-my-code-8-spaces/}{Roger Peng}, indent 8 spaces. The below example shows how you can change the default indentation setting using the RStudio configuration.
 
 \begin{figure}
 \centering
@@ -2955,7 +2955,7 @@ Copy-and-paste programming, sometimes referred to as just pasting, is the produc
   \item
     Many options for automation in R: \texttt{for\ loop}, \texttt{apply} family, etc.
   \item
-    Here's a tidy solution comes from \texttt{purrr} package.
+    Here's a tidy solution that comes from the \texttt{purrr} package.
   \item
     The power and joy of one-liner.
   \end{itemize}
@@ -2979,7 +2979,7 @@ Copy-and-paste programming, sometimes referred to as just pasting, is the produc
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Your code becomes more reusable, when it's easier to \textbf{change, debug, and scale up}. Don't repeat yourself and embrace the power of lazy programming.
+  Your code becomes more reusable, when it's easier to \textbf{change, debug, and scale-up}. Don't repeat yourself and embrace the power of lazy programming.
 \end{enumerate}
 
 \begin{quote}
@@ -3090,7 +3090,7 @@ Inspired by an example in Hadley Wickham's \href{https://journal.r-project.org/a
 
 \FunctionTok{test\_dir}\NormalTok{() }\CommentTok{\# directory}
 
-\FunctionTok{auto\_test}\NormalTok{() }\CommentTok{\# the test code tested when you save file }
+\FunctionTok{auto\_test}\NormalTok{() }\CommentTok{\# the test code tested when you save the file }
 \end{Highlighting}
 \end{Shaded}
 
@@ -3099,11 +3099,11 @@ Inspired by an example in Hadley Wickham's \href{https://journal.r-project.org/a
 
 \begin{itemize}
 \item
-  Chances are you're going to use StackOverFlow a lot to solve a pressing problem you face. However, other can't understand/be interested in your problem unless you can provide an example which they can understand with minimal efforts. Such example is called a minimal reproducible example.
+  Chances are you're going to use StackOverflow a lot to solve a pressing problem you face. However, others can't understand/be interested in your problem unless you can provide an example that they can understand with minimal effort. Such an example is called a minimal reproducible example.
 \item
   Read \href{https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example}{this StackOverFlow post} to understand the concept and best practices.
 \item
-  Simply put, a MRE consists of the following items:
+  Simply put, an MRE consists of the following items:
 
   \begin{itemize}
   \tightlist
@@ -3118,7 +3118,7 @@ Inspired by an example in Hadley Wickham's \href{https://journal.r-project.org/a
   \end{itemize}
 \end{itemize}
 
-In practice, use \texttt{reprex} package to create the code component of the MRE.
+In practice, use the \texttt{reprex} package to create the code component of the MRE.
 
 \begin{Shaded}
 \begin{Highlighting}[]
