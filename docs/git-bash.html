@@ -156,9 +156,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="git-bash.html"><a href="git-bash.html"><i class="fa fa-check"></i><b>3</b> Managing data and code</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="git-bash.html"><a href="git-bash.html#using-bash-command-line-interface"><i class="fa fa-check"></i><b>3.1</b> Using Bash (command line interface)</a>
+<li class="chapter" data-level="3.1" data-path="git-bash.html"><a href="git-bash.html#using-bash-command-line-interface"><i class="fa fa-check"></i><b>3.1</b> Using Bash (command-line interface)</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="git-bash.html"><a href="git-bash.html#why-bother-using-command-line"><i class="fa fa-check"></i><b>3.1.1</b> Why bother using command line?</a></li>
+<li class="chapter" data-level="3.1.1" data-path="git-bash.html"><a href="git-bash.html#why-bother-using-the-command-line"><i class="fa fa-check"></i><b>3.1.1</b> Why bother using the command line?</a></li>
 <li class="chapter" data-level="3.1.2" data-path="git-bash.html"><a href="git-bash.html#unix-shell"><i class="fa fa-check"></i><b>3.1.2</b> UNIX Shell</a></li>
 <li class="chapter" data-level="3.1.3" data-path="git-bash.html"><a href="git-bash.html#references-1"><i class="fa fa-check"></i><b>3.1.3</b> References</a></li>
 </ul></li>
@@ -432,41 +432,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="git_bash" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Managing data and code</h1>
 <div id="using-bash-command-line-interface" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Using Bash (command line interface)</h2>
+<h2><span class="header-section-number">3.1</span> Using Bash (command-line interface)</h2>
 <p>As William Shotts the author of <em><a href="http://linuxcommand.org/tlcl.php">The Linux Command Line</a></em> put it:</p>
 <blockquote>
-<p>graphical user interfaces make easy tasks easy, while command line interfaces make difficult tasks possible.</p>
+<p>graphical user interfaces make easy tasks easy, while command-line interfaces make difficult tasks possible.</p>
 </blockquote>
-<div id="why-bother-using-command-line" class="section level3" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Why bother using command line?</h3>
-<p>Create a plain text file that contains word “test”</p>
+<div id="why-bother-using-the-command-line" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Why bother using the command line?</h3>
+<p>Create a plain text file that contains the word “test.”</p>
 <ul>
-<li><code>echo</code>: “Write arguments to the standard output” This is equivalent as using a text editor (e.g., nano, vim, emacs) and write something.</li>
+<li><code>echo</code>: “Write arguments to the standard output” This is equivalent to using a text editor (e.g., nano, vim, emacs) and write something.</li>
 <li><code>&gt; test</code> Save the expression in a file named test.<br />
 </li>
-<li>In general, if you don’t know what a command does, just type <code>&lt;command name&gt; --help</code>. If you need more detailed information, you can do <code>man &lt;command name&gt;</code>. <code>man</code> stands for manual. Finally, you can get more user-friendly information by using either <a href="https://tldr.sh/"><code>tldr</code></a>.</li>
+<li>In general, if you don’t know what a command does, just type <code>&lt;command name&gt; --help.</code> If you need further information, you can do <code>man &lt;command name&gt;.</code> <code>man</code> stands for manual. Finally, you can get more user-friendly information by using either <a href="https://tldr.sh/"><code>tldr</code></a>.</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="git-bash.html#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="git-bash.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;test&quot;</span> <span class="op">&gt;</span> test </span></code></pre></div>
 <ul>
 <li>Make 100 duplicates of this file. Let’s break down the seemingly complex commands.</li>
-<li>I did this using for loop (<code>for i in {1..100}</code>). Curly braces <code>{}</code> makes 1..100 integers from 1 to 100.<br />
+<li>I did this using for loop (<code>for i in {1..100}</code>). Curly braces <code>{}</code> make 1..100 integers from 1 to 100.<br />
 </li>
 <li><code>;</code> is used to use multiple commands without making line breaks.</li>
-<li><code>$var</code> returns the value associated with variable. Type <code>name=&lt;Your name&gt;</code>. Then, type <code>echo $name</code>. You should see your name printed. Variable assignment is one of the most basic things you’ll learn in any programming.<br />
+<li><code>$var</code> returns the value associated with a variable. Type <code>name=&lt;Your name&gt;</code>. Then, type <code>echo $name.</code> You should see your name printed. Variable assignment is one of the most basic things you’ll learn in any programming.<br />
 </li>
-<li>For novice users, I warn you that these could be too much advanced concepts. If so, don’t pay too much attention to this. For now, it’s enough to have intuitions.</li>
+<li>For novice users, I warn you that there could be too many advanced concepts. If so, don’t pay too much attention to this. For now, it’s enough to have intuitions.</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="git-bash.html#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-2"><a href="git-bash.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> <span class="ex">i</span> in <span class="dt">{1..100}</span><span class="kw">;</span> <span class="kw">do</span> <span class="fu">cp</span> test <span class="st">&quot;test_</span><span class="va">$i</span><span class="st">&quot;</span><span class="kw">;</span> <span class="kw">done</span>  </span></code></pre></div>
-<p>Append “COVID” to the file named test_100. Note that I used <code>&gt;&gt;</code> (append) not <code>&gt;</code>.</p>
+<p>Append “COVID” to the file named test_100. Note that I used <code>&gt;&gt;</code> (append) not <code>&gt;.</code></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="git-bash.html#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="git-bash.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;COVID&quot;</span> <span class="op">&gt;&gt;</span> test_100 </span></code></pre></div>
 <p>Let’s read (=<code>cat</code> (concatenate)) what’s in test_100</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="git-bash.html#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-2"><a href="git-bash.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> test_100 </span></code></pre></div>
-<p>Find which fine contains the character “COVID.” This is literally equivalent to finding a needle in a haystack. This is a daunting task for a human researcher, but not for our robotic assistant. <code>grep</code> finds PATTERNS in each FIEL. What follows - are options (called flags): <code>r</code> (recursive), <code>n</code> (line number), <code>w</code> (match only whole words), <code>e</code> (use patterns for matching). <code>rnw</code> are for output control and <code>e</code> is for pattern selection.</p>
-<p>You can write <code>grep -r -n -w -e "COVID"</code>, but the simpler the better.</p>
+<p>Find which fine contains the character “COVID.” This is equivalent to finding a needle in a haystack. This is a daunting task for a human researcher, but not for our robotic assistant. <code>grep</code> finds PATTERNS in each FIEL. What follows - are options (called flags): <code>r</code> (recursive), <code>n</code> (line number), <code>w</code> (match only whole words), <code>e</code> (use patterns for matching). <code>rnw</code> are for output control and <code>e</code> is for pattern selection.</p>
+<p>You can write <code>grep -r -n -w -e "COVID",</code> but the simpler, the better.</p>
 <ul>
 <li><p><code>grep</code>: command</p></li>
 <li><p><code>-rnw -e</code>: flags</p></li>
@@ -474,18 +474,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="git-bash.html#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-2"><a href="git-bash.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> -rnw -e <span class="st">&quot;COVID&quot;</span> </span></code></pre></div>
-<p>Let’s remove (=<code>rm</code>) all the duplicate files as well as the original file. <code>*</code> (any number of characters) is a wildcard (if you want to identify a single number of character, use <code>?</code>). It finds every file whose name starts with <code>test_</code>.</p>
+<p>Let’s remove (=<code>rm</code>) all the duplicate files as well as the original file. <code>*</code> (any number of characters) is a wildcard (if you want to identify a single number of characters, use <code>?</code>). It finds every file whose name starts with <code>test_</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="git-bash.html#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-2"><a href="git-bash.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> test_* test </span></code></pre></div>
 <p>This command should return “test_100:2:COVID.” (file test_100; line number 2; COVID)</p>
-<p>What is this black magic? Can you do the same thing using graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning command line could be incredibly useful. In my experience, mastering command line helps automating your research process almost from end to end. For instance, you don’t need to write files from a website using your web browser. You can run <code>wget</code> command in the terminal. Better yet, you don’t even need to run the command for the second time. You can write a Shell script (<code>*.sh</code>) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. <a href="https://GitHub.com/PS239T/spring_2021/blob/main/copy_syllabus.sh"><code>copy_syllabus.sh</code></a> automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to a desired location. When I modified something in the syllabus, I just need to run this Shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.</p>
+<p>What is this black magic? Can you do the same thing using a graphical interface? Which method is more efficient? I hope that this quick demonstration will give you enough sense of why learning the command line could be incredibly useful. In my experience, mastering the command line helps to automate your research process almost from end to end. For instance, you don’t need to write files from a website using your web browser. You can run the <code>wget</code> command in the terminal. Better yet, you don’t even need to run the command for the second time. You can write a Shell script (<code>*.sh</code>) that automates downloading, moving, and sorting multiple files. You can find one example of this from the PS239T course repository. <a href="https://GitHub.com/PS239T/spring_2021/blob/main/copy_syllabus.sh"><code>copy_syllabus.sh</code></a> automatically runs an R markdown file, produces HTML and PDF outputs, and move these files to the desired location. When I modified something in the syllabus, I just need to run this Shell script again. (No worries! I will explain what is Shell shortly.) Finally, if you need to interact with servers or supercomputers for your research, you are likely to use the command-line interface.</p>
 </div>
 <div id="unix-shell" class="section level3" number="3.1.2">
 <h3><span class="header-section-number">3.1.2</span> UNIX Shell</h3>
 <p>The following materials on UNIX and Shell are adapted from [the software carpentry](<a href="https://bids.GitHub.io/2015-06-04-berkeley/shell/00-intro.html" class="uri">https://bids.GitHub.io/2015-06-04-berkeley/shell/00-intro.html</a>.</p>
 <div id="unix" class="section level4" number="3.1.2.1">
 <h4><span class="header-section-number">3.1.2.1</span> Unix</h4>
-<p>UNIX is an <strong>operating system + a set of tools (utilities)</strong>. It was developed by AT &amp; T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. For this reason, if you’re using Max OS, then you don’t need to do anything else to experience UNIX. You’re already all set. If you’re using Windows, you need to install either GitBash (a good option if you only use Bash for Git and GitHub) or Windows Subsystem (highly recommended if your use case goes beyond Git and GitHub)￣. For more information, see <a href="https://GitHub.com/PS239T/spring_2021/blob/main/B_Install.md">this installation guideline</a> from the course repo. If you’re an Windows user and don’t use Windows 10, I recommend installing <a href="https://www.virtualbox.org/">VirtualBox</a>.</p>
+<p>UNIX is an <strong>operating system + a set of tools (utilities)</strong>. It was developed by AT &amp; T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of the current operation systems are some versions of UNIX. For this reason, if you’re using Max OS, then you don’t need to do anything else to experience UNIX. You’re already all set. If you’re using Windows, you need to install either GitBash (a good option if you only use Bash for Git and GitHub) or Windows Subsystem (highly recommended if your use case goes beyond Git and GitHub)￣. For more information, see <a href="https://GitHub.com/PS239T/spring_2021/blob/main/B_Install.md">this installation guideline</a> from the course repo. If you’re a Windows user and don’t use Windows 10, I recommend installing <a href="https://www.virtualbox.org/">VirtualBox</a>.</p>
 <p>UNIX is old, but it is still mainstream and it will be. Moreover, <a href="https://en.wikipedia.org/wiki/Unix_philosophy">the UNIX philosophy</a> (“Do One Thing And Do It Well”)—minimalist, modular software development—is highly and widely influential.</p>
 <div class="figure">
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Ken_Thompson_and_Dennis_Ritchie--1973.jpg" alt="" />
@@ -507,7 +507,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="shell" class="section level4" number="3.1.2.3">
 <h4><span class="header-section-number">3.1.2.3</span> Shell</h4>
-<p>The shell is an interactive program that provides an interface between the user and the kernel. The shell interprets commands entered by the user or supplied by a Shell script, and passes them to the kernel for execution.</p>
+<p>The shell is an interactive program that provides an interface between the user and the kernel. The shell interprets commands entered by the user or supplied by a Shell script and passes them to the kernel for execution.</p>
 </div>
 <div id="human-computer-interfaces" class="section level4" number="3.1.2.4">
 <h4><span class="header-section-number">3.1.2.4</span> Human-Computer interfaces</h4>
@@ -528,12 +528,12 @@ to distinguish it from the <strong>graphical user interface</strong>, or GUI, th
 </div>
 <div id="the-shell" class="section level4" number="3.1.2.6">
 <h4><span class="header-section-number">3.1.2.6</span> The Shell</h4>
-<p>This description makes it sound as though the user sends commands directly to the computer, and the computer sends output directly to the user. In fact, there is usually a program in between called a <strong>command shell</strong>.</p>
+<p>This description makes it sound as though the user sends commands directly to the computer, and the computer sends the output directly to the user. In fact, there is usually a program in between called a <strong>command shell</strong>.</p>
 <div class="figure">
 <img src="https://miro.medium.com/max/1032/1*GuB5q_bWOSZa-8sDg1lEDA.png" alt="" />
 <p class="caption">Source: Prashant Lakhera</p>
 </div>
-<p>What the user types goes into the shell; it figures out what commands to run and orders the computer to execute them.</p>
+<p>What the user types go into the shell; it figures out what commands to run and orders the computer to execute them.</p>
 <p>Note, the reason why the shell is called <em>the shell</em>: it encloses the operating system in order to hide some of its complexity and make it simpler to interact with.</p>
 <p>A shell is a program like any other. What’s special about it is that its job is to run other programs rather than to do calculations itself. The commands are themselves programs: when they terminate, the shell gives the user another prompt ($ on our systems).</p>
 </div>
@@ -559,7 +559,7 @@ to distinguish it from the <strong>graphical user interface</strong>, or GUI, th
 <li><p><code>$</code>: a <strong>prompt</strong>, which shows us that the shell is waiting for input; your shell may show something more elaborate.</p></li>
 </ul>
 <p>Type the command <code>whoami</code>, then press the Enter key (sometimes marked Return) to send the command to the shell.</p>
-<p>The command’s output is the ID of the current user, i.e., it shows us who the shell thinks we are:</p>
+<p>The command’s output is the ID of the current user, i.e., it shows us whom the shell thinks we are:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb10-1"><a href="git-bash.html#cb10-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">whoami</span></span>
 <span id="cb10-2"><a href="git-bash.html#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="git-bash.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Should be your user name </span></span>
@@ -608,7 +608,7 @@ to distinguish it from the <strong>graphical user interface</strong>, or GUI, th
 <blockquote>
 <h4 id="alphabet-soup">Alphabet Soup</h4>
 <p>If the command to find out who we are is <code>whoami</code>, the command to find out where we are ought to be called <code>whereami</code>, so why is it <code>pwd</code> instead? The usual answer is that in the early 1970s, when Unix was</p>
-<p>first being developed, every keystroke counted: the devices of the day were slow, and backspacing on a teletype was so painful that cutting the number of keystrokes in order to cut the number of typing mistakes was actually a win for usability. The reality is that commands were added to Unix one by one, without any master plan, by people who were immersed in its jargon. The result is as inconsistent as the roolz uv Inglish speling, but we’re stuck with it now.</p>
+<p>first being developed, every keystroke counted: the devices of the day were slow, and backspacing on a teletype was so painful that cutting the number of keystrokes in order to cut the number of typing mistakes was actually a win for usability. The reality is that commands were added to Unix one by one, without any master plan, by people who were immersed in its jargon.</p>
 <p>The good news: because these basic commands were so integral to the development of early Unix, they have stuck around, and appear (in some form) in almost all programming languages.</p>
 </blockquote>
 <p>To understand what a “home directory” is, let’s have a look at how the file system as a whole is organized. At the top is the <strong>root directory</strong> that holds everything else.</p>
@@ -648,7 +648,7 @@ When it appears at the front of a file or directory name, it refers to the root 
 <p>We can make <code>ls</code> more useful by adding flags. For instance, you can make your computer show only directories in the file system using the following command. Here <code>-F</code> flag classifies files based on some types. <code>/</code> indicates directories.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="git-bash.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> -F /</span></code></pre></div>
 <p>The leading <code>/</code> tells the computer to follow the path from the root of the file system, so it always refers to exactly one directory, no matter where we are when we run the command.</p>
-<p>If you want to see only directories in the current working directory, you can do the following. (Remember <code>^</code>? This wildcard identifies a single number of character. In this case, <code>d</code>.)</p>
+<p>If you want to see only directories in the current working directory, you can do the following. (Remember <code>^</code>? This wildcard identifies a single number of characters. In this case, <code>d</code>.)</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb18-1"><a href="git-bash.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> -l <span class="kw">|</span> <span class="fu">grep</span> <span class="st">&quot;^d&quot;</span></span></code></pre></div>
 <p>What if we want to change our current working directory? Before we do this, <code>pwd</code> shows us that we’re in <code>/home/jae</code>, and <code>ls</code> without any arguments shows us that directory’s contents:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="git-bash.html#cb19-1" aria-hidden="true" tabindex="-1"></a>$ <span class="bu">pwd</span></span>
@@ -668,7 +668,7 @@ When it appears at the front of a file or directory name, it refers to the root 
 <div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="git-bash.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Downloads/ </span>
 <span id="cb20-2"><a href="git-bash.html#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="git-bash.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> *.pdf</span></code></pre></div>
-<p>Also, note that you don’t need to type every character. Type the first few characters then press TAB (autocomplete). This is called <strong>tab completion</strong>, and we will see it in many other tools as we go on.</p>
+<p>Also, note that you don’t need to type every character. Type the first few characters then press TAB (autocomplete). This is called <strong>tab-completion</strong>, and we will see it in many other tools as we go on.</p>
 </div>
 <div id="moving-around" class="section level4" number="3.1.2.13">
 <h4><span class="header-section-number">3.1.2.13</span> Moving around</h4>
@@ -701,17 +701,17 @@ When it appears at the front of a file or directory name, it refers to the root 
 <p><code>-a</code> stands for “show all”; it forces <code>ls</code> to show us file and directory names that begin with <code>.</code>, such as <code>..</code>.</p>
 <blockquote>
 <h4 id="hidden-files-for-your-own-protection">Hidden Files: For Your Own Protection</h4>
-<p>As you can see, a bunch of other items just appeared when we enter <code>ls -a</code>. These files and directories begin with <code>.</code> followed by a name. These areusually files and directories that hold important programmatic information, not usually edited by the casual computer user. They are kept hidden so that users don’t accidentally delete or edit them without knowing what they’re doing.</p>
+<p>As you can see, a bunch of other items just appeared when we enter <code>ls -a</code>. These files and directories begin with <code>.</code> followed by a name. These are usually files and directories that hold important programmatic information, not usually edited by the casual computer user. They are kept hidden so that users don’t accidentally delete or edit them without knowing what they’re doing.</p>
 </blockquote>
 <p>As you can see, it also displays another special directory that’s just called <code>.</code>, which means “the current working directory.” It may seem redundant to have a name for it, but we’ll see some uses for it soon.</p>
 <blockquote>
 <h4 id="phone-home">Phone Home</h4>
-<p>If you ever want to get to the home directory immediately, you can use theshortcut <code>~</code>. For example, type <code>cd ~</code> and you’ll get back home in a jiffy. <code>~</code> will also stand in for your home directory in paths, so for instance<code>~/Desktop</code> is the same as <code>/home/jae/Desktop</code>. This only works if it isthe first character in the path: <code>here/there/~/elsewhere</code> is not <code>/home/jae/elsewhere</code>.</p>
+<p>If you ever want to get to the home directory immediately, you can use the shortcut~<code>. For example, type</code>cd <sub><code>and you'll get back home in a jiffy.</code></sub><code>will also stand in for your home directory in paths, so for instance</code><sub>/Desktop<code>is tstand-inas</code>/home/jae/Desktop<code>. This only works if it is the first character in the path:</code>here/there/</sub>/elsewhere<code>is not</code>/home/jae/elsewhere`.</p>
 </blockquote>
 <p><strong>Additional tips</strong></p>
 <p>Okay. These exercises help us get to know about <code>cd</code> command, but not very exciting. Let’s do something more concrete and potentially useful. Let’s say you downloaded a file using your web browser and locate that file. How could you do that?</p>
 <p>Your first step should be learning more about <code>ls</code> command. You can do that by Googling or typing <code>ls --help</code>. By taking a look at the documentation, you can recognize that you need to add <code>-t</code> (sort by time). Then, what’s <code>|</code>? It’s called pipe and it chains commands. For instance, if <code>&lt;command 1&gt; | &lt;command 2&gt;</code>, then command1’s output will be command2’s input. <code>head</code> list the first ten lines of a file. <code>-n1</code> flag makes it show only the first line of the output (n1).</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb27-1"><a href="git-bash.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Don&#39;t forget using TAB completion</span></span>
+<div class="sourceCode" id="cb27"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb27-1"><a href="git-bash.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Don&#39;t forget to use TAB completion</span></span>
 <span id="cb27-2"><a href="git-bash.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Downloads/ </span>
 <span id="cb27-3"><a href="git-bash.html#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-4"><a href="git-bash.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> -t <span class="kw">|</span> <span class="fu">head</span> -n1</span></code></pre></div>
@@ -719,7 +719,7 @@ When it appears at the front of a file or directory name, it refers to the root 
 <div class="sourceCode" id="cb28"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb28-1"><a href="git-bash.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> -t <span class="kw">|</span> <span class="fu">find</span> *.pdf <span class="kw">|</span> <span class="fu">head</span> -n1 </span></code></pre></div>
 </div>
 <div id="creating-copying-removing-and-renaming-files" class="section level4" number="3.1.2.14">
-<h4><span class="header-section-number">3.1.2.14</span> Creating, copying, removing, and renaming files</h4>
+<h4><span class="header-section-number">3.1.2.14</span> Creating, copying, removing and renaming files</h4>
 <div id="creating-files" class="section level5" number="3.1.2.14.1">
 <h5><span class="header-section-number">3.1.2.14.1</span> Creating files</h5>
 <ol style="list-style-type: decimal">
@@ -800,7 +800,7 @@ rm test_*
 <pre><code>rm -d exercise/  </code></pre>
 <p>Oops. Still not working because the directory is not empty. Try this. Now, it works.</p>
 <pre><code>rm -r exercise/ </code></pre>
-<p>What’s <code>-r</code>? It stands for recursion (e.g., . Recursion is a very powerful idea in programming and helps solving complex problems. We’ll come back to it many times (e.g., <code>purrr::reduce</code> in R).</p>
+<p>What’s <code>-r</code>? It stands for recursion (e.g., . Recursion is a very powerful idea in programming and helps to solve complex problems. We’ll come back to it many times (e.g., <code>purrr::reduce</code> in R).</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Mv9NEXX1VHc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -876,7 +876,7 @@ If you have a large text file, the fact that <code>cat</code> prints everything 
 <p><strong>Additional tips 2</strong>
 The other cool command for text parsing is <code>awk</code>. This command is especially useful for filtering.</p>
 <ol style="list-style-type: decimal">
-<li>This is same as using <code>cat</code> (basically, printing). So, what’s new?</li>
+<li>This is the same as using <code>cat</code> (basically, printing). So, what’s new?</li>
 </ol>
 <div class="sourceCode" id="cb51"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb51-1"><a href="git-bash.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">&#39;{print}&#39;</span> billionaires.csv </span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
@@ -884,7 +884,7 @@ The other cool command for text parsing is <code>awk</code>. This command is esp
 </ol>
 <div class="sourceCode" id="cb52"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb52-1"><a href="git-bash.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">&#39;/China/ {print}&#39;</span> billionaires.csv</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>Let’s see only the five rows. We filtered rows so that the every row in the final dataset contains ‘China.’</li>
+<li>Let’s see only the five rows. We filtered rows so that every row in the final dataset contains ‘China.’</li>
 </ol>
 <div class="sourceCode" id="cb53"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb53-1"><a href="git-bash.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">&#39;/China/ {print}&#39;</span> billionaires.csv <span class="kw">|</span> <span class="fu">head</span> -n5 </span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
@@ -896,7 +896,7 @@ The other cool command for text parsing is <code>awk</code>. This command is esp
 <h4><span class="header-section-number">3.1.2.16</span> User roles and file permissions</h4>
 <ol style="list-style-type: decimal">
 <li><p>If you need admin access, use <code>sudo</code>. For instance, <code>sudo apt-get install &lt;package name&gt;</code>.</p></li>
-<li><p>To run a Shell script (.sh), you need to change its file mode. You can make the script executable by typing <code>chmod +x &lt;Shell script&gt;</code>. Then, you can run it by typing <code>./pdf_copy_sh.</code> <code>.</code> refers the current working directory. Other options: <code>sh pdf_copy_sh.</code> or <code>bash pdf_copy_sh.</code> I use <code>./pdf_copy_sh.</code></p></li>
+<li><p>To run a Shell script (.sh), you need to change its file mode. You can make the script executable by typing <code>chmod +x &lt;Shell script&gt;</code>. Then, you can run it by typing <code>./pdf_copy_sh.</code> <code>.</code> refers to the current working directory. Other options: <code>sh pdf_copy_sh.</code> or <code>bash pdf_copy_sh.</code> I use <code>./pdf_copy_sh.</code></p></li>
 </ol>
 </div>
 <div id="writing-your-first-shell-script-.sh" class="section level4" number="3.1.2.17">
@@ -944,7 +944,7 @@ The other cool command for text parsing is <code>awk</code>. This command is esp
 <p><strong>The most important point</strong></p>
 <ul>
 <li><p>Backup != Version control</p></li>
-<li><p>If you do version control, you need to save your <strong>raw data</strong> in your hard disk, external drive, or cloud, but nothing else. In other words, anything that you are going to change should be subject to version control (also, it’s not same as saving your code with names like 20200120_Kim or something like that). Below, I will explain what is version control and how to do it using Git and GitHub.</p></li>
+<li><p>If you do version control, you need to save your <strong>raw data</strong> in your hard disk, external drive, or cloud, but nothing else. In other words, anything that you are going to change should be subject to version control (also, it’s not the same as saving your code with names like 20200120_Kim or something like that). Below, I will explain what is version control and how to do it using Git and GitHub.</p></li>
 </ul>
 <div class="figure">
 <img src="https://i2.wp.com/cdn-images-1.medium.com/max/399/1*7HHA_UkjUK7wp7qP4CYu1g.png?zoom=1.75&amp;w=456&amp;ssl=1" alt="" />
@@ -957,7 +957,7 @@ The other cool command for text parsing is <code>awk</code>. This command is esp
 <li>When were the changes made?</li>
 <li>Why were changes needed?</li>
 </ul>
-<p>Git is a case of a <a href="https://en.wikipedia.org/wiki/Distributed_version_control">distributed version control system</a>, common in open source and commercial software development. This is no surprising given that Git <a href="https://lkml.org/lkml/2005/4/6/121">was originally created</a> to deal with Linux kernal development.</p>
+<p>Git is a case of a <a href="https://en.wikipedia.org/wiki/Distributed_version_control">distributed version control system</a>, common in open source and commercial software development. This is no surprise given that Git <a href="https://lkml.org/lkml/2005/4/6/121">was originally created</a> to deal with Linux kernel development.</p>
 <p><strong>Food for thought</strong></p>
 <p>If you’re curious about how the Internet works, learn one of the key ideas of the Internet: <a href="https://en.wikipedia.org/wiki/End-to-end_principle">end-to-end principle</a>. This also explains why <a href="https://en.wikipedia.org/wiki/Net_neutrality">net neutrality</a> matters.</p>
 <p>The following images, from <a href="git-scm.com">Pro Git</a>, show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS (e.g., Git, Mercurial, Bazzar or Darcs) works differently.</p>
@@ -997,7 +997,7 @@ The other cool command for text parsing is <code>awk</code>. This command is esp
 <div class="sourceCode" id="cb56"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb56-1"><a href="git-bash.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> --version </span>
 <span id="cb56-2"><a href="git-bash.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># git version 2.xx.x</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li>If you haven’t, sign up a GitHub account: <a href="https://github.com/" class="uri">https://github.com/</a></li>
+<li>If you haven’t, sign up for a GitHub account: <a href="https://github.com/" class="uri">https://github.com/</a></li>
 </ol>
 <ul>
 <li>If you’re a student, also sign up for GitHub Student Developer Pack: <a href="https://education.github.com/pack" class="uri">https://education.github.com/pack</a> Basically, you can get a GitHub pro account for free (so why not?).</li>
@@ -1021,10 +1021,10 @@ The other cool command for text parsing is <code>awk</code>. This command is esp
 <li>If you get asked to provide your password when you pull or push, the password should be your GitHub token (to be precise, personal access token).</li>
 </ol>
 <p><strong>SSH</strong></p>
-<p>If possible, I highly recommend using SSH. Using SSH is safer and also makes connecting GitHub easier. SSH has two keys (public and private). Public key could be stored on any server (e.g., GitHub) and private key could be saved in your client (e.g., your laptop). Only when the two are matched, the system unlocks.</p>
+<p>If possible, I highly recommend using SSH. Using SSH is safer and also makes connecting GitHub easier. SSH has two keys (public and private). The public key could be stored on any server (e.g., GitHub) and the private key could be saved in your client (e.g., your laptop). Only when the two are matched, the system unlocks.</p>
 <ol style="list-style-type: decimal">
 <li><p>First, read <a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">this tutorial</a> and create SSH keys.</p></li>
-<li><p>Second, read <a href="https://happygitwithr.com/ssh-keys.html">this tutorial</a> and check the keys and provide the public key to GitHub and add private key to ssh-agent.</p></li>
+<li><p>Second, read <a href="https://happygitwithr.com/ssh-keys.html">this tutorial</a> and check the keys and provide the public key to GitHub and add the private key to ssh-agent.</p></li>
 </ol>
 <p>Next time, if you want to use SSH, remember the following.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb58-1"><a href="git-bash.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SSH</span></span>
@@ -1033,7 +1033,7 @@ The other cool command for text parsing is <code>awk</code>. This command is esp
 <span id="cb58-4"><a href="git-bash.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="co"># HTTPS</span></span>
 <span id="cb58-5"><a href="git-bash.html#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="ex">https</span>://github.com/<span class="op">&lt;</span>user<span class="op">&gt;</span>/<span class="op">&lt;</span>repo<span class="op">&gt;</span>.git</span></code></pre></div>
 <p><strong>Additional tips</strong></p>
-<p>When you try to clone a git repo, you cna get the links like the above by clicking CODE action button on GitHub.</p>
+<p>When you try to clone a git repo, you can get the links like the above by clicking CODE action button on GitHub.</p>
 <p><img src="misc/ssh.png" /></p>
 </div>
 <div id="configurations" class="section level4" number="3.2.2.2">
@@ -1046,7 +1046,7 @@ The other cool command for text parsing is <code>awk</code>. This command is esp
 <span id="cb59-3"><a href="git-bash.html#cb59-3" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> config --global user.name <span class="st">&quot;Firstname Lastname&quot;</span></span>
 <span id="cb59-4"><a href="git-bash.html#cb59-4" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> config --global user.email username@school.extension</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li>Method 2: using RStudio (if you insist using R)</li>
+<li>Method 2: using RStudio (if you insist on using R)</li>
 </ol>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="git-bash.html#cb60-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(usethis)</span>
 <span id="cb60-2"><a href="git-bash.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">&quot;&lt;Firstname Lastname&gt;&quot;</span>,</span>
@@ -1073,7 +1073,7 @@ The other cool command for text parsing is <code>awk</code>. This command is esp
 <span id="cb64-6"><a href="git-bash.html#cb64-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb64-7"><a href="git-bash.html#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove local files </span></span>
 <span id="cb64-8"><a href="git-bash.html#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clean -f</span></code></pre></div>
-<p>Note that the default branch name changed from master to main: <a href="https://github.com/github/renaming" class="uri">https://github.com/github/renaming</a> (Finally!) For this reason, if you’re interacting with old repositories, the main branch name is likely master.</p>
+<p>Note that the default branch name changed from master to main: <a href="https://github.com/github/renaming" class="uri">https://github.com/github/renaming</a> (Finally!) For this reason, if you’re interacting with old repositories, the main branch name is likely to master.</p>
 <p><strong>Additional tips</strong>
 You can see cloning and forking on GitHub and they sound similar. Let me differentiate them.</p>
 <ul>
@@ -1087,14 +1087,14 @@ You can see cloning and forking on GitHub and they sound similar. Let me differe
 <div class="sourceCode" id="cb65"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb65-1"><a href="git-bash.html#cb65-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">mkdir</span> code_exercise </span>
 <span id="cb65-2"><a href="git-bash.html#cb65-2" aria-hidden="true" tabindex="-1"></a>$ <span class="bu">cd</span> code_exercise </span></code></pre></div>
 <div class="sourceCode" id="cb66"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb66-1"><a href="git-bash.html#cb66-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> init </span></code></pre></div>
-<p>Alternatively, you can create a Git repository via GitHub and then clone it on your local machine. Perhaps, it is an easier path for new users (I also do this all the time). When you do this, I highly recommend add README (more on why we do this in the following subection).</p>
+<p>Alternatively, you can create a Git repository via GitHub and then clone it on your local machine. Perhaps, it is an easier path for new users (I also do this all the time). When you do this, I highly recommend adding README (more on why we do this in the following subsection).</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb67-1"><a href="git-bash.html#cb67-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> clone /path/to/repository</span></code></pre></div>
 <p><strong>Additional tips</strong>
-If you’re unfamiliar with basic Git commands, then please refer to <a href="http://rogerdudler.GitHub.io/git-guide/files/git_cheat_sheet.pdf">this Git cheet sheet</a>.</p>
+If you’re unfamiliar with basic Git commands, then please refer to <a href="http://rogerdudler.GitHub.io/git-guide/files/git_cheat_sheet.pdf">this Git cheat sheet</a>.</p>
 </div>
 <div id="commit-changes" class="section level3" number="3.2.5">
 <h3><span class="header-section-number">3.2.5</span> Commit changes</h3>
-<p>These feature show how Git works as a version control system.</p>
+<p>These features show how Git works as a version control system.</p>
 <p>If you edited files or added new ones, then you need to update your repository. In Git terms, this action is called committing changes.</p>
 <p>My current pwd is <code>spring_2021</code>. I created a text file named <code>test</code> that contains text <code>jae</code>. You can check the file exists by typing <code>find "test"</code>.</p>
 <p>The following is a typical workflow to reflect this change to the remote.</p>
@@ -1121,21 +1121,21 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <div id="push-and-pull-or-fetch" class="section level3" number="3.2.6">
 <h3><span class="header-section-number">3.2.6</span> Push and pull (or fetch)</h3>
 <p>These features show how Git works as a collaboration tool.</p>
-<p>If you have not already done, let’s clone PS239T directory on your local machine.</p>
+<p>If you have not already done it, let’s clone the PS239T directory on your local machine.</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb70-1"><a href="git-bash.html#cb70-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> clone https://github.com/PS239T/spring_2021 <span class="co"># clone </span></span></code></pre></div>
 <p><strong>Additional tips 1</strong></p>
-<p>If you try to remove <code>spring_2021</code> using <code>rm -r spring_2021/</code>, you will get an error about write-protected regular file. Then, try <code>rm -rf spring_2021/</code>.</p>
+<p>If you try to remove <code>spring_2021</code> using <code>rm -r spring_2021/</code>, you will get an error about the write-protected regular file. Then, try <code>rm -rf spring_2021/</code>.</p>
 <p>Then, let’s learn more about the repository.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb71-1"><a href="git-bash.html#cb71-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> remote -v </span></code></pre></div>
 <p>You should see something like the following:</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb72-1"><a href="git-bash.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="ex">origin</span>  git@github.com:PS239T/spring_2021 (fetch)</span>
 <span id="cb72-2"><a href="git-bash.html#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="ex">origin</span>  git@github.com:PS239T/spring_2021 (push)</span></code></pre></div>
 <p>If you want to see more information, then type <code>git remote show origin</code></p>
-<p>Previously, we learned how to send your data save in the local machine to the remote (the GitHub server). You can do that by editing or creating files, committing, and then typing <strong>git push</strong>.</p>
-<p>Instead, if you want to update your local data with the remote data, then you can type <strong>git pull origin</strong> (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merge it into your local data.</p>
+<p>Previously, we learned how to send your data to save in the local machine to the remote (the GitHub server). You can do that by editing or creating files, committing, and then typing <strong>git push</strong>.</p>
+<p>Instead, if you want to update your local data with the remote data, you can type <strong>git pull origin</strong> (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). When you do that, Git retrieves the data and merges it into your local data.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb73-1"><a href="git-bash.html#cb73-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> fetch origin</span></code></pre></div>
 <p><strong>Additional tips 2</strong></p>
-<p>Developers usually use PR to refer pull requests. When you are making PRs, it’s recommend to scope down (small PRs) because they are easier on reviewers and to test. To learn about how to accomplish this, see <a href="https://www.netlify.com/blog/2020/03/31/how-to-scope-down-prs/">this blog post</a> by Sarah Drasner.</p>
+<p>Developers usually use PR to refer pull requests. When you are making PRs, it’s recommended to scope down (small PRs) because they are easier on reviewers and to test. To learn about how to accomplish this, see <a href="https://www.netlify.com/blog/2020/03/31/how-to-scope-down-prs/">this blog post</a> by Sarah Drasner.</p>
 </div>
 <div id="branching" class="section level3" number="3.2.7">
 <h3><span class="header-section-number">3.2.7</span> Branching</h3>
@@ -1161,7 +1161,7 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 </ol>
 <div class="sourceCode" id="cb76"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb76-1"><a href="git-bash.html#cb76-1" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> rm file_name <span class="co"># remove </span></span>
 <span id="cb76-2"><a href="git-bash.html#cb76-2" aria-hidden="true" tabindex="-1"></a>$ <span class="fu">git</span> mv old_file_name new_file_name <span class="co"># rename a file </span></span></code></pre></div>
-<p>How about removing a directory only from the GitHub but not local?</p>
+<p>How about removing a directory only from GitHub but not local?</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb77-1"><a href="git-bash.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm -r --cached <span class="op">&lt;</span>directory<span class="op">&gt;</span></span>
 <span id="cb77-2"><a href="git-bash.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit -m <span class="st">&quot;&lt;message&gt;&quot;</span></span>
 <span id="cb77-3"><a href="git-bash.html#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
@@ -1171,14 +1171,14 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <p>Two options.</p>
 <ul>
 <li>Sharing a repository (suitable for a private project).</li>
-<li>Fork and pull (suitable for an open source project).
+<li>Fork and pull (suitable for an open-source project).
 ​ * The one who maintains the repository becomes the maintainer.
 ​ * The others can <a href="https://help.GitHub.com/articles/about-forks/">fork</a>, make changes, and even <a href="https://help.GitHub.com/articles/about-pull-requests/">pull</a> them back.</li>
 </ul>
 </div>
 <div id="deployment-github-pages" class="section level3" number="3.2.10">
 <h3><span class="header-section-number">3.2.10</span> Deployment: GitHub Pages</h3>
-<p>GitHub pages are also useful to deploy websites. This book is deployed by GitHub Pages.</p>
+<p>GitHub pages are also useful to deploy websites. GitHub Pages deploy this book.</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4TrOCv5Kukk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -1187,7 +1187,7 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 </div>
 <div id="tracking-progress-github-issues" class="section level3" number="3.2.11">
 <h3><span class="header-section-number">3.2.11</span> Tracking progress: GitHub Issues</h3>
-<p>I use GitHub issues to collect and respond questions on the projects and classes in which I am involved.</p>
+<p>I use GitHub issues to collect and respond to questions on the projects and classes I am involved in.</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TJlYiMp8FuY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -1204,16 +1204,16 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 </div>
 <div id="using-git-clients" class="section level3" number="3.2.13">
 <h3><span class="header-section-number">3.2.13</span> Using Git clients</h3>
-<p>Okay. Using command line Git helps you understand how Git works. Also, you know that if possible I’d love to do almost everything in the terminal. However, using command line Git is sometimes too complex or too buggy. An alternative is using Git clients (GUI).</p>
-<p>I use <a href="https://www.gitkraken.com/">Git Kraken</a> because it’s free, works on almost every OS (Windows, Mac and Linux) and quite versatile. It’s especially useful to trace and understand your development process (e.g., commits, branches, pull requests, comments). I heard also positive things about <a href="https://desktop.github.com/">GitHub Desktop</a> (Windows and Mac) and <a href="https://www.sourcetreeapp.com/">Sourcetree</a> (Windows).</p>
+<p>Okay. Using command-line Git helps you understand how Git works. Also, you know that if possible, I’d love to do almost everything in the terminal. However, using the command-line Git is sometimes too complicated or too buggy. An alternative is using Git clients (GUI).</p>
+<p>I use <a href="https://www.gitkraken.com/">Git Kraken</a> because it’s free, works on almost every OS (Windows, Mac, and Linux), and quite versatile. It’s instrumental in tracing and understand your development process (e.g., commits, branches, pull requests, comments). I also heard positive things about <a href="https://desktop.github.com/">GitHub Desktop</a> (Windows and Mac) and <a href="https://www.sourcetreeapp.com/">Sourcetree</a> (Windows).</p>
 </div>
 </div>
 <div id="getting-started-in-r" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Getting started in R</h2>
 <div id="rstudio" class="section level3" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> RStudio</h3>
-<p>There are two main ways of interacting with R: using the console or by using script files (plain text files that contain your code).</p>
-<p>If R is ready to accept commands, the R console shows a <code>&gt;</code> prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using <code>Ctrl-Enter</code>; <code>Command-Enter</code> will also work on Macs), R will try to execute it, and when ready, show the results and come back with a new <code>&gt;</code>-prompt to wait for new commands. This is the equivalent of the <code>$</code> in your terminal.</p>
+<p>There are two main ways of interacting with R: using the console or using script files (plain text files containing your code).</p>
+<p>If R is ready to accept commands, the R console shows a <code>&gt;</code> prompt. If it receives a command (by typing, copy-pasting, or sent from the script editor using <code>Ctrl-Enter</code>; <code>Command-Enter</code> will also work on Macs), R will try to execute it, and when ready, show the results and come back with a new <code>&gt;</code>-prompt to wait for further commands. This is the equivalent of the <code>$</code> in your terminal.</p>
 </div>
 <div id="basic-syntax" class="section level3" number="3.3.2">
 <h3><span class="header-section-number">3.3.2</span> Basic Syntax</h3>
@@ -1224,7 +1224,7 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="git-bash.html#cb78-1" aria-hidden="true" tabindex="-1"></a>USweird <span class="ot">&lt;-</span> <span class="st">&quot;Why use lb for pound!&quot;</span> <span class="co"># Use this</span></span>
 <span id="cb78-2"><a href="git-bash.html#cb78-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb78-3"><a href="git-bash.html#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Why use lb for pound!&quot;</span> <span class="ot">=</span> USweird</span></code></pre></div>
-<p>Nonetheless, <em>can</em> does not mean you <em>should</em>. It is good practice to use <code>&lt;-</code> for assignments. <code>=</code> should only be used to specify the values of arguments of functions. This is what Google and Hadley Wickham recommend as well. If they don’t convince you enough, here’s <a href="https://csgillespie.wordpress.com/2010/11/16/assignment-operators-in-r-vs/">a real example</a>.</p>
+<p>Nonetheless, <em>can</em> do not mean you <em>should</em>. It is good practice to use <code>&lt;-</code> for assignments. <code>=</code> should only be used to specify the values of arguments of functions. This is what Google and Hadley Wickham recommend as well. If they don’t convince you enough, here’s <a href="https://csgillespie.wordpress.com/2010/11/16/assignment-operators-in-r-vs/">a real example</a>.</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="git-bash.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># Does it save x?</span></span></code></pre></div>
 <pre><code>## [1] 5.5</code></pre>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="git-bash.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
@@ -1233,7 +1233,7 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <pre><code>## [1] 5.5</code></pre>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="git-bash.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
 <p><strong>Printing</strong></p>
-<p>In R, the contents of an object can be printed by either simply executing the the object name or calling the <code>print()</code> function.</p>
+<p>In R, an object’s contents can be printed by either simply executing the object name or calling the <code>print()</code> function.</p>
 <p><strong>Help</strong></p>
 <ul>
 <li><code>?</code> + object opens a help page for that specific object</li>
@@ -1243,9 +1243,9 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <span id="cb86-2"><a href="git-bash.html#cb86-2" aria-hidden="true" tabindex="-1"></a>??mean</span>
 <span id="cb86-3"><a href="git-bash.html#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(mean)</span>
 <span id="cb86-4"><a href="git-bash.html#cb86-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-5"><a href="git-bash.html#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The above three will do same. </span></span>
+<span id="cb86-5"><a href="git-bash.html#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The above three will do the same. </span></span>
 <span id="cb86-6"><a href="git-bash.html#cb86-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-7"><a href="git-bash.html#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(ls) <span class="co"># provides example for how to use ls </span></span>
+<span id="cb86-7"><a href="git-bash.html#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(ls) <span class="co"># provides an example(s) for how to use ls </span></span>
 <span id="cb86-8"><a href="git-bash.html#cb86-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb86-9"><a href="git-bash.html#cb86-9" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">&quot;visualization&quot;</span>) <span class="co"># search functions and packages that have &quot;visualization&quot; in their descriptions</span></span></code></pre></div>
 </div>
@@ -1292,7 +1292,7 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 </div>
 <div id="packages" class="section level4" number="3.3.3.2">
 <h4><span class="header-section-number">3.3.3.2</span> Packages</h4>
-<p><code>install.packages(package-name)</code> will download a package from one of the CRAN mirrors assuming that a binary is available for your operating system.</p>
+<p><code>install.packages(package-name)</code> will download a package from one of the CRAN mirrors, assuming that a binary is available for your operating system.</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="git-bash.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From CRAN</span></span>
 <span id="cb91-2"><a href="git-bash.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>) </span>
 <span id="cb91-3"><a href="git-bash.html#cb91-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1338,7 +1338,7 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <li><p>Don’t point and click (same problem)</p></li>
 <li><p>Teach a computer (automation also solves documentation to some extent)</p></li>
 <li><p>Use some version control</p></li>
-<li><p>Don’t save output (instead keep the input and code)</p></li>
+<li><p>Don’t save output (instead, keep the input and code)</p></li>
 <li><p>Set your seed</p></li>
 <li><p>Think about the entire pipeline</p></li>
 </ol></li>
@@ -1361,7 +1361,7 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <p>You won’t be able to reproduce your project unless it is efficiently organized.</p>
 <p>Step 1. <a href="https://environments.rstudio.com/"><strong>Environment</strong></a> is part of your project. If someone can’t reproduce your environment, they won’t be able to run your code.</p>
 <ul>
-<li>Launch R Studio. Tools &gt; Global Options. You <strong>should not</strong> check Restore .RData into workspace at startup. Also, set saving workspace option to <strong>NEVER.</strong></li>
+<li>Launch R Studio. Tools &gt; Global Options. You <strong>should not</strong> check Restore .RData into workspace at startup. Also, set the saving workspace option to <strong>NEVER.</strong></li>
 </ul>
 <p>Step 2. For each project, create a project directory named after the project.</p>
 <p>name_of_the_project</p>
@@ -1380,15 +1380,15 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <li>name_of_project.Rproj (for R)</li>
 <li>README.md (for Git)</li>
 </ul>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="git-bash.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Don&#39;t name it a project. Use a name that&#39;s more informative. For instance, us_election not my_project.</span></span>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="git-bash.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Don&#39;t name it a project. Use a more informative name. For instance, `us_election`, not `my_project.`</span></span>
 <span id="cb96-2"><a href="git-bash.html#cb96-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb96-3"><a href="git-bash.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;../us_election&quot;</span>)</span></code></pre></div>
-<p>Step 3. Launch R Studio. Choose File &gt; New project &gt; Browse existing directories &gt; Create project This allows each project has its own workspace.</p>
-<p>Step 4. Organize files by putting them in separate subdirectories and naming them in a sensible way.</p>
+<p>Step 3. Launch R Studio. Choose File &gt; New project &gt; Browse existing directories &gt; Create project. This allows each project has its workspace.</p>
+<p>Step 4. Organize files by putting them in separate subdirectories and sensibly naming them.</p>
 <ul>
-<li><p>Treat raw data as read only (raw data should be RAW!) and put in the <code>data</code> subdirectory.</p>
+<li><p>Treat raw data as read-only (raw data should be RAW!) and put it in the <code>data</code> subdirectory.</p>
 <ul>
-<li>Again, note that version control does not need replace backup. You still need to backup your raw data.</li>
+<li>Again, note that version control does not need to replace backup. You still need to back up your raw data.</li>
 </ul></li>
 </ul>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="git-bash.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;data&quot;</span>))</span></code></pre></div>
@@ -1408,7 +1408,7 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <li>Put your custom functions in the <code>functions</code> subdirectory. You can gather some of these functions and distribute them as an open-source library.</li>
 </ul>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="git-bash.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;us_election&quot;</span>, <span class="st">&quot;functions&quot;</span>))</span></code></pre></div>
-<p>Tired of creating these directories one by one? Why not automate? See the following example. You can save this function as an rscript (e.g., <code>setup.r</code>) and run in the terminal using <code>Rscript &lt;script name&gt;</code>.</p>
+<p>Are you tired of creating these directories one by one? Why not automate? See the following example. You can save this function as a rscript (e.g., <code>setup.r</code>) and run it in the terminal using <code>Rscript &lt;script name&gt;.</code></p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="git-bash.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(pacman)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
 <span id="cb102-2"><a href="git-bash.html#cb102-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb102-3"><a href="git-bash.html#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load here</span></span>
@@ -1427,11 +1427,11 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <p><strong>Challenge</strong></p>
 <p>Set a project structure for a project named “starwars.”</p>
 </div>
-<div id="how-to-organize-code-in-a-r-markdown-file" class="section level4" number="3.4.1.4">
-<h4><span class="header-section-number">3.4.1.4</span> How to organize code in a R markdown file</h4>
+<div id="how-to-organize-code-in-an-r-markdown-file" class="section level4" number="3.4.1.4">
+<h4><span class="header-section-number">3.4.1.4</span> How to organize code in an R markdown file</h4>
 <ul>
-<li><p>In addition to environment, <strong>workflow</strong> is an important component of project efficiency and reproducibility.</p></li>
-<li><p>What is R markdown? An R package, developed by <a href="https://yihui.org/en/">Yihui Xie</a>, that provides an authoring framework for data science. Xie is also a developer of many widely popular R packages such as <code>knitr</code>, <a href="https://GitHub.com/yihui/xaringan"><code>xaringan</code></a> (cool kids use xaringan not <a href="https://en.wikipedia.org/wiki/Beamer_(LaTeX)">Beamer</a> these days), <code>blogdown</code> (used to create <a href="https://jaeyk.GitHub.io/">my personal website</a>), and <code>bookdown</code> (used to create this book) among many others.</p>
+<li><p>In addition to environment, <strong>workflow</strong> is an essential component of project efficiency and reproducibility.</p></li>
+<li><p>What is R markdown? An R package, developed by <a href="https://yihui.org/en/">Yihui Xie</a>, provides an authoring framework for data science. Xie is also a developer of many widely popular R packages such as <code>knitr</code>, <a href="https://GitHub.com/yihui/xaringan"><code>xaringan</code></a> (cool kids use xaringan not <a href="https://en.wikipedia.org/wiki/Beamer_(LaTeX)">Beamer</a> these days), <code>blogdown</code> (used to create <a href="https://jaeyk.GitHub.io/">my personal website</a>), and <code>bookdown</code> (used to create this book) among many others.</p>
 <ul>
 <li>Many applications: <a href="https://rstudio.GitHub.io/distill/basics.html">reports</a>, <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html">presentations</a>, <a href="https://rmarkdown.rstudio.com/flexdashboard/">dashboards</a>, <a href="https://bookdown.org/yihui/rmarkdown/websites.html">websites</a><br />
 </li>
@@ -1467,8 +1467,8 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <span id="cb104-4"><a href="git-bash.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model data</span></span>
 <span id="cb104-5"><a href="git-bash.html#cb104-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize data</span></span></code></pre></div>
 <ul>
-<li><p>Press <code>ctrl + shift + o</code>. You can see a document outline based on these headers. This is a nice feature for finding code you need to focus.</p></li>
-<li><p>If your project’s scale is large, then divide these sections into files, number, and save them in <code>code</code> subdirectory.</p>
+<li><p>Press <code>ctrl + shift + o</code>. You can see a document outline based on these headers. This is a nice feature for finding the code you need to focus on.</p></li>
+<li><p>If your project’s scale is large, divide these sections into files, numbers, and save them in the <code>code</code> subdirectory.</p>
 <ul>
 <li>01_wrangling.Rmd</li>
 <li>02_modeling.Rmd
@@ -1495,7 +1495,7 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <ul>
 <li><p>Instead, learn how to use <code>here()</code>’.</p>
 <ul>
-<li><p>Key idea: separate workflow (e.g., workspace information) from products (code and data). For more information, read Jenny Bryan’s wonderful piece on <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">project-oriented workflow</a>.</p></li>
+<li><p>Key idea: separate workflow (e.g., workspace information) from products (code and data). For more information, read Jenny Bryan’s excellent piece on <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">project-oriented workflow</a>.</p></li>
 <li><p>Example</p></li>
 </ul></li>
 </ul>
@@ -1566,7 +1566,7 @@ If you’re unfamiliar with basic Git commands, then please refer to <a href="ht
 <li>What is code style?</li>
 </ul>
 <blockquote>
-<p>Every major open-source project has its own style guide: a set of conventions (sometimes arbitrary) about how to write code for that project. It is much easier to understand a large codebase when all the code in it is in a consistent style. - <a href="https://google.GitHub.io/styleguide/">Google Style Guides</a></p>
+<p>Every major open-source project has its style guide: a set of conventions (sometimes arbitrary) about writing code for that project. It is much easier to understand a large codebase when all the code in it is in a consistent style. - <a href="https://google.GitHub.io/styleguide/">Google Style Guides</a></p>
 </blockquote>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UjhX2sVf0eg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -1584,13 +1584,13 @@ allowfullscreen></iframe>
 
 <p> Code smells and feels - Jenny Bryan</p>
 
-<p> "Code smell" is an evocative term for that vague feeling of unease we get when reading certain bits of code. It's not necessarily wrong, but neither is it obviously correct. We may be reluctant to work on such code, because past experience suggests it's going to be fiddly and bug-prone. In contrast, there's another type of code that just feels good to read and work on. What's the difference? If we can be more precise about code smells and feels, we can be intentional about writing code that is easier and more pleasant to work on. I've been fortunate to spend the last couple years embedded in a group of developers working on the tidyverse and r-lib packages. Based on this experience, I'll talk about specific code smells and deodorizing strategies for R. - Jenny Bryan</p>
+<p> "Code smell" is an evocative term for that vague feeling of unease we get when reading certain bits of code. It's not necessarily wrong, but neither is it obviously correct. We may be reluctant to work on such code because past experience suggests it's going to be fiddly and bug-prone. In contrast, there's another type of code that just feels good to read and work on. What's the difference? If we can be more precise about code smells and feels, we can be intentional about writing code that is easier and more pleasant to work on. I've been fortunate to spend the last couple of years embedded in a group of developers working on the tidyverse and r-lib packages. Based on this experience, I'll talk about specific code smells and deodorizing strategies for R. - Jenny Bryan</p>
 <ul>
 <li><p>Naming matters</p>
 <ul>
 <li>When naming files, remember the following three rules:
 <ul>
-<li>Machine readable (avoid spaces, punctuation, periods, and any other special characters except _ and -)</li>
+<li>Machine-readable (avoid spaces, punctuation, periods, and any other special characters except _ and -)</li>
 <li>Human readable (should be meaningful. No text1, image1, etc.,)</li>
 <li>Ordering (e.g., 01, 02, 03, … )</li>
 </ul></li>
@@ -1648,7 +1648,7 @@ allowfullscreen></iframe>
 <ul>
 <li>Indenting</li>
 </ul>
-<p>Indent at least 4 spaces. Note that some people, including none other than <a href="https://simplystatistics.org/2018/07/27/why-i-indent-my-code-8-spaces/">Roger Peng</a>, indent 8 spaces. The below example shows how you can change the default indentation setting using RStudio configuration.</p>
+<p>Indent at least 4 spaces. Note that some people, including none other than <a href="https://simplystatistics.org/2018/07/27/why-i-indent-my-code-8-spaces/">Roger Peng</a>, indent 8 spaces. The below example shows how you can change the default indentation setting using the RStudio configuration.</p>
 <div class="figure">
 <img src="https://pbs.twimg.com/media/CuHHs7yXgAAFWeh?format=jpg&amp;name=360x360" alt="" />
 <p class="caption">Roger Peng’s tweet</p>
@@ -1779,7 +1779,7 @@ allowfullscreen></iframe>
 <li>Automation
 <ul>
 <li>Many options for automation in R: <code>for loop</code>, <code>apply</code> family, etc.</li>
-<li>Here’s a tidy solution comes from <code>purrr</code> package.</li>
+<li>Here’s a tidy solution that comes from the <code>purrr</code> package.</li>
 <li>The power and joy of one-liner.</li>
 </ul></li>
 </ul>
@@ -1790,7 +1790,7 @@ allowfullscreen></iframe>
 <li>Takeaways</li>
 </ul>
 <ol style="list-style-type: decimal">
-<li>Your code becomes more reusable, when it’s easier to <strong>change, debug, and scale up</strong>. Don’t repeat yourself and embrace the power of lazy programming.</li>
+<li>Your code becomes more reusable, when it’s easier to <strong>change, debug, and scale-up</strong>. Don’t repeat yourself and embrace the power of lazy programming.</li>
 </ol>
 <blockquote>
 <p>Lazy, because only lazy programmers will want to write the kind of tools that might replace them in the end. Lazy, because only a lazy programmer will avoid writing monotonous, repetitive code—thus avoiding redundancy, the enemy of software maintenance and flexible refactoring. Mostly, the tools and processes that come out of this endeavor fired by laziness will speed up the production. - <a href="http://blogoscoped.com/archive/2005-08-24-n14.html">Philipp Lenssen</a></p>
@@ -1860,13 +1860,13 @@ allowfullscreen></iframe>
 <span id="cb131-2"><a href="git-bash.html#cb131-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb131-3"><a href="git-bash.html#cb131-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test_dir</span>() <span class="co"># directory</span></span>
 <span id="cb131-4"><a href="git-bash.html#cb131-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb131-5"><a href="git-bash.html#cb131-5" aria-hidden="true" tabindex="-1"></a><span class="fu">auto_test</span>() <span class="co"># the test code tested when you save file </span></span></code></pre></div>
+<span id="cb131-5"><a href="git-bash.html#cb131-5" aria-hidden="true" tabindex="-1"></a><span class="fu">auto_test</span>() <span class="co"># the test code tested when you save the file </span></span></code></pre></div>
 <div id="asking-questions-minimal-reproducible-example" class="section level3" number="3.6.1">
 <h3><span class="header-section-number">3.6.1</span> Asking questions: Minimal reproducible example</h3>
 <ul>
-<li><p>Chances are you’re going to use StackOverFlow a lot to solve a pressing problem you face. However, other can’t understand/be interested in your problem unless you can provide an example which they can understand with minimal efforts. Such example is called a minimal reproducible example.</p></li>
+<li><p>Chances are you’re going to use StackOverflow a lot to solve a pressing problem you face. However, others can’t understand/be interested in your problem unless you can provide an example that they can understand with minimal effort. Such an example is called a minimal reproducible example.</p></li>
 <li><p>Read <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example">this StackOverFlow post</a> to understand the concept and best practices.</p></li>
-<li><p>Simply put, a MRE consists of the following items:</p>
+<li><p>Simply put, an MRE consists of the following items:</p>
 <ul>
 <li>A minimal dataset</li>
 <li>The minimal burnable code</li>
@@ -1874,7 +1874,7 @@ allowfullscreen></iframe>
 <li>A seed for reproducibility (<code>set.seed()</code>), if you used a random process.</li>
 </ul></li>
 </ul>
-<p>In practice, use <code>reprex</code> package to create the code component of the MRE.</p>
+<p>In practice, use the <code>reprex</code> package to create the code component of the MRE.</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="git-bash.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(reprex)) <span class="fu">install.packages</span>(<span class="st">&quot;reprex&quot;</span>)</span></code></pre></div>
 <p>Copy the following code and type <code>reprex()</code> in the console.</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="git-bash.html#cb133-1" aria-hidden="true" tabindex="-1"></a>gpa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>)</span>
