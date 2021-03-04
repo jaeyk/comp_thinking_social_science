@@ -10,7 +10,7 @@
 
     - Belloni, Alexandre, Victor Chernozhukov, and Christian Hansen. ["High-dimensional methods and inference on structural and treatment effects."](https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.29) *Journal of Economic Perspectives 28*, no. 2 (2014): 29-50.
 
-- The rise of new approach: statistics + computer science = machine learning 
+- The rise of the new approach: statistics + computer science = machine learning 
 
 - Statistical inference 
 
@@ -51,7 +51,7 @@
 
     - Developing algorithms (estimating *f(x)*)
 
-    - Prediction power not structural/causal parameters
+    - Prediction power, not structural/causal parameters
 
     - Basically, high-dimensional data statistics (N < P)
 
@@ -59,7 +59,7 @@
 
     - Validation: out-of-sample comparisons (cross-validation) not in-sample goodness-of-fit measures
 
-    - So, it's curve-fitting but the primary focus is unseen (test data) not seen data (training data)
+    - So, it's curve-fitting, but the primary focus is unseen (test data), not seen data (training data)
 
 - A quick review on ML lingos for those trained in econometrics 
 
@@ -210,7 +210,7 @@ theme_set(theme_minimal())
     
     - [`yardstick`](https://github.com/tidymodels/yardstick): for model evaluations 
     
-    - [`workflows`](https://github.com/tidymodels/workflows): for bundling a pieplne that bundles together pre-processing, modeling, and post-processing requests 
+    - [`workflows`](https://github.com/tidymodels/workflows): for bundling a pieplne that bundles together preprocessing, modeling, and post-processing requests 
     
 - Why taking a tidyverse approach to machine learning?
 
@@ -240,7 +240,7 @@ theme_set(theme_minimal())
 
 - Step 2: `step_*()` defines preprocessing steps to be taken (recipe).
 
-    The list of the preprocessing steps draws on the vignette of the [`parsnip`](https://www.tidymodels.org/find/parsnip/) package.
+    The preprocessing steps list draws on the vignette of the [`parsnip`](https://www.tidymodels.org/find/parsnip/) package.
 
     - dummy: Also called one-hot encoding
 
@@ -256,7 +256,7 @@ theme_set(theme_minimal())
 
 - Step 3: `prep()` prepares a dataset to base each step on.
 
-- Step 4: `bake()` applies the pre-processing steps to your datasets. 
+- Step 4: `bake()` applies the preprocessing steps to your datasets. 
 
 In this course, we focus on two preprocessing tasks. 
 
@@ -625,7 +625,7 @@ evals %>%
 
 #### tune 
 
-**Hyper**parameters are parameters which control the learning process.
+**Hyper**parameters are parameters that control the learning process.
 
 ##### tune ingredients 
 
@@ -836,7 +836,7 @@ tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_
 
 - `precision`: Positive predictive value
 
-- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
+- `recall` (specificity): True positive rate (e.g., healthy people healthy)
 
 ![From wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png)
 
@@ -869,7 +869,7 @@ tree_fit_viz_mat
 
 ##### tune ingredients 
 
-Decisions trees tend to overfit. Broadly speaking, there are two things we need to consider to reduce this problem: how to split and when to stop a tree.
+Decisions trees tend to overfit. There are two things we need to consider to reduce this problem: how to split and when to stop a tree.
 
 - **complexity parameter**: a high CP means a simple decision tree with few splits. 
 
@@ -1025,7 +1025,7 @@ evaluate_class(test_fit)
 ## 3 recall    binary         0.756
 ```
 
-In the next subsection, we will learn variants of ensemble models that improve decision tree model by putting models together.
+In the next subsection, we will learn variants of ensemble models that improve decision tree models by putting models together.
 
 ### Bagging (Random forest)
 
@@ -1038,7 +1038,7 @@ Here we focus on the difference between bagging and boosting. In short, boosting
 
 **bagging**
 
-- Data: Training data will be random sampled with replacement (bootstrapping samples + drawing random **subsets** of features for training individual trees)
+- Data: Training data will be randomly sampled with replacement (bootstrapping samples + drawing random **subsets** of features for training individual trees)
 
 - Learning: Building models in parallel (independently)
 
@@ -1109,7 +1109,7 @@ rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_
 
 - `precision`: Positive predictive value
 
-- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
+- `recall` (specificity): True positive rate (e.g., healthy people healthy)
 
 
 ```r
@@ -1140,7 +1140,7 @@ rand_fit_viz_mat
 
 We focus on the following two hyperparameters:
 
-- `mtry`: The number of predictors to available for splitting at each node.
+- `mtry`: The number of predictors available for splitting at each node.
 
 - `min_n`: The minimum number of data points needed to keep splitting nodes. 
 
@@ -1363,7 +1363,7 @@ xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_clas
 
 - `precision`: Positive predictive value
 
-- `recall` (specificity): True positive rate (e.g., healthy people really healthy)
+- `recall` (specificity): True positive rate (e.g., healthy people healthy)
 
 
 ```r
@@ -1607,7 +1607,7 @@ Breiman, L., 1996. [Stacked regressions]((https://statistics.berkeley.edu/sites/
 
 The ["SuperLearner" R package](https://cran.r-project.org/web/packages/SuperLearner/index.html) is a method that simplifies ensemble learning by allowing you to simultaneously evaluate the cross-validated performance of multiple algorithms and/or a single algorithm with differently tuned hyperparameters. This is a generally advisable approach to machine learning instead of fitting single algorithms.
 
-Let's see how the four classification algorithms you learned in this workshop (1-lasso, 2-decision tree, 3-random forest, and 4-gradient boosted trees) compare to each other and also to 5-binary logistic regression (`glm`) and to the 6-mean of Y as a benchmark algorithm, in terms of their cross-validated error!
+Let's see how the four classification algorithms you learned in this workshop (1-lasso, 2-decision tree, 3-random forest, and 4-gradient boosted trees) compare to each other and also to 5-binary logistic regression (`glm`) and the 6-mean of Y as a benchmark algorithm, in terms of their cross-validated error!
 
 A "wrapper" is a short function that adapts an algorithm for the SuperLearner package. Check out the different algorithm wrappers offered by SuperLearner:
 
@@ -1748,7 +1748,7 @@ Risk is the average loss, and loss is how far off the prediction was for an indi
 ##### Summary 
 
 * `Discrete SL` chooses the best single learner (in this case, `SL.glmnet` or `lasso`).
-* `SuperLearner` takes a weighted average of the **models** using the coefficients (importance of each individual learner in the overall ensemble). Coefficient 0 means that learner is not used at all.
+* `SuperLearner` takes a weighted average of the **models** using the coefficients (importance of each learner in the overall ensemble). Coefficient 0 means that learner is not used at all.
 * `SL.mean_All` (the weighted mean of $Y$) is a benchmark algorithm (ignoring features). 
 
 
@@ -1792,7 +1792,7 @@ plot(cv_sl)
 
 **ROC**
 
-ROC: an ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis). 
+ROC: a ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis). 
 
 ![Area Under the ROC Curve](https://developers.google.com/machine-learning/crash-course/images/AUC.svg)
 
@@ -1851,9 +1851,9 @@ print(ck37r::cvsl_weights(cv_sl), row.names = FALSE)
 ##  5    mean 0.00000 0.00000 0.00000 0.00000
 ```
 
-General stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
+The general stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
 
-However, SuperLearner is currently not available in the tidymodels framework. If you'd like to, you can easily build and add a parsnip model. If you are interested in knowing more about it, please take a look at [this vignette](https://www.tidymodels.org/learn/develop/models/) of the tidymodels.
+However, SuperLearner is currently not available in the tidymodels framework. If you'd like to, you can easily build and add a parsnip model. If you are interested in knowing more about it, please look at [this vignette](https://www.tidymodels.org/learn/develop/models/) of the tidymodels.
 
 ### Applications 
 
@@ -1914,7 +1914,7 @@ data_original %>%
 
 #### Preprocessing 
 
-`recipe` is essential for preprocesssing multiple features at once.
+`recipe` is essential for preprocessing multiple features at once.
 
 
 ```r
@@ -2087,7 +2087,7 @@ sherlock <- sherlock[,2:3]
 
     - Multinominal (e.g., Latent Dirichlet Distribution)
 
-- Words lie on a lower dimensional space (dimension reduction)
+- Words lie on a lower-dimensional space (dimension reduction)
 
 - Co-occurrence of words (clustering)
 
@@ -2142,7 +2142,7 @@ sherlock_words %>%
 
 ##### Turn text into document-term matrix
 
-`stm` package has its own preprocessing function.
+`stm` package has its preprocessing function.
 
 
 ```r
@@ -2395,7 +2395,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 
 ##### Evaludating models 
 
-There are several metrics to assess the performance of topic models: the held-out likelihood, residuals, semantic coherence, and exclusivity. In this course, we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
+There are several metrics to assess topic models' performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. This course examines the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
 
 
 ```r
@@ -2466,7 +2466,7 @@ tidy_stm %>%
 
 ## Bias and fairness in machine learning 
 
-This section introduces the issues surrounding the fairness and bias in machine learning applications with a focus on the ProPublica's Analysis of the COMPAS algorithm. I revised [the ProPublica's original R and Python code](https://github.com/propublica/compas-analysis/blob/master/Compas%20Analysis.ipynb) to increase its code readability.
+This section introduces the issues surrounding the fairness and bias in machine learning applications, focusing on ProPublica's Analysis of the COMPAS algorithm. I revised [the ProPublica's original R and Python code](https://github.com/propublica/compas-analysis/blob/master/Compas%20Analysis.ipynb) to increase its code readability.
 
 ![A gif of defendants being put into an algorithm by SELMAN DESIGN](https://wp.technologyreview.com/wp-content/uploads/2019/10/mit-alg-yb-02-7.gif?fit=1444,962)
 
@@ -2480,11 +2480,11 @@ This section introduces the issues surrounding the fairness and bias in machine 
 
 **References**
 
-For more information on the ProPublica's Machine Bias project, we encourage to check out the following references.
+For more information on ProPublica's Machine Bias project, we encourage you to check out the following references.
 
 * [Argument](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing/) by Julia Angwin, Jeff Larson, Surya Mattu and Lauren Kirchner
 
-* [Counterargument](https://www.washingtonpost.com/news/monkey-cage/wp/2016/10/17/can-an-algorithm-be-racist-our-analysis-is-more-cautious-than-propublicas/) by Sam Corbett-Davies, Emma Pierson, Avi Feller and Sharad Goel
+* [Counterargument](https://www.washingtonpost.com/news/monkey-cage/wp/2016/10/17/can-an-algorithm-be-racist-our-analysis-is-more-cautious-than-propublicas/) by Sam Corbett-Davies, Emma Pierson, Avi Feller, and Sharad Goel
 
 * [Methodology](https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm/)
 
@@ -2540,7 +2540,7 @@ conflict_prefer("select", "dplyr")
 
 #### Load data 
 
-We select fields for severity of charge, number of priors, demographics, age, sex, COMPAS scores, and whether each person was accused of a crime within two years.
+We select fields for the severity of the charge, number of priors, demographics, age, sex, COMPAS scores, and whether each person was accused of a crime within two years.
 
 
 ```r
@@ -2565,11 +2565,11 @@ glue("N of observations (rows): {nrow(two_years)}
 #### Wrangling 
 
 - Not all of the observations are useable for the first round of analysis.
-- There are a number of reasons to remove rows because of missing data:
-    - If the charge date of a defendants COMPAS scored crime was not within 30 days from when the person was arrested, we assume that because of data quality reasons, that we do not have the right offense.
+- There are many reasons to remove rows because of missing data:
+    If the charge date of a defendant's COMPAS scored crime was not within 30 days from when the person was arrested, we assume that we do not have the right offense because of data quality reasons.
     - We coded the recidivist flag -- is_recid -- to be -1 if we could not find a COMPAS case at all.
     - In a similar vein, ordinary traffic offenses -- those with a c_charge_degree of 'O' -- will not result in Jail time are removed (only two of them).
-    - We filtered the underlying data from Broward county to include only those rows representing people who had either recidivated in two years, or had at least two years outside of a correctional facility.
+    - We filtered the underlying data from Broward county to include only those rows representing people who had either recidivated in two years or had at least two years outside of a correctional facility.
 
 - Create a function 
 
@@ -2672,7 +2672,7 @@ df %>%
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-86-1.pdf)<!-- --> 
 
-Judges are often presented with two sets of scores from the COMPAS system -- one that classifies people into High, Medium and Low risk, and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.
+Judges are often presented with two sets of scores from the COMPAS system -- one that classifies people into High, Medium, and Low risk and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.
 
 
 ```r
@@ -2689,7 +2689,7 @@ df %>%
 
 #### Modeling 
 
-After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. To do so we need to change some variables into factors, and run a logistic regression, comparing low scores to high scores.
+After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. We need to change some variables into factors and run a logistic regression, comparing low scores to high scores.
 
 - Model building 
 
@@ -2762,9 +2762,9 @@ lr_model %>%
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-90-1.pdf)<!-- --> 
 
-Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success and 1-p could be as a failure. Here, coefficient 1 indicates equal probability for the binary outcomes. Coefficient greater than 1 indicates strong chance for p and weak chance for 1-p. Coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
+Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success, and 1-p could be as a failure. Here, coefficient 1 indicates the equal probability for the binary outcomes. A coefficient greater than 1 indicates a strong chance for p and a weak chance for 1-p. A coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
 
-(To refresh your memory, note that probability is bounded between [0, 1]. Odds ranges between 0 and infinity. Log odds ranges from negative to positive infinity. We're going through this hassle because we used log function to map predictor variables to probability to fit the model to the binary outcomes.)
+(To refresh your memory, note that probability is bounded between [0, 1]. Odds range between 0 and infinity. Log odds range from negative to positive infinity. We're going through this hassle because we used the log function to map predictor variables to probability to fit the binary outcomes model.)
 
 In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see [Grant](https://www.bmj.com/content/348/bmj.f7450) (2014), [Wang](https://www.jstatsoft.org/article/view/v055i05) (2013), and [Zhang and Yu](https://jamanetwork.com/journals/jama/fullarticle/188182) (1998). 
 
@@ -2819,7 +2819,7 @@ odds_to_risk(lr_model) %>%
 ## 11  1.298233e-42 -1.55226716 -1.1637224
 ```
 
-Relative risk score 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.
+A relative risk score of 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.
 
 The plot visualizes this and other results from the table. 
 
@@ -3043,10 +3043,9 @@ df %>%
 ```
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-99-1.pdf)<!-- --> 
-
 #### Modeling 
 
-After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. To do so we need to change some variables into factors, and run a logistic regression, comparing low scores to high scores.
+After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. We need to change some variables into factors and run a logistic regression, comparing low scores to high scores.
 
 
 ```r
@@ -3117,9 +3116,9 @@ lr_model %>%
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-102-1.pdf)<!-- --> 
 
-Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success and 1-p could be as a failure. Here, coefficient 1 indicates equal probability for the binary outcomes. Coefficient greater than 1 indicates strong chance for p and weak chance for 1-p. Coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
+Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success, and 1-p could be as a failure. Here, coefficient 1 indicates the equal probability for the binary outcomes. A coefficient greater than 1 indicates strong chance for p and a weak chance for 1-p. A coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
 
-(To refresh your memory, note that probability is bounded between [0, 1]. Odds ranges between 0 and infinity. Log odds ranges from negative to positive infinity. We're going through this hassle because we used log function to map predictor variables to probability to fit the model to the binary outcomes.)
+(To refresh your memory, note that probability is bounded between [0, 1]. Odds range between 0 and infinity. Log odds range from negative to positive infinity. We're going through this hassle because we used the log function to map predictor variables to probability to fit the binary outcomes model.)
 
 In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see [Grant](https://www.bmj.com/content/348/bmj.f7450) (2014), [Wang](https://www.jstatsoft.org/article/view/v055i05) (2013), and [Zhang and Yu](https://jamanetwork.com/journals/jama/fullarticle/188182) (1998). 
 
@@ -3174,7 +3173,7 @@ odds_to_risk(lr_model) %>%
 ## 11  3.073150e-21 -2.1171742 -1.39384502
 ```
 
-Relative risk score 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.
+A relative risk score of 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.
 
 The plot visualizes this and other results from the table. 
 
@@ -3196,9 +3195,9 @@ odds_to_risk(lr_model) %>%
 
 ### Bias in the algorithm 
 
-- In order to test whether COMPAS scores do an accurate job of deciding whether an offender is Low, Medium or High risk, we ran a Cox Proportional Hazards model. Northpointe, the company that created COMPAS and markets it to Law Enforcement, also ran a Cox model in [their validation study](https://journals.sagepub.com/doi/abs/10.1177/0093854808326545).
+- To test whether COMPAS scores do an accurate job of deciding whether an offender is Low, Medium, or High risk, we ran a Cox Proportional Hazards model. Northpointe, the company that created COMPAS and markets it to Law Enforcement, also ran a Cox model in [their validation study](https://journals.sagepub.com/doi/abs/10.1177/0093854808326545).
 
-- We used the counting model and removed people when they were incarcerated. Due to errors in the underlying jail data, we need to filter out 32 rows that have an end date more than the start date. Considering that there are 13,334 total rows in the data, such a small amount of errors will not affect the results.
+- We used the counting model and removed people when they were incarcerated. Due to errors in the underlying jail data, we need to filter out 32 rows with an end date more than the start date. Considering that there are 13,334 total rows in the data, such a small amount of errors will not affect the results.
 
 #### Setup 
 
@@ -3345,7 +3344,7 @@ model %>%
 
 The interaction term shows a similar disparity as the logistic regression above.
 
-High risk white defendants are 3.61 more likely than low risk white defendants, while High risk black defendants are 2.99 more likely than low.
+High-risk white defendants are 3.61 more likely than low-risk white defendants, while high-risk black defendants are 2.99 more likely than low.
 
 
 ```r
@@ -3373,7 +3372,7 @@ visualize_surv(df) + ggtitle("Overall")
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-113-1.pdf)<!-- --> 
 
-Black defendants do recidivate at higher rates according to race specific Kaplan Meier plots.
+Black defendants do recidivate at higher rates according to race-specific Kaplan Meier plots.
 
 
 ```r
@@ -3383,7 +3382,7 @@ Black defendants do recidivate at higher rates according to race specific Kaplan
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-114-1.pdf)<!-- --> 
 
-In terms of underlying recidivism rates, we can look at gender specific Kaplan Meier estimates. There is a striking difference between women and men.
+In terms of underlying recidivism rates, we can look at gender-specific Kaplan Meier estimates. There is a striking difference between women and men.
 
 
 ```r
@@ -3394,11 +3393,11 @@ In terms of underlying recidivism rates, we can look at gender specific Kaplan M
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-115-1.pdf)<!-- --> 
 
-As these plots show, the COMPAS score treats a High risk women the same as a Medium risk man.
+As these plots show, the COMPAS score treats a high-risk woman the same as a Medium risk man.
 
 #### Risk of Recidivism accuracy 
 
-The above analysis shows that the COMPAS algorithm does overpredict African-American defendant's future recidivism, but we haven't yet explored the direction of the bias. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.
+The above analysis shows that the COMPAS algorithm does overpredict African-American defendant's future recidivism, but we haven't yet explored the bias's direction. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.
 
 
 ```r
@@ -3414,7 +3413,7 @@ conda_create("r-reticulate")
 # install libs 
 conda_install("r-reticulate", c("pandas"))
 
-# indicate that we want to use a specific condaenv
+# indicates that we want to use a specific condaenv
 use_condaenv("r-reticulate")
 ```
 
@@ -3537,7 +3536,7 @@ read.csv(here("data", "comp_tables_recid.csv"))[,-1] %>%
 
 #### Risk of Violent Recidivism accuracy
 
-COMPAS also offers a score that aims to measure a persons risk of violent recidivism, which has a similar overall accuracy to the Recidivism score.
+COMPAS also offers a score that aims to measure a person's risk of violent recidivism, which has similar overall accuracy to the Recidivism score.
 
 
 ```python

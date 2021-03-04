@@ -439,7 +439,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>1000 common English words for 30-word tweets: <span class="math inline">\(1000^{30}\)</span> similar to N of atoms in the universe (<a href="https://web.stanford.edu/~gentzkow/research/text-as-data.pdf">Gentzkow et al. 2019</a>)</p></li>
 <li><p>Belloni, Alexandre, Victor Chernozhukov, and Christian Hansen. <a href="https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.29">“High-dimensional methods and inference on structural and treatment effects.”</a> <em>Journal of Economic Perspectives 28</em>, no. 2 (2014): 29-50.</p></li>
 </ul></li>
-<li><p>The rise of new approach: statistics + computer science = machine learning</p></li>
+<li><p>The rise of the new approach: statistics + computer science = machine learning</p></li>
 <li><p>Statistical inference</p>
 <ul>
 <li><p><span class="math inline">\(y\)</span> &lt;- some probability models (e.g., linear regression, logistic regression) &lt;- <span class="math inline">\(x\)</span></p></li>
@@ -466,11 +466,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>ML:</p>
 <ul>
 <li><p>Developing algorithms (estimating <em>f(x)</em>)</p></li>
-<li><p>Prediction power not structural/causal parameters</p></li>
+<li><p>Prediction power, not structural/causal parameters</p></li>
 <li><p>Basically, high-dimensional data statistics (N &lt; P)</p></li>
 <li><p>The major problem is to avoid <a href="https://en.wikipedia.org/wiki/Curse_of_dimensionality">“the curse of dimensionality”</a> (<a href="https://towardsdatascience.com/the-curse-of-dimensionality-50dc6e49aa1e">too many features - &gt; overfitting</a>)</p></li>
 <li><p>Validation: out-of-sample comparisons (cross-validation) not in-sample goodness-of-fit measures</p></li>
-<li><p>So, it’s curve-fitting but the primary focus is unseen (test data) not seen data (training data)</p></li>
+<li><p>So, it’s curve-fitting, but the primary focus is unseen (test data), not seen data (training data)</p></li>
 </ul></li>
 <li><p>A quick review on ML lingos for those trained in econometrics</p>
 <ul>
@@ -611,7 +611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://github.com/tidymodels/tune"><code>tune</code></a>: hyperparameter tuning</li>
 </ul></li>
 <li><p><a href="https://github.com/tidymodels/yardstick"><code>yardstick</code></a>: for model evaluations</p></li>
-<li><p><a href="https://github.com/tidymodels/workflows"><code>workflows</code></a>: for bundling a pieplne that bundles together pre-processing, modeling, and post-processing requests</p></li>
+<li><p><a href="https://github.com/tidymodels/workflows"><code>workflows</code></a>: for bundling a pieplne that bundles together preprocessing, modeling, and post-processing requests</p></li>
 </ul></li>
 <li><p>Why taking a tidyverse approach to machine learning?</p></li>
 <li><p>Benefits</p>
@@ -640,7 +640,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><a href="https://github.com/tidymodels/textrecipes"><code>textrecipes</code></a> for text pre-processing</p></li>
 <li><p>Step 1: <code>recipe()</code> defines target and predictor variables (ingredients).</p></li>
 <li><p>Step 2: <code>step_*()</code> defines preprocessing steps to be taken (recipe).</p>
-<p>The list of the preprocessing steps draws on the vignette of the <a href="https://www.tidymodels.org/find/parsnip/"><code>parsnip</code></a> package.</p>
+<p>The preprocessing steps list draws on the vignette of the <a href="https://www.tidymodels.org/find/parsnip/"><code>parsnip</code></a> package.</p>
 <ul>
 <li><p>dummy: Also called one-hot encoding</p></li>
 <li><p>zero variance: Removing columns (or features) with a single unique value</p></li>
@@ -650,7 +650,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>transform: Making predictors symmetric</p></li>
 </ul></li>
 <li><p>Step 3: <code>prep()</code> prepares a dataset to base each step on.</p></li>
-<li><p>Step 4: <code>bake()</code> applies the pre-processing steps to your datasets.</p></li>
+<li><p>Step 4: <code>bake()</code> applies the preprocessing steps to your datasets.</p></li>
 </ul>
 <p>In this course, we focus on two preprocessing tasks.</p>
 <ul>
@@ -925,7 +925,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="tune" class="section level4" number="8.6.1.3">
 <h4><span class="header-section-number">8.6.1.3</span> tune</h4>
-<p><strong>Hyper</strong>parameters are parameters which control the learning process.</p>
+<p><strong>Hyper</strong>parameters are parameters that control the learning process.</p>
 <div id="tune-ingredients" class="section level5" number="8.6.1.3.1">
 <h5><span class="header-section-number">8.6.1.3.1</span> tune ingredients</h5>
 <div class="sourceCode" id="cb1145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1145-1"><a href="machine-learning.html#cb1145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tune() = placeholder </span></span>
@@ -1085,7 +1085,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p><code>accuracy</code>: The proportion of the data predicted correctly</p></li>
 <li><p><code>precision</code>: Positive predictive value</p></li>
-<li><p><code>recall</code> (specificity): True positive rate (e.g., healthy people really healthy)</p></li>
+<li><p><code>recall</code> (specificity): True positive rate (e.g., healthy people healthy)</p></li>
 </ul>
 <div class="figure">
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png" alt="" />
@@ -1113,7 +1113,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">8.6.2.3</span> tune</h4>
 <div id="tune-ingredients-1" class="section level5" number="8.6.2.3.1">
 <h5><span class="header-section-number">8.6.2.3.1</span> tune ingredients</h5>
-<p>Decisions trees tend to overfit. Broadly speaking, there are two things we need to consider to reduce this problem: how to split and when to stop a tree.</p>
+<p>Decisions trees tend to overfit. There are two things we need to consider to reduce this problem: how to split and when to stop a tree.</p>
 <ul>
 <li><p><strong>complexity parameter</strong>: a high CP means a simple decision tree with few splits.</p></li>
 <li><p><strong>tree_depth</strong></p></li>
@@ -1231,7 +1231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 1 accuracy  binary         0.744
 ## 2 precision binary         0.705
 ## 3 recall    binary         0.756</code></pre>
-<p>In the next subsection, we will learn variants of ensemble models that improve decision tree model by putting models together.</p>
+<p>In the next subsection, we will learn variants of ensemble models that improve decision tree models by putting models together.</p>
 </div>
 </div>
 </div>
@@ -1243,7 +1243,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <p>Here we focus on the difference between bagging and boosting. In short, boosting may reduce bias while increasing variance. Bagging may reduce variance but has nothing to do with bias. For more information, please check out <a href="https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/">What is the difference between Bagging and Boosting?</a> by aporras.</p>
 <p><strong>bagging</strong></p>
 <ul>
-<li><p>Data: Training data will be random sampled with replacement (bootstrapping samples + drawing random <strong>subsets</strong> of features for training individual trees)</p></li>
+<li><p>Data: Training data will be randomly sampled with replacement (bootstrapping samples + drawing random <strong>subsets</strong> of features for training individual trees)</p></li>
 <li><p>Learning: Building models in parallel (independently)</p></li>
 <li><p>Prediction: Simple average of the estimated responses (majority vote system)</p></li>
 </ul>
@@ -1304,7 +1304,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <ul>
 <li><p><code>accuracy</code>: The proportion of the data predicted correctly</p></li>
 <li><p><code>precision</code>: Positive predictive value</p></li>
-<li><p><code>recall</code> (specificity): True positive rate (e.g., healthy people really healthy)</p></li>
+<li><p><code>recall</code> (specificity): True positive rate (e.g., healthy people healthy)</p></li>
 </ul>
 <div class="sourceCode" id="cb1177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1177-1"><a href="machine-learning.html#cb1177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define performance metrics </span></span>
 <span id="cb1177-2"><a href="machine-learning.html#cb1177-2" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> yardstick<span class="sc">::</span><span class="fu">metric_set</span>(accuracy, precision, recall)</span>
@@ -1327,7 +1327,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <h5><span class="header-section-number">8.6.3.3.1</span> tune ingredients</h5>
 <p>We focus on the following two hyperparameters:</p>
 <ul>
-<li><p><code>mtry</code>: The number of predictors to available for splitting at each node.</p></li>
+<li><p><code>mtry</code>: The number of predictors available for splitting at each node.</p></li>
 <li><p><code>min_n</code>: The minimum number of data points needed to keep splitting nodes.</p></li>
 </ul>
 <div class="sourceCode" id="cb1179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1179-1"><a href="machine-learning.html#cb1179-1" aria-hidden="true" tabindex="-1"></a>tune_spec <span class="ot">&lt;-</span> </span>
@@ -1495,7 +1495,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <ul>
 <li><p><code>accuracy</code>: The proportion of the data predicted correctly</p></li>
 <li><p><code>precision</code>: Positive predictive value</p></li>
-<li><p><code>recall</code> (specificity): True positive rate (e.g., healthy people really healthy)</p></li>
+<li><p><code>recall</code> (specificity): True positive rate (e.g., healthy people healthy)</p></li>
 </ul>
 <div class="sourceCode" id="cb1196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1196-1"><a href="machine-learning.html#cb1196-1" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(yardstick<span class="sc">::</span>accuracy, </span>
 <span id="cb1196-2"><a href="machine-learning.html#cb1196-2" aria-hidden="true" tabindex="-1"></a>                      yardstick<span class="sc">::</span>precision, </span>
@@ -1661,7 +1661,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <div id="superlearner" class="section level5" number="8.6.5.1.2">
 <h5><span class="header-section-number">8.6.5.1.2</span> SuperLearner</h5>
 <p>The <a href="https://cran.r-project.org/web/packages/SuperLearner/index.html">“SuperLearner” R package</a> is a method that simplifies ensemble learning by allowing you to simultaneously evaluate the cross-validated performance of multiple algorithms and/or a single algorithm with differently tuned hyperparameters. This is a generally advisable approach to machine learning instead of fitting single algorithms.</p>
-<p>Let’s see how the four classification algorithms you learned in this workshop (1-lasso, 2-decision tree, 3-random forest, and 4-gradient boosted trees) compare to each other and also to 5-binary logistic regression (<code>glm</code>) and to the 6-mean of Y as a benchmark algorithm, in terms of their cross-validated error!</p>
+<p>Let’s see how the four classification algorithms you learned in this workshop (1-lasso, 2-decision tree, 3-random forest, and 4-gradient boosted trees) compare to each other and also to 5-binary logistic regression (<code>glm</code>) and the 6-mean of Y as a benchmark algorithm, in terms of their cross-validated error!</p>
 <p>A “wrapper” is a short function that adapts an algorithm for the SuperLearner package. Check out the different algorithm wrappers offered by SuperLearner:</p>
 </div>
 </div>
@@ -1776,7 +1776,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <h5><span class="header-section-number">8.6.5.4.1</span> Summary</h5>
 <ul>
 <li><code>Discrete SL</code> chooses the best single learner (in this case, <code>SL.glmnet</code> or <code>lasso</code>).</li>
-<li><code>SuperLearner</code> takes a weighted average of the <strong>models</strong> using the coefficients (importance of each individual learner in the overall ensemble). Coefficient 0 means that learner is not used at all.</li>
+<li><code>SuperLearner</code> takes a weighted average of the <strong>models</strong> using the coefficients (importance of each learner in the overall ensemble). Coefficient 0 means that learner is not used at all.</li>
 <li><code>SL.mean_All</code> (the weighted mean of <span class="math inline">\(Y\)</span>) is a benchmark algorithm (ignoring features).</li>
 </ul>
 <div class="sourceCode" id="cb1226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1226-1"><a href="machine-learning.html#cb1226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cv_sl)</span></code></pre></div>
@@ -1810,7 +1810,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <div id="compute-auc-for-all-estimators" class="section level4" number="8.6.5.5">
 <h4><span class="header-section-number">8.6.5.5</span> Compute AUC for all estimators</h4>
 <p><strong>ROC</strong></p>
-<p>ROC: an ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis).</p>
+<p>ROC: a ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis).</p>
 <div class="figure">
 <img src="https://developers.google.com/machine-learning/crash-course/images/AUC.svg" alt="" />
 <p class="caption">Area Under the ROC Curve</p>
@@ -1851,8 +1851,8 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ##  3 xgboost 0.00465 0.00691 0.00000 0.01632
 ##  4   rpart 0.00267 0.00598 0.00000 0.01337
 ##  5    mean 0.00257 0.00575 0.00000 0.01285</code></pre>
-<p>General stacking approach is available in the tidymodels framework through <a href="https://github.com/tidymodels/stacks"><code>stacks</code></a> package (developmental stage).</p>
-<p>However, SuperLearner is currently not available in the tidymodels framework. If you’d like to, you can easily build and add a parsnip model. If you are interested in knowing more about it, please take a look at <a href="https://www.tidymodels.org/learn/develop/models/">this vignette</a> of the tidymodels.</p>
+<p>The general stacking approach is available in the tidymodels framework through <a href="https://github.com/tidymodels/stacks"><code>stacks</code></a> package (developmental stage).</p>
+<p>However, SuperLearner is currently not available in the tidymodels framework. If you’d like to, you can easily build and add a parsnip model. If you are interested in knowing more about it, please look at <a href="https://www.tidymodels.org/learn/develop/models/">this vignette</a> of the tidymodels.</p>
 </div>
 </div>
 </div>
@@ -1912,7 +1912,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 </div>
 <div id="preprocessing" class="section level4" number="8.7.1.2">
 <h4><span class="header-section-number">8.7.1.2</span> Preprocessing</h4>
-<p><code>recipe</code> is essential for preprocesssing multiple features at once.</p>
+<p><code>recipe</code> is essential for preprocessing multiple features at once.</p>
 <div class="sourceCode" id="cb1240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1240-1"><a href="machine-learning.html#cb1240-1" aria-hidden="true" tabindex="-1"></a>pca_recipe <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="sc">~</span>., <span class="at">data =</span> data_original) <span class="sc">%&gt;%</span></span>
 <span id="cb1240-2"><a href="machine-learning.html#cb1240-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Imputing NAs using mean </span></span>
 <span id="cb1240-3"><a href="machine-learning.html#cb1240-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_meanimpute</span>(<span class="fu">all_predictors</span>()) <span class="sc">%&gt;%</span></span>
@@ -2026,7 +2026,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <li><p>Probability</p></li>
 <li><p>Multinominal (e.g., Latent Dirichlet Distribution)</p></li>
 </ul></li>
-<li><p>Words lie on a lower dimensional space (dimension reduction)</p></li>
+<li><p>Words lie on a lower-dimensional space (dimension reduction)</p></li>
 <li><p>Co-occurrence of words (clustering)</p></li>
 <li><p>Bag of words (feature engineering)</p>
 <ul>
@@ -2069,7 +2069,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <h4><span class="header-section-number">8.7.2.5</span> STM</h4>
 <div id="turn-text-into-document-term-matrix" class="section level5" number="8.7.2.5.1">
 <h5><span class="header-section-number">8.7.2.5.1</span> Turn text into document-term matrix</h5>
-<p><code>stm</code> package has its own preprocessing function.</p>
+<p><code>stm</code> package has its preprocessing function.</p>
 <div class="sourceCode" id="cb1260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1260-1"><a href="machine-learning.html#cb1260-1" aria-hidden="true" tabindex="-1"></a>dtm <span class="ot">&lt;-</span> <span class="fu">textProcessor</span>(<span class="at">documents =</span> sherlock<span class="sc">$</span>text,</span>
 <span id="cb1260-2"><a href="machine-learning.html#cb1260-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">metadata =</span> sherlock, </span>
 <span id="cb1260-3"><a href="machine-learning.html#cb1260-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">removestopwords =</span> <span class="cn">TRUE</span>,</span>
@@ -2313,7 +2313,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 </div>
 <div id="evaludating-models" class="section level5" number="8.7.2.5.3">
 <h5><span class="header-section-number">8.7.2.5.3</span> Evaludating models</h5>
-<p>There are several metrics to assess the performance of topic models: the held-out likelihood, residuals, semantic coherence, and exclusivity. In this course, we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.</p>
+<p>There are several metrics to assess topic models’ performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. This course examines the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.</p>
 <div class="sourceCode" id="cb1263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1263-1"><a href="machine-learning.html#cb1263-1" aria-hidden="true" tabindex="-1"></a>test_res<span class="sc">$</span>results <span class="sc">%&gt;%</span></span>
 <span id="cb1263-2"><a href="machine-learning.html#cb1263-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(K, exclus, semcoh) <span class="sc">%&gt;%</span></span>
 <span id="cb1263-3"><a href="machine-learning.html#cb1263-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(K, exclus, semcoh) <span class="sc">%&gt;%</span></span>
@@ -2369,7 +2369,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 </div>
 <div id="bias-and-fairness-in-machine-learning" class="section level2" number="8.8">
 <h2><span class="header-section-number">8.8</span> Bias and fairness in machine learning</h2>
-<p>This section introduces the issues surrounding the fairness and bias in machine learning applications with a focus on the ProPublica’s Analysis of the COMPAS algorithm. I revised <a href="https://github.com/propublica/compas-analysis/blob/master/Compas%20Analysis.ipynb">the ProPublica’s original R and Python code</a> to increase its code readability.</p>
+<p>This section introduces the issues surrounding the fairness and bias in machine learning applications, focusing on ProPublica’s Analysis of the COMPAS algorithm. I revised <a href="https://github.com/propublica/compas-analysis/blob/master/Compas%20Analysis.ipynb">the ProPublica’s original R and Python code</a> to increase its code readability.</p>
 <div class="figure">
 <img src="https://wp.technologyreview.com/wp-content/uploads/2019/10/mit-alg-yb-02-7.gif?fit=1444,962" alt="" />
 <p class="caption">A gif of defendants being put into an algorithm by SELMAN DESIGN</p>
@@ -2386,10 +2386,10 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <li>Bias in the algorithm</li>
 </ol>
 <p><strong>References</strong></p>
-<p>For more information on the ProPublica’s Machine Bias project, we encourage to check out the following references.</p>
+<p>For more information on ProPublica’s Machine Bias project, we encourage you to check out the following references.</p>
 <ul>
 <li><p><a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing/">Argument</a> by Julia Angwin, Jeff Larson, Surya Mattu and Lauren Kirchner</p></li>
-<li><p><a href="https://www.washingtonpost.com/news/monkey-cage/wp/2016/10/17/can-an-algorithm-be-racist-our-analysis-is-more-cautious-than-propublicas/">Counterargument</a> by Sam Corbett-Davies, Emma Pierson, Avi Feller and Sharad Goel</p></li>
+<li><p><a href="https://www.washingtonpost.com/news/monkey-cage/wp/2016/10/17/can-an-algorithm-be-racist-our-analysis-is-more-cautious-than-propublicas/">Counterargument</a> by Sam Corbett-Davies, Emma Pierson, Avi Feller, and Sharad Goel</p></li>
 <li><p><a href="https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm/">Methodology</a></p></li>
 </ul>
 <div id="bias-in-the-data-risk-of-recidivism-analysis" class="section level3" number="8.8.1">
@@ -2420,7 +2420,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 </div>
 <div id="load-data" class="section level4" number="8.8.1.2">
 <h4><span class="header-section-number">8.8.1.2</span> Load data</h4>
-<p>We select fields for severity of charge, number of priors, demographics, age, sex, COMPAS scores, and whether each person was accused of a crime within two years.</p>
+<p>We select fields for the severity of the charge, number of priors, demographics, age, sex, COMPAS scores, and whether each person was accused of a crime within two years.</p>
 <div class="sourceCode" id="cb1276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1276-1"><a href="machine-learning.html#cb1276-1" aria-hidden="true" tabindex="-1"></a>two_years <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;compas-scores-two-years.csv&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning: Duplicated column names deduplicated: &#39;decile_score&#39; =&gt;
 ## &#39;decile_score_1&#39; [40], &#39;priors_count&#39; =&gt; &#39;priors_count_1&#39; [49]</code></pre>
@@ -2433,12 +2433,12 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <h4><span class="header-section-number">8.8.1.3</span> Wrangling</h4>
 <ul>
 <li>Not all of the observations are useable for the first round of analysis.</li>
-<li>There are a number of reasons to remove rows because of missing data:
+<li>There are many reasons to remove rows because of missing data:
+If the charge date of a defendant’s COMPAS scored crime was not within 30 days from when the person was arrested, we assume that we do not have the right offense because of data quality reasons.
 <ul>
-<li>If the charge date of a defendants COMPAS scored crime was not within 30 days from when the person was arrested, we assume that because of data quality reasons, that we do not have the right offense.</li>
 <li>We coded the recidivist flag – is_recid – to be -1 if we could not find a COMPAS case at all.</li>
 <li>In a similar vein, ordinary traffic offenses – those with a c_charge_degree of ‘O’ – will not result in Jail time are removed (only two of them).</li>
-<li>We filtered the underlying data from Broward county to include only those rows representing people who had either recidivated in two years, or had at least two years outside of a correctional facility.</li>
+<li>We filtered the underlying data from Broward county to include only those rows representing people who had either recidivated in two years or had at least two years outside of a correctional facility.</li>
 </ul></li>
 <li>Create a function</li>
 </ul>
@@ -2516,7 +2516,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span id="cb1287-7"><a href="machine-learning.html#cb1287-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
 <span id="cb1287-8"><a href="machine-learning.html#cb1287-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Score distribution&quot;</span>)</span></code></pre></div>
 <p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
-<p>Judges are often presented with two sets of scores from the COMPAS system – one that classifies people into High, Medium and Low risk, and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.</p>
+<p>Judges are often presented with two sets of scores from the COMPAS system – one that classifies people into High, Medium, and Low risk and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.</p>
 <div class="sourceCode" id="cb1288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1288-1"><a href="machine-learning.html#cb1288-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
 <span id="cb1288-2"><a href="machine-learning.html#cb1288-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">ordered</span>(decile_score))) <span class="sc">+</span> </span>
 <span id="cb1288-3"><a href="machine-learning.html#cb1288-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
@@ -2528,7 +2528,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 </div>
 <div id="modeling" class="section level4" number="8.8.1.5">
 <h4><span class="header-section-number">8.8.1.5</span> Modeling</h4>
-<p>After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. To do so we need to change some variables into factors, and run a logistic regression, comparing low scores to high scores.</p>
+<p>After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. We need to change some variables into factors and run a logistic regression, comparing low scores to high scores.</p>
 <ul>
 <li>Model building</li>
 </ul>
@@ -2587,8 +2587,8 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span id="cb1292-10"><a href="machine-learning.html#cb1292-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">&quot;Logistic regression&quot;</span>) <span class="sc">+</span></span>
 <span id="cb1292-11"><a href="machine-learning.html#cb1292-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
 <p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
-<p>Logistic regression coefficients are log odds ratios. Remember an odd is <span class="math inline">\(\frac{p}{1-p}\)</span>. p could be defined as a success and 1-p could be as a failure. Here, coefficient 1 indicates equal probability for the binary outcomes. Coefficient greater than 1 indicates strong chance for p and weak chance for 1-p. Coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!).</p>
-<p>(To refresh your memory, note that probability is bounded between [0, 1]. Odds ranges between 0 and infinity. Log odds ranges from negative to positive infinity. We’re going through this hassle because we used log function to map predictor variables to probability to fit the model to the binary outcomes.)</p>
+<p>Logistic regression coefficients are log odds ratios. Remember an odd is <span class="math inline">\(\frac{p}{1-p}\)</span>. p could be defined as a success, and 1-p could be as a failure. Here, coefficient 1 indicates the equal probability for the binary outcomes. A coefficient greater than 1 indicates a strong chance for p and a weak chance for 1-p. A coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!).</p>
+<p>(To refresh your memory, note that probability is bounded between [0, 1]. Odds range between 0 and infinity. Log odds range from negative to positive infinity. We’re going through this hassle because we used the log function to map predictor variables to probability to fit the binary outcomes model.)</p>
 <p>In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see <a href="https://www.bmj.com/content/348/bmj.f7450">Grant</a> (2014), <a href="https://www.jstatsoft.org/article/view/v055i05">Wang</a> (2013), and <a href="https://jamanetwork.com/journals/jama/fullarticle/188182">Zhang and Yu</a> (1998).</p>
 <div class="sourceCode" id="cb1293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1293-1"><a href="machine-learning.html#cb1293-1" aria-hidden="true" tabindex="-1"></a>odds_to_risk <span class="ot">&lt;-</span> <span class="cf">function</span>(model){</span>
 <span id="cb1293-2"><a href="machine-learning.html#cb1293-2" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -2630,7 +2630,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ## 9   8.271164e-04 -0.68190124 -0.1794075
 ## 10  3.425594e-07 -1.15026143 -0.5142075
 ## 11  1.298233e-42 -1.55226716 -1.1637224</code></pre>
-<p>Relative risk score 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.</p>
+<p>A relative risk score of 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.</p>
 <p>The plot visualizes this and other results from the table.</p>
 <div class="sourceCode" id="cb1296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1296-1"><a href="machine-learning.html#cb1296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">odds_to_risk</span>(lr_model) <span class="sc">%&gt;%</span></span>
 <span id="cb1296-2"><a href="machine-learning.html#cb1296-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">term =</span> <span class="fu">gsub</span>(<span class="st">&quot;race|age_cat|gender&quot;</span>,<span class="st">&quot;&quot;</span>, term)) <span class="sc">%&gt;%</span> </span>
@@ -2791,11 +2791,9 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span id="cb1315-5"><a href="machine-learning.html#cb1315-5" aria-hidden="true" tabindex="-1"></a>          <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Decile Score&quot;</span>,</span>
 <span id="cb1315-6"><a href="machine-learning.html#cb1315-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
 <span id="cb1315-7"><a href="machine-learning.html#cb1315-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">Title =</span> <span class="st">&quot;Defendant&#39;s Decile Score&quot;</span>)</span></code></pre></div>
-<p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
-</div>
-<div id="modeling-1" class="section level4" number="8.8.2.5">
-<h4><span class="header-section-number">8.8.2.5</span> Modeling</h4>
-<p>After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. To do so we need to change some variables into factors, and run a logistic regression, comparing low scores to high scores.</p>
+<p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-99-1.png" width="672" />
+#### Modeling</p>
+<p>After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. We need to change some variables into factors and run a logistic regression, comparing low scores to high scores.</p>
 <div class="sourceCode" id="cb1316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1316-1"><a href="machine-learning.html#cb1316-1" aria-hidden="true" tabindex="-1"></a>model_data <span class="ot">&lt;-</span> <span class="cf">function</span>(data){</span>
 <span id="cb1316-2"><a href="machine-learning.html#cb1316-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1316-3"><a href="machine-learning.html#cb1316-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic regression model</span></span>
@@ -2851,8 +2849,8 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span id="cb1319-11"><a href="machine-learning.html#cb1319-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">&quot;Logistic regression&quot;</span>) <span class="sc">+</span></span>
 <span id="cb1319-12"><a href="machine-learning.html#cb1319-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
 <p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
-<p>Logistic regression coefficients are log odds ratios. Remember an odd is <span class="math inline">\(\frac{p}{1-p}\)</span>. p could be defined as a success and 1-p could be as a failure. Here, coefficient 1 indicates equal probability for the binary outcomes. Coefficient greater than 1 indicates strong chance for p and weak chance for 1-p. Coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!).</p>
-<p>(To refresh your memory, note that probability is bounded between [0, 1]. Odds ranges between 0 and infinity. Log odds ranges from negative to positive infinity. We’re going through this hassle because we used log function to map predictor variables to probability to fit the model to the binary outcomes.)</p>
+<p>Logistic regression coefficients are log odds ratios. Remember an odd is <span class="math inline">\(\frac{p}{1-p}\)</span>. p could be defined as a success, and 1-p could be as a failure. Here, coefficient 1 indicates the equal probability for the binary outcomes. A coefficient greater than 1 indicates strong chance for p and a weak chance for 1-p. A coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!).</p>
+<p>(To refresh your memory, note that probability is bounded between [0, 1]. Odds range between 0 and infinity. Log odds range from negative to positive infinity. We’re going through this hassle because we used the log function to map predictor variables to probability to fit the binary outcomes model.)</p>
 <p>In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see <a href="https://www.bmj.com/content/348/bmj.f7450">Grant</a> (2014), <a href="https://www.jstatsoft.org/article/view/v055i05">Wang</a> (2013), and <a href="https://jamanetwork.com/journals/jama/fullarticle/188182">Zhang and Yu</a> (1998).</p>
 <div class="sourceCode" id="cb1320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1320-1"><a href="machine-learning.html#cb1320-1" aria-hidden="true" tabindex="-1"></a>odds_to_risk <span class="ot">&lt;-</span> <span class="cf">function</span>(model){</span>
 <span id="cb1320-2"><a href="machine-learning.html#cb1320-2" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -2894,7 +2892,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ## 9   8.662690e-09 -0.9800266 -0.48330469
 ## 10  1.624974e-01 -2.4655693  0.33213464
 ## 11  3.073150e-21 -2.1171742 -1.39384502</code></pre>
-<p>Relative risk score 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.</p>
+<p>A relative risk score of 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.</p>
 <p>The plot visualizes this and other results from the table.</p>
 <div class="sourceCode" id="cb1323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1323-1"><a href="machine-learning.html#cb1323-1" aria-hidden="true" tabindex="-1"></a><span class="fu">odds_to_risk</span>(lr_model) <span class="sc">%&gt;%</span></span>
 <span id="cb1323-2"><a href="machine-learning.html#cb1323-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">term =</span> <span class="fu">gsub</span>(<span class="st">&quot;race|age_cat|gender&quot;</span>,<span class="st">&quot;&quot;</span>, term)) <span class="sc">%&gt;%</span> </span>
@@ -2911,8 +2909,8 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <div id="bias-in-the-algorithm" class="section level3" number="8.8.3">
 <h3><span class="header-section-number">8.8.3</span> Bias in the algorithm</h3>
 <ul>
-<li><p>In order to test whether COMPAS scores do an accurate job of deciding whether an offender is Low, Medium or High risk, we ran a Cox Proportional Hazards model. Northpointe, the company that created COMPAS and markets it to Law Enforcement, also ran a Cox model in <a href="https://journals.sagepub.com/doi/abs/10.1177/0093854808326545">their validation study</a>.</p></li>
-<li><p>We used the counting model and removed people when they were incarcerated. Due to errors in the underlying jail data, we need to filter out 32 rows that have an end date more than the start date. Considering that there are 13,334 total rows in the data, such a small amount of errors will not affect the results.</p></li>
+<li><p>To test whether COMPAS scores do an accurate job of deciding whether an offender is Low, Medium, or High risk, we ran a Cox Proportional Hazards model. Northpointe, the company that created COMPAS and markets it to Law Enforcement, also ran a Cox model in <a href="https://journals.sagepub.com/doi/abs/10.1177/0093854808326545">their validation study</a>.</p></li>
+<li><p>We used the counting model and removed people when they were incarcerated. Due to errors in the underlying jail data, we need to filter out 32 rows with an end date more than the start date. Considering that there are 13,334 total rows in the data, such a small amount of errors will not affect the results.</p></li>
 </ul>
 <div id="setup-8" class="section level4" number="8.8.3.1">
 <h4><span class="header-section-number">8.8.3.1</span> Setup</h4>
@@ -3009,7 +3007,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span id="cb1332-7"><a href="machine-learning.html#cb1332-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">Title =</span> <span class="st">&quot;Defendant&#39;s Decile Score&quot;</span>)</span></code></pre></div>
 <p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
 </div>
-<div id="modeling-2" class="section level4" number="8.8.3.5">
+<div id="modeling-1" class="section level4" number="8.8.3.5">
 <h4><span class="header-section-number">8.8.3.5</span> Modeling</h4>
 <div class="sourceCode" id="cb1333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1333-1"><a href="machine-learning.html#cb1333-1" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="fu">Surv</span>(start, end, event, <span class="at">type=</span><span class="st">&quot;counting&quot;</span>) <span class="sc">~</span> race <span class="sc">+</span> score_factor <span class="sc">+</span> race <span class="sc">*</span> score_factor</span>
 <span id="cb1333-2"><a href="machine-learning.html#cb1333-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -3025,7 +3023,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span id="cb1333-12"><a href="machine-learning.html#cb1333-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Estimate&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 <p>The interaction term shows a similar disparity as the logistic regression above.</p>
-<p>High risk white defendants are 3.61 more likely than low risk white defendants, while High risk black defendants are 2.99 more likely than low.</p>
+<p>High-risk white defendants are 3.61 more likely than low-risk white defendants, while high-risk black defendants are 2.99 more likely than low.</p>
 <div class="sourceCode" id="cb1334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1334-1"><a href="machine-learning.html#cb1334-1" aria-hidden="true" tabindex="-1"></a>visualize_surv <span class="ot">&lt;-</span> <span class="cf">function</span>(input){</span>
 <span id="cb1334-2"><a href="machine-learning.html#cb1334-2" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb1334-3"><a href="machine-learning.html#cb1334-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">Surv</span>(start, end, event, <span class="at">type=</span><span class="st">&quot;counting&quot;</span>) <span class="sc">~</span> score_factor</span>
@@ -3043,27 +3041,27 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span id="cb1334-15"><a href="machine-learning.html#cb1334-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Time&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Estimated survival rate&quot;</span>, <span class="at">col =</span> <span class="st">&quot;Strata&quot;</span>)}</span></code></pre></div>
 <div class="sourceCode" id="cb1335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1335-1"><a href="machine-learning.html#cb1335-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize_surv</span>(df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Overall&quot;</span>)</span></code></pre></div>
 <p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
-<p>Black defendants do recidivate at higher rates according to race specific Kaplan Meier plots.</p>
+<p>Black defendants do recidivate at higher rates according to race-specific Kaplan Meier plots.</p>
 <div class="sourceCode" id="cb1336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1336-1"><a href="machine-learning.html#cb1336-1" aria-hidden="true" tabindex="-1"></a>(df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(race <span class="sc">==</span> <span class="st">&quot;Caucasian&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">visualize_surv</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Caucasian&quot;</span>)) <span class="sc">/</span></span>
 <span id="cb1336-2"><a href="machine-learning.html#cb1336-2" aria-hidden="true" tabindex="-1"></a>(df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(race <span class="sc">==</span> <span class="st">&quot;African-American&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">visualize_surv</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;African-American&quot;</span>)) </span></code></pre></div>
 <p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
-<p>In terms of underlying recidivism rates, we can look at gender specific Kaplan Meier estimates. There is a striking difference between women and men.</p>
+<p>In terms of underlying recidivism rates, we can look at gender-specific Kaplan Meier estimates. There is a striking difference between women and men.</p>
 <div class="sourceCode" id="cb1337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1337-1"><a href="machine-learning.html#cb1337-1" aria-hidden="true" tabindex="-1"></a>(df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;Female&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">visualize_surv</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Female&quot;</span>)) <span class="sc">/</span></span>
 <span id="cb1337-2"><a href="machine-learning.html#cb1337-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1337-3"><a href="machine-learning.html#cb1337-3" aria-hidden="true" tabindex="-1"></a>(df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;Male&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">visualize_surv</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Male&quot;</span>))</span></code></pre></div>
 <p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
-<p>As these plots show, the COMPAS score treats a High risk women the same as a Medium risk man.</p>
+<p>As these plots show, the COMPAS score treats a high-risk woman the same as a Medium risk man.</p>
 </div>
 <div id="risk-of-recidivism-accuracy" class="section level4" number="8.8.3.6">
 <h4><span class="header-section-number">8.8.3.6</span> Risk of Recidivism accuracy</h4>
-<p>The above analysis shows that the COMPAS algorithm does overpredict African-American defendant’s future recidivism, but we haven’t yet explored the direction of the bias. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.</p>
+<p>The above analysis shows that the COMPAS algorithm does overpredict African-American defendant’s future recidivism, but we haven’t yet explored the bias’s direction. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.</p>
 <div class="sourceCode" id="cb1338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1338-1"><a href="machine-learning.html#cb1338-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new environment </span></span>
 <span id="cb1338-2"><a href="machine-learning.html#cb1338-2" aria-hidden="true" tabindex="-1"></a><span class="fu">conda_create</span>(<span class="st">&quot;r-reticulate&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;/home/jae/.local/share/r-miniconda/envs/r-reticulate/bin/python&quot;</code></pre>
 <div class="sourceCode" id="cb1340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1340-1"><a href="machine-learning.html#cb1340-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install libs </span></span>
 <span id="cb1340-2"><a href="machine-learning.html#cb1340-2" aria-hidden="true" tabindex="-1"></a><span class="fu">conda_install</span>(<span class="st">&quot;r-reticulate&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;pandas&quot;</span>))</span>
 <span id="cb1340-3"><a href="machine-learning.html#cb1340-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1340-4"><a href="machine-learning.html#cb1340-4" aria-hidden="true" tabindex="-1"></a><span class="co"># indicate that we want to use a specific condaenv</span></span>
+<span id="cb1340-4"><a href="machine-learning.html#cb1340-4" aria-hidden="true" tabindex="-1"></a><span class="co"># indicates that we want to use a specific condaenv</span></span>
 <span id="cb1340-5"><a href="machine-learning.html#cb1340-5" aria-hidden="true" tabindex="-1"></a><span class="fu">use_condaenv</span>(<span class="st">&quot;r-reticulate&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb1341"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1341-1"><a href="machine-learning.html#cb1341-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1341-2"><a href="machine-learning.html#cb1341-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> truth_tables <span class="im">import</span> PeekyReader, Person, table, is_race, count, vtable, hightable, vhightable</span>
@@ -3147,7 +3145,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 </div>
 <div id="risk-of-violent-recidivism-accuracy" class="section level4" number="8.8.3.7">
 <h4><span class="header-section-number">8.8.3.7</span> Risk of Violent Recidivism accuracy</h4>
-<p>COMPAS also offers a score that aims to measure a persons risk of violent recidivism, which has a similar overall accuracy to the Recidivism score.</p>
+<p>COMPAS also offers a score that aims to measure a person’s risk of violent recidivism, which has similar overall accuracy to the Recidivism score.</p>
 <div class="sourceCode" id="cb1350"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1350-1"><a href="machine-learning.html#cb1350-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1350-2"><a href="machine-learning.html#cb1350-2" aria-hidden="true" tabindex="-1"></a>vpeople <span class="op">=</span> []</span>
 <span id="cb1350-3"><a href="machine-learning.html#cb1350-3" aria-hidden="true" tabindex="-1"></a></span>

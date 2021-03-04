@@ -435,7 +435,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions.
 - Hadley Wickham</p>
 </blockquote>
-<p>This chapter helps you to step up your R skills with functional programming. The <code>purrr</code> package provides easy-to-use tools to automate repeated things in your entire R workflow (e.g., wrangling, modeling, and visualization). The end result is cleaner, faster, more readable and extendable code.</p>
+<p>This chapter helps you to step up your R skills with functional programming. The <code>purrr</code> package provides easy-to-use tools to automate repeated things in your entire R workflow (e.g., wrangling, modeling, and visualization). The result is cleaner, faster, more readable, and extendable code.</p>
 <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmywiiOutD0NPieYCKxaD2wN9Fbt2I3iS87A&amp;usqp=CAU" /></p>
 <div id="learning-objectives" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Learning objectives</h2>
@@ -446,9 +446,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>How to use <code>map2()</code> and <code>pmap()</code> to avoid writing nested loops</li>
 <li>How to use <code>map()</code> and <code>glue()</code> to automate creating multiple plots</li>
 <li>How to use <code>reduce()</code> to automate joining multiple dataframes</li>
-<li>How to use <code>slowly()</code> and <code>future_</code> to make automation process either slower or faster</li>
+<li>How to use <code>slowly()</code> and <code>future_</code> to make the automation process either slower or faster</li>
 <li>How to use <code>safely()</code> and <code>possibly()</code> to make error handling easier</li>
-<li>How to develop your own data products (e.g., R packages, Shiny apps)</li>
+<li>How to develop your data products (e.g., R packages, Shiny apps)</li>
 </ol>
 </div>
 <div id="setup-3" class="section level2" number="5.2">
@@ -476,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.3</span> Flow control</h2>
 <ul>
 <li><p>Control structures = putting logic in code to control flow (e.g., <code>if</code>, <code>else</code>, <code>for</code>, <code>while</code>, <code>repeat</code>, <code>break</code>, <code>next</code>)</p></li>
-<li><p>Almost all the conditional operators used in Python also work in R. The basic loop set up is also very similar, with some small syntax adjustments.</p></li>
+<li><p>Almost all the conditional operators used in Python also work in R. The basic loop setup is also very similar, with some small syntax adjustments.</p></li>
 <li><p><code>if()</code> is a function whose arguments must be specified inside parentheses.</p></li>
 <li><p><code>else</code>, however, is a reserved operator that takes no arguments. Note that there is no <code>elif</code> option — one simply writes <code>else if()</code>.</p></li>
 <li><p>Whereas operations to be executed after conditional evaluations in Python come after a <code>:</code>, R operations must only be enclosed in curly brackets: <code>{}</code>. Furthermore, there is no requirement for indentation.</p></li>
@@ -522,7 +522,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb901-12"><a href="functional-programming.html#cb901-12" aria-hidden="true" tabindex="-1"></a>      }</span></code></pre></div>
 <pre><code>## [1] &quot;x is zero&quot;</code></pre>
 <ul>
-<li>In general, it’s not a good idea to write nested code (lots of <code>else_if()</code> or <code>ifelse()</code>). It’s difficult to read, debug, modulize, and extend.</li>
+<li>In general, it’s not a good idea to write nested code (lots of <code>else_if()</code> or <code>ifelse()</code>). It is not easy to read, debug, modulize, and extend.</li>
 <li>Instead, write functions and, if necessary, use <code>if()</code> only. We’ll come back to this later.</li>
 </ul>
 </div>
@@ -542,7 +542,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb905-4"><a href="functional-programming.html#cb905-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb905-5"><a href="functional-programming.html#cb905-5" aria-hidden="true" tabindex="-1"></a><span class="fu">less.simple.function</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] -7</code></pre>
-<p>With respect to returning function output, most of the same rules apply as with Python. Be sure to remember that <code>return()</code> will only process a single object, so multiple items must usually be returned as a list. Note that your ordering of the functions matters, too.</p>
+<p>Concerning returning function output, most of the same rules apply as with Python. Be sure to remember that <code>return()</code> will only process a single object, so multiple items must usually be returned as a list. Note that your ordering of the functions matters, too.</p>
 <div class="sourceCode" id="cb907"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb907-1"><a href="functional-programming.html#cb907-1" aria-hidden="true" tabindex="-1"></a>dumbfun <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb907-2"><a href="functional-programming.html#cb907-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
 <span id="cb907-3"><a href="functional-programming.html#cb907-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;This will never print :(&quot;</span>)</span>
@@ -585,7 +585,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 3</code></pre>
 <div class="sourceCode" id="cb918"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb918-1"><a href="functional-programming.html#cb918-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less.simple.function</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] -7</code></pre>
-<p>With respect to specifying arguments, one can either use argument <strong>position</strong> specifications (i.e., the order) or argument <strong>name</strong> specifications. The latter is strongly preferred, as it is very easy to accidentally specify incorrect argument values.</p>
+<p>Concerning specifying arguments, one can either use argument <strong>position</strong> specifications (i.e., the order) or argument <strong>name</strong> specifications. The latter is strongly preferred, as it is straightforward to specify incorrect argument values accidentally.</p>
 <div class="sourceCode" id="cb920"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb920-1"><a href="functional-programming.html#cb920-1" aria-hidden="true" tabindex="-1"></a>send <span class="ot">&lt;-</span> <span class="cf">function</span>(message, recipient, <span class="at">cc=</span><span class="cn">NULL</span>, <span class="at">bcc=</span><span class="cn">NULL</span>){</span>
 <span id="cb920-2"><a href="functional-programming.html#cb920-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(message, recipient, <span class="at">sep =</span> <span class="st">&quot;, &quot;</span>))</span>
 <span id="cb920-3"><a href="functional-programming.html#cb920-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;CC:&quot;</span>, cc, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>))</span>
@@ -608,7 +608,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] &quot;Hello, World&quot;
 ## [1] &quot;CC: Sun&quot;
 ## [1] &quot;BCC: Jane&quot;     &quot;BCC: Rochelle&quot;</code></pre>
-<p>Also, note that functions don’t have what CS people called side-effects. Functions only define local variables = They don’t change objects stored in the global environment. (Consider the difference between <code>&lt;-</code> and <code>=</code> for assignments.) That’s why you can use functions for reusable tasks since it does not interrupt other important things in your system.</p>
+<p>Also, note that functions don’t have what CS people called side-effects. Functions only define local variables = They don’t change objects stored in the global environment. (Consider the difference between <code>&lt;-</code> and <code>=</code> for assignments.) That’s why you can use functions for reusable tasks since it does not interrupt other essential things in your system.</p>
 <p>See <a href="https://darrenjw.wordpress.com/2011/11/23/lexical-scope-and-function-closures-in-r/">the following example</a> from Wilkinson.</p>
 <div class="sourceCode" id="cb928"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb928-1"><a href="functional-programming.html#cb928-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">1</span> </span>
 <span id="cb928-2"><a href="functional-programming.html#cb928-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="dv">2</span></span>
@@ -633,9 +633,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Nonstandard evaluation</li>
 </ul>
-<p>Nonstandard evaluation is an advanced subject. If you feel overwhelmed, you are more than welcome to skip this. But if you are serious in R programming, this is something you want to check out. For deeper understanding of this issue, I recommend reading <a href="https://renkun.me/2014/12/03/tips-on-non-standard-evaluation-in-r/">Ren Kun’s very informative blog post</a> carefully.</p>
+<p>Nonstandard evaluation is an advanced subject. If you feel overwhelmed, you are more than welcome to skip this. But if you are serious about R programming, this is something you want to check out. For a deeper understanding of this issue, I recommend reading <a href="https://renkun.me/2014/12/03/tips-on-non-standard-evaluation-in-r/">Ren Kun’s very informative blog post</a> carefully.</p>
 <p>This part draws on one of the [the dplyr package articles](<a href="https://dplyr.tidyverse.org/articles/programming.html" class="uri">https://dplyr.tidyverse.org/articles/programming.html</a>.</p>
-<p>In tidyverse, calling a variable with or without quotation mark (string or not) does make little difference because tidyeval is a type of non-standard evaluation. This flexibility runs into the following problem when it comes to programming.</p>
+<p>In tidyverse, calling a variable with or without quotation mark (string or not) makes little difference because tidyeval is a non-standard evaluation. This flexibility runs into the following problem when it comes to programming.</p>
 <div class="sourceCode" id="cb932"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb932-1"><a href="functional-programming.html#cb932-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using `mpg` instead of `mtcars$mpg` is called data masking.</span></span>
 <span id="cb932-2"><a href="functional-programming.html#cb932-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb932-3"><a href="functional-programming.html#cb932-3" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> <span class="fu">select</span>(mpg)</span>
@@ -665,7 +665,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb937-7"><a href="functional-programming.html#cb937-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb937-8"><a href="functional-programming.html#cb937-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>You may expect that the output is mean = 2.5 … but</p>
-<p>It’s because the mean() function doesn’t take <code>df$x</code> for data_var but <code>x</code>. You need to link x with environment variable</p>
+<p>It’s because the mean() function doesn’t take <code>df$x</code> for data_var but <code>x</code>. It would be best if you linked x with the environment variable.</p>
 <div class="sourceCode" id="cb938"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb938-1"><a href="functional-programming.html#cb938-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var_summary</span>(df, x)</span></code></pre></div>
 <pre><code>## Warning in mean.default(data_var): argument is not numeric or logical: returning
 ## NA</code></pre>
@@ -730,7 +730,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="https://teachtogether.tech/en/figures/for-loop.svg" alt="" />
 <p class="caption">Concept map for a for loop. Source: <a href="https://teachtogether.tech/en/index.html#s:memory-concept-maps" class="uri">https://teachtogether.tech/en/index.html#s:memory-concept-maps</a></p>
 </div>
-<p>Loops in R also work basically the same way as in Python, with just a few adjustments. First, recall that index positions in R start at 1. Second, <code>while()</code> and <code>for()</code> are functions rather than reserved operators, meaning they must take arguments in parentheses. Third, just like <code>else</code>, the <code>in</code> operator <em>is</em> reserved and takes no arguments in parentheses. Fourth, the conditional execution must appear between curly brackets. Finally, indentation is meaningless, but each new operation must appear on a new line.</p>
+<p>Loops in R also work the same way as in Python, with just a few adjustments. First, recall that index positions in R start at 1. Second, <code>while()</code> and <code>for()</code> are functions rather than reserved operators, meaning they must take arguments in parentheses. Third, just like <code>else</code>, the <code>in</code> operator <em>is</em> reserved and takes no arguments in parentheses. Fourth, the conditional execution must appear between curly brackets. Finally, indentation is meaningless, but each new operation must appear on a new line.</p>
 <ul>
 <li><code>while()</code>: when we have no idea how many times loop needs to be executed.</li>
 <li><code>for()</code>: when we know how many times loop needs to be executed. This is likely to be the loop you are going to use most frequently.</li>
@@ -758,8 +758,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="apply-family" class="section level3" number="5.3.6">
 <h3><span class="header-section-number">5.3.6</span> apply family</h3>
-<p>While and for loops in R can be very slow. For this reason, R has a number of built-in iteration methods to speed up execution times. In many cases, packages will have “behind-the-scenes” ways to avoid for loops, but what if you need to write your own function?</p>
-<p>A common method of getting around for loops is the <strong>apply</strong> family of functions. These take a data structure and a function, and applies a function over all the elements in the object.</p>
+<p>While and for loops in R can be very slow. For this reason, R has many built-in iteration methods to speed up execution times. In many cases, packages will have “behind-the-scenes” ways to avoid <code>for loops</code>, but what if you need to write your function?</p>
+<p>A common method of getting around for loops is the <strong>apply</strong> family of functions. These take a data structure and a function and apply a function over all the object elements.</p>
 <div class="sourceCode" id="cb949"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb949-1"><a href="functional-programming.html#cb949-1" aria-hidden="true" tabindex="-1"></a>fruit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;pear&quot;</span>, <span class="st">&quot;banana&quot;</span>)</span>
 <span id="cb949-2"><a href="functional-programming.html#cb949-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb949-3"><a href="functional-programming.html#cb949-3" aria-hidden="true" tabindex="-1"></a><span class="co"># make function that takes in only one element</span></span>
@@ -1175,7 +1175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4     1    NA     2     1
 ## 5    NA     1     1     3</code></pre>
 <ul>
-<li><strong>Challenge</strong>. Explain why this solution is not very efficient (Hint: If <code>df$a[df$a == -99] &lt;- NA</code> has an error, how are you going to fix it? A solution is not scalable if it’s not automatable.</li>
+<li><strong>Challenge</strong>. Explain why this solution is not very efficient (Hint: If <code>df$a[df$a == -99] &lt;- NA</code> has an error, how will you fix it? A solution is not scalable if it’s not automatable.</li>
 </ul>
 </div>
 <div id="using-a-function" class="section level4" number="5.4.1.3">
@@ -1214,9 +1214,9 @@ function(input){</p>
 ## 4     1    NA     2     1
 ## 5    NA     1     1     3</code></pre>
 <ul>
-<li><p><strong>Challenge</strong> Why using function is more efficient than 100% copying and pasting? Can you think about a way we can automate the process?</p></li>
+<li><p><strong>Challenge</strong> Why is using function more efficient than 100% copying and pasting? Can you think about a way we can automate the process?</p></li>
 <li><p>Many options for automation in R: <code>for loop</code>, <code>apply</code> family, etc.</p></li>
-<li><p>Here’s a tidy solution comes from <code>purrr</code> package.</p></li>
+<li><p>Here’s a tidy solution that comes from the <code>purrr</code> package.</p></li>
 <li><p>The power and joy of one-liner.</p></li>
 </ul>
 <div class="sourceCode" id="cb970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb970-1"><a href="functional-programming.html#cb970-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_df</span>(df, fix_missing)</span>
@@ -1241,7 +1241,7 @@ function(input){</p>
 
 - Output: Returns in a list or whatever data format you prefer (e.g., `_df helper: dataframe`)</code></pre>
 <ul>
-<li><strong>Challenge</strong> If you run the code below, what’s going to be the data type of the output?</li>
+<li><strong>Challenge</strong> If you run the code below, what will be the data type of the output?</li>
 </ul>
 <div class="sourceCode" id="cb973"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb973-1"><a href="functional-programming.html#cb973-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(df, fix_missing)</span></code></pre></div>
 <pre><code>## $a
@@ -1290,7 +1290,7 @@ function(input){</p>
 <li><p>Short answer: <code>purrr::map()</code> is simpler to write.</p></li>
 </ul>
 <p><strong>Additional tips</strong></p>
-<p>Performance testing (profiling) is an important part of programming. <code>tictoc()</code> measures the time that needs to take to run a target function for once. If you want a more robust measure of timing as well as information on memory (<strong>speed</strong> and <strong>space</strong> both matter for performance testing), consider using the <a href="https://github.com/r-lib/bench"><code>bench</code> package</a> that is designed for high precising timing of R expressions.</p>
+<p>Performance testing (profiling) is an important part of programming. <code>tictoc()</code> measures the time needed to run a target function for once. If you want a more robust measure of timing as well as information on memory (<strong>speed</strong> and <strong>space</strong> both matter for performance testing), consider using the <a href="https://github.com/r-lib/bench"><code>bench</code> package</a> that is designed for high precision timing of R expressions.</p>
 <div class="sourceCode" id="cb979"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb979-1"><a href="functional-programming.html#cb979-1" aria-hidden="true" tabindex="-1"></a>map_mark <span class="ot">&lt;-</span> bench<span class="sc">::</span><span class="fu">mark</span>(</span>
 <span id="cb979-2"><a href="functional-programming.html#cb979-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb979-3"><a href="functional-programming.html#cb979-3" aria-hidden="true" tabindex="-1"></a>  out1 <span class="ot">&lt;-</span> airquality <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -1415,7 +1415,7 @@ function(input){</p>
 <div id="problem" class="section level3" number="5.5.2">
 <h3><span class="header-section-number">5.5.2</span> Problem</h3>
 <ul>
-<li>Problem: How can you create something like below?</li>
+<li>Problem: How can you create something like the below?</li>
 </ul>
 <p>[1] “University = Berkeley | Department = waterbenders”</p>
 <p>[1] “University = Berkeley | Department = earthbenders”</p>
@@ -1459,7 +1459,7 @@ function(input){</p>
 ## [1] &quot;University =  Stanford | Department =  firebenders&quot;
 ## [1] &quot;University =  Stanford | Department =  airbenders&quot;</code></pre>
 <ul>
-<li>This is not bad, but … <code>n</code> arguments -&gt; <code>n-nested for loops</code>. As a scale of your problem grows, your code gets really complicated.</li>
+<li>This is not bad, but … <code>n</code> arguments -&gt; <code>n-nested for loops</code>. As a scale of your problem grows, your code gets complicated.</li>
 </ul>
 <blockquote>
 <p>To become significantly more reliable, code must become more transparent. In particular, nested conditions and loops must be viewed with great suspicion. Complicated control flows confuse programmers. Messy code often hides bugs. — <a href="https://en.wikipedia.org/wiki/Bjarne_Stroustrup">Bjarne Stroustrup</a></p>
@@ -1671,7 +1671,7 @@ How can you make <code>ggplot2()</code> take strings as x and y variable names? 
 <span id="cb1023-3"><a href="functional-programming.html#cb1023-3" aria-hidden="true" tabindex="-1"></a>second_bind <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(first_bind, df3)</span></code></pre></div>
 <ul>
 <li><strong>Challenge</strong>
-Why the above solution is not efficient?</li>
+Why is the above solution not efficient?</li>
 </ul>
 </div>
 <div id="reduce-1" class="section level3" number="5.7.4">
@@ -1693,13 +1693,13 @@ Why the above solution is not efficient?</li>
 <div id="objectives-2" class="section level3" number="5.8.1">
 <h3><span class="header-section-number">5.8.1</span> Objectives</h3>
 <ul>
-<li>Learning how to use <code>slowly()</code> and <code>future_</code> to make automation process either slower or faster</li>
+<li>Learning how to use <code>slowly()</code> and <code>future_</code> to make the automation process either slower or faster</li>
 </ul>
 </div>
 <div id="how-to-make-automation-slower" class="section level3" number="5.8.2">
 <h3><span class="header-section-number">5.8.2</span> How to make automation slower</h3>
 <ul>
-<li>Scraping 50 pages from a website and you don’t want to overload the server. How can you do that?</li>
+<li>Scraping 50 pages from a website, and you don’t want to overload the server. How can you do that?</li>
 </ul>
 </div>
 <div id="for-loop-2" class="section level3" number="5.8.3">
@@ -1708,18 +1708,18 @@ Why the above solution is not efficient?</li>
 <div id="map" class="section level3" number="5.8.4">
 <h3><span class="header-section-number">5.8.4</span> Map</h3>
 <ul>
-<li><p><code>walk()</code> works same as <code>map()</code> but doesn’t store its output.</p></li>
+<li><p><code>walk()</code> works the same as <code>map()</code> but doesn’t store its output.</p></li>
 <li><p>If you’re web scraping, one problem with this approach is it’s too fast by human standards.</p></li>
 <li><p>If you want to make the function run slowly …</p></li>
 </ul>
 <blockquote>
 <p>slowly() takes a function and modifies it to wait a given amount of time between each call. - <code>purrr</code> package vignette
-- If a function is a verb, then a helper function is an adverb (modifying the behavior of the verb).</p>
+- If a function is a verb, then a helper function is an adverb (modifying the verb’s behavior).</p>
 </blockquote>
 </div>
 <div id="how-to-make-automation-faster" class="section level3" number="5.8.5">
 <h3><span class="header-section-number">5.8.5</span> How to make automation Faster</h3>
-<p>In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data at large-scale. You can solve this problem using parallel processing. For more on the parallel processing in R, read <a href="https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/">this review</a>.</p>
+<p>In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data a large-scale. You can solve this problem using parallel processing. For more on the parallel processing in R, read <a href="https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/">this review</a>.</p>
 <ul>
 <li><p>Parallel processing setup</p>
 <ul>
@@ -1747,7 +1747,7 @@ Why the above solution is not efficient?</li>
 <span id="cb1026-6"><a href="functional-programming.html#cb1026-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <div class="sourceCode" id="cb1027"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1027-1"><a href="functional-programming.html#cb1027-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(url_list, read_html)</span></code></pre></div>
 <ul>
-<li>This is a very simple problem so it’s easy to tell where the problem is. How can you make your error more informative?</li>
+<li>This is a straightforward problem, so it’s easy to tell where the problem is. How can you make your error more informative?</li>
 </ul>
 </div>
 <div id="solution-1" class="section level3" number="5.9.2">
@@ -1755,7 +1755,7 @@ Why the above solution is not efficient?</li>
 <div id="try-catch" class="section level4" number="5.9.2.1">
 <h4><span class="header-section-number">5.9.2.1</span> Try-catch</h4>
 <ul>
-<li><p>There are three kinds of messages you will run into, if your code has an error based on the following functions.</p>
+<li><p>There are three kinds of messages you will run into if your code has an error based on the following functions.</p>
 <ul>
 <li><code>stop()</code>: errors; Functions must stop.</li>
 <li><code>warning()</code>: warnings; Functions may still work. Nonetheless, something is possibly messed up.</li>
@@ -1830,7 +1830,7 @@ Why the above solution is not efficient?</li>
 ## [[4]]$error
 ## &lt;simpleError in open.connection(x, &quot;rb&quot;): Could not resolve host: DLAB&gt;</code></pre>
 <ul>
-<li>The easier way to solve this problem is just avoiding the error.</li>
+<li>The easier way to solve this problem is just to avoid the error.</li>
 </ul>
 <div class="sourceCode" id="cb1032"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1032-1"><a href="functional-programming.html#cb1032-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(url_list, <span class="fu">safely</span>(read_html)) <span class="sc">%&gt;%</span></span>
 <span id="cb1032-2"><a href="functional-programming.html#cb1032-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="st">&quot;result&quot;</span>) <span class="sc">%&gt;%</span> </span>
@@ -1856,7 +1856,7 @@ Why the above solution is not efficient?</li>
 </div>
 <div id="possibly" class="section level4" number="5.9.2.3">
 <h4><span class="header-section-number">5.9.2.3</span> possibly</h4>
-<p>What if the best way to solve the problem is not ignoring the error …</p>
+<p>What if the best way to solve the problem is not to ignore the error …</p>
 <div class="sourceCode" id="cb1034"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1034-1"><a href="functional-programming.html#cb1034-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If error occurred, &quot;The URL is broken.&quot; will be stored in that element(s).</span></span>
 <span id="cb1034-2"><a href="functional-programming.html#cb1034-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">map</span>(</span>
 <span id="cb1034-3"><a href="functional-programming.html#cb1034-3" aria-hidden="true" tabindex="-1"></a>  url_list,</span>

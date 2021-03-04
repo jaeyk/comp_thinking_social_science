@@ -999,7 +999,7 @@ df
 ## 5    NA     1     1     3
 ```
 
-- **Challenge**. Explain why this solution is not very efficient (Hint: If `df$a[df$a == -99] <- NA` has an error, how are you going to fix it? A solution is not scalable if it's not automatable.
+- **Challenge**. Explain why this solution is not very efficient (Hint: If `df$a[df$a == -99] <- NA` has an error, how will you fix it? A solution is not scalable if it's not automatable.
 
 #### Using a function 
 
@@ -1046,11 +1046,11 @@ df
 ## 5    NA     1     1     3
 ```
 
-- **Challenge** Why using function is more efficient than 100% copying and pasting? Can you think about a way we can automate the process?
+- **Challenge** Why is using function more efficient than 100% copying and pasting? Can you think about a way we can automate the process?
 
 - Many options for automation in R: `for loop`, `apply` family, etc. 
 
-- Here's a tidy solution comes from `purrr` package.
+- Here's a tidy solution that comes from the `purrr` package.
 
 - The power and joy of one-liner. 
 
@@ -1082,7 +1082,7 @@ df
   
     - Output: Returns in a list or whatever data format you prefer (e.g., `_df helper: dataframe`)
 
-- **Challenge** If you run the code below, what's going to be the data type of the output?
+- **Challenge** If you run the code below, what will be the data type of the output?
 
 
 ```r
@@ -1157,7 +1157,7 @@ toc()
 
 **Additional tips**
 
-Performance testing (profiling) is an important part of programming. `tictoc()` measures the time that needs to take to run a target function for once. If you want a more robust measure of timing as well as information on memory (**speed** and **space** both matter for performance testing), consider using the [`bench` package](https://github.com/r-lib/bench) that is designed for high precising timing of R expressions. 
+Performance testing (profiling) is an important part of programming. `tictoc()` measures the time needed to run a target function for once. If you want a more robust measure of timing as well as information on memory (**speed** and **space** both matter for performance testing), consider using the [`bench` package](https://github.com/r-lib/bench) that is designed for high precision timing of R expressions. 
 
 
 
@@ -1312,7 +1312,7 @@ y_means_tidy <- map_dbl(y_tidy, mean)
 
 ### Problem 
 
-- Problem: How can you create something like below?
+- Problem: How can you create something like the below?
 
 [1] "University =  Berkeley | Department =  waterbenders"
 
@@ -1374,7 +1374,7 @@ for (univ in c("Berkeley", "Stanford")) {
 ## [1] "University =  Stanford | Department =  airbenders"
 ```
 
-- This is not bad, but ... `n` arguments -> `n-nested for loops`. As a scale of your problem grows, your code gets really complicated.
+- This is not bad, but ... `n` arguments -> `n-nested for loops`. As a scale of your problem grows, your code gets complicated.
 
 > To become significantly more reliable, code must become more transparent. In particular, nested conditions and loops must be viewed with great suspicion. Complicated control flows confuse programmers. Messy code often hides bugs. — [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup)
 
@@ -1679,7 +1679,7 @@ second_bind <- bind_rows(first_bind, df3)
 ```
 
 - **Challenge**
-Why the above solution is not efficient?
+Why is the above solution not efficient?
 
 ### reduce 
 
@@ -1700,11 +1700,11 @@ reduced <- reduce(list(df1, df2, df3), bind_rows)
 
 ### Objectives 
 
-- Learning how to use `slowly()` and `future_` to make automation process either slower or faster
+- Learning how to use `slowly()` and `future_` to make the automation process either slower or faster
 
 ### How to make automation slower
 
-- Scraping 50 pages from a website and you don't want to overload the server. How can you do that?
+- Scraping 50 pages from a website, and you don't want to overload the server. How can you do that?
 
 ### For loop 
 
@@ -1712,7 +1712,7 @@ reduced <- reduce(list(df1, df2, df3), bind_rows)
 
 ### Map 
 
-- `walk()` works same as `map()` but doesn't store its output. 
+- `walk()` works the same as `map()` but doesn't store its output. 
 
 
 
@@ -1723,13 +1723,13 @@ reduced <- reduce(list(df1, df2, df3), bind_rows)
 - If you want to make the function run slowly ... 
 
 > slowly() takes a function and modifies it to wait a given amount of time between each call. - `purrr` package vignette 
-- If a function is a verb, then a helper function is an adverb (modifying the behavior of the verb). 
+- If a function is a verb, then a helper function is an adverb (modifying the verb's behavior). 
 
 
 
 ### How to make automation Faster 
 
-In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data at large-scale. You can solve this problem using parallel processing. For more on the parallel processing in R, read [this review](https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/).
+In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data a large-scale. You can solve this problem using parallel processing. For more on the parallel processing in R, read [this review](https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/).
 
 - Parallel processing setup 
 
@@ -1765,13 +1765,13 @@ url_list <- c(
 map(url_list, read_html)
 ```
 
-- This is a very simple problem so it's easy to tell where the problem is. How can you make your error more informative? 
+- This is a straightforward problem, so it's easy to tell where the problem is. How can you make your error more informative? 
 
 ### Solution 
 
 #### Try-catch 
 
-- There are three kinds of messages you will run into, if your code has an error based on the following functions.  
+- There are three kinds of messages you will run into if your code has an error based on the following functions.  
 
     - `stop()`: errors; Functions must stop. 
     - `warning()`: warnings; Functions may still work. Nonetheless, something is possibly messed up. 
@@ -1851,7 +1851,7 @@ map(url_list, safely(read_html))
 ## <simpleError in open.connection(x, "rb"): Could not resolve host: DLAB>
 ```
 
-- The easier way to solve this problem is just avoiding the error.
+- The easier way to solve this problem is just to avoid the error.
 
 
 ```r
@@ -1867,7 +1867,7 @@ map(url_list, safely(read_html)) %>%
 
 #### possibly 
 
-What if the best way to solve the problem is not ignoring the error ... 
+What if the best way to solve the problem is not to ignore the error ... 
 
 
 ```r
