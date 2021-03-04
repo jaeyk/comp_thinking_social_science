@@ -179,7 +179,7 @@ This is the website for \emph{Computational Thinking for Social Scientists}. Thi
 
 The book is not intended to be a comprehensive guide for computational social science or any particular programming language, computational tool, or technique. For a general introduction to computational social science, I recommend \href{http://www.princeton.edu/~mjs3/}{Matthew Salganik} 's \href{https://www.bitbybitbook.com/}{Bit By Bit (2017)}.
 
-The book is currently divided into two main subjects (fundamentals and applications) and seven main sessions.
+The book is currently divided into two main subjects (fundamentals and applications) and eight main sessions.
 
 \hypertarget{part-i-fundamentals}{%
 \section{Part I Fundamentals}\label{part-i-fundamentals}}
@@ -249,7 +249,7 @@ The book teaches how to do all of these, mostly in \href{https://www.r-project.o
 \hypertarget{special-thanks}{%
 \section{Special thanks}\label{special-thanks}}
 
-This book is collected as much as it is authored. It is a remix version of \href{https://github.com/rochelleterman/PS239T}{PS239T}, a graduate-level computational methods course at UC Berkeley, originally developed by \href{http://rochelleterman.com/}{Rochelle Terman} then revised by \href{http://rachelbernhard.com/}{Rachel Bernhard}. I have taught PS239T as lead instructor in Spring 2019 and TA in Spring 2018 and will co-teach it in Spring 2020. Other teaching materials draw from the workshops I have created for \href{https://dlab.berkeley.edu/}{D-Lab} (Summer - Fall 2020) and \href{https://data.berkeley.edu/research/discovery-program-home}{Data Science Discovery Program} (Spring 2020) at UC Berkeley. I also have cited all the other references whenever I am aware of related books, articles, slides, blog posts, or YouTube video clips.
+This book is collected as much as it is authored. It is a remix version of \href{https://github.com/rochelleterman/PS239T}{PS239T}, a graduate-level computational methods course at UC Berkeley, originally developed by \href{http://rochelleterman.com/}{Rochelle Terman} then revised by \href{http://rachelbernhard.com/}{Rachel Bernhard}. I have taught PS239T three times (twice as an insturctor and once as a teaching assistant). Other teaching materials draw from the workshops I have created for \href{https://dlab.berkeley.edu/}{D-Lab} (Summer - Fall 2020) and \href{https://data.berkeley.edu/research/discovery-program-home}{Data Science Discovery Program} (Spring 2020) at UC Berkeley. I also have cited all the other references whenever I am aware of related books, articles, slides, blog posts, or YouTube video clips.
 
 \hypertarget{suggestions-questions-or-comments}{%
 \section{Suggestions, questions, or comments}\label{suggestions-questions-or-comments}}
@@ -567,7 +567,7 @@ The following materials on UNIX and Shell are adapted from {[}the software carpe
 \hypertarget{unix}{%
 \subsubsection{Unix}\label{unix}}
 
-UNIX is an \textbf{operating system + a set of tools (utilities)}. It was developed by AT \& T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. For this reason, if you're using Max OS, then you don't need to do anything else to experience UNIX. You're already all set. If you're using Windows, you need to install either GitBash (a good option if you only use Bash for Git and GitHub) or Windows Subsystem (highly recommended if your use case goes beyond Git and GitHub). For more information, see \href{https://GitHub.com/PS239T/spring_2021/blob/main/B_Install.md}{this installation guideline} from the course repo. If you're an Windows user and don't use Windows 10, I recommend installing \href{https://www.virtualbox.org/}{VirtualBox}.
+UNIX is an \textbf{operating system + a set of tools (utilities)}. It was developed by AT \& T employees at Bell Labs (1969-1971). From Mac OS X to Linux, many of current operation systems are some versions of UNIX. For this reason, if you're using Max OS, then you don't need to do anything else to experience UNIX. You're already all set. If you're using Windows, you need to install either GitBash (a good option if you only use Bash for Git and GitHub) or Windows Subsystem (highly recommended if your use case goes beyond Git and GitHub)￣. For more information, see \href{https://GitHub.com/PS239T/spring_2021/blob/main/B_Install.md}{this installation guideline} from the course repo. If you're an Windows user and don't use Windows 10, I recommend installing \href{https://www.virtualbox.org/}{VirtualBox}.
 
 UNIX is old, but it is still mainstream and it will be. Moreover, \href{https://en.wikipedia.org/wiki/Unix_philosophy}{the UNIX philosophy} (``Do One Thing And Do It Well'')---minimalist, modular software development---is highly and widely influential.
 
@@ -23288,7 +23288,7 @@ Even more so for Black defendants.
 \begin{itemize}
 \tightlist
 \item
-  Medium sized file (1-2 GB)
+  Medium-sized file (1-2 GB)
 
   \begin{itemize}
   \tightlist
@@ -23302,7 +23302,7 @@ Even more so for Black defendants.
     \item
       R:\texttt{data.table::fread(file\ path,\ select\ =\ c("column\ 1",\ "column\ 2"))}. This command imports data faster than \texttt{read.csv()} does.
     \item
-      Command line: \href{https://csvkit.readthedocs.io/en/latest/}{\texttt{csvkit}} - a suite of command-line tools to and working with CSV
+      Command-line: \href{https://csvkit.readthedocs.io/en/latest/}{\texttt{csvkit}} - a suite of command-line tools to and working with CSV
     \end{itemize}
   \end{itemize}
 \item
@@ -23327,7 +23327,7 @@ Even more so for Black defendants.
   \begin{itemize}
   \tightlist
   \item
-    Relational database = a \textbf{collection} of \textbf{tables} (fixed columns and rows): SQL is a staple tool to define, \textbf{query} (focus of the workshop today), control, and manipulate this type of database
+    Relational database = a \textbf{collection} of \textbf{tables} (fixed columns and rows): SQL is a staple tool to define, \textbf{query} (the focus of the workshop today), control, and manipulate this type of database
   \item
     Non-relational database = a collection of documents (MongoDB), key-values (Redis and DyanoDB), wide-column stores (Cassandra and HBase), or graph (Neo4j and JanusGraph). Note that this type of database does not preclude SQL. NoSQL stands for \href{https://www.mongodb.com/nosql-explained}{``not only SQL.''}
   \end{itemize}
@@ -23355,7 +23355,7 @@ Even more so for Black defendants.
   \begin{itemize}
   \tightlist
   \item
-    Database management systems figures optimal way to execute query (query optimization)
+    Database management systems figure an optimal way to execute a query (query optimization)
   \end{itemize}
 \end{itemize}
 
@@ -23533,7 +23533,7 @@ Let's get to work.
 \begin{itemize}
 \tightlist
 \item
-  \href{https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236}{The flight on-time performance data} from the Bureau of Transportation Statistics of the U.S. government. The data goes back to 1987 and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.
+  \href{https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236}{The flight on-time performance data} from the Bureau of Transportation Statistics of the U.S. government. The data goes back to 1987, and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.
 \end{itemize}
 
 \begin{figure}
@@ -23554,11 +23554,11 @@ Let's get to work.
 
 \begin{itemize}
 \item
-  Note that server also can be your laptop (called \href{https://en.wikipedia.org/wiki/Localhost\#:~:text=In\%20computer\%20networking\%2C\%20localhost\%20is,via\%20the\%20loopback\%20network\%20interface.}{localhost}).
+  Note that the server also can be your laptop (called \href{https://en.wikipedia.org/wiki/Localhost\#:~:text=In\%20computer\%20networking\%2C\%20localhost\%20is,via\%20the\%20loopback\%20network\%20interface.}{localhost}).
 \item
   Short answer: To do so, you need interfaces between R and a database. We use \href{https://github.com/r-dbi/RSQLite}{\texttt{RSQLite}} in this tutorial because it's easy to set up.
 \item
-  Long answer: The \texttt{DBI} package in R provides a client-side interface that allows \texttt{dplyr} to work with databases. DBI is automatically installed when you installed \texttt{dbplyr}. However, you need to install a specific backend engine (a tool for communication between R and a database management system) for the database (e.g., \texttt{RMariaDB}, \texttt{RPostgres}, \texttt{RSQLite}). In this workshop, we use SQLite because it is the easiest to get started with. Personally, I love PostgreSQL because it's an open-source and also powerful to do \href{https://www.postgresql.org/docs/current/functions.html}{many amazing things} (e.g., text mining, geospatial analysis). If you want to not only build a data warehouse, but an anlytical platform then consider using Spark (Hadoop).
+  Long answer: The \texttt{DBI} package in R provides a client-side interface that allows \texttt{dplyr} to work with databases. DBI is automatically installed when you installed \texttt{dbplyr}. However, you need to install a specific backend engine (a tool for communication between R and a database management system) for the database (e.g., \texttt{RMariaDB}, \texttt{RPostgres}, \texttt{RSQLite}). In this workshop, we use SQLite because it is the easiest to get started with. I love PostgreSQL because it's open-source and also powerful to do \href{https://www.postgresql.org/docs/current/functions.html}{many amazing things} (e.g., text mining, geospatial analysis). If you want to build a data warehouse, an analytical platform, consider using Spark (Hadoop).
 \end{itemize}
 
 \begin{enumerate}
@@ -23571,7 +23571,7 @@ Let's get to work.
 
 \begin{itemize}
 \item
-  Option 1: You can create a table and insert rows manually. In order to do that, you also need to define data schema (the structure of the database).
+  Option 1: You can create a table and insert rows manually. To do that, you also need to define the data schema (the database structure).
 \item
   Table
 
@@ -23647,7 +23647,7 @@ Let's get to work.
 \begin{itemize}
 \tightlist
 \item
-  Option 2: Copy a file (object) to a table in a database using \texttt{copy\_to}). We take this option as it's fast and we would like to focus on querying in this workshop.
+  Option 2: Copy a file (object) to a table in a database using \texttt{copy\_to}). We take this option as it's fast, and we would like to focus on querying in this workshop.
 \end{itemize}
 
 \begin{enumerate}
@@ -23710,7 +23710,7 @@ Let's get to work.
 \begin{itemize}
 \tightlist
 \item
-  Note that con is empty at this stage.
+  Note that \texttt{con} is empty at this stage.
 \end{itemize}
 
 \hypertarget{copy-an-object-as-a-table-to-the-database-push}{%
@@ -24109,7 +24109,7 @@ Your turn: write the same code in SQL (hint: \texttt{filter(condition1,\ conditi
 
 Note that R and SQL operators are not exactly alike. R uses \texttt{!=} for \texttt{Not\ equal\ to}. SQL uses \texttt{\textless{}\textgreater{}} or \texttt{!=}. Furthermore, there are some cautions about using \texttt{NULL} (NA; unknown or missing): it should be \texttt{IS\ NULL} or \texttt{IS\ NOT\ NULL} not \texttt{=NULL} or \texttt{!=NULL} (this makes sense because NULL represents an absence of a value).
 
-Another pro-tip is \href{https://www.w3schools.com/sql/sql_like.asp}{\texttt{LIKE} operator}, which is used in a \texttt{WHERE} statement to find values based on string patterns.
+Another pro-tip is \href{https://www.w3schools.com/sql/sql_like.asp}{\texttt{LIKE} operator}, used in a \texttt{WHERE} statement to find values based on string patterns.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -24235,9 +24235,9 @@ Your turn: write the same code in SQL (hint: in SQL the order should be \texttt{
 \item
   Joins
 \item
-  Using joins is simpler in R than it is in SQL.
+  Using joins is more straightforward in R than it is in SQL.
 \item
-  However, more flexible joins exist in SQL and they are not available in R.
+  However, more flexible joins exist in SQL, and they are not available in R.
 
   \begin{itemize}
   \tightlist
@@ -24443,7 +24443,7 @@ This is just a hypothetical example inspired by {[}James LeDoux's blog post{]}(\
 \item
   \href{https://wizardzines.com/zines/sql/}{SQL zine} by Julia Evans
 \item
-  \href{http://harelba.github.io/q/}{q} - a command line tool that allows direct execution of SQL-like queries on CSVs/TSVs (and any other tabular text files)
+  \href{http://harelba.github.io/q/}{q} - a command-line tool that allows direct execution of SQL-like queries on CSVs/TSVs (and any other tabular text files)
 \end{itemize}
 
 \hypertarget{spark}{%
