@@ -148,7 +148,7 @@
 
 \title{Computational Thinking for Social Scientists}
 \author{\href{https://jaeyk.github.io/}{Jae Yeon Kim}}
-\date{2021-03-01}
+\date{2021-03-04}
 
 \begin{document}
 \maketitle
@@ -175,9 +175,9 @@
 Make simple things simple, and complex things possible. - \href{https://www.quora.com/What-is-the-story-behind-Alan-Kay-s-adage-Simple-things-should-be-simple-complex-things-should-be-possible}{Alan Kay}
 \end{quote}
 
-This is the website for \emph{Computational Thinking for Social Scientists}. This book intends to help social scientists to think computationally and develop proficiency with computational tools and techniques, necessary to conduct research in computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let them to work on research projects that would previously seem impossible.
+This is the website for \emph{Computational Thinking for Social Scientists}. This book intends to help social scientists think computationally and develop proficiency with computational tools and techniques to research computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let them work on research projects that would previously seem impossible.
 
-The book is not intended to be a comprehensive guide for computational social science or any particular programming language, computational tool or technique. For general introduction to computational social science, I recommend \href{http://www.princeton.edu/~mjs3/}{Matthew Salganik}'s \href{https://www.bitbybitbook.com/}{Bit By Bit (2017)}.
+The book is not intended to be a comprehensive guide for computational social science or any particular programming language, computational tool, or technique. For a general introduction to computational social science, I recommend \href{http://www.princeton.edu/~mjs3/}{Matthew Salganik} 's \href{https://www.bitbybitbook.com/}{Bit By Bit (2017)}.
 
 The book is currently divided into two main subjects (fundamentals and applications) and seven main sessions.
 
@@ -205,14 +205,14 @@ The book is currently divided into two main subjects (fundamentals and applicati
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{5}
 \item
-  \protect\hyperlink{semi_structured_data}{How to collect and parse semi-structured data at scale (e.g., using APIs and webscraping)}
+  \protect\hyperlink{semi_structured_data}{How to collect and parse semi-structured data at scale (e.g., using APIs and web scraping)}
 \item
   \protect\hyperlink{machine_learning}{How to analyze high-dimensional data (e.g., text, image) using machine learning}
 \item
   \protect\hyperlink{big_data}{How to access, query, and manage big data using SQL and Spark}
 \end{enumerate}
 
-The book teaches how to do all of these mostly in \href{https://www.r-project.org/about.html}{\textbf{R}}, and sometimes in \href{https://www.gnu.org/software/bash/}{\textbf{bash}} and \href{https://www.python.org/about/}{\textbf{Python}}.
+The book teaches how to do all of these, mostly in \href{https://www.r-project.org/about.html}{\textbf{R}}, and sometimes in \href{https://www.gnu.org/software/bash/}{\textbf{bash}} and \href{https://www.python.org/about/}{\textbf{Python}}.
 
 \begin{itemize}
 \item
@@ -240,9 +240,9 @@ The book teaches how to do all of these mostly in \href{https://www.r-project.or
 
   \begin{itemize}
   \item
-    RStudio, especially the tidyverse team, has made heroic efforts to amend the problems listed above. Readers will learn these recent advances in the R ecosystem and how to complement R with Python and Bash.
+    RStudio, especially the tidyverse team, has made heroic efforts to amend the problems listed above. Readers will learn these recent advances in the R ecosystem and complement R with Python and Bash.
   \item
-    If you're serious in programming, I strongly recommend learning Python. Learning Python also helps you to fill gaps in the software engineering knowledge that are useful to be highly proficient in R.
+    If you're serious about programming, I strongly recommend learning Python. Learning Python also helps you fill gaps in the software engineering knowledge useful to be highly proficient in R.
   \end{itemize}
 \end{itemize}
 
@@ -271,13 +271,13 @@ Please feel free to \href{https://github.com/jaeyk/PS239T/issues}{create issues}
 \item
   If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is \textbf{automation}.
 \item
-  Let's think about the following two cases (these examples come from \href{https://dlab.berkeley.edu/blog/why-teaching-social-scientists-how-code-professional-important}{the column} I contributed to D-Lab website).
+  Let's think about the following two cases (these examples come from \href{https://dlab.berkeley.edu/blog/why-teaching-social-scientists-how-code-professional-important}{the column} I contributed to the D-Lab website).
 
   \begin{itemize}
   \item
-    Case 1: Suppose a social scientist needs to collect data on civic organizations in the United States from websites, Internal Revenue Service reports, and social media posts. As the number of these organizations is large, the researcher could not collect a large volume of data from diverse sources, so they would hire undergraduates and distribute tasks among them. This is a typical data collection plan in social science research, and it is labor-intensive. Automation is not part of the game plan. Yet, it is critical for so many reasons. Because the process is costly, no one is likely to either replicate or update the data collection effort. Put differently, without making the process efficient, it is difficult for it to be reproducible and scalable.
+    Case 1: Suppose a social scientist needs to collect data on civic organizations in the United States from websites, Internal Revenue Service reports, and social media posts. As the number of these organizations is large, the researcher could not collect a large volume of data from diverse sources, so they would hire undergraduates and distribute tasks. This is a typical data collection plan in social science research, and it is labor-intensive. Automation is not part of the game plan. Yet, it is critical for so many reasons. Because the process is costly, no one is likely to either replicate or update the data collection effort. Put differently, without making the process efficient, and it is difficult for it to be reproducible and scalable.
   \item
-    Case 2: An alternative is to write computer programs that collect such data automatically, parse them, and store them in interconnected databases. Additionally, someone may need to maintain and validate the quality of the data infrastructure. Nevertheless, this approach lowers the cost of the data collection process, thereby substantially increasing the \textbf{reproducibility} and \textbf{scalability} of the process. Furthermore, the researcher can document their code and publicly share it using their GitHub repository or even gather some of the functions they used and distribute them as open-source libraries.
+    Case 2: An alternative is to write computer programs that collect such data automatically, parse them, and store them in interconnected databases. Additionally, someone may need to maintain and validate the quality of the data infrastructure. Nevertheless, this approach lowers the cost of the data collection process, thereby substantially increasing the \textbf{reproducibility} and \textbf{scalability}. Furthermore, the researcher can document their code and publicly share it using their GitHub repository or even gather some of the functions they used and distribute them as open-source libraries.
   \end{itemize}
 \item
   Programming is as valuable a skill as writing in social science research. The extent to which a researcher can automate the research process can determine its efficiency, reproducibility, and scalability.
@@ -317,7 +317,7 @@ This book teaches how you to do that in R in incremental steps.
 \end{itemize}
 
 \begin{quote}
-``{[}W{]}e wanted users to be able to begin in an interactive environment, where they did not consciously think of themselves as progamming. Then as their needs became clearer and their sophistication increased, they should be able to slide gradually into programming, when the language and system aspects would become more important.'' - \emph{Stages in the Evolution of S} by John Chambers (S is the progenitor of R)
+``{[}W{]}e wanted users to be able to begin in an interactive environment, where they did not consciously think of themselves as programming. Then as their needs became clearer and their sophistication increased, they should be able to slide gradually into programming, when the language and system aspects would become more important.'' - \emph{Stages in the Evolution of S} by John Chambers (S is the progenitor of R)
 \end{quote}
 
 \begin{itemize}
@@ -336,7 +336,7 @@ This book teaches how you to do that in R in incremental steps.
 \begin{itemize}
 \tightlist
 \item
-  Berkeley's widely praised data science undergraduate education is built upon both inferential (statistics) and computational thinking. \href{https://www.inferentialthinking.com/chapters/intro}{The textbook} used for teaching its most fundamental course (Data8) underscores computational thinking because ``programming allows us to apply analysis techniques to the large and diverse data sets that arise in real-world applications: not just numbers, but text, images, videos, and sensor readings.'' This is also exactly the point of this textbook and explains how its content is organized.
+  Berkeley's widely praised data science undergraduate education is built upon inferential (statistics) and computational thinking. \href{https://www.inferentialthinking.com/chapters/intro}{The textbook} used for teaching its most fundamental course (Data8) underscores computational thinking because ``programming allows us to apply analysis techniques to the large and diverse data sets that arise in real-world applications: not just numbers, but text, images, videos, and sensor readings.'' This is also exactly the point of this textbook and explains how its content is organized.
 \end{itemize}
 
 \hypertarget{structure}{%
@@ -363,7 +363,7 @@ This book teaches how you to do that in R in incremental steps.
 \hypertarget{dimension}{%
 \subsection{Dimension}\label{dimension}}
 
-Suppose n = the number of observations and p = the number of variables
+Suppose n = the number of observations and p = the number of variables.
 
 \begin{itemize}
 \item
@@ -395,8 +395,8 @@ Suppose n = the number of observations and p = the number of variables
   Big data: Data don't fit in your laptop's memory
 \end{itemize}
 
-\hypertarget{computational-way-of-thinking-about-research-process}{%
-\section{Computational way of thinking about research process}\label{computational-way-of-thinking-about-research-process}}
+\hypertarget{computational-way-of-thinking-about-the-research-process}{%
+\section{Computational way of thinking about the research process}\label{computational-way-of-thinking-about-the-research-process}}
 
 Computational tools and techniques make \ldots{}
 
@@ -451,7 +451,7 @@ Computational tools and techniques make \ldots{}
 \hypertarget{references}{%
 \section{References}\label{references}}
 
-Here are a couple of useful videos that introduce the main concepts of computational social science. Matthew Salganik (Professor of Sociology at Princeton) is co-founder of the \href{https://sicss.io/}{Summer Institute in Computational Social Science} and Rayid Ghani (Professor of Machine Learning and Public Policy at Carnegie Mellon) is founder of the \href{https://www.dssgfellowship.org/}{Data Science for Social Good}. (Full disclaimer: I'm a former participant (Princeton 2019) and local organizer (\href{https://sicss.io/2020/bay_area/}{Bay Area 2020}) of the Summer Institute in Computational Social Science. If you become interested in computational social science and wonder what should be your next step, I would highly recommend applying for the program.) Data Science for Social Good is another cool program that deserves your attention.
+Here are a couple of useful videos that introduce the main concepts of computational social science. Matthew Salganik (Professor of Sociology at Princeton) is co-founder of the \href{https://sicss.io/}{Summer Institute in Computational Social Science}, and Rayid Ghani (Professor of Machine Learning and Public Policy at Carnegie Mellon) is founder of the \href{https://www.dssgfellowship.org/}{Data Science for Social Good}. (Full disclaimer: I'm a former participant (Princeton 2019) and local organizer (\href{https://sicss.io/2020/bay_area/}{Bay Area 2020}) of the Summer Institute in Computational Social Science. If you become interested in computational social science and wonder what should be your next step, I would highly recommend applying for the program.) Data Science for Social Good is another cool program that deserves your attention.
 
 \hypertarget{git_bash}{%
 \chapter{Managing data and code}\label{git_bash}}
@@ -6572,30 +6572,18 @@ A flat file (e.g., CSV) is a rectangular shaped combination of strings. \href{ht
 ##  8 Aaliyah  I Don'~ 2000-01-29      84    62    51    41    38    35    35    38
 ##  9 Aaliyah  Try Ag~ 2000-03-18      59    53    38    28    21    18    16    14
 ## 10 Adams, ~ Open M~ 2000-08-26      76    76    74    69    68    67    61    58
-## # ... with 307 more rows, and 68 more
-## #   variables: wk9 <dbl>, wk10 <dbl>,
-## #   wk11 <dbl>, wk12 <dbl>, wk13 <dbl>,
-## #   wk14 <dbl>, wk15 <dbl>, wk16 <dbl>,
-## #   wk17 <dbl>, wk18 <dbl>, wk19 <dbl>,
-## #   wk20 <dbl>, wk21 <dbl>, wk22 <dbl>,
-## #   wk23 <dbl>, wk24 <dbl>, wk25 <dbl>,
-## #   wk26 <dbl>, wk27 <dbl>, wk28 <dbl>,
-## #   wk29 <dbl>, wk30 <dbl>, wk31 <dbl>,
-## #   wk32 <dbl>, wk33 <dbl>, wk34 <dbl>,
-## #   wk35 <dbl>, wk36 <dbl>, wk37 <dbl>,
-## #   wk38 <dbl>, wk39 <dbl>, wk40 <dbl>,
-## #   wk41 <dbl>, wk42 <dbl>, wk43 <dbl>,
-## #   wk44 <dbl>, wk45 <dbl>, wk46 <dbl>,
-## #   wk47 <dbl>, wk48 <dbl>, wk49 <dbl>,
-## #   wk50 <dbl>, wk51 <dbl>, wk52 <dbl>,
-## #   wk53 <dbl>, wk54 <dbl>, wk55 <dbl>,
-## #   wk56 <dbl>, wk57 <dbl>, wk58 <dbl>,
-## #   wk59 <dbl>, wk60 <dbl>, wk61 <dbl>,
-## #   wk62 <dbl>, wk63 <dbl>, wk64 <dbl>,
-## #   wk65 <dbl>, wk66 <lgl>, wk67 <lgl>,
-## #   wk68 <lgl>, wk69 <lgl>, wk70 <lgl>,
-## #   wk71 <lgl>, wk72 <lgl>, wk73 <lgl>,
-## #   wk74 <lgl>, wk75 <lgl>, wk76 <lgl>
+## # ... with 307 more rows, and 68 more variables: wk9 <dbl>, wk10 <dbl>,
+## #   wk11 <dbl>, wk12 <dbl>, wk13 <dbl>, wk14 <dbl>, wk15 <dbl>, wk16 <dbl>,
+## #   wk17 <dbl>, wk18 <dbl>, wk19 <dbl>, wk20 <dbl>, wk21 <dbl>, wk22 <dbl>,
+## #   wk23 <dbl>, wk24 <dbl>, wk25 <dbl>, wk26 <dbl>, wk27 <dbl>, wk28 <dbl>,
+## #   wk29 <dbl>, wk30 <dbl>, wk31 <dbl>, wk32 <dbl>, wk33 <dbl>, wk34 <dbl>,
+## #   wk35 <dbl>, wk36 <dbl>, wk37 <dbl>, wk38 <dbl>, wk39 <dbl>, wk40 <dbl>,
+## #   wk41 <dbl>, wk42 <dbl>, wk43 <dbl>, wk44 <dbl>, wk45 <dbl>, wk46 <dbl>,
+## #   wk47 <dbl>, wk48 <dbl>, wk49 <dbl>, wk50 <dbl>, wk51 <dbl>, wk52 <dbl>,
+## #   wk53 <dbl>, wk54 <dbl>, wk55 <dbl>, wk56 <dbl>, wk57 <dbl>, wk58 <dbl>,
+## #   wk59 <dbl>, wk60 <dbl>, wk61 <dbl>, wk62 <dbl>, wk63 <dbl>, wk64 <dbl>,
+## #   wk65 <dbl>, wk66 <lgl>, wk67 <lgl>, wk68 <lgl>, wk69 <lgl>, wk70 <lgl>,
+## #   wk71 <lgl>, wk72 <lgl>, wk73 <lgl>, wk74 <lgl>, wk75 <lgl>, wk76 <lgl>
 \end{verbatim}
 
 \begin{enumerate}
@@ -7353,8 +7341,7 @@ dplyr is better than the base R approaches to data processing:
 ## 15 Mon Mo~    150  NA   auburn     fair        blue              48 fema~ femin~
 ## 16 R4-P17      96  NA   none       silver, red red, blue         NA none  femin~
 ## 17 Rey         NA  NA   brown      light       hazel             NA fema~ femin~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
@@ -7480,8 +7467,7 @@ The following filtering example was inspired by \href{https://suzan.rbind.io/201
 ## 2 Beru Wh~    165    75 brown       light      blue              47 fema~ femin~
 ## 3 Quarsh ~    183    NA black       dark       brown             62 <NA>  <NA>  
 ## 4 Cliegg ~    183    NA brown       fair       blue              82 male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
@@ -7502,8 +7488,7 @@ The following filtering example was inspired by \href{https://suzan.rbind.io/201
 ## 2 Beru Wh~    165    75 brown       light      blue              47 fema~ femin~
 ## 3 Quarsh ~    183    NA black       dark       brown             62 <NA>  <NA>  
 ## 4 Cliegg ~    183    NA brown       fair       blue              82 male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
@@ -7530,10 +7515,8 @@ The following filtering example was inspired by \href{https://suzan.rbind.io/201
 ##  8 Boba Fe~    183  78.2 black      fair       brown           31.5 male  mascu~
 ##  9 Lando C~    177  79   black      dark       brown           31   male  mascu~
 ## 10 Arvel C~     NA  NA   brown      fair       brown           NA   male  mascu~
-## # ... with 21 more rows, and 5 more variables:
-## #   homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>,
-## #   starships <list>
+## # ... with 21 more rows, and 5 more variables: homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>, starships <list>
 \end{verbatim}
 
 \textbf{Challenge}
@@ -7564,8 +7547,7 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ## 4 Chewba~    228   112 brown      unknown     blue              200 male  mascu~
 ## 5 Roos T~    224    82 none       grey        orange             NA male  mascu~
 ## 6 Grievo~    216   159 none       brown, whi~ green, ye~         NA male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
@@ -7602,8 +7584,7 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ## 7 Jabba ~    175  1358 <NA>       green-tan,~ orange         600   herma~ mascu~
 ## 8 Darth ~    202   136 none       white       yellow          41.9 male   mascu~
 ## 9 Taun We    213    NA none       grey        black           NA   female femin~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
@@ -7631,8 +7612,7 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ## 6 Darth V~    202 136   none       white      yellow          41.9 male   mascu~
 ## 7 Finn         NA  NA   black      dark       dark            NA   male   mascu~
 ## 8 Boba Fe~    183  78.2 black      fair       brown           31.5 male   mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
@@ -7677,8 +7657,7 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ## 18 Ki-Adi~    198    82 white      pale        yellow            92 male  mascu~
 ## 19 BB8         NA    NA none       none        black             NA none  mascu~
 ## 20 Eeth K~    171    NA black      brown       brown             NA male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
@@ -7718,8 +7697,7 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ## 18 Lobot      175    79 none        light      blue              37 male  mascu~
 ## 19 San Hi~    191    NA none        grey       gold              NA male  mascu~
 ## 20 Kit Fi~    196    87 none        green      black             NA male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
@@ -7751,8 +7729,7 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ##  8 Grievo~    216   159 none       brown, whi~ green, y~       NA   male  mascu~
 ##  9 Tarfful    234   136 brown      brown       blue            NA   male  mascu~
 ## 10 Tion M~    206    80 none       grey        black           NA   male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
@@ -7778,8 +7755,7 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ##  8 Rugor ~    206    NA none       green       orange          NA   male  mascu~
 ##  9 Tion M~    206    80 none       grey        black           NA   male  mascu~
 ## 10 Darth ~    202   136 none       white       yellow          41.9 male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 \end{verbatim}
 
@@ -8019,8 +7995,7 @@ The key idea is you can use Boolean operators (\texttt{!}, \texttt{\&}, \texttt{
 ##  8 Roden~ Vesp~ Calo~ <NA>  <NA>                 7        NA        NA      17  
 ##  9 Carni~ Dog   Canis carni domesticated        10.1       2.9       0.333  13.9
 ## 10 Artio~ Roe ~ Capr~ herbi lc                   3        NA        NA      21  
-## # ... with 73 more rows, and 2 more variables:
-## #   brainwt <dbl>, bodywt <dbl>
+## # ... with 73 more rows, and 2 more variables: brainwt <dbl>, bodywt <dbl>
 \end{verbatim}
 
 \begin{itemize}
@@ -8980,17 +8955,12 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
-## #   United Kingdom <dbl>
+## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 \end{verbatim}
 
 \begin{itemize}
@@ -9011,17 +8981,12 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     <dbl>   <dbl>   <dbl>   <dbl>                    <dbl>    <dbl>   <dbl>
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # ... with 24 more variables:
-## #   Czech Republic <dbl>, Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
+## # ... with 24 more variables: Czech Republic <dbl>, Denmark <dbl>,
+## #   Finland <dbl>, France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>,
+## #   Iceland <dbl>, Ireland <dbl>, Italy <dbl>, Montenegro <dbl>,
+## #   Netherlands <dbl>, Norway <dbl>, Poland <dbl>, Portugal <dbl>,
+## #   Romania <dbl>, Serbia <dbl>, Slovak Republic <dbl>, Slovenia <dbl>,
+## #   Spain <dbl>, Sweden <dbl>, Switzerland <dbl>, Turkey <dbl>,
 ## #   United Kingdom <dbl>
 \end{verbatim}
 
@@ -9047,17 +9012,12 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
-## #   United Kingdom <dbl>
+## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 \end{verbatim}
 
 \begin{Shaded}
@@ -9117,17 +9077,12 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
-## #   United Kingdom <dbl>
+## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 \end{verbatim}
 
 \begin{Shaded}
@@ -9142,17 +9097,12 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
-## #   United Kingdom <dbl>
+## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 \end{verbatim}
 
 \begin{itemize}
@@ -9186,17 +9136,12 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     <dbl>   <dbl>   <dbl>   <dbl>                    <dbl>    <dbl>   <dbl>
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # ... with 24 more variables:
-## #   Czech Republic <dbl>, Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
+## # ... with 24 more variables: Czech Republic <dbl>, Denmark <dbl>,
+## #   Finland <dbl>, France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>,
+## #   Iceland <dbl>, Ireland <dbl>, Italy <dbl>, Montenegro <dbl>,
+## #   Netherlands <dbl>, Norway <dbl>, Poland <dbl>, Portugal <dbl>,
+## #   Romania <dbl>, Serbia <dbl>, Slovak Republic <dbl>, Slovenia <dbl>,
+## #   Spain <dbl>, Sweden <dbl>, Switzerland <dbl>, Turkey <dbl>,
 ## #   United Kingdom <dbl>
 \end{verbatim}
 
@@ -9221,17 +9166,12 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
-## #   United Kingdom <dbl>
+## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 \end{verbatim}
 
 \begin{Shaded}
@@ -10097,8 +10037,7 @@ S3 is part of R's object oriented systems. If you need more information, check \
 ##   r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>        <dbl> <dbl>  <dbl> <dbl> <dbl>
 ## 1     0.948         0.942  1.22      181. 0.0000000984     1  -18.3  42.7  44.1
-## # ... with 3 more variables: deviance <dbl>,
-## #   df.residual <int>, nobs <int>
+## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 \end{verbatim}
 
 \begin{Shaded}
@@ -10138,10 +10077,9 @@ S3 is part of R's object oriented systems. If you need more information, check \
 ##  8 South Afr~ Africa    <tibble ~ <lm>      0.312        0.244    4.74     4.54 
 ##  9 Uganda     Africa    <tibble ~ <lm>      0.342        0.276    3.19     5.20 
 ## 10 Congo, De~ Africa    <tibble ~ <lm>      0.348        0.283    2.43     5.34 
-## # ... with 132 more rows, and 8 more variables:
-## #   p.value <dbl>, df <dbl>, logLik <dbl>,
-## #   AIC <dbl>, BIC <dbl>, deviance <dbl>,
-## #   df.residual <int>, nobs <int>
+## # ... with 132 more rows, and 8 more variables: p.value <dbl>, df <dbl>,
+## #   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>, df.residual <int>,
+## #   nobs <int>
 \end{verbatim}
 
 \begin{Shaded}
@@ -13897,25 +13835,10 @@ Doing the power analysis for a three-arm experiment.
 \begin{Highlighting}[]
 \NormalTok{three\_arm }\OtherTok{\textless{}{-}} \FunctionTok{multi\_arm\_designer}\NormalTok{(}\AttributeTok{N =} \DecValTok{1000}\NormalTok{, }\AttributeTok{m =} \DecValTok{3}\NormalTok{, }
                    \AttributeTok{outcome\_means =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.2}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## Warning: 'declare_estimands' is deprecated.
-## Use 'declare_inquiry' instead.
-## See help("Deprecated")
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{diagnose\_design}\NormalTok{(three\_arm)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Warning in (function (design, sims, low_simulations_warning = TRUE) : Estimators
-## lack inquiry/term labels for matching, a many-to-many merge was performed.
-\end{verbatim}
 
 \begin{verbatim}
 ## 
@@ -13924,39 +13847,15 @@ Doing the power analysis for a three-arm experiment.
 ##  Design Label Inquiry Label Estimator Label N Sims   Bias   RMSE  Power
 ##     three_arm     ate_Y_2_1 DIM (Z_2 - Z_1)    500   0.00   0.07   0.26
 ##                                                    (0.00) (0.00) (0.02)
-##     three_arm     ate_Y_2_1 DIM (Z_3 - Z_1)    500   0.10   0.13   0.75
-##                                                    (0.00) (0.00) (0.02)
-##     three_arm     ate_Y_2_1 DIM (Z_3 - Z_2)    500   0.00   0.08   0.26
-##                                                    (0.00) (0.00) (0.02)
-##     three_arm     ate_Y_3_1 DIM (Z_2 - Z_1)    500  -0.10   0.12   0.26
-##                                                    (0.00) (0.00) (0.02)
 ##     three_arm     ate_Y_3_1 DIM (Z_3 - Z_1)    500   0.00   0.07   0.75
-##                                                    (0.00) (0.00) (0.02)
-##     three_arm     ate_Y_3_1 DIM (Z_3 - Z_2)    500  -0.10   0.13   0.26
-##                                                    (0.00) (0.00) (0.02)
-##     three_arm     ate_Y_3_2 DIM (Z_2 - Z_1)    500   0.00   0.07   0.26
-##                                                    (0.00) (0.00) (0.02)
-##     three_arm     ate_Y_3_2 DIM (Z_3 - Z_1)    500   0.10   0.13   0.75
 ##                                                    (0.00) (0.00) (0.02)
 ##     three_arm     ate_Y_3_2 DIM (Z_3 - Z_2)    500   0.00   0.08   0.26
 ##                                                    (0.00) (0.00) (0.02)
 ##  Coverage Mean Estimate SD Estimate Mean Se Type S Rate Mean Inquiry
 ##      0.97          0.10        0.07    0.08        0.00         0.10
 ##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
-##      0.75          0.20        0.07    0.08        0.00         0.10
-##    (0.02)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
-##      0.96          0.10        0.08    0.08        0.00         0.10
-##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
-##      0.77          0.10        0.07    0.08        0.00         0.20
-##    (0.02)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
 ##      0.96          0.20        0.07    0.08        0.00         0.20
 ##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
-##      0.76          0.10        0.08    0.08        0.00         0.20
-##    (0.02)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
-##      0.97          0.10        0.07    0.08        0.00         0.10
-##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
-##      0.75          0.20        0.07    0.08        0.00         0.10
-##    (0.02)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
 ##      0.96          0.10        0.08    0.08        0.00         0.10
 ##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
 \end{verbatim}
@@ -14204,18 +14103,12 @@ No worries for new terms. We're going to learn them by actually plotting.
 ##  8   568 CARROLL IL    0.027    16805       622.    16519      111            30
 ##  9   569 CASS    IL    0.024    13437       560.    13384       16             8
 ## 10   570 CHAMPA~ IL    0.058   173025      2983.   146506    16559           331
-## # ... with 427 more rows, and 19 more
-## #   variables: popasian <int>, popother <int>,
-## #   percwhite <dbl>, percblack <dbl>,
-## #   percamerindan <dbl>, percasian <dbl>,
-## #   percother <dbl>, popadults <int>,
-## #   perchsd <dbl>, percollege <dbl>,
-## #   percprof <dbl>, poppovertyknown <int>,
-## #   percpovertyknown <dbl>,
-## #   percbelowpoverty <dbl>,
-## #   percchildbelowpovert <dbl>,
-## #   percadultpoverty <dbl>,
-## #   percelderlypoverty <dbl>, inmetro <int>,
+## # ... with 427 more rows, and 19 more variables: popasian <int>,
+## #   popother <int>, percwhite <dbl>, percblack <dbl>, percamerindan <dbl>,
+## #   percasian <dbl>, percother <dbl>, popadults <int>, perchsd <dbl>,
+## #   percollege <dbl>, percprof <dbl>, poppovertyknown <int>,
+## #   percpovertyknown <dbl>, percbelowpoverty <dbl>, percchildbelowpovert <dbl>,
+## #   percadultpoverty <dbl>, percelderlypoverty <dbl>, inmetro <int>,
 ## #   category <chr>
 \end{verbatim}
 
@@ -17644,7 +17537,7 @@ If you used a function from other packages you need to reference it in the follo
 \begin{Highlighting}[]
 \NormalTok{title}\SpecialCharTok{:} \StringTok{"Vignette title"}
 \NormalTok{author}\SpecialCharTok{:} \StringTok{"Vignette author"}
-\NormalTok{date}\SpecialCharTok{:} \StringTok{"2021{-}03{-}01"}
+\NormalTok{date}\SpecialCharTok{:} \StringTok{"2021{-}03{-}04"}
 \NormalTok{output}\SpecialCharTok{:}\NormalTok{ rmarkdown}\SpecialCharTok{::}\NormalTok{html\_vignette}
 \NormalTok{vignette}\SpecialCharTok{:}\NormalTok{ blah blah}
 \end{Highlighting}
@@ -24204,11 +24097,9 @@ Hint: \texttt{mutate(new\_var\ =\ var\ 1\ *\ var2} (R) = \texttt{SELECT\ var1\ *
 ##  8  2013     1     1      557            600        -3      709            723
 ##  9  2013     1     1      557            600        -3      838            846
 ## 10  2013     1     1      558            600        -2      753            745
-## # ... with more rows, and 11 more variables:
-## #   arr_delay <dbl>, carrier <chr>,
-## #   flight <int>, tailnum <chr>, origin <chr>,
-## #   dest <chr>, air_time <dbl>, distance <dbl>,
-## #   hour <dbl>, minute <dbl>, time_hour <dbl>
+## # ... with more rows, and 11 more variables: arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,
+## #   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dbl>
 \end{verbatim}
 
 \textbf{Challenge 6}
