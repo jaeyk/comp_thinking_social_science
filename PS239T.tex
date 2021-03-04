@@ -16158,7 +16158,7 @@ Copy-and-paste programming, sometimes referred to as just pasting, is the produc
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Challenge}. Explain why this solution is not very efficient (Hint: If \texttt{df\$a{[}df\$a\ ==\ -99{]}\ \textless{}-\ NA} has an error, how are you going to fix it? A solution is not scalable if it's not automatable.
+  \textbf{Challenge}. Explain why this solution is not very efficient (Hint: If \texttt{df\$a{[}df\$a\ ==\ -99{]}\ \textless{}-\ NA} has an error, how will you fix it? A solution is not scalable if it's not automatable.
 \end{itemize}
 
 \hypertarget{using-a-function}{%
@@ -16213,11 +16213,11 @@ return(output)
 
 \begin{itemize}
 \item
-  \textbf{Challenge} Why using function is more efficient than 100\% copying and pasting? Can you think about a way we can automate the process?
+  \textbf{Challenge} Why is using function more efficient than 100\% copying and pasting? Can you think about a way we can automate the process?
 \item
   Many options for automation in R: \texttt{for\ loop}, \texttt{apply} family, etc.
 \item
-  Here's a tidy solution comes from \texttt{purrr} package.
+  Here's a tidy solution that comes from the \texttt{purrr} package.
 \item
   The power and joy of one-liner.
 \end{itemize}
@@ -16260,7 +16260,7 @@ return(output)
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Challenge} If you run the code below, what's going to be the data type of the output?
+  \textbf{Challenge} If you run the code below, what will be the data type of the output?
 \end{itemize}
 
 \begin{Shaded}
@@ -16339,7 +16339,7 @@ return(output)
 
 \textbf{Additional tips}
 
-Performance testing (profiling) is an important part of programming. \texttt{tictoc()} measures the time that needs to take to run a target function for once. If you want a more robust measure of timing as well as information on memory (\textbf{speed} and \textbf{space} both matter for performance testing), consider using the \href{https://github.com/r-lib/bench}{\texttt{bench} package} that is designed for high precising timing of R expressions.
+Performance testing (profiling) is an important part of programming. \texttt{tictoc()} measures the time needed to run a target function for once. If you want a more robust measure of timing as well as information on memory (\textbf{speed} and \textbf{space} both matter for performance testing), consider using the \href{https://github.com/r-lib/bench}{\texttt{bench} package} that is designed for high precision timing of R expressions.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -16538,7 +16538,7 @@ A good friend of \texttt{map()} function is \texttt{rerun()} function. This comb
 \begin{itemize}
 \tightlist
 \item
-  Problem: How can you create something like below?
+  Problem: How can you create something like the below?
 \end{itemize}
 
 {[}1{]} ``University = Berkeley \textbar{} Department = waterbenders''
@@ -16616,7 +16616,7 @@ A good friend of \texttt{map()} function is \texttt{rerun()} function. This comb
 \begin{itemize}
 \tightlist
 \item
-  This is not bad, but \ldots{} \texttt{n} arguments -\textgreater{} \texttt{n-nested\ for\ loops}. As a scale of your problem grows, your code gets really complicated.
+  This is not bad, but \ldots{} \texttt{n} arguments -\textgreater{} \texttt{n-nested\ for\ loops}. As a scale of your problem grows, your code gets complicated.
 \end{itemize}
 
 \begin{quote}
@@ -16994,7 +16994,7 @@ To become significantly more reliable, code must become more transparent. In par
 \tightlist
 \item
   \textbf{Challenge}
-  Why the above solution is not efficient?
+  Why is the above solution not efficient?
 \end{itemize}
 
 \hypertarget{reduce-1}{%
@@ -17029,7 +17029,7 @@ To become significantly more reliable, code must become more transparent. In par
 \begin{itemize}
 \tightlist
 \item
-  Learning how to use \texttt{slowly()} and \texttt{future\_} to make automation process either slower or faster
+  Learning how to use \texttt{slowly()} and \texttt{future\_} to make the automation process either slower or faster
 \end{itemize}
 
 \hypertarget{how-to-make-automation-slower}{%
@@ -17038,7 +17038,7 @@ To become significantly more reliable, code must become more transparent. In par
 \begin{itemize}
 \tightlist
 \item
-  Scraping 50 pages from a website and you don't want to overload the server. How can you do that?
+  Scraping 50 pages from a website, and you don't want to overload the server. How can you do that?
 \end{itemize}
 
 \hypertarget{for-loop-2}{%
@@ -17049,7 +17049,7 @@ To become significantly more reliable, code must become more transparent. In par
 
 \begin{itemize}
 \item
-  \texttt{walk()} works same as \texttt{map()} but doesn't store its output.
+  \texttt{walk()} works the same as \texttt{map()} but doesn't store its output.
 \item
   If you're web scraping, one problem with this approach is it's too fast by human standards.
 \item
@@ -17058,13 +17058,13 @@ To become significantly more reliable, code must become more transparent. In par
 
 \begin{quote}
 slowly() takes a function and modifies it to wait a given amount of time between each call. - \texttt{purrr} package vignette
-- If a function is a verb, then a helper function is an adverb (modifying the behavior of the verb).
+- If a function is a verb, then a helper function is an adverb (modifying the verb's behavior).
 \end{quote}
 
 \hypertarget{how-to-make-automation-faster}{%
 \subsection{How to make automation Faster}\label{how-to-make-automation-faster}}
 
-In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data at large-scale. You can solve this problem using parallel processing. For more on the parallel processing in R, read \href{https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/}{this review}.
+In a different situation, you want to make your function run faster. This is a common situation when you collect and analyze data a large-scale. You can solve this problem using parallel processing. For more on the parallel processing in R, read \href{https://yxue-me.com/post/2019-05-12-a-glossary-of-parallel-computing-packages-in-r-2019/}{this review}.
 
 \begin{itemize}
 \item
@@ -17114,7 +17114,7 @@ In a different situation, you want to make your function run faster. This is a c
 \begin{itemize}
 \tightlist
 \item
-  This is a very simple problem so it's easy to tell where the problem is. How can you make your error more informative?
+  This is a straightforward problem, so it's easy to tell where the problem is. How can you make your error more informative?
 \end{itemize}
 
 \hypertarget{solution-1}{%
@@ -17125,7 +17125,7 @@ In a different situation, you want to make your function run faster. This is a c
 
 \begin{itemize}
 \item
-  There are three kinds of messages you will run into, if your code has an error based on the following functions.
+  There are three kinds of messages you will run into if your code has an error based on the following functions.
 
   \begin{itemize}
   \tightlist
@@ -17227,7 +17227,7 @@ In a different situation, you want to make your function run faster. This is a c
 \begin{itemize}
 \tightlist
 \item
-  The easier way to solve this problem is just avoiding the error.
+  The easier way to solve this problem is just to avoid the error.
 \end{itemize}
 
 \begin{Shaded}
@@ -17246,7 +17246,7 @@ In a different situation, you want to make your function run faster. This is a c
 \hypertarget{possibly}{%
 \subsubsection{possibly}\label{possibly}}
 
-What if the best way to solve the problem is not ignoring the error \ldots{}
+What if the best way to solve the problem is not to ignore the error \ldots{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -18910,7 +18910,7 @@ There are at least three ways you can use function + \texttt{purrr::map()}.
     Belloni, Alexandre, Victor Chernozhukov, and Christian Hansen. \href{https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.29}{``High-dimensional methods and inference on structural and treatment effects.''} \emph{Journal of Economic Perspectives 28}, no. 2 (2014): 29-50.
   \end{itemize}
 \item
-  The rise of new approach: statistics + computer science = machine learning
+  The rise of the new approach: statistics + computer science = machine learning
 \item
   Statistical inference
 
@@ -18961,7 +18961,7 @@ There are at least three ways you can use function + \texttt{purrr::map()}.
   \item
     Developing algorithms (estimating \emph{f(x)})
   \item
-    Prediction power not structural/causal parameters
+    Prediction power, not structural/causal parameters
   \item
     Basically, high-dimensional data statistics (N \textless{} P)
   \item
@@ -18969,7 +18969,7 @@ There are at least three ways you can use function + \texttt{purrr::map()}.
   \item
     Validation: out-of-sample comparisons (cross-validation) not in-sample goodness-of-fit measures
   \item
-    So, it's curve-fitting but the primary focus is unseen (test data) not seen data (training data)
+    So, it's curve-fitting, but the primary focus is unseen (test data), not seen data (training data)
   \end{itemize}
 \item
   A quick review on ML lingos for those trained in econometrics
@@ -19209,7 +19209,7 @@ There are at least three ways you can use function + \texttt{purrr::map()}.
   \item
     \href{https://github.com/tidymodels/yardstick}{\texttt{yardstick}}: for model evaluations
   \item
-    \href{https://github.com/tidymodels/workflows}{\texttt{workflows}}: for bundling a pieplne that bundles together pre-processing, modeling, and post-processing requests
+    \href{https://github.com/tidymodels/workflows}{\texttt{workflows}}: for bundling a pieplne that bundles together preprocessing, modeling, and post-processing requests
   \end{itemize}
 \item
   Why taking a tidyverse approach to machine learning?
@@ -19256,7 +19256,7 @@ tidymodels are an \textbf{integrated, modular, extensible} set of packages that 
 \item
   Step 2: \texttt{step\_*()} defines preprocessing steps to be taken (recipe).
 
-  The list of the preprocessing steps draws on the vignette of the \href{https://www.tidymodels.org/find/parsnip/}{\texttt{parsnip}} package.
+  The preprocessing steps list draws on the vignette of the \href{https://www.tidymodels.org/find/parsnip/}{\texttt{parsnip}} package.
 
   \begin{itemize}
   \item
@@ -19275,7 +19275,7 @@ tidymodels are an \textbf{integrated, modular, extensible} set of packages that 
 \item
   Step 3: \texttt{prep()} prepares a dataset to base each step on.
 \item
-  Step 4: \texttt{bake()} applies the pre-processing steps to your datasets.
+  Step 4: \texttt{bake()} applies the preprocessing steps to your datasets.
 \end{itemize}
 
 In this course, we focus on two preprocessing tasks.
@@ -19721,7 +19721,7 @@ x -\textgreater{} f - \textgreater{} y (defined)
 \hypertarget{tune}{%
 \subsubsection{tune}\label{tune}}
 
-\textbf{Hyper}parameters are parameters which control the learning process.
+\textbf{Hyper}parameters are parameters that control the learning process.
 
 \hypertarget{tune-ingredients}{%
 \paragraph{tune ingredients}\label{tune-ingredients}}
@@ -19984,7 +19984,7 @@ x -\textgreater{} f - \textgreater{} y (defined)
 \item
   \texttt{precision}: Positive predictive value
 \item
-  \texttt{recall} (specificity): True positive rate (e.g., healthy people really healthy)
+  \texttt{recall} (specificity): True positive rate (e.g., healthy people healthy)
 \end{itemize}
 
 \begin{figure}
@@ -20031,7 +20031,7 @@ x -\textgreater{} f - \textgreater{} y (defined)
 \hypertarget{tune-ingredients-1}{%
 \paragraph{tune ingredients}\label{tune-ingredients-1}}
 
-Decisions trees tend to overfit. Broadly speaking, there are two things we need to consider to reduce this problem: how to split and when to stop a tree.
+Decisions trees tend to overfit. There are two things we need to consider to reduce this problem: how to split and when to stop a tree.
 
 \begin{itemize}
 \item
@@ -20217,7 +20217,7 @@ Decisions trees tend to overfit. Broadly speaking, there are two things we need 
 ## 3 recall    binary         0.756
 \end{verbatim}
 
-In the next subsection, we will learn variants of ensemble models that improve decision tree model by putting models together.
+In the next subsection, we will learn variants of ensemble models that improve decision tree models by putting models together.
 
 \hypertarget{bagging-random-forest}{%
 \subsection{Bagging (Random forest)}\label{bagging-random-forest}}
@@ -20233,7 +20233,7 @@ Here we focus on the difference between bagging and boosting. In short, boosting
 
 \begin{itemize}
 \item
-  Data: Training data will be random sampled with replacement (bootstrapping samples + drawing random \textbf{subsets} of features for training individual trees)
+  Data: Training data will be randomly sampled with replacement (bootstrapping samples + drawing random \textbf{subsets} of features for training individual trees)
 \item
   Learning: Building models in parallel (independently)
 \item
@@ -20336,7 +20336,7 @@ Here we focus on the difference between bagging and boosting. In short, boosting
 \item
   \texttt{precision}: Positive predictive value
 \item
-  \texttt{recall} (specificity): True positive rate (e.g., healthy people really healthy)
+  \texttt{recall} (specificity): True positive rate (e.g., healthy people healthy)
 \end{itemize}
 
 \begin{Shaded}
@@ -20378,7 +20378,7 @@ We focus on the following two hyperparameters:
 
 \begin{itemize}
 \item
-  \texttt{mtry}: The number of predictors to available for splitting at each node.
+  \texttt{mtry}: The number of predictors available for splitting at each node.
 \item
   \texttt{min\_n}: The minimum number of data points needed to keep splitting nodes.
 \end{itemize}
@@ -20651,7 +20651,7 @@ We focus on the following two hyperparameters:
 \item
   \texttt{precision}: Positive predictive value
 \item
-  \texttt{recall} (specificity): True positive rate (e.g., healthy people really healthy)
+  \texttt{recall} (specificity): True positive rate (e.g., healthy people healthy)
 \end{itemize}
 
 \begin{Shaded}
@@ -20941,7 +20941,7 @@ Breiman, L., 1996. {[}Stacked regressions{]}((\url{https://statistics.berkeley.e
 
 The \href{https://cran.r-project.org/web/packages/SuperLearner/index.html}{``SuperLearner'' R package} is a method that simplifies ensemble learning by allowing you to simultaneously evaluate the cross-validated performance of multiple algorithms and/or a single algorithm with differently tuned hyperparameters. This is a generally advisable approach to machine learning instead of fitting single algorithms.
 
-Let's see how the four classification algorithms you learned in this workshop (1-lasso, 2-decision tree, 3-random forest, and 4-gradient boosted trees) compare to each other and also to 5-binary logistic regression (\texttt{glm}) and to the 6-mean of Y as a benchmark algorithm, in terms of their cross-validated error!
+Let's see how the four classification algorithms you learned in this workshop (1-lasso, 2-decision tree, 3-random forest, and 4-gradient boosted trees) compare to each other and also to 5-binary logistic regression (\texttt{glm}) and the 6-mean of Y as a benchmark algorithm, in terms of their cross-validated error!
 
 A ``wrapper'' is a short function that adapts an algorithm for the SuperLearner package. Check out the different algorithm wrappers offered by SuperLearner:
 
@@ -21093,7 +21093,7 @@ Risk is the average loss, and loss is how far off the prediction was for an indi
 \item
   \texttt{Discrete\ SL} chooses the best single learner (in this case, \texttt{SL.glmnet} or \texttt{lasso}).
 \item
-  \texttt{SuperLearner} takes a weighted average of the \textbf{models} using the coefficients (importance of each individual learner in the overall ensemble). Coefficient 0 means that learner is not used at all.
+  \texttt{SuperLearner} takes a weighted average of the \textbf{models} using the coefficients (importance of each learner in the overall ensemble). Coefficient 0 means that learner is not used at all.
 \item
   \texttt{SL.mean\_All} (the weighted mean of \(Y\)) is a benchmark algorithm (ignoring features).
 \end{itemize}
@@ -21143,7 +21143,7 @@ Risk is the average loss, and loss is how far off the prediction was for an indi
 
 \textbf{ROC}
 
-ROC: an ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis).
+ROC: a ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis).
 
 \begin{figure}
 \centering
@@ -21211,9 +21211,9 @@ AUC: Area Under the ROC Curve
 ##  5    mean 0.00000 0.00000 0.00000 0.00000
 \end{verbatim}
 
-General stacking approach is available in the tidymodels framework through \href{https://github.com/tidymodels/stacks}{\texttt{stacks}} package (developmental stage).
+The general stacking approach is available in the tidymodels framework through \href{https://github.com/tidymodels/stacks}{\texttt{stacks}} package (developmental stage).
 
-However, SuperLearner is currently not available in the tidymodels framework. If you'd like to, you can easily build and add a parsnip model. If you are interested in knowing more about it, please take a look at \href{https://www.tidymodels.org/learn/develop/models/}{this vignette} of the tidymodels.
+However, SuperLearner is currently not available in the tidymodels framework. If you'd like to, you can easily build and add a parsnip model. If you are interested in knowing more about it, please look at \href{https://www.tidymodels.org/learn/develop/models/}{this vignette} of the tidymodels.
 
 \hypertarget{applications-2}{%
 \subsection{Applications}\label{applications-2}}
@@ -21292,7 +21292,7 @@ x -\textgreater{} f - \textgreater{} y (not defined)
 \hypertarget{preprocessing}{%
 \subsubsection{Preprocessing}\label{preprocessing}}
 
-\texttt{recipe} is essential for preprocesssing multiple features at once.
+\texttt{recipe} is essential for preprocessing multiple features at once.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -21491,7 +21491,7 @@ The data munging process draws on \href{https://juliasilge.com/blog/sherlock-hol
     Multinominal (e.g., Latent Dirichlet Distribution)
   \end{itemize}
 \item
-  Words lie on a lower dimensional space (dimension reduction)
+  Words lie on a lower-dimensional space (dimension reduction)
 \item
   Co-occurrence of words (clustering)
 \item
@@ -21559,7 +21559,7 @@ The data munging process draws on \href{https://juliasilge.com/blog/sherlock-hol
 \hypertarget{turn-text-into-document-term-matrix}{%
 \paragraph{Turn text into document-term matrix}\label{turn-text-into-document-term-matrix}}
 
-\texttt{stm} package has its own preprocessing function.
+\texttt{stm} package has its preprocessing function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -21821,7 +21821,7 @@ The data munging process draws on \href{https://juliasilge.com/blog/sherlock-hol
 \hypertarget{evaludating-models}{%
 \paragraph{Evaludating models}\label{evaludating-models}}
 
-There are several metrics to assess the performance of topic models: the held-out likelihood, residuals, semantic coherence, and exclusivity. In this course, we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
+There are several metrics to assess topic models' performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. This course examines the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -21907,7 +21907,7 @@ There are several metrics to assess the performance of topic models: the held-ou
 \hypertarget{bias-and-fairness-in-machine-learning}{%
 \section{Bias and fairness in machine learning}\label{bias-and-fairness-in-machine-learning}}
 
-This section introduces the issues surrounding the fairness and bias in machine learning applications with a focus on the ProPublica's Analysis of the COMPAS algorithm. I revised \href{https://github.com/propublica/compas-analysis/blob/master/Compas\%20Analysis.ipynb}{the ProPublica's original R and Python code} to increase its code readability.
+This section introduces the issues surrounding the fairness and bias in machine learning applications, focusing on ProPublica's Analysis of the COMPAS algorithm. I revised \href{https://github.com/propublica/compas-analysis/blob/master/Compas\%20Analysis.ipynb}{the ProPublica's original R and Python code} to increase its code readability.
 
 \begin{figure}
 \centering
@@ -21942,13 +21942,13 @@ This section introduces the issues surrounding the fairness and bias in machine 
 
 \textbf{References}
 
-For more information on the ProPublica's Machine Bias project, we encourage to check out the following references.
+For more information on ProPublica's Machine Bias project, we encourage you to check out the following references.
 
 \begin{itemize}
 \item
   \href{https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing/}{Argument} by Julia Angwin, Jeff Larson, Surya Mattu and Lauren Kirchner
 \item
-  \href{https://www.washingtonpost.com/news/monkey-cage/wp/2016/10/17/can-an-algorithm-be-racist-our-analysis-is-more-cautious-than-propublicas/}{Counterargument} by Sam Corbett-Davies, Emma Pierson, Avi Feller and Sharad Goel
+  \href{https://www.washingtonpost.com/news/monkey-cage/wp/2016/10/17/can-an-algorithm-be-racist-our-analysis-is-more-cautious-than-propublicas/}{Counterargument} by Sam Corbett-Davies, Emma Pierson, Avi Feller, and Sharad Goel
 \item
   \href{https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm/}{Methodology}
 \end{itemize}
@@ -22013,7 +22013,7 @@ For more information on the ProPublica's Machine Bias project, we encourage to c
 \hypertarget{load-data}{%
 \subsubsection{Load data}\label{load-data}}
 
-We select fields for severity of charge, number of priors, demographics, age, sex, COMPAS scores, and whether each person was accused of a crime within two years.
+We select fields for the severity of the charge, number of priors, demographics, age, sex, COMPAS scores, and whether each person was accused of a crime within two years.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -22046,18 +22046,17 @@ We select fields for severity of charge, number of priors, demographics, age, se
 \item
   Not all of the observations are useable for the first round of analysis.
 \item
-  There are a number of reasons to remove rows because of missing data:
+  There are many reasons to remove rows because of missing data:
+  If the charge date of a defendant's COMPAS scored crime was not within 30 days from when the person was arrested, we assume that we do not have the right offense because of data quality reasons.
 
   \begin{itemize}
   \tightlist
-  \item
-    If the charge date of a defendants COMPAS scored crime was not within 30 days from when the person was arrested, we assume that because of data quality reasons, that we do not have the right offense.
   \item
     We coded the recidivist flag -- is\_recid -- to be -1 if we could not find a COMPAS case at all.
   \item
     In a similar vein, ordinary traffic offenses -- those with a c\_charge\_degree of `O' -- will not result in Jail time are removed (only two of them).
   \item
-    We filtered the underlying data from Broward county to include only those rows representing people who had either recidivated in two years, or had at least two years outside of a correctional facility.
+    We filtered the underlying data from Broward county to include only those rows representing people who had either recidivated in two years or had at least two years outside of a correctional facility.
   \end{itemize}
 \item
   Create a function
@@ -22178,7 +22177,7 @@ We select fields for severity of charge, number of priors, demographics, age, se
 
 \includegraphics{07_high_dimensional_data_files/figure-latex/unnamed-chunk-86-1.pdf}
 
-Judges are often presented with two sets of scores from the COMPAS system -- one that classifies people into High, Medium and Low risk, and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.
+Judges are often presented with two sets of scores from the COMPAS system -- one that classifies people into High, Medium, and Low risk and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -22197,7 +22196,7 @@ Judges are often presented with two sets of scores from the COMPAS system -- one
 \hypertarget{modeling}{%
 \subsubsection{Modeling}\label{modeling}}
 
-After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. To do so we need to change some variables into factors, and run a logistic regression, comparing low scores to high scores.
+After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. We need to change some variables into factors and run a logistic regression, comparing low scores to high scores.
 
 \begin{itemize}
 \tightlist
@@ -22285,9 +22284,9 @@ After filtering out bad rows, our first question is whether there is a significa
 
 \includegraphics{07_high_dimensional_data_files/figure-latex/unnamed-chunk-90-1.pdf}
 
-Logistic regression coefficients are log odds ratios. Remember an odd is \(\frac{p}{1-p}\). p could be defined as a success and 1-p could be as a failure. Here, coefficient 1 indicates equal probability for the binary outcomes. Coefficient greater than 1 indicates strong chance for p and weak chance for 1-p.~Coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!).
+Logistic regression coefficients are log odds ratios. Remember an odd is \(\frac{p}{1-p}\). p could be defined as a success, and 1-p could be as a failure. Here, coefficient 1 indicates the equal probability for the binary outcomes. A coefficient greater than 1 indicates a strong chance for p and a weak chance for 1-p.~A coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!).
 
-(To refresh your memory, note that probability is bounded between {[}0, 1{]}. Odds ranges between 0 and infinity. Log odds ranges from negative to positive infinity. We're going through this hassle because we used log function to map predictor variables to probability to fit the model to the binary outcomes.)
+(To refresh your memory, note that probability is bounded between {[}0, 1{]}. Odds range between 0 and infinity. Log odds range from negative to positive infinity. We're going through this hassle because we used the log function to map predictor variables to probability to fit the binary outcomes model.)
 
 In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see \href{https://www.bmj.com/content/348/bmj.f7450}{Grant} (2014), \href{https://www.jstatsoft.org/article/view/v055i05}{Wang} (2013), and \href{https://jamanetwork.com/journals/jama/fullarticle/188182}{Zhang and Yu} (1998).
 
@@ -22344,7 +22343,7 @@ In this case, we reinterpret coefficients by turning log odds ratios into relati
 ## 11  1.298233e-42 -1.55226716 -1.1637224
 \end{verbatim}
 
-Relative risk score 1.45 (African American) indicates that black defendants are 45\% more likely than white defendants to receive a higher score.
+A relative risk score of 1.45 (African American) indicates that black defendants are 45\% more likely than white defendants to receive a higher score.
 
 The plot visualizes this and other results from the table.
 
@@ -22604,11 +22603,9 @@ The plot visualizes this and other results from the table.
 \end{Shaded}
 
 \includegraphics{07_high_dimensional_data_files/figure-latex/unnamed-chunk-99-1.pdf}
+\#\#\#\# Modeling
 
-\hypertarget{modeling-1}{%
-\subsubsection{Modeling}\label{modeling-1}}
-
-After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. To do so we need to change some variables into factors, and run a logistic regression, comparing low scores to high scores.
+After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. We need to change some variables into factors and run a logistic regression, comparing low scores to high scores.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -22690,9 +22687,9 @@ After filtering out bad rows, our first question is whether there is a significa
 
 \includegraphics{07_high_dimensional_data_files/figure-latex/unnamed-chunk-102-1.pdf}
 
-Logistic regression coefficients are log odds ratios. Remember an odd is \(\frac{p}{1-p}\). p could be defined as a success and 1-p could be as a failure. Here, coefficient 1 indicates equal probability for the binary outcomes. Coefficient greater than 1 indicates strong chance for p and weak chance for 1-p.~Coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!).
+Logistic regression coefficients are log odds ratios. Remember an odd is \(\frac{p}{1-p}\). p could be defined as a success, and 1-p could be as a failure. Here, coefficient 1 indicates the equal probability for the binary outcomes. A coefficient greater than 1 indicates strong chance for p and a weak chance for 1-p.~A coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!).
 
-(To refresh your memory, note that probability is bounded between {[}0, 1{]}. Odds ranges between 0 and infinity. Log odds ranges from negative to positive infinity. We're going through this hassle because we used log function to map predictor variables to probability to fit the model to the binary outcomes.)
+(To refresh your memory, note that probability is bounded between {[}0, 1{]}. Odds range between 0 and infinity. Log odds range from negative to positive infinity. We're going through this hassle because we used the log function to map predictor variables to probability to fit the binary outcomes model.)
 
 In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see \href{https://www.bmj.com/content/348/bmj.f7450}{Grant} (2014), \href{https://www.jstatsoft.org/article/view/v055i05}{Wang} (2013), and \href{https://jamanetwork.com/journals/jama/fullarticle/188182}{Zhang and Yu} (1998).
 
@@ -22749,7 +22746,7 @@ In this case, we reinterpret coefficients by turning log odds ratios into relati
 ## 11  3.073150e-21 -2.1171742 -1.39384502
 \end{verbatim}
 
-Relative risk score 1.45 (African American) indicates that black defendants are 45\% more likely than white defendants to receive a higher score.
+A relative risk score of 1.45 (African American) indicates that black defendants are 45\% more likely than white defendants to receive a higher score.
 
 The plot visualizes this and other results from the table.
 
@@ -22774,9 +22771,9 @@ The plot visualizes this and other results from the table.
 
 \begin{itemize}
 \item
-  In order to test whether COMPAS scores do an accurate job of deciding whether an offender is Low, Medium or High risk, we ran a Cox Proportional Hazards model. Northpointe, the company that created COMPAS and markets it to Law Enforcement, also ran a Cox model in \href{https://journals.sagepub.com/doi/abs/10.1177/0093854808326545}{their validation study}.
+  To test whether COMPAS scores do an accurate job of deciding whether an offender is Low, Medium, or High risk, we ran a Cox Proportional Hazards model. Northpointe, the company that created COMPAS and markets it to Law Enforcement, also ran a Cox model in \href{https://journals.sagepub.com/doi/abs/10.1177/0093854808326545}{their validation study}.
 \item
-  We used the counting model and removed people when they were incarcerated. Due to errors in the underlying jail data, we need to filter out 32 rows that have an end date more than the start date. Considering that there are 13,334 total rows in the data, such a small amount of errors will not affect the results.
+  We used the counting model and removed people when they were incarcerated. Due to errors in the underlying jail data, we need to filter out 32 rows with an end date more than the start date. Considering that there are 13,334 total rows in the data, such a small amount of errors will not affect the results.
 \end{itemize}
 
 \hypertarget{setup-8}{%
@@ -22921,8 +22918,8 @@ The plot visualizes this and other results from the table.
 
 \includegraphics{07_high_dimensional_data_files/figure-latex/unnamed-chunk-110-1.pdf}
 
-\hypertarget{modeling-2}{%
-\subsubsection{Modeling}\label{modeling-2}}
+\hypertarget{modeling-1}{%
+\subsubsection{Modeling}\label{modeling-1}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -22945,7 +22942,7 @@ The plot visualizes this and other results from the table.
 
 The interaction term shows a similar disparity as the logistic regression above.
 
-High risk white defendants are 3.61 more likely than low risk white defendants, while High risk black defendants are 2.99 more likely than low.
+High-risk white defendants are 3.61 more likely than low-risk white defendants, while high-risk black defendants are 2.99 more likely than low.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -22975,7 +22972,7 @@ High risk white defendants are 3.61 more likely than low risk white defendants, 
 
 \includegraphics{07_high_dimensional_data_files/figure-latex/unnamed-chunk-113-1.pdf}
 
-Black defendants do recidivate at higher rates according to race specific Kaplan Meier plots.
+Black defendants do recidivate at higher rates according to race-specific Kaplan Meier plots.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -22986,7 +22983,7 @@ Black defendants do recidivate at higher rates according to race specific Kaplan
 
 \includegraphics{07_high_dimensional_data_files/figure-latex/unnamed-chunk-114-1.pdf}
 
-In terms of underlying recidivism rates, we can look at gender specific Kaplan Meier estimates. There is a striking difference between women and men.
+In terms of underlying recidivism rates, we can look at gender-specific Kaplan Meier estimates. There is a striking difference between women and men.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -22998,12 +22995,12 @@ In terms of underlying recidivism rates, we can look at gender specific Kaplan M
 
 \includegraphics{07_high_dimensional_data_files/figure-latex/unnamed-chunk-115-1.pdf}
 
-As these plots show, the COMPAS score treats a High risk women the same as a Medium risk man.
+As these plots show, the COMPAS score treats a high-risk woman the same as a Medium risk man.
 
 \hypertarget{risk-of-recidivism-accuracy}{%
 \subsubsection{Risk of Recidivism accuracy}\label{risk-of-recidivism-accuracy}}
 
-The above analysis shows that the COMPAS algorithm does overpredict African-American defendant's future recidivism, but we haven't yet explored the direction of the bias. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.
+The above analysis shows that the COMPAS algorithm does overpredict African-American defendant's future recidivism, but we haven't yet explored the bias's direction. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -23021,7 +23018,7 @@ The above analysis shows that the COMPAS algorithm does overpredict African-Amer
 \CommentTok{\# install libs }
 \FunctionTok{conda\_install}\NormalTok{(}\StringTok{"r{-}reticulate"}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\StringTok{"pandas"}\NormalTok{))}
 
-\CommentTok{\# indicate that we want to use a specific condaenv}
+\CommentTok{\# indicates that we want to use a specific condaenv}
 \FunctionTok{use\_condaenv}\NormalTok{(}\StringTok{"r{-}reticulate"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -23162,7 +23159,7 @@ That number is higher for African Americans at 44.85\% and lower for whites at 2
 \hypertarget{risk-of-violent-recidivism-accuracy}{%
 \subsubsection{Risk of Violent Recidivism accuracy}\label{risk-of-violent-recidivism-accuracy}}
 
-COMPAS also offers a score that aims to measure a persons risk of violent recidivism, which has a similar overall accuracy to the Recidivism score.
+COMPAS also offers a score that aims to measure a person's risk of violent recidivism, which has similar overall accuracy to the Recidivism score.
 
 \begin{Shaded}
 \begin{Highlighting}[]
