@@ -440,13 +440,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong>Techniques to deal with big data</strong></p>
 <ul>
-<li>Medium sized file (1-2 GB)
+<li>Medium-sized file (1-2 GB)
 <ul>
 <li>Try to reduce the size of the file using slicing and dicing</li>
 <li>Tools:
 <ul>
 <li>R:<code>data.table::fread(file path, select = c("column 1", "column 2"))</code>. This command imports data faster than <code>read.csv()</code> does.</li>
-<li>Command line: <a href="https://csvkit.readthedocs.io/en/latest/"><code>csvkit</code></a> - a suite of command-line tools to and working with CSV</li>
+<li>Command-line: <a href="https://csvkit.readthedocs.io/en/latest/"><code>csvkit</code></a> - a suite of command-line tools to and working with CSV</li>
 </ul></li>
 </ul></li>
 <li>Large file (&gt; 2-10 GB)
@@ -459,7 +459,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Types of databases
 <ul>
-<li>Relational database = a <strong>collection</strong> of <strong>tables</strong> (fixed columns and rows): SQL is a staple tool to define, <strong>query</strong> (focus of the workshop today), control, and manipulate this type of database</li>
+<li>Relational database = a <strong>collection</strong> of <strong>tables</strong> (fixed columns and rows): SQL is a staple tool to define, <strong>query</strong> (the focus of the workshop today), control, and manipulate this type of database</li>
 <li>Non-relational database = a collection of documents (MongoDB), key-values (Redis and DyanoDB), wide-column stores (Cassandra and HBase), or graph (Neo4j and JanusGraph). Note that this type of database does not preclude SQL. NoSQL stands for <a href="https://www.mongodb.com/nosql-explained">“not only SQL.”</a></li>
 </ul></li>
 </ul>
@@ -476,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Remains the standard language for a relational database management system.</p></li>
 <li><p>It’s a DECLARATIVE language (<a href="https://www.sqlite.org/queryplanner.html">what to do &gt; how to do</a>)</p>
 <ul>
-<li>Database management systems figures optimal way to execute query (query optimization)</li>
+<li>Database management systems figure an optimal way to execute a query (query optimization)</li>
 </ul></li>
 </ul>
 <div class="sourceCode" id="cb1355"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1355-1"><a href="big-data.html#cb1355-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">COLUMN</span> <span class="kw">FROM</span> <span class="kw">TABLE</span> </span></code></pre></div>
@@ -598,7 +598,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="nyc-flights-data" class="section level3" number="9.2.5">
 <h3><span class="header-section-number">9.2.5</span> NYC flights data</h3>
 <ul>
-<li><a href="https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236">The flight on-time performance data</a> from the Bureau of Transportation Statistics of the U.S. government. The data goes back to 1987 and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.</li>
+<li><a href="https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236">The flight on-time performance data</a> from the Bureau of Transportation Statistics of the U.S. government. The data goes back to 1987, and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.</li>
 </ul>
 <div class="figure">
 <img src="https://d33wubrfki0l68.cloudfront.net/245292d1ea724f6c3fd8a92063dcd7bfb9758d02/5751b/diagrams/relational-nycflights.png" alt="" />
@@ -611,15 +611,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Create/connect to a database</li>
 </ol>
 <ul>
-<li><p>Note that server also can be your laptop (called <a href="https://en.wikipedia.org/wiki/Localhost#:~:text=In%20computer%20networking%2C%20localhost%20is,via%20the%20loopback%20network%20interface.">localhost</a>).</p></li>
+<li><p>Note that the server also can be your laptop (called <a href="https://en.wikipedia.org/wiki/Localhost#:~:text=In%20computer%20networking%2C%20localhost%20is,via%20the%20loopback%20network%20interface.">localhost</a>).</p></li>
 <li><p>Short answer: To do so, you need interfaces between R and a database. We use <a href="https://github.com/r-dbi/RSQLite"><code>RSQLite</code></a> in this tutorial because it’s easy to set up.</p></li>
-<li><p>Long answer: The <code>DBI</code> package in R provides a client-side interface that allows <code>dplyr</code> to work with databases. DBI is automatically installed when you installed <code>dbplyr</code>. However, you need to install a specific backend engine (a tool for communication between R and a database management system) for the database (e.g., <code>RMariaDB</code>, <code>RPostgres</code>, <code>RSQLite</code>). In this workshop, we use SQLite because it is the easiest to get started with. Personally, I love PostgreSQL because it’s an open-source and also powerful to do <a href="https://www.postgresql.org/docs/current/functions.html">many amazing things</a> (e.g., text mining, geospatial analysis). If you want to not only build a data warehouse, but an anlytical platform then consider using Spark (Hadoop).</p></li>
+<li><p>Long answer: The <code>DBI</code> package in R provides a client-side interface that allows <code>dplyr</code> to work with databases. DBI is automatically installed when you installed <code>dbplyr</code>. However, you need to install a specific backend engine (a tool for communication between R and a database management system) for the database (e.g., <code>RMariaDB</code>, <code>RPostgres</code>, <code>RSQLite</code>). In this workshop, we use SQLite because it is the easiest to get started with. I love PostgreSQL because it’s open-source and also powerful to do <a href="https://www.postgresql.org/docs/current/functions.html">many amazing things</a> (e.g., text mining, geospatial analysis). If you want to build a data warehouse, an analytical platform, consider using Spark (Hadoop).</p></li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li>Copy a table to the database</li>
 </ol>
 <ul>
-<li><p>Option 1: You can create a table and insert rows manually. In order to do that, you also need to define data schema (the structure of the database).</p></li>
+<li><p>Option 1: You can create a table and insert rows manually. To do that, you also need to define the data schema (the database structure).</p></li>
 <li><p>Table</p>
 <ul>
 <li>Collection of rows</li>
@@ -662,7 +662,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1361-14"><a href="big-data.html#cb1361-14" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> students(name, birth, gpa, grad)</span>
 <span id="cb1361-15"><a href="big-data.html#cb1361-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">VALUES</span> (<span class="st">&#39;Adam&#39;</span>, <span class="st">&#39;2000-08-04&#39;</span>, <span class="fl">4.0</span>, <span class="dv">2020</span>);</span></code></pre></div>
 <ul>
-<li>Option 2: Copy a file (object) to a table in a database using <code>copy_to</code>). We take this option as it’s fast and we would like to focus on querying in this workshop.</li>
+<li>Option 2: Copy a file (object) to a table in a database using <code>copy_to</code>). We take this option as it’s fast, and we would like to focus on querying in this workshop.</li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
 <li>Query the table</li>
@@ -695,7 +695,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## character(0)</code></pre>
 <div class="sourceCode" id="cb1364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1364-1"><a href="big-data.html#cb1364-1" aria-hidden="true" tabindex="-1"></a><span class="co"># character(0) = NULL</span></span></code></pre></div>
 <ul>
-<li>Note that con is empty at this stage.</li>
+<li>Note that <code>con</code> is empty at this stage.</li>
 </ul>
 </div>
 <div id="copy-an-object-as-a-table-to-the-database-push" class="section level4" number="9.2.6.2">
@@ -944,7 +944,7 @@ Hint: <code>mutate(new_var = var 1 * var2</code> (R) = <code>SELECT var1 * var2 
 Your turn: write the same code in SQL (hint: <code>filter(condition1, condition2)</code> = <code>WHERE condition1 and condition2</code>)</p>
 <p><strong>Additional tips</strong></p>
 <p>Note that R and SQL operators are not exactly alike. R uses <code>!=</code> for <code>Not equal to</code>. SQL uses <code>&lt;&gt;</code> or <code>!=</code>. Furthermore, there are some cautions about using <code>NULL</code> (NA; unknown or missing): it should be <code>IS NULL</code> or <code>IS NOT NULL</code> not <code>=NULL</code> or <code>!=NULL</code> (this makes sense because NULL represents an absence of a value).</p>
-<p>Another pro-tip is <a href="https://www.w3schools.com/sql/sql_like.asp"><code>LIKE</code> operator</a>, which is used in a <code>WHERE</code> statement to find values based on string patterns.</p>
+<p>Another pro-tip is <a href="https://www.w3schools.com/sql/sql_like.asp"><code>LIKE</code> operator</a>, used in a <code>WHERE</code> statement to find values based on string patterns.</p>
 <div class="sourceCode" id="cb1390"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1390-1"><a href="big-data.html#cb1390-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span>(origin) <span class="co">-- Distinct values from origin column</span></span>
 <span id="cb1390-2"><a href="big-data.html#cb1390-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> flights</span>
 <span id="cb1390-3"><a href="big-data.html#cb1390-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> origin <span class="kw">LIKE</span> <span class="st">&#39;J%&#39;</span>; <span class="co">-- Find any origin values that start with &quot;J&quot;</span></span></code></pre></div>
@@ -1019,8 +1019,8 @@ Your turn: write the same code in SQL (hint: in SQL the order should be <code>SE
 ## GROUP BY `month`, `day`</code></pre>
 <ul>
 <li><p>Joins</p></li>
-<li><p>Using joins is simpler in R than it is in SQL.</p></li>
-<li><p>However, more flexible joins exist in SQL and they are not available in R.</p>
+<li><p>Using joins is more straightforward in R than it is in SQL.</p></li>
+<li><p>However, more flexible joins exist in SQL, and they are not available in R.</p>
 <ul>
 <li>Joins involving 3+ tables are not supported.</li>
 <li>Some advanced joins available in SQL are not supported.</li>
@@ -1567,7 +1567,7 @@ Your turn: write the same code in SQL (hint: in SQL the order should be <code>SE
 <li><a href="https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html">Introduction to dbplyr</a></li>
 <li>Josh Erickson, <a href="http://dept.stat.lsa.umich.edu/~jerrick/courses/stat701/notes/sql.html">SQL in R</a>, STAT 701, University of Michigan</li>
 <li><a href="https://wizardzines.com/zines/sql/">SQL zine</a> by Julia Evans</li>
-<li><a href="http://harelba.github.io/q/">q</a> - a command line tool that allows direct execution of SQL-like queries on CSVs/TSVs (and any other tabular text files)</li>
+<li><a href="http://harelba.github.io/q/">q</a> - a command-line tool that allows direct execution of SQL-like queries on CSVs/TSVs (and any other tabular text files)</li>
 </ul>
 </div>
 </div>

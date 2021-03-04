@@ -10,11 +10,11 @@
 
 **Techniques to deal with big data**
 
-- Medium sized file (1-2 GB)
+- Medium-sized file (1-2 GB)
    - Try to reduce the size of the file using slicing and dicing
    - Tools: 
       - R:`data.table::fread(file path, select = c("column 1", "column 2"))`. This command imports data faster than `read.csv()` does.
-      - Command line: [`csvkit`](https://csvkit.readthedocs.io/en/latest/) - a suite of command-line tools to and working with CSV 
+      - Command-line: [`csvkit`](https://csvkit.readthedocs.io/en/latest/) - a suite of command-line tools to and working with CSV 
 - Large file (> 2-10 GB)
    - Put the data into a database and **ACCESS** it 
    - Explore the data and pull the objects of interest 
@@ -22,7 +22,7 @@
 **Databases**
 
 - Types of databases
-   - Relational database = a **collection** of **tables** (fixed columns and rows): SQL is a staple tool to define, **query** (focus of the workshop today), control, and manipulate this type of database
+   - Relational database = a **collection** of **tables** (fixed columns and rows): SQL is a staple tool to define, **query** (the focus of the workshop today), control, and manipulate this type of database
    - Non-relational database = a collection of documents (MongoDB), key-values (Redis and DyanoDB), wide-column stores (Cassandra and HBase), or graph (Neo4j and JanusGraph). Note that this type of database does not preclude SQL. NoSQL stands for ["not only SQL."](https://www.mongodb.com/nosql-explained)
   
 **Relational database example**
@@ -36,7 +36,7 @@
 - Remains the standard language for a relational database management system.
 
 - It's a DECLARATIVE language ([what to do > how to do](https://www.sqlite.org/queryplanner.html))
-  - Database management systems figures optimal way to execute query (query optimization)
+  - Database management systems figure an optimal way to execute a query (query optimization)
     
 ```sql
 SELECT COLUMN FROM TABLE 
@@ -137,7 +137,7 @@ pacman::p_load(
 
 ### NYC flights data 
 
-- [The flight on-time performance data](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236) from the Bureau of Transportation Statistics of the U.S. government. The data goes back to 1987 and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.
+- [The flight on-time performance data](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236) from the Bureau of Transportation Statistics of the U.S. government. The data goes back to 1987, and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.
 
 ![From RStudio.](https://d33wubrfki0l68.cloudfront.net/245292d1ea724f6c3fd8a92063dcd7bfb9758d02/5751b/diagrams/relational-nycflights.png)
 
@@ -145,15 +145,15 @@ pacman::p_load(
 
 1. Create/connect to a database 
 
-- Note that server also can be your laptop (called [localhost](https://en.wikipedia.org/wiki/Localhost#:~:text=In%20computer%20networking%2C%20localhost%20is,via%20the%20loopback%20network%20interface.)).
+- Note that the server also can be your laptop (called [localhost](https://en.wikipedia.org/wiki/Localhost#:~:text=In%20computer%20networking%2C%20localhost%20is,via%20the%20loopback%20network%20interface.)).
 
 - Short answer: To do so, you need interfaces between R and a database. We use [`RSQLite`](https://github.com/r-dbi/RSQLite) in this tutorial because it's easy to set up. 
 
-- Long answer: The `DBI` package in R provides a client-side interface that allows `dplyr` to work with databases. DBI is automatically installed when you installed `dbplyr`. However, you need to install a specific backend engine (a tool for communication between R and a database management system) for the database (e.g., `RMariaDB`, `RPostgres`, `RSQLite`). In this workshop, we use SQLite because it is the easiest to get started with. Personally, I love PostgreSQL because it's an open-source and also powerful to do [many amazing things](https://www.postgresql.org/docs/current/functions.html) (e.g., text mining, geospatial analysis). If you want to not only build a data warehouse, but an anlytical platform then consider using Spark (Hadoop).
+- Long answer: The `DBI` package in R provides a client-side interface that allows `dplyr` to work with databases. DBI is automatically installed when you installed `dbplyr`. However, you need to install a specific backend engine (a tool for communication between R and a database management system) for the database (e.g., `RMariaDB`, `RPostgres`, `RSQLite`). In this workshop, we use SQLite because it is the easiest to get started with. I love PostgreSQL because it's open-source and also powerful to do [many amazing things](https://www.postgresql.org/docs/current/functions.html) (e.g., text mining, geospatial analysis). If you want to build a data warehouse, an analytical platform, consider using Spark (Hadoop).
 
 2. Copy a table to the database 
 
-- Option 1: You can create a table and insert rows manually. In order to do that, you also need to define data schema (the structure of the database). 
+- Option 1: You can create a table and insert rows manually. To do that, you also need to define the data schema (the database structure). 
 
 - Table
     - Collection of rows 
@@ -190,7 +190,7 @@ INSERT INTO students(name, birth, gpa, grad)
 
 ```
 
-- Option 2: Copy a file (object) to a table in a database using `copy_to`). We take this option as it's fast and we would like to focus on querying in this workshop. 
+- Option 2: Copy a file (object) to a table in a database using `copy_to`). We take this option as it's fast, and we would like to focus on querying in this workshop. 
 
 3. Query the table 
 
@@ -230,7 +230,7 @@ dbListTables(con)
 # character(0) = NULL
 ```
 
-- Note that con is empty at this stage.
+- Note that `con` is empty at this stage.
 
 #### Copy an object as a table to the database (push)
 
@@ -566,7 +566,7 @@ Your turn: write the same code in SQL (hint: `filter(condition1, condition2)` = 
 
 Note that R and SQL operators are not exactly alike. R uses `!=` for `Not equal to`. SQL uses `<>` or `!=`. Furthermore, there are some cautions about using `NULL` (NA; unknown or missing): it should be `IS NULL` or `IS NOT NULL` not `=NULL` or `!=NULL` (this makes sense because NULL represents an absence of a value). 
 
-Another pro-tip is [`LIKE` operator](https://www.w3schools.com/sql/sql_like.asp), which is used in a `WHERE` statement to find values based on string patterns.
+Another pro-tip is [`LIKE` operator](https://www.w3schools.com/sql/sql_like.asp), used in a `WHERE` statement to find values based on string patterns.
 
 
 ```sql
@@ -675,9 +675,9 @@ flights %>%
 
 - Joins 
 
-- Using joins is simpler in R than it is in SQL.
+- Using joins is more straightforward in R than it is in SQL.
 
-- However, more flexible joins exist in SQL and they are not available in R. 
+- However, more flexible joins exist in SQL, and they are not available in R. 
 
   - Joins involving 3+ tables are not supported.
   - Some advanced joins available in SQL are not supported. 
@@ -840,7 +840,7 @@ WHERE status = 'open';
 - [Introduction to dbplyr](https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html)
 - Josh Erickson, [SQL in R](http://dept.stat.lsa.umich.edu/~jerrick/courses/stat701/notes/sql.html), STAT 701, University of Michigan
 - [SQL zine](https://wizardzines.com/zines/sql/) by Julia Evans
-- [q](http://harelba.github.io/q/) - a command line tool that allows direct execution of SQL-like queries on CSVs/TSVs (and any other tabular text files) 
+- [q](http://harelba.github.io/q/) - a command-line tool that allows direct execution of SQL-like queries on CSVs/TSVs (and any other tabular text files) 
 
 ## Spark 
 
@@ -856,4 +856,3 @@ WHERE status = 'open';
 
 # sparklyr::spark_install(version = "3.0.0")
 ```
-

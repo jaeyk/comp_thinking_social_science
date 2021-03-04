@@ -34,7 +34,7 @@ This is the website for *Computational Thinking for Social Scientists*. This boo
 
 The book is not intended to be a comprehensive guide for computational social science or any particular programming language, computational tool, or technique. For a general introduction to computational social science, I recommend [Matthew Salganik](http://www.princeton.edu/~mjs3/) 's [Bit By Bit (2017)](https://www.bitbybitbook.com/). 
 
-The book is currently divided into two main subjects (fundamentals and applications) and seven main sessions.
+The book is currently divided into two main subjects (fundamentals and applications) and eight main sessions.
 
 ## Part I Fundamentals
 
@@ -74,7 +74,7 @@ The book teaches how to do all of these, mostly in [**R**](https://www.r-project
       
 ## Special thanks 
 
-This book is collected as much as it is authored. It is a remix version of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level computational methods course at UC Berkeley, originally developed by [Rochelle Terman](http://rochelleterman.com/) then revised by [Rachel Bernhard](http://rachelbernhard.com/). I have taught PS239T as lead instructor in Spring 2019 and TA in Spring 2018 and will co-teach it in Spring 2020. Other teaching materials draw from the workshops I have created for [D-Lab](https://dlab.berkeley.edu/) (Summer - Fall 2020) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) (Spring 2020) at UC Berkeley. I also have cited all the other references whenever I am aware of related books, articles, slides, blog posts, or YouTube video clips. 
+This book is collected as much as it is authored. It is a remix version of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level computational methods course at UC Berkeley, originally developed by [Rochelle Terman](http://rochelleterman.com/) then revised by [Rachel Bernhard](http://rachelbernhard.com/). I have taught PS239T three times (twice as an insturctor and once as a teaching assistant). Other teaching materials draw from the workshops I have created for [D-Lab](https://dlab.berkeley.edu/) (Summer - Fall 2020) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) (Spring 2020) at UC Berkeley. I also have cited all the other references whenever I am aware of related books, articles, slides, blog posts, or YouTube video clips. 
 
 ## Suggestions, questions, or comments 
 
