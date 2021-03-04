@@ -320,12 +320,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="products.html"><a href="products.html#developing-r-packages"><i class="fa fa-check"></i><b>6.1</b> Developing R packages</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="products.html"><a href="products.html#objectives-3"><i class="fa fa-check"></i><b>6.1.1</b> Objectives</a></li>
-<li class="chapter" data-level="6.1.2" data-path="products.html"><a href="products.html#workflow"><i class="fa fa-check"></i><b>6.1.2</b> Workflow</a></li>
-<li class="chapter" data-level="6.1.3" data-path="products.html"><a href="products.html#required-components"><i class="fa fa-check"></i><b>6.1.3</b> Required Components</a></li>
-<li class="chapter" data-level="6.1.4" data-path="products.html"><a href="products.html#optional-components"><i class="fa fa-check"></i><b>6.1.4</b> Optional Components</a></li>
-<li class="chapter" data-level="6.1.5" data-path="products.html"><a href="products.html#building-an-r-package"><i class="fa fa-check"></i><b>6.1.5</b> Building an R package</a></li>
-<li class="chapter" data-level="6.1.6" data-path="products.html"><a href="products.html#distributing-an-r-package"><i class="fa fa-check"></i><b>6.1.6</b> Distributing an R package</a></li>
+<li class="chapter" data-level="6.1.1" data-path="products.html"><a href="products.html#workflow"><i class="fa fa-check"></i><b>6.1.1</b> Workflow</a></li>
+<li class="chapter" data-level="6.1.2" data-path="products.html"><a href="products.html#required-components"><i class="fa fa-check"></i><b>6.1.2</b> Required Components</a></li>
+<li class="chapter" data-level="6.1.3" data-path="products.html"><a href="products.html#optional-components"><i class="fa fa-check"></i><b>6.1.3</b> Optional Components</a></li>
+<li class="chapter" data-level="6.1.4" data-path="products.html"><a href="products.html#building-an-r-package"><i class="fa fa-check"></i><b>6.1.4</b> Building an R package</a></li>
+<li class="chapter" data-level="6.1.5" data-path="products.html"><a href="products.html#distributing-an-r-package"><i class="fa fa-check"></i><b>6.1.5</b> Distributing an R package</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="products.html"><a href="products.html#developing-shiny-apps"><i class="fa fa-check"></i><b>6.2</b> Developing Shiny apps</a>
 <ul>
@@ -339,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="semi-structured-data.html"><a href="semi-structured-data.html"><i class="fa fa-check"></i><b>7</b> Semi-structured data</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="semi-structured-data.html"><a href="semi-structured-data.html#setup-4"><i class="fa fa-check"></i><b>7.1</b> Setup</a></li>
-<li class="chapter" data-level="7.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#objectives-4"><i class="fa fa-check"></i><b>7.2</b> Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="semi-structured-data.html"><a href="semi-structured-data.html#objectives-3"><i class="fa fa-check"></i><b>7.2</b> Objectives</a></li>
 <li class="chapter" data-level="7.3" data-path="semi-structured-data.html"><a href="semi-structured-data.html#what-is-semi-structured-data"><i class="fa fa-check"></i><b>7.3</b> What is semi-structured data?</a></li>
 <li class="chapter" data-level="7.4" data-path="semi-structured-data.html"><a href="semi-structured-data.html#workflow-2"><i class="fa fa-check"></i><b>7.4</b> Workflow</a></li>
 <li class="chapter" data-level="7.5" data-path="semi-structured-data.html"><a href="semi-structured-data.html#htmlcss-web-scraping"><i class="fa fa-check"></i><b>7.5</b> HTML/CSS: web scraping</a></li>
@@ -435,21 +434,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <div id="developing-r-packages" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Developing R packages</h2>
+<p>Why developing R packages?</p>
 <ol style="list-style-type: decimal">
 <li>Reuse your code</li>
 <li>Automate your workflow</li>
 <li>Help others (be part of an open-source development community)</li>
 </ol>
-<div id="objectives-3" class="section level3" number="6.1.1">
-<h3><span class="header-section-number">6.1.1</span> Objectives</h3>
-<ol style="list-style-type: decimal">
-<li>Reuse your code</li>
-<li>Automate your workflow</li>
-<li>Help others (be part of an open-source development community)</li>
-</ol>
-</div>
-<div id="workflow" class="section level3" number="6.1.2">
-<h3><span class="header-section-number">6.1.2</span> Workflow</h3>
+<div id="workflow" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Workflow</h3>
 <ol style="list-style-type: decimal">
 <li>Create a GitHub repo</li>
 <li>Clone the GitHub repo</li>
@@ -481,8 +473,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It’s time to learn five R code states: source, bundled, binary, installed, and in-memory.</p>
 <p>If you’re using an R package, you’re only concerned of the last two states: <code>install.packages("pkg")</code> and <code>library(pkg)</code> If you’re developing an R package, you first write source code (<code>*.R</code>), bundle it (compressed file like <code>*.tar.gz</code>; done by <code>devtools::build()</code>), then make it binary (<code>devtools::build(binary = TRUE)</code>; This is how a package is stored in CRAN/GitHub, etc.).</p>
 </div>
-<div id="required-components" class="section level3" number="6.1.3">
-<h3><span class="header-section-number">6.1.3</span> Required Components</h3>
+<div id="required-components" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Required Components</h3>
 <p>The 4 required components are necessary to build and distribute a minimally viable R package. The other steps are optional.</p>
 <ul>
 <li>Package
@@ -548,8 +540,8 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <p>This documentation is for <a href="https://en.wikipedia.org/wiki/Namespace">namespace</a>.</p>
 <div class="sourceCode" id="cb1060"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1060-1"><a href="products.html#cb1060-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 </div>
-<div id="optional-components" class="section level3" number="6.1.4">
-<h3><span class="header-section-number">6.1.4</span> Optional Components</h3>
+<div id="optional-components" class="section level3" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Optional Components</h3>
 <ol style="list-style-type: decimal">
 <li>Test (<strong>test</strong>)</li>
 </ol>
@@ -597,8 +589,8 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <li>A package site includes information on METADATA, Function references, Articles, News, etc.</li>
 </ul>
 </div>
-<div id="building-an-r-package" class="section level3" number="6.1.5">
-<h3><span class="header-section-number">6.1.5</span> Building an R package</h3>
+<div id="building-an-r-package" class="section level3" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> Building an R package</h3>
 <ul>
 <li>CMD (in the terminal)</li>
 </ul>
@@ -612,8 +604,8 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <span id="cb1067-4"><a href="products.html#cb1067-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install </span></span>
 <span id="cb1067-5"><a href="products.html#cb1067-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div>
 </div>
-<div id="distributing-an-r-package" class="section level3" number="6.1.6">
-<h3><span class="header-section-number">6.1.6</span> Distributing an R package</h3>
+<div id="distributing-an-r-package" class="section level3" number="6.1.5">
+<h3><span class="header-section-number">6.1.5</span> Distributing an R package</h3>
 <div class="sourceCode" id="cb1068"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1068-1"><a href="products.html#cb1068-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Version update </span></span>
 <span id="cb1068-2"><a href="products.html#cb1068-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_version</span>()</span>
 <span id="cb1068-3"><a href="products.html#cb1068-3" aria-hidden="true" tabindex="-1"></a></span>

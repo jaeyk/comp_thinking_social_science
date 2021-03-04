@@ -6,12 +6,7 @@
 
 ## Developing R packages 
 
-1. Reuse your code 
-2. Automate your workflow 
-3. Help others (be part of an open-source development community)
-
-
-### Objectives 
+Why developing R packages? 
 
 1. Reuse your code 
 2. Automate your workflow 
