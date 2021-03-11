@@ -3496,9 +3496,10 @@ starwars %>%
 ## 15 Mon Mo~    150  NA   auburn     fair        blue              48 fema~ femin~
 ## 16 R4-P17      96  NA   none       silver, red red, blue         NA none  femin~
 ## 17 Rey         NA  NA   brown      light       hazel             NA fema~ femin~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
+## # ... with 5 more variables:
+## #   homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>,
+## #   starships <list>
 ```
 
 The following filtering example was inspired by [the suzanbert's dplyr blog post](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/).
@@ -3599,9 +3600,10 @@ starwars %>%
 ## 2 Beru Wh~    165    75 brown       light      blue              47 fema~ femin~
 ## 3 Quarsh ~    183    NA black       dark       brown             62 <NA>  <NA>  
 ## 4 Cliegg ~    183    NA brown       fair       blue              82 male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
+## # ... with 5 more variables:
+## #   homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>,
+## #   starships <list>
 ```
 
 ```r
@@ -3619,9 +3621,10 @@ starwars %>%
 ## 2 Beru Wh~    165    75 brown       light      blue              47 fema~ femin~
 ## 3 Quarsh ~    183    NA black       dark       brown             62 <NA>  <NA>  
 ## 4 Cliegg ~    183    NA brown       fair       blue              82 male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
+## # ... with 5 more variables:
+## #   homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>,
+## #   starships <list>
 ```
 
 ```r
@@ -3645,10 +3648,10 @@ starwars %>%
 ##  8 Boba Fe~    183  78.2 black      fair       brown           31.5 male  mascu~
 ##  9 Lando C~    177  79   black      dark       brown           31   male  mascu~
 ## 10 Arvel C~     NA  NA   brown      fair       brown           NA   male  mascu~
-## # ... with 21 more rows, and 5 more variables:
-## #   homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>,
-## #   starships <list>
+## # ... with 21 more rows, and 5 more
+## #   variables: homeworld <chr>,
+## #   species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
 
 **Challenge**
@@ -3674,9 +3677,10 @@ starwars %>%
 ## 4 Chewba~    228   112 brown      unknown     blue              200 male  mascu~
 ## 5 Roos T~    224    82 none       grey        orange             NA male  mascu~
 ## 6 Grievo~    216   159 none       brown, whi~ green, ye~         NA male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
+## # ... with 5 more variables:
+## #   homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>,
+## #   starships <list>
 ```
 
 -   Sample by a fraction
@@ -3707,9 +3711,10 @@ starwars %>%
 ## 7 Jabba ~    175  1358 <NA>       green-tan,~ orange         600   herma~ mascu~
 ## 8 Darth ~    202   136 none       white       yellow          41.9 male   mascu~
 ## 9 Taun We    213    NA none       grey        black           NA   female femin~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
+## # ... with 5 more variables:
+## #   homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>,
+## #   starships <list>
 ```
 
 ```r
@@ -3734,9 +3739,10 @@ starwars %>%
 ## 6 Darth V~    202 136   none       white      yellow          41.9 male   mascu~
 ## 7 Finn         NA  NA   black      dark       dark            NA   male   mascu~
 ## 8 Boba Fe~    183  78.2 black      fair       brown           31.5 male   mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
+## # ... with 5 more variables:
+## #   homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>,
+## #   starships <list>
 ```
 
 -   Sample by number
@@ -3775,9 +3781,10 @@ starwars %>%
 ## 18 Ki-Adi~    198    82 white      pale        yellow            92 male  mascu~
 ## 19 BB8         NA    NA none       none        black             NA none  mascu~
 ## 20 Eeth K~    171    NA black      brown       brown             NA male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
+## # ... with 5 more variables:
+## #   homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>,
+## #   starships <list>
 ```
 
 ```r
@@ -3814,9 +3821,10 @@ starwars %>%
 ## 18 Lobot      175    79 none        light      blue              37 male  mascu~
 ## 19 San Hi~    191    NA none        grey       gold              NA male  mascu~
 ## 20 Kit Fi~    196    87 none        green      black             NA male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
+## # ... with 5 more variables:
+## #   homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>,
+## #   starships <list>
 ```
 
 -   Top 10 rows orderd by height
@@ -3842,9 +3850,10 @@ starwars %>%
 ##  8 Grievo~    216   159 none       brown, whi~ green, y~       NA   male  mascu~
 ##  9 Tarfful    234   136 brown      brown       blue            NA   male  mascu~
 ## 10 Tion M~    206    80 none       grey        black           NA   male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
+## # ... with 5 more variables:
+## #   homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>,
+## #   starships <list>
 ```
 
 ```r
@@ -3867,9 +3876,10 @@ starwars %>%
 ##  8 Rugor ~    206    NA none       green       orange          NA   male  mascu~
 ##  9 Tion M~    206    80 none       grey        black           NA   male  mascu~
 ## 10 Darth ~    202   136 none       white       yellow          41.9 male  mascu~
-## # ... with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
+## # ... with 5 more variables:
+## #   homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>,
+## #   starships <list>
 ```
 
 ### Subset variables (columns)
@@ -4072,8 +4082,9 @@ msleep %>%
 ##  8 Roden~ Vesp~ Calo~ <NA>  <NA>                 7        NA        NA      17  
 ##  9 Carni~ Dog   Canis carni domesticated        10.1       2.9       0.333  13.9
 ## 10 Artio~ Roe ~ Capr~ herbi lc                   3        NA        NA      21  
-## # ... with 73 more rows, and 2 more variables:
-## #   brainwt <dbl>, bodywt <dbl>
+## # ... with 73 more rows, and 2 more
+## #   variables: brainwt <dbl>,
+## #   bodywt <dbl>
 ```
 
 -   Select variables from a character vector.
@@ -4622,7 +4633,7 @@ gapminder %>%
 ```
 ## # A tibble: 5 x 2
 ##   continent     n
-## * <fct>     <int>
+##   <fct>     <int>
 ## 1 Africa      624
 ## 2 Americas    300
 ## 3 Asia        396
@@ -4829,7 +4840,7 @@ gapminder %>%
 ```
 ## # A tibble: 5 x 4
 ##   continent     n mean_gdp sd_gdp
-## * <fct>     <int>    <dbl>  <dbl>
+##   <fct>     <int>    <dbl>  <dbl>
 ## 1 Africa      624    2194.  2828.
 ## 2 Americas    300    7136.  6397.
 ## 3 Asia        396    7902. 14045.
@@ -4963,17 +4974,19 @@ wide_gapminder %>%
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
+## # ... with 23 more variables:
+## #   Denmark <dbl>, Finland <dbl>,
+## #   France <dbl>, Germany <dbl>,
+## #   Greece <dbl>, Hungary <dbl>,
+## #   Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>,
+## #   Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>,
 ## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
-## #   United Kingdom <dbl>
+## #   Slovak Republic <dbl>,
+## #   Slovenia <dbl>, Spain <dbl>,
+## #   Sweden <dbl>, Switzerland <dbl>,
+## #   Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_if()`: using a logical condition
@@ -4991,16 +5004,17 @@ wide_gapminder %>%
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
 ## # ... with 24 more variables:
 ## #   Czech Republic <dbl>, Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
+## #   Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>,
+## #   Hungary <dbl>, Iceland <dbl>,
 ## #   Ireland <dbl>, Italy <dbl>,
 ## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
-## #   United Kingdom <dbl>
+## #   Norway <dbl>, Poland <dbl>,
+## #   Portugal <dbl>, Romania <dbl>,
+## #   Serbia <dbl>, Slovak Republic <dbl>,
+## #   Slovenia <dbl>, Spain <dbl>,
+## #   Sweden <dbl>, Switzerland <dbl>,
+## #   Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_at()`
@@ -5021,17 +5035,19 @@ wide_gapminder %>%
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
+## # ... with 23 more variables:
+## #   Denmark <dbl>, Finland <dbl>,
+## #   France <dbl>, Germany <dbl>,
+## #   Greece <dbl>, Hungary <dbl>,
+## #   Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>,
+## #   Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>,
 ## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
-## #   United Kingdom <dbl>
+## #   Slovak Republic <dbl>,
+## #   Slovenia <dbl>, Spain <dbl>,
+## #   Sweden <dbl>, Switzerland <dbl>,
+## #   Turkey <dbl>, United Kingdom <dbl>
 ```
 
 ```r
@@ -5078,17 +5094,19 @@ wide_gapminder %>%
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
+## # ... with 23 more variables:
+## #   Denmark <dbl>, Finland <dbl>,
+## #   France <dbl>, Germany <dbl>,
+## #   Greece <dbl>, Hungary <dbl>,
+## #   Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>,
+## #   Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>,
 ## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
-## #   United Kingdom <dbl>
+## #   Slovak Republic <dbl>,
+## #   Slovenia <dbl>, Spain <dbl>,
+## #   Sweden <dbl>, Switzerland <dbl>,
+## #   Turkey <dbl>, United Kingdom <dbl>
 ```
 
 ```r
@@ -5101,17 +5119,19 @@ wide_gapminder %>%
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
+## # ... with 23 more variables:
+## #   Denmark <dbl>, Finland <dbl>,
+## #   France <dbl>, Germany <dbl>,
+## #   Greece <dbl>, Hungary <dbl>,
+## #   Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>,
+## #   Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>,
 ## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
-## #   United Kingdom <dbl>
+## #   Slovak Republic <dbl>,
+## #   Slovenia <dbl>, Spain <dbl>,
+## #   Sweden <dbl>, Switzerland <dbl>,
+## #   Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_if()`
@@ -5142,16 +5162,17 @@ wide_gapminder %>%
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
 ## # ... with 24 more variables:
 ## #   Czech Republic <dbl>, Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
+## #   Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>,
+## #   Hungary <dbl>, Iceland <dbl>,
 ## #   Ireland <dbl>, Italy <dbl>,
 ## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
-## #   United Kingdom <dbl>
+## #   Norway <dbl>, Poland <dbl>,
+## #   Portugal <dbl>, Romania <dbl>,
+## #   Serbia <dbl>, Slovak Republic <dbl>,
+## #   Slovenia <dbl>, Spain <dbl>,
+## #   Sweden <dbl>, Switzerland <dbl>,
+## #   Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_at()`
@@ -5170,17 +5191,19 @@ wide_gapminder %>%
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>,
+## # ... with 23 more variables:
+## #   Denmark <dbl>, Finland <dbl>,
+## #   France <dbl>, Germany <dbl>,
+## #   Greece <dbl>, Hungary <dbl>,
+## #   Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>,
+## #   Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>,
 ## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>, Slovenia <dbl>,
-## #   Spain <dbl>, Sweden <dbl>,
-## #   Switzerland <dbl>, Turkey <dbl>,
-## #   United Kingdom <dbl>
+## #   Slovak Republic <dbl>,
+## #   Slovenia <dbl>, Spain <dbl>,
+## #   Sweden <dbl>, Switzerland <dbl>,
+## #   Turkey <dbl>, United Kingdom <dbl>
 ```
 
 ```r
@@ -5249,7 +5272,7 @@ gapminder %>%
 ```
 ## # A tibble: 5 x 2
 ##   continent mean_gdp
-## * <fct>        <dbl>
+##   <fct>        <dbl>
 ## 1 Africa       2194.
 ## 2 Americas     7136.
 ## 3 Asia         7902.
@@ -5272,7 +5295,7 @@ gapminder %>%
 ```
 ## # A tibble: 5 x 3
 ##   continent mean_gdp count
-## * <fct>        <dbl> <int>
+##   <fct>        <dbl> <int>
 ## 1 Africa       2194.   624
 ## 2 Americas     7136.   300
 ## 3 Asia         7902.   396
@@ -5298,7 +5321,7 @@ gapminder %>%
 ```
 ## # A tibble: 5 x 2
 ##   continent IQR_gdp
-## * <fct>       <dbl>
+##   <fct>       <dbl>
 ## 1 Africa      1616.
 ## 2 Americas    4402.
 ## 3 Asia        7492.
@@ -5321,7 +5344,7 @@ gapminder %>%
 ```
 ## # A tibble: 5 x 3
 ##   continent min_gdp max_gdp
-## * <fct>       <dbl>   <dbl>
+##   <fct>       <dbl>   <dbl>
 ## 1 Africa       241.  21951.
 ## 2 Americas    1202.  42952.
 ## 3 Asia         331  113523.
@@ -5344,7 +5367,7 @@ gapminder %>%
 ```
 ## # A tibble: 5 x 3
 ##   continent first_gdp last_gdp
-## * <fct>         <dbl>    <dbl>
+##   <fct>         <dbl>    <dbl>
 ## 1 Africa        2449.     470.
 ## 2 Americas      5911.   11416.
 ## 3 Asia           779.    2281.
@@ -5385,7 +5408,7 @@ gapminder %>%
 ```
 ## # A tibble: 5 x 2
 ##   continent    ns
-## * <fct>     <int>
+##   <fct>     <int>
 ## 1 Africa      624
 ## 2 Americas    300
 ## 3 Asia        396
@@ -5405,7 +5428,7 @@ gapminder %>%
 ```
 ## # A tibble: 5 x 2
 ##   continent rich_countries
-## * <fct>              <dbl>
+##   <fct>              <dbl>
 ## 1 Africa           0.00481
 ## 2 Americas         0.05   
 ## 3 Asia             0.111  
@@ -5487,7 +5510,8 @@ planes %>%
 
 ```
 ## # A tibble: 0 x 2
-## # ... with 2 variables: tailnum <chr>, n <int>
+## # ... with 2 variables: tailnum <chr>,
+## #   n <int>
 ```
 **Optional**
 
@@ -5871,8 +5895,9 @@ glanced$glance %>% pluck(1)
 ##   r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>        <dbl> <dbl>  <dbl> <dbl> <dbl>
 ## 1     0.948         0.942  1.22      181. 0.0000000984     1  -18.3  42.7  44.1
-## # ... with 3 more variables: deviance <dbl>,
-## #   df.residual <int>, nobs <int>
+## # ... with 3 more variables:
+## #   deviance <dbl>, df.residual <int>,
+## #   nobs <int>
 ```
 
 ```r
@@ -5909,10 +5934,11 @@ glanced %>%
 ##  8 South Afr~ Africa    <tibble ~ <lm>      0.312        0.244    4.74     4.54 
 ##  9 Uganda     Africa    <tibble ~ <lm>      0.342        0.276    3.19     5.20 
 ## 10 Congo, De~ Africa    <tibble ~ <lm>      0.348        0.283    2.43     5.34 
-## # ... with 132 more rows, and 8 more variables:
-## #   p.value <dbl>, df <dbl>, logLik <dbl>,
-## #   AIC <dbl>, BIC <dbl>, deviance <dbl>,
-## #   df.residual <int>, nobs <int>
+## # ... with 132 more rows, and 8 more
+## #   variables: p.value <dbl>, df <dbl>,
+## #   logLik <dbl>, AIC <dbl>, BIC <dbl>,
+## #   deviance <dbl>, df.residual <int>,
+## #   nobs <int>
 ```
 
 ```r
@@ -9769,18 +9795,20 @@ midwest
 ##  9   569 CASS    IL    0.024    13437       560.    13384       16             8
 ## 10   570 CHAMPA~ IL    0.058   173025      2983.   146506    16559           331
 ## # ... with 427 more rows, and 19 more
-## #   variables: popasian <int>, popother <int>,
-## #   percwhite <dbl>, percblack <dbl>,
-## #   percamerindan <dbl>, percasian <dbl>,
-## #   percother <dbl>, popadults <int>,
-## #   perchsd <dbl>, percollege <dbl>,
-## #   percprof <dbl>, poppovertyknown <int>,
+## #   variables: popasian <int>,
+## #   popother <int>, percwhite <dbl>,
+## #   percblack <dbl>,
+## #   percamerindan <dbl>,
+## #   percasian <dbl>, percother <dbl>,
+## #   popadults <int>, perchsd <dbl>,
+## #   percollege <dbl>, percprof <dbl>,
+## #   poppovertyknown <int>,
 ## #   percpovertyknown <dbl>,
 ## #   percbelowpoverty <dbl>,
 ## #   percchildbelowpovert <dbl>,
 ## #   percadultpoverty <dbl>,
-## #   percelderlypoverty <dbl>, inmetro <int>,
-## #   category <chr>
+## #   percelderlypoverty <dbl>,
+## #   inmetro <int>, category <chr>
 ```
 
 

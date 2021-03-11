@@ -167,7 +167,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2021-03-04"
+date: "2021-03-11"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 
@@ -243,7 +243,9 @@ utils::globalVariables(c("<undefined variable name1>", "<undefined variable name
 
 ## Developing Shiny apps
 
-[Shiny](https://shiny.rstudio.com/) is a "framework for creating web applications using R code". You can create a dashboard or an interactive map without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise to learn from your data intuitively and interactively.
+[Shiny](https://shiny.rstudio.com/) is a "framework for creating web applications using R code" ([Wickham 2021](https://mastering-shiny.org/)). You can create a [dashboard](https://rstudio.github.io/shinydashboard/) or an [interactive map](https://rviews.rstudio.com/2019/10/09/building-interactive-world-maps-in-shiny/) without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise learn from your data analysis intuitively and interactively.
+
+To learn more about Shiny applications, see [the Winners of the 2nd Annual Shiny Contest](https://blog.rstudio.com/2020/07/13/winners-of-the-2nd-shiny-contest/) hosted by RStudio.
 
 ```{=html}
 
@@ -275,11 +277,12 @@ install.packages("shiny")
 
 Add an `app.R` file.
 
-The key objective here is defining your UI (how the app looks; front-end = INPUT) (defined in object `ui`) and server (how the app works; back-end = OUTPUT) (defined in object `server`).
+The key objective here is defining your UI (User interface; how the app looks; front-end = INPUT) (defined in object `ui`) and server (how the app works; back-end = OUTPUT) (defined in object `server`). Shiny uses **reactive programming**. If you change inputs on the user side, outputs will be automatically updated on the server end.
 
 If you're creating a complex app, you can achieve the same goal with two files: `ui.R` and `server.R`.
 
 ### app.r 
+
 
 - Front-end
 
@@ -292,11 +295,24 @@ require("wordcloud2")
 require("shiny")
 require("shinydashboard")
 require("colourpicker")
+```
 
+
+
+```r
 # Load data 
 
 df <- read.csv(url("https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv"))[,-1]
+```
 
+`fluidPage()`: provides the layout for the UI
+
+`sliderInput()`: one of the input controls (e.g., `selectInput()`, `textInput()`, `numericInput()`)
+
+`wordcloud2Output()` one of the output controls (e.g., `tableOutput()`)
+
+
+```r
 # Defines the user interface; how the app looks
 
 ui <- fluidPage(
@@ -310,7 +326,7 @@ ui <- fluidPage(
       
       # Sidebar with sliders 
       sidebarPanel(
-        sliderInput("size", 
+        sliderInput("size", # Input ID: input$size 
                     "Font size:",
                     min = 1, max = 10,
                     value = 2)

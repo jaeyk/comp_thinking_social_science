@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2021-03-04" />
+<meta name="date" content="2021-03-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -576,7 +576,7 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <div class="sourceCode" id="cb1064"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1064-1"><a href="products.html#cb1064-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb1065"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1065-1"><a href="products.html#cb1065-1" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Vignette title&quot;</span></span>
 <span id="cb1065-2"><a href="products.html#cb1065-2" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Vignette author&quot;</span></span>
-<span id="cb1065-3"><a href="products.html#cb1065-3" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;2021-03-04&quot;</span></span>
+<span id="cb1065-3"><a href="products.html#cb1065-3" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;2021-03-11&quot;</span></span>
 <span id="cb1065-4"><a href="products.html#cb1065-4" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> rmarkdown<span class="sc">::</span>html_vignette</span>
 <span id="cb1065-5"><a href="products.html#cb1065-5" aria-hidden="true" tabindex="-1"></a>vignette<span class="sc">:</span> blah blah</span></code></pre></div>
 <ul>
@@ -634,7 +634,8 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 </div>
 <div id="developing-shiny-apps" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Developing Shiny apps</h2>
-<p><a href="https://shiny.rstudio.com/">Shiny</a> is a “framework for creating web applications using R code.” You can create a dashboard or an interactive map without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise to learn from your data intuitively and interactively.</p>
+<p><a href="https://shiny.rstudio.com/">Shiny</a> is a “framework for creating web applications using R code” (<a href="https://mastering-shiny.org/">Wickham 2021</a>). You can create a <a href="https://rstudio.github.io/shinydashboard/">dashboard</a> or an <a href="https://rviews.rstudio.com/2019/10/09/building-interactive-world-maps-in-shiny/">interactive map</a> without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise learn from your data analysis intuitively and interactively.</p>
+<p>To learn more about Shiny applications, see <a href="https://blog.rstudio.com/2020/07/13/winners-of-the-2nd-shiny-contest/">the Winners of the 2nd Annual Shiny Contest</a> hosted by RStudio.</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Wy3TY0gOmJw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -656,7 +657,7 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <li>Create app directory and file</li>
 </ol>
 <p>Add an <code>app.R</code> file.</p>
-<p>The key objective here is defining your UI (how the app looks; front-end = INPUT) (defined in object <code>ui</code>) and server (how the app works; back-end = OUTPUT) (defined in object <code>server</code>).</p>
+<p>The key objective here is defining your UI (User interface; how the app looks; front-end = INPUT) (defined in object <code>ui</code>) and server (how the app works; back-end = OUTPUT) (defined in object <code>server</code>). Shiny uses <strong>reactive programming</strong>. If you change inputs on the user side, outputs will be automatically updated on the server end.</p>
 <p>If you’re creating a complex app, you can achieve the same goal with two files: <code>ui.R</code> and <code>server.R</code>.</p>
 </div>
 <div id="app.r" class="section level3" number="6.2.2">
@@ -670,73 +671,74 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <span id="cb1072-4"><a href="products.html#cb1072-4" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span>
 <span id="cb1072-5"><a href="products.html#cb1072-5" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;shiny&quot;</span>)</span>
 <span id="cb1072-6"><a href="products.html#cb1072-6" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;shinydashboard&quot;</span>)</span>
-<span id="cb1072-7"><a href="products.html#cb1072-7" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;colourpicker&quot;</span>)</span>
-<span id="cb1072-8"><a href="products.html#cb1072-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1072-9"><a href="products.html#cb1072-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data </span></span>
-<span id="cb1072-10"><a href="products.html#cb1072-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1072-11"><a href="products.html#cb1072-11" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">&quot;https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv&quot;</span>))[,<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb1072-12"><a href="products.html#cb1072-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1072-13"><a href="products.html#cb1072-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Defines the user interface; how the app looks</span></span>
-<span id="cb1072-14"><a href="products.html#cb1072-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1072-15"><a href="products.html#cb1072-15" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb1072-16"><a href="products.html#cb1072-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1072-17"><a href="products.html#cb1072-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Application title </span></span>
-<span id="cb1072-18"><a href="products.html#cb1072-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
-<span id="cb1072-19"><a href="products.html#cb1072-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1072-20"><a href="products.html#cb1072-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">h4</span>(tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
-<span id="cb1072-21"><a href="products.html#cb1072-21" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb1072-22"><a href="products.html#cb1072-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
-<span id="cb1072-23"><a href="products.html#cb1072-23" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb1072-24"><a href="products.html#cb1072-24" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Sidebar with sliders </span></span>
-<span id="cb1072-25"><a href="products.html#cb1072-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sidebarPanel</span>(</span>
-<span id="cb1072-26"><a href="products.html#cb1072-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;size&quot;</span>, </span>
-<span id="cb1072-27"><a href="products.html#cb1072-27" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Font size:&quot;</span>,</span>
-<span id="cb1072-28"><a href="products.html#cb1072-28" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">10</span>,</span>
-<span id="cb1072-29"><a href="products.html#cb1072-29" aria-hidden="true" tabindex="-1"></a>                    <span class="at">value =</span> <span class="dv">2</span>)</span>
-<span id="cb1072-30"><a href="products.html#cb1072-30" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb1072-31"><a href="products.html#cb1072-31" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1072-32"><a href="products.html#cb1072-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb1072-33"><a href="products.html#cb1072-33" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb1072-34"><a href="products.html#cb1072-34" aria-hidden="true" tabindex="-1"></a>          <span class="fu">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
-<span id="cb1072-35"><a href="products.html#cb1072-35" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb1072-36"><a href="products.html#cb1072-36" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb1072-37"><a href="products.html#cb1072-37" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1072-38"><a href="products.html#cb1072-38" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1072-39"><a href="products.html#cb1072-39" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb1072-7"><a href="products.html#cb1072-7" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;colourpicker&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1073"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1073-1"><a href="products.html#cb1073-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data </span></span>
+<span id="cb1073-2"><a href="products.html#cb1073-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1073-3"><a href="products.html#cb1073-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">&quot;https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv&quot;</span>))[,<span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
+<p><code>fluidPage()</code>: provides the layout for the UI</p>
+<p><code>sliderInput()</code>: one of the input controls (e.g., <code>selectInput()</code>, <code>textInput()</code>, <code>numericInput()</code>)</p>
+<p><code>wordcloud2Output()</code> one of the output controls (e.g., <code>tableOutput()</code>)</p>
+<div class="sourceCode" id="cb1074"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1074-1"><a href="products.html#cb1074-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Defines the user interface; how the app looks</span></span>
+<span id="cb1074-2"><a href="products.html#cb1074-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1074-3"><a href="products.html#cb1074-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb1074-4"><a href="products.html#cb1074-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1074-5"><a href="products.html#cb1074-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Application title </span></span>
+<span id="cb1074-6"><a href="products.html#cb1074-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
+<span id="cb1074-7"><a href="products.html#cb1074-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1074-8"><a href="products.html#cb1074-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">h4</span>(tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
+<span id="cb1074-9"><a href="products.html#cb1074-9" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1074-10"><a href="products.html#cb1074-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
+<span id="cb1074-11"><a href="products.html#cb1074-11" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb1074-12"><a href="products.html#cb1074-12" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Sidebar with sliders </span></span>
+<span id="cb1074-13"><a href="products.html#cb1074-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sidebarPanel</span>(</span>
+<span id="cb1074-14"><a href="products.html#cb1074-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;size&quot;</span>, <span class="co"># Input ID: input$size </span></span>
+<span id="cb1074-15"><a href="products.html#cb1074-15" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Font size:&quot;</span>,</span>
+<span id="cb1074-16"><a href="products.html#cb1074-16" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">10</span>,</span>
+<span id="cb1074-17"><a href="products.html#cb1074-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">value =</span> <span class="dv">2</span>)</span>
+<span id="cb1074-18"><a href="products.html#cb1074-18" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb1074-19"><a href="products.html#cb1074-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1074-20"><a href="products.html#cb1074-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb1074-21"><a href="products.html#cb1074-21" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb1074-22"><a href="products.html#cb1074-22" aria-hidden="true" tabindex="-1"></a>          <span class="fu">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
+<span id="cb1074-23"><a href="products.html#cb1074-23" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1074-24"><a href="products.html#cb1074-24" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1074-25"><a href="products.html#cb1074-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1074-26"><a href="products.html#cb1074-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1074-27"><a href="products.html#cb1074-27" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <ul>
 <li>Back-end</li>
 </ul>
-<div class="sourceCode" id="cb1073"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1073-1"><a href="products.html#cb1073-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb1073-2"><a href="products.html#cb1073-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1073-3"><a href="products.html#cb1073-3" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>cloud <span class="ot">&lt;-</span> <span class="fu">renderWordcloud2</span>({ </span>
-<span id="cb1073-4"><a href="products.html#cb1073-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1073-5"><a href="products.html#cb1073-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wordcloud2</span>(df, </span>
-<span id="cb1073-6"><a href="products.html#cb1073-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> input<span class="sc">$</span>size, </span>
-<span id="cb1073-7"><a href="products.html#cb1073-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
-<span id="cb1073-8"><a href="products.html#cb1073-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1073-9"><a href="products.html#cb1073-9" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb1073-10"><a href="products.html#cb1073-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1073-11"><a href="products.html#cb1073-11" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb1075"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1075-1"><a href="products.html#cb1075-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb1075-2"><a href="products.html#cb1075-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1075-3"><a href="products.html#cb1075-3" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>cloud <span class="ot">&lt;-</span> <span class="fu">renderWordcloud2</span>({ </span>
+<span id="cb1075-4"><a href="products.html#cb1075-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1075-5"><a href="products.html#cb1075-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wordcloud2</span>(df, </span>
+<span id="cb1075-6"><a href="products.html#cb1075-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> input<span class="sc">$</span>size, </span>
+<span id="cb1075-7"><a href="products.html#cb1075-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
+<span id="cb1075-8"><a href="products.html#cb1075-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1075-9"><a href="products.html#cb1075-9" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1075-10"><a href="products.html#cb1075-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1075-11"><a href="products.html#cb1075-11" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
 <ul>
 <li>Build a shiny app</li>
 </ul>
-<div class="sourceCode" id="cb1074"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1074-1"><a href="products.html#cb1074-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<div class="sourceCode" id="cb1076"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1076-1"><a href="products.html#cb1076-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
 </div>
 <div id="deployment" class="section level3" number="6.2.3">
 <h3><span class="header-section-number">6.2.3</span> Deployment</h3>
 <ul>
 <li>Deploy to <a href="https://www.shinyapps.io/?_ga=2.5503866.871102833.1602978469-100003412.1602392815">the shinyapps.io cloud</a></li>
 </ul>
-<div class="sourceCode" id="cb1075"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1075-1"><a href="products.html#cb1075-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages </span></span>
-<span id="cb1075-2"><a href="products.html#cb1075-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rsconnect&quot;</span>)</span>
-<span id="cb1075-3"><a href="products.html#cb1075-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsconnect)</span>
-<span id="cb1075-4"><a href="products.html#cb1075-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1075-5"><a href="products.html#cb1075-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup </span></span>
-<span id="cb1075-6"><a href="products.html#cb1075-6" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">setAccountInfo</span>(<span class="at">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
-<span id="cb1075-7"><a href="products.html#cb1075-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
-<span id="cb1075-8"><a href="products.html#cb1075-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
-<span id="cb1075-9"><a href="products.html#cb1075-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1075-10"><a href="products.html#cb1075-10" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployApp</span>(<span class="at">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1077"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1077-1"><a href="products.html#cb1077-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages </span></span>
+<span id="cb1077-2"><a href="products.html#cb1077-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rsconnect&quot;</span>)</span>
+<span id="cb1077-3"><a href="products.html#cb1077-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsconnect)</span>
+<span id="cb1077-4"><a href="products.html#cb1077-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1077-5"><a href="products.html#cb1077-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup </span></span>
+<span id="cb1077-6"><a href="products.html#cb1077-6" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">setAccountInfo</span>(<span class="at">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
+<span id="cb1077-7"><a href="products.html#cb1077-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
+<span id="cb1077-8"><a href="products.html#cb1077-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
+<span id="cb1077-9"><a href="products.html#cb1077-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1077-10"><a href="products.html#cb1077-10" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployApp</span>(<span class="at">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
 </div>
 <div id="references-4" class="section level3" number="6.2.4">
 <h3><span class="header-section-number">6.2.4</span> References</h3>
