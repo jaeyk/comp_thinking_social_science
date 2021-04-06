@@ -167,7 +167,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2021-03-11"
+date: "2021-04-06"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 

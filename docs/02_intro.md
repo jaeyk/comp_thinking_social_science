@@ -1886,6 +1886,10 @@ if (!require(testthat)) install.packages("testthat")
 ```
 
 ```
+## Warning: package 'testthat' was built under R version 4.0.3
+```
+
+```
 ## 
 ## Attaching package: 'testthat'
 ```

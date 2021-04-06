@@ -481,7 +481,7 @@ flights %>%
 
 ```
 ## # Source:   lazy query [?? x 2]
-## # Database: sqlite 3.34.1 [:memory:]
+## # Database: sqlite 3.35.2 [:memory:]
 ##    dep_delay arr_delay
 ##        <dbl>     <dbl>
 ##  1         2        11
@@ -511,7 +511,7 @@ flights %>%
 
 ```
 ## # Source:   lazy query [?? x 3]
-## # Database: sqlite 3.34.1 [:memory:]
+## # Database: sqlite 3.35.2 [:memory:]
 ##    distance air_time speed
 ##       <dbl>    <dbl> <dbl>
 ##  1     1400      227  370.
@@ -541,7 +541,7 @@ flights %>%
 
 ```
 ## # Source:   lazy query [?? x 19]
-## # Database: sqlite 3.34.1 [:memory:]
+## # Database: sqlite 3.35.2 [:memory:]
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ##    <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>
 ##  1  2013     1     1      517            515         2      830            819
@@ -554,13 +554,9 @@ flights %>%
 ##  8  2013     1     1      557            600        -3      709            723
 ##  9  2013     1     1      557            600        -3      838            846
 ## 10  2013     1     1      558            600        -2      753            745
-## # ... with more rows, and 11 more
-## #   variables: arr_delay <dbl>,
-## #   carrier <chr>, flight <int>,
-## #   tailnum <chr>, origin <chr>,
-## #   dest <chr>, air_time <dbl>,
-## #   distance <dbl>, hour <dbl>,
-## #   minute <dbl>, time_hour <dbl>
+## # ... with more rows, and 11 more variables: arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,
+## #   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dbl>
 ```
 
 **Challenge 6** 
@@ -636,7 +632,7 @@ flights %>%
 
 ```
 ## # Source:   lazy query [?? x 3]
-## # Database: sqlite 3.34.1 [:memory:]
+## # Database: sqlite 3.35.2 [:memory:]
 ## # Groups:   month
 ##    month   day delay
 ##    <int> <int> <dbl>

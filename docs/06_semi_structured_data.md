@@ -43,9 +43,30 @@ devtools::install_github("jaeyk/tidytweetjson", dependencies = TRUE) ; library(t
 
 ## What is semi-structured data?
 
-> Semi-structured data is a form of structured data that does not obey the tabular structure of data models associated with relational databases or other forms of data tables, but nonetheless contains tags or other markers to separate semantic elements and enforce hierarchies of records and fields within the data. Therefore, it is also known as self-describing structure. - [Wikipedia](https://en.wikipedia.org/wiki/Semi-structured_data#:~:text=Semi%2Dstructured%20data%20is%20a,and%20fields%20within%20the%20data.)
+> Semi-structured data is a form of structured data that does not obey the tabular structure of data models associated with relational databases or other forms of data tables, but nonetheless contains tags or other markers to separate semantic elements and enforce hierarchies of records and fields within the data. Therefore, it is also known as a self-describing structure. - [Wikipedia](https://en.wikipedia.org/wiki/Semi-structured_data#:~:text=Semi%2Dstructured%20data%20is%20a,and%20fields%20within%20the%20data.)
 
--   Examples: `HTML (Hypertext Markup Language)` files (e.g., websites) and `JSON (JavaScript Object Notation)` files (e.g., tweets)
+-   Examples: HTML (e.g., websites), XML (e.g., government data), JSON (e.g., social media API)
+
+Below is how JSON (tweet) looks like. 
+
+
+- A tree-like structure 
+
+- Keys and values (key: value) 
+ 
+{
+  "created_at": "Thu Apr 06 15:24:15 +0000 2017",
+  "id_str": "850006245121695744",
+  "text": "1\/ Today we\u2019re sharing our vision for the future of the Twitter API platform!\nhttps:\/\/t.co\/XweGngmxlP",
+  "user": {
+    "id": 2244994945,
+    "name": "Twitter Dev",
+    "screen_name": "TwitterDev",
+    "location": "Internet",
+    "url": "https:\/\/dev.twitter.com\/",
+    "description": "Your official source for Twitter Platform news, updates & events. Need technical help? Visit https:\/\/twittercommunity.com\/ \u2328\ufe0f #TapIntoTwitter"
+  }
+}
 
 -   Why should we care about semi-structured data?
 
@@ -88,7 +109,7 @@ url_list <- c(
 
 * Step 1: Inspection 
 
-Examine the Berkeley website so that we could identify a node that indicates the school's motto. If you're using Chrome, draw your interest elements, then `right click > inspect > copy full xpath`.
+Examine the Berkeley website so that we could identify a node that indicates the school's motto. If you're using Chrome, draw your interest elements, then `right click > inspect > copy full xpath.`
 
 
 ```r
@@ -295,28 +316,68 @@ This explanation draws on Pablo Barbara's [LSE social media workshop slides](htt
 
 **Basic information**
 
--   What is an API?: An interface (you can think of it as something akin to a restaurant menu. API parameters are menu items.)
+-   What is an API?: An interface (you can think of it as something akin to a restaurant menu. API parameters are API menu items.)
 
     -   [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) (Representational state transfer) API: static information (e.g., user profiles, list of followers and friends)
 
-        -   R packages: [tweetscores](https://github.com/pablobarbera/twitter_ideology/tree/master/pkg/tweetscores), [twitteR](https://cran.r-project.org/web/packages/twitteR/twitteR.pdf), [rtweet](https://github.com/ropensci/rtweet)
+    -   [Streaming](https://blog.axway.com/amplify/api-management/streaming-apis#:~:text=Streaming%20APIs%20are%20used%20to,a%20subset%20of%20Streaming%20APIS.) API: dynamic information (e.g, new tweets)
 
-    -   [Streaming API](https://blog.axway.com/amplify/api-management/streaming-apis#:~:text=Streaming%20APIs%20are%20used%20to,a%20subset%20of%20Streaming%20APIS.): dynamic information (e..g, new tweets)
+**Why should we care?** 
 
-        -   This streaming data is filtered by (1) keywords, (2) location, and (3) sample (1% of the total tweets)
-        -   R packages: [streamR](https://github.com/pablobarbera/streamR)
+- API is the new data frontier. [ProgrammableWeb](https://www.programmableweb.com/apis/directory) shows that there are more than 24,046 APIs as of April 1, 2021.
 
-**Status**
+  - Big and streaming (real-time) data 
+  
+  - High-dimensional data (e.g., text, image, video, etc.)
+  
+  - Lots of analytic opportunities (e.g., time-series, network, spatial analysis)
+  
+- Also, this type of data has many limitations (external validity, algorithmic bias, etc).
 
--   Twitter API is still widely accessible ([v2](https://developer.twitter.com/en/docs/twitter-api/early-access) recently released; new fields available such as [conversation threads](https://developer.twitter.com/en/docs/twitter-api/conversation-id)).
+- Think about taking the API + approach (i.e., API not replacing but augmenting traditional data collection)
 
+**How API works** 
+
+Request (you form a request URL) <-> Response (API responses to your request by sending you data usually in JSON format)
+
+![](https://mk0appinventiv4394ey.kinstacdn.com/wp-content/uploads/sites/1/2018/05/What-are-APIs-Learn-How-API-Works.jpg)
+
+**API Statuses**
+
+1. Twitter 
+
+-   Twitter API is still widely accessible ([v2](https://developer.twitter.com/en/docs/twitter-api/early-access) 
+
+
+  - In January 2021, Twitter introduced the [academic Twitter API](https://developer.twitter.com/en/solutions/academic-research) that allows generous access to Twitter's historical data for academic researchers 
+
+    - Many R packages exist for the Twitter API: [rtweet](https://cran.r-project.org/web/packages/rtweet/rtweet.pdf) (REST + streaming), [tweetscores](https://github.com/pablobarbera/twitter_ideology/tree/master/pkg/tweetscores) (REST), [streamR](https://github.com/pablobarbera/streamR) (streaming)
+
+    - Some notable limitations. If Twitter users don't share their tweets' locations (e.g., GPS), you can't collect them. 
+    
 > Twitter data is unique from data shared by most other social platforms because it reflects information that users *choose* to share publicly. Our API platform provides broad access to public Twitter data that users have chosen to share with the world. - Twitter Help Center
 
--   What does this policy mean? If Twitter users don't share their tweets' locations (e.g., GPS), you can't collect them.
+-   What does this policy mean? If Twitter users don't share their tweets' locations (e.g., GPS), you can't collect them. You can get around this problem to identify a user's location based on their self-reported profile. 
 
--   Facebook API access has become much constrained with [the exception of Social Science One](https://socialscience.one/blog/unprecedented-facebook-urls-dataset-now-available-research-through-social-science-one) since the 2016 U.S. election.
+2. Other APIs
 
--   [YouTube API](https://developers.google.com/youtube/v3) access is somewhat limited (but you need to check as I'm not updated on this).
+The following comments draw on Alexandra Siegel's talk on "Collecting and Analyzing Social Media Data" given at Montréal Methods Workshops. 
+
+- [Facebook API](https://developers.facebook.com/) access has become constrained since the 2016 U.S. election.  
+
+  - Exception: [Social Science One](https://socialscience.one/blog/unprecedented-facebook-urls-dataset-now-available-research-through-social-science-one).
+
+  - Also, check out [Crowdtangle](https://www.crowdtangle.com/) for collecting public FB page data 
+  
+  - Using FB ads is still a popular method, especially among scholars studying developing countries. 
+  
+- [YouTube API](https://developers.google.com/youtube/v3): generous access + (computer-generated) transcript in many languages 
+
+  - Documentation on [captions](https://developers.google.com/youtube/v3/docs/captions) from YouTube
+  
+- [Instragram API](https://www.instagram.com/developer/): Data from public accounts are available. 
+
+- [Reddit API](https://www.reddit.com/dev/api/): Well-annotated text data suitable for machine learning 
 
 **Upside**
 
@@ -324,7 +385,7 @@ This explanation draws on Pablo Barbara's [LSE social media workshop slides](htt
 
 Web scraping (Wild Wild West) \<\> API (Big Gated Garden)
 
--   You have legal but limited access to (growing) big data that can be divided into text, image, and video and transformed into cross-sectional (geocodes), longitudinal (timestamps), and event historical data (hashtags). See Zachary C. Steinert-Threlkeld's [2020 APSA Short Course Generating Event Data From Social Media](https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia).
+-   You have legal but limited access to (growing) big data that can be divided into text, image, and video and transformed into cross-sectional (geocodes), longitudinal (timestamps), and historical event data (hashtags). See Zachary C. Steinert-Threlkeld's [2020 APSA Short Course Generating Event Data From Social Media](https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia).
 
 -   Social media data are also well-organized, managed, and curated data. It's easy to navigate because XML and JSON have keys and values. If you find keys, you will find observations you look for.
 
@@ -334,11 +395,114 @@ Web scraping (Wild Wild West) \<\> API (Big Gated Garden)
 
 2.  If you want to access more and various data than those available, you need to pay for premium access.
 
-#### Next steps
+### Next steps
 
--   If you want to know how to sign up for a new Twitter developer account and access Twitter API, see Steinert-Threlkeld's [APSA workshop slides](https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia/blob/master/Presentation/02_AccessTwitter.pdf).
+- We are going to learn how to access and collect data using Twitter and New York Times API. We are going to learn this in two ways: (1) using plug-and-play packages (both using RStudio and the terminal) and (2) getting API data from scratch (`httr,` `jsonlite`).
 
--   If you want to know about how to use the `tweetscore` package, then see Pablo Barbara's R markdown file for [scraping data from Twitter's REST API](http://pablobarbera.com/social-media-workshop/code/02-twitter-REST-data-collection.html)
+- Before everything else, first, sign up for the Twitter developer account. If you want to know how to sign up for a new Twitter developer account and access Twitter API, see Steinert-Threlkeld's [APSA workshop slides](https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia/blob/master/Presentation/02_AccessTwitter.pdf).
+
+
+### rtweet 
+
+The `rtweet` examples draw from [Chris Bail's tutorial](https://cbail.github.io/SICSS_APIs_markdown.html). 
+
+#### Setup 
+
+The first thing you need to do is set up.
+
+Assuming that you already signed up for a Twitter developer account 
+
+
+```r
+app_name <- "YOUR APP NAME"
+consumer_key <- "YOUR CONSUMER KEY"
+consumer_secret <- "YOUR CONSUMER SECRET"
+
+rtweet::create_token(app = app_name, 
+                     consumer_key = consumer_key, 
+                     consumer_secret = consumer_secret)
+```
+
+#### Search API
+
+Using **search API**; This API returns a collection of Tweets mentioning a particular query.
+
+
+```r
+# Install and load rtweet 
+if (!require(pacman)) {install.packages("pacman")}
+pacman::p_load(rtweet)
+
+# The past 6-9 days 
+rt <- search_tweets(q = "#stopasianhate", n = 1000, include_rts = FALSE)
+```
+
+```
+## Downloading [=======>---------------------------------]  20%Downloading [===========>-----------------------------]  30%Downloading [===============>-------------------------]  40%Downloading [===================>---------------------]  50%Downloading [========================>----------------]  60%Downloading [============================>------------]  70%Downloading [================================>--------]  80%Downloading [====================================>----]  90%Downloading [=========================================] 100%
+```
+
+```r
+# The longer term 
+# search_fullarchive() premium service
+
+head(rt$text)
+```
+
+```
+## [1] "I miss my mom. That’s a given, but right now it’s heavier than usual.\n\nI so badly want to tell her about what I want to do - and will get to do / announce soon - for #StopAsianHate and #AAPI. \nI hope she’d be proud.\n\nIt’s only/already been 58 days.\nLove you mom 🖤 I’m struggling."                         
+## [2] "Dear Asians, fuck off with this forgiveness shit, it’s helping no one. \n#letthemrot #stopasianhate  https://t.co/796VJUmtV8"                                                                                                                                                                                          
+## [3] "A couple of folks in my stream community have told me about anti-Asian hate/violence happening to their loved ones since this past weekend. One was physical assault, another was verbal harassment.\n\nWhy are people still not paying attention?\n\nPlease #StopAsianHate. We’re hurting."                           
+## [4] "“Ethnic studies teaches students about painful histories of racism and gives them opportunities for making sense of how these histories continue to shape the present.”\n\nRecently, I had to seek out history I never learned as an AAPI myself.\n\n#StopAsianHate\n\nhttps://t.co/i1SLxfWHbx https://t.co/MvPF73THoK"
+## [5] "\"We've received [anti-Asian hate] reports from all 50 states now, and D.C., so again, it's widespread.\" - Dr. Russell Jeung\n\n#StopAsianHate #StopAAPIHate \n\nhttps://t.co/t6B9uJKcNk https://t.co/iN42DXZnXm"                                                                                                     
+## [6] "\"After all, if we valued Asian Americans, why would we allow them to be continually humiliated by how we portray them, or worse, how we ignore them as a significant presence. Especially when we have the power to change things.\"\n\nWell said.\n\n#StopAsianHate\n\nhttps://t.co/SoM6Gq2GPc"
+```
+
+Can you guess what would be the class type of rt?
+
+
+```r
+class(rt)
+```
+
+What would be the number of rows?
+
+
+```r
+nrow(rt)
+```
+
+#### Time series analysis 
+
+- Time series analysis 
+
+
+```r
+pacman::p_load(ggplot2, ggthemes, rtweet)
+
+ts_plot(rt, "3 hours") +
+  ggthemes::theme_fivethirtyeight() +
+  labs(title = "Frequency of Tweets about StopAsianHate from the Past Day",
+       subtitle = "Tweet counts aggregated using three-hour intervals",
+       source = "Twitter's Search API via rtweet")
+```
+
+![](06_semi_structured_data_files/figure-latex/unnamed-chunk-18-1.pdf)<!-- --> 
+
+#### Geographical analysis
+
+- Geographical analysis
+
+
+```r
+pacman::p_load(maps)
+
+geocoded <- lat_lng(rt)
+
+maps::map("state", lwd = .25) # lwd = line type 
+with(geocoded, points(lng, lat))
+```
+
+![](06_semi_structured_data_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
 
 ### Hydrating
 
@@ -353,15 +517,15 @@ What are the main two types of Twitter's API?
 
 #### Hydrating: An Alternative Way to Collect Historical Twitter Data
 
--   You can collect Twitter data using Twitter's API, or you can hydrate Tweet I.D.s collected by other researchers. This is an excellent resource to collect historical Twitter data.
+-   You can collect Twitter data using Twitter's API, or you can hydrate Tweet IDs collected by other researchers. This is an excellent resource to collect historical Twitter data.
 
 -   [Covid-19 Twitter chatter dataset for scientic use](http://www.panacealab.org/covid19/) by Panacealab
 
 -   [Women's March Dataset](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/5ZVMOR) by Littman and Park
 
--   Harvard Dataverse has many dehydrated Tweet I.D.s that could be of interest to social scientists.
+-   Harvard Dataverse has many dehydrated Tweet IDs that could be of interest to social scientists.
 
-![Dehydrated Tweet I.D.s](https://github.com/jaeyk/digital_data_collection_workshop/raw/master/misc/dehydrated_tweets.png)
+![Dehydrated Tweet IDs](https://github.com/jaeyk/digital_data_collection_workshop/raw/master/misc/dehydrated_tweets.png)
 
 #### Twarc: one solution to (almost) all Twitter's API problems
 
@@ -421,7 +585,7 @@ twarc search '#blacklivesmatter' > blm_tweets_hash.jsonl
 twarc search '#blacklivesmatter' --lang en > blm_tweets_hash.jsonl
 ```
 
--   It is really important to **save these tweets into a `jsonl` format;** `jsonl` extension refers to JSON **Lines** files. This structure is useful for splitting JSON data into smaller chunks, if it is too large.
+-   It is really important to **save these tweets into a `jsonl` format;** `jsonl` extension refers to JSON **Lines** files. This structure is useful for splitting JSON data into smaller chunks if it is too large.
 
 ###### Filter
 
@@ -465,9 +629,9 @@ twarc dehydrate tweets.jsonl > tweet_ids.txt
 
 1.  Collect tweets that contain some keywords of your choice using `twarc search` and save them as `tweets.jsonl`.
 
-2.  Using `less` command in the terminal, inspect `twarc.log`.
+2.  Using `less` command in the terminal, inspect `twarc.log.`
 
-3.  Using `less` command in the terminal, inspect `tweets.json`.
+3.  Using `less` command in the terminal, inspect `tweets.json.`
 
 ### Parsing JSON
 
@@ -481,7 +645,7 @@ twarc dehydrate tweets.jsonl > tweet_ids.txt
 
 ##### Problem
 
--   What if the size of the Twitter data you downloaded is too big (e.g., \>10 G.B.) to do complex wrangling in R?
+-   What if the size of the Twitter data you downloaded is too big (e.g., \>10 GB) to do complex wrangling in R?
 
 ##### Solution
 
@@ -500,7 +664,7 @@ $ split -100 search.jsonl
 $ gsplit -100 search.jsonl
 ```
 
--   After that, you will see several files appeared in the directory. Each of these files should have 100 tweets or fewer. All of these file names **should start with "x", as in "xaa".**
+-   After that, you will see several files appeared in the directory. Each of these files should have 100 tweets or fewer. All of these file names **should start with "x," as in "xaa."**
 
 Step 2: Apply the parsing function to each chunk and pull all of these chunks together.
 
@@ -621,7 +785,7 @@ file_name <- file_name[[1]][length(file_name[[1]])]
 
 listed <- read_json(file_path, format = c("jsonl"))
 
-# I.D.s of the tweets with country codes
+# IDs of the tweets with country codes
 
 ccodes <- listed %>%
   enter_object("place") %>%
@@ -630,7 +794,7 @@ ccodes <- listed %>%
   as_tibble() %>%
   rename("country_code" = "string")
 
-# I.D.s of the tweets with location
+# IDs of the tweets with location
 
 locations <- listed %>%
   enter_object("user") %>%
@@ -697,7 +861,7 @@ plan(multiprocess, # multicore, if supported, otherwise multisession
 
 **Review**
 
-There are at least three ways you can use function + `purrr::map()`.
+There are at least three ways you can use function + `purrr::map().`
 
 
 ```r
@@ -741,4 +905,89 @@ reduce(full_join,
 
 # Output
 df
+```
+
+**rtweet and twarc**
+
+- The main difference is using RStudio vs. the terminal. 
+
+- The difference matters when your data size is large. Suppose the size of the Twitter data you downloaded is 10 GB. R/RStudio might have a hard time dealing with this size of data. Then, how can you wrangle this size of data in a complex way using R?
+
+### Getting API data from scratch 
+
+Load packages. For the connection interface, don't use `RCurl,` but I strongly recommend using `httr.` The following code examples draw from my R interface for the New York Times API called [`rnytapi`](https://jaeyk.github.io/rnytapi/).
+
+
+```r
+pacman::p_load(httr, jsonlite, purrr, glue)
+```
+
+#### Form REQUEST 
+
+
+```r
+get_request <- function(term, begin_date, end_date, key, page = 1) {
+
+    out <- GET("http://api.nytimes.com/svc/search/v2/articlesearch.json",
+        query = list('q' = term,
+                     'begin_date' = begin_date,
+                     'end_date' = end_date,
+                     'api-key' = key,
+                     'page' = page))
+
+    return(out)
+
+}
+```
+
+#### Extract data 
+
+
+```r
+get_content <- function(term, begin_date, end_date, key, page = 1) {
+
+    message(glue("Scraping page {page}"))
+
+    fromJSON(content(get_request(term, begin_date, end_date, key, page),
+                     "text",
+                encoding = "UTF-8"),
+                simplifyDataFrame = TRUE, flatten = TRUE) %>% as.data.frame()
+
+}
+```
+
+#### Automating iterations 
+
+
+```r
+extract_all <- function(term, begin_date, end_date, key) {
+
+    request <- GET("http://api.nytimes.com/svc/search/v2/articlesearch.json",
+                   query = list('q' = term,
+                                'begin_date' = begin_date,
+                                'end_date' = end_date,
+                                'api-key' = key))
+
+    max_pages <- (round(content(request)$response$meta$hits[1] / 10) - 1)
+
+    message(glue("The total number of pages is {max_pages}"))
+
+    iter <- 0:max_pages
+
+    arg_list <- list(rep(term, times = length(iter)),
+                     rep(begin_date, times = length(iter)),
+                     rep(end_date, times = length(iter)),
+                     rep(key, times = length(iter)),
+                     iter
+                     )
+
+    out <- pmap_dfr(arg_list, slowly(get_content,
+                                     # 6 seconds sleep is the default requirement.
+                                     rate = rate_delay(
+                                         pause = 6,
+                                         max_times = 4000)))
+
+    return(out)
+
+    }
 ```
