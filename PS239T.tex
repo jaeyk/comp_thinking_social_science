@@ -5,14 +5,13 @@
 %
 \documentclass[
 ]{book}
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
-  \usepackage{amssymb}
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -87,7 +86,7 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -148,7 +147,7 @@
 
 \title{Computational Thinking for Social Scientists}
 \author{\href{https://jaeyk.github.io/}{Jae Yeon Kim}}
-\date{2021-03-11}
+\date{2021-04-06}
 
 \begin{document}
 \maketitle
@@ -177,7 +176,7 @@ Make simple things simple, and complex things possible. - \href{https://www.quor
 
 This is the website for \emph{Computational Thinking for Social Scientists}. This book intends to help social scientists think computationally and develop proficiency with computational tools and techniques to research computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let them work on research projects that would previously seem impossible.
 
-The book is not intended to be a comprehensive guide for computational social science or any particular programming language, computational tool, or technique. For a general introduction to computational social science, I recommend \href{http://www.princeton.edu/~mjs3/}{Matthew Salganik} 's \href{https://www.bitbybitbook.com/}{Bit By Bit (2017)}.
+The book is not intended to be a comprehensive guide for computational social science or any particular programming language, computational tool, or technique. For a general introduction to computational social science, I recommend \href{http://www.princeton.edu/~mjs3/}{Matthew Salganik}'s \href{https://www.bitbybitbook.com/}{Bit By Bit (2017)}.
 
 The book is currently divided into two main subjects (fundamentals and applications) and eight main sessions.
 
@@ -249,12 +248,12 @@ The book teaches how to do all of these, mostly in \href{https://www.r-project.o
 \hypertarget{special-thanks}{%
 \section{Special thanks}\label{special-thanks}}
 
-This book is collected as much as it is authored. It is a remix version of \href{https://github.com/rochelleterman/PS239T}{PS239T}, a graduate-level computational methods course at UC Berkeley, originally developed by \href{http://rochelleterman.com/}{Rochelle Terman} then revised by \href{http://rachelbernhard.com/}{Rachel Bernhard}. I have taught PS239T three times (twice as an insturctor and once as a teaching assistant). Other teaching materials draw from the workshops I have created for \href{https://dlab.berkeley.edu/}{D-Lab} (Summer - Fall 2020) and \href{https://data.berkeley.edu/research/discovery-program-home}{Data Science Discovery Program} (Spring 2020) at UC Berkeley. I also have cited all the other references whenever I am aware of related books, articles, slides, blog posts, or YouTube video clips.
+This book is collected as much as it is authored. It is a remix version of \href{https://github.com/rochelleterman/PS239T}{PS239T}, a graduate-level computational methods course at UC Berkeley, developed initially by \href{http://rochelleterman.com/}{Rochelle Terman} then revised by \href{http://rachelbernhard.com/}{Rachel Bernhard}. I have taught PS239T three times (twice as an instructor and once as a teaching assistant). Other teaching materials draw from the workshops I have created for \href{https://dlab.berkeley.edu/}{D-Lab} (Summer-Fall 2020) and \href{https://data.berkeley.edu/research/discovery-program-home}{Data Science Discovery Program} (Spring 2020) at UC Berkeley. I also have cited all the other references whenever I am aware of related books, articles, slides, blog posts, or YouTube video clips.
 
 \hypertarget{suggestions-questions-or-comments}{%
 \section{Suggestions, questions, or comments}\label{suggestions-questions-or-comments}}
 
-Please feel free to \href{https://github.com/jaeyk/PS239T/issues}{create issues} if you find typos, errors, missing citations, etc via the GitHub repository associated with this book.
+Please feel free to \href{https://github.com/jaeyk/PS239T/issues}{create issues} if you find typos, errors, missing citations, please report them via the GitHub repository associated with this book.
 
 \hypertarget{license}{%
 \section{License}\label{license}}
@@ -504,7 +503,7 @@ Create a plain text file that contains the word ``test.''
 \begin{Shaded}
 \begin{Highlighting}[]
 
-\KeywordTok{for} \ExtensionTok{i}\NormalTok{ in }\DataTypeTok{\{1..100\}}\KeywordTok{;} \KeywordTok{do} \FunctionTok{cp}\NormalTok{ test }\StringTok{"test\_}\VariableTok{$i}\StringTok{"}\KeywordTok{;} \KeywordTok{done}  
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in}\NormalTok{ \{1..100\}}\KeywordTok{;} \ControlFlowTok{do} \FunctionTok{cp}\NormalTok{ test }\StringTok{"test\_}\VariableTok{$i}\StringTok{"}\KeywordTok{;} \ControlFlowTok{done}  
 \end{Highlighting}
 \end{Shaded}
 
@@ -542,7 +541,7 @@ You can write \texttt{grep\ -r\ -n\ -w\ -e\ "COVID",} but the simpler, the bette
 \begin{Shaded}
 \begin{Highlighting}[]
 
-\FunctionTok{grep}\NormalTok{ {-}rnw {-}e }\StringTok{"COVID"} 
+\FunctionTok{grep} \AttributeTok{{-}rnw} \AttributeTok{{-}e} \StringTok{"COVID"} 
 \end{Highlighting}
 \end{Shaded}
 
@@ -551,7 +550,7 @@ Let's remove (=\texttt{rm}) all the duplicate files as well as the original file
 \begin{Shaded}
 \begin{Highlighting}[]
 
-\FunctionTok{rm}\NormalTok{ test\_* test }
+\FunctionTok{rm}\NormalTok{ test\_}\PreprocessorTok{*}\NormalTok{ test }
 \end{Highlighting}
 \end{Shaded}
 
@@ -654,7 +653,7 @@ Several commands are frequently used to create, inspect, rename, and delete file
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ExtensionTok{jae@jae{-}X705UDR}\NormalTok{:\textasciitilde{}$ }
+\ExtensionTok{jae@jae{-}X705UDR:\textasciitilde{}$} 
 \end{Highlighting}
 \end{Shaded}
 
@@ -675,7 +674,7 @@ The command's output is the ID of the current user, i.e., it shows us whom the s
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{whoami}
+\ExtensionTok{$}\NormalTok{ whoami}
 
 \CommentTok{\# Should be your user name }
 \ExtensionTok{jae} 
@@ -704,7 +703,7 @@ In the next unit, we'll be focusing on the structure of our own operating system
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{ping}\NormalTok{ 8.8.8.8}
+\ExtensionTok{$}\NormalTok{ ping 8.8.8.8}
 \end{Highlighting}
 \end{Shaded}
 
@@ -712,7 +711,7 @@ Note: Windows users may have to try a slightly different alternative:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{ping}\NormalTok{ {-}t 8.8.8.8}
+\ExtensionTok{$}\NormalTok{ ping }\AttributeTok{{-}t}\NormalTok{ 8.8.8.8}
 \end{Highlighting}
 \end{Shaded}
 
@@ -729,7 +728,7 @@ Here, the computer's response is \texttt{/home/jae}, which is the \textbf{home d
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\BuiltInTok{pwd}
+\ExtensionTok{$}\NormalTok{ pwd}
 
 \ExtensionTok{/home/jae}
 \end{Highlighting}
@@ -825,7 +824,7 @@ Let's see what's in your home directory by running \texttt{ls} (**list files and
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{ls}
+\ExtensionTok{$}\NormalTok{ ls}
 
 \ExtensionTok{Applications}\NormalTok{        Dropbox         Pictures}
 \ExtensionTok{Creative}\NormalTok{ Cloud Files    Google Drive        Public}
@@ -841,7 +840,7 @@ We can make \texttt{ls} more useful by adding flags. For instance, you can make 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ls}\NormalTok{ {-}F /}
+\FunctionTok{ls} \AttributeTok{{-}F}\NormalTok{ /}
 \end{Highlighting}
 \end{Shaded}
 
@@ -851,7 +850,7 @@ If you want to see only directories in the current working directory, you can do
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ls}\NormalTok{ {-}l }\KeywordTok{|} \FunctionTok{grep} \StringTok{"\^{}d"}
+\FunctionTok{ls} \AttributeTok{{-}l} \KeywordTok{|} \FunctionTok{grep} \StringTok{"\^{}d"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -859,11 +858,11 @@ What if we want to change our current working directory? Before we do this, \tex
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\BuiltInTok{pwd}
+\ExtensionTok{$}\NormalTok{ pwd}
 
 \ExtensionTok{/home/jae}
 
-\NormalTok{$ }\FunctionTok{ls}
+\ExtensionTok{$}\NormalTok{ ls}
 
 \ExtensionTok{Applications}\NormalTok{        Dropbox         Pictures}
 \ExtensionTok{Creative}\NormalTok{ Cloud Files    Google Drive        Public}
@@ -883,7 +882,7 @@ How can I find pdf files in \texttt{Downloads} using the terminal? Remember \tex
 \begin{Highlighting}[]
 \BuiltInTok{cd}\NormalTok{ Downloads/ }
 
-\FunctionTok{find}\NormalTok{ *.pdf}
+\FunctionTok{find} \PreprocessorTok{*}\NormalTok{.pdf}
 \end{Highlighting}
 \end{Shaded}
 
@@ -896,7 +895,7 @@ We can use \texttt{cd} (\textbf{change directory}) followed by a directory name 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\BuiltInTok{cd}\NormalTok{ Desktop}
+\ExtensionTok{$}\NormalTok{ cd Desktop}
 \end{Highlighting}
 \end{Shaded}
 
@@ -907,7 +906,7 @@ If we run \texttt{ls} without arguments now, it lists the contents of \texttt{/h
 \begin{Shaded}
 \begin{Highlighting}[]
 
-\NormalTok{$ }\BuiltInTok{pwd}
+\ExtensionTok{$}\NormalTok{ pwd}
 
 \ExtensionTok{/home/jae/Desktop}
 \end{Highlighting}
@@ -917,7 +916,7 @@ We now know how to go down the directory tree: how do we go up? We could use an 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\BuiltInTok{cd}\NormalTok{ /home/jae/}
+\ExtensionTok{$}\NormalTok{ cd /home/jae/}
 \end{Highlighting}
 \end{Shaded}
 
@@ -926,11 +925,11 @@ but it's almost always simpler to use \texttt{cd\ ..} to go up one level:
 \begin{Shaded}
 \begin{Highlighting}[]
 
-\NormalTok{$ }\BuiltInTok{pwd}
+\ExtensionTok{$}\NormalTok{ pwd}
 
 \ExtensionTok{/home/jae/Desktop}
 
-\NormalTok{$ }\BuiltInTok{cd}\NormalTok{ ..}
+\ExtensionTok{$}\NormalTok{ cd ..}
 \end{Highlighting}
 \end{Shaded}
 
@@ -938,7 +937,7 @@ but it's almost always simpler to use \texttt{cd\ ..} to go up one level:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\BuiltInTok{pwd}
+\ExtensionTok{$}\NormalTok{ pwd}
 
 \ExtensionTok{/home/jae/}
 \end{Highlighting}
@@ -948,9 +947,9 @@ The special directory \texttt{..} doesn't usually show up when we run \texttt{ls
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{ls}\NormalTok{ {-}a}
+\ExtensionTok{$}\NormalTok{ ls }\AttributeTok{{-}a}
 
-\BuiltInTok{.}       \ExtensionTok{.localized}\NormalTok{  Shared}
+\BuiltInTok{.}\NormalTok{       .localized  Shared}
 \ExtensionTok{..}\NormalTok{      Guest       rachel}
 \end{Highlighting}
 \end{Shaded}
@@ -984,7 +983,7 @@ Your first step should be learning more about \texttt{ls} command. You can do th
 \CommentTok{\# Don\textquotesingle{}t forget to use TAB completion}
 \BuiltInTok{cd}\NormalTok{ Downloads/ }
 
-\FunctionTok{ls}\NormalTok{ {-}t }\KeywordTok{|} \FunctionTok{head}\NormalTok{ {-}n1}
+\FunctionTok{ls} \AttributeTok{{-}t} \KeywordTok{|} \FunctionTok{head} \AttributeTok{{-}n1}
 \end{Highlighting}
 \end{Shaded}
 
@@ -992,7 +991,7 @@ Yeah! We can actually do more cool things. How can you find the most recently do
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ls}\NormalTok{ {-}t }\KeywordTok{|} \FunctionTok{find}\NormalTok{ *.pdf }\KeywordTok{|} \FunctionTok{head}\NormalTok{ {-}n1 }
+\FunctionTok{ls} \AttributeTok{{-}t} \KeywordTok{|} \FunctionTok{find} \PreprocessorTok{*}\NormalTok{.pdf }\KeywordTok{|} \FunctionTok{head} \AttributeTok{{-}n1} 
 \end{Highlighting}
 \end{Shaded}
 
@@ -1088,7 +1087,7 @@ Yeah! We can actually do more cool things. How can you find the most recently do
 \begin{Shaded}
 \begin{Highlighting}[]
 
-\FunctionTok{grep}\NormalTok{ {-}v }\StringTok{\textquotesingle{}anything\textquotesingle{}}\NormalTok{ test}
+\FunctionTok{grep} \AttributeTok{{-}v} \StringTok{\textquotesingle{}anything\textquotesingle{}}\NormalTok{ test}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1135,7 +1134,7 @@ or
 \begin{Shaded}
 \begin{Highlighting}[]
 
-\KeywordTok{for} \ExtensionTok{i}\NormalTok{ in }\DataTypeTok{\{1..100\}}\KeywordTok{;} \KeywordTok{do} \FunctionTok{cp}\NormalTok{ test }\StringTok{"test\_}\VariableTok{$i}\StringTok{"}\KeywordTok{;} \KeywordTok{done}  
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in}\NormalTok{ \{1..100\}}\KeywordTok{;} \ControlFlowTok{do} \FunctionTok{cp}\NormalTok{ test }\StringTok{"test\_}\VariableTok{$i}\StringTok{"}\KeywordTok{;} \ControlFlowTok{done}  
 \end{Highlighting}
 \end{Shaded}
 
@@ -1219,7 +1218,7 @@ First, we will learn how to move files and see how it's relevant for renaming fi
 \FunctionTok{mkdir}\NormalTok{ exercise\_1 }\KeywordTok{;} \FunctionTok{mkdir}\NormalTok{ exercise\_2 }
 
 \CommentTok{\# Check whether they were indeed created }
-\FunctionTok{find}\NormalTok{ exer*}
+\FunctionTok{find}\NormalTok{ exer}\PreprocessorTok{*}
 
 \CommentTok{\# Create an empty file }
 \FunctionTok{touch}\NormalTok{ exercise\_1/test }
@@ -1263,7 +1262,7 @@ What \texttt{mv} has something to do with renaming?
 \begin{Shaded}
 \begin{Highlighting}[]
 
-\KeywordTok{for} \ExtensionTok{i}\NormalTok{ in }\DataTypeTok{\{1..100\}}\KeywordTok{;} \KeywordTok{do} \FunctionTok{cp}\NormalTok{ new\_test }\StringTok{"test\_}\VariableTok{$i}\StringTok{.csv"}\KeywordTok{;} \KeywordTok{done}  
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in}\NormalTok{ \{1..100\}}\KeywordTok{;} \ControlFlowTok{do} \FunctionTok{cp}\NormalTok{ new\_test }\StringTok{"test\_}\VariableTok{$i}\StringTok{.csv"}\KeywordTok{;} \ControlFlowTok{done}  
 \end{Highlighting}
 \end{Shaded}
 
@@ -1274,10 +1273,10 @@ Basic syntax: rename {[}flags{]} perlexpr (Perl Expression) files. Note that \hr
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Rename every csv file to txt file }
-\ExtensionTok{rename} \StringTok{\textquotesingle{}s/.csv/.txt/\textquotesingle{}}\NormalTok{ *.csv}
+\ExtensionTok{rename} \StringTok{\textquotesingle{}s/.csv/.txt/\textquotesingle{}} \PreprocessorTok{*}\NormalTok{.csv}
 
 \CommentTok{\# Check }
-\FunctionTok{ls}\NormalTok{ {-}l}
+\FunctionTok{ls} \AttributeTok{{-}l}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1314,7 +1313,7 @@ If you have a large text file, the fact that \texttt{cat} prints everything at o
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cat}\NormalTok{ billionaires.csv }\KeywordTok{|} \FunctionTok{head}\NormalTok{ {-}n2}
+\FunctionTok{cat}\NormalTok{ billionaires.csv }\KeywordTok{|} \FunctionTok{head} \AttributeTok{{-}n2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1328,7 +1327,7 @@ If you have a large text file, the fact that \texttt{cat} prints everything at o
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{wc}\NormalTok{ {-}l billionaires.csv}
+\FunctionTok{wc} \AttributeTok{{-}l}\NormalTok{ billionaires.csv}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1342,7 +1341,7 @@ If you have a large text file, the fact that \texttt{cat} prints everything at o
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{head}\NormalTok{ {-}1 billionaires.csv }\KeywordTok{|} \FunctionTok{sed} \StringTok{\textquotesingle{}s/,/\textbackslash{}n/g\textquotesingle{}} \KeywordTok{|} \FunctionTok{nl}
+\FunctionTok{head} \AttributeTok{{-}1}\NormalTok{ billionaires.csv }\KeywordTok{|} \FunctionTok{sed} \StringTok{\textquotesingle{}s/,/\textbackslash{}n/g\textquotesingle{}} \KeywordTok{|} \FunctionTok{nl}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1386,7 +1385,7 @@ The other cool command for text parsing is \texttt{awk}. This command is especia
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{awk} \StringTok{\textquotesingle{}/China/ \{print\}\textquotesingle{}}\NormalTok{ billionaires.csv }\KeywordTok{|} \FunctionTok{head}\NormalTok{ {-}n5 }
+\FunctionTok{awk} \StringTok{\textquotesingle{}/China/ \{print\}\textquotesingle{}}\NormalTok{ billionaires.csv }\KeywordTok{|} \FunctionTok{head} \AttributeTok{{-}n5} 
 \end{Highlighting}
 \end{Shaded}
 
@@ -1429,7 +1428,7 @@ Finally, we're learning how to write a Shell script (a file that ends with .sh).
 
 \BuiltInTok{cd}\NormalTok{ Download}
 
-\FunctionTok{cp}\NormalTok{ *.pdf pdfs/ }
+\FunctionTok{cp} \PreprocessorTok{*}\NormalTok{.pdf pdfs/ }
 
 \BuiltInTok{echo} \StringTok{"Copied pdfs"}
 \end{Highlighting}
@@ -1542,7 +1541,7 @@ For more information, watch the following video:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{git}\NormalTok{ {-}{-}version }
+\FunctionTok{git} \AttributeTok{{-}{-}version} 
 \CommentTok{\# git version 2.xx.x}
 \end{Highlighting}
 \end{Shaded}
@@ -1616,10 +1615,10 @@ Next time, if you want to use SSH, remember the following.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# SSH}
-\ExtensionTok{git@github.com}\NormalTok{:}\OperatorTok{\textless{}}\NormalTok{user}\OperatorTok{\textgreater{}}\NormalTok{/}\OperatorTok{\textless{}}\NormalTok{repo}\OperatorTok{\textgreater{}}\NormalTok{.git}
+\ExtensionTok{git@github.com:}\OperatorTok{\textless{}}\NormalTok{user}\OperatorTok{\textgreater{}}\NormalTok{/}\OperatorTok{\textless{}}\NormalTok{repo}\OperatorTok{\textgreater{}}\NormalTok{.git}
 
 \CommentTok{\# HTTPS}
-\ExtensionTok{https}\NormalTok{://github.com/}\OperatorTok{\textless{}}\NormalTok{user}\OperatorTok{\textgreater{}}\NormalTok{/}\OperatorTok{\textless{}}\NormalTok{repo}\OperatorTok{\textgreater{}}\NormalTok{.git}
+\ExtensionTok{https://github.com/}\OperatorTok{\textless{}}\NormalTok{user}\OperatorTok{\textgreater{}}\NormalTok{/}\OperatorTok{\textless{}}\NormalTok{repo}\OperatorTok{\textgreater{}}\NormalTok{.git}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1643,8 +1642,8 @@ When you try to clone a git repo, you can get the links like the above by clicki
 \begin{Highlighting}[]
 
 \CommentTok{\# User name and email }
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ config {-}{-}global user.name }\StringTok{"Firstname Lastname"}
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ config {-}{-}global user.email username@school.extension}
+\ExtensionTok{$}\NormalTok{ git config }\AttributeTok{{-}{-}global}\NormalTok{ user.name }\StringTok{"Firstname Lastname"}
+\ExtensionTok{$}\NormalTok{ git config }\AttributeTok{{-}{-}global}\NormalTok{ user.email username@school.extension}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1705,10 +1704,10 @@ If you screwed something up in your local copy, you can just overwrite the local
 \FunctionTok{git}\NormalTok{ fetch origin}
 
 \CommentTok{\# Going back to origin/main}
-\FunctionTok{git}\NormalTok{ reset {-}{-}hard origin/main }
+\FunctionTok{git}\NormalTok{ reset }\AttributeTok{{-}{-}hard}\NormalTok{ origin/main }
 
 \CommentTok{\# Remove local files }
-\FunctionTok{git}\NormalTok{ clean {-}f}
+\FunctionTok{git}\NormalTok{ clean }\AttributeTok{{-}f}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1731,14 +1730,14 @@ Create a new directory and move to it.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{mkdir}\NormalTok{ code\_exercise }
-\NormalTok{$ }\BuiltInTok{cd}\NormalTok{ code\_exercise }
+\ExtensionTok{$}\NormalTok{ mkdir code\_exercise }
+\ExtensionTok{$}\NormalTok{ cd code\_exercise }
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ init }
+\ExtensionTok{$}\NormalTok{ git init }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1746,7 +1745,7 @@ Alternatively, you can create a Git repository via GitHub and then clone it on y
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ clone /path/to/repository}
+\ExtensionTok{$}\NormalTok{ git clone /path/to/repository}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1766,11 +1765,11 @@ The following is a typical workflow to reflect this change to the remote.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ status }\CommentTok{\# check what\textquotesingle{}s changed. }
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ add . }\CommentTok{\# update every change. In Git terms, you\textquotesingle{}re staging. }
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ add file\_name }\CommentTok{\# or stage a specific file.}
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ commit {-}m }\StringTok{"your comment"} \CommentTok{\# your comment for the commit. }
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ push origin main }\CommentTok{\# commit the change. Origin is a default name given to a server by Git. \textasciigrave{}origin main\textasciigrave{} are optional. }
+\ExtensionTok{$}\NormalTok{ git status }\CommentTok{\# check what\textquotesingle{}s changed. }
+\ExtensionTok{$}\NormalTok{ git add . }\CommentTok{\# update every change. In Git terms, you\textquotesingle{}re staging. }
+\ExtensionTok{$}\NormalTok{ git add file\_name }\CommentTok{\# or stage a specific file.}
+\ExtensionTok{$}\NormalTok{ git commit }\AttributeTok{{-}m} \StringTok{"your comment"} \CommentTok{\# your comment for the commit. }
+\ExtensionTok{$}\NormalTok{ git push origin main }\CommentTok{\# commit the change. Origin is a default name given to a server by Git. \textasciigrave{}origin main\textasciigrave{} are optional. }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1786,8 +1785,8 @@ If you made a mistake, don't panic. You can't revert the process.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{git}\NormalTok{ reset {-}{-}soft HEAD\textasciitilde{}1 }\CommentTok{\# if you still want to keep the change, but you go back to t{-}1 }
-\FunctionTok{git}\NormalTok{ reset {-}{-}hard HEAD\textasciitilde{}1 }\CommentTok{\# if you\textquotesingle{}re sure the change is unnecessary }
+\FunctionTok{git}\NormalTok{ reset }\AttributeTok{{-}{-}soft}\NormalTok{ HEAD\textasciitilde{}1 }\CommentTok{\# if you still want to keep the change, but you go back to t{-}1 }
+\FunctionTok{git}\NormalTok{ reset }\AttributeTok{{-}{-}hard}\NormalTok{ HEAD\textasciitilde{}1 }\CommentTok{\# if you\textquotesingle{}re sure the change is unnecessary }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1802,7 +1801,7 @@ If you have not already done it, let's clone the PS239T directory on your local 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ clone https://github.com/PS239T/spring\_2021 }\CommentTok{\# clone }
+\ExtensionTok{$}\NormalTok{ git clone https://github.com/PS239T/spring\_2021 }\CommentTok{\# clone }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1814,7 +1813,7 @@ Then, let's learn more about the repository.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ remote {-}v }
+\ExtensionTok{$}\NormalTok{ git remote }\AttributeTok{{-}v} 
 \end{Highlighting}
 \end{Shaded}
 
@@ -1822,8 +1821,8 @@ You should see something like the following:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ExtensionTok{origin}\NormalTok{  git@github.com:PS239T/spring\_2021 (fetch)}
-\ExtensionTok{origin}\NormalTok{  git@github.com:PS239T/spring\_2021 (push)}
+\ExtensionTok{origin}\NormalTok{  git@github.com:PS239T/spring\_2021 }\ErrorTok{(}\ExtensionTok{fetch}\KeywordTok{)}
+\ExtensionTok{origin}\NormalTok{  git@github.com:PS239T/spring\_2021 }\ErrorTok{(}\ExtensionTok{push}\KeywordTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1835,7 +1834,7 @@ Instead, if you want to update your local data with the remote data, you can typ
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ fetch origin}
+\ExtensionTok{$}\NormalTok{ git fetch origin}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1852,8 +1851,8 @@ If you start working on a new feature, then create a new branch.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ branch new\_features}
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ checkout new\_features}
+\ExtensionTok{$}\NormalTok{ git branch new\_features}
+\ExtensionTok{$}\NormalTok{ git checkout new\_features}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1873,11 +1872,11 @@ In short, branching makes Git \href{https://git-scm.com/book/en/v2/Getting-Start
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ diff }\CommentTok{\# to see what changed (e.g., inside a file)}
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ log }\CommentTok{\# to track who committed what}
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ log {-}S }\OperatorTok{\textless{}}\NormalTok{pattern}\OperatorTok{\textgreater{}} \CommentTok{\# you can find a log that contains the pattern }
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ checkout }\CommentTok{\# to recover old files }
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ revert }\CommentTok{\# revert to the previous commit }
+\ExtensionTok{$}\NormalTok{ git diff }\CommentTok{\# to see what changed (e.g., inside a file)}
+\ExtensionTok{$}\NormalTok{ git log }\CommentTok{\# to track who committed what}
+\ExtensionTok{$}\NormalTok{ git log }\AttributeTok{{-}S} \OperatorTok{\textless{}}\NormalTok{pattern}\OperatorTok{\textgreater{}}\NormalTok{ \# you can find a log that contains the pattern }
+\ExtensionTok{$}\NormalTok{ git checkout }\CommentTok{\# to recover old files }
+\ExtensionTok{$}\NormalTok{ git revert }\CommentTok{\# revert to the previous commit }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1891,8 +1890,8 @@ In short, branching makes Git \href{https://git-scm.com/book/en/v2/Getting-Start
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ rm file\_name }\CommentTok{\# remove }
-\NormalTok{$ }\FunctionTok{git}\NormalTok{ mv old\_file\_name new\_file\_name }\CommentTok{\# rename a file }
+\ExtensionTok{$}\NormalTok{ git rm file\_name }\CommentTok{\# remove }
+\ExtensionTok{$}\NormalTok{ git mv old\_file\_name new\_file\_name }\CommentTok{\# rename a file }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1900,8 +1899,8 @@ How about removing a directory only from GitHub but not local?
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{git}\NormalTok{ rm {-}r {-}{-}cached }\OperatorTok{\textless{}}\NormalTok{directory}\OperatorTok{\textgreater{}}
-\FunctionTok{git}\NormalTok{ commit {-}m }\StringTok{"\textless{}message\textgreater{}"}
+\FunctionTok{git}\NormalTok{ rm }\AttributeTok{{-}r} \AttributeTok{{-}{-}cached} \OperatorTok{\textless{}}\NormalTok{directory}\OperatorTok{\textgreater{}}
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"\textless{}message\textgreater{}"}
 \FunctionTok{git}\NormalTok{ push}
 \end{Highlighting}
 \end{Shaded}
@@ -3018,6 +3017,10 @@ Whenever you are tempted to type something into a print statement or a debugger 
 \end{verbatim}
 
 \begin{verbatim}
+## Warning: package 'testthat' was built under R version 4.0.3
+\end{verbatim}
+
+\begin{verbatim}
 ## 
 ## Attaching package: 'testthat'
 \end{verbatim}
@@ -3283,13 +3286,13 @@ To understand computations in R, two slogans are helpful:
 
 \begin{longtable}[]{@{}ll@{}}
 \toprule
-Example & Type\tabularnewline
+Example & Type \\
 \midrule
 \endhead
-``a'', ``swc'' & character\tabularnewline
-2, 15.5 & numeric\tabularnewline
-2 (Must add a \texttt{L} at end to denote integer) & integer\tabularnewline
-\texttt{TRUE}, \texttt{FALSE} & logical\tabularnewline
+``a'', ``swc'' & character \\
+2, 15.5 & numeric \\
+2 (Must add a \texttt{L} at end to denote integer) & integer \\
+\texttt{TRUE}, \texttt{FALSE} & logical \\
 \bottomrule
 \end{longtable}
 
@@ -3364,12 +3367,12 @@ R's base data structures can be organized by their dimensionality (1d, 2d, or nd
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
-& Homogeneous & Heterogeneous\tabularnewline
+& Homogeneous & Heterogeneous \\
 \midrule
 \endhead
-1d & Atomic vector & List\tabularnewline
-2d & Matrix & Data frame\tabularnewline
-nd & Array &\tabularnewline
+1d & Atomic vector & List \\
+2d & Matrix & Data frame \\
+nd & Array & \\
 \bottomrule
 \end{longtable}
 
@@ -6362,12 +6365,12 @@ Let's take a look at the cases of untidy data.
 
   \begin{longtable}[]{@{}lll@{}}
   \toprule
-  Col1 & Col2 & Col3\tabularnewline
+  Col1 & Col2 & Col3 \\
   \midrule
   \endhead
-  & &\tabularnewline
-  & &\tabularnewline
-  & &\tabularnewline
+  & & \\
+  & & \\
+  & & \\
   \bottomrule
   \end{longtable}
 \end{itemize}
@@ -6572,30 +6575,18 @@ A flat file (e.g., CSV) is a rectangular shaped combination of strings. \href{ht
 ##  8 Aaliyah  I Don'~ 2000-01-29      84    62    51    41    38    35    35    38
 ##  9 Aaliyah  Try Ag~ 2000-03-18      59    53    38    28    21    18    16    14
 ## 10 Adams, ~ Open M~ 2000-08-26      76    76    74    69    68    67    61    58
-## # ... with 307 more rows, and 68 more
-## #   variables: wk9 <dbl>, wk10 <dbl>,
-## #   wk11 <dbl>, wk12 <dbl>, wk13 <dbl>,
-## #   wk14 <dbl>, wk15 <dbl>, wk16 <dbl>,
-## #   wk17 <dbl>, wk18 <dbl>, wk19 <dbl>,
-## #   wk20 <dbl>, wk21 <dbl>, wk22 <dbl>,
-## #   wk23 <dbl>, wk24 <dbl>, wk25 <dbl>,
-## #   wk26 <dbl>, wk27 <dbl>, wk28 <dbl>,
-## #   wk29 <dbl>, wk30 <dbl>, wk31 <dbl>,
-## #   wk32 <dbl>, wk33 <dbl>, wk34 <dbl>,
-## #   wk35 <dbl>, wk36 <dbl>, wk37 <dbl>,
-## #   wk38 <dbl>, wk39 <dbl>, wk40 <dbl>,
-## #   wk41 <dbl>, wk42 <dbl>, wk43 <dbl>,
-## #   wk44 <dbl>, wk45 <dbl>, wk46 <dbl>,
-## #   wk47 <dbl>, wk48 <dbl>, wk49 <dbl>,
-## #   wk50 <dbl>, wk51 <dbl>, wk52 <dbl>,
-## #   wk53 <dbl>, wk54 <dbl>, wk55 <dbl>,
-## #   wk56 <dbl>, wk57 <dbl>, wk58 <dbl>,
-## #   wk59 <dbl>, wk60 <dbl>, wk61 <dbl>,
-## #   wk62 <dbl>, wk63 <dbl>, wk64 <dbl>,
-## #   wk65 <dbl>, wk66 <lgl>, wk67 <lgl>,
-## #   wk68 <lgl>, wk69 <lgl>, wk70 <lgl>,
-## #   wk71 <lgl>, wk72 <lgl>, wk73 <lgl>,
-## #   wk74 <lgl>, wk75 <lgl>, wk76 <lgl>
+## # ... with 307 more rows, and 68 more variables: wk9 <dbl>, wk10 <dbl>,
+## #   wk11 <dbl>, wk12 <dbl>, wk13 <dbl>, wk14 <dbl>, wk15 <dbl>, wk16 <dbl>,
+## #   wk17 <dbl>, wk18 <dbl>, wk19 <dbl>, wk20 <dbl>, wk21 <dbl>, wk22 <dbl>,
+## #   wk23 <dbl>, wk24 <dbl>, wk25 <dbl>, wk26 <dbl>, wk27 <dbl>, wk28 <dbl>,
+## #   wk29 <dbl>, wk30 <dbl>, wk31 <dbl>, wk32 <dbl>, wk33 <dbl>, wk34 <dbl>,
+## #   wk35 <dbl>, wk36 <dbl>, wk37 <dbl>, wk38 <dbl>, wk39 <dbl>, wk40 <dbl>,
+## #   wk41 <dbl>, wk42 <dbl>, wk43 <dbl>, wk44 <dbl>, wk45 <dbl>, wk46 <dbl>,
+## #   wk47 <dbl>, wk48 <dbl>, wk49 <dbl>, wk50 <dbl>, wk51 <dbl>, wk52 <dbl>,
+## #   wk53 <dbl>, wk54 <dbl>, wk55 <dbl>, wk56 <dbl>, wk57 <dbl>, wk58 <dbl>,
+## #   wk59 <dbl>, wk60 <dbl>, wk61 <dbl>, wk62 <dbl>, wk63 <dbl>, wk64 <dbl>,
+## #   wk65 <dbl>, wk66 <lgl>, wk67 <lgl>, wk68 <lgl>, wk69 <lgl>, wk70 <lgl>,
+## #   wk71 <lgl>, wk72 <lgl>, wk73 <lgl>, wk74 <lgl>, wk75 <lgl>, wk76 <lgl>
 \end{verbatim}
 
 \begin{enumerate}
@@ -7353,10 +7344,8 @@ Let's take a slightly more complex example.
 ## 15 Mon Mo~    150  NA   auburn     fair        blue              48 fema~ femin~
 ## 16 R4-P17      96  NA   none       silver, red red, blue         NA none  femin~
 ## 17 Rey         NA  NA   brown      light       hazel             NA fema~ femin~
-## # ... with 5 more variables:
-## #   homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>,
-## #   starships <list>
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 \end{verbatim}
 
 The following filtering example was inspired by \href{https://suzan.rbind.io/2018/02/dplyr-tutorial-3/}{the suzanbert's dplyr blog post}.
@@ -7481,10 +7470,8 @@ The following filtering example was inspired by \href{https://suzan.rbind.io/201
 ## 2 Beru Wh~    165    75 brown       light      blue              47 fema~ femin~
 ## 3 Quarsh ~    183    NA black       dark       brown             62 <NA>  <NA>  
 ## 4 Cliegg ~    183    NA brown       fair       blue              82 male  mascu~
-## # ... with 5 more variables:
-## #   homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>,
-## #   starships <list>
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 \end{verbatim}
 
 \begin{Shaded}
@@ -7504,10 +7491,8 @@ The following filtering example was inspired by \href{https://suzan.rbind.io/201
 ## 2 Beru Wh~    165    75 brown       light      blue              47 fema~ femin~
 ## 3 Quarsh ~    183    NA black       dark       brown             62 <NA>  <NA>  
 ## 4 Cliegg ~    183    NA brown       fair       blue              82 male  mascu~
-## # ... with 5 more variables:
-## #   homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>,
-## #   starships <list>
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 \end{verbatim}
 
 \begin{Shaded}
@@ -7533,10 +7518,8 @@ The following filtering example was inspired by \href{https://suzan.rbind.io/201
 ##  8 Boba Fe~    183  78.2 black      fair       brown           31.5 male  mascu~
 ##  9 Lando C~    177  79   black      dark       brown           31   male  mascu~
 ## 10 Arvel C~     NA  NA   brown      fair       brown           NA   male  mascu~
-## # ... with 21 more rows, and 5 more
-## #   variables: homeworld <chr>,
-## #   species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
+## # ... with 21 more rows, and 5 more variables: homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>, starships <list>
 \end{verbatim}
 
 \textbf{Challenge}
@@ -7567,10 +7550,8 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ## 4 Chewba~    228   112 brown      unknown     blue              200 male  mascu~
 ## 5 Roos T~    224    82 none       grey        orange             NA male  mascu~
 ## 6 Grievo~    216   159 none       brown, whi~ green, ye~         NA male  mascu~
-## # ... with 5 more variables:
-## #   homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>,
-## #   starships <list>
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 \end{verbatim}
 
 \begin{itemize}
@@ -7606,10 +7587,8 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ## 7 Jabba ~    175  1358 <NA>       green-tan,~ orange         600   herma~ mascu~
 ## 8 Darth ~    202   136 none       white       yellow          41.9 male   mascu~
 ## 9 Taun We    213    NA none       grey        black           NA   female femin~
-## # ... with 5 more variables:
-## #   homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>,
-## #   starships <list>
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 \end{verbatim}
 
 \begin{Shaded}
@@ -7636,10 +7615,8 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ## 6 Darth V~    202 136   none       white      yellow          41.9 male   mascu~
 ## 7 Finn         NA  NA   black      dark       dark            NA   male   mascu~
 ## 8 Boba Fe~    183  78.2 black      fair       brown           31.5 male   mascu~
-## # ... with 5 more variables:
-## #   homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>,
-## #   starships <list>
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 \end{verbatim}
 
 \begin{itemize}
@@ -7683,10 +7660,8 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ## 18 Ki-Adi~    198    82 white      pale        yellow            92 male  mascu~
 ## 19 BB8         NA    NA none       none        black             NA none  mascu~
 ## 20 Eeth K~    171    NA black      brown       brown             NA male  mascu~
-## # ... with 5 more variables:
-## #   homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>,
-## #   starships <list>
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 \end{verbatim}
 
 \begin{Shaded}
@@ -7725,10 +7700,8 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ## 18 Lobot      175    79 none        light      blue              37 male  mascu~
 ## 19 San Hi~    191    NA none        grey       gold              NA male  mascu~
 ## 20 Kit Fi~    196    87 none        green      black             NA male  mascu~
-## # ... with 5 more variables:
-## #   homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>,
-## #   starships <list>
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 \end{verbatim}
 
 \begin{itemize}
@@ -7759,10 +7732,8 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ##  8 Grievo~    216   159 none       brown, whi~ green, y~       NA   male  mascu~
 ##  9 Tarfful    234   136 brown      brown       blue            NA   male  mascu~
 ## 10 Tion M~    206    80 none       grey        black           NA   male  mascu~
-## # ... with 5 more variables:
-## #   homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>,
-## #   starships <list>
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 \end{verbatim}
 
 \begin{Shaded}
@@ -7787,10 +7758,8 @@ Use \texttt{str\_detect()} to find characters whose names include ``Han''.
 ##  8 Rugor ~    206    NA none       green       orange          NA   male  mascu~
 ##  9 Tion M~    206    80 none       grey        black           NA   male  mascu~
 ## 10 Darth ~    202   136 none       white       yellow          41.9 male  mascu~
-## # ... with 5 more variables:
-## #   homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>,
-## #   starships <list>
+## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 \end{verbatim}
 
 \hypertarget{subset-variables-columns}{%
@@ -8029,9 +7998,7 @@ The key idea is you can use Boolean operators (\texttt{!}, \texttt{\&}, \texttt{
 ##  8 Roden~ Vesp~ Calo~ <NA>  <NA>                 7        NA        NA      17  
 ##  9 Carni~ Dog   Canis carni domesticated        10.1       2.9       0.333  13.9
 ## 10 Artio~ Roe ~ Capr~ herbi lc                   3        NA        NA      21  
-## # ... with 73 more rows, and 2 more
-## #   variables: brainwt <dbl>,
-## #   bodywt <dbl>
+## # ... with 73 more rows, and 2 more variables: brainwt <dbl>, bodywt <dbl>
 \end{verbatim}
 
 \begin{itemize}
@@ -8991,19 +8958,12 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables:
-## #   Denmark <dbl>, Finland <dbl>,
-## #   France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>,
-## #   Iceland <dbl>, Ireland <dbl>,
-## #   Italy <dbl>, Montenegro <dbl>,
-## #   Netherlands <dbl>, Norway <dbl>,
-## #   Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 \end{verbatim}
 
 \begin{itemize}
@@ -9024,19 +8984,13 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     <dbl>   <dbl>   <dbl>   <dbl>                    <dbl>    <dbl>   <dbl>
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # ... with 24 more variables:
-## #   Czech Republic <dbl>, Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>,
-## #   Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # ... with 24 more variables: Czech Republic <dbl>, Denmark <dbl>,
+## #   Finland <dbl>, France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>,
+## #   Iceland <dbl>, Ireland <dbl>, Italy <dbl>, Montenegro <dbl>,
+## #   Netherlands <dbl>, Norway <dbl>, Poland <dbl>, Portugal <dbl>,
+## #   Romania <dbl>, Serbia <dbl>, Slovak Republic <dbl>, Slovenia <dbl>,
+## #   Spain <dbl>, Sweden <dbl>, Switzerland <dbl>, Turkey <dbl>,
+## #   United Kingdom <dbl>
 \end{verbatim}
 
 \begin{itemize}
@@ -9061,19 +9015,12 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables:
-## #   Denmark <dbl>, Finland <dbl>,
-## #   France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>,
-## #   Iceland <dbl>, Ireland <dbl>,
-## #   Italy <dbl>, Montenegro <dbl>,
-## #   Netherlands <dbl>, Norway <dbl>,
-## #   Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 \end{verbatim}
 
 \begin{Shaded}
@@ -9133,19 +9080,12 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables:
-## #   Denmark <dbl>, Finland <dbl>,
-## #   France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>,
-## #   Iceland <dbl>, Ireland <dbl>,
-## #   Italy <dbl>, Montenegro <dbl>,
-## #   Netherlands <dbl>, Norway <dbl>,
-## #   Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 \end{verbatim}
 
 \begin{Shaded}
@@ -9160,19 +9100,12 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables:
-## #   Denmark <dbl>, Finland <dbl>,
-## #   France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>,
-## #   Iceland <dbl>, Ireland <dbl>,
-## #   Italy <dbl>, Montenegro <dbl>,
-## #   Netherlands <dbl>, Norway <dbl>,
-## #   Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 \end{verbatim}
 
 \begin{itemize}
@@ -9206,19 +9139,13 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     <dbl>   <dbl>   <dbl>   <dbl>                    <dbl>    <dbl>   <dbl>
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # ... with 24 more variables:
-## #   Czech Republic <dbl>, Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>,
-## #   Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # ... with 24 more variables: Czech Republic <dbl>, Denmark <dbl>,
+## #   Finland <dbl>, France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>,
+## #   Iceland <dbl>, Ireland <dbl>, Italy <dbl>, Montenegro <dbl>,
+## #   Netherlands <dbl>, Norway <dbl>, Poland <dbl>, Portugal <dbl>,
+## #   Romania <dbl>, Serbia <dbl>, Slovak Republic <dbl>, Slovenia <dbl>,
+## #   Spain <dbl>, Sweden <dbl>, Switzerland <dbl>, Turkey <dbl>,
+## #   United Kingdom <dbl>
 \end{verbatim}
 
 \begin{itemize}
@@ -9242,19 +9169,12 @@ Oceania & 24 & 18621.609 & 6358.983\\
 ##   Albania Austria Belgium `Bosnia and Herzego~ Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables:
-## #   Denmark <dbl>, Finland <dbl>,
-## #   France <dbl>, Germany <dbl>,
-## #   Greece <dbl>, Hungary <dbl>,
-## #   Iceland <dbl>, Ireland <dbl>,
-## #   Italy <dbl>, Montenegro <dbl>,
-## #   Netherlands <dbl>, Norway <dbl>,
-## #   Poland <dbl>, Portugal <dbl>,
-## #   Romania <dbl>, Serbia <dbl>,
-## #   Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 \end{verbatim}
 
 \begin{Shaded}
@@ -9638,8 +9558,7 @@ What do you expect the outcome?
 
 \begin{verbatim}
 ## # A tibble: 0 x 2
-## # ... with 2 variables: tailnum <chr>,
-## #   n <int>
+## # ... with 2 variables: tailnum <chr>, n <int>
 \end{verbatim}
 
 \textbf{Optional}
@@ -9997,14 +9916,14 @@ In the following example, why did we use \texttt{country} and \texttt{continent}
 \begin{verbatim}
 ## # A tibble: 6 x 3
 ## # Groups:   country, continent [6]
-##   country     continent data             
-##   <fct>       <fct>     <list>           
-## 1 Afghanistan Asia      <tibble [12 x 4]>
-## 2 Albania     Europe    <tibble [12 x 4]>
-## 3 Algeria     Africa    <tibble [12 x 4]>
-## 4 Angola      Africa    <tibble [12 x 4]>
-## 5 Argentina   Americas  <tibble [12 x 4]>
-## 6 Australia   Oceania   <tibble [12 x 4]>
+##   country     continent data                 
+##   <fct>       <fct>     <list>               
+## 1 Afghanistan Asia      <tibble[,4] [12 x 4]>
+## 2 Albania     Europe    <tibble[,4] [12 x 4]>
+## 3 Algeria     Africa    <tibble[,4] [12 x 4]>
+## 4 Angola      Africa    <tibble[,4] [12 x 4]>
+## 5 Argentina   Americas  <tibble[,4] [12 x 4]>
+## 6 Australia   Oceania   <tibble[,4] [12 x 4]>
 \end{verbatim}
 
 \begin{Shaded}
@@ -10065,14 +9984,14 @@ In the following example, why did we use \texttt{country} and \texttt{continent}
 \begin{verbatim}
 ## # A tibble: 6 x 4
 ## # Groups:   country, continent [6]
-##   country     continent data              models
-##   <fct>       <fct>     <list>            <list>
-## 1 Afghanistan Asia      <tibble [12 x 4]> <lm>  
-## 2 Albania     Europe    <tibble [12 x 4]> <lm>  
-## 3 Algeria     Africa    <tibble [12 x 4]> <lm>  
-## 4 Angola      Africa    <tibble [12 x 4]> <lm>  
-## 5 Argentina   Americas  <tibble [12 x 4]> <lm>  
-## 6 Australia   Oceania   <tibble [12 x 4]> <lm>
+##   country     continent data                  models
+##   <fct>       <fct>     <list>                <list>
+## 1 Afghanistan Asia      <tibble[,4] [12 x 4]> <lm>  
+## 2 Albania     Europe    <tibble[,4] [12 x 4]> <lm>  
+## 3 Algeria     Africa    <tibble[,4] [12 x 4]> <lm>  
+## 4 Angola      Africa    <tibble[,4] [12 x 4]> <lm>  
+## 5 Argentina   Americas  <tibble[,4] [12 x 4]> <lm>  
+## 6 Australia   Oceania   <tibble[,4] [12 x 4]> <lm>
 \end{verbatim}
 
 S3 is part of R's object-oriented systems. If you need further information, check out \href{http://adv-r.had.co.nz/S3.html}{this section} in Hadley's Advanced R.
@@ -10121,9 +10040,7 @@ S3 is part of R's object-oriented systems. If you need further information, chec
 ##   r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>        <dbl> <dbl>  <dbl> <dbl> <dbl>
 ## 1     0.948         0.942  1.22      181. 0.0000000984     1  -18.3  42.7  44.1
-## # ... with 3 more variables:
-## #   deviance <dbl>, df.residual <int>,
-## #   nobs <int>
+## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 \end{verbatim}
 
 \begin{Shaded}
@@ -10153,20 +10070,18 @@ S3 is part of R's object-oriented systems. If you need further information, chec
 ## # Groups:   country, continent [142]
 ##    country    continent data      models r.squared adj.r.squared sigma statistic
 ##    <fct>      <fct>     <list>    <list>     <dbl>         <dbl> <dbl>     <dbl>
-##  1 Rwanda     Africa    <tibble ~ <lm>      0.0172      -0.0811   6.56     0.175
-##  2 Botswana   Africa    <tibble ~ <lm>      0.0340      -0.0626   6.11     0.352
-##  3 Zimbabwe   Africa    <tibble ~ <lm>      0.0562      -0.0381   7.21     0.596
-##  4 Zambia     Africa    <tibble ~ <lm>      0.0598      -0.0342   4.53     0.636
-##  5 Swaziland  Africa    <tibble ~ <lm>      0.0682      -0.0250   6.64     0.732
-##  6 Lesotho    Africa    <tibble ~ <lm>      0.0849      -0.00666  5.93     0.927
-##  7 Cote d'Iv~ Africa    <tibble ~ <lm>      0.283        0.212    3.93     3.95 
-##  8 South Afr~ Africa    <tibble ~ <lm>      0.312        0.244    4.74     4.54 
-##  9 Uganda     Africa    <tibble ~ <lm>      0.342        0.276    3.19     5.20 
-## 10 Congo, De~ Africa    <tibble ~ <lm>      0.348        0.283    2.43     5.34 
-## # ... with 132 more rows, and 8 more
-## #   variables: p.value <dbl>, df <dbl>,
-## #   logLik <dbl>, AIC <dbl>, BIC <dbl>,
-## #   deviance <dbl>, df.residual <int>,
+##  1 Rwanda     Africa    <tibble[~ <lm>      0.0172      -0.0811   6.56     0.175
+##  2 Botswana   Africa    <tibble[~ <lm>      0.0340      -0.0626   6.11     0.352
+##  3 Zimbabwe   Africa    <tibble[~ <lm>      0.0562      -0.0381   7.21     0.596
+##  4 Zambia     Africa    <tibble[~ <lm>      0.0598      -0.0342   4.53     0.636
+##  5 Swaziland  Africa    <tibble[~ <lm>      0.0682      -0.0250   6.64     0.732
+##  6 Lesotho    Africa    <tibble[~ <lm>      0.0849      -0.00666  5.93     0.927
+##  7 Cote d'Iv~ Africa    <tibble[~ <lm>      0.283        0.212    3.93     3.95 
+##  8 South Afr~ Africa    <tibble[~ <lm>      0.312        0.244    4.74     4.54 
+##  9 Uganda     Africa    <tibble[~ <lm>      0.342        0.276    3.19     5.20 
+## 10 Congo, De~ Africa    <tibble[~ <lm>      0.348        0.283    2.43     5.34 
+## # ... with 132 more rows, and 8 more variables: p.value <dbl>, df <dbl>,
+## #   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>, df.residual <int>,
 ## #   nobs <int>
 \end{verbatim}
 
@@ -14191,21 +14106,13 @@ No worries about new terms. We're going to learn them by actually plotting.
 ##  8   568 CARROLL IL    0.027    16805       622.    16519      111            30
 ##  9   569 CASS    IL    0.024    13437       560.    13384       16             8
 ## 10   570 CHAMPA~ IL    0.058   173025      2983.   146506    16559           331
-## # ... with 427 more rows, and 19 more
-## #   variables: popasian <int>,
-## #   popother <int>, percwhite <dbl>,
-## #   percblack <dbl>,
-## #   percamerindan <dbl>,
-## #   percasian <dbl>, percother <dbl>,
-## #   popadults <int>, perchsd <dbl>,
-## #   percollege <dbl>, percprof <dbl>,
-## #   poppovertyknown <int>,
-## #   percpovertyknown <dbl>,
-## #   percbelowpoverty <dbl>,
-## #   percchildbelowpovert <dbl>,
-## #   percadultpoverty <dbl>,
-## #   percelderlypoverty <dbl>,
-## #   inmetro <int>, category <chr>
+## # ... with 427 more rows, and 19 more variables: popasian <int>,
+## #   popother <int>, percwhite <dbl>, percblack <dbl>, percamerindan <dbl>,
+## #   percasian <dbl>, percother <dbl>, popadults <int>, perchsd <dbl>,
+## #   percollege <dbl>, percprof <dbl>, poppovertyknown <int>,
+## #   percpovertyknown <dbl>, percbelowpoverty <dbl>, percchildbelowpovert <dbl>,
+## #   percadultpoverty <dbl>, percelderlypoverty <dbl>, inmetro <int>,
+## #   category <chr>
 \end{verbatim}
 
 \begin{Shaded}
@@ -17830,7 +17737,7 @@ Although I said optional, automated unit testing is not option, when you're writ
 \begin{Highlighting}[]
 \NormalTok{title}\SpecialCharTok{:} \StringTok{"Vignette title"}
 \NormalTok{author}\SpecialCharTok{:} \StringTok{"Vignette author"}
-\NormalTok{date}\SpecialCharTok{:} \StringTok{"2021{-}03{-}11"}
+\NormalTok{date}\SpecialCharTok{:} \StringTok{"2021{-}04{-}06"}
 \NormalTok{output}\SpecialCharTok{:}\NormalTok{ rmarkdown}\SpecialCharTok{::}\NormalTok{html\_vignette}
 \NormalTok{vignette}\SpecialCharTok{:}\NormalTok{ blah blah}
 \end{Highlighting}
@@ -18184,12 +18091,39 @@ If you're creating a complex app, you can achieve the same goal with two files: 
 \section{What is semi-structured data?}\label{what-is-semi-structured-data}}
 
 \begin{quote}
-Semi-structured data is a form of structured data that does not obey the tabular structure of data models associated with relational databases or other forms of data tables, but nonetheless contains tags or other markers to separate semantic elements and enforce hierarchies of records and fields within the data. Therefore, it is also known as self-describing structure. - \href{https://en.wikipedia.org/wiki/Semi-structured_data\#:~:text=Semi\%2Dstructured\%20data\%20is\%20a,and\%20fields\%20within\%20the\%20data.}{Wikipedia}
+Semi-structured data is a form of structured data that does not obey the tabular structure of data models associated with relational databases or other forms of data tables, but nonetheless contains tags or other markers to separate semantic elements and enforce hierarchies of records and fields within the data. Therefore, it is also known as a self-describing structure. - \href{https://en.wikipedia.org/wiki/Semi-structured_data\#:~:text=Semi\%2Dstructured\%20data\%20is\%20a,and\%20fields\%20within\%20the\%20data.}{Wikipedia}
 \end{quote}
 
 \begin{itemize}
+\tightlist
 \item
-  Examples: \texttt{HTML\ (Hypertext\ Markup\ Language)} files (e.g., websites) and \texttt{JSON\ (JavaScript\ Object\ Notation)} files (e.g., tweets)
+  Examples: HTML (e.g., websites), XML (e.g., government data), JSON (e.g., social media API)
+\end{itemize}
+
+Below is how JSON (tweet) looks like.
+
+\begin{itemize}
+\item
+  A tree-like structure
+\item
+  Keys and values (key: value)
+\end{itemize}
+
+\{
+``created\_at'': ``Thu Apr 06 15:24:15 +0000 2017'',
+``id\_str'': ``850006245121695744'',
+``text'': ``1/ Today we\u2019re sharing our vision for the future of the Twitter API platform!\nhttps://t.co/XweGngmxlP'',
+``user'': \{
+``id'': 2244994945,
+``name'': ``Twitter Dev'',
+``screen\_name'': ``TwitterDev'',
+``location'': ``Internet'',
+``url'': ``\url{https:////dev.twitter.com//}'',
+``description'': ``Your official source for Twitter Platform news, updates \& events. Need technical help? Visit \url{https:////twittercommunity.com//} \u2328\ufe0f \#TapIntoTwitter''
+\}
+\}
+
+\begin{itemize}
 \item
   Why should we care about semi-structured data?
 
@@ -18257,7 +18191,7 @@ Let's go back to the example we covered in the earlier chapter of the book.
   Step 1: Inspection
 \end{itemize}
 
-Examine the Berkeley website so that we could identify a node that indicates the school's motto. If you're using Chrome, draw your interest elements, then \texttt{right\ click\ \textgreater{}\ inspect\ \textgreater{}\ copy\ full\ xpath}.
+Examine the Berkeley website so that we could identify a node that indicates the school's motto. If you're using Chrome, draw your interest elements, then \texttt{right\ click\ \textgreater{}\ inspect\ \textgreater{}\ copy\ full\ xpath.}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -18549,36 +18483,63 @@ This explanation draws on Pablo Barbara's \href{http://pablobarbera.com/social-m
 
 \begin{itemize}
 \item
-  What is an API?: An interface (you can think of it as something akin to a restaurant menu. API parameters are menu items.)
+  What is an API?: An interface (you can think of it as something akin to a restaurant menu. API parameters are API menu items.)
 
   \begin{itemize}
   \item
     \href{https://en.wikipedia.org/wiki/Representational_state_transfer}{REST} (Representational state transfer) API: static information (e.g., user profiles, list of followers and friends)
-
-    \begin{itemize}
-    \tightlist
-    \item
-      R packages: \href{https://github.com/pablobarbera/twitter_ideology/tree/master/pkg/tweetscores}{tweetscores}, \href{https://cran.r-project.org/web/packages/twitteR/twitteR.pdf}{twitteR}, \href{https://github.com/ropensci/rtweet}{rtweet}
-    \end{itemize}
   \item
-    \href{https://blog.axway.com/amplify/api-management/streaming-apis\#:~:text=Streaming\%20APIs\%20are\%20used\%20to,a\%20subset\%20of\%20Streaming\%20APIS.}{Streaming API}: dynamic information (e..g, new tweets)
-
-    \begin{itemize}
-    \tightlist
-    \item
-      This streaming data is filtered by (1) keywords, (2) location, and (3) sample (1\% of the total tweets)
-    \item
-      R packages: \href{https://github.com/pablobarbera/streamR}{streamR}
-    \end{itemize}
+    \href{https://blog.axway.com/amplify/api-management/streaming-apis\#:~:text=Streaming\%20APIs\%20are\%20used\%20to,a\%20subset\%20of\%20Streaming\%20APIS.}{Streaming} API: dynamic information (e.g, new tweets)
   \end{itemize}
 \end{itemize}
 
-\textbf{Status}
+\textbf{Why should we care?}
 
 \begin{itemize}
+\item
+  API is the new data frontier. \href{https://www.programmableweb.com/apis/directory}{ProgrammableWeb} shows that there are more than 24,046 APIs as of April 1, 2021.
+
+  \begin{itemize}
+  \item
+    Big and streaming (real-time) data
+  \item
+    High-dimensional data (e.g., text, image, video, etc.)
+  \item
+    Lots of analytic opportunities (e.g., time-series, network, spatial analysis)
+  \end{itemize}
+\item
+  Also, this type of data has many limitations (external validity, algorithmic bias, etc).
+\item
+  Think about taking the API + approach (i.e., API not replacing but augmenting traditional data collection)
+\end{itemize}
+
+\textbf{How API works}
+
+Request (you form a request URL) \textless-\textgreater{} Response (API responses to your request by sending you data usually in JSON format)
+
+\includegraphics{https://mk0appinventiv4394ey.kinstacdn.com/wp-content/uploads/sites/1/2018/05/What-are-APIs-Learn-How-API-Works.jpg}
+
+\textbf{API Statuses}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Twitter API is still widely accessible (\href{https://developer.twitter.com/en/docs/twitter-api/early-access}{v2} recently released; new fields available such as \href{https://developer.twitter.com/en/docs/twitter-api/conversation-id}{conversation threads}).
+  Twitter
+\end{enumerate}
+
+\begin{itemize}
+\item
+  Twitter API is still widely accessible (\href{https://developer.twitter.com/en/docs/twitter-api/early-access}{v2}
+\item
+  In January 2021, Twitter introduced the \href{https://developer.twitter.com/en/solutions/academic-research}{academic Twitter API} that allows generous access to Twitter's historical data for academic researchers
+
+  \begin{itemize}
+  \item
+    Many R packages exist for the Twitter API: \href{https://cran.r-project.org/web/packages/rtweet/rtweet.pdf}{rtweet} (REST + streaming), \href{https://github.com/pablobarbera/twitter_ideology/tree/master/pkg/tweetscores}{tweetscores} (REST), \href{https://github.com/pablobarbera/streamR}{streamR} (streaming)
+  \item
+    Some notable limitations. If Twitter users don't share their tweets' locations (e.g., GPS), you can't collect them.
+  \end{itemize}
 \end{itemize}
 
 \begin{quote}
@@ -18586,12 +18547,45 @@ Twitter data is unique from data shared by most other social platforms because i
 \end{quote}
 
 \begin{itemize}
+\tightlist
 \item
-  What does this policy mean? If Twitter users don't share their tweets' locations (e.g., GPS), you can't collect them.
+  What does this policy mean? If Twitter users don't share their tweets' locations (e.g., GPS), you can't collect them. You can get around this problem to identify a user's location based on their self-reported profile.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
 \item
-  Facebook API access has become much constrained with \href{https://socialscience.one/blog/unprecedented-facebook-urls-dataset-now-available-research-through-social-science-one}{the exception of Social Science One} since the 2016 U.S. election.
+  Other APIs
+\end{enumerate}
+
+The following comments draw on Alexandra Siegel's talk on ``Collecting and Analyzing Social Media Data'' given at Montréal Methods Workshops.
+
+\begin{itemize}
 \item
-  \href{https://developers.google.com/youtube/v3}{YouTube API} access is somewhat limited (but you need to check as I'm not updated on this).
+  \href{https://developers.facebook.com/}{Facebook API} access has become constrained since the 2016 U.S. election.
+
+  \begin{itemize}
+  \item
+    Exception: \href{https://socialscience.one/blog/unprecedented-facebook-urls-dataset-now-available-research-through-social-science-one}{Social Science One}.
+  \item
+    Also, check out \href{https://www.crowdtangle.com/}{Crowdtangle} for collecting public FB page data
+  \item
+    Using FB ads is still a popular method, especially among scholars studying developing countries.
+  \end{itemize}
+\item
+  \href{https://developers.google.com/youtube/v3}{YouTube API}: generous access + (computer-generated) transcript in many languages
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Documentation on \href{https://developers.google.com/youtube/v3/docs/captions}{captions} from YouTube
+  \end{itemize}
+\item
+  \href{https://www.instagram.com/developer/}{Instragram API}: Data from public accounts are available.
+\item
+  \href{https://www.reddit.com/dev/api/}{Reddit API}: Well-annotated text data suitable for machine learning
 \end{itemize}
 
 \textbf{Upside}
@@ -18606,7 +18600,7 @@ Web scraping (Wild Wild West) \textless\textgreater{} API (Big Gated Garden)
 
 \begin{itemize}
 \item
-  You have legal but limited access to (growing) big data that can be divided into text, image, and video and transformed into cross-sectional (geocodes), longitudinal (timestamps), and event historical data (hashtags). See Zachary C. Steinert-Threlkeld's \href{https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia}{2020 APSA Short Course Generating Event Data From Social Media}.
+  You have legal but limited access to (growing) big data that can be divided into text, image, and video and transformed into cross-sectional (geocodes), longitudinal (timestamps), and historical event data (hashtags). See Zachary C. Steinert-Threlkeld's \href{https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia}{2020 APSA Short Course Generating Event Data From Social Media}.
 \item
   Social media data are also well-organized, managed, and curated data. It's easy to navigate because XML and JSON have keys and values. If you find keys, you will find observations you look for.
 \end{itemize}
@@ -18622,14 +18616,146 @@ Web scraping (Wild Wild West) \textless\textgreater{} API (Big Gated Garden)
 \end{enumerate}
 
 \hypertarget{next-steps}{%
-\subsubsection{Next steps}\label{next-steps}}
+\subsection{Next steps}\label{next-steps}}
 
 \begin{itemize}
 \item
-  If you want to know how to sign up for a new Twitter developer account and access Twitter API, see Steinert-Threlkeld's \href{https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia/blob/master/Presentation/02_AccessTwitter.pdf}{APSA workshop slides}.
+  We are going to learn how to access and collect data using Twitter and New York Times API. We are going to learn this in two ways: (1) using plug-and-play packages (both using RStudio and the terminal) and (2) getting API data from scratch (\texttt{httr,} \texttt{jsonlite}).
 \item
-  If you want to know about how to use the \texttt{tweetscore} package, then see Pablo Barbara's R markdown file for \href{http://pablobarbera.com/social-media-workshop/code/02-twitter-REST-data-collection.html}{scraping data from Twitter's REST API}
+  Before everything else, first, sign up for the Twitter developer account. If you want to know how to sign up for a new Twitter developer account and access Twitter API, see Steinert-Threlkeld's \href{https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia/blob/master/Presentation/02_AccessTwitter.pdf}{APSA workshop slides}.
 \end{itemize}
+
+\hypertarget{rtweet}{%
+\subsection{rtweet}\label{rtweet}}
+
+The \texttt{rtweet} examples draw from \href{https://cbail.github.io/SICSS_APIs_markdown.html}{Chris Bail's tutorial}.
+
+\hypertarget{setup-5}{%
+\subsubsection{Setup}\label{setup-5}}
+
+The first thing you need to do is set up.
+
+Assuming that you already signed up for a Twitter developer account
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{app\_name }\OtherTok{\textless{}{-}} \StringTok{"YOUR APP NAME"}
+\NormalTok{consumer\_key }\OtherTok{\textless{}{-}} \StringTok{"YOUR CONSUMER KEY"}
+\NormalTok{consumer\_secret }\OtherTok{\textless{}{-}} \StringTok{"YOUR CONSUMER SECRET"}
+
+\NormalTok{rtweet}\SpecialCharTok{::}\FunctionTok{create\_token}\NormalTok{(}\AttributeTok{app =}\NormalTok{ app\_name, }
+                     \AttributeTok{consumer\_key =}\NormalTok{ consumer\_key, }
+                     \AttributeTok{consumer\_secret =}\NormalTok{ consumer\_secret)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{search-api}{%
+\subsubsection{Search API}\label{search-api}}
+
+Using \textbf{search API}; This API returns a collection of Tweets mentioning a particular query.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Install and load rtweet }
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(pacman)) \{}\FunctionTok{install.packages}\NormalTok{(}\StringTok{"pacman"}\NormalTok{)\}}
+\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(rtweet)}
+
+\CommentTok{\# The past 6{-}9 days }
+\NormalTok{rt }\OtherTok{\textless{}{-}} \FunctionTok{search\_tweets}\NormalTok{(}\AttributeTok{q =} \StringTok{"\#stopasianhate"}\NormalTok{, }\AttributeTok{n =} \DecValTok{1000}\NormalTok{, }\AttributeTok{include\_rts =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+Downloading [=======>---------------------------------]  20%
+Downloading [===========>-----------------------------]  30%
+Downloading [===============>-------------------------]  40%
+Downloading [===================>---------------------]  50%
+Downloading [========================>----------------]  60%
+Downloading [============================>------------]  70%
+Downloading [================================>--------]  80%
+Downloading [====================================>----]  90%
+Downloading [=========================================] 100%
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The longer term }
+\CommentTok{\# search\_fullarchive() premium service}
+
+\FunctionTok{head}\NormalTok{(rt}\SpecialCharTok{$}\NormalTok{text)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "I miss my mom. That’s a given, but right now it’s heavier than usual.\n\nI so badly want to tell her about what I want to do - and will get to do / announce soon - for #StopAsianHate and #AAPI. \nI hope she’d be proud.\n\nIt’s only/already been 58 days.\nLove you mom 🖤 I’m struggling."                         
+## [2] "Dear Asians, fuck off with this forgiveness shit, it’s helping no one. \n#letthemrot #stopasianhate  https://t.co/796VJUmtV8"                                                                                                                                                                                          
+## [3] "A couple of folks in my stream community have told me about anti-Asian hate/violence happening to their loved ones since this past weekend. One was physical assault, another was verbal harassment.\n\nWhy are people still not paying attention?\n\nPlease #StopAsianHate. We’re hurting."                           
+## [4] "“Ethnic studies teaches students about painful histories of racism and gives them opportunities for making sense of how these histories continue to shape the present.”\n\nRecently, I had to seek out history I never learned as an AAPI myself.\n\n#StopAsianHate\n\nhttps://t.co/i1SLxfWHbx https://t.co/MvPF73THoK"
+## [5] "\"We've received [anti-Asian hate] reports from all 50 states now, and D.C., so again, it's widespread.\" - Dr. Russell Jeung\n\n#StopAsianHate #StopAAPIHate \n\nhttps://t.co/t6B9uJKcNk https://t.co/iN42DXZnXm"                                                                                                     
+## [6] "\"After all, if we valued Asian Americans, why would we allow them to be continually humiliated by how we portray them, or worse, how we ignore them as a significant presence. Especially when we have the power to change things.\"\n\nWell said.\n\n#StopAsianHate\n\nhttps://t.co/SoM6Gq2GPc"
+\end{verbatim}
+
+Can you guess what would be the class type of rt?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(rt)}
+\end{Highlighting}
+\end{Shaded}
+
+What would be the number of rows?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(rt)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{time-series-analysis}{%
+\subsubsection{Time series analysis}\label{time-series-analysis}}
+
+\begin{itemize}
+\tightlist
+\item
+  Time series analysis
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(ggplot2, ggthemes, rtweet)}
+
+\FunctionTok{ts\_plot}\NormalTok{(rt, }\StringTok{"3 hours"}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggthemes}\SpecialCharTok{::}\FunctionTok{theme\_fivethirtyeight}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Frequency of Tweets about StopAsianHate from the Past Day"}\NormalTok{,}
+       \AttributeTok{subtitle =} \StringTok{"Tweet counts aggregated using three{-}hour intervals"}\NormalTok{,}
+       \AttributeTok{source =} \StringTok{"Twitter\textquotesingle{}s Search API via rtweet"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{06_semi_structured_data_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\hypertarget{geographical-analysis}{%
+\subsubsection{Geographical analysis}\label{geographical-analysis}}
+
+\begin{itemize}
+\tightlist
+\item
+  Geographical analysis
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(maps)}
+
+\NormalTok{geocoded }\OtherTok{\textless{}{-}} \FunctionTok{lat\_lng}\NormalTok{(rt)}
+
+\NormalTok{maps}\SpecialCharTok{::}\FunctionTok{map}\NormalTok{(}\StringTok{"state"}\NormalTok{, }\AttributeTok{lwd =}\NormalTok{ .}\DecValTok{25}\NormalTok{) }\CommentTok{\# lwd = line type }
+\FunctionTok{with}\NormalTok{(geocoded, }\FunctionTok{points}\NormalTok{(lng, lat))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{06_semi_structured_data_files/figure-latex/unnamed-chunk-19-1.pdf}
 
 \hypertarget{hydrating}{%
 \subsection{Hydrating}\label{hydrating}}
@@ -18654,19 +18780,19 @@ What are the main two types of Twitter's API?
 
 \begin{itemize}
 \item
-  You can collect Twitter data using Twitter's API, or you can hydrate Tweet I.D.s collected by other researchers. This is an excellent resource to collect historical Twitter data.
+  You can collect Twitter data using Twitter's API, or you can hydrate Tweet IDs collected by other researchers. This is an excellent resource to collect historical Twitter data.
 \item
   \href{http://www.panacealab.org/covid19/}{Covid-19 Twitter chatter dataset for scientic use} by Panacealab
 \item
   \href{https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/5ZVMOR}{Women's March Dataset} by Littman and Park
 \item
-  Harvard Dataverse has many dehydrated Tweet I.D.s that could be of interest to social scientists.
+  Harvard Dataverse has many dehydrated Tweet IDs that could be of interest to social scientists.
 \end{itemize}
 
 \begin{figure}
 \centering
 \includegraphics{https://github.com/jaeyk/digital_data_collection_workshop/raw/master/misc/dehydrated_tweets.png}
-\caption{Dehydrated Tweet I.D.s}
+\caption{Dehydrated Tweet IDs}
 \end{figure}
 
 \hypertarget{twarc-one-solution-to-almost-all-twitters-api-problems}{%
@@ -18755,14 +18881,14 @@ The following examples are created by \href{http://digitalcollecting.lib.virgini
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Hashtag + Language }
-\ExtensionTok{twarc}\NormalTok{ search }\StringTok{\textquotesingle{}\#blacklivesmatter\textquotesingle{}}\NormalTok{ {-}{-}lang en }\OperatorTok{\textgreater{}}\NormalTok{ blm\_tweets\_hash.jsonl}
+\ExtensionTok{twarc}\NormalTok{ search }\StringTok{\textquotesingle{}\#blacklivesmatter\textquotesingle{}} \AttributeTok{{-}{-}lang}\NormalTok{ en }\OperatorTok{\textgreater{}}\NormalTok{ blm\_tweets\_hash.jsonl}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{itemize}
 \tightlist
 \item
-  It is really important to \textbf{save these tweets into a \texttt{jsonl} format;} \texttt{jsonl} extension refers to JSON \textbf{Lines} files. This structure is useful for splitting JSON data into smaller chunks, if it is too large.
+  It is really important to \textbf{save these tweets into a \texttt{jsonl} format;} \texttt{jsonl} extension refers to JSON \textbf{Lines} files. This structure is useful for splitting JSON data into smaller chunks if it is too large.
 \end{itemize}
 
 \hypertarget{filter}{%
@@ -18835,9 +18961,9 @@ The following examples are created by \href{http://digitalcollecting.lib.virgini
 \item
   Collect tweets that contain some keywords of your choice using \texttt{twarc\ search} and save them as \texttt{tweets.jsonl}.
 \item
-  Using \texttt{less} command in the terminal, inspect \texttt{twarc.log}.
+  Using \texttt{less} command in the terminal, inspect \texttt{twarc.log.}
 \item
-  Using \texttt{less} command in the terminal, inspect \texttt{tweets.json}.
+  Using \texttt{less} command in the terminal, inspect \texttt{tweets.json.}
 \end{enumerate}
 
 \hypertarget{parsing-json}{%
@@ -18865,7 +18991,7 @@ The following examples are created by \href{http://digitalcollecting.lib.virgini
 \begin{itemize}
 \tightlist
 \item
-  What if the size of the Twitter data you downloaded is too big (e.g., \textgreater10 G.B.) to do complex wrangling in R?
+  What if the size of the Twitter data you downloaded is too big (e.g., \textgreater10 GB) to do complex wrangling in R?
 \end{itemize}
 
 \hypertarget{solution-2}{%
@@ -18884,17 +19010,17 @@ Step1: Split the large JSON file in small chunks.
 \CommentTok{\#Divide the JSON file by 100 lines (tweets)}
 
 \CommentTok{\# Linux and Windows (in Bash)}
-\NormalTok{$ }\FunctionTok{split}\NormalTok{ {-}100 search.jsonl}
+\ExtensionTok{$}\NormalTok{ split }\AttributeTok{{-}100}\NormalTok{ search.jsonl}
 
 \CommentTok{\# macOS}
-\NormalTok{$ }\ExtensionTok{gsplit}\NormalTok{ {-}100 search.jsonl}
+\ExtensionTok{$}\NormalTok{ gsplit }\AttributeTok{{-}100}\NormalTok{ search.jsonl}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{itemize}
 \tightlist
 \item
-  After that, you will see several files appeared in the directory. Each of these files should have 100 tweets or fewer. All of these file names \textbf{should start with ``x'', as in ``xaa''.}
+  After that, you will see several files appeared in the directory. Each of these files should have 100 tweets or fewer. All of these file names \textbf{should start with ``x,'' as in ``xaa.''}
 \end{itemize}
 
 Step 2: Apply the parsing function to each chunk and pull all of these chunks together.
@@ -19032,7 +19158,7 @@ The \href{https://cran.r-project.org/web/packages/tidyjson/vignettes/introductio
 
 \NormalTok{listed }\OtherTok{\textless{}{-}} \FunctionTok{read\_json}\NormalTok{(file\_path, }\AttributeTok{format =} \FunctionTok{c}\NormalTok{(}\StringTok{"jsonl"}\NormalTok{))}
 
-\CommentTok{\# I.D.s of the tweets with country codes}
+\CommentTok{\# IDs of the tweets with country codes}
 
 \NormalTok{ccodes }\OtherTok{\textless{}{-}}\NormalTok{ listed }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{enter\_object}\NormalTok{(}\StringTok{"place"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
@@ -19041,7 +19167,7 @@ The \href{https://cran.r-project.org/web/packages/tidyjson/vignettes/introductio
   \FunctionTok{as\_tibble}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{rename}\NormalTok{(}\StringTok{"country\_code"} \OtherTok{=} \StringTok{"string"}\NormalTok{)}
 
-\CommentTok{\# I.D.s of the tweets with location}
+\CommentTok{\# IDs of the tweets with location}
 
 \NormalTok{locations }\OtherTok{\textless{}{-}}\NormalTok{ listed }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{enter\_object}\NormalTok{(}\StringTok{"user"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
@@ -19121,7 +19247,7 @@ The \href{https://cran.r-project.org/web/packages/tidyjson/vignettes/introductio
 
 \textbf{Review}
 
-There are at least three ways you can use function + \texttt{purrr::map()}.
+There are at least three ways you can use function + \texttt{purrr::map().}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -19166,6 +19292,102 @@ There are at least three ways you can use function + \texttt{purrr::map()}.
 
 \CommentTok{\# Output}
 \NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{rtweet and twarc}
+
+\begin{itemize}
+\item
+  The main difference is using RStudio vs.~the terminal.
+\item
+  The difference matters when your data size is large. Suppose the size of the Twitter data you downloaded is 10 GB. R/RStudio might have a hard time dealing with this size of data. Then, how can you wrangle this size of data in a complex way using R?
+\end{itemize}
+
+\hypertarget{getting-api-data-from-scratch}{%
+\subsection{Getting API data from scratch}\label{getting-api-data-from-scratch}}
+
+Load packages. For the connection interface, don't use \texttt{RCurl,} but I strongly recommend using \texttt{httr.} The following code examples draw from my R interface for the New York Times API called \href{https://jaeyk.github.io/rnytapi/}{\texttt{rnytapi}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(httr, jsonlite, purrr, glue)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{form-request}{%
+\subsubsection{Form REQUEST}\label{form-request}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{get\_request }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(term, begin\_date, end\_date, key, }\AttributeTok{page =} \DecValTok{1}\NormalTok{) \{}
+
+\NormalTok{    out }\OtherTok{\textless{}{-}} \FunctionTok{GET}\NormalTok{(}\StringTok{"http://api.nytimes.com/svc/search/v2/articlesearch.json"}\NormalTok{,}
+        \AttributeTok{query =} \FunctionTok{list}\NormalTok{(}\StringTok{\textquotesingle{}q\textquotesingle{}} \OtherTok{=}\NormalTok{ term,}
+                     \StringTok{\textquotesingle{}begin\_date\textquotesingle{}} \OtherTok{=}\NormalTok{ begin\_date,}
+                     \StringTok{\textquotesingle{}end\_date\textquotesingle{}} \OtherTok{=}\NormalTok{ end\_date,}
+                     \StringTok{\textquotesingle{}api{-}key\textquotesingle{}} \OtherTok{=}\NormalTok{ key,}
+                     \StringTok{\textquotesingle{}page\textquotesingle{}} \OtherTok{=}\NormalTok{ page))}
+
+    \FunctionTok{return}\NormalTok{(out)}
+
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{extract-data}{%
+\subsubsection{Extract data}\label{extract-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{get\_content }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(term, begin\_date, end\_date, key, }\AttributeTok{page =} \DecValTok{1}\NormalTok{) \{}
+
+    \FunctionTok{message}\NormalTok{(}\FunctionTok{glue}\NormalTok{(}\StringTok{"Scraping page \{page\}"}\NormalTok{))}
+
+    \FunctionTok{fromJSON}\NormalTok{(}\FunctionTok{content}\NormalTok{(}\FunctionTok{get\_request}\NormalTok{(term, begin\_date, end\_date, key, page),}
+                     \StringTok{"text"}\NormalTok{,}
+                \AttributeTok{encoding =} \StringTok{"UTF{-}8"}\NormalTok{),}
+                \AttributeTok{simplifyDataFrame =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{flatten =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{as.data.frame}\NormalTok{()}
+
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{automating-iterations}{%
+\subsubsection{Automating iterations}\label{automating-iterations}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{extract\_all }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(term, begin\_date, end\_date, key) \{}
+
+\NormalTok{    request }\OtherTok{\textless{}{-}} \FunctionTok{GET}\NormalTok{(}\StringTok{"http://api.nytimes.com/svc/search/v2/articlesearch.json"}\NormalTok{,}
+                   \AttributeTok{query =} \FunctionTok{list}\NormalTok{(}\StringTok{\textquotesingle{}q\textquotesingle{}} \OtherTok{=}\NormalTok{ term,}
+                                \StringTok{\textquotesingle{}begin\_date\textquotesingle{}} \OtherTok{=}\NormalTok{ begin\_date,}
+                                \StringTok{\textquotesingle{}end\_date\textquotesingle{}} \OtherTok{=}\NormalTok{ end\_date,}
+                                \StringTok{\textquotesingle{}api{-}key\textquotesingle{}} \OtherTok{=}\NormalTok{ key))}
+
+\NormalTok{    max\_pages }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{round}\NormalTok{(}\FunctionTok{content}\NormalTok{(request)}\SpecialCharTok{$}\NormalTok{response}\SpecialCharTok{$}\NormalTok{meta}\SpecialCharTok{$}\NormalTok{hits[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{/} \DecValTok{10}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
+
+    \FunctionTok{message}\NormalTok{(}\FunctionTok{glue}\NormalTok{(}\StringTok{"The total number of pages is \{max\_pages\}"}\NormalTok{))}
+
+\NormalTok{    iter }\OtherTok{\textless{}{-}} \DecValTok{0}\SpecialCharTok{:}\NormalTok{max\_pages}
+
+\NormalTok{    arg\_list }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\FunctionTok{rep}\NormalTok{(term, }\AttributeTok{times =} \FunctionTok{length}\NormalTok{(iter)),}
+                     \FunctionTok{rep}\NormalTok{(begin\_date, }\AttributeTok{times =} \FunctionTok{length}\NormalTok{(iter)),}
+                     \FunctionTok{rep}\NormalTok{(end\_date, }\AttributeTok{times =} \FunctionTok{length}\NormalTok{(iter)),}
+                     \FunctionTok{rep}\NormalTok{(key, }\AttributeTok{times =} \FunctionTok{length}\NormalTok{(iter)),}
+\NormalTok{                     iter}
+\NormalTok{                     )}
+
+\NormalTok{    out }\OtherTok{\textless{}{-}} \FunctionTok{pmap\_dfr}\NormalTok{(arg\_list, }\FunctionTok{slowly}\NormalTok{(get\_content,}
+                                     \CommentTok{\# 6 seconds sleep is the default requirement.}
+                                     \AttributeTok{rate =} \FunctionTok{rate\_delay}\NormalTok{(}
+                                         \AttributeTok{pause =} \DecValTok{6}\NormalTok{,}
+                                         \AttributeTok{max\_times =} \DecValTok{4000}\NormalTok{)))}
+
+    \FunctionTok{return}\NormalTok{(out)}
+
+\NormalTok{    \}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -21688,8 +21910,8 @@ You can use these low-dimensional data to solve prediction problems. Compressing
 \hypertarget{topic-modeling}{%
 \subsection{Topic modeling}\label{topic-modeling}}
 
-\hypertarget{setup-5}{%
-\subsubsection{Setup}\label{setup-5}}
+\hypertarget{setup-6}{%
+\subsubsection{Setup}\label{setup-6}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -22232,8 +22454,8 @@ For more information on ProPublica's Machine Bias project, we encourage you to c
 \hypertarget{bias-in-the-data-risk-of-recidivism-analysis}{%
 \subsection{Bias in the Data (Risk of Recidivism Analysis)}\label{bias-in-the-data-risk-of-recidivism-analysis}}
 
-\hypertarget{setup-6}{%
-\subsubsection{Setup}\label{setup-6}}
+\hypertarget{setup-7}{%
+\subsubsection{Setup}\label{setup-7}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -22642,8 +22864,8 @@ The plot visualizes this and other results from the table.
 \hypertarget{bias-in-the-data-risk-of-violent-recidivism-analysis}{%
 \subsection{Bias in the Data (Risk of Violent Recidivism Analysis)}\label{bias-in-the-data-risk-of-violent-recidivism-analysis}}
 
-\hypertarget{setup-7}{%
-\subsubsection{Setup}\label{setup-7}}
+\hypertarget{setup-8}{%
+\subsubsection{Setup}\label{setup-8}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -23052,8 +23274,8 @@ The plot visualizes this and other results from the table.
   We used the counting model and removed people when they were incarcerated. Due to errors in the underlying jail data, we need to filter out 32 rows with an end date more than the start date. Considering that there are 13,334 total rows in the data, such a small amount of errors will not affect the results.
 \end{itemize}
 
-\hypertarget{setup-8}{%
-\subsubsection{Setup}\label{setup-8}}
+\hypertarget{setup-9}{%
+\subsubsection{Setup}\label{setup-9}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -23657,50 +23879,20 @@ Even more so for Black defendants.
   SQL and R
 \end{itemize}
 
-\begin{longtable}[]{@{}ll@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.15}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.85}}@{}}
 \toprule
-\begin{minipage}[b]{(\columnwidth - 1\tabcolsep) * \real{0.15}}\raggedright
-SQL\strut
-\end{minipage} & \begin{minipage}[b]{(\columnwidth - 1\tabcolsep) * \real{0.85}}\raggedright
-R\strut
-\end{minipage}\tabularnewline
+SQL & R \\
 \midrule
 \endhead
-\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.15}}\raggedright
-SELECT\strut
-\end{minipage} & \begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.85}}\raggedright
-select() for columns, mutate() for expressions, summarise() for aggregates\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.15}}\raggedright
-FROM\strut
-\end{minipage} & \begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.85}}\raggedright
-which data frame\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.15}}\raggedright
-WHERE\strut
-\end{minipage} & \begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.85}}\raggedright
-filter()\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.15}}\raggedright
-GROUP BY\strut
-\end{minipage} & \begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.85}}\raggedright
-group\_by()\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.15}}\raggedright
-HAVING\strut
-\end{minipage} & \begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.85}}\raggedright
-filter() \textbf{after group\_by()}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.15}}\raggedright
-ORDER BY\strut
-\end{minipage} & \begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.85}}\raggedright
-arrange()\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.15}}\raggedright
-LIMIT\strut
-\end{minipage} & \begin{minipage}[t]{(\columnwidth - 1\tabcolsep) * \real{0.85}}\raggedright
-head()\strut
-\end{minipage}\tabularnewline
+SELECT & select() for columns, mutate() for expressions, summarise() for aggregates \\
+FROM & which data frame \\
+WHERE & filter() \\
+GROUP BY & group\_by() \\
+HAVING & filter() \textbf{after group\_by()} \\
+ORDER BY & arrange() \\
+LIMIT & head() \\
 \bottomrule
 \end{longtable}
 
@@ -23755,8 +23947,8 @@ head()\strut
 \caption{SQL Zine by by \href{https://jvns.ca/}{Julia Evans}}
 \end{figure}
 
-\hypertarget{setup-9}{%
-\subsection{Setup}\label{setup-9}}
+\hypertarget{setup-10}{%
+\subsection{Setup}\label{setup-10}}
 
 Let's get to work.
 
@@ -24287,7 +24479,7 @@ Thanks to the \texttt{dbplyr} package you can use the \texttt{dplyr} syntax to q
 
 \begin{verbatim}
 ## # Source:   lazy query [?? x 2]
-## # Database: sqlite 3.34.1 [:memory:]
+## # Database: sqlite 3.35.2 [:memory:]
 ##    dep_delay arr_delay
 ##        <dbl>     <dbl>
 ##  1         2        11
@@ -24322,7 +24514,7 @@ Your turn: write the same code in SQL. Don't forget to add \texttt{connection} a
 
 \begin{verbatim}
 ## # Source:   lazy query [?? x 3]
-## # Database: sqlite 3.34.1 [:memory:]
+## # Database: sqlite 3.35.2 [:memory:]
 ##    distance air_time speed
 ##       <dbl>    <dbl> <dbl>
 ##  1     1400      227  370.
@@ -24357,7 +24549,7 @@ Hint: \texttt{mutate(new\_var\ =\ var\ 1\ *\ var2} (R) = \texttt{SELECT\ var1\ *
 
 \begin{verbatim}
 ## # Source:   lazy query [?? x 19]
-## # Database: sqlite 3.34.1 [:memory:]
+## # Database: sqlite 3.35.2 [:memory:]
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ##    <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>
 ##  1  2013     1     1      517            515         2      830            819
@@ -24370,13 +24562,9 @@ Hint: \texttt{mutate(new\_var\ =\ var\ 1\ *\ var2} (R) = \texttt{SELECT\ var1\ *
 ##  8  2013     1     1      557            600        -3      709            723
 ##  9  2013     1     1      557            600        -3      838            846
 ## 10  2013     1     1      558            600        -2      753            745
-## # ... with more rows, and 11 more
-## #   variables: arr_delay <dbl>,
-## #   carrier <chr>, flight <int>,
-## #   tailnum <chr>, origin <chr>,
-## #   dest <chr>, air_time <dbl>,
-## #   distance <dbl>, hour <dbl>,
-## #   minute <dbl>, time_hour <dbl>
+## # ... with more rows, and 11 more variables: arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,
+## #   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dbl>
 \end{verbatim}
 
 \textbf{Challenge 6}
@@ -24462,7 +24650,7 @@ Hint: \texttt{arrange(var1,\ desc(var2)} (R) = \texttt{ORDER\ BY\ var1,\ var2\ D
 
 \begin{verbatim}
 ## # Source:   lazy query [?? x 3]
-## # Database: sqlite 3.34.1 [:memory:]
+## # Database: sqlite 3.35.2 [:memory:]
 ## # Groups:   month
 ##    month   day delay
 ##    <int> <int> <dbl>
@@ -24726,8 +24914,8 @@ This is just a hypothetical example inspired by {[}James LeDoux's blog post{]}(\
 \hypertarget{spark}{%
 \section{Spark}\label{spark}}
 
-\hypertarget{setup-10}{%
-\subsection{Setup}\label{setup-10}}
+\hypertarget{setup-11}{%
+\subsection{Setup}\label{setup-11}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
