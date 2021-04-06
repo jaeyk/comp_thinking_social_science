@@ -19216,28 +19216,11 @@ The \href{https://cran.r-project.org/web/packages/tidyjson/vignettes/introductio
 \NormalTok{n\_cores }\OtherTok{\textless{}{-}} \FunctionTok{availableCores}\NormalTok{() }\SpecialCharTok{{-}} \DecValTok{1}
 
 \NormalTok{n\_cores }\CommentTok{\# This number depends on your computer spec.}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## system 
-##      7
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{plan}\NormalTok{(multiprocess, }\CommentTok{\# multicore, if supported, otherwise multisession}
      \AttributeTok{workers =}\NormalTok{ n\_cores) }\CommentTok{\# the maximum number of workers}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked
-## processing ('multicore') is not supported when running R from RStudio
-## because it is considered unstable. For more details, how to control forked
-## processing or not, and how to silence this warning in future R sessions, see ?
-## parallelly::supportsMulticore
-\end{verbatim}
 
 \begin{itemize}
 \tightlist
