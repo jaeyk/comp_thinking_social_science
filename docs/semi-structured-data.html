@@ -1124,57 +1124,51 @@ Downloading [=========================================] 100%</code></pre>
 </ul>
 <div class="sourceCode" id="cb1126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1126-1"><a href="semi-structured-data.html#cb1126-1" aria-hidden="true" tabindex="-1"></a>n_cores <span class="ot">&lt;-</span> <span class="fu">availableCores</span>() <span class="sc">-</span> <span class="dv">1</span></span>
 <span id="cb1126-2"><a href="semi-structured-data.html#cb1126-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1126-3"><a href="semi-structured-data.html#cb1126-3" aria-hidden="true" tabindex="-1"></a>n_cores <span class="co"># This number depends on your computer spec.</span></span></code></pre></div>
-<pre><code>## system 
-##      7</code></pre>
-<div class="sourceCode" id="cb1128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1128-1"><a href="semi-structured-data.html#cb1128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(multiprocess, <span class="co"># multicore, if supported, otherwise multisession</span></span>
-<span id="cb1128-2"><a href="semi-structured-data.html#cb1128-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">workers =</span> n_cores) <span class="co"># the maximum number of workers</span></span></code></pre></div>
-<pre><code>## Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked
-## processing (&#39;multicore&#39;) is not supported when running R from RStudio
-## because it is considered unstable. For more details, how to control forked
-## processing or not, and how to silence this warning in future R sessions, see ?
-## parallelly::supportsMulticore</code></pre>
+<span id="cb1126-3"><a href="semi-structured-data.html#cb1126-3" aria-hidden="true" tabindex="-1"></a>n_cores <span class="co"># This number depends on your computer spec.</span></span>
+<span id="cb1126-4"><a href="semi-structured-data.html#cb1126-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1126-5"><a href="semi-structured-data.html#cb1126-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(multiprocess, <span class="co"># multicore, if supported, otherwise multisession</span></span>
+<span id="cb1126-6"><a href="semi-structured-data.html#cb1126-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">workers =</span> n_cores) <span class="co"># the maximum number of workers</span></span></code></pre></div>
 <ul>
 <li>Parsing in parallel.</li>
 </ul>
 <p><strong>Review</strong></p>
 <p>There are at least three ways you can use function + <code>purrr::map().</code></p>
-<div class="sourceCode" id="cb1130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1130-1"><a href="semi-structured-data.html#cb1130-1" aria-hidden="true" tabindex="-1"></a>squared <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb1130-2"><a href="semi-structured-data.html#cb1130-2" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">*</span><span class="dv">2</span> </span>
-<span id="cb1130-3"><a href="semi-structured-data.html#cb1130-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1130-4"><a href="semi-structured-data.html#cb1130-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1130-5"><a href="semi-structured-data.html#cb1130-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Named function </span></span>
-<span id="cb1130-6"><a href="semi-structured-data.html#cb1130-6" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, squared)</span>
-<span id="cb1130-7"><a href="semi-structured-data.html#cb1130-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1130-8"><a href="semi-structured-data.html#cb1130-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Anonymous function </span></span>
-<span id="cb1130-9"><a href="semi-structured-data.html#cb1130-9" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="cf">function</span>(x){ x <span class="sc">*</span><span class="dv">2</span> })</span>
-<span id="cb1130-10"><a href="semi-structured-data.html#cb1130-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1130-11"><a href="semi-structured-data.html#cb1130-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Using formula; ~ = formula, .x = input </span></span>
-<span id="cb1130-12"><a href="semi-structured-data.html#cb1130-12" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="sc">~</span>.x<span class="sc">*</span><span class="dv">2</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1131-1"><a href="semi-structured-data.html#cb1131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of file paths </span></span>
-<span id="cb1131-2"><a href="semi-structured-data.html#cb1131-2" aria-hidden="true" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">list.files</span>(dir_path,</span>
-<span id="cb1131-3"><a href="semi-structured-data.html#cb1131-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">pattern =</span> <span class="st">&#39;^x&#39;</span>,</span>
-<span id="cb1131-4"><a href="semi-structured-data.html#cb1131-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1131-5"><a href="semi-structured-data.html#cb1131-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1131-6"><a href="semi-structured-data.html#cb1131-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> filename <span class="sc">%&gt;%</span></span>
-<span id="cb1131-7"><a href="semi-structured-data.html#cb1131-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1131-8"><a href="semi-structured-data.html#cb1131-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply jsonl_to_df function to items on the list</span></span>
-<span id="cb1131-9"><a href="semi-structured-data.html#cb1131-9" aria-hidden="true" tabindex="-1"></a><span class="fu">future_map</span>(<span class="sc">~</span><span class="fu">jsonl_to_df</span>(.)) <span class="sc">%&gt;%</span></span>
-<span id="cb1131-10"><a href="semi-structured-data.html#cb1131-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1131-11"><a href="semi-structured-data.html#cb1131-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Full join the list of dataframes</span></span>
-<span id="cb1131-12"><a href="semi-structured-data.html#cb1131-12" aria-hidden="true" tabindex="-1"></a><span class="fu">reduce</span>(full_join,</span>
-<span id="cb1131-13"><a href="semi-structured-data.html#cb1131-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>,</span>
-<span id="cb1131-14"><a href="semi-structured-data.html#cb1131-14" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;location&quot;</span>,</span>
-<span id="cb1131-15"><a href="semi-structured-data.html#cb1131-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;country_code&quot;</span>,</span>
-<span id="cb1131-16"><a href="semi-structured-data.html#cb1131-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;created_at&quot;</span>,</span>
-<span id="cb1131-17"><a href="semi-structured-data.html#cb1131-17" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;full_text&quot;</span>,</span>
-<span id="cb1131-18"><a href="semi-structured-data.html#cb1131-18" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;retweet_count&quot;</span>,</span>
-<span id="cb1131-19"><a href="semi-structured-data.html#cb1131-19" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;favorite_count&quot;</span>,</span>
-<span id="cb1131-20"><a href="semi-structured-data.html#cb1131-20" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;user.followers_count&quot;</span>,</span>
-<span id="cb1131-21"><a href="semi-structured-data.html#cb1131-21" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;user.friends_count&quot;</span>))</span>
-<span id="cb1131-22"><a href="semi-structured-data.html#cb1131-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1131-23"><a href="semi-structured-data.html#cb1131-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Output</span></span>
-<span id="cb1131-24"><a href="semi-structured-data.html#cb1131-24" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb1127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1127-1"><a href="semi-structured-data.html#cb1127-1" aria-hidden="true" tabindex="-1"></a>squared <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb1127-2"><a href="semi-structured-data.html#cb1127-2" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">*</span><span class="dv">2</span> </span>
+<span id="cb1127-3"><a href="semi-structured-data.html#cb1127-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1127-4"><a href="semi-structured-data.html#cb1127-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1127-5"><a href="semi-structured-data.html#cb1127-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Named function </span></span>
+<span id="cb1127-6"><a href="semi-structured-data.html#cb1127-6" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, squared)</span>
+<span id="cb1127-7"><a href="semi-structured-data.html#cb1127-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1127-8"><a href="semi-structured-data.html#cb1127-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Anonymous function </span></span>
+<span id="cb1127-9"><a href="semi-structured-data.html#cb1127-9" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="cf">function</span>(x){ x <span class="sc">*</span><span class="dv">2</span> })</span>
+<span id="cb1127-10"><a href="semi-structured-data.html#cb1127-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1127-11"><a href="semi-structured-data.html#cb1127-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Using formula; ~ = formula, .x = input </span></span>
+<span id="cb1127-12"><a href="semi-structured-data.html#cb1127-12" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="sc">~</span>.x<span class="sc">*</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1128-1"><a href="semi-structured-data.html#cb1128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of file paths </span></span>
+<span id="cb1128-2"><a href="semi-structured-data.html#cb1128-2" aria-hidden="true" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">list.files</span>(dir_path,</span>
+<span id="cb1128-3"><a href="semi-structured-data.html#cb1128-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">pattern =</span> <span class="st">&#39;^x&#39;</span>,</span>
+<span id="cb1128-4"><a href="semi-structured-data.html#cb1128-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1128-5"><a href="semi-structured-data.html#cb1128-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1128-6"><a href="semi-structured-data.html#cb1128-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> filename <span class="sc">%&gt;%</span></span>
+<span id="cb1128-7"><a href="semi-structured-data.html#cb1128-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1128-8"><a href="semi-structured-data.html#cb1128-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply jsonl_to_df function to items on the list</span></span>
+<span id="cb1128-9"><a href="semi-structured-data.html#cb1128-9" aria-hidden="true" tabindex="-1"></a><span class="fu">future_map</span>(<span class="sc">~</span><span class="fu">jsonl_to_df</span>(.)) <span class="sc">%&gt;%</span></span>
+<span id="cb1128-10"><a href="semi-structured-data.html#cb1128-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1128-11"><a href="semi-structured-data.html#cb1128-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Full join the list of dataframes</span></span>
+<span id="cb1128-12"><a href="semi-structured-data.html#cb1128-12" aria-hidden="true" tabindex="-1"></a><span class="fu">reduce</span>(full_join,</span>
+<span id="cb1128-13"><a href="semi-structured-data.html#cb1128-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>,</span>
+<span id="cb1128-14"><a href="semi-structured-data.html#cb1128-14" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;location&quot;</span>,</span>
+<span id="cb1128-15"><a href="semi-structured-data.html#cb1128-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;country_code&quot;</span>,</span>
+<span id="cb1128-16"><a href="semi-structured-data.html#cb1128-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;created_at&quot;</span>,</span>
+<span id="cb1128-17"><a href="semi-structured-data.html#cb1128-17" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;full_text&quot;</span>,</span>
+<span id="cb1128-18"><a href="semi-structured-data.html#cb1128-18" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;retweet_count&quot;</span>,</span>
+<span id="cb1128-19"><a href="semi-structured-data.html#cb1128-19" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;favorite_count&quot;</span>,</span>
+<span id="cb1128-20"><a href="semi-structured-data.html#cb1128-20" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;user.followers_count&quot;</span>,</span>
+<span id="cb1128-21"><a href="semi-structured-data.html#cb1128-21" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;user.friends_count&quot;</span>))</span>
+<span id="cb1128-22"><a href="semi-structured-data.html#cb1128-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1128-23"><a href="semi-structured-data.html#cb1128-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Output</span></span>
+<span id="cb1128-24"><a href="semi-structured-data.html#cb1128-24" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <p><strong>rtweet and twarc</strong></p>
 <ul>
 <li><p>The main difference is using RStudio vs. the terminal.</p></li>
@@ -1187,67 +1181,67 @@ Downloading [=========================================] 100%</code></pre>
 <div id="getting-api-data-from-scratch" class="section level3" number="7.6.7">
 <h3><span class="header-section-number">7.6.7</span> Getting API data from scratch</h3>
 <p>Load packages. For the connection interface, don’t use <code>RCurl,</code> but I strongly recommend using <code>httr.</code> The following code examples draw from my R interface for the New York Times API called <a href="https://jaeyk.github.io/rnytapi/"><code>rnytapi</code></a>.</p>
-<div class="sourceCode" id="cb1132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1132-1"><a href="semi-structured-data.html#cb1132-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(httr, jsonlite, purrr, glue)</span></code></pre></div>
+<div class="sourceCode" id="cb1129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1129-1"><a href="semi-structured-data.html#cb1129-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(httr, jsonlite, purrr, glue)</span></code></pre></div>
 <div id="form-request" class="section level4" number="7.6.7.1">
 <h4><span class="header-section-number">7.6.7.1</span> Form REQUEST</h4>
-<div class="sourceCode" id="cb1133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1133-1"><a href="semi-structured-data.html#cb1133-1" aria-hidden="true" tabindex="-1"></a>get_request <span class="ot">&lt;-</span> <span class="cf">function</span>(term, begin_date, end_date, key, <span class="at">page =</span> <span class="dv">1</span>) {</span>
-<span id="cb1133-2"><a href="semi-structured-data.html#cb1133-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1133-3"><a href="semi-structured-data.html#cb1133-3" aria-hidden="true" tabindex="-1"></a>    out <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">&quot;http://api.nytimes.com/svc/search/v2/articlesearch.json&quot;</span>,</span>
-<span id="cb1133-4"><a href="semi-structured-data.html#cb1133-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">query =</span> <span class="fu">list</span>(<span class="st">&#39;q&#39;</span> <span class="ot">=</span> term,</span>
-<span id="cb1133-5"><a href="semi-structured-data.html#cb1133-5" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;begin_date&#39;</span> <span class="ot">=</span> begin_date,</span>
-<span id="cb1133-6"><a href="semi-structured-data.html#cb1133-6" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;end_date&#39;</span> <span class="ot">=</span> end_date,</span>
-<span id="cb1133-7"><a href="semi-structured-data.html#cb1133-7" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;api-key&#39;</span> <span class="ot">=</span> key,</span>
-<span id="cb1133-8"><a href="semi-structured-data.html#cb1133-8" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;page&#39;</span> <span class="ot">=</span> page))</span>
-<span id="cb1133-9"><a href="semi-structured-data.html#cb1133-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1133-10"><a href="semi-structured-data.html#cb1133-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(out)</span>
-<span id="cb1133-11"><a href="semi-structured-data.html#cb1133-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1133-12"><a href="semi-structured-data.html#cb1133-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1130-1"><a href="semi-structured-data.html#cb1130-1" aria-hidden="true" tabindex="-1"></a>get_request <span class="ot">&lt;-</span> <span class="cf">function</span>(term, begin_date, end_date, key, <span class="at">page =</span> <span class="dv">1</span>) {</span>
+<span id="cb1130-2"><a href="semi-structured-data.html#cb1130-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1130-3"><a href="semi-structured-data.html#cb1130-3" aria-hidden="true" tabindex="-1"></a>    out <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">&quot;http://api.nytimes.com/svc/search/v2/articlesearch.json&quot;</span>,</span>
+<span id="cb1130-4"><a href="semi-structured-data.html#cb1130-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">query =</span> <span class="fu">list</span>(<span class="st">&#39;q&#39;</span> <span class="ot">=</span> term,</span>
+<span id="cb1130-5"><a href="semi-structured-data.html#cb1130-5" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;begin_date&#39;</span> <span class="ot">=</span> begin_date,</span>
+<span id="cb1130-6"><a href="semi-structured-data.html#cb1130-6" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;end_date&#39;</span> <span class="ot">=</span> end_date,</span>
+<span id="cb1130-7"><a href="semi-structured-data.html#cb1130-7" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;api-key&#39;</span> <span class="ot">=</span> key,</span>
+<span id="cb1130-8"><a href="semi-structured-data.html#cb1130-8" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;page&#39;</span> <span class="ot">=</span> page))</span>
+<span id="cb1130-9"><a href="semi-structured-data.html#cb1130-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1130-10"><a href="semi-structured-data.html#cb1130-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(out)</span>
+<span id="cb1130-11"><a href="semi-structured-data.html#cb1130-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1130-12"><a href="semi-structured-data.html#cb1130-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="extract-data" class="section level4" number="7.6.7.2">
 <h4><span class="header-section-number">7.6.7.2</span> Extract data</h4>
-<div class="sourceCode" id="cb1134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1134-1"><a href="semi-structured-data.html#cb1134-1" aria-hidden="true" tabindex="-1"></a>get_content <span class="ot">&lt;-</span> <span class="cf">function</span>(term, begin_date, end_date, key, <span class="at">page =</span> <span class="dv">1</span>) {</span>
-<span id="cb1134-2"><a href="semi-structured-data.html#cb1134-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1134-3"><a href="semi-structured-data.html#cb1134-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="fu">glue</span>(<span class="st">&quot;Scraping page {page}&quot;</span>))</span>
-<span id="cb1134-4"><a href="semi-structured-data.html#cb1134-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1134-5"><a href="semi-structured-data.html#cb1134-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fromJSON</span>(<span class="fu">content</span>(<span class="fu">get_request</span>(term, begin_date, end_date, key, page),</span>
-<span id="cb1134-6"><a href="semi-structured-data.html#cb1134-6" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;text&quot;</span>,</span>
-<span id="cb1134-7"><a href="semi-structured-data.html#cb1134-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>),</span>
-<span id="cb1134-8"><a href="semi-structured-data.html#cb1134-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">simplifyDataFrame =</span> <span class="cn">TRUE</span>, <span class="at">flatten =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
-<span id="cb1134-9"><a href="semi-structured-data.html#cb1134-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1134-10"><a href="semi-structured-data.html#cb1134-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1131-1"><a href="semi-structured-data.html#cb1131-1" aria-hidden="true" tabindex="-1"></a>get_content <span class="ot">&lt;-</span> <span class="cf">function</span>(term, begin_date, end_date, key, <span class="at">page =</span> <span class="dv">1</span>) {</span>
+<span id="cb1131-2"><a href="semi-structured-data.html#cb1131-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1131-3"><a href="semi-structured-data.html#cb1131-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="fu">glue</span>(<span class="st">&quot;Scraping page {page}&quot;</span>))</span>
+<span id="cb1131-4"><a href="semi-structured-data.html#cb1131-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1131-5"><a href="semi-structured-data.html#cb1131-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fromJSON</span>(<span class="fu">content</span>(<span class="fu">get_request</span>(term, begin_date, end_date, key, page),</span>
+<span id="cb1131-6"><a href="semi-structured-data.html#cb1131-6" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;text&quot;</span>,</span>
+<span id="cb1131-7"><a href="semi-structured-data.html#cb1131-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>),</span>
+<span id="cb1131-8"><a href="semi-structured-data.html#cb1131-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">simplifyDataFrame =</span> <span class="cn">TRUE</span>, <span class="at">flatten =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb1131-9"><a href="semi-structured-data.html#cb1131-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1131-10"><a href="semi-structured-data.html#cb1131-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="automating-iterations" class="section level4" number="7.6.7.3">
 <h4><span class="header-section-number">7.6.7.3</span> Automating iterations</h4>
-<div class="sourceCode" id="cb1135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1135-1"><a href="semi-structured-data.html#cb1135-1" aria-hidden="true" tabindex="-1"></a>extract_all <span class="ot">&lt;-</span> <span class="cf">function</span>(term, begin_date, end_date, key) {</span>
-<span id="cb1135-2"><a href="semi-structured-data.html#cb1135-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1135-3"><a href="semi-structured-data.html#cb1135-3" aria-hidden="true" tabindex="-1"></a>    request <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">&quot;http://api.nytimes.com/svc/search/v2/articlesearch.json&quot;</span>,</span>
-<span id="cb1135-4"><a href="semi-structured-data.html#cb1135-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">query =</span> <span class="fu">list</span>(<span class="st">&#39;q&#39;</span> <span class="ot">=</span> term,</span>
-<span id="cb1135-5"><a href="semi-structured-data.html#cb1135-5" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&#39;begin_date&#39;</span> <span class="ot">=</span> begin_date,</span>
-<span id="cb1135-6"><a href="semi-structured-data.html#cb1135-6" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&#39;end_date&#39;</span> <span class="ot">=</span> end_date,</span>
-<span id="cb1135-7"><a href="semi-structured-data.html#cb1135-7" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&#39;api-key&#39;</span> <span class="ot">=</span> key))</span>
-<span id="cb1135-8"><a href="semi-structured-data.html#cb1135-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1135-9"><a href="semi-structured-data.html#cb1135-9" aria-hidden="true" tabindex="-1"></a>    max_pages <span class="ot">&lt;-</span> (<span class="fu">round</span>(<span class="fu">content</span>(request)<span class="sc">$</span>response<span class="sc">$</span>meta<span class="sc">$</span>hits[<span class="dv">1</span>] <span class="sc">/</span> <span class="dv">10</span>) <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb1135-10"><a href="semi-structured-data.html#cb1135-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1135-11"><a href="semi-structured-data.html#cb1135-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="fu">glue</span>(<span class="st">&quot;The total number of pages is {max_pages}&quot;</span>))</span>
-<span id="cb1135-12"><a href="semi-structured-data.html#cb1135-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1135-13"><a href="semi-structured-data.html#cb1135-13" aria-hidden="true" tabindex="-1"></a>    iter <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>max_pages</span>
-<span id="cb1135-14"><a href="semi-structured-data.html#cb1135-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1135-15"><a href="semi-structured-data.html#cb1135-15" aria-hidden="true" tabindex="-1"></a>    arg_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">rep</span>(term, <span class="at">times =</span> <span class="fu">length</span>(iter)),</span>
-<span id="cb1135-16"><a href="semi-structured-data.html#cb1135-16" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">rep</span>(begin_date, <span class="at">times =</span> <span class="fu">length</span>(iter)),</span>
-<span id="cb1135-17"><a href="semi-structured-data.html#cb1135-17" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">rep</span>(end_date, <span class="at">times =</span> <span class="fu">length</span>(iter)),</span>
-<span id="cb1135-18"><a href="semi-structured-data.html#cb1135-18" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">rep</span>(key, <span class="at">times =</span> <span class="fu">length</span>(iter)),</span>
-<span id="cb1135-19"><a href="semi-structured-data.html#cb1135-19" aria-hidden="true" tabindex="-1"></a>                     iter</span>
-<span id="cb1135-20"><a href="semi-structured-data.html#cb1135-20" aria-hidden="true" tabindex="-1"></a>                     )</span>
-<span id="cb1135-21"><a href="semi-structured-data.html#cb1135-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1135-22"><a href="semi-structured-data.html#cb1135-22" aria-hidden="true" tabindex="-1"></a>    out <span class="ot">&lt;-</span> <span class="fu">pmap_dfr</span>(arg_list, <span class="fu">slowly</span>(get_content,</span>
-<span id="cb1135-23"><a href="semi-structured-data.html#cb1135-23" aria-hidden="true" tabindex="-1"></a>                                     <span class="co"># 6 seconds sleep is the default requirement.</span></span>
-<span id="cb1135-24"><a href="semi-structured-data.html#cb1135-24" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">rate =</span> <span class="fu">rate_delay</span>(</span>
-<span id="cb1135-25"><a href="semi-structured-data.html#cb1135-25" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">pause =</span> <span class="dv">6</span>,</span>
-<span id="cb1135-26"><a href="semi-structured-data.html#cb1135-26" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">max_times =</span> <span class="dv">4000</span>)))</span>
-<span id="cb1135-27"><a href="semi-structured-data.html#cb1135-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1135-28"><a href="semi-structured-data.html#cb1135-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(out)</span>
-<span id="cb1135-29"><a href="semi-structured-data.html#cb1135-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1135-30"><a href="semi-structured-data.html#cb1135-30" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div>
+<div class="sourceCode" id="cb1132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1132-1"><a href="semi-structured-data.html#cb1132-1" aria-hidden="true" tabindex="-1"></a>extract_all <span class="ot">&lt;-</span> <span class="cf">function</span>(term, begin_date, end_date, key) {</span>
+<span id="cb1132-2"><a href="semi-structured-data.html#cb1132-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1132-3"><a href="semi-structured-data.html#cb1132-3" aria-hidden="true" tabindex="-1"></a>    request <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">&quot;http://api.nytimes.com/svc/search/v2/articlesearch.json&quot;</span>,</span>
+<span id="cb1132-4"><a href="semi-structured-data.html#cb1132-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">query =</span> <span class="fu">list</span>(<span class="st">&#39;q&#39;</span> <span class="ot">=</span> term,</span>
+<span id="cb1132-5"><a href="semi-structured-data.html#cb1132-5" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&#39;begin_date&#39;</span> <span class="ot">=</span> begin_date,</span>
+<span id="cb1132-6"><a href="semi-structured-data.html#cb1132-6" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&#39;end_date&#39;</span> <span class="ot">=</span> end_date,</span>
+<span id="cb1132-7"><a href="semi-structured-data.html#cb1132-7" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&#39;api-key&#39;</span> <span class="ot">=</span> key))</span>
+<span id="cb1132-8"><a href="semi-structured-data.html#cb1132-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1132-9"><a href="semi-structured-data.html#cb1132-9" aria-hidden="true" tabindex="-1"></a>    max_pages <span class="ot">&lt;-</span> (<span class="fu">round</span>(<span class="fu">content</span>(request)<span class="sc">$</span>response<span class="sc">$</span>meta<span class="sc">$</span>hits[<span class="dv">1</span>] <span class="sc">/</span> <span class="dv">10</span>) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb1132-10"><a href="semi-structured-data.html#cb1132-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1132-11"><a href="semi-structured-data.html#cb1132-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="fu">glue</span>(<span class="st">&quot;The total number of pages is {max_pages}&quot;</span>))</span>
+<span id="cb1132-12"><a href="semi-structured-data.html#cb1132-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1132-13"><a href="semi-structured-data.html#cb1132-13" aria-hidden="true" tabindex="-1"></a>    iter <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>max_pages</span>
+<span id="cb1132-14"><a href="semi-structured-data.html#cb1132-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1132-15"><a href="semi-structured-data.html#cb1132-15" aria-hidden="true" tabindex="-1"></a>    arg_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">rep</span>(term, <span class="at">times =</span> <span class="fu">length</span>(iter)),</span>
+<span id="cb1132-16"><a href="semi-structured-data.html#cb1132-16" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">rep</span>(begin_date, <span class="at">times =</span> <span class="fu">length</span>(iter)),</span>
+<span id="cb1132-17"><a href="semi-structured-data.html#cb1132-17" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">rep</span>(end_date, <span class="at">times =</span> <span class="fu">length</span>(iter)),</span>
+<span id="cb1132-18"><a href="semi-structured-data.html#cb1132-18" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">rep</span>(key, <span class="at">times =</span> <span class="fu">length</span>(iter)),</span>
+<span id="cb1132-19"><a href="semi-structured-data.html#cb1132-19" aria-hidden="true" tabindex="-1"></a>                     iter</span>
+<span id="cb1132-20"><a href="semi-structured-data.html#cb1132-20" aria-hidden="true" tabindex="-1"></a>                     )</span>
+<span id="cb1132-21"><a href="semi-structured-data.html#cb1132-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1132-22"><a href="semi-structured-data.html#cb1132-22" aria-hidden="true" tabindex="-1"></a>    out <span class="ot">&lt;-</span> <span class="fu">pmap_dfr</span>(arg_list, <span class="fu">slowly</span>(get_content,</span>
+<span id="cb1132-23"><a href="semi-structured-data.html#cb1132-23" aria-hidden="true" tabindex="-1"></a>                                     <span class="co"># 6 seconds sleep is the default requirement.</span></span>
+<span id="cb1132-24"><a href="semi-structured-data.html#cb1132-24" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">rate =</span> <span class="fu">rate_delay</span>(</span>
+<span id="cb1132-25"><a href="semi-structured-data.html#cb1132-25" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">pause =</span> <span class="dv">6</span>,</span>
+<span id="cb1132-26"><a href="semi-structured-data.html#cb1132-26" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">max_times =</span> <span class="dv">4000</span>)))</span>
+<span id="cb1132-27"><a href="semi-structured-data.html#cb1132-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1132-28"><a href="semi-structured-data.html#cb1132-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(out)</span>
+<span id="cb1132-29"><a href="semi-structured-data.html#cb1132-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1132-30"><a href="semi-structured-data.html#cb1132-30" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div>
 
 </div>
 </div>
