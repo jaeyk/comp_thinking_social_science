@@ -184,8 +184,6 @@ data <- data_original
 theme_set(theme_minimal())
 ```
 
-- For more information on the Iowa housing data, read [Cook (2011)](http://jse.amstat.org/v19n3/decock.pdf). This is one of the famous datastets used in many prediction modeling competitions.
-
 ## Workflow 
 
 - 1. Preprocessing
@@ -194,7 +192,6 @@ theme_set(theme_minimal())
 - 4. Model evaluation
 - 5. Model tuning
 - 6. Prediction
-
 
 ## tidymodels 
 
@@ -541,8 +538,15 @@ x -> f - > y (defined)
 # OLS spec 
 ols_spec <- linear_reg() %>% # Specify a model 
   set_engine("lm") %>% # Specify an engine: lm, glmnet, stan, keras, spark 
-  set_mode("regression") # Declare a mode: regression or classification 
+  set_mode("regression") # Declare a mode: regression or classification
+```
 
+![Source: http://ethen8181.github.io](http://ethen8181.github.io/machine-learning/regularization/images/lasso_ridge_coefficients.png)
+
+Lasso is one of the regularization techniques along with ridge and elastic-net. 
+
+
+```r
 # Lasso spec 
 lasso_spec <- linear_reg(penalty = 0.1, # tuning hyperparameter 
                          mixture = 1) %>% # 1 = lasso, 0 = ridge 
@@ -592,14 +596,14 @@ map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit)
 ## [[1]]
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-18-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
 
 ```
 ## 
 ## [[2]]
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-18-2.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-19-2.pdf)<!-- --> 
 
 
 ```r
@@ -620,7 +624,7 @@ evals %>%
     facet_wrap(~glue("{toupper(.metric)}"), scales = "free_y") 
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-20-1.pdf)<!-- --> 
 - For more information, read [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
 
 #### tune 
@@ -628,6 +632,14 @@ evals %>%
 **Hyper**parameters are parameters that control the learning process.
 
 ##### tune ingredients 
+
+-   Search space for hyperparameters
+
+1. Grid search: a grid of hyperparameters 
+
+2. Random search: random sample points from a bounded domain
+
+![](https://www.programmersought.com/images/523/7e44435f20fe514c11ca0d930af8547b.png)
 
 
 ```r
@@ -655,7 +667,12 @@ tune_spec
 # penalty() searches 50 possible combinations 
 
 lambda_grid <- grid_regular(penalty(), levels = 50)
+```
 
+![Source: Kaggle](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4788946%2F82b5a41b6693a313b246f02d79e972d5%2FK%20FOLD.png?generation=1608195745131795&alt=media)
+
+
+```r
 # 10-fold cross-validation
 
 set.seed(1234) # for reproducibility 
@@ -707,10 +724,18 @@ rec_res %>%
   theme(legend.position = "none")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-23-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-25-1.pdf)<!-- --> 
 
 ##### Select 
 
+
+```r
+conflict_prefer("filter", "dplyr")
+```
+
+```
+## [conflicted] Will prefer dplyr::filter over any other package
+```
 
 ```r
 top_rmse <- show_best(rec_res, metric = "rmse")
@@ -767,7 +792,7 @@ finalize_lasso %>%
   vip::vip()
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-25-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-27-1.pdf)<!-- --> 
 
 ##### Test fit 
 
@@ -830,17 +855,30 @@ tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_
 
 - Let's formally test prediction performance. 
 
-**Metrics**
+1.  Confusion matrix
 
-- `accuracy`: The proportion of the data predicted correctly 
+A confusion matrix is often used to describe the performance of a classification model. The below example is based on a binary classification model.
 
-- `precision`: Positive predictive value
+|                 | Predicted: YES      | Predicted: NO       |
+|-----------------|---------------------|---------------------|
+| **Actual: YES** | True positive (TP)  | False negative (FN) |
+| **Actual: NO**  | False positive (FP) | True negative (TN)  |
 
-- `recall` (specificity): True positive rate (e.g., healthy people healthy)
+2.  Metrics
 
-![From wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png)
+-   `accuracy`: The proportion of the data predicted correctly ($\frac{TP + TN}{total}$). 1 - accuracy = misclassification rate.
 
-- To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html). 
+-   `precision`: Positive predictive value. *When the model predicts yes, how correct is it?* ($\frac{TP}{TP + FP}$)
+
+-   `recall` (sensitivity): True positive rate (e.g., healthy people healthy). *When the actual value is yes, how often does the model predict yes?* ($\frac{TP}{TP + FN}$)
+
+-   `F-score`: A weighted average between precision and recall. 
+
+-   `ROC Curve` (receiver operating characteristic curve): a plot that shows the relationship between true and false positive rates at different classification thresholds. y-axis indicates the true positive rate and x-axis indicates the false positive rate. What matters is the AUC (Area under the ROC Curve), which is a cumulative probability function of ranking a random "positive" - "negative" pair (for the probability of AUC, see [this blog post](https://www.alexejgossmann.com/auc/)).
+
+![Source: Google Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/images/ROCCurve.svg)
+
+-   To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html).
 
 
 ```r
@@ -855,7 +893,7 @@ tree_fit_viz_metr <- visualize_class_eval(tree_fit)
 tree_fit_viz_metr
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-29-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-31-1.pdf)<!-- --> 
 
 ```r
 tree_fit_viz_mat <- visualize_class_conf(tree_fit)
@@ -863,7 +901,7 @@ tree_fit_viz_mat <- visualize_class_conf(tree_fit)
 tree_fit_viz_mat
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-29-2.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-31-2.pdf)<!-- --> 
 
 #### tune 
 
@@ -895,7 +933,7 @@ tree_grid %>%
 ```
 ## # A tibble: 5 x 2
 ##   tree_depth     n
-## *      <int> <int>
+##        <int> <int>
 ## 1          1     5
 ## 2          4     5
 ## 3          8     5
@@ -961,7 +999,7 @@ tree_res %>%
   coord_flip()
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-32-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-34-1.pdf)<!-- --> 
 
 ##### Select 
 
@@ -984,14 +1022,14 @@ tree_fit_tuned <- finalize_tree %>%
 (tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-34-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-36-1.pdf)<!-- --> 
 
 ```r
 # Confusion matrix 
 (tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-34-2.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-36-2.pdf)<!-- --> 
 
 - Visualize variable importance 
 
@@ -1002,7 +1040,7 @@ tree_fit_tuned %>%
   vip::vip()
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-35-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-37-1.pdf)<!-- --> 
 
 ##### Test fit
 
@@ -1101,16 +1139,6 @@ rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_
 
 #### yardstick 
 
-- Let's formally test prediction performance. 
-
-**Metrics**
-
-- `accuracy`: The proportion of the data predicted correctly 
-
-- `precision`: Positive predictive value
-
-- `recall` (specificity): True positive rate (e.g., healthy people healthy)
-
 
 ```r
 # Define performance metrics 
@@ -1121,7 +1149,7 @@ rand_fit_viz_metr <- visualize_class_eval(rand_fit)
 rand_fit_viz_metr
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-39-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-41-1.pdf)<!-- --> 
 
 - Visualize the confusion matrix. 
   
@@ -1132,7 +1160,7 @@ rand_fit_viz_mat <- visualize_class_conf(rand_fit)
 rand_fit_viz_mat
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-40-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-42-1.pdf)<!-- --> 
 
 #### tune 
 
@@ -1168,7 +1196,7 @@ rand_grid %>%
 ```
 ## # A tibble: 5 x 2
 ##   min_n     n
-## * <int> <int>
+##   <int> <int>
 ## 1     2     5
 ## 2     4     5
 ## 3     6     5
@@ -1227,7 +1255,7 @@ rand_res %>%
   theme(legend.position="bottom")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-44-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-46-1.pdf)<!-- --> 
 
 
 ```r
@@ -1259,14 +1287,14 @@ rand_fit_tuned <- finalize_tree %>%
 (rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-46-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-48-1.pdf)<!-- --> 
 
 ```r
 # Confusion matrix 
 (rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-46-2.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-48-2.pdf)<!-- --> 
 
 - Visualize variable importance 
 
@@ -1277,7 +1305,7 @@ rand_fit_tuned %>%
   vip::vip()
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-47-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-49-1.pdf)<!-- --> 
 
 ##### Test fit
 
@@ -1350,20 +1378,10 @@ xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_clas
 ```
 
 ```
-## [14:36:15] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:48:52] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
 ```
 
 #### yardstick 
-
-- Let's formally test prediction performance. 
-
-**Metrics**
-
-- `accuracy`: The proportion of the data predicted correctly 
-
-- `precision`: Positive predictive value
-
-- `recall` (specificity): True positive rate (e.g., healthy people healthy)
 
 
 ```r
@@ -1390,7 +1408,7 @@ xg_fit_viz_metr <- visualize_class_eval(xg_fit)
 xg_fit_viz_metr
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-52-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-54-1.pdf)<!-- --> 
 
 - Visualize the confusion matrix. 
   
@@ -1401,7 +1419,7 @@ xg_fit_viz_mat <- visualize_class_conf(xg_fit)
 xg_fit_viz_mat
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-53-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-55-1.pdf)<!-- --> 
 
 #### tune 
 
@@ -1500,7 +1518,7 @@ xg_res %>%
          x = NULL)
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-56-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-58-1.pdf)<!-- --> 
 
 
 ```r
@@ -1530,7 +1548,7 @@ xg_fit_tuned <- finalize_xg %>%
 ```
 
 ```
-## [14:37:42] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:49:53] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
 ```
 
 ```r
@@ -1538,14 +1556,14 @@ xg_fit_tuned <- finalize_xg %>%
 (xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-58-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-60-1.pdf)<!-- --> 
 
 ```r
 # Confusion matrix 
 (xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-58-2.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-60-2.pdf)<!-- --> 
 
 - Visualize variable importance 
 
@@ -1556,7 +1574,7 @@ xg_fit_tuned %>%
   vip::vip()
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-59-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-61-1.pdf)<!-- --> 
 
 ##### Test fit
 
@@ -1569,7 +1587,7 @@ test_fit <- finalize_xg %>%
 ```
 
 ```
-## [14:37:45] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:49:55] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
 ```
 
 ```r
@@ -1684,61 +1702,61 @@ cv_sl <-  SuperLearner::CV.SuperLearner(
 ```
 
 ```
-## [14:37:46] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:46] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:48] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:48] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:49] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:49] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:50] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:51] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:52] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:53] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:53] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:55] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:55] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:56] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:57] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:57] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:58] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:59] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:37:59] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:00] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:01] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:02] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:03] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:04] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:04] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:06] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:07] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:07] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:08] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:09] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:09] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:10] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:10] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:12] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:13] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:13] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:14] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:15] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:16] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:17] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:17] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:18] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:19] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:20] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:21] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:21] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:23] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:23] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:24] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:26] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:26] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:27] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:28] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:29] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [14:38:30] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:49:57] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:49:58] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:49:58] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:49:58] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:49:59] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:49:59] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:00] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:00] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:01] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:01] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:02] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:02] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:03] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:03] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:04] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:04] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:04] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:05] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:05] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:06] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:06] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:07] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:07] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:08] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:08] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:09] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:09] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:10] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:10] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:11] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:11] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:12] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:12] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:13] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:13] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:14] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:14] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:14] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:15] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:15] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:16] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:16] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:17] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:17] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:17] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:18] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:18] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:19] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:19] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:20] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:20] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:21] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:21] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:22] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [15:50:22] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
 ```
 
 #### Risk
@@ -1833,7 +1851,7 @@ ck37r::auc_table(cv_sl)
 ck37r::plot_roc(cv_sl)
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-66-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-68-1.pdf)<!-- --> 
 
 ##### Review weight distribution for the SuperLearner
 
@@ -1871,15 +1889,29 @@ x -> f - > y (not defined)
 
 #### Correlation analysis 
 
-- Notice some problems? 
+This dataset is a good problem for PCA as some features are highly correlated. 
 
-    - NAs 
-    
-    - Scaling issues 
-    
+Again, thin about what the dataset is about. The following data dictionary comes from [this site](http://rstudio-pubs-static.s3.amazonaws.com/24341_184a58191486470cab97acdbbfe78ed5.html).
+
+* age - age in years
+* sex - sex (1 = male; 0 = female)
+* cp - chest pain type (1 = typical angina; 2 = atypical angina; 3 = non-anginal pain; 4 = asymptomatic)
+* trestbps - resting blood pressure (in mm Hg on admission to the hospital)
+* chol - serum cholestoral in mg/dl
+* fbs - fasting blood sugar > 120 mg/dl (1 = true; 0 = false)
+* restecg - resting electrocardiographic results (0 = normal; 1 = having ST-T; 2 = hypertrophy)
+* thalach - maximum heart rate achieved
+* exang - exercise induced angina (1 = yes; 0 = no)
+* oldpeak - ST depression induced by exercise relative to rest
+slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = downsloping)
+* ca - number of major vessels (0-3) colored by flourosopy
+* thal - 3 = normal; 6 = fixed defect; 7 = reversable defect
+* num - the predicted attribute - diagnosis of heart disease (angiographic disease status) (Value 0 = < 50% diameter narrowing; Value 1 = > 50% diameter narrowing)
+
 
 ```r
 data_original %>%
+  select(-target) %>%
   corrr::correlate()
 ```
 
@@ -1890,7 +1922,7 @@ data_original %>%
 ```
 
 ```
-## # A tibble: 14 x 15
+## # A tibble: 13 x 14
 ##    term         age     sex      cp trestbps     chol      fbs restecg  thalach
 ##    <chr>      <dbl>   <dbl>   <dbl>    <dbl>    <dbl>    <dbl>   <dbl>    <dbl>
 ##  1 age      NA      -0.0984 -0.0687   0.279   0.214    0.121   -0.116  -0.399  
@@ -1906,10 +1938,36 @@ data_original %>%
 ## 11 slope    -0.169  -0.0307  0.120   -0.121  -0.00404 -0.0599   0.0930  0.387  
 ## 12 ca        0.276   0.118  -0.181    0.101   0.0705   0.138   -0.0720 -0.213  
 ## 13 thal      0.0680  0.210  -0.162    0.0622  0.0988  -0.0320  -0.0120 -0.0964 
-## 14 target   -0.225  -0.281   0.434   -0.145  -0.0852  -0.0280   0.137   0.422  
-## # ... with 6 more variables: exang <dbl>,
-## #   oldpeak <dbl>, slope <dbl>, ca <dbl>,
-## #   thal <dbl>, target <dbl>
+## # ... with 5 more variables: exang <dbl>, oldpeak <dbl>, slope <dbl>, ca <dbl>,
+## #   thal <dbl>
+```
+
+#### Descriptive statistics 
+
+Notice the scaling issues? PCA is not scale-invariant. So, we need to fix this problem.
+
+
+```r
+min_max <- list(
+  min = ~min(.x, na.rm = TRUE), 
+  max = ~max(.x, na.rm = TRUE)
+)
+
+data_original %>%
+  select(-target) %>%
+  summarise(across(where(is.numeric), min_max))
+```
+
+```
+## # A tibble: 1 x 26
+##   age_min age_max sex_min sex_max cp_min cp_max trestbps_min trestbps_max
+##     <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>        <dbl>        <dbl>
+## 1      29      77       0       1      0      3           94          200
+## # ... with 18 more variables: chol_min <dbl>, chol_max <dbl>, fbs_min <dbl>,
+## #   fbs_max <dbl>, restecg_min <dbl>, restecg_max <dbl>, thalach_min <dbl>,
+## #   thalach_max <dbl>, exang_min <dbl>, exang_max <dbl>, oldpeak_min <dbl>,
+## #   oldpeak_max <dbl>, slope_min <dbl>, slope_max <dbl>, ca_min <dbl>,
+## #   ca_max <dbl>, thal_min <dbl>, thal_max <dbl>
 ```
 
 #### Preprocessing 
@@ -1923,6 +1981,11 @@ pca_recipe <- recipe(~., data = data_original) %>%
   step_meanimpute(all_predictors()) %>%
   # Normalize some numeric variables 
   step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak")) 
+```
+
+```
+## Warning: `step_meanimpute()` was deprecated in recipes 0.1.16.
+## Please use `step_impute_mean()` instead.
 ```
 
 #### PCA analysis 
@@ -1993,7 +2056,7 @@ pca_recipe %>%
          title = "Scree plot")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-71-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-74-1.pdf)<!-- --> 
 
 ##### View factor loadings 
 
@@ -2016,9 +2079,11 @@ pca_recipe %>%
          fill = "PCAs") 
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-72-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-75-1.pdf)<!-- --> 
 
-You can use these low-dimensional data to solve prediction problems. Compressing feature space via dimension reduction techniques is called feature extraction. PCA is one way of doing this. 
+**The key lesson**
+
+You can use these low-dimensional data to solve the curse of dimensionality problem. Compressing feature space via dimension reduction techniques is called feature extraction. PCA is one way of doing this.
 
 ### Topic modeling 
 
@@ -2136,9 +2201,11 @@ sherlock_words %>%
 ## Selecting by freq
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-75-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-78-1.pdf)<!-- --> 
 
-#### STM 
+#### STM
+
+[Structural Topic Modeling](https://www.structuraltopicmodel.com/) by Roberts, Stewart, and Tingley helps estimating how the proportions of topics vary by covariates. (That said, if you don't do covariate topic modeling, you don't need to use STM. Just use LDA.) The other useful topic modeling package is Keyword Assited Topic Models ([keyATM](https://keyatm.github.io/keyATM/)) by Shusei, Imai, and Sasaki.
 
 ##### Turn text into document-term matrix
 
@@ -2174,19 +2241,19 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.581) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.482, relative change = 1.312e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.408, relative change = 9.916e-03) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.383, relative change = 3.336e-03) 
 ## ....................................................................................................
@@ -2199,23 +2266,23 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 4: said, will, can, face, matter 
 ##  Topic 5: one, see, shall, time, must 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.367, relative change = 6.889e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.365, relative change = 3.221e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.364, relative change = 1.281e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.364, relative change = 1.012e-05) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -2226,15 +2293,15 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.666) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.481, relative change = 2.408e-02) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.387, relative change = 1.265e-02) 
 ## ....................................................................................................
@@ -2242,7 +2309,7 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.361, relative change = 3.497e-03) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 5 (approx. per word bound = -7.351, relative change = 1.396e-03) 
 ## Topic 1: upon, littl, paper, even, came 
@@ -2256,11 +2323,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 9: will, sherlock, two, might, famili 
 ##  Topic 10: tabl, heard, die, might, record 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.346, relative change = 7.034e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.342, relative change = 5.221e-04) 
 ## ....................................................................................................
@@ -2268,11 +2335,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.338, relative change = 5.161e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.336, relative change = 2.460e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -2283,23 +2350,23 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  	........................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.738) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.461, relative change = 3.577e-02) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.367, relative change = 1.264e-02) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.343, relative change = 3.252e-03) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 5 (approx. per word bound = -7.333, relative change = 1.367e-03) 
 ## Topic 1: matter, like, made, much, street 
@@ -2318,23 +2385,23 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 14: man, reason, certain, strang, crime 
 ##  Topic 15: might, twist, hand, never, come 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.328, relative change = 7.011e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.324, relative change = 4.535e-04) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.322, relative change = 3.650e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.320, relative change = 2.220e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 10 (approx. per word bound = -7.318, relative change = 2.408e-04) 
 ## Topic 1: matter, much, like, even, away 
@@ -2357,11 +2424,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## Completed M-Step. 
 ## Completing Iteration 11 (approx. per word bound = -7.317, relative change = 1.808e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 12 (approx. per word bound = -7.316, relative change = 1.221e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 13 (approx. per word bound = -7.315, relative change = 8.460e-05) 
 ## ....................................................................................................
@@ -2388,33 +2455,38 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ##  Topic 14: man, reason, certain, strang, lord 
 ##  Topic 15: might, make, thing, word, follow 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Model Converged
 ```
 
 ##### Evaludating models 
 
-There are several metrics to assess topic models' performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. This course examines the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
+Several metrics assess topic models' performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. Here we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
+
+> In Roberts et al 2014 we proposed using the Mimno et al 2011 semanticCoherence metric for helping with topic model selection. We found that semantic coherence alone is relatively easy to achieve by having only a couple of topics which all are dominated by the most common words. Thus we also proposed an exclusivity measure.
+
+> Our exclusivity measure includes some information on word frequency as well. It is based on the FREX labeling metric (calcfrex) with the weight set to .7 in favor of exclusivity by default.
 
 
 ```r
 test_res$results %>%
-  unnest(K, exclus, semcoh) %>%
-  dplyr::select(K, exclus, semcoh) %>%
+  unnest(c(K, exclus, semcoh)) %>%
+  select(K, exclus, semcoh) %>%
   mutate(K = as.factor(K)) %>%
   ggplot(aes(x = exclus, y = semcoh)) +
+    geom_point() +
     geom_text(label = glue("K = {test_res$results$K}"),
               size = 5,
-              color = "red")
+              color = "red",
+              position = position_jitter(width = 0.05,
+                                         height = 0.05)) +
+    labs(x = "Exclusivity",
+         y = "Semantic coherence", 
+         title = "Exclusivity and semantic coherence")
 ```
 
-```
-## Warning: unnest() has a new interface. See ?unnest for details.
-## Try `df %>% unnest(c(K, exclus, semcoh))`, with `mutate()` if needed
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-78-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-81-1.pdf)<!-- --> 
 
 ##### Finalize 
 
@@ -2440,9 +2512,11 @@ final_stm <- stm(dtm$documents,
 plot(final_stm)
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-80-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-83-1.pdf)<!-- --> 
 
 - Using ggplot2 
+
+In LDA distribution, $\alpha$ represents document-topic density and $\beta$ represents topic-word density. 
 
 
 ```r
@@ -2462,7 +2536,7 @@ tidy_stm %>%
     scale_fill_viridis_d()
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-81-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-84-1.pdf)<!-- --> 
 
 ## Bias and fairness in machine learning 
 
@@ -2495,13 +2569,7 @@ For more information on ProPublica's Machine Bias project, we encourage you to c
 
 ```r
 if (!require("pacman")) install.packages("pacman")
-```
 
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
  tidyverse, # tidyverse packages 
  conflicted, # an alternative conflict resolution strategy 
@@ -2639,11 +2707,9 @@ head(df, 5)
 ## 3    24 F     African~ Less th~ Low        Male              4                -1
 ## 4    44 M     Other    25 - 45  Low        Male              0                 0
 ## 5    41 F     Caucasi~ 25 - 45  Medium     Male             14                -1
-## # ... with 8 more variables:
-## #   decile_score <dbl>, is_recid <dbl>,
-## #   two_year_recid <dbl>, c_jail_in <dttm>,
-## #   c_jail_out <dttm>, length_of_stay <dbl>,
-## #   score <fct>, score_num <dbl>
+## # ... with 8 more variables: decile_score <dbl>, is_recid <dbl>,
+## #   two_year_recid <dbl>, c_jail_in <dttm>, c_jail_out <dttm>,
+## #   length_of_stay <dbl>, score <fct>, score_num <dbl>
 ```
 
 #### Descriptive analysis 
@@ -2670,7 +2736,7 @@ df %>%
          title = "Score distribution")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-86-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-89-1.pdf)<!-- --> 
 
 Judges are often presented with two sets of scores from the COMPAS system -- one that classifies people into High, Medium, and Low risk and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.
 
@@ -2685,7 +2751,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-87-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-90-1.pdf)<!-- --> 
 
 #### Modeling 
 
@@ -2760,7 +2826,7 @@ lr_model %>%
   geom_hline(yintercept = 0, linetype = "dashed")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-90-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-93-1.pdf)<!-- --> 
 
 Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success, and 1-p could be as a failure. Here, coefficient 1 indicates the equal probability for the binary outcomes. A coefficient greater than 1 indicates a strong chance for p and a weak chance for 1-p. A coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
 
@@ -2836,7 +2902,7 @@ odds_to_risk(lr_model) %>%
         geom_hline(yintercept = 1, linetype = "dashed")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-93-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-96-1.pdf)<!-- --> 
 
 ### Bias in the Data (Risk of Violent Recidivism Analysis)
 
@@ -2902,7 +2968,7 @@ two_years_violent <- read_csv(here("data" ,"compas-scores-two-years-violent.csv"
 
 ```
 ## 
-## -- Column specification ------------------------
+## -- Column specification --------------------------------------------------------------
 ## cols(
 ##   .default = col_double(),
 ##   name = col_character(),
@@ -3006,8 +3072,7 @@ head(df, 5) # Check whether the function works as expected
 ## 3    44 M     Other      25 - 45    Low   Male              0                  0
 ## 4    43 F     Other      25 - 45    Low   Male              3                 -1
 ## 5    39 M     Caucasian  25 - 45    Low   Female            0                 -1
-## # ... with 4 more variables:
-## #   v_decile_score <dbl>, is_recid <dbl>,
+## # ... with 4 more variables: v_decile_score <dbl>, is_recid <dbl>,
 ## #   two_year_recid <dbl>, score_num <dbl>
 ```
 
@@ -3027,7 +3092,7 @@ df %>%
          title = "Score distribution")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-98-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-101-1.pdf)<!-- --> 
 
 - Score distribution by race
 
@@ -3042,7 +3107,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-99-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-102-1.pdf)<!-- --> 
 #### Modeling 
 
 After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. We need to change some variables into factors and run a logistic regression, comparing low scores to high scores.
@@ -3114,7 +3179,7 @@ lr_model %>%
   geom_hline(yintercept = 0, linetype = "dashed")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-102-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-105-1.pdf)<!-- --> 
 
 Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success, and 1-p could be as a failure. Here, coefficient 1 indicates the equal probability for the binary outcomes. A coefficient greater than 1 indicates strong chance for p and a weak chance for 1-p. A coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
 
@@ -3190,7 +3255,7 @@ odds_to_risk(lr_model) %>%
         geom_hline(yintercept = 1, linetype = "dashed")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-105-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-108-1.pdf)<!-- --> 
 
 
 ### Bias in the algorithm 
@@ -3235,7 +3300,7 @@ cox_data <- read_csv(here("data" ,"cox-parsed.csv"))
 
 ```
 ## 
-## -- Column specification ------------------------
+## -- Column specification --------------------------------------------------------------
 ## cols(
 ##   .default = col_character(),
 ##   id = col_double(),
@@ -3305,7 +3370,7 @@ grp %>%
              title = "Score distribution")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-109-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-112-1.pdf)<!-- --> 
 
 - Score distribution by race
 
@@ -3320,7 +3385,7 @@ df %>%
                Title = "Defendant's Decile Score")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-110-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-113-1.pdf)<!-- --> 
 
 #### Modeling 
 
@@ -3340,7 +3405,7 @@ model %>%
   labs(y = "Estimate", x = "")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-111-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-114-1.pdf)<!-- --> 
 
 The interaction term shows a similar disparity as the logistic regression above.
 
@@ -3370,7 +3435,7 @@ fit %>%
 visualize_surv(df) + ggtitle("Overall")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-113-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-116-1.pdf)<!-- --> 
 
 Black defendants do recidivate at higher rates according to race-specific Kaplan Meier plots.
 
@@ -3380,7 +3445,7 @@ Black defendants do recidivate at higher rates according to race-specific Kaplan
 (df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American")) 
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-114-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-117-1.pdf)<!-- --> 
 
 In terms of underlying recidivism rates, we can look at gender-specific Kaplan Meier estimates. There is a striking difference between women and men.
 
@@ -3391,7 +3456,7 @@ In terms of underlying recidivism rates, we can look at gender-specific Kaplan M
 (df %>% filter(sex == "Male") %>% visualize_surv() + ggtitle("Male"))
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-115-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-118-1.pdf)<!-- --> 
 
 As these plots show, the COMPAS score treats a high-risk woman the same as a Medium risk man.
 
@@ -3488,7 +3553,7 @@ read.csv(here("data", "table_recid.csv"))[,-1] %>%
   labs(title = "Recidivism")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-122-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-125-1.pdf)<!-- --> 
 
 That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
 
@@ -3532,7 +3597,7 @@ read.csv(here("data", "comp_tables_recid.csv"))[,-1] %>%
   labs(title = "Recidivism")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-125-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-128-1.pdf)<!-- --> 
 
 #### Risk of Violent Recidivism accuracy
 
@@ -3577,7 +3642,7 @@ read.csv(here("data", "table_vrecid.csv"))[,-1] %>%
   labs(title = "Violent recidivism")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-128-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-131-1.pdf)<!-- --> 
 
 Even more so for Black defendants.
 
@@ -3596,7 +3661,7 @@ read.csv(here("data", "comp_tables_vrecid.csv"))[,-1] %>%
   labs(title = "Violent recidivism")
 ```
 
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-130-1.pdf)<!-- --> 
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-133-1.pdf)<!-- --> 
 
 ## References
 
