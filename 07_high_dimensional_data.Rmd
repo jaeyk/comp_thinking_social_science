@@ -133,8 +133,6 @@ theme_set(theme_minimal())
 
 ```
 
-- For more information on the Iowa housing data, read [Cook (2011)](http://jse.amstat.org/v19n3/decock.pdf). This is one of the famous datastets used in many prediction modeling competitions.
-
 ## Workflow 
 
 ```{r echo=FALSE, results='asis'}
@@ -150,7 +148,6 @@ workflow_list <- c("Preprocessing",
 
 glue("- {seq(workflow_list)}. {workflow_list}")
 ```
-
 
 ## tidymodels 
 
@@ -405,12 +402,17 @@ x -> f - > y (defined)
 3. Specify a mode 
 
 ```{r}
-
 # OLS spec 
 ols_spec <- linear_reg() %>% # Specify a model 
   set_engine("lm") %>% # Specify an engine: lm, glmnet, stan, keras, spark 
-  set_mode("regression") # Declare a mode: regression or classification 
+  set_mode("regression") # Declare a mode: regression or classification
+```
 
+![Source: http://ethen8181.github.io](http://ethen8181.github.io/machine-learning/regularization/images/lasso_ridge_coefficients.png)
+
+Lasso is one of the regularization techniques along with ridge and elastic-net. 
+
+```{r}
 # Lasso spec 
 lasso_spec <- linear_reg(penalty = 0.1, # tuning hyperparameter 
                          mixture = 1) %>% # 1 = lasso, 0 = ridge 
@@ -472,8 +474,15 @@ evals %>%
 
 ##### tune ingredients 
 
-```{r}
+-   Search space for hyperparameters
 
+1. Grid search: a grid of hyperparameters 
+
+2. Random search: random sample points from a bounded domain
+
+![](https://www.programmersought.com/images/523/7e44435f20fe514c11ca0d930af8547b.png)
+
+```{r}
 # tune() = placeholder 
 
 tune_spec <- linear_reg(penalty = tune(), # tuning hyperparameter 
@@ -486,7 +495,11 @@ tune_spec
 # penalty() searches 50 possible combinations 
 
 lambda_grid <- grid_regular(penalty(), levels = 50)
+```
 
+![Source: Kaggle](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4788946%2F82b5a41b6693a313b246f02d79e972d5%2FK%20FOLD.png?generation=1608195745131795&alt=media)
+
+```{r}
 # 10-fold cross-validation
 
 set.seed(1234) # for reproducibility 
@@ -545,6 +558,7 @@ rec_res %>%
 ##### Select 
 
 ```{r}
+conflict_prefer("filter", "dplyr")
 
 top_rmse <- show_best(rec_res, metric = "rmse")
 
@@ -637,17 +651,30 @@ tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_
 
 - Let's formally test prediction performance. 
 
-**Metrics**
+1.  Confusion matrix
 
-- `accuracy`: The proportion of the data predicted correctly 
+A confusion matrix is often used to describe the performance of a classification model. The below example is based on a binary classification model.
 
-- `precision`: Positive predictive value
+|                 | Predicted: YES      | Predicted: NO       |
+|-----------------|---------------------|---------------------|
+| **Actual: YES** | True positive (TP)  | False negative (FN) |
+| **Actual: NO**  | False positive (FP) | True negative (TN)  |
 
-- `recall` (specificity): True positive rate (e.g., healthy people healthy)
+2.  Metrics
 
-![From wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png)
+-   `accuracy`: The proportion of the data predicted correctly ($\frac{TP + TN}{total}$). 1 - accuracy = misclassification rate.
 
-- To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html). 
+-   `precision`: Positive predictive value. *When the model predicts yes, how correct is it?* ($\frac{TP}{TP + FP}$)
+
+-   `recall` (sensitivity): True positive rate (e.g., healthy people healthy). *When the actual value is yes, how often does the model predict yes?* ($\frac{TP}{TP + FN}$)
+
+-   `F-score`: A weighted average between precision and recall. 
+
+-   `ROC Curve` (receiver operating characteristic curve): a plot that shows the relationship between true and false positive rates at different classification thresholds. y-axis indicates the true positive rate and x-axis indicates the false positive rate. What matters is the AUC (Area under the ROC Curve), which is a cumulative probability function of ranking a random "positive" - "negative" pair (for the probability of AUC, see [this blog post](https://www.alexejgossmann.com/auc/)).
+
+![Source: Google Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/images/ROCCurve.svg)
+
+-   To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html).
 
 ```{r}
 
@@ -879,16 +906,6 @@ rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_
 
 #### yardstick 
 
-- Let's formally test prediction performance. 
-
-**Metrics**
-
-- `accuracy`: The proportion of the data predicted correctly 
-
-- `precision`: Positive predictive value
-
-- `recall` (specificity): True positive rate (e.g., healthy people healthy)
-
 ```{r}
 
 # Define performance metrics 
@@ -1091,16 +1108,6 @@ xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_clas
 ```
 
 #### yardstick 
-
-- Let's formally test prediction performance. 
-
-**Metrics**
-
-- `accuracy`: The proportion of the data predicted correctly 
-
-- `precision`: Positive predictive value
-
-- `recall` (specificity): True positive rate (e.g., healthy people healthy)
 
 ```{r}
 
@@ -1405,17 +1412,46 @@ x -> f - > y (not defined)
 
 #### Correlation analysis 
 
-- Notice some problems? 
+This dataset is a good problem for PCA as some features are highly correlated. 
 
-    - NAs 
-    
-    - Scaling issues 
-    
+Again, thin about what the dataset is about. The following data dictionary comes from [this site](http://rstudio-pubs-static.s3.amazonaws.com/24341_184a58191486470cab97acdbbfe78ed5.html).
+
+* age - age in years
+* sex - sex (1 = male; 0 = female)
+* cp - chest pain type (1 = typical angina; 2 = atypical angina; 3 = non-anginal pain; 4 = asymptomatic)
+* trestbps - resting blood pressure (in mm Hg on admission to the hospital)
+* chol - serum cholestoral in mg/dl
+* fbs - fasting blood sugar > 120 mg/dl (1 = true; 0 = false)
+* restecg - resting electrocardiographic results (0 = normal; 1 = having ST-T; 2 = hypertrophy)
+* thalach - maximum heart rate achieved
+* exang - exercise induced angina (1 = yes; 0 = no)
+* oldpeak - ST depression induced by exercise relative to rest
+slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = downsloping)
+* ca - number of major vessels (0-3) colored by flourosopy
+* thal - 3 = normal; 6 = fixed defect; 7 = reversable defect
+* num - the predicted attribute - diagnosis of heart disease (angiographic disease status) (Value 0 = < 50% diameter narrowing; Value 1 = > 50% diameter narrowing)
+
 ```{r}
 
 data_original %>%
+  select(-target) %>%
   corrr::correlate()
 
+```
+
+#### Descriptive statistics 
+
+Notice the scaling issues? PCA is not scale-invariant. So, we need to fix this problem.
+
+```{r}
+min_max <- list(
+  min = ~min(.x, na.rm = TRUE), 
+  max = ~max(.x, na.rm = TRUE)
+)
+
+data_original %>%
+  select(-target) %>%
+  summarise(across(where(is.numeric), min_max))
 ```
 
 #### Preprocessing 
@@ -1488,7 +1524,9 @@ pca_recipe %>%
        
 ```
 
-You can use these low-dimensional data to solve prediction problems. Compressing feature space via dimension reduction techniques is called feature extraction. PCA is one way of doing this. 
+**The key lesson**
+
+You can use these low-dimensional data to solve the curse of dimensionality problem. Compressing feature space via dimension reduction techniques is called feature extraction. PCA is one way of doing this.
 
 ### Topic modeling 
 
@@ -1578,7 +1616,9 @@ sherlock_words %>%
 
 ```
 
-#### STM 
+#### STM
+
+[Structural Topic Modeling](https://www.structuraltopicmodel.com/) by Roberts, Stewart, and Tingley helps estimating how the proportions of topics vary by covariates. (That said, if you don't do covariate topic modeling, you don't need to use STM. Just use LDA.) The other useful topic modeling package is Keyword Assited Topic Models ([keyATM](https://keyatm.github.io/keyATM/)) by Shusei, Imai, and Sasaki.
 
 ##### Turn text into document-term matrix
 
@@ -1610,18 +1650,28 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 
 ##### Evaludating models 
 
-There are several metrics to assess topic models' performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. This course examines the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
+Several metrics assess topic models' performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. Here we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
+
+> In Roberts et al 2014 we proposed using the Mimno et al 2011 semanticCoherence metric for helping with topic model selection. We found that semantic coherence alone is relatively easy to achieve by having only a couple of topics which all are dominated by the most common words. Thus we also proposed an exclusivity measure.
+
+> Our exclusivity measure includes some information on word frequency as well. It is based on the FREX labeling metric (calcfrex) with the weight set to .7 in favor of exclusivity by default.
 
 ```{r}
 
 test_res$results %>%
-  unnest(K, exclus, semcoh) %>%
-  dplyr::select(K, exclus, semcoh) %>%
+  unnest(c(K, exclus, semcoh)) %>%
+  select(K, exclus, semcoh) %>%
   mutate(K = as.factor(K)) %>%
   ggplot(aes(x = exclus, y = semcoh)) +
+    geom_point() +
     geom_text(label = glue("K = {test_res$results$K}"),
               size = 5,
-              color = "red")
+              color = "red",
+              position = position_jitter(width = 0.05,
+                                         height = 0.05)) +
+    labs(x = "Exclusivity",
+         y = "Semantic coherence", 
+         title = "Exclusivity and semantic coherence")
 
 ```
 
@@ -1650,6 +1700,8 @@ plot(final_stm)
 ```
 
 - Using ggplot2 
+
+In LDA distribution, $\alpha$ represents document-topic density and $\beta$ represents topic-word density. 
 
 ```{r}
 # tidy  
