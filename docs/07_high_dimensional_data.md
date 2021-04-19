@@ -2142,23 +2142,32 @@ sherlock <- sherlock[,2:3]
 
 #### Key ideas 
 
-- Topics as **distributions** of words 
+![Source: paperswithcode.com](https://paperswithcode.com/media/thumbnails/task/task-0000000179-fd3a1d11_fGQkZCJ.jpg)
 
-- Documents as **distributions** of topics 
+-   Main papers: See [Latent Dirichlet Allocation](https://proceedings.neurips.cc/paper/2001/file/296472c9542ad4d4788d543508116cbc-Paper.pdf) by David M. Blei, Andrew Y. Ng and Michael I. Jordan (then all Berkeley) and this [follow-up paper](http://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/latent_dirichlet_allocation.pdf) with the same title.
 
-- What distributions?
+-   Topics as **distributions** of words ($\beta$ distribution)
 
-    - Probability 
+-   Documents as **distributions** of topics ($\alpha$ distribution)
 
-    - Multinominal (e.g., Latent Dirichlet Distribution)
+-   What distributions?
 
-- Words lie on a lower-dimensional space (dimension reduction)
+    -   Probability
 
-- Co-occurrence of words (clustering)
+    -   Multinominal
 
-- Bag of words (feature engineering)
-    - Upside: easy and fast (also quite working well)
-    - Downside: ignored grammatical structures and rich interactions among words (Alternative: word embeddings. Please check out [text2vec](http://text2vec.org/))
+-   Words lie on a lower-dimensional space (dimension reduction akin to PCA)
+
+-   Co-occurrence of words (clustering)
+
+-   Bag of words (feature engineering)
+
+    -   Upside: easy and fast (also working quite well)
+    -   Downside: ignored grammatical structures and rich interactions among words (Alternative: word embeddings. Please check out [text2vec](http://text2vec.org/))
+
+-   Documents are exchangeable (sequencing won't matter).
+
+-   Topics are independent (uncorrelated). If you don't think this assumption holds, use Correlated Topics Models by [Blei and Lafferty (2007)](https://arxiv.org/pdf/0708.3601.pdf#:~:text=The%20correlated%20topic%20model%20(CTM)%20is%20a%20hierarchical%20model%20of,are%20document%2D%20specific%20random%20variables.).
 
 #### Exploratory data analysis 
 
@@ -2205,7 +2214,11 @@ sherlock_words %>%
 
 #### STM
 
-[Structural Topic Modeling](https://www.structuraltopicmodel.com/) by Roberts, Stewart, and Tingley helps estimating how the proportions of topics vary by covariates. (That said, if you don't do covariate topic modeling, you don't need to use STM. Just use LDA.) The other useful topic modeling package is Keyword Assited Topic Models ([keyATM](https://keyatm.github.io/keyATM/)) by Shusei, Imai, and Sasaki.
+[Structural Topic Modeling](https://www.structuraltopicmodel.com/) by Roberts, Stewart, and Tingley helps estimating how the proportions of topics vary by covariates. If you don't use covaraites, this approach is close to CTM. The other useful (and very recent) topic modeling package is Keyword Assisted Topic Models ([keyATM](https://keyatm.github.io/keyATM/)) by Shusei, Imai, and Sasaki.
+
+Also, note that we didn't cover other important techniques in topic modeling such as dynamic and hierarchical topic modeling.
+
+![](https://warin.ca/shiny/stm/images/fig02.png)
 
 ##### Turn text into document-term matrix
 
@@ -2464,7 +2477,11 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 
 Several metrics assess topic models' performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. Here we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
 
-> In Roberts et al 2014 we proposed using the Mimno et al 2011 semanticCoherence metric for helping with topic model selection. We found that semantic coherence alone is relatively easy to achieve by having only a couple of topics which all are dominated by the most common words. Thus we also proposed an exclusivity measure.
+-   Semantic coherence: high probability words for a topic co-occur in documents
+
+-   Exclusivity: key words of one topic are not likely to appear as key words in other topics.
+
+> In Roberts et al 2014 we proposed using the Mimno et al 2011 semantic coherence metric for helping with topic model selection. We found that semantic coherence alone is relatively easy to achieve by having only a couple of topics which all are dominated by the most common words. Thus we also proposed an exclusivity measure.
 
 > Our exclusivity measure includes some information on word frequency as well. It is based on the FREX labeling metric (calcfrex) with the weight set to .7 in favor of exclusivity by default.
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2021-04-16" />
+<meta name="date" content="2021-04-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -2075,21 +2075,28 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 </div>
 <div id="key-ideas" class="section level4" number="8.7.2.3">
 <h4><span class="header-section-number">8.7.2.3</span> Key ideas</h4>
+<div class="figure">
+<img src="https://paperswithcode.com/media/thumbnails/task/task-0000000179-fd3a1d11_fGQkZCJ.jpg" alt="" />
+<p class="caption">Source: paperswithcode.com</p>
+</div>
 <ul>
-<li><p>Topics as <strong>distributions</strong> of words</p></li>
-<li><p>Documents as <strong>distributions</strong> of topics</p></li>
+<li><p>Main papers: See <a href="https://proceedings.neurips.cc/paper/2001/file/296472c9542ad4d4788d543508116cbc-Paper.pdf">Latent Dirichlet Allocation</a> by David M. Blei, Andrew Y. Ng and Michael I. Jordan (then all Berkeley) and this <a href="http://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/latent_dirichlet_allocation.pdf">follow-up paper</a> with the same title.</p></li>
+<li><p>Topics as <strong>distributions</strong> of words (<span class="math inline">\(\beta\)</span> distribution)</p></li>
+<li><p>Documents as <strong>distributions</strong> of topics (<span class="math inline">\(\alpha\)</span> distribution)</p></li>
 <li><p>What distributions?</p>
 <ul>
 <li><p>Probability</p></li>
-<li><p>Multinominal (e.g., Latent Dirichlet Distribution)</p></li>
+<li><p>Multinominal</p></li>
 </ul></li>
-<li><p>Words lie on a lower-dimensional space (dimension reduction)</p></li>
+<li><p>Words lie on a lower-dimensional space (dimension reduction akin to PCA)</p></li>
 <li><p>Co-occurrence of words (clustering)</p></li>
 <li><p>Bag of words (feature engineering)</p>
 <ul>
-<li>Upside: easy and fast (also quite working well)</li>
+<li>Upside: easy and fast (also working quite well)</li>
 <li>Downside: ignored grammatical structures and rich interactions among words (Alternative: word embeddings. Please check out <a href="http://text2vec.org/">text2vec</a>)</li>
 </ul></li>
+<li><p>Documents are exchangeable (sequencing won’t matter).</p></li>
+<li><p>Topics are independent (uncorrelated). If you don’t think this assumption holds, use Correlated Topics Models by <a href="https://arxiv.org/pdf/0708.3601.pdf#:~:text=The%20correlated%20topic%20model%20(CTM)%20is%20a%20hierarchical%20model%20of,are%20document%2D%20specific%20random%20variables.">Blei and Lafferty (2007)</a>.</p></li>
 </ul>
 </div>
 <div id="exploratory-data-analysis" class="section level4" number="8.7.2.4">
@@ -2124,7 +2131,9 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 </div>
 <div id="stm" class="section level4" number="8.7.2.5">
 <h4><span class="header-section-number">8.7.2.5</span> STM</h4>
-<p><a href="https://www.structuraltopicmodel.com/">Structural Topic Modeling</a> by Roberts, Stewart, and Tingley helps estimating how the proportions of topics vary by covariates. (That said, if you don’t do covariate topic modeling, you don’t need to use STM. Just use LDA.) The other useful topic modeling package is Keyword Assited Topic Models (<a href="https://keyatm.github.io/keyATM/">keyATM</a>) by Shusei, Imai, and Sasaki.</p>
+<p><a href="https://www.structuraltopicmodel.com/">Structural Topic Modeling</a> by Roberts, Stewart, and Tingley helps estimating how the proportions of topics vary by covariates. If you don’t use covaraites, this approach is close to CTM. The other useful (and very recent) topic modeling package is Keyword Assisted Topic Models (<a href="https://keyatm.github.io/keyATM/">keyATM</a>) by Shusei, Imai, and Sasaki.</p>
+<p>Also, note that we didn’t cover other important techniques in topic modeling such as dynamic and hierarchical topic modeling.</p>
+<p><img src="https://warin.ca/shiny/stm/images/fig02.png" /></p>
 <div id="turn-text-into-document-term-matrix" class="section level5" number="8.7.2.5.1">
 <h5><span class="header-section-number">8.7.2.5.1</span> Turn text into document-term matrix</h5>
 <p><code>stm</code> package has its preprocessing function.</p>
@@ -2372,8 +2381,12 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <div id="evaludating-models" class="section level5" number="8.7.2.5.3">
 <h5><span class="header-section-number">8.7.2.5.3</span> Evaludating models</h5>
 <p>Several metrics assess topic models’ performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. Here we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.</p>
+<ul>
+<li><p>Semantic coherence: high probability words for a topic co-occur in documents</p></li>
+<li><p>Exclusivity: key words of one topic are not likely to appear as key words in other topics.</p></li>
+</ul>
 <blockquote>
-<p>In Roberts et al 2014 we proposed using the Mimno et al 2011 semanticCoherence metric for helping with topic model selection. We found that semantic coherence alone is relatively easy to achieve by having only a couple of topics which all are dominated by the most common words. Thus we also proposed an exclusivity measure.</p>
+<p>In Roberts et al 2014 we proposed using the Mimno et al 2011 semantic coherence metric for helping with topic model selection. We found that semantic coherence alone is relatively easy to achieve by having only a couple of topics which all are dominated by the most common words. Thus we also proposed an exclusivity measure.</p>
 </blockquote>
 <blockquote>
 <p>Our exclusivity measure includes some information on word frequency as well. It is based on the FREX labeling metric (calcfrex) with the weight set to .7 in favor of exclusivity by default.</p>
