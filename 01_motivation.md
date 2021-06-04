@@ -1,9 +1,6 @@
 # Computational thinking {#motivation}
 
-```{r include = FALSE}
-# Caching this markdown file 
-knitr::opts_chunk$set(cache = TRUE)
-```
+
 
 ## Why computational thinking
 
