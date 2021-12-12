@@ -3516,11 +3516,6 @@ def create_table(x, y):
 - All defenders 
 
 
-```python
-create_table(list(recid), list(surv)).to_csv("data/table_recid.csv")
-```
-
-
 ```r
 read.csv(here("data", "table_recid.csv"))[, -1] %>%
   ggplot(aes(x = Metrics, y = Scores)) +
@@ -3528,13 +3523,24 @@ read.csv(here("data", "table_recid.csv"))[, -1] %>%
   labs(title = "Recidivism")
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-125-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-124-1.png" width="672" />
 
 That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
 
 
+```r
+read.csv(here("data", "comp_tables_recid.csv"))[, -1] %>%
+  ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  labs(title = "Recidivism")
+```
 
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-125-1.png" width="672" />
 
+#### Risk of Violent Recidivism accuracy
+
+COMPAS also offers a score that aims to measure a person's risk of violent recidivism, which has similar overall accuracy to the Recidivism score.
 
 
 

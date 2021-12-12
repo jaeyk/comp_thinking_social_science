@@ -2427,10 +2427,6 @@ def create_table(x, y):
 
 - All defenders 
 
-```{python}
-create_table(list(recid), list(surv)).to_csv("data/table_recid.csv")
-``` 
-
 ```{r}
 read.csv(here("data", "table_recid.csv"))[, -1] %>%
   ggplot(aes(x = Metrics, y = Scores)) +
@@ -2439,30 +2435,6 @@ read.csv(here("data", "table_recid.csv"))[, -1] %>%
 ```
 
 That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
-
-```{python}
-def create_comp_tables(recid_data, surv_data):
-  
-    # filtering variables 
-    is_afam = is_race("African-American")
-    is_white = is_race("Caucasian")
-  
-    # dfs 
-    df1 = create_table(filter(is_afam, recid_data),
-                       filter(is_afam, surv_data))
-  
-    df2 = create_table(filter(is_white, recid_data), 
-                       filter(is_white, surv_data))
-  
-    # concat 
-    dfs = pd.concat([df1, df2])
-    
-    dfs['Group'] = ['African Americans','African Americans','Whites','Whites']
-    
-    return(dfs)
-
-create_comp_tables(recid, surv).to_csv("data/comp_tables_recid.csv")
-```
 
 ```{r}
 read.csv(here("data", "comp_tables_recid.csv"))[, -1] %>%
@@ -2511,10 +2483,6 @@ read.csv(here("data", "table_vrecid.csv"))[, -1] %>%
 ```
 
 Even more so for Black defendants.
-
-````{python}
-create_comp_tables(vrecid, vsurv).to_csv("data/comp_tables_vrecid.csv")
-```
 
 ```{r}
 read.csv(here("data", "comp_tables_vrecid.csv"))[, -1] %>%
