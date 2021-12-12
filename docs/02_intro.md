@@ -1886,10 +1886,6 @@ if (!require(testthat)) install.packages("testthat")
 ```
 
 ```
-## Warning: package 'testthat' was built under R version 4.0.3
-```
-
-```
 ## 
 ## Attaching package: 'testthat'
 ```
@@ -1904,6 +1900,12 @@ if (!require(testthat)) install.packages("testthat")
 ## The following object is masked from 'package:purrr':
 ## 
 ##     is_null
+```
+
+```
+## The following objects are masked from 'package:readr':
+## 
+##     edition_get, local_edition
 ```
 
 ```

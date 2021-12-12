@@ -66,6 +66,7 @@
     - Sample to estimate parameters = Training sample
   
     - Estimating the model = Being trained 
+    
     - Regressors, covariates, or predictors = Features 
   
     - Regression parameters = weights 
@@ -88,29 +89,31 @@
 
 
 ```r
-# Load packages 
+# Load packages
 
-## CRAN packages 
-pacman::p_load(here,
-               tidyverse, 
-               tidymodels,
-               doParallel, # parallel processing 
-               patchwork, # arranging ggplots
-               remotes, 
-               SuperLearner, 
-               vip, 
-               tidymodels,
-               glmnet,
-               xgboost, 
-               rpart, 
-               ranger, 
-               conflicted)
+## CRAN packages
+pacman::p_load(
+  here,
+  tidyverse,
+  tidymodels,
+  doParallel, # parallel processing
+  patchwork, # arranging ggplots
+  remotes,
+  SuperLearner,
+  vip,
+  tidymodels,
+  glmnet,
+  xgboost,
+  rpart,
+  ranger,
+  conflicted
+)
 
 remotes::install_github("ck37/ck37r")
 ```
 
 ```
-## Skipping install of 'ck37r' from a github remote, the SHA1 (24d1757a) has not changed since last install.
+## Skipping install of 'ck37r' from a github remote, the SHA1 (87085fff) has not changed since last install.
 ##   Use `force = TRUE` to force installation
 ```
 
@@ -125,33 +128,28 @@ conflicted::conflict_prefer("filter", "dplyr")
 
 
 ```r
-## Jae's custom functions 
+## Jae's custom functions
 source(here("functions", "ml_utils.r"))
 
-# Import the dataset 
+# Import the dataset
 
 data_original <- read_csv(here("data", "heart.csv"))
 ```
 
 ```
+## Rows: 303 Columns: 14
+```
+
+```
+## -- Column specification -----------------------------------------------------------------------
+## Delimiter: ","
+## dbl (14): age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpea...
+```
+
+```
 ## 
-## -- Column specification ------------------------
-## cols(
-##   age = col_double(),
-##   sex = col_double(),
-##   cp = col_double(),
-##   trestbps = col_double(),
-##   chol = col_double(),
-##   fbs = col_double(),
-##   restecg = col_double(),
-##   thalach = col_double(),
-##   exang = col_double(),
-##   oldpeak = col_double(),
-##   slope = col_double(),
-##   ca = col_double(),
-##   thal = col_double(),
-##   target = col_double()
-## )
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 ```r
@@ -178,7 +176,7 @@ glimpse(data_original)
 ```
 
 ```r
-# Createa a copy 
+# Createa a copy
 data <- data_original
 
 theme_set(theme_minimal())
@@ -261,11 +259,11 @@ In this course, we focus on two preprocessing tasks.
 
 
 ```r
-# Turn selected numeric variables into factor variables 
+# Turn selected numeric variables into factor variables
 data <- data %>%
-  dplyr::mutate(across(c("sex", "ca", "cp", "slope", "thal"), as.factor)) 
+  dplyr::mutate(across(c("sex", "ca", "cp", "slope", "thal"), as.factor))
 
-glimpse(data) 
+glimpse(data)
 ```
 
 ```
@@ -290,7 +288,7 @@ glimpse(data)
 
 
 ```r
-# Check missing values 
+# Check missing values
 
 map_df(data, ~ is.na(.) %>% sum())
 ```
@@ -300,20 +298,19 @@ map_df(data, ~ is.na(.) %>% sum())
 ##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
 ##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
 ## 1     0     0     0        0     0     0       0       0     0       0     0
-## # ... with 3 more variables: ca <int>,
-## #   thal <int>, target <int>
+## # ... with 3 more variables: ca <int>, thal <int>, target <int>
 ```
 
 ```r
-# Add missing values 
+# Add missing values
 
 data$oldpeak[sample(seq(data), size = 10)] <- NA
 
-# Check missing values 
+# Check missing values
 
-# Check the number of missing values 
+# Check the number of missing values
 data %>%
-  map_df(~is.na(.) %>% sum())
+  map_df(~ is.na(.) %>% sum())
 ```
 
 ```
@@ -321,14 +318,13 @@ data %>%
 ##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
 ##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
 ## 1     0     0     0        0     0     0       0       0     0      10     0
-## # ... with 3 more variables: ca <int>,
-## #   thal <int>, target <int>
+## # ... with 3 more variables: ca <int>, thal <int>, target <int>
 ```
 
 ```r
 # Check the rate of missing values
 data %>%
-  map_df(~is.na(.) %>% mean())
+  map_df(~ is.na(.) %>% mean())
 ```
 
 ```
@@ -336,8 +332,7 @@ data %>%
 ##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
 ##   <dbl> <dbl> <dbl>    <dbl> <dbl> <dbl>   <dbl>   <dbl> <dbl>   <dbl> <dbl>
 ## 1     0     0     0        0     0     0       0       0     0  0.0330     0
-## # ... with 3 more variables: ca <dbl>,
-## #   thal <dbl>, target <dbl>
+## # ... with 3 more variables: ca <dbl>, thal <dbl>, target <dbl>
 ```
  
 ### Regression setup 
@@ -346,7 +341,7 @@ data %>%
 
 
 ```r
-# Continuous variable 
+# Continuous variable
 data$age %>% class()
 ```
 
@@ -357,16 +352,16 @@ data$age %>% class()
 
 
 ```r
-# for reproducibility 
-set.seed(1234) 
+# for reproducibility
+set.seed(1234)
 
-# split 
+# split
 split_reg <- initial_split(data, prop = 0.7)
 
-# training set 
+# training set
 raw_train_x_reg <- training(split_reg)
 
-# test set 
+# test set
 raw_test_x_reg <- testing(split_reg)
 ```
 
@@ -374,28 +369,39 @@ raw_test_x_reg <- testing(split_reg)
 
 
 ```r
-# Regression recipe 
+# Regression recipe
 rec_reg <- raw_train_x_reg %>%
-  # Define the outcome variable 
+  # Define the outcome variable
   recipe(age ~ .) %>%
-  # Median impute oldpeak column 
+  # Median impute oldpeak column
   step_medianimpute(oldpeak) %>%
-  # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators). 
+  # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators).
   step_dummy(c("sex", "ca", "cp", "slope", "thal"))
+```
 
+```
+## Warning: `step_medianimpute()` was deprecated in recipes 0.1.16.
+## Please use `step_impute_median()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+```
+
+```r
 # Prepare a dataset to base each step on
-prep_reg <- rec_reg %>% prep(retain = TRUE) 
+prep_reg <- rec_reg %>% prep(retain = TRUE)
 ```
 
 
 ```r
-# x features 
+# x features
 train_x_reg <- juice(prep_reg, all_predictors())
 
-test_x_reg <- bake(object = prep_reg, 
-                   new_data = raw_test_x_reg, all_predictors())
+test_x_reg <- bake(
+  object = prep_reg,
+  new_data = raw_test_x_reg, all_predictors()
+)
 
-# y variables 
+# y variables
 train_y_reg <- juice(prep_reg, all_outcomes())$age %>% as.numeric()
 test_y_reg <- bake(prep_reg, raw_test_x_reg, all_outcomes())$age %>% as.numeric()
 
@@ -425,9 +431,11 @@ grep("impute", ls("package:recipes"), value = TRUE)
 ```
 
 ```
-## [1] "step_bagimpute"     "step_impute_linear" "step_knnimpute"    
-## [4] "step_lowerimpute"   "step_meanimpute"    "step_medianimpute" 
-## [7] "step_modeimpute"    "step_rollimpute"
+##  [1] "step_bagimpute"     "step_impute_bag"    "step_impute_knn"   
+##  [4] "step_impute_linear" "step_impute_lower"  "step_impute_mean"  
+##  [7] "step_impute_median" "step_impute_mode"   "step_impute_roll"  
+## [10] "step_knnimpute"     "step_lowerimpute"   "step_meanimpute"   
+## [13] "step_medianimpute"  "step_modeimpute"    "step_rollimpute"
 ```
 
 - You can also create your own `step_` functions. For more information, see [tidymodels.org](https://www.tidymodels.org/learn/develop/recipes/).
@@ -438,7 +446,7 @@ grep("impute", ls("package:recipes"), value = TRUE)
 
 
 ```r
-data$target %>% class() 
+data$target %>% class()
 ```
 
 ```
@@ -459,16 +467,17 @@ data$target %>% class()
 
 
 ```r
-# split 
+# split
 split_class <- initial_split(data %>%
-                             mutate(target = as.factor(target)), 
-                             prop = 0.7, 
-                             strata = target)
+  mutate(target = as.factor(target)),
+prop = 0.7,
+strata = target
+)
 
-# training set 
+# training set
 raw_train_x_class <- training(split_class)
 
-# testing set 
+# testing set
 raw_test_x_class <- testing(split_class)
 ```
 
@@ -476,31 +485,31 @@ raw_test_x_class <- testing(split_class)
 
 
 ```r
-# Classification recipe 
-rec_class <- raw_train_x_class %>% 
-  # Define the outcome variable 
+# Classification recipe
+rec_class <- raw_train_x_class %>%
+  # Define the outcome variable
   recipe(target ~ .) %>%
-  # Median impute oldpeak column 
+  # Median impute oldpeak column
   step_medianimpute(oldpeak) %>%
   # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators).
   step_normalize(age) %>%
-  step_dummy(c("sex", "ca", "cp", "slope", "thal")) 
+  step_dummy(c("sex", "ca", "cp", "slope", "thal"))
 
 # Prepare a dataset to base each step on
-prep_class <- rec_class %>% prep(retain = TRUE) 
+prep_class <- rec_class %>% prep(retain = TRUE)
 ```
 
 
 ```r
-# x features 
-train_x_class <- juice(prep_class, all_predictors()) 
+# x features
+train_x_class <- juice(prep_class, all_predictors())
 test_x_class <- bake(prep_class, raw_test_x_class, all_predictors())
 
-# y variables 
+# y variables
 train_y_class <- juice(prep_class, all_outcomes())$target %>% as.factor()
 test_y_class <- bake(prep_class, raw_test_x_class, all_outcomes())$target %>% as.factor()
 
-# Checks 
+# Checks
 names(train_x_class) # Make sure there's no target variable!
 ```
 
@@ -535,9 +544,9 @@ x -> f - > y (defined)
 
 
 ```r
-# OLS spec 
-ols_spec <- linear_reg() %>% # Specify a model 
-  set_engine("lm") %>% # Specify an engine: lm, glmnet, stan, keras, spark 
+# OLS spec
+ols_spec <- linear_reg() %>% # Specify a model
+  set_engine("lm") %>% # Specify an engine: lm, glmnet, stan, keras, spark
   set_mode("regression") # Declare a mode: regression or classification
 ```
 
@@ -547,13 +556,15 @@ Lasso is one of the regularization techniques along with ridge and elastic-net.
 
 
 ```r
-# Lasso spec 
-lasso_spec <- linear_reg(penalty = 0.1, # tuning hyperparameter 
-                         mixture = 1) %>% # 1 = lasso, 0 = ridge 
+# Lasso spec
+lasso_spec <- linear_reg(
+  penalty = 0.1, # tuning hyperparameter
+  mixture = 1
+) %>% # 1 = lasso, 0 = ridge
   set_engine("glmnet") %>%
-  set_mode("regression") 
+  set_mode("regression")
 
-# If you don't understand parsnip arguments 
+# If you don't understand parsnip arguments
 lasso_spec %>% translate() # See the documentation
 ```
 
@@ -576,11 +587,11 @@ lasso_spec %>% translate() # See the documentation
 
 ```r
 ols_fit <- ols_spec %>%
-  fit_xy(x = train_x_reg, y = train_y_reg) 
-  # fit(train_y_reg ~ ., train_x_reg) # When you data are not preprocessed 
+  fit_xy(x = train_x_reg, y = train_y_reg)
+# fit(train_y_reg ~ ., train_x_reg) # When you data are not preprocessed
 
 lasso_fit <- lasso_spec %>%
-  fit_xy(x = train_x_reg, y = train_y_reg) 
+  fit_xy(x = train_x_reg, y = train_y_reg)
 ```
 
 #### yardstick 
@@ -589,7 +600,7 @@ lasso_fit <- lasso_spec %>%
 
 
 ```r
-map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit) 
+map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit)
 ```
 
 ```
@@ -607,21 +618,23 @@ map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit)
 
 
 ```r
-# Define performance metrics 
+# Define performance metrics
 metrics <- yardstick::metric_set(rmse, mae, rsq)
 
-# Evaluate many models 
+# Evaluate many models
 evals <- purrr::map(list(ols_fit, lasso_fit), evaluate_reg) %>%
   reduce(bind_rows) %>%
   mutate(type = rep(c("OLS", "Lasso"), each = 3))
 
-# Visualize the test results 
+# Visualize the test results
 evals %>%
   ggplot(aes(x = fct_reorder(type, .estimate), y = .estimate)) +
-    geom_point() +
-    labs(x = "Model",
-         y = "Estimate") +
-    facet_wrap(~glue("{toupper(.metric)}"), scales = "free_y") 
+  geom_point() +
+  labs(
+    x = "Model",
+    y = "Estimate"
+  ) +
+  facet_wrap(~ glue("{toupper(.metric)}"), scales = "free_y")
 ```
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-20-1.pdf)<!-- --> 
@@ -643,12 +656,14 @@ evals %>%
 
 
 ```r
-# tune() = placeholder 
+# tune() = placeholder
 
-tune_spec <- linear_reg(penalty = tune(), # tuning hyperparameter 
-                        mixture = 1) %>% # 1 = lasso, 0 = ridge 
+tune_spec <- linear_reg(
+  penalty = tune(), # tuning hyperparameter
+  mixture = 1
+) %>% # 1 = lasso, 0 = ridge
   set_engine("glmnet") %>%
-  set_mode("regression") 
+  set_mode("regression")
 
 tune_spec
 ```
@@ -664,7 +679,7 @@ tune_spec
 ```
 
 ```r
-# penalty() searches 50 possible combinations 
+# penalty() searches 50 possible combinations
 
 lambda_grid <- grid_regular(penalty(), levels = 50)
 ```
@@ -675,7 +690,7 @@ lambda_grid <- grid_regular(penalty(), levels = 50)
 ```r
 # 10-fold cross-validation
 
-set.seed(1234) # for reproducibility 
+set.seed(1234) # for reproducibility
 
 rec_folds <- vfold_cv(train_x_reg %>% bind_cols(tibble(age = train_y_reg)))
 ```
@@ -684,18 +699,18 @@ rec_folds <- vfold_cv(train_x_reg %>% bind_cols(tibble(age = train_y_reg)))
 
 
 ```r
-# Workflow 
+# Workflow
 rec_wf <- workflow() %>%
   add_model(tune_spec) %>%
-  add_formula(age~.)
+  add_formula(age ~ .)
 ```
 
 
 ```r
-# Tuning results 
+# Tuning results
 rec_res <- rec_wf %>%
   tune_grid(
-    resamples = rec_folds, 
+    resamples = rec_folds,
     grid = lambda_grid
   )
 ```
@@ -718,9 +733,10 @@ rec_res %>%
   geom_line(size = 2) +
   scale_x_log10() +
   labs(x = "log(lambda)") +
-  facet_wrap(~glue("{toupper(.metric)}"), 
-             scales = "free",
-             nrow = 2) +
+  facet_wrap(~ glue("{toupper(.metric)}"),
+    scales = "free",
+    nrow = 2
+  ) +
   theme(legend.position = "none")
 ```
 
@@ -734,6 +750,10 @@ conflict_prefer("filter", "dplyr")
 ```
 
 ```
+## [conflicted] Removing existing preference
+```
+
+```
 ## [conflicted] Will prefer dplyr::filter over any other package
 ```
 
@@ -742,18 +762,18 @@ top_rmse <- show_best(rec_res, metric = "rmse")
 
 best_rmse <- select_best(rec_res, metric = "rmse")
 
-best_rmse 
+best_rmse
 ```
 
 ```
 ## # A tibble: 1 x 2
 ##   penalty .config              
 ##     <dbl> <chr>                
-## 1   0.244 Preprocessor1_Model47
+## 1   0.391 Preprocessor1_Model48
 ```
 
 ```r
-glue('The RMSE of the intiail model is 
+glue('The RMSE of the intiail model is
      {evals %>%
   filter(type == "Lasso", .metric == "rmse") %>%
   select(.estimate) %>%
@@ -761,8 +781,8 @@ glue('The RMSE of the intiail model is
 ```
 
 ```
-## The RMSE of the intiail model is 
-##    7.86
+## The RMSE of the intiail model is
+##    7.82
 ```
 
 ```r
@@ -776,7 +796,7 @@ glue('The RMSE of the tuned model is {rec_res %>%
 ```
 
 ```
-## The RMSE of the tuned model is 7.71
+## The RMSE of the tuned model is 7.55
 ```
 
 - Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
@@ -792,6 +812,11 @@ finalize_lasso %>%
   vip::vip()
 ```
 
+```
+## Warning: `pull_workflow_fit()` was deprecated in workflows 0.2.3.
+## Please use `extract_fit_parsnip()` instead.
+```
+
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-27-1.pdf)<!-- --> 
 
 ##### Test fit 
@@ -800,7 +825,7 @@ finalize_lasso %>%
 
 
 ```r
-test_fit <- finalize_lasso %>% 
+test_fit <- finalize_lasso %>%
   fit(test_x_reg %>% bind_cols(tibble(age = test_y_reg)))
 
 evaluate_reg(test_fit)
@@ -810,9 +835,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.17 
-## 2 mae     standard       5.93 
-## 3 rsq     standard       0.405
+## 1 rmse    standard       7.06 
+## 2 mae     standard       5.80 
+## 3 rsq     standard       0.407
 ```
 
 ### Decision tree 
@@ -827,18 +852,19 @@ evaluate_reg(test_fit)
 
 
 ```r
-# workflow 
-tree_wf <- workflow() %>% add_formula(target~.)
+# workflow
+tree_wf <- workflow() %>% add_formula(target ~ .)
 
-# spec 
+# spec
 tree_spec <- decision_tree(
-  
-           # Mode 
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           cost_complexity = NULL, 
-           tree_depth = NULL) %>%
+
+  # Mode
+  mode = "classification",
+
+  # Tuning hyperparameters
+  cost_complexity = NULL,
+  tree_depth = NULL
+) %>%
   set_engine("rpart") # rpart, c5.0, spark
 
 tree_wf <- tree_wf %>% add_model(tree_spec)
@@ -882,7 +908,7 @@ A confusion matrix is often used to describe the performance of a classification
 
 
 ```r
-# Define performance metrics 
+# Define performance metrics
 
 metrics <- yardstick::metric_set(accuracy, precision, recall)
 
@@ -916,15 +942,16 @@ Decisions trees tend to overfit. There are two things we need to consider to red
 
 ```r
 tune_spec <- decision_tree(
-    cost_complexity = tune(), # how to split 
-    tree_depth = tune(), # when to stop 
-    mode = "classification"
-  ) %>%
+  cost_complexity = tune(), # how to split
+  tree_depth = tune(), # when to stop
+  mode = "classification"
+) %>%
   set_engine("rpart")
 
 tree_grid <- grid_regular(cost_complexity(),
-                          tree_depth(),
-                          levels = 5) # 2 hyperparameters -> 5*5 = 25 combinations 
+  tree_depth(),
+  levels = 5
+) # 2 hyperparameters -> 5*5 = 25 combinations
 
 tree_grid %>%
   count(tree_depth)
@@ -944,17 +971,18 @@ tree_grid %>%
 ```r
 # 10-fold cross-validation
 
-set.seed(1234) # for reproducibility 
+set.seed(1234) # for reproducibility
 
 tree_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
-                       strata = target)
+  strata = target
+)
 ```
 
 ##### Add these elements to a workflow 
 
 
 ```r
-# Update workflow 
+# Update workflow
 tree_wf <- tree_wf %>% update_model(tune_spec)
 
 # Determine the number of cores
@@ -965,10 +993,10 @@ cl <- makeCluster(no_cores)
 
 registerDoParallel(cl)
 
-# Tuning results 
+# Tuning results
 tree_res <- tree_wf %>%
   tune_grid(
-    resamples = tree_folds, 
+    resamples = tree_folds,
     grid = tree_grid,
     metrics = metrics
   )
@@ -985,17 +1013,20 @@ tree_res %>%
   mutate(tree_depth = factor(tree_depth)) %>%
   ggplot(aes(cost_complexity, mean, col = .metric)) +
   geom_point(size = 3) +
-  # Subplots 
-  facet_wrap(~ tree_depth, 
-             scales = "free", 
-             nrow = 2) +
-  # Log scale x 
+  # Subplots
+  facet_wrap(~tree_depth,
+    scales = "free",
+    nrow = 2
+  ) +
+  # Log scale x
   scale_x_log10(labels = scales::label_number()) +
-  # Discrete color scale 
+  # Discrete color scale
   scale_color_viridis_d(option = "plasma", begin = .9, end = 0) +
-  labs(x = "Cost complexity",
-       col = "Tree depth",
-       y = NULL) +
+  labs(
+    x = "Cost complexity",
+    col = "Tree depth",
+    y = NULL
+  ) +
   coord_flip()
 ```
 
@@ -1008,24 +1039,24 @@ tree_res %>%
 # Optimal hyperparameter
 best_tree <- select_best(tree_res, "recall")
 
-# Add the hyperparameter to the workflow 
+# Add the hyperparameter to the workflow
 finalize_tree <- tree_wf %>%
   finalize_workflow(best_tree)
 ```
 
 
 ```r
-tree_fit_tuned <- finalize_tree %>% 
+tree_fit_tuned <- finalize_tree %>%
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
-# Metrics 
+# Metrics
 (tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-36-1.pdf)<!-- --> 
 
 ```r
-# Confusion matrix 
+# Confusion matrix
 (tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
@@ -1040,6 +1071,11 @@ tree_fit_tuned %>%
   vip::vip()
 ```
 
+```
+## Warning: `pull_workflow_fit()` was deprecated in workflows 0.2.3.
+## Please use `extract_fit_parsnip()` instead.
+```
+
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-37-1.pdf)<!-- --> 
 
 ##### Test fit
@@ -1048,7 +1084,7 @@ tree_fit_tuned %>%
 
 
 ```r
-test_fit <- finalize_tree %>% 
+test_fit <- finalize_tree %>%
   fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
 
 evaluate_class(test_fit)
@@ -1058,9 +1094,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.744
-## 2 precision binary         0.705
-## 3 recall    binary         0.756
+## 1 accuracy  binary         0.761
+## 2 precision binary         0.778
+## 3 recall    binary         0.667
 ```
 
 In the next subsection, we will learn variants of ensemble models that improve decision tree models by putting models together.
@@ -1109,23 +1145,25 @@ Here we focus on the difference between bagging and boosting. In short, boosting
 
 
 ```r
-# workflow 
-rand_wf <- workflow() %>% add_formula(target~.)
+# workflow
+rand_wf <- workflow() %>% add_formula(target ~ .)
 
-# spec 
+# spec
 rand_spec <- rand_forest(
-  
-           # Mode 
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           mtry = NULL, # The number of predictors to available for splitting at each node  
-           min_n = NULL, # The minimum number of data points needed to keep splitting nodes
-           trees = 500) %>% # The number of trees
-  set_engine("ranger", 
-             # We want the importance of predictors to be assessed.
-             seed = 1234, 
-             importance = "permutation") 
+
+  # Mode
+  mode = "classification",
+
+  # Tuning hyperparameters
+  mtry = NULL, # The number of predictors to available for splitting at each node
+  min_n = NULL, # The minimum number of data points needed to keep splitting nodes
+  trees = 500
+) %>% # The number of trees
+  set_engine("ranger",
+    # We want the importance of predictors to be assessed.
+    seed = 1234,
+    importance = "permutation"
+  )
 
 rand_wf <- rand_wf %>% add_model(rand_spec)
 ```
@@ -1141,7 +1179,7 @@ rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_
 
 
 ```r
-# Define performance metrics 
+# Define performance metrics
 metrics <- yardstick::metric_set(accuracy, precision, recall)
 
 rand_fit_viz_metr <- visualize_class_eval(rand_fit)
@@ -1174,20 +1212,23 @@ We focus on the following two hyperparameters:
 
 
 ```r
-tune_spec <- 
+tune_spec <-
   rand_forest(
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           mtry = tune(), 
-           min_n = tune()) %>%
+    mode = "classification",
+
+    # Tuning hyperparameters
+    mtry = tune(),
+    min_n = tune()
+  ) %>%
   set_engine("ranger",
-             seed = 1234, 
-             importance = "permutation")
+    seed = 1234,
+    importance = "permutation"
+  )
 
 rand_grid <- grid_regular(mtry(range = c(1, 10)),
-                          min_n(range = c(2, 10)),
-                          levels = 5)
+  min_n(range = c(2, 10)),
+  levels = 5
+)
 
 rand_grid %>%
   count(min_n)
@@ -1208,23 +1249,24 @@ rand_grid %>%
 ```r
 # 10-fold cross-validation
 
-set.seed(1234) # for reproducibility 
+set.seed(1234) # for reproducibility
 
 rand_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
-                       strata = target)
+  strata = target
+)
 ```
 
 ##### Add these elements to a workflow 
 
 
 ```r
-# Update workflow 
+# Update workflow
 rand_wf <- rand_wf %>% update_model(tune_spec)
 
-# Tuning results 
+# Tuning results
 rand_res <- rand_wf %>%
   tune_grid(
-    resamples = rand_folds, 
+    resamples = rand_folds,
     grid = rand_grid,
     metrics = metrics
   )
@@ -1238,21 +1280,24 @@ rand_res %>%
   collect_metrics() %>%
   mutate(min_n = factor(min_n)) %>%
   ggplot(aes(mtry, mean, color = min_n)) +
-  # Line + Point plot 
+  # Line + Point plot
   geom_line(size = 1.5, alpha = 0.6) +
   geom_point(size = 2) +
-  # Subplots 
-  facet_wrap(~ .metric, 
-             scales = "free", 
-             nrow = 2) +
-  # Log scale x 
+  # Subplots
+  facet_wrap(~.metric,
+    scales = "free",
+    nrow = 2
+  ) +
+  # Log scale x
   scale_x_log10(labels = scales::label_number()) +
-  # Discrete color scale 
+  # Discrete color scale
   scale_color_viridis_d(option = "plasma", begin = .9, end = 0) +
-  labs(x = "The number of predictors to be sampled",
-       col = "The minimum number of data points needed for splitting",
-       y = NULL) +
-  theme(legend.position="bottom")
+  labs(
+    x = "The number of predictors to be sampled",
+    col = "The minimum number of data points needed for splitting",
+    y = NULL
+  ) +
+  theme(legend.position = "bottom")
 ```
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-46-1.pdf)<!-- --> 
@@ -1269,28 +1314,28 @@ best_tree
 ## # A tibble: 1 x 3
 ##    mtry min_n .config              
 ##   <int> <int> <chr>                
-## 1     1     8 Preprocessor1_Model16
+## 1     1     4 Preprocessor1_Model06
 ```
 
 ```r
-# Add the hyperparameter to the workflow 
+# Add the hyperparameter to the workflow
 finalize_tree <- rand_wf %>%
   finalize_workflow(best_tree)
 ```
 
 
 ```r
-rand_fit_tuned <- finalize_tree %>% 
+rand_fit_tuned <- finalize_tree %>%
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
-# Metrics 
+# Metrics
 (rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-48-1.pdf)<!-- --> 
 
 ```r
-# Confusion matrix 
+# Confusion matrix
 (rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
@@ -1305,6 +1350,11 @@ rand_fit_tuned %>%
   vip::vip()
 ```
 
+```
+## Warning: `pull_workflow_fit()` was deprecated in workflows 0.2.3.
+## Please use `extract_fit_parsnip()` instead.
+```
+
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-49-1.pdf)<!-- --> 
 
 ##### Test fit
@@ -1314,7 +1364,8 @@ rand_fit_tuned %>%
 
 ```r
 test_fit <- finalize_tree %>%
-  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
+  fit(test_x_class %>%
+    bind_cols(tibble(target = test_y_class)))
 
 evaluate_class(test_fit)
 ```
@@ -1323,9 +1374,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.933
-## 2 precision binary         0.973
-## 3 recall    binary         0.878
+## 1 accuracy  binary         0.913
+## 2 precision binary         0.905
+## 3 recall    binary         0.905
 ```
 
 ### Boosting (XGboost)
@@ -1340,27 +1391,27 @@ evaluate_class(test_fit)
 
 
 ```r
-# workflow 
-xg_wf <- workflow() %>% add_formula(target~.)
+# workflow
+xg_wf <- workflow() %>% add_formula(target ~ .)
 
-# spec 
+# spec
 xg_spec <- boost_tree(
-  
-           # Mode 
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           
-           # The number of trees to fit, aka boosting iterations
-           trees = c(100, 300, 500, 700, 900),
-           # The depth of the decision tree (how many levels of splits).
-	         tree_depth = c(1, 6), 
-           # Learning rate: lower means the ensemble will adapt more slowly.
-           learn_rate = c(0.0001, 0.01, 0.2),
-           # Stop splitting a tree if we only have this many obs in a tree node.
-	         min_n = 10L
-          ) %>% 
-  set_engine("xgboost") 
+
+  # Mode
+  mode = "classification",
+
+  # Tuning hyperparameters
+
+  # The number of trees to fit, aka boosting iterations
+  trees = c(100, 300, 500, 700, 900),
+  # The depth of the decision tree (how many levels of splits).
+  tree_depth = c(1, 6),
+  # Learning rate: lower means the ensemble will adapt more slowly.
+  learn_rate = c(0.0001, 0.01, 0.2),
+  # Stop splitting a tree if we only have this many obs in a tree node.
+  min_n = 10L
+) %>%
+  set_engine("xgboost")
 
 xg_wf <- xg_wf %>% add_model(xg_spec)
 ```
@@ -1378,16 +1429,18 @@ xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_clas
 ```
 
 ```
-## [15:48:52] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [05:59:09] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
 ```
 
 #### yardstick 
 
 
 ```r
-metrics <- metric_set(yardstick::accuracy, 
-                      yardstick::precision, 
-                      yardstick::recall)
+metrics <- metric_set(
+  yardstick::accuracy,
+  yardstick::precision,
+  yardstick::recall
+)
 
 evaluate_class(xg_fit)
 ```
@@ -1396,14 +1449,15 @@ evaluate_class(xg_fit)
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.733
-## 2 precision binary         0.730
-## 3 recall    binary         0.659
+## 1 accuracy  binary         0.739
+## 2 precision binary         0.705
+## 3 recall    binary         0.738
 ```
 
 
 ```r
-xg_fit_viz_metr <- visualize_class_eval(xg_fit)
+xg_fit_viz_metr <-
+  visualize_class_eval(xg_fit)
 
 xg_fit_viz_metr
 ```
@@ -1414,7 +1468,8 @@ xg_fit_viz_metr
   
 
 ```r
-xg_fit_viz_mat <- visualize_class_conf(xg_fit)
+xg_fit_viz_mat <-
+  visualize_class_conf(xg_fit)
 
 xg_fit_viz_mat
 ```
@@ -1429,61 +1484,62 @@ xg_fit_viz_mat
 
 
 ```r
-tune_spec <- 
+tune_spec <-
   xg_spec <- boost_tree(
-  
-           # Mode 
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           
-           # The number of trees to fit, aka boosting iterations
-           trees = tune(),
-           # The depth of the decision tree (how many levels of splits).
-	         tree_depth = tune(), 
-           # Learning rate: lower means the ensemble will adapt more slowly.
-           learn_rate = tune(),
-           # Stop splitting a tree if we only have this many obs in a tree node.
-	         min_n = tune(),
-           loss_reduction = tune(),
-           # The number of randomly selected hyperparameters 
-           mtry = tune(), 
-           # The size of the data set used for modeling within an iteration
-           sample_size = tune()
-          ) %>% 
-  set_engine("xgboost") 
 
-# Space-filling hyperparameter grids 
+    # Mode
+    mode = "classification",
+
+    # Tuning hyperparameters
+
+    # The number of trees to fit, aka boosting iterations
+    trees = tune(),
+    # The depth of the decision tree (how many levels of splits).
+    tree_depth = tune(),
+    # Learning rate: lower means the ensemble will adapt more slowly.
+    learn_rate = tune(),
+    # Stop splitting a tree if we only have this many obs in a tree node.
+    min_n = tune(),
+    loss_reduction = tune(),
+    # The number of randomly selected hyperparameters
+    mtry = tune(),
+    # The size of the data set used for modeling within an iteration
+    sample_size = tune()
+  ) %>%
+  set_engine("xgboost")
+
+# Space-filling hyperparameter grids
 xg_grid <- grid_latin_hypercube(
   trees(),
   tree_depth(),
   learn_rate(),
   min_n(),
-  loss_reduction(), 
+  loss_reduction(),
   sample_size = sample_prop(),
   finalize(mtry(), train_x_class),
   size = 30
-  )
+)
 
 # 10-fold cross-validation
 
-set.seed(1234) # for reproducibility 
+set.seed(1234) # for reproducibility
 
 xg_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
-                     strata = target)
+  strata = target
+)
 ```
 
 ##### Add these elements to a workflow 
 
 
 ```r
-# Update workflow 
+# Update workflow
 xg_wf <- xg_wf %>% update_model(tune_spec)
 
-# Tuning results 
+# Tuning results
 xg_res <- xg_wf %>%
   tune_grid(
-    resamples = xg_folds, 
+    resamples = xg_folds,
     grid = xg_grid,
     control = control_grid(save_pred = TRUE)
   )
@@ -1506,16 +1562,19 @@ conflict_prefer("filter", "dplyr")
 
 ```r
 xg_res %>%
-  collect_metrics() %>% 
+  collect_metrics() %>%
   filter(.metric == "roc_auc") %>%
   pivot_longer(mtry:sample_size,
-               values_to = "value",
-               names_to = "parameter") %>%
+    values_to = "value",
+    names_to = "parameter"
+  ) %>%
   ggplot(aes(x = value, y = mean, color = parameter)) +
-    geom_point(alpha = 0.8, show.legend = FALSE) +
-    facet_wrap(~parameter, scales = "free_x") +
-    labs(y = "AUC",
-         x = NULL)
+  geom_point(alpha = 0.8, show.legend = FALSE) +
+  facet_wrap(~parameter, scales = "free_x") +
+  labs(
+    y = "AUC",
+    x = NULL
+  )
 ```
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-58-1.pdf)<!-- --> 
@@ -1525,41 +1584,41 @@ xg_res %>%
 # Optimal hyperparameter
 best_xg <- select_best(xg_res, "roc_auc")
 
-best_xg 
+best_xg
 ```
 
 ```
 ## # A tibble: 1 x 8
-##    mtry trees min_n tree_depth  learn_rate loss_reduction sample_size .config   
-##   <int> <int> <int>      <int>       <dbl>          <dbl>       <dbl> <chr>     
-## 1     2  1827     6         10     2.54e-9           16.2       0.759 Preproces~
+##    mtry trees min_n tree_depth learn_rate loss_reduction sample_size .config    
+##   <int> <int> <int>      <int>      <dbl>          <dbl>       <dbl> <chr>      
+## 1    12  1361     3          7   0.000164    0.000000638       0.159 Preprocess~
 ```
 
 ```r
-# Add the hyperparameter to the workflow 
+# Add the hyperparameter to the workflow
 finalize_xg <- xg_wf %>%
   finalize_workflow(best_xg)
 ```
 
 
 ```r
-xg_fit_tuned <- finalize_xg %>% 
+xg_fit_tuned <- finalize_xg %>%
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 ```
 
 ```
-## [15:49:53] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [06:01:02] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
 ```
 
 ```r
-# Metrics 
+# Metrics
 (xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-60-1.pdf)<!-- --> 
 
 ```r
-# Confusion matrix 
+# Confusion matrix
 (xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
@@ -1572,6 +1631,11 @@ xg_fit_tuned <- finalize_xg %>%
 xg_fit_tuned %>%
   pull_workflow_fit() %>%
   vip::vip()
+```
+
+```
+## Warning: `pull_workflow_fit()` was deprecated in workflows 0.2.3.
+## Please use `extract_fit_parsnip()` instead.
 ```
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-61-1.pdf)<!-- --> 
@@ -1587,7 +1651,7 @@ test_fit <- finalize_xg %>%
 ```
 
 ```
-## [15:49:55] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [06:01:04] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
 ```
 
 ```r
@@ -1597,14 +1661,14 @@ evaluate_class(test_fit)
 ```
 ## Warning: While computing binary `precision()`, no predicted events were detected (i.e. `true_positive + false_positive = 0`). 
 ## Precision is undefined in this case, and `NA` will be returned.
-## Note that 41 true event(s) actually occured for the problematic event level, '0'.
+## Note that 42 true event(s) actually occured for the problematic event level, '0'.
 ```
 
 ```
 ## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.544
+## 1 accuracy  binary         0.543
 ## 2 precision binary        NA    
 ## 3 recall    binary         0
 ```
@@ -1633,7 +1697,7 @@ A "wrapper" is a short function that adapts an algorithm for the SuperLearner pa
 
 
 ```r
-# Review available models 
+# Review available models
 SuperLearner::listWrappers()
 ```
 
@@ -1673,11 +1737,13 @@ SuperLearner::listWrappers()
 
 ```r
 # Compile the algorithm wrappers to be used.
-sl_lib <- c("SL.mean", # Marginal mean of the outcome () 
-            "SL.glmnet", # GLM with lasso/elasticnet regularization 
-            "SL.rpart", # Decision tree 
-            "SL.ranger", # Random forest  
-            "SL.xgboost") # Xgbboost 
+sl_lib <- c(
+  "SL.mean", # Marginal mean of the outcome ()
+  "SL.glmnet", # GLM with lasso/elasticnet regularization
+  "SL.rpart", # Decision tree
+  "SL.ranger", # Random forest
+  "SL.xgboost"
+) # Xgbboost
 ```
 
 #### Fit model
@@ -1688,75 +1754,18 @@ Fit the ensemble!
 ```r
 # This is a seed that is compatible with multicore parallel processing.
 # See ?set.seed for more information.
-set.seed(1, "L'Ecuyer-CMRG") 
+set.seed(1, "L'Ecuyer-CMRG")
 
 # This will take a few minutes to execute - take a look at the .html file to see the output!
-cv_sl <-  SuperLearner::CV.SuperLearner(
+cv_sl <- SuperLearner::CV.SuperLearner(
   Y = as.numeric(as.character(train_y_class)),
   X = train_x_class,
   family = binomial(),
   # For a real analysis we would use V = 10.
   cvControl = list(V = 5L, stratifyCV = TRUE),
   SL.library = sl_lib,
-  verbose = FALSE)
-```
-
-```
-## [15:49:57] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:49:58] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:49:58] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:49:58] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:49:59] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:49:59] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:00] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:00] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:01] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:01] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:02] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:02] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:03] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:03] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:04] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:04] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:04] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:05] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:05] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:06] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:06] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:07] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:07] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:08] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:08] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:09] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:09] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:10] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:10] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:11] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:11] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:12] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:12] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:13] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:13] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:14] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:14] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:14] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:15] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:15] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:16] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:16] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:17] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:17] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:17] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:18] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:18] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:19] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:19] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:20] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:20] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:21] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:21] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:22] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-## [15:50:22] WARNING: amalgamation/../src/learner.cc:1061: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+  verbose = FALSE
+)
 ```
 
 #### Risk
@@ -1786,13 +1795,13 @@ summary(cv_sl)
 ## All risk estimates are based on V =  5 
 ## 
 ##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.12919 0.0149624 0.070675 0.17496
-##     Discrete SL 0.12737 0.0150024 0.062854 0.17499
-##     SL.mean_All 0.24802 0.0030531 0.247747 0.24893
-##   SL.glmnet_All 0.12737 0.0150024 0.062854 0.17499
-##    SL.rpart_All 0.18772 0.0201957 0.160493 0.22434
-##   SL.ranger_All 0.14353 0.0133330 0.098828 0.17314
-##  SL.xgboost_All 0.15541 0.0167118 0.120814 0.16837
+##   Super Learner 0.11307 0.0135943 0.076082 0.14358
+##     Discrete SL 0.11882 0.0145143 0.075035 0.16356
+##     SL.mean_All 0.24798 0.0030968 0.247743 0.24895
+##   SL.glmnet_All 0.10752 0.0136108 0.075035 0.14358
+##    SL.rpart_All 0.16641 0.0197860 0.107553 0.22102
+##   SL.ranger_All 0.12564 0.0119867 0.098114 0.16080
+##  SL.xgboost_All 0.13175 0.0150618 0.100769 0.16356
 ```
 
 ##### Plot
@@ -1828,20 +1837,14 @@ ck37r::auc_table(cv_sl)
 ```
 
 ```
-## Registered S3 method overwritten by 'pryr':
-##   method      from
-##   print.bytes Rcpp
-```
-
-```
 ##                      auc         se  ci_lower  ci_upper      p-value
-## SL.mean_All    0.5000000 0.06879264 0.3651689 0.6348311 3.277693e-09
-## SL.rpart_All   0.7863668 0.04287761 0.7023282 0.8704054 4.270559e-03
-## SL.xgboost_All 0.8463396 0.02810938 0.7912463 0.9014330 3.018717e-02
-## SL.ranger_All  0.8813987 0.02343435 0.8354683 0.9273292 2.246286e-01
-## SuperLearner   0.8951754 0.02150529 0.8530259 0.9373250 4.270428e-01
-## SL.glmnet_All  0.8991304 0.02112031 0.8577354 0.9405255 5.000000e-01
-## DiscreteSL     0.8991304 0.02112031 0.8577354 0.9405255 5.000000e-01
+## SL.mean_All    0.5000000 0.06912305 0.3645213 0.6354787 5.679776e-10
+## SL.rpart_All   0.8258238 0.03856396 0.7502398 0.9014078 6.846458e-03
+## SL.xgboost_All 0.8787414 0.02482895 0.8300776 0.9274053 4.478633e-02
+## DiscreteSL     0.9055606 0.02082866 0.8647372 0.9463841 2.308374e-01
+## SL.ranger_All  0.9066819 0.02020172 0.8670873 0.9462766 2.408934e-01
+## SuperLearner   0.9154005 0.01983443 0.8765257 0.9542752 3.909316e-01
+## SL.glmnet_All  0.9208924 0.01935054 0.8829661 0.9588188 5.000000e-01
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
@@ -1862,10 +1865,10 @@ print(ck37r::cvsl_weights(cv_sl), row.names = FALSE)
 
 ```
 ##  # Learner    Mean      SD     Min     Max
-##  1  glmnet 0.92729 0.06899 0.82806 0.99943
-##  2   rpart 0.03439 0.07689 0.00000 0.17194
-##  3  ranger 0.02763 0.04145 0.00000 0.09302
-##  4 xgboost 0.01070 0.01687 0.00000 0.03891
+##  1  glmnet 0.78681 0.22451 0.46528 1.00000
+##  2 xgboost 0.13637 0.21077 0.00000 0.49934
+##  3  ranger 0.06974 0.15594 0.00000 0.34870
+##  4   rpart 0.00708 0.01582 0.00000 0.03538
 ##  5    mean 0.00000 0.00000 0.00000 0.00000
 ```
 
@@ -1949,8 +1952,8 @@ Notice the scaling issues? PCA is not scale-invariant. So, we need to fix this p
 
 ```r
 min_max <- list(
-  min = ~min(.x, na.rm = TRUE), 
-  max = ~max(.x, na.rm = TRUE)
+  min = ~ min(.x, na.rm = TRUE),
+  max = ~ max(.x, na.rm = TRUE)
 )
 
 data_original %>%
@@ -1977,28 +1980,31 @@ data_original %>%
 
 ```r
 pca_recipe <- recipe(~., data = data_original) %>%
-  # Imputing NAs using mean 
+  # Imputing NAs using mean
   step_meanimpute(all_predictors()) %>%
-  # Normalize some numeric variables 
-  step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak")) 
+  # Normalize some numeric variables
+  step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak"))
 ```
 
 ```
 ## Warning: `step_meanimpute()` was deprecated in recipes 0.1.16.
 ## Please use `step_impute_mean()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 #### PCA analysis 
 
 
 ```r
-pca_res <- pca_recipe %>% 
-  step_pca(all_predictors(), 
-           id = "pca") %>% # id argument identifies each PCA step 
+pca_res <- pca_recipe %>%
+  step_pca(all_predictors(),
+    id = "pca"
+  ) %>% # id argument identifies each PCA step
   prep()
 
 pca_res %>%
-  tidy(id = "pca") 
+  tidy(id = "pca")
 ```
 
 ```
@@ -2022,8 +2028,8 @@ pca_res %>%
 
 
 ```r
-# To avoid conflicts 
-conflict_prefer("filter", "dplyr") 
+# To avoid conflicts
+conflict_prefer("filter", "dplyr")
 ```
 
 ```
@@ -2035,7 +2041,7 @@ conflict_prefer("filter", "dplyr")
 ```
 
 ```r
-conflict_prefer("select", "dplyr") 
+conflict_prefer("select", "dplyr")
 ```
 
 ```
@@ -2044,16 +2050,19 @@ conflict_prefer("select", "dplyr")
 
 ```r
 pca_recipe %>%
-  step_pca(all_predictors(), 
-           id = "pca") %>% # id argument identifies each PCA step 
+  step_pca(all_predictors(),
+    id = "pca"
+  ) %>% # id argument identifies each PCA step
   prep() %>%
   tidy(id = "pca", type = "variance") %>%
-  filter(terms == "percent variance") %>% 
+  filter(terms == "percent variance") %>%
   ggplot(aes(x = component, y = value)) +
-    geom_col() +
-    labs(x = "PCAs of heart disease",
-         y = "% of variance",
-         title = "Scree plot")
+  geom_col() +
+  labs(
+    x = "PCAs of heart disease",
+    y = "% of variance",
+    title = "Scree plot"
+  )
 ```
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-74-1.pdf)<!-- --> 
@@ -2065,18 +2074,23 @@ Loadings are the covariances between the features and the principal components (
 
 ```r
 pca_recipe %>%
-  step_pca(all_predictors(), 
-           id = "pca") %>% # id argument identifies each PCA step 
+  step_pca(all_predictors(),
+    id = "pca"
+  ) %>% # id argument identifies each PCA step
   prep() %>%
   tidy(id = "pca") %>%
   filter(component %in% c("PC1", "PC2")) %>%
-  ggplot(aes(x = fct_reorder(terms, value), y = value, 
-             fill = component)) +
-    geom_col(position = "dodge") +
-    coord_flip() +
-    labs(x = "Terms",
-         y = "Contribtutions",
-         fill = "PCAs") 
+  ggplot(aes(
+    x = fct_reorder(terms, value), y = value,
+    fill = component
+  )) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  labs(
+    x = "Terms",
+    y = "Contribtutions",
+    fill = "PCAs"
+  )
 ```
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-75-1.pdf)<!-- --> 
@@ -2091,10 +2105,12 @@ You can use these low-dimensional data to solve the curse of dimensionality prob
 
 
 ```r
-pacman::p_load(tidytext, # tidy text analysis
-               glue, # paste string and objects                
-               stm, # structural topic modeling
-               gutenbergr) # toy datasets 
+pacman::p_load(
+  tidytext, # tidy text analysis
+  glue, # paste string and objects
+  stm, # structural topic modeling
+  gutenbergr
+) # toy datasets
 ```
 
 #### Dataset 
@@ -2115,29 +2131,19 @@ sherlock_raw <- gutenberg_download(1661)
 ```
 
 ```r
-glimpse(sherlock_raw)
-```
-
-```
-## Rows: 12,648
-## Columns: 2
-## $ gutenberg_id <int> 1661, 1661, 1661, 1661, 1661, 1661, 1661, 1661, 1661, 166~
-## $ text         <chr> "THE ADVENTURES OF SHERLOCK HOLMES", "", "by", "", "SIR A~
-```
-
-```r
 sherlock <- sherlock_raw %>%
-  # Mutate story using a conditional statement 
-  mutate(story = ifelse(str_starts(text, "ADVENTURE"), 
-                                   text, NA)) %>%
-  # Fill in missing values with next value  
+  # Mutate story using a conditional statement
+  mutate(
+    story = ifelse(str_detect(text, "ADVENTURE"), text, NA)
+  ) %>%
+  # Fill in missing values with next value
   tidyr::fill(story, .direction = "down") %>%
-  # Filter 
-  filter(story != "THE ADVENTURES OF SHERLOCK HOLMES") %>%
-  # Factor 
+  # Filter
+  dplyr::filter(story != "THE ADVENTURES OF SHERLOCK HOLMES") %>%
+  # Factor
   mutate(story = factor(story, levels = unique(story)))
 
-sherlock <- sherlock[,2:3]
+sherlock <- sherlock[, 2:3] # no id
 ```
 
 #### Key ideas 
@@ -2174,15 +2180,18 @@ sherlock <- sherlock[,2:3]
 
 ```r
 sherlock_n <- sherlock %>%
-  unnest_tokens(output = word,
-                input = text) %>%
+  unnest_tokens(
+    output = word,
+    input = text
+  ) %>%
   count(story, word, sort = TRUE)
 
 sherlock_total_n <- sherlock_n %>%
   group_by(story) %>%
   summarise(total = sum(n))
 
-sherlock_words <- sherlock_n %>% left_join(sherlock_total_n)
+sherlock_words <- sherlock_n %>%
+  left_join(sherlock_total_n)
 ```
 
 ```
@@ -2191,23 +2200,570 @@ sherlock_words <- sherlock_n %>% left_join(sherlock_total_n)
 
 ```r
 sherlock_words %>%
-  mutate(freq = n/total) %>%
+  mutate(freq = n / total) %>%
   group_by(story) %>%
   top_n(10) %>%
-  ggplot(aes(x = fct_reorder(word, freq), 
-             y = freq, 
-             fill = story)) +
+  ggplot(aes(
+    x = fct_reorder(word, freq),
+    y = freq,
+    fill = story
+  )) +
   geom_col() +
   coord_flip() +
-  facet_wrap(~story, 
-             ncol = 2, 
-             scales = "free_y") +
+  facet_wrap(~story,
+    ncol = 2,
+    scales = "free_y"
+  ) +
   scale_fill_viridis_d() +
-  labs(x = "")
+  labs(
+    x = "",
+    fill = "Story"
+  ) +
+  theme(legend.position = "bottom")
 ```
 
 ```
 ## Selecting by freq
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
 ```
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-78-1.pdf)<!-- --> 
@@ -2226,10 +2782,12 @@ Also, note that we didn't cover other important techniques in topic modeling suc
 
 
 ```r
-dtm <- textProcessor(documents = sherlock$text,
-                     metadata = sherlock, 
-                     removestopwords = TRUE,
-                     verbose = FALSE)
+dtm <- textProcessor(
+  documents = sherlock$text,
+  metadata = sherlock,
+  removestopwords = TRUE,
+  verbose = FALSE
+)
 ```
 
 ##### Tuning K
@@ -2239,10 +2797,13 @@ dtm <- textProcessor(documents = sherlock$text,
 
 
 ```r
-test_res <- searchK(dtm$documents, dtm$vocab, 
-                   K = c(5, 10, 15),
-                   prevalence =~ story, 
-                   data = dtm$meta)
+test_res <- searchK(
+  dtm$documents,
+  dtm$vocab,
+  K = c(5, 10, 15),
+  prevalence = ~story,
+  data = dtm$meta
+)
 ```
 
 ```
@@ -2251,49 +2812,45 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## 	 Finding anchor words...
 ##  	.....
 ## 	 Recovering initialization...
-##  	........................................................
+##  	..............................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 1 (approx. per word bound = -7.581) 
+## Completing Iteration 1 (approx. per word bound = -7.627) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.512, relative change = 1.510e-02) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.419, relative change = 1.228e-02) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.381, relative change = 5.151e-03) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.365, relative change = 2.165e-03) 
+## Topic 1: littl, man, see, hand, shall 
+##  Topic 2: upon, holm, think, come, take 
+##  Topic 3: said, will, just, know, word 
+##  Topic 4: one, may, came, tell, ask 
+##  Topic 5: time, sherlock, case, saw, face 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.358, relative change = 9.504e-04) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 2 (approx. per word bound = -7.482, relative change = 1.312e-02) 
+## Completing Iteration 7 (approx. per word bound = -7.355, relative change = 4.015e-04) 
 ## ....................................................................................................
 ## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 3 (approx. per word bound = -7.408, relative change = 9.916e-03) 
-## ....................................................................................................
-## Completed E-Step (0 seconds). 
-## Completed M-Step. 
-## Completing Iteration 4 (approx. per word bound = -7.383, relative change = 3.336e-03) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 5 (approx. per word bound = -7.372, relative change = 1.424e-03) 
-## Topic 1: holm, now, come, look, yes 
-##  Topic 2: upon, littl, man, hand, door 
-##  Topic 3: know, think, came, back, day 
-##  Topic 4: said, will, can, face, matter 
-##  Topic 5: one, see, shall, time, must 
-## ....................................................................................................
-## Completed E-Step (0 seconds). 
-## Completed M-Step. 
-## Completing Iteration 6 (approx. per word bound = -7.367, relative change = 6.889e-04) 
-## ....................................................................................................
-## Completed E-Step (0 seconds). 
-## Completed M-Step. 
-## Completing Iteration 7 (approx. per word bound = -7.365, relative change = 3.221e-04) 
-## ....................................................................................................
-## Completed E-Step (0 seconds). 
-## Completed M-Step. 
-## Completing Iteration 8 (approx. per word bound = -7.364, relative change = 1.281e-04) 
-## ....................................................................................................
-## Completed E-Step (0 seconds). 
-## Completed M-Step. 
-## Completing Iteration 9 (approx. per word bound = -7.364, relative change = 1.012e-05) 
+## Completing Iteration 8 (approx. per word bound = -7.354, relative change = 1.580e-04) 
 ## ....................................................................................................
 ## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
@@ -2303,56 +2860,48 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## 	 Finding anchor words...
 ##  	..........
 ## 	 Recovering initialization...
-##  	........................................................
+##  	..............................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 1 (approx. per word bound = -7.666) 
+## Completing Iteration 1 (approx. per word bound = -7.699) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 2 (approx. per word bound = -7.481, relative change = 2.408e-02) 
+## Completing Iteration 2 (approx. per word bound = -7.499, relative change = 2.594e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 3 (approx. per word bound = -7.387, relative change = 1.265e-02) 
+## Completing Iteration 3 (approx. per word bound = -7.373, relative change = 1.684e-02) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 4 (approx. per word bound = -7.361, relative change = 3.497e-03) 
+## Completing Iteration 4 (approx. per word bound = -7.287, relative change = 1.172e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 5 (approx. per word bound = -7.351, relative change = 1.396e-03) 
-## Topic 1: upon, littl, paper, even, came 
-##  Topic 2: holm, back, two, busi, sat 
-##  Topic 3: one, case, word, remark, point 
-##  Topic 4: come, said, room, miss, say 
-##  Topic 5: said, man, eye, yes, took 
-##  Topic 6: may, just, away, fact, mind 
-##  Topic 7: see, one, time, face, look 
-##  Topic 8: know, now, can, hand, must 
-##  Topic 9: will, sherlock, two, might, famili 
-##  Topic 10: tabl, heard, die, might, record 
+## Completing Iteration 5 (approx. per word bound = -7.257, relative change = 4.115e-03) 
+## Topic 1: miss, littl, came, man, good 
+##  Topic 2: said, might, sudden, hous, went 
+##  Topic 3: upon, just, never, right, two 
+##  Topic 4: upon, will, one, see, may 
+##  Topic 5: sherlock, name, think, laugh, holm 
+##  Topic 6: see, hard, night, cri, forward 
+##  Topic 7: littl, stone, becam, whole, sure 
+##  Topic 8: can, know, matter, now, say 
+##  Topic 9: man, hand, knew, one, even 
+##  Topic 10: holm, ask, sat, “pray, long 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 6 (approx. per word bound = -7.346, relative change = 7.034e-04) 
+## Completing Iteration 6 (approx. per word bound = -7.248, relative change = 1.256e-03) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 7 (approx. per word bound = -7.342, relative change = 5.221e-04) 
+## Completing Iteration 7 (approx. per word bound = -7.247, relative change = 9.258e-05) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 8 (approx. per word bound = -7.338, relative change = 5.161e-04) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 9 (approx. per word bound = -7.336, relative change = 2.460e-04) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -2360,113 +2909,59 @@ test_res <- searchK(dtm$documents, dtm$vocab,
 ## 	 Finding anchor words...
 ##  	...............
 ## 	 Recovering initialization...
-##  	........................................................
+##  	..............................................
 ## Initialization complete.
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 1 (approx. per word bound = -7.738) 
+## Completing Iteration 1 (approx. per word bound = -7.749) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 2 (approx. per word bound = -7.461, relative change = 3.577e-02) 
+## Completing Iteration 2 (approx. per word bound = -7.417, relative change = 4.283e-02) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.297, relative change = 1.624e-02) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.242, relative change = 7.558e-03) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 3 (approx. per word bound = -7.367, relative change = 1.264e-02) 
+## Completing Iteration 5 (approx. per word bound = -7.222, relative change = 2.745e-03) 
+## Topic 1: think, holm, turn, now, “ye 
+##  Topic 2: might, dress, hous, place, near 
+##  Topic 3: know, without, now, “’s, money 
+##  Topic 4: open, may, look, much, one 
+##  Topic 5: hand, well, see, way, littl 
+##  Topic 6: question, salesman, told, companion, close 
+##  Topic 7: littl, told, feel, remark, quit 
+##  Topic 8: can, matter, “oh, say, away 
+##  Topic 9: will, shall, must, come, littl 
+##  Topic 10: one, man, light, time, two 
+##  Topic 11: upon, holm, miss, man, sherlock 
+##  Topic 12: room, came, ask, just, hous 
+##  Topic 13: may, tell, sir, find, help 
+##  Topic 14: said, holm, believ, laugh, will 
+##  Topic 15: littl, now, noth, day, saw 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.212, relative change = 1.382e-03) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.207, relative change = 5.993e-04) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.203, relative change = 5.851e-04) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 4 (approx. per word bound = -7.343, relative change = 3.252e-03) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 5 (approx. per word bound = -7.333, relative change = 1.367e-03) 
-## Topic 1: matter, like, made, much, street 
-##  Topic 2: look, door, face, room, saw 
-##  Topic 3: sir, someth, wife, mean, instant 
-##  Topic 4: said, holm, ask, well, miss 
-##  Topic 5: morn, littl, remark, quit, interest 
-##  Topic 6: back, chair, close, get, step 
-##  Topic 7: time, read, put, seen, part 
-##  Topic 8: two, now, case, cri, yet 
-##  Topic 9: upon, one, sherlock, famili, knew 
-##  Topic 10: may, howev, tell, long, clear 
-##  Topic 11: will, think, shall, good, came 
-##  Topic 12: see, littl, hand, yes, way 
-##  Topic 13: holm, answer, turn, return, mrs 
-##  Topic 14: man, reason, certain, strang, crime 
-##  Topic 15: might, twist, hand, never, come 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 6 (approx. per word bound = -7.328, relative change = 7.011e-04) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 7 (approx. per word bound = -7.324, relative change = 4.535e-04) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 8 (approx. per word bound = -7.322, relative change = 3.650e-04) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 9 (approx. per word bound = -7.320, relative change = 2.220e-04) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 10 (approx. per word bound = -7.318, relative change = 2.408e-04) 
-## Topic 1: matter, much, like, even, away 
-##  Topic 2: look, room, door, face, saw 
-##  Topic 3: sir, went, someth, wife, dark 
-##  Topic 4: said, holm, well, ask, heard 
-##  Topic 5: quit, morn, remark, left, give 
-##  Topic 6: back, get, chair, step, close 
-##  Topic 7: time, put, seen, paper, three 
-##  Topic 8: two, case, cri, seem, yet 
-##  Topic 9: upon, one, sherlock, knew, famili 
-##  Topic 10: may, howev, tell, long, clear 
-##  Topic 11: will, think, come, shall, can 
-##  Topic 12: see, littl, hand, yes, way 
-##  Topic 13: turn, holm, answer, return, observ 
-##  Topic 14: man, reason, certain, strang, lord 
-##  Topic 15: might, thing, follow, told, help 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 11 (approx. per word bound = -7.317, relative change = 1.808e-04) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 12 (approx. per word bound = -7.316, relative change = 1.221e-04) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 13 (approx. per word bound = -7.315, relative change = 8.460e-05) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 14 (approx. per word bound = -7.315, relative change = 4.530e-05) 
-## ....................................................................................................
-## Completed E-Step (1 seconds). 
-## Completed M-Step. 
-## Completing Iteration 15 (approx. per word bound = -7.315, relative change = 2.133e-05) 
-## Topic 1: matter, much, like, even, made 
-##  Topic 2: look, room, door, face, eye 
-##  Topic 3: sir, went, someth, wife, dark 
-##  Topic 4: said, holm, well, ask, know 
-##  Topic 5: quit, remark, morn, left, found 
-##  Topic 6: back, get, chair, step, close 
-##  Topic 7: time, year, paper, put, seen 
-##  Topic 8: two, case, seem, cri, yet 
-##  Topic 9: upon, one, sherlock, knew, famili 
-##  Topic 10: may, howev, tell, long, clear 
-##  Topic 11: will, come, think, now, can 
-##  Topic 12: littl, see, hand, yes, way 
-##  Topic 13: turn, answer, return, holm, observ 
-##  Topic 14: man, reason, certain, strang, lord 
-##  Topic 15: might, make, thing, word, follow 
+## Completing Iteration 9 (approx. per word bound = -7.202, relative change = 9.837e-05) 
 ## ....................................................................................................
 ## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
@@ -2492,15 +2987,18 @@ test_res$results %>%
   select(K, exclus, semcoh) %>%
   mutate(K = as.factor(K)) %>%
   ggplot(aes(x = exclus, y = semcoh)) +
-    geom_point() +
-    geom_text(label = glue("K = {test_res$results$K}"),
-              size = 5,
-              color = "red",
-              position = position_jitter(width = 0.05,
-                                         height = 0.05)) +
-    labs(x = "Exclusivity",
-         y = "Semantic coherence", 
-         title = "Exclusivity and semantic coherence")
+  geom_point() +
+  geom_text(
+    label = glue("K = {test_res$results$K}"),
+    size = 5,
+    color = "red",
+    position = position_jitter(width = 0.05, height = 0.05)
+  ) +
+  labs(
+    x = "Exclusivity",
+    y = "Semantic coherence",
+    title = "Exclusivity and semantic coherence"
+  )
 ```
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-81-1.pdf)<!-- --> 
@@ -2509,14 +3007,15 @@ test_res$results %>%
 
 
 ```r
-final_stm <- stm(dtm$documents, 
-                 dtm$vocab, 
-                 K = 10, prevalence = ~story,
-                 max.em.its = 75, 
-                 data = dtm$meta, 
-                 init.type = "Spectral",
-                 seed = 1234567,
-                 verbose = FALSE)
+final_stm <- stm(dtm$documents,
+  dtm$vocab,
+  K = 10, prevalence = ~story,
+  max.em.its = 75,
+  data = dtm$meta,
+  init.type = "Spectral",
+  seed = 1234567,
+  verbose = FALSE
+)
 ```
 
 ##### Explore the results 
@@ -2525,7 +3024,6 @@ final_stm <- stm(dtm$documents,
 
 
 ```r
-# plot
 plot(final_stm)
 ```
 
@@ -2537,1148 +3035,233 @@ In LDA distribution, $\alpha$ represents document-topic density and $\beta$ repr
 
 
 ```r
-# tidy  
+# tidy
 tidy_stm <- tidy(final_stm)
 
 # top terms
 tidy_stm %>%
-    group_by(topic) %>%
-    top_n(10, beta) %>%
-    ungroup() %>%
-    ggplot(aes(fct_reorder(term, beta), beta, fill = as.factor(topic))) +
-    geom_col(alpha = 0.8, show.legend = FALSE) +
-    facet_wrap(~ topic, scales = "free_y") +
-    coord_flip() +
-    scale_y_continuous(labels = scales::percent) +
-    scale_fill_viridis_d()
+  group_by(topic) %>%
+  top_n(10, beta) %>%
+  ungroup() %>%
+  ggplot(aes(fct_reorder(term, beta), beta, fill = as.factor(topic))) +
+  geom_col(alpha = 0.8, show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free_y") +
+  coord_flip() +
+  scale_y_continuous(labels = scales::percent) +
+  scale_fill_viridis_d()
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
 ```
 
 ![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-84-1.pdf)<!-- --> 
-
-## Bias and fairness in machine learning 
-
-This section introduces the issues surrounding the fairness and bias in machine learning applications, focusing on ProPublica's Analysis of the COMPAS algorithm. I revised [the ProPublica's original R and Python code](https://github.com/propublica/compas-analysis/blob/master/Compas%20Analysis.ipynb) to increase its code readability.
-
-![A gif of defendants being put into an algorithm by SELMAN DESIGN](https://wp.technologyreview.com/wp-content/uploads/2019/10/mit-alg-yb-02-7.gif?fit=1444,962)
-
-**Outline** 
-
-1. Bias in the data 
-  - Risk of Recidivism Data
-  - Risk of Violent Recidivism Data
-
-2. Bias in the algorithm 
-
-**References**
-
-For more information on ProPublica's Machine Bias project, we encourage you to check out the following references.
-
-* [Argument](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing/) by Julia Angwin, Jeff Larson, Surya Mattu and Lauren Kirchner
-
-* [Counterargument](https://www.washingtonpost.com/news/monkey-cage/wp/2016/10/17/can-an-algorithm-be-racist-our-analysis-is-more-cautious-than-propublicas/) by Sam Corbett-Davies, Emma Pierson, Avi Feller, and Sharad Goel
-
-* [Methodology](https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm/)
-
-### Bias in the Data (Risk of Recidivism Analysis)
-
-#### Setup 
-
-
-```r
-if (!require("pacman")) install.packages("pacman")
-
-pacman::p_load(
- tidyverse, # tidyverse packages 
- conflicted, # an alternative conflict resolution strategy 
- ggthemes, # other themes for ggplot2 
- patchwork, # arranging ggplots
- scales, # rescaling 
- survival, # survival analysis
- broom, # for modeling
- here, # reproducibility 
- glue # pasting strings and objects 
-)
-
-# To avoid conflicts 
-conflict_prefer("filter", "dplyr") 
-```
-
-```
-## [conflicted] Removing existing preference
-```
-
-```
-## [conflicted] Will prefer dplyr::filter over any other package
-```
-
-```r
-conflict_prefer("select", "dplyr") 
-```
-
-```
-## [conflicted] Removing existing preference
-```
-
-```
-## [conflicted] Will prefer dplyr::select over any other package
-```
-
-#### Load data 
-
-We select fields for the severity of the charge, number of priors, demographics, age, sex, COMPAS scores, and whether each person was accused of a crime within two years.
-
-
-```r
-two_years <- read_csv(here("data", "compas-scores-two-years.csv"))
-```
-
-```
-## Warning: Duplicated column names deduplicated: 'decile_score' =>
-## 'decile_score_1' [40], 'priors_count' => 'priors_count_1' [49]
-```
-
-```r
-glue("N of observations (rows): {nrow(two_years)}
-      N of variables (columns): {ncol(two_years)}")
-```
-
-```
-## N of observations (rows): 7214
-## N of variables (columns): 53
-```
-
-#### Wrangling 
-
-- Not all of the observations are useable for the first round of analysis.
-- There are many reasons to remove rows because of missing data:
-    If the charge date of a defendant's COMPAS scored crime was not within 30 days from when the person was arrested, we assume that we do not have the right offense because of data quality reasons.
-    - We coded the recidivist flag -- is_recid -- to be -1 if we could not find a COMPAS case at all.
-    - In a similar vein, ordinary traffic offenses -- those with a c_charge_degree of 'O' -- will not result in Jail time are removed (only two of them).
-    - We filtered the underlying data from Broward county to include only those rows representing people who had either recidivated in two years or had at least two years outside of a correctional facility.
-
-- Create a function 
-
-
-```r
-wrangle_data <- function(data){
-
-df <- data %>% 
-    
-    # Select variables 
-    select(age, c_charge_degree, race, age_cat, score_text, sex, priors_count, days_b_screening_arrest, decile_score, is_recid, two_year_recid, 
-         c_jail_in, c_jail_out) %>% 
-    # Filter rows 
-    filter(days_b_screening_arrest <= 30,
-           days_b_screening_arrest >= -30, 
-           is_recid != -1,
-           c_charge_degree != "O",
-           score_text != 'N/A') %>% 
-    # Mutate variables 
-    mutate(length_of_stay = as.numeric(as.Date(c_jail_out) - as.Date(c_jail_in)),
-           c_charge_degree = factor(c_charge_degree),
-           age_cat = factor(age_cat),
-           race = factor(race, levels = c("Caucasian","African-American","Hispanic","Other","Asian","Native American")),
-           sex = factor(sex, levels = c("Male","Female")),
-           score_text = factor(score_text, levels = c("Low", "Medium", "High")),
-           score = score_text,
-# I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference 
-           score_num = as.numeric(score_text)) %>% 
-    # Rename variables 
-    rename(crime = c_charge_degree,
-           gender = sex)
-        
-return(df)}
-```
-
-- Apply the function to the data 
-
-
-```r
-df <- wrangle_data(two_years)
-
-names(df)
-```
-
-```
-##  [1] "age"                     "crime"                  
-##  [3] "race"                    "age_cat"                
-##  [5] "score_text"              "gender"                 
-##  [7] "priors_count"            "days_b_screening_arrest"
-##  [9] "decile_score"            "is_recid"               
-## [11] "two_year_recid"          "c_jail_in"              
-## [13] "c_jail_out"              "length_of_stay"         
-## [15] "score"                   "score_num"
-```
-
-```r
-# Check whether the function works as expected
-head(df, 5)
-```
-
-```
-## # A tibble: 5 x 16
-##     age crime race     age_cat  score_text gender priors_count days_b_screening~
-##   <dbl> <fct> <fct>    <fct>    <fct>      <fct>         <dbl>             <dbl>
-## 1    69 F     Other    Greater~ Low        Male              0                -1
-## 2    34 F     African~ 25 - 45  Low        Male              0                -1
-## 3    24 F     African~ Less th~ Low        Male              4                -1
-## 4    44 M     Other    25 - 45  Low        Male              0                 0
-## 5    41 F     Caucasi~ 25 - 45  Medium     Male             14                -1
-## # ... with 8 more variables: decile_score <dbl>, is_recid <dbl>,
-## #   two_year_recid <dbl>, c_jail_in <dttm>, c_jail_out <dttm>,
-## #   length_of_stay <dbl>, score <fct>, score_num <dbl>
-```
-
-#### Descriptive analysis 
-
-- Higher COMPAS scores are slightly correlated with a longer length of stay.
-
-
-```r
-cor(df$length_of_stay, df$decile_score)
-```
-
-```
-## [1] 0.2073297
-```
-
-```r
-df %>%
-  group_by(score) %>%
-  count() %>%
-  ggplot(aes(x = score, y = n)) +
-    geom_col() +
-    labs(x = "Score",
-         y = "Count",
-         title = "Score distribution")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-89-1.pdf)<!-- --> 
-
-Judges are often presented with two sets of scores from the COMPAS system -- one that classifies people into High, Medium, and Low risk and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.
-
-
-```r
-df %>%
-  ggplot(aes(ordered(decile_score))) + 
-          geom_bar() +
-          facet_wrap(~race, nrow = 2) +
-          labs(x = "Decile Score",
-               y = "Count",
-               Title = "Defendant's Decile Score")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-90-1.pdf)<!-- --> 
-
-#### Modeling 
-
-After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. We need to change some variables into factors and run a logistic regression, comparing low scores to high scores.
-
-- Model building 
-
-
-```r
-model_data <- function(data){
-
-# Logistic regression model
-lr_model <- glm(score ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
-             family = "binomial", data = data)
-
-# OLS, DV = score_num
-ols_model1 <- lm(score_num ~ gender + age_cat + race + priors_count + crime + two_year_recid, data = data)
-
-# OLS, DV = decile_score 
-ols_model2 <- lm(decile_score ~ gender + age_cat + race + priors_count + crime + two_year_recid, data = data)
-
-# Extract model outcomes with confidence intervals 
-lr_est <- lr_model %>% 
-    tidy(conf.int = TRUE) 
-
-ols_est1 <- ols_model1 %>%
-    tidy(conf.int = TRUE) 
-
-ols_est2 <- ols_model2 %>%
-    tidy(conf.int = TRUE) 
-
-# AIC scores 
-lr_AIC <- AIC(lr_model)
-ols_AIC1 <- AIC(ols_model1)
-ols_AIC2 <- AIC(ols_model2)
-    
-list(lr_est, ols_est1, ols_est2, 
-     lr_AIC, ols_AIC1, ols_AIC2)
-
-}
-```
-
-- Model comparisons 
-
-
-```r
-glue("AIC score of logistic regression: {model_data(df)[4]} 
-      AIC score of OLS regression (with categorical DV):  {model_data(df)[5]}
-      AIC score of OLS regression (with continuous DV): {model_data(df)[6]}")
-```
-
-```
-## AIC score of logistic regression: 6192.40169473357 
-## AIC score of OLS regression (with categorical DV):  11772.1148541111
-## AIC score of OLS regression (with continuous DV): 26779.9512226999
-```
-
-- Logistic regression model 
-
-
-```r
-lr_model <- model_data(df)[1] %>% data.frame()
-
-lr_model %>%
-  filter(term != "(Intercept)") %>%
-  mutate(term = gsub("race|age_cat|gender|M","", term)) %>%
-  ggplot(aes(x = fct_reorder(term, estimate), y = estimate, ymax = conf.high, ymin = conf.low)) +
-  geom_pointrange() +
-  coord_flip() +
-  labs(y = "Estimate", x = "",
-      title = "Logistic regression") +
-  geom_hline(yintercept = 0, linetype = "dashed")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-93-1.pdf)<!-- --> 
-
-Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success, and 1-p could be as a failure. Here, coefficient 1 indicates the equal probability for the binary outcomes. A coefficient greater than 1 indicates a strong chance for p and a weak chance for 1-p. A coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
-
-(To refresh your memory, note that probability is bounded between [0, 1]. Odds range between 0 and infinity. Log odds range from negative to positive infinity. We're going through this hassle because we used the log function to map predictor variables to probability to fit the binary outcomes model.)
-
-In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see [Grant](https://www.bmj.com/content/348/bmj.f7450) (2014), [Wang](https://www.jstatsoft.org/article/view/v055i05) (2013), and [Zhang and Yu](https://jamanetwork.com/journals/jama/fullarticle/188182) (1998). 
-
-
-```r
-odds_to_risk <- function(model){
-    
-    # Calculating p0 (baseline or control group)
-    intercept <- model$estimate[model$term == "(Intercept)"]
-    control <- exp(intercept) / (1 + exp(intercept)) 
-    
-    # Calculating relative risk 
-    model <- model %>% filter(term != "(Intercept)")
-    model$relative_risk <- (exp(model$estimate) / 
-                        (1 - control + (control * exp(model$estimate)))) 
-    
-    return(model)
-}
-```
-
-
-```r
-odds_to_risk(lr_model) %>%
-  relocate(relative_risk) %>%
-  arrange(desc(relative_risk))
-```
-
-```
-##    relative_risk                   term   estimate  std.error   statistic
-## 1      2.6152880    raceNative American  1.3942077 0.76611816   1.8198338
-## 2      2.4961195    age_catLess than 25  1.3083903 0.07592869  17.2318308
-## 3      1.6882587         two_year_recid  0.6858625 0.06401955  10.7133288
-## 4      1.4528374   raceAfrican-American  0.4772070 0.06934914   6.8812245
-## 5      1.2402135           priors_count  0.2689453 0.01110379  24.2210342
-## 6      1.1947947           genderFemale  0.2212667 0.07951020   2.7828714
-## 7      0.8077863              raceAsian -0.2544147 0.47821105  -0.5320135
-## 8      0.7692955                 crimeM -0.3112408 0.06654750  -4.6769729
-## 9      0.6948050           raceHispanic -0.4283949 0.12812549  -3.3435572
-## 10     0.4865228              raceOther -0.8263469 0.16208006  -5.0983873
-## 11     0.2971899 age_catGreater than 45 -1.3556332 0.09908053 -13.6821355
-##          p.value    conf.low  conf.high
-## 1   6.878432e-02 -0.05694017  3.0383160
-## 2   1.532239e-66  1.16008750  1.4577645
-## 3   8.813460e-27  0.56039880  0.8113799
-## 4   5.934025e-12  0.34137020  0.6132514
-## 5  1.335783e-129  0.24750487  0.2910343
-## 6   5.388016e-03  0.06532360  0.3770591
-## 7   5.947167e-01 -1.25877950  0.6389894
-## 8   2.911407e-06 -0.44178937 -0.1808904
-## 9   8.271164e-04 -0.68190124 -0.1794075
-## 10  3.425594e-07 -1.15026143 -0.5142075
-## 11  1.298233e-42 -1.55226716 -1.1637224
-```
-
-A relative risk score of 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.
-
-The plot visualizes this and other results from the table. 
-
-
-```r
-odds_to_risk(lr_model) %>%
-    mutate(term = gsub("race|age_cat|gender","", term)) %>% 
-    ggplot(aes(x = fct_reorder(term, relative_risk), y = relative_risk)) +
-        geom_point(size = 3) +
-        coord_flip() +
-        labs(y = "Likelihood", x = "",
-             title = "Logistic regression") +
-        scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-        geom_hline(yintercept = 1, linetype = "dashed")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-96-1.pdf)<!-- --> 
-
-### Bias in the Data (Risk of Violent Recidivism Analysis)
-
-#### Setup 
-
-
-```r
-if (!require("pacman")) install.packages("pacman")
-
-pacman::p_load(
- tidyverse, # tidyverse packages 
- conflicted, # an alternative conflict resolution strategy 
- ggthemes, # other themes for ggplot2 
- patchwork, # arranging ggplots
- scales, # rescaling 
- survival, # survival analysis
- broom, # for modeling
- here, # reproducibility 
- glue # pasting strings and objects 
-)
-
-# To avoid conflicts 
-conflict_prefer("filter", "dplyr") 
-```
-
-```
-## [conflicted] Removing existing preference
-```
-
-```
-## [conflicted] Will prefer dplyr::filter over any other package
-```
-
-```r
-conflict_prefer("select", "dplyr") 
-```
-
-```
-## [conflicted] Removing existing preference
-```
-
-```
-## [conflicted] Will prefer dplyr::select over any other package
-```
-
-```r
-# Set themes 
-theme_set(ggthemes::theme_fivethirtyeight())
-```
-
-#### Load data 
-
-
-```r
-two_years_violent <- read_csv(here("data" ,"compas-scores-two-years-violent.csv"))
-```
-
-```
-## Warning: Duplicated column names deduplicated: 'decile_score' =>
-## 'decile_score_1' [40], 'priors_count' => 'priors_count_1' [49], 'two_year_recid'
-## => 'two_year_recid_1' [54]
-```
-
-```
-## 
-## -- Column specification --------------------------------------------------------------
-## cols(
-##   .default = col_double(),
-##   name = col_character(),
-##   first = col_character(),
-##   last = col_character(),
-##   compas_screening_date = col_date(format = ""),
-##   sex = col_character(),
-##   dob = col_date(format = ""),
-##   age_cat = col_character(),
-##   race = col_character(),
-##   c_jail_in = col_datetime(format = ""),
-##   c_jail_out = col_datetime(format = ""),
-##   c_case_number = col_character(),
-##   c_offense_date = col_date(format = ""),
-##   c_arrest_date = col_date(format = ""),
-##   c_charge_degree = col_character(),
-##   c_charge_desc = col_character(),
-##   r_case_number = col_character(),
-##   r_charge_degree = col_character(),
-##   r_offense_date = col_date(format = ""),
-##   r_charge_desc = col_character(),
-##   r_jail_in = col_date(format = "")
-##   # ... with 14 more columns
-## )
-## i Use `spec()` for the full column specifications.
-```
-
-```r
-glue("N of observations (rows): {nrow(two_years_violent)}
-      N of variables (columns): {ncol(two_years_violent)}")
-```
-
-```
-## N of observations (rows): 4743
-## N of variables (columns): 54
-```
-
-#### Wrangling
-
-- Create a function 
-
-
-```r
-wrangle_data <- function(data){
-
-df <- data %>% 
-    
-    # Select variables 
-    select(age, c_charge_degree, race, age_cat, v_score_text, sex, priors_count, 
-         days_b_screening_arrest, v_decile_score, is_recid, two_year_recid) %>%            
-    # Filter rows 
-    filter(days_b_screening_arrest <= 30,
-           days_b_screening_arrest >= -30, 
-           is_recid != -1,
-           c_charge_degree != "O",
-           v_score_text != 'N/A') %>% 
-    # Mutate variables 
-    mutate(c_charge_degree = factor(c_charge_degree),
-           age_cat = factor(age_cat),
-           race = factor(race, levels = c("Caucasian","African-American","Hispanic","Other","Asian","Native American")),
-           sex = factor(sex, levels = c("Male","Female")),
-           v_score_text = factor(v_score_text, levels = c("Low", "Medium", "High")),
-# I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference 
-           score_num = as.numeric(v_score_text)) %>%
-    # Rename variables 
-    rename(crime = c_charge_degree,
-           gender = sex,
-           score = v_score_text)
-        
-return(df)}
-```
-
-- Apply the function to the data 
-
-
-```r
-df <- wrangle_data(two_years_violent)
-
-names(df)
-```
-
-```
-##  [1] "age"                     "crime"                  
-##  [3] "race"                    "age_cat"                
-##  [5] "score"                   "gender"                 
-##  [7] "priors_count"            "days_b_screening_arrest"
-##  [9] "v_decile_score"          "is_recid"               
-## [11] "two_year_recid"          "score_num"
-```
-
-```r
-head(df, 5) # Check whether the function works as expected 
-```
-
-```
-## # A tibble: 5 x 12
-##     age crime race       age_cat    score gender priors_count days_b_screening_~
-##   <dbl> <fct> <fct>      <fct>      <fct> <fct>         <dbl>              <dbl>
-## 1    69 F     Other      Greater t~ Low   Male              0                 -1
-## 2    34 F     African-A~ 25 - 45    Low   Male              0                 -1
-## 3    44 M     Other      25 - 45    Low   Male              0                  0
-## 4    43 F     Other      25 - 45    Low   Male              3                 -1
-## 5    39 M     Caucasian  25 - 45    Low   Female            0                 -1
-## # ... with 4 more variables: v_decile_score <dbl>, is_recid <dbl>,
-## #   two_year_recid <dbl>, score_num <dbl>
-```
-
-#### Descriptive analysis 
-
-- Score distribution 
-
-
-```r
-df %>%
-  group_by(score) %>%
-  count() %>%
-  ggplot(aes(x = score, y = n)) +
-    geom_col() +
-    labs(x = "Score",
-         y = "Count",
-         title = "Score distribution")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-101-1.pdf)<!-- --> 
-
-- Score distribution by race
-
-
-```r
-df %>%
-  ggplot(aes(ordered(v_decile_score))) + 
-          geom_bar() +
-          facet_wrap(~race, nrow = 2) +
-          labs(x = "Decile Score",
-               y = "Count",
-               Title = "Defendant's Decile Score")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-102-1.pdf)<!-- --> 
-#### Modeling 
-
-After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. We need to change some variables into factors and run a logistic regression, comparing low scores to high scores.
-
-
-```r
-model_data <- function(data){
-
-# Logistic regression model
-lr_model <- glm(score ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
-             family = "binomial", data = data)
-
-# OLS
-ols_model1 <- lm(score_num ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
-             data = data)
-
-ols_model2 <- lm(v_decile_score ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
-             data = data)
-
-# Extract model outcomes with confidence intervals 
-lr_est <- lr_model %>% 
-    tidy(conf.int = TRUE) 
-
-ols_est1 <- ols_model1 %>%
-    tidy(conf.int = TRUE) 
-
-ols_est2 <- ols_model2 %>%
-    tidy(conf.int = TRUE) 
-
-# AIC scores 
-lr_AIC <- AIC(lr_model)
-ols_AIC1 <- AIC(ols_model1)
-ols_AIC2 <- AIC(ols_model2)
-    
-list(lr_est, ols_est1, ols_est2, lr_AIC, ols_AIC1, ols_AIC2)
-}
-```
-
-- Model comparisons 
-
-
-```r
-glue("AIC score of logistic regression: {model_data(df)[4]} 
-      AIC score of OLS regression (with categorical DV):  {model_data(df)[5]}
-      AIC score of OLS regression (with continuous DV): {model_data(df)[6]}")
-```
-
-```
-## AIC score of logistic regression: 3022.77943765996 
-## AIC score of OLS regression (with categorical DV):  5414.49127581608
-## AIC score of OLS regression (with continuous DV): 15458.3861723106
-```
-
-- Logistic regression model 
-
-
-```r
-lr_model <- model_data(df)[1] %>% 
-  data.frame()
-
-lr_model %>%
-  filter(term != "(Intercept)") %>%
-  mutate(term = gsub("race|age_cat|gender","", term)) %>%
-  ggplot(aes(x = fct_reorder(term, estimate), y = estimate, ymax = conf.high, ymin = conf.low)) +
-  geom_pointrange() +
-  coord_flip() +
-  labs(y = "Estimate", x = "",
-      title = "Logistic regression") +
-  geom_hline(yintercept = 0, linetype = "dashed")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-105-1.pdf)<!-- --> 
-
-Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success, and 1-p could be as a failure. Here, coefficient 1 indicates the equal probability for the binary outcomes. A coefficient greater than 1 indicates strong chance for p and a weak chance for 1-p. A coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
-
-(To refresh your memory, note that probability is bounded between [0, 1]. Odds range between 0 and infinity. Log odds range from negative to positive infinity. We're going through this hassle because we used the log function to map predictor variables to probability to fit the binary outcomes model.)
-
-In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see [Grant](https://www.bmj.com/content/348/bmj.f7450) (2014), [Wang](https://www.jstatsoft.org/article/view/v055i05) (2013), and [Zhang and Yu](https://jamanetwork.com/journals/jama/fullarticle/188182) (1998). 
-
-
-```r
-odds_to_risk <- function(model){
-    
-    # Calculating p0 (baseline or control group)
-    intercept <- model$estimate[model$term == "(Intercept)"]
-    control <- exp(intercept) / (1 + exp(intercept)) 
-    
-    # Calculating relative risk 
-    model <- model %>% filter(term != "(Intercept)")
-    model$relative_risk <- (exp(model$estimate) / 
-                        (1 - control + (control * exp(model$estimate)))) 
-    
-    return(model)
-}
-```
-
-
-```r
-odds_to_risk(lr_model) %>%
-  relocate(relative_risk) %>%
-  arrange(desc(relative_risk))
-```
-
-```
-##    relative_risk                   term    estimate  std.error  statistic
-## 1      7.4142320    age_catLess than 25  3.14590906 0.11540998 27.2585528
-## 2      2.2169566         two_year_recid  0.93447949 0.11527216  8.1067232
-## 3      1.7739274   raceAfrican-American  0.65893450 0.10814991  6.0927885
-## 4      1.4845555    raceNative American  0.44792984 1.03546096  0.4325898
-## 5      1.1315392           priors_count  0.13764241 0.01161172 11.8537476
-## 6      0.9434828           raceHispanic -0.06415947 0.19132794 -0.3353377
-## 7      0.8615079                 crimeM -0.16366732 0.09806528 -1.6689631
-## 8      0.8290722              raceOther -0.20543235 0.22464062 -0.9144933
-## 9      0.5076551           genderFemale -0.72890371 0.12665509 -5.7550290
-## 10     0.3972545              raceAsian -0.98520588 0.70537045 -1.3967212
-## 11     0.1902151 age_catGreater than 45 -1.74207559 0.18414760 -9.4602135
-##          p.value   conf.low   conf.high
-## 1  1.315899e-163  2.9224937  3.37506621
-## 2   5.200316e-16  0.7084155  1.16039836
-## 3   1.109606e-09  0.4480948  0.87222287
-## 4   6.653128e-01 -1.9660912  2.24738803
-## 5   2.057779e-32  0.1151045  0.16064926
-## 6   7.373704e-01 -0.4439074  0.30657314
-## 7   9.512470e-02 -0.3563339  0.02822281
-## 8   3.604577e-01 -0.6533518  0.22789493
-## 9   8.662690e-09 -0.9800266 -0.48330469
-## 10  1.624974e-01 -2.4655693  0.33213464
-## 11  3.073150e-21 -2.1171742 -1.39384502
-```
-
-A relative risk score of 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.
-
-The plot visualizes this and other results from the table. 
-
-
-```r
-odds_to_risk(lr_model) %>%
-    mutate(term = gsub("race|age_cat|gender","", term)) %>% 
-    ggplot(aes(x = fct_reorder(term, relative_risk), y = relative_risk)) +
-        geom_point(size = 3) +
-        coord_flip() +
-        labs(y = "Likelihood", x = "",
-             title = "Logistic regression") +
-        scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-        geom_hline(yintercept = 1, linetype = "dashed")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-108-1.pdf)<!-- --> 
-
-
-### Bias in the algorithm 
-
-- To test whether COMPAS scores do an accurate job of deciding whether an offender is Low, Medium, or High risk, we ran a Cox Proportional Hazards model. Northpointe, the company that created COMPAS and markets it to Law Enforcement, also ran a Cox model in [their validation study](https://journals.sagepub.com/doi/abs/10.1177/0093854808326545).
-
-- We used the counting model and removed people when they were incarcerated. Due to errors in the underlying jail data, we need to filter out 32 rows with an end date more than the start date. Considering that there are 13,334 total rows in the data, such a small amount of errors will not affect the results.
-
-#### Setup 
-
-
-```r
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(
- tidyverse, # tidyverse packages 
- conflicted, # an alternative conflict resolution strategy 
- ggthemes, # other themes for ggplot2 
- patchwork, # arranging ggplots
- scales, # rescaling 
- survival, # survival analysis
- broom, # for modeling
- here, # reproducibility 
- glue, # pasting strings and objects 
- reticulate # source python codes
-)
-
-# Set themes 
-theme_set(ggthemes::theme_fivethirtyeight())
-```
-
-#### Load data 
-
-
-```r
-cox_data <- read_csv(here("data" ,"cox-parsed.csv"))
-```
-
-```
-## Warning: Duplicated column names deduplicated: 'decile_score' =>
-## 'decile_score_1' [40], 'priors_count' => 'priors_count_1' [49]
-```
-
-```
-## 
-## -- Column specification --------------------------------------------------------------
-## cols(
-##   .default = col_character(),
-##   id = col_double(),
-##   compas_screening_date = col_date(format = ""),
-##   dob = col_date(format = ""),
-##   age = col_double(),
-##   juv_fel_count = col_double(),
-##   decile_score = col_double(),
-##   juv_misd_count = col_double(),
-##   juv_other_count = col_double(),
-##   priors_count = col_double(),
-##   days_b_screening_arrest = col_double(),
-##   c_jail_in = col_datetime(format = ""),
-##   c_jail_out = col_datetime(format = ""),
-##   c_offense_date = col_date(format = ""),
-##   c_arrest_date = col_date(format = ""),
-##   c_days_from_compas = col_double(),
-##   is_recid = col_double(),
-##   r_days_from_arrest = col_double(),
-##   r_offense_date = col_date(format = ""),
-##   r_jail_in = col_date(format = ""),
-##   r_jail_out = col_date(format = "")
-##   # ... with 13 more columns
-## )
-## i Use `spec()` for the full column specifications.
-```
-
-```r
-glue("N of observations (rows): {nrow(cox_data)}
-      N of variables (columns): {ncol(cox_data)}")
-```
-
-```
-## N of observations (rows): 13419
-## N of variables (columns): 52
-```
-
-#### Wrangling
-
-
-```r
-df <- cox_data %>% 
-    filter(score_text != "N/A") %>%
-    filter(end > start) %>%
-    mutate(c_charge_degree = factor(c_charge_degree),
-           age_cat = factor(age_cat),
-           race = factor(race, levels = c("Caucasian","African-American","Hispanic","Other","Asian","Native American")),
-           sex = factor(sex, levels = c("Male","Female")),
-           score_factor = factor(score_text, levels = c("Low", "Medium", "High")))
-
-grp <- df[!duplicated(df$id),]
-```
-
-#### Descriptive analysis 
-
-- Score distribution 
-
-
-```r
-grp %>% 
-    group_by(score_factor) %>%
-      count() %>%
-      ggplot(aes(x = score_factor, y = n)) +
-        geom_col() +
-        labs(x = "Score",
-             y = "Count",
-             title = "Score distribution")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-112-1.pdf)<!-- --> 
-
-- Score distribution by race
-
-
-```r
-df %>%
-  ggplot(aes(ordered(score_factor))) + 
-          geom_bar() +
-          facet_wrap(~race, nrow = 2) +
-          labs(x = "Decile Score",
-               y = "Count",
-               Title = "Defendant's Decile Score")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-113-1.pdf)<!-- --> 
-
-#### Modeling 
-
-
-```r
-f2 <- Surv(start, end, event, type="counting") ~ race + score_factor + race * score_factor
-
-model <- coxph(f2, data = df)
-
-model %>%
-  broom::tidy(conf.int = TRUE) %>%
-  mutate(term = gsub("race|score_factor","", term)) %>% 
-  filter(term != "<chr>") %>%
-  ggplot(aes(x = fct_reorder(term, estimate), y = estimate, ymax = conf.high, ymin = conf.low)) +
-  geom_pointrange() +
-  coord_flip() +
-  labs(y = "Estimate", x = "")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-114-1.pdf)<!-- --> 
-
-The interaction term shows a similar disparity as the logistic regression above.
-
-High-risk white defendants are 3.61 more likely than low-risk white defendants, while high-risk black defendants are 2.99 more likely than low.
-
-
-```r
-visualize_surv <- function(input){
-  
-f <- Surv(start, end, event, type="counting") ~ score_factor
-
-fit <- survfit(f, data = input)
-
-fit %>%
-    tidy(conf.int = TRUE) %>%
-    mutate(strata = gsub("score_factor=","", strata)) %>%
-    mutate(strata = factor(strata, levels = c("High","Medium","Low"))) %>%
-    ggplot(aes(x = time, y = estimate, ymax = conf.high, ymin = conf.low, group = strata, col = strata)) +
-    geom_pointrange(alpha = 0.1) +
-    guides(colour = guide_legend(override.aes = list(alpha = 1))) +
-    ylim(c(0, 1)) +
-    labs(x = "Time", y = "Estimated survival rate", col = "Strata")}
-```
-
-
-```r
-visualize_surv(df) + ggtitle("Overall")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-116-1.pdf)<!-- --> 
-
-Black defendants do recidivate at higher rates according to race-specific Kaplan Meier plots.
-
-
-```r
-(df %>% filter(race == "Caucasian") %>% visualize_surv() + ggtitle("Caucasian")) /
-(df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American")) 
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-117-1.pdf)<!-- --> 
-
-In terms of underlying recidivism rates, we can look at gender-specific Kaplan Meier estimates. There is a striking difference between women and men.
-
-
-```r
-(df %>% filter(sex == "Female") %>% visualize_surv() + ggtitle("Female")) /
-
-(df %>% filter(sex == "Male") %>% visualize_surv() + ggtitle("Male"))
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-118-1.pdf)<!-- --> 
-
-As these plots show, the COMPAS score treats a high-risk woman the same as a Medium risk man.
-
-#### Risk of Recidivism accuracy 
-
-The above analysis shows that the COMPAS algorithm does overpredict African-American defendant's future recidivism, but we haven't yet explored the bias's direction. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.
-
-
-```r
-# create a new environment 
-conda_create("r-reticulate")
-```
-
-```
-## [1] "/home/jae/.local/share/r-miniconda/envs/r-reticulate/bin/python"
-```
-
-```r
-# install libs 
-conda_install("r-reticulate", c("pandas"))
-
-# indicates that we want to use a specific condaenv
-use_condaenv("r-reticulate")
-```
-
-
-
-```python
-
-from truth_tables import PeekyReader, Person, table, is_race, count, vtable, hightable, vhightable
-from csv import DictReader
-
-people = []
-```
-
-
-```python
-
-with open("./data/cox-parsed.csv") as f:
-    reader = PeekyReader(DictReader(f))
-    try:
-        while True:
-            p = Person(reader)
-            if p.valid:
-                people.append(p)
-    except StopIteration:
-        pass
-```
-
-
-```python
-
-pop = list(filter(lambda i: ((i.recidivist == True and i.lifetime <= 730) or
-                              i.lifetime > 730), list(filter(lambda x: x.score_valid, people))))
-
-recid = list(filter(lambda i: i.recidivist == True and i.lifetime <= 730, pop))
-
-rset = set(recid)
-
-surv = [i for i in pop if i not in rset]
-```
-
-- Define a function for a table.
-
-
-```python
-
-import pandas as pd 
-
-def create_table(x, y):
-
-  t = table(list(x), list(y))
-  
-  df = pd.DataFrame(t.items(), 
-             columns = ['Metrics', 'Scores'])
-             
-  return(df)
-             
-```
-
-- All defenders 
-
-
-```python
-
-create_table(list(recid), list(surv)).to_csv("data/table_recid.csv")
-```
-
-
-```r
-read.csv(here("data", "table_recid.csv"))[,-1] %>%
-  ggplot(aes(x = Metrics, y = Scores)) +
-  geom_col() +
-  labs(title = "Recidivism")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-125-1.pdf)<!-- --> 
-
-That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
-
-
-```python
-
-def create_comp_tables(recid_data, surv_data):
-  
-    # filtering variables 
-    is_afam = is_race("African-American")
-    is_white = is_race("Caucasian")
-  
-    # dfs 
-    df1 = create_table(filter(is_afam, recid_data),
-                       filter(is_afam, surv_data))
-  
-    df2 = create_table(filter(is_white, recid_data), 
-                       filter(is_white, surv_data))
-  
-    # concat 
-    dfs = pd.concat([df1, df2])
-    
-    dfs['Group'] = ['African Americans','African Americans','Whites','Whites']
-    
-    return(dfs)
-    
-```
-
-
-```python
-
-create_comp_tables(recid, surv).to_csv("data/comp_tables_recid.csv")
-```
-
-
-```r
-read.csv(here("data", "comp_tables_recid.csv"))[,-1] %>%
-  ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
-  geom_col(position = "dodge") +
-  coord_flip() +
-  labs(title = "Recidivism")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-128-1.pdf)<!-- --> 
-
-#### Risk of Violent Recidivism accuracy
-
-COMPAS also offers a score that aims to measure a person's risk of violent recidivism, which has similar overall accuracy to the Recidivism score.
-
-
-```python
-
-vpeople = []
-
-with open("./data/cox-violent-parsed.csv") as f:
-    reader = PeekyReader(DictReader(f))
-    try:
-        while True:
-            p = Person(reader)
-            if p.valid:
-                vpeople.append(p)
-    except StopIteration:
-        pass
-
-vpop = list(filter(lambda i: ((i.violent_recidivist == True and i.lifetime <= 730) or
-                              i.lifetime > 730), list(filter(lambda x: x.vscore_valid, vpeople))))
-
-vrecid = list(filter(lambda i: i.violent_recidivist == True and i.lifetime <= 730, vpeople))
-
-vrset = set(vrecid)
-
-vsurv = [i for i in vpop if i not in vrset]
-```
-
-
-```python
-
-create_table(vrecid, vsurv).to_csv("data/table_vrecid.csv")
-```
-
-
-```r
-read.csv(here("data", "table_vrecid.csv"))[,-1] %>%
-  ggplot(aes(x = Metrics, y = Scores)) +
-  geom_col() +
-  labs(title = "Violent recidivism")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-131-1.pdf)<!-- --> 
-
-Even more so for Black defendants.
-
-
-```python
-
-create_comp_tables(vrecid, vsurv).to_csv("data/comp_tables_vrecid.csv")
-```
-
-
-```r
-read.csv(here("data", "comp_tables_vrecid.csv"))[,-1] %>%
-  ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
-  geom_col(position = "dodge") +
-  coord_flip() +
-  labs(title = "Violent recidivism")
-```
-
-![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-133-1.pdf)<!-- --> 
 
 ## References
 

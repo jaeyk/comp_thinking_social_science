@@ -8,13 +8,7 @@
 ```r
 # Install packages 
 if (!require("pacman")) install.packages("pacman")
-```
 
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(tidyverse, # tidyverse pkgs including purrr
                furrr, # parallel processing 
                tictoc, # performance test  
@@ -33,7 +27,7 @@ devtools::install_github("jaeyk/tidytweetjson", dependencies = TRUE) ; library(t
 ```
 
 ```
-## Skipping install of 'tidytweetjson' from a github remote, the SHA1 (b598dcc1) has not changed since last install.
+## Skipping install of 'tidytweetjson' from a github remote, the SHA1 (9a00ec8a) has not changed since last install.
 ##   Use `force = TRUE` to force installation
 ```
 
@@ -432,29 +426,17 @@ Using **search API**; This API returns a collection of Tweets mentioning a parti
 # Install and load rtweet 
 if (!require(pacman)) {install.packages("pacman")}
 pacman::p_load(rtweet)
-
-# The past 6-9 days 
-rt <- search_tweets(q = "#stopasianhate", n = 1000, include_rts = FALSE)
 ```
 
-```
-## Downloading [=======>---------------------------------]  20%Downloading [===========>-----------------------------]  30%Downloading [===============>-------------------------]  40%Downloading [===================>---------------------]  50%Downloading [========================>----------------]  60%Downloading [============================>------------]  70%Downloading [================================>--------]  80%Downloading [====================================>----]  90%Downloading [=========================================] 100%
-```
 
 ```r
+# The past 6-9 days 
+rt <- search_tweets(q = "#stopasianhate", n = 1000, include_rts = FALSE)
+
 # The longer term 
 # search_fullarchive() premium service
 
 head(rt$text)
-```
-
-```
-## [1] "I miss my mom. That’s a given, but right now it’s heavier than usual.\n\nI so badly want to tell her about what I want to do - and will get to do / announce soon - for #StopAsianHate and #AAPI. \nI hope she’d be proud.\n\nIt’s only/already been 58 days.\nLove you mom 🖤 I’m struggling."                         
-## [2] "Dear Asians, fuck off with this forgiveness shit, it’s helping no one. \n#letthemrot #stopasianhate  https://t.co/796VJUmtV8"                                                                                                                                                                                          
-## [3] "A couple of folks in my stream community have told me about anti-Asian hate/violence happening to their loved ones since this past weekend. One was physical assault, another was verbal harassment.\n\nWhy are people still not paying attention?\n\nPlease #StopAsianHate. We’re hurting."                           
-## [4] "“Ethnic studies teaches students about painful histories of racism and gives them opportunities for making sense of how these histories continue to shape the present.”\n\nRecently, I had to seek out history I never learned as an AAPI myself.\n\n#StopAsianHate\n\nhttps://t.co/i1SLxfWHbx https://t.co/MvPF73THoK"
-## [5] "\"We've received [anti-Asian hate] reports from all 50 states now, and D.C., so again, it's widespread.\" - Dr. Russell Jeung\n\n#StopAsianHate #StopAAPIHate \n\nhttps://t.co/t6B9uJKcNk https://t.co/iN42DXZnXm"                                                                                                     
-## [6] "\"After all, if we valued Asian Americans, why would we allow them to be continually humiliated by how we portray them, or worse, how we ignore them as a significant presence. Especially when we have the power to change things.\"\n\nWell said.\n\n#StopAsianHate\n\nhttps://t.co/SoM6Gq2GPc"
 ```
 
 Can you guess what would be the class type of rt?
@@ -486,8 +468,6 @@ ts_plot(rt, "3 hours") +
        source = "Twitter's Search API via rtweet")
 ```
 
-![](06_semi_structured_data_files/figure-latex/unnamed-chunk-18-1.pdf)<!-- --> 
-
 #### Geographical analysis
 
 - Geographical analysis
@@ -501,8 +481,6 @@ geocoded <- lat_lng(rt)
 maps::map("state", lwd = .25) # lwd = line type 
 with(geocoded, points(lng, lat))
 ```
-
-![](06_semi_structured_data_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
 
 ### Hydrating
 

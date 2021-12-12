@@ -28,13 +28,7 @@ This chapter helps you to step up your R skills with functional programming. The
 if (!require("pacman")) {
   install.packages("pacman")
 }
-```
 
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
   tidyverse, # tidyverse pkgs including purrr
   bench, # performance test 
@@ -1132,7 +1126,7 @@ toc()
 ```
 
 ```
-## 0.006 sec elapsed
+## 0.007 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1175,9 +1169,8 @@ map_mark
 ## # A tibble: 1 x 6
 ##   expression                                              min   median `itr/sec`
 ##   <bch:expr>                                         <bch:tm> <bch:tm>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)   74.1us   82.1us    10631.
-## # ... with 2 more variables: mem_alloc <bch:byt>,
-## #   gc/sec <dbl>
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)   54.1us   76.1us    11932.
+## # ... with 2 more variables: mem_alloc <bch:byt>, gc/sec <dbl>
 ```
 
 #### Applications 
@@ -1778,7 +1771,7 @@ toc(log = TRUE) # save toc
 ```
 
 ```
-## Scraping pages: 0.005 sec elapsed
+## Scraping pages: 0.004 sec elapsed
 ```
 
 - If you want to make the function run slowly ... 
@@ -1820,11 +1813,9 @@ plan(multiprocess, # multicore, if supported, otherwise multisession
 ```
 
 ```
-## Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked
-## processing ('multicore') is not supported when running R from RStudio
-## because it is considered unstable. For more details, how to control forked
-## processing or not, and how to silence this warning in future R sessions, see ?
-## parallelly::supportsMulticore
+## Warning: Strategy 'multiprocess' is deprecated in future (>= 1.20.0). Instead,
+## explicitly specify either 'multisession' or 'multicore'. In the current R
+## session, 'multiprocess' equals 'multicore'.
 ```
 
 **What's the difference between multisession and multicore?**
@@ -1846,16 +1837,16 @@ tic.log(format = TRUE)
 
 ```
 ## [[1]]
-## [1] "Scraping pages: 0.005 sec elapsed"
+## [1] "Scraping pages: 0.004 sec elapsed"
 ## 
 ## [[2]]
-## [1] "scraping pages with deplay: 9.023 sec elapsed"
+## [1] "scraping pages with deplay: 9.016 sec elapsed"
 ## 
 ## [[3]]
-## [1] "averaging 100000 without parallel processing: 0.423 sec elapsed"
+## [1] "averaging 100000 without parallel processing: 0.397 sec elapsed"
 ## 
 ## [[4]]
-## [1] "averaging 100000 with parallel processing: 0.877 sec elapsed"
+## [1] "averaging 100000 with parallel processing: 0.353 sec elapsed"
 ```
 
 Because of the overhead cost (e.g., time spent communicating data between processing), parallel processing does not always increase performance. Use this technique either when the computation part is heavy or when you need to repeat the process a large number of times.  

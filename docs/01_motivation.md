@@ -8,7 +8,7 @@
 
 -   Let's think about the following two cases (these examples come from [the column](https://dlab.berkeley.edu/blog/why-teaching-social-scientists-how-code-professional-important) I contributed to the D-Lab website).
 
-    -   Case 1: Suppose a social scientist needs to collect data on civic organizations in the United States from websites, Internal Revenue Service reports, and social media posts. As the number of these organizations is large, the researcher could not collect a large volume of data from diverse sources, so they would hire undergraduates and distribute tasks. This is a typical data collection plan in social science research, and it is labor-intensive. Automation is not part of the game plan. Yet, it is critical for so many reasons. Because the process is costly, no one is likely to either replicate or update the data collection effort. Put differently, without making the process efficient, and it is difficult for it to be reproducible and scalable.
+    -   Case 1: Suppose a social scientist needs to collect data on civic organizations in the United States from websites, Internal Revenue Service reports, and social media posts. As the number of these organizations is large, the researcher could not collect a large volume of data from diverse sources, so they would hire undergraduates and distribute tasks. This is a typical data collection plan in social science research, and it is labor-intensive. Automation is not part of the game plan. Yet, it is critical for so many reasons. Because the process is costly, no one is likely to either replicate or update the data collection effort. Put differently, without making the process efficient, it is difficult for it to be reproducible and scalable.
 
     -   Case 2: An alternative is to write computer programs that collect such data automatically, parse them, and store them in interconnected databases. Additionally, someone may need to maintain and validate the quality of the data infrastructure. Nevertheless, this approach lowers the cost of the data collection process, thereby substantially increasing the **reproducibility** and **scalability**. Furthermore, the researcher can document their code and publicly share it using their GitHub repository or even gather some of the functions they used and distribute them as open-source libraries.
 
@@ -35,13 +35,13 @@ This book teaches how you to do that in R in incremental steps.
 -   Beginners! Learning programming is a long game. The most important learning method (for almost any training) is consistency. Never stop writing code even though your current code may fall far short of the perfection.
     ![](misc/wickham.png)
 
--   Intermediate programmers! Try to empower, not intimidate, newbies. The most important rule in computational social science community (at least, in my opinion) is being nice. Read David Robinson's ["A Million Lines of Bad Code"](http://varianceexplained.org/programming/bad-code/) for more insights.
+-   Intermediate programmers! Try to empower, not intimidate, newbies. The most important rule in the computational social science community (at least, in my opinion) is being nice. Read David Robinson's ["A Million Lines of Bad Code"](http://varianceexplained.org/programming/bad-code/) for more insights.
 
 ![](http://imgs.xkcd.com/comics/code_quality.png)
 
 ## Computational way of thinking about data
 
--   Berkeley's widely praised data science undergraduate education is built upon inferential (statistics) and computational thinking. [The textbook](https://www.inferentialthinking.com/chapters/intro) used for teaching its most fundamental course (Data8) underscores computational thinking because "programming allows us to apply analysis techniques to the large and diverse data sets that arise in real-world applications: not just numbers, but text, images, videos, and sensor readings." This is also exactly the point of this textbook and explains how its content is organized.
+-   Berkeley's widely praised data science undergraduate education is built upon inferential (statistics) and computational thinking. [The textbook](https://www.inferentialthinking.com/chapters/intro) used for teaching its most fundamental course (Data8) underscores computational thinking because "programming allows us to apply analysis techniques to the large and diverse data sets that arise in real-world applications: not just numbers, but text, images, videos, and sensor readings." This is also precisely the point of this textbook and explains how its content is organized.
 
 ### Structure
 
@@ -80,7 +80,7 @@ Computational tools and techniques make ...
     -   Modeling
     -   Visualization
 
--   Documentation and collaboration easier, faster and scalable
+-   Documentation and collaboration easier, faster and more scalable
 
     -   Dynamic reporting (markdown)
     -   Version control system (Git and GitHub)
@@ -110,3 +110,5 @@ Here are a couple of useful videos that introduce the main concepts of computati
 
 <p Rayid Ghani | Keynote: Using Data Science for Social Good: Examples, Opportunities, and Challenges /p>
 ```
+
+I also recommend looking at [the pedagogy article]((https://osf.io/preprints/socarxiv/pf7n6/?fbclid=IwAR2ZI0yw_pehS0mxAmeUBOGpzIhiO2LMUPGBzBLTLNo4C2HrJSoH9uZhgTY)), I wrote with my colleague Margaret Ng, for those interested in more effective ways of learning and teaching computational methods. 
