@@ -2440,7 +2440,7 @@ read.csv(here("data", "table_recid.csv"))[, -1] %>%
 
 That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
 
-```{python}
+```{python eval=FALSE}
 def create_comp_tables(recid_data, surv_data):
   
     # filtering variables 
@@ -2462,7 +2462,7 @@ def create_comp_tables(recid_data, surv_data):
     return(dfs)
 ```
 
-```{python}
+```{python eval=FALSE}
 create_comp_tables(recid, surv).to_csv("data/comp_tables_recid.csv")
 ```
 
