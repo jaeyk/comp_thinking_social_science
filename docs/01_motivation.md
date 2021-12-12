@@ -111,4 +111,4 @@ Here are a couple of useful videos that introduce the main concepts of computati
 <p Rayid Ghani | Keynote: Using Data Science for Social Good: Examples, Opportunities, and Challenges /p>
 ```
 
-I also recommend looking at [the pedagogy article]((https://osf.io/preprints/socarxiv/pf7n6/?fbclid=IwAR2ZI0yw_pehS0mxAmeUBOGpzIhiO2LMUPGBzBLTLNo4C2HrJSoH9uZhgTY)), I wrote with my colleague Margaret Ng, for those interested in more effective ways of learning and teaching computational methods. 
+I also recommend looking at [the pedagogy article]((https://osf.io/preprints/socarxiv/pf7n6/?fbclid=IwAR2ZI0yw_pehS0mxAmeUBOGpzIhiO2LMUPGBzBLTLNo4C2HrJSoH9uZhgTY)) (forthcoming in *PS: Political Science and Politics*), I wrote with my colleague Margaret Ng, for those interested in more effective ways of learning and teaching computational methods. 
