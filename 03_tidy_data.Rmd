@@ -2827,7 +2827,6 @@ population() %>% head() # instance
 # Note that Y_Z_0 and Y_Z_1 are argument names. 
 potential_outcomes <- declare_potential_outcomes(Y_Z_0 = 0, # Control group 
                                                  Y_Z_1 = 1 + noise) # Treatment group 
-
 ```
 
 * Inquiry: a description of the distributions of the variables (estimand = something we desire to know)
@@ -2841,9 +2840,8 @@ estimand_ate <- declare_estimand(ATE = mean(Y_Z_1 - Y_Z_0))
 * Data strategy: a description of sampling (or case selection) + intervention strategy  
 
 ```{r}
-
-sampling <- declare_sampling(n = 250) # Sampling 250 units 
-assignment <- declare_assignment(m = 50) # Assign 50 units 
+sampling <- declare_sampling(n = 250, legacy = TRUE) # Sampling 250 units 
+assignment <- declare_assignment(m = 50, legacy = TRUE) # Assign 50 units 
 
 # If you don't do this, you will be missing Y 
 reveal_Y <- declare_reveal(Y, Z)
@@ -2860,12 +2858,10 @@ estimator_ate <- declare_estimator(Y ~ Z,
 * Design 
 
 ```{r}
-
 design <- population + potential_outcomes + estimand_ate + sampling + assignment + reveal_Y + estimator_ate
 
 # This should work. Otherwise, something is wrong with your code.
 design
-
 ```
 
 2. Applications 
@@ -2891,7 +2887,6 @@ estimates
 Diagnosis is made using a Monte Carlo approach (=simulating many times using bootstrapped samples).
 
 ```{r}
-
 diagnosis <- diagnose_design(design, 
                              sims = 1000, 
                              bootstrap_sims = 500)

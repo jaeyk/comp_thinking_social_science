@@ -42,60 +42,6 @@ pacman::p_load(
 )
 ```
 
-```
-## Installing package into '/usr/local/lib/R/site-library'
-## (as 'lib' is unspecified)
-```
-
-```
-## 
-## skimr installed
-```
-
-```
-## Installing package into '/usr/local/lib/R/site-library'
-## (as 'lib' is unspecified)
-```
-
-```
-## 
-## infer installed
-```
-
-```
-## Installing package into '/usr/local/lib/R/site-library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependencies 'modeldata', 'workflowsets'
-```
-
-```
-## 
-## tidymodels installed
-```
-
-```
-## Installing package into '/usr/local/lib/R/site-library'
-## (as 'lib' is unspecified)
-```
-
-```
-## 
-## gapminder installed
-```
-
-```
-## Installing package into '/usr/local/lib/R/site-library'
-## (as 'lib' is unspecified)
-```
-
-```
-## 
-## nycflights13 installed
-```
-
 The rest of the chapter follows the basic structure in [the Data Wrangling Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) created by RStudio.
 
 ## R Data structures 
@@ -929,7 +875,8 @@ c(factor("a"), factor("b"))
 ```
 
 ```
-## [1] 1 1
+## [1] a b
+## Levels: a b
 ```
 
 ```r
@@ -2656,7 +2603,7 @@ table1
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   country      year  cases population
 ##   <chr>       <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
@@ -2722,7 +2669,7 @@ table4a
 ```
 
 ```
-## # A tibble: 3 x 3
+## # A tibble: 3 × 3
 ##   country     `1999` `2000`
 ## * <chr>        <int>  <int>
 ## 1 Afghanistan    745   2666
@@ -2751,7 +2698,7 @@ table4a
 ```
 
 ```
-## # A tibble: 3 x 3
+## # A tibble: 3 × 3
 ##   country     `1999` `2000`
 ## * <chr>        <int>  <int>
 ## 1 Afghanistan    745   2666
@@ -2770,7 +2717,7 @@ table4a %>%
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##   country     year   cases
 ##   <chr>       <chr>  <int>
 ## 1 Afghanistan 1999     745
@@ -2793,7 +2740,7 @@ table4a %>%
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##   country     year   cases
 ##   <chr>       <chr>  <int>
 ## 1 Afghanistan 1999     745
@@ -2822,7 +2769,7 @@ table4a %>%
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##   country      year  cases
 ##   <chr>       <dbl>  <int>
 ## 1 Afghanistan  1999    745
@@ -2860,7 +2807,7 @@ billboard
 ```
 
 ```
-## # A tibble: 317 x 79
+## # A tibble: 317 × 79
 ##    artist   track   date.entered   wk1   wk2   wk3   wk4   wk5   wk6   wk7   wk8
 ##    <chr>    <chr>   <date>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
 ##  1 2 Pac    Baby D… 2000-02-26      87    82    72    77    87    94    99    NA
@@ -2873,30 +2820,13 @@ billboard
 ##  8 Aaliyah  I Don'… 2000-01-29      84    62    51    41    38    35    35    38
 ##  9 Aaliyah  Try Ag… 2000-03-18      59    53    38    28    21    18    16    14
 ## 10 Adams, … Open M… 2000-08-26      76    76    74    69    68    67    61    58
-## # … with 307 more rows, and 68 more
-## #   variables: wk9 <dbl>, wk10 <dbl>,
-## #   wk11 <dbl>, wk12 <dbl>, wk13 <dbl>,
-## #   wk14 <dbl>, wk15 <dbl>, wk16 <dbl>,
-## #   wk17 <dbl>, wk18 <dbl>, wk19 <dbl>,
-## #   wk20 <dbl>, wk21 <dbl>, wk22 <dbl>,
-## #   wk23 <dbl>, wk24 <dbl>, wk25 <dbl>,
-## #   wk26 <dbl>, wk27 <dbl>, wk28 <dbl>,
-## #   wk29 <dbl>, wk30 <dbl>, wk31 <dbl>,
-## #   wk32 <dbl>, wk33 <dbl>, wk34 <dbl>,
-## #   wk35 <dbl>, wk36 <dbl>, wk37 <dbl>,
-## #   wk38 <dbl>, wk39 <dbl>, wk40 <dbl>,
-## #   wk41 <dbl>, wk42 <dbl>, wk43 <dbl>,
-## #   wk44 <dbl>, wk45 <dbl>, wk46 <dbl>,
-## #   wk47 <dbl>, wk48 <dbl>, wk49 <dbl>,
-## #   wk50 <dbl>, wk51 <dbl>, wk52 <dbl>,
-## #   wk53 <dbl>, wk54 <dbl>, wk55 <dbl>,
-## #   wk56 <dbl>, wk57 <dbl>, wk58 <dbl>,
-## #   wk59 <dbl>, wk60 <dbl>, wk61 <dbl>,
-## #   wk62 <dbl>, wk63 <dbl>, wk64 <dbl>,
-## #   wk65 <dbl>, wk66 <lgl>, wk67 <lgl>,
-## #   wk68 <lgl>, wk69 <lgl>, wk70 <lgl>,
-## #   wk71 <lgl>, wk72 <lgl>, wk73 <lgl>,
-## #   wk74 <lgl>, wk75 <lgl>, wk76 <lgl>
+## # … with 307 more rows, and 68 more variables: wk9 <dbl>, wk10 <dbl>,
+## #   wk11 <dbl>, wk12 <dbl>, wk13 <dbl>, wk14 <dbl>, wk15 <dbl>, wk16 <dbl>,
+## #   wk17 <dbl>, wk18 <dbl>, wk19 <dbl>, wk20 <dbl>, wk21 <dbl>, wk22 <dbl>,
+## #   wk23 <dbl>, wk24 <dbl>, wk25 <dbl>, wk26 <dbl>, wk27 <dbl>, wk28 <dbl>,
+## #   wk29 <dbl>, wk30 <dbl>, wk31 <dbl>, wk32 <dbl>, wk33 <dbl>, wk34 <dbl>,
+## #   wk35 <dbl>, wk36 <dbl>, wk37 <dbl>, wk38 <dbl>, wk39 <dbl>, wk40 <dbl>,
+## #   wk41 <dbl>, wk42 <dbl>, wk43 <dbl>, wk44 <dbl>, wk45 <dbl>, wk46 <dbl>, …
 ```
 
 2.  How can you fix it? Which pivot?
@@ -2914,7 +2844,7 @@ billboard %>%
 ```
 
 ```
-## # A tibble: 5,307 x 5
+## # A tibble: 5,307 × 5
 ##    artist         track                   date.entered week   rank
 ##    <chr>          <chr>                   <date>       <chr> <dbl>
 ##  1 2 Pac          Baby Don't Cry (Keep... 2000-02-26   wk1      87
@@ -2945,7 +2875,7 @@ billboard %>%
 ```
 
 ```
-## # A tibble: 5,307 x 5
+## # A tibble: 5,307 × 5
 ##    artist  track                   date.entered week   rank
 ##    <chr>   <chr>                   <date>       <chr> <dbl>
 ##  1 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk1      87
@@ -2971,7 +2901,7 @@ table2
 ```
 
 ```
-## # A tibble: 12 x 4
+## # A tibble: 12 × 4
 ##    country      year type            count
 ##    <chr>       <int> <chr>           <int>
 ##  1 Afghanistan  1999 cases             745
@@ -3015,7 +2945,7 @@ table2 %>%
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   country      year  cases population
 ##   <chr>       <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
@@ -3037,7 +2967,7 @@ table2 %>%
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   country      year  cases population
 ##   <chr>       <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
@@ -3074,7 +3004,7 @@ stocks
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##    year   qtr return
 ##   <dbl> <dbl>  <dbl>
 ## 1  2019     1      1
@@ -3100,7 +3030,7 @@ stocks %>%
 ```
 
 ```
-## # A tibble: 4 x 3
+## # A tibble: 4 × 3
 ##     qtr `2019` `2020`
 ##   <dbl>  <dbl>  <dbl>
 ## 1     1      1     NA
@@ -3121,7 +3051,7 @@ fish_encounters
 ```
 
 ```
-## # A tibble: 114 x 3
+## # A tibble: 114 × 3
 ##    fish  station  seen
 ##    <fct> <fct>   <int>
 ##  1 4842  Release     1
@@ -3201,7 +3131,7 @@ table3
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##   country      year rate             
 ## * <chr>       <int> <chr>            
 ## 1 Afghanistan  1999 745/19987071     
@@ -3224,7 +3154,7 @@ table3 %>%
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   country      year cases  population
 ##   <chr>       <int> <chr>  <chr>     
 ## 1 Afghanistan  1999 745    19987071  
@@ -3248,7 +3178,7 @@ table3 %>%
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   country      year  cases population
 ##   <chr>       <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
@@ -3327,7 +3257,7 @@ fill(stock, year)
 ```
 
 ```
-## # A tibble: 8 x 3
+## # A tibble: 8 × 3
 ##   quarter  year stock_price
 ##   <chr>   <dbl>       <dbl>
 ## 1 Q1       2000       10000
@@ -3362,7 +3292,7 @@ fill(yelp_rate, restraurant_type) # default is direction = .down
 ```
 
 ```
-## # A tibble: 9 x 3
+## # A tibble: 9 × 3
 ##   neighborhood restraurant_type popularity_rate
 ##   <chr>        <chr>                      <dbl>
 ## 1 N1           Chinese                        5
@@ -3381,7 +3311,7 @@ fill(yelp_rate, restraurant_type, .direction = "up")
 ```
 
 ```
-## # A tibble: 9 x 3
+## # A tibble: 9 × 3
 ##   neighborhood restraurant_type popularity_rate
 ##   <chr>        <chr>                      <dbl>
 ## 1 N1           Chinese                        5
@@ -3508,7 +3438,7 @@ df %>%
 ```
 
 ```
-## # A tibble: 3 x 1
+## # A tibble: 3 × 1
 ##    Year
 ##   <dbl>
 ## 1  2011
@@ -3530,7 +3460,7 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 17 x 14
+## # A tibble: 17 × 14
 ##    name    height  mass hair_color skin_color  eye_color birth_year sex   gender
 ##    <chr>    <int> <dbl> <chr>      <chr>       <chr>          <dbl> <chr> <chr> 
 ##  1 Taun We    213  NA   none       grey        black             NA fema… femin…
@@ -3550,8 +3480,7 @@ starwars %>%
 ## 15 Mon Mo…    150  NA   auburn     fair        blue              48 fema… femin…
 ## 16 R4-P17      96  NA   none       silver, red red, blue         NA none  femin…
 ## 17 Rey         NA  NA   brown      light       hazel             NA fema… femin…
-## # … with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3611,7 +3540,7 @@ df %>%
 ```
 
 ```
-## # A tibble: 19 x 2
+## # A tibble: 19 × 2
 ##    heights char 
 ##      <int> <chr>
 ##  1     161 none 
@@ -3646,15 +3575,14 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 4 x 14
+## # A tibble: 4 × 14
 ##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
 ##   <chr>     <int> <dbl> <chr>       <chr>      <chr>          <dbl> <chr> <chr> 
 ## 1 Owen La…    178   120 brown, grey light      blue              52 male  mascu…
 ## 2 Beru Wh…    165    75 brown       light      blue              47 fema… femin…
 ## 3 Quarsh …    183    NA black       dark       brown             62 <NA>  <NA>  
 ## 4 Cliegg …    183    NA brown       fair       blue              82 male  mascu…
-## # … with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3666,15 +3594,14 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 4 x 14
+## # A tibble: 4 × 14
 ##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
 ##   <chr>     <int> <dbl> <chr>       <chr>      <chr>          <dbl> <chr> <chr> 
 ## 1 Owen La…    178   120 brown, grey light      blue              52 male  mascu…
 ## 2 Beru Wh…    165    75 brown       light      blue              47 fema… femin…
 ## 3 Quarsh …    183    NA black       dark       brown             62 <NA>  <NA>  
 ## 4 Cliegg …    183    NA brown       fair       blue              82 male  mascu…
-## # … with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3686,7 +3613,7 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 31 x 14
+## # A tibble: 31 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
 ##  1 Leia Or…    150  49   brown      light      brown           19   fema… femin…
@@ -3699,10 +3626,8 @@ starwars %>%
 ##  8 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…
 ##  9 Lando C…    177  79   black      dark       brown           31   male  mascu…
 ## 10 Arvel C…     NA  NA   brown      fair       brown           NA   male  mascu…
-## # … with 21 more rows, and 5 more variables:
-## #   homeworld <chr>, species <chr>,
-## #   films <list>, vehicles <list>,
-## #   starships <list>
+## # … with 21 more rows, and 5 more variables: homeworld <chr>, species <chr>,
+## #   films <list>, vehicles <list>, starships <list>
 ```
 
 **Challenge**
@@ -3719,7 +3644,7 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 6 x 14
+## # A tibble: 6 × 14
 ##   name    height  mass hair_color skin_color  eye_color  birth_year sex   gender
 ##   <chr>    <int> <dbl> <chr>      <chr>       <chr>           <dbl> <chr> <chr> 
 ## 1 Yarael…    264    NA none       white       yellow             NA male  mascu…
@@ -3728,8 +3653,7 @@ starwars %>%
 ## 4 Chewba…    228   112 brown      unknown     blue              200 male  mascu…
 ## 5 Roos T…    224    82 none       grey        orange             NA male  mascu…
 ## 6 Grievo…    216   159 none       brown, whi… green, ye…         NA male  mascu…
-## # … with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3749,7 +3673,7 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 9 x 14
+## # A tibble: 9 × 14
 ##   name    height  mass hair_color skin_color  eye_color birth_year sex    gender
 ##   <chr>    <int> <dbl> <chr>      <chr>       <chr>          <dbl> <chr>  <chr> 
 ## 1 Arvel …     NA    NA brown      fair        brown           NA   male   mascu…
@@ -3761,8 +3685,7 @@ starwars %>%
 ## 7 Jabba …    175  1358 <NA>       green-tan,… orange         600   herma… mascu…
 ## 8 Darth …    202   136 none       white       yellow          41.9 male   mascu…
 ## 9 Taun We    213    NA none       grey        black           NA   female femin…
-## # … with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3777,7 +3700,7 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 8 x 14
+## # A tibble: 8 × 14
 ##   name     height  mass hair_color skin_color eye_color birth_year sex    gender
 ##   <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr>  <chr> 
 ## 1 Raymus …    188  79   brown      light      brown           NA   male   mascu…
@@ -3788,8 +3711,7 @@ starwars %>%
 ## 6 Darth V…    202 136   none       white      yellow          41.9 male   mascu…
 ## 7 Finn         NA  NA   black      dark       dark            NA   male   mascu…
 ## 8 Boba Fe…    183  78.2 black      fair       brown           31.5 male   mascu…
-## # … with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3806,7 +3728,7 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 20 x 14
+## # A tibble: 20 × 14
 ##    name    height  mass hair_color skin_color  eye_color birth_year sex   gender
 ##    <chr>    <int> <dbl> <chr>      <chr>       <chr>          <dbl> <chr> <chr> 
 ##  1 Quarsh…    183    NA black      dark        brown             62 <NA>  <NA>  
@@ -3829,8 +3751,7 @@ starwars %>%
 ## 18 Ki-Adi…    198    82 white      pale        yellow            92 male  mascu…
 ## 19 BB8         NA    NA none       none        black             NA none  mascu…
 ## 20 Eeth K…    171    NA black      brown       brown             NA male  mascu…
-## # … with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3845,7 +3766,7 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 20 x 14
+## # A tibble: 20 × 14
 ##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
 ##    <chr>    <int> <dbl> <chr>       <chr>      <chr>          <dbl> <chr> <chr> 
 ##  1 Owen L…    178   120 brown, grey light      blue              52 male  mascu…
@@ -3868,8 +3789,7 @@ starwars %>%
 ## 18 Lobot      175    79 none        light      blue              37 male  mascu…
 ## 19 San Hi…    191    NA none        grey       gold              NA male  mascu…
 ## 20 Kit Fi…    196    87 none        green      black             NA male  mascu…
-## # … with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3883,7 +3803,7 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 10 x 14
+## # A tibble: 10 × 14
 ##    name    height  mass hair_color skin_color  eye_color birth_year sex   gender
 ##    <chr>    <int> <dbl> <chr>      <chr>       <chr>          <dbl> <chr> <chr> 
 ##  1 Darth …    202   136 none       white       yellow          41.9 male  mascu…
@@ -3896,8 +3816,7 @@ starwars %>%
 ##  8 Grievo…    216   159 none       brown, whi… green, y…       NA   male  mascu…
 ##  9 Tarfful    234   136 brown      brown       blue            NA   male  mascu…
 ## 10 Tion M…    206    80 none       grey        black           NA   male  mascu…
-## # … with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3908,7 +3827,7 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 10 x 14
+## # A tibble: 10 × 14
 ##    name    height  mass hair_color skin_color  eye_color birth_year sex   gender
 ##    <chr>    <int> <dbl> <chr>      <chr>       <chr>          <dbl> <chr> <chr> 
 ##  1 Yarael…    264    NA none       white       yellow          NA   male  mascu…
@@ -3921,8 +3840,7 @@ starwars %>%
 ##  8 Rugor …    206    NA none       green       orange          NA   male  mascu…
 ##  9 Tion M…    206    80 none       grey        black           NA   male  mascu…
 ## 10 Darth …    202   136 none       white       yellow          41.9 male  mascu…
-## # … with 5 more variables: homeworld <chr>,
-## #   species <chr>, films <list>,
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3949,7 +3867,7 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 6
+## # A tibble: 83 × 6
 ##    sleep_total sleep_rem sleep_cycle awake  brainwt  bodywt
 ##          <dbl>     <dbl>       <dbl> <dbl>    <dbl>   <dbl>
 ##  1        12.1      NA        NA      11.9 NA        50    
@@ -3978,7 +3896,7 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 3
+## # A tibble: 83 × 3
 ##    sleep_total sleep_rem sleep_cycle
 ##          <dbl>     <dbl>       <dbl>
 ##  1        12.1      NA        NA    
@@ -4006,7 +3924,7 @@ msleep[grepl("sleep|wt", names(msleep))]
 ```
 
 ```
-## # A tibble: 83 x 5
+## # A tibble: 83 × 5
 ##    sleep_total sleep_rem sleep_cycle  brainwt  bodywt
 ##          <dbl>     <dbl>       <dbl>    <dbl>   <dbl>
 ##  1        12.1      NA        NA     NA        50    
@@ -4035,7 +3953,7 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 2
+## # A tibble: 83 × 2
 ##     brainwt  bodywt
 ##       <dbl>   <dbl>
 ##  1 NA        50    
@@ -4060,7 +3978,7 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 2
+## # A tibble: 83 × 2
 ##     brainwt  bodywt
 ##       <dbl>   <dbl>
 ##  1 NA        50    
@@ -4087,7 +4005,7 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 2
+## # A tibble: 83 × 2
 ##     brainwt  bodywt
 ##       <dbl>   <dbl>
 ##  1 NA        50    
@@ -4113,7 +4031,7 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 11
+## # A tibble: 83 × 11
 ##    order  name  genus vore  conservation sleep_total sleep_rem sleep_cycle awake
 ##    <chr>  <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
 ##  1 Carni… Chee… Acin… carni lc                  12.1      NA        NA      11.9
@@ -4126,8 +4044,7 @@ msleep %>%
 ##  8 Roden… Vesp… Calo… <NA>  <NA>                 7        NA        NA      17  
 ##  9 Carni… Dog   Canis carni domesticated        10.1       2.9       0.333  13.9
 ## 10 Artio… Roe … Capr… herbi lc                   3        NA        NA      21  
-## # … with 73 more rows, and 2 more variables:
-## #   brainwt <dbl>, bodywt <dbl>
+## # … with 73 more rows, and 2 more variables: brainwt <dbl>, bodywt <dbl>
 ```
 
 -   Select variables from a character vector.
@@ -4158,7 +4075,7 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 2
+## # A tibble: 83 × 2
 ##    week8 week12
 ##    <lgl> <lgl> 
 ##  1 NA    NA    
@@ -4188,7 +4105,7 @@ messy_df
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##   ColNum1 COLNUM2 `COL & NUM3`
 ##     <dbl>   <dbl>        <dbl>
 ## 1       1       2            3
@@ -4201,7 +4118,7 @@ janitor::clean_names(messy_df)
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##   col_num1 colnum2 col_num3
 ##      <dbl>   <dbl>    <dbl>
 ## 1        1       2        3
@@ -4674,7 +4591,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent     n
 ##   <fct>     <int>
 ## 1 Africa      624
@@ -4694,7 +4611,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent     n
 ##   <fct>     <int>
 ## 1 Africa      624
@@ -4712,7 +4629,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent     n
 ##   <fct>     <int>
 ## 1 Africa      624
@@ -4739,7 +4656,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##       n
 ##   <int>
 ## 1  1704
@@ -4759,7 +4676,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 1,704 x 3
+## # A tibble: 1,704 × 3
 ##    continent country         n
 ##    <fct>     <fct>       <int>
 ##  1 Asia      Afghanistan  1704
@@ -4788,7 +4705,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 1,704 x 7
+## # A tibble: 1,704 × 7
 ## # Groups:   continent [5]
 ##    country     continent  year lifeExp      pop gdpPercap     n
 ##    <fct>       <fct>     <int>   <dbl>    <int>     <dbl> <int>
@@ -4818,7 +4735,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 60 x 3
+## # A tibble: 60 × 3
 ## # Groups:   continent, year [60]
 ##    continent  year     n
 ##    <fct>     <int> <int>
@@ -4843,7 +4760,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 60 x 3
+## # A tibble: 60 × 3
 ## # Groups:   continent [5]
 ##    continent  year     n
 ##    <fct>     <int> <int>
@@ -4881,7 +4798,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 4
+## # A tibble: 5 × 4
 ##   continent     n mean_gdp sd_gdp
 ##   <fct>     <int>    <dbl>  <dbl>
 ## 1 Africa      624    2194.  2828.
@@ -4907,37 +4824,7 @@ tablea <- gapminder %>%
 ```r
 pacman::p_load(kableExtra,
                flextable)
-```
 
-```
-## Installing package into '/usr/local/lib/R/site-library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependencies 'webshot', 'svglite'
-```
-
-```
-## 
-## kableExtra installed
-```
-
-```
-## Installing package into '/usr/local/lib/R/site-library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependency 'officer'
-```
-
-```
-## 
-## flextable installed
-```
-
-```r
 # For HTML and LaTeX
 tablea %>% kableExtra::kable()
 ```
@@ -4991,8 +4878,9 @@ tablea %>% flextable::flextable()
 ```
 
 ```{=html}
-<template id="5158986e-d7b3-40ef-bc3d-ed12d1714edd"><style>
+<template id="fba3d21f-1e35-43b5-a433-df61ee918c2d"><style>
 .tabwid table{
+  border-spacing:0px !important;
   border-collapse:collapse;
   line-height:1;
   margin-left:auto;
@@ -5001,7 +4889,6 @@ tablea %>% flextable::flextable()
   display: table;
   margin-top: 1.275em;
   margin-bottom: 1.275em;
-  border-spacing: 0;
   border-color: transparent;
 }
 .tabwid_left table{
@@ -5025,15 +4912,15 @@ tablea %>% flextable::flextable()
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-e894de88{border-collapse:collapse;}.cl-e88f00a8{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-e88f13a4{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e88f13b8{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e88f48c4{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e88f48e2{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e88f48ec{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e88f4900{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e88f490a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e88f4914{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-e894de88'>
+</style><div class="tabwid"><style>.cl-e9170348{}.cl-e9121518{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-e91226a2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e91226a3{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e9125550{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e912555a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e912555b{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e9125564{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e9125565{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e9125566{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-e9170348'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-e88f490a"><p class="cl-e88f13a4"><span class="cl-e88f00a8">continent</span></p></td><td class="cl-e88f4914"><p class="cl-e88f13b8"><span class="cl-e88f00a8">n</span></p></td><td class="cl-e88f4914"><p class="cl-e88f13b8"><span class="cl-e88f00a8">mean_gdp</span></p></td><td class="cl-e88f4914"><p class="cl-e88f13b8"><span class="cl-e88f00a8">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-e88f48c4"><p class="cl-e88f13a4"><span class="cl-e88f00a8">Africa</span></p></td><td class="cl-e88f48e2"><p class="cl-e88f13b8"><span class="cl-e88f00a8">624</span></p></td><td class="cl-e88f48e2"><p class="cl-e88f13b8"><span class="cl-e88f00a8">2,193.755</span></p></td><td class="cl-e88f48e2"><p class="cl-e88f13b8"><span class="cl-e88f00a8">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e88f48c4"><p class="cl-e88f13a4"><span class="cl-e88f00a8">Americas</span></p></td><td class="cl-e88f48e2"><p class="cl-e88f13b8"><span class="cl-e88f00a8">300</span></p></td><td class="cl-e88f48e2"><p class="cl-e88f13b8"><span class="cl-e88f00a8">7,136.110</span></p></td><td class="cl-e88f48e2"><p class="cl-e88f13b8"><span class="cl-e88f00a8">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e88f48c4"><p class="cl-e88f13a4"><span class="cl-e88f00a8">Asia</span></p></td><td class="cl-e88f48e2"><p class="cl-e88f13b8"><span class="cl-e88f00a8">396</span></p></td><td class="cl-e88f48e2"><p class="cl-e88f13b8"><span class="cl-e88f00a8">7,902.150</span></p></td><td class="cl-e88f48e2"><p class="cl-e88f13b8"><span class="cl-e88f00a8">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e88f48c4"><p class="cl-e88f13a4"><span class="cl-e88f00a8">Europe</span></p></td><td class="cl-e88f48e2"><p class="cl-e88f13b8"><span class="cl-e88f00a8">360</span></p></td><td class="cl-e88f48e2"><p class="cl-e88f13b8"><span class="cl-e88f00a8">14,469.476</span></p></td><td class="cl-e88f48e2"><p class="cl-e88f13b8"><span class="cl-e88f00a8">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e88f48ec"><p class="cl-e88f13a4"><span class="cl-e88f00a8">Oceania</span></p></td><td class="cl-e88f4900"><p class="cl-e88f13b8"><span class="cl-e88f00a8">24</span></p></td><td class="cl-e88f4900"><p class="cl-e88f13b8"><span class="cl-e88f00a8">18,621.609</span></p></td><td class="cl-e88f4900"><p class="cl-e88f13b8"><span class="cl-e88f00a8">6,358.983</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="bc88c68b-1fd7-4848-8e7d-90d44d8493f5"></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-e9125565"><p class="cl-e91226a2"><span class="cl-e9121518">continent</span></p></td><td class="cl-e9125566"><p class="cl-e91226a3"><span class="cl-e9121518">n</span></p></td><td class="cl-e9125566"><p class="cl-e91226a3"><span class="cl-e9121518">mean_gdp</span></p></td><td class="cl-e9125566"><p class="cl-e91226a3"><span class="cl-e9121518">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-e9125550"><p class="cl-e91226a2"><span class="cl-e9121518">Africa</span></p></td><td class="cl-e912555a"><p class="cl-e91226a3"><span class="cl-e9121518">624</span></p></td><td class="cl-e912555a"><p class="cl-e91226a3"><span class="cl-e9121518">2,193.755</span></p></td><td class="cl-e912555a"><p class="cl-e91226a3"><span class="cl-e9121518">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e9125550"><p class="cl-e91226a2"><span class="cl-e9121518">Americas</span></p></td><td class="cl-e912555a"><p class="cl-e91226a3"><span class="cl-e9121518">300</span></p></td><td class="cl-e912555a"><p class="cl-e91226a3"><span class="cl-e9121518">7,136.110</span></p></td><td class="cl-e912555a"><p class="cl-e91226a3"><span class="cl-e9121518">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e9125550"><p class="cl-e91226a2"><span class="cl-e9121518">Asia</span></p></td><td class="cl-e912555a"><p class="cl-e91226a3"><span class="cl-e9121518">396</span></p></td><td class="cl-e912555a"><p class="cl-e91226a3"><span class="cl-e9121518">7,902.150</span></p></td><td class="cl-e912555a"><p class="cl-e91226a3"><span class="cl-e9121518">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e9125550"><p class="cl-e91226a2"><span class="cl-e9121518">Europe</span></p></td><td class="cl-e912555a"><p class="cl-e91226a3"><span class="cl-e9121518">360</span></p></td><td class="cl-e912555a"><p class="cl-e91226a3"><span class="cl-e9121518">14,469.476</span></p></td><td class="cl-e912555a"><p class="cl-e91226a3"><span class="cl-e9121518">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e912555b"><p class="cl-e91226a2"><span class="cl-e9121518">Oceania</span></p></td><td class="cl-e9125564"><p class="cl-e91226a3"><span class="cl-e9121518">24</span></p></td><td class="cl-e9125564"><p class="cl-e91226a3"><span class="cl-e9121518">18,621.609</span></p></td><td class="cl-e9125564"><p class="cl-e91226a3"><span class="cl-e9121518">6,358.983</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="89953e22-1aa0-4703-bb20-4c170f67428a"></div>
 <script>
-var dest = document.getElementById("bc88c68b-1fd7-4848-8e7d-90d44d8493f5");
-var template = document.getElementById("5158986e-d7b3-40ef-bc3d-ed12d1714edd");
+var dest = document.getElementById("89953e22-1aa0-4703-bb20-4c170f67428a");
+var template = document.getElementById("fba3d21f-1e35-43b5-a433-df61ee918c2d");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -5071,22 +4958,16 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 30
+## # A tibble: 1 × 30
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>,
-## #   Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_if()`: using a logical condition
@@ -5098,23 +4979,16 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 31
+## # A tibble: 1 × 31
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     <dbl>   <dbl>   <dbl>   <dbl>                    <dbl>    <dbl>   <dbl>
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # … with 24 more variables:
-## #   Czech Republic <dbl>, Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>,
-## #   Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # … with 24 more variables: Czech Republic <dbl>, Denmark <dbl>, Finland <dbl>,
+## #   France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
+## #   Ireland <dbl>, Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
+## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_at()`
@@ -5131,22 +5005,16 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 30
+## # A tibble: 1 × 30
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>,
-## #   Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 ```r
@@ -5158,7 +5026,7 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##   lifeExp
 ##     <dbl>
 ## 1    71.9
@@ -5189,22 +5057,16 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 30
+## # A tibble: 1 × 30
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>,
-## #   Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 ```r
@@ -5213,22 +5075,16 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 30
+## # A tibble: 1 × 30
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>,
-## #   Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_if()`
@@ -5253,23 +5109,16 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 31
+## # A tibble: 1 × 31
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     <dbl>   <dbl>   <dbl>   <dbl>                    <dbl>    <dbl>   <dbl>
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # … with 24 more variables:
-## #   Czech Republic <dbl>, Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>,
-## #   Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # … with 24 more variables: Czech Republic <dbl>, Denmark <dbl>, Finland <dbl>,
+## #   France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>,
+## #   Ireland <dbl>, Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>,
+## #   Norway <dbl>, Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 -   `summarise_at()`
@@ -5284,22 +5133,16 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 30
+## # A tibble: 1 × 30
 ##   Albania Austria Belgium `Bosnia and Herzego… Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # … with 23 more variables: Denmark <dbl>,
-## #   Finland <dbl>, France <dbl>,
-## #   Germany <dbl>, Greece <dbl>,
-## #   Hungary <dbl>, Iceland <dbl>,
-## #   Ireland <dbl>, Italy <dbl>,
-## #   Montenegro <dbl>, Netherlands <dbl>,
-## #   Norway <dbl>, Poland <dbl>,
-## #   Portugal <dbl>, Romania <dbl>,
-## #   Serbia <dbl>, Slovak Republic <dbl>,
-## #   Slovenia <dbl>, Spain <dbl>,
-## #   Sweden <dbl>, Switzerland <dbl>,
-## #   Turkey <dbl>, United Kingdom <dbl>
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
+## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
+## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
+## #   Slovak Republic <dbl>, Slovenia <dbl>, Spain <dbl>, Sweden <dbl>,
+## #   Switzerland <dbl>, Turkey <dbl>, United Kingdom <dbl>
 ```
 
 ```r
@@ -5311,7 +5154,7 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##   lifeExp
 ##     <dbl>
 ## 1    71.9
@@ -5323,7 +5166,7 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 360 x 2
+## # A tibble: 360 × 2
 ##    Albania Austria
 ##      <dbl>   <dbl>
 ##  1   1601.      NA
@@ -5366,7 +5209,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent mean_gdp
 ##   <fct>        <dbl>
 ## 1 Africa       2194.
@@ -5389,7 +5232,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 5 × 3
 ##   continent mean_gdp count
 ##   <fct>        <dbl> <int>
 ## 1 Africa       2194.   624
@@ -5415,7 +5258,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent IQR_gdp
 ##   <fct>       <dbl>
 ## 1 Africa      1616.
@@ -5438,7 +5281,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 5 × 3
 ##   continent min_gdp max_gdp
 ##   <fct>       <dbl>   <dbl>
 ## 1 Africa       241.  21951.
@@ -5461,7 +5304,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 5 × 3
 ##   continent first_gdp last_gdp
 ##   <fct>         <dbl>    <dbl>
 ## 1 Africa        2449.     470.
@@ -5482,7 +5325,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 5 × 3
 ##   continent first_gdp last_gdp
 ##   <fct>         <dbl>    <dbl>
 ## 1 Africa         241.   21951.
@@ -5502,7 +5345,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent    ns
 ##   <fct>     <int>
 ## 1 Africa      624
@@ -5522,7 +5365,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent rich_countries
 ##   <fct>              <dbl>
 ## 1 Africa           0.00481
@@ -5566,8 +5409,8 @@ compare(
 ```
 
 ```
-## `old`:                         55
-## `new`: 1 3 6 10 15 21 28 36 45 55
+## `old`: 55                         
+## `new`:  1 3 6 10 15 21 28 36 45 55
 ```
 
 ### Joining
@@ -5605,7 +5448,7 @@ planes %>%
 ```
 
 ```
-## # A tibble: 0 x 2
+## # A tibble: 0 × 2
 ## # … with 2 variables: tailnum <chr>, n <int>
 ```
 **Optional**
@@ -5677,7 +5520,7 @@ inner_join(x, y)
 ```
 
 ```
-## # A tibble: 4 x 3
+## # A tibble: 4 × 3
 ##     key val_x val_y
 ##   <int> <chr> <chr>
 ## 1     1 x1    y1   
@@ -5704,7 +5547,7 @@ left_join(x, y)
 ```
 
 ```
-## # A tibble: 4 x 3
+## # A tibble: 4 × 3
 ##     key val_x val_y
 ##   <int> <chr> <chr>
 ## 1     1 x1    y1   
@@ -5727,7 +5570,7 @@ right_join(x, y)
 ```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 5 × 3
 ##     key val_x val_y
 ##   <int> <chr> <chr>
 ## 1     1 x1    y1   
@@ -5751,7 +5594,7 @@ full_join(x, y)
 ```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 5 × 3
 ##     key val_x val_y
 ##   <int> <chr> <chr>
 ## 1     1 x1    y1   
@@ -5841,7 +5684,7 @@ flights %>%
 ```
 
 ```
-## # A tibble: 722 x 2
+## # A tibble: 722 × 2
 ##    tailnum     n
 ##    <chr>   <int>
 ##  1 <NA>     2512
@@ -5892,7 +5735,7 @@ head(nested)
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ## # Groups:   country, continent [6]
 ##   country     continent data             
 ##   <fct>       <fct>     <list>           
@@ -5909,7 +5752,7 @@ nested$data %>% pluck(1)
 ```
 
 ```
-## # A tibble: 12 x 4
+## # A tibble: 12 × 4
 ##     year lifeExp      pop gdpPercap
 ##    <int>   <dbl>    <int>     <dbl>
 ##  1  1952    28.8  8425333      779.
@@ -5948,7 +5791,7 @@ head(nested)
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ## # Groups:   country, continent [6]
 ##   country     continent data              models
 ##   <fct>       <fct>     <list>            <list>
@@ -5986,12 +5829,11 @@ glanced$glance %>% pluck(1)
 ```
 
 ```
-## # A tibble: 1 x 12
+## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>        <dbl> <dbl>  <dbl> <dbl> <dbl>
 ## 1     0.948         0.942  1.22      181. 0.0000000984     1  -18.3  42.7  44.1
-## # … with 3 more variables: deviance <dbl>,
-## #   df.residual <int>, nobs <int>
+## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 ```r
@@ -6014,7 +5856,7 @@ glanced %>%
 ```
 
 ```
-## # A tibble: 142 x 16
+## # A tibble: 142 × 16
 ## # Groups:   country, continent [142]
 ##    country    continent data      models r.squared adj.r.squared sigma statistic
 ##    <fct>      <fct>     <list>    <list>     <dbl>         <dbl> <dbl>     <dbl>
@@ -6028,10 +5870,8 @@ glanced %>%
 ##  8 South Afr… Africa    <tibble … <lm>      0.312        0.244    4.74     4.54 
 ##  9 Uganda     Africa    <tibble … <lm>      0.342        0.276    3.19     5.20 
 ## 10 Congo, De… Africa    <tibble … <lm>      0.348        0.283    2.43     5.34 
-## # … with 132 more rows, and 8 more
-## #   variables: p.value <dbl>, df <dbl>,
-## #   logLik <dbl>, AIC <dbl>, BIC <dbl>,
-## #   deviance <dbl>, df.residual <int>,
+## # … with 132 more rows, and 8 more variables: p.value <dbl>, df <dbl>,
+## #   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>, df.residual <int>,
 ## #   nobs <int>
 ```
 
@@ -6232,7 +6072,7 @@ null_slopes %>%
 ```
 
 ```
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##   p_value
 ##     <dbl>
 ## 1   0.972
@@ -6266,58 +6106,6 @@ pacman::p_load(# Necessary
                modelr, 
                nlme, 
                sjstats)
-```
-
-```
-## Installing package into '/usr/local/lib/R/site-library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependencies 'coda', 'TMB', 'cubelyr'
-```
-
-```
-## 
-## broom.mixed installed
-```
-
-```
-## Installing package into '/usr/local/lib/R/site-library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependencies 'arm', 'blme'
-```
-
-```
-## 
-## merTools installed
-```
-
-```
-## Installing package into '/usr/local/lib/R/site-library'
-## (as 'lib' is unspecified)
-```
-
-```
-## 
-## glmmTMB installed
-```
-
-```
-## Installing package into '/usr/local/lib/R/site-library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependencies 'estimability', 'bayestestR', 'effectsize', 'emmeans', 'insight', 'parameters', 'performance', 'sjlabelled', 'sjmisc'
-```
-
-```
-## 
-## sjstats installed
 ```
 
 
@@ -6390,7 +6178,7 @@ nlme::fixef(re_out) %>% as_tibble()
 ```
 
 ```
-## # A tibble: 2 x 1
+## # A tibble: 2 × 1
 ##     value
 ##     <dbl>
 ## 1 6.38e+1
@@ -6402,7 +6190,7 @@ nlme::ranef(re_out) %>% as_tibble()
 ```
 
 ```
-## # A tibble: 5 x 5
+## # A tibble: 5 × 5
 ##   grpvar    term        grp      condval condsd
 ##   <chr>     <fct>       <fct>      <dbl>  <dbl>
 ## 1 continent (Intercept) Africa   -14.9    0.369
@@ -6445,30 +6233,6 @@ pacman::p_load(DeclareDesign, #
                randomizr, # Random sampling and assignment 
                estimatr, # Fast estimation tools (IV, etc) 
                DesignLibrary) # Research design library 
-```
-
-```
-## Installing package into '/usr/local/lib/R/site-library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependencies 'randomizr', 'fabricatr', 'estimatr'
-```
-
-```
-## 
-## DeclareDesign installed
-```
-
-```
-## Installing package into '/usr/local/lib/R/site-library'
-## (as 'lib' is unspecified)
-```
-
-```
-## 
-## DesignLibrary installed
 ```
 
 Model-Inquire-Data Strategy-Answer Strategy (MIDA) by Graeme Blair, Jasper Cooper, Alex Coppock, and Macartan Humphreys ([APSR 2019](https://declaredesign.org/declare.pdf)). The following instructions draw on the vignette available at [the package homepage](https://declaredesign.org/mida/). Also, take a look at [DeclareDesign cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/declaredesign.pdf).
@@ -6530,8 +6294,8 @@ estimand_ate <- declare_estimand(ATE = mean(Y_Z_1 - Y_Z_0))
 
 
 ```r
-sampling <- declare_sampling(n = 250) # Sampling 250 units 
-assignment <- declare_assignment(m = 50) # Assign 50 units 
+sampling <- declare_sampling(n = 250, legacy = TRUE) # Sampling 250 units 
+assignment <- declare_assignment(m = 50, legacy = TRUE) # Assign 50 units 
 
 # If you don't do this, you will be missing Y 
 reveal_Y <- declare_reveal(Y, Z)
@@ -6591,10 +6355,10 @@ design
 ## Step 3 (inquiry): declare_inquiry(ATE = ..1) -----------------------------------
 ## 
 ## A single draw of the inquiry:
-##  inquiry_label  estimand
-##            ATE 0.9600409
+##  inquiry  estimand
+##      ATE 0.9600409
 ## 
-## Step 4 (sampling): declare_sampling(n = 250) -----------------------------------
+## Step 4 (sampling): declare_sampling(n = 250, legacy = TRUE) --------------------
 ## 
 ## N = 250 (750 subtracted) 
 ## 
@@ -6641,7 +6405,7 @@ design
 ##   min median mean  max   sd N_missing N_unique
 ##  -2.6   0.92 0.97 3.83 1.06         0      250
 ## 
-## Step 5 (assignment): declare_assignment(m = 50) --------------------------------
+## Step 5 (assignment): declare_assignment(m = 50, legacy = TRUE) -----------------
 ## 
 ## Added variable: Z 
 ##     0    1
@@ -6666,10 +6430,10 @@ design
 ## Model:	difference_in_means 
 ## 
 ## A single draw of the estimator:
-##  estimator_label term estimate std.error statistic      p.value  conf.low
-##        estimator    Z 1.010462 0.1370808  7.371286 1.768003e-09 0.7349878
-##  conf.high df outcome inquiry_label
-##   1.285936 49       Y           ATE
+##  estimator term estimate std.error statistic      p.value  conf.low conf.high
+##  estimator    Z 1.010462 0.1370808  7.371286 1.768003e-09 0.7349878  1.285936
+##  df outcome inquiry
+##  49       Y     ATE
 ```
 
 2. Applications 
@@ -6710,10 +6474,10 @@ estimates
 ```
 
 ```
-##   estimator_label term estimate std.error statistic      p.value  conf.low
-## 1       estimator    Z 1.194527 0.1361679   8.77246 1.290575e-11 0.9208878
-##   conf.high df outcome inquiry_label
-## 1  1.468167 49       Y           ATE
+##   estimator term estimate std.error statistic      p.value  conf.low conf.high
+## 1 estimator    Z 1.194527 0.1361679   8.77246 1.290575e-11 0.9208878  1.468167
+##   df outcome inquiry
+## 1 49       Y     ATE
 ```
 
 * Diagnosis 
@@ -9737,12 +9501,12 @@ diagnosis
 ## 
 ## Research design diagnosis based on 1000 simulations. Diagnosand estimates with bootstrapped standard errors in parentheses (500 replicates).
 ## 
-##  Design Label Inquiry Label Estimator Label Term N Sims   Bias   RMSE  Power
-##        design           ATE       estimator    Z   1000  -0.00   0.13   1.00
-##                                                         (0.00) (0.00) (0.00)
-##  Coverage Mean Estimate SD Estimate Mean Se Type S Rate Mean Inquiry
-##      0.96          1.00        0.14    0.14        0.00         1.00
-##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
+##  Design Inquiry Estimator Term N Sims   Bias   RMSE  Power Coverage
+##  design     ATE estimator    Z   1000  -0.00   0.13   1.00     0.96
+##                                       (0.00) (0.00) (0.00)   (0.01)
+##  Mean Estimate SD Estimate Mean Se Type S Rate Mean Estimand
+##           1.00        0.14    0.14        0.00          1.00
+##         (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
 ```
 
 ```r
@@ -9767,20 +9531,20 @@ diagnose_design(three_arm)
 ## 
 ## Research design diagnosis based on 500 simulations. Diagnosand estimates with bootstrapped standard errors in parentheses (100 replicates).
 ## 
-##  Design Label Inquiry Label Estimator Label N Sims   Bias   RMSE  Power
-##     three_arm     ate_Y_2_1 DIM (Z_2 - Z_1)    500   0.00   0.07   0.26
-##                                                    (0.00) (0.00) (0.02)
-##     three_arm     ate_Y_3_1 DIM (Z_3 - Z_1)    500   0.00   0.07   0.75
-##                                                    (0.00) (0.00) (0.02)
-##     three_arm     ate_Y_3_2 DIM (Z_3 - Z_2)    500   0.00   0.08   0.26
-##                                                    (0.00) (0.00) (0.02)
-##  Coverage Mean Estimate SD Estimate Mean Se Type S Rate Mean Inquiry
-##      0.97          0.10        0.07    0.08        0.00         0.10
-##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
-##      0.96          0.20        0.07    0.08        0.00         0.20
-##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
-##      0.96          0.10        0.08    0.08        0.00         0.10
-##    (0.01)        (0.00)      (0.00)  (0.00)      (0.00)       (0.00)
+##     Design   Inquiry       Estimator N Sims   Bias   RMSE  Power Coverage
+##  three_arm ate_Y_2_1 DIM (Z_2 - Z_1)    500   0.00   0.07   0.26     0.97
+##                                             (0.00) (0.00) (0.02)   (0.01)
+##  three_arm ate_Y_3_1 DIM (Z_3 - Z_1)    500   0.00   0.07   0.75     0.96
+##                                             (0.00) (0.00) (0.02)   (0.01)
+##  three_arm ate_Y_3_2 DIM (Z_3 - Z_2)    500   0.00   0.08   0.26     0.96
+##                                             (0.00) (0.00) (0.02)   (0.01)
+##  Mean Estimate SD Estimate Mean Se Type S Rate Mean Estimand
+##           0.10        0.07    0.08        0.00          0.10
+##         (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
+##           0.20        0.07    0.08        0.00          0.20
+##         (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
+##           0.10        0.08    0.08        0.00          0.10
+##         (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
 ```
 
 **Additional tips**
@@ -9951,7 +9715,7 @@ midwest
 ```
 
 ```
-## # A tibble: 437 x 28
+## # A tibble: 437 × 28
 ##      PID county  state  area poptotal popdensity popwhite popblack popamerindian
 ##    <int> <chr>   <chr> <dbl>    <int>      <dbl>    <int>    <int>         <int>
 ##  1   561 ADAMS   IL    0.052    66090      1271.    63917     1702            98
@@ -9964,20 +9728,12 @@ midwest
 ##  8   568 CARROLL IL    0.027    16805       622.    16519      111            30
 ##  9   569 CASS    IL    0.024    13437       560.    13384       16             8
 ## 10   570 CHAMPA… IL    0.058   173025      2983.   146506    16559           331
-## # … with 427 more rows, and 19 more
-## #   variables: popasian <int>,
-## #   popother <int>, percwhite <dbl>,
-## #   percblack <dbl>, percamerindan <dbl>,
-## #   percasian <dbl>, percother <dbl>,
-## #   popadults <int>, perchsd <dbl>,
-## #   percollege <dbl>, percprof <dbl>,
-## #   poppovertyknown <int>,
-## #   percpovertyknown <dbl>,
-## #   percbelowpoverty <dbl>,
-## #   percchildbelowpovert <dbl>,
-## #   percadultpoverty <dbl>,
-## #   percelderlypoverty <dbl>, inmetro <int>,
-## #   category <chr>
+## # … with 427 more rows, and 19 more variables: popasian <int>, popother <int>,
+## #   percwhite <dbl>, percblack <dbl>, percamerindan <dbl>, percasian <dbl>,
+## #   percother <dbl>, popadults <int>, perchsd <dbl>, percollege <dbl>,
+## #   percprof <dbl>, poppovertyknown <int>, percpovertyknown <dbl>,
+## #   percbelowpoverty <dbl>, percchildbelowpovert <dbl>, percadultpoverty <dbl>,
+## #   percelderlypoverty <dbl>, inmetro <int>, category <chr>
 ```
 
 
@@ -10313,7 +10069,7 @@ gapminder
 ```
 
 ```
-## # A tibble: 1,704 x 7
+## # A tibble: 1,704 × 7
 ##    country     continent  year lifeExp      pop gdpPercap log_pop
 ##    <fct>       <fct>     <int>   <dbl>    <int>     <dbl>   <dbl>
 ##  1 Afghanistan Asia       1952    28.8  8425333      779.    15.9
