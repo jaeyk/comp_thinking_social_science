@@ -69,6 +69,7 @@ knitr::opts_chunk$set(cache = TRUE)
     - Sample to estimate parameters = Training sample
   
     - Estimating the model = Being trained 
+    
     - Regressors, covariates, or predictors = Features 
   
     - Regression parameters = weights 
@@ -111,7 +112,6 @@ pacman::p_load(here,
 remotes::install_github("ck37/ck37r")
 
 conflicted::conflict_prefer("filter", "dplyr")
-
 ```
 
 

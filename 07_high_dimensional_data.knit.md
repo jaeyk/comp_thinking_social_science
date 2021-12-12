@@ -66,6 +66,7 @@
     - Sample to estimate parameters = Training sample
   
     - Estimating the model = Being trained 
+    
     - Regressors, covariates, or predictors = Features 
   
     - Regression parameters = weights 
