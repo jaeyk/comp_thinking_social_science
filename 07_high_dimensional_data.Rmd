@@ -2009,7 +2009,7 @@ theme_set(ggthemes::theme_fivethirtyeight())
 ```{r}
 two_years_violent <- read.csv(here("data", "compas-scores-two-years-violent.csv"))
 
-glue("N of observations (rows): {nrow(two_years_violen￣t)}
+glue("N of observations (rows): {nrow(two_years_violent)}
       N of variables (columns): {ncol(two_years_violent)}")
 ```
 
