@@ -1544,24 +1544,21 @@ pacman::p_load(tidytext, # tidy text analysis
 The data munging process draws on [Julia Silge's blog post](https://juliasilge.com/blog/sherlock-holmes-stm/).
 
 ```{r}
-
 sherlock_raw <- gutenberg_download(1661)
-
-glimpse(sherlock_raw)
 
 sherlock <- sherlock_raw %>%
   # Mutate story using a conditional statement 
-  mutate(story = ifelse(str_starts(text, "ADVENTURE"), 
-                                   text, NA)) %>%
+  mutate(
+    story = ifelse(str_detect(text, "ADVENTURE"), text, NA)
+    ) %>%
   # Fill in missing values with next value  
   tidyr::fill(story, .direction = "down") %>%
   # Filter 
-  filter(story != "THE ADVENTURES OF SHERLOCK HOLMES") %>%
+  dplyr::filter(story != "THE ADVENTURES OF SHERLOCK HOLMES") %>%
   # Factor 
   mutate(story = factor(story, levels = unique(story)))
 
-sherlock <- sherlock[,2:3]
-
+sherlock <- sherlock[,2:3] # no id 
 ```
 
 #### Key ideas 
@@ -1596,7 +1593,6 @@ sherlock <- sherlock[,2:3]
 #### Exploratory data analysis 
 
 ```{r}
-
 sherlock_n <- sherlock %>%
   unnest_tokens(output = word,
                 input = text) %>%
@@ -1606,7 +1602,8 @@ sherlock_total_n <- sherlock_n %>%
   group_by(story) %>%
   summarise(total = sum(n))
 
-sherlock_words <- sherlock_n %>% left_join(sherlock_total_n)
+sherlock_words <- sherlock_n %>%   
+  left_join(sherlock_total_n)
 
 sherlock_words %>%
   mutate(freq = n/total) %>%
@@ -1621,8 +1618,9 @@ sherlock_words %>%
              ncol = 2, 
              scales = "free_y") +
   scale_fill_viridis_d() +
-  labs(x = "")
-
+  labs(x = "",
+       fill = "Story") +
+  theme(legend.position = "bottom")
 ```
 
 #### STM
@@ -1638,13 +1636,12 @@ Also, note that we didn't cover other important techniques in topic modeling suc
 `stm` package has its preprocessing function.
 
 ```{r}
-
-
-dtm <- textProcessor(documents = sherlock$text,
-                     metadata = sherlock, 
-                     removestopwords = TRUE,
-                     verbose = FALSE)
-
+dtm <- textProcessor(
+  documents = sherlock$text,
+  metadata = sherlock, 
+  removestopwords = TRUE,
+  verbose = FALSE
+  )
 ```
 
 ##### Tuning K
@@ -1653,12 +1650,13 @@ dtm <- textProcessor(documents = sherlock$text,
 - Let's try K = 5, 10, 15.
 
 ```{r}
-
-test_res <- searchK(dtm$documents, dtm$vocab, 
-                   K = c(5, 10, 15),
-                   prevalence =~ story, 
-                   data = dtm$meta)
-
+test_res <- searchK(
+  dtm$documents, 
+  dtm$vocab, 
+  K = c(5, 10, 15),
+  prevalence = ~story, 
+  data = dtm$meta
+  )
 ```
 
 ##### Evaludating models 
@@ -1674,7 +1672,6 @@ Several metrics assess topic models' performance: the held-out likelihood, resid
 > Our exclusivity measure includes some information on word frequency as well. It is based on the FREX labeling metric (calcfrex) with the weight set to .7 in favor of exclusivity by default.
 
 ```{r}
-
 test_res$results %>%
   unnest(c(K, exclus, semcoh)) %>%
   select(K, exclus, semcoh) %>%
@@ -1684,12 +1681,10 @@ test_res$results %>%
     geom_text(label = glue("K = {test_res$results$K}"),
               size = 5,
               color = "red",
-              position = position_jitter(width = 0.05,
-                                         height = 0.05)) +
+              position = position_jitter(width = 0.05, height = 0.05)) +
     labs(x = "Exclusivity",
          y = "Semantic coherence", 
          title = "Exclusivity and semantic coherence")
-
 ```
 
 ##### Finalize 
@@ -1710,10 +1705,7 @@ final_stm <- stm(dtm$documents,
 - Using the `stm` package. 
 
 ```{r}
-
-# plot
 plot(final_stm)
-
 ```
 
 - Using ggplot2 
@@ -1783,7 +1775,6 @@ pacman::p_load(
 # To avoid conflicts 
 conflict_prefer("filter", "dplyr") 
 conflict_prefer("select", "dplyr") 
-
 ```
 
 #### Load data 
@@ -1795,7 +1786,6 @@ two_years <- read_csv(here("data", "compas-scores-two-years.csv"))
 
 glue("N of observations (rows): {nrow(two_years)}
       N of variables (columns): {ncol(two_years)}")
-
 ```
 
 #### Wrangling 
@@ -1810,7 +1800,6 @@ glue("N of observations (rows): {nrow(two_years)}
 - Create a function 
 
 ```{r}
-
 wrangle_data <- function(data){
 
 df <- data %>% 

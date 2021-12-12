@@ -2118,29 +2118,19 @@ sherlock_raw <- gutenberg_download(1661)
 ```
 
 ```r
-glimpse(sherlock_raw)
-```
-
-```
-## Rows: 11,927
-## Columns: 2
-## $ gutenberg_id <int> 1661, 1661, 1661, 1661, 1661, 1661, 1661, 1661, 1661, 166…
-## $ text         <chr> "cover", "", "", "", "", "The Adventures of Sherlock Holm…
-```
-
-```r
 sherlock <- sherlock_raw %>%
   # Mutate story using a conditional statement 
-  mutate(story = ifelse(str_starts(text, "ADVENTURE"), 
-                                   text, NA)) %>%
+  mutate(
+    story = ifelse(str_detect(text, "ADVENTURE"), text, NA)
+    ) %>%
   # Fill in missing values with next value  
   tidyr::fill(story, .direction = "down") %>%
   # Filter 
-  filter(story != "THE ADVENTURES OF SHERLOCK HOLMES") %>%
+  dplyr::filter(story != "THE ADVENTURES OF SHERLOCK HOLMES") %>%
   # Factor 
   mutate(story = factor(story, levels = unique(story)))
 
-sherlock <- sherlock[,2:3]
+sherlock <- sherlock[,2:3] # no id 
 ```
 
 #### Key ideas 
@@ -2175,24 +2165,450 @@ sherlock <- sherlock[,2:3]
 #### Exploratory data analysis 
 
 
+```r
+sherlock_n <- sherlock %>%
+  unnest_tokens(output = word,
+                input = text) %>%
+  count(story, word, sort = TRUE)
+
+sherlock_total_n <- sherlock_n %>%
+  group_by(story) %>%
+  summarise(total = sum(n))
+
+sherlock_words <- sherlock_n %>%   
+  left_join(sherlock_total_n)
+```
+
+```
+## Joining, by = "story"
+```
+
+```r
+sherlock_words %>%
+  mutate(freq = n/total) %>%
+  group_by(story) %>%
+  top_n(10) %>%
+  ggplot(aes(x = fct_reorder(word, freq), 
+             y = freq, 
+             fill = story)) +
+  geom_col() +
+  coord_flip() +
+  facet_wrap(~story, 
+             ncol = 2, 
+             scales = "free_y") +
+  scale_fill_viridis_d() +
+  labs(x = "",
+       fill = "Story") +
+  theme(legend.position = "bottom")
+```
+
+```
+## Selecting by freq
+```
+
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" width="672" />
+
+#### STM
+
+[Structural Topic Modeling](https://www.structuraltopicmodel.com/) by Roberts, Stewart, and Tingley helps estimating how the proportions of topics vary by covariates. If you don't use covaraites, this approach is close to CTM. The other useful (and very recent) topic modeling package is Keyword Assisted Topic Models ([keyATM](https://keyatm.github.io/keyATM/)) by Shusei, Imai, and Sasaki.
+
+Also, note that we didn't cover other important techniques in topic modeling such as dynamic and hierarchical topic modeling.
+
+![](https://warin.ca/shiny/stm/images/fig02.png)
+
+##### Turn text into document-term matrix
+
+`stm` package has its preprocessing function.
 
 
+```r
+dtm <- textProcessor(
+  documents = sherlock$text,
+  metadata = sherlock, 
+  removestopwords = TRUE,
+  verbose = FALSE
+  )
+```
+
+##### Tuning K
+
+- K is the number of topics. 
+- Let's try K = 5, 10, 15.
 
 
+```r
+test_res <- searchK(
+  dtm$documents, 
+  dtm$vocab, 
+  K = c(5, 10, 15),
+  prevalence = ~story, 
+  data = dtm$meta
+  )
+```
+
+```
+## Beginning Spectral Initialization 
+## 	 Calculating the gram matrix...
+## 	 Finding anchor words...
+##  	.....
+## 	 Recovering initialization...
+##  	..............................................
+## Initialization complete.
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.627) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.512, relative change = 1.510e-02) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.419, relative change = 1.228e-02) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.381, relative change = 5.151e-03) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.365, relative change = 2.165e-03) 
+## Topic 1: littl, man, see, hand, shall 
+##  Topic 2: upon, holm, think, come, take 
+##  Topic 3: said, will, just, know, word 
+##  Topic 4: one, may, came, tell, ask 
+##  Topic 5: time, sherlock, case, saw, face 
+## ....................................................................................................
+## Completed E-Step (1 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.358, relative change = 9.504e-04) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.355, relative change = 4.015e-04) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.354, relative change = 1.580e-04) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Model Converged 
+## Beginning Spectral Initialization 
+## 	 Calculating the gram matrix...
+## 	 Finding anchor words...
+##  	..........
+## 	 Recovering initialization...
+##  	..............................................
+## Initialization complete.
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.699) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.499, relative change = 2.594e-02) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.373, relative change = 1.684e-02) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.287, relative change = 1.172e-02) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.257, relative change = 4.115e-03) 
+## Topic 1: miss, littl, came, man, good 
+##  Topic 2: said, might, sudden, hous, went 
+##  Topic 3: upon, just, never, right, two 
+##  Topic 4: upon, will, one, see, may 
+##  Topic 5: sherlock, name, think, laugh, holm 
+##  Topic 6: see, hard, night, cri, forward 
+##  Topic 7: littl, stone, becam, whole, sure 
+##  Topic 8: can, know, matter, now, say 
+##  Topic 9: man, hand, knew, one, even 
+##  Topic 10: holm, ask, sat, “pray, long 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.248, relative change = 1.256e-03) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.247, relative change = 9.258e-05) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Model Converged 
+## Beginning Spectral Initialization 
+## 	 Calculating the gram matrix...
+## 	 Finding anchor words...
+##  	...............
+## 	 Recovering initialization...
+##  	..............................................
+## Initialization complete.
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.749) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.417, relative change = 4.283e-02) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.297, relative change = 1.624e-02) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.242, relative change = 7.558e-03) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.222, relative change = 2.745e-03) 
+## Topic 1: think, holm, turn, now, “ye 
+##  Topic 2: might, dress, hous, place, near 
+##  Topic 3: know, without, now, “’s, money 
+##  Topic 4: open, may, look, much, one 
+##  Topic 5: hand, well, see, way, littl 
+##  Topic 6: question, salesman, told, companion, close 
+##  Topic 7: littl, told, feel, remark, quit 
+##  Topic 8: can, matter, “oh, say, away 
+##  Topic 9: will, shall, must, come, littl 
+##  Topic 10: one, man, light, time, two 
+##  Topic 11: upon, holm, miss, man, sherlock 
+##  Topic 12: room, came, ask, just, hous 
+##  Topic 13: may, tell, sir, find, help 
+##  Topic 14: said, holm, believ, laugh, will 
+##  Topic 15: littl, now, noth, day, saw 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.212, relative change = 1.382e-03) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.207, relative change = 5.993e-04) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.203, relative change = 5.851e-04) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.202, relative change = 9.837e-05) 
+## ....................................................................................................
+## Completed E-Step (0 seconds). 
+## Completed M-Step. 
+## Model Converged
+```
+
+##### Evaludating models 
+
+Several metrics assess topic models' performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. Here we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
+
+-   Semantic coherence: high probability words for a topic co-occur in documents
+
+-   Exclusivity: key words of one topic are not likely to appear as key words in other topics.
+
+> In Roberts et al 2014 we proposed using the Mimno et al 2011 semantic coherence metric for helping with topic model selection. We found that semantic coherence alone is relatively easy to achieve by having only a couple of topics which all are dominated by the most common words. Thus we also proposed an exclusivity measure.
+
+> Our exclusivity measure includes some information on word frequency as well. It is based on the FREX labeling metric (calcfrex) with the weight set to .7 in favor of exclusivity by default.
 
 
+```r
+test_res$results %>%
+  unnest(c(K, exclus, semcoh)) %>%
+  select(K, exclus, semcoh) %>%
+  mutate(K = as.factor(K)) %>%
+  ggplot(aes(x = exclus, y = semcoh)) +
+    geom_point() +
+    geom_text(label = glue("K = {test_res$results$K}"),
+              size = 5,
+              color = "red",
+              position = position_jitter(width = 0.05, height = 0.05)) +
+    labs(x = "Exclusivity",
+         y = "Semantic coherence", 
+         title = "Exclusivity and semantic coherence")
+```
+
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-81-1.png" width="672" />
+
+##### Finalize 
 
 
+```r
+final_stm <- stm(dtm$documents, 
+                 dtm$vocab, 
+                 K = 10, prevalence = ~story,
+                 max.em.its = 75, 
+                 data = dtm$meta, 
+                 init.type = "Spectral",
+                 seed = 1234567,
+                 verbose = FALSE)
+```
+
+##### Explore the results 
+
+- Using the `stm` package. 
 
 
+```r
+plot(final_stm)
+```
+
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-83-1.png" width="672" />
+
+- Using ggplot2 
+
+In LDA distribution, $\alpha$ represents document-topic density and $\beta$ represents topic-word density. 
 
 
+```r
+# tidy  
+tidy_stm <- tidy(final_stm)
+
+# top terms
+tidy_stm %>%
+    group_by(topic) %>%
+    top_n(10, beta) %>%
+    ungroup() %>%
+    ggplot(aes(fct_reorder(term, beta), beta, fill = as.factor(topic))) +
+    geom_col(alpha = 0.8, show.legend = FALSE) +
+    facet_wrap(~ topic, scales = "free_y") +
+    coord_flip() +
+    scale_y_continuous(labels = scales::percent) +
+    scale_fill_viridis_d()
+```
+
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" width="672" />
+
+## Bias and fairness in machine learning 
+
+This section introduces the issues surrounding the fairness and bias in machine learning applications, focusing on ProPublica's Analysis of the COMPAS algorithm. I revised [the ProPublica's original R and Python code](https://github.com/propublica/compas-analysis/blob/master/Compas%20Analysis.ipynb) to increase its code readability.
+
+![A gif of defendants being put into an algorithm by SELMAN DESIGN](https://wp.technologyreview.com/wp-content/uploads/2019/10/mit-alg-yb-02-7.gif?fit=1444,962)
+
+**Outline** 
+
+1. Bias in the data 
+  - Risk of Recidivism Data
+  - Risk of Violent Recidivism Data
+
+2. Bias in the algorithm 
+
+**References**
+
+For more information on ProPublica's Machine Bias project, we encourage you to check out the following references.
+
+* [Argument](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing/) by Julia Angwin, Jeff Larson, Surya Mattu and Lauren Kirchner
+
+* [Counterargument](https://www.washingtonpost.com/news/monkey-cage/wp/2016/10/17/can-an-algorithm-be-racist-our-analysis-is-more-cautious-than-propublicas/) by Sam Corbett-Davies, Emma Pierson, Avi Feller, and Sharad Goel
+
+* [Methodology](https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm/)
+
+### Bias in the Data (Risk of Recidivism Analysis)
+
+#### Setup 
 
 
+```r
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(
+ tidyverse, # tidyverse packages 
+ conflicted, # an alternative conflict resolution strategy 
+ ggthemes, # other themes for ggplot2 
+ patchwork, # arranging ggplots
+ scales, # rescaling 
+ survival, # survival analysis
+ broom, # for modeling
+ here, # reproducibility 
+ glue # pasting strings and objects 
+)
+
+# To avoid conflicts 
+conflict_prefer("filter", "dplyr") 
+```
+
+```
+## [conflicted] Will prefer dplyr::filter over any other package
+```
+
+```r
+conflict_prefer("select", "dplyr") 
+```
+
+```
+## [conflicted] Will prefer dplyr::select over any other package
+```
+
+#### Load data 
+
+We select fields for the severity of the charge, number of priors, demographics, age, sex, COMPAS scores, and whether each person was accused of a crime within two years.
 
 
+```r
+two_years <- read_csv(here("data", "compas-scores-two-years.csv"))
+
+glue("N of observations (rows): {nrow(two_years)}
+      N of variables (columns): {ncol(two_years)}")
+```
+
+```
+## N of observations (rows): 7214
+## N of variables (columns): 53
+```
+
+#### Wrangling 
+
+- Not all of the observations are useable for the first round of analysis.
+- There are many reasons to remove rows because of missing data:
+    If the charge date of a defendant's COMPAS scored crime was not within 30 days from when the person was arrested, we assume that we do not have the right offense because of data quality reasons.
+    - We coded the recidivist flag -- is_recid -- to be -1 if we could not find a COMPAS case at all.
+    - In a similar vein, ordinary traffic offenses -- those with a c_charge_degree of 'O' -- will not result in Jail time are removed (only two of them).
+    - We filtered the underlying data from Broward county to include only those rows representing people who had either recidivated in two years or had at least two years outside of a correctional facility.
+
+- Create a function 
 
 
+```r
+wrangle_data <- function(data){
+
+df <- data %>% 
+    
+    # Select variables 
+    select(age, c_charge_degree, race, age_cat, score_text, sex, priors_count, days_b_screening_arrest, decile_score, is_recid, two_year_recid, 
+         c_jail_in, c_jail_out) %>% 
+    # Filter rows 
+    filter(days_b_screening_arrest <= 30,
+           days_b_screening_arrest >= -30, 
+           is_recid != -1,
+           c_charge_degree != "O",
+           score_text != 'N/A') %>% 
+    # Mutate variables 
+    mutate(length_of_stay = as.numeric(as.Date(c_jail_out) - as.Date(c_jail_in)),
+           c_charge_degree = factor(c_charge_degree),
+           age_cat = factor(age_cat),
+           race = factor(race, levels = c("Caucasian","African-American","Hispanic","Other","Asian","Native American")),
+           sex = factor(sex, levels = c("Male","Female")),
+           score_text = factor(score_text, levels = c("Low", "Medium", "High")),
+           score = score_text,
+# I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference 
+           score_num = as.numeric(score_text)) %>% 
+    # Rename variables 
+    rename(crime = c_charge_degree,
+           gender = sex)
+        
+return(df)}
+```
+
+- Apply the function to the data 
 
 
 
