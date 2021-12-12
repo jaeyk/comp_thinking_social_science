@@ -429,10 +429,33 @@ pacman::p_load(rtweet)
 ```
 
 
+```r
+# The past 6-9 days 
+rt <- search_tweets(q = "#stopasianhate", n = 1000, include_rts = FALSE)
+
+# The longer term 
+# search_fullarchive() premium service
+
+head(rt$text)
+```
+
+Can you guess what would be the class type of rt?
 
 
+```r
+class(rt)
+```
+
+What would be the number of rows?
 
 
+```r
+nrow(rt)
+```
+
+#### Time series analysis 
+
+- Time series analysis 
 
 
 

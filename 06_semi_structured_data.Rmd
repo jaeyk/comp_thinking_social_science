@@ -393,7 +393,7 @@ if (!require(pacman)) {install.packages("pacman")}
 pacman::p_load(rtweet)
 ```
 
-```{r cache=TRUE}
+```{r eval = FALSE}
 # The past 6-9 days 
 rt <- search_tweets(q = "#stopasianhate", n = 1000, include_rts = FALSE)
 
