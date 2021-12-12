@@ -983,7 +983,7 @@ df
 ```
 
 ```
-## # A tibble: 5 x 4
+## # A tibble: 5 × 4
 ##       a     b     c     d
 ##   <dbl> <dbl> <dbl> <dbl>
 ## 1     3     3     3     1
@@ -1030,7 +1030,7 @@ df
 ```
 
 ```
-## # A tibble: 5 x 4
+## # A tibble: 5 × 4
 ##       a     b     c     d
 ##   <dbl> <dbl> <dbl> <dbl>
 ## 1     3     3     3     1
@@ -1056,7 +1056,7 @@ df
 ```
 
 ```
-## # A tibble: 5 x 4
+## # A tibble: 5 × 4
 ##       a     b     c     d
 ##   <dbl> <dbl> <dbl> <dbl>
 ## 1     3     3     3     1
@@ -1126,7 +1126,7 @@ toc()
 ```
 
 ```
-## 0.008 sec elapsed
+## 0.006 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1140,7 +1140,7 @@ toc()
 ```
 
 ```
-## 0.002 sec elapsed
+## 0.001 sec elapsed
 ```
 
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
@@ -1166,12 +1166,11 @@ map_mark
 ```
 
 ```
-## # A tibble: 1 x 6
+## # A tibble: 1 × 6
 ##   expression                                              min   median `itr/sec`
 ##   <bch:expr>                                         <bch:tm> <bch:tm>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)   67.8µs   76.1µs    10614.
-## # … with 2 more variables: mem_alloc <bch:byt>,
-## #   gc/sec <dbl>
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)   54.1µs   65.2µs    14217.
+## # … with 2 more variables: mem_alloc <bch:byt>, gc/sec <dbl>
 ```
 
 #### Applications 
@@ -1235,7 +1234,7 @@ tidied_models$ols[1]
 
 ```
 ## [[1]]
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)   62.9      1.61       39.2  2.88e-23
@@ -1772,7 +1771,7 @@ toc(log = TRUE) # save toc
 ```
 
 ```
-## Scraping pages: 0.006 sec elapsed
+## Scraping pages: 0.003 sec elapsed
 ```
 
 - If you want to make the function run slowly ... 
@@ -1814,11 +1813,9 @@ plan(multiprocess, # multicore, if supported, otherwise multisession
 ```
 
 ```
-## Warning in supportsMulticoreAndRStudio(...): [ONE-TIME WARNING] Forked
-## processing ('multicore') is not supported when running R from RStudio
-## because it is considered unstable. For more details, how to control forked
-## processing or not, and how to silence this warning in future R sessions, see ?
-## parallelly::supportsMulticore
+## Warning: Strategy 'multiprocess' is deprecated in future (>= 1.20.0). Instead,
+## explicitly specify either 'multisession' or 'multicore'. In the current R
+## session, 'multiprocess' equals 'multicore'.
 ```
 
 **What's the difference between multisession and multicore?**
@@ -1840,16 +1837,16 @@ tic.log(format = TRUE)
 
 ```
 ## [[1]]
-## [1] "Scraping pages: 0.006 sec elapsed"
+## [1] "Scraping pages: 0.003 sec elapsed"
 ## 
 ## [[2]]
-## [1] "scraping pages with deplay: 9.022 sec elapsed"
+## [1] "scraping pages with deplay: 9.019 sec elapsed"
 ## 
 ## [[3]]
-## [1] "averaging 100000 without parallel processing: 1.308 sec elapsed"
+## [1] "averaging 100000 without parallel processing: 0.38 sec elapsed"
 ## 
 ## [[4]]
-## [1] "averaging 100000 with parallel processing: 0.882 sec elapsed"
+## [1] "averaging 100000 with parallel processing: 0.343 sec elapsed"
 ```
 
 Because of the overhead cost (e.g., time spent communicating data between processing), parallel processing does not always increase performance. Use this technique either when the computation part is heavy or when you need to repeat the process a large number of times.  
