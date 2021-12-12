@@ -8,13 +8,7 @@
 ```r
 # Install packages 
 if (!require("pacman")) install.packages("pacman")
-```
 
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(tidyverse, # tidyverse pkgs including purrr
                furrr, # parallel processing 
                tictoc, # performance test  
@@ -33,7 +27,7 @@ devtools::install_github("jaeyk/tidytweetjson", dependencies = TRUE) ; library(t
 ```
 
 ```
-## Skipping install of 'tidytweetjson' from a github remote, the SHA1 (b598dcc1) has not changed since last install.
+## Skipping install of 'tidytweetjson' from a github remote, the SHA1 (9a00ec8a) has not changed since last install.
 ##   Use `force = TRUE` to force installation
 ```
 
@@ -432,29 +426,17 @@ Using **search API**; This API returns a collection of Tweets mentioning a parti
 # Install and load rtweet 
 if (!require(pacman)) {install.packages("pacman")}
 pacman::p_load(rtweet)
-
-# The past 6-9 days 
-rt <- search_tweets(q = "#stopasianhate", n = 1000, include_rts = FALSE)
 ```
 
-```
-## Downloading [=======>---------------------------------]  20%Downloading [===========>-----------------------------]  30%Downloading [===============>-------------------------]  40%Downloading [===================>---------------------]  50%Downloading [========================>----------------]  60%Downloading [============================>------------]  70%Downloading [================================>--------]  80%Downloading [====================================>----]  90%Downloading [=========================================] 100%
-```
 
 ```r
+# The past 6-9 days 
+rt <- search_tweets(q = "#stopasianhate", n = 1000, include_rts = FALSE)
+
 # The longer term 
 # search_fullarchive() premium service
 
 head(rt$text)
-```
-
-```
-## [1] "#StopAsianHate \n#StopAsianHateCrimes \n#StopAAPIHate https://t.co/Kb1iqjOsfl" 
-## [2] "#StopAsianHate \n#StopAsianHateCrimes \n#StopAAPIHate https://t.co/W1JzSX7cCf" 
-## [3] "#StopAsianHate \n#StopAsianHateCrimes \n#StopAAPIHate https://t.co/FkY4Zj4j5n" 
-## [4] "#StopAsianHate \n#StopAsianHateCrimes \n#StopAAPIHate https://t.co/07aeoLpxqI" 
-## [5] "#StopAsianHate \n#StopAsianHateCrimes \n#StopAAPIHate https://t.co/YFMr6Ew1T0" 
-## [6] "#StopAsianHate #\n#StopAsianHateCrimes \n#StopAAPIHate https://t.co/JbXj3wJij5"
 ```
 
 Can you guess what would be the class type of rt?
@@ -486,8 +468,6 @@ ts_plot(rt, "3 hours") +
        source = "Twitter's Search API via rtweet")
 ```
 
-<img src="06_semi_structured_data_files/figure-html/unnamed-chunk-18-1.png" width="672" />
-
 #### Geographical analysis
 
 - Geographical analysis
@@ -501,8 +481,6 @@ geocoded <- lat_lng(rt)
 maps::map("state", lwd = .25) # lwd = line type 
 with(geocoded, points(lng, lat))
 ```
-
-<img src="06_semi_structured_data_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 
 ### Hydrating
 
@@ -750,7 +728,7 @@ worldbank %>%
 ```
 
 ```
-## # A tibble: 500 x 2
+## # A tibble: 500 × 2
 ##    document.id string                                                           
 ##          <int> <chr>                                                            
 ##  1           1 Ethiopia General Education Quality Improvement Project II        

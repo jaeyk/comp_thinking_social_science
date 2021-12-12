@@ -419,7 +419,7 @@ nrow(rt)
 
 - Time series analysis 
 
-```{r}
+```{r eval = FALSE}
 pacman::p_load(ggplot2, ggthemes, rtweet)
 
 ts_plot(rt, "3 hours") +
@@ -433,7 +433,7 @@ ts_plot(rt, "3 hours") +
 
 - Geographical analysis
 
-```{r}
+```{r eval = FALSE}
 pacman::p_load(maps)
 
 geocoded <- lat_lng(rt)
