@@ -1809,7 +1809,7 @@ df
 ```
 
 ```
-## # A tibble: 5 x 4
+## # A tibble: 5 × 4
 ##       a     b     c     d
 ##   <dbl> <dbl> <dbl> <dbl>
 ## 1     3     3     3     1
@@ -1900,6 +1900,12 @@ if (!require(testthat)) install.packages("testthat")
 ## The following object is masked from 'package:purrr':
 ## 
 ##     is_null
+```
+
+```
+## The following objects are masked from 'package:readr':
+## 
+##     edition_get, local_edition
 ```
 
 ```
