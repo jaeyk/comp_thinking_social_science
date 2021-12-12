@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/Debian) (preloaded format=xelatex 2021.11.16)  13 DEC 2021 06:16
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/Debian) (preloaded format=xelatex 2021.11.16)  13 DEC 2021 06:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -982,19 +982,19 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 Chapter 1.
 [5] [6]
 
-LaTeX Warning: File `https://i.creativecommons.org/l/by/4.0/88x31.png' not foun
-d on input line 261.
+LaTeX Warning: File `https://licensebuttons.net/l/by/4.0/88x31.png' not found o
+n input line 261.
 
-! Unable to load picture or PDF file 'https://i.creativecommons.org/l/by/4.0/88
-x31.png'.
+! Unable to load picture or PDF file 'https://licensebuttons.net/l/by/4.0/88x31
+.png'.
 <to be read again> 
                    }
-l.261 ...i.creativecommons.org/l/by/4.0/88x31.png}
+l.261 ...://licensebuttons.net/l/by/4.0/88x31.png}
                                                    This work is licensed und...
  
 Here is how much of TeX's memory you used:
  20395 strings out of 477220
- 351254 string characters out of 5832721
+ 351164 string characters out of 5832721
  869469 words of memory out of 5000000
  39746 multiletter control sequences out of 15000+600000
  407150 words of font info for 64 fonts, out of 8000000 for 9000
