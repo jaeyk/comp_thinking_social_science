@@ -3533,88 +3533,14 @@ read.csv(here("data", "table_recid.csv"))[, -1] %>%
 That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
 
 
-```python
-def create_comp_tables(recid_data, surv_data):
-  
-    # filtering variables 
-    is_afam = is_race("African-American")
-    is_white = is_race("Caucasian")
-  
-    # dfs 
-    df1 = create_table(filter(is_afam, recid_data),
-                       filter(is_afam, surv_data))
-  
-    df2 = create_table(filter(is_white, recid_data), 
-                       filter(is_white, surv_data))
-  
-    # concat 
-    dfs = pd.concat([df1, df2])
-    
-    dfs['Group'] = ['African Americans','African Americans','Whites','Whites']
-    
-    return(dfs)
-```
 
 
-```python
-create_comp_tables(recid, surv).to_csv("data/comp_tables_recid.csv")
-```
 
 
-```r
-read.csv(here("data", "comp_tables_recid.csv"))[, -1] %>%
-  ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
-  geom_col(position = "dodge") +
-  coord_flip() +
-  labs(title = "Recidivism")
-```
-
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-128-1.png" width="672" />
-
-#### Risk of Violent Recidivism accuracy
-
-COMPAS also offers a score that aims to measure a person's risk of violent recidivism, which has similar overall accuracy to the Recidivism score.
 
 
-```python
-vpeople = []
-
-with open("./data/cox-violent-parsed.csv") as f:
-    reader = PeekyReader(DictReader(f))
-    try:
-        while True:
-            p = Person(reader)
-            if p.valid:
-                vpeople.append(p)
-    except StopIteration:
-        pass
-
-vpop = list(filter(lambda i: ((i.violent_recidivist == True and i.lifetime <= 730) or
-                              i.lifetime > 730), list(filter(lambda x: x.vscore_valid, vpeople))))
-
-vrecid = list(filter(lambda i: i.violent_recidivist == True and i.lifetime <= 730, vpeople))
-
-vrset = set(vrecid)
-
-vsurv = [i for i in vpop if i not in vrset]
-```
 
 
-```python
-create_table(vrecid, vsurv).to_csv("data/table_vrecid.csv")
-```
-
-
-```r
-read.csv(here("data", "table_vrecid.csv"))[, -1] %>%
-  ggplot(aes(x = Metrics, y = Scores)) +
-  geom_col() +
-  labs(title = "Violent recidivism")
-```
-
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-131-1.png" width="672" />
-
-Even more so for Black defendants.
 
 
 
