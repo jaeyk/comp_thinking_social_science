@@ -2948,676 +2948,72 @@ theme_set(ggthemes::theme_fivethirtyeight())
 #### Load data 
 
 
-```r
-two_years_violent <- read.csv(here("data", "compas-scores-two-years-violent.csv"))
-
-glue("N of observations (rows): {nrow(two_years_violent)}
-      N of variables (columns): {ncol(two_years_violent)}")
-```
-
-```
-## N of observations (rows): 4743
-## N of variables (columns): 54
-```
-
-#### Wrangling
-
-- Create a function 
-
-
-```r
-wrangle_data <- function(data) {
-  df <- data %>%
-    # Select variables
-    select(
-      age, c_charge_degree, race, age_cat, v_score_text, sex, priors_count,
-      days_b_screening_arrest, v_decile_score, is_recid, two_year_recid
-    ) %>%
-    # Filter rows
-    filter(
-      days_b_screening_arrest <= 30,
-      days_b_screening_arrest >= -30,
-      is_recid != -1,
-      c_charge_degree != "O",
-      v_score_text != "N/A"
-    ) %>%
-    # Mutate variables
-    mutate(
-      c_charge_degree = factor(c_charge_degree),
-      age_cat = factor(age_cat),
-      race = factor(race, levels = c("Caucasian", "African-American", "Hispanic", "Other", "Asian", "Native American")),
-      sex = factor(sex, levels = c("Male", "Female")),
-      v_score_text = factor(v_score_text, levels = c("Low", "Medium", "High")),
-      # I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference
-      score_num = as.numeric(v_score_text)
-    ) %>%
-    # Rename variables
-    rename(
-      crime = c_charge_degree,
-      gender = sex,
-      score = v_score_text
-    )
-
-  return(df)
-}
-```
-
-- Apply the function to the data 
-
-
-```r
-df <- wrangle_data(two_years_violent)
-
-names(df)
-```
-
-```
-##  [1] "age"                     "crime"                  
-##  [3] "race"                    "age_cat"                
-##  [5] "score"                   "gender"                 
-##  [7] "priors_count"            "days_b_screening_arrest"
-##  [9] "v_decile_score"          "is_recid"               
-## [11] "two_year_recid"          "score_num"
-```
-
-```r
-head(df, 5) # Check whether the function works as expected
-```
-
-```
-##   age crime             race         age_cat score gender priors_count
-## 1  69     F            Other Greater than 45   Low   Male            0
-## 2  34     F African-American         25 - 45   Low   Male            0
-## 3  44     M            Other         25 - 45   Low   Male            0
-## 4  43     F            Other         25 - 45   Low   Male            3
-## 5  39     M        Caucasian         25 - 45   Low Female            0
-##   days_b_screening_arrest v_decile_score is_recid two_year_recid score_num
-## 1                      -1              1        0              0         1
-## 2                      -1              1        1              1         1
-## 3                       0              1        0              0         1
-## 4                      -1              3        0              0         1
-## 5                      -1              1        0              0         1
-```
-
-#### Descriptive analysis 
-
-- Score distribution 
-
-
-```r
-df %>%
-  group_by(score) %>%
-  count() %>%
-  ggplot(aes(x = score, y = n)) +
-  geom_col() +
-  labs(
-    x = "Score",
-    y = "Count",
-    title = "Score distribution"
-  )
-```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-101-1.png" width="672" />
 
-- Score distribution by race
 
 
-```r
-df %>%
-  ggplot(aes(ordered(v_decile_score))) +
-  geom_bar() +
-  facet_wrap(~race, nrow = 2) +
-  labs(
-    x = "Decile Score",
-    y = "Count",
-    Title = "Defendant's Decile Score"
-  )
-```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-102-1.png" width="672" />
-#### Modeling 
 
-After filtering out bad rows, our first question is whether there is a significant difference in COMPAS scores between races. We need to change some variables into factors and run a logistic regression, comparing low scores to high scores.
 
 
-```r
-model_data <- function(data) {
 
-  # Logistic regression model
-  lr_model <- glm(score ~ gender + age_cat + race + priors_count + crime + two_year_recid,
-    family = "binomial", data = data
-  )
 
-  # OLS
-  ols_model1 <- lm(score_num ~ gender + age_cat + race + priors_count + crime + two_year_recid,
-    data = data
-  )
 
-  ols_model2 <- lm(v_decile_score ~ gender + age_cat + race + priors_count + crime + two_year_recid,
-    data = data
-  )
-
-  # Extract model outcomes with confidence intervals
-  lr_est <- lr_model %>%
-    tidy(conf.int = TRUE)
-
-  ols_est1 <- ols_model1 %>%
-    tidy(conf.int = TRUE)
-
-  ols_est2 <- ols_model2 %>%
-    tidy(conf.int = TRUE)
-
-  # AIC scores
-  lr_AIC <- AIC(lr_model)
-  ols_AIC1 <- AIC(ols_model1)
-  ols_AIC2 <- AIC(ols_model2)
-
-  list(lr_est, ols_est1, ols_est2, lr_AIC, ols_AIC1, ols_AIC2)
-}
-```
-
-- Model comparisons 
-
-
-```r
-glue("AIC score of logistic regression: {model_data(df)[4]}
-      AIC score of OLS regression (with categorical DV):  {model_data(df)[5]}
-      AIC score of OLS regression (with continuous DV): {model_data(df)[6]}")
-```
-
-```
-## AIC score of logistic regression: 3022.77943765996
-## AIC score of OLS regression (with categorical DV):  5414.49127581608
-## AIC score of OLS regression (with continuous DV): 15458.3861723106
-```
-
-- Logistic regression model 
-
-
-```r
-lr_model <- model_data(df)[1] %>%
-  data.frame()
-
-lr_model %>%
-  filter(term != "(Intercept)") %>%
-  mutate(term = gsub("race|age_cat|gender", "", term)) %>%
-  ggplot(aes(x = fct_reorder(term, estimate), y = estimate, ymax = conf.high, ymin = conf.low)) +
-  geom_pointrange() +
-  coord_flip() +
-  labs(
-    y = "Estimate", x = "",
-    title = "Logistic regression"
-  ) +
-  geom_hline(yintercept = 0, linetype = "dashed")
-```
-
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-105-1.png" width="672" />
-
-Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success, and 1-p could be as a failure. Here, coefficient 1 indicates the equal probability for the binary outcomes. A coefficient greater than 1 indicates strong chance for p and a weak chance for 1-p. A coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
-
-(To refresh your memory, note that probability is bounded between [0, 1]. Odds range between 0 and infinity. Log odds range from negative to positive infinity. We're going through this hassle because we used the log function to map predictor variables to probability to fit the binary outcomes model.)
-
-In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see [Grant](https://www.bmj.com/content/348/bmj.f7450) (2014), [Wang](https://www.jstatsoft.org/article/view/v055i05) (2013), and [Zhang and Yu](https://jamanetwork.com/journals/jama/fullarticle/188182) (1998). 
-
-
-```r
-odds_to_risk <- function(model) {
-
-  # Calculating p0 (baseline or control group)
-  intercept <- model$estimate[model$term == "(Intercept)"]
-  control <- exp(intercept) / (1 + exp(intercept))
-
-  # Calculating relative risk
-  model <- model %>% filter(term != "(Intercept)")
-  model$relative_risk <- (exp(model$estimate) /
-    (1 - control + (control * exp(model$estimate))))
-
-  return(model)
-}
-```
-
-
-```r
-odds_to_risk(lr_model) %>%
-  relocate(relative_risk) %>%
-  arrange(desc(relative_risk))
-```
-
-```
-##    relative_risk                   term    estimate  std.error  statistic
-## 1      7.4142320    age_catLess than 25  3.14590906 0.11540998 27.2585528
-## 2      2.2169566         two_year_recid  0.93447949 0.11527216  8.1067232
-## 3      1.7739274   raceAfrican-American  0.65893450 0.10814991  6.0927885
-## 4      1.4845555    raceNative American  0.44792984 1.03546096  0.4325898
-## 5      1.1315392           priors_count  0.13764241 0.01161172 11.8537476
-## 6      0.9434828           raceHispanic -0.06415947 0.19132794 -0.3353377
-## 7      0.8615079                 crimeM -0.16366732 0.09806528 -1.6689631
-## 8      0.8290722              raceOther -0.20543235 0.22464062 -0.9144933
-## 9      0.5076551           genderFemale -0.72890371 0.12665509 -5.7550290
-## 10     0.3972545              raceAsian -0.98520588 0.70537045 -1.3967212
-## 11     0.1902151 age_catGreater than 45 -1.74207559 0.18414760 -9.4602135
-##          p.value   conf.low   conf.high
-## 1  1.315899e-163  2.9224937  3.37506621
-## 2   5.200316e-16  0.7084155  1.16039836
-## 3   1.109606e-09  0.4480948  0.87222287
-## 4   6.653128e-01 -1.9660912  2.24738803
-## 5   2.057779e-32  0.1151045  0.16064926
-## 6   7.373704e-01 -0.4439074  0.30657314
-## 7   9.512470e-02 -0.3563339  0.02822281
-## 8   3.604577e-01 -0.6533518  0.22789493
-## 9   8.662690e-09 -0.9800266 -0.48330469
-## 10  1.624974e-01 -2.4655693  0.33213464
-## 11  3.073150e-21 -2.1171742 -1.39384502
-```
-
-A relative risk score of 1.45 (African American) indicates that black defendants are 45% more likely than white defendants to receive a higher score.
-
-The plot visualizes this and other results from the table. 
-
-
-```r
-odds_to_risk(lr_model) %>%
-  mutate(term = gsub("race|age_cat|gender", "", term)) %>%
-  ggplot(aes(x = fct_reorder(term, relative_risk), y = relative_risk)) +
-  geom_point(size = 3) +
-  coord_flip() +
-  labs(
-    y = "Likelihood", x = "",
-    title = "Logistic regression"
-  ) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  geom_hline(yintercept = 1, linetype = "dashed")
-```
-
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-108-1.png" width="672" />
-
-
-### Bias in the algorithm 
-
-- To test whether COMPAS scores do an accurate job of deciding whether an offender is Low, Medium, or High risk, we ran a Cox Proportional Hazards model. Northpointe, the company that created COMPAS and markets it to Law Enforcement, also ran a Cox model in [their validation study](https://journals.sagepub.com/doi/abs/10.1177/0093854808326545).
-
-- We used the counting model and removed people when they were incarcerated. Due to errors in the underlying jail data, we need to filter out 32 rows with an end date more than the start date. Considering that there are 13,334 total rows in the data, such a small amount of errors will not affect the results.
-
-#### Setup 
-
-
-```r
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(
-  tidyverse, # tidyverse packages
-  conflicted, # an alternative conflict resolution strategy
-  ggthemes, # other themes for ggplot2
-  patchwork, # arranging ggplots
-  scales, # rescaling
-  survival, # survival analysis
-  broom, # for modeling
-  here, # reproducibility
-  glue, # pasting strings and objects
-  reticulate # source python codes
-)
-
-# Set themes
-theme_set(ggthemes::theme_fivethirtyeight())
-```
-
-#### Load data 
-
-
-```r
-cox_data <- read_csv(here("data", "cox-parsed.csv"))
-```
-
-```
-## New names:
-## * decile_score -> decile_score...12
-## * priors_count -> priors_count...15
-## * decile_score -> decile_score...40
-## * priors_count -> priors_count...49
-```
-
-```
-## Rows: 13419 Columns: 52
-```
-
-```
-## ── Column specification ───────────────────────────────────────────────────────────────────────
-## Delimiter: ","
-## chr  (19): name, first, last, sex, age_cat, race, c_case_number, c_charge_de...
-## dbl  (18): id, age, juv_fel_count, decile_score...12, juv_misd_count, juv_ot...
-## lgl   (1): violent_recid
-## dttm  (2): c_jail_in, c_jail_out
-## date (12): compas_screening_date, dob, c_offense_date, c_arrest_date, r_offe...
-```
-
-```
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-```
-
-```r
-glue("N of observations (rows): {nrow(cox_data)}
-      N of variables (columns): {ncol(cox_data)}")
-```
-
-```
-## N of observations (rows): 13419
-## N of variables (columns): 52
-```
-
-#### Wrangling
-
-
-```r
-df <- cox_data %>%
-  filter(score_text != "N/A") %>%
-  filter(end > start) %>%
-  mutate(
-    c_charge_degree = factor(c_charge_degree),
-    age_cat = factor(age_cat),
-    race = factor(race, levels = c("Caucasian", "African-American", "Hispanic", "Other", "Asian", "Native American")),
-    sex = factor(sex, levels = c("Male", "Female")),
-    score_factor = factor(score_text, levels = c("Low", "Medium", "High"))
-  )
-
-grp <- df[!duplicated(df$id), ]
-```
-
-#### Descriptive analysis 
-
-- Score distribution 
-
-
-```r
-grp %>%
-  group_by(score_factor) %>%
-  count() %>%
-  ggplot(aes(x = score_factor, y = n)) +
-  geom_col() +
-  labs(
-    x = "Score",
-    y = "Count",
-    title = "Score distribution"
-  )
-```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-112-1.png" width="672" />
 
-- Score distribution by race
 
 
-```r
-df %>%
-  ggplot(aes(ordered(score_factor))) +
-  geom_bar() +
-  facet_wrap(~race, nrow = 2) +
-  labs(
-    x = "Decile Score",
-    y = "Count",
-    Title = "Defendant's Decile Score"
-  )
-```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-113-1.png" width="672" />
 
-#### Modeling 
 
 
-```r
-f2 <- Surv(start, end, event, type = "counting") ~ race + score_factor + race * score_factor
 
-model <- coxph(f2, data = df)
 
-model %>%
-  broom::tidy(conf.int = TRUE) %>%
-  mutate(term = gsub("race|score_factor", "", term)) %>%
-  filter(term != "<chr>") %>%
-  ggplot(aes(x = fct_reorder(term, estimate), y = estimate, ymax = conf.high, ymin = conf.low)) +
-  geom_pointrange() +
-  coord_flip() +
-  labs(y = "Estimate", x = "")
-```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-114-1.png" width="672" />
 
-The interaction term shows a similar disparity as the logistic regression above.
 
-High-risk white defendants are 3.61 more likely than low-risk white defendants, while high-risk black defendants are 2.99 more likely than low.
 
 
-```r
-visualize_surv <- function(input) {
-  f <- Surv(start, end, event, type = "counting") ~ score_factor
 
-  fit <- survfit(f, data = input)
 
-  fit %>%
-    tidy(conf.int = TRUE) %>%
-    mutate(strata = gsub("score_factor=", "", strata)) %>%
-    mutate(strata = factor(strata, levels = c("High", "Medium", "Low"))) %>%
-    ggplot(aes(x = time, y = estimate, ymax = conf.high, ymin = conf.low, group = strata, col = strata)) +
-    geom_pointrange(alpha = 0.1) +
-    guides(colour = guide_legend(override.aes = list(alpha = 1))) +
-    ylim(c(0, 1)) +
-    labs(x = "Time", y = "Estimated survival rate", col = "Strata")
-}
-```
 
 
-```r
-visualize_surv(df) + ggtitle("Overall")
-```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-116-1.png" width="672" />
 
-Black defendants do recidivate at higher rates according to race-specific Kaplan Meier plots.
 
 
-```r
-(df %>% filter(race == "Caucasian") %>% visualize_surv() + ggtitle("Caucasian")) /
-  (df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American"))
-```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-117-1.png" width="672" />
 
-In terms of underlying recidivism rates, we can look at gender-specific Kaplan Meier estimates. There is a striking difference between women and men.
 
 
-```r
-(df %>% filter(sex == "Female") %>% visualize_surv() + ggtitle("Female")) /
 
-  (df %>% filter(sex == "Male") %>% visualize_surv() + ggtitle("Male"))
-```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-118-1.png" width="672" />
 
-As these plots show, the COMPAS score treats a high-risk woman the same as a Medium risk man.
 
-#### Risk of Recidivism accuracy 
 
-The above analysis shows that the COMPAS algorithm does overpredict African-American defendant's future recidivism, but we haven't yet explored the bias's direction. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.
 
 
-```r
-# create a new environment
-conda_create("r-reticulate")
-```
 
-```
-## [1] "/home/jae/.local/share/r-miniconda/envs/r-reticulate/bin/python"
-```
 
-```r
-# install libs
-conda_install("r-reticulate", c("pandas"))
 
-# indicates that we want to use a specific condaenv
-use_condaenv("r-reticulate")
-```
 
 
 
-```python
 
-from truth_tables import PeekyReader, Person, table, is_race, count, vtable, hightable, vhightable
-from csv import DictReader
 
-people = []
-```
 
 
-```python
 
-with open("./data/cox-parsed.csv") as f:
-    reader = PeekyReader(DictReader(f))
-    try:
-        while True:
-            p = Person(reader)
-            if p.valid:
-                people.append(p)
-    except StopIteration:
-        pass
-```
 
 
-```python
 
-pop = list(filter(lambda i: ((i.recidivist == True and i.lifetime <= 730) or
-                              i.lifetime > 730), list(filter(lambda x: x.score_valid, people))))
 
-recid = list(filter(lambda i: i.recidivist == True and i.lifetime <= 730, pop))
 
-rset = set(recid)
 
-surv = [i for i in pop if i not in rset]
-```
 
-- Define a function for a table.
 
 
-```python
 
-import pandas as pd 
-
-def create_table(x, y):
-
-  t = table(list(x), list(y))
-  
-  df = pd.DataFrame(t.items(), 
-             columns = ['Metrics', 'Scores'])
-             
-  return(df)
-             
-```
-
-- All defenders 
-
-
-```python
-
-create_table(list(recid), list(surv)).to_csv("data/table_recid.csv")
-```
-
-
-```r
-read.csv(here("data", "table_recid.csv"))[, -1] %>%
-  ggplot(aes(x = Metrics, y = Scores)) +
-  geom_col() +
-  labs(title = "Recidivism")
-```
-
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-125-1.png" width="672" />
-
-That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
-
-
-```python
-
-def create_comp_tables(recid_data, surv_data):
-  
-    # filtering variables 
-    is_afam = is_race("African-American")
-    is_white = is_race("Caucasian")
-  
-    # dfs 
-    df1 = create_table(filter(is_afam, recid_data),
-                       filter(is_afam, surv_data))
-  
-    df2 = create_table(filter(is_white, recid_data), 
-                       filter(is_white, surv_data))
-  
-    # concat 
-    dfs = pd.concat([df1, df2])
-    
-    dfs['Group'] = ['African Americans','African Americans','Whites','Whites']
-    
-    return(dfs)
-    
-```
-
-
-```python
-
-create_comp_tables(recid, surv).to_csv("data/comp_tables_recid.csv")
-```
-
-
-```r
-read.csv(here("data", "comp_tables_recid.csv"))[, -1] %>%
-  ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
-  geom_col(position = "dodge") +
-  coord_flip() +
-  labs(title = "Recidivism")
-```
-
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-128-1.png" width="672" />
-
-#### Risk of Violent Recidivism accuracy
-
-COMPAS also offers a score that aims to measure a person's risk of violent recidivism, which has similar overall accuracy to the Recidivism score.
-
-
-```python
-
-vpeople = []
-
-with open("./data/cox-violent-parsed.csv") as f:
-    reader = PeekyReader(DictReader(f))
-    try:
-        while True:
-            p = Person(reader)
-            if p.valid:
-                vpeople.append(p)
-    except StopIteration:
-        pass
-
-vpop = list(filter(lambda i: ((i.violent_recidivist == True and i.lifetime <= 730) or
-                              i.lifetime > 730), list(filter(lambda x: x.vscore_valid, vpeople))))
-
-vrecid = list(filter(lambda i: i.violent_recidivist == True and i.lifetime <= 730, vpeople))
-
-vrset = set(vrecid)
-
-vsurv = [i for i in vpop if i not in vrset]
-```
-
-
-```python
-
-create_table(vrecid, vsurv).to_csv("data/table_vrecid.csv")
-```
-
-
-```r
-read.csv(here("data", "table_vrecid.csv"))[, -1] %>%
-  ggplot(aes(x = Metrics, y = Scores)) +
-  geom_col() +
-  labs(title = "Violent recidivism")
-```
-
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-131-1.png" width="672" />
-
-Even more so for Black defendants.
 
 
 

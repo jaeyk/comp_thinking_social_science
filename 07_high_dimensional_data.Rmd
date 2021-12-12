@@ -2009,7 +2009,7 @@ theme_set(ggthemes::theme_fivethirtyeight())
 ```{r}
 two_years_violent <- read.csv(here("data", "compas-scores-two-years-violent.csv"))
 
-glue("N of observations (rows): {nrow(two_years_violent)}
+glue("N of observations (rows): {nrow(two_years_violen￣t)}
       N of variables (columns): {ncol(two_years_violent)}")
 ```
 
@@ -2348,7 +2348,6 @@ visualize_surv(df) + ggtitle("Overall")
 Black defendants do recidivate at higher rates according to race-specific Kaplan Meier plots.
 
 ```{r}
-
 (df %>% filter(race == "Caucasian") %>% visualize_surv() + ggtitle("Caucasian")) /
   (df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American"))
 ```
@@ -2356,7 +2355,6 @@ Black defendants do recidivate at higher rates according to race-specific Kaplan
 In terms of underlying recidivism rates, we can look at gender-specific Kaplan Meier estimates. There is a striking difference between women and men.
 
 ```{r}
-
 (df %>% filter(sex == "Female") %>% visualize_surv() + ggtitle("Female")) /
 
   (df %>% filter(sex == "Male") %>% visualize_surv() + ggtitle("Male"))
@@ -2369,7 +2367,6 @@ As these plots show, the COMPAS score treats a high-risk woman the same as a Med
 The above analysis shows that the COMPAS algorithm does overpredict African-American defendant's future recidivism, but we haven't yet explored the bias's direction. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.
 
 ```{r}
-
 # create a new environment
 conda_create("r-reticulate")
 
@@ -2382,16 +2379,13 @@ use_condaenv("r-reticulate")
 
 
 ```{python}
-
 from truth_tables import PeekyReader, Person, table, is_race, count, vtable, hightable, vhightable
 from csv import DictReader
 
 people = []
-
 ```
 
 ```{python}
-
 with open("./data/cox-parsed.csv") as f:
     reader = PeekyReader(DictReader(f))
     try:
@@ -2401,11 +2395,9 @@ with open("./data/cox-parsed.csv") as f:
                 people.append(p)
     except StopIteration:
         pass
-
 ```
 
 ```{python}
-
 pop = list(filter(lambda i: ((i.recidivist == True and i.lifetime <= 730) or
                               i.lifetime > 730), list(filter(lambda x: x.score_valid, people))))
 
@@ -2414,13 +2406,11 @@ recid = list(filter(lambda i: i.recidivist == True and i.lifetime <= 730, pop))
 rset = set(recid)
 
 surv = [i for i in pop if i not in rset]
-
 ```
 
 - Define a function for a table.
 
 ```{python}
-
 import pandas as pd 
 
 def create_table(x, y):
@@ -2431,19 +2421,15 @@ def create_table(x, y):
              columns = ['Metrics', 'Scores'])
              
   return(df)
-             
 ```
 
 - All defenders 
 
 ```{python}
-
 create_table(list(recid), list(surv)).to_csv("data/table_recid.csv")
-
 ``` 
 
 ```{r}
-
 read.csv(here("data", "table_recid.csv"))[, -1] %>%
   ggplot(aes(x = Metrics, y = Scores)) +
   geom_col() +
@@ -2453,7 +2439,6 @@ read.csv(here("data", "table_recid.csv"))[, -1] %>%
 That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
 
 ```{python}
-
 def create_comp_tables(recid_data, surv_data):
   
     # filtering variables 
@@ -2473,17 +2458,13 @@ def create_comp_tables(recid_data, surv_data):
     dfs['Group'] = ['African Americans','African Americans','Whites','Whites']
     
     return(dfs)
-    
 ```
 
 ```{python}
-
 create_comp_tables(recid, surv).to_csv("data/comp_tables_recid.csv")
-
 ```
 
 ```{r}
-
 read.csv(here("data", "comp_tables_recid.csv"))[, -1] %>%
   ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
   geom_col(position = "dodge") +
@@ -2496,7 +2477,6 @@ read.csv(here("data", "comp_tables_recid.csv"))[, -1] %>%
 COMPAS also offers a score that aims to measure a person's risk of violent recidivism, which has similar overall accuracy to the Recidivism score.
 
 ```{python}
-
 vpeople = []
 
 with open("./data/cox-violent-parsed.csv") as f:
@@ -2520,13 +2500,10 @@ vsurv = [i for i in vpop if i not in vrset]
 ```
 
 ```{python}
-
 create_table(vrecid, vsurv).to_csv("data/table_vrecid.csv")
-
 ```
 
 ```{r}
-
 read.csv(here("data", "table_vrecid.csv"))[, -1] %>%
   ggplot(aes(x = Metrics, y = Scores)) +
   geom_col() +
@@ -2536,13 +2513,10 @@ read.csv(here("data", "table_vrecid.csv"))[, -1] %>%
 Even more so for Black defendants.
 
 ````{python}
-
 create_comp_tables(vrecid, vsurv).to_csv("data/comp_tables_vrecid.csv")
-
 ```
 
 ```{r}
-
 read.csv(here("data", "comp_tables_vrecid.csv"))[, -1] %>%
   ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
   geom_col(position = "dodge") +
