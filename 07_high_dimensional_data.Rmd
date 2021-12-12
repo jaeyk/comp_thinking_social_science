@@ -2348,6 +2348,8 @@ visualize_surv(df) + ggtitle("Overall")
 Black defendants do recidivate at higher rates according to race-specific Kaplan Meier plots.
 
 ```{r}
+conflict_prefer("filter", "dplyr")
+
 (df %>% filter(race == "Caucasian") %>% visualize_surv() + ggtitle("Caucasian")) /
   (df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American"))
 ```

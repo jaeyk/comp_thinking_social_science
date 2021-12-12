@@ -3413,34 +3413,208 @@ visualize_surv(df) + ggtitle("Overall")
 Black defendants do recidivate at higher rates according to race-specific Kaplan Meier plots.
 
 
+```r
+conflict_prefer("filter", "dplyr")
+```
+
+```
+## [conflicted] Will prefer dplyr::filter over any other package
+```
+
+```r
+(df %>% filter(race == "Caucasian") %>% visualize_surv() + ggtitle("Caucasian")) /
+  (df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American"))
+```
+
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-117-1.png" width="672" />
+
+In terms of underlying recidivism rates, we can look at gender-specific Kaplan Meier estimates. There is a striking difference between women and men.
+
+
+```r
+(df %>% filter(sex == "Female") %>% visualize_surv() + ggtitle("Female")) /
+
+  (df %>% filter(sex == "Male") %>% visualize_surv() + ggtitle("Male"))
+```
+
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-118-1.png" width="672" />
+
+As these plots show, the COMPAS score treats a high-risk woman the same as a Medium risk man.
+
+#### Risk of Recidivism accuracy 
+
+The above analysis shows that the COMPAS algorithm does overpredict African-American defendant's future recidivism, but we haven't yet explored the bias's direction. We can discover fine differences in overprediction and underprediction by comparing COMPAS scores across racial lines.
+
+
+```r
+# create a new environment
+conda_create("r-reticulate")
+```
+
+```
+## [1] "/home/jae/.local/share/r-miniconda/envs/r-reticulate/bin/python"
+```
+
+```r
+# install libs
+conda_install("r-reticulate", c("pandas"))
+
+# indicates that we want to use a specific condaenv
+use_condaenv("r-reticulate")
+```
 
 
 
+```python
+from truth_tables import PeekyReader, Person, table, is_race, count, vtable, hightable, vhightable
+from csv import DictReader
+
+people = []
+```
 
 
+```python
+with open("./data/cox-parsed.csv") as f:
+    reader = PeekyReader(DictReader(f))
+    try:
+        while True:
+            p = Person(reader)
+            if p.valid:
+                people.append(p)
+    except StopIteration:
+        pass
+```
 
 
+```python
+pop = list(filter(lambda i: ((i.recidivist == True and i.lifetime <= 730) or
+                              i.lifetime > 730), list(filter(lambda x: x.score_valid, people))))
+
+recid = list(filter(lambda i: i.recidivist == True and i.lifetime <= 730, pop))
+
+rset = set(recid)
+
+surv = [i for i in pop if i not in rset]
+```
+
+- Define a function for a table.
 
 
+```python
+import pandas as pd 
+
+def create_table(x, y):
+
+  t = table(list(x), list(y))
+  
+  df = pd.DataFrame(t.items(), 
+             columns = ['Metrics', 'Scores'])
+             
+  return(df)
+```
+
+- All defenders 
 
 
+```python
+create_table(list(recid), list(surv)).to_csv("data/table_recid.csv")
+```
 
 
+```r
+read.csv(here("data", "table_recid.csv"))[, -1] %>%
+  ggplot(aes(x = Metrics, y = Scores)) +
+  geom_col() +
+  labs(title = "Recidivism")
+```
+
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-125-1.png" width="672" />
+
+That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
 
 
+```python
+def create_comp_tables(recid_data, surv_data):
+  
+    # filtering variables 
+    is_afam = is_race("African-American")
+    is_white = is_race("Caucasian")
+  
+    # dfs 
+    df1 = create_table(filter(is_afam, recid_data),
+                       filter(is_afam, surv_data))
+  
+    df2 = create_table(filter(is_white, recid_data), 
+                       filter(is_white, surv_data))
+  
+    # concat 
+    dfs = pd.concat([df1, df2])
+    
+    dfs['Group'] = ['African Americans','African Americans','Whites','Whites']
+    
+    return(dfs)
+```
 
 
+```python
+create_comp_tables(recid, surv).to_csv("data/comp_tables_recid.csv")
+```
 
 
+```r
+read.csv(here("data", "comp_tables_recid.csv"))[, -1] %>%
+  ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  labs(title = "Recidivism")
+```
+
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-128-1.png" width="672" />
+
+#### Risk of Violent Recidivism accuracy
+
+COMPAS also offers a score that aims to measure a person's risk of violent recidivism, which has similar overall accuracy to the Recidivism score.
 
 
+```python
+vpeople = []
+
+with open("./data/cox-violent-parsed.csv") as f:
+    reader = PeekyReader(DictReader(f))
+    try:
+        while True:
+            p = Person(reader)
+            if p.valid:
+                vpeople.append(p)
+    except StopIteration:
+        pass
+
+vpop = list(filter(lambda i: ((i.violent_recidivist == True and i.lifetime <= 730) or
+                              i.lifetime > 730), list(filter(lambda x: x.vscore_valid, vpeople))))
+
+vrecid = list(filter(lambda i: i.violent_recidivist == True and i.lifetime <= 730, vpeople))
+
+vrset = set(vrecid)
+
+vsurv = [i for i in vpop if i not in vrset]
+```
 
 
+```python
+create_table(vrecid, vsurv).to_csv("data/table_vrecid.csv")
+```
 
 
+```r
+read.csv(here("data", "table_vrecid.csv"))[, -1] %>%
+  ggplot(aes(x = Metrics, y = Scores)) +
+  geom_col() +
+  labs(title = "Violent recidivism")
+```
 
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-131-1.png" width="672" />
 
-
+Even more so for Black defendants.
 
 
 
