@@ -1,7 +1,7 @@
 # High-dimensional data {#machine_learning}
 
 ```{r include = FALSE}
-# Caching this markdown file 
+# Caching this markdown file
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
@@ -91,23 +91,25 @@ knitr::opts_chunk$set(cache = TRUE)
 - One of the popular datasets used in machine learning competitions 
 
 ```{r}
-# Load packages 
+# Load packages
 
-## CRAN packages 
-pacman::p_load(here,
-               tidyverse, 
-               tidymodels,
-               doParallel, # parallel processing 
-               patchwork, # arranging ggplots
-               remotes, 
-               SuperLearner, 
-               vip, 
-               tidymodels,
-               glmnet,
-               xgboost, 
-               rpart, 
-               ranger, 
-               conflicted)
+## CRAN packages
+pacman::p_load(
+  here,
+  tidyverse,
+  tidymodels,
+  doParallel, # parallel processing
+  patchwork, # arranging ggplots
+  remotes,
+  SuperLearner,
+  vip,
+  tidymodels,
+  glmnet,
+  xgboost,
+  rpart,
+  ranger,
+  conflicted
+)
 
 remotes::install_github("ck37/ck37r")
 
@@ -117,20 +119,19 @@ conflicted::conflict_prefer("filter", "dplyr")
 
 ```{r}
 
-## Jae's custom functions 
+## Jae's custom functions
 source(here("functions", "ml_utils.r"))
 
-# Import the dataset 
+# Import the dataset
 
 data_original <- read_csv(here("data", "heart.csv"))
 
 glimpse(data_original)
 
-# Createa a copy 
+# Createa a copy
 data <- data_original
 
 theme_set(theme_minimal())
-
 ```
 
 ## Workflow 
@@ -139,12 +140,14 @@ theme_set(theme_minimal())
 
 pacman::p_load(glue)
 
-workflow_list <- c("Preprocessing",
-                   "Model building",
-                   "Model fitting",
-                   "Model evaluation",
-                   "Model tuning",
-                   "Prediction")
+workflow_list <- c(
+  "Preprocessing",
+  "Model building",
+  "Model fitting",
+  "Model evaluation",
+  "Model tuning",
+  "Prediction"
+)
 
 glue("- {seq(workflow_list)}. {workflow_list}")
 ```
@@ -217,35 +220,33 @@ In this course, we focus on two preprocessing tasks.
 
 ```{r}
 
-# Turn selected numeric variables into factor variables 
+# Turn selected numeric variables into factor variables
 data <- data %>%
-  dplyr::mutate(across(c("sex", "ca", "cp", "slope", "thal"), as.factor)) 
+  dplyr::mutate(across(c("sex", "ca", "cp", "slope", "thal"), as.factor))
 
-glimpse(data) 
-
+glimpse(data)
 ```
 - Imputation 
 
 ```{r}
 
-# Check missing values 
+# Check missing values
 
 map_df(data, ~ is.na(.) %>% sum())
 
-# Add missing values 
+# Add missing values
 
 data$oldpeak[sample(seq(data), size = 10)] <- NA
 
-# Check missing values 
+# Check missing values
 
-# Check the number of missing values 
+# Check the number of missing values
 data %>%
-  map_df(~is.na(.) %>% sum())
+  map_df(~ is.na(.) %>% sum())
 
 # Check the rate of missing values
 data %>%
-  map_df(~is.na(.) %>% mean())
-
+  map_df(~ is.na(.) %>% mean())
 ```
  
 ### Regression setup 
@@ -254,55 +255,54 @@ data %>%
 
 ```{r}
 
-# Continuous variable 
+# Continuous variable
 data$age %>% class()
-
 ```
 #### Data splitting using random sampling 
 
 ```{r}
 
-# for reproducibility 
-set.seed(1234) 
+# for reproducibility
+set.seed(1234)
 
-# split 
+# split
 split_reg <- initial_split(data, prop = 0.7)
 
-# training set 
+# training set
 raw_train_x_reg <- training(split_reg)
 
-# test set 
+# test set
 raw_test_x_reg <- testing(split_reg)
-
 ```
 
 #### recipe 
 
 ```{r}
 
-# Regression recipe 
+# Regression recipe
 rec_reg <- raw_train_x_reg %>%
-  # Define the outcome variable 
+  # Define the outcome variable
   recipe(age ~ .) %>%
-  # Median impute oldpeak column 
+  # Median impute oldpeak column
   step_medianimpute(oldpeak) %>%
-  # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators). 
+  # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators).
   step_dummy(c("sex", "ca", "cp", "slope", "thal"))
 
 # Prepare a dataset to base each step on
-prep_reg <- rec_reg %>% prep(retain = TRUE) 
-
+prep_reg <- rec_reg %>% prep(retain = TRUE)
 ```
 
 ```{r}
 
-# x features 
+# x features
 train_x_reg <- juice(prep_reg, all_predictors())
 
-test_x_reg <- bake(object = prep_reg, 
-                   new_data = raw_test_x_reg, all_predictors())
+test_x_reg <- bake(
+  object = prep_reg,
+  new_data = raw_test_x_reg, all_predictors()
+)
 
-# y variables 
+# y variables
 train_y_reg <- juice(prep_reg, all_outcomes())$age %>% as.numeric()
 test_y_reg <- bake(prep_reg, raw_test_x_reg, all_outcomes())$age %>% as.numeric()
 
@@ -310,7 +310,6 @@ test_y_reg <- bake(prep_reg, raw_test_x_reg, all_outcomes())$age %>% as.numeric(
 names(train_x_reg) # Make sure there's no age variable!
 
 class(train_y_reg) # Make sure this is a continuous variable!
-
 ```
 - Note that other imputation methods are also available. 
 
@@ -326,65 +325,62 @@ grep("impute", ls("package:recipes"), value = TRUE)
 
 ```{r}
 
-data$target %>% class() 
+data$target %>% class()
 
 data$target <- as.factor(data$target)
 
 data$target %>% class()
-
 ```
 
 #### Data splitting using stratified random sampling
 
 ```{r}
 
-# split 
+# split
 split_class <- initial_split(data %>%
-                             mutate(target = as.factor(target)), 
-                             prop = 0.7, 
-                             strata = target)
+  mutate(target = as.factor(target)),
+prop = 0.7,
+strata = target
+)
 
-# training set 
+# training set
 raw_train_x_class <- training(split_class)
 
-# testing set 
+# testing set
 raw_test_x_class <- testing(split_class)
-
 ```
 
 #### recipe 
 
 ```{r}
 
-# Classification recipe 
-rec_class <- raw_train_x_class %>% 
-  # Define the outcome variable 
+# Classification recipe
+rec_class <- raw_train_x_class %>%
+  # Define the outcome variable
   recipe(target ~ .) %>%
-  # Median impute oldpeak column 
+  # Median impute oldpeak column
   step_medianimpute(oldpeak) %>%
   # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators).
   step_normalize(age) %>%
-  step_dummy(c("sex", "ca", "cp", "slope", "thal")) 
+  step_dummy(c("sex", "ca", "cp", "slope", "thal"))
 
 # Prepare a dataset to base each step on
-prep_class <- rec_class %>% prep(retain = TRUE) 
-
+prep_class <- rec_class %>% prep(retain = TRUE)
 ```
 
 ```{r}
 
-# x features 
-train_x_class <- juice(prep_class, all_predictors()) 
+# x features
+train_x_class <- juice(prep_class, all_predictors())
 test_x_class <- bake(prep_class, raw_test_x_class, all_predictors())
 
-# y variables 
+# y variables
 train_y_class <- juice(prep_class, all_outcomes())$target %>% as.factor()
 test_y_class <- bake(prep_class, raw_test_x_class, all_outcomes())$target %>% as.factor()
 
-# Checks 
+# Checks
 names(train_x_class) # Make sure there's no target variable!
 class(train_y_class) # Make sure this is a factor variable!
-
 ```
 
 ## Supervised learning
@@ -402,9 +398,9 @@ x -> f - > y (defined)
 3. Specify a mode 
 
 ```{r}
-# OLS spec 
-ols_spec <- linear_reg() %>% # Specify a model 
-  set_engine("lm") %>% # Specify an engine: lm, glmnet, stan, keras, spark 
+# OLS spec
+ols_spec <- linear_reg() %>% # Specify a model
+  set_engine("lm") %>% # Specify an engine: lm, glmnet, stan, keras, spark
   set_mode("regression") # Declare a mode: regression or classification
 ```
 
@@ -413,15 +409,16 @@ ols_spec <- linear_reg() %>% # Specify a model
 Lasso is one of the regularization techniques along with ridge and elastic-net. 
 
 ```{r}
-# Lasso spec 
-lasso_spec <- linear_reg(penalty = 0.1, # tuning hyperparameter 
-                         mixture = 1) %>% # 1 = lasso, 0 = ridge 
+# Lasso spec
+lasso_spec <- linear_reg(
+  penalty = 0.1, # tuning hyperparameter
+  mixture = 1
+) %>% # 1 = lasso, 0 = ridge
   set_engine("glmnet") %>%
-  set_mode("regression") 
+  set_mode("regression")
 
-# If you don't understand parsnip arguments 
+# If you don't understand parsnip arguments
 lasso_spec %>% translate() # See the documentation
-
 ```
 
 - Fit models 
@@ -429,12 +426,11 @@ lasso_spec %>% translate() # See the documentation
 ```{r}
 
 ols_fit <- ols_spec %>%
-  fit_xy(x = train_x_reg, y = train_y_reg) 
-  # fit(train_y_reg ~ ., train_x_reg) # When you data are not preprocessed 
+  fit_xy(x = train_x_reg, y = train_y_reg)
+# fit(train_y_reg ~ ., train_x_reg) # When you data are not preprocessed
 
 lasso_fit <- lasso_spec %>%
-  fit_xy(x = train_x_reg, y = train_y_reg) 
-
+  fit_xy(x = train_x_reg, y = train_y_reg)
 ```
 
 #### yardstick 
@@ -443,28 +439,28 @@ lasso_fit <- lasso_spec %>%
 
 ```{r}
 
-map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit) 
-
+map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit)
 ```
 
 ```{r}
 
-# Define performance metrics 
+# Define performance metrics
 metrics <- yardstick::metric_set(rmse, mae, rsq)
 
-# Evaluate many models 
+# Evaluate many models
 evals <- purrr::map(list(ols_fit, lasso_fit), evaluate_reg) %>%
   reduce(bind_rows) %>%
   mutate(type = rep(c("OLS", "Lasso"), each = 3))
 
-# Visualize the test results 
+# Visualize the test results
 evals %>%
   ggplot(aes(x = fct_reorder(type, .estimate), y = .estimate)) +
-    geom_point() +
-    labs(x = "Model",
-         y = "Estimate") +
-    facet_wrap(~glue("{toupper(.metric)}"), scales = "free_y") 
-
+  geom_point() +
+  labs(
+    x = "Model",
+    y = "Estimate"
+  ) +
+  facet_wrap(~ glue("{toupper(.metric)}"), scales = "free_y")
 ```
 - For more information, read [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
 
@@ -483,16 +479,18 @@ evals %>%
 ![](https://www.programmersought.com/images/523/7e44435f20fe514c11ca0d930af8547b.png)
 
 ```{r}
-# tune() = placeholder 
+# tune() = placeholder
 
-tune_spec <- linear_reg(penalty = tune(), # tuning hyperparameter 
-                        mixture = 1) %>% # 1 = lasso, 0 = ridge 
+tune_spec <- linear_reg(
+  penalty = tune(), # tuning hyperparameter
+  mixture = 1
+) %>% # 1 = lasso, 0 = ridge
   set_engine("glmnet") %>%
-  set_mode("regression") 
+  set_mode("regression")
 
 tune_spec
 
-# penalty() searches 50 possible combinations 
+# penalty() searches 50 possible combinations
 
 lambda_grid <- grid_regular(penalty(), levels = 50)
 ```
@@ -502,32 +500,29 @@ lambda_grid <- grid_regular(penalty(), levels = 50)
 ```{r}
 # 10-fold cross-validation
 
-set.seed(1234) # for reproducibility 
+set.seed(1234) # for reproducibility
 
 rec_folds <- vfold_cv(train_x_reg %>% bind_cols(tibble(age = train_y_reg)))
-
 ```
 
 ##### Add these elements to a workflow 
 
 ```{r}
 
-# Workflow 
+# Workflow
 rec_wf <- workflow() %>%
   add_model(tune_spec) %>%
-  add_formula(age~.)
-
+  add_formula(age ~ .)
 ```
 
 ```{r}
 
-# Tuning results 
+# Tuning results
 rec_res <- rec_wf %>%
   tune_grid(
-    resamples = rec_folds, 
+    resamples = rec_folds,
     grid = lambda_grid
   )
-
 ```
 
 ##### Visualize 
@@ -548,11 +543,11 @@ rec_res %>%
   geom_line(size = 2) +
   scale_x_log10() +
   labs(x = "log(lambda)") +
-  facet_wrap(~glue("{toupper(.metric)}"), 
-             scales = "free",
-             nrow = 2) +
+  facet_wrap(~ glue("{toupper(.metric)}"),
+    scales = "free",
+    nrow = 2
+  ) +
   theme(legend.position = "none")
-
 ```
 
 ##### Select 
@@ -564,9 +559,9 @@ top_rmse <- show_best(rec_res, metric = "rmse")
 
 best_rmse <- select_best(rec_res, metric = "rmse")
 
-best_rmse 
+best_rmse
 
-glue('The RMSE of the intiail model is 
+glue('The RMSE of the intiail model is
      {evals %>%
   filter(type == "Lasso", .metric == "rmse") %>%
   select(.estimate) %>%
@@ -579,7 +574,6 @@ glue('The RMSE of the tuned model is {rec_res %>%
   dplyr::slice(1) %>%
   select(mean) %>%
   round(2)}')
-
 ```
 
 - Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
@@ -593,7 +587,6 @@ finalize_lasso %>%
   fit(train_x_reg %>% bind_cols(tibble(age = train_y_reg))) %>%
   pull_workflow_fit() %>%
   vip::vip()
-  
 ```
 
 ##### Test fit 
@@ -602,11 +595,10 @@ finalize_lasso %>%
 
 ```{r}
 
-test_fit <- finalize_lasso %>% 
+test_fit <- finalize_lasso %>%
   fit(test_x_reg %>% bind_cols(tibble(age = test_y_reg)))
 
 evaluate_reg(test_fit)
-
 ```
 
 ### Decision tree 
@@ -621,22 +613,22 @@ evaluate_reg(test_fit)
 
 ```{r}
 
-# workflow 
-tree_wf <- workflow() %>% add_formula(target~.)
+# workflow
+tree_wf <- workflow() %>% add_formula(target ~ .)
 
-# spec 
+# spec
 tree_spec <- decision_tree(
-  
-           # Mode 
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           cost_complexity = NULL, 
-           tree_depth = NULL) %>%
+
+  # Mode
+  mode = "classification",
+
+  # Tuning hyperparameters
+  cost_complexity = NULL,
+  tree_depth = NULL
+) %>%
   set_engine("rpart") # rpart, c5.0, spark
 
 tree_wf <- tree_wf %>% add_model(tree_spec)
-
 ```
 
 - Fit a model
@@ -644,7 +636,6 @@ tree_wf <- tree_wf %>% add_model(tree_spec)
 ```{r}
 
 tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
-
 ```
 
 #### yardstick 
@@ -678,7 +669,7 @@ A confusion matrix is often used to describe the performance of a classification
 
 ```{r}
 
-# Define performance metrics 
+# Define performance metrics
 
 metrics <- yardstick::metric_set(accuracy, precision, recall)
 
@@ -691,7 +682,6 @@ tree_fit_viz_metr
 tree_fit_viz_mat <- visualize_class_conf(tree_fit)
 
 tree_fit_viz_mat
-
 ```
 
 #### tune 
@@ -707,33 +697,34 @@ Decisions trees tend to overfit. There are two things we need to consider to red
 ```{r}
 
 tune_spec <- decision_tree(
-    cost_complexity = tune(), # how to split 
-    tree_depth = tune(), # when to stop 
-    mode = "classification"
-  ) %>%
+  cost_complexity = tune(), # how to split
+  tree_depth = tune(), # when to stop
+  mode = "classification"
+) %>%
   set_engine("rpart")
 
 tree_grid <- grid_regular(cost_complexity(),
-                          tree_depth(),
-                          levels = 5) # 2 hyperparameters -> 5*5 = 25 combinations 
+  tree_depth(),
+  levels = 5
+) # 2 hyperparameters -> 5*5 = 25 combinations
 
 tree_grid %>%
   count(tree_depth)
 
 # 10-fold cross-validation
 
-set.seed(1234) # for reproducibility 
+set.seed(1234) # for reproducibility
 
 tree_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
-                       strata = target)
-
+  strata = target
+)
 ```
 
 ##### Add these elements to a workflow 
 
 ```{r}
 
-# Update workflow 
+# Update workflow
 tree_wf <- tree_wf %>% update_model(tune_spec)
 
 # Determine the number of cores
@@ -744,14 +735,13 @@ cl <- makeCluster(no_cores)
 
 registerDoParallel(cl)
 
-# Tuning results 
+# Tuning results
 tree_res <- tree_wf %>%
   tune_grid(
-    resamples = tree_folds, 
+    resamples = tree_folds,
     grid = tree_grid,
     metrics = metrics
   )
-
 ```
 
 ##### Visualize 
@@ -765,19 +755,21 @@ tree_res %>%
   mutate(tree_depth = factor(tree_depth)) %>%
   ggplot(aes(cost_complexity, mean, col = .metric)) +
   geom_point(size = 3) +
-  # Subplots 
-  facet_wrap(~ tree_depth, 
-             scales = "free", 
-             nrow = 2) +
-  # Log scale x 
+  # Subplots
+  facet_wrap(~tree_depth,
+    scales = "free",
+    nrow = 2
+  ) +
+  # Log scale x
   scale_x_log10(labels = scales::label_number()) +
-  # Discrete color scale 
+  # Discrete color scale
   scale_color_viridis_d(option = "plasma", begin = .9, end = 0) +
-  labs(x = "Cost complexity",
-       col = "Tree depth",
-       y = NULL) +
+  labs(
+    x = "Cost complexity",
+    col = "Tree depth",
+    y = NULL
+  ) +
   coord_flip()
-
 ```
 
 ##### Select 
@@ -787,22 +779,21 @@ tree_res %>%
 # Optimal hyperparameter
 best_tree <- select_best(tree_res, "recall")
 
-# Add the hyperparameter to the workflow 
+# Add the hyperparameter to the workflow
 finalize_tree <- tree_wf %>%
   finalize_workflow(best_tree)
 ```
 
 ```{r}
 
-tree_fit_tuned <- finalize_tree %>% 
+tree_fit_tuned <- finalize_tree %>%
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
-# Metrics 
+# Metrics
 (tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
 
-# Confusion matrix 
+# Confusion matrix
 (tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
-
 ```
 
 - Visualize variable importance 
@@ -812,7 +803,6 @@ tree_fit_tuned <- finalize_tree %>%
 tree_fit_tuned %>%
   pull_workflow_fit() %>%
   vip::vip()
-
 ```
 
 ##### Test fit
@@ -821,11 +811,10 @@ tree_fit_tuned %>%
 
 ```{r}
 
-test_fit <- finalize_tree %>% 
+test_fit <- finalize_tree %>%
   fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
 
 evaluate_class(test_fit)
-
 ```
 
 In the next subsection, we will learn variants of ensemble models that improve decision tree models by putting models together.
@@ -874,26 +863,27 @@ Here we focus on the difference between bagging and boosting. In short, boosting
 
 ```{r}
 
-# workflow 
-rand_wf <- workflow() %>% add_formula(target~.)
+# workflow
+rand_wf <- workflow() %>% add_formula(target ~ .)
 
-# spec 
+# spec
 rand_spec <- rand_forest(
-  
-           # Mode 
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           mtry = NULL, # The number of predictors to available for splitting at each node  
-           min_n = NULL, # The minimum number of data points needed to keep splitting nodes
-           trees = 500) %>% # The number of trees
-  set_engine("ranger", 
-             # We want the importance of predictors to be assessed.
-             seed = 1234, 
-             importance = "permutation") 
+
+  # Mode
+  mode = "classification",
+
+  # Tuning hyperparameters
+  mtry = NULL, # The number of predictors to available for splitting at each node
+  min_n = NULL, # The minimum number of data points needed to keep splitting nodes
+  trees = 500
+) %>% # The number of trees
+  set_engine("ranger",
+    # We want the importance of predictors to be assessed.
+    seed = 1234,
+    importance = "permutation"
+  )
 
 rand_wf <- rand_wf %>% add_model(rand_spec)
-
 ```
 
 - Fit a model
@@ -901,20 +891,18 @@ rand_wf <- rand_wf %>% add_model(rand_spec)
 ```{r}
 
 rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
-
 ```
 
 #### yardstick 
 
 ```{r}
 
-# Define performance metrics 
+# Define performance metrics
 metrics <- yardstick::metric_set(accuracy, precision, recall)
 
 rand_fit_viz_metr <- visualize_class_eval(rand_fit)
 
 rand_fit_viz_metr
-
 ```
 
 - Visualize the confusion matrix. 
@@ -924,7 +912,6 @@ rand_fit_viz_metr
 rand_fit_viz_mat <- visualize_class_conf(rand_fit)
 
 rand_fit_viz_mat
-
 ```
 
 #### tune 
@@ -939,78 +926,79 @@ We focus on the following two hyperparameters:
 
 ```{r}
 
-tune_spec <- 
+tune_spec <-
   rand_forest(
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           mtry = tune(), 
-           min_n = tune()) %>%
+    mode = "classification",
+
+    # Tuning hyperparameters
+    mtry = tune(),
+    min_n = tune()
+  ) %>%
   set_engine("ranger",
-             seed = 1234, 
-             importance = "permutation")
+    seed = 1234,
+    importance = "permutation"
+  )
 
 rand_grid <- grid_regular(mtry(range = c(1, 10)),
-                          min_n(range = c(2, 10)),
-                          levels = 5)
+  min_n(range = c(2, 10)),
+  levels = 5
+)
 
 rand_grid %>%
   count(min_n)
-
 ```
 
 ```{r}
 # 10-fold cross-validation
 
-set.seed(1234) # for reproducibility 
+set.seed(1234) # for reproducibility
 
 rand_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
-                       strata = target)
-
-
+  strata = target
+)
 ```
 
 ##### Add these elements to a workflow 
 
 ```{r}
 
-# Update workflow 
+# Update workflow
 rand_wf <- rand_wf %>% update_model(tune_spec)
 
-# Tuning results 
+# Tuning results
 rand_res <- rand_wf %>%
   tune_grid(
-    resamples = rand_folds, 
+    resamples = rand_folds,
     grid = rand_grid,
     metrics = metrics
   )
-
 ```
 
 ##### Visualize 
 
 ```{r}
-
 rand_res %>%
   collect_metrics() %>%
   mutate(min_n = factor(min_n)) %>%
   ggplot(aes(mtry, mean, color = min_n)) +
-  # Line + Point plot 
+  # Line + Point plot
   geom_line(size = 1.5, alpha = 0.6) +
   geom_point(size = 2) +
-  # Subplots 
-  facet_wrap(~ .metric, 
-             scales = "free", 
-             nrow = 2) +
-  # Log scale x 
+  # Subplots
+  facet_wrap(~.metric,
+    scales = "free",
+    nrow = 2
+  ) +
+  # Log scale x
   scale_x_log10(labels = scales::label_number()) +
-  # Discrete color scale 
+  # Discrete color scale
   scale_color_viridis_d(option = "plasma", begin = .9, end = 0) +
-  labs(x = "The number of predictors to be sampled",
-       col = "The minimum number of data points needed for splitting",
-       y = NULL) +
-  theme(legend.position="bottom")
-
+  labs(
+    x = "The number of predictors to be sampled",
+    col = "The minimum number of data points needed for splitting",
+    y = NULL
+  ) +
+  theme(legend.position = "bottom")
 ```
 
 ```{r}
@@ -1019,33 +1007,28 @@ best_tree <- select_best(rand_res, "accuracy")
 
 best_tree
 
-# Add the hyperparameter to the workflow 
+# Add the hyperparameter to the workflow
 finalize_tree <- rand_wf %>%
   finalize_workflow(best_tree)
-
 ```
 
 ```{r}
-
-rand_fit_tuned <- finalize_tree %>% 
+rand_fit_tuned <- finalize_tree %>%
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
-# Metrics 
+# Metrics
 (rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
 
-# Confusion matrix 
+# Confusion matrix
 (rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
-
 ```
 
 - Visualize variable importance 
 
 ```{r}
-
 rand_fit_tuned %>%
   pull_workflow_fit() %>%
   vip::vip()
-
 ```
 
 ##### Test fit
@@ -1053,12 +1036,11 @@ rand_fit_tuned %>%
 - Apply the tuned model to the test dataset 
 
 ```{r}
-
 test_fit <- finalize_tree %>%
-  fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
+  fit(test_x_class %>%
+    bind_cols(tibble(target = test_y_class)))
 
 evaluate_class(test_fit)
-
 ```
 
 ### Boosting (XGboost)
@@ -1072,69 +1054,63 @@ evaluate_class(test_fit)
 3. Specify a mode 
 
 ```{r}
+# workflow
+xg_wf <- workflow() %>% add_formula(target ~ .)
 
-# workflow 
-xg_wf <- workflow() %>% add_formula(target~.)
-
-# spec 
+# spec
 xg_spec <- boost_tree(
-  
-           # Mode 
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           
-           # The number of trees to fit, aka boosting iterations
-           trees = c(100, 300, 500, 700, 900),
-           # The depth of the decision tree (how many levels of splits).
-	         tree_depth = c(1, 6), 
-           # Learning rate: lower means the ensemble will adapt more slowly.
-           learn_rate = c(0.0001, 0.01, 0.2),
-           # Stop splitting a tree if we only have this many obs in a tree node.
-	         min_n = 10L
-          ) %>% 
-  set_engine("xgboost") 
+
+  # Mode
+  mode = "classification",
+
+  # Tuning hyperparameters
+
+  # The number of trees to fit, aka boosting iterations
+  trees = c(100, 300, 500, 700, 900),
+  # The depth of the decision tree (how many levels of splits).
+  tree_depth = c(1, 6),
+  # Learning rate: lower means the ensemble will adapt more slowly.
+  learn_rate = c(0.0001, 0.01, 0.2),
+  # Stop splitting a tree if we only have this many obs in a tree node.
+  min_n = 10L
+) %>%
+  set_engine("xgboost")
 
 xg_wf <- xg_wf %>% add_model(xg_spec)
-
 ```
 
 - Fit a model
 
 ```{r}
-
 xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
-
 ```
 
 #### yardstick 
 
 ```{r}
-
-metrics <- metric_set(yardstick::accuracy, 
-                      yardstick::precision, 
-                      yardstick::recall)
+metrics <- metric_set(
+  yardstick::accuracy,
+  yardstick::precision,
+  yardstick::recall
+)
 
 evaluate_class(xg_fit)
-
 ```
 
 ```{r}
-
-xg_fit_viz_metr <- visualize_class_eval(xg_fit)
+xg_fit_viz_metr <-
+  visualize_class_eval(xg_fit)
 
 xg_fit_viz_metr
-
 ```
 
 - Visualize the confusion matrix. 
   
 ```{r}
-
-xg_fit_viz_mat <- visualize_class_conf(xg_fit)
+xg_fit_viz_mat <-
+  visualize_class_conf(xg_fit)
 
 xg_fit_viz_mat
-
 ```
 
 #### tune 
@@ -1144,67 +1120,64 @@ xg_fit_viz_mat
 - We focus on the following hyperparameters: `trees,` `tree_depth,` `learn_rate,` `min_n,` `mtry,` `loss_reduction,` and `sample_size`
 
 ```{r}
-
-tune_spec <- 
+tune_spec <-
   xg_spec <- boost_tree(
-  
-           # Mode 
-           mode = "classification",
-           
-           # Tuning hyperparameters
-           
-           # The number of trees to fit, aka boosting iterations
-           trees = tune(),
-           # The depth of the decision tree (how many levels of splits).
-	         tree_depth = tune(), 
-           # Learning rate: lower means the ensemble will adapt more slowly.
-           learn_rate = tune(),
-           # Stop splitting a tree if we only have this many obs in a tree node.
-	         min_n = tune(),
-           loss_reduction = tune(),
-           # The number of randomly selected hyperparameters 
-           mtry = tune(), 
-           # The size of the data set used for modeling within an iteration
-           sample_size = tune()
-          ) %>% 
-  set_engine("xgboost") 
 
-# Space-filling hyperparameter grids 
+    # Mode
+    mode = "classification",
+
+    # Tuning hyperparameters
+
+    # The number of trees to fit, aka boosting iterations
+    trees = tune(),
+    # The depth of the decision tree (how many levels of splits).
+    tree_depth = tune(),
+    # Learning rate: lower means the ensemble will adapt more slowly.
+    learn_rate = tune(),
+    # Stop splitting a tree if we only have this many obs in a tree node.
+    min_n = tune(),
+    loss_reduction = tune(),
+    # The number of randomly selected hyperparameters
+    mtry = tune(),
+    # The size of the data set used for modeling within an iteration
+    sample_size = tune()
+  ) %>%
+  set_engine("xgboost")
+
+# Space-filling hyperparameter grids
 xg_grid <- grid_latin_hypercube(
   trees(),
   tree_depth(),
   learn_rate(),
   min_n(),
-  loss_reduction(), 
+  loss_reduction(),
   sample_size = sample_prop(),
   finalize(mtry(), train_x_class),
   size = 30
-  )
+)
 
 # 10-fold cross-validation
 
-set.seed(1234) # for reproducibility 
+set.seed(1234) # for reproducibility
 
 xg_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class)),
-                     strata = target)
-
+  strata = target
+)
 ```
 
 ##### Add these elements to a workflow 
 
 ```{r}
-
-# Update workflow 
+# Update workflow
 xg_wf <- xg_wf %>% update_model(tune_spec)
 
-# Tuning results 
+# Tuning results
 xg_res <- xg_wf %>%
   tune_grid(
-    resamples = xg_folds, 
+    resamples = xg_folds,
     grid = xg_grid,
     control = control_grid(save_pred = TRUE)
   )
-
 ```
 
 ##### Visualize 
@@ -1214,53 +1187,49 @@ xg_res <- xg_wf %>%
 conflict_prefer("filter", "dplyr")
 
 xg_res %>%
-  collect_metrics() %>% 
+  collect_metrics() %>%
   filter(.metric == "roc_auc") %>%
   pivot_longer(mtry:sample_size,
-               values_to = "value",
-               names_to = "parameter") %>%
+    values_to = "value",
+    names_to = "parameter"
+  ) %>%
   ggplot(aes(x = value, y = mean, color = parameter)) +
-    geom_point(alpha = 0.8, show.legend = FALSE) +
-    facet_wrap(~parameter, scales = "free_x") +
-    labs(y = "AUC",
-         x = NULL)
-
+  geom_point(alpha = 0.8, show.legend = FALSE) +
+  facet_wrap(~parameter, scales = "free_x") +
+  labs(
+    y = "AUC",
+    x = NULL
+  )
 ```
 
 ```{r}
-
 # Optimal hyperparameter
 best_xg <- select_best(xg_res, "roc_auc")
 
-best_xg 
+best_xg
 
-# Add the hyperparameter to the workflow 
+# Add the hyperparameter to the workflow
 finalize_xg <- xg_wf %>%
   finalize_workflow(best_xg)
-
 ```
 
 ```{r}
-
-xg_fit_tuned <- finalize_xg %>% 
+xg_fit_tuned <- finalize_xg %>%
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
-# Metrics 
+# Metrics
 (xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
 
-# Confusion matrix 
+# Confusion matrix
 (xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
-
 ```
 
 - Visualize variable importance 
 
 ```{r}
-
 xg_fit_tuned %>%
   pull_workflow_fit() %>%
   vip::vip()
-
 ```
 
 ##### Test fit
@@ -1268,12 +1237,10 @@ xg_fit_tuned %>%
 - Apply the tuned model to the test dataset 
 
 ```{r}
-
 test_fit <- finalize_xg %>%
   fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
 
 evaluate_class(test_fit)
-
 ```
 
 ### Stacking (SuperLearner)
@@ -1299,18 +1266,19 @@ A "wrapper" is a short function that adapts an algorithm for the SuperLearner pa
 #### Choose algorithms
 
 ```{r}
-# Review available models 
+# Review available models
 SuperLearner::listWrappers()
 ```
 
 ```{r}
 # Compile the algorithm wrappers to be used.
-sl_lib <- c("SL.mean", # Marginal mean of the outcome () 
-            "SL.glmnet", # GLM with lasso/elasticnet regularization 
-            "SL.rpart", # Decision tree 
-            "SL.ranger", # Random forest  
-            "SL.xgboost") # Xgbboost 
-
+sl_lib <- c(
+  "SL.mean", # Marginal mean of the outcome ()
+  "SL.glmnet", # GLM with lasso/elasticnet regularization
+  "SL.rpart", # Decision tree
+  "SL.ranger", # Random forest
+  "SL.xgboost"
+) # Xgbboost
 ```
 
 #### Fit model
@@ -1320,17 +1288,18 @@ Fit the ensemble!
 ```{r}
 # This is a seed that is compatible with multicore parallel processing.
 # See ?set.seed for more information.
-set.seed(1, "L'Ecuyer-CMRG") 
+set.seed(1, "L'Ecuyer-CMRG")
 
 # This will take a few minutes to execute - take a look at the .html file to see the output!
-cv_sl <-  SuperLearner::CV.SuperLearner(
+cv_sl <- SuperLearner::CV.SuperLearner(
   Y = as.numeric(as.character(train_y_class)),
   X = train_x_class,
   family = binomial(),
   # For a real analysis we would use V = 10.
   cvControl = list(V = 5L, stratifyCV = TRUE),
   SL.library = sl_lib,
-  verbose = FALSE)
+  verbose = FALSE
+)
 ```
 
 #### Risk
@@ -1344,9 +1313,7 @@ Risk is the average loss, and loss is how far off the prediction was for an indi
 * `SL.mean_All` (the weighted mean of $Y$) is a benchmark algorithm (ignoring features). 
 
 ```{r}
-
 summary(cv_sl)
-
 ```
 
 ##### Plot
@@ -1355,7 +1322,6 @@ summary(cv_sl)
 # Plot the cross-validated risk estimate with 95% CIs.
 
 plot(cv_sl)
-
 ```
 
 #### Compute AUC for all estimators
@@ -1377,7 +1343,6 @@ AUC: Area Under the ROC Curve
 ```{r}
 
 ck37r::auc_table(cv_sl)
-
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
@@ -1432,11 +1397,9 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 * num - the predicted attribute - diagnosis of heart disease (angiographic disease status) (Value 0 = < 50% diameter narrowing; Value 1 = > 50% diameter narrowing)
 
 ```{r}
-
 data_original %>%
   select(-target) %>%
   corrr::correlate()
-
 ```
 
 #### Descriptive statistics 
@@ -1445,8 +1408,8 @@ Notice the scaling issues? PCA is not scale-invariant. So, we need to fix this p
 
 ```{r}
 min_max <- list(
-  min = ~min(.x, na.rm = TRUE), 
-  max = ~max(.x, na.rm = TRUE)
+  min = ~ min(.x, na.rm = TRUE),
+  max = ~ max(.x, na.rm = TRUE)
 )
 
 data_original %>%
@@ -1459,47 +1422,47 @@ data_original %>%
 `recipe` is essential for preprocessing multiple features at once.
 
 ```{r}
-
 pca_recipe <- recipe(~., data = data_original) %>%
-  # Imputing NAs using mean 
+  # Imputing NAs using mean
   step_meanimpute(all_predictors()) %>%
-  # Normalize some numeric variables 
-  step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak")) 
-
+  # Normalize some numeric variables
+  step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak"))
 ```
 
 #### PCA analysis 
 
 ```{r}
-
-pca_res <- pca_recipe %>% 
-  step_pca(all_predictors(), 
-           id = "pca") %>% # id argument identifies each PCA step 
+pca_res <- pca_recipe %>%
+  step_pca(all_predictors(),
+    id = "pca"
+  ) %>% # id argument identifies each PCA step
   prep()
 
 pca_res %>%
-  tidy(id = "pca") 
-
+  tidy(id = "pca")
 ```
 
 ##### Screeplot
 
 ```{r}
-# To avoid conflicts 
-conflict_prefer("filter", "dplyr") 
-conflict_prefer("select", "dplyr") 
+# To avoid conflicts
+conflict_prefer("filter", "dplyr")
+conflict_prefer("select", "dplyr")
 
 pca_recipe %>%
-  step_pca(all_predictors(), 
-           id = "pca") %>% # id argument identifies each PCA step 
+  step_pca(all_predictors(),
+    id = "pca"
+  ) %>% # id argument identifies each PCA step
   prep() %>%
   tidy(id = "pca", type = "variance") %>%
-  filter(terms == "percent variance") %>% 
+  filter(terms == "percent variance") %>%
   ggplot(aes(x = component, y = value)) +
-    geom_col() +
-    labs(x = "PCAs of heart disease",
-         y = "% of variance",
-         title = "Scree plot")
+  geom_col() +
+  labs(
+    x = "PCAs of heart disease",
+    y = "% of variance",
+    title = "Scree plot"
+  )
 ```
 
 ##### View factor loadings 
@@ -1507,21 +1470,24 @@ pca_recipe %>%
 Loadings are the covariances between the features and the principal components (=eigenvectors).
 
 ```{r}
-
 pca_recipe %>%
-  step_pca(all_predictors(), 
-           id = "pca") %>% # id argument identifies each PCA step 
+  step_pca(all_predictors(),
+    id = "pca"
+  ) %>% # id argument identifies each PCA step
   prep() %>%
   tidy(id = "pca") %>%
   filter(component %in% c("PC1", "PC2")) %>%
-  ggplot(aes(x = fct_reorder(terms, value), y = value, 
-             fill = component)) +
-    geom_col(position = "dodge") +
-    coord_flip() +
-    labs(x = "Terms",
-         y = "Contribtutions",
-         fill = "PCAs") 
-       
+  ggplot(aes(
+    x = fct_reorder(terms, value), y = value,
+    fill = component
+  )) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  labs(
+    x = "Terms",
+    y = "Contribtutions",
+    fill = "PCAs"
+  )
 ```
 
 **The key lesson**
@@ -1533,10 +1499,12 @@ You can use these low-dimensional data to solve the curse of dimensionality prob
 #### Setup 
 
 ```{r}
-pacman::p_load(tidytext, # tidy text analysis
-               glue, # paste string and objects                
-               stm, # structural topic modeling
-               gutenbergr) # toy datasets 
+pacman::p_load(
+  tidytext, # tidy text analysis
+  glue, # paste string and objects
+  stm, # structural topic modeling
+  gutenbergr
+) # toy datasets
 ```
 
 #### Dataset 
@@ -1547,18 +1515,18 @@ The data munging process draws on [Julia Silge's blog post](https://juliasilge.c
 sherlock_raw <- gutenberg_download(1661)
 
 sherlock <- sherlock_raw %>%
-  # Mutate story using a conditional statement 
+  # Mutate story using a conditional statement
   mutate(
     story = ifelse(str_detect(text, "ADVENTURE"), text, NA)
-    ) %>%
-  # Fill in missing values with next value  
+  ) %>%
+  # Fill in missing values with next value
   tidyr::fill(story, .direction = "down") %>%
-  # Filter 
+  # Filter
   dplyr::filter(story != "THE ADVENTURES OF SHERLOCK HOLMES") %>%
-  # Factor 
+  # Factor
   mutate(story = factor(story, levels = unique(story)))
 
-sherlock <- sherlock[,2:3] # no id 
+sherlock <- sherlock[, 2:3] # no id
 ```
 
 #### Key ideas 
@@ -1594,32 +1562,39 @@ sherlock <- sherlock[,2:3] # no id
 
 ```{r}
 sherlock_n <- sherlock %>%
-  unnest_tokens(output = word,
-                input = text) %>%
+  unnest_tokens(
+    output = word,
+    input = text
+  ) %>%
   count(story, word, sort = TRUE)
 
 sherlock_total_n <- sherlock_n %>%
   group_by(story) %>%
   summarise(total = sum(n))
 
-sherlock_words <- sherlock_n %>%   
+sherlock_words <- sherlock_n %>%
   left_join(sherlock_total_n)
 
 sherlock_words %>%
-  mutate(freq = n/total) %>%
+  mutate(freq = n / total) %>%
   group_by(story) %>%
   top_n(10) %>%
-  ggplot(aes(x = fct_reorder(word, freq), 
-             y = freq, 
-             fill = story)) +
+  ggplot(aes(
+    x = fct_reorder(word, freq),
+    y = freq,
+    fill = story
+  )) +
   geom_col() +
   coord_flip() +
-  facet_wrap(~story, 
-             ncol = 2, 
-             scales = "free_y") +
+  facet_wrap(~story,
+    ncol = 2,
+    scales = "free_y"
+  ) +
   scale_fill_viridis_d() +
-  labs(x = "",
-       fill = "Story") +
+  labs(
+    x = "",
+    fill = "Story"
+  ) +
   theme(legend.position = "bottom")
 ```
 
@@ -1638,10 +1613,10 @@ Also, note that we didn't cover other important techniques in topic modeling suc
 ```{r}
 dtm <- textProcessor(
   documents = sherlock$text,
-  metadata = sherlock, 
+  metadata = sherlock,
   removestopwords = TRUE,
   verbose = FALSE
-  )
+)
 ```
 
 ##### Tuning K
@@ -1651,12 +1626,12 @@ dtm <- textProcessor(
 
 ```{r}
 test_res <- searchK(
-  dtm$documents, 
-  dtm$vocab, 
+  dtm$documents,
+  dtm$vocab,
   K = c(5, 10, 15),
-  prevalence = ~story, 
+  prevalence = ~story,
   data = dtm$meta
-  )
+)
 ```
 
 ##### Evaludating models 
@@ -1677,27 +1652,32 @@ test_res$results %>%
   select(K, exclus, semcoh) %>%
   mutate(K = as.factor(K)) %>%
   ggplot(aes(x = exclus, y = semcoh)) +
-    geom_point() +
-    geom_text(label = glue("K = {test_res$results$K}"),
-              size = 5,
-              color = "red",
-              position = position_jitter(width = 0.05, height = 0.05)) +
-    labs(x = "Exclusivity",
-         y = "Semantic coherence", 
-         title = "Exclusivity and semantic coherence")
+  geom_point() +
+  geom_text(
+    label = glue("K = {test_res$results$K}"),
+    size = 5,
+    color = "red",
+    position = position_jitter(width = 0.05, height = 0.05)
+  ) +
+  labs(
+    x = "Exclusivity",
+    y = "Semantic coherence",
+    title = "Exclusivity and semantic coherence"
+  )
 ```
 
 ##### Finalize 
 
 ```{r}
-final_stm <- stm(dtm$documents, 
-                 dtm$vocab, 
-                 K = 10, prevalence = ~story,
-                 max.em.its = 75, 
-                 data = dtm$meta, 
-                 init.type = "Spectral",
-                 seed = 1234567,
-                 verbose = FALSE)
+final_stm <- stm(dtm$documents,
+  dtm$vocab,
+  K = 10, prevalence = ~story,
+  max.em.its = 75,
+  data = dtm$meta,
+  init.type = "Spectral",
+  seed = 1234567,
+  verbose = FALSE
+)
 ```
 
 ##### Explore the results 
@@ -1713,20 +1693,20 @@ plot(final_stm)
 In LDA distribution, $\alpha$ represents document-topic density and $\beta$ represents topic-word density. 
 
 ```{r}
-# tidy  
+# tidy
 tidy_stm <- tidy(final_stm)
 
 # top terms
 tidy_stm %>%
-    group_by(topic) %>%
-    top_n(10, beta) %>%
-    ungroup() %>%
-    ggplot(aes(fct_reorder(term, beta), beta, fill = as.factor(topic))) +
-    geom_col(alpha = 0.8, show.legend = FALSE) +
-    facet_wrap(~ topic, scales = "free_y") +
-    coord_flip() +
-    scale_y_continuous(labels = scales::percent) +
-    scale_fill_viridis_d()
+  group_by(topic) %>%
+  top_n(10, beta) %>%
+  ungroup() %>%
+  ggplot(aes(fct_reorder(term, beta), beta, fill = as.factor(topic))) +
+  geom_col(alpha = 0.8, show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free_y") +
+  coord_flip() +
+  scale_y_continuous(labels = scales::percent) +
+  scale_fill_viridis_d()
 ```
 
 ## Bias and fairness in machine learning 
@@ -1761,20 +1741,20 @@ For more information on ProPublica's Machine Bias project, we encourage you to c
 if (!require("pacman")) install.packages("pacman")
 
 pacman::p_load(
- tidyverse, # tidyverse packages 
- conflicted, # an alternative conflict resolution strategy 
- ggthemes, # other themes for ggplot2 
- patchwork, # arranging ggplots
- scales, # rescaling 
- survival, # survival analysis
- broom, # for modeling
- here, # reproducibility 
- glue # pasting strings and objects 
+  tidyverse, # tidyverse packages
+  conflicted, # an alternative conflict resolution strategy
+  ggthemes, # other themes for ggplot2
+  patchwork, # arranging ggplots
+  scales, # rescaling
+  survival, # survival analysis
+  broom, # for modeling
+  here, # reproducibility
+  glue # pasting strings and objects
 )
 
-# To avoid conflicts 
-conflict_prefer("filter", "dplyr") 
-conflict_prefer("select", "dplyr") 
+# To avoid conflicts
+conflict_prefer("filter", "dplyr")
+conflict_prefer("select", "dplyr")
 ```
 
 #### Load data 
@@ -1782,7 +1762,7 @@ conflict_prefer("select", "dplyr")
 We select fields for the severity of the charge, number of priors, demographics, age, sex, COMPAS scores, and whether each person was accused of a crime within two years.
 
 ```{r message=FALSE}
-two_years <- read_csv(here("data", "compas-scores-two-years.csv"))
+two_years <- read.csv(here("data", "compas-scores-two-years.csv"))
 
 glue("N of observations (rows): {nrow(two_years)}
       N of variables (columns): {ncol(two_years)}")
@@ -1800,34 +1780,41 @@ glue("N of observations (rows): {nrow(two_years)}
 - Create a function 
 
 ```{r}
-wrangle_data <- function(data){
+wrangle_data <- function(data) {
+  df <- data %>%
+    # Select variables
+    select(
+      age, c_charge_degree, race, age_cat, score_text, sex, priors_count, days_b_screening_arrest, decile_score, is_recid, two_year_recid,
+      c_jail_in, c_jail_out
+    ) %>%
+    # Filter rows
+    filter(
+      days_b_screening_arrest <= 30,
+      days_b_screening_arrest >= -30,
+      is_recid != -1,
+      c_charge_degree != "O",
+      score_text != "N/A"
+    ) %>%
+    # Mutate variables
+    mutate(
+      length_of_stay = as.numeric(as.Date(c_jail_out) - as.Date(c_jail_in)),
+      c_charge_degree = factor(c_charge_degree),
+      age_cat = factor(age_cat),
+      race = factor(race, levels = c("Caucasian", "African-American", "Hispanic", "Other", "Asian", "Native American")),
+      sex = factor(sex, levels = c("Male", "Female")),
+      score_text = factor(score_text, levels = c("Low", "Medium", "High")),
+      score = score_text,
+      # I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference
+      score_num = as.numeric(score_text)
+    ) %>%
+    # Rename variables
+    rename(
+      crime = c_charge_degree,
+      gender = sex
+    )
 
-df <- data %>% 
-    
-    # Select variables 
-    select(age, c_charge_degree, race, age_cat, score_text, sex, priors_count, days_b_screening_arrest, decile_score, is_recid, two_year_recid, 
-         c_jail_in, c_jail_out) %>% 
-    # Filter rows 
-    filter(days_b_screening_arrest <= 30,
-           days_b_screening_arrest >= -30, 
-           is_recid != -1,
-           c_charge_degree != "O",
-           score_text != 'N/A') %>% 
-    # Mutate variables 
-    mutate(length_of_stay = as.numeric(as.Date(c_jail_out) - as.Date(c_jail_in)),
-           c_charge_degree = factor(c_charge_degree),
-           age_cat = factor(age_cat),
-           race = factor(race, levels = c("Caucasian","African-American","Hispanic","Other","Asian","Native American")),
-           sex = factor(sex, levels = c("Male","Female")),
-           score_text = factor(score_text, levels = c("Low", "Medium", "High")),
-           score = score_text,
-# I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference 
-           score_num = as.numeric(score_text)) %>% 
-    # Rename variables 
-    rename(crime = c_charge_degree,
-           gender = sex)
-        
-return(df)}
+  return(df)
+}
 ```
 
 - Apply the function to the data 
@@ -1852,22 +1839,26 @@ df %>%
   group_by(score) %>%
   count() %>%
   ggplot(aes(x = score, y = n)) +
-    geom_col() +
-    labs(x = "Score",
-         y = "Count",
-         title = "Score distribution")
+  geom_col() +
+  labs(
+    x = "Score",
+    y = "Count",
+    title = "Score distribution"
+  )
 ```
 
 Judges are often presented with two sets of scores from the COMPAS system -- one that classifies people into High, Medium, and Low risk and a corresponding decile score. There is a clear downward trend in the decile scores as those scores increase for white defendants.
 
 ```{r}
 df %>%
-  ggplot(aes(ordered(decile_score))) + 
-          geom_bar() +
-          facet_wrap(~race, nrow = 2) +
-          labs(x = "Decile Score",
-               y = "Count",
-               Title = "Defendant's Decile Score")
+  ggplot(aes(ordered(decile_score))) +
+  geom_bar() +
+  facet_wrap(~race, nrow = 2) +
+  labs(
+    x = "Decile Score",
+    y = "Count",
+    Title = "Defendant's Decile Score"
+  )
 ```
 
 #### Modeling 
@@ -1877,49 +1868,48 @@ After filtering out bad rows, our first question is whether there is a significa
 - Model building 
 
 ```{r}
+model_data <- function(data) {
 
-model_data <- function(data){
+  # Logistic regression model
+  lr_model <- glm(score ~ gender + age_cat + race + priors_count + crime + two_year_recid,
+    family = "binomial", data = data
+  )
 
-# Logistic regression model
-lr_model <- glm(score ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
-             family = "binomial", data = data)
+  # OLS, DV = score_num
+  ols_model1 <- lm(score_num ~ gender + age_cat + race + priors_count + crime + two_year_recid, data = data)
 
-# OLS, DV = score_num
-ols_model1 <- lm(score_num ~ gender + age_cat + race + priors_count + crime + two_year_recid, data = data)
+  # OLS, DV = decile_score
+  ols_model2 <- lm(decile_score ~ gender + age_cat + race + priors_count + crime + two_year_recid, data = data)
 
-# OLS, DV = decile_score 
-ols_model2 <- lm(decile_score ~ gender + age_cat + race + priors_count + crime + two_year_recid, data = data)
+  # Extract model outcomes with confidence intervals
+  lr_est <- lr_model %>%
+    tidy(conf.int = TRUE)
 
-# Extract model outcomes with confidence intervals 
-lr_est <- lr_model %>% 
-    tidy(conf.int = TRUE) 
+  ols_est1 <- ols_model1 %>%
+    tidy(conf.int = TRUE)
 
-ols_est1 <- ols_model1 %>%
-    tidy(conf.int = TRUE) 
+  ols_est2 <- ols_model2 %>%
+    tidy(conf.int = TRUE)
 
-ols_est2 <- ols_model2 %>%
-    tidy(conf.int = TRUE) 
+  # AIC scores
+  lr_AIC <- AIC(lr_model)
+  ols_AIC1 <- AIC(ols_model1)
+  ols_AIC2 <- AIC(ols_model2)
 
-# AIC scores 
-lr_AIC <- AIC(lr_model)
-ols_AIC1 <- AIC(ols_model1)
-ols_AIC2 <- AIC(ols_model2)
-    
-list(lr_est, ols_est1, ols_est2, 
-     lr_AIC, ols_AIC1, ols_AIC2)
-
+  list(
+    lr_est, ols_est1, ols_est2,
+    lr_AIC, ols_AIC1, ols_AIC2
+  )
 }
-
 ```
 
 - Model comparisons 
 
 ```{r}
 
-glue("AIC score of logistic regression: {model_data(df)[4]} 
+glue("AIC score of logistic regression: {model_data(df)[4]}
       AIC score of OLS regression (with categorical DV):  {model_data(df)[5]}
       AIC score of OLS regression (with continuous DV): {model_data(df)[6]}")
-
 ```
 
 - Logistic regression model 
@@ -1929,12 +1919,14 @@ lr_model <- model_data(df)[1] %>% data.frame()
 
 lr_model %>%
   filter(term != "(Intercept)") %>%
-  mutate(term = gsub("race|age_cat|gender|M","", term)) %>%
+  mutate(term = gsub("race|age_cat|gender|M", "", term)) %>%
   ggplot(aes(x = fct_reorder(term, estimate), y = estimate, ymax = conf.high, ymin = conf.low)) +
   geom_pointrange() +
   coord_flip() +
-  labs(y = "Estimate", x = "",
-      title = "Logistic regression") +
+  labs(
+    y = "Estimate", x = "",
+    title = "Logistic regression"
+  ) +
   geom_hline(yintercept = 0, linetype = "dashed")
 ```
 
@@ -1945,18 +1937,18 @@ Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{
 In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see [Grant](https://www.bmj.com/content/348/bmj.f7450) (2014), [Wang](https://www.jstatsoft.org/article/view/v055i05) (2013), and [Zhang and Yu](https://jamanetwork.com/journals/jama/fullarticle/188182) (1998). 
 
 ```{r}
-odds_to_risk <- function(model){
-    
-    # Calculating p0 (baseline or control group)
-    intercept <- model$estimate[model$term == "(Intercept)"]
-    control <- exp(intercept) / (1 + exp(intercept)) 
-    
-    # Calculating relative risk 
-    model <- model %>% filter(term != "(Intercept)")
-    model$relative_risk <- (exp(model$estimate) / 
-                        (1 - control + (control * exp(model$estimate)))) 
-    
-    return(model)
+odds_to_risk <- function(model) {
+
+  # Calculating p0 (baseline or control group)
+  intercept <- model$estimate[model$term == "(Intercept)"]
+  control <- exp(intercept) / (1 + exp(intercept))
+
+  # Calculating relative risk
+  model <- model %>% filter(term != "(Intercept)")
+  model$relative_risk <- (exp(model$estimate) /
+    (1 - control + (control * exp(model$estimate))))
+
+  return(model)
 }
 ```
 
@@ -1972,14 +1964,16 @@ The plot visualizes this and other results from the table.
 
 ```{r}
 odds_to_risk(lr_model) %>%
-    mutate(term = gsub("race|age_cat|gender","", term)) %>% 
-    ggplot(aes(x = fct_reorder(term, relative_risk), y = relative_risk)) +
-        geom_point(size = 3) +
-        coord_flip() +
-        labs(y = "Likelihood", x = "",
-             title = "Logistic regression") +
-        scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-        geom_hline(yintercept = 1, linetype = "dashed")
+  mutate(term = gsub("race|age_cat|gender", "", term)) %>%
+  ggplot(aes(x = fct_reorder(term, relative_risk), y = relative_risk)) +
+  geom_point(size = 3) +
+  coord_flip() +
+  labs(
+    y = "Likelihood", x = "",
+    title = "Logistic regression"
+  ) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  geom_hline(yintercept = 1, linetype = "dashed")
 ```
 
 ### Bias in the Data (Risk of Violent Recidivism Analysis)
@@ -1991,33 +1985,32 @@ odds_to_risk(lr_model) %>%
 if (!require("pacman")) install.packages("pacman")
 
 pacman::p_load(
- tidyverse, # tidyverse packages 
- conflicted, # an alternative conflict resolution strategy 
- ggthemes, # other themes for ggplot2 
- patchwork, # arranging ggplots
- scales, # rescaling 
- survival, # survival analysis
- broom, # for modeling
- here, # reproducibility 
- glue # pasting strings and objects 
+  tidyverse, # tidyverse packages
+  conflicted, # an alternative conflict resolution strategy
+  ggthemes, # other themes for ggplot2
+  patchwork, # arranging ggplots
+  scales, # rescaling
+  survival, # survival analysis
+  broom, # for modeling
+  here, # reproducibility
+  glue # pasting strings and objects
 )
 
-# To avoid conflicts 
-conflict_prefer("filter", "dplyr") 
-conflict_prefer("select", "dplyr") 
+# To avoid conflicts
+conflict_prefer("filter", "dplyr")
+conflict_prefer("select", "dplyr")
 
-# Set themes 
+# Set themes
 theme_set(ggthemes::theme_fivethirtyeight())
 ```
 
 #### Load data 
 
 ```{r}
-two_years_violent <- read_csv(here("data" ,"compas-scores-two-years-violent.csv"))
+two_years_violent <- read.csv(here("data", "compas-scores-two-years-violent.csv"))
 
 glue("N of observations (rows): {nrow(two_years_violent)}
       N of variables (columns): {ncol(two_years_violent)}")
-
 ```
 
 #### Wrangling
@@ -2026,34 +2019,40 @@ glue("N of observations (rows): {nrow(two_years_violent)}
 
 ```{r}
 
-wrangle_data <- function(data){
+wrangle_data <- function(data) {
+  df <- data %>%
+    # Select variables
+    select(
+      age, c_charge_degree, race, age_cat, v_score_text, sex, priors_count,
+      days_b_screening_arrest, v_decile_score, is_recid, two_year_recid
+    ) %>%
+    # Filter rows
+    filter(
+      days_b_screening_arrest <= 30,
+      days_b_screening_arrest >= -30,
+      is_recid != -1,
+      c_charge_degree != "O",
+      v_score_text != "N/A"
+    ) %>%
+    # Mutate variables
+    mutate(
+      c_charge_degree = factor(c_charge_degree),
+      age_cat = factor(age_cat),
+      race = factor(race, levels = c("Caucasian", "African-American", "Hispanic", "Other", "Asian", "Native American")),
+      sex = factor(sex, levels = c("Male", "Female")),
+      v_score_text = factor(v_score_text, levels = c("Low", "Medium", "High")),
+      # I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference
+      score_num = as.numeric(v_score_text)
+    ) %>%
+    # Rename variables
+    rename(
+      crime = c_charge_degree,
+      gender = sex,
+      score = v_score_text
+    )
 
-df <- data %>% 
-    
-    # Select variables 
-    select(age, c_charge_degree, race, age_cat, v_score_text, sex, priors_count, 
-         days_b_screening_arrest, v_decile_score, is_recid, two_year_recid) %>%            
-    # Filter rows 
-    filter(days_b_screening_arrest <= 30,
-           days_b_screening_arrest >= -30, 
-           is_recid != -1,
-           c_charge_degree != "O",
-           v_score_text != 'N/A') %>% 
-    # Mutate variables 
-    mutate(c_charge_degree = factor(c_charge_degree),
-           age_cat = factor(age_cat),
-           race = factor(race, levels = c("Caucasian","African-American","Hispanic","Other","Asian","Native American")),
-           sex = factor(sex, levels = c("Male","Female")),
-           v_score_text = factor(v_score_text, levels = c("Low", "Medium", "High")),
-# I added this new variable to test whether measuring the DV as a binary or continuous var makes a difference 
-           score_num = as.numeric(v_score_text)) %>%
-    # Rename variables 
-    rename(crime = c_charge_degree,
-           gender = sex,
-           score = v_score_text)
-        
-return(df)}
-
+  return(df)
+}
 ```
 
 - Apply the function to the data 
@@ -2064,8 +2063,7 @@ df <- wrangle_data(two_years_violent)
 
 names(df)
 
-head(df, 5) # Check whether the function works as expected 
-
+head(df, 5) # Check whether the function works as expected
 ```
 
 #### Descriptive analysis 
@@ -2077,10 +2075,12 @@ df %>%
   group_by(score) %>%
   count() %>%
   ggplot(aes(x = score, y = n)) +
-    geom_col() +
-    labs(x = "Score",
-         y = "Count",
-         title = "Score distribution")
+  geom_col() +
+  labs(
+    x = "Score",
+    y = "Count",
+    title = "Score distribution"
+  )
 ```
 
 - Score distribution by race
@@ -2088,13 +2088,14 @@ df %>%
 ```{r}
 
 df %>%
-  ggplot(aes(ordered(v_decile_score))) + 
-          geom_bar() +
-          facet_wrap(~race, nrow = 2) +
-          labs(x = "Decile Score",
-               y = "Count",
-               Title = "Defendant's Decile Score")
-
+  ggplot(aes(ordered(v_decile_score))) +
+  geom_bar() +
+  facet_wrap(~race, nrow = 2) +
+  labs(
+    x = "Decile Score",
+    y = "Count",
+    Title = "Defendant's Decile Score"
+  )
 ```
 #### Modeling 
 
@@ -2102,44 +2103,46 @@ After filtering out bad rows, our first question is whether there is a significa
 
 ```{r}
 
-model_data <- function(data){
+model_data <- function(data) {
 
-# Logistic regression model
-lr_model <- glm(score ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
-             family = "binomial", data = data)
+  # Logistic regression model
+  lr_model <- glm(score ~ gender + age_cat + race + priors_count + crime + two_year_recid,
+    family = "binomial", data = data
+  )
 
-# OLS
-ols_model1 <- lm(score_num ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
-             data = data)
+  # OLS
+  ols_model1 <- lm(score_num ~ gender + age_cat + race + priors_count + crime + two_year_recid,
+    data = data
+  )
 
-ols_model2 <- lm(v_decile_score ~ gender + age_cat + race + priors_count + crime + two_year_recid, 
-             data = data)
+  ols_model2 <- lm(v_decile_score ~ gender + age_cat + race + priors_count + crime + two_year_recid,
+    data = data
+  )
 
-# Extract model outcomes with confidence intervals 
-lr_est <- lr_model %>% 
-    tidy(conf.int = TRUE) 
+  # Extract model outcomes with confidence intervals
+  lr_est <- lr_model %>%
+    tidy(conf.int = TRUE)
 
-ols_est1 <- ols_model1 %>%
-    tidy(conf.int = TRUE) 
+  ols_est1 <- ols_model1 %>%
+    tidy(conf.int = TRUE)
 
-ols_est2 <- ols_model2 %>%
-    tidy(conf.int = TRUE) 
+  ols_est2 <- ols_model2 %>%
+    tidy(conf.int = TRUE)
 
-# AIC scores 
-lr_AIC <- AIC(lr_model)
-ols_AIC1 <- AIC(ols_model1)
-ols_AIC2 <- AIC(ols_model2)
-    
-list(lr_est, ols_est1, ols_est2, lr_AIC, ols_AIC1, ols_AIC2)
+  # AIC scores
+  lr_AIC <- AIC(lr_model)
+  ols_AIC1 <- AIC(ols_model1)
+  ols_AIC2 <- AIC(ols_model2)
+
+  list(lr_est, ols_est1, ols_est2, lr_AIC, ols_AIC1, ols_AIC2)
 }
-    
 ```
 
 - Model comparisons 
 
 ```{r}
 
-glue("AIC score of logistic regression: {model_data(df)[4]} 
+glue("AIC score of logistic regression: {model_data(df)[4]}
       AIC score of OLS regression (with categorical DV):  {model_data(df)[5]}
       AIC score of OLS regression (with continuous DV): {model_data(df)[6]}")
 
@@ -2149,19 +2152,20 @@ glue("AIC score of logistic regression: {model_data(df)[4]}
 
 ```{r}
 
-lr_model <- model_data(df)[1] %>% 
+lr_model <- model_data(df)[1] %>%
   data.frame()
 
 lr_model %>%
   filter(term != "(Intercept)") %>%
-  mutate(term = gsub("race|age_cat|gender","", term)) %>%
+  mutate(term = gsub("race|age_cat|gender", "", term)) %>%
   ggplot(aes(x = fct_reorder(term, estimate), y = estimate, ymax = conf.high, ymin = conf.low)) +
   geom_pointrange() +
   coord_flip() +
-  labs(y = "Estimate", x = "",
-      title = "Logistic regression") +
+  labs(
+    y = "Estimate", x = "",
+    title = "Logistic regression"
+  ) +
   geom_hline(yintercept = 0, linetype = "dashed")
-
 ```
 
 Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{p}{1-p}$. p could be defined as a success, and 1-p could be as a failure. Here, coefficient 1 indicates the equal probability for the binary outcomes. A coefficient greater than 1 indicates strong chance for p and a weak chance for 1-p. A coefficient smaller than 1 indicates the opposite. Nonetheless, the exact interpretation is not very interpretive as an odd of 2.0 corresponds to the probability of 1/3 (!). 
@@ -2171,18 +2175,18 @@ Logistic regression coefficients are log odds ratios. Remember an odd is $\frac{
 In this case, we reinterpret coefficients by turning log odds ratios into relative risks. Relative risk = odds ratio / 1 - p0 + (p0 * odds ratio) p-0 is the baseline risk. For more information on relative risks and its value in statistical communication, see [Grant](https://www.bmj.com/content/348/bmj.f7450) (2014), [Wang](https://www.jstatsoft.org/article/view/v055i05) (2013), and [Zhang and Yu](https://jamanetwork.com/journals/jama/fullarticle/188182) (1998). 
 
 ```{r}
-odds_to_risk <- function(model){
-    
-    # Calculating p0 (baseline or control group)
-    intercept <- model$estimate[model$term == "(Intercept)"]
-    control <- exp(intercept) / (1 + exp(intercept)) 
-    
-    # Calculating relative risk 
-    model <- model %>% filter(term != "(Intercept)")
-    model$relative_risk <- (exp(model$estimate) / 
-                        (1 - control + (control * exp(model$estimate)))) 
-    
-    return(model)
+odds_to_risk <- function(model) {
+
+  # Calculating p0 (baseline or control group)
+  intercept <- model$estimate[model$term == "(Intercept)"]
+  control <- exp(intercept) / (1 + exp(intercept))
+
+  # Calculating relative risk
+  model <- model %>% filter(term != "(Intercept)")
+  model$relative_risk <- (exp(model$estimate) /
+    (1 - control + (control * exp(model$estimate))))
+
+  return(model)
 }
 ```
 
@@ -2198,14 +2202,16 @@ The plot visualizes this and other results from the table.
 
 ```{r}
 odds_to_risk(lr_model) %>%
-    mutate(term = gsub("race|age_cat|gender","", term)) %>% 
-    ggplot(aes(x = fct_reorder(term, relative_risk), y = relative_risk)) +
-        geom_point(size = 3) +
-        coord_flip() +
-        labs(y = "Likelihood", x = "",
-             title = "Logistic regression") +
-        scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-        geom_hline(yintercept = 1, linetype = "dashed")
+  mutate(term = gsub("race|age_cat|gender", "", term)) %>%
+  ggplot(aes(x = fct_reorder(term, relative_risk), y = relative_risk)) +
+  geom_point(size = 3) +
+  coord_flip() +
+  labs(
+    y = "Likelihood", x = "",
+    title = "Logistic regression"
+  ) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  geom_hline(yintercept = 1, linetype = "dashed")
 ```
 
 
@@ -2220,48 +2226,47 @@ odds_to_risk(lr_model) %>%
 ```{r}
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(
- tidyverse, # tidyverse packages 
- conflicted, # an alternative conflict resolution strategy 
- ggthemes, # other themes for ggplot2 
- patchwork, # arranging ggplots
- scales, # rescaling 
- survival, # survival analysis
- broom, # for modeling
- here, # reproducibility 
- glue, # pasting strings and objects 
- reticulate # source python codes
+  tidyverse, # tidyverse packages
+  conflicted, # an alternative conflict resolution strategy
+  ggthemes, # other themes for ggplot2
+  patchwork, # arranging ggplots
+  scales, # rescaling
+  survival, # survival analysis
+  broom, # for modeling
+  here, # reproducibility
+  glue, # pasting strings and objects
+  reticulate # source python codes
 )
 
-# Set themes 
+# Set themes
 theme_set(ggthemes::theme_fivethirtyeight())
-
 ```
 
 #### Load data 
 
 ```{r}
-cox_data <- read_csv(here("data" ,"cox-parsed.csv"))
+cox_data <- read_csv(here("data", "cox-parsed.csv"))
 
 glue("N of observations (rows): {nrow(cox_data)}
       N of variables (columns): {ncol(cox_data)}")
-
 ```
 
 #### Wrangling
 
 ```{r}
 
-df <- cox_data %>% 
-    filter(score_text != "N/A") %>%
-    filter(end > start) %>%
-    mutate(c_charge_degree = factor(c_charge_degree),
-           age_cat = factor(age_cat),
-           race = factor(race, levels = c("Caucasian","African-American","Hispanic","Other","Asian","Native American")),
-           sex = factor(sex, levels = c("Male","Female")),
-           score_factor = factor(score_text, levels = c("Low", "Medium", "High")))
+df <- cox_data %>%
+  filter(score_text != "N/A") %>%
+  filter(end > start) %>%
+  mutate(
+    c_charge_degree = factor(c_charge_degree),
+    age_cat = factor(age_cat),
+    race = factor(race, levels = c("Caucasian", "African-American", "Hispanic", "Other", "Asian", "Native American")),
+    sex = factor(sex, levels = c("Male", "Female")),
+    score_factor = factor(score_text, levels = c("Low", "Medium", "High"))
+  )
 
-grp <- df[!duplicated(df$id),]
-
+grp <- df[!duplicated(df$id), ]
 ```
 
 #### Descriptive analysis 
@@ -2269,14 +2274,16 @@ grp <- df[!duplicated(df$id),]
 - Score distribution 
 
 ```{r}
-grp %>% 
-    group_by(score_factor) %>%
-      count() %>%
-      ggplot(aes(x = score_factor, y = n)) +
-        geom_col() +
-        labs(x = "Score",
-             y = "Count",
-             title = "Score distribution")
+grp %>%
+  group_by(score_factor) %>%
+  count() %>%
+  ggplot(aes(x = score_factor, y = n)) +
+  geom_col() +
+  labs(
+    x = "Score",
+    y = "Count",
+    title = "Score distribution"
+  )
 ```
 
 - Score distribution by race
@@ -2284,32 +2291,32 @@ grp %>%
 ```{r}
 
 df %>%
-  ggplot(aes(ordered(score_factor))) + 
-          geom_bar() +
-          facet_wrap(~race, nrow = 2) +
-          labs(x = "Decile Score",
-               y = "Count",
-               Title = "Defendant's Decile Score")
-
+  ggplot(aes(ordered(score_factor))) +
+  geom_bar() +
+  facet_wrap(~race, nrow = 2) +
+  labs(
+    x = "Decile Score",
+    y = "Count",
+    Title = "Defendant's Decile Score"
+  )
 ```
 
 #### Modeling 
 
 ```{r}
 
-f2 <- Surv(start, end, event, type="counting") ~ race + score_factor + race * score_factor
+f2 <- Surv(start, end, event, type = "counting") ~ race + score_factor + race * score_factor
 
 model <- coxph(f2, data = df)
 
 model %>%
   broom::tidy(conf.int = TRUE) %>%
-  mutate(term = gsub("race|score_factor","", term)) %>% 
+  mutate(term = gsub("race|score_factor", "", term)) %>%
   filter(term != "<chr>") %>%
   ggplot(aes(x = fct_reorder(term, estimate), y = estimate, ymax = conf.high, ymin = conf.low)) +
   geom_pointrange() +
   coord_flip() +
   labs(y = "Estimate", x = "")
-    
 ```
 
 The interaction term shows a similar disparity as the logistic regression above.
@@ -2317,21 +2324,21 @@ The interaction term shows a similar disparity as the logistic regression above.
 High-risk white defendants are 3.61 more likely than low-risk white defendants, while high-risk black defendants are 2.99 more likely than low.
 
 ```{r}
-visualize_surv <- function(input){
-  
-f <- Surv(start, end, event, type="counting") ~ score_factor
+visualize_surv <- function(input) {
+  f <- Surv(start, end, event, type = "counting") ~ score_factor
 
-fit <- survfit(f, data = input)
+  fit <- survfit(f, data = input)
 
-fit %>%
+  fit %>%
     tidy(conf.int = TRUE) %>%
-    mutate(strata = gsub("score_factor=","", strata)) %>%
-    mutate(strata = factor(strata, levels = c("High","Medium","Low"))) %>%
+    mutate(strata = gsub("score_factor=", "", strata)) %>%
+    mutate(strata = factor(strata, levels = c("High", "Medium", "Low"))) %>%
     ggplot(aes(x = time, y = estimate, ymax = conf.high, ymin = conf.low, group = strata, col = strata)) +
     geom_pointrange(alpha = 0.1) +
     guides(colour = guide_legend(override.aes = list(alpha = 1))) +
     ylim(c(0, 1)) +
-    labs(x = "Time", y = "Estimated survival rate", col = "Strata")}
+    labs(x = "Time", y = "Estimated survival rate", col = "Strata")
+}
 ```
 
 ```{r}
@@ -2343,8 +2350,7 @@ Black defendants do recidivate at higher rates according to race-specific Kaplan
 ```{r}
 
 (df %>% filter(race == "Caucasian") %>% visualize_surv() + ggtitle("Caucasian")) /
-(df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American")) 
-
+  (df %>% filter(race == "African-American") %>% visualize_surv() + ggtitle("African-American"))
 ```
 
 In terms of underlying recidivism rates, we can look at gender-specific Kaplan Meier estimates. There is a striking difference between women and men.
@@ -2353,8 +2359,7 @@ In terms of underlying recidivism rates, we can look at gender-specific Kaplan M
 
 (df %>% filter(sex == "Female") %>% visualize_surv() + ggtitle("Female")) /
 
-(df %>% filter(sex == "Male") %>% visualize_surv() + ggtitle("Male"))
-
+  (df %>% filter(sex == "Male") %>% visualize_surv() + ggtitle("Male"))
 ```
 
 As these plots show, the COMPAS score treats a high-risk woman the same as a Medium risk man.
@@ -2365,15 +2370,14 @@ The above analysis shows that the COMPAS algorithm does overpredict African-Amer
 
 ```{r}
 
-# create a new environment 
+# create a new environment
 conda_create("r-reticulate")
 
-# install libs 
+# install libs
 conda_install("r-reticulate", c("pandas"))
 
 # indicates that we want to use a specific condaenv
 use_condaenv("r-reticulate")
-
 ```
 
 
@@ -2440,11 +2444,10 @@ create_table(list(recid), list(surv)).to_csv("data/table_recid.csv")
 
 ```{r}
 
-read.csv(here("data", "table_recid.csv"))[,-1] %>%
+read.csv(here("data", "table_recid.csv"))[, -1] %>%
   ggplot(aes(x = Metrics, y = Scores)) +
   geom_col() +
   labs(title = "Recidivism")
-
 ```
 
 That number is higher for African Americans at 44.85% and lower for whites at 23.45%.
@@ -2481,12 +2484,11 @@ create_comp_tables(recid, surv).to_csv("data/comp_tables_recid.csv")
 
 ```{r}
 
-read.csv(here("data", "comp_tables_recid.csv"))[,-1] %>%
+read.csv(here("data", "comp_tables_recid.csv"))[, -1] %>%
   ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
   geom_col(position = "dodge") +
   coord_flip() +
   labs(title = "Recidivism")
-
 ```
 
 #### Risk of Violent Recidivism accuracy
@@ -2525,11 +2527,10 @@ create_table(vrecid, vsurv).to_csv("data/table_vrecid.csv")
 
 ```{r}
 
-read.csv(here("data", "table_vrecid.csv"))[,-1] %>%
+read.csv(here("data", "table_vrecid.csv"))[, -1] %>%
   ggplot(aes(x = Metrics, y = Scores)) +
   geom_col() +
   labs(title = "Violent recidivism")
-
 ```
 
 Even more so for Black defendants.
@@ -2542,12 +2543,11 @@ create_comp_tables(vrecid, vsurv).to_csv("data/comp_tables_vrecid.csv")
 
 ```{r}
 
-read.csv(here("data", "comp_tables_vrecid.csv"))[,-1] %>%
+read.csv(here("data", "comp_tables_vrecid.csv"))[, -1] %>%
   ggplot(aes(x = Metrics, y = Scores, fill = Group)) +
   geom_col(position = "dodge") +
   coord_flip() +
   labs(title = "Violent recidivism")
-
 ```
 
 ## References
