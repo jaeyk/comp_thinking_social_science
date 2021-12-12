@@ -387,11 +387,13 @@ rtweet::create_token(app = app_name,
 
 Using **search API**; This API returns a collection of Tweets mentioning a particular query.
 
-```{r cache=TRUE }
+```{r}
 # Install and load rtweet 
 if (!require(pacman)) {install.packages("pacman")}
 pacman::p_load(rtweet)
+```
 
+```{r cache=TRUE}
 # The past 6-9 days 
 rt <- search_tweets(q = "#stopasianhate", n = 1000, include_rts = FALSE)
 
