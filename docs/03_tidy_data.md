@@ -42,9 +42,11 @@ pacman::p_load(
 )
 ```
 
-The rest of the chapter follows the basic structure in [the Data Wrangling Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) created by RStudio.
+## The Big Picture 
 
-## R Data structures 
+### R Data structures 
+
+The rest of the chapter follows the basic structure in [the Data Wrangling Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) created by RStudio.
 
 To make the best use of the R language, you'll need a strong understanding of the basic data types and data structures and how to operate on those. R is an **object-oriented** language, so the importance of this cannot be understated. 
 
@@ -56,7 +58,7 @@ It is **critical** to understand because these are the objects you will manipula
   
 > __John Chambers__the creator of S (the mother of R)
 
-1. [Main Classes](#main-classes) introduces you to R's one-dimensional or atomic classes and data structures. R has five basic atomic classes: logical, integer, numeric, complex, character. Social scientists don't use complex classes. (Also, remember that we rarely use trigonometry.)
+1. [Main Classes](#main-classes) introduces you to R's one-dimensional or atomic classes and data structures. R has five basic atomic classes: logical, integer, numeric, complex, character. Social scientists don't use complex classes. 
 
 2. [Attributes](#attributes) takes a small detour to discuss attributes, R's flexible metadata specification. Here, you'll learn about factors, an important data structure created by setting attributes of an atomic vector. R has many data structures: vector, list, matrix, data frame, factors, tables.
 
@@ -90,7 +92,7 @@ What is a class?
 
 ![from https://brilliant.org/](https://ds055uzetaobb.cloudfront.net/brioche/uploads/pJZt3mh3Ht-prettycars.png?width=2400)
 
-- Second, R has different names for the types string, integer, and float --- specifically **character**, **integer** (not different), and **numeric**. Because there is no "float" class in R, users tend to default to the "numeric" class when they want to work with numerical data.
+- Second, R has different names for the types string, integer, and float --- specifically **character**, **integer** (not different), and **numeric**. Because there is no "float" class in R, users tend to default to the "numeric" class when working with numerical data.
 
 The function for recovering object classes is ```class()```. L suffix to qualify any number with the intent of making it an explicit integer. See more from the [R language definition](https://cran.r-project.org/doc/manuals/R-lang.html).
 
@@ -157,7 +159,7 @@ Remember, there are four common types of vectors:
 * `numeric` (same as `double`)
 * `character`.
 
-You can create an empty vector with `vector()` (By default, the mode is `logical`. You can be more explicit as shown in the examples below.) It is more common to use direct constructors such as `character()`, `numeric()`, etc.
+You can create an empty vector with `vector()` (By default, the mode is `logical.` You can be more explicit as shown in the examples below.) It is more common to use direct constructors such as `character()`, `numeric()`, etc.
 
 
 ```r
@@ -230,7 +232,7 @@ y
 ## [1]  TRUE  TRUE FALSE FALSE
 ```
 
-Finally you can have character vectors:
+Finally, you can have character vectors:
 
 
 ```r
@@ -269,7 +271,7 @@ typeof(kim_family) # what's the type?
 
 **Short exercise: Create and examine your vector**  
 
-Create a character vector called `fruit` that contains 4 of your favorite fruits. Then evaluate its structure using the commands below.
+Create a character vector called `fruit` containing 4 of your favorite fruits. Then evaluate its structure using the commands below.
 
 
 ```r
@@ -285,7 +287,7 @@ str(fruit)
 
 **Add elements**
 
-You can add elements to the end of a vector by passing the original vector into the `c` function, like so:
+You can add elements to the end of a vector by passing the original vector into the `c` function, like the following:
 
 
 ```r
@@ -429,7 +431,7 @@ NB: `is.vector()` does not test if an object is a vector. Instead, it returns `T
 
 **Coercion**
 
-All atomic vector elements must be the same type, so when you attempt to combine different types, they will be __coerced__ to the most flexible type. Types from least to most flexible are: logical, integer, double, and character. 
+All atomic vector elements must be the same type, so when you attempt to combine different types, they will be __coerced__ to the **most flexible type.** Types from least to most flexible are: logical > integer > double > character. 
 
 For example, combining a character and an integer yields a character:
 
@@ -453,7 +455,7 @@ c(TRUE, 2)
 c("a", TRUE)
 ```
 
-Notice that when a logical vector is coerced to an integer or double, `TRUE` becomes 1 and `FALSE` becomes 0. This is very useful in conjunction with `sum()` and `mean()`
+Notice that when a logical vector is coerced to an integer or double, `TRUE` becomes 1, and `FALSE` becomes 0. This is very useful in conjunction with `sum()` and `mean()`
 
 
 ```r
@@ -476,7 +478,7 @@ sum(x)
 ```
 
 ```r
-# Proportion that are TRUE
+# Proportion that is TRUE
 mean(x)
 ```
 
@@ -572,7 +574,7 @@ as.logical(x)
 
 #### Lists
 
-Lists are also vectors, but different from atomic vectors because their elements can be of any type. In short, they are generic vectors. You construct lists by using `list()` instead of `c()`: 
+Lists are also vectors, but different from atomic vectors because their elements can be of any type. In short, they are generic vectors. For example, you construct lists by using `list()` instead of `c()`: 
 
 Lists are sometimes called recursive vectors, because a list can contain other lists. This makes them fundamentally different from atomic vectors. 
 
@@ -736,8 +738,7 @@ For lists, elements are **indexed by double brackets**. Single brackets will sti
 
 **Exercises**
 
-1. What are the four basic types of atomic vector? How does a list differ from an
-   atomic vector?
+1. What are the four basic types of atomic vectors? How does a list differ from an atomic vector?
 
 2. Why is `1 == "1"` true? Why is `-1 < FALSE` true? Why is `"one" < 2` false?
 
@@ -758,7 +759,7 @@ Attributes provide additional information about the data to you, the user, and t
 
 **Additional tips**
 
-In an object-oriented system, a [class](https://www.google.com/search?q=what+is+class+programming&oq=what+is+class+programming&aqs=chrome.0.0l6.3543j0j4&sourceid=chrome&ie=UTF-8) (an extensible problem-code-template) defines a type of objects like what its properties are, how it behaves, and how it relates to other types of objects. Therefore, technically, an object is an [instance](https://en.wikipedia.org/wiki/Instance_(computer_science)) (or occurrence) of a class. A method is a function associated with a particular type of object.
+In an object-oriented system, a [class](https://www.google.com/search?q=what+is+class+programming&oq=what+is+class+programming&aqs=chrome.0.0l6.3543j0j4&sourceid=chrome&ie=UTF-8) (an extensible problem-code-template) defines a type of object like what its properties are, how it behaves, and how it relates to other types of objects. Therefore, technically, an object is an [instance](https://en.wikipedia.org/wiki/Instance_(computer_science)) (or occurrence) of a class. A method is a function associated with a particular type of object.
 
 #### Names
 
@@ -946,7 +947,7 @@ table(party_factor) # shows republicans too
 ##          3          0
 ```
 
-Sometimes factors can be left unordered. Example: `democrat`, `republican`.
+Sometimes factors can be left unordered. Example: `democrat`, `republican.`
 
 Other times you might want factors to be ordered (or ranked). Example: `low`, `medium`, `high`. 
 
@@ -979,7 +980,7 @@ is.ordered(y)
 ## [1] TRUE
 ```
 
-While factors look (and often behave) like character vectors, they are integers. Be careful when treating them like strings. Some string methods (like `gsub()` and `grepl()`) will coerce factors to strings, while others (like `nchar()`) will throw an error, and still others (like `c()`) will use the underlying integer values. 
+While factors look (and often behave) like character vectors, they are integers. So be careful when treating them like strings. Some string methods (like `gsub()` and `grepl()`) will coerce factors to strings, while others (like `nchar()`) will throw an error, and still others (like `c()`) will use the underlying integer values. 
 
 
 ```r
@@ -1021,11 +1022,11 @@ c(x, "c")
 
 For this reason, it's usually best to explicitly convert factors to character vectors if you need string-like behavior. There was a memory advantage to using factors instead of character vectors in early versions of R, but this is no longer the case.
 
-Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there's no way for those functions to know the set of all possible levels or their optimal order. If this becomes a problem, use the argument `stringsAsFactors = FALSE` to suppress this behavior, and then manually convert character vectors to factors using your knowledge of the data.
+Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there's no way for those functions to know the set of all possible levels or their optimal order. If this becomes a problem, use the argument `stringsAsFactors = FALSE` to suppress this behavior and manually convert character vectors to factors using your knowledge of the data.
 
 **More attributes**
 
-All R objects can have arbitrary additional attributes, used to store metadata about the object. Attributes can be thought of as a named list (with unique names). Attributes can be accessed individually with `attr()` or all at once (as a list) with `attributes()`. 
+All R objects can have arbitrary additional attributes used to store metadata about the object. Attributes can be considered a named list (with unique names). Attributes can be accessed individually with `attr()` or all at once (as a list) with `attributes().` 
 
 
 ```r
@@ -1084,7 +1085,7 @@ f3 <- factor(letters, levels = rev(letters))
 
 ### Matrices
 
-Matrices are created when we combine multiple vectors with the same class (e.g., numeric). This creates a dataset with rows and columns. By definition, if you want to combine multiple classes of vectors, you want a dataframe. You can coerce a matrix to become a dataframe, and vice-versa, but as with all vector coercions, the results can be unpredictable, so be sure you know how each variable (column) will convert.
+Matrices are created when we combine multiple vectors with the same class (e.g., numeric). This creates a dataset with rows and columns. By definition, if you want to combine multiple classes of vectors, you want a dataframe. You can coerce a matrix to become a dataframe and vice-versa, but as with all vector coercions, the results can be unpredictable, so be sure you know how each variable (column) will convert.
 
 
 ```r
@@ -1522,7 +1523,7 @@ rbind(df, data.frame(x = 10, y = "z"))
 ## 4 10 z
 ```
 
-When combining column-wise, the number of rows must match, but row names are ignored. When combining row-wise, both the number and names of columns must match. (If you want to combine rows that don't have the same columns, there are other functions/packages in R that can help.)
+When combining column-wise, the number of rows must match, but row names are ignored. When combining row-wise, both the number and names of columns must match. (If you want to combine rows that don't have the same columns, other functions/packages in R can help.)
 
 It's a common mistake to try and create a dataframe by `cbind()`ing vectors together. This doesn't work because `cbind()` will create a matrix unless one of the arguments is already a dataframe. Instead use `data.frame()` directly:
 
@@ -1577,7 +1578,7 @@ The conversion rules for `cbind()` are complicated and best avoided by ensuring 
 
 **Other objects**
 
-Missing values are specified with `NA`, which is a logical vector of length 1. `NA` will always be coerced to the correct type if used inside `c()`
+Missing values are specified with `NA,` which is a logical vector of length 1. `NA` will always be coerced to the correct type if used inside `c()`
 
 
 ```r
@@ -1645,7 +1646,7 @@ When working with data, you'll need to subset objects early and often. Luckily, 
 
 * The use of subsetting in conjunction with assignment.
 
-This unit helps you master subsetting by starting with the simplest type of subsetting: subsetting an atomic vector with `[`. It then gradually extends your knowledge, first to more complicated data types (like dataframes and lists), and then to the other subsetting operators, `[[` and `$`. You'll then learn how subsetting and assignment can be combined to modify parts of an object, and, finally, you'll see a large number of useful applications.
+This unit helps you master subsetting by starting with the simplest type of subsetting: subsetting an atomic vector with `[`. It then gradually extends your knowledge to more complicated data types (like dataframes and lists) and then to the other subsetting operators, `[[` and `$`. You'll then learn how subsetting and assignment can be combined to modify parts of an object, and, finally, you'll see a large number of useful applications.
 
 ### Atomic vectors
 
@@ -1769,7 +1770,7 @@ x[c(TRUE, TRUE, FALSE, FALSE)]
 ## [1] 2.1 4.2
 ```
 
-This is probably the most useful type of subsetting because you write the expression that creates the logical vector
+This is probably the most useful type of subsetting because you write the expression that creates the logical vector.
 
 
 ```r
@@ -1989,7 +1990,7 @@ As with Python, R can also extract substrings based on the index position of its
 
 Second, **object subsets using index positions in R contain all the elements in the specified range**.  If some object called ```data``` contains five elements, ```data[2:4]``` will return the elements at the second, third, and fourth positions.  By contrast, the same subset in Python would return the objects at the third and fourth positions (or second and third positions, depending upon whether your index starts at 0 or 1).  
 
-Third, **R does not allow indexing of character strings***. Instead, you must use the ```substr()``` function.  Note that this function must receive both the ```start``` and ```stop``` arguments.  So if you want to get all the characters between some index and the end of the string, you must make use of the ```nchar()``` function, which will tell you the length of a character string.
+Third, **R does not allow indexing of character strings***. Instead, you must use the ```substr()``` function.  Note that this function must receive both the ```start``` and ```stop``` arguments.  So if you want to get all the characters between some index and the end of the string, you must use the ```nchar()``` function, which will tell you the length of a character string.
 
 
 ```r
@@ -2098,7 +2099,7 @@ gsub(pattern = "Jae Yeon", replacement = "Danny", x = fullName)
 ```
 
 ```r
-# Note the importance of cases! This doesn't throw an error, so you won't realize your function didn't work unless you double-check several entries
+# Note the importance of cases! This doesn't throw an error, so you won't realize your function didn't work unless you double-check several entries.
 
 gsub(pattern = " ", replacement = "", x = fullName) # The same function is used for replacements and stripping
 ```
@@ -2334,7 +2335,7 @@ There are two other subsetting operators: `[[` and `$`.
 
 ##### `[[`
 
-You need `[[` when working with lists. When `[` is applied to a list it always returns a list: it never gives you the contents of the list. To get the contents, you need `[[`:
+You need `[[` when working with lists. When `[` is applied to a list it always returns a list: it never gives you the list's contents. To get the contents, you need `[[`:
 
 >  "If list `x` is a train carrying objects, then `x[[5]]` is
 > the object in car 5; `x[4:6]` is a train of cars 4-6." 
@@ -2557,23 +2558,10 @@ df
 ## 3 NA
 ```
 
+
 ## Tidyverse
 
-* I adapted the following content from Wickham's [R for Data Science](https://r4ds.had.co.nz/tidy-data.html), his [earlier paper](http://www.jstatsoft.org/v59/i10/paper) published in the Journal of Statistical Software, [Efficient R Programming](https://csgillespie.github.io/efficientR/) by Gillespie and Lovelace, and [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Roger P. Peng.
-
--   [Tidyverse design guide](https://design.tidyverse.org/unifying-principles.html)
-
-    -   Human-centered
-
-    -   Consistent
-
-    -   Composable (modularized)
-
-    -   Inclusive
-
-    -   Influenced by the [Basics of the Unix Philosophy](https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html), [The Zen of Python](https://www.python.org/dev/peps/pep-0020/), and the [Design Principles Behind Smalltalk](https://refs.devinmcgloin.com/smalltalk/Design-Principles-Behind-Smalltalk.pdf)
-
-## Tidy data
+### The Big Picture
 
 > "Tidy data sets are easy to manipulate, model and visualize, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table." - Hadley Wickham
 
@@ -2593,7 +2581,7 @@ If dataframes are tidy, it's easy to transform, visualize, model, and program th
 
 For instance, in many data science applications, linear algebra-based computations are essential (e.g., [Principal Component Analysis](https://www.math.upenn.edu/~kazdan/312S13/JJ/PCA-JJ.pdf)). These computations are optimized to work on matrices, not tidy data frames (for more information, read [Jeff Leek's blog post](https://simplystatistics.org/2016/02/17/non-tidy-data/)).
 
-This is what a tidy data looks like.
+This is what tidy data looks like.
 
 
 ```r
@@ -2617,7 +2605,7 @@ table1
 
 **Additional tips** 
 
-There are so many different ways of taking a look at data in R. Can you discuss the pros and cons of each approach? Which one do you prefer and why?
+There are so many different ways of looking at data in R. Can you discuss the pros and cons of each approach? Which one do you prefer and why?
 
 
 * `str(table1)`
@@ -2633,9 +2621,9 @@ There are so many different ways of taking a look at data in R. Can you discuss 
     
 These two packages don't do anything new but simplify most common tasks in data manipulation. Plus, they are fast, consistent, and more readable.
 
-Practically, this approach is right because you're going to have consistency in data format across all the projects you're working on. Also, tidy data works well with key packages (e.g., dplyr, ggplot2) in R.
+Practically, this approach is right because you will have consistency in data format across all the projects you're working on. Also, tidy data works well with key packages (e.g., `dplyr,` `ggplot2`) in R.
 
-Computationally, this approach is useful for vectorized programming because "different variables from the same observation are always paired". Vectorized means a function applies to a vector treats each element individually (=operations working in parallel).
+Computationally, this approach is useful for vectorized programming because "different variables from the same observation are always paired". Vectorized means a function applies to a vector that treats each element individually (=operations working in parallel).
 
 ## Tidying (tidyr)
 
@@ -2690,7 +2678,7 @@ table4a
 
 ![Concept map for pipe operator. By Jeroen Janssens, Monica Alonso.](https://education.rstudio.com/blog/2020/09/concept-maps/pipe-operator.png)
 
-- The pipe operator `%>%` originally comes from the `magrittr` package. The idea behind the pipe operator is [similar to](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) what we learned about chaining functions in high school. f: B -> C and g: A -> B can be expressed as $f(g(x))$. The pipe operator chains operations. When you read pipe operator, read as "and then" (Wickham's recommendation). The keyboard shortcut is ctrl + shift + M. The key idea here is not creating temporary variables and focusing on verbs (functions). We'll learn more about this functional programming paradigm later on.
+- The pipe operator `%>%` originally comes from the `magrittr` package. The idea behind the pipe operator is [similar to](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) what we learned about chaining functions in high school. f: B -> C and g: A -> B can be expressed as $f(g(x))$. The pipe operator chains operations. When reading the pipe operator, read as "and then" (Wickham's recommendation). The keyboard shortcut is ctrl + shift + M. The key idea here is not creating temporary variables and focusing on verbs (functions). We'll learn more about this functional programming paradigm later on.
 
 
 ```r
@@ -2978,7 +2966,7 @@ table2 %>%
 ## 6 China        2000 213766 1280428583
 ```
 
-Sometimes, a consultee came to me and asked: "I don't have missing values in my original dataframe. Then R said that I have missing values after I've done some data transformations. What happened?"
+Sometimes, a consultee came to me and asked: "I don't have missing values in my original dataframe. Then R said that I had missing values after doing some data transformations. What happened?"
 
 Here's an answer.
 
@@ -3236,7 +3224,7 @@ df %>% unite("contact",
 
 ### Filling
 
-This is a relatively less-known function of the tidyr package. I found this function super useful to complete time-series data. For instance, how can you replace NA in the following example (this use case is drawn from the [tidyr package vignette](https://tidyr.tidyverse.org/reference/fill.html).)?
+This is a relatively less-known function of the tidyr package. However, I found this function super useful to complete time-series data. For instance, how can you replace NA in the following example (this use case is drawn from the [tidyr package vignette](https://tidyr.tidyverse.org/reference/fill.html).)?
 
 
 ```r
@@ -4582,7 +4570,7 @@ mtcars %>%
 
 ### Counting
 
--   How may countries in each continent?
+-   How many countries are in each continent?
 
 
 ```r
@@ -5162,7 +5150,7 @@ Note that this workshop does not cover creating and manipulating variables using
 
 **Challenge**
 
-1.  Summarize the average GDP of countries whose names starting with the alphabet "A".
+1.  Summarize the average GDP of countries whose names start with the alphabet "A."
 
 2.  Turn the summary dataframe into a publishable table using either `kableExtra` or `flextable` package.
 
@@ -5174,8 +5162,7 @@ Note that this workshop does not cover creating and manipulating variables using
 
 - Calculate the mean of `gdpPercap`.
 
-- Some functions are designed to work together. For instance, the group_by
-function defines the strata that you're going to use for summary statistics. Then, use summarise() or summarize() for producing summary statistics.
+- Some functions are designed to work together. For instance, the 	`group_by()` function defines the strata you will use for summary statistics. Then, use `summarise()` to obtain summary statistics.
 
 
 ```r
@@ -5558,7 +5545,7 @@ right_join(x, y)
 
 -   Full Join
 
-`full_join()` keeps the observations from both tables. If they were unmatched, then NAs were recoded in one of the two tables.
+`full_join()` keeps the observations from both tables. NAs were recorded in one of the two tables if they were unmatched.
 
 
 ```r
@@ -5699,7 +5686,7 @@ The following example comes from [R for Data Science](https://r4ds.had.co.nz/man
 
 **Challenge**
 
-In the following example, why did we use `country` and `continent` for nesting variables?
+Why did we use `country` and `continent` for nesting variables in the following example?
 
 
 ```r
@@ -5791,7 +5778,7 @@ S3 is part of R's object-oriented systems. If you need further information, chec
 
 -   `broom::glance(model)`: for evaluating model quality and/or complexity
 -   `broom::tidy(model)`: for extracting each coefficient in the model (the estimates + its variability)
--   `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics). A convenient tool in case if you want to plot fitted values and raw data together. 
+-   `broom::augment(model, data)`: for getting extra values (residuals, and influence statistics). A convenient tool if you want to plot fitted values and raw data together. 
 
 ![Broom: Converting Statistical Models to Tidy Data Frames by David Robinson](https://www.youtube.com/watch?v=7VGPUBWGv6g&ab_channel=Work-Bench)
 
@@ -5964,7 +5951,7 @@ model_out %>% filter(p_threshold == 0) %>% pull(term) %>% unique()
 
 ### Mapping
 
-We tasted a little bit about how `map()` function works. Let's dig into it more in-depth as this family of functions is useful. For more information, see Rebecca Barter's excellent tutorial on the `purrr` package. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
+We tasted a bit of how `map()` function works. Let's dig into it more in-depth, as this family of functions is useful. See Rebecca Barter's excellent tutorial on the `purrr` package for more information. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
 
 
 ```r
@@ -6215,7 +6202,7 @@ Model-Inquire-Data Strategy-Answer Strategy (MIDA) by Graeme Blair, Jasper Coope
 
 1. Setup 
 
-* Model: speculation of how the world works (variables plus their relationships)
+* Model: speculating how the world works (variables plus their relationships)
 
 
 ```r
@@ -9493,7 +9480,7 @@ diagnosis
 
 * Shortcuts 
 
-Doing the power analysis for a three-arm experiment.
+The following is the power analysis for a three-arm experiment.
 
 
 ```r
@@ -9527,7 +9514,7 @@ diagnose_design(three_arm)
 
 Experimenters! Consider writing and registering a pre-analysis before running your experiment. Here are tools that can help to create a pre-registration so easily. The following information comes from David Broockman's [very helpful Twitter thread](https://twitter.com/dbroockman/status/1350897814499336192). 
 
-1. Write code using fake data. If you are using , you can generate test responses using the platform: https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/
+1. Write code using fake data. If you are using, you can generate test responses using the platform: https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/
 
 2. Register the pre-analysis using [ASPREDICTED](https://aspredicted.org/), "a platform that makes it easy for researchers to pre-register their studies, and easy for others to read and evaluate those pre-registrations." It creates an anonymized PDF file filled with the answers you provided and a blinded link.  
 
@@ -10038,7 +10025,7 @@ p + geom_line()
 
 `geom_line` joins up all the lines for each particular year in the order they appear in the dataset. `ggplot2` does not know the yearly observations in your data are grouped by country. 
 
-Note that you need grouping when the grouping information you need to tell is not built into the mapped variables (like continent).
+You need grouping when the grouping information you need to tell is not built into the mapped variables (like continent).
 
 
 ```r
@@ -10131,7 +10118,7 @@ p + geom_line(aes(group = country), color = "gray70") +
 
 #### Use pipes to summarize data
 
-Also, we experiment bar charts here. By default, `geom_bar` [uses](https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar) stat = "bins", which makes the height of each bar equal to the number of cases in each group. If you have a y column, then you should use `stat = "identity"` argument. Alternatively, you can use `geom_col()`.
+Also, we experiment with bar charts here. By default, `geom_bar` [uses](https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar) stat = "bins", which makes the height of each bar equal to the number of cases in each group. If you have a y column, then you should use `stat = "identity"` argument. Alternatively, you can use `geom_col().`
 
 
 ```r
@@ -10455,7 +10442,7 @@ out <- lm(
 )
 ```
 
-`tidy()` is a method in the `broom` package. It "constructs a dataframe that summarizes the model's statistical findings". As the description states, tidy is a function that can be used for various models. For instance, a tidy can extract following information from a regression model.
+`tidy()` is a method in the `broom` package. It "constructs a dataframe that summarizes the model's statistical findings". As the description states, tidy is a function that can be used for various models. For instance, a tidy can extract the following information from a regression model.
 
 - `Term`: a term being estimated 
 - `p.value`
@@ -10467,7 +10454,7 @@ out <- lm(
 
 **Challenge**
 
-Try `glance(out)`, what did you get from these commands? If you're curious, you can try `?glance`.
+Try `glance(out)`; what did you get from these commands? If you're curious, you can try `?glance`.
 
 The followings are to show your degree of confidence.
 
@@ -10518,4 +10505,4 @@ out_conf %>%
 
 ![](03_tidy_data_files/figure-latex/unnamed-chunk-217-2.pdf)<!-- --> 
 
-You can calculate marginal effects using the `margins` package. For the sake of time, I'm not covering that here.
+You can also calculate marginal effects using the [`marginaleffects`](https://vincentarelbundock.github.io/marginaleffects/) package. 

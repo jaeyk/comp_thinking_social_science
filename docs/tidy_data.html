@@ -202,7 +202,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="tidy_data.html"><a href="tidy_data.html"><i class="fa fa-check"></i><b>4</b> Tidy data and its friends</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="tidy_data.html"><a href="tidy_data.html#setup-2"><i class="fa fa-check"></i><b>4.1</b> Setup</a></li>
-<li class="chapter" data-level="4.2" data-path="tidy_data.html"><a href="tidy_data.html#r-data-structures"><i class="fa fa-check"></i><b>4.2</b> R Data structures</a></li>
+<li class="chapter" data-level="4.2" data-path="tidy_data.html"><a href="tidy_data.html#the-big-picture-4"><i class="fa fa-check"></i><b>4.2</b> The Big Picture</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="tidy_data.html"><a href="tidy_data.html#r-data-structures"><i class="fa fa-check"></i><b>4.2.1</b> R Data structures</a></li>
+</ul></li>
 <li class="chapter" data-level="4.3" data-path="tidy_data.html"><a href="tidy_data.html#d-data-vectors"><i class="fa fa-check"></i><b>4.3</b> 1D data: Vectors</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="tidy_data.html"><a href="tidy_data.html#atomic-classes"><i class="fa fa-check"></i><b>4.3.1</b> Atomic classes</a></li>
@@ -223,46 +226,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5.5" data-path="tidy_data.html"><a href="tidy_data.html#subsetting-operators"><i class="fa fa-check"></i><b>4.5.5</b> Subsetting operators</a></li>
 <li class="chapter" data-level="4.5.6" data-path="tidy_data.html"><a href="tidy_data.html#subassignment"><i class="fa fa-check"></i><b>4.5.6</b> Subassignment</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="tidy_data.html"><a href="tidy_data.html#tidyverse"><i class="fa fa-check"></i><b>4.6</b> Tidyverse</a></li>
-<li class="chapter" data-level="4.7" data-path="tidy_data.html"><a href="tidy_data.html#tidy-data"><i class="fa fa-check"></i><b>4.7</b> Tidy data</a></li>
-<li class="chapter" data-level="4.8" data-path="tidy_data.html"><a href="tidy_data.html#tidying-tidyr"><i class="fa fa-check"></i><b>4.8</b> Tidying (tidyr)</a>
+<li class="chapter" data-level="4.6" data-path="tidy_data.html"><a href="tidy_data.html#tidyverse"><i class="fa fa-check"></i><b>4.6</b> Tidyverse</a>
 <ul>
-<li class="chapter" data-level="4.8.1" data-path="tidy_data.html"><a href="tidy_data.html#reshaping"><i class="fa fa-check"></i><b>4.8.1</b> Reshaping</a></li>
-<li class="chapter" data-level="4.8.2" data-path="tidy_data.html"><a href="tidy_data.html#filling"><i class="fa fa-check"></i><b>4.8.2</b> Filling</a></li>
+<li class="chapter" data-level="4.6.1" data-path="tidy_data.html"><a href="tidy_data.html#the-big-picture-5"><i class="fa fa-check"></i><b>4.6.1</b> The Big Picture</a></li>
 </ul></li>
-<li class="chapter" data-level="4.9" data-path="tidy_data.html"><a href="tidy_data.html#manipulating-dplyr"><i class="fa fa-check"></i><b>4.9</b> Manipulating (dplyr)</a>
+<li class="chapter" data-level="4.7" data-path="tidy_data.html"><a href="tidy_data.html#tidying-tidyr"><i class="fa fa-check"></i><b>4.7</b> Tidying (tidyr)</a>
 <ul>
-<li class="chapter" data-level="4.9.1" data-path="tidy_data.html"><a href="tidy_data.html#rearranging"><i class="fa fa-check"></i><b>4.9.1</b> Rearranging</a></li>
-<li class="chapter" data-level="4.9.2" data-path="tidy_data.html"><a href="tidy_data.html#subset-observations-rows"><i class="fa fa-check"></i><b>4.9.2</b> Subset observations (rows)</a></li>
-<li class="chapter" data-level="4.9.3" data-path="tidy_data.html"><a href="tidy_data.html#subset-variables-columns"><i class="fa fa-check"></i><b>4.9.3</b> Subset variables (columns)</a></li>
-<li class="chapter" data-level="4.9.4" data-path="tidy_data.html"><a href="tidy_data.html#create-variables"><i class="fa fa-check"></i><b>4.9.4</b> Create variables</a></li>
-<li class="chapter" data-level="4.9.5" data-path="tidy_data.html"><a href="tidy_data.html#counting"><i class="fa fa-check"></i><b>4.9.5</b> Counting</a></li>
-<li class="chapter" data-level="4.9.6" data-path="tidy_data.html"><a href="tidy_data.html#summarizing"><i class="fa fa-check"></i><b>4.9.6</b> Summarizing</a></li>
-<li class="chapter" data-level="4.9.7" data-path="tidy_data.html"><a href="tidy_data.html#grouping"><i class="fa fa-check"></i><b>4.9.7</b> Grouping</a></li>
-<li class="chapter" data-level="4.9.8" data-path="tidy_data.html"><a href="tidy_data.html#joining"><i class="fa fa-check"></i><b>4.9.8</b> Joining</a></li>
+<li class="chapter" data-level="4.7.1" data-path="tidy_data.html"><a href="tidy_data.html#reshaping"><i class="fa fa-check"></i><b>4.7.1</b> Reshaping</a></li>
+<li class="chapter" data-level="4.7.2" data-path="tidy_data.html"><a href="tidy_data.html#filling"><i class="fa fa-check"></i><b>4.7.2</b> Filling</a></li>
 </ul></li>
-<li class="chapter" data-level="4.10" data-path="tidy_data.html"><a href="tidy_data.html#modeling-broom"><i class="fa fa-check"></i><b>4.10</b> Modeling (broom)</a>
+<li class="chapter" data-level="4.8" data-path="tidy_data.html"><a href="tidy_data.html#manipulating-dplyr"><i class="fa fa-check"></i><b>4.8</b> Manipulating (dplyr)</a>
 <ul>
-<li class="chapter" data-level="4.10.1" data-path="tidy_data.html"><a href="tidy_data.html#nesting"><i class="fa fa-check"></i><b>4.10.1</b> Nesting</a></li>
-<li class="chapter" data-level="4.10.2" data-path="tidy_data.html"><a href="tidy_data.html#mapping"><i class="fa fa-check"></i><b>4.10.2</b> Mapping</a></li>
-<li class="chapter" data-level="4.10.3" data-path="tidy_data.html"><a href="tidy_data.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.10.3</b> Hypothesis testing</a></li>
-<li class="chapter" data-level="4.10.4" data-path="tidy_data.html"><a href="tidy_data.html#mixed-models"><i class="fa fa-check"></i><b>4.10.4</b> Mixed models</a></li>
-<li class="chapter" data-level="4.10.5" data-path="tidy_data.html"><a href="tidy_data.html#design-anaysis-optional"><i class="fa fa-check"></i><b>4.10.5</b> Design Anaysis (optional)</a></li>
+<li class="chapter" data-level="4.8.1" data-path="tidy_data.html"><a href="tidy_data.html#rearranging"><i class="fa fa-check"></i><b>4.8.1</b> Rearranging</a></li>
+<li class="chapter" data-level="4.8.2" data-path="tidy_data.html"><a href="tidy_data.html#subset-observations-rows"><i class="fa fa-check"></i><b>4.8.2</b> Subset observations (rows)</a></li>
+<li class="chapter" data-level="4.8.3" data-path="tidy_data.html"><a href="tidy_data.html#subset-variables-columns"><i class="fa fa-check"></i><b>4.8.3</b> Subset variables (columns)</a></li>
+<li class="chapter" data-level="4.8.4" data-path="tidy_data.html"><a href="tidy_data.html#create-variables"><i class="fa fa-check"></i><b>4.8.4</b> Create variables</a></li>
+<li class="chapter" data-level="4.8.5" data-path="tidy_data.html"><a href="tidy_data.html#counting"><i class="fa fa-check"></i><b>4.8.5</b> Counting</a></li>
+<li class="chapter" data-level="4.8.6" data-path="tidy_data.html"><a href="tidy_data.html#summarizing"><i class="fa fa-check"></i><b>4.8.6</b> Summarizing</a></li>
+<li class="chapter" data-level="4.8.7" data-path="tidy_data.html"><a href="tidy_data.html#grouping"><i class="fa fa-check"></i><b>4.8.7</b> Grouping</a></li>
+<li class="chapter" data-level="4.8.8" data-path="tidy_data.html"><a href="tidy_data.html#joining"><i class="fa fa-check"></i><b>4.8.8</b> Joining</a></li>
 </ul></li>
-<li class="chapter" data-level="4.11" data-path="tidy_data.html"><a href="tidy_data.html#visualizing-ggplot2"><i class="fa fa-check"></i><b>4.11</b> Visualizing (ggplot2)</a>
+<li class="chapter" data-level="4.9" data-path="tidy_data.html"><a href="tidy_data.html#modeling-broom"><i class="fa fa-check"></i><b>4.9</b> Modeling (broom)</a>
 <ul>
-<li class="chapter" data-level="4.11.1" data-path="tidy_data.html"><a href="tidy_data.html#motivation-2"><i class="fa fa-check"></i><b>4.11.1</b> Motivation</a></li>
-<li class="chapter" data-level="4.11.2" data-path="tidy_data.html"><a href="tidy_data.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>4.11.2</b> The grammar of graphics</a></li>
-<li class="chapter" data-level="4.11.3" data-path="tidy_data.html"><a href="tidy_data.html#mapping-and-geom"><i class="fa fa-check"></i><b>4.11.3</b> mapping and geom</a></li>
-<li class="chapter" data-level="4.11.4" data-path="tidy_data.html"><a href="tidy_data.html#basic-aes-x-y"><i class="fa fa-check"></i><b>4.11.4</b> basic aes (x , y)</a></li>
-<li class="chapter" data-level="4.11.5" data-path="tidy_data.html"><a href="tidy_data.html#univariate-distribution"><i class="fa fa-check"></i><b>4.11.5</b> Univariate distribution</a></li>
-<li class="chapter" data-level="4.11.6" data-path="tidy_data.html"><a href="tidy_data.html#advanced-aes-size-color"><i class="fa fa-check"></i><b>4.11.6</b> Advanced aes (size, color)</a></li>
-<li class="chapter" data-level="4.11.7" data-path="tidy_data.html"><a href="tidy_data.html#co-ordinates-and-scales"><i class="fa fa-check"></i><b>4.11.7</b> Co-ordinates and scales</a></li>
-<li class="chapter" data-level="4.11.8" data-path="tidy_data.html"><a href="tidy_data.html#labels-and-guides"><i class="fa fa-check"></i><b>4.11.8</b> Labels and guides</a></li>
-<li class="chapter" data-level="4.11.9" data-path="tidy_data.html"><a href="tidy_data.html#ggsave"><i class="fa fa-check"></i><b>4.11.9</b> ggsave</a></li>
-<li class="chapter" data-level="4.11.10" data-path="tidy_data.html"><a href="tidy_data.html#many-plots"><i class="fa fa-check"></i><b>4.11.10</b> Many plots</a></li>
-<li class="chapter" data-level="4.11.11" data-path="tidy_data.html"><a href="tidy_data.html#transforming"><i class="fa fa-check"></i><b>4.11.11</b> Transforming</a></li>
-<li class="chapter" data-level="4.11.12" data-path="tidy_data.html"><a href="tidy_data.html#ploting-models"><i class="fa fa-check"></i><b>4.11.12</b> Ploting models</a></li>
+<li class="chapter" data-level="4.9.1" data-path="tidy_data.html"><a href="tidy_data.html#nesting"><i class="fa fa-check"></i><b>4.9.1</b> Nesting</a></li>
+<li class="chapter" data-level="4.9.2" data-path="tidy_data.html"><a href="tidy_data.html#mapping"><i class="fa fa-check"></i><b>4.9.2</b> Mapping</a></li>
+<li class="chapter" data-level="4.9.3" data-path="tidy_data.html"><a href="tidy_data.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.9.3</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="4.9.4" data-path="tidy_data.html"><a href="tidy_data.html#mixed-models"><i class="fa fa-check"></i><b>4.9.4</b> Mixed models</a></li>
+<li class="chapter" data-level="4.9.5" data-path="tidy_data.html"><a href="tidy_data.html#design-anaysis-optional"><i class="fa fa-check"></i><b>4.9.5</b> Design Anaysis (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="tidy_data.html"><a href="tidy_data.html#visualizing-ggplot2"><i class="fa fa-check"></i><b>4.10</b> Visualizing (ggplot2)</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="tidy_data.html"><a href="tidy_data.html#motivation-2"><i class="fa fa-check"></i><b>4.10.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.10.2" data-path="tidy_data.html"><a href="tidy_data.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>4.10.2</b> The grammar of graphics</a></li>
+<li class="chapter" data-level="4.10.3" data-path="tidy_data.html"><a href="tidy_data.html#mapping-and-geom"><i class="fa fa-check"></i><b>4.10.3</b> mapping and geom</a></li>
+<li class="chapter" data-level="4.10.4" data-path="tidy_data.html"><a href="tidy_data.html#basic-aes-x-y"><i class="fa fa-check"></i><b>4.10.4</b> basic aes (x , y)</a></li>
+<li class="chapter" data-level="4.10.5" data-path="tidy_data.html"><a href="tidy_data.html#univariate-distribution"><i class="fa fa-check"></i><b>4.10.5</b> Univariate distribution</a></li>
+<li class="chapter" data-level="4.10.6" data-path="tidy_data.html"><a href="tidy_data.html#advanced-aes-size-color"><i class="fa fa-check"></i><b>4.10.6</b> Advanced aes (size, color)</a></li>
+<li class="chapter" data-level="4.10.7" data-path="tidy_data.html"><a href="tidy_data.html#co-ordinates-and-scales"><i class="fa fa-check"></i><b>4.10.7</b> Co-ordinates and scales</a></li>
+<li class="chapter" data-level="4.10.8" data-path="tidy_data.html"><a href="tidy_data.html#labels-and-guides"><i class="fa fa-check"></i><b>4.10.8</b> Labels and guides</a></li>
+<li class="chapter" data-level="4.10.9" data-path="tidy_data.html"><a href="tidy_data.html#ggsave"><i class="fa fa-check"></i><b>4.10.9</b> ggsave</a></li>
+<li class="chapter" data-level="4.10.10" data-path="tidy_data.html"><a href="tidy_data.html#many-plots"><i class="fa fa-check"></i><b>4.10.10</b> Many plots</a></li>
+<li class="chapter" data-level="4.10.11" data-path="tidy_data.html"><a href="tidy_data.html#transforming"><i class="fa fa-check"></i><b>4.10.11</b> Transforming</a></li>
+<li class="chapter" data-level="4.10.12" data-path="tidy_data.html"><a href="tidy_data.html#ploting-models"><i class="fa fa-check"></i><b>4.10.12</b> Ploting models</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="functional_programming.html"><a href="functional_programming.html"><i class="fa fa-check"></i><b>5</b> Automating repeated things</a>
@@ -445,10 +450,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb136-12"><a href="tidy_data.html#cb136-12" aria-hidden="true" tabindex="-1"></a>  broom, <span class="co"># tidying model outputs</span></span>
 <span id="cb136-13"><a href="tidy_data.html#cb136-13" aria-hidden="true" tabindex="-1"></a>  waldo <span class="co"># side-by-side code comparison</span></span>
 <span id="cb136-14"><a href="tidy_data.html#cb136-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p>The rest of the chapter follows the basic structure in <a href="https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">the Data Wrangling Cheat Sheet</a> created by RStudio.</p>
 </div>
-<div id="r-data-structures" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> R Data structures</h2>
+<div id="the-big-picture-4" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> The Big Picture</h2>
+<div id="r-data-structures" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> R Data structures</h3>
+<p>The rest of the chapter follows the basic structure in <a href="https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">the Data Wrangling Cheat Sheet</a> created by RStudio.</p>
 <p>To make the best use of the R language, you’ll need a strong understanding of the basic data types and data structures and how to operate on those. R is an <strong>object-oriented</strong> language, so the importance of this cannot be understated.</p>
 <p>It is <strong>critical</strong> to understand because these are the objects you will manipulate on a day-to-day basis in R, and they are not always as easy to work with as they sound at the outset. Dealing with object conversions is one of the most common sources of frustration for beginners.</p>
 <blockquote>
@@ -460,12 +467,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>__John Chambers__the creator of S (the mother of R)</p>
 </blockquote>
 <ol style="list-style-type: decimal">
-<li><p><a href="#main-classes">Main Classes</a> introduces you to R’s one-dimensional or atomic classes and data structures. R has five basic atomic classes: logical, integer, numeric, complex, character. Social scientists don’t use complex classes. (Also, remember that we rarely use trigonometry.)</p></li>
+<li><p><a href="#main-classes">Main Classes</a> introduces you to R’s one-dimensional or atomic classes and data structures. R has five basic atomic classes: logical, integer, numeric, complex, character. Social scientists don’t use complex classes.</p></li>
 <li><p><a href="tidy_data.html#attributes">Attributes</a> takes a small detour to discuss attributes, R’s flexible metadata specification. Here, you’ll learn about factors, an important data structure created by setting attributes of an atomic vector. R has many data structures: vector, list, matrix, data frame, factors, tables.</p></li>
 </ol>
 <div class="figure">
 <img src="https://github.com/rstudio/concept-maps/raw/master/en/data-types.svg" alt="" />
 <p class="caption">Concept map for data types. By Meghan Sposato, Brendan Cullen, Monica Alonso.</p>
+</div>
 </div>
 </div>
 <div id="d-data-vectors" class="section level2" number="4.3">
@@ -515,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">from <a href="https://brilliant.org/" class="uri">https://brilliant.org/</a></p>
 </div>
 <ul>
-<li>Second, R has different names for the types string, integer, and float — specifically <strong>character</strong>, <strong>integer</strong> (not different), and <strong>numeric</strong>. Because there is no “float” class in R, users tend to default to the “numeric” class when they want to work with numerical data.</li>
+<li>Second, R has different names for the types string, integer, and float — specifically <strong>character</strong>, <strong>integer</strong> (not different), and <strong>numeric</strong>. Because there is no “float” class in R, users tend to default to the “numeric” class when working with numerical data.</li>
 </ul>
 <p>The function for recovering object classes is <code>class()</code>. L suffix to qualify any number with the intent of making it an explicit integer. See more from the <a href="https://cran.r-project.org/doc/manuals/R-lang.html">R language definition</a>.</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="tidy_data.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="dv">3</span>)</span></code></pre></div>
@@ -574,7 +582,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 * <code>integer</code>
 * <code>numeric</code> (same as <code>double</code>)
 * <code>character</code>.</p>
-<p>You can create an empty vector with <code>vector()</code> (By default, the mode is <code>logical</code>. You can be more explicit as shown in the examples below.) It is more common to use direct constructors such as <code>character()</code>, <code>numeric()</code>, etc.</p>
+<p>You can create an empty vector with <code>vector()</code> (By default, the mode is <code>logical.</code> You can be more explicit as shown in the examples below.) It is more common to use direct constructors such as <code>character()</code>, <code>numeric()</code>, etc.</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="tidy_data.html#cb145-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">vector</span>()</span>
 <span id="cb145-2"><a href="tidy_data.html#cb145-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb145-3"><a href="tidy_data.html#cb145-3" aria-hidden="true" tabindex="-1"></a><span class="co"># with a length and type</span></span>
@@ -599,7 +607,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb157-2"><a href="tidy_data.html#cb157-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb157-3"><a href="tidy_data.html#cb157-3" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE FALSE FALSE</code></pre>
-<p>Finally you can have character vectors:</p>
+<p>Finally, you can have character vectors:</p>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="tidy_data.html#cb159-1" aria-hidden="true" tabindex="-1"></a>kim_family <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Jae&quot;</span>, <span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Jane&quot;</span>)</span>
 <span id="cb159-2"><a href="tidy_data.html#cb159-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb159-3"><a href="tidy_data.html#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="fu">is.integer</span>(kim_family) <span class="co"># integer?</span></span></code></pre></div>
@@ -611,7 +619,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="tidy_data.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(kim_family) <span class="co"># what&#39;s the type?</span></span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p><strong>Short exercise: Create and examine your vector</strong></p>
-<p>Create a character vector called <code>fruit</code> that contains 4 of your favorite fruits. Then evaluate its structure using the commands below.</p>
+<p>Create a character vector called <code>fruit</code> containing 4 of your favorite fruits. Then evaluate its structure using the commands below.</p>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="tidy_data.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, create your fruit vector</span></span>
 <span id="cb167-2"><a href="tidy_data.html#cb167-2" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
 <span id="cb167-3"><a href="tidy_data.html#cb167-3" aria-hidden="true" tabindex="-1"></a>fruit <span class="ot">&lt;-</span></span>
@@ -621,7 +629,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb167-7"><a href="tidy_data.html#cb167-7" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(fruit)</span>
 <span id="cb167-8"><a href="tidy_data.html#cb167-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(fruit)</span></code></pre></div>
 <p><strong>Add elements</strong></p>
-<p>You can add elements to the end of a vector by passing the original vector into the <code>c</code> function, like so:</p>
+<p>You can add elements to the end of a vector by passing the original vector into the <code>c</code> function, like the following:</p>
 <div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="tidy_data.html#cb168-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Beyonce&quot;</span>, <span class="st">&quot;Kelly&quot;</span>, <span class="st">&quot;Michelle&quot;</span>, <span class="st">&quot;LeToya&quot;</span>)</span>
 <span id="cb168-2"><a href="tidy_data.html#cb168-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb168-3"><a href="tidy_data.html#cb168-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(z, <span class="st">&quot;Farrah&quot;</span>)</span>
@@ -677,7 +685,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] TRUE</code></pre>
 <p>NB: <code>is.vector()</code> does not test if an object is a vector. Instead, it returns <code>TRUE</code> only if the object is a vector with no attributes apart from names. Use <code>is.atomic(x) || is.list(x)</code> to test if an object is actually a vector.</p>
 <p><strong>Coercion</strong></p>
-<p>All atomic vector elements must be the same type, so when you attempt to combine different types, they will be <strong>coerced</strong> to the most flexible type. Types from least to most flexible are: logical, integer, double, and character.</p>
+<p>All atomic vector elements must be the same type, so when you attempt to combine different types, they will be <strong>coerced</strong> to the <strong>most flexible type.</strong> Types from least to most flexible are: logical &gt; integer &gt; double &gt; character.</p>
 <p>For example, combining a character and an integer yields a character:</p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="tidy_data.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">1</span>))</span></code></pre></div>
 <pre><code>##  chr [1:2] &quot;a&quot; &quot;1&quot;</code></pre>
@@ -687,7 +695,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb195-3"><a href="tidy_data.html#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="dv">2</span>)</span>
 <span id="cb195-4"><a href="tidy_data.html#cb195-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb195-5"><a href="tidy_data.html#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="cn">TRUE</span>)</span></code></pre></div>
-<p>Notice that when a logical vector is coerced to an integer or double, <code>TRUE</code> becomes 1 and <code>FALSE</code> becomes 0. This is very useful in conjunction with <code>sum()</code> and <code>mean()</code></p>
+<p>Notice that when a logical vector is coerced to an integer or double, <code>TRUE</code> becomes 1, and <code>FALSE</code> becomes 0. This is very useful in conjunction with <code>sum()</code> and <code>mean()</code></p>
 <div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="tidy_data.html#cb196-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
 <span id="cb196-2"><a href="tidy_data.html#cb196-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb196-3"><a href="tidy_data.html#cb196-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(x)</span></code></pre></div>
@@ -695,7 +703,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="tidy_data.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Total number of TRUEs</span></span>
 <span id="cb198-2"><a href="tidy_data.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="tidy_data.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proportion that are TRUE</span></span>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="tidy_data.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proportion that is TRUE</span></span>
 <span id="cb200-2"><a href="tidy_data.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
 <pre><code>## [1] 0.3333333</code></pre>
 <p>Coercion often happens automatically. This is called implicit coercion. Most mathematical functions (<code>+</code>, <code>log</code>, <code>abs</code>, etc.) will coerce to a numeric or integer, and most logical operations (<code>&amp;</code>, <code>|</code>, <code>any</code>, etc) will coerce to a logical. You will usually get a warning message if the coercion might lose information.</p>
@@ -731,7 +739,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="lists" class="section level4" number="4.3.2.3">
 <h4><span class="header-section-number">4.3.2.3</span> Lists</h4>
-<p>Lists are also vectors, but different from atomic vectors because their elements can be of any type. In short, they are generic vectors. You construct lists by using <code>list()</code> instead of <code>c()</code>:</p>
+<p>Lists are also vectors, but different from atomic vectors because their elements can be of any type. In short, they are generic vectors. For example, you construct lists by using <code>list()</code> instead of <code>c()</code>:</p>
 <p>Lists are sometimes called recursive vectors, because a list can contain other lists. This makes them fundamentally different from atomic vectors.</p>
 <div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="tidy_data.html#cb218-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="st">&quot;a&quot;</span>, <span class="cn">TRUE</span>, <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))</span>
 <span id="cb218-2"><a href="tidy_data.html#cb218-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -814,8 +822,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For lists, elements are <strong>indexed by double brackets</strong>. Single brackets will still return a(nother) list. (We’ll talk more about subsetting and indexing in the fourth lesson.)</p>
 <p><strong>Exercises</strong></p>
 <ol style="list-style-type: decimal">
-<li><p>What are the four basic types of atomic vector? How does a list differ from an
-atomic vector?</p></li>
+<li><p>What are the four basic types of atomic vectors? How does a list differ from an atomic vector?</p></li>
 <li><p>Why is <code>1 == "1"</code> true? Why is <code>-1 &lt; FALSE</code> true? Why is <code>"one" &lt; 2</code> false?</p></li>
 <li><p>Create three vectors and then combine them into a list.</p></li>
 <li><p>If <code>x</code> is a list, what is the class of <code>x[1]</code>? How about <code>x[[1]]</code>?</p></li>
@@ -831,7 +838,7 @@ atomic vector?</p></li>
 <li><p>Class (<code>class(x)</code>), used to implement the S3 object system.</p></li>
 </ul>
 <p><strong>Additional tips</strong></p>
-<p>In an object-oriented system, a <a href="https://www.google.com/search?q=what+is+class+programming&amp;oq=what+is+class+programming&amp;aqs=chrome.0.0l6.3543j0j4&amp;sourceid=chrome&amp;ie=UTF-8">class</a> (an extensible problem-code-template) defines a type of objects like what its properties are, how it behaves, and how it relates to other types of objects. Therefore, technically, an object is an <a href="https://en.wikipedia.org/wiki/Instance_(computer_science)">instance</a> (or occurrence) of a class. A method is a function associated with a particular type of object.</p>
+<p>In an object-oriented system, a <a href="https://www.google.com/search?q=what+is+class+programming&amp;oq=what+is+class+programming&amp;aqs=chrome.0.0l6.3543j0j4&amp;sourceid=chrome&amp;ie=UTF-8">class</a> (an extensible problem-code-template) defines a type of object like what its properties are, how it behaves, and how it relates to other types of objects. Therefore, technically, an object is an <a href="https://en.wikipedia.org/wiki/Instance_(computer_science)">instance</a> (or occurrence) of a class. A method is a function associated with a particular type of object.</p>
 <div id="names" class="section level4" number="4.3.3.1">
 <h4><span class="header-section-number">4.3.3.1</span> Names</h4>
 <p>You can name a vector when you create it:</p>
@@ -908,7 +915,7 @@ atomic vector?</p></li>
 <pre><code>## party_factor
 ##   democrat republican 
 ##          3          0</code></pre>
-<p>Sometimes factors can be left unordered. Example: <code>democrat</code>, <code>republican</code>.</p>
+<p>Sometimes factors can be left unordered. Example: <code>democrat</code>, <code>republican.</code></p>
 <p>Other times you might want factors to be ordered (or ranked). Example: <code>low</code>, <code>medium</code>, <code>high</code>.</p>
 <div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="tidy_data.html#cb271-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>))</span>
 <span id="cb271-2"><a href="tidy_data.html#cb271-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -920,7 +927,7 @@ atomic vector?</p></li>
 <span id="cb275-2"><a href="tidy_data.html#cb275-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb275-3"><a href="tidy_data.html#cb275-3" aria-hidden="true" tabindex="-1"></a><span class="fu">is.ordered</span>(y)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<p>While factors look (and often behave) like character vectors, they are integers. Be careful when treating them like strings. Some string methods (like <code>gsub()</code> and <code>grepl()</code>) will coerce factors to strings, while others (like <code>nchar()</code>) will throw an error, and still others (like <code>c()</code>) will use the underlying integer values.</p>
+<p>While factors look (and often behave) like character vectors, they are integers. So be careful when treating them like strings. Some string methods (like <code>gsub()</code> and <code>grepl()</code>) will coerce factors to strings, while others (like <code>nchar()</code>) will throw an error, and still others (like <code>c()</code>) will use the underlying integer values.</p>
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="tidy_data.html#cb277-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;a&quot;</span>)</span>
 <span id="cb277-2"><a href="tidy_data.html#cb277-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb277-3"><a href="tidy_data.html#cb277-3" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
@@ -935,9 +942,9 @@ atomic vector?</p></li>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="tidy_data.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(x, <span class="st">&quot;c&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;2&quot; &quot;1&quot; &quot;c&quot;</code></pre>
 <p>For this reason, it’s usually best to explicitly convert factors to character vectors if you need string-like behavior. There was a memory advantage to using factors instead of character vectors in early versions of R, but this is no longer the case.</p>
-<p>Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there’s no way for those functions to know the set of all possible levels or their optimal order. If this becomes a problem, use the argument <code>stringsAsFactors = FALSE</code> to suppress this behavior, and then manually convert character vectors to factors using your knowledge of the data.</p>
+<p>Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there’s no way for those functions to know the set of all possible levels or their optimal order. If this becomes a problem, use the argument <code>stringsAsFactors = FALSE</code> to suppress this behavior and manually convert character vectors to factors using your knowledge of the data.</p>
 <p><strong>More attributes</strong></p>
-<p>All R objects can have arbitrary additional attributes, used to store metadata about the object. Attributes can be thought of as a named list (with unique names). Attributes can be accessed individually with <code>attr()</code> or all at once (as a list) with <code>attributes()</code>.</p>
+<p>All R objects can have arbitrary additional attributes used to store metadata about the object. Attributes can be considered a named list (with unique names). Attributes can be accessed individually with <code>attr()</code> or all at once (as a list) with <code>attributes().</code></p>
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="tidy_data.html#cb285-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb285-2"><a href="tidy_data.html#cb285-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb285-3"><a href="tidy_data.html#cb285-3" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(y, <span class="st">&quot;my_attribute&quot;</span>) <span class="ot">&lt;-</span> <span class="st">&quot;This is a vector&quot;</span></span>
@@ -976,7 +983,7 @@ atomic vector?</p></li>
 </ol>
 <div id="matrices" class="section level3" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Matrices</h3>
-<p>Matrices are created when we combine multiple vectors with the same class (e.g., numeric). This creates a dataset with rows and columns. By definition, if you want to combine multiple classes of vectors, you want a dataframe. You can coerce a matrix to become a dataframe, and vice-versa, but as with all vector coercions, the results can be unpredictable, so be sure you know how each variable (column) will convert.</p>
+<p>Matrices are created when we combine multiple vectors with the same class (e.g., numeric). This creates a dataset with rows and columns. By definition, if you want to combine multiple classes of vectors, you want a dataframe. You can coerce a matrix to become a dataframe and vice-versa, but as with all vector coercions, the results can be unpredictable, so be sure you know how each variable (column) will convert.</p>
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="tidy_data.html#cb292-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
 <span id="cb292-2"><a href="tidy_data.html#cb292-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb292-3"><a href="tidy_data.html#cb292-3" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
@@ -1198,7 +1205,7 @@ not all the same length.</p></li>
 ## 2  2 b
 ## 3  3 c
 ## 4 10 z</code></pre>
-<p>When combining column-wise, the number of rows must match, but row names are ignored. When combining row-wise, both the number and names of columns must match. (If you want to combine rows that don’t have the same columns, there are other functions/packages in R that can help.)</p>
+<p>When combining column-wise, the number of rows must match, but row names are ignored. When combining row-wise, both the number and names of columns must match. (If you want to combine rows that don’t have the same columns, other functions/packages in R can help.)</p>
 <p>It’s a common mistake to try and create a dataframe by <code>cbind()</code>ing vectors together. This doesn’t work because <code>cbind()</code> will create a matrix unless one of the arguments is already a dataframe. Instead use <code>data.frame()</code> directly:</p>
 <div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="tidy_data.html#cb354-1" aria-hidden="true" tabindex="-1"></a>bad <span class="ot">&lt;-</span> (<span class="fu">cbind</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>)))</span>
 <span id="cb354-2"><a href="tidy_data.html#cb354-2" aria-hidden="true" tabindex="-1"></a>bad</span></code></pre></div>
@@ -1224,7 +1231,7 @@ not all the same length.</p></li>
 ##  $ y: chr  &quot;a&quot; &quot;b&quot;</code></pre>
 <p>The conversion rules for <code>cbind()</code> are complicated and best avoided by ensuring all inputs are of the same type.</p>
 <p><strong>Other objects</strong></p>
-<p>Missing values are specified with <code>NA</code>, which is a logical vector of length 1. <code>NA</code> will always be coerced to the correct type if used inside <code>c()</code></p>
+<p>Missing values are specified with <code>NA,</code> which is a logical vector of length 1. <code>NA</code> will always be coerced to the correct type if used inside <code>c()</code></p>
 <div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="tidy_data.html#cb362-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>)</span>
 <span id="cb362-2"><a href="tidy_data.html#cb362-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] NA  1</code></pre>
@@ -1251,7 +1258,7 @@ not all the same length.</p></li>
 <li><p>Important differences in behavior for different objects (e.g., vectors, lists, factors, matrices, and data frames).</p></li>
 <li><p>The use of subsetting in conjunction with assignment.</p></li>
 </ul>
-<p>This unit helps you master subsetting by starting with the simplest type of subsetting: subsetting an atomic vector with <code>[</code>. It then gradually extends your knowledge, first to more complicated data types (like dataframes and lists), and then to the other subsetting operators, <code>[[</code> and <code>$</code>. You’ll then learn how subsetting and assignment can be combined to modify parts of an object, and, finally, you’ll see a large number of useful applications.</p>
+<p>This unit helps you master subsetting by starting with the simplest type of subsetting: subsetting an atomic vector with <code>[</code>. It then gradually extends your knowledge to more complicated data types (like dataframes and lists) and then to the other subsetting operators, <code>[[</code> and <code>$</code>. You’ll then learn how subsetting and assignment can be combined to modify parts of an object, and, finally, you’ll see a large number of useful applications.</p>
 <div id="atomic-vectors" class="section level3" number="4.5.1">
 <h3><span class="header-section-number">4.5.1</span> Atomic vectors</h3>
 <p>Let’s explore the different types of subsetting with a simple vector, <code>x</code>.</p>
@@ -1297,7 +1304,7 @@ not all the same length.</p></li>
 <span id="cb395-2"><a href="tidy_data.html#cb395-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb395-3"><a href="tidy_data.html#cb395-3" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)]</span></code></pre></div>
 <pre><code>## [1] 2.1 4.2</code></pre>
-<p>This is probably the most useful type of subsetting because you write the expression that creates the logical vector</p>
+<p>This is probably the most useful type of subsetting because you write the expression that creates the logical vector.</p>
 <div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="tidy_data.html#cb397-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)</span>
 <span id="cb397-2"><a href="tidy_data.html#cb397-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb397-3"><a href="tidy_data.html#cb397-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this returns a logical vector</span></span>
@@ -1384,7 +1391,7 @@ not all the same length.</p></li>
 <span id="cb436-10"><a href="tidy_data.html#cb436-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fullName)</span></code></pre></div>
 <p>As with Python, R can also extract substrings based on the index position of its characters. There are, however, two critical differences. First, <strong>index positions in R start at 1</strong>. This is in contrast to Python, where indexation begins at 0.</p>
 <p>Second, <strong>object subsets using index positions in R contain all the elements in the specified range</strong>. If some object called <code>data</code> contains five elements, <code>data[2:4]</code> will return the elements at the second, third, and fourth positions. By contrast, the same subset in Python would return the objects at the third and fourth positions (or second and third positions, depending upon whether your index starts at 0 or 1).</p>
-<p>Third, <strong>R does not allow indexing of character strings</strong>*. Instead, you must use the <code>substr()</code> function. Note that this function must receive both the <code>start</code> and <code>stop</code> arguments. So if you want to get all the characters between some index and the end of the string, you must make use of the <code>nchar()</code> function, which will tell you the length of a character string.</p>
+<p>Third, <strong>R does not allow indexing of character strings</strong>*. Instead, you must use the <code>substr()</code> function. Note that this function must receive both the <code>start</code> and <code>stop</code> arguments. So if you want to get all the characters between some index and the end of the string, you must use the <code>nchar()</code> function, which will tell you the length of a character string.</p>
 <div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="tidy_data.html#cb437-1" aria-hidden="true" tabindex="-1"></a>fullName <span class="ot">&lt;-</span> <span class="fu">paste</span>(firstName, lastName)</span>
 <span id="cb437-2"><a href="tidy_data.html#cb437-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb437-3"><a href="tidy_data.html#cb437-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this won&#39;t work like in Python</span></span>
@@ -1416,7 +1423,7 @@ not all the same length.</p></li>
 <pre><code>## [1] &quot;Jae Yeon Choi&quot;</code></pre>
 <div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="tidy_data.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gsub</span>(<span class="at">pattern =</span> <span class="st">&quot;Jae Yeon&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;Danny&quot;</span>, <span class="at">x =</span> fullName)</span></code></pre></div>
 <pre><code>## [1] &quot;Danny Kim&quot;</code></pre>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="tidy_data.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the importance of cases! This doesn&#39;t throw an error, so you won&#39;t realize your function didn&#39;t work unless you double-check several entries</span></span>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="tidy_data.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the importance of cases! This doesn&#39;t throw an error, so you won&#39;t realize your function didn&#39;t work unless you double-check several entries.</span></span>
 <span id="cb461-2"><a href="tidy_data.html#cb461-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb461-3"><a href="tidy_data.html#cb461-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gsub</span>(<span class="at">pattern =</span> <span class="st">&quot; &quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>, <span class="at">x =</span> fullName) <span class="co"># The same function is used for replacements and stripping</span></span></code></pre></div>
 <pre><code>## [1] &quot;JaeYeonKim&quot;</code></pre>
@@ -1528,7 +1535,7 @@ not all the same length.</p></li>
 </ul>
 <div id="section" class="section level5" number="4.5.5.0.1">
 <h5><span class="header-section-number">4.5.5.0.1</span> <code>[[</code></h5>
-<p>You need <code>[[</code> when working with lists. When <code>[</code> is applied to a list it always returns a list: it never gives you the contents of the list. To get the contents, you need <code>[[</code>:</p>
+<p>You need <code>[[</code> when working with lists. When <code>[</code> is applied to a list it always returns a list: it never gives you the list’s contents. To get the contents, you need <code>[[</code>:</p>
 <blockquote>
 <p>“If list <code>x</code> is a train carrying objects, then <code>x[[5]]</code> is
 the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
@@ -1665,20 +1672,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 </div>
 <div id="tidyverse" class="section level2" number="4.6">
 <h2><span class="header-section-number">4.6</span> Tidyverse</h2>
-<ul>
-<li><p>I adapted the following content from Wickham’s <a href="https://r4ds.had.co.nz/tidy-data.html">R for Data Science</a>, his <a href="http://www.jstatsoft.org/v59/i10/paper">earlier paper</a> published in the Journal of Statistical Software, <a href="https://csgillespie.github.io/efficientR/">Efficient R Programming</a> by Gillespie and Lovelace, and <a href="https://bookdown.org/rdpeng/rprogdatascience/">R Programming for Data Science</a> by Roger P. Peng.</p></li>
-<li><p><a href="https://design.tidyverse.org/unifying-principles.html">Tidyverse design guide</a></p>
-<ul>
-<li><p>Human-centered</p></li>
-<li><p>Consistent</p></li>
-<li><p>Composable (modularized)</p></li>
-<li><p>Inclusive</p></li>
-<li><p>Influenced by the <a href="https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html">Basics of the Unix Philosophy</a>, <a href="https://www.python.org/dev/peps/pep-0020/">The Zen of Python</a>, and the <a href="https://refs.devinmcgloin.com/smalltalk/Design-Principles-Behind-Smalltalk.pdf">Design Principles Behind Smalltalk</a></p></li>
-</ul></li>
-</ul>
-</div>
-<div id="tidy-data" class="section level2" number="4.7">
-<h2><span class="header-section-number">4.7</span> Tidy data</h2>
+<div id="the-big-picture-5" class="section level3" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> The Big Picture</h3>
 <blockquote>
 <p>“Tidy data sets are easy to manipulate, model and visualize, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table.” - Hadley Wickham</p>
 </blockquote>
@@ -1703,7 +1698,7 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <p>In summary, tidy data is a useful conceptual idea and is often the right way to go for general, small data sets, but may not be appropriate for all problems. - Jeff Leek</p>
 </blockquote>
 <p>For instance, in many data science applications, linear algebra-based computations are essential (e.g., <a href="https://www.math.upenn.edu/~kazdan/312S13/JJ/PCA-JJ.pdf">Principal Component Analysis</a>). These computations are optimized to work on matrices, not tidy data frames (for more information, read <a href="https://simplystatistics.org/2016/02/17/non-tidy-data/">Jeff Leek’s blog post</a>).</p>
-<p>This is what a tidy data looks like.</p>
+<p>This is what tidy data looks like.</p>
 <div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="tidy_data.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb529-2"><a href="tidy_data.html#cb529-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb529-3"><a href="tidy_data.html#cb529-3" aria-hidden="true" tabindex="-1"></a>table1</span></code></pre></div>
@@ -1717,7 +1712,7 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
 <p><strong>Additional tips</strong></p>
-<p>There are so many different ways of taking a look at data in R. Can you discuss the pros and cons of each approach? Which one do you prefer and why?</p>
+<p>There are so many different ways of looking at data in R. Can you discuss the pros and cons of each approach? Which one do you prefer and why?</p>
 <ul>
 <li><p><code>str(table1)</code></p></li>
 <li><p><code>glimpse(table1)</code>: similar to <code>str()</code> cleaner output</p></li>
@@ -1729,13 +1724,14 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 </ul></li>
 </ul>
 <p>These two packages don’t do anything new but simplify most common tasks in data manipulation. Plus, they are fast, consistent, and more readable.</p>
-<p>Practically, this approach is right because you’re going to have consistency in data format across all the projects you’re working on. Also, tidy data works well with key packages (e.g., dplyr, ggplot2) in R.</p>
-<p>Computationally, this approach is useful for vectorized programming because “different variables from the same observation are always paired.” Vectorized means a function applies to a vector treats each element individually (=operations working in parallel).</p>
+<p>Practically, this approach is right because you will have consistency in data format across all the projects you’re working on. Also, tidy data works well with key packages (e.g., <code>dplyr,</code> <code>ggplot2</code>) in R.</p>
+<p>Computationally, this approach is useful for vectorized programming because “different variables from the same observation are always paired.” Vectorized means a function applies to a vector that treats each element individually (=operations working in parallel).</p>
 </div>
-<div id="tidying-tidyr" class="section level2" number="4.8">
-<h2><span class="header-section-number">4.8</span> Tidying (tidyr)</h2>
-<div id="reshaping" class="section level3" number="4.8.1">
-<h3><span class="header-section-number">4.8.1</span> Reshaping</h3>
+</div>
+<div id="tidying-tidyr" class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> Tidying (tidyr)</h2>
+<div id="reshaping" class="section level3" number="4.7.1">
+<h3><span class="header-section-number">4.7.1</span> Reshaping</h3>
 <p><strong>Signs of messy datasets</strong></p>
 <ul>
 <li><ol style="list-style-type: decimal">
@@ -1815,7 +1811,7 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <p class="caption">Concept map for pipe operator. By Jeroen Janssens, Monica Alonso.</p>
 </div>
 <ul>
-<li>The pipe operator <code>%&gt;%</code> originally comes from the <code>magrittr</code> package. The idea behind the pipe operator is <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">similar to</a> what we learned about chaining functions in high school. f: B -&gt; C and g: A -&gt; B can be expressed as <span class="math inline">\(f(g(x))\)</span>. The pipe operator chains operations. When you read pipe operator, read as “and then” (Wickham’s recommendation). The keyboard shortcut is ctrl + shift + M. The key idea here is not creating temporary variables and focusing on verbs (functions). We’ll learn more about this functional programming paradigm later on.</li>
+<li>The pipe operator <code>%&gt;%</code> originally comes from the <code>magrittr</code> package. The idea behind the pipe operator is <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">similar to</a> what we learned about chaining functions in high school. f: B -&gt; C and g: A -&gt; B can be expressed as <span class="math inline">\(f(g(x))\)</span>. The pipe operator chains operations. When reading the pipe operator, read as “and then” (Wickham’s recommendation). The keyboard shortcut is ctrl + shift + M. The key idea here is not creating temporary variables and focusing on verbs (functions). We’ll learn more about this functional programming paradigm later on.</li>
 </ul>
 <div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="tidy_data.html#cb533-1" aria-hidden="true" tabindex="-1"></a>table4a </span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
@@ -2025,7 +2021,7 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
-<p>Sometimes, a consultee came to me and asked: “I don’t have missing values in my original dataframe. Then R said that I have missing values after I’ve done some data transformations. What happened?”</p>
+<p>Sometimes, a consultee came to me and asked: “I don’t have missing values in my original dataframe. Then R said that I had missing values after doing some data transformations. What happened?”</p>
 <p>Here’s an answer.</p>
 <p>R defines missing values in two ways.</p>
 <ul>
@@ -2203,9 +2199,9 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 3 Jane_June
 ## 4</code></pre>
 </div>
-<div id="filling" class="section level3" number="4.8.2">
-<h3><span class="header-section-number">4.8.2</span> Filling</h3>
-<p>This is a relatively less-known function of the tidyr package. I found this function super useful to complete time-series data. For instance, how can you replace NA in the following example (this use case is drawn from the <a href="https://tidyr.tidyverse.org/reference/fill.html">tidyr package vignette</a>.)?</p>
+<div id="filling" class="section level3" number="4.7.2">
+<h3><span class="header-section-number">4.7.2</span> Filling</h3>
+<p>This is a relatively less-known function of the tidyr package. However, I found this function super useful to complete time-series data. For instance, how can you replace NA in the following example (this use case is drawn from the <a href="https://tidyr.tidyverse.org/reference/fill.html">tidyr package vignette</a>.)?</p>
 <div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="tidy_data.html#cb577-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example </span></span>
 <span id="cb577-2"><a href="tidy_data.html#cb577-2" aria-hidden="true" tabindex="-1"></a>stock <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
 <span id="cb577-3"><a href="tidy_data.html#cb577-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span> quarter, <span class="sc">~</span> year, <span class="sc">~</span>stock_price, </span>
@@ -2274,8 +2270,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 9 N1           Mexican                        5</code></pre>
 </div>
 </div>
-<div id="manipulating-dplyr" class="section level2" number="4.9">
-<h2><span class="header-section-number">4.9</span> Manipulating (dplyr)</h2>
+<div id="manipulating-dplyr" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Manipulating (dplyr)</h2>
 <div class="figure">
 <img src="https://education.rstudio.com/blog/2020/09/concept-maps/dplyr.png" alt="" />
 <p class="caption">Concept map for dplyr. By Monica Alonso, Greg Wilson.</p>
@@ -2285,8 +2281,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 <li>fast to run (due to the C++ backed) and intuitive to type</li>
 <li>works well with tidy data and databases (thanks to <a href="https://dbplyr.tidyverse.org/"><code>dbplyr</code></a>)</li>
 </ul>
-<div id="rearranging" class="section level3" number="4.9.1">
-<h3><span class="header-section-number">4.9.1</span> Rearranging</h3>
+<div id="rearranging" class="section level3" number="4.8.1">
+<h3><span class="header-section-number">4.8.1</span> Rearranging</h3>
 <ul>
 <li><p>Arrange</p></li>
 <li><p>Order rows</p></li>
@@ -2377,8 +2373,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## 2  2012
 ## 3  2013</code></pre>
 </div>
-<div id="subset-observations-rows" class="section level3" number="4.9.2">
-<h3><span class="header-section-number">4.9.2</span> Subset observations (rows)</h3>
+<div id="subset-observations-rows" class="section level3" number="4.8.2">
+<h3><span class="header-section-number">4.8.2</span> Subset observations (rows)</h3>
 <ul>
 <li><p>Choose row by logical condition</p></li>
 <li><p>Single condition</p></li>
@@ -2682,8 +2678,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 </div>
-<div id="subset-variables-columns" class="section level3" number="4.9.3">
-<h3><span class="header-section-number">4.9.3</span> Subset variables (columns)</h3>
+<div id="subset-variables-columns" class="section level3" number="4.8.3">
+<h3><span class="header-section-number">4.8.3</span> Subset variables (columns)</h3>
 <div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="tidy_data.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(msleep)</span></code></pre></div>
 <pre><code>##  [1] &quot;name&quot;         &quot;genus&quot;        &quot;vore&quot;         &quot;order&quot;        &quot;conservation&quot;
 ##  [6] &quot;sleep_total&quot;  &quot;sleep_rem&quot;    &quot;sleep_cycle&quot;  &quot;awake&quot;        &quot;brainwt&quot;     
@@ -3272,10 +3268,10 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ##                    Zambia 12      1%
 ##                  Zimbabwe 12      1%</code></pre>
 </div>
-<div id="create-variables" class="section level3" number="4.9.4">
-<h3><span class="header-section-number">4.9.4</span> Create variables</h3>
-<div id="change-values-using-conditions" class="section level4" number="4.9.4.1">
-<h4><span class="header-section-number">4.9.4.1</span> Change values using conditions</h4>
+<div id="create-variables" class="section level3" number="4.8.4">
+<h3><span class="header-section-number">4.8.4</span> Create variables</h3>
+<div id="change-values-using-conditions" class="section level4" number="4.8.4.1">
+<h4><span class="header-section-number">4.8.4.1</span> Change values using conditions</h4>
 <p>You can think of <code>case_when()</code> (multiple conditions) as an extended version of <code>ifelse()</code> (binary conditions).</p>
 <div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="tidy_data.html#cb649-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span></span>
 <span id="cb649-2"><a href="tidy_data.html#cb649-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cyl_dummy =</span> <span class="fu">case_when</span>(cyl <span class="sc">&gt;</span> <span class="fu">median</span>(cyl) <span class="sc">~</span> <span class="st">&quot;High&quot;</span>, <span class="co"># if condition</span></span>
@@ -3288,8 +3284,8 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## [17] &quot;High&quot;   &quot;Low&quot;    &quot;Low&quot;    &quot;Low&quot;    &quot;Low&quot;    &quot;High&quot;   &quot;High&quot;   &quot;High&quot;  
 ## [25] &quot;High&quot;   &quot;Low&quot;    &quot;Low&quot;    &quot;Low&quot;    &quot;High&quot;   &quot;Median&quot; &quot;High&quot;   &quot;Low&quot;</code></pre>
 </div>
-<div id="change-values-manually" class="section level4" number="4.9.4.2">
-<h4><span class="header-section-number">4.9.4.2</span> Change values manually</h4>
+<div id="change-values-manually" class="section level4" number="4.8.4.2">
+<h4><span class="header-section-number">4.8.4.2</span> Change values manually</h4>
 <div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="tidy_data.html#cb651-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
 <span id="cb651-2"><a href="tidy_data.html#cb651-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cyl_dummy =</span> <span class="fu">recode</span>(cyl_dummy, <span class="co"># Target column </span></span>
 <span id="cb651-3"><a href="tidy_data.html#cb651-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;High&quot;</span> <span class="ot">=</span> <span class="st">&quot;2&quot;</span>, <span class="co"># Old - New</span></span>
@@ -3300,10 +3296,10 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## [20] &quot;0&quot; &quot;0&quot; &quot;2&quot; &quot;2&quot; &quot;2&quot; &quot;2&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;2&quot; &quot;1&quot; &quot;2&quot; &quot;0&quot;</code></pre>
 </div>
 </div>
-<div id="counting" class="section level3" number="4.9.5">
-<h3><span class="header-section-number">4.9.5</span> Counting</h3>
+<div id="counting" class="section level3" number="4.8.5">
+<h3><span class="header-section-number">4.8.5</span> Counting</h3>
 <ul>
-<li>How may countries in each continent?</li>
+<li>How many countries are in each continent?</li>
 </ul>
 <div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="tidy_data.html#cb653-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb653-2"><a href="tidy_data.html#cb653-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(continent)</span></code></pre></div>
@@ -3441,10 +3437,10 @@ the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
 ## # … with 50 more rows</code></pre>
 <p><code>count()</code> is a simple function, but it is still helpful to learn an essential concept underlying complex data wrangling: split-apply-combine strategy. For more information, read Wickham’s article (2011) <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.182.5667&amp;rep=rep1&amp;type=pdf">“The Split-Apply-Combine Strategy for Data Analysis”</a> published in the <em>Journal of Statistical Software</em> (especially pages 7-8). <a href="https://github.com/hadley/plyr"><code>plyr</code></a> was the package (retired) that demonstrated this idea, which has evolved into two directions: <a href="https://dplyr.tidyverse.org/">dplyr</a> (for data frames) and <a href="https://purrr.tidyverse.org/">purrr</a> (for lists)</p>
 </div>
-<div id="summarizing" class="section level3" number="4.9.6">
-<h3><span class="header-section-number">4.9.6</span> Summarizing</h3>
-<div id="basic" class="section level4" number="4.9.6.1">
-<h4><span class="header-section-number">4.9.6.1</span> Basic</h4>
+<div id="summarizing" class="section level3" number="4.8.6">
+<h3><span class="header-section-number">4.8.6</span> Summarizing</h3>
+<div id="basic" class="section level4" number="4.8.6.1">
+<h4><span class="header-section-number">4.8.6.1</span> Basic</h4>
 <ul>
 <li>Create a summary</li>
 <li>Think of <code>summarise()</code> as an extended version of <code>count()</code>.</li>
@@ -3571,7 +3567,7 @@ Oceania
 </table>
 <div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="tidy_data.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For HTML and MS Office suite</span></span>
 <span id="cb673-2"><a href="tidy_data.html#cb673-2" aria-hidden="true" tabindex="-1"></a>tablea <span class="sc">%&gt;%</span> flextable<span class="sc">::</span><span class="fu">flextable</span>()</span></code></pre></div>
-<template id="268139e9-3c92-499a-9aa1-f31de755494f"><style>
+<template id="dbf13f85-5916-475f-ba8a-ed7dfc5c56a3"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -3605,12 +3601,12 @@ Oceania
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-f0a0b0ea{}.cl-f098d794{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f099014c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f0990160{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f0994756{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0994760{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f099476a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f099476b{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f099476c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0994774{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-f0a0b0ea'>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-f099476c"><p class="cl-f099014c"><span class="cl-f098d794">continent</span></p></td><td class="cl-f0994774"><p class="cl-f0990160"><span class="cl-f098d794">n</span></p></td><td class="cl-f0994774"><p class="cl-f0990160"><span class="cl-f098d794">mean_gdp</span></p></td><td class="cl-f0994774"><p class="cl-f0990160"><span class="cl-f098d794">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-f0994756"><p class="cl-f099014c"><span class="cl-f098d794">Africa</span></p></td><td class="cl-f0994760"><p class="cl-f0990160"><span class="cl-f098d794">624</span></p></td><td class="cl-f0994760"><p class="cl-f0990160"><span class="cl-f098d794">2,193.755</span></p></td><td class="cl-f0994760"><p class="cl-f0990160"><span class="cl-f098d794">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f0994756"><p class="cl-f099014c"><span class="cl-f098d794">Americas</span></p></td><td class="cl-f0994760"><p class="cl-f0990160"><span class="cl-f098d794">300</span></p></td><td class="cl-f0994760"><p class="cl-f0990160"><span class="cl-f098d794">7,136.110</span></p></td><td class="cl-f0994760"><p class="cl-f0990160"><span class="cl-f098d794">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f0994756"><p class="cl-f099014c"><span class="cl-f098d794">Asia</span></p></td><td class="cl-f0994760"><p class="cl-f0990160"><span class="cl-f098d794">396</span></p></td><td class="cl-f0994760"><p class="cl-f0990160"><span class="cl-f098d794">7,902.150</span></p></td><td class="cl-f0994760"><p class="cl-f0990160"><span class="cl-f098d794">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f0994756"><p class="cl-f099014c"><span class="cl-f098d794">Europe</span></p></td><td class="cl-f0994760"><p class="cl-f0990160"><span class="cl-f098d794">360</span></p></td><td class="cl-f0994760"><p class="cl-f0990160"><span class="cl-f098d794">14,469.476</span></p></td><td class="cl-f0994760"><p class="cl-f0990160"><span class="cl-f098d794">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f099476a"><p class="cl-f099014c"><span class="cl-f098d794">Oceania</span></p></td><td class="cl-f099476b"><p class="cl-f0990160"><span class="cl-f098d794">24</span></p></td><td class="cl-f099476b"><p class="cl-f0990160"><span class="cl-f098d794">18,621.609</span></p></td><td class="cl-f099476b"><p class="cl-f0990160"><span class="cl-f098d794">6,358.983</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="10a055b3-9f69-41d7-9153-638cb79d1c51"></div>
+</style><div class="tabwid"><style>.cl-6c9717a6{}.cl-6c9216ca{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-6c922b42{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-6c922b4c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-6c925acc{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6c925acd{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6c925ad6{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6c925ad7{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6c925ae0{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6c925ae1{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-6c9717a6'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-6c925ae0"><p class="cl-6c922b42"><span class="cl-6c9216ca">continent</span></p></td><td class="cl-6c925ae1"><p class="cl-6c922b4c"><span class="cl-6c9216ca">n</span></p></td><td class="cl-6c925ae1"><p class="cl-6c922b4c"><span class="cl-6c9216ca">mean_gdp</span></p></td><td class="cl-6c925ae1"><p class="cl-6c922b4c"><span class="cl-6c9216ca">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-6c925acc"><p class="cl-6c922b42"><span class="cl-6c9216ca">Africa</span></p></td><td class="cl-6c925acd"><p class="cl-6c922b4c"><span class="cl-6c9216ca">624</span></p></td><td class="cl-6c925acd"><p class="cl-6c922b4c"><span class="cl-6c9216ca">2,193.755</span></p></td><td class="cl-6c925acd"><p class="cl-6c922b4c"><span class="cl-6c9216ca">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6c925acc"><p class="cl-6c922b42"><span class="cl-6c9216ca">Americas</span></p></td><td class="cl-6c925acd"><p class="cl-6c922b4c"><span class="cl-6c9216ca">300</span></p></td><td class="cl-6c925acd"><p class="cl-6c922b4c"><span class="cl-6c9216ca">7,136.110</span></p></td><td class="cl-6c925acd"><p class="cl-6c922b4c"><span class="cl-6c9216ca">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6c925acc"><p class="cl-6c922b42"><span class="cl-6c9216ca">Asia</span></p></td><td class="cl-6c925acd"><p class="cl-6c922b4c"><span class="cl-6c9216ca">396</span></p></td><td class="cl-6c925acd"><p class="cl-6c922b4c"><span class="cl-6c9216ca">7,902.150</span></p></td><td class="cl-6c925acd"><p class="cl-6c922b4c"><span class="cl-6c9216ca">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6c925acc"><p class="cl-6c922b42"><span class="cl-6c9216ca">Europe</span></p></td><td class="cl-6c925acd"><p class="cl-6c922b4c"><span class="cl-6c9216ca">360</span></p></td><td class="cl-6c925acd"><p class="cl-6c922b4c"><span class="cl-6c9216ca">14,469.476</span></p></td><td class="cl-6c925acd"><p class="cl-6c922b4c"><span class="cl-6c9216ca">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6c925ad6"><p class="cl-6c922b42"><span class="cl-6c9216ca">Oceania</span></p></td><td class="cl-6c925ad7"><p class="cl-6c922b4c"><span class="cl-6c9216ca">24</span></p></td><td class="cl-6c925ad7"><p class="cl-6c922b4c"><span class="cl-6c9216ca">18,621.609</span></p></td><td class="cl-6c925ad7"><p class="cl-6c922b4c"><span class="cl-6c9216ca">6,358.983</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="7e3a6c2e-00bc-4871-9549-b93e9c1d2fe2"></div>
 <script>
-var dest = document.getElementById("10a055b3-9f69-41d7-9153-638cb79d1c51");
-var template = document.getElementById("268139e9-3c92-499a-9aa1-f31de755494f");
+var dest = document.getElementById("7e3a6c2e-00bc-4871-9549-b93e9c1d2fe2");
+var template = document.getElementById("dbf13f85-5916-475f-ba8a-ed7dfc5c56a3");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -3624,8 +3620,8 @@ fantome.appendChild(templateContent);
 </script>
 
 </div>
-<div id="scoped-summaries" class="section level4" number="4.9.6.2">
-<h4><span class="header-section-number">4.9.6.2</span> Scoped summaries</h4>
+<div id="scoped-summaries" class="section level4" number="4.8.6.2">
+<h4><span class="header-section-number">4.8.6.2</span> Scoped summaries</h4>
 <ul>
 <li><p>Old way</p></li>
 <li><p><code>summarise_all()</code></p></li>
@@ -3807,22 +3803,21 @@ fantome.appendChild(templateContent);
 <p>Note that this workshop does not cover creating and manipulating variables using <code>mutate()</code> because many techniques you learned from playing with <code>summarise()</code> can be directly applied to <code>mutate()</code>.</p>
 <p><strong>Challenge</strong></p>
 <ol style="list-style-type: decimal">
-<li><p>Summarize the average GDP of countries whose names starting with the alphabet “A.”</p></li>
+<li><p>Summarize the average GDP of countries whose names start with the alphabet “A.”</p></li>
 <li><p>Turn the summary dataframe into a publishable table using either <code>kableExtra</code> or <code>flextable</code> package.</p></li>
 </ol>
 </div>
-<div id="tabulation-tbd" class="section level4" number="4.9.6.3">
-<h4><span class="header-section-number">4.9.6.3</span> Tabulation (TBD)</h4>
+<div id="tabulation-tbd" class="section level4" number="4.8.6.3">
+<h4><span class="header-section-number">4.8.6.3</span> Tabulation (TBD)</h4>
 </div>
 </div>
-<div id="grouping" class="section level3" number="4.9.7">
-<h3><span class="header-section-number">4.9.7</span> Grouping</h3>
-<div id="grouped-summaries" class="section level4" number="4.9.7.1">
-<h4><span class="header-section-number">4.9.7.1</span> Grouped summaries</h4>
+<div id="grouping" class="section level3" number="4.8.7">
+<h3><span class="header-section-number">4.8.7</span> Grouping</h3>
+<div id="grouped-summaries" class="section level4" number="4.8.7.1">
+<h4><span class="header-section-number">4.8.7.1</span> Grouped summaries</h4>
 <ul>
 <li><p>Calculate the mean of <code>gdpPercap</code>.</p></li>
-<li><p>Some functions are designed to work together. For instance, the group_by
-function defines the strata that you’re going to use for summary statistics. Then, use summarise() or summarize() for producing summary statistics.</p></li>
+<li><p>Some functions are designed to work together. For instance, the <code>group_by()</code> function defines the strata you will use for summary statistics. Then, use <code>summarise()</code> to obtain summary statistics.</p></li>
 </ul>
 <div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="tidy_data.html#cb695-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb695-2"><a href="tidy_data.html#cb695-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> <span class="co">#</span></span>
@@ -3968,8 +3963,8 @@ function defines the strata that you’re going to use for summary statistics. T
 ## `new`:  1 3 6 10 15 21 28 36 45 55</code></pre>
 </div>
 </div>
-<div id="joining" class="section level3" number="4.9.8">
-<h3><span class="header-section-number">4.9.8</span> Joining</h3>
+<div id="joining" class="section level3" number="4.8.8">
+<h3><span class="header-section-number">4.8.8</span> Joining</h3>
 <p>Relational data = multiple tables of data</p>
 <div class="figure">
 <img src="https://d33wubrfki0l68.cloudfront.net/245292d1ea724f6c3fd8a92063dcd7bfb9758d02/5751b/diagrams/relational-nycflights.png" alt="" />
@@ -4007,8 +4002,8 @@ function defines the strata that you’re going to use for summary statistics. T
 <div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="tidy_data.html#cb722-1" aria-hidden="true" tabindex="-1"></a>flights<span class="sc">$</span>tailnum <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;N14228&quot; &quot;N24211&quot; &quot;N619AA&quot; &quot;N804JB&quot; &quot;N668DN&quot; &quot;N39463&quot;</code></pre>
 <p>For joining, don’t be distracted by other details and focus on KEYS!</p>
-<div id="mutating-joins" class="section level4" number="4.9.8.1">
-<h4><span class="header-section-number">4.9.8.1</span> Mutating joins</h4>
+<div id="mutating-joins" class="section level4" number="4.8.8.1">
+<h4><span class="header-section-number">4.8.8.1</span> Mutating joins</h4>
 <blockquote>
 <p>Add new variables to one data frame from matching observations in another"</p>
 </blockquote>
@@ -4077,7 +4072,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <ul>
 <li>Full Join</li>
 </ul>
-<p><code>full_join()</code> keeps the observations from both tables. If they were unmatched, then NAs were recoded in one of the two tables.</p>
+<p><code>full_join()</code> keeps the observations from both tables. NAs were recorded in one of the two tables if they were unmatched.</p>
 <div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="tidy_data.html#cb734-1" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(x, y)</span></code></pre></div>
 <pre><code>## Joining, by = &quot;key&quot;</code></pre>
 <pre><code>## # A tibble: 5 × 3
@@ -4089,8 +4084,8 @@ function defines the strata that you’re going to use for summary statistics. T
 ## 4     4 x4    y4   
 ## 5     5 &lt;NA&gt;  y5</code></pre>
 </div>
-<div id="filtering-joins" class="section level4" number="4.9.8.2">
-<h4><span class="header-section-number">4.9.8.2</span> Filtering joins</h4>
+<div id="filtering-joins" class="section level4" number="4.8.8.2">
+<h4><span class="header-section-number">4.8.8.2</span> Filtering joins</h4>
 <blockquote>
 <p>Filter observations from one data frame based on whether they match an observation in the other table.</p>
 </blockquote>
@@ -4161,12 +4156,12 @@ function defines the strata that you’re going to use for summary statistics. T
 </div>
 </div>
 </div>
-<div id="modeling-broom" class="section level2" number="4.10">
-<h2><span class="header-section-number">4.10</span> Modeling (broom)</h2>
-<div id="nesting" class="section level3" number="4.10.1">
-<h3><span class="header-section-number">4.10.1</span> Nesting</h3>
-<div id="nest" class="section level4" number="4.10.1.1">
-<h4><span class="header-section-number">4.10.1.1</span> nest</h4>
+<div id="modeling-broom" class="section level2" number="4.9">
+<h2><span class="header-section-number">4.9</span> Modeling (broom)</h2>
+<div id="nesting" class="section level3" number="4.9.1">
+<h3><span class="header-section-number">4.9.1</span> Nesting</h3>
+<div id="nest" class="section level4" number="4.9.1.1">
+<h4><span class="header-section-number">4.9.1.1</span> nest</h4>
 <p>The following example comes from <a href="https://r4ds.had.co.nz/many-models.html">R for Data Science</a> by Garrett Grolemund and Hadley Wickham.</p>
 <ul>
 <li>How can you run multiple models simultaneously? Using a nested data frame.</li>
@@ -4180,7 +4175,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <li><p><strong>Nested data: each row = a group</strong></p></li>
 </ul>
 <p><strong>Challenge</strong></p>
-<p>In the following example, why did we use <code>country</code> and <code>continent</code> for nesting variables?</p>
+<p>Why did we use <code>country</code> and <code>continent</code> for nesting variables in the following example?</p>
 <div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="tidy_data.html#cb746-1" aria-hidden="true" tabindex="-1"></a>nested <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb746-2"><a href="tidy_data.html#cb746-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country, continent) <span class="sc">%&gt;%</span></span>
 <span id="cb746-3"><a href="tidy_data.html#cb746-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>()</span>
@@ -4239,8 +4234,8 @@ function defines the strata that you’re going to use for summary statistics. T
 ## 6 Australia   Oceania   &lt;tibble [12 × 4]&gt; &lt;lm&gt;</code></pre>
 <p>S3 is part of R’s object-oriented systems. If you need further information, check out <a href="http://adv-r.had.co.nz/S3.html">this section</a> in Hadley’s Advanced R.</p>
 </div>
-<div id="unnest" class="section level4" number="4.10.1.2">
-<h4><span class="header-section-number">4.10.1.2</span> unnest</h4>
+<div id="unnest" class="section level4" number="4.9.1.2">
+<h4><span class="header-section-number">4.9.1.2</span> unnest</h4>
 <ul>
 <li>glance()</li>
 </ul>
@@ -4249,7 +4244,7 @@ function defines the strata that you’re going to use for summary statistics. T
 <ul>
 <li><code>broom::glance(model)</code>: for evaluating model quality and/or complexity</li>
 <li><code>broom::tidy(model)</code>: for extracting each coefficient in the model (the estimates + its variability)</li>
-<li><code>broom::augment(model, data)</code>: for getting extra values (residuals, and influence statistics). A convenient tool in case if you want to plot fitted values and raw data together.</li>
+<li><code>broom::augment(model, data)</code>: for getting extra values (residuals, and influence statistics). A convenient tool if you want to plot fitted values and raw data together.</li>
 </ul>
 <div class="figure">
 <img src="https://www.youtube.com/watch?v=7VGPUBWGv6g&amp;ab_channel=Work-Bench" alt="" />
@@ -4386,9 +4381,9 @@ function defines the strata that you’re going to use for summary statistics. T
 ## [16] &quot;Uruguay&quot;</code></pre>
 </div>
 </div>
-<div id="mapping" class="section level3" number="4.10.2">
-<h3><span class="header-section-number">4.10.2</span> Mapping</h3>
-<p>We tasted a little bit about how <code>map()</code> function works. Let’s dig into it more in-depth as this family of functions is useful. For more information, see Rebecca Barter’s excellent tutorial on the <code>purrr</code> package. In her words, this is “the tidyverse’s answer to apply functions for iteration.” <code>map()</code> function can take a vector (of any type), a list, and a dataframe for input.</p>
+<div id="mapping" class="section level3" number="4.9.2">
+<h3><span class="header-section-number">4.9.2</span> Mapping</h3>
+<p>We tasted a bit of how <code>map()</code> function works. Let’s dig into it more in-depth, as this family of functions is useful. See Rebecca Barter’s excellent tutorial on the <code>purrr</code> package for more information. In her words, this is “the tidyverse’s answer to apply functions for iteration.” <code>map()</code> function can take a vector (of any type), a list, and a dataframe for input.</p>
 <div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="tidy_data.html#cb764-1" aria-hidden="true" tabindex="-1"></a>multiply <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb764-2"><a href="tidy_data.html#cb764-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">*</span> x</span>
 <span id="cb764-3"><a href="tidy_data.html#cb764-3" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -4401,8 +4396,8 @@ function defines the strata that you’re going to use for summary statistics. T
 <p>Try <code>map_df(.x = df, .f = multiply)</code> and tell me what’s the difference between the output you got and what you saw earlier.</p>
 <p>If you want to know more about the power and joy of functional programming in R (e.g., <code>purrr::map()</code>), then please take <a href="https://github.com/dlab-berkeley/R-functional-programming">“How to Automate Repeated Things in R”</a> workshop.</p>
 </div>
-<div id="hypothesis-testing" class="section level3" number="4.10.3">
-<h3><span class="header-section-number">4.10.3</span> Hypothesis testing</h3>
+<div id="hypothesis-testing" class="section level3" number="4.9.3">
+<h3><span class="header-section-number">4.9.3</span> Hypothesis testing</h3>
 <p>Statistical inference: does the effect/difference in observed data occur by chance?</p>
 <p>Null hypothesis: everything was random
 Alternative hypothesis: everything was not random. Note that this does not mean that a particular factor influenced the outcome of interest. Statistical inference != Causal inference (causes and effects)</p>
@@ -4460,8 +4455,8 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <span id="cb769-4"><a href="tidy_data.html#cb769-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>)</span></code></pre></div>
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-170-2.png" width="672" /></p>
 </div>
-<div id="mixed-models" class="section level3" number="4.10.4">
-<h3><span class="header-section-number">4.10.4</span> Mixed models</h3>
+<div id="mixed-models" class="section level3" number="4.9.4">
+<h3><span class="header-section-number">4.9.4</span> Mixed models</h3>
 <p>This part heavily draws on <a href="http://www.stat.columbia.edu/~gelman/arm/">Gelman and Hill</a> (2007), Michael Clark’s <a href="https://m-clark.github.io/mixed-models-with-R/">Mixed Models with R</a>, and Basel R Bootcamp’s <a href="https://therbootcamp.github.io/SwR_2019Apr/_sessions/MixedModels/MixedModels_practical.html">Statistics with R: Mixed Models</a>. For a quick review on mixed models, I recommend Xavier et al.’s <a href="https://peerj.com/articles/4794/">“A brief introduction to mixed effects modelling and multi-model inference in ecology”</a> (2018).</p>
 <p>Why random effects model/mixed effects model?</p>
 <p>Fixed effects model assumes that groups are independent of each other and sharing common residuals (same slope for fitted covariates). Limiting to a common slope can inflate Type I and Type II errors.</p>
@@ -4552,8 +4547,8 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <span id="cb781-4"><a href="tidy_data.html#cb781-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(estimate)</span></code></pre></div>
 <pre><code>## [1] 4.503537e-09</code></pre>
 </div>
-<div id="design-anaysis-optional" class="section level3" number="4.10.5">
-<h3><span class="header-section-number">4.10.5</span> Design Anaysis (optional)</h3>
+<div id="design-anaysis-optional" class="section level3" number="4.9.5">
+<h3><span class="header-section-number">4.9.5</span> Design Anaysis (optional)</h3>
 <p>DeclareDesign provides a collection of packages (<code>fabricatr</code>, <code>randomizr</code>, <code>estimatr</code>) that are very useful for those interested in testing the strength of research design. DeclareDesign also helps share your research design along with your code and data.</p>
 <div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb783-1"><a href="tidy_data.html#cb783-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(DeclareDesign, <span class="co">#  </span></span>
 <span id="cb783-2"><a href="tidy_data.html#cb783-2" aria-hidden="true" tabindex="-1"></a>               fabricatr, <span class="co"># Fabricate mock (fake) data  </span></span>
@@ -4565,7 +4560,7 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <li>Setup</li>
 </ol>
 <ul>
-<li>Model: speculation of how the world works (variables plus their relationships)</li>
+<li>Model: speculating how the world works (variables plus their relationships)</li>
 </ul>
 <div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb784-1"><a href="tidy_data.html#cb784-1" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">declare_population</span>(<span class="at">N =</span> <span class="dv">1000</span>, </span>
 <span id="cb784-2"><a href="tidy_data.html#cb784-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">noise =</span> <span class="fu">rnorm</span>(N))</span>
@@ -7771,7 +7766,7 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <ul>
 <li>Shortcuts</li>
 </ul>
-<p>Doing the power analysis for a three-arm experiment.</p>
+<p>The following is the power analysis for a three-arm experiment.</p>
 <div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="tidy_data.html#cb807-1" aria-hidden="true" tabindex="-1"></a>three_arm <span class="ot">&lt;-</span> <span class="fu">multi_arm_designer</span>(<span class="at">N =</span> <span class="dv">1000</span>, <span class="at">m =</span> <span class="dv">3</span>, </span>
 <span id="cb807-2"><a href="tidy_data.html#cb807-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">outcome_means =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>))</span>
 <span id="cb807-3"><a href="tidy_data.html#cb807-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -7796,21 +7791,21 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <p><strong>Additional tips</strong></p>
 <p>Experimenters! Consider writing and registering a pre-analysis before running your experiment. Here are tools that can help to create a pre-registration so easily. The following information comes from David Broockman’s <a href="https://twitter.com/dbroockman/status/1350897814499336192">very helpful Twitter thread</a>.</p>
 <ol style="list-style-type: decimal">
-<li><p>Write code using fake data. If you are using , you can generate test responses using the platform: <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/" class="uri">https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/</a></p></li>
+<li><p>Write code using fake data. If you are using, you can generate test responses using the platform: <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/" class="uri">https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/</a></p></li>
 <li><p>Register the pre-analysis using <a href="https://aspredicted.org/">ASPREDICTED</a>, “a platform that makes it easy for researchers to pre-register their studies, and easy for others to read and evaluate those pre-registrations.” It creates an anonymized PDF file filled with the answers you provided and a blinded link.</p></li>
 <li><p>Upload the anonymized code and the PDF to a new project in <a href="https://osf.io/">osf.io</a> and describe your pre-analysis briefly.</p></li>
 </ol>
 </div>
 </div>
-<div id="visualizing-ggplot2" class="section level2" number="4.11">
-<h2><span class="header-section-number">4.11</span> Visualizing (ggplot2)</h2>
+<div id="visualizing-ggplot2" class="section level2" number="4.10">
+<h2><span class="header-section-number">4.10</span> Visualizing (ggplot2)</h2>
 <ul>
 <li><p>The following material is adapted from Kieran Healy’s excellent book (2019) on <a href="https://socviz.co/">data visualization</a> and Hadley Wickham’s equally excellent book on <a href="https://ggplot2-book.org/">ggplot2</a>. For more theoretical discussions, I recommend you to read <a href="https://link.springer.com/book/10.1007%2F0-387-28695-0">The Grammar of Graphics</a> by Leland Wilkinson.</p></li>
 <li><p>Why should we care about data visualization? More precisely, why should we learn the grammar of statistical graphics?</p></li>
 <li><p>Sometimes, pictures are better tools than words in 1) exploring, 2) understanding, and 3) explaining data.</p></li>
 </ul>
-<div id="motivation-2" class="section level3" number="4.11.1">
-<h3><span class="header-section-number">4.11.1</span> Motivation</h3>
+<div id="motivation-2" class="section level3" number="4.10.1">
+<h3><span class="header-section-number">4.10.1</span> Motivation</h3>
 <p><a href="https://en.wikipedia.org/wiki/Frank_Anscombe">Anscombe</a>’s quarter comprises four datasets, which are so alike in terms of their descriptive statistics but quite different when presented graphically.</p>
 <div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="tidy_data.html#cb809-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set theme</span></span>
 <span id="cb809-2"><a href="tidy_data.html#cb809-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span></code></pre></div>
@@ -7855,8 +7850,8 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
 </div>
-<div id="the-grammar-of-graphics" class="section level3" number="4.11.2">
-<h3><span class="header-section-number">4.11.2</span> The grammar of graphics</h3>
+<div id="the-grammar-of-graphics" class="section level3" number="4.10.2">
+<h3><span class="header-section-number">4.10.2</span> The grammar of graphics</h3>
 <ul>
 <li><p>the grammar of graphics</p>
 <ul>
@@ -7883,15 +7878,15 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 </ol></li>
 </ul>
 </div>
-<div id="mapping-and-geom" class="section level3" number="4.11.3">
-<h3><span class="header-section-number">4.11.3</span> mapping and geom</h3>
+<div id="mapping-and-geom" class="section level3" number="4.10.3">
+<h3><span class="header-section-number">4.10.3</span> mapping and geom</h3>
 <ul>
 <li><p><code>aes</code> (aesthetic mappings or aesthetics) tells which variables (x, y) in your data should be represented by which visual elements (color, shape, size) in the plot.</p></li>
 <li><p><code>geom_</code> tells the type of plot you are going to use</p></li>
 </ul>
 </div>
-<div id="basic-aes-x-y" class="section level3" number="4.11.4">
-<h3><span class="header-section-number">4.11.4</span> basic aes (x , y)</h3>
+<div id="basic-aes-x-y" class="section level3" number="4.10.4">
+<h3><span class="header-section-number">4.10.4</span> basic aes (x , y)</h3>
 <div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="tidy_data.html#cb816-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
 <span id="cb816-2"><a href="tidy_data.html#cb816-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gapminder,</span>
 <span id="cb816-3"><a href="tidy_data.html#cb816-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)</span>
@@ -7906,14 +7901,14 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-188-3.png" width="672" /></p>
 <div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb820-1"><a href="tidy_data.html#cb820-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the shaded area is the standard error for the line</span></span></code></pre></div>
 </div>
-<div id="univariate-distribution" class="section level3" number="4.11.5">
-<h3><span class="header-section-number">4.11.5</span> Univariate distribution</h3>
+<div id="univariate-distribution" class="section level3" number="4.10.5">
+<h3><span class="header-section-number">4.10.5</span> Univariate distribution</h3>
 <ul>
 <li><code>geom_histogram()</code>: For the probability distribution of a continuous variable. Bins divide the entire range of values into a series of intervals (see <a href="https://en.wikipedia.org/wiki/Histogram">the Wiki entry</a>).</li>
 <li><code>geom_density()</code>: Also for the probability distribution of a continuous variable. It calculates a <a href="https://en.wikipedia.org/wiki/Kernel_density_estimation">kernel density estimate</a> of the underlying distribution.</li>
 </ul>
-<div id="histogram" class="section level4" number="4.11.5.1">
-<h4><span class="header-section-number">4.11.5.1</span> Histogram</h4>
+<div id="histogram" class="section level4" number="4.10.5.1">
+<h4><span class="header-section-number">4.10.5.1</span> Histogram</h4>
 <div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb821-1"><a href="tidy_data.html#cb821-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(midwest) <span class="co"># load midwest dataset</span></span>
 <span id="cb821-2"><a href="tidy_data.html#cb821-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb821-3"><a href="tidy_data.html#cb821-3" aria-hidden="true" tabindex="-1"></a>midwest</span></code></pre></div>
@@ -7956,8 +7951,8 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <span id="cb827-6"><a href="tidy_data.html#cb827-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code></pre></div>
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-191-3.png" width="672" /></p>
 </div>
-<div id="density" class="section level4" number="4.11.5.2">
-<h4><span class="header-section-number">4.11.5.2</span> Density</h4>
+<div id="density" class="section level4" number="4.10.5.2">
+<h4><span class="header-section-number">4.10.5.2</span> Density</h4>
 <div class="sourceCode" id="cb828"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb828-1"><a href="tidy_data.html#cb828-1" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
 <span id="cb828-2"><a href="tidy_data.html#cb828-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> area, <span class="at">fill =</span> state, <span class="at">color =</span> state)) <span class="sc">+</span></span>
 <span id="cb828-3"><a href="tidy_data.html#cb828-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
@@ -7966,8 +7961,8 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
 </div>
 </div>
-<div id="advanced-aes-size-color" class="section level3" number="4.11.6">
-<h3><span class="header-section-number">4.11.6</span> Advanced aes (size, color)</h3>
+<div id="advanced-aes-size-color" class="section level3" number="4.10.6">
+<h3><span class="header-section-number">4.10.6</span> Advanced aes (size, color)</h3>
 <ul>
 <li><p>There’s also <code>fill</code> argument (mostly used in <code>geom_bar()</code>). Color <code>aes</code> affects the appearance of lines and points, fill is for the filled areas of bars, polygons, and in some cases, the interior of a smoother’s standard error ribbon.</p></li>
 <li><p>The property size/color/fill represents…</p></li>
@@ -8056,8 +8051,8 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-197-2.png" width="672" /></p>
 </div>
-<div id="co-ordinates-and-scales" class="section level3" number="4.11.7">
-<h3><span class="header-section-number">4.11.7</span> Co-ordinates and scales</h3>
+<div id="co-ordinates-and-scales" class="section level3" number="4.10.7">
+<h3><span class="header-section-number">4.10.7</span> Co-ordinates and scales</h3>
 <div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="tidy_data.html#cb842-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb842-2"><a href="tidy_data.html#cb842-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="co"># coord_type</span></span></code></pre></div>
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
@@ -8073,8 +8068,8 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-199-3.png" width="672" /></p>
 </div>
-<div id="labels-and-guides" class="section level3" number="4.11.8">
-<h3><span class="header-section-number">4.11.8</span> Labels and guides</h3>
+<div id="labels-and-guides" class="section level3" number="4.10.8">
+<h3><span class="header-section-number">4.10.8</span> Labels and guides</h3>
 <p><code>scales</code> package has some useful premade formatting functions. You can either load scales or just grab the function you need from the library using <code>scales::</code></p>
 <div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="tidy_data.html#cb847-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
 <span id="cb847-2"><a href="tidy_data.html#cb847-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
@@ -8105,8 +8100,8 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
 </div>
-<div id="ggsave" class="section level3" number="4.11.9">
-<h3><span class="header-section-number">4.11.9</span> ggsave</h3>
+<div id="ggsave" class="section level3" number="4.10.9">
+<h3><span class="header-section-number">4.10.9</span> ggsave</h3>
 <div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="tidy_data.html#cb851-1" aria-hidden="true" tabindex="-1"></a>figure_example <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
 <span id="cb851-2"><a href="tidy_data.html#cb851-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;gam&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
 <span id="cb851-3"><a href="tidy_data.html#cb851-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span>dollar) <span class="sc">+</span></span>
@@ -8121,15 +8116,15 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <span id="cb851-12"><a href="tidy_data.html#cb851-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb851-13"><a href="tidy_data.html#cb851-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(figure_example, <span class="fu">here</span>(<span class="st">&quot;outputs&quot;</span>, <span class="st">&quot;figure_example.png&quot;</span>))</span></code></pre></div>
 </div>
-<div id="many-plots" class="section level3" number="4.11.10">
-<h3><span class="header-section-number">4.11.10</span> Many plots</h3>
+<div id="many-plots" class="section level3" number="4.10.10">
+<h3><span class="header-section-number">4.10.10</span> Many plots</h3>
 <p>Basic ideas:</p>
 <ul>
 <li>Grouping: tell <code>ggplot2</code> about the structure of your data</li>
 <li>Facetting: break up your data into pieces for a plot</li>
 </ul>
-<div id="grouping-1" class="section level4" number="4.11.10.1">
-<h4><span class="header-section-number">4.11.10.1</span> Grouping</h4>
+<div id="grouping-1" class="section level4" number="4.10.10.1">
+<h4><span class="header-section-number">4.10.10.1</span> Grouping</h4>
 <ul>
 <li>Can you guess what’s wrong?</li>
 </ul>
@@ -8140,7 +8135,7 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="tidy_data.html#cb853-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-203-2.png" width="672" /></p>
 <p><code>geom_line</code> joins up all the lines for each particular year in the order they appear in the dataset. <code>ggplot2</code> does not know the yearly observations in your data are grouped by country.</p>
-<p>Note that you need grouping when the grouping information you need to tell is not built into the mapped variables (like continent).</p>
+<p>You need grouping when the grouping information you need to tell is not built into the mapped variables (like continent).</p>
 <div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="tidy_data.html#cb854-1" aria-hidden="true" tabindex="-1"></a>gapminder</span></code></pre></div>
 <pre><code>## # A tibble: 1,704 × 7
 ##    country     continent  year lifeExp      pop gdpPercap log_pop
@@ -8157,8 +8152,8 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 ## 10 Afghanistan Asia       1997    41.8 22227415      635.    16.9
 ## # … with 1,694 more rows</code></pre>
 </div>
-<div id="facetting" class="section level4" number="4.11.10.2">
-<h4><span class="header-section-number">4.11.10.2</span> Facetting</h4>
+<div id="facetting" class="section level4" number="4.10.10.2">
+<h4><span class="header-section-number">4.10.10.2</span> Facetting</h4>
 <p>Facetting is to make small multiples.</p>
 <ul>
 <li><p><code>facet_wrap</code>: based on a single categorical variable like <code>facet_wrap(~single_categorical_variable)</code>. Your panels will be laid out in order and then wrapped into a grid.</p></li>
@@ -8196,14 +8191,14 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
 </div>
 </div>
-<div id="transforming" class="section level3" number="4.11.11">
-<h3><span class="header-section-number">4.11.11</span> Transforming</h3>
+<div id="transforming" class="section level3" number="4.10.11">
+<h3><span class="header-section-number">4.10.11</span> Transforming</h3>
 <ul>
 <li>Transforming: perform some calculations on or summarize your data before producing the plot</li>
 </ul>
-<div id="use-pipes-to-summarize-data" class="section level4" number="4.11.11.1">
-<h4><span class="header-section-number">4.11.11.1</span> Use pipes to summarize data</h4>
-<p>Also, we experiment bar charts here. By default, <code>geom_bar</code> <a href="https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar">uses</a> stat = “bins,” which makes the height of each bar equal to the number of cases in each group. If you have a y column, then you should use <code>stat = "identity"</code> argument. Alternatively, you can use <code>geom_col()</code>.</p>
+<div id="use-pipes-to-summarize-data" class="section level4" number="4.10.11.1">
+<h4><span class="header-section-number">4.10.11.1</span> Use pipes to summarize data</h4>
+<p>Also, we experiment with bar charts here. By default, <code>geom_bar</code> <a href="https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar">uses</a> stat = “bins,” which makes the height of each bar equal to the number of cases in each group. If you have a y column, then you should use <code>stat = "identity"</code> argument. Alternatively, you can use <code>geom_col().</code></p>
 <div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb862-1"><a href="tidy_data.html#cb862-1" aria-hidden="true" tabindex="-1"></a>gapminder_formatted <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb862-2"><a href="tidy_data.html#cb862-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span></span>
 <span id="cb862-3"><a href="tidy_data.html#cb862-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
@@ -8342,8 +8337,8 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <pre><code>## `summarise()` has grouped output by &#39;country&#39;. You can override using the `.groups` argument.</code></pre>
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-210-2.png" width="672" /></p>
 </div>
-<div id="plotting-text" class="section level4" number="4.11.11.2">
-<h4><span class="header-section-number">4.11.11.2</span> Plotting text</h4>
+<div id="plotting-text" class="section level4" number="4.10.11.2">
+<h4><span class="header-section-number">4.10.11.2</span> Plotting text</h4>
 <div class="sourceCode" id="cb879"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb879-1"><a href="tidy_data.html#cb879-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb879-2"><a href="tidy_data.html#cb879-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Asia&quot;</span> <span class="sc">|</span> continent <span class="sc">==</span> <span class="st">&quot;Americas&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb879-3"><a href="tidy_data.html#cb879-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, country) <span class="sc">%&gt;%</span></span>
@@ -8394,11 +8389,11 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
 </div>
 </div>
-<div id="ploting-models" class="section level3" number="4.11.12">
-<h3><span class="header-section-number">4.11.12</span> Ploting models</h3>
+<div id="ploting-models" class="section level3" number="4.10.12">
+<h3><span class="header-section-number">4.10.12</span> Ploting models</h3>
 <p>In plotting models, we extensively use David Robinson’s <a href="https://cran.r-project.org/web/packages/broom/vignettes/broom.html">broom package</a> in R. The idea is to transform model outputs (i.e., predictions and estimations) into tidy objects so that we can easily combine, separate, and visualize these elements.</p>
-<div id="plotting-several-fits-at-the-same-time" class="section level4" number="4.11.12.1">
-<h4><span class="header-section-number">4.11.12.1</span> Plotting several fits at the same time</h4>
+<div id="plotting-several-fits-at-the-same-time" class="section level4" number="4.10.12.1">
+<h4><span class="header-section-number">4.10.12.1</span> Plotting several fits at the same time</h4>
 <div class="sourceCode" id="cb887"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb887-1"><a href="tidy_data.html#cb887-1" aria-hidden="true" tabindex="-1"></a>model_colors <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Set1&quot;</span>) <span class="co"># select three qualitatively different colors from a larger palette.</span></span>
 <span id="cb887-2"><a href="tidy_data.html#cb887-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb887-3"><a href="tidy_data.html#cb887-3" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
@@ -8417,14 +8412,14 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 ## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
 </div>
-<div id="extracting-model-outcomes" class="section level4" number="4.11.12.2">
-<h4><span class="header-section-number">4.11.12.2</span> Extracting model outcomes</h4>
+<div id="extracting-model-outcomes" class="section level4" number="4.10.12.2">
+<h4><span class="header-section-number">4.10.12.2</span> Extracting model outcomes</h4>
 <div class="sourceCode" id="cb889"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb889-1"><a href="tidy_data.html#cb889-1" aria-hidden="true" tabindex="-1"></a><span class="co"># regression model</span></span>
 <span id="cb889-2"><a href="tidy_data.html#cb889-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
 <span id="cb889-3"><a href="tidy_data.html#cb889-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> lifeExp <span class="sc">~</span> gdpPercap <span class="sc">+</span> pop <span class="sc">+</span> continent,</span>
 <span id="cb889-4"><a href="tidy_data.html#cb889-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gapminder</span>
 <span id="cb889-5"><a href="tidy_data.html#cb889-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p><code>tidy()</code> is a method in the <code>broom</code> package. It “constructs a dataframe that summarizes the model’s statistical findings.” As the description states, tidy is a function that can be used for various models. For instance, a tidy can extract following information from a regression model.</p>
+<p><code>tidy()</code> is a method in the <code>broom</code> package. It “constructs a dataframe that summarizes the model’s statistical findings.” As the description states, tidy is a function that can be used for various models. For instance, a tidy can extract the following information from a regression model.</p>
 <ul>
 <li><code>Term</code>: a term being estimated</li>
 <li><code>p.value</code></li>
@@ -8435,10 +8430,10 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <li><code>df</code>: degrees of freedom</li>
 </ul>
 <p><strong>Challenge</strong></p>
-<p>Try <code>glance(out)</code>, what did you get from these commands? If you’re curious, you can try <code>?glance</code>.</p>
+<p>Try <code>glance(out)</code>; what did you get from these commands? If you’re curious, you can try <code>?glance</code>.</p>
 <p>The followings are to show your degree of confidence.</p>
-<div id="coefficients" class="section level5" number="4.11.12.2.1">
-<h5><span class="header-section-number">4.11.12.2.1</span> Coefficients</h5>
+<div id="coefficients" class="section level5" number="4.10.12.2.1">
+<h5><span class="header-section-number">4.10.12.2.1</span> Coefficients</h5>
 <div class="sourceCode" id="cb890"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb890-1"><a href="tidy_data.html#cb890-1" aria-hidden="true" tabindex="-1"></a><span class="co"># estimates</span></span>
 <span id="cb890-2"><a href="tidy_data.html#cb890-2" aria-hidden="true" tabindex="-1"></a>out_comp <span class="ot">&lt;-</span> <span class="fu">tidy</span>(out)</span>
 <span id="cb890-3"><a href="tidy_data.html#cb890-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -8450,8 +8445,8 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <span id="cb890-9"><a href="tidy_data.html#cb890-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
 </div>
-<div id="confidence-intervals" class="section level5" number="4.11.12.2.2">
-<h5><span class="header-section-number">4.11.12.2.2</span> Confidence intervals</h5>
+<div id="confidence-intervals" class="section level5" number="4.10.12.2.2">
+<h5><span class="header-section-number">4.10.12.2.2</span> Confidence intervals</h5>
 <div class="sourceCode" id="cb891"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb891-1"><a href="tidy_data.html#cb891-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plus confidence intervals</span></span>
 <span id="cb891-2"><a href="tidy_data.html#cb891-2" aria-hidden="true" tabindex="-1"></a>out_conf <span class="ot">&lt;-</span> <span class="fu">tidy</span>(out, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb891-3"><a href="tidy_data.html#cb891-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -8471,7 +8466,7 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 <span id="cb892-6"><a href="tidy_data.html#cb892-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">x =</span> <span class="st">&quot;OLS Estimate&quot;</span>) <span class="sc">+</span></span>
 <span id="cb892-7"><a href="tidy_data.html#cb892-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="03_tidy_data_files/figure-html/unnamed-chunk-217-2.png" width="672" /></p>
-<p>You can calculate marginal effects using the <code>margins</code> package. For the sake of time, I’m not covering that here.</p>
+<p>You can also calculate marginal effects using the <a href="https://vincentarelbundock.github.io/marginaleffects/"><code>marginaleffects</code></a> package.</p>
 
 </div>
 </div>
