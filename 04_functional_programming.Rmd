@@ -644,7 +644,7 @@ y_means_tidy <- map_dbl(y_tidy, mean)
    geom_vline(xintercept = 500, linetype = "dotted", color = "red"))
 ```
 
-## Automote 2 or 2+ tasks {#map2}
+## Automate 2 or 2+ tasks {#map2}
 
 ### Objectives 
 
