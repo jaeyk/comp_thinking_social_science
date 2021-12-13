@@ -1681,6 +1681,7 @@ df %>%
 -   Single condition
 
 ```{r}
+conflict_prefer("filter", "dplyr")
 
 starwars %>%
   filter(gender == "feminine") %>%
