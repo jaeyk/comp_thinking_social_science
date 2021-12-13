@@ -1711,12 +1711,29 @@ Scraping 50 pages from a website, you don't want to overload the server. How can
 #### For loop 
 
 
+```r
+for (i in 1:50) {
+  
+  message("Scraping page ",i)
+  
+  if ((i %% 10) == 0) {
+    
+    message("Break time")
+    
+    Sys.sleep(1) # 1 second 
+  }
+  
+}
+```
 
 #### Map 
 
 - `walk()` works the same as `map()` but doesn't store its output. 
 
 
+```r
+walk(1:50, function(x){message("Scraping page", x)})
+```
 
 - If you're web scraping, one problem with this approach is it's too fast by human standards.
 
@@ -1781,6 +1798,18 @@ toc(log = TRUE) # save toc
 - If a function is a verb, then a helper function is an adverb (modifying the behavior of the verb). 
 
 
+```r
+# 49.05 sec elapsed
+
+tic("scraping pages with deplay", log = TRUE)
+
+walk(1:10, slowly(function(x){message("Scraping page", x)},   
+                    rate = rate_delay(pause = 1))) # pause = Delay between attempts in seconds
+
+toc(log = TRUE)
+
+tic.log(format = TRUE)
+```
 
 ### How to Make Automation Faster 
 
@@ -1826,9 +1855,24 @@ I skip technical explanations and only focus on their usages.
 - multicore :faster but unstable. It doesn't work for Windows/RStudio.
 
 
+```r
+plan(sequential)
+
+tic("averaging 100000 without parallel processing", log = TRUE)
+map100000 <- future_map(1:100000, mean)
+toc(log = TRUE)
+```
 
 
 
+```r
+plan(multiprocess, # multicore, if supported, otherwise multisession
+     workers = n_cores) # the maximum number of workers
+
+tic("averaging 100000 with parallel processing", log = TRUE)
+map100000 <- future_map(1:100000, mean)
+toc(log = TRUE)
+```
 
 
 ```r
