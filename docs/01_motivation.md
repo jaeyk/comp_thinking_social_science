@@ -28,6 +28,8 @@ However, I also do not claim that social scientists should learn programming lik
 
 Teaching a computer to perform a particular task requires computational thinking: "formulating a problem and expressing its solution in a way that a computer—human or machine—can effectively carry out" (defined by [Jeannette M. Wing](http://www.cs.cmu.edu/afs/cs/usr/wing/www/publications/Wing06.pdf)). Specifically, this means readers need to get familiar with how computers think about data and handle them. 
 
+## How to Teach and Learn Computational Thinking
+
 This book teaches how you learn this art in incremental steps.
 
 -   From graphic user interface to command-line interface (ch 3)
@@ -51,11 +53,11 @@ Here are also some valuable reminders.
 
 Finally, have fun. I've talked about how learning programming pays off. But I've taught long enough to know that this will not convince people to learn to program, especially those who've had negative experiences learning STEM. 
 
-Instead, I will try to make the materials as accessible as possible by practicing two things in teaching: showing the **BIG PICTURE** and walking through the **WORKFLOW.** With Margaret Ng (Assistant Professor of Journalism, UIUC), I wrote about why these two concepts are pedagogically important for teaching computational social science for all. [The article](https://osf.io/preprints/socarxiv/pf7n6/?fbclid=IwAR2ZI0yw_pehS0mxAmeUBOGpzIhiO2LMUPGBzBLTLNo4C2HrJSoH9uZhgTY) is forthcoming in *PS: Political Science and Politics.* If you are interested in my full argument, please read the article. 
+Instead, I will try to make the materials as accessible as possible by emphasizing the following two ideas in teaching: showing the **BIG PICTURE** and walking through the **WORKFLOW.** With [Margaret Ng](https://media.illinois.edu/margaret-yee-man-ng) (Assistant Professor of Journalism, UIUC), I wrote about why these two concepts are pedagogically important for teaching computational social science for all. [The article](https://osf.io/preprints/socarxiv/pf7n6/?fbclid=IwAR2ZI0yw_pehS0mxAmeUBOGpzIhiO2LMUPGBzBLTLNo4C2HrJSoH9uZhgTY) is forthcoming in *PS: Political Science and Politics.* If you are interested in my full argument, please read the article. 
 
 Here is a quick summary of why I think they matter for social science students' inclusive teaching of programming.  
 
 Showing the big picture: Every time you teach a new skill or technique, remind students what the input and output data type is. Students from either Excel, SPSS, or Stata backgrounds are not used to thinking about data structure when working on data. So, providing these guideposts is crucial to help them avoid making an obvious mistake (e.g., providing a character vector when a numeric vector is needed for the input data) and seeing the connection between different skills (e.g., using API and web scraping).  
 Walking through the workflow: Break down the steps involved in moving from the input to the output data. This way helps students feel less overwhelmed by learning the complex steps required to solve a particular task. It also helps students learn how to formulate a workflow when they encourage the same problem in a different context. Although the exact context is not identical, they can find patterns across them. Finally, teaching the workflow means breaking down these steps as well as putting them together, ideally using functions. Acquiring this skill is critical for students to advance from beginners to intermediate programmers who can write readable and reusable code.
 
-These pedagogical principles are also applied throughout this book.
+These pedagogical principles also influence what and how I wrote this book.
