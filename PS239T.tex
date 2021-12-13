@@ -14865,6 +14865,9 @@ You can also calculate marginal effects using the \href{https://vincentarelbundo
 \hypertarget{functional_programming}{%
 \chapter{Automating repeated things}\label{functional_programming}}
 
+\hypertarget{the-big-picture-6}{%
+\section{The Big Picture}\label{the-big-picture-6}}
+
 \begin{quote}
 Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions.
 - Hadley Wickham
@@ -14874,8 +14877,8 @@ This chapter helps you to step up your R skills with functional programming. The
 
 \includegraphics{https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmywiiOutD0NPieYCKxaD2wN9Fbt2I3iS87A\&usqp=CAU}
 
-\hypertarget{learning-objectives}{%
-\section{Learning objectives}\label{learning-objectives}}
+\hypertarget{objectives}{%
+\section{Objectives}\label{objectives}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -15054,7 +15057,7 @@ function = input + computation (begin -\textgreater{} end) + output
 ## [1] -7
 \end{verbatim}
 
-Concerning returning function output, most of the same rules apply as with Python. Be sure to remember that \texttt{return()} will only process a single object, so multiple items must usually be returned as a list. Note that your ordering of the functions matters, too.
+Concerning returning function output, most of the same rules apply to Python. Be sure to remember that \texttt{return()} will only process a single object, so multiple items must usually be returned as a list. Note that your ordering of the functions matters, too.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -15257,7 +15260,7 @@ Nonstandard evaluation is an advanced subject. If you feel overwhelmed, you are 
 
 This part draws on one of the {[}the dplyr package articles{]}(\url{https://dplyr.tidyverse.org/articles/programming.html}.
 
-In tidyverse, calling a variable with or without quotation mark (string or not) makes little difference because tidyeval is a non-standard evaluation. This flexibility runs into the following problem when it comes to programming.
+In tidyverse, calling a variable with or without quotation mark (string or not) makes little difference because tidyeval is a non-standard evaluation.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -15319,7 +15322,7 @@ Data and env-variables
 
 You may expect that the output is mean = 2.5 \ldots{} but
 
-It's because the mean() function doesn't take \texttt{df\$x} for data\_var but \texttt{x}. It would be best if you linked x with the environment variable.
+It's because the mean() function doesn't take \texttt{df\$x} for data\_var but \texttt{x.} So it would be best if you linked x with the environment variable.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -15423,7 +15426,7 @@ Loops in R also work the same way as in Python, with just a few adjustments. Fir
 \item
   \texttt{while()}: when we have no idea how many times loop needs to be executed.
 \item
-  \texttt{for()}: when we know how many times loop needs to be executed. This is likely to be the loop you are going to use most frequently.
+  \texttt{for()}: when we know how many times loop needs to be executed. This is likely to be the loop you will use most frequently.
 \end{itemize}
 
 \begin{Shaded}
@@ -15909,8 +15912,8 @@ A common method of getting around for loops is the \textbf{apply} family of func
 \hypertarget{why-map}{%
 \subsection{Why map?}\label{why-map}}
 
-\hypertarget{objectives}{%
-\subsubsection{Objectives}\label{objectives}}
+\hypertarget{objectives-1}{%
+\subsubsection{Objectives}\label{objectives-1}}
 
 \begin{itemize}
 \tightlist
@@ -16346,8 +16349,8 @@ A good friend of \texttt{map()} function is \texttt{rerun()} function. This comb
 \hypertarget{map2}{%
 \section{Automote 2 or 2+ tasks}\label{map2}}
 
-\hypertarget{objectives-1}{%
-\subsection{Objectives}\label{objectives-1}}
+\hypertarget{objectives-2}{%
+\subsection{Objectives}\label{objectives-2}}
 
 \begin{itemize}
 \tightlist
@@ -16637,18 +16640,13 @@ To become significantly more reliable, code must become more transparent. In par
 ## Avery studies Public Health.
 \end{verbatim}
 
-\begin{itemize}
-\item
-  So, our next step is to combine \texttt{glue()} and \texttt{map()}.
-\item
-  Let's first think about writing a function that includes \texttt{glue()}.
-\item
-  \textbf{Challenge}
-  How can you create the character vector of column names?
-\item
-  \textbf{Challenge}
-  How can you make \texttt{ggplot2()} take strings as x and y variable names? (Hint: Type \texttt{?aes\_string()})
-\end{itemize}
+So, our next step is to combine \texttt{glue()} and \texttt{map()}.
+
+First, let's think about writing a function that includes \texttt{glue()}.
+
+\textbf{Challenge}
+How can you create the character vector of column names?
+How can you make \texttt{ggplot2()} take strings as x and y variable names? (Hint: Type \texttt{?aes\_string()})
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -16856,8 +16854,8 @@ To become significantly more reliable, code must become more transparent. In par
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{objectives-2}{%
-\subsection{Objectives}\label{objectives-2}}
+\hypertarget{objectives-3}{%
+\subsection{Objectives}\label{objectives-3}}
 
 \begin{itemize}
 \tightlist
@@ -16868,11 +16866,7 @@ To become significantly more reliable, code must become more transparent. In par
 \hypertarget{how-to-make-automation-slower}{%
 \subsection{How to Make Automation Slower}\label{how-to-make-automation-slower}}
 
-\begin{itemize}
-\tightlist
-\item
-  Scraping 50 pages from a website and you don't want to overload the server. How can you do that?
-\end{itemize}
+Scraping 50 pages from a website, you don't want to overload the server. How can you do that?
 
 \hypertarget{for-loop-2}{%
 \subsubsection{For loop}\label{for-loop-2}}
@@ -17012,9 +17006,9 @@ I skip technical explanations and only focus on their usages.
 \begin{itemize}
 \tightlist
 \item
-  multisession : fast, and relatively stable. It works across different OSs and also for RStudio.
+  multisession : fast and relatively stable. It works across different OSs and also for RStudio.
 \item
-  multicore : faster, but unstable. It doesn't work for Windows/RStudio.
+  multicore :faster but unstable. It doesn't work for Windows/RStudio.
 \end{itemize}
 
 \begin{Shaded}
@@ -17037,7 +17031,7 @@ I skip technical explanations and only focus on their usages.
 ## [1] "averaging 100000 with parallel processing: 0.353 sec elapsed"
 \end{verbatim}
 
-Because of the overhead cost (e.g., time spent communicating data between processing), parallel processing does not always increase performance. Use this technique either when the computation part is heavy or when you need to repeat the process a large number of times.
+Parallel processing does not always increase performance because of the overhead cost (e.g., time spent communicating data between processing). Use this technique either when the computation part is heavy or when you need to repeat the process many times.
 
 \hypertarget{robustness}{%
 \section{Make error handling easier}\label{robustness}}
@@ -17260,7 +17254,10 @@ A data product is the production output from a statistical analysis. - \href{htt
 \hypertarget{developing-r-packages}{%
 \section{Developing R packages}\label{developing-r-packages}}
 
-Why developing R packages?
+\hypertarget{the-big-picture-7}{%
+\subsection{The Big Picture}\label{the-big-picture-7}}
+
+Why develop R packages?
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -17436,7 +17433,7 @@ output = ``x.R''). The \href{https://thinkr-open.github.io/fusen/}{fusen package
 
 If you used a function from other packages, you need to reference it in the following way: \texttt{\#\textquotesingle{}\ @importFrom\ \textless{}package\textgreater{}\ \textless{}function\textgreater{}}
 
-Many of us, use \texttt{\%\textgreater{}\%} operator. If you want to add this to your documentation, do \texttt{usethis::use\_pipe()}.
+Many of us use \texttt{\%\textgreater{}\%} operator in the code. If you want to add this to your documentation, do \texttt{usethis::use\_pipe()}.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -17485,7 +17482,7 @@ This documentation is for \href{https://en.wikipedia.org/wiki/Namespace}{namespa
   Test (\textbf{test})
 \end{enumerate}
 
-Although I said optional, automated unit testing is not option, when you're writing a complex package. Testing will you save tons of time and energy.
+Although I said optional, automated unit testing is not an option when you're writing a complex package. Testing will save you tons of time and energy.
 
 \begin{itemize}
 \tightlist
@@ -17701,9 +17698,9 @@ The workflow follows what Hadley Wickham recommended in his book on mastering sh
 
 Add an \texttt{app.R} file.
 
-The key objective here is defining your UI (User interface; how the app looks; front-end = INPUT) (defined in object \texttt{ui}) and server (how the app works; back-end = OUTPUT) (defined in object \texttt{server}). Shiny uses \textbf{reactive programming}. If you change inputs on the user side, outputs will be automatically updated on the server end.
+The key objective here is defining your UI (User interface; how the app looks; front-end = INPUT) (defined in object \texttt{ui}) and server (how the app works; back-end = OUTPUT) (defined in object \texttt{server}). Shiny uses \textbf{reactive programming}. So if you change inputs on the user side, outputs will be automatically updated on the server end.
 
-If you're creating a complex app, you can achieve the same goal with two files: \texttt{ui.R} and \texttt{server.R}.
+If you're creating a complex app, you can achieve the same goal with two files: \texttt{ui.R} and \texttt{server.R.}
 
 \hypertarget{app.r}{%
 \subsection{app.r}\label{app.r}}
@@ -17888,8 +17885,8 @@ If you're creating a complex app, you can achieve the same goal with two files: 
 ##   Use `force = TRUE` to force installation
 \end{verbatim}
 
-\hypertarget{objectives-3}{%
-\section{Objectives}\label{objectives-3}}
+\hypertarget{the-big-picture-8}{%
+\section{The Big Picture}\label{the-big-picture-8}}
 
 \begin{itemize}
 \tightlist
@@ -18001,7 +17998,7 @@ Let's go back to the example we covered in the earlier chapter of the book.
   Step 1: Inspection
 \end{itemize}
 
-Examine the Berkeley website so that we could identify a node that indicates the school's motto. If you're using Chrome, draw your interest elements, then \texttt{right\ click\ \textgreater{}\ inspect\ \textgreater{}\ copy\ full\ xpath.}
+Examine the Berkeley website so that we could identify a node that indicates the school's motto. Then, if you're using Chrome, draw your interest elements, then \texttt{right\ click\ \textgreater{}\ inspect\ \textgreater{}\ copy\ full\ xpath.}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -18136,7 +18133,7 @@ Step1: Get an XML document link
 \end{Highlighting}
 \end{Shaded}
 
-Step 2: Get page and parse the XML document.
+Step 2: Get the page and parse the XML document.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -18243,10 +18240,10 @@ In the previous session, we learned the difference between semi-structured data 
     \begin{itemize}
     \tightlist
     \item
-      Laptop (sample-parse): Downsamle the large target data and parse it on your laptop. This is just one option to \href{https://rviews.rstudio.com/2019/07/17/3-big-data-strategies-for-r/}{deal with big data in R}. It's a simple strategy as it doesn't require storing target data in your database.
+      Laptop (sample-parse): Downsamle the large target data and parse it on your laptop. This is just one option to \href{https://rviews.rstudio.com/2019/07/17/3-big-data-strategies-for-r/}{deal with big data in R}. It's a simple strategy that doesn't require storing target data in your database.
     \end{itemize}
   \item
-    Database (push-parse): Push the large target data to a database, then explore, select, and filter it. If you were interested in using this option, check out my \href{https://github.com/dlab-berkeley/sql-for-r-users}{SQL for R Users} workshop.
+    Database (push-parse): Push the large target data to a database, then explore, select, and filter it. If you are interested in using this option, check out my \href{https://github.com/dlab-berkeley/sql-for-r-users}{SQL for R Users} workshop.
   \end{itemize}
 \end{enumerate}
 
@@ -18359,7 +18356,7 @@ Twitter data is unique from data shared by most other social platforms because i
 \begin{itemize}
 \tightlist
 \item
-  What does this policy mean? If Twitter users don't share their tweets' locations (e.g., GPS), you can't collect them. You can get around this problem to identify a user's location based on their self-reported profile.
+  What does this policy mean? If Twitter users don't share their tweets' locations (e.g., GPS), you can't collect them. However, you can get around this problem to identify a user's location based on their self-reported profile.
 \end{itemize}
 
 \begin{enumerate}
@@ -18428,17 +18425,14 @@ Web scraping (Wild Wild West) \textless\textgreater{} API (Big Gated Garden)
 \hypertarget{next-steps}{%
 \subsection{Next steps}\label{next-steps}}
 
-\begin{itemize}
-\item
-  We are going to learn how to access and collect data using Twitter and New York Times API. We are going to learn this in two ways: (1) using plug-and-play packages (both using RStudio and the terminal) and (2) getting API data from scratch (\texttt{httr,} \texttt{jsonlite}).
-\item
-  Before everything else, first, sign up for the Twitter developer account. If you want to know how to sign up for a new Twitter developer account and access Twitter API, see Steinert-Threlkeld's \href{https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia/blob/master/Presentation/02_AccessTwitter.pdf}{APSA workshop slides}.
-\end{itemize}
+We will learn how to access and collect data using Twitter and New York Times API. We are going to learn this in two ways: (1) using plug-and-play packages (both using RStudio and the terminal) and (2) getting API data from scratch (\texttt{httr,} \texttt{jsonlite}).
+
+First, sign up for the Twitter developer account before everything else. If you want to know how to sign up for a new Twitter developer account and access Twitter API, see Steinert-Threlkeld's \href{https://github.com/ZacharyST/APSA2020_EventDataFromSocialMedia/blob/master/Presentation/02_AccessTwitter.pdf}{APSA workshop slides}.
 
 \hypertarget{rtweet}{%
 \subsection{rtweet}\label{rtweet}}
 
-The \texttt{rtweet} examples draw from \href{https://cbail.github.io/SICSS_APIs_markdown.html}{Chris Bail's tutorial}.
+The \texttt{rtweet} examples come from \href{https://cbail.github.io/SICSS_APIs_markdown.html}{Chris Bail's tutorial}.
 
 \hypertarget{setup-5}{%
 \subsubsection{Setup}\label{setup-5}}
@@ -18566,7 +18560,7 @@ What are the main two types of Twitter's API?
 \item
   You can collect Twitter data using Twitter's API, or you can hydrate Tweet IDs collected by other researchers. This is an excellent resource to collect historical Twitter data.
 \item
-  \href{http://www.panacealab.org/covid19/}{Covid-19 Twitter chatter dataset for scientic use} by Panacealab
+  \href{http://www.panacealab.org/covid19/}{Covid-19 Twitter chatter dataset for scientific use} by Panacealab
 \item
   \href{https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/5ZVMOR}{Women's March Dataset} by Littman and Park
 \item
@@ -18600,7 +18594,7 @@ What are the main two types of Twitter's API?
       \href{https://twarc-cloud.readthedocs.io/_/downloads/en/stable/pdf/}{Tward-cloud documentation} explains how to collect data from Twitter's API using Twarc running in \href{https://aws.amazon.com/}{Amazon Web Services} (AWS).
     \end{itemize}
   \item
-    Twarc was developed as part of the \href{https://www.docnow.io/}{Documenting the Now} project, which was funded by the Mellon Foundation.
+    Twarc was developed as part of the \href{https://www.docnow.io/}{Documenting the Now} project, which the Mellon Foundation funded.
   \end{itemize}
 \end{itemize}
 
@@ -18639,7 +18633,7 @@ The following examples are created by \href{http://digitalcollecting.lib.virgini
 \item
   In command-line, \texttt{\textgreater{}} = Create a file
 \item
-  I recommend running the following commands in the terminal because it's more stable than doing so in R Markdown.
+  I recommend running the following commands in the terminal because it's more stable than in R Markdown.
 \end{itemize}
 
 \begin{figure}
@@ -18743,7 +18737,7 @@ The following examples are created by \href{http://digitalcollecting.lib.virgini
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Collect tweets that contain some keywords of your choice using \texttt{twarc\ search} and save them as \texttt{tweets.jsonl}.
+  Collect tweets containing keywords of your choice using \texttt{twarc\ search} and save them as \texttt{tweets.jsonl}.
 \item
   Using \texttt{less} command in the terminal, inspect \texttt{twarc.log.}
 \item
@@ -18804,7 +18798,7 @@ Step1: Split the large JSON file in small chunks.
 \begin{itemize}
 \tightlist
 \item
-  After that, you will see several files appeared in the directory. Each of these files should have 100 tweets or fewer. All of these file names \textbf{should start with ``x,'' as in ``xaa.''}
+  After that, you will see several files appear in the directory. Each of these files should have 100 tweets or fewer. All of these file names \textbf{should start with ``x,'' as in ``xaa.''}
 \end{itemize}
 
 Step 2: Apply the parsing function to each chunk and pull all of these chunks together.
@@ -19014,7 +19008,7 @@ The \href{https://cran.r-project.org/web/packages/tidyjson/vignettes/introductio
 
 \textbf{Review}
 
-There are at least three ways you can use function + \texttt{purrr::map().}
+There are, at least, three ways you can use function + \texttt{purrr::map().}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -19068,7 +19062,7 @@ There are at least three ways you can use function + \texttt{purrr::map().}
 \item
   The main difference is using RStudio vs.~the terminal.
 \item
-  The difference matters when your data size is large. Suppose the size of the Twitter data you downloaded is 10 GB. R/RStudio might have a hard time dealing with this size of data. Then, how can you wrangle this size of data in a complex way using R?
+  The difference matters when your data size is large. For example, suppose the size of the Twitter data you downloaded is 10 GB. R/RStudio might have a hard time dealing with this size of data. Then, how can you wrangle this data size in a complex way using R?
 \end{itemize}
 
 \hypertarget{getting-api-data-from-scratch}{%
@@ -19161,8 +19155,8 @@ Load packages. For the connection interface, don't use \texttt{RCurl,} but I str
 \hypertarget{machine_learning}{%
 \chapter{High-dimensional data}\label{machine_learning}}
 
-\hypertarget{overview}{%
-\section{Overview}\label{overview}}
+\hypertarget{big-picture}{%
+\section{Big Picture}\label{big-picture}}
 
 \begin{itemize}
 \item
@@ -20394,7 +20388,7 @@ A confusion matrix is often used to describe the performance of a classification
 \hypertarget{tune-ingredients-1}{%
 \paragraph{tune ingredients}\label{tune-ingredients-1}}
 
-Decisions trees tend to overfit. There are two things we need to consider to reduce this problem: how to split and when to stop a tree.
+Decisions trees tend to overfit. We need to consider two things to reduce this problem: how to split and when to stop a tree.
 
 \begin{itemize}
 \item
@@ -20600,7 +20594,7 @@ single learner -\textgreater{} N learners (N \textgreater{} 1)
 
 Many learners could perform better than a single learner as this approach reduces the \textbf{variance} of a single estimate and provides more stability.
 
-Here we focus on the difference between bagging and boosting. In short, boosting may reduce bias while increasing variance. Bagging may reduce variance but has nothing to do with bias. For more information, please check out \href{https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/}{What is the difference between Bagging and Boosting?} by aporras.
+Here we focus on the difference between bagging and boosting. In short, boosting may reduce bias while increasing variance. On the other hand, bagging may reduce variance but has nothing to do with bias. Please check out \href{https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/}{What is the difference between Bagging and Boosting?} by aporras.
 
 \textbf{bagging}
 
@@ -21293,8 +21287,8 @@ We focus on the following two hyperparameters:
 
 This stacking part of the book heavily relies on \href{https://github.com/dlab-berkeley/Machine-Learning-in-R/blob/master/07-ensembles.Rmd}{Chris Kennedy's notebook}.
 
-\hypertarget{overview-1}{%
-\subsubsection{Overview}\label{overview-1}}
+\hypertarget{overview}{%
+\subsubsection{Overview}\label{overview}}
 
 \hypertarget{stacking}{%
 \paragraph{Stacking}\label{stacking}}
@@ -21519,7 +21513,7 @@ AUC: Area Under the ROC Curve
 
 The general stacking approach is available in the tidymodels framework through \href{https://github.com/tidymodels/stacks}{\texttt{stacks}} package (developmental stage).
 
-However, SuperLearner is currently not available in the tidymodels framework. If you'd like to, you can easily build and add a parsnip model. If you are interested in knowing more about it, please look at \href{https://www.tidymodels.org/learn/develop/models/}{this vignette} of the tidymodels.
+However, SuperLearner is currently not available in the tidymodels framework. You can easily build and add a parsnip model if you'd like to. If you are interested in knowing more about it, please look at \href{https://www.tidymodels.org/learn/develop/models/}{this vignette} of the tidymodels.
 
 \hypertarget{applications-2}{%
 \subsection{Applications}\label{applications-2}}
@@ -21549,7 +21543,7 @@ x -\textgreater{} f - \textgreater{} y (not defined)
 
 This dataset is a good problem for PCA as some features are highly correlated.
 
-Again, thin about what the dataset is about. The following data dictionary comes from \href{http://rstudio-pubs-static.s3.amazonaws.com/24341_184a58191486470cab97acdbbfe78ed5.html}{this site}.
+Again, think about what the dataset is about. The following data dictionary comes from \href{http://rstudio-pubs-static.s3.amazonaws.com/24341_184a58191486470cab97acdbbfe78ed5.html}{this site}.
 
 \begin{itemize}
 \tightlist
@@ -22484,9 +22478,9 @@ The data munging process draws on \href{https://juliasilge.com/blog/sherlock-hol
 \hypertarget{stm}{%
 \subsubsection{STM}\label{stm}}
 
-\href{https://www.structuraltopicmodel.com/}{Structural Topic Modeling} by Roberts, Stewart, and Tingley helps estimating how the proportions of topics vary by covariates. If you don't use covaraites, this approach is close to CTM. The other useful (and very recent) topic modeling package is Keyword Assisted Topic Models (\href{https://keyatm.github.io/keyATM/}{keyATM}) by Shusei, Imai, and Sasaki.
+\href{https://www.structuraltopicmodel.com/}{Structural Topic Modeling} by Roberts, Stewart, and Tingley helps estimate how topics' proportions vary by covariates. If you don't use covariates, this approach is close to CTM. The other useful (and very recent) topic modeling package is Keyword Assisted Topic Models (\href{https://keyatm.github.io/keyATM/}{keyATM}) by Shusei, Imai, and Sasaki.
 
-Also, note that we didn't cover other important techniques in topic modeling such as dynamic and hierarchical topic modeling.
+Also, note that we didn't cover other important techniques in topic modeling, such as dynamic and hierarchical topic modeling.
 
 \includegraphics{https://warin.ca/shiny/stm/images/fig02.png}
 
@@ -22700,11 +22694,11 @@ Several metrics assess topic models' performance: the held-out likelihood, resid
 \item
   Semantic coherence: high probability words for a topic co-occur in documents
 \item
-  Exclusivity: key words of one topic are not likely to appear as key words in other topics.
+  Exclusivity: keywords of one topic are not likely to appear as keywords in other topics.
 \end{itemize}
 
 \begin{quote}
-In Roberts et al 2014 we proposed using the Mimno et al 2011 semantic coherence metric for helping with topic model selection. We found that semantic coherence alone is relatively easy to achieve by having only a couple of topics which all are dominated by the most common words. Thus we also proposed an exclusivity measure.
+In Roberts et al.~2014 we proposed using the Mimno et al.~2011 semantic coherence metric for helping with topic model selection. However, we found that semantic coherence alone is relatively easy to achieve by having only a couple of topics that dominate the most common words. Thus we also proposed an exclusivity measure.
 \end{quote}
 
 \begin{quote}
@@ -23049,17 +23043,17 @@ In LDA distribution, \(\alpha\) represents document-topic density and \(\beta\) 
 \hypertarget{big_data}{%
 \chapter{Big data}\label{big_data}}
 
-\hypertarget{overview-2}{%
-\section{Overview}\label{overview-2}}
+\hypertarget{the-big-picture-9}{%
+\section{The Big Picture}\label{the-big-picture-9}}
 
 \begin{itemize}
 \tightlist
 \item
   Big data problem: data is too big to fit into memory (=local environment).
 \item
-  R reads data into random-access memory (RAM) at once and this object lives in memory entirely. So, if object.size \textgreater{} memory.size, the process will crash R.
+  R reads data into random-access memory (RAM) at once, and this object lives in memory entirely. So, if object.size \textgreater{} memory.size, the process will crash R.
 \item
-  Therefore, the key to deal with big data in R is reducing the size of data you want to bring into it.
+  Therefore, the key to dealing with big data in R is reducing the size of data you want to bring into it.
 \end{itemize}
 
 \textbf{Techniques to deal with big data}
@@ -23125,7 +23119,7 @@ In LDA distribution, \(\alpha\) represents document-topic density and \(\beta\) 
 
 \begin{itemize}
 \item
-  Structured Query Language. Called SEQUEL and developed by IBM Corporation in the 1970s.
+  Structured Query Language. Called SEQUEL and was developed by IBM Corporation in the 1970s.
 \item
   Remains the standard language for a relational database management system.
 \item
@@ -23144,8 +23138,8 @@ In LDA distribution, \(\alpha\) represents document-topic density and \(\beta\) 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{learning-objectives-1}{%
-\subsection{Learning objectives}\label{learning-objectives-1}}
+\hypertarget{learning-objectives}{%
+\subsection{Learning objectives}\label{learning-objectives}}
 
 \begin{itemize}
 \item
@@ -23181,7 +23175,7 @@ LIMIT & head() \\
 \end{longtable}
 
 \textbf{Challenge 1}
-1. Can you tell me the difference in the order in which the following \texttt{R} and \texttt{SQL} code were written to manipulate data? For instance, in R, what command comes first? In contrast, in SQL, what command comes first?
+1. Can you tell me the difference in the order in which the following \texttt{R} and \texttt{SQL} codes were written to manipulate data? For instance, in R, what command comes first? In contrast, in SQL, what command comes first?
 
 \begin{itemize}
 \tightlist
@@ -23307,7 +23301,7 @@ Let's get to work.
 \item
   Short answer: To do so, you need interfaces between R and a database. We use \href{https://github.com/r-dbi/RSQLite}{\texttt{RSQLite}} in this tutorial because it's easy to set up.
 \item
-  Long answer: The \texttt{DBI} package in R provides a client-side interface that allows \texttt{dplyr} to work with databases. DBI is automatically installed when you installed \texttt{dbplyr}. However, you need to install a specific backend engine (a tool for communication between R and a database management system) for the database (e.g., \texttt{RMariaDB}, \texttt{RPostgres}, \texttt{RSQLite}). In this workshop, we use SQLite because it is the easiest to get started with. I love PostgreSQL because it's open-source and also powerful to do \href{https://www.postgresql.org/docs/current/functions.html}{many amazing things} (e.g., text mining, geospatial analysis). If you want to build a data warehouse, an analytical platform, consider using Spark (Hadoop).
+  Long answer: The \texttt{DBI} package in R provides a client-side interface that allows \texttt{dplyr} to work with databases. DBI is automatically installed when you install \texttt{dbplyr}. However, you need to install a specific backend engine (a tool for communication between R and a database management system) for the database (e.g., \texttt{RMariaDB}, \texttt{RPostgres}, \texttt{RSQLite}). In this workshop, we use SQLite because it is the easiest to get started with. I love PostgreSQL because it's open-source and also powerful to do \href{https://www.postgresql.org/docs/current/functions.html}{many amazing things} (e.g., text mining, geospatial analysis). If you want to build a data warehouse, an analytical platform, consider using Spark (Hadoop).
 \end{itemize}
 
 \begin{enumerate}
@@ -23320,7 +23314,7 @@ Let's get to work.
 
 \begin{itemize}
 \item
-  Option 1: You can create a table and insert rows manually. To do that, you also need to define the data schema (the database structure).
+  Option 1: You can create a table and insert rows manually. You also need to define the data schema (the database structure) to do that.
 \item
   Table
 
@@ -23542,7 +23536,7 @@ Let's get to work.
 \item
   Select all columns (*) from \texttt{flights} table and show the \texttt{first\ ten\ rows}
 \item
-  Note that you can combine SQL and R commands thanks to \texttt{dbplyr}.
+  Note that you can combine SQL and R commands thanks to \texttt{dbplyr.}
 \item
   Option 1
 \end{itemize}
@@ -23614,7 +23608,7 @@ Let's get to work.
 \NormalTok{num }\OtherTok{\textless{}{-}} \DecValTok{10}
 
 \CommentTok{\# Glue SQL query string }
-\CommentTok{\# Note that to indicate a numeric value, you don\textquotesingle{}t need \textasciigrave{}\textasciigrave{}}
+\CommentTok{\# Note that to indicate a numeric value, you don\textquotesingle{}t need.}
 
 \NormalTok{sql\_query }\OtherTok{\textless{}{-}} \FunctionTok{glue\_sql}\NormalTok{(}\StringTok{"}
 \StringTok{  SELECT \{\textasciigrave{}var\textasciigrave{}\}}
@@ -23654,7 +23648,7 @@ Can you rewrite the above code using \texttt{LIMIT} instead of \texttt{head(10)}
 \end{itemize}
 
 \textbf{Challenge 3}
-Could you remind me how to see the list of attributes of a table? Let's say you want to see the attributes of \texttt{flights} table. How can you do it?
+Could you remind me how to see the list of attributes of a table? Let's say you want to see the \texttt{flights} table attributes. How can you do it?
 
 \begin{itemize}
 \tightlist
@@ -23730,7 +23724,7 @@ Could you remind me how to see the list of attributes of a table? Let's say you 
 \hypertarget{tidy-way-dplyr---sql}{%
 \subsubsection{Tidy-way: dplyr -\textgreater{} SQL}\label{tidy-way-dplyr---sql}}
 
-Thanks to the \texttt{dbplyr} package you can use the \texttt{dplyr} syntax to query SQL.
+Thanks to the \texttt{dbplyr} package, you can use the \texttt{dplyr} syntax to query SQL.
 
 \begin{itemize}
 \tightlist
@@ -23780,7 +23774,7 @@ Thanks to the \texttt{dbplyr} package you can use the \texttt{dplyr} syntax to q
 \end{verbatim}
 
 \textbf{Challenge 4}
-Your turn: write the same code in SQL. Don't forget to add \texttt{connection} argument to your SQL code chunk.
+Your turn: write the same code in SQL. Don't forget to add the \texttt{connection} argument to your SQL code chunk.
 
 \begin{itemize}
 \tightlist
@@ -23881,7 +23875,7 @@ JFK\\
 \end{tabular}
 \end{table}
 
-\texttt{\%} is one of the wildcards that you can use for string matching. \texttt{\%} matches any number of characters. So, \texttt{J\%} matches Jae, JFK, Joseph, etc. \texttt{\_} is another useful wildcard and it matches exactly one character. So \texttt{J\_} matches only JA, JE, etc. If wildcards are not enough, then you should consider using regular expressions.
+\texttt{\%} is one of the wildcards you can use for string matching. \texttt{\%} matches any number of characters. So, \texttt{J\%} matches Jae, JFK, Joseph, etc. \texttt{\_} is another useful wildcard that matches exactly one character. So \texttt{J\_} matches only JA, JE, etc. If wildcards are not enough, then you should consider using regular expressions.
 
 \begin{itemize}
 \tightlist
@@ -24043,7 +24037,7 @@ year & month & day & dep\_time & sched\_dep\_time & dep\_delay & arr\_time & sch
 \end{tabular}
 \end{table}
 
-Can anyone explain why SQL query using \texttt{dplyr} then translated by \texttt{show\_query()} looks so complex compared to the above? (\href{https://stackoverflow.com/questions/36808295/how-to-remove-duplicate-columns-from-join-in-sql}{Hint})
+Can anyone explain why SQL query using \texttt{dplyr} then translated by \texttt{show\_query()} looks more complex than the above? (\href{https://stackoverflow.com/questions/36808295/how-to-remove-duplicate-columns-from-join-in-sql}{Hint})
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -24125,7 +24119,7 @@ Error in UseMethod(``collect'') : no applicable method for `collect' applied to 
 
 Subquery = a query nested inside a query
 
-This is a hypothetical example inspired by \href{https://www.dofactory.com/sql/subquery}{dofactory blog post}.
+This hypothetical example is inspired by \href{https://www.dofactory.com/sql/subquery}{dofactory blog post}.
 
 \begin{Shaded}
 \begin{Highlighting}[]

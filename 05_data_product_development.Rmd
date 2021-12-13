@@ -9,7 +9,9 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Developing R packages 
 
-Why developing R packages? 
+### The Big Picture 
+
+Why develop R packages? 
 
 1. Reuse your code 
 2. Automate your workflow 
@@ -93,7 +95,7 @@ add <- function(x, y){
 
 If you used a function from other packages, you need to reference it in the following way: `#' @importFrom <package> <function>`
 
-Many of us, use `%>%` operator. If you want to add this to your documentation, do `usethis::use_pipe()`.
+Many of us use `%>%` operator in the code. If you want to add this to your documentation, do `usethis::use_pipe()`.
 
 3. Document (**man**)
 
@@ -120,7 +122,7 @@ usethis::use_package("dplyr")
 
 1. Test (**test**)
 
-Although I said optional, automated unit testing is not option, when you're writing a complex package. Testing will you save tons of time and energy.
+Although I said optional, automated unit testing is not an option when you're writing a complex package. Testing will save you tons of time and energy.
 
 - Setup 
 
@@ -277,9 +279,9 @@ install.packages("shiny")
 
 Add an `app.R` file.
 
-The key objective here is defining your UI (User interface; how the app looks; front-end = INPUT) (defined in object `ui`) and server (how the app works; back-end = OUTPUT) (defined in object `server`). Shiny uses **reactive programming**. If you change inputs on the user side, outputs will be automatically updated on the server end.
+The key objective here is defining your UI (User interface; how the app looks; front-end = INPUT) (defined in object `ui`) and server (how the app works; back-end = OUTPUT) (defined in object `server`). Shiny uses **reactive programming**. So if you change inputs on the user side, outputs will be automatically updated on the server end.
 
-If you're creating a complex app, you can achieve the same goal with two files: `ui.R` and `server.R`.
+If you're creating a complex app, you can achieve the same goal with two files: `ui.R` and `server.R.`
 
 ### app.r 
 
