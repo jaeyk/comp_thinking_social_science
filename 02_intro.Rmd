@@ -1863,7 +1863,7 @@ auto_test() # the test code tested when you save the file
 
 ### Asking questions: Minimal reproducible example
 
-- Chances are you're going to use StackOverflow a lot to solve a pressing problem you face. However, others can't understand/be interested in your problem unless you provide an example that they can understand with minimal effort. Such an example is called a minimal reproducible example. 
+- Chances are you're going to use StackOverflow a lot to solve a pressing problem you face. However, others can't understand/be interested in your problem unless you provide an example that they can understand with minimal effort. Such an example is called a minimal reproducible example (MRE). 
 
 - Read [this StackOverFlow post](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) to understand the concept and best practices.
 

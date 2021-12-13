@@ -2952,7 +2952,7 @@ Inspired by an example in Hadley Wickham's \href{https://journal.r-project.org/a
 
 \begin{itemize}
 \item
-  Chances are you're going to use StackOverflow a lot to solve a pressing problem you face. However, others can't understand/be interested in your problem unless you provide an example that they can understand with minimal effort. Such an example is called a minimal reproducible example.
+  Chances are you're going to use StackOverflow a lot to solve a pressing problem you face. However, others can't understand/be interested in your problem unless you provide an example that they can understand with minimal effort. Such an example is called a minimal reproducible example (MRE).
 \item
   Read \href{https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example}{this StackOverFlow post} to understand the concept and best practices.
 \item
@@ -3081,10 +3081,13 @@ Copy the following code and type \texttt{reprex()} in the console.
 \end{Highlighting}
 \end{Shaded}
 
-The rest of the chapter follows the basic structure in \href{https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf}{the Data Wrangling Cheat Sheet} created by RStudio.
+\hypertarget{the-big-picture-4}{%
+\section{The Big Picture}\label{the-big-picture-4}}
 
 \hypertarget{r-data-structures}{%
-\section{R Data structures}\label{r-data-structures}}
+\subsection{R Data structures}\label{r-data-structures}}
+
+The rest of the chapter follows the basic structure in \href{https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf}{the Data Wrangling Cheat Sheet} created by RStudio.
 
 To make the best use of the R language, you'll need a strong understanding of the basic data types and data structures and how to operate on those. R is an \textbf{object-oriented} language, so the importance of this cannot be understated.
 
@@ -3103,7 +3106,7 @@ To understand computations in R, two slogans are helpful:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \protect\hyperlink{main-classes}{Main Classes} introduces you to R's one-dimensional or atomic classes and data structures. R has five basic atomic classes: logical, integer, numeric, complex, character. Social scientists don't use complex classes. (Also, remember that we rarely use trigonometry.)
+  \protect\hyperlink{main-classes}{Main Classes} introduces you to R's one-dimensional or atomic classes and data structures. R has five basic atomic classes: logical, integer, numeric, complex, character. Social scientists don't use complex classes.
 \item
   \protect\hyperlink{attributes}{Attributes} takes a small detour to discuss attributes, R's flexible metadata specification. Here, you'll learn about factors, an important data structure created by setting attributes of an atomic vector. R has many data structures: vector, list, matrix, data frame, factors, tables.
 \end{enumerate}
@@ -3165,7 +3168,7 @@ What is a class?
 \begin{itemize}
 \tightlist
 \item
-  Second, R has different names for the types string, integer, and float --- specifically \textbf{character}, \textbf{integer} (not different), and \textbf{numeric}. Because there is no ``float'' class in R, users tend to default to the ``numeric'' class when they want to work with numerical data.
+  Second, R has different names for the types string, integer, and float --- specifically \textbf{character}, \textbf{integer} (not different), and \textbf{numeric}. Because there is no ``float'' class in R, users tend to default to the ``numeric'' class when working with numerical data.
 \end{itemize}
 
 The function for recovering object classes is \texttt{class()}. L suffix to qualify any number with the intent of making it an explicit integer. See more from the \href{https://cran.r-project.org/doc/manuals/R-lang.html}{R language definition}.
@@ -3254,7 +3257,7 @@ Remember, there are four common types of vectors:
 * \texttt{numeric} (same as \texttt{double})
 * \texttt{character}.
 
-You can create an empty vector with \texttt{vector()} (By default, the mode is \texttt{logical}. You can be more explicit as shown in the examples below.) It is more common to use direct constructors such as \texttt{character()}, \texttt{numeric()}, etc.
+You can create an empty vector with \texttt{vector()} (By default, the mode is \texttt{logical.} You can be more explicit as shown in the examples below.) It is more common to use direct constructors such as \texttt{character()}, \texttt{numeric()}, etc.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3338,7 +3341,7 @@ Atomic vectors are usually created with \texttt{c()}, which is short for concate
 ## [1]  TRUE  TRUE FALSE FALSE
 \end{verbatim}
 
-Finally you can have character vectors:
+Finally, you can have character vectors:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3384,7 +3387,7 @@ Finally you can have character vectors:
 
 \textbf{Short exercise: Create and examine your vector}
 
-Create a character vector called \texttt{fruit} that contains 4 of your favorite fruits. Then evaluate its structure using the commands below.
+Create a character vector called \texttt{fruit} containing 4 of your favorite fruits. Then evaluate its structure using the commands below.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3401,7 +3404,7 @@ Create a character vector called \texttt{fruit} that contains 4 of your favorite
 
 \textbf{Add elements}
 
-You can add elements to the end of a vector by passing the original vector into the \texttt{c} function, like so:
+You can add elements to the end of a vector by passing the original vector into the \texttt{c} function, like the following:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3566,7 +3569,7 @@ NB: \texttt{is.vector()} does not test if an object is a vector. Instead, it ret
 
 \textbf{Coercion}
 
-All atomic vector elements must be the same type, so when you attempt to combine different types, they will be \textbf{coerced} to the most flexible type. Types from least to most flexible are: logical, integer, double, and character.
+All atomic vector elements must be the same type, so when you attempt to combine different types, they will be \textbf{coerced} to the \textbf{most flexible type.} Types from least to most flexible are: logical \textgreater{} integer \textgreater{} double \textgreater{} character.
 
 For example, combining a character and an integer yields a character:
 
@@ -3592,7 +3595,7 @@ For example, combining a character and an integer yields a character:
 \end{Highlighting}
 \end{Shaded}
 
-Notice that when a logical vector is coerced to an integer or double, \texttt{TRUE} becomes 1 and \texttt{FALSE} becomes 0. This is very useful in conjunction with \texttt{sum()} and \texttt{mean()}
+Notice that when a logical vector is coerced to an integer or double, \texttt{TRUE} becomes 1, and \texttt{FALSE} becomes 0. This is very useful in conjunction with \texttt{sum()} and \texttt{mean()}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3619,7 +3622,7 @@ Notice that when a logical vector is coerced to an integer or double, \texttt{TR
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Proportion that are TRUE}
+\CommentTok{\# Proportion that is TRUE}
 \FunctionTok{mean}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
@@ -3729,7 +3732,7 @@ Sometimes coercions, especially nonsensical ones, won't work.
 \hypertarget{lists}{%
 \subsubsection{Lists}\label{lists}}
 
-Lists are also vectors, but different from atomic vectors because their elements can be of any type. In short, they are generic vectors. You construct lists by using \texttt{list()} instead of \texttt{c()}:
+Lists are also vectors, but different from atomic vectors because their elements can be of any type. In short, they are generic vectors. For example, you construct lists by using \texttt{list()} instead of \texttt{c()}:
 
 Lists are sometimes called recursive vectors, because a list can contain other lists. This makes them fundamentally different from atomic vectors.
 
@@ -3912,8 +3915,7 @@ For lists, elements are \textbf{indexed by double brackets}. Single brackets wil
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  What are the four basic types of atomic vector? How does a list differ from an
-  atomic vector?
+  What are the four basic types of atomic vectors? How does a list differ from an atomic vector?
 \item
   Why is \texttt{1\ ==\ "1"} true? Why is \texttt{-1\ \textless{}\ FALSE} true? Why is \texttt{"one"\ \textless{}\ 2} false?
 \item
@@ -3938,7 +3940,7 @@ Attributes provide additional information about the data to you, the user, and t
 
 \textbf{Additional tips}
 
-In an object-oriented system, a \href{https://www.google.com/search?q=what+is+class+programming\&oq=what+is+class+programming\&aqs=chrome.0.0l6.3543j0j4\&sourceid=chrome\&ie=UTF-8}{class} (an extensible problem-code-template) defines a type of objects like what its properties are, how it behaves, and how it relates to other types of objects. Therefore, technically, an object is an \href{https://en.wikipedia.org/wiki/Instance_(computer_science)}{instance} (or occurrence) of a class. A method is a function associated with a particular type of object.
+In an object-oriented system, a \href{https://www.google.com/search?q=what+is+class+programming\&oq=what+is+class+programming\&aqs=chrome.0.0l6.3543j0j4\&sourceid=chrome\&ie=UTF-8}{class} (an extensible problem-code-template) defines a type of object like what its properties are, how it behaves, and how it relates to other types of objects. Therefore, technically, an object is an \href{https://en.wikipedia.org/wiki/Instance_(computer_science)}{instance} (or occurrence) of a class. A method is a function associated with a particular type of object.
 
 \hypertarget{names}{%
 \subsubsection{Names}\label{names}}
@@ -4153,7 +4155,7 @@ Factors are useful when you know the possible values a variable may take, even i
 ##          3          0
 \end{verbatim}
 
-Sometimes factors can be left unordered. Example: \texttt{democrat}, \texttt{republican}.
+Sometimes factors can be left unordered. Example: \texttt{democrat}, \texttt{republican.}
 
 Other times you might want factors to be ordered (or ranked). Example: \texttt{low}, \texttt{medium}, \texttt{high}.
 
@@ -4191,7 +4193,7 @@ Other times you might want factors to be ordered (or ranked). Example: \texttt{l
 ## [1] TRUE
 \end{verbatim}
 
-While factors look (and often behave) like character vectors, they are integers. Be careful when treating them like strings. Some string methods (like \texttt{gsub()} and \texttt{grepl()}) will coerce factors to strings, while others (like \texttt{nchar()}) will throw an error, and still others (like \texttt{c()}) will use the underlying integer values.
+While factors look (and often behave) like character vectors, they are integers. So be careful when treating them like strings. Some string methods (like \texttt{gsub()} and \texttt{grepl()}) will coerce factors to strings, while others (like \texttt{nchar()}) will throw an error, and still others (like \texttt{c()}) will use the underlying integer values.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4240,11 +4242,11 @@ While factors look (and often behave) like character vectors, they are integers.
 
 For this reason, it's usually best to explicitly convert factors to character vectors if you need string-like behavior. There was a memory advantage to using factors instead of character vectors in early versions of R, but this is no longer the case.
 
-Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there's no way for those functions to know the set of all possible levels or their optimal order. If this becomes a problem, use the argument \texttt{stringsAsFactors\ =\ FALSE} to suppress this behavior, and then manually convert character vectors to factors using your knowledge of the data.
+Unfortunately, most data loading functions in R automatically convert character vectors to factors. This is suboptimal, because there's no way for those functions to know the set of all possible levels or their optimal order. If this becomes a problem, use the argument \texttt{stringsAsFactors\ =\ FALSE} to suppress this behavior and manually convert character vectors to factors using your knowledge of the data.
 
 \textbf{More attributes}
 
-All R objects can have arbitrary additional attributes, used to store metadata about the object. Attributes can be thought of as a named list (with unique names). Attributes can be accessed individually with \texttt{attr()} or all at once (as a list) with \texttt{attributes()}.
+All R objects can have arbitrary additional attributes used to store metadata about the object. Attributes can be considered a named list (with unique names). Attributes can be accessed individually with \texttt{attr()} or all at once (as a list) with \texttt{attributes().}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4327,7 +4329,7 @@ All R objects can have arbitrary additional attributes, used to store metadata a
 \hypertarget{matrices}{%
 \subsection{Matrices}\label{matrices}}
 
-Matrices are created when we combine multiple vectors with the same class (e.g., numeric). This creates a dataset with rows and columns. By definition, if you want to combine multiple classes of vectors, you want a dataframe. You can coerce a matrix to become a dataframe, and vice-versa, but as with all vector coercions, the results can be unpredictable, so be sure you know how each variable (column) will convert.
+Matrices are created when we combine multiple vectors with the same class (e.g., numeric). This creates a dataset with rows and columns. By definition, if you want to combine multiple classes of vectors, you want a dataframe. You can coerce a matrix to become a dataframe and vice-versa, but as with all vector coercions, the results can be unpredictable, so be sure you know how each variable (column) will convert.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4824,7 +4826,7 @@ You can combine dataframes using \texttt{cbind()} and \texttt{rbind()}:
 ## 4 10 z
 \end{verbatim}
 
-When combining column-wise, the number of rows must match, but row names are ignored. When combining row-wise, both the number and names of columns must match. (If you want to combine rows that don't have the same columns, there are other functions/packages in R that can help.)
+When combining column-wise, the number of rows must match, but row names are ignored. When combining row-wise, both the number and names of columns must match. (If you want to combine rows that don't have the same columns, other functions/packages in R can help.)
 
 It's a common mistake to try and create a dataframe by \texttt{cbind()}ing vectors together. This doesn't work because \texttt{cbind()} will create a matrix unless one of the arguments is already a dataframe. Instead use \texttt{data.frame()} directly:
 
@@ -4886,7 +4888,7 @@ The conversion rules for \texttt{cbind()} are complicated and best avoided by en
 
 \textbf{Other objects}
 
-Missing values are specified with \texttt{NA}, which is a logical vector of length 1. \texttt{NA} will always be coerced to the correct type if used inside \texttt{c()}
+Missing values are specified with \texttt{NA,} which is a logical vector of length 1. \texttt{NA} will always be coerced to the correct type if used inside \texttt{c()}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4967,7 +4969,7 @@ When working with data, you'll need to subset objects early and often. Luckily, 
   The use of subsetting in conjunction with assignment.
 \end{itemize}
 
-This unit helps you master subsetting by starting with the simplest type of subsetting: subsetting an atomic vector with \texttt{{[}}. It then gradually extends your knowledge, first to more complicated data types (like dataframes and lists), and then to the other subsetting operators, \texttt{{[}{[}} and \texttt{\$}. You'll then learn how subsetting and assignment can be combined to modify parts of an object, and, finally, you'll see a large number of useful applications.
+This unit helps you master subsetting by starting with the simplest type of subsetting: subsetting an atomic vector with \texttt{{[}}. It then gradually extends your knowledge to more complicated data types (like dataframes and lists) and then to the other subsetting operators, \texttt{{[}{[}} and \texttt{\$}. You'll then learn how subsetting and assignment can be combined to modify parts of an object, and, finally, you'll see a large number of useful applications.
 
 \hypertarget{atomic-vectors}{%
 \subsection{Atomic vectors}\label{atomic-vectors}}
@@ -5114,7 +5116,7 @@ You can't mix positive and negative integers in a single subset:
 ## [1] 2.1 4.2
 \end{verbatim}
 
-This is probably the most useful type of subsetting because you write the expression that creates the logical vector
+This is probably the most useful type of subsetting because you write the expression that creates the logical vector.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5371,7 +5373,7 @@ As with Python, R can also extract substrings based on the index position of its
 
 Second, \textbf{object subsets using index positions in R contain all the elements in the specified range}. If some object called \texttt{data} contains five elements, \texttt{data{[}2:4{]}} will return the elements at the second, third, and fourth positions. By contrast, the same subset in Python would return the objects at the third and fourth positions (or second and third positions, depending upon whether your index starts at 0 or 1).
 
-Third, \textbf{R does not allow indexing of character strings}*. Instead, you must use the \texttt{substr()} function. Note that this function must receive both the \texttt{start} and \texttt{stop} arguments. So if you want to get all the characters between some index and the end of the string, you must make use of the \texttt{nchar()} function, which will tell you the length of a character string.
+Third, \textbf{R does not allow indexing of character strings}*. Instead, you must use the \texttt{substr()} function. Note that this function must receive both the \texttt{start} and \texttt{stop} arguments. So if you want to get all the characters between some index and the end of the string, you must use the \texttt{nchar()} function, which will tell you the length of a character string.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5503,7 +5505,7 @@ Like Python, R has a number of string methods, though these exist as individual 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Note the importance of cases! This doesn\textquotesingle{}t throw an error, so you won\textquotesingle{}t realize your function didn\textquotesingle{}t work unless you double{-}check several entries}
+\CommentTok{\# Note the importance of cases! This doesn\textquotesingle{}t throw an error, so you won\textquotesingle{}t realize your function didn\textquotesingle{}t work unless you double{-}check several entries.}
 
 \FunctionTok{gsub}\NormalTok{(}\AttributeTok{pattern =} \StringTok{" "}\NormalTok{, }\AttributeTok{replacement =} \StringTok{""}\NormalTok{, }\AttributeTok{x =}\NormalTok{ fullName) }\CommentTok{\# The same function is used for replacements and stripping}
 \end{Highlighting}
@@ -5783,7 +5785,7 @@ There are two other subsetting operators: \texttt{{[}{[}} and \texttt{\$}.
 \hypertarget{section}{%
 \paragraph{\texorpdfstring{\texttt{{[}{[}}}{{[}{[}}}\label{section}}
 
-You need \texttt{{[}{[}} when working with lists. When \texttt{{[}} is applied to a list it always returns a list: it never gives you the contents of the list. To get the contents, you need \texttt{{[}{[}}:
+You need \texttt{{[}{[}} when working with lists. When \texttt{{[}} is applied to a list it always returns a list: it never gives you the list's contents. To get the contents, you need \texttt{{[}{[}}:
 
 \begin{quote}
 ``If list \texttt{x} is a train carrying objects, then \texttt{x{[}{[}5{]}{]}} is
@@ -6037,28 +6039,8 @@ All subsetting operators can be combined with an assignment operator to modify s
 \hypertarget{tidyverse}{%
 \section{Tidyverse}\label{tidyverse}}
 
-\begin{itemize}
-\item
-  I adapted the following content from Wickham's \href{https://r4ds.had.co.nz/tidy-data.html}{R for Data Science}, his \href{http://www.jstatsoft.org/v59/i10/paper}{earlier paper} published in the Journal of Statistical Software, \href{https://csgillespie.github.io/efficientR/}{Efficient R Programming} by Gillespie and Lovelace, and \href{https://bookdown.org/rdpeng/rprogdatascience/}{R Programming for Data Science} by Roger P. Peng.
-\item
-  \href{https://design.tidyverse.org/unifying-principles.html}{Tidyverse design guide}
-
-  \begin{itemize}
-  \item
-    Human-centered
-  \item
-    Consistent
-  \item
-    Composable (modularized)
-  \item
-    Inclusive
-  \item
-    Influenced by the \href{https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html}{Basics of the Unix Philosophy}, \href{https://www.python.org/dev/peps/pep-0020/}{The Zen of Python}, and the \href{https://refs.devinmcgloin.com/smalltalk/Design-Principles-Behind-Smalltalk.pdf}{Design Principles Behind Smalltalk}
-  \end{itemize}
-\end{itemize}
-
-\hypertarget{tidy-data}{%
-\section{Tidy data}\label{tidy-data}}
+\hypertarget{the-big-picture-5}{%
+\subsection{The Big Picture}\label{the-big-picture-5}}
 
 \begin{quote}
 ``Tidy data sets are easy to manipulate, model and visualize, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table.'' - Hadley Wickham
@@ -6101,7 +6083,7 @@ In summary, tidy data is a useful conceptual idea and is often the right way to 
 
 For instance, in many data science applications, linear algebra-based computations are essential (e.g., \href{https://www.math.upenn.edu/~kazdan/312S13/JJ/PCA-JJ.pdf}{Principal Component Analysis}). These computations are optimized to work on matrices, not tidy data frames (for more information, read \href{https://simplystatistics.org/2016/02/17/non-tidy-data/}{Jeff Leek's blog post}).
 
-This is what a tidy data looks like.
+This is what tidy data looks like.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6125,7 +6107,7 @@ This is what a tidy data looks like.
 
 \textbf{Additional tips}
 
-There are so many different ways of taking a look at data in R. Can you discuss the pros and cons of each approach? Which one do you prefer and why?
+There are so many different ways of looking at data in R. Can you discuss the pros and cons of each approach? Which one do you prefer and why?
 
 \begin{itemize}
 \item
@@ -6148,9 +6130,9 @@ There are so many different ways of taking a look at data in R. Can you discuss 
 
 These two packages don't do anything new but simplify most common tasks in data manipulation. Plus, they are fast, consistent, and more readable.
 
-Practically, this approach is right because you're going to have consistency in data format across all the projects you're working on. Also, tidy data works well with key packages (e.g., dplyr, ggplot2) in R.
+Practically, this approach is right because you will have consistency in data format across all the projects you're working on. Also, tidy data works well with key packages (e.g., \texttt{dplyr,} \texttt{ggplot2}) in R.
 
-Computationally, this approach is useful for vectorized programming because ``different variables from the same observation are always paired''. Vectorized means a function applies to a vector treats each element individually (=operations working in parallel).
+Computationally, this approach is useful for vectorized programming because ``different variables from the same observation are always paired''. Vectorized means a function applies to a vector that treats each element individually (=operations working in parallel).
 
 \hypertarget{tidying-tidyr}{%
 \section{Tidying (tidyr)}\label{tidying-tidyr}}
@@ -6276,7 +6258,7 @@ Let's take a look at the cases of untidy data.
 \begin{itemize}
 \tightlist
 \item
-  The pipe operator \texttt{\%\textgreater{}\%} originally comes from the \texttt{magrittr} package. The idea behind the pipe operator is \href{https://www.datacamp.com/community/tutorials/pipe-r-tutorial}{similar to} what we learned about chaining functions in high school. f: B -\textgreater{} C and g: A -\textgreater{} B can be expressed as \(f(g(x))\). The pipe operator chains operations. When you read pipe operator, read as ``and then'' (Wickham's recommendation). The keyboard shortcut is ctrl + shift + M. The key idea here is not creating temporary variables and focusing on verbs (functions). We'll learn more about this functional programming paradigm later on.
+  The pipe operator \texttt{\%\textgreater{}\%} originally comes from the \texttt{magrittr} package. The idea behind the pipe operator is \href{https://www.datacamp.com/community/tutorials/pipe-r-tutorial}{similar to} what we learned about chaining functions in high school. f: B -\textgreater{} C and g: A -\textgreater{} B can be expressed as \(f(g(x))\). The pipe operator chains operations. When reading the pipe operator, read as ``and then'' (Wickham's recommendation). The keyboard shortcut is ctrl + shift + M. The key idea here is not creating temporary variables and focusing on verbs (functions). We'll learn more about this functional programming paradigm later on.
 \end{itemize}
 
 \begin{Shaded}
@@ -6612,7 +6594,7 @@ A flat file (e.g., CSV) is a rectangular shaped combination of strings. \href{ht
 ## 6 China        2000 213766 1280428583
 \end{verbatim}
 
-Sometimes, a consultee came to me and asked: ``I don't have missing values in my original dataframe. Then R said that I have missing values after I've done some data transformations. What happened?''
+Sometimes, a consultee came to me and asked: ``I don't have missing values in my original dataframe. Then R said that I had missing values after doing some data transformations. What happened?''
 
 Here's an answer.
 
@@ -6917,7 +6899,7 @@ The example comes from \href{https://r4ds.had.co.nz/tidy-data.html}{\emph{R for 
 \hypertarget{filling}{%
 \subsection{Filling}\label{filling}}
 
-This is a relatively less-known function of the tidyr package. I found this function super useful to complete time-series data. For instance, how can you replace NA in the following example (this use case is drawn from the \href{https://tidyr.tidyverse.org/reference/fill.html}{tidyr package vignette}.)?
+This is a relatively less-known function of the tidyr package. However, I found this function super useful to complete time-series data. For instance, how can you replace NA in the following example (this use case is drawn from the \href{https://tidyr.tidyverse.org/reference/fill.html}{tidyr package vignette}.)?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8405,7 +8387,7 @@ You can think of \texttt{case\_when()} (multiple conditions) as an extended vers
 \begin{itemize}
 \tightlist
 \item
-  How may countries in each continent?
+  How many countries are in each continent?
 \end{itemize}
 
 \begin{Shaded}
@@ -9073,7 +9055,7 @@ Note that this workshop does not cover creating and manipulating variables using
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Summarize the average GDP of countries whose names starting with the alphabet ``A''.
+  Summarize the average GDP of countries whose names start with the alphabet ``A.''
 \item
   Turn the summary dataframe into a publishable table using either \texttt{kableExtra} or \texttt{flextable} package.
 \end{enumerate}
@@ -9091,8 +9073,7 @@ Note that this workshop does not cover creating and manipulating variables using
 \item
   Calculate the mean of \texttt{gdpPercap}.
 \item
-  Some functions are designed to work together. For instance, the group\_by
-  function defines the strata that you're going to use for summary statistics. Then, use summarise() or summarize() for producing summary statistics.
+  Some functions are designed to work together. For instance, the \texttt{group\_by()} function defines the strata you will use for summary statistics. Then, use \texttt{summarise()} to obtain summary statistics.
 \end{itemize}
 
 \begin{Shaded}
@@ -9578,7 +9559,7 @@ What is going to be the shared keys?
   Full Join
 \end{itemize}
 
-\texttt{full\_join()} keeps the observations from both tables. If they were unmatched, then NAs were recoded in one of the two tables.
+\texttt{full\_join()} keeps the observations from both tables. NAs were recorded in one of the two tables if they were unmatched.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9749,7 +9730,7 @@ The following example comes from \href{https://r4ds.had.co.nz/many-models.html}{
 
 \textbf{Challenge}
 
-In the following example, why did we use \texttt{country} and \texttt{continent} for nesting variables?
+Why did we use \texttt{country} and \texttt{continent} for nesting variables in the following example?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9864,7 +9845,7 @@ S3 is part of R's object-oriented systems. If you need further information, chec
 \item
   \texttt{broom::tidy(model)}: for extracting each coefficient in the model (the estimates + its variability)
 \item
-  \texttt{broom::augment(model,\ data)}: for getting extra values (residuals, and influence statistics). A convenient tool in case if you want to plot fitted values and raw data together.
+  \texttt{broom::augment(model,\ data)}: for getting extra values (residuals, and influence statistics). A convenient tool if you want to plot fitted values and raw data together.
 \end{itemize}
 
 \begin{figure}
@@ -10055,7 +10036,7 @@ S3 is part of R's object-oriented systems. If you need further information, chec
 \hypertarget{mapping}{%
 \subsection{Mapping}\label{mapping}}
 
-We tasted a little bit about how \texttt{map()} function works. Let's dig into it more in-depth as this family of functions is useful. For more information, see Rebecca Barter's excellent tutorial on the \texttt{purrr} package. In her words, this is ``the tidyverse's answer to apply functions for iteration''. \texttt{map()} function can take a vector (of any type), a list, and a dataframe for input.
+We tasted a bit of how \texttt{map()} function works. Let's dig into it more in-depth, as this family of functions is useful. See Rebecca Barter's excellent tutorial on the \texttt{purrr} package for more information. In her words, this is ``the tidyverse's answer to apply functions for iteration''. \texttt{map()} function can take a vector (of any type), a list, and a dataframe for input.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10347,7 +10328,7 @@ Model-Inquire-Data Strategy-Answer Strategy (MIDA) by Graeme Blair, Jasper Coope
 \begin{itemize}
 \tightlist
 \item
-  Model: speculation of how the world works (variables plus their relationships)
+  Model: speculating how the world works (variables plus their relationships)
 \end{itemize}
 
 \begin{Shaded}
@@ -13680,7 +13661,7 @@ Diagnosis is made using a Monte Carlo approach (=simulating many times using boo
   Shortcuts
 \end{itemize}
 
-Doing the power analysis for a three-arm experiment.
+The following is the power analysis for a three-arm experiment.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13718,7 +13699,7 @@ Experimenters! Consider writing and registering a pre-analysis before running yo
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Write code using fake data. If you are using , you can generate test responses using the platform: \url{https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/}
+  Write code using fake data. If you are using, you can generate test responses using the platform: \url{https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/}
 \item
   Register the pre-analysis using \href{https://aspredicted.org/}{ASPREDICTED}, ``a platform that makes it easy for researchers to pre-register their studies, and easy for others to read and evaluate those pre-registrations.'' It creates an anonymized PDF file filled with the answers you provided and a blinded link.
 \item
@@ -14344,7 +14325,7 @@ Basic ideas:
 
 \texttt{geom\_line} joins up all the lines for each particular year in the order they appear in the dataset. \texttt{ggplot2} does not know the yearly observations in your data are grouped by country.
 
-Note that you need grouping when the grouping information you need to tell is not built into the mapped variables (like continent).
+You need grouping when the grouping information you need to tell is not built into the mapped variables (like continent).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14453,7 +14434,7 @@ Facetting is to make small multiples.
 \hypertarget{use-pipes-to-summarize-data}{%
 \subsubsection{Use pipes to summarize data}\label{use-pipes-to-summarize-data}}
 
-Also, we experiment bar charts here. By default, \texttt{geom\_bar} \href{https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar}{uses} stat = ``bins'', which makes the height of each bar equal to the number of cases in each group. If you have a y column, then you should use \texttt{stat\ =\ "identity"} argument. Alternatively, you can use \texttt{geom\_col()}.
+Also, we experiment with bar charts here. By default, \texttt{geom\_bar} \href{https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar}{uses} stat = ``bins'', which makes the height of each bar equal to the number of cases in each group. If you have a y column, then you should use \texttt{stat\ =\ "identity"} argument. Alternatively, you can use \texttt{geom\_col().}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14800,7 +14781,7 @@ In plotting models, we extensively use David Robinson's \href{https://cran.r-pro
 \end{Highlighting}
 \end{Shaded}
 
-\texttt{tidy()} is a method in the \texttt{broom} package. It ``constructs a dataframe that summarizes the model's statistical findings''. As the description states, tidy is a function that can be used for various models. For instance, a tidy can extract following information from a regression model.
+\texttt{tidy()} is a method in the \texttt{broom} package. It ``constructs a dataframe that summarizes the model's statistical findings''. As the description states, tidy is a function that can be used for various models. For instance, a tidy can extract the following information from a regression model.
 
 \begin{itemize}
 \tightlist
@@ -14822,7 +14803,7 @@ In plotting models, we extensively use David Robinson's \href{https://cran.r-pro
 
 \textbf{Challenge}
 
-Try \texttt{glance(out)}, what did you get from these commands? If you're curious, you can try \texttt{?glance}.
+Try \texttt{glance(out)}; what did you get from these commands? If you're curious, you can try \texttt{?glance}.
 
 The followings are to show your degree of confidence.
 
@@ -14879,7 +14860,7 @@ The followings are to show your degree of confidence.
 
 \includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-217-2.pdf}
 
-You can calculate marginal effects using the \texttt{margins} package. For the sake of time, I'm not covering that here.
+You can also calculate marginal effects using the \href{https://vincentarelbundock.github.io/marginaleffects/}{\texttt{marginaleffects}} package.
 
 \hypertarget{functional_programming}{%
 \chapter{Automating repeated things}\label{functional_programming}}
