@@ -2,7 +2,7 @@
 
 ```{r include = FALSE}
 # Caching this markdown file 
-knitr::opts_chunk$set(cache = TRUE)
+#knitr::opts_chunk$set(cache = TRUE)
 ```
 
 ## Setup
@@ -2714,7 +2714,7 @@ visualize(null_slopes) +
 
 ```
 
-### Design Anaysis (optional)
+### Design Anaysis 
 
 DeclareDesign provides a collection of packages (`fabricatr`, `randomizr`, `estimatr`) that are very useful for those interested in testing the strength of research design. DeclareDesign also helps share your research design along with your code and data. 
 
