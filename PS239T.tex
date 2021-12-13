@@ -3055,21 +3055,12 @@ Copy the following code and type \texttt{reprex()} in the console.
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(}\StringTok{"pacman"}\NormalTok{)) }\FunctionTok{install.packages}\NormalTok{(}\StringTok{"pacman"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Loading required package: pacman
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(}
 \NormalTok{  tidyverse, }\CommentTok{\# the tidyverse framework}
-\NormalTok{  skimr, }\CommentTok{\# skimming data }
+\NormalTok{  skimr, }\CommentTok{\# skimming data}
 \NormalTok{  here, }\CommentTok{\# computational reproducibility}
-\NormalTok{  infer, }\CommentTok{\# statistical inference }
-\NormalTok{  tidymodels, }\CommentTok{\# statistical modeling }
+\NormalTok{  infer, }\CommentTok{\# statistical inference}
+\NormalTok{  tidymodels, }\CommentTok{\# statistical modeling}
 \NormalTok{  gapminder, }\CommentTok{\# toy data}
 \NormalTok{  nycflights13, }\CommentTok{\# for exercise}
 \NormalTok{  ggthemes, }\CommentTok{\# additional themes}
@@ -3081,11 +3072,8 @@ Copy the following code and type \texttt{reprex()} in the console.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{the-big-picture-4}{%
-\section{The Big Picture}\label{the-big-picture-4}}
-
-\hypertarget{r-data-structures}{%
-\subsection{R Data structures}\label{r-data-structures}}
+\hypertarget{base-r-data-structure}{%
+\section{Base R data structure}\label{base-r-data-structure}}
 
 The rest of the chapter follows the basic structure in \href{https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf}{the Data Wrangling Cheat Sheet} created by RStudio.
 
@@ -3118,10 +3106,10 @@ To understand computations in R, two slogans are helpful:
 \end{figure}
 
 \hypertarget{d-data-vectors}{%
-\section{1D data: Vectors}\label{d-data-vectors}}
+\subsection{1D data: Vectors}\label{d-data-vectors}}
 
 \hypertarget{atomic-classes}{%
-\subsection{Atomic classes}\label{atomic-classes}}
+\subsubsection{Atomic classes}\label{atomic-classes}}
 
 \texttt{R}'s main atomic classes are:
 
@@ -3394,7 +3382,6 @@ Create a character vector called \texttt{fruit} containing 4 of your favorite fr
 \CommentTok{\# First, create your fruit vector}
 \CommentTok{\# YOUR CODE HERE}
 \NormalTok{fruit }\OtherTok{\textless{}{-}}
-
   \CommentTok{\# Examine your vector}
   \FunctionTok{length}\NormalTok{(fruit)}
 \FunctionTok{class}\NormalTok{(fruit)}
@@ -4315,7 +4302,7 @@ All R objects can have arbitrary additional attributes used to store metadata ab
 \end{Shaded}
 
 \hypertarget{d-data-matrices-and-dataframes}{%
-\section{2D data: Matrices and dataframes}\label{d-data-matrices-and-dataframes}}
+\subsection{2D data: Matrices and dataframes}\label{d-data-matrices-and-dataframes}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4327,7 +4314,7 @@ All R objects can have arbitrary additional attributes used to store metadata ab
 \end{enumerate}
 
 \hypertarget{matrices}{%
-\subsection{Matrices}\label{matrices}}
+\subsubsection{Matrices}\label{matrices}}
 
 Matrices are created when we combine multiple vectors with the same class (e.g., numeric). This creates a dataset with rows and columns. By definition, if you want to combine multiple classes of vectors, you want a dataframe. You can coerce a matrix to become a dataframe and vice-versa, but as with all vector coercions, the results can be unpredictable, so be sure you know how each variable (column) will convert.
 
@@ -4532,12 +4519,12 @@ Notice that we gave \texttt{names} to the dimensions in \texttt{mdat}.
 \end{verbatim}
 
 \hypertarget{dataframes}{%
-\subsection{Dataframes}\label{dataframes}}
+\subsubsection{Dataframes}\label{dataframes}}
 
 A data frame is an essential data type in R. It's pretty much the \textbf{de facto} data structure for most tabular data and what we use for statistics.
 
 \hypertarget{creation}{%
-\subsubsection{Creation}\label{creation}}
+\paragraph{Creation}\label{creation}}
 
 You create a data frame using \texttt{data.frame()}, which takes named vectors as input:
 
@@ -4591,7 +4578,7 @@ Beware: \texttt{data.frame()}'s default behavior which turns strings into factor
 In reality, we rarely type up our datasets ourselves, and certainly not in R. The most common way to make a data.frame is by calling a file using \texttt{read.csv} (which relies on the \texttt{foreign} package), \texttt{read.dta} (if you're using a Stata file), or some other kinds of data file input.
 
 \hypertarget{structure-and-attributes}{%
-\subsubsection{Structure and Attributes}\label{structure-and-attributes}}
+\paragraph{Structure and Attributes}\label{structure-and-attributes}}
 
 Under the hood, a data frame is a list of equal-length vectors. This makes it a 2-dimensional structure, so it shares properties of both the matrix and the list.
 
@@ -4752,7 +4739,7 @@ The \texttt{length()} of a dataframe is the length of the underlying list and so
 \end{verbatim}
 
 \hypertarget{testing-and-coercion}{%
-\subsubsection{Testing and coercion}\label{testing-and-coercion}}
+\paragraph{Testing and coercion}\label{testing-and-coercion}}
 
 To check if an object is a dataframe, use \texttt{class()} or test explicitly with \texttt{is.data.frame()}:
 
@@ -4789,7 +4776,7 @@ You can coerce an object to a dataframe with \texttt{as.data.frame()}:
 \end{itemize}
 
 \hypertarget{combining-dataframes}{%
-\subsubsection{Combining dataframes}\label{combining-dataframes}}
+\paragraph{Combining dataframes}\label{combining-dataframes}}
 
 You can combine dataframes using \texttt{cbind()} and \texttt{rbind()}:
 
@@ -4956,7 +4943,7 @@ Missing values are specified with \texttt{NA,} which is a logical vector of leng
 \end{verbatim}
 
 \hypertarget{subset}{%
-\section{Subset}\label{subset}}
+\subsection{Subset}\label{subset}}
 
 When working with data, you'll need to subset objects early and often. Luckily, R's subsetting operators are powerful and fast. Mastery of subsetting allows you to succinctly express complex operations in a way that few other languages can match. Subsetting is hard to learn because you need to master several interrelated concepts:
 
@@ -4972,7 +4959,7 @@ When working with data, you'll need to subset objects early and often. Luckily, 
 This unit helps you master subsetting by starting with the simplest type of subsetting: subsetting an atomic vector with \texttt{{[}}. It then gradually extends your knowledge to more complicated data types (like dataframes and lists) and then to the other subsetting operators, \texttt{{[}{[}} and \texttt{\$}. You'll then learn how subsetting and assignment can be combined to modify parts of an object, and, finally, you'll see a large number of useful applications.
 
 \hypertarget{atomic-vectors}{%
-\subsection{Atomic vectors}\label{atomic-vectors}}
+\subsubsection{Atomic vectors}\label{atomic-vectors}}
 
 Let's explore the different types of subsetting with a simple vector, \texttt{x}.
 
@@ -4989,7 +4976,7 @@ Note that the number after the decimal point gives the original position in the 
 There are five things that you can use to subset a vector:
 
 \hypertarget{positive-integers}{%
-\subsubsection{Positive integers}\label{positive-integers}}
+\paragraph{Positive integers}\label{positive-integers}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5065,7 +5052,7 @@ There are five things that you can use to subset a vector:
 \end{verbatim}
 
 \hypertarget{negative-integers}{%
-\subsubsection{Negative integers}\label{negative-integers}}
+\paragraph{Negative integers}\label{negative-integers}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5102,7 +5089,7 @@ You can't mix positive and negative integers in a single subset:
 \end{verbatim}
 
 \hypertarget{logical-vectors}{%
-\subsubsection{Logical vectors}\label{logical-vectors}}
+\paragraph{Logical vectors}\label{logical-vectors}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5253,7 +5240,7 @@ Another way to generate implicit conditional statements is using the \texttt{\%i
 \end{verbatim}
 
 \hypertarget{character-vectors}{%
-\subsubsection{Character vectors}\label{character-vectors}}
+\paragraph{Character vectors}\label{character-vectors}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5516,7 +5503,7 @@ Like Python, R has a number of string methods, though these exist as individual 
 \end{verbatim}
 
 \hypertarget{lists-1}{%
-\subsection{Lists}\label{lists-1}}
+\subsubsection{Lists}\label{lists-1}}
 
 Subsetting a list works in the same way as subsetting an atomic vector. Using \texttt{{[}} will always return a list; \texttt{{[}{[}} and \texttt{\$}, as described below, let you pull out the list's components.
 
@@ -5568,7 +5555,7 @@ Subsetting a list works in the same way as subsetting an atomic vector. Using \t
 \end{verbatim}
 
 \hypertarget{matrices-1}{%
-\subsection{Matrices}\label{matrices-1}}
+\subsubsection{Matrices}\label{matrices-1}}
 
 The most common way of subsetting matrices (2d) is a simple generalization of 1d subsetting: you supply a 1d index for each dimension, separated by a comma. Blank subsetting is now useful because it lets you keep all rows or all columns.
 
@@ -5635,7 +5622,7 @@ The most common way of subsetting matrices (2d) is a simple generalization of 1d
 \end{verbatim}
 
 \hypertarget{data-frames}{%
-\subsection{Data frames}\label{data-frames}}
+\subsubsection{Data frames}\label{data-frames}}
 
 Data from data frames can be addressed like matrices (with row and column indicators separated by a comma).
 
@@ -5770,7 +5757,7 @@ But there's a significant difference when selecting a single column: matrix subs
 See the bottom section on \protect\hyperlink{simplify-preserve}{Simplying and Preserving to know more}
 
 \hypertarget{subsetting-operators}{%
-\subsection{Subsetting operators}\label{subsetting-operators}}
+\subsubsection{Subsetting operators}\label{subsetting-operators}}
 
 There are two other subsetting operators: \texttt{{[}{[}} and \texttt{\$}.
 
@@ -5958,7 +5945,7 @@ One common mistake with \texttt{\$} is to try and use it when you have the name 
 \end{verbatim}
 
 \hypertarget{subassignment}{%
-\subsection{Subassignment}\label{subassignment}}
+\subsubsection{Subassignment}\label{subassignment}}
 
 All subsetting operators can be combined with an assignment operator to modify selected values of the input vector.
 
@@ -6039,8 +6026,8 @@ All subsetting operators can be combined with an assignment operator to modify s
 \hypertarget{tidyverse}{%
 \section{Tidyverse}\label{tidyverse}}
 
-\hypertarget{the-big-picture-5}{%
-\subsection{The Big Picture}\label{the-big-picture-5}}
+\hypertarget{the-big-picture-4}{%
+\subsection{The Big Picture}\label{the-big-picture-4}}
 
 \begin{quote}
 ``Tidy data sets are easy to manipulate, model and visualize, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table.'' - Hadley Wickham
@@ -6263,7 +6250,7 @@ Let's take a look at the cases of untidy data.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{table4a }
+\NormalTok{table4a}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6903,16 +6890,16 @@ This is a relatively less-known function of the tidyr package. However, I found 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Example }
+\CommentTok{\# Example}
 \NormalTok{stock }\OtherTok{\textless{}{-}}\NormalTok{ tibble}\SpecialCharTok{::}\FunctionTok{tribble}\NormalTok{(}
-  \SpecialCharTok{\textasciitilde{}}\NormalTok{ quarter, }\SpecialCharTok{\textasciitilde{}}\NormalTok{ year, }\SpecialCharTok{\textasciitilde{}}\NormalTok{stock\_price, }
-  \StringTok{"Q1"}\NormalTok{, }\DecValTok{2000}\NormalTok{, }\DecValTok{10000}\NormalTok{, }
-  \StringTok{"Q2"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{10001}\NormalTok{, }\CommentTok{\# Replace NA with 2000  }
-  \StringTok{"Q3"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{10002}\NormalTok{, }\CommentTok{\# Replace NA with 2000 }
-  \StringTok{"Q4"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{10003}\NormalTok{, }\CommentTok{\# Replace NA with 2000 }
-  \StringTok{"Q1"}\NormalTok{, }\DecValTok{2001}\NormalTok{, }\DecValTok{10004}\NormalTok{, }
-  \StringTok{"Q2"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{10005}\NormalTok{, }\CommentTok{\# Replace NA with 2001 }
-  \StringTok{"Q3"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{10006}\NormalTok{, }\CommentTok{\# Replace NA with 2001 }
+  \SpecialCharTok{\textasciitilde{}}\NormalTok{quarter, }\SpecialCharTok{\textasciitilde{}}\NormalTok{year, }\SpecialCharTok{\textasciitilde{}}\NormalTok{stock\_price,}
+  \StringTok{"Q1"}\NormalTok{, }\DecValTok{2000}\NormalTok{, }\DecValTok{10000}\NormalTok{,}
+  \StringTok{"Q2"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{10001}\NormalTok{, }\CommentTok{\# Replace NA with 2000}
+  \StringTok{"Q3"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{10002}\NormalTok{, }\CommentTok{\# Replace NA with 2000}
+  \StringTok{"Q4"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{10003}\NormalTok{, }\CommentTok{\# Replace NA with 2000}
+  \StringTok{"Q1"}\NormalTok{, }\DecValTok{2001}\NormalTok{, }\DecValTok{10004}\NormalTok{,}
+  \StringTok{"Q2"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{10005}\NormalTok{, }\CommentTok{\# Replace NA with 2001}
+  \StringTok{"Q3"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{10006}\NormalTok{, }\CommentTok{\# Replace NA with 2001}
   \StringTok{"Q4"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{10007}\NormalTok{, }\CommentTok{\# Replace NA with 2001}
 \NormalTok{)}
 
@@ -6938,21 +6925,21 @@ Let's take a slightly more complex example.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Example }
+\CommentTok{\# Example}
 \NormalTok{yelp\_rate }\OtherTok{\textless{}{-}}\NormalTok{ tibble}\SpecialCharTok{::}\FunctionTok{tribble}\NormalTok{(}
-  \SpecialCharTok{\textasciitilde{}}\NormalTok{ neighborhood, }\SpecialCharTok{\textasciitilde{}}\NormalTok{restraurant\_type, }\SpecialCharTok{\textasciitilde{}}\NormalTok{popularity\_rate, }
-  \StringTok{"N1"}\NormalTok{, }\StringTok{"Chinese"}\NormalTok{, }\DecValTok{5}\NormalTok{, }
-  \StringTok{"N2"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{4}\NormalTok{,   }
-  \StringTok{"N3"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{3}\NormalTok{,  }
-  \StringTok{"N4"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{2}\NormalTok{,  }
-  \StringTok{"N1"}\NormalTok{, }\StringTok{"Indian"}\NormalTok{, }\DecValTok{1}\NormalTok{, }
-  \StringTok{"N2"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{2}\NormalTok{,  }
-  \StringTok{"N3"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{3}\NormalTok{,  }
-  \StringTok{"N4"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{4}\NormalTok{, }
+  \SpecialCharTok{\textasciitilde{}}\NormalTok{neighborhood, }\SpecialCharTok{\textasciitilde{}}\NormalTok{restraurant\_type, }\SpecialCharTok{\textasciitilde{}}\NormalTok{popularity\_rate,}
+  \StringTok{"N1"}\NormalTok{, }\StringTok{"Chinese"}\NormalTok{, }\DecValTok{5}\NormalTok{,}
+  \StringTok{"N2"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{4}\NormalTok{,}
+  \StringTok{"N3"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{3}\NormalTok{,}
+  \StringTok{"N4"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{2}\NormalTok{,}
+  \StringTok{"N1"}\NormalTok{, }\StringTok{"Indian"}\NormalTok{, }\DecValTok{1}\NormalTok{,}
+  \StringTok{"N2"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{2}\NormalTok{,}
+  \StringTok{"N3"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{3}\NormalTok{,}
+  \StringTok{"N4"}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\DecValTok{4}\NormalTok{,}
   \StringTok{"N1"}\NormalTok{, }\StringTok{"Mexican"}\NormalTok{, }\DecValTok{5}
 \NormalTok{)}
 
-\FunctionTok{fill}\NormalTok{(yelp\_rate, restraurant\_type) }\CommentTok{\# default is direction = .down }
+\FunctionTok{fill}\NormalTok{(yelp\_rate, restraurant\_type) }\CommentTok{\# default is direction = .down}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6973,7 +6960,7 @@ Let's take a slightly more complex example.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{fill}\NormalTok{(yelp\_rate, restraurant\_type, }\AttributeTok{.direction =} \StringTok{"up"}\NormalTok{) }
+\FunctionTok{fill}\NormalTok{(yelp\_rate, restraurant\_type, }\AttributeTok{.direction =} \StringTok{"up"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7119,7 +7106,7 @@ Let's take a slightly more complex example.
 \NormalTok{df }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{rename}\NormalTok{(}
     \AttributeTok{Year =} \CommentTok{\# NEW name}
-\NormalTok{    y}
+\NormalTok{      y}
 \NormalTok{  ) }\CommentTok{\# OLD name}
 \end{Highlighting}
 \end{Shaded}
@@ -7146,7 +7133,7 @@ Let's take a slightly more complex example.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{starwars }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(gender }\SpecialCharTok{==} \StringTok{"feminine"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(gender }\SpecialCharTok{==} \StringTok{"feminine"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(height))}
 \end{Highlighting}
 \end{Shaded}
@@ -7188,7 +7175,7 @@ The following filtering example was inspired by \href{https://suzan.rbind.io/201
 \begin{Highlighting}[]
 \CommentTok{\# First example}
 \NormalTok{starwars }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(height }\SpecialCharTok{\textless{}} \DecValTok{180}\NormalTok{, height }\SpecialCharTok{\textgreater{}} \DecValTok{160}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(height }\SpecialCharTok{\textless{}} \DecValTok{180}\NormalTok{, height }\SpecialCharTok{\textgreater{}} \DecValTok{160}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{nrow}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -7201,7 +7188,7 @@ The following filtering example was inspired by \href{https://suzan.rbind.io/201
 \begin{Highlighting}[]
 \CommentTok{\# Same as above}
 \NormalTok{starwars }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(height }\SpecialCharTok{\textless{}} \DecValTok{180} \SpecialCharTok{\&}\NormalTok{ height }\SpecialCharTok{\textgreater{}} \DecValTok{160}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(height }\SpecialCharTok{\textless{}} \DecValTok{180} \SpecialCharTok{\&}\NormalTok{ height }\SpecialCharTok{\textgreater{}} \DecValTok{160}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{nrow}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -7214,7 +7201,7 @@ The following filtering example was inspired by \href{https://suzan.rbind.io/201
 \begin{Highlighting}[]
 \CommentTok{\# Not same as above}
 \NormalTok{starwars }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(height }\SpecialCharTok{\textless{}} \DecValTok{180} \SpecialCharTok{|}\NormalTok{ height }\SpecialCharTok{\textgreater{}} \DecValTok{160}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(height }\SpecialCharTok{\textless{}} \DecValTok{180} \SpecialCharTok{|}\NormalTok{ height }\SpecialCharTok{\textgreater{}} \DecValTok{160}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{nrow}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -7246,7 +7233,7 @@ The following filtering example was inspired by \href{https://suzan.rbind.io/201
 \NormalTok{)}
 
 \NormalTok{df }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(}\FunctionTok{between}\NormalTok{(heights, }\DecValTok{161}\NormalTok{, }\DecValTok{179}\NormalTok{))}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(}\FunctionTok{between}\NormalTok{(heights, }\DecValTok{161}\NormalTok{, }\DecValTok{179}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7286,7 +7273,7 @@ The following filtering example was inspired by \href{https://suzan.rbind.io/201
 \CommentTok{\# Filter names include ars; \textasciigrave{}grepl\textasciigrave{} is a base R function}
 
 \NormalTok{starwars }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(}\FunctionTok{grepl}\NormalTok{(}\StringTok{"ars"}\NormalTok{, }\FunctionTok{tolower}\NormalTok{(name)))}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(}\FunctionTok{grepl}\NormalTok{(}\StringTok{"ars"}\NormalTok{, }\FunctionTok{tolower}\NormalTok{(name)))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7307,7 +7294,7 @@ The following filtering example was inspired by \href{https://suzan.rbind.io/201
 \CommentTok{\# Or, if you prefer dplyr way}
 
 \NormalTok{starwars }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(}\FunctionTok{str\_detect}\NormalTok{(}\FunctionTok{tolower}\NormalTok{(name), }\StringTok{"ars"}\NormalTok{))}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(}\FunctionTok{str\_detect}\NormalTok{(}\FunctionTok{tolower}\NormalTok{(name), }\StringTok{"ars"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7328,7 +7315,7 @@ The following filtering example was inspired by \href{https://suzan.rbind.io/201
 \CommentTok{\# Filter brown and black hair\_color}
 
 \NormalTok{starwars }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(hair\_color }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\StringTok{"brown"}\NormalTok{))}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(hair\_color }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\StringTok{"brown"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7889,8 +7876,10 @@ The key idea is you can use Boolean operators (\texttt{!}, \texttt{\&}, \texttt{
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{messy\_df }\OtherTok{\textless{}{-}}\NormalTok{ tibble}\SpecialCharTok{::}\FunctionTok{tribble}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\StringTok{"ColNum1"}\NormalTok{, }\SpecialCharTok{\textasciitilde{}}\StringTok{"COLNUM2"}\NormalTok{, }\SpecialCharTok{\textasciitilde{}} \StringTok{"COL \& NUM3"}\NormalTok{,}
-                            \DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{messy\_df }\OtherTok{\textless{}{-}}\NormalTok{ tibble}\SpecialCharTok{::}\FunctionTok{tribble}\NormalTok{(}
+  \SpecialCharTok{\textasciitilde{}}\StringTok{"ColNum1"}\NormalTok{, }\SpecialCharTok{\textasciitilde{}}\StringTok{"COLNUM2"}\NormalTok{, }\SpecialCharTok{\textasciitilde{}}\StringTok{"COL \& NUM3"}\NormalTok{,}
+  \DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}
+\NormalTok{)}
 
 
 \NormalTok{messy\_df}
@@ -7908,7 +7897,7 @@ The key idea is you can use Boolean operators (\texttt{!}, \texttt{\&}, \texttt{
 \begin{Highlighting}[]
 \NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(janitor)}
 
-\NormalTok{janitor}\SpecialCharTok{::}\FunctionTok{clean\_names}\NormalTok{(messy\_df) }
+\NormalTok{janitor}\SpecialCharTok{::}\FunctionTok{clean\_names}\NormalTok{(messy\_df)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7923,7 +7912,7 @@ The key idea is you can use Boolean operators (\texttt{!}, \texttt{\&}, \texttt{
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Frequency table; The default output class is table }
+\CommentTok{\# Frequency table; The default output class is table}
 \FunctionTok{table}\NormalTok{(gapminder}\SpecialCharTok{$}\NormalTok{country)}
 \end{Highlighting}
 \end{Shaded}
@@ -8183,7 +8172,7 @@ The key idea is you can use Boolean operators (\texttt{!}, \texttt{\&}, \texttt{
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# If you want to add percentage ... }
+\CommentTok{\# If you want to add percentage ...}
 \NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{tabyl}\NormalTok{(country) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{adorn\_pct\_formatting}\NormalTok{(}\AttributeTok{digits =} \DecValTok{0}\NormalTok{, }\AttributeTok{affix\_sign =} \ConstantTok{TRUE}\NormalTok{)}
@@ -8347,9 +8336,11 @@ You can think of \texttt{case\_when()} (multiple conditions) as an extended vers
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{mtcars }\OtherTok{\textless{}{-}}\NormalTok{ mtcars }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{cyl\_dummy =} \FunctionTok{case\_when}\NormalTok{(cyl }\SpecialCharTok{\textgreater{}} \FunctionTok{median}\NormalTok{(cyl) }\SpecialCharTok{\textasciitilde{}} \StringTok{"High"}\NormalTok{, }\CommentTok{\# if condition}
-\NormalTok{                               cyl }\SpecialCharTok{\textless{}} \FunctionTok{median}\NormalTok{(cyl) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Low"}\NormalTok{, }\CommentTok{\# else if condition }
-                               \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{\textquotesingle{}Median\textquotesingle{}}\NormalTok{)) }\CommentTok{\# else condition }
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{cyl\_dummy =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{    cyl }\SpecialCharTok{\textgreater{}} \FunctionTok{median}\NormalTok{(cyl) }\SpecialCharTok{\textasciitilde{}} \StringTok{"High"}\NormalTok{, }\CommentTok{\# if condition}
+\NormalTok{    cyl }\SpecialCharTok{\textless{}} \FunctionTok{median}\NormalTok{(cyl) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Low"}\NormalTok{, }\CommentTok{\# else if condition}
+    \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{"Median"}
+\NormalTok{  )) }\CommentTok{\# else condition}
 
 \NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pull}\NormalTok{(cyl\_dummy)}
 \end{Highlighting}
@@ -8368,10 +8359,11 @@ You can think of \texttt{case\_when()} (multiple conditions) as an extended vers
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{cyl\_dummy =} \FunctionTok{recode}\NormalTok{(cyl\_dummy, }\CommentTok{\# Target column }
-                            \StringTok{"High"} \OtherTok{=} \StringTok{"2"}\NormalTok{, }\CommentTok{\# Old {-} New}
-                            \StringTok{"Low"} \OtherTok{=} \StringTok{"0"}\NormalTok{,}
-                            \StringTok{"Median"} \OtherTok{=} \StringTok{"1"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{cyl\_dummy =} \FunctionTok{recode}\NormalTok{(cyl\_dummy, }\CommentTok{\# Target column}
+    \StringTok{"High"} \OtherTok{=} \StringTok{"2"}\NormalTok{, }\CommentTok{\# Old {-} New}
+    \StringTok{"Low"} \OtherTok{=} \StringTok{"0"}\NormalTok{,}
+    \StringTok{"Median"} \OtherTok{=} \StringTok{"1"}
+\NormalTok{  )) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{pull}\NormalTok{(cyl\_dummy)}
 \end{Highlighting}
 \end{Shaded}
@@ -8667,8 +8659,10 @@ Do cases 1 and 2 in the below code chunk produce the same outputs? If so, why?
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(kableExtra,}
-\NormalTok{               flextable)}
+\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(}
+\NormalTok{  kableExtra,}
+\NormalTok{  flextable}
+\NormalTok{)}
 
 \CommentTok{\# For HTML and LaTeX}
 \NormalTok{tablea }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ kableExtra}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{()}
@@ -8770,7 +8764,7 @@ Oceania & 24 & 18621.609 & 6358.983\\
 \begin{Highlighting}[]
 \CommentTok{\# Create a wide{-}shaped data example}
 \NormalTok{wide\_gapminder }\OtherTok{\textless{}{-}}\NormalTok{ gapminder }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{pivot\_wider}\NormalTok{(}
     \AttributeTok{names\_from =}\NormalTok{ country,}
     \AttributeTok{values\_from =}\NormalTok{ gdpPercap}
@@ -9381,7 +9375,7 @@ What do you expect the outcome?
 \begin{Highlighting}[]
 \NormalTok{planes }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{count}\NormalTok{(tailnum) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(n }\SpecialCharTok{\textgreater{}} \DecValTok{1}\NormalTok{)}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(n }\SpecialCharTok{\textgreater{}} \DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -9620,7 +9614,7 @@ In SQL, this type of query is also called subqueries.
 \begin{Highlighting}[]
 \CommentTok{\# Filter}
 \NormalTok{filtered }\OtherTok{\textless{}{-}}\NormalTok{ flights }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(dest }\SpecialCharTok{\%in\%}\NormalTok{ top\_dest}\SpecialCharTok{$}\NormalTok{dest)}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(dest }\SpecialCharTok{\%in\%}\NormalTok{ top\_dest}\SpecialCharTok{$}\NormalTok{dest)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -9859,7 +9853,7 @@ S3 is part of R's object-oriented systems. If you need further information, chec
 \NormalTok{glanced }\OtherTok{\textless{}{-}}\NormalTok{ nested }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{glance =} \FunctionTok{map}\NormalTok{(models, broom}\SpecialCharTok{::}\NormalTok{glance))}
 
-\CommentTok{\# Pluck the first item on the list }
+\CommentTok{\# Pluck the first item on the list}
 \NormalTok{glanced}\SpecialCharTok{$}\NormalTok{glance }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pluck}\NormalTok{(}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -9874,8 +9868,10 @@ S3 is part of R's object-oriented systems. If you need further information, chec
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Pull p.value }
-\NormalTok{glanced}\SpecialCharTok{$}\NormalTok{glance }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pluck}\NormalTok{(}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pull}\NormalTok{(p.value)}
+\CommentTok{\# Pull p.value}
+\NormalTok{glanced}\SpecialCharTok{$}\NormalTok{glance }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pluck}\NormalTok{(}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pull}\NormalTok{(p.value)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -9890,7 +9886,7 @@ S3 is part of R's object-oriented systems. If you need further information, chec
 \begin{Highlighting}[]
 \NormalTok{glanced }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{unnest}\NormalTok{(glance) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{arrange}\NormalTok{(r.squared) }
+  \FunctionTok{arrange}\NormalTok{(r.squared)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -9938,7 +9934,7 @@ S3 is part of R's object-oriented systems. If you need further information, chec
   \FunctionTok{nest}\NormalTok{()}
 
 \NormalTok{nested }\OtherTok{\textless{}{-}}\NormalTok{ nested }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{models =} \FunctionTok{map}\NormalTok{(data, }\SpecialCharTok{\textasciitilde{}}\FunctionTok{lm}\NormalTok{(lifeExp }\SpecialCharTok{\textasciitilde{}}\NormalTok{ year }\SpecialCharTok{+}\NormalTok{ country, }\AttributeTok{data =}\NormalTok{ .))) }
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{models =} \FunctionTok{map}\NormalTok{(data, }\SpecialCharTok{\textasciitilde{}} \FunctionTok{lm}\NormalTok{(lifeExp }\SpecialCharTok{\textasciitilde{}}\NormalTok{ year }\SpecialCharTok{+}\NormalTok{ country, }\AttributeTok{data =}\NormalTok{ .)))}
 
 \NormalTok{tidied }\OtherTok{\textless{}{-}}\NormalTok{ nested }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tidied =} \FunctionTok{map}\NormalTok{(models, broom}\SpecialCharTok{::}\NormalTok{tidy))}
@@ -9946,10 +9942,13 @@ S3 is part of R's object-oriented systems. If you need further information, chec
 \NormalTok{model\_out }\OtherTok{\textless{}{-}}\NormalTok{ tidied }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{unnest}\NormalTok{(tidied) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{term =} \FunctionTok{str\_replace}\NormalTok{(term, }\StringTok{"country"}\NormalTok{, }\StringTok{""}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{select}\NormalTok{(continent, term, estimate, p.value) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(continent, term, estimate, p.value) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{p\_threshold =} \FunctionTok{ifelse}\NormalTok{(p.value }\SpecialCharTok{\textless{}} \FloatTok{0.05}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
 
-\NormalTok{model\_out }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(p\_threshold }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pull}\NormalTok{(term) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{unique}\NormalTok{()}
+\NormalTok{model\_out }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(p\_threshold }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pull}\NormalTok{(term) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unique}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -10020,7 +10019,10 @@ S3 is part of R's object-oriented systems. If you need further information, chec
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{model\_out }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(p\_threshold }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pull}\NormalTok{(term) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{unique}\NormalTok{()}
+\NormalTok{model\_out }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(p\_threshold }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pull}\NormalTok{(term) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unique}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -10109,13 +10111,13 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Calculate the observed statistic: Observed slopes }
+\CommentTok{\# Calculate the observed statistic: Observed slopes}
 \NormalTok{observed\_slopes }\OtherTok{\textless{}{-}}\NormalTok{ gapminder }\SpecialCharTok{\%\textgreater{}\%}
-  \CommentTok{\# specify(formula = lifeExp \textasciitilde{} log\_pop) \%\textgreater{}\% }
+  \CommentTok{\# specify(formula = lifeExp \textasciitilde{} log\_pop) \%\textgreater{}\%}
   \FunctionTok{specify}\NormalTok{(}\AttributeTok{formula =}\NormalTok{ lifeExp }\SpecialCharTok{\textasciitilde{}}\NormalTok{ log\_pop) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{calculate}\NormalTok{(}\AttributeTok{stat =} \StringTok{"slope"}\NormalTok{)}
 
-\CommentTok{\# Generate the null distribution: Null slopes }
+\CommentTok{\# Generate the null distribution: Null slopes}
 \NormalTok{null\_slopes }\OtherTok{\textless{}{-}}\NormalTok{ gapminder }\SpecialCharTok{\%\textgreater{}\%}
   \CommentTok{\# Specify a formula}
   \FunctionTok{specify}\NormalTok{(}\AttributeTok{formula =}\NormalTok{ lifeExp }\SpecialCharTok{\textasciitilde{}}\NormalTok{ log\_pop) }\SpecialCharTok{\%\textgreater{}\%}
@@ -10123,15 +10125,17 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
   \FunctionTok{hypothesize}\NormalTok{(}\AttributeTok{null =} \StringTok{"point"}\NormalTok{, }\AttributeTok{mu =} \DecValTok{0}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \CommentTok{\# Generate sampling distributions (bootstrapping)}
   \FunctionTok{generate}\NormalTok{(}\AttributeTok{reps =} \DecValTok{1000}\NormalTok{, }\AttributeTok{type =} \StringTok{"bootstrap"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \CommentTok{\# Calculate statistics }
-  \FunctionTok{calculate}\NormalTok{(}\AttributeTok{stat =} \StringTok{"slope"}\NormalTok{) }
+  \CommentTok{\# Calculate statistics}
+  \FunctionTok{calculate}\NormalTok{(}\AttributeTok{stat =} \StringTok{"slope"}\NormalTok{)}
 
-\CommentTok{\# Return data }
+\CommentTok{\# Return data}
 \NormalTok{null\_slopes }\SpecialCharTok{\%\textgreater{}\%}
-  \CommentTok{\# p{-}value is just the probability that observed pattern could arise if the null hypothesis was true }
+  \CommentTok{\# p{-}value is just the probability that observed pattern could arise if the null hypothesis was true}
   \CommentTok{\# In social science convention, if alpha is below 0.005 (note: this is totally arbitrary), then the observed distribution is statistically significant.}
-  \FunctionTok{get\_p\_value}\NormalTok{(}\AttributeTok{obs\_stat =}\NormalTok{ observed\_slopes, }
-              \AttributeTok{direction =} \StringTok{"both"}\NormalTok{)}
+  \FunctionTok{get\_p\_value}\NormalTok{(}
+    \AttributeTok{obs\_stat =}\NormalTok{ observed\_slopes,}
+    \AttributeTok{direction =} \StringTok{"both"}
+\NormalTok{  )}
 \end{Highlighting}
 \end{Shaded}
 
@@ -10144,3567 +10148,16 @@ Alternative hypothesis: everything was not random. Note that this does not mean 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Visualize output }
+\CommentTok{\# Visualize output}
 \FunctionTok{visualize}\NormalTok{(null\_slopes) }\SpecialCharTok{+}
-  \FunctionTok{shade\_p\_value}\NormalTok{(}\AttributeTok{obs\_stat =}\NormalTok{ observed\_slopes, }
-                \AttributeTok{direction =} \StringTok{"both"}\NormalTok{)}
+  \FunctionTok{shade\_p\_value}\NormalTok{(}
+    \AttributeTok{obs\_stat =}\NormalTok{ observed\_slopes,}
+    \AttributeTok{direction =} \StringTok{"both"}
+\NormalTok{  )}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-170-2.pdf}
-
-\hypertarget{mixed-models}{%
-\subsection{Mixed models}\label{mixed-models}}
-
-This part heavily draws on \href{http://www.stat.columbia.edu/~gelman/arm/}{Gelman and Hill} (2007), Michael Clark's \href{https://m-clark.github.io/mixed-models-with-R/}{Mixed Models with R}, and Basel R Bootcamp's \href{https://therbootcamp.github.io/SwR_2019Apr/_sessions/MixedModels/MixedModels_practical.html}{Statistics with R: Mixed Models}. For a quick review on mixed models, I recommend Xavier et al.'s \href{https://peerj.com/articles/4794/}{``A brief introduction to mixed effects modelling and multi-model inference in ecology''} (2018).
-
-Why random effects model/mixed effects model?
-
-Fixed effects model assumes that groups are independent of each other and sharing common residuals (same slope for fitted covariates). Limiting to a common slope can inflate Type I and Type II errors.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(}\CommentTok{\# Necessary  }
-\NormalTok{               lme4, }
-\NormalTok{               broom.mixed, }
-               \CommentTok{\# Optional }
-\NormalTok{               merTools,}
-\NormalTok{               glmmTMB, }
-\NormalTok{               modelr, }
-\NormalTok{               nlme, }
-\NormalTok{               sjstats)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Base LM model }
-\NormalTok{lm\_out }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(lifeExp }\SpecialCharTok{\textasciitilde{}}\NormalTok{ pop }\SpecialCharTok{+}\NormalTok{ continent, }
-             \AttributeTok{data =}\NormalTok{ gapminder)}
-
-\CommentTok{\# Mixed effects }
-\NormalTok{re\_out }\OtherTok{\textless{}{-}} \FunctionTok{lmer}\NormalTok{(lifeExp }\SpecialCharTok{\textasciitilde{}}\NormalTok{ pop }\SpecialCharTok{+} \CommentTok{\# Fixed effects}
-                \CommentTok{\# Random effects }
-                \CommentTok{\# (design matrix|group\_variables)}
-                \CommentTok{\# (1|group\_var) = random intercept }
-                \CommentTok{\# (1 + var | group\_var) = random slope + random intercept }
-\NormalTok{               (}\DecValTok{1}\SpecialCharTok{|}\NormalTok{continent),}
-               \AttributeTok{data =}\NormalTok{ gapminder, }\CommentTok{\# Data }
-               \AttributeTok{REML =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\# Default computation engine is restricted maximal likelihood; the other option is maximum likelihood estimation }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: Some predictor variables are on very different scales: consider
-## rescaling
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#re\_out2 \textless{}{-} lmer(lifeExp \textasciitilde{} pop + \# Fixed effects}
-                \CommentTok{\# Random effects }
-                \CommentTok{\# (design matrix|group\_variables)}
-                \CommentTok{\# (1|group\_var) = random intercept }
-                \CommentTok{\# (1 + var | group\_var) = random slope + random intercept }
- \CommentTok{\#              (country|continent),}
-  \CommentTok{\#             data = gapminder, \# Data }
-   \CommentTok{\#            REML = FALSE) \# Default computation engine is restricted maximal likelihood; the other option is maximum likelihood estimation }
-
-\FunctionTok{summary}\NormalTok{(re\_out)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Linear mixed model fit by maximum likelihood  ['lmerMod']
-## Formula: lifeExp ~ pop + (1 | continent)
-##    Data: gapminder
-## 
-##      AIC      BIC   logLik deviance df.resid 
-##  12441.4  12463.1  -6216.7  12433.4     1700 
-## 
-## Scaled residuals: 
-##     Min      1Q  Median      3Q     Max 
-## -3.3584 -0.5915  0.0344  0.6585  2.9926 
-## 
-## Random effects:
-##  Groups    Name        Variance Std.Dev.
-##  continent (Intercept) 82.02    9.056   
-##  Residual              85.01    9.220   
-## Number of obs: 1704, groups:  continent, 5
-## 
-## Fixed effects:
-##              Estimate Std. Error t value
-## (Intercept) 6.375e+01  4.072e+00  15.658
-## pop         4.504e-09  2.174e-09   2.072
-## 
-## Correlation of Fixed Effects:
-##     (Intr)
-## pop -0.015
-## fit warnings:
-## Some predictor variables are on very different scales: consider rescaling
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{nlme}\SpecialCharTok{::}\FunctionTok{fixef}\NormalTok{(re\_out) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{as\_tibble}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 2 x 1
-##     value
-##     <dbl>
-## 1 6.38e+1
-## 2 4.50e-9
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{nlme}\SpecialCharTok{::}\FunctionTok{ranef}\NormalTok{(re\_out) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{as\_tibble}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 5 x 5
-##   grpvar    term        grp      condval condsd
-##   <chr>     <fct>       <fct>      <dbl>  <dbl>
-## 1 continent (Intercept) Africa   -14.9    0.369
-## 2 continent (Intercept) Americas   0.791  0.531
-## 3 continent (Intercept) Asia      -4.03   0.463
-## 4 continent (Intercept) Europe     8.05   0.485
-## 5 continent (Intercept) Oceania   10.1    1.84
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{lm\_out }\SpecialCharTok{\%\textgreater{}\%} 
-\NormalTok{  broom}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(term }\SpecialCharTok{==} \StringTok{"pop"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pull}\NormalTok{(estimate)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 4.515688e-09
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{re\_out }\SpecialCharTok{\%\textgreater{}\%}
-\NormalTok{  broom.mixed}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(term }\SpecialCharTok{==} \StringTok{"pop"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pull}\NormalTok{(estimate)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 4.503537e-09
-\end{verbatim}
-
-\hypertarget{design-anaysis-optional}{%
-\subsection{Design Anaysis (optional)}\label{design-anaysis-optional}}
-
-DeclareDesign provides a collection of packages (\texttt{fabricatr}, \texttt{randomizr}, \texttt{estimatr}) that are very useful for those interested in testing the strength of research design. DeclareDesign also helps share your research design along with your code and data.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(DeclareDesign, }\CommentTok{\#  }
-\NormalTok{               fabricatr, }\CommentTok{\# Fabricate mock (fake) data  }
-\NormalTok{               randomizr, }\CommentTok{\# Random sampling and assignment }
-\NormalTok{               estimatr, }\CommentTok{\# Fast estimation tools (IV, etc) }
-\NormalTok{               DesignLibrary) }\CommentTok{\# Research design library }
-\end{Highlighting}
-\end{Shaded}
-
-Model-Inquire-Data Strategy-Answer Strategy (MIDA) by Graeme Blair, Jasper Cooper, Alex Coppock, and Macartan Humphreys (\href{https://declaredesign.org/declare.pdf}{APSR 2019}). The following instructions draw on the vignette available at \href{https://declaredesign.org/mida/}{the package homepage}. Also, take a look at \href{https://github.com/rstudio/cheatsheets/blob/master/declaredesign.pdf}{DeclareDesign cheatsheet}.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Setup
-\end{enumerate}
-
-\begin{itemize}
-\tightlist
-\item
-  Model: speculating how the world works (variables plus their relationships)
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{population }\OtherTok{\textless{}{-}} \FunctionTok{declare\_population}\NormalTok{(}\AttributeTok{N =} \DecValTok{1000}\NormalTok{, }
-                                 \AttributeTok{noise =} \FunctionTok{rnorm}\NormalTok{(N))}
-
-\NormalTok{population }\CommentTok{\# class }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## declare_population(N = 1000, noise = rnorm(N))
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{population}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{() }\CommentTok{\# instance }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##     ID      noise
-## 1 0001  0.5952464
-## 2 0002  0.5847477
-## 3 0003  0.9645900
-## 4 0004  0.3194326
-## 5 0005 -1.2011572
-## 6 0006 -1.7892308
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Note that Y\_Z\_0 and Y\_Z\_1 are argument names. }
-\NormalTok{potential\_outcomes }\OtherTok{\textless{}{-}} \FunctionTok{declare\_potential\_outcomes}\NormalTok{(}\AttributeTok{Y\_Z\_0 =} \DecValTok{0}\NormalTok{, }\CommentTok{\# Control group }
-                                                 \AttributeTok{Y\_Z\_1 =} \DecValTok{1} \SpecialCharTok{+}\NormalTok{ noise) }\CommentTok{\# Treatment group }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  Inquiry: a description of the distributions of the variables (estimand = something we desire to know)
-\end{itemize}
-
-You can add other estimators such as Conditional Average Treatment Effect (CATE).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{estimand\_ate }\OtherTok{\textless{}{-}} \FunctionTok{declare\_estimand}\NormalTok{(}\AttributeTok{ATE =} \FunctionTok{mean}\NormalTok{(Y\_Z\_1 }\SpecialCharTok{{-}}\NormalTok{ Y\_Z\_0))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: 'declare_estimand' is deprecated.
-## Use 'declare_inquiry' instead.
-## See help("Deprecated")
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  Data strategy: a description of sampling (or case selection) + intervention strategy
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{sampling }\OtherTok{\textless{}{-}} \FunctionTok{declare\_sampling}\NormalTok{(}\AttributeTok{n =} \DecValTok{250}\NormalTok{, }\AttributeTok{legacy =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# Sampling 250 units }
-\NormalTok{assignment }\OtherTok{\textless{}{-}} \FunctionTok{declare\_assignment}\NormalTok{(}\AttributeTok{m =} \DecValTok{50}\NormalTok{, }\AttributeTok{legacy =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# Assign 50 units }
-
-\CommentTok{\# If you don\textquotesingle{}t do this, you will be missing Y }
-\NormalTok{reveal\_Y }\OtherTok{\textless{}{-}} \FunctionTok{declare\_reveal}\NormalTok{(Y, Z)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  Answer strategy: a description of how to use data to answer a question
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{estimator\_ate }\OtherTok{\textless{}{-}} \FunctionTok{declare\_estimator}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Z, }
-                                   \AttributeTok{estimand =}\NormalTok{ estimand\_ate,}
-                                   \AttributeTok{model =}\NormalTok{ difference\_in\_means)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  Design
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{design }\OtherTok{\textless{}{-}}\NormalTok{ population }\SpecialCharTok{+}\NormalTok{ potential\_outcomes }\SpecialCharTok{+}\NormalTok{ estimand\_ate }\SpecialCharTok{+}\NormalTok{ sampling }\SpecialCharTok{+}\NormalTok{ assignment }\SpecialCharTok{+}\NormalTok{ reveal\_Y }\SpecialCharTok{+}\NormalTok{ estimator\_ate}
-
-\CommentTok{\# This should work. Otherwise, something is wrong with your code.}
-\NormalTok{design}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Design Summary
-## 
-## Step 1 (population): declare_population(N = 1000, noise = rnorm(N)) ------------
-## 
-## N = 1000 
-## 
-## Added variable: ID 
-##  N_missing N_unique     class
-##          0     1000 character
-## 
-## Added variable: noise 
-##    min median  mean  max   sd N_missing N_unique
-##  -3.85  -0.07 -0.04 3.36 1.02         0     1000
-## 
-## Step 2 (potential outcomes): declare_potential_outcomes(Y_Z_0 = 0, Y_Z_1 = 1 + noise) 
-## 
-## Added variable: Y_Z_0 
-##     0
-##  1000
-##  1.00
-## 
-## Added variable: Y_Z_1 
-##    min median mean  max   sd N_missing N_unique
-##  -2.85   0.93 0.96 4.36 1.02         0     1000
-## 
-## Step 3 (inquiry): declare_inquiry(ATE = ..1) -----------------------------------
-## 
-## A single draw of the inquiry:
-##  inquiry  estimand
-##      ATE 0.9600409
-## 
-## Step 4 (sampling): declare_sampling(n = 250, legacy = TRUE) --------------------
-## 
-## N = 250 (750 subtracted) 
-## 
-## Added variable: S_inclusion_prob 
-##  0.25
-##   250
-##  1.00
-## 
-## Altered variable: ID 
-##   Before: 
-##  N_missing N_unique     class
-##          0     1000 character
-## 
-##   After:
-##  N_missing N_unique     class
-##          0      250 character
-## 
-## Altered variable: noise 
-##   Before: 
-##    min median  mean  max   sd N_missing N_unique
-##  -3.85  -0.07 -0.04 3.36 1.02         0     1000
-## 
-##   After:
-##   min median  mean  max   sd N_missing N_unique
-##  -3.6  -0.08 -0.03 2.83 1.06         0      250
-## 
-## Altered variable: Y_Z_0 
-##   Before: 
-##     0
-##  1000
-##  1.00
-## 
-##   After:
-##     0
-##   250
-##  1.00
-## 
-## Altered variable: Y_Z_1 
-##   Before: 
-##    min median mean  max   sd N_missing N_unique
-##  -2.85   0.93 0.96 4.36 1.02         0     1000
-## 
-##   After:
-##   min median mean  max   sd N_missing N_unique
-##  -2.6   0.92 0.97 3.83 1.06         0      250
-## 
-## Step 5 (assignment): declare_assignment(m = 50, legacy = TRUE) -----------------
-## 
-## Added variable: Z 
-##     0    1
-##   200   50
-##  0.80 0.20
-## 
-## Added variable: Z_cond_prob 
-##   0.2  0.8
-##    50  200
-##  0.20 0.80
-## 
-## Step 6 (reveal): declare_reveal(Y, Z) ------------------------------------------
-## 
-## Added variable: Y 
-##    min median mean  max   sd N_missing N_unique
-##  -1.44      0  0.2 3.08 0.59         0       51
-## 
-## Step 7 (estimator): declare_estimator(Y ~ Z, estimand = estimand_ate, model = difference_in_means) 
-## 
-## Formula: Y ~ Z 
-## 
-## Model:   difference_in_means 
-## 
-## A single draw of the estimator:
-##  estimator term estimate std.error statistic      p.value  conf.low conf.high
-##  estimator    Z 1.010462 0.1370808  7.371286 1.768003e-09 0.7349878  1.285936
-##  df outcome inquiry
-##  49       Y     ATE
-\end{verbatim}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Applications
-\end{enumerate}
-
-\begin{itemize}
-\tightlist
-\item
-  Simulating data
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{fake\_data }\OtherTok{\textless{}{-}} \FunctionTok{draw\_data}\NormalTok{(design)}
-
-\FunctionTok{head}\NormalTok{(fake\_data)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##     ID      noise Y_Z_0      Y_Z_1 S_inclusion_prob Z Z_cond_prob          Y
-## 1 0001 -0.2533829     0  0.7466171             0.25 1         0.2  0.7466171
-## 2 0002  1.2077610     0  2.2077610             0.25 0         0.8  0.0000000
-## 3 0009 -0.5574354     0  0.4425646             0.25 0         0.8  0.0000000
-## 4 0010  1.2574286     0  2.2574286             0.25 1         0.2  2.2574286
-## 5 0011 -0.5511836     0  0.4488164             0.25 0         0.8  0.0000000
-## 6 0016 -1.1025132     0 -0.1025132             0.25 1         0.2 -0.1025132
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  Estimation
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{estimates }\OtherTok{\textless{}{-}} \FunctionTok{draw\_estimates}\NormalTok{(design)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{estimates}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   estimator term estimate std.error statistic      p.value  conf.low conf.high
-## 1 estimator    Z 1.194527 0.1361679   8.77246 1.290575e-11 0.9208878  1.468167
-##   df outcome inquiry
-## 1 49       Y     ATE
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  Diagnosis
-\end{itemize}
-
-Diagnosis is made using a Monte Carlo approach (=simulating many times using bootstrapped samples).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{diagnosis }\OtherTok{\textless{}{-}} \FunctionTok{diagnose\_design}\NormalTok{(design, }
-                             \AttributeTok{sims =} \DecValTok{1000}\NormalTok{, }
-                             \AttributeTok{bootstrap\_sims =} \DecValTok{500}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-
-## Warning: The argument 'estimand = ' is deprecated. Please use 'inquiry = '
-## instead.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{diagnosis}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Research design diagnosis based on 1000 simulations. Diagnosand estimates with bootstrapped standard errors in parentheses (500 replicates).
-## 
-##  Design Inquiry Estimator Term N Sims   Bias   RMSE  Power Coverage
-##  design     ATE estimator    Z   1000  -0.00   0.13   1.00     0.96
-##                                       (0.00) (0.00) (0.00)   (0.01)
-##  Mean Estimate SD Estimate Mean Se Type S Rate Mean Estimand
-##           1.00        0.14    0.14        0.00          1.00
-##         (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Very weakly biased }
-\CommentTok{\# Well powered. Power = 1 {-} Type II error (False Negative Rate). Therefore, higher statistical power means a lower false{-}negative rate. }
-\CommentTok{\# Coverage (standard errors) is fine. 95\% of the time right answers lie in the coverage. }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  Shortcuts
-\end{itemize}
-
-The following is the power analysis for a three-arm experiment.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{three\_arm }\OtherTok{\textless{}{-}} \FunctionTok{multi\_arm\_designer}\NormalTok{(}\AttributeTok{N =} \DecValTok{1000}\NormalTok{, }\AttributeTok{m =} \DecValTok{3}\NormalTok{, }
-                   \AttributeTok{outcome\_means =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.2}\NormalTok{))}
-
-\FunctionTok{diagnose\_design}\NormalTok{(three\_arm)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Research design diagnosis based on 500 simulations. Diagnosand estimates with bootstrapped standard errors in parentheses (100 replicates).
-## 
-##     Design   Inquiry       Estimator N Sims   Bias   RMSE  Power Coverage
-##  three_arm ate_Y_2_1 DIM (Z_2 - Z_1)    500   0.00   0.07   0.26     0.97
-##                                             (0.00) (0.00) (0.02)   (0.01)
-##  three_arm ate_Y_3_1 DIM (Z_3 - Z_1)    500   0.00   0.07   0.75     0.96
-##                                             (0.00) (0.00) (0.02)   (0.01)
-##  three_arm ate_Y_3_2 DIM (Z_3 - Z_2)    500   0.00   0.08   0.26     0.96
-##                                             (0.00) (0.00) (0.02)   (0.01)
-##  Mean Estimate SD Estimate Mean Se Type S Rate Mean Estimand
-##           0.10        0.07    0.08        0.00          0.10
-##         (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
-##           0.20        0.07    0.08        0.00          0.20
-##         (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
-##           0.10        0.08    0.08        0.00          0.10
-##         (0.00)      (0.00)  (0.00)      (0.00)        (0.00)
-\end{verbatim}
-
-\textbf{Additional tips}
-
-Experimenters! Consider writing and registering a pre-analysis before running your experiment. Here are tools that can help to create a pre-registration so easily. The following information comes from David Broockman's \href{https://twitter.com/dbroockman/status/1350897814499336192}{very helpful Twitter thread}.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Write code using fake data. If you are using, you can generate test responses using the platform: \url{https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/generating-test-responses/}
-\item
-  Register the pre-analysis using \href{https://aspredicted.org/}{ASPREDICTED}, ``a platform that makes it easy for researchers to pre-register their studies, and easy for others to read and evaluate those pre-registrations.'' It creates an anonymized PDF file filled with the answers you provided and a blinded link.
-\item
-  Upload the anonymized code and the PDF to a new project in \href{https://osf.io/}{osf.io} and describe your pre-analysis briefly.
-\end{enumerate}
 
 \hypertarget{visualizing-ggplot2}{%
 \section{Visualizing (ggplot2)}\label{visualizing-ggplot2}}
@@ -13793,7 +10246,7 @@ Experimenters! Consider writing and registering a pre-analysis before running yo
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-187-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-174-1.pdf}
 
 \hypertarget{the-grammar-of-graphics}{%
 \subsection{The grammar of graphics}\label{the-grammar-of-graphics}}
@@ -13871,7 +10324,7 @@ No worries about new terms. We're going to learn them by actually plotting.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-188-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-175-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13879,7 +10332,7 @@ No worries about new terms. We're going to learn them by actually plotting.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-188-2.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-175-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13891,7 +10344,7 @@ No worries about new terms. We're going to learn them by actually plotting.
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-188-3.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-175-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13964,7 +10417,7 @@ No worries about new terms. We're going to learn them by actually plotting.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-191-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-178-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13974,7 +10427,7 @@ No worries about new terms. We're going to learn them by actually plotting.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-191-2.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-178-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13987,7 +10440,7 @@ No worries about new terms. We're going to learn them by actually plotting.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-191-3.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-178-3.pdf}
 
 \hypertarget{density}{%
 \subsubsection{Density}\label{density}}
@@ -14002,7 +10455,7 @@ No worries about new terms. We're going to learn them by actually plotting.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-192-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-179-1.pdf}
 
 \hypertarget{advanced-aes-size-color}{%
 \subsection{Advanced aes (size, color)}\label{advanced-aes-size-color}}
@@ -14027,7 +10480,7 @@ No worries about new terms. We're going to learn them by actually plotting.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-193-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-180-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14044,7 +10497,7 @@ No worries about new terms. We're going to learn them by actually plotting.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-194-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-181-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14061,7 +10514,7 @@ No worries about new terms. We're going to learn them by actually plotting.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-195-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-182-1.pdf}
 
 Aesthetics also can be mapped per Geom.
 
@@ -14076,7 +10529,7 @@ Aesthetics also can be mapped per Geom.
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-196-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-183-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14089,7 +10542,7 @@ Aesthetics also can be mapped per Geom.
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-196-2.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-183-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14102,7 +10555,7 @@ Aesthetics also can be mapped per Geom.
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-196-3.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-183-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14129,7 +10582,7 @@ Aesthetics also can be mapped per Geom.
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-197-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-184-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14159,7 +10612,7 @@ Aesthetics also can be mapped per Geom.
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-197-2.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-184-2.pdf}
 
 \hypertarget{co-ordinates-and-scales}{%
 \subsection{Co-ordinates and scales}\label{co-ordinates-and-scales}}
@@ -14171,7 +10624,7 @@ Aesthetics also can be mapped per Geom.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-198-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-185-1.pdf}
 
 The data is heavily bunched up against the left side.
 
@@ -14181,7 +10634,7 @@ The data is heavily bunched up against the left side.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-199-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-186-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14190,7 +10643,7 @@ The data is heavily bunched up against the left side.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-199-2.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-186-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14204,7 +10657,7 @@ The data is heavily bunched up against the left side.
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-199-3.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-186-3.pdf}
 
 \hypertarget{labels-and-guides}{%
 \subsection{Labels and guides}\label{labels-and-guides}}
@@ -14230,7 +10683,7 @@ The data is heavily bunched up against the left side.
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-200-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-187-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -14260,7 +10713,7 @@ The data is heavily bunched up against the left side.
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-201-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-188-1.pdf}
 
 \hypertarget{ggsave}{%
 \subsection{ggsave}\label{ggsave}}
@@ -14313,7 +10766,7 @@ Basic ideas:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-203-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-190-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14321,7 +10774,7 @@ Basic ideas:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-203-2.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-190-2.pdf}
 
 \texttt{geom\_line} joins up all the lines for each particular year in the order they appear in the dataset. \texttt{ggplot2} does not know the yearly observations in your data are grouped by country.
 
@@ -14370,7 +10823,7 @@ Facetting is to make small multiples.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-205-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-192-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14378,7 +10831,7 @@ Facetting is to make small multiples.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-205-2.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-192-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14399,7 +10852,7 @@ Facetting is to make small multiples.
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-205-3.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-192-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14420,7 +10873,7 @@ Facetting is to make small multiples.
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-206-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-193-1.pdf}
 
 \hypertarget{transforming}{%
 \subsection{Transforming}\label{transforming}}
@@ -14463,12 +10916,12 @@ Also, we experiment with bar charts here. By default, \texttt{geom\_bar} \href{h
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-207-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-194-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(country, year) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{summarize}\NormalTok{(}
     \AttributeTok{gdp\_mean =} \FunctionTok{mean}\NormalTok{(gdpPercap),}
@@ -14488,13 +10941,13 @@ Also, we experiment with bar charts here. By default, \texttt{geom\_bar} \href{h
 ## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-207-2.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-194-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# geom point}
 \NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(country, year) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{summarize}\NormalTok{(}
     \AttributeTok{gdp\_mean =} \FunctionTok{mean}\NormalTok{(gdpPercap),}
@@ -14515,13 +10968,13 @@ Also, we experiment with bar charts here. By default, \texttt{geom\_bar} \href{h
 ## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-208-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-195-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# geom bar}
 \NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(country, year) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{summarize}\NormalTok{(}
     \AttributeTok{gdp\_mean =} \FunctionTok{mean}\NormalTok{(gdpPercap),}
@@ -14542,13 +10995,13 @@ Also, we experiment with bar charts here. By default, \texttt{geom\_bar} \href{h
 ## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-208-2.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-195-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# no facet}
 \NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(country, year) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{summarize}\NormalTok{(}
     \AttributeTok{gdp\_mean =} \FunctionTok{mean}\NormalTok{(gdpPercap),}
@@ -14568,12 +11021,12 @@ Also, we experiment with bar charts here. By default, \texttt{geom\_bar} \href{h
 ## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-208-3.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-195-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(country, year) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{summarize}\NormalTok{(}
     \AttributeTok{gdp\_mean =} \FunctionTok{mean}\NormalTok{(gdpPercap),}
@@ -14594,13 +11047,13 @@ Also, we experiment with bar charts here. By default, \texttt{geom\_bar} \href{h
 ## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-209-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-196-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# without ordering}
 \NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(country, year) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{summarize}\NormalTok{(}
     \AttributeTok{gdp\_mean =} \FunctionTok{mean}\NormalTok{(gdpPercap),}
@@ -14621,13 +11074,13 @@ Also, we experiment with bar charts here. By default, \texttt{geom\_bar} \href{h
 ## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-210-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-197-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# reorder}
 \NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Europe"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(country, year) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{summarize}\NormalTok{(}
     \AttributeTok{gdp\_mean =} \FunctionTok{mean}\NormalTok{(gdpPercap),}
@@ -14648,7 +11101,7 @@ Also, we experiment with bar charts here. By default, \texttt{geom\_bar} \href{h
 ## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-210-2.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-197-2.pdf}
 
 \hypertarget{plotting-text}{%
 \subsubsection{Plotting text}\label{plotting-text}}
@@ -14656,7 +11109,7 @@ Also, we experiment with bar charts here. By default, \texttt{geom\_bar} \href{h
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Asia"} \SpecialCharTok{|}\NormalTok{ continent }\SpecialCharTok{==} \StringTok{"Americas"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Asia"} \SpecialCharTok{|}\NormalTok{ continent }\SpecialCharTok{==} \StringTok{"Americas"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(continent, country) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{summarize}\NormalTok{(}
     \AttributeTok{gdp\_mean =} \FunctionTok{mean}\NormalTok{(gdpPercap),}
@@ -14674,13 +11127,13 @@ Also, we experiment with bar charts here. By default, \texttt{geom\_bar} \href{h
 ## `summarise()` has grouped output by 'continent'. You can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-211-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-198-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# with label}
 \NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Asia"} \SpecialCharTok{|}\NormalTok{ continent }\SpecialCharTok{==} \StringTok{"Americas"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Asia"} \SpecialCharTok{|}\NormalTok{ continent }\SpecialCharTok{==} \StringTok{"Americas"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(continent, country) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{summarize}\NormalTok{(}
     \AttributeTok{gdp\_mean =} \FunctionTok{mean}\NormalTok{(gdpPercap),}
@@ -14698,13 +11151,13 @@ Also, we experiment with bar charts here. By default, \texttt{geom\_bar} \href{h
 ## `summarise()` has grouped output by 'continent'. You can override using the `.groups` argument.
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-212-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-199-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# no overlaps}
 \NormalTok{gapminder }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Asia"} \SpecialCharTok{|}\NormalTok{ continent }\SpecialCharTok{==} \StringTok{"Americas"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(continent }\SpecialCharTok{==} \StringTok{"Asia"} \SpecialCharTok{|}\NormalTok{ continent }\SpecialCharTok{==} \StringTok{"Americas"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(continent, country) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{summarize}\NormalTok{(}
     \AttributeTok{gdp\_mean =} \FunctionTok{mean}\NormalTok{(gdpPercap),}
@@ -14732,7 +11185,7 @@ Also, we experiment with bar charts here. By default, \texttt{geom\_bar} \href{h
 ## increasing max.overlaps
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-213-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-200-1.pdf}
 
 \hypertarget{ploting-models}{%
 \subsection{Ploting models}\label{ploting-models}}
@@ -14766,7 +11219,7 @@ In plotting models, we extensively use David Robinson's \href{https://cran.r-pro
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-214-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-201-1.pdf}
 
 \hypertarget{extracting-model-outcomes}{%
 \subsubsection{Extracting model outcomes}\label{extracting-model-outcomes}}
@@ -14824,7 +11277,7 @@ The followings are to show your degree of confidence.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-216-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-203-1.pdf}
 
 \hypertarget{confidence-intervals}{%
 \paragraph{Confidence intervals}\label{confidence-intervals}}
@@ -14844,7 +11297,7 @@ The followings are to show your degree of confidence.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-217-1.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-204-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14858,15 +11311,15 @@ The followings are to show your degree of confidence.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-217-2.pdf}
+\includegraphics{03_tidy_data_files/figure-latex/unnamed-chunk-204-2.pdf}
 
 You can also calculate marginal effects using the \href{https://vincentarelbundock.github.io/marginaleffects/}{\texttt{marginaleffects}} package.
 
 \hypertarget{functional_programming}{%
 \chapter{Automating repeated things}\label{functional_programming}}
 
-\hypertarget{the-big-picture-6}{%
-\section{The Big Picture}\label{the-big-picture-6}}
+\hypertarget{the-big-picture-5}{%
+\section{The Big Picture}\label{the-big-picture-5}}
 
 \begin{quote}
 Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions.
@@ -17318,8 +13771,8 @@ A data product is the production output from a statistical analysis. - \href{htt
 \hypertarget{developing-r-packages}{%
 \section{Developing R packages}\label{developing-r-packages}}
 
-\hypertarget{the-big-picture-7}{%
-\subsection{The Big Picture}\label{the-big-picture-7}}
+\hypertarget{the-big-picture-6}{%
+\subsection{The Big Picture}\label{the-big-picture-6}}
 
 Why develop R packages?
 
@@ -17653,6 +14106,13 @@ Although I said optional, automated unit testing is not an option when you're wr
 
 You can run R commands in the terminal using R CMD.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{R}\NormalTok{ CMD build mypkg }
+\ExtensionTok{R}\NormalTok{ CMD INSTALL mypkg }
+\end{Highlighting}
+\end{Shaded}
+
 \begin{itemize}
 \tightlist
 \item
@@ -17704,13 +14164,31 @@ You can run R commands in the terminal using R CMD.
 \end{enumerate}
 
 \begin{itemize}
+\tightlist
 \item
   Push everything to the Git repository (you can do it using command-line interface or RStudio).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ add . }
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"first push"}
+\FunctionTok{git}\NormalTok{ push }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
 \item
   Don't forget that your repository should be \texttt{public}.
 \item
   I highly recommend connecting GitHub with SSH. For more information, visit \href{https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh}{this link}.
 \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ remote set{-}url origin git@github.com:user/repo }
+\end{Highlighting}
+\end{Shaded}
 
 \textbf{Additional tips}
 
@@ -17949,8 +14427,8 @@ If you're creating a complex app, you can achieve the same goal with two files: 
 ##   Use `force = TRUE` to force installation
 \end{verbatim}
 
-\hypertarget{the-big-picture-8}{%
-\section{The Big Picture}\label{the-big-picture-8}}
+\hypertarget{the-big-picture-7}{%
+\section{The Big Picture}\label{the-big-picture-7}}
 
 \begin{itemize}
 \tightlist
@@ -19219,8 +15697,8 @@ Load packages. For the connection interface, don't use \texttt{RCurl,} but I str
 \hypertarget{machine_learning}{%
 \chapter{High-dimensional data}\label{machine_learning}}
 
-\hypertarget{the-big-picture-9}{%
-\section{The Big Picture}\label{the-big-picture-9}}
+\hypertarget{the-big-picture-8}{%
+\section{The Big Picture}\label{the-big-picture-8}}
 
 \begin{itemize}
 \item
@@ -23107,8 +19585,8 @@ In LDA distribution, \(\alpha\) represents document-topic density and \(\beta\) 
 \hypertarget{big_data}{%
 \chapter{Big data}\label{big_data}}
 
-\hypertarget{the-big-picture-10}{%
-\section{The Big Picture}\label{the-big-picture-10}}
+\hypertarget{the-big-picture-9}{%
+\section{The Big Picture}\label{the-big-picture-9}}
 
 \begin{itemize}
 \tightlist
@@ -23650,8 +20128,21 @@ Let's get to work.
 \end{verbatim}
 
 \begin{itemize}
+\tightlist
 \item
   Option 2 (works faster)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\KeywordTok{SELECT} \OperatorTok{*} 
+\KeywordTok{FROM}\NormalTok{ flights }
+\KeywordTok{LIMIT} \DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
 \item
   Option 3 (automating workflow)
 
