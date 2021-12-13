@@ -2,7 +2,7 @@
 
 
 
-## Overview 
+## Big Picture
 
 - The rise of high-dimensional data. The new data frontiers in social sciences---text ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf); [Grimmer and Stewart 2013](https://www.jstor.org/stable/pdf/24572662.pdf?casa_token=SQdSI4R_VdwAAAAA:4QiVLhCXqr9f0qNMM9U75EL5JbDxxnXxUxyIfDf0U8ZzQx9szc0xVqaU6DXG4nHyZiNkvcwGlgD6H0Lxj3y0ULHwgkf1MZt8-9TPVtkEH9I4AHgbTg)) and and image ([Joo and Steinert-Threlkeld 2018](https://arxiv.org/pdf/1810.01544))---are all high-dimensional data. 
 
@@ -933,7 +933,7 @@ tree_fit_viz_mat
 
 ##### tune ingredients 
 
-Decisions trees tend to overfit. There are two things we need to consider to reduce this problem: how to split and when to stop a tree.
+Decisions trees tend to overfit. We need to consider two things to reduce this problem: how to split and when to stop a tree.
 
 - **complexity parameter**: a high CP means a simple decision tree with few splits. 
 
@@ -1108,7 +1108,7 @@ single learner -> N learners (N > 1)
 
 Many learners could perform better than a single learner as this approach reduces the **variance** of a single estimate and provides more stability.
 
-Here we focus on the difference between bagging and boosting. In short, boosting may reduce bias while increasing variance. Bagging may reduce variance but has nothing to do with bias. For more information, please check out [What is the difference between Bagging and Boosting?](https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/) by aporras.
+Here we focus on the difference between bagging and boosting. In short, boosting may reduce bias while increasing variance. On the other hand, bagging may reduce variance but has nothing to do with bias. Please check out [What is the difference between Bagging and Boosting?](https://quantdare.com/what-is-the-difference-between-bagging-and-boosting/) by aporras.
 
 **bagging**
 
@@ -1874,7 +1874,7 @@ print(ck37r::cvsl_weights(cv_sl), row.names = FALSE)
 
 The general stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
 
-However, SuperLearner is currently not available in the tidymodels framework. If you'd like to, you can easily build and add a parsnip model. If you are interested in knowing more about it, please look at [this vignette](https://www.tidymodels.org/learn/develop/models/) of the tidymodels.
+However, SuperLearner is currently not available in the tidymodels framework. You can easily build and add a parsnip model if you'd like to. If you are interested in knowing more about it, please look at [this vignette](https://www.tidymodels.org/learn/develop/models/) of the tidymodels.
 
 ### Applications 
 
@@ -1894,7 +1894,7 @@ x -> f - > y (not defined)
 
 This dataset is a good problem for PCA as some features are highly correlated. 
 
-Again, thin about what the dataset is about. The following data dictionary comes from [this site](http://rstudio-pubs-static.s3.amazonaws.com/24341_184a58191486470cab97acdbbfe78ed5.html).
+Again, think about what the dataset is about. The following data dictionary comes from [this site](http://rstudio-pubs-static.s3.amazonaws.com/24341_184a58191486470cab97acdbbfe78ed5.html).
 
 * age - age in years
 * sex - sex (1 = male; 0 = female)
@@ -2770,9 +2770,9 @@ sherlock_words %>%
 
 #### STM
 
-[Structural Topic Modeling](https://www.structuraltopicmodel.com/) by Roberts, Stewart, and Tingley helps estimating how the proportions of topics vary by covariates. If you don't use covaraites, this approach is close to CTM. The other useful (and very recent) topic modeling package is Keyword Assisted Topic Models ([keyATM](https://keyatm.github.io/keyATM/)) by Shusei, Imai, and Sasaki.
+[Structural Topic Modeling](https://www.structuraltopicmodel.com/) by Roberts, Stewart, and Tingley helps estimate how topics' proportions vary by covariates. If you don't use covariates, this approach is close to CTM. The other useful (and very recent) topic modeling package is Keyword Assisted Topic Models ([keyATM](https://keyatm.github.io/keyATM/)) by Shusei, Imai, and Sasaki.
 
-Also, note that we didn't cover other important techniques in topic modeling such as dynamic and hierarchical topic modeling.
+Also, note that we didn't cover other important techniques in topic modeling, such as dynamic and hierarchical topic modeling.
 
 ![](https://warin.ca/shiny/stm/images/fig02.png)
 
@@ -2974,9 +2974,9 @@ Several metrics assess topic models' performance: the held-out likelihood, resid
 
 -   Semantic coherence: high probability words for a topic co-occur in documents
 
--   Exclusivity: key words of one topic are not likely to appear as key words in other topics.
+-   Exclusivity: keywords of one topic are not likely to appear as keywords in other topics.
 
-> In Roberts et al 2014 we proposed using the Mimno et al 2011 semantic coherence metric for helping with topic model selection. We found that semantic coherence alone is relatively easy to achieve by having only a couple of topics which all are dominated by the most common words. Thus we also proposed an exclusivity measure.
+> In Roberts et al. 2014 we proposed using the Mimno et al. 2011 semantic coherence metric for helping with topic model selection. However, we found that semantic coherence alone is relatively easy to achieve by having only a couple of topics that dominate the most common words. Thus we also proposed an exclusivity measure.
 
 > Our exclusivity measure includes some information on word frequency as well. It is based on the FREX labeling metric (calcfrex) with the weight set to .7 in favor of exclusivity by default.
 

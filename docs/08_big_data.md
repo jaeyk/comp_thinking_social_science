@@ -2,11 +2,11 @@
 
 
 
-## Overview
+## The Big Picture
 
 - Big data problem: data is too big to fit into memory (=local environment).
-- R reads data into random-access memory (RAM) at once and this object lives in memory entirely. So, if object.size > memory.size, the process will crash R. 
-- Therefore, the key to deal with big data in R is reducing the size of data you want to bring into it.
+- R reads data into random-access memory (RAM) at once, and this object lives in memory entirely. So, if object.size > memory.size, the process will crash R. 
+- Therefore, the key to dealing with big data in R is reducing the size of data you want to bring into it.
 
 **Techniques to deal with big data**
 
@@ -31,7 +31,7 @@
 
 ## SQL
 
-- Structured Query Language. Called SEQUEL and developed by IBM Corporation in the 1970s.
+- Structured Query Language. Called SEQUEL and was developed by IBM Corporation in the 1970s.
 
 - Remains the standard language for a relational database management system.
 
@@ -63,7 +63,7 @@ ORDER BY      | arrange()
 LIMIT         | head()
   
 **Challenge 1**
-1. Can you tell me the difference in the order in which the following `R` and `SQL` code were written to manipulate data? For instance, in R, what command comes first? In contrast, in SQL, what command comes first?
+1. Can you tell me the difference in the order in which the following `R` and `SQL` codes were written to manipulate data? For instance, in R, what command comes first? In contrast, in SQL, what command comes first?
 
 - R example 
 
@@ -149,11 +149,11 @@ pacman::p_load(
 
 - Short answer: To do so, you need interfaces between R and a database. We use [`RSQLite`](https://github.com/r-dbi/RSQLite) in this tutorial because it's easy to set up. 
 
-- Long answer: The `DBI` package in R provides a client-side interface that allows `dplyr` to work with databases. DBI is automatically installed when you installed `dbplyr`. However, you need to install a specific backend engine (a tool for communication between R and a database management system) for the database (e.g., `RMariaDB`, `RPostgres`, `RSQLite`). In this workshop, we use SQLite because it is the easiest to get started with. I love PostgreSQL because it's open-source and also powerful to do [many amazing things](https://www.postgresql.org/docs/current/functions.html) (e.g., text mining, geospatial analysis). If you want to build a data warehouse, an analytical platform, consider using Spark (Hadoop).
+- Long answer: The `DBI` package in R provides a client-side interface that allows `dplyr` to work with databases. DBI is automatically installed when you install `dbplyr`. However, you need to install a specific backend engine (a tool for communication between R and a database management system) for the database (e.g., `RMariaDB`, `RPostgres`, `RSQLite`). In this workshop, we use SQLite because it is the easiest to get started with. I love PostgreSQL because it's open-source and also powerful to do [many amazing things](https://www.postgresql.org/docs/current/functions.html) (e.g., text mining, geospatial analysis). If you want to build a data warehouse, an analytical platform, consider using Spark (Hadoop).
 
 2. Copy a table to the database 
 
-- Option 1: You can create a table and insert rows manually. To do that, you also need to define the data schema (the database structure). 
+- Option 1: You can create a table and insert rows manually. You also need to define the data schema (the database structure) to do that. 
 
 - Table
     - Collection of rows 
@@ -301,7 +301,7 @@ dbListFields(con, "weather")
 - FROM tables 
 
 - Select all columns (*) from `flights` table and show the `first ten rows`
-- Note that you can combine SQL and R commands thanks to `dbplyr`.
+- Note that you can combine SQL and R commands thanks to `dbplyr.`
 
 - Option 1 
 
@@ -366,7 +366,7 @@ var <- "dep_delay"
 num <- 10
 
 # Glue SQL query string 
-# Note that to indicate a numeric value, you don't need ``
+# Note that to indicate a numeric value, you don't need.
 
 sql_query <- glue_sql("
   SELECT {`var`}
@@ -402,7 +402,7 @@ Can you rewrite the above code using `LIMIT` instead of `head(10)`?
 - Select `dep_delay` and `arr_delay` from flights table, show the first ten rows, then turn the result into a tibble.
 
 **Challenge 3**
-Could you remind me how to see the list of attributes of a table? Let's say you want to see the attributes of `flights` table. How can you do it?
+Could you remind me how to see the list of attributes of a table? Let's say you want to see the `flights` table attributes. How can you do it?
 
 - Collect the selected columns and filtered rows 
 
@@ -458,7 +458,7 @@ dbGetQuery(con,
 
 #### Tidy-way: dplyr -> SQL
 
-Thanks to the `dbplyr` package you can use the `dplyr` syntax to query SQL. 
+Thanks to the `dbplyr` package, you can use the `dplyr` syntax to query SQL. 
 
 - Note that pipe (%) works.
 
@@ -498,7 +498,7 @@ flights %>%
 ```
 
 **Challenge 4** 
-Your turn: write the same code in SQL. Don't forget to add `connection` argument to your SQL code chunk.
+Your turn: write the same code in SQL. Don't forget to add the `connection` argument to your SQL code chunk.
 
 - `mutate` = `SELECT` `AS`
 
@@ -589,7 +589,7 @@ JFK\\
 \end{tabular}
 \end{table}
 
-`%` is one of the wildcards that you can use for string matching. `%` matches any number of characters. So, `J%` matches Jae, JFK, Joseph, etc. `_` is another useful wildcard and it matches exactly one character. So `J_` matches only JA, JE, etc. If wildcards are not enough, then you should consider using regular expressions.
+`%` is one of the wildcards you can use for string matching. `%` matches any number of characters. So, `J%` matches Jae, JFK, Joseph, etc. `_` is another useful wildcard that matches exactly one character. So `J_` matches only JA, JE, etc. If wildcards are not enough, then you should consider using regular expressions.
 
 - `arrange` = `ORDER BY`
 
@@ -727,7 +727,7 @@ year & month & day & dep\_time & sched\_dep\_time & dep\_delay & arr\_time & sch
 \end{tabular}
 \end{table}
 
-Can anyone explain why SQL query using `dplyr` then translated by `show_query()` looks so complex compared to the above? ([Hint](https://stackoverflow.com/questions/36808295/how-to-remove-duplicate-columns-from-join-in-sql))
+Can anyone explain why SQL query using `dplyr` then translated by `show_query()` looks more complex than the above? ([Hint](https://stackoverflow.com/questions/36808295/how-to-remove-duplicate-columns-from-join-in-sql))
 
 
 ```r
@@ -792,7 +792,7 @@ DBI::dbDisconnect(con)
 
 Subquery = a query nested inside a query 
 
-This is a hypothetical example inspired by [dofactory blog post](https://www.dofactory.com/sql/subquery).
+This hypothetical example is inspired by [dofactory blog post](https://www.dofactory.com/sql/subquery).
 
 
 ```sql

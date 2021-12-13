@@ -2,6 +2,8 @@
 
 
 
+## The Big Picture
+
 > Anything that can be automated should be automated. Do as little as possible by hand. Do as much as possible with functions. 
 - Hadley Wickham
 
@@ -9,7 +11,7 @@ This chapter helps you to step up your R skills with functional programming. The
 
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmywiiOutD0NPieYCKxaD2wN9Fbt2I3iS87A&usqp=CAU)
 
-## Learning objectives
+## Objectives 
 
 0.  How to use control flow in R using `if_`, `for loop`, and `apply` 
 1.  How to use `map()` to automate workflow in a cleaner, faster, and more extendable way  
@@ -154,7 +156,7 @@ less.simple.function(x = 2, y = 10)
 ## [1] -7
 ```
 
-Concerning returning function output, most of the same rules apply as with Python. Be sure to remember that ```return()``` will only process a single object, so multiple items must usually be returned as a list. Note that your ordering of the functions matters, too. 
+Concerning returning function output, most of the same rules apply to Python. Be sure to remember that ```return()``` will only process a single object, so multiple items must usually be returned as a list. Note that your ordering of the functions matters, too. 
 
 
 ```r
@@ -333,7 +335,7 @@ Nonstandard evaluation is an advanced subject. If you feel overwhelmed, you are 
 
 This part draws on one of the [the dplyr package articles](https://dplyr.tidyverse.org/articles/programming.html.
 
-In tidyverse, calling a variable with or without quotation mark (string or not) makes little difference because tidyeval is a non-standard evaluation. This flexibility runs into the following problem when it comes to programming. 
+In tidyverse, calling a variable with or without quotation mark (string or not) makes little difference because tidyeval is a non-standard evaluation. 
 
 
 ```r
@@ -386,7 +388,7 @@ var_summary <- function(env_var, data_var){
 
 You may expect that the output is mean = 2.5 ... but 
 
-It's because the mean() function doesn't take `df$x` for data_var but `x`. It would be best if you linked x with the environment variable.
+It's because the mean() function doesn't take `df$x` for data_var but `x.` So it would be best if you linked x with the environment variable.
 
 
 ```r
@@ -480,7 +482,7 @@ mtcars_count[[1]]
 Loops in R also work the same way as in Python, with just a few adjustments.  First, recall that index positions in R start at 1.  Second, ```while()``` and ```for()``` are functions rather than reserved operators, meaning they must take arguments in parentheses.  Third, just like ```else```, the ```in``` operator *is* reserved and takes no arguments in parentheses.  Fourth, the conditional execution must appear between curly brackets.  Finally, indentation is meaningless, but each new operation must appear on a new line.
 
 - `while()`: when we have no idea how many times loop needs to be executed.
-- `for()`: when we know how many times loop needs to be executed. This is likely to be the loop you are going to use most frequently. 
+- `for()`: when we know how many times loop needs to be executed. This is likely to be the loop you will use most frequently. 
 
 
 ```r
@@ -1526,14 +1528,12 @@ glue("{names} studies {fields}.")
 ## Avery studies Public Health.
 ```
 
-- So, our next step is to combine `glue()` and `map()`. 
+So, our next step is to combine `glue()` and `map()`. 
 
-- Let's first think about writing a function that includes `glue()`.
+First, let's think about writing a function that includes `glue()`.
 
-- **Challenge**
+**Challenge**
 How can you create the character vector of column names? 
-
-- **Challenge**
 How can you make `ggplot2()` take strings as x and y variable names? (Hint: Type `?aes_string()`) 
 
 
@@ -1706,7 +1706,7 @@ pacman::p_load(tidyverse, # tidyverse pkgs including purrr
 
 ### How to Make Automation Slower
 
-- Scraping 50 pages from a website and you don't want to overload the server. How can you do that?
+Scraping 50 pages from a website, you don't want to overload the server. How can you do that?
 
 #### For loop 
 
@@ -1822,8 +1822,8 @@ plan(multiprocess, # multicore, if supported, otherwise multisession
 
 I skip technical explanations and only focus on their usages.
 
-- multisession : fast, and relatively stable. It works across different OSs and also for RStudio.
-- multicore :	faster, but unstable. It doesn't work for Windows/RStudio.
+- multisession : fast and relatively stable. It works across different OSs and also for RStudio.
+- multicore :faster but unstable. It doesn't work for Windows/RStudio.
 
 
 
@@ -1849,7 +1849,7 @@ tic.log(format = TRUE)
 ## [1] "averaging 100000 with parallel processing: 0.353 sec elapsed"
 ```
 
-Because of the overhead cost (e.g., time spent communicating data between processing), parallel processing does not always increase performance. Use this technique either when the computation part is heavy or when you need to repeat the process a large number of times.  
+Parallel processing does not always increase performance because of the overhead cost (e.g., time spent communicating data between processing). Use this technique either when the computation part is heavy or when you need to repeat the process many times.  
 
 ## Make error handling easier {#robustness}
 
