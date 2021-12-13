@@ -16871,12 +16871,40 @@ Scraping 50 pages from a website, you don't want to overload the server. How can
 \hypertarget{for-loop-2}{%
 \subsubsection{For loop}\label{for-loop-2}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{50}\NormalTok{) \{}
+  
+  \FunctionTok{message}\NormalTok{(}\StringTok{"Scraping page "}\NormalTok{,i)}
+  
+  \ControlFlowTok{if}\NormalTok{ ((i }\SpecialCharTok{\%\%} \DecValTok{10}\NormalTok{) }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) \{}
+    
+    \FunctionTok{message}\NormalTok{(}\StringTok{"Break time"}\NormalTok{)}
+    
+    \FunctionTok{Sys.sleep}\NormalTok{(}\DecValTok{1}\NormalTok{) }\CommentTok{\# 1 second }
+\NormalTok{  \}}
+  
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{map}{%
 \subsubsection{Map}\label{map}}
 
 \begin{itemize}
+\tightlist
 \item
   \texttt{walk()} works the same as \texttt{map()} but doesn't store its output.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{walk}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{50}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x)\{}\FunctionTok{message}\NormalTok{(}\StringTok{"Scraping page"}\NormalTok{, x)\})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
 \item
   If you're web scraping, one problem with this approach is it's too fast by human standards.
 \end{itemize}
@@ -16954,6 +16982,21 @@ slowly() takes a function and modifies it to wait a given amount of time between
   If a function is a verb, then a helper function is an adverb (modifying the behavior of the verb).
 \end{itemize}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 49.05 sec elapsed}
+
+\FunctionTok{tic}\NormalTok{(}\StringTok{"scraping pages with deplay"}\NormalTok{, }\AttributeTok{log =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{walk}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\FunctionTok{slowly}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}\FunctionTok{message}\NormalTok{(}\StringTok{"Scraping page"}\NormalTok{, x)\},   }
+                    \AttributeTok{rate =} \FunctionTok{rate\_delay}\NormalTok{(}\AttributeTok{pause =} \DecValTok{1}\NormalTok{))) }\CommentTok{\# pause = Delay between attempts in seconds}
+
+\FunctionTok{toc}\NormalTok{(}\AttributeTok{log =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{tic.log}\NormalTok{(}\AttributeTok{format =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{how-to-make-automation-faster}{%
 \subsection{How to Make Automation Faster}\label{how-to-make-automation-faster}}
 
@@ -17010,6 +17053,27 @@ I skip technical explanations and only focus on their usages.
 \item
   multicore :faster but unstable. It doesn't work for Windows/RStudio.
 \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plan}\NormalTok{(sequential)}
+
+\FunctionTok{tic}\NormalTok{(}\StringTok{"averaging 100000 without parallel processing"}\NormalTok{, }\AttributeTok{log =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{map100000 }\OtherTok{\textless{}{-}} \FunctionTok{future\_map}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{100000}\NormalTok{, mean)}
+\FunctionTok{toc}\NormalTok{(}\AttributeTok{log =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plan}\NormalTok{(multiprocess, }\CommentTok{\# multicore, if supported, otherwise multisession}
+     \AttributeTok{workers =}\NormalTok{ n\_cores) }\CommentTok{\# the maximum number of workers}
+
+\FunctionTok{tic}\NormalTok{(}\StringTok{"averaging 100000 with parallel processing"}\NormalTok{, }\AttributeTok{log =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{map100000 }\OtherTok{\textless{}{-}} \FunctionTok{future\_map}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{100000}\NormalTok{, mean)}
+\FunctionTok{toc}\NormalTok{(}\AttributeTok{log =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]

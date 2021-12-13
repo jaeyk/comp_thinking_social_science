@@ -918,7 +918,7 @@ Scraping 50 pages from a website, you don't want to overload the server. How can
 
 #### For loop 
 
-```{r, include=FALSE}
+```{r, eval=FALSE}
 
 for (i in 1:50) {
   
@@ -939,7 +939,7 @@ for (i in 1:50) {
 
 - `walk()` works the same as `map()` but doesn't store its output. 
 
-```{r,include=FALSE}
+```{r,eval=FALSE}
 
 walk(1:50, function(x){message("Scraping page", x)})
 
@@ -961,7 +961,7 @@ toc(log = TRUE) # save toc
 
 - If a function is a verb, then a helper function is an adverb (modifying the behavior of the verb). 
 
-```{r,include=FALSE}
+```{r,eval=FALSE}
 
 # 49.05 sec elapsed
 
@@ -1006,7 +1006,7 @@ I skip technical explanations and only focus on their usages.
 - multisession : fast and relatively stable. It works across different OSs and also for RStudio.
 - multicore :faster but unstable. It doesn't work for Windows/RStudio.
 
-```{r include=FALSE}
+```{r eval=FALSE}
 plan(sequential)
 
 tic("averaging 100000 without parallel processing", log = TRUE)
@@ -1015,7 +1015,7 @@ toc(log = TRUE)
 ```
 
 
-```{r include=FALSE}
+```{r eval=FALSE}
 plan(multiprocess, # multicore, if supported, otherwise multisession
      workers = n_cores) # the maximum number of workers
 
