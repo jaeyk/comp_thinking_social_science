@@ -5873,12 +5873,240 @@ glanced %>%
 - tidy() 
 
 
+```r
+conflict_prefer("select", "dplyr")
+```
+
+```
+## [conflicted] Will prefer dplyr::select over any other package
+```
+
+```r
+conflict_prefer("filter", "dplyr")
+```
+
+```
+## [conflicted] Will prefer dplyr::filter over any other package
+```
+
+```r
+nested <- gapminder %>%
+  group_by(continent) %>%
+  nest()
+
+nested <- nested %>%
+  mutate(models = map(data, ~lm(lifeExp ~ year + country, data = .))) 
+
+tidied <- nested %>%
+  mutate(tidied = map(models, broom::tidy))
+
+model_out <- tidied %>%
+  unnest(tidied) %>%
+  mutate(term = str_replace(term, "country", "")) %>%
+  select(continent, term, estimate, p.value) %>%
+  mutate(p_threshold = ifelse(p.value < 0.05, 1, 0))
+
+model_out %>% filter(p_threshold == 1) %>% pull(term) %>% unique()
+```
+
+```
+##   [1] "(Intercept)"              "year"                    
+##   [3] "Bahrain"                  "Bangladesh"              
+##   [5] "Cambodia"                 "China"                   
+##   [7] "Hong Kong, China"         "India"                   
+##   [9] "Indonesia"                "Iran"                    
+##  [11] "Iraq"                     "Israel"                  
+##  [13] "Japan"                    "Jordan"                  
+##  [15] "Korea, Dem. Rep."         "Korea, Rep."             
+##  [17] "Kuwait"                   "Lebanon"                 
+##  [19] "Malaysia"                 "Mongolia"                
+##  [21] "Myanmar"                  "Nepal"                   
+##  [23] "Oman"                     "Pakistan"                
+##  [25] "Philippines"              "Saudi Arabia"            
+##  [27] "Singapore"                "Sri Lanka"               
+##  [29] "Syria"                    "Taiwan"                  
+##  [31] "Thailand"                 "Vietnam"                 
+##  [33] "West Bank and Gaza"       "Yemen, Rep."             
+##  [35] "Austria"                  "Belgium"                 
+##  [37] "Croatia"                  "Czech Republic"          
+##  [39] "Denmark"                  "Finland"                 
+##  [41] "France"                   "Germany"                 
+##  [43] "Greece"                   "Iceland"                 
+##  [45] "Ireland"                  "Italy"                   
+##  [47] "Montenegro"               "Netherlands"             
+##  [49] "Norway"                   "Poland"                  
+##  [51] "Portugal"                 "Slovak Republic"         
+##  [53] "Slovenia"                 "Spain"                   
+##  [55] "Sweden"                   "Switzerland"             
+##  [57] "Turkey"                   "United Kingdom"          
+##  [59] "Angola"                   "Benin"                   
+##  [61] "Botswana"                 "Burkina Faso"            
+##  [63] "Burundi"                  "Cameroon"                
+##  [65] "Central African Republic" "Chad"                    
+##  [67] "Comoros"                  "Congo, Dem. Rep."        
+##  [69] "Congo, Rep."              "Cote d'Ivoire"           
+##  [71] "Djibouti"                 "Equatorial Guinea"       
+##  [73] "Eritrea"                  "Ethiopia"                
+##  [75] "Gabon"                    "Gambia"                  
+##  [77] "Ghana"                    "Guinea"                  
+##  [79] "Guinea-Bissau"            "Kenya"                   
+##  [81] "Lesotho"                  "Liberia"                 
+##  [83] "Madagascar"               "Malawi"                  
+##  [85] "Mali"                     "Mauritania"              
+##  [87] "Mauritius"                "Mozambique"              
+##  [89] "Namibia"                  "Niger"                   
+##  [91] "Nigeria"                  "Reunion"                 
+##  [93] "Rwanda"                   "Senegal"                 
+##  [95] "Sierra Leone"             "Somalia"                 
+##  [97] "South Africa"             "Sudan"                   
+##  [99] "Swaziland"                "Tanzania"                
+## [101] "Togo"                     "Uganda"                  
+## [103] "Zambia"                   "Zimbabwe"                
+## [105] "Bolivia"                  "Brazil"                  
+## [107] "Canada"                   "Colombia"                
+## [109] "Dominican Republic"       "Ecuador"                 
+## [111] "El Salvador"              "Guatemala"               
+## [113] "Haiti"                    "Honduras"                
+## [115] "Mexico"                   "Nicaragua"               
+## [117] "Paraguay"                 "Peru"                    
+## [119] "Puerto Rico"              "Trinidad and Tobago"     
+## [121] "United States"            "Venezuela"               
+## [123] "New Zealand"
+```
+
+```r
+model_out %>% filter(p_threshold == 0) %>% pull(term) %>% unique()
+```
+
+```
+##  [1] "Bosnia and Herzegovina" "Bulgaria"               "Hungary"               
+##  [4] "Romania"                "Serbia"                 "Egypt"                 
+##  [7] "Libya"                  "Morocco"                "Sao Tome and Principe" 
+## [10] "Tunisia"                "Chile"                  "Costa Rica"            
+## [13] "Cuba"                   "Jamaica"                "Panama"                
+## [16] "Uruguay"
+```
 
 
+### Mapping
+
+We tasted a bit of how `map()` function works. Let's dig into it more in-depth, as this family of functions is useful. See Rebecca Barter's excellent tutorial on the `purrr` package for more information. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
 
 
+```r
+multiply <- function(x) {
+  x * x
+}
+
+df <- list(
+  first_obs = rnorm(7, 1, sd = 1),
+  second_obs = rnorm(7, 2, sd = 2)
+) # normal distribution
+```
+
+**Challenge**
+
+Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between the output you got and what you saw earlier.
+
+If you want to know more about the power and joy of functional programming in R (e.g., `purrr::map()`), then please take ["How to Automate Repeated Things in R"](https://github.com/dlab-berkeley/R-functional-programming) workshop.
+
+### Hypothesis testing 
+
+Statistical inference: does the effect/difference in observed data occur by chance?
+
+Null hypothesis: everything was random 
+Alternative hypothesis: everything was not random. Note that this does not mean that a particular factor influenced the outcome of interest. Statistical inference != Causal inference (causes and effects)
+
+$Y = X_{1} + X_{2} + X_{3} \epsilon$
+
+[`infer`](https://github.com/tidymodels/infer) is for tidyverse-friendly statistical inference. 
+
+**Workflow**
+
+1. `specify()` specify a formula 
+2. `hypothesize()` declare the null hypothesis 
+3. `generate()` generate data based on the null hypothesis 
+4. `calculate()` calculate a distribution of statistics from the generated data to form the null distribution 
 
 
+![From infer package](https://raw.githubusercontent.com/tidymodels/infer/master/figs/ht-diagram.png)
+
+
+```r
+gapminder <- gapminder %>%
+  mutate(log_pop = log(pop))
+
+ggplot(aes(x = log_pop, y = lifeExp), data = gapminder) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-170-1.png" width="672" />
+
+```r
+# Calculate the observed statistic: Observed slopes 
+observed_slopes <- gapminder %>%
+  # specify(formula = lifeExp ~ log_pop) %>% 
+  specify(formula = lifeExp ~ log_pop) %>%
+  calculate(stat = "slope")
+
+# Generate the null distribution: Null slopes 
+null_slopes <- gapminder %>%
+  # Specify a formula
+  specify(formula = lifeExp ~ log_pop) %>%
+  # Hypothesize (point estimation)
+  hypothesize(null = "point", mu = 0) %>%
+  # Generate sampling distributions (bootstrapping)
+  generate(reps = 1000, type = "bootstrap") %>%
+  # Calculate statistics 
+  calculate(stat = "slope") 
+
+# Return data 
+null_slopes %>%
+  # p-value is just the probability that observed pattern could arise if the null hypothesis was true 
+  # In social science convention, if alpha is below 0.005 (note: this is totally arbitrary), then the observed distribution is statistically significant.
+  get_p_value(obs_stat = observed_slopes, 
+              direction = "both")
+```
+
+```
+## # A tibble: 1 × 1
+##   p_value
+##     <dbl>
+## 1   0.972
+```
+
+```r
+# Visualize output 
+visualize(null_slopes) +
+  shade_p_value(obs_stat = observed_slopes, 
+                direction = "both")
+```
+
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-170-2.png" width="672" />
+
+### Design Anaysis (optional)
+
+DeclareDesign provides a collection of packages (`fabricatr`, `randomizr`, `estimatr`) that are very useful for those interested in testing the strength of research design. DeclareDesign also helps share your research design along with your code and data. 
+
+
+```r
+pacman::p_load(DeclareDesign, #  
+               fabricatr, # Fabricate mock (fake) data  
+               randomizr, # Random sampling and assignment 
+               estimatr, # Fast estimation tools (IV, etc) 
+               DesignLibrary) # Research design library 
+```
+
+Model-Inquire-Data Strategy-Answer Strategy (MIDA) by Graeme Blair, Jasper Cooper, Alex Coppock, and Macartan Humphreys ([APSR 2019](https://declaredesign.org/declare.pdf)). The following instructions draw on the vignette available at [the package homepage](https://declaredesign.org/mida/). Also, take a look at [DeclareDesign cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/declaredesign.pdf).
+
+1. Setup 
+
+* Model: speculating how the world works (variables plus their relationships)
 
 
 

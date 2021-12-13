@@ -2607,6 +2607,7 @@ glanced %>%
 
 ```{r}
 conflict_prefer("select", "dplyr")
+conflict_prefer("filter", "dplyr")
 
 nested <- gapminder %>%
   group_by(continent) %>%
