@@ -1299,7 +1299,7 @@ y_means_tidy <- map_dbl(y_tidy, mean)
 
 ![](04_functional_programming_files/figure-latex/unnamed-chunk-33-1.pdf)<!-- --> 
 
-## Automote 2 or 2+ tasks {#map2}
+## Automate 2 or 2+ tasks {#map2}
 
 ### Objectives 
 
