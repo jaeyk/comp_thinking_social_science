@@ -21,10 +21,10 @@ ifelse(packageVersion("dplyr") >= 1,
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(
   tidyverse, # the tidyverse framework
-  skimr, # skimming data 
+  skimr, # skimming data
   here, # computational reproducibility
-  infer, # statistical inference 
-  tidymodels, # statistical modeling 
+  infer, # statistical inference
+  tidymodels, # statistical modeling
   gapminder, # toy data
   nycflights13, # for exercise
   ggthemes, # additional themes
@@ -269,7 +269,6 @@ Create a character vector called `fruit` containing 4 of your favorite fruits. T
 # First, create your fruit vector
 # YOUR CODE HERE
 fruit <-
-
   # Examine your vector
   length(fruit)
 class(fruit)
@@ -2673,7 +2672,7 @@ table4a
 
 
 ```r
-table4a 
+table4a
 ```
 
 ```
@@ -3219,16 +3218,16 @@ This is a relatively less-known function of the tidyr package. However, I found 
 
 
 ```r
-# Example 
+# Example
 stock <- tibble::tribble(
-  ~ quarter, ~ year, ~stock_price, 
-  "Q1", 2000, 10000, 
-  "Q2", NA, 10001, # Replace NA with 2000  
-  "Q3", NA, 10002, # Replace NA with 2000 
-  "Q4", NA, 10003, # Replace NA with 2000 
-  "Q1", 2001, 10004, 
-  "Q2", NA, 10005, # Replace NA with 2001 
-  "Q3", NA, 10006, # Replace NA with 2001 
+  ~quarter, ~year, ~stock_price,
+  "Q1", 2000, 10000,
+  "Q2", NA, 10001, # Replace NA with 2000
+  "Q3", NA, 10002, # Replace NA with 2000
+  "Q4", NA, 10003, # Replace NA with 2000
+  "Q1", 2001, 10004,
+  "Q2", NA, 10005, # Replace NA with 2001
+  "Q3", NA, 10006, # Replace NA with 2001
   "Q4", NA, 10007, # Replace NA with 2001
 )
 
@@ -3253,21 +3252,21 @@ Let's take a slightly more complex example.
 
 
 ```r
-# Example 
+# Example
 yelp_rate <- tibble::tribble(
-  ~ neighborhood, ~restraurant_type, ~popularity_rate, 
-  "N1", "Chinese", 5, 
-  "N2", NA, 4,   
-  "N3", NA, 3,  
-  "N4", NA, 2,  
-  "N1", "Indian", 1, 
-  "N2", NA, 2,  
-  "N3", NA, 3,  
-  "N4", NA, 4, 
+  ~neighborhood, ~restraurant_type, ~popularity_rate,
+  "N1", "Chinese", 5,
+  "N2", NA, 4,
+  "N3", NA, 3,
+  "N4", NA, 2,
+  "N1", "Indian", 1,
+  "N2", NA, 2,
+  "N3", NA, 3,
+  "N4", NA, 4,
   "N1", "Mexican", 5
 )
 
-fill(yelp_rate, restraurant_type) # default is direction = .down 
+fill(yelp_rate, restraurant_type) # default is direction = .down
 ```
 
 ```
@@ -3286,7 +3285,7 @@ fill(yelp_rate, restraurant_type) # default is direction = .down
 ```
 
 ```r
-fill(yelp_rate, restraurant_type, .direction = "up") 
+fill(yelp_rate, restraurant_type, .direction = "up")
 ```
 
 ```
@@ -3412,7 +3411,7 @@ df <- tibble(y = c(2011, 2012, 2013))
 df %>%
   rename(
     Year = # NEW name
-    y
+      y
   ) # OLD name
 ```
 
@@ -4076,8 +4075,10 @@ msleep %>%
 
 
 ```r
-messy_df <- tibble::tribble(~"ColNum1", ~"COLNUM2", ~ "COL & NUM3",
-                            1, 2, 3)
+messy_df <- tibble::tribble(
+  ~"ColNum1", ~"COLNUM2", ~"COL & NUM3",
+  1, 2, 3
+)
 
 
 messy_df
@@ -4093,7 +4094,7 @@ messy_df
 ```r
 pacman::p_load(janitor)
 
-janitor::clean_names(messy_df) 
+janitor::clean_names(messy_df)
 ```
 
 ```
@@ -4107,7 +4108,7 @@ janitor::clean_names(messy_df)
 
 
 ```r
-# Frequency table; The default output class is table 
+# Frequency table; The default output class is table
 table(gapminder$country)
 ```
 
@@ -4363,7 +4364,7 @@ janitor::tabyl(gapminder$country)
 ```
 
 ```r
-# If you want to add percentage ... 
+# If you want to add percentage ...
 gapminder %>%
   tabyl(country) %>%
   adorn_pct_formatting(digits = 0, affix_sign = TRUE)
@@ -4527,9 +4528,11 @@ You can think of `case_when()` (multiple conditions) as an extended version of `
 
 ```r
 mtcars <- mtcars %>%
-  mutate(cyl_dummy = case_when(cyl > median(cyl) ~ "High", # if condition
-                               cyl < median(cyl) ~ "Low", # else if condition 
-                               TRUE ~ 'Median')) # else condition 
+  mutate(cyl_dummy = case_when(
+    cyl > median(cyl) ~ "High", # if condition
+    cyl < median(cyl) ~ "Low", # else if condition
+    TRUE ~ "Median"
+  )) # else condition
 
 mtcars %>% pull(cyl_dummy)
 ```
@@ -4546,10 +4549,11 @@ mtcars %>% pull(cyl_dummy)
 
 ```r
 mtcars %>%
-  mutate(cyl_dummy = recode(cyl_dummy, # Target column 
-                            "High" = "2", # Old - New
-                            "Low" = "0",
-                            "Median" = "1")) %>%
+  mutate(cyl_dummy = recode(cyl_dummy, # Target column
+    "High" = "2", # Old - New
+    "Low" = "0",
+    "Median" = "1"
+  )) %>%
   pull(cyl_dummy)
 ```
 
@@ -4801,8 +4805,10 @@ tablea <- gapminder %>%
 
 
 ```r
-pacman::p_load(kableExtra,
-               flextable)
+pacman::p_load(
+  kableExtra,
+  flextable
+)
 
 # For HTML and LaTeX
 tablea %>% kableExtra::kable()
@@ -4857,7 +4863,7 @@ tablea %>% flextable::flextable()
 ```
 
 ```{=html}
-<template id="39c3319a-4863-4cc5-86e8-4acc6da8ade4"><style>
+<template id="b6d8a68b-1973-4ea9-8a24-162ff677ab49"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -4891,15 +4897,15 @@ tablea %>% flextable::flextable()
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-cffe0b92{}.cl-cff892a2{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-cff8a486{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-cff8a490{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-cff8d1b8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cff8d1c2{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cff8d1c3{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cff8d1cc{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cff8d1d6{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cff8d1d7{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-cffe0b92'>
+</style><div class="tabwid"><style>.cl-c3dfdf0a{}.cl-c3d9f87e{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c3da12f0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c3da12fa{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c3da4f0e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3da4f18{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3da4f19{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3da4f1a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3da4f22{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3da4f23{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-c3dfdf0a'>
 ```
 
 ```{=html}
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-cff8d1d6"><p class="cl-cff8a486"><span class="cl-cff892a2">continent</span></p></td><td class="cl-cff8d1d7"><p class="cl-cff8a490"><span class="cl-cff892a2">n</span></p></td><td class="cl-cff8d1d7"><p class="cl-cff8a490"><span class="cl-cff892a2">mean_gdp</span></p></td><td class="cl-cff8d1d7"><p class="cl-cff8a490"><span class="cl-cff892a2">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-cff8d1b8"><p class="cl-cff8a486"><span class="cl-cff892a2">Africa</span></p></td><td class="cl-cff8d1c2"><p class="cl-cff8a490"><span class="cl-cff892a2">624</span></p></td><td class="cl-cff8d1c2"><p class="cl-cff8a490"><span class="cl-cff892a2">2,193.755</span></p></td><td class="cl-cff8d1c2"><p class="cl-cff8a490"><span class="cl-cff892a2">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-cff8d1b8"><p class="cl-cff8a486"><span class="cl-cff892a2">Americas</span></p></td><td class="cl-cff8d1c2"><p class="cl-cff8a490"><span class="cl-cff892a2">300</span></p></td><td class="cl-cff8d1c2"><p class="cl-cff8a490"><span class="cl-cff892a2">7,136.110</span></p></td><td class="cl-cff8d1c2"><p class="cl-cff8a490"><span class="cl-cff892a2">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-cff8d1b8"><p class="cl-cff8a486"><span class="cl-cff892a2">Asia</span></p></td><td class="cl-cff8d1c2"><p class="cl-cff8a490"><span class="cl-cff892a2">396</span></p></td><td class="cl-cff8d1c2"><p class="cl-cff8a490"><span class="cl-cff892a2">7,902.150</span></p></td><td class="cl-cff8d1c2"><p class="cl-cff8a490"><span class="cl-cff892a2">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-cff8d1b8"><p class="cl-cff8a486"><span class="cl-cff892a2">Europe</span></p></td><td class="cl-cff8d1c2"><p class="cl-cff8a490"><span class="cl-cff892a2">360</span></p></td><td class="cl-cff8d1c2"><p class="cl-cff8a490"><span class="cl-cff892a2">14,469.476</span></p></td><td class="cl-cff8d1c2"><p class="cl-cff8a490"><span class="cl-cff892a2">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-cff8d1c3"><p class="cl-cff8a486"><span class="cl-cff892a2">Oceania</span></p></td><td class="cl-cff8d1cc"><p class="cl-cff8a490"><span class="cl-cff892a2">24</span></p></td><td class="cl-cff8d1cc"><p class="cl-cff8a490"><span class="cl-cff892a2">18,621.609</span></p></td><td class="cl-cff8d1cc"><p class="cl-cff8a490"><span class="cl-cff892a2">6,358.983</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="9a99cf8a-79f5-4da3-9483-b55fb16d190f"></div>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-c3da4f22"><p class="cl-c3da12f0"><span class="cl-c3d9f87e">continent</span></p></td><td class="cl-c3da4f23"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">n</span></p></td><td class="cl-c3da4f23"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">mean_gdp</span></p></td><td class="cl-c3da4f23"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-c3da4f0e"><p class="cl-c3da12f0"><span class="cl-c3d9f87e">Africa</span></p></td><td class="cl-c3da4f18"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">624</span></p></td><td class="cl-c3da4f18"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">2,193.755</span></p></td><td class="cl-c3da4f18"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3da4f0e"><p class="cl-c3da12f0"><span class="cl-c3d9f87e">Americas</span></p></td><td class="cl-c3da4f18"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">300</span></p></td><td class="cl-c3da4f18"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">7,136.110</span></p></td><td class="cl-c3da4f18"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3da4f0e"><p class="cl-c3da12f0"><span class="cl-c3d9f87e">Asia</span></p></td><td class="cl-c3da4f18"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">396</span></p></td><td class="cl-c3da4f18"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">7,902.150</span></p></td><td class="cl-c3da4f18"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3da4f0e"><p class="cl-c3da12f0"><span class="cl-c3d9f87e">Europe</span></p></td><td class="cl-c3da4f18"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">360</span></p></td><td class="cl-c3da4f18"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">14,469.476</span></p></td><td class="cl-c3da4f18"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3da4f19"><p class="cl-c3da12f0"><span class="cl-c3d9f87e">Oceania</span></p></td><td class="cl-c3da4f1a"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">24</span></p></td><td class="cl-c3da4f1a"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">18,621.609</span></p></td><td class="cl-c3da4f1a"><p class="cl-c3da12fa"><span class="cl-c3d9f87e">6,358.983</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="3298c22f-4b25-4e45-89de-2d8737b03a20"></div>
 <script>
-var dest = document.getElementById("9a99cf8a-79f5-4da3-9483-b55fb16d190f");
-var template = document.getElementById("39c3319a-4863-4cc5-86e8-4acc6da8ade4");
+var dest = document.getElementById("3298c22f-4b25-4e45-89de-2d8737b03a20");
+var template = document.getElementById("b6d8a68b-1973-4ea9-8a24-162ff677ab49");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -5802,7 +5808,7 @@ S3 is part of R's object-oriented systems. If you need further information, chec
 glanced <- nested %>%
   mutate(glance = map(models, broom::glance))
 
-# Pluck the first item on the list 
+# Pluck the first item on the list
 glanced$glance %>% pluck(1)
 ```
 
@@ -5815,8 +5821,10 @@ glanced$glance %>% pluck(1)
 ```
 
 ```r
-# Pull p.value 
-glanced$glance %>% pluck(1) %>% pull(p.value)
+# Pull p.value
+glanced$glance %>%
+  pluck(1) %>%
+  pull(p.value)
 ```
 
 ```
@@ -5830,7 +5838,7 @@ glanced$glance %>% pluck(1) %>% pull(p.value)
 ```r
 glanced %>%
   unnest(glance) %>%
-  arrange(r.squared) 
+  arrange(r.squared)
 ```
 
 ```
@@ -5865,12 +5873,236 @@ glanced %>%
 - tidy() 
 
 
+```r
+nested <- gapminder %>%
+  group_by(continent) %>%
+  nest()
+
+nested <- nested %>%
+  mutate(models = map(data, ~ lm(lifeExp ~ year + country, data = .)))
+
+tidied <- nested %>%
+  mutate(tidied = map(models, broom::tidy))
+
+model_out <- tidied %>%
+  unnest(tidied) %>%
+  mutate(term = str_replace(term, "country", "")) %>%
+  dplyr::select(continent, term, estimate, p.value) %>%
+  mutate(p_threshold = ifelse(p.value < 0.05, 1, 0))
+
+model_out %>%
+  dplyr::filter(p_threshold == 1) %>%
+  pull(term) %>%
+  unique()
+```
+
+```
+##   [1] "(Intercept)"              "year"                    
+##   [3] "Bahrain"                  "Bangladesh"              
+##   [5] "Cambodia"                 "China"                   
+##   [7] "Hong Kong, China"         "India"                   
+##   [9] "Indonesia"                "Iran"                    
+##  [11] "Iraq"                     "Israel"                  
+##  [13] "Japan"                    "Jordan"                  
+##  [15] "Korea, Dem. Rep."         "Korea, Rep."             
+##  [17] "Kuwait"                   "Lebanon"                 
+##  [19] "Malaysia"                 "Mongolia"                
+##  [21] "Myanmar"                  "Nepal"                   
+##  [23] "Oman"                     "Pakistan"                
+##  [25] "Philippines"              "Saudi Arabia"            
+##  [27] "Singapore"                "Sri Lanka"               
+##  [29] "Syria"                    "Taiwan"                  
+##  [31] "Thailand"                 "Vietnam"                 
+##  [33] "West Bank and Gaza"       "Yemen, Rep."             
+##  [35] "Austria"                  "Belgium"                 
+##  [37] "Croatia"                  "Czech Republic"          
+##  [39] "Denmark"                  "Finland"                 
+##  [41] "France"                   "Germany"                 
+##  [43] "Greece"                   "Iceland"                 
+##  [45] "Ireland"                  "Italy"                   
+##  [47] "Montenegro"               "Netherlands"             
+##  [49] "Norway"                   "Poland"                  
+##  [51] "Portugal"                 "Slovak Republic"         
+##  [53] "Slovenia"                 "Spain"                   
+##  [55] "Sweden"                   "Switzerland"             
+##  [57] "Turkey"                   "United Kingdom"          
+##  [59] "Angola"                   "Benin"                   
+##  [61] "Botswana"                 "Burkina Faso"            
+##  [63] "Burundi"                  "Cameroon"                
+##  [65] "Central African Republic" "Chad"                    
+##  [67] "Comoros"                  "Congo, Dem. Rep."        
+##  [69] "Congo, Rep."              "Cote d'Ivoire"           
+##  [71] "Djibouti"                 "Equatorial Guinea"       
+##  [73] "Eritrea"                  "Ethiopia"                
+##  [75] "Gabon"                    "Gambia"                  
+##  [77] "Ghana"                    "Guinea"                  
+##  [79] "Guinea-Bissau"            "Kenya"                   
+##  [81] "Lesotho"                  "Liberia"                 
+##  [83] "Madagascar"               "Malawi"                  
+##  [85] "Mali"                     "Mauritania"              
+##  [87] "Mauritius"                "Mozambique"              
+##  [89] "Namibia"                  "Niger"                   
+##  [91] "Nigeria"                  "Reunion"                 
+##  [93] "Rwanda"                   "Senegal"                 
+##  [95] "Sierra Leone"             "Somalia"                 
+##  [97] "South Africa"             "Sudan"                   
+##  [99] "Swaziland"                "Tanzania"                
+## [101] "Togo"                     "Uganda"                  
+## [103] "Zambia"                   "Zimbabwe"                
+## [105] "Bolivia"                  "Brazil"                  
+## [107] "Canada"                   "Colombia"                
+## [109] "Dominican Republic"       "Ecuador"                 
+## [111] "El Salvador"              "Guatemala"               
+## [113] "Haiti"                    "Honduras"                
+## [115] "Mexico"                   "Nicaragua"               
+## [117] "Paraguay"                 "Peru"                    
+## [119] "Puerto Rico"              "Trinidad and Tobago"     
+## [121] "United States"            "Venezuela"               
+## [123] "New Zealand"
+```
+
+```r
+model_out %>%
+  dplyr::filter(p_threshold == 0) %>%
+  pull(term) %>%
+  unique()
+```
+
+```
+##  [1] "Bosnia and Herzegovina" "Bulgaria"               "Hungary"               
+##  [4] "Romania"                "Serbia"                 "Egypt"                 
+##  [7] "Libya"                  "Morocco"                "Sao Tome and Principe" 
+## [10] "Tunisia"                "Chile"                  "Costa Rica"            
+## [13] "Cuba"                   "Jamaica"                "Panama"                
+## [16] "Uruguay"
+```
 
 
+### Mapping
+
+We tasted a bit of how `map()` function works. Let's dig into it more in-depth, as this family of functions is useful. See Rebecca Barter's excellent tutorial on the `purrr` package for more information. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
 
 
+```r
+multiply <- function(x) {
+  x * x
+}
+
+df <- list(
+  first_obs = rnorm(7, 1, sd = 1),
+  second_obs = rnorm(7, 2, sd = 2)
+) # normal distribution
+```
+
+**Challenge**
+
+Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between the output you got and what you saw earlier.
+
+If you want to know more about the power and joy of functional programming in R (e.g., `purrr::map()`), then please take ["How to Automate Repeated Things in R"](https://github.com/dlab-berkeley/R-functional-programming) workshop.
+
+### Hypothesis testing 
+
+Statistical inference: does the effect/difference in observed data occur by chance?
+
+Null hypothesis: everything was random 
+Alternative hypothesis: everything was not random. Note that this does not mean that a particular factor influenced the outcome of interest. Statistical inference != Causal inference (causes and effects)
+
+$Y = X_{1} + X_{2} + X_{3} \epsilon$
+
+[`infer`](https://github.com/tidymodels/infer) is for tidyverse-friendly statistical inference. 
+
+**Workflow**
+
+1. `specify()` specify a formula 
+2. `hypothesize()` declare the null hypothesis 
+3. `generate()` generate data based on the null hypothesis 
+4. `calculate()` calculate a distribution of statistics from the generated data to form the null distribution 
 
 
+![From infer package](https://raw.githubusercontent.com/tidymodels/infer/master/figs/ht-diagram.png)
+
+
+```r
+gapminder <- gapminder %>%
+  mutate(log_pop = log(pop))
+
+ggplot(aes(x = log_pop, y = lifeExp), data = gapminder) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-170-1.png" width="672" />
+
+```r
+# Calculate the observed statistic: Observed slopes
+observed_slopes <- gapminder %>%
+  # specify(formula = lifeExp ~ log_pop) %>%
+  specify(formula = lifeExp ~ log_pop) %>%
+  calculate(stat = "slope")
+
+# Generate the null distribution: Null slopes
+null_slopes <- gapminder %>%
+  # Specify a formula
+  specify(formula = lifeExp ~ log_pop) %>%
+  # Hypothesize (point estimation)
+  hypothesize(null = "point", mu = 0) %>%
+  # Generate sampling distributions (bootstrapping)
+  generate(reps = 1000, type = "bootstrap") %>%
+  # Calculate statistics
+  calculate(stat = "slope")
+
+# Return data
+null_slopes %>%
+  # p-value is just the probability that observed pattern could arise if the null hypothesis was true
+  # In social science convention, if alpha is below 0.005 (note: this is totally arbitrary), then the observed distribution is statistically significant.
+  get_p_value(
+    obs_stat = observed_slopes,
+    direction = "both"
+  )
+```
+
+```
+## # A tibble: 1 × 1
+##   p_value
+##     <dbl>
+## 1   0.972
+```
+
+```r
+# Visualize output
+visualize(null_slopes) +
+  shade_p_value(
+    obs_stat = observed_slopes,
+    direction = "both"
+  )
+```
+
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-170-2.png" width="672" />
+
+### Design Anaysis 
+
+DeclareDesign provides a collection of packages (`fabricatr`, `randomizr`, `estimatr`) that are very useful for those interested in testing the strength of research design. DeclareDesign also helps share your research design along with your code and data. 
+
+
+```r
+pacman::p_load(
+  DeclareDesign, #
+  fabricatr, # Fabricate mock (fake) data
+  randomizr, # Random sampling and assignment
+  estimatr, # Fast estimation tools (IV, etc)
+  DesignLibrary
+) # Research design library
+```
+
+Model-Inquire-Data Strategy-Answer Strategy (MIDA) by Graeme Blair, Jasper Cooper, Alex Coppock, and Macartan Humphreys ([APSR 2019](https://declaredesign.org/declare.pdf)). The following instructions draw on the vignette available at [the package homepage](https://declaredesign.org/mida/). Also, take a look at [DeclareDesign cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/declaredesign.pdf).
+
+1. Setup 
+
+* Model: speculating how the world works (variables plus their relationships)
 
 
 
