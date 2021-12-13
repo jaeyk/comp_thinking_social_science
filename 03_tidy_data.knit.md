@@ -35,9 +35,7 @@ pacman::p_load(
 )
 ```
 
-## The Big Picture 
-
-### R Data structures 
+## R Data structures 
 
 The rest of the chapter follows the basic structure in [the Data Wrangling Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) created by RStudio.
 
