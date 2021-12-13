@@ -1682,7 +1682,7 @@ df %>%
 
 ```{r}
 starwars %>%
-  filter(gender == "feminine") %>%
+  dplyr::filter(gender == "feminine") %>%
   arrange(desc(height))
 ```
 
@@ -1694,17 +1694,17 @@ The following filtering example was inspired by [the suzanbert's dplyr blog post
 
 # First example
 starwars %>%
-  filter(height < 180, height > 160) %>%
+  dplyr::filter(height < 180, height > 160) %>%
   nrow()
 
 # Same as above
 starwars %>%
-  filter(height < 180 & height > 160) %>%
+  dplyr::filter(height < 180 & height > 160) %>%
   nrow()
 
 # Not same as above
 starwars %>%
-  filter(height < 180 | height > 160) %>%
+  dplyr::filter(height < 180 | height > 160) %>%
   nrow()
 ```
 
@@ -1722,7 +1722,7 @@ df <- tibble(
 )
 
 df %>%
-  filter(between(heights, 161, 179))
+  dplyr::filter(between(heights, 161, 179))
 ```
 
 -   Multiple conditions (character)
@@ -1732,17 +1732,17 @@ df %>%
 # Filter names include ars; `grepl` is a base R function
 
 starwars %>%
-  filter(grepl("ars", tolower(name)))
+  dplyr::filter(grepl("ars", tolower(name)))
 
 # Or, if you prefer dplyr way
 
 starwars %>%
-  filter(str_detect(tolower(name), "ars"))
+  dplyr::filter(str_detect(tolower(name), "ars"))
 
 # Filter brown and black hair_color
 
 starwars %>%
-  filter(hair_color %in% c("black", "brown"))
+  dplyr::filter(hair_color %in% c("black", "brown"))
 ```
 
 **Challenge**
@@ -2127,7 +2127,7 @@ tablea %>% flextable::flextable()
 
 # Create a wide-shaped data example
 wide_gapminder <- gapminder %>%
-  filter(continent == "Europe") %>%
+  dplyr::filter(continent == "Europe") %>%
   pivot_wider(
     names_from = country,
     values_from = gdpPercap
@@ -2363,7 +2363,7 @@ What do you expect the outcome?
 ```{r}
 planes %>%
   count(tailnum) %>%
-  filter(n > 1)
+  dplyr::filter(n > 1)
 ```
 **Optional**
 
@@ -2475,7 +2475,7 @@ top_dest <- flights %>%
 
 # Filter
 filtered <- flights %>%
-  filter(dest %in% top_dest$dest)
+  dplyr::filter(dest %in% top_dest$dest)
 ```
 
 -   Using semi join: only keep (INCLUDE) the rows that were matched between the two tables
@@ -2620,8 +2620,8 @@ model_out <- tidied %>%
   select(continent, term, estimate, p.value) %>%
   mutate(p_threshold = ifelse(p.value < 0.05, 1, 0))
 
-model_out %>% filter(p_threshold == 1) %>% pull(term) %>% unique()
-model_out %>% filter(p_threshold == 0) %>% pull(term) %>% unique()
+model_out %>% dplyr::filter(p_threshold == 1) %>% pull(term) %>% unique()
+model_out %>% dplyr::filter(p_threshold == 0) %>% pull(term) %>% unique()
 
 ```
 
@@ -3238,7 +3238,7 @@ ggplot(data = gapminder_formatted, aes(x = year, y = lifeExp_mean, color = conti
   )
 
 gapminder %>%
-  filter(continent == "Europe") %>%
+  dplyr::filter(continent == "Europe") %>%
   group_by(country, year) %>%
   summarize(
     gdp_mean = mean(gdpPercap),
@@ -3256,7 +3256,7 @@ gapminder %>%
 ```{r}
 # geom point
 gapminder %>%
-  filter(continent == "Europe") %>%
+  dplyr::filter(continent == "Europe") %>%
   group_by(country, year) %>%
   summarize(
     gdp_mean = mean(gdpPercap),
@@ -3273,7 +3273,7 @@ gapminder %>%
 
 # geom bar
 gapminder %>%
-  filter(continent == "Europe") %>%
+  dplyr::filter(continent == "Europe") %>%
   group_by(country, year) %>%
   summarize(
     gdp_mean = mean(gdpPercap),
@@ -3290,7 +3290,7 @@ gapminder %>%
 
 # no facet
 gapminder %>%
-  filter(continent == "Europe") %>%
+  dplyr::filter(continent == "Europe") %>%
   group_by(country, year) %>%
   summarize(
     gdp_mean = mean(gdpPercap),
@@ -3308,7 +3308,7 @@ gapminder %>%
 ```{r}
 
 gapminder %>%
-  filter(continent == "Europe") %>%
+  dplyr::filter(continent == "Europe") %>%
   group_by(country, year) %>%
   summarize(
     gdp_mean = mean(gdpPercap),
@@ -3327,7 +3327,7 @@ gapminder %>%
 ```{r}
 # without ordering
 gapminder %>%
-  filter(continent == "Europe") %>%
+  dplyr::filter(continent == "Europe") %>%
   group_by(country, year) %>%
   summarize(
     gdp_mean = mean(gdpPercap),
@@ -3344,7 +3344,7 @@ gapminder %>%
 
 # reorder
 gapminder %>%
-  filter(continent == "Europe") %>%
+  dplyr::filter(continent == "Europe") %>%
   group_by(country, year) %>%
   summarize(
     gdp_mean = mean(gdpPercap),
@@ -3364,7 +3364,7 @@ gapminder %>%
 
 ```{r}
 gapminder %>%
-  filter(continent == "Asia" | continent == "Americas") %>%
+  dplyr::filter(continent == "Asia" | continent == "Americas") %>%
   group_by(continent, country) %>%
   summarize(
     gdp_mean = mean(gdpPercap),
@@ -3380,7 +3380,7 @@ gapminder %>%
 ```{r}
 # with label
 gapminder %>%
-  filter(continent == "Asia" | continent == "Americas") %>%
+  dplyr::filter(continent == "Asia" | continent == "Americas") %>%
   group_by(continent, country) %>%
   summarize(
     gdp_mean = mean(gdpPercap),
@@ -3396,7 +3396,7 @@ gapminder %>%
 ```{r}
 # no overlaps
 gapminder %>%
-  filter(continent == "Asia" | continent == "Americas") %>%
+  dplyr::filter(continent == "Asia" | continent == "Americas") %>%
   group_by(continent, country) %>%
   summarize(
     gdp_mean = mean(gdpPercap),
