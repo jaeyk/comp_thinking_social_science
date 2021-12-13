@@ -33,7 +33,7 @@ pacman::p_load(
 
 ```
 
-## R Data structures 
+## Base R data structure 
 
 The rest of the chapter follows the basic structure in [the Data Wrangling Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) created by RStudio.
 
@@ -55,9 +55,9 @@ It is **critical** to understand because these are the objects you will manipula
 ![Concept map for data types. By Meghan Sposato, Brendan Cullen, Monica Alonso.](https://github.com/rstudio/concept-maps/raw/master/en/data-types.svg)
 
 
-## 1D data: Vectors 
+### 1D data: Vectors 
 
-### Atomic classes
+#### Atomic classes
 
 `R`'s main atomic classes are:
 
@@ -619,12 +619,12 @@ f2 <- rev(factor(letters))
 f3 <- factor(letters, levels = rev(letters))
 ```
 
-## 2D data: Matrices and dataframes 
+### 2D data: Matrices and dataframes 
 
 1. Matrices:  data structures for storing 2d data that is all the same class.
 2. Dataframes: teaches you about the dataframe, the most important data structure for storing data in R, because it stores different kinds of (2d) data.
 
-### Matrices
+#### Matrices
 
 Matrices are created when we combine multiple vectors with the same class (e.g., numeric). This creates a dataset with rows and columns. By definition, if you want to combine multiple classes of vectors, you want a dataframe. You can coerce a matrix to become a dataframe and vice-versa, but as with all vector coercions, the results can be unpredictable, so be sure you know how each variable (column) will convert.
 
@@ -716,11 +716,11 @@ rownames(mdat)
 colnames(mdat)
 ```
 
-### Dataframes 
+#### Dataframes 
 
 A data frame is an essential data type in R. It's pretty much the **de facto** data structure for most tabular data and what we use for statistics. 
 
-#### Creation
+##### Creation
 
 You create a data frame using `data.frame()`, which takes named vectors as input:
 
@@ -745,7 +745,7 @@ str(df)
 
 In reality, we rarely type up our datasets ourselves, and certainly not in R. The most common way to make a data.frame is by calling a file using `read.csv` (which relies on the `foreign` package), `read.dta` (if you're using a Stata file), or some other kinds of data file input.
 
-#### Structure and Attributes
+##### Structure and Attributes
 
 Under the hood, a data frame is a list of equal-length vectors. This makes it a 2-dimensional structure, so it shares properties of both the matrix and the list. 
 
@@ -809,7 +809,7 @@ nrow(df)
 dim(df)
 ```
 
-#### Testing and coercion
+##### Testing and coercion
 
 To check if an object is a dataframe, use `class()` or test explicitly with `is.data.frame()`:
 
@@ -827,7 +827,7 @@ You can coerce an object to a dataframe with `as.data.frame()`:
   
 * A matrix will create a data frame with the same number of columns and rows as the matrix.
 
-#### Combining dataframes
+##### Combining dataframes
 
 You can combine dataframes using `cbind()` and `rbind()`:
 
@@ -885,7 +885,7 @@ typeof(x)
 0 / 0
 ```
 
-## Subset
+### Subset
 
 When working with data, you'll need to subset objects early and often. Luckily, R's subsetting operators are powerful and fast. Mastery of subsetting allows you to succinctly express complex operations in a way that few other languages can match. Subsetting is hard to learn because you need to master several interrelated concepts:
 
@@ -897,7 +897,7 @@ When working with data, you'll need to subset objects early and often. Luckily, 
 
 This unit helps you master subsetting by starting with the simplest type of subsetting: subsetting an atomic vector with `[`. It then gradually extends your knowledge to more complicated data types (like dataframes and lists) and then to the other subsetting operators, `[[` and `$`. You'll then learn how subsetting and assignment can be combined to modify parts of an object, and, finally, you'll see a large number of useful applications.
 
-### Atomic vectors
+#### Atomic vectors
 
 Let's explore the different types of subsetting with a simple vector, `x`. 
 
@@ -911,7 +911,7 @@ Note that the number after the decimal point gives the original position in the 
 
 There are five things that you can use to subset a vector: 
 
-#### Positive integers
+##### Positive integers
 
 ```{r}
 x <- c(2.1, 4.2, 3.3, 5.4)
@@ -928,7 +928,7 @@ x[c(1, 3, 2, 4)]
 x[c(1, 1)]
 ```
 
-#### Negative integers
+##### Negative integers
 
 ```{r}
 x <- c(2.1, 4.2, 3.3, 5.4)
@@ -943,7 +943,7 @@ x <- c(2.1, 4.2, 3.3, 5.4)
 x[c(-1, 2)]
 ```
 
-#### Logical vectors
+##### Logical vectors
 
 ```{r}
 x <- c(2.1, 4.2, 3.3, 5.4)
@@ -993,7 +993,7 @@ x
 x[x %in% c(3.3, 4.2)]
 ```
 
-#### Character vectors
+##### Character vectors
 
 ```{r}
 x <- c(2.1, 4.2, 3.3, 5.4)
@@ -1084,7 +1084,7 @@ gsub(pattern = "Jae Yeon", replacement = "Danny", x = fullName)
 gsub(pattern = " ", replacement = "", x = fullName) # The same function is used for replacements and stripping
 ```
 
-### Lists
+#### Lists
 
 Subsetting a list works in the same way as subsetting an atomic vector. Using `[` will always return a list; `[[` and `$`, as described below, let you pull out the list's components.
 
@@ -1097,7 +1097,7 @@ l[[1]]
 l["a"]
 ```
 
-### Matrices
+#### Matrices
 
 The most common way of subsetting matrices (2d) is a simple generalization of 1d subsetting: you supply a 1d index for each dimension, separated by a comma. Blank subsetting is now useful because it lets you keep all rows or all columns.
 
@@ -1113,7 +1113,7 @@ a[0, -2]
 a[c(1, 2), -2]
 ```
 
-### Data frames
+#### Data frames
 
 Data from data frames can be addressed like matrices (with row and column indicators separated by a comma).
 
@@ -1153,7 +1153,7 @@ class((df[, "x"]))
 
 See the bottom section on [Simplying and Preserving to know more](#simplify-preserve)
 
-### Subsetting operators 
+#### Subsetting operators 
 
 There are two other subsetting operators: `[[` and `$`. 
 
@@ -1203,7 +1203,7 @@ mtcars$var
 mtcars[[var]]
 ```
 
-### Subassignment
+#### Subassignment
 
 All subsetting operators can be combined with an assignment operator to modify selected values of the input vector.
 
