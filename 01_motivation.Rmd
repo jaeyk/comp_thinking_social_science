@@ -9,7 +9,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 -   If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is **automation**.
 
--   Let's think about the following two cases (these examples come from [the column](https://dlab.berkeley.edu/blog/why-teaching-social-scientists-how-code-professional-important) I contributed to the D-Lab website) and related to the civic data science project I've been involved in for the past few years (for more information on this project, see [Mapping the Modern Agora](https://snfagora.jhu.edu/project/mapping-the-modern-agora/)). 
+-   Let's think about the following two cases (these examples come from [the column](https://dlab.berkeley.edu/blog/why-teaching-social-scientists-how-code-professional-important) I contributed to the D-Lab website)
 
     -   Case 1: Suppose a social scientist needs to collect data on civic organizations in the United States from websites, Internal Revenue Service reports, and social media posts. As the number of these organizations is large, the researcher could not collect a large volume of data from diverse sources, so they would hire undergraduates and distribute tasks. This is a typical data collection plan in social science research, and it is labor-intensive. Automation is not part of the game plan. Yet, it is critical for so many reasons. Because the process is costly, no one is likely to replicate or update the data collection effort.
 
@@ -31,7 +31,7 @@ However, I also do not claim that social scientists should learn programming lik
 
 Teaching a computer to perform a particular task requires computational thinking: "formulating a problem and expressing its solution in a way that a computer—human or machine—can effectively carry out" (defined by [Jeannette M. Wing](http://www.cs.cmu.edu/afs/cs/usr/wing/www/publications/Wing06.pdf)). Specifically, this means readers need to get familiar with how computers think about data and handle them. 
 
-## How to Teach and Learn Computational Thinking
+## How to teach and learn computational thinking
 
 This book teaches how you learn this art in incremental steps.
 
@@ -62,5 +62,3 @@ Here is a quick summary of why I think they matter for social science students' 
 
 Showing the big picture: Every time you teach a new skill or technique, remind students what the input and output data type is. Students from either Excel, SPSS, or Stata backgrounds are not used to thinking about data structure when working on data. So, providing these guideposts is crucial to help them avoid making an obvious mistake (e.g., providing a character vector when a numeric vector is needed for the input data) and seeing the connection between different skills (e.g., using API and web scraping).  
 Walking through the workflow: Break down the steps involved in moving from the input to the output data. This way helps students feel less overwhelmed by learning the complex steps required to solve a particular task. It also helps students learn how to formulate a workflow when they encourage the same problem in a different context. Although the exact context is not identical, they can find patterns across them. Finally, teaching the workflow means breaking down these steps as well as putting them together, ideally using functions. Acquiring this skill is critical for students to advance from beginners to intermediate programmers who can write readable and reusable code.
-
-These pedagogical principles also influence what and how I wrote this book.
