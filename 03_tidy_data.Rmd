@@ -2606,6 +2606,7 @@ glanced %>%
 - tidy() 
 
 ```{r}
+conflict_prefer("select", "dplyr")
 
 nested <- gapminder %>%
   group_by(continent) %>%
@@ -2709,68 +2710,6 @@ null_slopes %>%
 visualize(null_slopes) +
   shade_p_value(obs_stat = observed_slopes, 
                 direction = "both")
-
-```
-
-### Mixed models 
-
-This part heavily draws on [Gelman and Hill](http://www.stat.columbia.edu/~gelman/arm/) (2007), Michael Clark's [Mixed Models with R](https://m-clark.github.io/mixed-models-with-R/), and Basel R Bootcamp's [Statistics with R: Mixed Models](https://therbootcamp.github.io/SwR_2019Apr/_sessions/MixedModels/MixedModels_practical.html). For a quick review on mixed models, I recommend Xavier et al.'s ["A brief introduction to mixed effects modelling and multi-model inference in ecology"](https://peerj.com/articles/4794/) (2018).
-
-Why random effects model/mixed effects model?
-
-Fixed effects model assumes that groups are independent of each other and sharing common residuals (same slope for fitted covariates). Limiting to a common slope can inflate Type I and Type II errors.  
-
-```{r}
-pacman::p_load(# Necessary  
-               lme4, 
-               broom.mixed, 
-               # Optional 
-               merTools,
-               glmmTMB, 
-               modelr, 
-               nlme, 
-               sjstats)
-```
-
-```{r}
-
-# Base LM model 
-lm_out <- lm(lifeExp ~ pop + continent, 
-             data = gapminder)
-
-# Mixed effects 
-re_out <- lmer(lifeExp ~ pop + # Fixed effects
-                # Random effects 
-                # (design matrix|group_variables)
-                # (1|group_var) = random intercept 
-                # (1 + var | group_var) = random slope + random intercept 
-               (1|continent),
-               data = gapminder, # Data 
-               REML = FALSE) # Default computation engine is restricted maximal likelihood; the other option is maximum likelihood estimation 
-
-#re_out2 <- lmer(lifeExp ~ pop + # Fixed effects
-                # Random effects 
-                # (design matrix|group_variables)
-                # (1|group_var) = random intercept 
-                # (1 + var | group_var) = random slope + random intercept 
- #              (country|continent),
-  #             data = gapminder, # Data 
-   #            REML = FALSE) # Default computation engine is restricted maximal likelihood; the other option is maximum likelihood estimation 
-
-summary(re_out)
-
-nlme::fixef(re_out) %>% as_tibble()
-nlme::ranef(re_out) %>% as_tibble()
-
-lm_out %>% 
-  broom::tidy() %>%
-  filter(term == "pop") %>%
-  pull(estimate)
-
-re_out %>%
-  broom.mixed::tidy() %>%
-  filter(term == "pop") %>%
-  pull(estimate)
 
 ```
 
