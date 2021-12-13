@@ -28,7 +28,8 @@ pacman::p_load(
   ggrepel, # arranging ggplots
   patchwork, # arranging ggplots
   broom, # tidying model outputs
-  waldo # side-by-side code comparison
+  waldo, # side-by-side code comparison
+  conflicted
 )
 
 ```
