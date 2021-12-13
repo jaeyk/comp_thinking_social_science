@@ -2,7 +2,7 @@
 
 ```{r include = FALSE}
 # Caching this markdown file 
-# knitr::opts_chunk$set(cache = TRUE)
+knitr::opts_chunk$set(cache = TRUE)
 ```
 
 ## The Big Picture
@@ -287,7 +287,7 @@ DBI::dbGetQuery(con,
 
 - Option 2 (works faster)
 
-```{sql connection=con, include=FALSE}
+```{sql connection=con, eval=FALSE}
 
 SELECT * 
 FROM flights 

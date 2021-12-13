@@ -190,7 +190,7 @@ pkgdown::build_site()
 
 You can run R commands in the terminal using R CMD.
 
-```{sh eval=FALSE, include=FALSE}
+```{sh eval=FALSE}
 R CMD build mypkg 
 R CMD INSTALL mypkg 
 ```
@@ -221,7 +221,7 @@ usethis::use_spell_check()
 2. GitHub 
   - Push everything to the Git repository (you can do it using command-line interface or RStudio).
 
-```{sh eval=FALSE, include=FALSE}
+```{sh eval=FALSE}
 git add . 
 git commit -m "first push"
 git push 
@@ -231,7 +231,7 @@ git push
   
   - I highly recommend connecting GitHub with SSH. For more information, visit [this link](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
   
-```{sh eval=FALSE, include=FALSE}
+```{sh eval=FALSE}
 git remote set-url origin git@github.com:user/repo 
 ```
 
