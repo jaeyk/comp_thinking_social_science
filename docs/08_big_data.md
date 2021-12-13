@@ -351,6 +351,13 @@ DBI::dbGetQuery(con,
 - Option 2 (works faster)
 
 
+```sql
+
+SELECT * 
+FROM flights 
+LIMIT 10
+
+```
 
 - Option 3 (automating workflow)
 
