@@ -30,7 +30,7 @@ Please feel free to [create issues](https://github.com/jaeyk/PS239T/issues) if y
 
 ## Contact
 
-Content developer: [Jae Yeon Kim](https://jaeyk.github.io/): jkim638@jhu.edu
+Content developer: [Jae Yeon Kim](https://jaeyk.github.io/): jkim@kdischool.ac.kr
 
 ## Special thanks 
 
