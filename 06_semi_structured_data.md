@@ -8,7 +8,13 @@
 ```r
 # Install packages 
 if (!require("pacman")) install.packages("pacman")
+```
 
+```
+## Loading required package: pacman
+```
+
+```r
 pacman::p_load(tidyverse, # tidyverse pkgs including purrr
                furrr, # parallel processing 
                tictoc, # performance test  
@@ -27,8 +33,25 @@ devtools::install_github("jaeyk/tidytweetjson", dependencies = TRUE) ; library(t
 ```
 
 ```
-## Skipping install of 'tidytweetjson' from a github remote, the SHA1 (9a00ec8a) has not changed since last install.
-##   Use `force = TRUE` to force installation
+## Downloading GitHub repo jaeyk/tidytweetjson@HEAD
+```
+
+```
+## 
+##      checking for file ‘/tmp/RtmpC3kk7l/remotes820970af4b74/jaeyk-tidytweetjson-9a00ec8/DESCRIPTION’ ...  ✔  checking for file ‘/tmp/RtmpC3kk7l/remotes820970af4b74/jaeyk-tidytweetjson-9a00ec8/DESCRIPTION’
+##   ─  preparing ‘tidytweetjson’:
+##    checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
+##   ─  checking for LF line-endings in source and make files and shell scripts
+##   ─  checking for empty or unneeded directories
+##    Omitted ‘LazyData’ from DESCRIPTION
+##   ─  building ‘tidytweetjson_0.2.0.tar.gz’
+##      
+## 
+```
+
+```
+## Installing package into '/home/jae/R/x86_64-pc-linux-gnu-library/4.1'
+## (as 'lib' is unspecified)
 ```
 
 ## The Big Picture
@@ -422,55 +445,536 @@ rtweet::create_token(app = app_name,
 Using **search API**; This API returns a collection of Tweets mentioning a particular query.
 
 
+```r
+# Install and load rtweet 
+if (!require(pacman)) {install.packages("pacman")}
+
+pacman::p_load(rtweet)
+```
 
 
+```r
+# The past 6-9 days 
+rt <- search_tweets(q = "#stopasianhate", n = 1000, include_rts = FALSE)
+
+# The longer term 
+# search_fullarchive() premium service
+
+head(rt$text)
+```
+
+Can you guess what would be the class type of rt?
 
 
+```r
+class(rt)
+```
+
+What would be the number of rows?
 
 
+```r
+nrow(rt)
+```
+
+#### Time series analysis 
+
+- Time series analysis 
 
 
+```r
+pacman::p_load(ggplot2, ggthemes, rtweet)
+
+ts_plot(rt, "3 hours") +
+  ggthemes::theme_fivethirtyeight() +
+  labs(title = "Frequency of Tweets about StopAsianHate from the Past Day",
+       subtitle = "Tweet counts aggregated using three-hour intervals",
+       source = "Twitter's Search API via rtweet")
+```
+
+#### Geographical analysis
+
+- Geographical analysis
 
 
+```r
+pacman::p_load(maps)
+
+geocoded <- lat_lng(rt)
+
+maps::map("state", lwd = .25) # lwd = line type 
+with(geocoded, points(lng, lat))
+```
+
+### Hydrating
+
+#### Objectives
+
+-   Learning how hydrating works
+-   Learning how to use [Twarc](https://github.com/DocNow/twarc) to communicate with Twitter's API
+
+**Review question**
+
+What are the main two types of Twitter's API?
+
+#### Hydrating: An Alternative Way to Collect Historical Twitter Data
+
+-   You can collect Twitter data using Twitter's API, or you can hydrate Tweet IDs collected by other researchers. This is an excellent resource to collect historical Twitter data.
+
+-   [Covid-19 Twitter chatter dataset for scientific use](http://www.panacealab.org/covid19/) by Panacealab
+
+-   [Women's March Dataset](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/5ZVMOR) by Littman and Park
+
+-   Harvard Dataverse has many dehydrated Tweet IDs that could be of interest to social scientists.
+
+![Dehydrated Tweet IDs](https://github.com/jaeyk/digital_data_collection_workshop/raw/master/misc/dehydrated_tweets.png)
+
+#### Twarc: one solution to (almost) all Twitter's API problems
+
+-   Why Twarc?
+
+    -   A command-line tool and Python library that works for almost every Twitter API-related problem.
+
+    -   It's really well-documented, tested, and maintained.
+
+        -   [Twarc documentation](https://scholarslab.github.io/learn-twarc/06-twarc-command-basics) covers basic commands.
+        -   [Tward-cloud documentation](https://twarc-cloud.readthedocs.io/_/downloads/en/stable/pdf/) explains how to collect data from Twitter's API using Twarc running in [Amazon Web Services](https://aws.amazon.com/) (AWS).
+
+    -   Twarc was developed as part of the [Documenting the Now](https://www.docnow.io/) project, which the Mellon Foundation funded.
+
+![One ring that rules them all.](https://vignette.wikia.nocookie.net/lotr/images/8/8b/DOiAi2WUEAE3A1Y.0.jpg/revision/latest/scale-to-width-down/699?cb=20200305221819)
+
+-   There's no reason to be afraid of using a command-line tool and Python library, even though you primarily use R. It's easy to embed [Python code](https://bookdown.org/yihui/rmarkdown/language-engines.html#python) and [shell scripts](https://bookdown.org/yihui/rmarkdown/language-engines.html#shell-scripts) in R Markdown.
+
+-   Even though you don't know how to write Python code or shell scripts, it's handy to learn how to integrate them into your R workflow.
+
+-   I assume that you have already installed [Python 3](https://www.python.org/download/releases/3.0/).
 
 
+```bash
+pip3 install twarc
+```
+
+##### Applications
+
+The following examples are created by [the University of Virginia library](http://digitalcollecting.lib.virginia.edu/toolkit/docs/social-media/twarc-commands/).
+
+###### Search
+
+-   Download pre-existing tweets (7-day window) matching certain conditions
+
+-   In command-line, `>` = Create a file
+
+-   I recommend running the following commands in the terminal because it's more stable than in R Markdown.
+
+![You can type commands in the Terminal in R Studio.](https://github.com/jaeyk/digital_data_collection_workshop/raw/master/misc/terminal.png)
 
 
+```bash
+# Key word 
+twarc search blacklivesmatter > blm_tweets.jsonl
+```
 
 
+```bash
+# Hashtag 
+twarc search '#blacklivesmatter' > blm_tweets_hash.jsonl
+```
 
 
+```bash
+# Hashtag + Language 
+twarc search '#blacklivesmatter' --lang en > blm_tweets_hash.jsonl
+```
+
+-   It is really important to **save these tweets into a `jsonl` format;** `jsonl` extension refers to JSON **Lines** files. This structure is useful for splitting JSON data into smaller chunks if it is too large.
+
+###### Filter
+
+-   Download tweets meeting certain conditions as they happen.
 
 
+```bash
+# Key word
+twarc filter blacklivesmatter > blm_tweets.jsonl
+```
+
+###### Sample
+
+-   Use Twitter's random sample of recent tweets.
 
 
+```bash
+twarc sample > tweets.jsonl 
+```
+
+###### Hydrate
+
+-   Tweet I.D.s -\> Tweets
 
 
+```bash
+twarc hydrate tweet_ids.txt > tweets.jsonl 
+```
+
+###### Dehydrate
+
+-   Hydrate \<\> Dehydrate
+-   Tweets -\> Tweet I.D.s
 
 
+```bash
+twarc dehydrate tweets.jsonl > tweet_ids.txt
+```
+
+**Challenge**
+
+1.  Collect tweets containing keywords of your choice using `twarc search` and save them as `tweets.jsonl`.
+
+2.  Using `less` command in the terminal, inspect `twarc.log.`
+
+3.  Using `less` command in the terminal, inspect `tweets.json.`
+
+### Parsing JSON
+
+#### Objectives
+
+-   Learning chunk and pull strategy
+-   Learning how `tidyjson` works
+-   Learning how to apply `tidyjson` to tweets
+
+#### Chunk and Pull
+
+##### Problem
+
+-   What if the size of the Twitter data you downloaded is too big (e.g., \>10 GB) to do complex wrangling in R?
+
+##### Solution
+
+![Chunk and Pull. From Studio.](https://rviews.rstudio.com/post/2019-07-01-3-big-data-paradigms-for-r_files/chunk_pull.png)
+
+Step1: Split the large JSON file in small chunks.
 
 
+```bash
+#Divide the JSON file by 100 lines (tweets)
+
+# Linux and Windows (in Bash)
+$ split -100 search.jsonl
+
+# macOS
+$ gsplit -100 search.jsonl
+```
+
+-   After that, you will see several files appear in the directory. Each of these files should have 100 tweets or fewer. All of these file names **should start with "x," as in "xaa."**
+
+Step 2: Apply the parsing function to each chunk and pull all of these chunks together.
 
 
+```r
+# You need to choose a Tweet JSON file
+filepath <- file.choose()
+
+# Assign the parsed result to the `df` object
+# 11.28 sec elapsed to parse 17,928 tweets 
+tic()
+df <- jsonl_to_df(filepath)
+toc()
+```
 
 
+```r
+# Setup 
+n_cores <- availableCores() - 1
+
+n_cores # This number depends on your computer spec.
+
+plan(multiprocess, # multicore, if supported, otherwise multisession
+     workers = n_cores) # the maximum number of workers
+
+# You need to designate a directory path where you saved the list of JSON files.
+
+# 9.385 sec elapsed to parse 17,928 tweets 
+
+dirpath <- tcltk::tk_choose.dir()
+
+tic()
+df_all <- tidytweetjson::jsonl_to_df_all(dirpath)
+toc()
+```
+
+##### tidyjson
+
+The [`tidyjson`](https://cran.r-project.org/web/packages/tidyjson/vignettes/introduction-to-tidyjson.html) package helps to use tidyverse framework to JSON data.
+
+-   toy example
 
 
+```r
+# JSON collection; nested structure + keys and values 
+worldbank[1]
+```
+
+```
+## [1] "{\"_id\":{\"$oid\":\"52b213b38594d8a2be17c780\"},\"boardapprovaldate\":\"2013-11-12T00:00:00Z\",\"closingdate\":\"2018-07-07T00:00:00Z\",\"countryshortname\":\"Ethiopia\",\"majorsector_percent\":[{\"Name\":\"Education\",\"Percent\":46},{\"Name\":\"Education\",\"Percent\":26},{\"Name\":\"Public Administration, Law, and Justice\",\"Percent\":16},{\"Name\":\"Education\",\"Percent\":12}],\"project_name\":\"Ethiopia General Education Quality Improvement Project II\",\"regionname\":\"Africa\",\"totalamt\":130000000}"
+```
+
+```r
+# Check out keys (objects)
+worldbank %>% 
+  as.tbl_json() %>%
+  gather_object() %>%
+  filter(document.id == 1)
+```
+
+```
+## # A tbl_json: 8 x 3 tibble with a "JSON" attribute
+##   ..JSON                  document.id name               
+##   <chr>                         <int> <chr>              
+## 1 "{\"$oid\":\"52b213..."           1 _id                
+## 2 "\"2013-11-12T00:..."             1 boardapprovaldate  
+## 3 "\"2018-07-07T00:..."             1 closingdate        
+## 4 "\"Ethiopia\""                    1 countryshortname   
+## 5 "[{\"Name\":\"Educa..."           1 majorsector_percent
+## 6 "\"Ethiopia Gener..."             1 project_name       
+## 7 "\"Africa\""                      1 regionname         
+## 8 "130000000"                       1 totalamt
+```
 
 
+```r
+# Get the values associated with the keys 
+worldbank %>% 
+  as.tbl_json() %>% # Turn JSON into tbl_json object 
+  enter_object("project_name") %>% # Enter the objects 
+  append_values_string() %>% # Append the values 
+  as_tibble() # To reduce the size of the file 
+```
+
+```
+## # A tibble: 500 × 2
+##    document.id string                                                           
+##          <int> <chr>                                                            
+##  1           1 Ethiopia General Education Quality Improvement Project II        
+##  2           2 TN: DTF Social Protection Reforms Support                        
+##  3           3 Tuvalu Aviation Investment Project - Additional Financing        
+##  4           4 Gov't and Civil Society Organization Partnership                 
+##  5           5 Second Private Sector Competitiveness and Economic Diversificati…
+##  6           6 Additional Financing for Cash Transfers for Orphans and Vulnerab…
+##  7           7 National Highways Interconnectivity Improvement Project          
+##  8           8 China Renewable Energy Scale-Up Program Phase II                 
+##  9           9 Rajasthan Road Sector Modernization Project                      
+## 10          10 MA Accountability and Transparency DPL                           
+## # … with 490 more rows
+```
+
+-   The following example draws on my [tidytweetjson](https://github.com/jaeyk/tidytweetjson) R package. The package applies `tidyjson` to Tweets.
+
+###### Individual file
 
 
+```r
+jsonl_to_df <- function(file_path){
+
+# Save file name 
+
+file_name <- strsplit(x = file_path, 
+                     split = "[/]") 
+
+file_name <- file_name[[1]][length(file_name[[1]])]
+
+# Import a Tweet JSON file
+
+listed <- read_json(file_path, format = c("jsonl"))
+
+# IDs of the tweets with country codes
+
+ccodes <- listed %>%
+  enter_object("place") %>%
+  enter_object("country_code") %>%
+  append_values_string() %>%
+  as_tibble() %>%
+  rename("country_code" = "string")
+
+# IDs of the tweets with location
+
+locations <- listed %>%
+  enter_object("user") %>%
+  enter_object("location") %>%
+  append_values_string() %>%
+  as_tibble() %>%
+  rename(location = "string")
+
+# Extract other key elements from the JSON file
+
+df <- listed %>%
+  spread_values(
+    id = jnumber("id"),
+    created_at = jstring("created_at"),
+    full_text = jstring("full_text"),
+    retweet_count = jnumber("retweet_count"),
+    favorite_count = jnumber("favorite_count"),
+    user.followers_count = jnumber("user.followers_count"),
+    user.friends_count = jnumber("user.friends_count")
+  ) %>%
+	  as_tibble
+
+message(paste("Parsing", file_name, "done."))
+
+# Full join
+outcome <- full_join(ccodes, df) %>% full_join(locations)
+
+# Or you can write this way: outcome <- reduce(list(df, ccodes, locations), full_join)
+
+# Select
+outcome %>% select(-c("document.id"))}
+```
+
+###### Many files
+
+-   Set up parallel processing.
 
 
+```r
+n_cores <- availableCores() - 1
+
+n_cores # This number depends on your computer spec.
+
+plan(multiprocess, # multicore, if supported, otherwise multisession
+     workers = n_cores) # the maximum number of workers
+```
+
+-   Parsing in parallel.
+
+**Review**
+
+There are, at least, three ways you can use function + `purrr::map().`
 
 
+```r
+squared <- function(x){
+  x*2 
+}
+
+# Named function 
+map(1:3, squared)
+
+# Anonymous function 
+map(1:3, function(x){ x *2 })
+
+# Using formula; ~ = formula, .x = input 
+map(1:3,~.x*2)
+```
 
 
+```r
+# Create a list of file paths 
+filename <- list.files(dir_path,
+          pattern = '^x',
+          full.names = TRUE)
+
+df <- filename %>%
+
+# Apply jsonl_to_df function to items on the list
+future_map(~jsonl_to_df(.)) %>%
+
+# Full join the list of dataframes
+reduce(full_join,
+       by = c("id",
+              "location",
+              "country_code",
+              "created_at",
+              "full_text",
+              "retweet_count",
+              "favorite_count",
+              "user.followers_count",
+              "user.friends_count"))
+
+# Output
+df
+```
+
+**rtweet and twarc**
+
+- The main difference is using RStudio vs. the terminal. 
+
+- The difference matters when your data size is large. For example, suppose the size of the Twitter data you downloaded is 10 GB. R/RStudio might have a hard time dealing with this size of data. Then, how can you wrangle this data size in a complex way using R?
+
+### Getting API data from scratch 
+
+Load packages. For the connection interface, don't use `RCurl,` but I strongly recommend using `httr.` The following code examples draw from my R interface for the New York Times API called [`rnytapi`](https://jaeyk.github.io/rnytapi/).
 
 
+```r
+pacman::p_load(httr, jsonlite, purrr, glue)
+```
+
+#### Form REQUEST 
 
 
+```r
+get_request <- function(term, begin_date, end_date, key, page = 1) {
+
+    out <- GET("http://api.nytimes.com/svc/search/v2/articlesearch.json",
+        query = list('q' = term,
+                     'begin_date' = begin_date,
+                     'end_date' = end_date,
+                     'api-key' = key,
+                     'page' = page))
+
+    return(out)
+
+}
+```
+
+#### Extract data 
 
 
+```r
+get_content <- function(term, begin_date, end_date, key, page = 1) {
+
+    message(glue("Scraping page {page}"))
+
+    fromJSON(content(get_request(term, begin_date, end_date, key, page),
+                     "text",
+                encoding = "UTF-8"),
+                simplifyDataFrame = TRUE, flatten = TRUE) %>% as.data.frame()
+
+}
+```
+
+#### Automating iterations 
 
 
+```r
+extract_all <- function(term, begin_date, end_date, key) {
+
+    request <- GET("http://api.nytimes.com/svc/search/v2/articlesearch.json",
+                   query = list('q' = term,
+                                'begin_date' = begin_date,
+                                'end_date' = end_date,
+                                'api-key' = key))
+
+    max_pages <- (round(content(request)$response$meta$hits[1] / 10) - 1)
+
+    message(glue("The total number of pages is {max_pages}"))
+
+    iter <- 0:max_pages
+
+    arg_list <- list(rep(term, times = length(iter)),
+                     rep(begin_date, times = length(iter)),
+                     rep(end_date, times = length(iter)),
+                     rep(key, times = length(iter)),
+                     iter
+                     )
+
+    out <- pmap_dfr(arg_list, slowly(get_content,
+                                     # 6 seconds sleep is the default requirement.
+                                     rate = rate_delay(
+                                         pause = 6,
+                                         max_times = 4000)))
+
+    return(out)
+
+    }
+```
