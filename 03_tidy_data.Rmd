@@ -16,6 +16,7 @@ ifelse(packageVersion("dplyr") >= 1,
 )
 
 if (!require("pacman")) install.packages("pacman")
+
 pacman::p_load(
   tidyverse, # the tidyverse framework
   skimr, # skimming data
@@ -1923,7 +1924,6 @@ messy_df <- tibble::tribble(
   1, 2, 3
 )
 
-
 messy_df
 
 pacman::p_load(janitor)
@@ -2102,7 +2102,6 @@ tablea <- gapminder %>%
 -   Produce publishable tables
 
 ```{r}
-
 pacman::p_load(
   kableExtra,
   flextable

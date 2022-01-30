@@ -258,6 +258,7 @@ data %>%
 # Continuous variable
 data$age %>% class()
 ```
+
 #### Data splitting using random sampling 
 
 ```{r}

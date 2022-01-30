@@ -66,6 +66,7 @@ ORDER BY      | arrange()
 LIMIT         | head()
   
 **Challenge 1**
+
 1. Can you tell me the difference in the order in which the following `R` and `SQL` codes were written to manipulate data? For instance, in R, what command comes first? In contrast, in SQL, what command comes first?
 
 - R example 
@@ -111,26 +112,18 @@ Let's get to work.
 - `pacman::p_load()` reduces steps for installing and loading several packages simultaneously. 
 
 ```{r}
-
 # pacman 
 if (!require("pacman")) install.packages("pacman")
 
 # The rest of pkgs 
 pacman::p_load(
- 
  tidyverse, # tidyverse packages 
- 
  DBI, # using SQL queries
- 
  RSQLite, # SQLite
- 
  dbplyr, # use database with dplyr 
- 
  glue, # glue to automate workflow 
- 
  nycflights13 # toy data 
 )
-
 ```
 
 ### NYC flights data 

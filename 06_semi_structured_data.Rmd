@@ -390,6 +390,7 @@ Using **search API**; This API returns a collection of Tweets mentioning a parti
 ```{r}
 # Install and load rtweet 
 if (!require(pacman)) {install.packages("pacman")}
+
 pacman::p_load(rtweet)
 ```
 
