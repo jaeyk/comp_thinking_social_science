@@ -735,20 +735,20 @@ worldbank %>%
 ```
 
 ```
-## # A tibble: 500 × 2
+## # A tibble: 500 x 2
 ##    document.id string                                                           
 ##          <int> <chr>                                                            
 ##  1           1 Ethiopia General Education Quality Improvement Project II        
 ##  2           2 TN: DTF Social Protection Reforms Support                        
 ##  3           3 Tuvalu Aviation Investment Project - Additional Financing        
 ##  4           4 Gov't and Civil Society Organization Partnership                 
-##  5           5 Second Private Sector Competitiveness and Economic Diversificati…
-##  6           6 Additional Financing for Cash Transfers for Orphans and Vulnerab…
+##  5           5 Second Private Sector Competitiveness and Economic Diversificati~
+##  6           6 Additional Financing for Cash Transfers for Orphans and Vulnerab~
 ##  7           7 National Highways Interconnectivity Improvement Project          
 ##  8           8 China Renewable Energy Scale-Up Program Phase II                 
 ##  9           9 Rajasthan Road Sector Modernization Project                      
 ## 10          10 MA Accountability and Transparency DPL                           
-## # … with 490 more rows
+## # ... with 490 more rows
 ```
 
 -   The following example draws on my [tidytweetjson](https://github.com/jaeyk/tidytweetjson) R package. The package applies `tidyjson` to Tweets.

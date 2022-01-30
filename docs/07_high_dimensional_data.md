@@ -138,18 +138,12 @@ data_original <- read_csv(here("data", "heart.csv"))
 
 ```
 ## Rows: 303 Columns: 14
-```
-
-```
-## ── Column specification ───────────────────────────────────────────────────────────────────────
+## -- Column specification ---------------------------------------------------------
 ## Delimiter: ","
 ## dbl (14): age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpea...
-```
-
-```
 ## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
 ```r
@@ -159,20 +153,20 @@ glimpse(data_original)
 ```
 ## Rows: 303
 ## Columns: 14
-## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58, 5…
-## $ sex      <dbl> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1…
-## $ cp       <dbl> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3, 0…
-## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130, 1…
-## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275, 2…
-## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0…
-## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1…
-## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139, 1…
-## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0…
-## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2, 0…
-## $ slope    <dbl> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2, 1…
-## $ ca       <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0…
-## $ thal     <dbl> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3…
-## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58, 5~
+## $ sex      <dbl> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1~
+## $ cp       <dbl> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3, 0~
+## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130, 1~
+## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275, 2~
+## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0~
+## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1~
+## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139, 1~
+## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0~
+## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2, 0~
+## $ slope    <dbl> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2, 1~
+## $ ca       <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0~
+## $ thal     <dbl> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3~
+## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
 ```
 
 ```r
@@ -269,20 +263,20 @@ glimpse(data)
 ```
 ## Rows: 303
 ## Columns: 14
-## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58, 5…
-## $ sex      <fct> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1…
-## $ cp       <fct> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3, 0…
-## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130, 1…
-## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275, 2…
-## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0…
-## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1…
-## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139, 1…
-## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0…
-## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2, 0…
-## $ slope    <fct> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2, 1…
-## $ ca       <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0…
-## $ thal     <fct> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3…
-## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ age      <dbl> 63, 37, 41, 56, 57, 57, 56, 44, 52, 57, 54, 48, 49, 64, 58, 5~
+## $ sex      <fct> 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1~
+## $ cp       <fct> 3, 2, 1, 1, 0, 0, 1, 1, 2, 2, 0, 2, 1, 3, 3, 2, 2, 3, 0, 3, 0~
+## $ trestbps <dbl> 145, 130, 130, 120, 120, 140, 140, 120, 172, 150, 140, 130, 1~
+## $ chol     <dbl> 233, 250, 204, 236, 354, 192, 294, 263, 199, 168, 239, 275, 2~
+## $ fbs      <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0~
+## $ restecg  <dbl> 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1~
+## $ thalach  <dbl> 150, 187, 172, 178, 163, 148, 153, 173, 162, 174, 160, 139, 1~
+## $ exang    <dbl> 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0~
+## $ oldpeak  <dbl> 2.3, 3.5, 1.4, 0.8, 0.6, 0.4, 1.3, 0.0, 0.5, 1.6, 1.2, 0.2, 0~
+## $ slope    <fct> 0, 0, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 2, 1~
+## $ ca       <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0~
+## $ thal     <fct> 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3~
+## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
 ```
 - Imputation 
 
@@ -294,11 +288,11 @@ map_df(data, ~ is.na(.) %>% sum())
 ```
 
 ```
-## # A tibble: 1 × 14
+## # A tibble: 1 x 14
 ##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
 ##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
 ## 1     0     0     0        0     0     0       0       0     0       0     0
-## # … with 3 more variables: ca <int>, thal <int>, target <int>
+## # ... with 3 more variables: ca <int>, thal <int>, target <int>
 ```
 
 ```r
@@ -314,11 +308,11 @@ data %>%
 ```
 
 ```
-## # A tibble: 1 × 14
+## # A tibble: 1 x 14
 ##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
 ##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
 ## 1     0     0     0        0     0     0       0       0     0      10     0
-## # … with 3 more variables: ca <int>, thal <int>, target <int>
+## # ... with 3 more variables: ca <int>, thal <int>, target <int>
 ```
 
 ```r
@@ -328,11 +322,11 @@ data %>%
 ```
 
 ```
-## # A tibble: 1 × 14
+## # A tibble: 1 x 14
 ##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
 ##   <dbl> <dbl> <dbl>    <dbl> <dbl> <dbl>   <dbl>   <dbl> <dbl>   <dbl> <dbl>
 ## 1     0     0     0        0     0     0       0       0     0  0.0330     0
-## # … with 3 more variables: ca <dbl>, thal <dbl>, target <dbl>
+## # ... with 3 more variables: ca <dbl>, thal <dbl>, target <dbl>
 ```
  
 ### Regression setup 
@@ -608,14 +602,14 @@ map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit)
 ## [[1]]
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
 
 ```
 ## 
 ## [[2]]
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-19-2.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-19-2.pdf)<!-- --> 
 
 
 ```r
@@ -638,7 +632,7 @@ evals %>%
   facet_wrap(~ glue("{toupper(.metric)}"), scales = "free_y")
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-20-1.pdf)<!-- --> 
 - For more information, read [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
 
 #### tune 
@@ -741,7 +735,7 @@ rec_res %>%
   theme(legend.position = "none")
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-25-1.pdf)<!-- --> 
 
 ##### Select 
 
@@ -752,9 +746,6 @@ conflict_prefer("filter", "dplyr")
 
 ```
 ## [conflicted] Removing existing preference
-```
-
-```
 ## [conflicted] Will prefer dplyr::filter over any other package
 ```
 
@@ -767,7 +758,7 @@ best_rmse
 ```
 
 ```
-## # A tibble: 1 × 2
+## # A tibble: 1 x 2
 ##   penalty .config              
 ##     <dbl> <chr>                
 ## 1   0.391 Preprocessor1_Model48
@@ -783,7 +774,7 @@ glue('The RMSE of the intiail model is
 
 ```
 ## The RMSE of the intiail model is
-##    7.81
+##    7.82
 ```
 
 ```r
@@ -818,7 +809,7 @@ finalize_lasso %>%
 ## Please use `extract_fit_parsnip()` instead.
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-27-1.pdf)<!-- --> 
 
 ##### Test fit 
 
@@ -833,12 +824,12 @@ evaluate_reg(test_fit)
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.12 
-## 2 mae     standard       5.84 
-## 3 rsq     standard       0.394
+## 1 rmse    standard       7.04 
+## 2 mae     standard       5.79 
+## 3 rsq     standard       0.411
 ```
 
 ### Decision tree 
@@ -920,7 +911,7 @@ tree_fit_viz_metr <- visualize_class_eval(tree_fit)
 tree_fit_viz_metr
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-31-1.pdf)<!-- --> 
 
 ```r
 tree_fit_viz_mat <- visualize_class_conf(tree_fit)
@@ -928,7 +919,7 @@ tree_fit_viz_mat <- visualize_class_conf(tree_fit)
 tree_fit_viz_mat
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-31-2.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-31-2.pdf)<!-- --> 
 
 #### tune 
 
@@ -959,7 +950,7 @@ tree_grid %>%
 ```
 
 ```
-## # A tibble: 5 × 2
+## # A tibble: 5 x 2
 ##   tree_depth     n
 ##        <int> <int>
 ## 1          1     5
@@ -1031,7 +1022,7 @@ tree_res %>%
   coord_flip()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-34-1.pdf)<!-- --> 
 
 ##### Select 
 
@@ -1054,14 +1045,14 @@ tree_fit_tuned <- finalize_tree %>%
 (tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-36-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-36-1.pdf)<!-- --> 
 
 ```r
 # Confusion matrix
 (tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-36-2.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-36-2.pdf)<!-- --> 
 
 - Visualize variable importance 
 
@@ -1077,7 +1068,7 @@ tree_fit_tuned %>%
 ## Please use `extract_fit_parsnip()` instead.
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-37-1.pdf)<!-- --> 
 
 ##### Test fit
 
@@ -1092,7 +1083,7 @@ evaluate_class(test_fit)
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
 ## 1 accuracy  binary         0.761
@@ -1188,7 +1179,7 @@ rand_fit_viz_metr <- visualize_class_eval(rand_fit)
 rand_fit_viz_metr
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-41-1.pdf)<!-- --> 
 
 - Visualize the confusion matrix. 
   
@@ -1199,7 +1190,7 @@ rand_fit_viz_mat <- visualize_class_conf(rand_fit)
 rand_fit_viz_mat
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-42-1.pdf)<!-- --> 
 
 #### tune 
 
@@ -1236,7 +1227,7 @@ rand_grid %>%
 ```
 
 ```
-## # A tibble: 5 × 2
+## # A tibble: 5 x 2
 ##   min_n     n
 ##   <int> <int>
 ## 1     2     5
@@ -1301,7 +1292,7 @@ rand_res %>%
   theme(legend.position = "bottom")
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-46-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-46-1.pdf)<!-- --> 
 
 
 ```r
@@ -1312,7 +1303,7 @@ best_tree
 ```
 
 ```
-## # A tibble: 1 × 3
+## # A tibble: 1 x 3
 ##    mtry min_n .config              
 ##   <int> <int> <chr>                
 ## 1     1     4 Preprocessor1_Model06
@@ -1333,14 +1324,14 @@ rand_fit_tuned <- finalize_tree %>%
 (rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-48-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-48-1.pdf)<!-- --> 
 
 ```r
 # Confusion matrix
 (rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-48-2.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-48-2.pdf)<!-- --> 
 
 - Visualize variable importance 
 
@@ -1356,7 +1347,7 @@ rand_fit_tuned %>%
 ## Please use `extract_fit_parsnip()` instead.
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-49-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-49-1.pdf)<!-- --> 
 
 ##### Test fit
 
@@ -1372,7 +1363,7 @@ evaluate_class(test_fit)
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
 ## 1 accuracy  binary         0.913
@@ -1430,7 +1421,7 @@ xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_clas
 ```
 
 ```
-## [05:08:26] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [22:46:13] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
 ```
 
 #### yardstick 
@@ -1447,7 +1438,7 @@ evaluate_class(xg_fit)
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
 ## 1 accuracy  binary         0.739
@@ -1463,7 +1454,7 @@ xg_fit_viz_metr <-
 xg_fit_viz_metr
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-54-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-54-1.pdf)<!-- --> 
 
 - Visualize the confusion matrix. 
   
@@ -1475,7 +1466,7 @@ xg_fit_viz_mat <-
 xg_fit_viz_mat
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-55-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-55-1.pdf)<!-- --> 
 
 #### tune 
 
@@ -1555,9 +1546,6 @@ conflict_prefer("filter", "dplyr")
 
 ```
 ## [conflicted] Removing existing preference
-```
-
-```
 ## [conflicted] Will prefer dplyr::filter over any other package
 ```
 
@@ -1578,7 +1566,7 @@ xg_res %>%
   )
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-58-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-58-1.pdf)<!-- --> 
 
 
 ```r
@@ -1589,10 +1577,10 @@ best_xg
 ```
 
 ```
-## # A tibble: 1 × 8
-##    mtry trees min_n tree_depth learn_rate loss_reduction sample_size .config    
-##   <int> <int> <int>      <int>      <dbl>          <dbl>       <dbl> <chr>      
-## 1    12  1361     3          7   0.000164    0.000000638       0.159 Preprocess…
+## # A tibble: 1 x 8
+##    mtry trees min_n tree_depth    learn_rate loss_reduction sample_size .config 
+##   <int> <int> <int>      <int>         <dbl>          <dbl>       <dbl> <chr>   
+## 1     6  1856     6         10 0.00000000859  0.00000000102       0.681 Preproc~
 ```
 
 ```r
@@ -1608,7 +1596,7 @@ xg_fit_tuned <- finalize_xg %>%
 ```
 
 ```
-## [05:10:00] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [22:47:59] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
 ```
 
 ```r
@@ -1616,14 +1604,14 @@ xg_fit_tuned <- finalize_xg %>%
 (xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-60-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-60-1.pdf)<!-- --> 
 
 ```r
 # Confusion matrix
 (xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-60-2.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-60-2.pdf)<!-- --> 
 
 - Visualize variable importance 
 
@@ -1639,7 +1627,7 @@ xg_fit_tuned %>%
 ## Please use `extract_fit_parsnip()` instead.
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-61-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-61-1.pdf)<!-- --> 
 
 ##### Test fit
 
@@ -1652,7 +1640,7 @@ test_fit <- finalize_xg %>%
 ```
 
 ```
-## [05:10:01] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## [22:48:00] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
 ```
 
 ```r
@@ -1660,18 +1648,12 @@ evaluate_class(test_fit)
 ```
 
 ```
-## Warning: While computing binary `precision()`, no predicted events were detected (i.e. `true_positive + false_positive = 0`). 
-## Precision is undefined in this case, and `NA` will be returned.
-## Note that 42 true event(s) actually occured for the problematic event level, '0'.
-```
-
-```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.543
-## 2 precision binary        NA    
-## 3 recall    binary         0
+## 1 accuracy  binary         0.761
+## 2 precision binary         0.763
+## 3 recall    binary         0.690
 ```
 
 ### Stacking (SuperLearner)
@@ -1796,13 +1778,13 @@ summary(cv_sl)
 ## All risk estimates are based on V =  5 
 ## 
 ##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.11282 0.0134968 0.076224 0.14230
-##     Discrete SL 0.11851 0.0144056 0.075122 0.16281
+##   Super Learner 0.11275 0.0135331 0.077146 0.14245
+##     Discrete SL 0.11899 0.0144538 0.075281 0.16458
 ##     SL.mean_All 0.24798 0.0030968 0.247743 0.24895
-##   SL.glmnet_All 0.10730 0.0134988 0.075122 0.14230
-##    SL.rpart_All 0.16853 0.0196843 0.107553 0.23162
-##   SL.ranger_All 0.12650 0.0120216 0.099022 0.16044
-##  SL.xgboost_All 0.13012 0.0149741 0.100833 0.16281
+##   SL.glmnet_All 0.10731 0.0135643 0.075281 0.14245
+##    SL.rpart_All 0.16374 0.0184360 0.107553 0.22803
+##   SL.ranger_All 0.12551 0.0119097 0.097342 0.15908
+##  SL.xgboost_All 0.13336 0.0151555 0.104319 0.16458
 ```
 
 ##### Plot
@@ -1814,7 +1796,7 @@ summary(cv_sl)
 plot(cv_sl)
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/cvsl_review-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/cvsl_review-1.pdf)<!-- --> 
 
 #### Compute AUC for all estimators
 
@@ -1839,13 +1821,13 @@ ck37r::auc_table(cv_sl)
 
 ```
 ##                      auc         se  ci_lower  ci_upper      p-value
-## SL.mean_All    0.5000000 0.06912305 0.3645213 0.6354787 4.812252e-10
-## SL.rpart_All   0.8201030 0.03927866 0.7431182 0.8970877 4.492585e-03
-## SL.xgboost_All 0.8823341 0.02454550 0.8342258 0.9304424 4.993591e-02
-## SL.ranger_All  0.9062471 0.02029532 0.8664691 0.9460252 2.084499e-01
-## DiscreteSL     0.9078490 0.02037110 0.8679224 0.9477756 2.326465e-01
-## SuperLearner   0.9149428 0.01971386 0.8763043 0.9535812 3.465460e-01
-## SL.glmnet_All  0.9227231 0.01895967 0.8855628 0.9598834 5.000000e-01
+## SL.mean_All    0.5000000 0.06912305 0.3645213 0.6354787 5.438317e-10
+## SL.rpart_All   0.8354691 0.03936978 0.7583058 0.9126325 1.455568e-02
+## SL.xgboost_All 0.8801602 0.02451881 0.8321042 0.9282162 4.639456e-02
+## DiscreteSL     0.9064989 0.02057929 0.8661642 0.9468335 2.349099e-01
+## SL.ranger_All  0.9075744 0.02002181 0.8683323 0.9468164 2.453551e-01
+## SuperLearner   0.9149428 0.01984636 0.8760446 0.9538409 3.729693e-01
+## SL.glmnet_All  0.9213730 0.01925689 0.8836302 0.9591158 5.000000e-01
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
@@ -1855,7 +1837,7 @@ ck37r::auc_table(cv_sl)
 ck37r::plot_roc(cv_sl)
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-68-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-68-1.pdf)<!-- --> 
 
 ##### Review weight distribution for the SuperLearner
 
@@ -1866,10 +1848,10 @@ print(ck37r::cvsl_weights(cv_sl), row.names = FALSE)
 
 ```
 ##  # Learner    Mean      SD     Min     Max
-##  1  glmnet 0.78712 0.21616 0.48186 1.00000
-##  2 xgboost 0.13407 0.19754 0.00000 0.46875
-##  3  ranger 0.06893 0.15414 0.00000 0.34466
-##  4   rpart 0.00988 0.02208 0.00000 0.04938
+##  1  glmnet 0.78566 0.21528 0.48711 1.00000
+##  2 xgboost 0.12437 0.17523 0.00000 0.41331
+##  3  ranger 0.07006 0.15665 0.00000 0.35028
+##  4   rpart 0.01992 0.04453 0.00000 0.09958
 ##  5    mean 0.00000 0.00000 0.00000 0.00000
 ```
 
@@ -1926,7 +1908,7 @@ data_original %>%
 ```
 
 ```
-## # A tibble: 13 × 14
+## # A tibble: 13 x 14
 ##    term         age     sex      cp trestbps     chol      fbs restecg  thalach
 ##    <chr>      <dbl>   <dbl>   <dbl>    <dbl>    <dbl>    <dbl>   <dbl>    <dbl>
 ##  1 age      NA      -0.0984 -0.0687   0.279   0.214    0.121   -0.116  -0.399  
@@ -1942,7 +1924,7 @@ data_original %>%
 ## 11 slope    -0.169  -0.0307  0.120   -0.121  -0.00404 -0.0599   0.0930  0.387  
 ## 12 ca        0.276   0.118  -0.181    0.101   0.0705   0.138   -0.0720 -0.213  
 ## 13 thal      0.0680  0.210  -0.162    0.0622  0.0988  -0.0320  -0.0120 -0.0964 
-## # … with 5 more variables: exang <dbl>, oldpeak <dbl>, slope <dbl>, ca <dbl>,
+## # ... with 5 more variables: exang <dbl>, oldpeak <dbl>, slope <dbl>, ca <dbl>,
 ## #   thal <dbl>
 ```
 
@@ -1963,11 +1945,11 @@ data_original %>%
 ```
 
 ```
-## # A tibble: 1 × 26
+## # A tibble: 1 x 26
 ##   age_min age_max sex_min sex_max cp_min cp_max trestbps_min trestbps_max
 ##     <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>        <dbl>        <dbl>
 ## 1      29      77       0       1      0      3           94          200
-## # … with 18 more variables: chol_min <dbl>, chol_max <dbl>, fbs_min <dbl>,
+## # ... with 18 more variables: chol_min <dbl>, chol_max <dbl>, fbs_min <dbl>,
 ## #   fbs_max <dbl>, restecg_min <dbl>, restecg_max <dbl>, thalach_min <dbl>,
 ## #   thalach_max <dbl>, exang_min <dbl>, exang_max <dbl>, oldpeak_min <dbl>,
 ## #   oldpeak_max <dbl>, slope_min <dbl>, slope_max <dbl>, ca_min <dbl>,
@@ -2009,7 +1991,7 @@ pca_res %>%
 ```
 
 ```
-## # A tibble: 196 × 4
+## # A tibble: 196 x 4
 ##    terms        value component id   
 ##    <chr>        <dbl> <chr>     <chr>
 ##  1 age      -0.00101  PC1       pca  
@@ -2022,7 +2004,7 @@ pca_res %>%
 ##  8 thalach   0.0137   PC1       pca  
 ##  9 exang     0.0962   PC1       pca  
 ## 10 oldpeak  -0.00863  PC1       pca  
-## # … with 186 more rows
+## # ... with 186 more rows
 ```
 
 ##### Screeplot
@@ -2035,9 +2017,6 @@ conflict_prefer("filter", "dplyr")
 
 ```
 ## [conflicted] Removing existing preference
-```
-
-```
 ## [conflicted] Will prefer dplyr::filter over any other package
 ```
 
@@ -2066,7 +2045,7 @@ pca_recipe %>%
   )
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-74-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-74-1.pdf)<!-- --> 
 
 ##### View factor loadings 
 
@@ -2094,7 +2073,7 @@ pca_recipe %>%
   )
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-75-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-75-1.pdf)<!-- --> 
 
 **The key lesson**
 
@@ -2227,7 +2206,547 @@ sherlock_words %>%
 ## Selecting by freq
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" width="672" />
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
+## x$y, : conversion failure on 'IX. THE ADVENTURE OF THE ENGINEER’S THUMB' in
+## 'mbcsToSbcs': dot substituted for <99>
+```
+
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-78-1.pdf)<!-- --> 
 
 #### STM
 
@@ -2358,7 +2877,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.248, relative change = 1.256e-03) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.247, relative change = 9.258e-05) 
 ## ....................................................................................................
@@ -2373,7 +2892,7 @@ test_res <- searchK(
 ##  	..............................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.749) 
 ## ....................................................................................................
@@ -2389,7 +2908,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.242, relative change = 7.558e-03) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 5 (approx. per word bound = -7.222, relative change = 2.745e-03) 
 ## Topic 1: think, holm, turn, now, “ye 
@@ -2462,7 +2981,7 @@ test_res$results %>%
   )
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-81-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-81-1.pdf)<!-- --> 
 
 ##### Finalize 
 
@@ -2488,7 +3007,7 @@ final_stm <- stm(dtm$documents,
 plot(final_stm)
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-83-1.png" width="672" />
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-83-1.pdf)<!-- --> 
 
 - Using ggplot2 
 
@@ -2512,7 +3031,217 @@ tidy_stm %>%
   scale_fill_viridis_d()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" width="672" />
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <e2>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <80>
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## conversion failure on 'sir”' in 'mbcsToSbcs': dot substituted for <9d>
+```
+
+![](07_high_dimensional_data_files/figure-latex/unnamed-chunk-84-1.pdf)<!-- --> 
 
 ## References
 

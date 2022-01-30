@@ -1767,7 +1767,7 @@ df
 ```
 
 ```
-## # A tibble: 5 × 4
+## # A tibble: 5 x 4
 ##       a     b     c     d
 ##   <dbl> <dbl> <dbl> <dbl>
 ## 1     3     3     3     1
@@ -1837,42 +1837,7 @@ I strongly recommend switching from adhoc testing to formal automated testing (i
 
 ```r
 if (!require(testthat)) install.packages("testthat")
-```
 
-```
-## Loading required package: testthat
-```
-
-```
-## 
-## Attaching package: 'testthat'
-```
-
-```
-## The following object is masked from 'package:dplyr':
-## 
-##     matches
-```
-
-```
-## The following object is masked from 'package:purrr':
-## 
-##     is_null
-```
-
-```
-## The following objects are masked from 'package:readr':
-## 
-##     edition_get, local_edition
-```
-
-```
-## The following object is masked from 'package:tidyr':
-## 
-##     matches
-```
-
-```r
 pacman::p_load(testthat)
 
 context("Variable check")
@@ -1888,7 +1853,7 @@ test_that("Check whether instructor variable is setup correctly", {
 ```
 
 ```
-## Test passed 🎉
+## Test passed
 ```
 
 Inspired by an example in Hadley Wickham's [R Journal paper](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf
