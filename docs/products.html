@@ -24,7 +24,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2021-12-14" />
+<meta name="date" content="2022-01-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,15 +51,16 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -476,51 +477,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Setup (<strong>DESCRIPTION</strong>)</li>
 </ol>
 <p>I assume that you’ve already created and cloned a git repo. Move to your cloned repo file path in the file system.</p>
-<div class="sourceCode" id="cb1018"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1018-1"><a href="products.html#cb1018-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This function creates DESCRIPTION file </span></span>
-<span id="cb1018-2"><a href="products.html#cb1018-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="fu">here</span>())</span>
-<span id="cb1018-3"><a href="products.html#cb1018-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1018-4"><a href="products.html#cb1018-4" aria-hidden="true" tabindex="-1"></a><span class="co"># License the package </span></span>
-<span id="cb1018-5"><a href="products.html#cb1018-5" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use the MIT license by typing devtools::use_mit_license(&quot;author name&quot;). The function produces MIT license-related files (LICENSE, LICENSE.md).</span></span>
-<span id="cb1018-6"><a href="products.html#cb1018-6" aria-hidden="true" tabindex="-1"></a><span class="fu">use_mit_license</span>(<span class="st">&quot;Jae Yeon Kim&quot;</span>)</span>
-<span id="cb1018-7"><a href="products.html#cb1018-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1018-8"><a href="products.html#cb1018-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add news (optional) </span></span>
-<span id="cb1018-9"><a href="products.html#cb1018-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Helps track changes </span></span>
-<span id="cb1018-10"><a href="products.html#cb1018-10" aria-hidden="true" tabindex="-1"></a><span class="fu">use_news_md</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb1020"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1020-1"><a href="products.html#cb1020-1" aria-hidden="true"></a><span class="co"># This function creates DESCRIPTION file </span></span>
+<span id="cb1020-2"><a href="products.html#cb1020-2" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">create_package</span>(<span class="kw">here</span>())</span>
+<span id="cb1020-3"><a href="products.html#cb1020-3" aria-hidden="true"></a></span>
+<span id="cb1020-4"><a href="products.html#cb1020-4" aria-hidden="true"></a><span class="co"># License the package </span></span>
+<span id="cb1020-5"><a href="products.html#cb1020-5" aria-hidden="true"></a><span class="co"># You can use the MIT license by typing devtools::use_mit_license(&quot;author name&quot;). The function produces MIT license-related files (LICENSE, LICENSE.md).</span></span>
+<span id="cb1020-6"><a href="products.html#cb1020-6" aria-hidden="true"></a><span class="kw">use_mit_license</span>(<span class="st">&quot;Jae Yeon Kim&quot;</span>)</span>
+<span id="cb1020-7"><a href="products.html#cb1020-7" aria-hidden="true"></a></span>
+<span id="cb1020-8"><a href="products.html#cb1020-8" aria-hidden="true"></a><span class="co"># Add news (optional) </span></span>
+<span id="cb1020-9"><a href="products.html#cb1020-9" aria-hidden="true"></a><span class="co"># Helps track changes </span></span>
+<span id="cb1020-10"><a href="products.html#cb1020-10" aria-hidden="true"></a><span class="kw">use_news_md</span>() </span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Write code (<strong>R</strong>)</li>
 </ol>
-<p>If you want to turn your R markdown file into R script use `knitr::purl(input = “x.Rmd,”
+<p>If you want to turn your R markdown file into R script use `knitr::purl(input = “x.Rmd”,
 output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen package</a> helps to develop an R package based on R markdown files.</p>
-<div class="sourceCode" id="cb1019"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1019-1"><a href="products.html#cb1019-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_r</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1020"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1020-1"><a href="products.html#cb1020-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Add two numbers</span></span>
-<span id="cb1020-2"><a href="products.html#cb1020-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
-<span id="cb1020-3"><a href="products.html#cb1020-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param x A number</span></span>
-<span id="cb1020-4"><a href="products.html#cb1020-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param y A number</span></span>
-<span id="cb1020-5"><a href="products.html#cb1020-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return The sum of x and y </span></span>
-<span id="cb1020-6"><a href="products.html#cb1020-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
-<span id="cb1020-7"><a href="products.html#cb1020-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1020-8"><a href="products.html#cb1020-8" aria-hidden="true" tabindex="-1"></a>add <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
-<span id="cb1020-9"><a href="products.html#cb1020-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1020-10"><a href="products.html#cb1020-10" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
-<span id="cb1020-11"><a href="products.html#cb1020-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1020-12"><a href="products.html#cb1020-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1021"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1021-1"><a href="products.html#cb1021-1" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_r</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1022"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1022-1"><a href="products.html#cb1022-1" aria-hidden="true"></a><span class="co">#&#39; Add two numbers</span></span>
+<span id="cb1022-2"><a href="products.html#cb1022-2" aria-hidden="true"></a><span class="co">#&#39;</span></span>
+<span id="cb1022-3"><a href="products.html#cb1022-3" aria-hidden="true"></a><span class="co">#&#39; @param x A number</span></span>
+<span id="cb1022-4"><a href="products.html#cb1022-4" aria-hidden="true"></a><span class="co">#&#39; @param y A number</span></span>
+<span id="cb1022-5"><a href="products.html#cb1022-5" aria-hidden="true"></a><span class="co">#&#39; @return The sum of x and y </span></span>
+<span id="cb1022-6"><a href="products.html#cb1022-6" aria-hidden="true"></a><span class="co">#&#39; @export</span></span>
+<span id="cb1022-7"><a href="products.html#cb1022-7" aria-hidden="true"></a></span>
+<span id="cb1022-8"><a href="products.html#cb1022-8" aria-hidden="true"></a>add &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){</span>
+<span id="cb1022-9"><a href="products.html#cb1022-9" aria-hidden="true"></a>  </span>
+<span id="cb1022-10"><a href="products.html#cb1022-10" aria-hidden="true"></a>  x <span class="op">+</span><span class="st"> </span>y</span>
+<span id="cb1022-11"><a href="products.html#cb1022-11" aria-hidden="true"></a>  </span>
+<span id="cb1022-12"><a href="products.html#cb1022-12" aria-hidden="true"></a>}</span></code></pre></div>
 <p>If you used a function from other packages, you need to reference it in the following way: <code>#' @importFrom &lt;package&gt; &lt;function&gt;</code></p>
 <p>Many of us use <code>%&gt;%</code> operator in the code. If you want to add this to your documentation, do <code>usethis::use_pipe()</code>.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Document (<strong>man</strong>)</li>
 </ol>
 <p>This documentation is for the function manual.</p>
-<div class="sourceCode" id="cb1021"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1021-1"><a href="products.html#cb1021-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Document </span></span>
-<span id="cb1021-2"><a href="products.html#cb1021-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The function creates documentation related files (NAMESPACE, function_name.rd)</span></span>
-<span id="cb1021-3"><a href="products.html#cb1021-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span>
-<span id="cb1021-4"><a href="products.html#cb1021-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1021-5"><a href="products.html#cb1021-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check; updates the documentation; builds and checks the package </span></span>
-<span id="cb1021-6"><a href="products.html#cb1021-6" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1023"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1023-1"><a href="products.html#cb1023-1" aria-hidden="true"></a><span class="co"># Document </span></span>
+<span id="cb1023-2"><a href="products.html#cb1023-2" aria-hidden="true"></a><span class="co"># The function creates documentation related files (NAMESPACE, function_name.rd)</span></span>
+<span id="cb1023-3"><a href="products.html#cb1023-3" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">document</span>()</span>
+<span id="cb1023-4"><a href="products.html#cb1023-4" aria-hidden="true"></a></span>
+<span id="cb1023-5"><a href="products.html#cb1023-5" aria-hidden="true"></a><span class="co"># Check; updates the documentation; builds and checks the package </span></span>
+<span id="cb1023-6"><a href="products.html#cb1023-6" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">check</span>()</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Organize (<strong>NAMESPACE</strong>)</li>
 </ol>
 <p>This documentation is for <a href="https://en.wikipedia.org/wiki/Namespace">namespace</a>.</p>
-<div class="sourceCode" id="cb1022"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1022-1"><a href="products.html#cb1022-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1024"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1024-1"><a href="products.html#cb1024-1" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 </div>
 <div id="optional-components" class="section level3" number="6.1.4">
 <h3><span class="header-section-number">6.1.4</span> Optional Components</h3>
@@ -531,42 +532,42 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <ul>
 <li>Setup</li>
 </ul>
-<div class="sourceCode" id="cb1023"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1023-1"><a href="products.html#cb1023-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_testthat</span>()</span>
-<span id="cb1023-2"><a href="products.html#cb1023-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1023-3"><a href="products.html#cb1023-3" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1025"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1025-1"><a href="products.html#cb1025-1" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_testthat</span>()</span>
+<span id="cb1025-2"><a href="products.html#cb1025-2" aria-hidden="true"></a></span>
+<span id="cb1025-3"><a href="products.html#cb1025-3" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_test</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Testing</li>
 </ul>
-<div class="sourceCode" id="cb1024"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1024-1"><a href="products.html#cb1024-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make changes </span></span>
-<span id="cb1024-2"><a href="products.html#cb1024-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1024-3"><a href="products.html#cb1024-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load functions </span></span>
-<span id="cb1024-4"><a href="products.html#cb1024-4" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span>
-<span id="cb1024-5"><a href="products.html#cb1024-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1024-6"><a href="products.html#cb1024-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Test </span></span>
-<span id="cb1024-7"><a href="products.html#cb1024-7" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">test</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1026"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1026-1"><a href="products.html#cb1026-1" aria-hidden="true"></a><span class="co"># Make changes </span></span>
+<span id="cb1026-2"><a href="products.html#cb1026-2" aria-hidden="true"></a></span>
+<span id="cb1026-3"><a href="products.html#cb1026-3" aria-hidden="true"></a><span class="co"># Load functions </span></span>
+<span id="cb1026-4"><a href="products.html#cb1026-4" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">load_all</span>()</span>
+<span id="cb1026-5"><a href="products.html#cb1026-5" aria-hidden="true"></a></span>
+<span id="cb1026-6"><a href="products.html#cb1026-6" aria-hidden="true"></a><span class="co"># Test </span></span>
+<span id="cb1026-7"><a href="products.html#cb1026-7" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">test</span>()</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Add data (<strong>data</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb1025"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1025-1"><a href="products.html#cb1025-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;Jae&quot;</span></span>
-<span id="cb1025-2"><a href="products.html#cb1025-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">&quot;Sun&quot;</span></span>
-<span id="cb1025-3"><a href="products.html#cb1025-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="st">&quot;Jane&quot;</span></span>
-<span id="cb1025-4"><a href="products.html#cb1025-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1025-5"><a href="products.html#cb1025-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_data</span>(x, y, z, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1027"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1027-1"><a href="products.html#cb1027-1" aria-hidden="true"></a>x &lt;-<span class="st"> &quot;Jae&quot;</span></span>
+<span id="cb1027-2"><a href="products.html#cb1027-2" aria-hidden="true"></a>y &lt;-<span class="st"> &quot;Sun&quot;</span></span>
+<span id="cb1027-3"><a href="products.html#cb1027-3" aria-hidden="true"></a>z &lt;-<span class="st"> &quot;Jane&quot;</span></span>
+<span id="cb1027-4"><a href="products.html#cb1027-4" aria-hidden="true"></a></span>
+<span id="cb1027-5"><a href="products.html#cb1027-5" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_data</span>(x, y, z, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Teach (<strong>vignetts</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb1026"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1026-1"><a href="products.html#cb1026-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1027"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1027-1"><a href="products.html#cb1027-1" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Vignette title&quot;</span></span>
-<span id="cb1027-2"><a href="products.html#cb1027-2" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Vignette author&quot;</span></span>
-<span id="cb1027-3"><a href="products.html#cb1027-3" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;2021-12-14&quot;</span></span>
-<span id="cb1027-4"><a href="products.html#cb1027-4" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> rmarkdown<span class="sc">::</span>html_vignette</span>
-<span id="cb1027-5"><a href="products.html#cb1027-5" aria-hidden="true" tabindex="-1"></a>vignette<span class="sc">:</span> blah blah</span></code></pre></div>
+<div class="sourceCode" id="cb1028"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1028-1"><a href="products.html#cb1028-1" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1029"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1029-1"><a href="products.html#cb1029-1" aria-hidden="true"></a>title<span class="op">:</span><span class="st"> &quot;Vignette title&quot;</span></span>
+<span id="cb1029-2"><a href="products.html#cb1029-2" aria-hidden="true"></a>author<span class="op">:</span><span class="st"> &quot;Vignette author&quot;</span></span>
+<span id="cb1029-3"><a href="products.html#cb1029-3" aria-hidden="true"></a>date<span class="op">:</span><span class="st"> &quot;2022-01-30&quot;</span></span>
+<span id="cb1029-4"><a href="products.html#cb1029-4" aria-hidden="true"></a>output<span class="op">:</span><span class="st"> </span>rmarkdown<span class="op">::</span>html_vignette</span>
+<span id="cb1029-5"><a href="products.html#cb1029-5" aria-hidden="true"></a>vignette<span class="op">:</span><span class="st"> </span>blah blah</span></code></pre></div>
 <ul>
 <li>You can build a package website using <code>pkgdown</code></li>
 </ul>
-<div class="sourceCode" id="cb1028"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1028-1"><a href="products.html#cb1028-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;pkgdown&quot;)</span></span>
-<span id="cb1028-2"><a href="products.html#cb1028-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_pkgdown</span>()</span>
-<span id="cb1028-3"><a href="products.html#cb1028-3" aria-hidden="true" tabindex="-1"></a>pkgdown<span class="sc">::</span><span class="fu">build_site</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1030"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1030-1"><a href="products.html#cb1030-1" aria-hidden="true"></a><span class="co"># install.packages(&quot;pkgdown&quot;)</span></span>
+<span id="cb1030-2"><a href="products.html#cb1030-2" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_pkgdown</span>()</span>
+<span id="cb1030-3"><a href="products.html#cb1030-3" aria-hidden="true"></a>pkgdown<span class="op">::</span><span class="kw">build_site</span>()</span></code></pre></div>
 <ul>
 <li>A package site includes information on METADATA, Function references, Articles, News, etc.</li>
 </ul>
@@ -577,24 +578,24 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <li>CMD (in the terminal)</li>
 </ul>
 <p>You can run R commands in the terminal using R CMD.</p>
-<div class="sourceCode" id="cb1029"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1029-1"><a href="products.html#cb1029-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD build mypkg </span>
-<span id="cb1029-2"><a href="products.html#cb1029-2" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD INSTALL mypkg </span></code></pre></div>
+<div class="sourceCode" id="cb1031"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1031-1"><a href="products.html#cb1031-1" aria-hidden="true"></a><span class="ex">R</span> CMD build mypkg </span>
+<span id="cb1031-2"><a href="products.html#cb1031-2" aria-hidden="true"></a><span class="ex">R</span> CMD INSTALL mypkg </span></code></pre></div>
 <ul>
 <li>devtools</li>
 </ul>
-<div class="sourceCode" id="cb1030"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1030-1"><a href="products.html#cb1030-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build </span></span>
-<span id="cb1030-2"><a href="products.html#cb1030-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">build</span>()</span>
-<span id="cb1030-3"><a href="products.html#cb1030-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1030-4"><a href="products.html#cb1030-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install </span></span>
-<span id="cb1030-5"><a href="products.html#cb1030-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1032"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1032-1"><a href="products.html#cb1032-1" aria-hidden="true"></a><span class="co"># Build </span></span>
+<span id="cb1032-2"><a href="products.html#cb1032-2" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">build</span>()</span>
+<span id="cb1032-3"><a href="products.html#cb1032-3" aria-hidden="true"></a></span>
+<span id="cb1032-4"><a href="products.html#cb1032-4" aria-hidden="true"></a><span class="co"># Install </span></span>
+<span id="cb1032-5"><a href="products.html#cb1032-5" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">install</span>()</span></code></pre></div>
 </div>
 <div id="distributing-an-r-package" class="section level3" number="6.1.6">
 <h3><span class="header-section-number">6.1.6</span> Distributing an R package</h3>
-<div class="sourceCode" id="cb1031"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1031-1"><a href="products.html#cb1031-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Version update </span></span>
-<span id="cb1031-2"><a href="products.html#cb1031-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_version</span>()</span>
-<span id="cb1031-3"><a href="products.html#cb1031-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1031-4"><a href="products.html#cb1031-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Spell check</span></span>
-<span id="cb1031-5"><a href="products.html#cb1031-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_spell_check</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1033"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1033-1"><a href="products.html#cb1033-1" aria-hidden="true"></a><span class="co"># Version update </span></span>
+<span id="cb1033-2"><a href="products.html#cb1033-2" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_version</span>()</span>
+<span id="cb1033-3"><a href="products.html#cb1033-3" aria-hidden="true"></a></span>
+<span id="cb1033-4"><a href="products.html#cb1033-4" aria-hidden="true"></a><span class="co"># Spell check</span></span>
+<span id="cb1033-5"><a href="products.html#cb1033-5" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_spell_check</span>()</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><a href="https://cran.r-project.org/">CRAN (The Comprehensive R Archive Network)</a></li>
 </ol>
@@ -607,17 +608,17 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <ul>
 <li>Push everything to the Git repository (you can do it using command-line interface or RStudio).</li>
 </ul>
-<div class="sourceCode" id="cb1032"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1032-1"><a href="products.html#cb1032-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add . </span>
-<span id="cb1032-2"><a href="products.html#cb1032-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;first push&quot;</span></span>
-<span id="cb1032-3"><a href="products.html#cb1032-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push </span></code></pre></div>
+<div class="sourceCode" id="cb1034"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1034-1"><a href="products.html#cb1034-1" aria-hidden="true"></a><span class="fu">git</span> add . </span>
+<span id="cb1034-2"><a href="products.html#cb1034-2" aria-hidden="true"></a><span class="fu">git</span> commit -m <span class="st">&quot;first push&quot;</span></span>
+<span id="cb1034-3"><a href="products.html#cb1034-3" aria-hidden="true"></a><span class="fu">git</span> push </span></code></pre></div>
 <ul>
 <li><p>Don’t forget that your repository should be <code>public</code>.</p></li>
 <li><p>I highly recommend connecting GitHub with SSH. For more information, visit <a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">this link</a>.</p></li>
 </ul>
-<div class="sourceCode" id="cb1033"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1033-1"><a href="products.html#cb1033-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote set-url origin git@github.com:user/repo </span></code></pre></div>
+<div class="sourceCode" id="cb1035"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1035-1"><a href="products.html#cb1035-1" aria-hidden="true"></a><span class="fu">git</span> remote set-url origin git@github.com:user/repo </span></code></pre></div>
 <p><strong>Additional tips</strong></p>
 <p>Sometimes, you get the following error: “Undefined global functions or variables” If you experience this problem, save the following script as <code>globals.r.</code></p>
-<div class="sourceCode" id="cb1034"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1034-1"><a href="products.html#cb1034-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">globalVariables</span>(<span class="fu">c</span>(<span class="st">&quot;&lt;undefined variable name1&gt;&quot;</span>, <span class="st">&quot;&lt;undefined variable name2&gt;&quot;</span>, <span class="st">&quot;&lt;undefinedvariable name3&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1036"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1036-1"><a href="products.html#cb1036-1" aria-hidden="true"></a>utils<span class="op">::</span><span class="kw">globalVariables</span>(<span class="kw">c</span>(<span class="st">&quot;&lt;undefined variable name1&gt;&quot;</span>, <span class="st">&quot;&lt;undefined variable name2&gt;&quot;</span>, <span class="st">&quot;&lt;undefinedvariable name3&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;&lt;undefined variable name1&gt;&quot; &quot;&lt;undefined variable name2&gt;&quot;
 ## [3] &quot;&lt;undefinedvariable name3&quot;</code></pre>
 </div>
@@ -642,7 +643,7 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <ol style="list-style-type: decimal">
 <li>Install libraries</li>
 </ol>
-<div class="sourceCode" id="cb1036"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1036-1"><a href="products.html#cb1036-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1038"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1038-1"><a href="products.html#cb1038-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Create app directory and file</li>
 </ol>
@@ -655,80 +656,80 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <ul>
 <li>Front-end</li>
 </ul>
-<div class="sourceCode" id="cb1037"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1037-1"><a href="products.html#cb1037-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages </span></span>
-<span id="cb1037-2"><a href="products.html#cb1037-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Do not use install.packages(), pacman::p_load(), or library() if you intend to deploy the app using shinyapps.io </span></span>
-<span id="cb1037-3"><a href="products.html#cb1037-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1037-4"><a href="products.html#cb1037-4" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span>
-<span id="cb1037-5"><a href="products.html#cb1037-5" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;shiny&quot;</span>)</span>
-<span id="cb1037-6"><a href="products.html#cb1037-6" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;shinydashboard&quot;</span>)</span>
-<span id="cb1037-7"><a href="products.html#cb1037-7" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;colourpicker&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1038"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1038-1"><a href="products.html#cb1038-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data </span></span>
-<span id="cb1038-2"><a href="products.html#cb1038-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1038-3"><a href="products.html#cb1038-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">&quot;https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv&quot;</span>))[,<span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb1039"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1039-1"><a href="products.html#cb1039-1" aria-hidden="true"></a><span class="co"># Load packages </span></span>
+<span id="cb1039-2"><a href="products.html#cb1039-2" aria-hidden="true"></a><span class="co"># Do not use install.packages(), pacman::p_load(), or library() if you intend to deploy the app using shinyapps.io </span></span>
+<span id="cb1039-3"><a href="products.html#cb1039-3" aria-hidden="true"></a></span>
+<span id="cb1039-4"><a href="products.html#cb1039-4" aria-hidden="true"></a><span class="kw">require</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span>
+<span id="cb1039-5"><a href="products.html#cb1039-5" aria-hidden="true"></a><span class="kw">require</span>(<span class="st">&quot;shiny&quot;</span>)</span>
+<span id="cb1039-6"><a href="products.html#cb1039-6" aria-hidden="true"></a><span class="kw">require</span>(<span class="st">&quot;shinydashboard&quot;</span>)</span>
+<span id="cb1039-7"><a href="products.html#cb1039-7" aria-hidden="true"></a><span class="kw">require</span>(<span class="st">&quot;colourpicker&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1040"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1040-1"><a href="products.html#cb1040-1" aria-hidden="true"></a><span class="co"># Load data </span></span>
+<span id="cb1040-2"><a href="products.html#cb1040-2" aria-hidden="true"></a></span>
+<span id="cb1040-3"><a href="products.html#cb1040-3" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">url</span>(<span class="st">&quot;https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv&quot;</span>))[,<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
 <p><code>fluidPage()</code>: provides the layout for the UI</p>
 <p><code>sliderInput()</code>: one of the input controls (e.g., <code>selectInput()</code>, <code>textInput()</code>, <code>numericInput()</code>)</p>
 <p><code>wordcloud2Output()</code> one of the output controls (e.g., <code>tableOutput()</code>)</p>
-<div class="sourceCode" id="cb1039"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1039-1"><a href="products.html#cb1039-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Defines the user interface; how the app looks</span></span>
-<span id="cb1039-2"><a href="products.html#cb1039-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1039-3"><a href="products.html#cb1039-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb1039-4"><a href="products.html#cb1039-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1039-5"><a href="products.html#cb1039-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Application title </span></span>
-<span id="cb1039-6"><a href="products.html#cb1039-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
-<span id="cb1039-7"><a href="products.html#cb1039-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1039-8"><a href="products.html#cb1039-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">h4</span>(tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
-<span id="cb1039-9"><a href="products.html#cb1039-9" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb1039-10"><a href="products.html#cb1039-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
-<span id="cb1039-11"><a href="products.html#cb1039-11" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb1039-12"><a href="products.html#cb1039-12" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Sidebar with sliders </span></span>
-<span id="cb1039-13"><a href="products.html#cb1039-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sidebarPanel</span>(</span>
-<span id="cb1039-14"><a href="products.html#cb1039-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;size&quot;</span>, <span class="co"># Input ID: input$size </span></span>
-<span id="cb1039-15"><a href="products.html#cb1039-15" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&quot;Font size:&quot;</span>,</span>
-<span id="cb1039-16"><a href="products.html#cb1039-16" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">10</span>,</span>
-<span id="cb1039-17"><a href="products.html#cb1039-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">value =</span> <span class="dv">2</span>)</span>
-<span id="cb1039-18"><a href="products.html#cb1039-18" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb1039-19"><a href="products.html#cb1039-19" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1039-20"><a href="products.html#cb1039-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb1039-21"><a href="products.html#cb1039-21" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb1039-22"><a href="products.html#cb1039-22" aria-hidden="true" tabindex="-1"></a>          <span class="fu">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
-<span id="cb1039-23"><a href="products.html#cb1039-23" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb1039-24"><a href="products.html#cb1039-24" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb1039-25"><a href="products.html#cb1039-25" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1039-26"><a href="products.html#cb1039-26" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1039-27"><a href="products.html#cb1039-27" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1041"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1041-1"><a href="products.html#cb1041-1" aria-hidden="true"></a><span class="co"># Defines the user interface; how the app looks</span></span>
+<span id="cb1041-2"><a href="products.html#cb1041-2" aria-hidden="true"></a></span>
+<span id="cb1041-3"><a href="products.html#cb1041-3" aria-hidden="true"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb1041-4"><a href="products.html#cb1041-4" aria-hidden="true"></a>  </span>
+<span id="cb1041-5"><a href="products.html#cb1041-5" aria-hidden="true"></a>    <span class="co"># Application title </span></span>
+<span id="cb1041-6"><a href="products.html#cb1041-6" aria-hidden="true"></a>    <span class="kw">titlePanel</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
+<span id="cb1041-7"><a href="products.html#cb1041-7" aria-hidden="true"></a>  </span>
+<span id="cb1041-8"><a href="products.html#cb1041-8" aria-hidden="true"></a>    <span class="kw">h4</span>(tags<span class="op">$</span><span class="kw">a</span>(<span class="dt">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
+<span id="cb1041-9"><a href="products.html#cb1041-9" aria-hidden="true"></a>            </span>
+<span id="cb1041-10"><a href="products.html#cb1041-10" aria-hidden="true"></a>    <span class="kw">sidebarLayout</span>(</span>
+<span id="cb1041-11"><a href="products.html#cb1041-11" aria-hidden="true"></a>      </span>
+<span id="cb1041-12"><a href="products.html#cb1041-12" aria-hidden="true"></a>      <span class="co"># Sidebar with sliders </span></span>
+<span id="cb1041-13"><a href="products.html#cb1041-13" aria-hidden="true"></a>      <span class="kw">sidebarPanel</span>(</span>
+<span id="cb1041-14"><a href="products.html#cb1041-14" aria-hidden="true"></a>        <span class="kw">sliderInput</span>(<span class="st">&quot;size&quot;</span>, <span class="co"># Input ID: input$size </span></span>
+<span id="cb1041-15"><a href="products.html#cb1041-15" aria-hidden="true"></a>                    <span class="st">&quot;Font size:&quot;</span>,</span>
+<span id="cb1041-16"><a href="products.html#cb1041-16" aria-hidden="true"></a>                    <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>,</span>
+<span id="cb1041-17"><a href="products.html#cb1041-17" aria-hidden="true"></a>                    <span class="dt">value =</span> <span class="dv">2</span>)</span>
+<span id="cb1041-18"><a href="products.html#cb1041-18" aria-hidden="true"></a>      ),</span>
+<span id="cb1041-19"><a href="products.html#cb1041-19" aria-hidden="true"></a>    </span>
+<span id="cb1041-20"><a href="products.html#cb1041-20" aria-hidden="true"></a>    <span class="kw">mainPanel</span>(</span>
+<span id="cb1041-21"><a href="products.html#cb1041-21" aria-hidden="true"></a>          </span>
+<span id="cb1041-22"><a href="products.html#cb1041-22" aria-hidden="true"></a>          <span class="kw">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
+<span id="cb1041-23"><a href="products.html#cb1041-23" aria-hidden="true"></a>        </span>
+<span id="cb1041-24"><a href="products.html#cb1041-24" aria-hidden="true"></a>        )</span>
+<span id="cb1041-25"><a href="products.html#cb1041-25" aria-hidden="true"></a>    </span>
+<span id="cb1041-26"><a href="products.html#cb1041-26" aria-hidden="true"></a>    )</span>
+<span id="cb1041-27"><a href="products.html#cb1041-27" aria-hidden="true"></a>)</span></code></pre></div>
 <ul>
 <li>Back-end</li>
 </ul>
-<div class="sourceCode" id="cb1040"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1040-1"><a href="products.html#cb1040-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb1040-2"><a href="products.html#cb1040-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1040-3"><a href="products.html#cb1040-3" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>cloud <span class="ot">&lt;-</span> <span class="fu">renderWordcloud2</span>({ </span>
-<span id="cb1040-4"><a href="products.html#cb1040-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1040-5"><a href="products.html#cb1040-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wordcloud2</span>(df, </span>
-<span id="cb1040-6"><a href="products.html#cb1040-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> input<span class="sc">$</span>size, </span>
-<span id="cb1040-7"><a href="products.html#cb1040-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
-<span id="cb1040-8"><a href="products.html#cb1040-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1040-9"><a href="products.html#cb1040-9" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb1040-10"><a href="products.html#cb1040-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1040-11"><a href="products.html#cb1040-11" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb1042"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1042-1"><a href="products.html#cb1042-1" aria-hidden="true"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb1042-2"><a href="products.html#cb1042-2" aria-hidden="true"></a>  </span>
+<span id="cb1042-3"><a href="products.html#cb1042-3" aria-hidden="true"></a>  output<span class="op">$</span>cloud &lt;-<span class="st"> </span><span class="kw">renderWordcloud2</span>({ </span>
+<span id="cb1042-4"><a href="products.html#cb1042-4" aria-hidden="true"></a>    </span>
+<span id="cb1042-5"><a href="products.html#cb1042-5" aria-hidden="true"></a>    <span class="kw">wordcloud2</span>(df, </span>
+<span id="cb1042-6"><a href="products.html#cb1042-6" aria-hidden="true"></a>               <span class="dt">size =</span> input<span class="op">$</span>size, </span>
+<span id="cb1042-7"><a href="products.html#cb1042-7" aria-hidden="true"></a>               <span class="dt">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
+<span id="cb1042-8"><a href="products.html#cb1042-8" aria-hidden="true"></a>    </span>
+<span id="cb1042-9"><a href="products.html#cb1042-9" aria-hidden="true"></a>    })</span>
+<span id="cb1042-10"><a href="products.html#cb1042-10" aria-hidden="true"></a></span>
+<span id="cb1042-11"><a href="products.html#cb1042-11" aria-hidden="true"></a>  }</span></code></pre></div>
 <ul>
 <li>Build a shiny app</li>
 </ul>
-<div class="sourceCode" id="cb1041"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1041-1"><a href="products.html#cb1041-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<div class="sourceCode" id="cb1043"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1043-1"><a href="products.html#cb1043-1" aria-hidden="true"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
 </div>
 <div id="deployment" class="section level3" number="6.2.3">
 <h3><span class="header-section-number">6.2.3</span> Deployment</h3>
 <ul>
 <li>Deploy to <a href="https://www.shinyapps.io/?_ga=2.5503866.871102833.1602978469-100003412.1602392815">the shinyapps.io cloud</a></li>
 </ul>
-<div class="sourceCode" id="cb1042"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1042-1"><a href="products.html#cb1042-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages </span></span>
-<span id="cb1042-2"><a href="products.html#cb1042-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rsconnect&quot;</span>)</span>
-<span id="cb1042-3"><a href="products.html#cb1042-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsconnect)</span>
-<span id="cb1042-4"><a href="products.html#cb1042-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1042-5"><a href="products.html#cb1042-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup </span></span>
-<span id="cb1042-6"><a href="products.html#cb1042-6" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">setAccountInfo</span>(<span class="at">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
-<span id="cb1042-7"><a href="products.html#cb1042-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
-<span id="cb1042-8"><a href="products.html#cb1042-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
-<span id="cb1042-9"><a href="products.html#cb1042-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1042-10"><a href="products.html#cb1042-10" aria-hidden="true" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployApp</span>(<span class="at">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1044"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1044-1"><a href="products.html#cb1044-1" aria-hidden="true"></a><span class="co"># Install packages </span></span>
+<span id="cb1044-2"><a href="products.html#cb1044-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;rsconnect&quot;</span>)</span>
+<span id="cb1044-3"><a href="products.html#cb1044-3" aria-hidden="true"></a><span class="kw">library</span>(rsconnect)</span>
+<span id="cb1044-4"><a href="products.html#cb1044-4" aria-hidden="true"></a></span>
+<span id="cb1044-5"><a href="products.html#cb1044-5" aria-hidden="true"></a><span class="co"># Setup </span></span>
+<span id="cb1044-6"><a href="products.html#cb1044-6" aria-hidden="true"></a>rsconnect<span class="op">::</span><span class="kw">setAccountInfo</span>(<span class="dt">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
+<span id="cb1044-7"><a href="products.html#cb1044-7" aria-hidden="true"></a>                          <span class="dt">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
+<span id="cb1044-8"><a href="products.html#cb1044-8" aria-hidden="true"></a>                          <span class="dt">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
+<span id="cb1044-9"><a href="products.html#cb1044-9" aria-hidden="true"></a></span>
+<span id="cb1044-10"><a href="products.html#cb1044-10" aria-hidden="true"></a>rsconnect<span class="op">::</span><span class="kw">deployApp</span>(<span class="dt">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
 </div>
 <div id="references-3" class="section level3" number="6.2.4">
 <h3><span class="header-section-number">6.2.4</span> References</h3>
