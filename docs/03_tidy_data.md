@@ -2555,7 +2555,6 @@ df
 ## 3 NA
 ```
 
-
 ## Tidyverse
 
 ### The Big Picture
@@ -2588,7 +2587,7 @@ table1
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   country      year  cases population
 ##   <chr>       <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
@@ -2654,7 +2653,7 @@ table4a
 ```
 
 ```
-## # A tibble: 3 x 3
+## # A tibble: 3 × 3
 ##   country     `1999` `2000`
 ## * <chr>        <int>  <int>
 ## 1 Afghanistan    745   2666
@@ -2683,7 +2682,7 @@ table4a
 ```
 
 ```
-## # A tibble: 3 x 3
+## # A tibble: 3 × 3
 ##   country     `1999` `2000`
 ## * <chr>        <int>  <int>
 ## 1 Afghanistan    745   2666
@@ -2702,7 +2701,7 @@ table4a %>%
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##   country     year   cases
 ##   <chr>       <chr>  <int>
 ## 1 Afghanistan 1999     745
@@ -2725,7 +2724,7 @@ table4a %>%
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##   country     year   cases
 ##   <chr>       <chr>  <int>
 ## 1 Afghanistan 1999     745
@@ -2754,7 +2753,7 @@ table4a %>%
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##   country      year  cases
 ##   <chr>       <dbl>  <int>
 ## 1 Afghanistan  1999    745
@@ -2792,26 +2791,26 @@ billboard
 ```
 
 ```
-## # A tibble: 317 x 79
+## # A tibble: 317 × 79
 ##    artist     track date.entered   wk1   wk2   wk3   wk4   wk5   wk6   wk7   wk8
 ##    <chr>      <chr> <date>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-##  1 2 Pac      Baby~ 2000-02-26      87    82    72    77    87    94    99    NA
-##  2 2Ge+her    The ~ 2000-09-02      91    87    92    NA    NA    NA    NA    NA
-##  3 3 Doors D~ Kryp~ 2000-04-08      81    70    68    67    66    57    54    53
-##  4 3 Doors D~ Loser 2000-10-21      76    76    72    69    67    65    55    59
-##  5 504 Boyz   Wobb~ 2000-04-15      57    34    25    17    17    31    36    49
-##  6 98^0       Give~ 2000-08-19      51    39    34    26    26    19     2     2
-##  7 A*Teens    Danc~ 2000-07-08      97    97    96    95   100    NA    NA    NA
-##  8 Aaliyah    I Do~ 2000-01-29      84    62    51    41    38    35    35    38
-##  9 Aaliyah    Try ~ 2000-03-18      59    53    38    28    21    18    16    14
-## 10 Adams, Yo~ Open~ 2000-08-26      76    76    74    69    68    67    61    58
-## # ... with 307 more rows, and 68 more variables: wk9 <dbl>, wk10 <dbl>,
+##  1 2 Pac      Baby… 2000-02-26      87    82    72    77    87    94    99    NA
+##  2 2Ge+her    The … 2000-09-02      91    87    92    NA    NA    NA    NA    NA
+##  3 3 Doors D… Kryp… 2000-04-08      81    70    68    67    66    57    54    53
+##  4 3 Doors D… Loser 2000-10-21      76    76    72    69    67    65    55    59
+##  5 504 Boyz   Wobb… 2000-04-15      57    34    25    17    17    31    36    49
+##  6 98^0       Give… 2000-08-19      51    39    34    26    26    19     2     2
+##  7 A*Teens    Danc… 2000-07-08      97    97    96    95   100    NA    NA    NA
+##  8 Aaliyah    I Do… 2000-01-29      84    62    51    41    38    35    35    38
+##  9 Aaliyah    Try … 2000-03-18      59    53    38    28    21    18    16    14
+## 10 Adams, Yo… Open… 2000-08-26      76    76    74    69    68    67    61    58
+## # … with 307 more rows, and 68 more variables: wk9 <dbl>, wk10 <dbl>,
 ## #   wk11 <dbl>, wk12 <dbl>, wk13 <dbl>, wk14 <dbl>, wk15 <dbl>, wk16 <dbl>,
 ## #   wk17 <dbl>, wk18 <dbl>, wk19 <dbl>, wk20 <dbl>, wk21 <dbl>, wk22 <dbl>,
 ## #   wk23 <dbl>, wk24 <dbl>, wk25 <dbl>, wk26 <dbl>, wk27 <dbl>, wk28 <dbl>,
 ## #   wk29 <dbl>, wk30 <dbl>, wk31 <dbl>, wk32 <dbl>, wk33 <dbl>, wk34 <dbl>,
 ## #   wk35 <dbl>, wk36 <dbl>, wk37 <dbl>, wk38 <dbl>, wk39 <dbl>, wk40 <dbl>,
-## #   wk41 <dbl>, wk42 <dbl>, wk43 <dbl>, wk44 <dbl>, wk45 <dbl>, wk46 <dbl>, ...
+## #   wk41 <dbl>, wk42 <dbl>, wk43 <dbl>, wk44 <dbl>, wk45 <dbl>, wk46 <dbl>, …
 ```
 
 2.  How can you fix it? Which pivot?
@@ -2829,7 +2828,7 @@ billboard %>%
 ```
 
 ```
-## # A tibble: 5,307 x 5
+## # A tibble: 5,307 × 5
 ##    artist         track                   date.entered week   rank
 ##    <chr>          <chr>                   <date>       <chr> <dbl>
 ##  1 2 Pac          Baby Don't Cry (Keep... 2000-02-26   wk1      87
@@ -2842,7 +2841,7 @@ billboard %>%
 ##  8 Aaliyah        I Don't Wanna           2000-01-29   wk1      84
 ##  9 Aaliyah        Try Again               2000-03-18   wk1      59
 ## 10 Adams, Yolanda Open My Heart           2000-08-26   wk1      76
-## # ... with 5,297 more rows
+## # … with 5,297 more rows
 ```
 
 -   Note that `pivot_longer()` is more versatile than `gather()`.
@@ -2860,7 +2859,7 @@ billboard %>%
 ```
 
 ```
-## # A tibble: 5,307 x 5
+## # A tibble: 5,307 × 5
 ##    artist  track                   date.entered week   rank
 ##    <chr>   <chr>                   <date>       <chr> <dbl>
 ##  1 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk1      87
@@ -2873,7 +2872,7 @@ billboard %>%
 ##  8 2Ge+her The Hardest Part Of ... 2000-09-02   wk1      91
 ##  9 2Ge+her The Hardest Part Of ... 2000-09-02   wk2      87
 ## 10 2Ge+her The Hardest Part Of ... 2000-09-02   wk3      92
-## # ... with 5,297 more rows
+## # … with 5,297 more rows
 ```
 
 -   Make It Wider
@@ -2886,7 +2885,7 @@ table2
 ```
 
 ```
-## # A tibble: 12 x 4
+## # A tibble: 12 × 4
 ##    country      year type            count
 ##    <chr>       <int> <chr>           <int>
 ##  1 Afghanistan  1999 cases             745
@@ -2930,7 +2929,7 @@ table2 %>%
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   country      year  cases population
 ##   <chr>       <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
@@ -2952,7 +2951,7 @@ table2 %>%
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   country      year  cases population
 ##   <chr>       <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
@@ -2989,7 +2988,7 @@ stocks
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##    year   qtr return
 ##   <dbl> <dbl>  <dbl>
 ## 1  2019     1      1
@@ -3015,7 +3014,7 @@ stocks %>%
 ```
 
 ```
-## # A tibble: 4 x 3
+## # A tibble: 4 × 3
 ##     qtr `2019` `2020`
 ##   <dbl>  <dbl>  <dbl>
 ## 1     1      1     NA
@@ -3036,7 +3035,7 @@ fish_encounters
 ```
 
 ```
-## # A tibble: 114 x 3
+## # A tibble: 114 × 3
 ##    fish  station  seen
 ##    <fct> <fct>   <int>
 ##  1 4842  Release     1
@@ -3049,7 +3048,7 @@ fish_encounters
 ##  8 4842  BCE2        1
 ##  9 4842  BCW2        1
 ## 10 4842  MAE         1
-## # ... with 104 more rows
+## # … with 104 more rows
 ```
 
 1.  Which pivot should you use?
@@ -3116,7 +3115,7 @@ table3
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##   country      year rate             
 ## * <chr>       <int> <chr>            
 ## 1 Afghanistan  1999 745/19987071     
@@ -3139,7 +3138,7 @@ table3 %>%
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   country      year cases  population
 ##   <chr>       <int> <chr>  <chr>     
 ## 1 Afghanistan  1999 745    19987071  
@@ -3163,7 +3162,7 @@ table3 %>%
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   country      year  cases population
 ##   <chr>       <int>  <int>      <int>
 ## 1 Afghanistan  1999    745   19987071
@@ -3242,7 +3241,7 @@ fill(stock, year)
 ```
 
 ```
-## # A tibble: 8 x 3
+## # A tibble: 8 × 3
 ##   quarter  year stock_price
 ##   <chr>   <dbl>       <dbl>
 ## 1 Q1       2000       10000
@@ -3277,7 +3276,7 @@ fill(yelp_rate, restraurant_type) # default is direction = .down
 ```
 
 ```
-## # A tibble: 9 x 3
+## # A tibble: 9 × 3
 ##   neighborhood restraurant_type popularity_rate
 ##   <chr>        <chr>                      <dbl>
 ## 1 N1           Chinese                        5
@@ -3296,7 +3295,7 @@ fill(yelp_rate, restraurant_type, .direction = "up")
 ```
 
 ```
-## # A tibble: 9 x 3
+## # A tibble: 9 × 3
 ##   neighborhood restraurant_type popularity_rate
 ##   <chr>        <chr>                      <dbl>
 ## 1 N1           Chinese                        5
@@ -3311,7 +3310,6 @@ fill(yelp_rate, restraurant_type, .direction = "up")
 ```
 
 ## Manipulating (dplyr)
-
 
 ![Concept map for dplyr. By Monica Alonso, Greg Wilson.](https://education.rstudio.com/blog/2020/09/concept-maps/dplyr.png)
 
@@ -3423,7 +3421,7 @@ df %>%
 ```
 
 ```
-## # A tibble: 3 x 1
+## # A tibble: 3 × 1
 ##    Year
 ##   <dbl>
 ## 1  2011
@@ -3445,27 +3443,27 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 17 x 14
+## # A tibble: 17 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-##  1 Taun We     213  NA   none       grey       black             NA fema~ femin~
-##  2 Adi Gal~    184  50   none       dark       blue              NA fema~ femin~
-##  3 Ayla Se~    178  55   none       blue       hazel             48 fema~ femin~
-##  4 Shaak Ti    178  57   none       red, blue~ black             NA fema~ femin~
-##  5 Luminar~    170  56.2 black      yellow     blue              58 fema~ femin~
-##  6 Zam Wes~    168  55   blonde     fair, gre~ yellow            NA fema~ femin~
-##  7 Jocasta~    167  NA   white      fair       blue              NA fema~ femin~
-##  8 Barriss~    166  50   black      yellow     blue              40 fema~ femin~
-##  9 Beru Wh~    165  75   brown      light      blue              47 fema~ femin~
-## 10 Dormé       165  NA   brown      light      brown             NA fema~ femin~
-## 11 Padmé A~    165  45   brown      light      brown             46 fema~ femin~
-## 12 Shmi Sk~    163  NA   black      fair       brown             72 fema~ femin~
-## 13 Cordé       157  NA   brown      light      brown             NA fema~ femin~
-## 14 Leia Or~    150  49   brown      light      brown             19 fema~ femin~
-## 15 Mon Mot~    150  NA   auburn     fair       blue              48 fema~ femin~
-## 16 R4-P17       96  NA   none       silver, r~ red, blue         NA none  femin~
-## 17 Rey          NA  NA   brown      light      hazel             NA fema~ femin~
-## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+##  1 Taun We     213  NA   none       grey       black             NA fema… femin…
+##  2 Adi Gal…    184  50   none       dark       blue              NA fema… femin…
+##  3 Ayla Se…    178  55   none       blue       hazel             48 fema… femin…
+##  4 Shaak Ti    178  57   none       red, blue… black             NA fema… femin…
+##  5 Luminar…    170  56.2 black      yellow     blue              58 fema… femin…
+##  6 Zam Wes…    168  55   blonde     fair, gre… yellow            NA fema… femin…
+##  7 Jocasta…    167  NA   white      fair       blue              NA fema… femin…
+##  8 Barriss…    166  50   black      yellow     blue              40 fema… femin…
+##  9 Beru Wh…    165  75   brown      light      blue              47 fema… femin…
+## 10 Dormé       165  NA   brown      light      brown             NA fema… femin…
+## 11 Padmé A…    165  45   brown      light      brown             46 fema… femin…
+## 12 Shmi Sk…    163  NA   black      fair       brown             72 fema… femin…
+## 13 Cordé       157  NA   brown      light      brown             NA fema… femin…
+## 14 Leia Or…    150  49   brown      light      brown             19 fema… femin…
+## 15 Mon Mot…    150  NA   auburn     fair       blue              48 fema… femin…
+## 16 R4-P17       96  NA   none       silver, r… red, blue         NA none  femin…
+## 17 Rey          NA  NA   brown      light      hazel             NA fema… femin…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3525,7 +3523,7 @@ df %>%
 ```
 
 ```
-## # A tibble: 19 x 2
+## # A tibble: 19 × 2
 ##    heights char 
 ##      <int> <chr>
 ##  1     161 none 
@@ -3560,14 +3558,14 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 4 x 14
+## # A tibble: 4 × 14
 ##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
 ##   <chr>      <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-## 1 Owen Lars    178   120 brown, gr~ light      blue              52 male  mascu~
-## 2 Beru Whi~    165    75 brown      light      blue              47 fema~ femin~
-## 3 Quarsh P~    183    NA black      dark       brown             62 <NA>  <NA>  
-## 4 Cliegg L~    183    NA brown      fair       blue              82 male  mascu~
-## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## 1 Owen Lars    178   120 brown, gr… light      blue              52 male  mascu…
+## 2 Beru Whi…    165    75 brown      light      blue              47 fema… femin…
+## 3 Quarsh P…    183    NA black      dark       brown             62 <NA>  <NA>  
+## 4 Cliegg L…    183    NA brown      fair       blue              82 male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3579,14 +3577,14 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 4 x 14
+## # A tibble: 4 × 14
 ##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
 ##   <chr>      <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-## 1 Owen Lars    178   120 brown, gr~ light      blue              52 male  mascu~
-## 2 Beru Whi~    165    75 brown      light      blue              47 fema~ femin~
-## 3 Quarsh P~    183    NA black      dark       brown             62 <NA>  <NA>  
-## 4 Cliegg L~    183    NA brown      fair       blue              82 male  mascu~
-## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## 1 Owen Lars    178   120 brown, gr… light      blue              52 male  mascu…
+## 2 Beru Whi…    165    75 brown      light      blue              47 fema… femin…
+## 3 Quarsh P…    183    NA black      dark       brown             62 <NA>  <NA>  
+## 4 Cliegg L…    183    NA brown      fair       blue              82 male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3598,20 +3596,20 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 31 x 14
+## # A tibble: 31 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-##  1 Leia Or~    150  49   brown      light      brown           19   fema~ femin~
-##  2 Beru Wh~    165  75   brown      light      blue            47   fema~ femin~
-##  3 Biggs D~    183  84   black      light      brown           24   male  mascu~
-##  4 Chewbac~    228 112   brown      unknown    blue           200   male  mascu~
-##  5 Han Solo    180  80   brown      fair       brown           29   male  mascu~
-##  6 Wedge A~    170  77   brown      fair       hazel           21   male  mascu~
-##  7 Jek Ton~    180 110   brown      fair       blue            NA   male  mascu~
-##  8 Boba Fe~    183  78.2 black      fair       brown           31.5 male  mascu~
-##  9 Lando C~    177  79   black      dark       brown           31   male  mascu~
-## 10 Arvel C~     NA  NA   brown      fair       brown           NA   male  mascu~
-## # ... with 21 more rows, and 5 more variables: homeworld <chr>, species <chr>,
+##  1 Leia Or…    150  49   brown      light      brown           19   fema… femin…
+##  2 Beru Wh…    165  75   brown      light      blue            47   fema… femin…
+##  3 Biggs D…    183  84   black      light      brown           24   male  mascu…
+##  4 Chewbac…    228 112   brown      unknown    blue           200   male  mascu…
+##  5 Han Solo    180  80   brown      fair       brown           29   male  mascu…
+##  6 Wedge A…    170  77   brown      fair       hazel           21   male  mascu…
+##  7 Jek Ton…    180 110   brown      fair       blue            NA   male  mascu…
+##  8 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…
+##  9 Lando C…    177  79   black      dark       brown           31   male  mascu…
+## 10 Arvel C…     NA  NA   brown      fair       brown           NA   male  mascu…
+## # … with 21 more rows, and 5 more variables: homeworld <chr>, species <chr>,
 ## #   films <list>, vehicles <list>, starships <list>
 ```
 
@@ -3629,16 +3627,16 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 6 x 14
+## # A tibble: 6 × 14
 ##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
 ##   <chr>      <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-## 1 Yarael P~    264    NA none       white      yellow            NA male  mascu~
-## 2 Tarfful      234   136 brown      brown      blue              NA male  mascu~
-## 3 Lama Su      229    88 none       grey       black             NA male  mascu~
-## 4 Chewbacca    228   112 brown      unknown    blue             200 male  mascu~
-## 5 Roos Tar~    224    82 none       grey       orange            NA male  mascu~
-## 6 Grievous     216   159 none       brown, wh~ green, y~         NA male  mascu~
-## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## 1 Yarael P…    264    NA none       white      yellow            NA male  mascu…
+## 2 Tarfful      234   136 brown      brown      blue              NA male  mascu…
+## 3 Lama Su      229    88 none       grey       black             NA male  mascu…
+## 4 Chewbacca    228   112 brown      unknown    blue             200 male  mascu…
+## 5 Roos Tar…    224    82 none       grey       orange            NA male  mascu…
+## 6 Grievous     216   159 none       brown, wh… green, y…         NA male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3658,19 +3656,19 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 9 x 14
+## # A tibble: 9 × 14
 ##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
 ##   <chr>      <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-## 1 Arvel Cr~     NA    NA brown      fair       brown           NA   male  mascu~
+## 1 Arvel Cr…     NA    NA brown      fair       brown           NA   male  mascu…
 ## 2 Sly Moore    178    48 none       pale       white           NA   <NA>  <NA>  
-## 3 IG-88        200   140 none       metal      red             15   none  mascu~
-## 4 Biggs Da~    183    84 black      light      brown           24   male  mascu~
-## 5 Leia Org~    150    49 brown      light      brown           19   fema~ femin~
-## 6 Watto        137    NA black      blue, grey yellow          NA   male  mascu~
-## 7 Jabba De~    175  1358 <NA>       green-tan~ orange         600   herm~ mascu~
-## 8 Darth Va~    202   136 none       white      yellow          41.9 male  mascu~
-## 9 Taun We      213    NA none       grey       black           NA   fema~ femin~
-## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## 3 IG-88        200   140 none       metal      red             15   none  mascu…
+## 4 Biggs Da…    183    84 black      light      brown           24   male  mascu…
+## 5 Leia Org…    150    49 brown      light      brown           19   fema… femin…
+## 6 Watto        137    NA black      blue, grey yellow          NA   male  mascu…
+## 7 Jabba De…    175  1358 <NA>       green-tan… orange         600   herm… mascu…
+## 8 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…
+## 9 Taun We      213    NA none       grey       black           NA   fema… femin…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3685,18 +3683,18 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 8 x 14
+## # A tibble: 8 × 14
 ##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
 ##   <chr>      <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-## 1 Raymus A~    188  79   brown      light      brown           NA   male  mascu~
-## 2 Tarfful      234 136   brown      brown      blue            NA   male  mascu~
-## 3 Han Solo     180  80   brown      fair       brown           29   male  mascu~
-## 4 Mas Amed~    196  NA   none       blue       blue            NA   male  mascu~
-## 5 Barriss ~    166  50   black      yellow     blue            40   fema~ femin~
-## 6 Darth Va~    202 136   none       white      yellow          41.9 male  mascu~
-## 7 Finn          NA  NA   black      dark       dark            NA   male  mascu~
-## 8 Boba Fett    183  78.2 black      fair       brown           31.5 male  mascu~
-## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## 1 Raymus A…    188  79   brown      light      brown           NA   male  mascu…
+## 2 Tarfful      234 136   brown      brown      blue            NA   male  mascu…
+## 3 Han Solo     180  80   brown      fair       brown           29   male  mascu…
+## 4 Mas Amed…    196  NA   none       blue       blue            NA   male  mascu…
+## 5 Barriss …    166  50   black      yellow     blue            40   fema… femin…
+## 6 Darth Va…    202 136   none       white      yellow          41.9 male  mascu…
+## 7 Finn          NA  NA   black      dark       dark            NA   male  mascu…
+## 8 Boba Fett    183  78.2 black      fair       brown           31.5 male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3713,30 +3711,30 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 20 x 14
+## # A tibble: 20 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-##  1 Quarsh ~    183    NA black      dark       brown             62 <NA>  <NA>  
-##  2 Poe Dam~     NA    NA brown      light      brown             NA male  mascu~
-##  3 Mas Ame~    196    NA none       blue       blue              NA male  mascu~
-##  4 Zam Wes~    168    55 blonde     fair, gre~ yellow            NA fema~ femin~
-##  5 Leia Or~    150    49 brown      light      brown             19 fema~ femin~
-##  6 Jango F~    183    79 black      tan        brown             66 male  mascu~
-##  7 Ben Qua~    163    65 none       grey, gre~ orange            NA male  mascu~
-##  8 Padmé A~    165    45 brown      light      brown             46 fema~ femin~
-##  9 Mace Wi~    188    84 none       dark       brown             72 male  mascu~
-## 10 R2-D2        96    32 <NA>       white, bl~ red               33 none  mascu~
-## 11 Shmi Sk~    163    NA black      fair       brown             72 fema~ femin~
-## 12 Ratts T~     79    15 none       grey, blue unknown           NA male  mascu~
-## 13 Nute Gu~    191    90 none       mottled g~ red               NA male  mascu~
-## 14 Darth M~    175    80 none       red        yellow            54 male  mascu~
-## 15 Bib For~    180    NA none       pale       pink              NA male  mascu~
-## 16 C-3PO       167    75 <NA>       gold       yellow           112 none  mascu~
-## 17 Yarael ~    264    NA none       white      yellow            NA male  mascu~
-## 18 Ki-Adi-~    198    82 white      pale       yellow            92 male  mascu~
-## 19 BB8          NA    NA none       none       black             NA none  mascu~
-## 20 Eeth Ko~    171    NA black      brown      brown             NA male  mascu~
-## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+##  1 Quarsh …    183    NA black      dark       brown             62 <NA>  <NA>  
+##  2 Poe Dam…     NA    NA brown      light      brown             NA male  mascu…
+##  3 Mas Ame…    196    NA none       blue       blue              NA male  mascu…
+##  4 Zam Wes…    168    55 blonde     fair, gre… yellow            NA fema… femin…
+##  5 Leia Or…    150    49 brown      light      brown             19 fema… femin…
+##  6 Jango F…    183    79 black      tan        brown             66 male  mascu…
+##  7 Ben Qua…    163    65 none       grey, gre… orange            NA male  mascu…
+##  8 Padmé A…    165    45 brown      light      brown             46 fema… femin…
+##  9 Mace Wi…    188    84 none       dark       brown             72 male  mascu…
+## 10 R2-D2        96    32 <NA>       white, bl… red               33 none  mascu…
+## 11 Shmi Sk…    163    NA black      fair       brown             72 fema… femin…
+## 12 Ratts T…     79    15 none       grey, blue unknown           NA male  mascu…
+## 13 Nute Gu…    191    90 none       mottled g… red               NA male  mascu…
+## 14 Darth M…    175    80 none       red        yellow            54 male  mascu…
+## 15 Bib For…    180    NA none       pale       pink              NA male  mascu…
+## 16 C-3PO       167    75 <NA>       gold       yellow           112 none  mascu…
+## 17 Yarael …    264    NA none       white      yellow            NA male  mascu…
+## 18 Ki-Adi-…    198    82 white      pale       yellow            92 male  mascu…
+## 19 BB8          NA    NA none       none       black             NA none  mascu…
+## 20 Eeth Ko…    171    NA black      brown      brown             NA male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3751,30 +3749,30 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 20 x 14
+## # A tibble: 20 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-##  1 Owen La~    178   120 brown, gr~ light      blue              52 male  mascu~
-##  2 Ki-Adi-~    198    82 white      pale       yellow            92 male  mascu~
-##  3 Captain~     NA    NA unknown    unknown    unknown           NA <NA>  <NA>  
-##  4 Gregar ~    185    85 black      dark       brown             NA male  mascu~
-##  5 R5-D4        97    32 <NA>       white, red red               NA none  mascu~
-##  6 Ackbar      180    83 none       brown mot~ orange            41 male  mascu~
-##  7 Wedge A~    170    77 brown      fair       hazel             21 male  mascu~
-##  8 Dormé       165    NA brown      light      brown             NA fema~ femin~
-##  9 Rey          NA    NA brown      light      hazel             NA fema~ femin~
-## 10 IG-88       200   140 none       metal      red               15 none  mascu~
-## 11 Roos Ta~    224    82 none       grey       orange            NA male  mascu~
-## 12 Shmi Sk~    163    NA black      fair       brown             72 fema~ femin~
-## 13 R2-D2        96    32 <NA>       white, bl~ red               33 none  mascu~
-## 14 Poe Dam~     NA    NA brown      light      brown             NA male  mascu~
-## 15 Obi-Wan~    182    77 auburn, w~ fair       blue-gray         57 male  mascu~
-## 16 Plo Koon    188    80 none       orange     black             22 male  mascu~
-## 17 Tarfful     234   136 brown      brown      blue              NA male  mascu~
-## 18 Lobot       175    79 none       light      blue              37 male  mascu~
-## 19 San Hill    191    NA none       grey       gold              NA male  mascu~
-## 20 Kit Fis~    196    87 none       green      black             NA male  mascu~
-## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+##  1 Owen La…    178   120 brown, gr… light      blue              52 male  mascu…
+##  2 Ki-Adi-…    198    82 white      pale       yellow            92 male  mascu…
+##  3 Captain…     NA    NA unknown    unknown    unknown           NA <NA>  <NA>  
+##  4 Gregar …    185    85 black      dark       brown             NA male  mascu…
+##  5 R5-D4        97    32 <NA>       white, red red               NA none  mascu…
+##  6 Ackbar      180    83 none       brown mot… orange            41 male  mascu…
+##  7 Wedge A…    170    77 brown      fair       hazel             21 male  mascu…
+##  8 Dormé       165    NA brown      light      brown             NA fema… femin…
+##  9 Rey          NA    NA brown      light      hazel             NA fema… femin…
+## 10 IG-88       200   140 none       metal      red               15 none  mascu…
+## 11 Roos Ta…    224    82 none       grey       orange            NA male  mascu…
+## 12 Shmi Sk…    163    NA black      fair       brown             72 fema… femin…
+## 13 R2-D2        96    32 <NA>       white, bl… red               33 none  mascu…
+## 14 Poe Dam…     NA    NA brown      light      brown             NA male  mascu…
+## 15 Obi-Wan…    182    77 auburn, w… fair       blue-gray         57 male  mascu…
+## 16 Plo Koon    188    80 none       orange     black             22 male  mascu…
+## 17 Tarfful     234   136 brown      brown      blue              NA male  mascu…
+## 18 Lobot       175    79 none       light      blue              37 male  mascu…
+## 19 San Hill    191    NA none       grey       gold              NA male  mascu…
+## 20 Kit Fis…    196    87 none       green      black             NA male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3788,20 +3786,20 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 10 x 14
+## # A tibble: 10 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-##  1 Darth V~    202   136 none       white      yellow          41.9 male  mascu~
-##  2 Chewbac~    228   112 brown      unknown    blue           200   male  mascu~
-##  3 Roos Ta~    224    82 none       grey       orange          NA   male  mascu~
-##  4 Rugor N~    206    NA none       green      orange          NA   male  mascu~
-##  5 Yarael ~    264    NA none       white      yellow          NA   male  mascu~
-##  6 Lama Su     229    88 none       grey       black           NA   male  mascu~
-##  7 Taun We     213    NA none       grey       black           NA   fema~ femin~
-##  8 Grievous    216   159 none       brown, wh~ green, y~       NA   male  mascu~
-##  9 Tarfful     234   136 brown      brown      blue            NA   male  mascu~
-## 10 Tion Me~    206    80 none       grey       black           NA   male  mascu~
-## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+##  1 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+##  2 Chewbac…    228   112 brown      unknown    blue           200   male  mascu…
+##  3 Roos Ta…    224    82 none       grey       orange          NA   male  mascu…
+##  4 Rugor N…    206    NA none       green      orange          NA   male  mascu…
+##  5 Yarael …    264    NA none       white      yellow          NA   male  mascu…
+##  6 Lama Su     229    88 none       grey       black           NA   male  mascu…
+##  7 Taun We     213    NA none       grey       black           NA   fema… femin…
+##  8 Grievous    216   159 none       brown, wh… green, y…       NA   male  mascu…
+##  9 Tarfful     234   136 brown      brown      blue            NA   male  mascu…
+## 10 Tion Me…    206    80 none       grey       black           NA   male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3812,20 +3810,20 @@ starwars %>%
 ```
 
 ```
-## # A tibble: 10 x 14
+## # A tibble: 10 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-##  1 Yarael ~    264    NA none       white      yellow          NA   male  mascu~
-##  2 Tarfful     234   136 brown      brown      blue            NA   male  mascu~
-##  3 Lama Su     229    88 none       grey       black           NA   male  mascu~
-##  4 Chewbac~    228   112 brown      unknown    blue           200   male  mascu~
-##  5 Roos Ta~    224    82 none       grey       orange          NA   male  mascu~
-##  6 Grievous    216   159 none       brown, wh~ green, y~       NA   male  mascu~
-##  7 Taun We     213    NA none       grey       black           NA   fema~ femin~
-##  8 Rugor N~    206    NA none       green      orange          NA   male  mascu~
-##  9 Tion Me~    206    80 none       grey       black           NA   male  mascu~
-## 10 Darth V~    202   136 none       white      yellow          41.9 male  mascu~
-## # ... with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+##  1 Yarael …    264    NA none       white      yellow          NA   male  mascu…
+##  2 Tarfful     234   136 brown      brown      blue            NA   male  mascu…
+##  3 Lama Su     229    88 none       grey       black           NA   male  mascu…
+##  4 Chewbac…    228   112 brown      unknown    blue           200   male  mascu…
+##  5 Roos Ta…    224    82 none       grey       orange          NA   male  mascu…
+##  6 Grievous    216   159 none       brown, wh… green, y…       NA   male  mascu…
+##  7 Taun We     213    NA none       grey       black           NA   fema… femin…
+##  8 Rugor N…    206    NA none       green      orange          NA   male  mascu…
+##  9 Tion Me…    206    80 none       grey       black           NA   male  mascu…
+## 10 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
@@ -3852,7 +3850,7 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 6
+## # A tibble: 83 × 6
 ##    sleep_total sleep_rem sleep_cycle awake  brainwt  bodywt
 ##          <dbl>     <dbl>       <dbl> <dbl>    <dbl>   <dbl>
 ##  1        12.1      NA        NA      11.9 NA        50    
@@ -3865,7 +3863,7 @@ msleep %>%
 ##  8         7        NA        NA      17   NA         0.045
 ##  9        10.1       2.9       0.333  13.9  0.07     14    
 ## 10         3        NA        NA      21    0.0982   14.8  
-## # ... with 73 more rows
+## # … with 73 more rows
 ```
 
 **Challenge**
@@ -3881,7 +3879,7 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 3
+## # A tibble: 83 × 3
 ##    sleep_total sleep_rem sleep_cycle
 ##          <dbl>     <dbl>       <dbl>
 ##  1        12.1      NA        NA    
@@ -3894,7 +3892,7 @@ msleep %>%
 ##  8         7        NA        NA    
 ##  9        10.1       2.9       0.333
 ## 10         3        NA        NA    
-## # ... with 73 more rows
+## # … with 73 more rows
 ```
 
 -   Select the columns that include either "sleep" or "wt" in their names
@@ -3909,7 +3907,7 @@ msleep[grepl("sleep|wt", names(msleep))]
 ```
 
 ```
-## # A tibble: 83 x 5
+## # A tibble: 83 × 5
 ##    sleep_total sleep_rem sleep_cycle  brainwt  bodywt
 ##          <dbl>     <dbl>       <dbl>    <dbl>   <dbl>
 ##  1        12.1      NA        NA     NA        50    
@@ -3922,7 +3920,7 @@ msleep[grepl("sleep|wt", names(msleep))]
 ##  8         7        NA        NA     NA         0.045
 ##  9        10.1       2.9       0.333  0.07     14    
 ## 10         3        NA        NA      0.0982   14.8  
-## # ... with 73 more rows
+## # … with 73 more rows
 ```
 
 **Challenge**
@@ -3938,7 +3936,7 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 2
+## # A tibble: 83 × 2
 ##     brainwt  bodywt
 ##       <dbl>   <dbl>
 ##  1 NA        50    
@@ -3951,7 +3949,7 @@ msleep %>%
 ##  8 NA         0.045
 ##  9  0.07     14    
 ## 10  0.0982   14.8  
-## # ... with 73 more rows
+## # … with 73 more rows
 ```
 
 -   Select the columns that end with "wt"
@@ -3963,7 +3961,7 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 2
+## # A tibble: 83 × 2
 ##     brainwt  bodywt
 ##       <dbl>   <dbl>
 ##  1 NA        50    
@@ -3976,7 +3974,7 @@ msleep %>%
 ##  8 NA         0.045
 ##  9  0.07     14    
 ## 10  0.0982   14.8  
-## # ... with 73 more rows
+## # … with 73 more rows
 ```
 
 -   Select the columns using both beginning and end string patterns
@@ -3990,7 +3988,7 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 2
+## # A tibble: 83 × 2
 ##     brainwt  bodywt
 ##       <dbl>   <dbl>
 ##  1 NA        50    
@@ -4003,7 +4001,7 @@ msleep %>%
 ##  8 NA         0.045
 ##  9  0.07     14    
 ## 10  0.0982   14.8  
-## # ... with 73 more rows
+## # … with 73 more rows
 ```
 
 -   Select the order and move it before everything
@@ -4016,20 +4014,20 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 11
+## # A tibble: 83 × 11
 ##    order  name  genus vore  conservation sleep_total sleep_rem sleep_cycle awake
 ##    <chr>  <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
-##  1 Carni~ Chee~ Acin~ carni lc                  12.1      NA        NA      11.9
-##  2 Prima~ Owl ~ Aotus omni  <NA>                17         1.8      NA       7  
-##  3 Roden~ Moun~ Aplo~ herbi nt                  14.4       2.4      NA       9.6
-##  4 Soric~ Grea~ Blar~ omni  lc                  14.9       2.3       0.133   9.1
-##  5 Artio~ Cow   Bos   herbi domesticated         4         0.7       0.667  20  
-##  6 Pilosa Thre~ Brad~ herbi <NA>                14.4       2.2       0.767   9.6
-##  7 Carni~ Nort~ Call~ carni vu                   8.7       1.4       0.383  15.3
-##  8 Roden~ Vesp~ Calo~ <NA>  <NA>                 7        NA        NA      17  
-##  9 Carni~ Dog   Canis carni domesticated        10.1       2.9       0.333  13.9
-## 10 Artio~ Roe ~ Capr~ herbi lc                   3        NA        NA      21  
-## # ... with 73 more rows, and 2 more variables: brainwt <dbl>, bodywt <dbl>
+##  1 Carni… Chee… Acin… carni lc                  12.1      NA        NA      11.9
+##  2 Prima… Owl … Aotus omni  <NA>                17         1.8      NA       7  
+##  3 Roden… Moun… Aplo… herbi nt                  14.4       2.4      NA       9.6
+##  4 Soric… Grea… Blar… omni  lc                  14.9       2.3       0.133   9.1
+##  5 Artio… Cow   Bos   herbi domesticated         4         0.7       0.667  20  
+##  6 Pilosa Thre… Brad… herbi <NA>                14.4       2.2       0.767   9.6
+##  7 Carni… Nort… Call… carni vu                   8.7       1.4       0.383  15.3
+##  8 Roden… Vesp… Calo… <NA>  <NA>                 7        NA        NA      17  
+##  9 Carni… Dog   Canis carni domesticated        10.1       2.9       0.333  13.9
+## 10 Artio… Roe … Capr… herbi lc                   3        NA        NA      21  
+## # … with 73 more rows, and 2 more variables: brainwt <dbl>, bodywt <dbl>
 ```
 
 -   Select variables from a character vector.
@@ -4060,7 +4058,7 @@ msleep %>%
 ```
 
 ```
-## # A tibble: 83 x 2
+## # A tibble: 83 × 2
 ##    week8 week12
 ##    <lgl> <lgl> 
 ##  1 NA    NA    
@@ -4073,7 +4071,7 @@ msleep %>%
 ##  8 NA    NA    
 ##  9 NA    NA    
 ## 10 NA    NA    
-## # ... with 73 more rows
+## # … with 73 more rows
 ```
 
 **Additional tips**
@@ -4091,7 +4089,7 @@ messy_df
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##   ColNum1 COLNUM2 `COL & NUM3`
 ##     <dbl>   <dbl>        <dbl>
 ## 1       1       2            3
@@ -4104,7 +4102,7 @@ janitor::clean_names(messy_df)
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##   col_num1 colnum2 col_num3
 ##      <dbl>   <dbl>    <dbl>
 ## 1        1       2        3
@@ -4580,7 +4578,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent     n
 ##   <fct>     <int>
 ## 1 Africa      624
@@ -4600,7 +4598,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent     n
 ##   <fct>     <int>
 ## 1 Africa      624
@@ -4618,7 +4616,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent     n
 ##   <fct>     <int>
 ## 1 Africa      624
@@ -4645,7 +4643,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##       n
 ##   <int>
 ## 1  1704
@@ -4665,7 +4663,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 1,704 x 3
+## # A tibble: 1,704 × 3
 ##    continent country         n
 ##    <fct>     <fct>       <int>
 ##  1 Asia      Afghanistan  1704
@@ -4678,7 +4676,7 @@ gapminder %>%
 ##  8 Asia      Afghanistan  1704
 ##  9 Asia      Afghanistan  1704
 ## 10 Asia      Afghanistan  1704
-## # ... with 1,694 more rows
+## # … with 1,694 more rows
 ```
 
 -   `add_count`
@@ -4694,7 +4692,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 1,704 x 7
+## # A tibble: 1,704 × 7
 ## # Groups:   continent [5]
 ##    country     continent  year lifeExp      pop gdpPercap     n
 ##    <fct>       <fct>     <int>   <dbl>    <int>     <dbl> <int>
@@ -4708,7 +4706,7 @@ gapminder %>%
 ##  8 Afghanistan Asia       1987    40.8 13867957      852.    33
 ##  9 Afghanistan Asia       1992    41.7 16317921      649.    33
 ## 10 Afghanistan Asia       1997    41.8 22227415      635.    33
-## # ... with 1,694 more rows
+## # … with 1,694 more rows
 ```
 
 **Challenge**
@@ -4724,7 +4722,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 60 x 3
+## # A tibble: 60 × 3
 ## # Groups:   continent, year [60]
 ##    continent  year     n
 ##    <fct>     <int> <int>
@@ -4738,7 +4736,7 @@ gapminder %>%
 ##  8 Africa     1987    52
 ##  9 Africa     1992    52
 ## 10 Africa     1997    52
-## # ... with 50 more rows
+## # … with 50 more rows
 ```
 
 ```r
@@ -4749,7 +4747,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 60 x 3
+## # A tibble: 60 × 3
 ## # Groups:   continent [5]
 ##    continent  year     n
 ##    <fct>     <int> <int>
@@ -4763,7 +4761,7 @@ gapminder %>%
 ##  8 Africa     1987    52
 ##  9 Africa     1992    52
 ## 10 Africa     1997    52
-## # ... with 50 more rows
+## # … with 50 more rows
 ```
 
 `count()` is a simple function, but it is still helpful to learn an essential concept underlying complex data wrangling: split-apply-combine strategy. For more information, read Wickham's article (2011) ["The Split-Apply-Combine Strategy for Data Analysis"](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.182.5667&rep=rep1&type=pdf) published in the *Journal of Statistical Software* (especially pages 7-8). [`plyr`](https://github.com/hadley/plyr) was the package (retired) that demonstrated this idea, which has evolved into two directions: [dplyr](https://dplyr.tidyverse.org/) (for data frames) and [purrr](https://purrr.tidyverse.org/) (for lists)
@@ -4787,7 +4785,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 4
+## # A tibble: 5 × 4
 ##   continent     n mean_gdp sd_gdp
 ##   <fct>     <int>    <dbl>  <dbl>
 ## 1 Africa      624    2194.  2828.
@@ -4820,85 +4818,111 @@ pacman::p_load(
 tablea %>% kableExtra::kable()
 ```
 
-
-\begin{tabular}{l|r|r|r}
-\hline
-continent & n & mean\_gdp & sd\_gdp\\
-\hline
-Africa & 624 & 2193.755 & 2827.930\\
-\hline
-Americas & 300 & 7136.110 & 6396.764\\
-\hline
-Asia & 396 & 7902.150 & 14045.373\\
-\hline
-Europe & 360 & 14469.476 & 9355.213\\
-\hline
-Oceania & 24 & 18621.609 & 6358.983\\
-\hline
-\end{tabular}
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> continent </th>
+   <th style="text-align:right;"> n </th>
+   <th style="text-align:right;"> mean_gdp </th>
+   <th style="text-align:right;"> sd_gdp </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Africa </td>
+   <td style="text-align:right;"> 624 </td>
+   <td style="text-align:right;"> 2193.755 </td>
+   <td style="text-align:right;"> 2827.930 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Americas </td>
+   <td style="text-align:right;"> 300 </td>
+   <td style="text-align:right;"> 7136.110 </td>
+   <td style="text-align:right;"> 6396.764 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Asia </td>
+   <td style="text-align:right;"> 396 </td>
+   <td style="text-align:right;"> 7902.150 </td>
+   <td style="text-align:right;"> 14045.373 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Europe </td>
+   <td style="text-align:right;"> 360 </td>
+   <td style="text-align:right;"> 14469.476 </td>
+   <td style="text-align:right;"> 9355.213 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Oceania </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 18621.609 </td>
+   <td style="text-align:right;"> 6358.983 </td>
+  </tr>
+</tbody>
+</table>
 
 ```r
 # For HTML and MS Office suite
 tablea %>% flextable::flextable()
 ```
 
-\providecommand{\docline}[3]{\noalign{\global\setlength{\arrayrulewidth}{#1}}\arrayrulecolor[HTML]{#2}\cline{#3}}
+```{=html}
+<template id="e0393cfd-5dcb-4b3a-a7a0-2ecc9e12e2cb"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-b2e71ee0{}.cl-b2e0007e{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b2e01654{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b2e01655{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b2e056aa{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b2e056b4{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b2e056b5{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b2e056be{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b2e056bf{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b2e056c8{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-b2e71ee0'>
+```
 
-\setlength{\tabcolsep}{2pt}
+```{=html}
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-b2e056bf"><p class="cl-b2e01654"><span class="cl-b2e0007e">continent</span></p></td><td class="cl-b2e056c8"><p class="cl-b2e01655"><span class="cl-b2e0007e">n</span></p></td><td class="cl-b2e056c8"><p class="cl-b2e01655"><span class="cl-b2e0007e">mean_gdp</span></p></td><td class="cl-b2e056c8"><p class="cl-b2e01655"><span class="cl-b2e0007e">sd_gdp</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b2e056aa"><p class="cl-b2e01654"><span class="cl-b2e0007e">Africa</span></p></td><td class="cl-b2e056b4"><p class="cl-b2e01655"><span class="cl-b2e0007e">624</span></p></td><td class="cl-b2e056b4"><p class="cl-b2e01655"><span class="cl-b2e0007e">2,193.755</span></p></td><td class="cl-b2e056b4"><p class="cl-b2e01655"><span class="cl-b2e0007e">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b2e056aa"><p class="cl-b2e01654"><span class="cl-b2e0007e">Americas</span></p></td><td class="cl-b2e056b4"><p class="cl-b2e01655"><span class="cl-b2e0007e">300</span></p></td><td class="cl-b2e056b4"><p class="cl-b2e01655"><span class="cl-b2e0007e">7,136.110</span></p></td><td class="cl-b2e056b4"><p class="cl-b2e01655"><span class="cl-b2e0007e">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b2e056aa"><p class="cl-b2e01654"><span class="cl-b2e0007e">Asia</span></p></td><td class="cl-b2e056b4"><p class="cl-b2e01655"><span class="cl-b2e0007e">396</span></p></td><td class="cl-b2e056b4"><p class="cl-b2e01655"><span class="cl-b2e0007e">7,902.150</span></p></td><td class="cl-b2e056b4"><p class="cl-b2e01655"><span class="cl-b2e0007e">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b2e056aa"><p class="cl-b2e01654"><span class="cl-b2e0007e">Europe</span></p></td><td class="cl-b2e056b4"><p class="cl-b2e01655"><span class="cl-b2e0007e">360</span></p></td><td class="cl-b2e056b4"><p class="cl-b2e01655"><span class="cl-b2e0007e">14,469.476</span></p></td><td class="cl-b2e056b4"><p class="cl-b2e01655"><span class="cl-b2e0007e">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b2e056b5"><p class="cl-b2e01654"><span class="cl-b2e0007e">Oceania</span></p></td><td class="cl-b2e056be"><p class="cl-b2e01655"><span class="cl-b2e0007e">24</span></p></td><td class="cl-b2e056be"><p class="cl-b2e01655"><span class="cl-b2e0007e">18,621.609</span></p></td><td class="cl-b2e056be"><p class="cl-b2e01655"><span class="cl-b2e0007e">6,358.983</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="7ddc9de4-28f1-4f00-87be-c2b96789343c"></div>
+<script>
+var dest = document.getElementById("7ddc9de4-28f1-4f00-87be-c2b96789343c");
+var template = document.getElementById("e0393cfd-5dcb-4b3a-a7a0-2ecc9e12e2cb");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
 
-\renewcommand*{\arraystretch}{1.5}
-
-\begin{longtable}[c]{|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}}
-
-
-
-\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}
-
-\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{continent}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{n}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{mean\_gdp}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{sd\_gdp}}}} \\
-
-\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}
-
-\endfirsthead
-
-\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}
-
-\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{continent}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{n}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{mean\_gdp}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{sd\_gdp}}}} \\
-
-\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}\endhead
-
-
-
-\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{Africa}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{624}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{2,193.755}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{2,827.930}}}} \\
-
-
-
-
-
-\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{Americas}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{300}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{7,136.110}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{6,396.764}}}} \\
-
-
-
-
-
-\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{Asia}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{396}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{7,902.150}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{14,045.373}}}} \\
-
-
-
-
-
-\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{Europe}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{360}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{14,469.476}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{9,355.213}}}} \\
-
-
-
-
-
-\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{Oceania}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{24}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{18,621.609}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedleft}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{DejaVu Sans}{6,358.983}}}} \\
-
-\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}
-
-
-
-\end{longtable}
+```
 
 #### Scoped summaries
 
@@ -4923,11 +4947,11 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 30
-##   Albania Austria Belgium `Bosnia and Herzeg~` Bulgaria Croatia `Czech Republic`
+## # A tibble: 1 × 30
+##   Albania Austria Belgium `Bosnia and Herzeg…` Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
 ## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
 ## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
 ## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
@@ -4944,11 +4968,11 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 31
+## # A tibble: 1 × 31
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     <dbl>   <dbl>   <dbl>   <dbl>                    <dbl>    <dbl>   <dbl>
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # ... with 24 more variables: `Czech Republic` <dbl>, Denmark <dbl>,
+## # … with 24 more variables: `Czech Republic` <dbl>, Denmark <dbl>,
 ## #   Finland <dbl>, France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>,
 ## #   Iceland <dbl>, Ireland <dbl>, Italy <dbl>, Montenegro <dbl>,
 ## #   Netherlands <dbl>, Norway <dbl>, Poland <dbl>, Portugal <dbl>,
@@ -4971,11 +4995,11 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 30
-##   Albania Austria Belgium `Bosnia and Herzeg~` Bulgaria Croatia `Czech Republic`
+## # A tibble: 1 × 30
+##   Albania Austria Belgium `Bosnia and Herzeg…` Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
 ## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
 ## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
 ## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
@@ -4992,7 +5016,7 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##   lifeExp
 ##     <dbl>
 ## 1    71.9
@@ -5023,11 +5047,11 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 30
-##   Albania Austria Belgium `Bosnia and Herzeg~` Bulgaria Croatia `Czech Republic`
+## # A tibble: 1 × 30
+##   Albania Austria Belgium `Bosnia and Herzeg…` Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
 ## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
 ## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
 ## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
@@ -5041,11 +5065,11 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 30
-##   Albania Austria Belgium `Bosnia and Herzeg~` Bulgaria Croatia `Czech Republic`
+## # A tibble: 1 × 30
+##   Albania Austria Belgium `Bosnia and Herzeg…` Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
 ## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
 ## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
 ## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
@@ -5070,16 +5094,16 @@ wide_gapminder %>%
 ##   # Good
 ##   data %>% select(where(is.double))
 ## 
-## i Please update your code.
+## ℹ Please update your code.
 ## This message is displayed once per session.
 ```
 
 ```
-## # A tibble: 1 x 31
+## # A tibble: 1 × 31
 ##   lifeExp Albania Austria Belgium `Bosnia and Herzegovina` Bulgaria Croatia
 ##     <dbl>   <dbl>   <dbl>   <dbl>                    <dbl>    <dbl>   <dbl>
 ## 1    71.9   3255.  20412.  19901.                    3485.    6384.   9332.
-## # ... with 24 more variables: `Czech Republic` <dbl>, Denmark <dbl>,
+## # … with 24 more variables: `Czech Republic` <dbl>, Denmark <dbl>,
 ## #   Finland <dbl>, France <dbl>, Germany <dbl>, Greece <dbl>, Hungary <dbl>,
 ## #   Iceland <dbl>, Ireland <dbl>, Italy <dbl>, Montenegro <dbl>,
 ## #   Netherlands <dbl>, Norway <dbl>, Poland <dbl>, Portugal <dbl>,
@@ -5100,11 +5124,11 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 30
-##   Albania Austria Belgium `Bosnia and Herzeg~` Bulgaria Croatia `Czech Republic`
+## # A tibble: 1 × 30
+##   Albania Austria Belgium `Bosnia and Herzeg…` Bulgaria Croatia `Czech Republic`
 ##     <dbl>   <dbl>   <dbl>                <dbl>    <dbl>   <dbl>            <dbl>
 ## 1   3255.  20412.  19901.                3485.    6384.   9332.           13920.
-## # ... with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
+## # … with 23 more variables: Denmark <dbl>, Finland <dbl>, France <dbl>,
 ## #   Germany <dbl>, Greece <dbl>, Hungary <dbl>, Iceland <dbl>, Ireland <dbl>,
 ## #   Italy <dbl>, Montenegro <dbl>, Netherlands <dbl>, Norway <dbl>,
 ## #   Poland <dbl>, Portugal <dbl>, Romania <dbl>, Serbia <dbl>,
@@ -5121,7 +5145,7 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##   lifeExp
 ##     <dbl>
 ## 1    71.9
@@ -5133,7 +5157,7 @@ wide_gapminder %>%
 ```
 
 ```
-## # A tibble: 360 x 2
+## # A tibble: 360 × 2
 ##    Albania Austria
 ##      <dbl>   <dbl>
 ##  1   1601.      NA
@@ -5146,7 +5170,7 @@ wide_gapminder %>%
 ##  8   3739.      NA
 ##  9   2497.      NA
 ## 10   3193.      NA
-## # ... with 350 more rows
+## # … with 350 more rows
 ```
 
 Note that this workshop does not cover creating and manipulating variables using `mutate()` because many techniques you learned from playing with `summarise()` can be directly applied to `mutate()`.
@@ -5175,7 +5199,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent mean_gdp
 ##   <fct>        <dbl>
 ## 1 Africa       2194.
@@ -5198,7 +5222,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 5 × 3
 ##   continent mean_gdp count
 ##   <fct>        <dbl> <int>
 ## 1 Africa       2194.   624
@@ -5224,7 +5248,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent IQR_gdp
 ##   <fct>       <dbl>
 ## 1 Africa      1616.
@@ -5247,7 +5271,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 5 × 3
 ##   continent min_gdp max_gdp
 ##   <fct>       <dbl>   <dbl>
 ## 1 Africa       241.  21951.
@@ -5270,7 +5294,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 5 × 3
 ##   continent first_gdp last_gdp
 ##   <fct>         <dbl>    <dbl>
 ## 1 Africa        2449.     470.
@@ -5291,7 +5315,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 5 × 3
 ##   continent first_gdp last_gdp
 ##   <fct>         <dbl>    <dbl>
 ## 1 Africa         241.   21951.
@@ -5311,7 +5335,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent    ns
 ##   <fct>     <int>
 ## 1 Africa      624
@@ -5331,7 +5355,7 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   continent rich_countries
 ##   <fct>              <dbl>
 ## 1 Africa           0.00481
@@ -5414,8 +5438,8 @@ planes %>%
 ```
 
 ```
-## # A tibble: 0 x 2
-## # ... with 2 variables: tailnum <chr>, n <int>
+## # A tibble: 0 × 2
+## # … with 2 variables: tailnum <chr>, n <int>
 ```
 **Optional**
 
@@ -5486,7 +5510,7 @@ inner_join(x, y)
 ```
 
 ```
-## # A tibble: 4 x 3
+## # A tibble: 4 × 3
 ##     key val_x val_y
 ##   <int> <chr> <chr>
 ## 1     1 x1    y1   
@@ -5513,7 +5537,7 @@ left_join(x, y)
 ```
 
 ```
-## # A tibble: 4 x 3
+## # A tibble: 4 × 3
 ##     key val_x val_y
 ##   <int> <chr> <chr>
 ## 1     1 x1    y1   
@@ -5536,7 +5560,7 @@ right_join(x, y)
 ```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 5 × 3
 ##     key val_x val_y
 ##   <int> <chr> <chr>
 ## 1     1 x1    y1   
@@ -5560,7 +5584,7 @@ full_join(x, y)
 ```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 5 × 3
 ##     key val_x val_y
 ##   <int> <chr> <chr>
 ## 1     1 x1    y1   
@@ -5650,7 +5674,7 @@ flights %>%
 ```
 
 ```
-## # A tibble: 722 x 2
+## # A tibble: 722 × 2
 ##    tailnum     n
 ##    <chr>   <int>
 ##  1 <NA>     2512
@@ -5663,7 +5687,7 @@ flights %>%
 ##  8 N534MQ    364
 ##  9 N542MQ    363
 ## 10 N531MQ    349
-## # ... with 712 more rows
+## # … with 712 more rows
 ```
 
 ## Modeling (broom)
@@ -5701,16 +5725,16 @@ head(nested)
 ```
 
 ```
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ## # Groups:   country, continent [6]
 ##   country     continent data             
 ##   <fct>       <fct>     <list>           
-## 1 Afghanistan Asia      <tibble [12 x 4]>
-## 2 Albania     Europe    <tibble [12 x 4]>
-## 3 Algeria     Africa    <tibble [12 x 4]>
-## 4 Angola      Africa    <tibble [12 x 4]>
-## 5 Argentina   Americas  <tibble [12 x 4]>
-## 6 Australia   Oceania   <tibble [12 x 4]>
+## 1 Afghanistan Asia      <tibble [12 × 4]>
+## 2 Albania     Europe    <tibble [12 × 4]>
+## 3 Algeria     Africa    <tibble [12 × 4]>
+## 4 Angola      Africa    <tibble [12 × 4]>
+## 5 Argentina   Americas  <tibble [12 × 4]>
+## 6 Australia   Oceania   <tibble [12 × 4]>
 ```
 
 ```r
@@ -5718,7 +5742,7 @@ nested$data %>% pluck(1)
 ```
 
 ```
-## # A tibble: 12 x 4
+## # A tibble: 12 × 4
 ##     year lifeExp      pop gdpPercap
 ##    <int>   <dbl>    <int>     <dbl>
 ##  1  1952    28.8  8425333      779.
@@ -5757,16 +5781,16 @@ head(nested)
 ```
 
 ```
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ## # Groups:   country, continent [6]
 ##   country     continent data              models
 ##   <fct>       <fct>     <list>            <list>
-## 1 Afghanistan Asia      <tibble [12 x 4]> <lm>  
-## 2 Albania     Europe    <tibble [12 x 4]> <lm>  
-## 3 Algeria     Africa    <tibble [12 x 4]> <lm>  
-## 4 Angola      Africa    <tibble [12 x 4]> <lm>  
-## 5 Argentina   Americas  <tibble [12 x 4]> <lm>  
-## 6 Australia   Oceania   <tibble [12 x 4]> <lm>
+## 1 Afghanistan Asia      <tibble [12 × 4]> <lm>  
+## 2 Albania     Europe    <tibble [12 × 4]> <lm>  
+## 3 Algeria     Africa    <tibble [12 × 4]> <lm>  
+## 4 Angola      Africa    <tibble [12 × 4]> <lm>  
+## 5 Argentina   Americas  <tibble [12 × 4]> <lm>  
+## 6 Australia   Oceania   <tibble [12 × 4]> <lm>
 ```
 
 S3 is part of R's object-oriented systems. If you need further information, check out [this section](http://adv-r.had.co.nz/S3.html) in Hadley's Advanced R.
@@ -5795,11 +5819,11 @@ glanced$glance %>% pluck(1)
 ```
 
 ```
-## # A tibble: 1 x 12
+## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>        <dbl> <dbl>  <dbl> <dbl> <dbl>
 ## 1     0.948         0.942  1.22      181. 0.0000000984     1  -18.3  42.7  44.1
-## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 ```r
@@ -5824,7 +5848,7 @@ glanced %>%
 ```
 
 ```
-## # A tibble: 142 x 16
+## # A tibble: 142 × 16
 ## # Groups:   country, continent [142]
 ##    country     continent data     models r.squared adj.r.squared sigma statistic
 ##    <fct>       <fct>     <list>   <list>     <dbl>         <dbl> <dbl>     <dbl>
@@ -5834,11 +5858,11 @@ glanced %>%
 ##  4 Zambia      Africa    <tibble> <lm>      0.0598      -0.0342   4.53     0.636
 ##  5 Swaziland   Africa    <tibble> <lm>      0.0682      -0.0250   6.64     0.732
 ##  6 Lesotho     Africa    <tibble> <lm>      0.0849      -0.00666  5.93     0.927
-##  7 Cote d'Ivo~ Africa    <tibble> <lm>      0.283        0.212    3.93     3.95 
-##  8 South Afri~ Africa    <tibble> <lm>      0.312        0.244    4.74     4.54 
+##  7 Cote d'Ivo… Africa    <tibble> <lm>      0.283        0.212    3.93     3.95 
+##  8 South Afri… Africa    <tibble> <lm>      0.312        0.244    4.74     4.54 
 ##  9 Uganda      Africa    <tibble> <lm>      0.342        0.276    3.19     5.20 
-## 10 Congo, Dem~ Africa    <tibble> <lm>      0.348        0.283    2.43     5.34 
-## # ... with 132 more rows, and 8 more variables: p.value <dbl>, df <dbl>,
+## 10 Congo, Dem… Africa    <tibble> <lm>      0.348        0.283    2.43     5.34 
+## # … with 132 more rows, and 8 more variables: p.value <dbl>, df <dbl>,
 ## #   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>, df.residual <int>,
 ## #   nobs <int>
 ```
@@ -5850,7 +5874,7 @@ glanced %>%
   geom_jitter(width = 0.5)
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-167-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-167-1.png" width="672" />
 
 - tidy() 
 
@@ -6017,7 +6041,7 @@ ggplot(aes(x = log_pop, y = lifeExp), data = gapminder) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-170-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-170-1.png" width="672" />
 
 ```r
 # Calculate the observed statistic: Observed slopes
@@ -6048,7 +6072,7 @@ null_slopes %>%
 ```
 
 ```
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##   p_value
 ##     <dbl>
 ## 1   0.972
@@ -6063,7 +6087,7 @@ visualize(null_slopes) +
   )
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-170-2.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-170-2.png" width="672" />
 
 ## Visualizing (ggplot2)
 
@@ -6142,7 +6166,7 @@ anscombe_processed %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-174-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-174-1.png" width="672" />
 
 ### The grammar of graphics 
 
@@ -6186,13 +6210,13 @@ p <- ggplot(
 p
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-175-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-175-1.png" width="672" />
 
 ```r
 p + geom_point()
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-175-2.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-175-2.png" width="672" />
 
 ```r
 p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
@@ -6202,7 +6226,7 @@ p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-175-3.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-175-3.png" width="672" />
 
 ```r
 # the shaded area is the standard error for the line
@@ -6223,11 +6247,11 @@ midwest
 ```
 
 ```
-## # A tibble: 437 x 28
+## # A tibble: 437 × 28
 ##      PID county  state  area poptotal popdensity popwhite popblack popamerindian
 ##    <int> <chr>   <chr> <dbl>    <int>      <dbl>    <int>    <int>         <int>
 ##  1   561 ADAMS   IL    0.052    66090      1271.    63917     1702            98
-##  2   562 ALEXAN~ IL    0.014    10626       759      7054     3496            19
+##  2   562 ALEXAN… IL    0.014    10626       759      7054     3496            19
 ##  3   563 BOND    IL    0.022    14991       681.    14477      429            35
 ##  4   564 BOONE   IL    0.017    30806      1812.    29344      127            46
 ##  5   565 BROWN   IL    0.018     5836       324.     5264      547            14
@@ -6235,14 +6259,13 @@ midwest
 ##  7   567 CALHOUN IL    0.017     5322       313.     5298        1             8
 ##  8   568 CARROLL IL    0.027    16805       622.    16519      111            30
 ##  9   569 CASS    IL    0.024    13437       560.    13384       16             8
-## 10   570 CHAMPA~ IL    0.058   173025      2983.   146506    16559           331
-## # ... with 427 more rows, and 19 more variables: popasian <int>,
-## #   popother <int>, percwhite <dbl>, percblack <dbl>, percamerindan <dbl>,
-## #   percasian <dbl>, percother <dbl>, popadults <int>, perchsd <dbl>,
-## #   percollege <dbl>, percprof <dbl>, poppovertyknown <int>,
-## #   percpovertyknown <dbl>, percbelowpoverty <dbl>, percchildbelowpovert <dbl>,
-## #   percadultpoverty <dbl>, percelderlypoverty <dbl>, inmetro <int>,
-## #   category <chr>
+## 10   570 CHAMPA… IL    0.058   173025      2983.   146506    16559           331
+## # … with 427 more rows, and 19 more variables: popasian <int>, popother <int>,
+## #   percwhite <dbl>, percblack <dbl>, percamerindan <dbl>, percasian <dbl>,
+## #   percother <dbl>, popadults <int>, perchsd <dbl>, percollege <dbl>,
+## #   percprof <dbl>, poppovertyknown <int>, percpovertyknown <dbl>,
+## #   percbelowpoverty <dbl>, percchildbelowpovert <dbl>, percadultpoverty <dbl>,
+## #   percelderlypoverty <dbl>, inmetro <int>, category <chr>
 ```
 
 
@@ -6263,7 +6286,7 @@ midwest %>%
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-178-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-178-1.png" width="672" />
 
 ```r
 midwest %>%
@@ -6271,7 +6294,7 @@ midwest %>%
   geom_histogram(bins = 10) # only 10 bins.
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-178-2.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-178-2.png" width="672" />
 
 ```r
 ggplot(
@@ -6282,7 +6305,7 @@ ggplot(
   scale_fill_viridis_d()
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-178-3.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-178-3.png" width="672" />
 
 #### Density 
 
@@ -6295,7 +6318,7 @@ midwest %>%
   scale_fill_viridis_d()
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-179-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-179-1.png" width="672" />
 
 ### Advanced aes (size, color)
 
@@ -6315,7 +6338,7 @@ ggplot(
   geom_point()
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-180-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-180-1.png" width="672" />
 
 
 ```r
@@ -6331,7 +6354,7 @@ ggplot(
   scale_color_viridis_d()
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-181-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-181-1.png" width="672" />
 
 
 ```r
@@ -6347,7 +6370,7 @@ ggplot(
   geom_point()
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-182-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-182-1.png" width="672" />
 
 Aesthetics also can be mapped per Geom. 
 
@@ -6361,7 +6384,7 @@ p + geom_point() +
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-183-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-183-1.png" width="672" />
 
 ```r
 p + geom_point(alpha = 0.3) + # alpha controls transparency
@@ -6372,7 +6395,7 @@ p + geom_point(alpha = 0.3) + # alpha controls transparency
 ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-183-2.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-183-2.png" width="672" />
 
 ```r
 p + geom_point(alpha = 0.3) + # alpha controls transparency
@@ -6383,7 +6406,7 @@ p + geom_point(alpha = 0.3) + # alpha controls transparency
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-183-3.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-183-3.png" width="672" />
 
 
 ```r
@@ -6409,7 +6432,7 @@ ggplot(
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-184-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-184-1.png" width="672" />
 
 ```r
 ggplot(
@@ -6437,7 +6460,7 @@ ggplot(
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-184-2.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-184-2.png" width="672" />
 
 ### Co-ordinates and scales 
 
@@ -6447,7 +6470,7 @@ p + geom_point() +
   coord_flip() # coord_type
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-185-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-185-1.png" width="672" />
 
 The data is heavily bunched up against the left side. 
 
@@ -6455,14 +6478,14 @@ The data is heavily bunched up against the left side.
 p + geom_point() # without scaling
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-186-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-186-1.png" width="672" />
 
 ```r
 p + geom_point() +
   scale_x_log10() # scales the axis of a plot to a log 10 basis
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-186-2.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-186-2.png" width="672" />
 
 ```r
 p + geom_point() +
@@ -6474,7 +6497,7 @@ p + geom_point() +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-186-3.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-186-3.png" width="672" />
 
 
 ### Labels and guides 
@@ -6499,7 +6522,7 @@ p + geom_point(alpha = 0.3) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-187-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-187-1.png" width="672" />
 
 6. Themes
 
@@ -6521,7 +6544,7 @@ p + geom_point(alpha = 0.3) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-188-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-188-1.png" width="672" />
 
 ### ggsave 
 
@@ -6560,13 +6583,13 @@ p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
 p + geom_point()
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-190-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-190-1.png" width="672" />
 
 ```r
 p + geom_line()
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-190-2.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-190-2.png" width="672" />
 
 `geom_line` joins up all the lines for each particular year in the order they appear in the dataset. `ggplot2` does not know the yearly observations in your data are grouped by country. 
 
@@ -6578,7 +6601,7 @@ gapminder
 ```
 
 ```
-## # A tibble: 1,704 x 7
+## # A tibble: 1,704 × 7
 ##    country     continent  year lifeExp      pop gdpPercap log_pop
 ##    <fct>       <fct>     <int>   <dbl>    <int>     <dbl>   <dbl>
 ##  1 Afghanistan Asia       1952    28.8  8425333      779.    15.9
@@ -6591,7 +6614,7 @@ gapminder
 ##  8 Afghanistan Asia       1987    40.8 13867957      852.    16.4
 ##  9 Afghanistan Asia       1992    41.7 16317921      649.    16.6
 ## 10 Afghanistan Asia       1997    41.8 22227415      635.    16.9
-## # ... with 1,694 more rows
+## # … with 1,694 more rows
 ```
 
 #### Facetting 
@@ -6609,13 +6632,13 @@ p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
 p + geom_line(aes(group = country)) # group by, # The outlier is Kuwait.
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-192-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-1.png" width="672" />
 
 ```r
 p + geom_line(aes(group = country)) + facet_wrap(~continent) # facetting
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-192-2.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-2.png" width="672" />
 
 ```r
 p + geom_line(aes(group = country), color = "gray70") +
@@ -6634,7 +6657,7 @@ p + geom_line(aes(group = country), color = "gray70") +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-192-3.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-192-3.png" width="672" />
 
 
 ```r
@@ -6654,7 +6677,7 @@ p + geom_line(aes(group = country), color = "gray70") +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-193-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-193-1.png" width="672" />
 
 
 ### Transforming
@@ -6690,7 +6713,7 @@ ggplot(data = gapminder_formatted, aes(x = year, y = lifeExp_mean, color = conti
   )
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-194-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-194-1.png" width="672" />
 
 ```r
 gapminder %>%
@@ -6714,7 +6737,7 @@ gapminder %>%
 ## `.groups` argument.
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-194-2.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-194-2.png" width="672" />
 
 
 ```r
@@ -6741,7 +6764,7 @@ gapminder %>%
 ## `.groups` argument.
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-195-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-1.png" width="672" />
 
 ```r
 # geom bar
@@ -6767,7 +6790,7 @@ gapminder %>%
 ## `.groups` argument.
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-195-2.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-2.png" width="672" />
 
 ```r
 # no facet
@@ -6792,7 +6815,7 @@ gapminder %>%
 ## `.groups` argument.
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-195-3.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-195-3.png" width="672" />
 
 
 ```r
@@ -6818,7 +6841,7 @@ gapminder %>%
 ## `.groups` argument.
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-196-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-196-1.png" width="672" />
 
 
 ```r
@@ -6845,7 +6868,7 @@ gapminder %>%
 ## `.groups` argument.
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-197-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-197-1.png" width="672" />
 
 ```r
 # reorder
@@ -6871,7 +6894,7 @@ gapminder %>%
 ## `.groups` argument.
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-197-2.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-197-2.png" width="672" />
 
 #### Plotting text
 
@@ -6896,7 +6919,7 @@ gapminder %>%
 ## `.groups` argument.
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-198-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-198-1.png" width="672" />
 
 
 ```r
@@ -6920,7 +6943,7 @@ gapminder %>%
 ## `.groups` argument.
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-199-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-199-1.png" width="672" />
 
 
 ```r
@@ -6945,16 +6968,16 @@ gapminder %>%
 ```
 
 ```
-## Warning: ggrepel: 6 unlabeled data points (too many overlaps). Consider
-## increasing max.overlaps
-```
-
-```
 ## Warning: ggrepel: 2 unlabeled data points (too many overlaps). Consider
 ## increasing max.overlaps
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-200-1.pdf)<!-- --> 
+```
+## Warning: ggrepel: 1 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps
+```
+
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-200-1.png" width="672" />
 
 ### Ploting models 
 
@@ -6985,7 +7008,7 @@ gapminder %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-201-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-201-1.png" width="672" />
 
 #### Extracting model outcomes 
 
@@ -7029,7 +7052,7 @@ p + geom_point() +
   theme_bw()
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-203-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-203-1.png" width="672" />
 
 ##### Confidence intervals
 
@@ -7047,7 +7070,7 @@ out_conf %>%
   theme_bw()
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-204-1.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-204-1.png" width="672" />
 
 ```r
 # another way to do it (errorbar)
@@ -7059,6 +7082,6 @@ out_conf %>%
   theme_bw()
 ```
 
-![](03_tidy_data_files/figure-latex/unnamed-chunk-204-2.pdf)<!-- --> 
+<img src="03_tidy_data_files/figure-html/unnamed-chunk-204-2.png" width="672" />
 
 You can also calculate marginal effects using the [`marginaleffects`](https://vincentarelbundock.github.io/marginaleffects/) package. 

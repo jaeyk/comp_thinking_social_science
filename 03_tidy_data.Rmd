@@ -1225,7 +1225,6 @@ df$a[df$a < 5] <- 0
 df
 ```
 
-
 ## Tidyverse
 
 ### The Big Picture
@@ -1635,7 +1634,6 @@ fill(yelp_rate, restraurant_type, .direction = "up")
 ```
 
 ## Manipulating (dplyr)
-
 
 ![Concept map for dplyr. By Monica Alonso, Greg Wilson.](https://education.rstudio.com/blog/2020/09/concept-maps/dplyr.png)
 

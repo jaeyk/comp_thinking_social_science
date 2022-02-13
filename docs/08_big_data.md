@@ -496,7 +496,7 @@ flights %>%
 ##  8        -3       -14
 ##  9        -3        -8
 ## 10        -2         8
-## # ... with more rows
+## # … with more rows
 ```
 
 **Challenge 4** 
@@ -526,7 +526,7 @@ flights %>%
 ##  8      229       53  259.
 ##  9      944      140  405.
 ## 10      733      138  319.
-## # ... with more rows
+## # … with more rows
 ```
 
 **Challenge 5** 
@@ -556,7 +556,7 @@ flights %>%
 ##  8  2013     1     1      557            600        -3      709            723
 ##  9  2013     1     1      557            600        -3      838            846
 ## 10  2013     1     1      558            600        -2      753            745
-## # ... with more rows, and 11 more variables: arr_delay <dbl>, carrier <chr>,
+## # … with more rows, and 11 more variables: arr_delay <dbl>, carrier <chr>,
 ## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,
 ## #   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dbl>
 ```
@@ -578,18 +578,16 @@ WHERE origin LIKE 'J%'; -- Find any origin values that start with "J"
 ```
 
 
-\begin{table}
+<div class="knitsql-table">
 
-\caption{(\#tab:unnamed-chunk-16)1 records}
-\centering
-\begin{tabular}[t]{l}
-\hline
-origin\\
-\hline
-JFK\\
-\hline
-\end{tabular}
-\end{table}
+
+Table: (\#tab:unnamed-chunk-16)1 records
+
+|origin |
+|:------|
+|JFK    |
+
+</div>
 
 `%` is one of the wildcards you can use for string matching. `%` matches any number of characters. So, `J%` matches Jae, JFK, Joseph, etc. `_` is another useful wildcard that matches exactly one character. So `J_` matches only JA, JE, etc. If wildcards are not enough, then you should consider using regular expressions.
 
@@ -649,7 +647,7 @@ flights %>%
 ##  8     1     8  2.55
 ##  9     1     9  2.28
 ## 10     1    10  2.84
-## # ... with more rows
+## # … with more rows
 ```
 
 **Challenge 8** 
@@ -700,36 +698,25 @@ ON f.year = w.year AND f.month = w.month
 ```
 
 
-\begin{table}
+<div class="knitsql-table">
 
-\caption{(\#tab:unnamed-chunk-20)Displaying records 1 - 10}
-\centering
-\begin{tabular}[t]{r|r|r|r|r|r|r|r|r|l|r|l|l|l|r|r|r|r|r|l|r|r|r|r|r|r|r|r|r|r|r|r|r|r}
-\hline
-year & month & day & dep\_time & sched\_dep\_time & dep\_delay & arr\_time & sched\_arr\_time & arr\_delay & carrier & flight & tailnum & origin & dest & air\_time & distance & hour & minute & time\_hour & origin & year & month & day & hour & temp & dewp & humid & wind\_dir & wind\_speed & wind\_gust & precip & pressure & visib & time\_hour\\
-\hline
-2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 1 & 39.02 & 26.06 & 59.37 & 270 & 10.35702 & NA & 0 & 1012.0 & 10 & 1357020000\\
-\hline
-2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 2 & 39.02 & 26.96 & 61.63 & 250 & 8.05546 & NA & 0 & 1012.3 & 10 & 1357023600\\
-\hline
-2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 3 & 39.02 & 28.04 & 64.43 & 240 & 11.50780 & NA & 0 & 1012.5 & 10 & 1357027200\\
-\hline
-2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 4 & 39.92 & 28.04 & 62.21 & 250 & 12.65858 & NA & 0 & 1012.2 & 10 & 1357030800\\
-\hline
-2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 5 & 39.02 & 28.04 & 64.43 & 260 & 12.65858 & NA & 0 & 1011.9 & 10 & 1357034400\\
-\hline
-2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 6 & 37.94 & 28.04 & 67.21 & 240 & 11.50780 & NA & 0 & 1012.4 & 10 & 1357038000\\
-\hline
-2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 7 & 39.02 & 28.04 & 64.43 & 240 & 14.96014 & NA & 0 & 1012.2 & 10 & 1357041600\\
-\hline
-2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 8 & 39.92 & 28.04 & 62.21 & 250 & 10.35702 & NA & 0 & 1012.2 & 10 & 1357045200\\
-\hline
-2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 9 & 39.92 & 28.04 & 62.21 & 260 & 14.96014 & NA & 0 & 1012.7 & 10 & 1357048800\\
-\hline
-2013 & 1 & 1 & 517 & 515 & 2 & 830 & 819 & 11 & UA & 1545 & N14228 & EWR & IAH & 227 & 1400 & 5 & 15 & 1357034400 & EWR & 2013 & 1 & 1 & 10 & 41.00 & 28.04 & 59.65 & 260 & 13.80936 & NA & 0 & 1012.4 & 10 & 1357052400\\
-\hline
-\end{tabular}
-\end{table}
+
+Table: (\#tab:unnamed-chunk-20)Displaying records 1 - 10
+
+| year| month| day| dep_time| sched_dep_time| dep_delay| arr_time| sched_arr_time| arr_delay|carrier | flight|tailnum |origin |dest | air_time| distance| hour| minute|  time_hour|origin | year| month| day| hour|  temp|  dewp| humid| wind_dir| wind_speed| wind_gust| precip| pressure| visib|  time_hour|
+|----:|-----:|---:|--------:|--------------:|---------:|--------:|--------------:|---------:|:-------|------:|:-------|:------|:----|--------:|--------:|----:|------:|----------:|:------|----:|-----:|---:|----:|-----:|-----:|-----:|--------:|----------:|---------:|------:|--------:|-----:|----------:|
+| 2013|     1|   1|      517|            515|         2|      830|            819|        11|UA      |   1545|N14228  |EWR    |IAH  |      227|     1400|    5|     15| 1357034400|EWR    | 2013|     1|   1|    1| 39.02| 26.06| 59.37|      270|   10.35702|        NA|      0|   1012.0|    10| 1357020000|
+| 2013|     1|   1|      517|            515|         2|      830|            819|        11|UA      |   1545|N14228  |EWR    |IAH  |      227|     1400|    5|     15| 1357034400|EWR    | 2013|     1|   1|    2| 39.02| 26.96| 61.63|      250|    8.05546|        NA|      0|   1012.3|    10| 1357023600|
+| 2013|     1|   1|      517|            515|         2|      830|            819|        11|UA      |   1545|N14228  |EWR    |IAH  |      227|     1400|    5|     15| 1357034400|EWR    | 2013|     1|   1|    3| 39.02| 28.04| 64.43|      240|   11.50780|        NA|      0|   1012.5|    10| 1357027200|
+| 2013|     1|   1|      517|            515|         2|      830|            819|        11|UA      |   1545|N14228  |EWR    |IAH  |      227|     1400|    5|     15| 1357034400|EWR    | 2013|     1|   1|    4| 39.92| 28.04| 62.21|      250|   12.65858|        NA|      0|   1012.2|    10| 1357030800|
+| 2013|     1|   1|      517|            515|         2|      830|            819|        11|UA      |   1545|N14228  |EWR    |IAH  |      227|     1400|    5|     15| 1357034400|EWR    | 2013|     1|   1|    5| 39.02| 28.04| 64.43|      260|   12.65858|        NA|      0|   1011.9|    10| 1357034400|
+| 2013|     1|   1|      517|            515|         2|      830|            819|        11|UA      |   1545|N14228  |EWR    |IAH  |      227|     1400|    5|     15| 1357034400|EWR    | 2013|     1|   1|    6| 37.94| 28.04| 67.21|      240|   11.50780|        NA|      0|   1012.4|    10| 1357038000|
+| 2013|     1|   1|      517|            515|         2|      830|            819|        11|UA      |   1545|N14228  |EWR    |IAH  |      227|     1400|    5|     15| 1357034400|EWR    | 2013|     1|   1|    7| 39.02| 28.04| 64.43|      240|   14.96014|        NA|      0|   1012.2|    10| 1357041600|
+| 2013|     1|   1|      517|            515|         2|      830|            819|        11|UA      |   1545|N14228  |EWR    |IAH  |      227|     1400|    5|     15| 1357034400|EWR    | 2013|     1|   1|    8| 39.92| 28.04| 62.21|      250|   10.35702|        NA|      0|   1012.2|    10| 1357045200|
+| 2013|     1|   1|      517|            515|         2|      830|            819|        11|UA      |   1545|N14228  |EWR    |IAH  |      227|     1400|    5|     15| 1357034400|EWR    | 2013|     1|   1|    9| 39.92| 28.04| 62.21|      260|   14.96014|        NA|      0|   1012.7|    10| 1357048800|
+| 2013|     1|   1|      517|            515|         2|      830|            819|        11|UA      |   1545|N14228  |EWR    |IAH  |      227|     1400|    5|     15| 1357034400|EWR    | 2013|     1|   1|   10| 41.00| 28.04| 59.65|      260|   13.80936|        NA|      0|   1012.4|    10| 1357052400|
+
+</div>
 
 Can anyone explain why SQL query using `dplyr` then translated by `show_query()` looks more complex than the above? ([Hint](https://stackoverflow.com/questions/36808295/how-to-remove-duplicate-columns-from-join-in-sql))
 
@@ -781,7 +768,7 @@ origin_flights_plot <- ggplot(df) +
 origin_flights_plot
 ```
 
-![](08_big_data_files/figure-latex/unnamed-chunk-23-1.pdf)<!-- --> 
+<img src="08_big_data_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 
 #### Disconnect 
 

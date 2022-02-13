@@ -985,7 +985,7 @@ df
 ```
 
 ```
-## # A tibble: 5 x 4
+## # A tibble: 5 × 4
 ##       a     b     c     d
 ##   <dbl> <dbl> <dbl> <dbl>
 ## 1     3     3     3     1
@@ -1032,7 +1032,7 @@ df
 ```
 
 ```
-## # A tibble: 5 x 4
+## # A tibble: 5 × 4
 ##       a     b     c     d
 ##   <dbl> <dbl> <dbl> <dbl>
 ## 1     3     3     3     1
@@ -1058,7 +1058,7 @@ df
 ```
 
 ```
-## # A tibble: 5 x 4
+## # A tibble: 5 × 4
 ##       a     b     c     d
 ##   <dbl> <dbl> <dbl> <dbl>
 ## 1     3     3     3     1
@@ -1128,7 +1128,7 @@ toc()
 ```
 
 ```
-## 0.008 sec elapsed
+## 0.006 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1142,7 +1142,7 @@ toc()
 ```
 
 ```
-## 0.003 sec elapsed
+## 0.001 sec elapsed
 ```
 
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
@@ -1168,11 +1168,11 @@ map_mark
 ```
 
 ```
-## # A tibble: 1 x 6
+## # A tibble: 1 × 6
 ##   expression                                              min   median `itr/sec`
 ##   <bch:expr>                                         <bch:tm> <bch:tm>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)   61.4us   72.5us    13247.
-## # ... with 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)   54.1µs   65.2µs    14217.
+## # … with 2 more variables: mem_alloc <bch:byt>, gc/sec <dbl>
 ```
 
 #### Applications 
@@ -1236,7 +1236,7 @@ tidied_models$ols[1]
 
 ```
 ## [[1]]
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)   62.9      1.61       39.2  2.88e-23
@@ -1273,7 +1273,7 @@ qplot(y_means) +
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-32-1.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 
 * rerun() + map()
 
@@ -1297,7 +1297,7 @@ y_means_tidy <- map_dbl(y_tidy, mean)
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-33-1.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
 ## Automate 2 or 2+ tasks {#map2}
 
@@ -1473,7 +1473,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-39-1.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-39-1.png" width="672" />
 
 ```r
 airquality %>%
@@ -1489,7 +1489,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-39-2.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-39-2.png" width="672" />
 
 ```r
 airquality %>%
@@ -1505,7 +1505,7 @@ airquality %>%
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-39-3.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-39-3.png" width="672" />
 
 ### Solution 
 
@@ -1551,7 +1551,7 @@ airquality %>%
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-41-1.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-41-1.png" width="672" />
 
 - The next step is to write an automatic plotting function. 
 
@@ -1585,7 +1585,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 42 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-43-1.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-1.png" width="672" />
 
 ```
 ## 
@@ -1596,7 +1596,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-43-2.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-2.png" width="672" />
 
 ```
 ## 
@@ -1607,7 +1607,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-43-3.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-3.png" width="672" />
 
 ```
 ## 
@@ -1618,7 +1618,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-43-4.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-4.png" width="672" />
 
 ```
 ## 
@@ -1629,7 +1629,7 @@ map(2:ncol(airquality), create_point_plot)
 ## Warning: Removed 37 rows containing missing values (geom_point).
 ```
 
-![](04_functional_programming_files/figure-latex/unnamed-chunk-43-5.pdf)<!-- --> 
+<img src="04_functional_programming_files/figure-html/unnamed-chunk-43-5.png" width="672" />
 
 ## Automate joining {#reduce}
 
@@ -1788,7 +1788,7 @@ toc(log = TRUE) # save toc
 ```
 
 ```
-## Scraping pages: 0.006 sec elapsed
+## Scraping pages: 0.003 sec elapsed
 ```
 
 - If you want to make the function run slowly ... 
@@ -1881,7 +1881,16 @@ tic.log(format = TRUE)
 
 ```
 ## [[1]]
-## [1] "Scraping pages: 0.006 sec elapsed"
+## [1] "Scraping pages: 0.003 sec elapsed"
+## 
+## [[2]]
+## [1] "scraping pages with deplay: 9.019 sec elapsed"
+## 
+## [[3]]
+## [1] "averaging 100000 without parallel processing: 0.38 sec elapsed"
+## 
+## [[4]]
+## [1] "averaging 100000 with parallel processing: 0.343 sec elapsed"
 ```
 
 Parallel processing does not always increase performance because of the overhead cost (e.g., time spent communicating data between processing). Use this technique either when the computation part is heavy or when you need to repeat the process many times.  
