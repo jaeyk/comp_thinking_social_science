@@ -773,7 +773,7 @@ glue('The RMSE of the intiail model is
 
 ```
 ## The RMSE of the intiail model is
-##    7.82
+##    7.81
 ```
 
 ```r
@@ -829,9 +829,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 × 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.06 
-## 2 mae     standard       5.80 
-## 3 rsq     standard       0.407
+## 1 rmse    standard       7.12 
+## 2 mae     standard       5.84 
+## 3 rsq     standard       0.395
 ```
 
 ### Decision tree 
@@ -1358,8 +1358,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 × 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.924
-## 2 precision binary         0.927
+## 1 accuracy  binary         0.913
+## 2 precision binary         0.905
 ## 3 recall    binary         0.905
 ```
 
@@ -2266,7 +2266,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.354, relative change = 1.580e-04) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -2277,15 +2277,15 @@ test_res <- searchK(
 ##  	..............................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.699) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.499, relative change = 2.594e-02) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.373, relative change = 1.684e-02) 
 ## ....................................................................................................
@@ -2311,11 +2311,11 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.248, relative change = 1.256e-03) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.247, relative change = 9.258e-05) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -2326,23 +2326,23 @@ test_res <- searchK(
 ##  	..............................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.749) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (5 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.417, relative change = 4.283e-02) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (5 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.297, relative change = 1.624e-02) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.242, relative change = 7.558e-03) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 5 (approx. per word bound = -7.222, relative change = 2.745e-03) 
 ## Topic 1: think, holm, turn, now, “ye 
@@ -2361,23 +2361,23 @@ test_res <- searchK(
 ##  Topic 14: said, holm, believ, laugh, will 
 ##  Topic 15: littl, now, noth, day, saw 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.212, relative change = 1.382e-03) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.207, relative change = 5.993e-04) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.203, relative change = 5.851e-04) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (1 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.202, relative change = 9.837e-05) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Model Converged
 ```

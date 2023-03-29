@@ -622,13 +622,12 @@ flights %>%
 ```
 
 ```
-## `summarise()` has grouped output by "month". You can
-## override using the `.groups` argument.
+## `summarise()` has grouped output by "month". You can override using the
+## `.groups` argument.
 ```
 
 ```
-## Warning: Missing values are always removed in SQL aggregation
-## functions.
+## Warning: Missing values are always removed in SQL aggregation functions.
 ## Use `na.rm = TRUE` to silence this warning
 ## This warning is displayed once every 8 hours.
 ```
@@ -666,8 +665,8 @@ flights %>%
 ```
 
 ```
-## `summarise()` has grouped output by "month". You can
-## override using the `.groups` argument.
+## `summarise()` has grouped output by "month". You can override using the
+## `.groups` argument.
 ```
 
 ```

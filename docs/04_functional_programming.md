@@ -402,8 +402,10 @@ var_summary(df, x)
 ```
 
 ```
-## Warning in mean.default(data_var): argument is not numeric or logical: returning
-## NA
+## Warning: There was 1 warning in `summarise()`.
+## ℹ In argument: `mean = mean(data_var)`.
+## Caused by warning in `mean.default()`:
+## ! argument is not numeric or logical: returning NA
 ```
 
 ```
@@ -1134,7 +1136,7 @@ toc()
 ```
 
 ```
-## 0.006 sec elapsed
+## 0.012 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1148,7 +1150,7 @@ toc()
 ```
 
 ```
-## 0.001 sec elapsed
+## 0.003 sec elapsed
 ```
 
 - In short, `map()` is more readable, faster, and easily extendable with other data science tasks (e.g., wrangling, modeling, and visualization) using `%>%`. 
@@ -1177,8 +1179,8 @@ map_mark
 ## # A tibble: 1 × 6
 ##   expression                                              min   median `itr/sec`
 ##   <bch:expr>                                         <bch:tm> <bch:tm>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)   54.1µs   65.2µs    14217.
-## # … with 2 more variables: mem_alloc <bch:byt>, gc/sec <dbl>
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)     71µs   75.4µs    12688.
+## # ℹ 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
 ```
 
 #### Applications 
@@ -1276,7 +1278,15 @@ qplot(y_means) +
 ```
 
 ```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where
+## this warning was generated.
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.
 ```
 
 <img src="04_functional_programming_files/figure-html/unnamed-chunk-32-1.png" width="672" />
@@ -1288,7 +1298,22 @@ qplot(y_means) +
 small_n <- 100 ; k <- 1000; mu <- 500 ; sigma <- 20 
 
 y_tidy <- rerun(k, rnorm(small_n, mu, sigma)) 
+```
 
+```
+## Warning: `rerun()` was deprecated in purrr 1.0.0.
+## ℹ Please use `map()` instead.
+##   # Previously
+##   rerun(1000, rnorm(small_n, mu, sigma))
+## 
+##   # Now
+##   map(1:1000, ~ rnorm(small_n, mu, sigma))
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where
+## this warning was generated.
+```
+
+```r
 y_means_tidy <- map_dbl(y_tidy, mean)
 
 # Visualize 
@@ -1299,8 +1324,10 @@ y_means_tidy <- map_dbl(y_tidy, mean)
 ```
 
 ```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.
 ```
 
 <img src="04_functional_programming_files/figure-html/unnamed-chunk-33-1.png" width="672" />
@@ -1476,7 +1503,8 @@ airquality %>%
 ```
 
 ```
-## Warning: Removed 42 rows containing missing values (geom_point).
+## Warning: Removed 42 rows containing missing values
+## (`geom_point()`).
 ```
 
 <img src="04_functional_programming_files/figure-html/unnamed-chunk-39-1.png" width="672" />
@@ -1492,7 +1520,8 @@ airquality %>%
 ```
 
 ```
-## Warning: Removed 37 rows containing missing values (geom_point).
+## Warning: Removed 37 rows containing missing values
+## (`geom_point()`).
 ```
 
 <img src="04_functional_programming_files/figure-html/unnamed-chunk-39-2.png" width="672" />
@@ -1508,7 +1537,8 @@ airquality %>%
 ```
 
 ```
-## Warning: Removed 37 rows containing missing values (geom_point).
+## Warning: Removed 37 rows containing missing values
+## (`geom_point()`).
 ```
 
 <img src="04_functional_programming_files/figure-html/unnamed-chunk-39-3.png" width="672" />
@@ -1554,7 +1584,16 @@ airquality %>%
 ```
 
 ```
-## Warning: Removed 42 rows containing missing values (geom_point).
+## Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
+## ℹ Please use tidy evaluation ideoms with `aes()`
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where
+## this warning was generated.
+```
+
+```
+## Warning: Removed 42 rows containing missing values
+## (`geom_point()`).
 ```
 
 <img src="04_functional_programming_files/figure-html/unnamed-chunk-41-1.png" width="672" />
@@ -1588,7 +1627,8 @@ map(2:ncol(airquality), create_point_plot)
 ```
 
 ```
-## Warning: Removed 42 rows containing missing values (geom_point).
+## Warning: Removed 42 rows containing missing values
+## (`geom_point()`).
 ```
 
 <img src="04_functional_programming_files/figure-html/unnamed-chunk-43-1.png" width="672" />
@@ -1599,7 +1639,8 @@ map(2:ncol(airquality), create_point_plot)
 ```
 
 ```
-## Warning: Removed 37 rows containing missing values (geom_point).
+## Warning: Removed 37 rows containing missing values
+## (`geom_point()`).
 ```
 
 <img src="04_functional_programming_files/figure-html/unnamed-chunk-43-2.png" width="672" />
@@ -1610,7 +1651,8 @@ map(2:ncol(airquality), create_point_plot)
 ```
 
 ```
-## Warning: Removed 37 rows containing missing values (geom_point).
+## Warning: Removed 37 rows containing missing values
+## (`geom_point()`).
 ```
 
 <img src="04_functional_programming_files/figure-html/unnamed-chunk-43-3.png" width="672" />
@@ -1621,7 +1663,8 @@ map(2:ncol(airquality), create_point_plot)
 ```
 
 ```
-## Warning: Removed 37 rows containing missing values (geom_point).
+## Warning: Removed 37 rows containing missing values
+## (`geom_point()`).
 ```
 
 <img src="04_functional_programming_files/figure-html/unnamed-chunk-43-4.png" width="672" />
@@ -1632,7 +1675,8 @@ map(2:ncol(airquality), create_point_plot)
 ```
 
 ```
-## Warning: Removed 37 rows containing missing values (geom_point).
+## Warning: Removed 37 rows containing missing values
+## (`geom_point()`).
 ```
 
 <img src="04_functional_programming_files/figure-html/unnamed-chunk-43-5.png" width="672" />
@@ -1794,7 +1838,7 @@ toc(log = TRUE) # save toc
 ```
 
 ```
-## Scraping pages: 0.003 sec elapsed
+## Scraping pages: 0.004 sec elapsed
 ```
 
 - If you want to make the function run slowly ... 
