@@ -130,6 +130,20 @@ pacman::p_load(
 )
 ```
 
+```
+## Installing package into '/home/jae/R/x86_64-pc-linux-gnu-library/4.2'
+## (as 'lib' is unspecified)
+```
+
+```
+## also installing the dependency 'plogr'
+```
+
+```
+## 
+## RSQLite installed
+```
+
 ### NYC flights data 
 
 - [The flight on-time performance data](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236) from the Bureau of Transportation Statistics of the U.S. government. The data goes back to 1987, and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.
@@ -482,8 +496,8 @@ flights %>%
 ```
 
 ```
-## # Source:   lazy query [?? x 2]
-## # Database: sqlite 3.37.0 [:memory:]
+## # Source:   SQL [?? x 2]
+## # Database: sqlite 3.40.1 [:memory:]
 ##    dep_delay arr_delay
 ##        <dbl>     <dbl>
 ##  1         2        11
@@ -496,7 +510,7 @@ flights %>%
 ##  8        -3       -14
 ##  9        -3        -8
 ## 10        -2         8
-## # … with more rows
+## # ℹ more rows
 ```
 
 **Challenge 4** 
@@ -512,8 +526,8 @@ flights %>%
 ```
 
 ```
-## # Source:   lazy query [?? x 3]
-## # Database: sqlite 3.37.0 [:memory:]
+## # Source:   SQL [?? x 3]
+## # Database: sqlite 3.40.1 [:memory:]
 ##    distance air_time speed
 ##       <dbl>    <dbl> <dbl>
 ##  1     1400      227  370.
@@ -526,7 +540,7 @@ flights %>%
 ##  8      229       53  259.
 ##  9      944      140  405.
 ## 10      733      138  319.
-## # … with more rows
+## # ℹ more rows
 ```
 
 **Challenge 5** 
@@ -542,8 +556,8 @@ flights %>%
 ```
 
 ```
-## # Source:   lazy query [?? x 19]
-## # Database: sqlite 3.37.0 [:memory:]
+## # Source:   SQL [?? x 19]
+## # Database: sqlite 3.40.1 [:memory:]
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ##    <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>
 ##  1  2013     1     1      517            515         2      830            819
@@ -556,9 +570,10 @@ flights %>%
 ##  8  2013     1     1      557            600        -3      709            723
 ##  9  2013     1     1      557            600        -3      838            846
 ## 10  2013     1     1      558            600        -2      753            745
-## # … with more rows, and 11 more variables: arr_delay <dbl>, carrier <chr>,
-## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,
-## #   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dbl>
+## # ℹ more rows
+## # ℹ 11 more variables: arr_delay <dbl>, carrier <chr>, flight <int>,
+## #   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>,
+## #   hour <dbl>, minute <dbl>, time_hour <dbl>
 ```
 
 **Challenge 6** 
@@ -621,19 +636,19 @@ flights %>%
 ```
 
 ```
-## Warning: Missing values are always removed in SQL.
-## Use `mean(x, na.rm = TRUE)` to silence this warning
-## This warning is displayed only once per session.
-```
-
-```
-## `summarise()` has grouped output by 'month'. You can override using the
+## `summarise()` has grouped output by "month". You can override using the
 ## `.groups` argument.
 ```
 
 ```
-## # Source:   lazy query [?? x 3]
-## # Database: sqlite 3.37.0 [:memory:]
+## Warning: Missing values are always removed in SQL aggregation functions.
+## Use `na.rm = TRUE` to silence this warning
+## This warning is displayed once every 8 hours.
+```
+
+```
+## # Source:   SQL [?? x 3]
+## # Database: sqlite 3.40.1 [:memory:]
 ## # Groups:   month
 ##    month   day delay
 ##    <int> <int> <dbl>
@@ -647,7 +662,7 @@ flights %>%
 ##  8     1     8  2.55
 ##  9     1     9  2.28
 ## 10     1    10  2.84
-## # … with more rows
+## # ℹ more rows
 ```
 
 **Challenge 8** 
@@ -664,7 +679,7 @@ flights %>%
 ```
 
 ```
-## `summarise()` has grouped output by 'month'. You can override using the
+## `summarise()` has grouped output by "month". You can override using the
 ## `.groups` argument.
 ```
 
@@ -729,10 +744,45 @@ flights %>%
 
 ```
 ## <SQL>
-## SELECT `LHS`.`year` AS `year`, `LHS`.`month` AS `month`, `LHS`.`day` AS `day.x`, `dep_time`, `sched_dep_time`, `dep_delay`, `arr_time`, `sched_arr_time`, `arr_delay`, `carrier`, `flight`, `tailnum`, `LHS`.`origin` AS `origin.x`, `dest`, `air_time`, `distance`, `LHS`.`hour` AS `hour.x`, `minute`, `LHS`.`time_hour` AS `time_hour.x`, `RHS`.`origin` AS `origin.y`, `RHS`.`day` AS `day.y`, `RHS`.`hour` AS `hour.y`, `temp`, `dewp`, `humid`, `wind_dir`, `wind_speed`, `wind_gust`, `precip`, `pressure`, `visib`, `RHS`.`time_hour` AS `time_hour.y`
-## FROM `flights` AS `LHS`
-## LEFT JOIN `weather` AS `RHS`
-## ON (`LHS`.`year` = `RHS`.`year` AND `LHS`.`month` = `RHS`.`month`)
+## SELECT
+##   `flights`.`year` AS `year`,
+##   `flights`.`month` AS `month`,
+##   `flights`.`day` AS `day.x`,
+##   `dep_time`,
+##   `sched_dep_time`,
+##   `dep_delay`,
+##   `arr_time`,
+##   `sched_arr_time`,
+##   `arr_delay`,
+##   `carrier`,
+##   `flight`,
+##   `tailnum`,
+##   `flights`.`origin` AS `origin.x`,
+##   `dest`,
+##   `air_time`,
+##   `distance`,
+##   `flights`.`hour` AS `hour.x`,
+##   `minute`,
+##   `flights`.`time_hour` AS `time_hour.x`,
+##   `weather`.`origin` AS `origin.y`,
+##   `weather`.`day` AS `day.y`,
+##   `weather`.`hour` AS `hour.y`,
+##   `temp`,
+##   `dewp`,
+##   `humid`,
+##   `wind_dir`,
+##   `wind_speed`,
+##   `wind_gust`,
+##   `precip`,
+##   `pressure`,
+##   `visib`,
+##   `weather`.`time_hour` AS `time_hour.y`
+## FROM `flights`
+## LEFT JOIN `weather`
+##   ON (
+##     `flights`.`year` = `weather`.`year` AND
+##     `flights`.`month` = `weather`.`month`
+##   )
 ```
 
 #### Collect (pull)

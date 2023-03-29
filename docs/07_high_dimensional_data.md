@@ -113,7 +113,7 @@ remotes::install_github("ck37/ck37r")
 ```
 
 ```
-## Skipping install of 'ck37r' from a github remote, the SHA1 (87085fff) has not changed since last install.
+## Skipping install of 'ck37r' from a github remote, the SHA1 (b5214459) has not changed since last install.
 ##   Use `force = TRUE` to force installation
 ```
 
@@ -122,7 +122,7 @@ conflicted::conflict_prefer("filter", "dplyr")
 ```
 
 ```
-## [conflicted] Will prefer dplyr::filter over any other package
+## [conflicted] Will prefer dplyr::filter over any other package.
 ```
 
 
@@ -138,7 +138,7 @@ data_original <- read_csv(here("data", "heart.csv"))
 
 ```
 ## Rows: 303 Columns: 14
-## ── Column specification ─────────────────────────────────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## dbl (14): age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpea...
 ## 
@@ -292,7 +292,7 @@ map_df(data, ~ is.na(.) %>% sum())
 ##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
 ##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
 ## 1     0     0     0        0     0     0       0       0     0       0     0
-## # … with 3 more variables: ca <int>, thal <int>, target <int>
+## # ℹ 3 more variables: ca <int>, thal <int>, target <int>
 ```
 
 ```r
@@ -312,7 +312,7 @@ data %>%
 ##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
 ##   <int> <int> <int>    <int> <int> <int>   <int>   <int> <int>   <int> <int>
 ## 1     0     0     0        0     0     0       0       0     0      10     0
-## # … with 3 more variables: ca <int>, thal <int>, target <int>
+## # ℹ 3 more variables: ca <int>, thal <int>, target <int>
 ```
 
 ```r
@@ -326,7 +326,7 @@ data %>%
 ##     age   sex    cp trestbps  chol   fbs restecg thalach exang oldpeak slope
 ##   <dbl> <dbl> <dbl>    <dbl> <dbl> <dbl>   <dbl>   <dbl> <dbl>   <dbl> <dbl>
 ## 1     0     0     0        0     0     0       0       0     0  0.0330     0
-## # … with 3 more variables: ca <dbl>, thal <dbl>, target <dbl>
+## # ℹ 3 more variables: ca <dbl>, thal <dbl>, target <dbl>
 ```
  
 ### Regression setup 
@@ -369,19 +369,10 @@ rec_reg <- raw_train_x_reg %>%
   # Define the outcome variable
   recipe(age ~ .) %>%
   # Median impute oldpeak column
-  step_medianimpute(oldpeak) %>%
+  step_impute_median(oldpeak) %>%
   # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators).
   step_dummy(c("sex", "ca", "cp", "slope", "thal"))
-```
 
-```
-## Warning: `step_medianimpute()` was deprecated in recipes 0.1.16.
-## Please use `step_impute_median()` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
-```
-
-```r
 # Prepare a dataset to base each step on
 prep_reg <- rec_reg %>% prep(retain = TRUE)
 ```
@@ -485,7 +476,7 @@ rec_class <- raw_train_x_class %>%
   # Define the outcome variable
   recipe(target ~ .) %>%
   # Median impute oldpeak column
-  step_medianimpute(oldpeak) %>%
+  step_impute_median(oldpeak) %>%
   # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators).
   step_normalize(age) %>%
   step_dummy(c("sex", "ca", "cp", "slope", "thal"))
@@ -735,6 +726,14 @@ rec_res %>%
   theme(legend.position = "none")
 ```
 
+```
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+```
+
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-25-1.png" width="672" />
 
 ##### Select 
@@ -745,8 +744,8 @@ conflict_prefer("filter", "dplyr")
 ```
 
 ```
-## [conflicted] Removing existing preference
-## [conflicted] Will prefer dplyr::filter over any other package
+## [conflicted] Removing existing preference.
+## [conflicted] Will prefer dplyr::filter over any other package.
 ```
 
 ```r
@@ -774,7 +773,7 @@ glue('The RMSE of the intiail model is
 
 ```
 ## The RMSE of the intiail model is
-##    7.83
+##    7.82
 ```
 
 ```r
@@ -806,7 +805,10 @@ finalize_lasso %>%
 
 ```
 ## Warning: `pull_workflow_fit()` was deprecated in workflows 0.2.3.
-## Please use `extract_fit_parsnip()` instead.
+## ℹ Please use `extract_fit_parsnip()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
 ```
 
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-27-1.png" width="672" />
@@ -827,9 +829,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 × 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.05 
-## 2 mae     standard       5.79 
-## 3 rsq     standard       0.408
+## 1 rmse    standard       7.06 
+## 2 mae     standard       5.80 
+## 3 rsq     standard       0.407
 ```
 
 ### Decision tree 
@@ -1061,11 +1063,6 @@ tree_fit_tuned <- finalize_tree %>%
 tree_fit_tuned %>%
   pull_workflow_fit() %>%
   vip::vip()
-```
-
-```
-## Warning: `pull_workflow_fit()` was deprecated in workflows 0.2.3.
-## Please use `extract_fit_parsnip()` instead.
 ```
 
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" width="672" />
@@ -1342,11 +1339,6 @@ rand_fit_tuned %>%
   vip::vip()
 ```
 
-```
-## Warning: `pull_workflow_fit()` was deprecated in workflows 0.2.3.
-## Please use `extract_fit_parsnip()` instead.
-```
-
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-49-1.png" width="672" />
 
 ##### Test fit
@@ -1366,8 +1358,8 @@ evaluate_class(test_fit)
 ## # A tibble: 3 × 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.913
-## 2 precision binary         0.905
+## 1 accuracy  binary         0.924
+## 2 precision binary         0.927
 ## 3 recall    binary         0.905
 ```
 
@@ -1416,12 +1408,18 @@ xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_clas
 ```
 
 ```
-## Warning in begin_iteration:end_iteration: numerical expression has 5 elements:
-## only the first used
+## Warning in is.numeric(args$trees) && args$trees < 0: 'length(x) = 5 > 1' in
+## coercion to 'logical(1)'
 ```
 
 ```
-## [17:21:43] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+## Warning in is.numeric(args$tree_depth) && args$tree_depth < 0: 'length(x) = 2 >
+## 1' in coercion to 'logical(1)'
+```
+
+```
+## Warning in begin_iteration:end_iteration: numerical expression has 5 elements:
+## only the first used
 ```
 
 #### yardstick 
@@ -1545,8 +1543,8 @@ conflict_prefer("filter", "dplyr")
 ```
 
 ```
-## [conflicted] Removing existing preference
-## [conflicted] Will prefer dplyr::filter over any other package
+## [conflicted] Removing existing preference.
+## [conflicted] Will prefer dplyr::filter over any other package.
 ```
 
 ```r
@@ -1593,13 +1591,7 @@ finalize_xg <- xg_wf %>%
 ```r
 xg_fit_tuned <- finalize_xg %>%
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
-```
 
-```
-## [17:23:41] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-```
-
-```r
 # Metrics
 (xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
 ```
@@ -1622,11 +1614,6 @@ xg_fit_tuned %>%
   vip::vip()
 ```
 
-```
-## Warning: `pull_workflow_fit()` was deprecated in workflows 0.2.3.
-## Please use `extract_fit_parsnip()` instead.
-```
-
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-61-1.png" width="672" />
 
 ##### Test fit
@@ -1637,13 +1624,7 @@ xg_fit_tuned %>%
 ```r
 test_fit <- finalize_xg %>%
   fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
-```
 
-```
-## [17:23:43] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
-```
-
-```r
 evaluate_class(test_fit)
 ```
 
@@ -1778,13 +1759,13 @@ summary(cv_sl)
 ## All risk estimates are based on V =  5 
 ## 
 ##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.11322 0.0135660 0.076470 0.14433
-##     Discrete SL 0.11903 0.0145345 0.074794 0.16275
+##   Super Learner 0.11277 0.0135685 0.075782 0.14318
+##     Discrete SL 0.11854 0.0145053 0.074937 0.16302
 ##     SL.mean_All 0.24798 0.0030968 0.247743 0.24895
-##   SL.glmnet_All 0.10777 0.0135809 0.074794 0.14433
-##    SL.rpart_All 0.16906 0.0196420 0.134548 0.22102
-##   SL.ranger_All 0.12699 0.0120055 0.098657 0.16453
-##  SL.xgboost_All 0.13317 0.0152062 0.102424 0.16356
+##   SL.glmnet_All 0.10735 0.0135893 0.074937 0.14324
+##    SL.rpart_All 0.16730 0.0197985 0.111990 0.22102
+##   SL.ranger_All 0.12566 0.0119774 0.097945 0.15955
+##  SL.xgboost_All 0.13035 0.0149709 0.098472 0.16302
 ```
 
 ##### Plot
@@ -1821,13 +1802,13 @@ ck37r::auc_table(cv_sl)
 
 ```
 ##                      auc         se  ci_lower  ci_upper      p-value
-## SL.mean_All    0.5000000 0.06912305 0.3645213 0.6354787 5.679776e-10
-## SL.rpart_All   0.8329062 0.03961410 0.7552640 0.9105484 1.317262e-02
-## SL.xgboost_All 0.8809611 0.02449875 0.8329444 0.9289778 5.155768e-02
-## DiscreteSL     0.9060183 0.02052183 0.8657963 0.9462404 2.342886e-01
-## SL.ranger_All  0.9071625 0.02004849 0.8678682 0.9464568 2.467229e-01
-## SuperLearner   0.9149428 0.01964595 0.8764374 0.9534482 3.810044e-01
-## SL.glmnet_All  0.9208924 0.01919479 0.8832714 0.9585135 5.000000e-01
+## SL.mean_All    0.5000000 0.06912305 0.3645213 0.6354787 5.228498e-10
+## SL.rpart_All   0.8235355 0.03869743 0.7476899 0.8993810 5.550478e-03
+## SL.xgboost_All 0.8850572 0.02430397 0.8374223 0.9326921 6.525143e-02
+## SL.ranger_All  0.9071396 0.02018027 0.8675870 0.9466922 2.336564e-01
+## DiscreteSL     0.9073913 0.02036305 0.8674805 0.9473021 2.394812e-01
+## SuperLearner   0.9167735 0.01947639 0.8786004 0.9549465 3.980169e-01
+## SL.glmnet_All  0.9218078 0.01910904 0.8843548 0.9592608 5.000000e-01
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
@@ -1848,10 +1829,10 @@ print(ck37r::cvsl_weights(cv_sl), row.names = FALSE)
 
 ```
 ##  # Learner    Mean      SD     Min     Max
-##  1  glmnet 0.79763 0.20998 0.48212 1.00000
-##  2 xgboost 0.13170 0.19364 0.00000 0.45841
-##  3  ranger 0.05877 0.13142 0.00000 0.29385
-##  4   rpart 0.01190 0.02660 0.00000 0.05948
+##  1  glmnet 0.78127 0.23613 0.45149 0.99803
+##  2 xgboost 0.12768 0.19994 0.00000 0.46785
+##  3  ranger 0.07492 0.16644 0.00000 0.37265
+##  4   rpart 0.01613 0.03607 0.00000 0.08065
 ##  5    mean 0.00000 0.00000 0.00000 0.00000
 ```
 
@@ -1902,9 +1883,9 @@ data_original %>%
 ```
 
 ```
-## 
-## Correlation method: 'pearson'
-## Missing treated using: 'pairwise.complete.obs'
+## Correlation computed with
+## • Method: 'pearson'
+## • Missing treated using: 'pairwise.complete.obs'
 ```
 
 ```
@@ -1924,7 +1905,7 @@ data_original %>%
 ## 11 slope    -0.169  -0.0307  0.120   -0.121  -0.00404 -0.0599   0.0930  0.387  
 ## 12 ca        0.276   0.118  -0.181    0.101   0.0705   0.138   -0.0720 -0.213  
 ## 13 thal      0.0680  0.210  -0.162    0.0622  0.0988  -0.0320  -0.0120 -0.0964 
-## # … with 5 more variables: exang <dbl>, oldpeak <dbl>, slope <dbl>, ca <dbl>,
+## # ℹ 5 more variables: exang <dbl>, oldpeak <dbl>, slope <dbl>, ca <dbl>,
 ## #   thal <dbl>
 ```
 
@@ -1949,7 +1930,7 @@ data_original %>%
 ##   age_min age_max sex_min sex_max cp_min cp_max trestbps_min trestbps_max
 ##     <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>        <dbl>        <dbl>
 ## 1      29      77       0       1      0      3           94          200
-## # … with 18 more variables: chol_min <dbl>, chol_max <dbl>, fbs_min <dbl>,
+## # ℹ 18 more variables: chol_min <dbl>, chol_max <dbl>, fbs_min <dbl>,
 ## #   fbs_max <dbl>, restecg_min <dbl>, restecg_max <dbl>, thalach_min <dbl>,
 ## #   thalach_max <dbl>, exang_min <dbl>, exang_max <dbl>, oldpeak_min <dbl>,
 ## #   oldpeak_max <dbl>, slope_min <dbl>, slope_max <dbl>, ca_min <dbl>,
@@ -1964,16 +1945,9 @@ data_original %>%
 ```r
 pca_recipe <- recipe(~., data = data_original) %>%
   # Imputing NAs using mean
-  step_meanimpute(all_predictors()) %>%
-  # Normalize some numeric variables
+  step_impute_mean(all_predictors()) %>%
+  # Normalize some numeric variabless
   step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak"))
-```
-
-```
-## Warning: `step_meanimpute()` was deprecated in recipes 0.1.16.
-## Please use `step_impute_mean()` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 #### PCA analysis 
@@ -2004,7 +1978,7 @@ pca_res %>%
 ##  8 thalach   0.0137   PC1       pca  
 ##  9 exang     0.0962   PC1       pca  
 ## 10 oldpeak  -0.00863  PC1       pca  
-## # … with 186 more rows
+## # ℹ 186 more rows
 ```
 
 ##### Screeplot
@@ -2016,8 +1990,8 @@ conflict_prefer("filter", "dplyr")
 ```
 
 ```
-## [conflicted] Removing existing preference
-## [conflicted] Will prefer dplyr::filter over any other package
+## [conflicted] Removing existing preference.
+## [conflicted] Will prefer dplyr::filter over any other package.
 ```
 
 ```r
@@ -2025,7 +1999,7 @@ conflict_prefer("select", "dplyr")
 ```
 
 ```
-## [conflicted] Will prefer dplyr::select over any other package
+## [conflicted] Will prefer dplyr::select over any other package.
 ```
 
 ```r
@@ -2103,7 +2077,7 @@ sherlock_raw <- gutenberg_download(1661)
 ```
 
 ```
-## Determining mirror for Project Gutenberg from http://www.gutenberg.org/robot/harvest
+## Determining mirror for Project Gutenberg from https://www.gutenberg.org/robot/harvest
 ```
 
 ```
@@ -2175,7 +2149,7 @@ sherlock_words <- sherlock_n %>%
 ```
 
 ```
-## Joining, by = "story"
+## Joining with `by = join_by(story)`
 ```
 
 ```r
@@ -2259,7 +2233,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.627) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.512, relative change = 1.510e-02) 
 ## ....................................................................................................
@@ -2307,11 +2281,11 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.699) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.499, relative change = 2.594e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.373, relative change = 1.684e-02) 
 ## ....................................................................................................
@@ -2333,7 +2307,7 @@ test_res <- searchK(
 ##  Topic 9: man, hand, knew, one, even 
 ##  Topic 10: holm, ask, sat, “pray, long 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.248, relative change = 1.256e-03) 
 ## ....................................................................................................
@@ -2352,7 +2326,7 @@ test_res <- searchK(
 ##  	..............................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.749) 
 ## ....................................................................................................
@@ -2403,7 +2377,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.202, relative change = 9.837e-05) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (0 seconds). 
 ## Completed M-Step. 
 ## Model Converged
 ```

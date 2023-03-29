@@ -188,13 +188,14 @@ The following tax return data example comes from the U.S. Internal Revenue Servi
 
 Step1: Get an XML document link
 
-```{r}
+```{r echo = FALSE}
+# Unfortunately, the link doesn't work as of March 29, 2023 as IRS discontinues its AWS service. But the code should work.
 xml_link <- c("http://s3.amazonaws.com/irs-form-990/201910919349301206_public.xml")
 ```
 
 Step 2: Get the page and parse the XML document. 
 
-```{r}
+```{r eval=FALSE}
 xml_root <- xml_link %>%
   # Get page and parse xml 
   xmlTreeParse() %>%
@@ -212,7 +213,7 @@ Step 3: Get nodes
 
 We grab the mission statement of this org from its tax report (990). `//` is an [XPath syntax](https://www.w3schools.com/xml/xpath_syntax.asp) that helps to "select nodes in the document from the current node that matches the selection no matter where they are."
 
-```{r}
+```{r eval=FALSE}
 xml_root %>%
   purrr::pluck(2) %>% # Second element (Return Data)
   getNodeSet("//MissionDesc") # Mission statement 
@@ -220,7 +221,7 @@ xml_root %>%
 
 Step 4: Get values 
 
-```{r}
+```{r eval=FALSE}
 xml_root %>%
   purrr::pluck(2) %>% # Second element (Return Data)
   getNodeSet("//MissionDesc") %>% # Mission statement 

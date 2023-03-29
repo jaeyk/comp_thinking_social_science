@@ -285,7 +285,7 @@ rec_reg <- raw_train_x_reg %>%
   # Define the outcome variable
   recipe(age ~ .) %>%
   # Median impute oldpeak column
-  step_medianimpute(oldpeak) %>%
+  step_impute_median(oldpeak) %>%
   # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators).
   step_dummy(c("sex", "ca", "cp", "slope", "thal"))
 
@@ -360,7 +360,7 @@ rec_class <- raw_train_x_class %>%
   # Define the outcome variable
   recipe(target ~ .) %>%
   # Median impute oldpeak column
-  step_medianimpute(oldpeak) %>%
+  step_impute_median(oldpeak) %>%
   # Expand "sex", "ca", "cp", "slope", and "thal" features out into dummy variables (indicators).
   step_normalize(age) %>%
   step_dummy(c("sex", "ca", "cp", "slope", "thal"))
@@ -1425,8 +1425,8 @@ data_original %>%
 ```{r}
 pca_recipe <- recipe(~., data = data_original) %>%
   # Imputing NAs using mean
-  step_meanimpute(all_predictors()) %>%
-  # Normalize some numeric variables
+  step_impute_mean(all_predictors()) %>%
+  # Normalize some numeric variabless
   step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak"))
 ```
 

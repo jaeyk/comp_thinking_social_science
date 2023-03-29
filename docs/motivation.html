@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Computational thinking | Computational Thinking for Social Scientists</title>
   <meta name="description" content="Chapter 2 Computational thinking | Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Computational thinking | Computational Thinking for Social Scientists" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Chapter 2 Computational thinking | Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
   <meta name="github-repo" content="jaeyk/PS239T" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2022-02-13" />
+<meta name="date" content="2023-03-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="git_bash.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,16 +49,16 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -94,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -107,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -234,7 +232,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.6.1" data-path="tidy_data.html"><a href="tidy_data.html#nesting"><i class="fa fa-check"></i><b>4.6.1</b> Nesting</a></li>
 <li class="chapter" data-level="4.6.2" data-path="tidy_data.html"><a href="tidy_data.html#mapping"><i class="fa fa-check"></i><b>4.6.2</b> Mapping</a></li>
-<li class="chapter" data-level="4.6.3" data-path="tidy_data.html"><a href="tidy_data.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.6.3</b> Hypothesis testing</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="tidy_data.html"><a href="tidy_data.html#visualizing-ggplot2"><i class="fa fa-check"></i><b>4.7</b> Visualizing (ggplot2)</a>
 <ul>
@@ -407,56 +404,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="motivation" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Computational thinking</h1>
-<div id="why-computational-thinking" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Why computational thinking</h2>
+<div id="motivation" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Computational thinking<a href="motivation.html#motivation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="why-computational-thinking" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Why computational thinking<a href="motivation.html#why-computational-thinking" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If social scientists want to know how to work smart and not just hard, they need to take full advantage of the power of modern programming languages, and that power is <strong>automation</strong>.</p>
-<p>Let’s think about the following two cases (these examples come from <a href="https://dlab.berkeley.edu/blog/why-teaching-social-scientists-how-code-professional-important">the column</a> I contributed to the D-Lab website)</p>
+<p>Let’s think about the following two cases (these examples come from <a href="https://dlab.berkeley.edu/news/why-teaching-social-scientists-how-code-professional-important">the column</a> I contributed to the UC Berkeley D-Lab website)</p>
 <ul>
-<li>Case 1: Suppose a social scientist needs to collect data on civic organizations in the United States from websites, Internal Revenue Service reports, and social media posts. As the number of these organizations is large, the researcher could not collect a large volume of data from diverse sources, so they would hire undergraduates and distribute tasks. This is a typical data collection plan in social science research, and it is labor-intensive. Automation is not part of the game plan. Yet, it is critical for so many reasons. Because the process is costly, no one is likely to replicate or update the data collection effort.</li>
+<li>Case 1: uppose a social scientist needs to collect data on civic organizations in the United States from websites, Internal Revenue Service reports, and social media posts. Since the number of these organizations is large, the researcher cannot collect a significant amount of data from various sources alone. Therefore, they would hire undergraduates and distribute tasks. This is a typical data collection plan in social science research, and it is labor-intensive. Automation is not part of the game plan, yet it is critical for many reasons. Because the process is costly, no one is likely to replicate or update the data collection effort.</li>
 </ul>
 <p>Case 1 illustrates that it is challenging to be reproducible and scalable without efficient data analytics pipelines.</p>
 <ul>
-<li>Case 2: An alternative is to write computer programs that collect such data automatically, parse them, and store them in interconnected databases. Additionally, someone may need to maintain and validate the quality of the data infrastructure. Nevertheless, this approach lowers the cost of the data collection process, thereby substantially increasing the <strong>reproducibility</strong> and <strong>scalability</strong>. Furthermore, the researcher can document their code and publicly share it using their GitHub repository or even gather some of the functions they used and distribute them as open-source libraries.</li>
+<li>Case 2: An alternative is to write computer programs that automatically collect such data, parse it, and store it in interconnected databases. Additionally, someone may need to maintain and validate the quality of the data infrastructure. Nevertheless, this approach lowers the cost of the data collection process, thereby substantially increasing reproducibility and scalability. Furthermore, the researcher can document their code and publicly share it using their GitHub repository or even gather some of the functions they used and distribute them as open-source libraries.</li>
 </ul>
-<p>Case 2 illustrates the power of automation and how it benefits the academic community and the general public.</p>
-<p>To reap these benefits, one needs to learn how to program. In the era of data science, programming is as valuable a skill as writing in social science research because the extent to which a researcher can automate the research process can determine its efficiency, reproducibility, and scalability.</p>
-<p>Below is an insightful quote from Hadley Wickham, who won the 2019 COPSS Presidents’ Award for his outstanding contribution to statistics via developing tidyverse R packages that have transformed how people wrangle, analyze, and visualize data. Even if you don’t do big data or machine learning, you can still benefit from learning how to program and applying the programming skills to data analysis because it’s a “force multiplier.”</p>
+<p>Case 2 demonstrates the advantages of automation and its usefulness to both the academic community and the general public.</p>
+<p>To gain these benefits, one must learn how to program. In the age of data science, programming is as valuable a skill as writing in social science research. The extent to which a researcher can automate the research process can determine its efficiency, reproducibility, and scalability.</p>
+<p>Below is an insightful quote from Hadley Wickham, who won the 2019 COPSS Presidents’ Award for his outstanding contribution to statistics by developing tidyverse R packages that have transformed how people wrangle, analyze, and visualize data. Even if you do not work with big data or machine learning, you can still benefit from learning how to program and applying the programming skills to data analysis because it is a “force multiplier.”</p>
 <blockquote>
 <p>Every modern statistical and data analysis problem needs code to solve it. You shouldn’t learn just the basics of programming, spend some time gaining mastery. Improving your programming skills pays off because code is a <strong>force multiplier</strong>: once you’ve solved a problem once, code allows you to solve it much faster in the future. As your programming skill increases, the generality of your solutions improves: you solve not just the precise problem you encountered, but a wider class of related problems (in this way programming skill is very much like mathematical skill). Finally, sharing your code with others allows them to benefit from your experience. - <a href="https://imstat.org/2014/12/16/hadley-wickham-impact-the-world-by-being-useful/">Hadley Wickham</a></p>
 </blockquote>
-<p>However, I also do not claim that social scientists should learn programming like software engineers learn the subject. For social scientists, programming is a means, not an end. I encourage readers to think about what aspects of the social science research process can be automated. Again, programming is just a way to teach a machine to perform these tasks and get them done.</p>
+<p>However, I also do not claim that social scientists should learn programming like software engineers. For social scientists, programming is a means, not an end. I encourage readers to think about which aspects of the social science research process can be automated. Again, programming is just a way to teach a machine to perform these tasks and complete them.</p>
 <div class="figure">
 <img src="https://bam.files.bbci.co.uk/bam/live/content/znmb87h/large" alt="" />
 <p class="caption">From BBC Bitesize</p>
 </div>
 <p>Teaching a computer to perform a particular task requires computational thinking: “formulating a problem and expressing its solution in a way that a computer—human or machine—can effectively carry out” (defined by <a href="http://www.cs.cmu.edu/afs/cs/usr/wing/www/publications/Wing06.pdf">Jeannette M. Wing</a>). Specifically, this means readers need to get familiar with how computers think about data and handle them.</p>
 </div>
-<div id="how-to-teach-and-learn-computational-thinking" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> How to teach and learn computational thinking</h2>
+<div id="how-to-teach-and-learn-computational-thinking" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> How to teach and learn computational thinking<a href="motivation.html#how-to-teach-and-learn-computational-thinking" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This book teaches how you learn this art in incremental steps.</p>
 <ul>
 <li><p>From graphic user interface to command-line interface (ch 3)</p></li>
 <li><p>From short programs to long programs (ch 4-5)</p></li>
 <li><p>The ultimate goal is to solve complex problems at scale using computation (ch 6-7)</p></li>
 </ul>
-<p>I will cover programming concepts, but I will emphasize practicing them more. As the following John Chamber’s quote indicates, this approach helps you learn computational thinking and apply it in particular contexts by coding and solving problems.</p>
+<p>In this textbook, I will cover programming concepts, with an emphasis on practical application. As John Chambers’ quote suggests, this approach helps you learn computational thinking and apply it in specific contexts by coding and solving problems.</p>
 <blockquote>
 <p>“[W]e wanted users to be able to begin in an interactive environment, where they did not consciously think of themselves as programming. Then as their needs became clearer and their sophistication increased, they should be able to slide gradually into programming, when the language and system aspects would become more important.” - <em>Stages in the Evolution of S</em> by John Chambers (S is the progenitor of R)</p>
 </blockquote>
-<p>Here are also some valuable reminders.</p>
-<ul>
-<li><p>Beginners! Learning programming is a long game. The essential component of learning (for almost any subject) is consistency. Never stop writing code, even though your current code may fall far short of perfection.
-<img src="misc/wickham.png" /></p></li>
-<li><p>Intermediate programmers! Try to empower, not intimidate, newbies. The most important rule in the computational social science community (at least, in my opinion) is being nice. Please read David Robinson’s <a href="http://varianceexplained.org/programming/bad-code/">“A Million Lines of Bad Code”</a> for more insights.</p></li>
-</ul>
+<p>Here are some valuable reminders for learning.</p>
+<blockquote>
+<p>Beginners! Learning programming is a long game. The essential component of learning (for almost any subject) is consistency. Never stop writing code, even though your current code may fall far short of perfection.
+<img src="misc/wickham.png" /></p>
+</blockquote>
+<blockquote>
+<p>Intermediate programmers! Try to empower, not intimidate, newbies. The most important rule in the computational social science community (at least, in my opinion) is being nice. Please read David Robinson’s <a href="http://varianceexplained.org/programming/bad-code/">“A Million Lines of Bad Code”</a> for more insights.</p>
+</blockquote>
 <p><img src="http://imgs.xkcd.com/comics/code_quality.png" /></p>
-<p>Finally, have fun. I’ve talked about how learning programming pays off. But I’ve taught long enough to know that this will not convince people to learn to program, especially those who’ve had negative experiences learning STEM.</p>
-<p>Instead, I will try to make the materials as accessible as possible by emphasizing the following two ideas in teaching: showing the <strong>BIG PICTURE</strong> and walking through the <strong>WORKFLOW.</strong> With <a href="https://media.illinois.edu/margaret-yee-man-ng">Margaret Ng</a> (Assistant Professor of Journalism, UIUC), I wrote about why these two concepts are pedagogically important for teaching computational social science for all. <a href="https://osf.io/preprints/socarxiv/pf7n6/?fbclid=IwAR2ZI0yw_pehS0mxAmeUBOGpzIhiO2LMUPGBzBLTLNo4C2HrJSoH9uZhgTY">The article</a> is forthcoming in <em>PS: Political Science and Politics.</em> If you are interested in my full argument, please read the article.</p>
-<p>Here is a quick summary of why I think they matter for social science students’ inclusive teaching of programming.</p>
-<p>Showing the big picture: Every time you teach a new skill or technique, remind students what the input and output data type is. Students from either Excel, SPSS, or Stata backgrounds are not used to thinking about data structure when working on data. So, providing these guideposts is crucial to help them avoid making an obvious mistake (e.g., providing a character vector when a numeric vector is needed for the input data) and seeing the connection between different skills (e.g., using API and web scraping).<br />
-Walking through the workflow: Break down the steps involved in moving from the input to the output data. This way helps students feel less overwhelmed by learning the complex steps required to solve a particular task. It also helps students learn how to formulate a workflow when they encourage the same problem in a different context. Although the exact context is not identical, they can find patterns across them. Finally, teaching the workflow means breaking down these steps as well as putting them together, ideally using functions. Acquiring this skill is critical for students to advance from beginners to intermediate programmers who can write readable and reusable code.</p>
+<p>Finally, have fun. I’ve discussed the benefits of learning programming, but I’ve been a teacher long enough to understand that this won’t persuade everyone to learn how to program, particularly those who have had negative experiences with STEM education.</p>
+<p>Instead, I will try to make the materials as accessible as possible by emphasizing the following two ideas in teaching: showing the <strong>BIG PICTURE</strong> and walking through the <strong>WORKFLOW.</strong> With <a href="https://media.illinois.edu/margaret-yee-man-ng">Margaret Ng</a> (Assistant Professor of Journalism, UIUC), I discussed the pedagogical importance of these two concepts in teaching computational social science to everyone. <a href="https://osf.io/preprints/socarxiv/pf7n6/?fbclid=IwAR2ZI0yw_pehS0mxAmeUBOGpzIhiO2LMUPGBzBLTLNo4C2HrJSoH9uZhgTY">The article</a> was published in <em>PS: Political Science and Politics</em> (APSA’s official journal on the field’s professionalization). If you are interested in my full argument, please read the article.</p>
+<p>Here is a quick summary of why I think inclusive teaching of programming matters for social science students.</p>
+<p>Showing the big picture: When teaching a new skill or technique, it is important to remind students of the input and output data types. Students from Excel, SPSS, or Stata backgrounds may not be used to considering data structure when working with data. Therefore, providing guideposts is crucial to help them avoid making obvious mistakes (such as providing a character vector when a numeric vector is needed for input data) and to see the connection between different skills (such as using APIs and web scraping).</p>
+<p>Walking through the workflow: Break down the steps required to move from input to output data. This approach helps students feel less overwhelmed by the complex steps required to solve a particular task. It also helps them learn how to formulate a workflow when encountering the same problem in a different context. Although the exact context may not be identical, they can find patterns across them. Finally, teaching the workflow means breaking down these steps and putting them together, ideally using functions. Acquiring this skill is critical for students to advance from beginner to intermediate programmers who can write readable and reusable code.</p>
 
 </div>
 </div>
@@ -526,7 +525,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

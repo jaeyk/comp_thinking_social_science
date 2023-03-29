@@ -2,7 +2,7 @@
 knitr: "bookdown::render_book"
 title: "Computational Thinking for Social Scientists"
 author: ["[Jae Yeon Kim](https://jaeyk.github.io/)"]
-date: "2022-02-13"
+date: "2023-03-29"
 site: bookdown::bookdown_site
 github-repo: jaeyk/PS239T
 twitter-handle: JaeJaeykim2
@@ -30,9 +30,9 @@ print("Hello, World!")
 
 > Make simple things simple, and complex things possible. - [Alan Kay](https://www.quora.com/What-is-the-story-behind-Alan-Kay-s-adage-Simple-things-should-be-simple-complex-things-should-be-possible)
 
-This is the website for *Computational Thinking for Social Scientists*. This open-access book intends to help social scientists think computationally and develop proficiency with computational tools and techniques to research computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let them work on research projects that would previously seem impossible.
+This is the website for *Computational Thinking for Social Scientists*. This open-access book aims to help social scientists think computationally and develop proficiency with computational tools and techniques to research computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also allows them to work on research projects that would previously seem impossible.
 
-Horace Mann, the first great American advocate of public education, claimed that ''Education, then, beyond all other divides of human origin, is a great equalizer of conditions of men—the balance wheel of the social machinery.'' I believe in this potential of education; however, I also fully acknowledge that quality education is not accessible equally. Often, the gap between education and technology is greater among historically disadvantaged groups than advantaged groups. As an educator, this book is my small contribution to making this democratic vision of education possible, at least in the emerging field of computational social science. 
+Horace Mann, the first great American advocate of public education, claimed that ''Education, then, beyond all other divides of human origin, is a great equalizer of conditions of men—the balance wheel of the social machinery.'' I believe in this potential of education; however, I also fully acknowledge that quality education is not equally accessible. Often, the gap between education and technology is greater among historically disadvantaged groups than advantaged groups. As an educator, this book is my small contribution to making this democratic vision of education possible, at least in the emerging field of computational social science.
 
 That said, this book is not intended to be a comprehensive guide for computational social science or any particular programming language, computational tool, or technique. If you are interested in a general introduction to computational social science, I highly recommend [Matthew Salganik](http://www.princeton.edu/~mjs3/)'s [Bit By Bit (2017)](https://www.bitbybitbook.com/). Salganik's book is comprehensive, accessible, and pedagogically friendly. 
 
@@ -70,17 +70,17 @@ The book teaches how to do all of these, mostly in [**R**](https://www.r-project
       
       >> Compared to other programming languages, the R community tends to be more focused on results instead of processes. Knowledge of software engineering best practices is patchy: for instance, not enough R programmers use source code control or automated testing. Inconsistency is rife across contributed packages, even within base R. You are confronted with over 20 years of evolution every time you use R. R is not a particularly fast programming language, and poorly written R code can be terribly slow. R is also a profligate user of memory. - Hadley Wickham
   
-      - RStudio, especially the tidyverse team, has made heroic efforts to overcome the limitations mentioned above. Readers will learn these recent advances in the R ecosystem and complement R with Python and Bash.
+    - RStudio, especially the tidyverse team, has made heroic efforts to overcome the limitations mentioned above. In this document, readers will learn about these recent advances in the R ecosystem and how to complement R with Python and Bash.
       
-      - Nevertheless, if you're serious about programming, I highly recommend learning Python. Learning Python also helps you fill gaps in software engineering that could be useful to be highly proficient in R.
+    - However, if you are serious about programming, I highly recommend learning Python. Learning Python can also help you fill gaps in software engineering that may be useful to become highly proficient in R.
       
 ## Special thanks 
 
-This book is collected as much as it is authored. It is a remix version of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level computational methods course at UC Berkeley, originally developed by [Rochelle Terman](http://rochelleterman.com/) (Assistant Professor of Political Science, Chicago) then revised by [Rachel Bernhard](http://rachelbernhard.com/) (Assistant Professor of Political Science, UC Davis). I have taught [PS239T](https://github.com/PS239T/spring_2021) as lead instructor in Spring 2019 and TA in Spring 2018 and taught it with [Nick Kuipers](https://nicholaskuipers.com/) (Postdoc, Stanford) in Spring 2020. Other teaching materials draw from the workshops I have created for [D-Lab](https://dlab.berkeley.edu/) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley and [the Summer Institute in Computational Social Science hosted by Howard University and Mathematica](https://sicss.io/2021/howard-mathematica/). I also have cited all the other references whenever I am aware of related books, articles, slides, blog posts, or YouTube video clips. 
+This book is collected as much as it is authored. It is a remix version of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level computational methods course at UC Berkeley, originally developed by [Rochelle Terman](http://rochelleterman.com/) (Assistant Professor of Political Science, Chicago) then revised by [Rachel Bernhard](http://rachelbernhard.com/) (Associate Professor of Quantitative Political Science Research Methods at Nuffield College and the University of Oxford). I have taught [PS239T](https://github.com/PS239T/spring_2021) as lead instructor in Spring 2019 and TA in Spring 2018 and taught it with [Nick Kuipers](https://nicholaskuipers.com/) (Assistant Professor of Political Science and Presidential Young Professor at the National University of Singapore) in Spring 2020. Other teaching materials draw from the workshops I have created for [D-Lab](https://dlab.berkeley.edu/) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley and [the Summer Institute in Computational Social Science hosted by Howard University and Mathematica](https://sicss.io/2021/howard-mathematica/). I have also cited all other references, such as related books, articles, slides, blog posts, and YouTube video clips, whenever I am aware of the
 
 ## Suggestions, questions, or comments 
 
-Please feel free to [create issues](https://github.com/jaeyk/PS239T/issues); if you find typos, errors, missing citations, please report them via the GitHub repository associated with this book. 
+Please feel free to [create issues](https://github.com/jaeyk/PS239T/issues); If you find any typos, errors, or missing citations, please report them via the GitHub repository associated with this book.
 
 ## License 
 

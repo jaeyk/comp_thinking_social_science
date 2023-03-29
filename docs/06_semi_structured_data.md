@@ -203,9 +203,6 @@ The following tax return data example comes from the U.S. Internal Revenue Servi
 Step1: Get an XML document link
 
 
-```r
-xml_link <- c("http://s3.amazonaws.com/irs-form-990/201910919349301206_public.xml")
-```
 
 Step 2: Get the page and parse the XML document. 
 
@@ -219,21 +216,9 @@ xml_root <- xml_link %>%
 
 # Data output: list 
 typeof(xml_root) 
-```
 
-```
-## [1] "list"
-```
-
-```r
 # Two elements. Our target is the second one.
 summary(xml_root)
-```
-
-```
-##              Length Class   Mode
-## ReturnHeader 11     XMLNode list
-## ReturnData    6     XMLNode list
 ```
 
 Step 3: Get nodes 
@@ -247,11 +232,6 @@ xml_root %>%
   getNodeSet("//MissionDesc") # Mission statement 
 ```
 
-```
-## [[1]]
-## <MissionDesc>DISTRIBUTION OF LITERATURE, MUSIC, AND OTHER RELATED RESOURCES WHICH COMPLIMENT LITERATURE; SUPPORT OF MINISTRIES.</MissionDesc>
-```
-
 Step 4: Get values 
 
 
@@ -260,10 +240,6 @@ xml_root %>%
   purrr::pluck(2) %>% # Second element (Return Data)
   getNodeSet("//MissionDesc") %>% # Mission statement 
   xmlValue()
-```
-
-```
-## [1] "DISTRIBUTION OF LITERATURE, MUSIC, AND OTHER RELATED RESOURCES WHICH COMPLIMENT LITERATURE; SUPPORT OF MINISTRIES."
 ```
 
 ### Social media API (JSON)
@@ -748,7 +724,7 @@ worldbank %>%
 ##  8           8 China Renewable Energy Scale-Up Program Phase II                 
 ##  9           9 Rajasthan Road Sector Modernization Project                      
 ## 10          10 MA Accountability and Transparency DPL                           
-## # … with 490 more rows
+## # ℹ 490 more rows
 ```
 
 -   The following example draws on my [tidytweetjson](https://github.com/jaeyk/tidytweetjson) R package. The package applies `tidyjson` to Tweets.

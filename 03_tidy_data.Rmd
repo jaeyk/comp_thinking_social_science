@@ -21,7 +21,7 @@ pacman::p_load(
   tidyverse, # the tidyverse framework
   skimr, # skimming data
   here, # computational reproducibility
-  infer, # statistical inference
+  #infer, # statistical inference
   tidymodels, # statistical modeling
   gapminder, # toy data
   nycflights13, # for exercise
@@ -2646,70 +2646,6 @@ df <- list(
 Try `map_df(.x = df, .f = multiply)` and tell me what's the difference between the output you got and what you saw earlier.
 
 If you want to know more about the power and joy of functional programming in R (e.g., `purrr::map()`), then please take ["How to Automate Repeated Things in R"](https://github.com/dlab-berkeley/R-functional-programming) workshop.
-
-### Hypothesis testing 
-
-Statistical inference: does the effect/difference in observed data occur by chance?
-
-Null hypothesis: everything was random 
-Alternative hypothesis: everything was not random. Note that this does not mean that a particular factor influenced the outcome of interest. Statistical inference != Causal inference (causes and effects)
-
-$Y = X_{1} + X_{2} + X_{3} \epsilon$
-
-[`infer`](https://github.com/tidymodels/infer) is for tidyverse-friendly statistical inference. 
-
-**Workflow**
-
-1. `specify()` specify a formula 
-2. `hypothesize()` declare the null hypothesis 
-3. `generate()` generate data based on the null hypothesis 
-4. `calculate()` calculate a distribution of statistics from the generated data to form the null distribution 
-
-
-![From infer package](https://raw.githubusercontent.com/tidymodels/infer/master/figs/ht-diagram.png)
-
-```{r}
-
-gapminder <- gapminder %>%
-  mutate(log_pop = log(pop))
-
-ggplot(aes(x = log_pop, y = lifeExp), data = gapminder) +
-  geom_point() +
-  geom_smooth(method = "lm")
-
-# Calculate the observed statistic: Observed slopes
-observed_slopes <- gapminder %>%
-  # specify(formula = lifeExp ~ log_pop) %>%
-  specify(formula = lifeExp ~ log_pop) %>%
-  calculate(stat = "slope")
-
-# Generate the null distribution: Null slopes
-null_slopes <- gapminder %>%
-  # Specify a formula
-  specify(formula = lifeExp ~ log_pop) %>%
-  # Hypothesize (point estimation)
-  hypothesize(null = "point", mu = 0) %>%
-  # Generate sampling distributions (bootstrapping)
-  generate(reps = 1000, type = "bootstrap") %>%
-  # Calculate statistics
-  calculate(stat = "slope")
-
-# Return data
-null_slopes %>%
-  # p-value is just the probability that observed pattern could arise if the null hypothesis was true
-  # In social science convention, if alpha is below 0.005 (note: this is totally arbitrary), then the observed distribution is statistically significant.
-  get_p_value(
-    obs_stat = observed_slopes,
-    direction = "both"
-  )
-
-# Visualize output
-visualize(null_slopes) +
-  shade_p_value(
-    obs_stat = observed_slopes,
-    direction = "both"
-  )
-```
 
 ## Visualizing (ggplot2)
 

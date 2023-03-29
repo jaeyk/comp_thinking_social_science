@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Computational Thinking for Social Scientists</title>
   <meta name="description" content="Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Computational Thinking for Social Scientists" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists." />
   <meta name="github-repo" content="jaeyk/PS239T" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2022-02-13" />
+<meta name="date" content="2023-03-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 
 <link rel="next" href="motivation.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,16 +49,16 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -94,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -107,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -234,7 +232,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.6.1" data-path="tidy_data.html"><a href="tidy_data.html#nesting"><i class="fa fa-check"></i><b>4.6.1</b> Nesting</a></li>
 <li class="chapter" data-level="4.6.2" data-path="tidy_data.html"><a href="tidy_data.html#mapping"><i class="fa fa-check"></i><b>4.6.2</b> Mapping</a></li>
-<li class="chapter" data-level="4.6.3" data-path="tidy_data.html"><a href="tidy_data.html#hypothesis-testing"><i class="fa fa-check"></i><b>4.6.3</b> Hypothesis testing</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="tidy_data.html"><a href="tidy_data.html#visualizing-ggplot2"><i class="fa fa-check"></i><b>4.7</b> Visualizing (ggplot2)</a>
 <ul>
@@ -410,21 +407,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Computational Thinking for Social Scientists</h1>
 <p class="author"><em><a href="https://jaeyk.github.io/">Jae Yeon Kim</a></em></p>
-<p class="date"><em>2022-02-13</em></p>
+<p class="date"><em>2023-03-29</em></p>
 </div>
-<div id="hello-world" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Hello World</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true"></a><span class="kw">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</span></code></pre></div>
+<div id="hello-world" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Hello World<a href="index.html#hello-world" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello, World!&quot;</code></pre>
 <blockquote>
 <p>Make simple things simple, and complex things possible. - <a href="https://www.quora.com/What-is-the-story-behind-Alan-Kay-s-adage-Simple-things-should-be-simple-complex-things-should-be-possible">Alan Kay</a></p>
 </blockquote>
-<p>This is the website for <em>Computational Thinking for Social Scientists</em>. This open-access book intends to help social scientists think computationally and develop proficiency with computational tools and techniques to research computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also let them work on research projects that would previously seem impossible.</p>
-<p>Horace Mann, the first great American advocate of public education, claimed that ‘’Education, then, beyond all other divides of human origin, is a great equalizer of conditions of men—the balance wheel of the social machinery.’’ I believe in this potential of education; however, I also fully acknowledge that quality education is not accessible equally. Often, the gap between education and technology is greater among historically disadvantaged groups than advantaged groups. As an educator, this book is my small contribution to making this democratic vision of education possible, at least in the emerging field of computational social science.</p>
+<p>This is the website for <em>Computational Thinking for Social Scientists</em>. This open-access book aims to help social scientists think computationally and develop proficiency with computational tools and techniques to research computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also allows them to work on research projects that would previously seem impossible.</p>
+<p>Horace Mann, the first great American advocate of public education, claimed that ‘’Education, then, beyond all other divides of human origin, is a great equalizer of conditions of men—the balance wheel of the social machinery.’’ I believe in this potential of education; however, I also fully acknowledge that quality education is not equally accessible. Often, the gap between education and technology is greater among historically disadvantaged groups than advantaged groups. As an educator, this book is my small contribution to making this democratic vision of education possible, at least in the emerging field of computational social science.</p>
 <p>That said, this book is not intended to be a comprehensive guide for computational social science or any particular programming language, computational tool, or technique. If you are interested in a general introduction to computational social science, I highly recommend <a href="http://www.princeton.edu/~mjs3/">Matthew Salganik</a>’s <a href="https://www.bitbybitbook.com/">Bit By Bit (2017)</a>. Salganik’s book is comprehensive, accessible, and pedagogically friendly.</p>
 <p>The book comprises two main subjects (fundamentals and applications) and eight main sessions.</p>
-<div id="part-i-fundamentals" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Part I Fundamentals</h2>
+<div id="part-i-fundamentals" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Part I Fundamentals<a href="index.html#part-i-fundamentals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p><a href="motivation.html#motivation">Why computational thinking</a></p></li>
 <li><p><a href="git_bash.html#git_bash">Best practices in data and code management using Git and Bash</a></p></li>
@@ -433,8 +430,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><a href="products.html#products">How to develop data products (e.g., packages and shiny apps)</a></p></li>
 </ol>
 </div>
-<div id="part-ii-applications" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Part II Applications</h2>
+<div id="part-ii-applications" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Part II Applications<a href="index.html#part-ii-applications" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol start="6" style="list-style-type: decimal">
 <li><p><a href="semi_structured_data.html#semi_structured_data">How to collect and parse semi-structured data at scale (e.g., using APIs and web scraping)</a></p></li>
 <li><p><a href="machine_learning.html#machine_learning">How to analyze high-dimensional data (e.g., text) using machine learning</a></p></li>
@@ -458,21 +455,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 </blockquote>
 <ul>
-<li><p>RStudio, especially the tidyverse team, has made heroic efforts to overcome the limitations mentioned above. Readers will learn these recent advances in the R ecosystem and complement R with Python and Bash.</p></li>
-<li><p>Nevertheless, if you’re serious about programming, I highly recommend learning Python. Learning Python also helps you fill gaps in software engineering that could be useful to be highly proficient in R.</p></li>
+<li><p>RStudio, especially the tidyverse team, has made heroic efforts to overcome the limitations mentioned above. In this document, readers will learn about these recent advances in the R ecosystem and how to complement R with Python and Bash.</p></li>
+<li><p>However, if you are serious about programming, I highly recommend learning Python. Learning Python can also help you fill gaps in software engineering that may be useful to become highly proficient in R.</p></li>
 </ul></li>
 </ul>
 </div>
-<div id="special-thanks" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Special thanks</h2>
-<p>This book is collected as much as it is authored. It is a remix version of <a href="https://github.com/rochelleterman/PS239T">PS239T</a>, a graduate-level computational methods course at UC Berkeley, originally developed by <a href="http://rochelleterman.com/">Rochelle Terman</a> (Assistant Professor of Political Science, Chicago) then revised by <a href="http://rachelbernhard.com/">Rachel Bernhard</a> (Assistant Professor of Political Science, UC Davis). I have taught <a href="https://github.com/PS239T/spring_2021">PS239T</a> as lead instructor in Spring 2019 and TA in Spring 2018 and taught it with <a href="https://nicholaskuipers.com/">Nick Kuipers</a> (Postdoc, Stanford) in Spring 2020. Other teaching materials draw from the workshops I have created for <a href="https://dlab.berkeley.edu/">D-Lab</a> and <a href="https://data.berkeley.edu/research/discovery-program-home">Data Science Discovery Program</a> at UC Berkeley and <a href="https://sicss.io/2021/howard-mathematica/">the Summer Institute in Computational Social Science hosted by Howard University and Mathematica</a>. I also have cited all the other references whenever I am aware of related books, articles, slides, blog posts, or YouTube video clips.</p>
+<div id="special-thanks" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Special thanks<a href="index.html#special-thanks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This book is collected as much as it is authored. It is a remix version of <a href="https://github.com/rochelleterman/PS239T">PS239T</a>, a graduate-level computational methods course at UC Berkeley, originally developed by <a href="http://rochelleterman.com/">Rochelle Terman</a> (Assistant Professor of Political Science, Chicago) then revised by <a href="http://rachelbernhard.com/">Rachel Bernhard</a> (Associate Professor of Quantitative Political Science Research Methods at Nuffield College and the University of Oxford). I have taught <a href="https://github.com/PS239T/spring_2021">PS239T</a> as lead instructor in Spring 2019 and TA in Spring 2018 and taught it with <a href="https://nicholaskuipers.com/">Nick Kuipers</a> (Assistant Professor of Political Science and Presidential Young Professor at the National University of Singapore) in Spring 2020. Other teaching materials draw from the workshops I have created for <a href="https://dlab.berkeley.edu/">D-Lab</a> and <a href="https://data.berkeley.edu/research/discovery-program-home">Data Science Discovery Program</a> at UC Berkeley and <a href="https://sicss.io/2021/howard-mathematica/">the Summer Institute in Computational Social Science hosted by Howard University and Mathematica</a>. I have also cited all other references, such as related books, articles, slides, blog posts, and YouTube video clips, whenever I am aware of the</p>
 </div>
-<div id="suggestions-questions-or-comments" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Suggestions, questions, or comments</h2>
-<p>Please feel free to <a href="https://github.com/jaeyk/PS239T/issues">create issues</a>; if you find typos, errors, missing citations, please report them via the GitHub repository associated with this book.</p>
+<div id="suggestions-questions-or-comments" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Suggestions, questions, or comments<a href="index.html#suggestions-questions-or-comments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Please feel free to <a href="https://github.com/jaeyk/PS239T/issues">create issues</a>; If you find any typos, errors, or missing citations, please report them via the GitHub repository associated with this book.</p>
 </div>
-<div id="license" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> License</h2>
+<div id="license" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> License<a href="index.html#license" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="https://licensebuttons.net/l/by/4.0/88x31.png" /> This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
 </div>
@@ -543,7 +540,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

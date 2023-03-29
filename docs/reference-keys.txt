@@ -134,7 +134,6 @@ nesting
 nest
 unnest
 mapping
-hypothesis-testing
 visualizing-ggplot2
 motivation-2
 the-grammar-of-graphics
