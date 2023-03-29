@@ -30,12 +30,10 @@ Please feel free to [create issues](https://github.com/jaeyk/PS239T/issues) if y
 
 ## Contact
 
-Content developer: [Jae Yeon Kim](https://jaeyk.github.io/): jkim@kdischool.ac.kr
+Content developer: [Jae Yeon Kim](https://jaeyk.github.io/): jkim638@jhu.edu
 
 ## Special thanks 
 
-## Special thanks 
-
-This book is collected as much as it is authored. It is a remix version of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level computational methods course at UC Berkeley, originally developed by [Rochelle Terman](http://rochelleterman.com/) (Assistant Professor of Political Science, Chicago) then revised by [Rachel Bernhard](http://rachelbernhard.com/) (Assistant Professor of Political Science, UC Davis). I have taught [PS239T](https://github.com/PS239T/spring_2021) as lead instructor in Spring 2019 and TA in Spring 2018 and taught it with [Nick Kuipers](https://nicholaskuipers.com/) (Postdoc, Stanford) in Spring 2020. Other teaching materials draw from the workshops I have created for [D-Lab](https://dlab.berkeley.edu/) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley and [the Summer Institute in Computational Social Science hosted by Howard University and Mathematica](https://sicss.io/2021/howard-mathematica/). I also have cited all the other references whenever I am aware of related books, articles, slides, blog posts, or YouTube video clips. 
+This book is collected as much as it is authored. It is a remix version of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level computational methods course at UC Berkeley, originally developed by [Rochelle Terman](http://rochelleterman.com/) (Assistant Professor of Political Science, Chicago) then revised by [Rachel Bernhard](http://rachelbernhard.com/) (Associate Professor of Quantitative Political Science Research Methods at Nuffield College and the University of Oxford). I have taught [PS239T](https://github.com/PS239T/spring_2021) as lead instructor in Spring 2019 and TA in Spring 2018 and taught it with [Nick Kuipers](https://nicholaskuipers.com/) (Assistant Professor of Political Science and Presidential Young Professor at the National University of Singapore) in Spring 2020. Other teaching materials draw from the workshops I have created for [D-Lab](https://dlab.berkeley.edu/) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley and [the Summer Institute in Computational Social Science hosted by Howard University and Mathematica](https://sicss.io/2021/howard-mathematica/). I have also cited all other references, such as related books, articles, slides, blog posts, and YouTube video clips, whenever I am aware of them.
 
 ![](https://licensebuttons.net/l/by/4.0/88x31.png) This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
