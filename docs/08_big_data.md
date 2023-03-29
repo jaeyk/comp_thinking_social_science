@@ -130,20 +130,6 @@ pacman::p_load(
 )
 ```
 
-```
-## Installing package into '/home/jae/R/x86_64-pc-linux-gnu-library/4.2'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependency 'plogr'
-```
-
-```
-## 
-## RSQLite installed
-```
-
 ### NYC flights data 
 
 - [The flight on-time performance data](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236) from the Bureau of Transportation Statistics of the U.S. government. The data goes back to 1987, and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.
@@ -636,12 +622,13 @@ flights %>%
 ```
 
 ```
-## `summarise()` has grouped output by "month". You can override using the
-## `.groups` argument.
+## `summarise()` has grouped output by "month". You can
+## override using the `.groups` argument.
 ```
 
 ```
-## Warning: Missing values are always removed in SQL aggregation functions.
+## Warning: Missing values are always removed in SQL aggregation
+## functions.
 ## Use `na.rm = TRUE` to silence this warning
 ## This warning is displayed once every 8 hours.
 ```
@@ -679,8 +666,8 @@ flights %>%
 ```
 
 ```
-## `summarise()` has grouped output by "month". You can override using the
-## `.groups` argument.
+## `summarise()` has grouped output by "month". You can
+## override using the `.groups` argument.
 ```
 
 ```

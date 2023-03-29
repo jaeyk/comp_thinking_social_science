@@ -1,5 +1,3 @@
-tab:unnamed-chunk-16
-tab:unnamed-chunk-20
 hello-world
 part-i-fundamentals
 part-ii-applications
@@ -52,6 +50,7 @@ deployment-github-pages
 tracking-progress-github-issues
 project-management-github-dashboards
 using-git-clients
+getting-started-in-r
 the-big-picture-2
 rstudio
 basic-syntax
@@ -196,6 +195,7 @@ map
 how-to-make-automation-faster
 robustness
 learning-objective
+problem-3
 solution-1
 try-catch
 safely
@@ -245,7 +245,7 @@ dehydrate
 parsing-json
 objectives-6
 chunk-and-pull
-problem-3
+problem-4
 solution-2
 tidyjson
 individual-file

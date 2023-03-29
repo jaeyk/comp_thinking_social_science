@@ -30,7 +30,13 @@ This chapter helps you to step up your R skills with functional programming. The
 if (!require("pacman")) {
   install.packages("pacman")
 }
+```
 
+```
+## Loading required package: pacman
+```
+
+```r
 pacman::p_load(
   tidyverse, # tidyverse pkgs including purrr
   bench, # performance test 
