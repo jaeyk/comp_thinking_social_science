@@ -1136,7 +1136,7 @@ toc()
 ```
 
 ```
-## 0.012 sec elapsed
+## 0.008 sec elapsed
 ```
 
 `map` is faster because it applies function to the items on the list/vector in parallel. Also, using `map_dbl` reduces an extra step you need to take. Hint: `map_dbl(x, mean, na.rm = TRUE)` = `vapply(x, mean, na.rm = TRUE, FUN.VALUE = double(1))`
@@ -1179,7 +1179,7 @@ map_mark
 ## # A tibble: 1 × 6
 ##   expression                                              min   median `itr/sec`
 ##   <bch:expr>                                         <bch:tm> <bch:tm>     <dbl>
-## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)     71µs   75.4µs    12688.
+## 1 out1 <- airquality %>% map_dbl(mean, na.rm = TRUE)   66.8µs   74.1µs    12682.
 ## # ℹ 2 more variables: mem_alloc <bch:byt>, `gc/sec` <dbl>
 ```
 
@@ -1280,13 +1280,11 @@ qplot(y_means) +
 ```
 ## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where
-## this warning was generated.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 ```
-## `stat_bin()` using `bins = 30`. Pick better value with
-## `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
 <img src="04_functional_programming_files/figure-html/unnamed-chunk-32-1.png" width="672" />
@@ -1309,8 +1307,7 @@ y_tidy <- rerun(k, rnorm(small_n, mu, sigma))
 ##   # Now
 ##   map(1:1000, ~ rnorm(small_n, mu, sigma))
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where
-## this warning was generated.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 ```r
@@ -1324,10 +1321,8 @@ y_means_tidy <- map_dbl(y_tidy, mean)
 ```
 
 ```
-## `stat_bin()` using `bins = 30`. Pick better value with
-## `binwidth`.
-## `stat_bin()` using `bins = 30`. Pick better value with
-## `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
 <img src="04_functional_programming_files/figure-html/unnamed-chunk-33-1.png" width="672" />
