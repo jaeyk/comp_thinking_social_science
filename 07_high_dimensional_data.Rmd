@@ -2,7 +2,13 @@
 
 ```{r include = FALSE}
 # Caching this markdown file
-#knitr::opts_chunk$set(cache = TRUE)
+knitr::opts_chunk$set(
+  cache        = TRUE,                # cache all chunks by default
+  cache.path   = "cache/functional_", # put all cache files here
+  cache.lazy   = FALSE,               # only re‑run if code or inputs change
+  warning      = FALSE,
+  message      = FALSE
+)
 ```
 
 ## The Big Picture
@@ -91,24 +97,26 @@
 - One of the popular datasets used in machine learning competitions 
 
 ```{r}
-# Load packages
-
-## CRAN packages
+# Install pacman if needed, then load packages
+if (!requireNamespace("pacman", quietly = TRUE)) {
+  install.packages("pacman")
+}
 pacman::p_load(
-  here,
-  tidyverse,
-  tidymodels,
-  doParallel, # parallel processing
-  patchwork, # arranging ggplots
-  remotes,
-  SuperLearner,
-  vip,
-  tidymodels,
-  glmnet,
-  xgboost,
-  rpart,
-  ranger,
-  conflicted
+  here,         # Project‐root file paths
+  tidyverse,    # Data manipulation & visualization (dplyr, ggplot2, etc.)
+  tidymodels,   # Modeling ecosystem (parsnip, recipes, yardstick, etc.)
+  doParallel,   # Parallel backend for modeling (foreach, caret, tidymodels)
+  patchwork,    # Compose multiple ggplots into one layout
+  remotes,      # Install packages from GitHub and other remote sources
+  SuperLearner, # Ensemble learning via stacked generalization
+  vip,          # Variable importance plots (model‐agnostic)
+  glmnet,       # Regularized regression (lasso, ridge, elastic net)
+  finetune,     # Advanced hyperparameter tuning (race methods, etc.)
+  glue,         # String interpolation
+  xgboost,      # Gradient boosting (XGBoost)
+  rpart,        # Recursive partitioning trees
+  ranger,       # Fast random forests with C++ backend
+  conflicted    # Explicit conflict resolution for masking functions
 )
 
 remotes::install_github("ck37/ck37r")
@@ -137,9 +145,6 @@ theme_set(theme_minimal())
 ## Workflow 
 
 ```{r echo=FALSE, results='asis'}
-
-pacman::p_load(glue)
-
 workflow_list <- c(
   "Preprocessing",
   "Model building",
@@ -516,13 +521,14 @@ rec_wf <- workflow() %>%
   add_formula(age ~ .)
 ```
 
-```{r}
+```{r, cache = TRUE}
 
 # Tuning results
 rec_res <- rec_wf %>%
   tune_grid(
     resamples = rec_folds,
-    grid = lambda_grid
+    grid      = lambda_grid,
+    control   = control_grid(parallel_over = "resamples")
   )
 ```
 
@@ -1083,17 +1089,15 @@ xg_grid <- grid_latin_hypercube(
   trees(range = c(50, 500)),
   tree_depth(range = c(1, 10)),
   learn_rate(range = c(0.01, 0.3)),
-  size = 20
+  size = 8
 )
 
 # 4) Run tuning
-xg_res <- xg_wf %>%
-  tune_grid(
-    resamples = cv_splits,
-    grid      = xg_grid,
-    metrics   = metric_set(accuracy, recall),
-    control   = control_grid(save_pred = TRUE)
-  )
+xg_res <- tune_race_anova(
+  xg_wf, resamples = cv_splits, grid = xg_grid,
+  metrics = metric_set(accuracy, recall),
+  control = control_race(verbose = FALSE, parallel_over = "resamples")
+)
 ```
 
 - **Fit the final model**  
@@ -1658,11 +1662,11 @@ dtm <- textProcessor(
 - K is the number of topics. 
 - Let's try K = 5, 10, 15.
 
-```{r}
+```{r, cache = TRUE}
 test_res <- searchK(
   dtm$documents,
   dtm$vocab,
-  K = c(5, 10, 15),
+  K = c(5, 10),
   prevalence = ~book,
   data = dtm$meta
 )
@@ -1703,14 +1707,15 @@ test_res$results %>%
 ##### Finalize 
 
 ```{r}
-final_stm <- stm(dtm$documents,
-  dtm$vocab,
-  K = 10, prevalence = ~book,
+final_stm <- stm(
+  dtm$documents, dtm$vocab,
+  K          = 5,
+  prevalence = ~book,
+  data       = dtm$meta,
+  init.type  = "Spectral",
   max.em.its = 75,
-  data = dtm$meta,
-  init.type = "Spectral",
-  seed = 1234567,
-  verbose = FALSE
+  seed       = 1234567,
+  verbose    = FALSE
 )
 ```
 

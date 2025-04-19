@@ -1,71 +1,92 @@
+############### REGRESSION ################
 
-############# REGRESSION #############
+#’ Plot observed vs. predicted values for a regression model
+#’
+#’ @param model A fitted regression model
+#’ @param model_name A descriptive name for the model (for the title)
+#’ @return A ggplot2 scatterplot with a diagonal reference line
+visualize_fit <- function(model, model_name) {
+  # 1. Bind the true outcomes and the model’s predictions
+  results <- bind_cols(
+    tibble(truth = test_y_reg),          # true values
+    predict(model, test_x_reg)           # predicted values (.pred)
+  )
 
-visualize_fit <- function(model, names){
-
-  # Bind ground truth and predicted values
-  bind_cols(tibble(truth = test_y_reg), # Ground truth
-            predict(model, test_x_reg)) %>% # Predicted values
-
-    # Visualize the residuals
+  # 2. Create the plot
+  results %>%
     ggplot(aes(x = truth, y = .pred)) +
-    # Diagonal line
-    geom_abline(lty = 2) +
-    geom_point(alpha = 0.5) +
-    # Make X- and Y- scale uniform
-    coord_obs_pred() +
-    labs(title = glue::glue("{names}"))
-
+    geom_abline(linetype = "dashed", color = "gray60") +  # 45° reference
+    geom_point(alpha = 0.5) +                              # scatter
+    coord_obs_pred() +                                     # equal scales
+    labs(
+      title = glue::glue("{model_name} — Observed vs Predicted"),
+      x     = "Observed",
+      y     = "Predicted"
+    )
 }
 
-# Build an evaluation function
-evaluate_reg <- function(model){
-
-  # Bind ground truth and predicted values
-  bind_cols(tibble(truth = test_y_reg), # Ground truth
-            predict(model, test_x_reg)) %>% # Predicted values
-
-    # Calculate root mean-squared error
+#’ Compute regression metrics (e.g., RMSE, MAE)
+#’
+#’ @param model A fitted regression model
+#’ @return A tibble of performance metrics
+evaluate_reg <- function(model) {
+  bind_cols(
+    tibble(truth = test_y_reg),
+    predict(model, test_x_reg)
+  ) %>%
     metrics(truth = truth, estimate = .pred)
 }
 
 
-############# CLASSIFICATION #############
+############# CLASSIFICATION ################
 
-evaluate_class <- function(model){
-
-  # Bind ground truth and predicted values
-  df <- bind_cols(tibble(truth = test_y_class), # Ground truth
-                  predict(model, test_x_class)) # Predicted values
-
-  # Calculate metrics
-  df %>% metrics(truth = truth, estimate = .pred_class)
+#’ Compute classification metrics (accuracy, sensitivity, etc.)
+#’
+#’ @param model A fitted classification model
+#’ @return A tibble of performance metrics
+evaluate_class <- function(model) {
+  bind_cols(
+    tibble(truth = test_y_class),        # true labels
+    predict(model, test_x_class)         # predictions (.pred_class)
+  ) %>%
+    metrics(truth = truth, estimate = .pred_class)
 }
 
-# The following visualization code draws on [Diego Usai's medium post](https://towardsdatascience.com/modelling-with-tidymodels-and-parsnip-bae2c01c131c).
-
-visualize_class_eval <- function(model){
+#’ Bar chart of classification metrics
+#’
+#’ @param model A fitted classification model
+#’ @return A ggplot2 bar chart with metric values
+visualize_class_eval <- function(model) {
   evaluate_class(model) %>%
-    ggplot(aes(x = fct_reorder(glue("{toupper(.metric)}"), .estimate), y = .estimate)) +
-    geom_col() +
-    labs(x = "Metrics",
-         y = "Estimate") +
-    ylim(c(0,1)) +
-    geom_text(aes(label = round(.estimate, 2)),
-              size = 10,
-              color = "red")
+    mutate(metric = toupper(.metric)) %>%   # uppercase names
+    ggplot(aes(x = fct_reorder(metric, .estimate), y = .estimate)) +
+    geom_col(fill = "steelblue") +
+    geom_text(aes(label = scales::percent(.estimate, accuracy = 1)),
+              hjust = -0.1, color = "red", size = 3) +
+    coord_flip() +
+    labs(
+      title = "Classification Performance",
+      x     = "Metric",
+      y     = "Estimate"
+    ) +
+    ylim(0, 1)
 }
 
-visualize_class_conf <- function(model){
-  bind_cols(tibble(truth = test_y_class), # Ground truth
-            predict(model, test_x_class)) %>%
+#’ Confusion matrix heatmap for a classification model
+#’
+#’ @param model A fitted classification model
+#’ @return A ggplot2 tile plot of the confusion matrix
+visualize_class_conf <- function(model) {
+  bind_cols(
+    tibble(truth = test_y_class),
+    predict(model, test_x_class)
+  ) %>%
     conf_mat(truth, .pred_class) %>%
-    pluck(1) %>% # Select index
-    as_tibble() %>% # Vector -> data.frame
-    ggplot(aes(Prediction, Truth, alpha = n)) +
-    geom_tile(show.legend = FALSE) +
-    geom_text(aes(label = n),
-              color = "red",
-              alpha = 1,
-              size = 13)
+    autoplot(type = "heatmap") +                # requires yardstick + ggplot2
+    scale_fill_gradient(low = "white", high = "tomato") +
+    labs(
+      title = "Confusion Matrix",
+      x     = "Predicted",
+      y     = "Actual"
+    )
 }

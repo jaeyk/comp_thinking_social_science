@@ -1,8 +1,14 @@
 # Big data {#big_data}
 
 ```{r include = FALSE}
-# Caching this markdown file 
-#knitr::opts_chunk$set(cache = TRUE)
+# Caching this markdown file
+knitr::opts_chunk$set(
+  cache        = TRUE,                # cache all chunks by default
+  cache.path   = "cache/functional_", # put all cache files here
+  cache.lazy   = FALSE,               # only re‑run if code or inputs change
+  warning      = FALSE,
+  message      = FALSE
+)
 ```
 
 ## The Big Picture
@@ -112,17 +118,18 @@ Let's get to work.
 - `pacman::p_load()` reduces steps for installing and loading several packages simultaneously. 
 
 ```{r}
-# pacman 
-if (!require("pacman")) install.packages("pacman")
+# Install pacman if it’s not already installed, then load packages
+if (!requireNamespace("pacman", quietly = TRUE)) {
+  install.packages("pacman")
+}
 
-# The rest of pkgs 
 pacman::p_load(
- tidyverse, # tidyverse packages 
- DBI, # using SQL queries
- RSQLite, # SQLite
- dbplyr, # use database with dplyr 
- glue, # glue to automate workflow 
- nycflights13 # toy data 
+  tidyverse,   # Data manipulation & visualization (ggplot2, dplyr, etc.)
+  DBI,         # Database interface (DBI spec)
+  RSQLite,     # SQLite backend for DBI
+  dbplyr,      # dplyr interface for databases
+  glue,        # String interpolation
+  nycflights13 # Example flight data for demos
 )
 ```
 
@@ -410,10 +417,11 @@ Hint: `mutate(new_var = var 1 * var2` (R) = `SELECT var1 * var2 AS near_var` (SQ
 - `filter` = `WHERE` 
 
 ```{r}
+# Tell conflicted to prefer dplyr’s filter() over any other
+conflict_prefer("filter", "dplyr")
 
 flights %>% 
   filter(month == 1, day == 1) # filter(month ==1 & day == 1) Both work in the same way.
-
 ```
 
 **Challenge 6** 

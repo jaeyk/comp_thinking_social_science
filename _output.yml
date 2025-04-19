@@ -1,41 +1,53 @@
-# ── HTML ────────────────────────────────────────────────────────────────────
 bookdown::gitbook:
-  css: style.css            # keep your custom styles
-  split_by: section         # lighter pages & faster mobile loads
+  # 1. Load your custom CSS
+  css: style.css
+
+  # 2. Only show top‐level chapters in the sidebar, and make deeper headings collapsible
+  toc_depth: 1
   config:
     toc:
+      collapse: section
       before: |
         <li><a href="./">Computational Thinking for Social Scientists</a></li>
       after: |
-        <li><a href="https://github.com/jaeyk/PS239T" target="_blank">
-          Published with <code>{bookdown}</code></a></li>
-    download:               # show buttons in the navbar
+        <li>
+          <a href="https://github.com/jaeyk/PS239T" target="_blank">
+            Published with <code>{bookdown}</code>
+          </a>
+        </li>
+
+    # 3. Show PDF / EPUB buttons in the top nav
+    download:
       - ["pdf",  "PS239T.pdf"]
       - ["epub", "PS239T.epub"]
-    search: yes             # adds a live‑search box
-    toolbar:
-      position: fixed       # navbar stays visible when scrolling
-    edit: https://github.com/jaeyk/PS239T/edit/main/%s
-    # enable GitBook’s “copy‑code” button:
-    code_copy: true
 
-# ── PDF ────────────────────────────────────────────────────────────────────
+    # 4. Enable live search
+    search:
+      enabled: true
+      highlight: true
+
+  # 5. Add “copy code” button to every code chunk
+  code_copy: true
+
+# For PDF output tweaks
 bookdown::pdf_book:
   latex_engine: xelatex
   citation_package: natbib
+  number_sections: true
+  fig_caption: true
+  toc: true
+  toc_depth: 2
   includes:
-    in_header:   preamble.tex     # custom LaTeX (fonts, packages, …)
-  number_sections: true           # auto‑number headings
-  fig_caption: true               # “Figure 1:” captions
-  keep_tex: false                 # set to true only when debugging
-  toc: true                       # PDF table of contents
-  toc_depth: 2                    # show up to H2 in TOC
+    in_header: preamble.tex
 
-# ── EPUB ───────────────────────────────────────────────────────────────────
+# For EPUB output tweaks
 bookdown::epub_book:
-  stylesheet:  style.css          # reuse the HTML CSS for consistent look
-  cover_image: images/cover.png   # optional nice‑looking cover
+  stylesheet:  style.css
+  cover_image: images/cover.png
   metadata:
-    title:       "PS 239T – Computational Thinking for Social Scientists"
-    creator:     "Jaeyoun Kim"
-    rights:      "© 2025 Jaeyoun Kim"
+    title:   "PS 239T – Computational Thinking for Social Scientists"
+    creator: "Jae Yeon Kim"
+    rights:  |
+      © 2025 Jae Yeon Kim. Licensed under a
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+      CC BY‑NC‑SA 4.0</a> International License.
