@@ -71,7 +71,7 @@ This book primarily uses [**R**](https://www.r-project.org/about.html), and occa
 
 This book is as much collected as it is authored. It is a remix of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level course in computational methods at UC Berkeley originally developed by [Rochelle Terman](http://rochelleterman.com/) (now Assistant Professor of Political Science at the University of Chicago), and later revised by [Rachel Bernhard](http://rachelbernhard.com/) (now Associate Professor at Nuffield College and the University of Oxford).  
 
-I have taught [PS239T](https://github.com/PS239T/spring_2021) as a lead instructor in Spring 2019, a TA in Spring 2018, and a co-instructor with [Nick Kuipers](https://nicholaskuipers.com/) (Assistant Professor of Politics at Princeton) in Spring 2020.
+I have taught [PS239T](https://github.com/PS239T/spring_2021) as a lead instructor in Spring 2019, a TA in Spring 2018, and a co-instructor with [Nick Kuipers](https://nicholaskuipers.com/) (now Assistant Professor of Politics at Princeton) in Spring 2020.
 
 Other materials are adapted from workshops I developed for [D-Lab](https://dlab.berkeley.edu/), the [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley, and the [Summer Institute in Computational Social Science at Howard University and Mathematica](https://sicss.io/2021/howard-mathematica/).
 
