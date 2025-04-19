@@ -7,38 +7,28 @@
 -   Check your `dplyr` package is up-to-date by typing `packageVersion("dplyr")`. If the current installed version is less than 1.0, then update by typing `update.packages("dplyr")`. You may need to restart R to make it work.
 
 
-```r
-ifelse(packageVersion("dplyr") >= 1,
-  "The installed version of dplyr package is greater than or equal to 1.0.0", update.packages("dplyr")
-)
-```
+``` r
+# Ensure dplyr ≥ 1.0.0 before we load anything
+if (packageVersion("dplyr") < "1.0.0") {
+  install.packages("dplyr")
+}
 
-```
-## [1] "The installed version of dplyr package is greater than or equal to 1.0.0"
-```
+if (!requireNamespace("pacman", quietly = TRUE)) {
+  install.packages("pacman")
+}
 
-```r
-if (!require("pacman")) install.packages("pacman")
-```
-
-```
-## Loading required package: pacman
-```
-
-```r
 pacman::p_load(
-  tidyverse, # the tidyverse framework
-  skimr, # skimming data
-  here, # computational reproducibility
-  #infer, # statistical inference
-  tidymodels, # statistical modeling
-  gapminder, # toy data
-  nycflights13, # for exercise
-  ggthemes, # additional themes
-  ggrepel, # arranging ggplots
-  patchwork, # arranging ggplots
-  broom, # tidying model outputs
-  waldo # side-by-side code comparison
+  tidyverse,      # the tidyverse framework
+  skimr,          # skimming data
+  here,           # reproducibility
+  tidymodels,     # modeling
+  gapminder,      # toy data
+  nycflights13,   # exercises
+  ggthemes,       # extra ggplot themes
+  ggrepel,        # better labels
+  patchwork,      # arrange ggplots
+  broom,          # tidy model outputs
+  waldo           # code comparison
 )
 ```
 
@@ -95,7 +85,7 @@ What is a class?
 The function for recovering object classes is ```class()```. L suffix to qualify any number with the intent of making it an explicit integer. See more from the [R language definition](https://cran.r-project.org/doc/manuals/R-lang.html).
 
 
-```r
+``` r
 class(3)
 ```
 
@@ -103,7 +93,7 @@ class(3)
 ## [1] "numeric"
 ```
 
-```r
+``` r
 class(3L)
 ```
 
@@ -111,7 +101,7 @@ class(3L)
 ## [1] "integer"
 ```
 
-```r
+``` r
 class("Three")
 ```
 
@@ -119,7 +109,7 @@ class("Three")
 ## [1] "character"
 ```
 
-```r
+``` r
 class(F)
 ```
 
@@ -160,7 +150,7 @@ Remember, there are four common types of vectors:
 You can create an empty vector with `vector()` (By default, the mode is `logical.` You can be more explicit as shown in the examples below.) It is more common to use direct constructors such as `character()`, `numeric()`, etc.
 
 
-```r
+``` r
 x <- vector()
 
 # with a length and type
@@ -171,7 +161,7 @@ vector("character", length = 10)
 ##  [1] "" "" "" "" "" "" "" "" "" ""
 ```
 
-```r
+``` r
 ## character vector of length 5
 character(5)
 ```
@@ -180,7 +170,7 @@ character(5)
 ## [1] "" "" "" "" ""
 ```
 
-```r
+``` r
 numeric(5)
 ```
 
@@ -188,7 +178,7 @@ numeric(5)
 ## [1] 0 0 0 0 0
 ```
 
-```r
+``` r
 logical(5)
 ```
 
@@ -199,7 +189,7 @@ logical(5)
 Atomic vectors are usually created with `c()`, which is short for concatenate:
 
 
-```r
+``` r
 x <- c(1, 2, 3)
 
 x
@@ -209,7 +199,7 @@ x
 ## [1] 1 2 3
 ```
 
-```r
+``` r
 length(x)
 ```
 
@@ -220,7 +210,7 @@ length(x)
 `x` is a numeric vector. These are the most common kind. You can also have logical vectors. 
 
 
-```r
+``` r
 y <- c(TRUE, TRUE, FALSE, FALSE)
 
 y
@@ -233,7 +223,7 @@ y
 Finally, you can have character vectors:
 
 
-```r
+``` r
 kim_family <- c("Jae", "Sun", "Jane")
 
 is.integer(kim_family) # integer?
@@ -243,7 +233,7 @@ is.integer(kim_family) # integer?
 ## [1] FALSE
 ```
 
-```r
+``` r
 is.character(kim_family) # character?
 ```
 
@@ -251,7 +241,7 @@ is.character(kim_family) # character?
 ## [1] TRUE
 ```
 
-```r
+``` r
 is.atomic(kim_family) # atomic?
 ```
 
@@ -259,7 +249,7 @@ is.atomic(kim_family) # atomic?
 ## [1] TRUE
 ```
 
-```r
+``` r
 typeof(kim_family) # what's the type?
 ```
 
@@ -272,7 +262,7 @@ typeof(kim_family) # what's the type?
 Create a character vector called `fruit` containing 4 of your favorite fruits. Then evaluate its structure using the commands below.
 
 
-```r
+``` r
 # First, create your fruit vector
 # YOUR CODE HERE
 fruit <-
@@ -287,7 +277,7 @@ str(fruit)
 You can add elements to the end of a vector by passing the original vector into the `c` function, like the following:
 
 
-```r
+``` r
 z <- c("Beyonce", "Kelly", "Michelle", "LeToya")
 
 z <- c(z, "Farrah")
@@ -302,7 +292,7 @@ z
 More examples of vectors
 
 
-```r
+``` r
 x <- c(0.5, 0.7)
 
 x <- c(TRUE, FALSE)
@@ -315,7 +305,7 @@ x <- 9:100
 You can also create vectors as a sequence of numbers:
 
 
-```r
+``` r
 series <- 1:10
 
 series
@@ -325,7 +315,7 @@ series
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
-```r
+``` r
 seq(10)
 ```
 
@@ -333,7 +323,7 @@ seq(10)
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
-```r
+``` r
 seq(1, 10, by = 0.1)
 ```
 
@@ -350,7 +340,7 @@ seq(1, 10, by = 0.1)
 Atomic vectors are always flat, even if you nest `c()`'s:
 
 
-```r
+``` r
 c(1, c(2, c(3, 4)))
 ```
 
@@ -358,7 +348,7 @@ c(1, c(2, c(3, 4)))
 ## [1] 1 2 3 4
 ```
 
-```r
+``` r
 # the same as
 c(1, 2, 3, 4)
 ```
@@ -372,7 +362,7 @@ c(1, 2, 3, 4)
 Given a vector, you can determine its class with `class`, or check if it's a specific type with an "is" function: `is.character()`, `is.numeric()`, `is.integer()`, `is.logical()`, or, more generally, `is.atomic()`.
 
 
-```r
+``` r
 char_var <- c("harry", "sally")
 
 class(char_var)
@@ -382,7 +372,7 @@ class(char_var)
 ## [1] "character"
 ```
 
-```r
+``` r
 is.character(char_var)
 ```
 
@@ -390,7 +380,7 @@ is.character(char_var)
 ## [1] TRUE
 ```
 
-```r
+``` r
 is.atomic(char_var)
 ```
 
@@ -398,7 +388,7 @@ is.atomic(char_var)
 ## [1] TRUE
 ```
 
-```r
+``` r
 num_var <- c(1, 2.5, 4.5)
 
 class(num_var)
@@ -408,7 +398,7 @@ class(num_var)
 ## [1] "numeric"
 ```
 
-```r
+``` r
 is.numeric(num_var)
 ```
 
@@ -416,7 +406,7 @@ is.numeric(num_var)
 ## [1] TRUE
 ```
 
-```r
+``` r
 is.atomic(num_var)
 ```
 
@@ -433,7 +423,7 @@ All atomic vector elements must be the same type, so when you attempt to combine
 For example, combining a character and an integer yields a character:
 
 
-```r
+``` r
 str(c("a", 1))
 ```
 
@@ -444,7 +434,7 @@ str(c("a", 1))
 **Guess what the following do without running them first**
 
 
-```r
+``` r
 c(1.7, "a")
 
 c(TRUE, 2)
@@ -455,7 +445,7 @@ c("a", TRUE)
 Notice that when a logical vector is coerced to an integer or double, `TRUE` becomes 1, and `FALSE` becomes 0. This is very useful in conjunction with `sum()` and `mean()`
 
 
-```r
+``` r
 x <- c(FALSE, FALSE, TRUE)
 
 as.numeric(x)
@@ -465,7 +455,7 @@ as.numeric(x)
 ## [1] 0 0 1
 ```
 
-```r
+``` r
 # Total number of TRUEs
 sum(x)
 ```
@@ -474,7 +464,7 @@ sum(x)
 ## [1] 1
 ```
 
-```r
+``` r
 # Proportion that is TRUE
 mean(x)
 ```
@@ -486,7 +476,7 @@ mean(x)
 Coercion often happens automatically. This is called implicit coercion. Most mathematical functions (`+`, `log`, `abs`, etc.) will coerce to a numeric or integer, and most logical operations (`&`, `|`, `any`, etc) will coerce to a logical. You will usually get a warning message if the coercion might lose information. 
 
 
-```r
+``` r
 1 < "2"
 ```
 
@@ -494,7 +484,7 @@ Coercion often happens automatically. This is called implicit coercion. Most mat
 ## [1] TRUE
 ```
 
-```r
+``` r
 "1" > 2
 ```
 
@@ -505,7 +495,7 @@ Coercion often happens automatically. This is called implicit coercion. Most mat
 You can also coerce vectors explicitly coerce with `as.character()`, `as.numeric()`, `as.integer()`, or `as.logical()`. Example:
 
 
-```r
+``` r
 x <- 0:6
 
 as.numeric(x)
@@ -515,7 +505,7 @@ as.numeric(x)
 ## [1] 0 1 2 3 4 5 6
 ```
 
-```r
+``` r
 as.logical(x)
 ```
 
@@ -523,7 +513,7 @@ as.logical(x)
 ## [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 ```
 
-```r
+``` r
 as.character(x)
 ```
 
@@ -534,7 +524,7 @@ as.character(x)
 Sometimes coercions, especially nonsensical ones, won’t work.
 
 
-```r
+``` r
 x <- c("a", "b", "c")
 
 as.numeric(x)
@@ -548,7 +538,7 @@ as.numeric(x)
 ## [1] NA NA NA
 ```
 
-```r
+``` r
 as.logical(x)
 ```
 
@@ -559,7 +549,7 @@ as.logical(x)
 **Short Exercise**
 
 
-```r
+``` r
 # 1. Create a vector of a sequence of numbers between 1 to 10.
 
 # 2. Coerce that vector into a character vector
@@ -576,7 +566,7 @@ Lists are also vectors, but different from atomic vectors because their elements
 Lists are sometimes called recursive vectors, because a list can contain other lists. This makes them fundamentally different from atomic vectors. 
 
 
-```r
+``` r
 x <- list(1, "a", TRUE, c(4, 5, 6))
 
 x
@@ -599,7 +589,7 @@ x
 You can coerce other objects using `as.list()`. You can test for a list with `is.list()`
 
 
-```r
+``` r
 x <- 1:10
 
 x <- as.list(x)
@@ -611,7 +601,7 @@ is.list(x)
 ## [1] TRUE
 ```
 
-```r
+``` r
 length(x)
 ```
 
@@ -622,7 +612,7 @@ length(x)
 `c()` will combine several lists into one. If given a combination of atomic vectors and lists, `c()` (con**c**atenate) will coerce the vectors to lists before combining them. Compare the results of `list()` and `c()`:
 
 
-```r
+``` r
 x <- list(list(1, 2), c(3, 4))
 
 y <- c(list(1, 2), c(3, 4))
@@ -638,7 +628,7 @@ str(x)
 ##  $ : num [1:2] 3 4
 ```
 
-```r
+``` r
 str(y)
 ```
 
@@ -653,7 +643,7 @@ str(y)
 You can turn a list into an atomic vector with `unlist()`. If the elements of a list have different types, `unlist()` uses the same coercion rules as `c()`.
 
 
-```r
+``` r
 x <- list(list(1, 2), c(3, 4))
 
 x
@@ -672,7 +662,7 @@ x
 ## [1] 3 4
 ```
 
-```r
+``` r
 unlist(x)
 ```
 
@@ -683,7 +673,7 @@ unlist(x)
 Lists are used to build up many of the more complicated data structures in R. For example, both data frames and linear models objects (as produced by `lm()`) are lists:
 
 
-```r
+``` r
 is.list(mtcars)
 ```
 
@@ -691,7 +681,7 @@ is.list(mtcars)
 ## [1] TRUE
 ```
 
-```r
+``` r
 mod <- lm(mpg ~ wt, data = mtcars)
 
 is.list(mod)
@@ -706,7 +696,7 @@ For this reason, lists are handy inside functions. You can "staple" together man
 A list does not print to the console like a vector. Instead, each element of the list starts on a new line.
 
 
-```r
+``` r
 x.vec <- c(1, 2, 3)
 x.list <- list(1, 2, 3)
 x.vec
@@ -716,7 +706,7 @@ x.vec
 ## [1] 1 2 3
 ```
 
-```r
+``` r
 x.list
 ```
 
@@ -763,14 +753,14 @@ In an object-oriented system, a [class](https://www.google.com/search?q=what+is+
 You can name a vector when you create it:
 
 
-```r
+``` r
 x <- c(a = 1, b = 2, c = 3)
 ```
 
 You can also modify an existing vector: 
 
 
-```r
+``` r
 x <- 1:3
 
 names(x)
@@ -780,7 +770,7 @@ names(x)
 ## NULL
 ```
 
-```r
+``` r
 names(x) <- c("e", "f", "g")
 
 names(x)
@@ -795,7 +785,7 @@ Names don't have to be unique. However, character subsetting, described in the n
 Not all elements of a vector need to have a name. If some names are missing, `names()` will return an empty string for those elements. If all names are missing, `names()` will return `NULL`.
 
 
-```r
+``` r
 y <- c(a = 1, 2, 3)
 
 names(y)
@@ -805,7 +795,7 @@ names(y)
 ## [1] "a" ""  ""
 ```
 
-```r
+``` r
 z <- c(1, 2, 3)
 
 names(z)
@@ -828,7 +818,7 @@ Factors can only contain pre-defined values. Set allowed values using the `level
 
 
 
-```r
+``` r
 x <- c("a", "b", "b", "a")
 
 x <- factor(c("a", "b", "b", "a"))
@@ -841,7 +831,7 @@ x
 ## Levels: a b
 ```
 
-```r
+``` r
 class(x)
 ```
 
@@ -849,7 +839,7 @@ class(x)
 ## [1] "factor"
 ```
 
-```r
+``` r
 levels(x)
 ```
 
@@ -857,7 +847,7 @@ levels(x)
 ## [1] "a" "b"
 ```
 
-```r
+``` r
 # You can't use values that are not in the levels
 x[2] <- "c"
 ```
@@ -867,7 +857,7 @@ x[2] <- "c"
 ## generated
 ```
 
-```r
+``` r
 # NB: you can't combine factors
 c(factor("a"), factor("b"))
 ```
@@ -877,7 +867,7 @@ c(factor("a"), factor("b"))
 ## Levels: a b
 ```
 
-```r
+``` r
 rep(1:5, rep(6, 5))
 ```
 
@@ -888,7 +878,7 @@ rep(1:5, rep(6, 5))
 Factors are pretty much integers that have labels on them. Underneath, it's really numbers (1, 2, 3...). 
 
 
-```r
+``` r
 x <- factor(c("a", "b", "b", "a"))
 
 str(x)
@@ -903,7 +893,7 @@ They are better than using simple integer labels because factors are what are ca
 Factors are useful when you know the possible values a variable may take, even if you don't see all values in a given dataset. Using a factor instead of a character vector makes it obvious when some groups contain no observations:
 
 
-```r
+``` r
 party_char <- c("democrat", "democrat", "democrat")
 
 party_char
@@ -913,7 +903,7 @@ party_char
 ## [1] "democrat" "democrat" "democrat"
 ```
 
-```r
+``` r
 party_factor <- factor(party_char, levels = c("democrat", "republican"))
 
 party_factor
@@ -924,7 +914,7 @@ party_factor
 ## Levels: democrat republican
 ```
 
-```r
+``` r
 table(party_char) # shows only democrats
 ```
 
@@ -934,7 +924,7 @@ table(party_char) # shows only democrats
 ##        3
 ```
 
-```r
+``` r
 table(party_factor) # shows republicans too
 ```
 
@@ -949,7 +939,7 @@ Sometimes factors can be left unordered. Example: `democrat`, `republican.`
 Other times you might want factors to be ordered (or ranked). Example: `low`, `medium`, `high`. 
 
 
-```r
+``` r
 x <- factor(c("low", "medium", "high"))
 
 str(x)
@@ -959,7 +949,7 @@ str(x)
 ##  Factor w/ 3 levels "high","low","medium": 2 3 1
 ```
 
-```r
+``` r
 is.ordered(x)
 ```
 
@@ -967,7 +957,7 @@ is.ordered(x)
 ## [1] FALSE
 ```
 
-```r
+``` r
 y <- ordered(c("low", "medium", "high"), levels = c("high", "medium", "low"))
 
 is.ordered(y)
@@ -980,7 +970,7 @@ is.ordered(y)
 While factors look (and often behave) like character vectors, they are integers. So be careful when treating them like strings. Some string methods (like `gsub()` and `grepl()`) will coerce factors to strings, while others (like `nchar()`) will throw an error, and still others (like `c()`) will use the underlying integer values. 
 
 
-```r
+``` r
 x <- c("a", "b", "b", "a")
 
 x
@@ -990,7 +980,7 @@ x
 ## [1] "a" "b" "b" "a"
 ```
 
-```r
+``` r
 is.factor(x)
 ```
 
@@ -998,7 +988,7 @@ is.factor(x)
 ## [1] FALSE
 ```
 
-```r
+``` r
 x <- as.factor(x)
 
 x
@@ -1009,7 +999,7 @@ x
 ## Levels: a b
 ```
 
-```r
+``` r
 c(x, "c")
 ```
 
@@ -1026,7 +1016,7 @@ Unfortunately, most data loading functions in R automatically convert character 
 All R objects can have arbitrary additional attributes used to store metadata about the object. Attributes can be considered a named list (with unique names). Attributes can be accessed individually with `attr()` or all at once (as a list) with `attributes().` 
 
 
-```r
+``` r
 y <- 1:10
 
 attr(y, "my_attribute") <- "This is a vector"
@@ -1038,7 +1028,7 @@ attr(y, "my_attribute")
 ## [1] "This is a vector"
 ```
 
-```r
+``` r
 # str returns a new object with modified information
 str(attributes(y))
 ```
@@ -1053,7 +1043,7 @@ str(attributes(y))
 1.  What happens to a factor when you modify its levels? 
     
 
-```r
+``` r
 f1 <- factor(letters)
 
 levels(f1) <- rev(levels(f1))
@@ -1069,7 +1059,7 @@ f1
 2.  What does this code do? How do `f2` and `f3` differ from `f1`?
 
 
-```r
+``` r
 f2 <- rev(factor(letters))
 
 f3 <- factor(letters, levels = rev(letters))
@@ -1085,7 +1075,7 @@ f3 <- factor(letters, levels = rev(letters))
 Matrices are created when we combine multiple vectors with the same class (e.g., numeric). This creates a dataset with rows and columns. By definition, if you want to combine multiple classes of vectors, you want a dataframe. You can coerce a matrix to become a dataframe and vice-versa, but as with all vector coercions, the results can be unpredictable, so be sure you know how each variable (column) will convert.
 
 
-```r
+``` r
 m <- matrix(nrow = 2, ncol = 2)
 
 m
@@ -1097,7 +1087,7 @@ m
 ## [2,]   NA   NA
 ```
 
-```r
+``` r
 dim(m)
 ```
 
@@ -1108,7 +1098,7 @@ dim(m)
 Matrices are filled column-wise. 
 
 
-```r
+``` r
 m <- matrix(1:6, nrow = 2, ncol = 3)
 
 m
@@ -1123,7 +1113,7 @@ m
 Other ways to construct a matrix
 
 
-```r
+``` r
 m <- 1:10
 
 dim(m) <- c(2, 5)
@@ -1137,7 +1127,7 @@ m
 ## [2,]    2    4    6    8   10
 ```
 
-```r
+``` r
 dim(m) <- c(5, 2)
 
 m
@@ -1155,7 +1145,7 @@ m
 You can transpose a matrix (or dataframe) with `t()`
 
 
-```r
+``` r
 m <- 1:10
 
 dim(m) <- c(2, 5)
@@ -1169,7 +1159,7 @@ m
 ## [2,]    2    4    6    8   10
 ```
 
-```r
+``` r
 t(m)
 ```
 
@@ -1185,7 +1175,7 @@ t(m)
 Another way is to bind columns or rows using `cbind()` and `rbind()`.
 
 
-```r
+``` r
 x <- 1:3
 
 y <- 10:12
@@ -1200,7 +1190,7 @@ cbind(x, y)
 ## [3,] 3 12
 ```
 
-```r
+``` r
 # or
 
 rbind(x, y)
@@ -1215,7 +1205,7 @@ rbind(x, y)
 You can also use the `byrow` argument to specify how the matrix is filled. From R's own documentation:
 
 
-```r
+``` r
 mdat <- matrix(c(1, 2, 3, 11, 12, 13),
   nrow = 2,
   ncol = 3,
@@ -1237,7 +1227,7 @@ mdat
 Notice that we gave `names` to the dimensions in `mdat`.
 
 
-```r
+``` r
 dimnames(mdat)
 ```
 
@@ -1249,7 +1239,7 @@ dimnames(mdat)
 ## [1] "C.1" "C.2" "C.3"
 ```
 
-```r
+``` r
 rownames(mdat)
 ```
 
@@ -1257,7 +1247,7 @@ rownames(mdat)
 ## [1] "row1" "row2"
 ```
 
-```r
+``` r
 colnames(mdat)
 ```
 
@@ -1274,7 +1264,7 @@ A data frame is an essential data type in R. It's pretty much the **de facto** d
 You create a data frame using `data.frame()`, which takes named vectors as input:
 
 
-```r
+``` r
 vec1 <- 1:3
 vec2 <- c("a", "b", "c")
 df <- data.frame(vec1, vec2)
@@ -1288,7 +1278,7 @@ df
 ## 3    3    c
 ```
 
-```r
+``` r
 str(df)
 ```
 
@@ -1301,7 +1291,7 @@ str(df)
 Beware: `data.frame()`'s default behavior which turns strings into factors. Remember to use `stringAsFactors = FALSE` to suppress this behavior as needed:
 
 
-```r
+``` r
 df <- data.frame(
   x = 1:3,
   y = c("a", "b", "c"),
@@ -1323,7 +1313,7 @@ In reality, we rarely type up our datasets ourselves, and certainly not in R. Th
 Under the hood, a data frame is a list of equal-length vectors. This makes it a 2-dimensional structure, so it shares properties of both the matrix and the list. 
 
 
-```r
+``` r
 vec1 <- 1:3
 vec2 <- c("a", "b", "c")
 df <- data.frame(vec1, vec2)
@@ -1345,7 +1335,7 @@ This means that a dataframe has `names()`, `colnames()`, and `rownames()`, altho
 - Set row names: `row.names()` in data frame, `rownames()` in matrix
 
 
-```r
+``` r
 vec1 <- 1:3
 vec2 <- c("a", "b", "c")
 df <- data.frame(vec1, vec2)
@@ -1358,7 +1348,7 @@ names(df)
 ## [1] "vec1" "vec2"
 ```
 
-```r
+``` r
 colnames(df)
 ```
 
@@ -1366,7 +1356,7 @@ colnames(df)
 ## [1] "vec1" "vec2"
 ```
 
-```r
+``` r
 # change the colnames
 colnames(df) <- c("Number", "Character")
 df
@@ -1380,7 +1370,7 @@ df
 ```
 
 
-```r
+``` r
 names(df) <- c("Number", "Character")
 df
 ```
@@ -1393,7 +1383,7 @@ df
 ```
 
 
-```r
+``` r
 # change the rownames
 rownames(df)
 ```
@@ -1402,7 +1392,7 @@ rownames(df)
 ## [1] "1" "2" "3"
 ```
 
-```r
+``` r
 rownames(df) <- c("donut", "pickle", "pretzel")
 df
 ```
@@ -1417,7 +1407,7 @@ df
 The `length()` of a dataframe is the length of the underlying list and so is the same as `ncol()`; `nrow()` gives the number of rows. 
 
 
-```r
+``` r
 vec1 <- 1:3
 vec2 <- c("a", "b", "c")
 df <- data.frame(vec1, vec2)
@@ -1430,7 +1420,7 @@ length(df)
 ## [1] 2
 ```
 
-```r
+``` r
 ncol(df)
 ```
 
@@ -1438,7 +1428,7 @@ ncol(df)
 ## [1] 2
 ```
 
-```r
+``` r
 # get number of rows
 nrow(df)
 ```
@@ -1447,7 +1437,7 @@ nrow(df)
 ## [1] 3
 ```
 
-```r
+``` r
 # get number of both columns and rows
 dim(df)
 ```
@@ -1461,7 +1451,7 @@ dim(df)
 To check if an object is a dataframe, use `class()` or test explicitly with `is.data.frame()`:
 
 
-```r
+``` r
 class(df)
 ```
 
@@ -1469,7 +1459,7 @@ class(df)
 ## [1] "data.frame"
 ```
 
-```r
+``` r
 is.data.frame(df)
 ```
 
@@ -1491,7 +1481,7 @@ You can coerce an object to a dataframe with `as.data.frame()`:
 You can combine dataframes using `cbind()` and `rbind()`:
 
 
-```r
+``` r
 df <- data.frame(
   x = 1:3,
   y = c("a", "b", "c"),
@@ -1508,7 +1498,7 @@ cbind(df, data.frame(z = 3:1))
 ## 3 3 c 1
 ```
 
-```r
+``` r
 rbind(df, data.frame(x = 10, y = "z"))
 ```
 
@@ -1525,7 +1515,7 @@ When combining column-wise, the number of rows must match, but row names are ign
 It's a common mistake to try and create a dataframe by `cbind()`ing vectors together. This doesn't work because `cbind()` will create a matrix unless one of the arguments is already a dataframe. Instead use `data.frame()` directly:
 
 
-```r
+``` r
 bad <- (cbind(x = 1:2, y = c("a", "b")))
 bad
 ```
@@ -1536,7 +1526,7 @@ bad
 ## [2,] "2" "b"
 ```
 
-```r
+``` r
 str(bad)
 ```
 
@@ -1547,7 +1537,7 @@ str(bad)
 ##   ..$ : chr [1:2] "x" "y"
 ```
 
-```r
+``` r
 good <- data.frame(
   x = 1:2, y = c("a", "b"),
   stringsAsFactors = FALSE
@@ -1561,7 +1551,7 @@ good
 ## 2 2 b
 ```
 
-```r
+``` r
 str(good)
 ```
 
@@ -1578,7 +1568,7 @@ The conversion rules for `cbind()` are complicated and best avoided by ensuring 
 Missing values are specified with `NA,` which is a logical vector of length 1. `NA` will always be coerced to the correct type if used inside `c()`
 
 
-```r
+``` r
 x <- c(NA, 1)
 x
 ```
@@ -1587,7 +1577,7 @@ x
 ## [1] NA  1
 ```
 
-```r
+``` r
 typeof(NA)
 ```
 
@@ -1595,7 +1585,7 @@ typeof(NA)
 ## [1] "logical"
 ```
 
-```r
+``` r
 typeof(x)
 ```
 
@@ -1606,7 +1596,7 @@ typeof(x)
 `Inf` is infinity. You can have either positive or negative infinity.
 
 
-```r
+``` r
 1 / 0
 ```
 
@@ -1614,7 +1604,7 @@ typeof(x)
 ## [1] Inf
 ```
 
-```r
+``` r
 1 / Inf
 ```
 
@@ -1625,7 +1615,7 @@ typeof(x)
 `NaN` means Not a number. It's an undefined value.
 
 
-```r
+``` r
 0 / 0
 ```
 
@@ -1650,7 +1640,7 @@ This unit helps you master subsetting by starting with the simplest type of subs
 Let's explore the different types of subsetting with a simple vector, `x`. 
 
 
-```r
+``` r
 x <- c(2.1, 4.2, 3.3, 5.4)
 ```
 
@@ -1663,7 +1653,7 @@ There are five things that you can use to subset a vector:
 ##### Positive integers
 
 
-```r
+``` r
 x <- c(2.1, 4.2, 3.3, 5.4)
 x
 ```
@@ -1672,7 +1662,7 @@ x
 ## [1] 2.1 4.2 3.3 5.4
 ```
 
-```r
+``` r
 x[1]
 ```
 
@@ -1680,7 +1670,7 @@ x[1]
 ## [1] 2.1
 ```
 
-```r
+``` r
 x[c(3, 1)]
 ```
 
@@ -1688,7 +1678,7 @@ x[c(3, 1)]
 ## [1] 3.3 2.1
 ```
 
-```r
+``` r
 # `order(x)` gives the positions of smallest to largest values.
 order(x)
 ```
@@ -1697,7 +1687,7 @@ order(x)
 ## [1] 1 3 2 4
 ```
 
-```r
+``` r
 x[order(x)]
 ```
 
@@ -1705,7 +1695,7 @@ x[order(x)]
 ## [1] 2.1 3.3 4.2 5.4
 ```
 
-```r
+``` r
 x[c(1, 3, 2, 4)]
 ```
 
@@ -1713,7 +1703,7 @@ x[c(1, 3, 2, 4)]
 ## [1] 2.1 3.3 4.2 5.4
 ```
 
-```r
+``` r
 # Duplicated indices yield duplicated values
 x[c(1, 1)]
 ```
@@ -1725,7 +1715,7 @@ x[c(1, 1)]
 ##### Negative integers
 
 
-```r
+``` r
 x <- c(2.1, 4.2, 3.3, 5.4)
 x[-1]
 ```
@@ -1734,7 +1724,7 @@ x[-1]
 ## [1] 4.2 3.3 5.4
 ```
 
-```r
+``` r
 x[-c(3, 1)]
 ```
 
@@ -1745,7 +1735,7 @@ x[-c(3, 1)]
 You can't mix positive and negative integers in a single subset:
 
 
-```r
+``` r
 x <- c(2.1, 4.2, 3.3, 5.4)
 x[c(-1, 2)]
 ```
@@ -1757,7 +1747,7 @@ x[c(-1, 2)]
 ##### Logical vectors
 
 
-```r
+``` r
 x <- c(2.1, 4.2, 3.3, 5.4)
 
 x[c(TRUE, TRUE, FALSE, FALSE)]
@@ -1770,7 +1760,7 @@ x[c(TRUE, TRUE, FALSE, FALSE)]
 This is probably the most useful type of subsetting because you write the expression that creates the logical vector.
 
 
-```r
+``` r
 x <- c(2.1, 4.2, 3.3, 5.4)
 
 # this returns a logical vector
@@ -1781,7 +1771,7 @@ x > 3
 ## [1] FALSE  TRUE  TRUE  TRUE
 ```
 
-```r
+``` r
 x
 ```
 
@@ -1789,7 +1779,7 @@ x
 ## [1] 2.1 4.2 3.3 5.4
 ```
 
-```r
+``` r
 # use a conditional statement to create an implicit logical vector
 x[x > 3]
 ```
@@ -1801,7 +1791,7 @@ x[x > 3]
 You can combine conditional statements with `&` (and), `|` (or), and `!` (not)
 
 
-```r
+``` r
 x <- c(2.1, 4.2, 3.3, 5.4)
 
 # combing two conditional statements with &
@@ -1812,7 +1802,7 @@ x > 3 & x < 5
 ## [1] FALSE  TRUE  TRUE FALSE
 ```
 
-```r
+``` r
 x[x > 3 & x < 5]
 ```
 
@@ -1820,7 +1810,7 @@ x[x > 3 & x < 5]
 ## [1] 4.2 3.3
 ```
 
-```r
+``` r
 # combing two conditional statements with |
 x < 3 | x > 5
 ```
@@ -1829,7 +1819,7 @@ x < 3 | x > 5
 ## [1]  TRUE FALSE FALSE  TRUE
 ```
 
-```r
+``` r
 x[x < 3 | x > 5]
 ```
 
@@ -1837,7 +1827,7 @@ x[x < 3 | x > 5]
 ## [1] 2.1 5.4
 ```
 
-```r
+``` r
 # combining conditional statements with !
 !x > 5
 ```
@@ -1846,7 +1836,7 @@ x[x < 3 | x > 5]
 ## [1]  TRUE  TRUE  TRUE FALSE
 ```
 
-```r
+``` r
 x[!x > 5]
 ```
 
@@ -1857,7 +1847,7 @@ x[!x > 5]
 Another way to generate implicit conditional statements is using the `%in%` operator, which works like the `in` keywords in Python.
 
 
-```r
+``` r
 # generate implicit logical vectors through the %in% operator
 x %in% c(3.3, 4.2)
 ```
@@ -1866,7 +1856,7 @@ x %in% c(3.3, 4.2)
 ## [1] FALSE  TRUE  TRUE FALSE
 ```
 
-```r
+``` r
 x
 ```
 
@@ -1874,7 +1864,7 @@ x
 ## [1] 2.1 4.2 3.3 5.4
 ```
 
-```r
+``` r
 x[x %in% c(3.3, 4.2)]
 ```
 
@@ -1885,7 +1875,7 @@ x[x %in% c(3.3, 4.2)]
 ##### Character vectors
 
 
-```r
+``` r
 x <- c(2.1, 4.2, 3.3, 5.4)
 
 # apply names
@@ -1898,7 +1888,7 @@ x
 ## 2.1 4.2 3.3 5.4
 ```
 
-```r
+``` r
 # subset using names
 x[c("d", "c", "a")]
 ```
@@ -1908,7 +1898,7 @@ x[c("d", "c", "a")]
 ## 5.4 3.3 2.1
 ```
 
-```r
+``` r
 # Like integer indices, you can repeat indices
 x[c("a", "a", "a")]
 ```
@@ -1918,7 +1908,7 @@ x[c("a", "a", "a")]
 ## 2.1 2.1 2.1
 ```
 
-```r
+``` r
 # Careful! names are always matched exactly
 x <- c(abc = 1, def = 2)
 x
@@ -1929,7 +1919,7 @@ x
 ##   1   2
 ```
 
-```r
+``` r
 x[c("a", "d")]
 ```
 
@@ -1941,7 +1931,7 @@ x[c("a", "d")]
 ###### More on string operations 
 
 
-```r
+``` r
 firstName <- "Jae Yeon"
 lastName <- "Kim"
 ```
@@ -1949,7 +1939,7 @@ lastName <- "Kim"
 Unlike in Python, R does not have a reserved operator for string concatenation such as `+`.  Furthermore, using the usual concatenation operator ```c()``` on two or more character strings will not create a single character string, but rather a **vector** of character strings. 
 
 
-```r
+``` r
 fullName <- c(firstName, lastName)
 
 print(fullName)
@@ -1959,7 +1949,7 @@ print(fullName)
 ## [1] "Jae Yeon" "Kim"
 ```
 
-```r
+``` r
 length(fullName)
 ```
 
@@ -1970,7 +1960,7 @@ length(fullName)
 To combine two or more character strings into one larger character string, we use the ```paste()``` function.  This function takes character strings or vectors and collapses their values into a single character string, with each value separated by a character string selected by the user.
 
 
-```r
+``` r
 fullName <- paste(firstName, lastName)
 
 print(fullName)
@@ -1990,7 +1980,7 @@ Second, **object subsets using index positions in R contain all the elements in 
 Third, **R does not allow indexing of character strings***. Instead, you must use the ```substr()``` function.  Note that this function must receive both the ```start``` and ```stop``` arguments.  So if you want to get all the characters between some index and the end of the string, you must use the ```nchar()``` function, which will tell you the length of a character string.
 
 
-```r
+``` r
 fullName <- paste(firstName, lastName)
 
 # this won't work like in Python
@@ -2001,7 +1991,7 @@ fullName[1] # R sees the string as a unitary object - it can't be indexed this w
 ## [1] "Jae Yeon Kim"
 ```
 
-```r
+``` r
 fullName[1:4]
 ```
 
@@ -2009,7 +1999,7 @@ fullName[1:4]
 ## [1] "Jae Yeon Kim" NA             NA             NA
 ```
 
-```r
+``` r
 # So use this instead
 substr(x = fullName, start = 1, stop = 2)
 ```
@@ -2018,7 +2008,7 @@ substr(x = fullName, start = 1, stop = 2)
 ## [1] "Ja"
 ```
 
-```r
+``` r
 substr(x = fullName, start = 5, stop = 5)
 ```
 
@@ -2026,7 +2016,7 @@ substr(x = fullName, start = 5, stop = 5)
 ## [1] "Y"
 ```
 
-```r
+``` r
 substr(x = fullName, start = 1, stop = 10)
 ```
 
@@ -2034,7 +2024,7 @@ substr(x = fullName, start = 1, stop = 10)
 ## [1] "Jae Yeon K"
 ```
 
-```r
+``` r
 substr(x = fullName, start = 11, stop = nchar(fullName))
 ```
 
@@ -2045,7 +2035,7 @@ substr(x = fullName, start = 11, stop = nchar(fullName))
 Like Python, R has a number of string methods, though these exist as individual rather than "mix-and-match" functions. For example:
 
 
-```r
+``` r
 toupper(x = fullName)
 ```
 
@@ -2053,7 +2043,7 @@ toupper(x = fullName)
 ## [1] "JAE YEON KIM"
 ```
 
-```r
+``` r
 tolower(x = fullName)
 ```
 
@@ -2061,7 +2051,7 @@ tolower(x = fullName)
 ## [1] "jae yeon kim"
 ```
 
-```r
+``` r
 strsplit(x = fullName, split = " ")
 ```
 
@@ -2070,7 +2060,7 @@ strsplit(x = fullName, split = " ")
 ## [1] "Jae"  "Yeon" "Kim"
 ```
 
-```r
+``` r
 strsplit(x = fullName, split = "n")
 ```
 
@@ -2079,7 +2069,7 @@ strsplit(x = fullName, split = "n")
 ## [1] "Jae Yeo" " Kim"
 ```
 
-```r
+``` r
 gsub(pattern = "Kim", replacement = "Choi", x = fullName)
 ```
 
@@ -2087,7 +2077,7 @@ gsub(pattern = "Kim", replacement = "Choi", x = fullName)
 ## [1] "Jae Yeon Choi"
 ```
 
-```r
+``` r
 gsub(pattern = "Jae Yeon", replacement = "Danny", x = fullName)
 ```
 
@@ -2095,7 +2085,7 @@ gsub(pattern = "Jae Yeon", replacement = "Danny", x = fullName)
 ## [1] "Danny Kim"
 ```
 
-```r
+``` r
 # Note the importance of cases! This doesn't throw an error, so you won't realize your function didn't work unless you double-check several entries.
 
 gsub(pattern = " ", replacement = "", x = fullName) # The same function is used for replacements and stripping
@@ -2110,7 +2100,7 @@ gsub(pattern = " ", replacement = "", x = fullName) # The same function is used 
 Subsetting a list works in the same way as subsetting an atomic vector. Using `[` will always return a list; `[[` and `$`, as described below, let you pull out the list's components.
 
 
-```r
+``` r
 l <- list("a" = 1, "b" = 2)
 l
 ```
@@ -2123,7 +2113,7 @@ l
 ## [1] 2
 ```
 
-```r
+``` r
 l[1]
 ```
 
@@ -2132,7 +2122,7 @@ l[1]
 ## [1] 1
 ```
 
-```r
+``` r
 l[[1]]
 ```
 
@@ -2140,7 +2130,7 @@ l[[1]]
 ## [1] 1
 ```
 
-```r
+``` r
 l["a"]
 ```
 
@@ -2154,7 +2144,7 @@ l["a"]
 The most common way of subsetting matrices (2d) is a simple generalization of 1d subsetting: you supply a 1d index for each dimension, separated by a comma. Blank subsetting is now useful because it lets you keep all rows or all columns.
 
 
-```r
+``` r
 a <- matrix(1:9, nrow = 3)
 colnames(a) <- c("A", "B", "C")
 a
@@ -2167,7 +2157,7 @@ a
 ## [3,] 3 6 9
 ```
 
-```r
+``` r
 # rows come first, then columns
 a[c(1, 2), ]
 ```
@@ -2178,7 +2168,7 @@ a[c(1, 2), ]
 ## [2,] 2 5 8
 ```
 
-```r
+``` r
 a[c(T, F, T), c("B", "A")]
 ```
 
@@ -2188,7 +2178,7 @@ a[c(T, F, T), c("B", "A")]
 ## [2,] 6 3
 ```
 
-```r
+``` r
 a[0, -2]
 ```
 
@@ -2196,7 +2186,7 @@ a[0, -2]
 ##      A C
 ```
 
-```r
+``` r
 a[c(1, 2), -2]
 ```
 
@@ -2211,7 +2201,7 @@ a[c(1, 2), -2]
 Data from data frames can be addressed like matrices (with row and column indicators separated by a comma).
 
 
-```r
+``` r
 df <- data.frame(x = 4:6, y = 3:1, z = letters[1:3])
 df
 ```
@@ -2223,7 +2213,7 @@ df
 ## 3 6 1 c
 ```
 
-```r
+``` r
 # return only the rows where x == 6
 df[df$x == 6, ]
 ```
@@ -2233,7 +2223,7 @@ df[df$x == 6, ]
 ## 3 6 1 c
 ```
 
-```r
+``` r
 # return the first and third row
 df[c(1, 3), ]
 ```
@@ -2244,7 +2234,7 @@ df[c(1, 3), ]
 ## 3 6 1 c
 ```
 
-```r
+``` r
 # return the first and third row and the first and second column
 df[c(1, 3), c(1, 2)]
 ```
@@ -2258,7 +2248,7 @@ df[c(1, 3), c(1, 2)]
 Data frames possess both lists and matrices' characteristics: if you subset with a single vector, they behave like lists and return only the columns.
 
 
-```r
+``` r
 # There are two ways to select columns from a data frame
 # Like a list:
 df[c("x", "z")]
@@ -2271,7 +2261,7 @@ df[c("x", "z")]
 ## 3 6 c
 ```
 
-```r
+``` r
 # Like a matrix
 df[, c("x", "z")]
 ```
@@ -2286,7 +2276,7 @@ df[, c("x", "z")]
 But there's a significant difference when selecting a single column: matrix subsetting simplifies by default, list subsetting does not.
 
 
-```r
+``` r
 (df["x"])
 ```
 
@@ -2297,7 +2287,7 @@ But there's a significant difference when selecting a single column: matrix subs
 ## 3 6
 ```
 
-```r
+``` r
 class((df["x"]))
 ```
 
@@ -2305,7 +2295,7 @@ class((df["x"]))
 ## [1] "data.frame"
 ```
 
-```r
+``` r
 (df[, "x"])
 ```
 
@@ -2313,7 +2303,7 @@ class((df["x"]))
 ## [1] 4 5 6
 ```
 
-```r
+``` r
 class((df[, "x"]))
 ```
 
@@ -2342,7 +2332,7 @@ You need `[[` when working with lists. When `[` is applied to a list it always r
 Because data frames are lists of columns, you can use `[[` to extract a column from data frames:
 
 
-```r
+``` r
 mtcars
 ```
 
@@ -2382,7 +2372,7 @@ mtcars
 ## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
 ```
 
-```r
+``` r
 # these two are equivalent
 mtcars[[1]]
 ```
@@ -2393,7 +2383,7 @@ mtcars[[1]]
 ## [31] 15.0 21.4
 ```
 
-```r
+``` r
 mtcars[, 1]
 ```
 
@@ -2403,7 +2393,7 @@ mtcars[, 1]
 ## [31] 15.0 21.4
 ```
 
-```r
+``` r
 # which differs from this:
 mtcars[1]
 ```
@@ -2449,7 +2439,7 @@ mtcars[1]
 `$` is a shorthand operator, where `x$y` is equivalent to `x[["y", exact = FALSE]]`.  It's often used to access variables in a data frame:
 
 
-```r
+``` r
 # these two are equivalent
 mtcars[["cyl"]]
 ```
@@ -2458,7 +2448,7 @@ mtcars[["cyl"]]
 ##  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4
 ```
 
-```r
+``` r
 mtcars$cyl
 ```
 
@@ -2469,7 +2459,7 @@ mtcars$cyl
 One common mistake with `$` is to try and use it when you have the name of a column stored in a variable:
 
 
-```r
+``` r
 var <- "cyl"
 # Doesn't work - mtcars$var translated to mtcars[["var"]]
 mtcars$var
@@ -2479,7 +2469,7 @@ mtcars$var
 ## NULL
 ```
 
-```r
+``` r
 # Instead use [[
 mtcars[[var]]
 ```
@@ -2493,7 +2483,7 @@ mtcars[[var]]
 All subsetting operators can be combined with an assignment operator to modify selected values of the input vector.
 
 
-```r
+``` r
 x <- 1:5
 x
 ```
@@ -2502,7 +2492,7 @@ x
 ## [1] 1 2 3 4 5
 ```
 
-```r
+``` r
 x[c(1, 2)] <- 2:3
 x
 ```
@@ -2511,7 +2501,7 @@ x
 ## [1] 2 3 3 4 5
 ```
 
-```r
+``` r
 # The length of the LHS needs to match the RHS!
 x[-1] <- 4:1
 x
@@ -2521,7 +2511,7 @@ x
 ## [1] 2 4 3 2 1
 ```
 
-```r
+``` r
 x[1] <- 4:1
 ```
 
@@ -2530,7 +2520,7 @@ x[1] <- 4:1
 ## replacement length
 ```
 
-```r
+``` r
 # This is mostly useful when conditionally modifying vectors
 df <- data.frame(a = c(1, 10, NA))
 df
@@ -2543,7 +2533,7 @@ df
 ## 3 NA
 ```
 
-```r
+``` r
 df$a[df$a < 5] <- 0
 df
 ```
@@ -2580,7 +2570,7 @@ For instance, in many data science applications, linear algebra-based computatio
 This is what tidy data looks like.
 
 
-```r
+``` r
 library(tidyverse)
 
 table1
@@ -2648,7 +2638,7 @@ Let's take a look at the cases of untidy data.
 **Challenge**: Why is this data not tidy?
 
 
-```r
+``` r
 table4a
 ```
 
@@ -2677,7 +2667,7 @@ table4a
 - The pipe operator `%>%` originally comes from the `magrittr` package. The idea behind the pipe operator is [similar to](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) what we learned about chaining functions in high school. f: B -> C and g: A -> B can be expressed as $f(g(x))$. The pipe operator chains operations. When reading the pipe operator, read as "and then" (Wickham's recommendation). The keyboard shortcut is ctrl + shift + M. The key idea here is not creating temporary variables and focusing on verbs (functions). We'll learn more about this functional programming paradigm later on.
 
 
-```r
+``` r
 table4a
 ```
 
@@ -2690,7 +2680,7 @@ table4a
 ## 3 China       212258 213766
 ```
 
-```r
+``` r
 # Old way, less intuitive
 table4a %>%
   gather(
@@ -2713,7 +2703,7 @@ table4a %>%
 ```
 
 
-```r
+``` r
 # New way, more intuitive
 table4a %>%
   pivot_longer(
@@ -2742,7 +2732,7 @@ table4a %>%
 -   You can fix this problem by using `names_transform` argument.
 
 
-```r
+``` r
 table4a %>%
   pivot_longer(
     cols = c("1999", "2000"), # Put two columns together
@@ -2769,7 +2759,7 @@ table4a %>%
 `parse_number()` also keeps only numeric information in a variable.
 
 
-```r
+``` r
 parse_number("reply1994")
 ```
 
@@ -2786,7 +2776,7 @@ A flat file (e.g., CSV) is a rectangular shaped combination of strings. [Parsing
 1.  Why is this data not tidy? (This exercise comes from [`pivot` function vigenette](https://tidyr.tidyverse.org/articles/pivot.html).) Too long or too wide?
 
 
-```r
+``` r
 billboard
 ```
 
@@ -2816,7 +2806,7 @@ billboard
 2.  How can you fix it? Which pivot?
 
 
-```r
+``` r
 # Old way
 billboard %>%
   gather(
@@ -2847,7 +2837,7 @@ billboard %>%
 -   Note that `pivot_longer()` is more versatile than `gather()`.
 
 
-```r
+``` r
 # New way
 billboard %>%
   pivot_longer(
@@ -2880,7 +2870,7 @@ billboard %>%
 -   Why is this data not tidy?
 
 
-```r
+``` r
 table2
 ```
 
@@ -2919,7 +2909,7 @@ table2
 ![What pivot\_wider() does (Source: <https://www.storybench.org>)](https://www.storybench.org/wp-content/uploads/2019/08/pivot-wider-image.png)
 
 
-```r
+``` r
 # Old way
 table2 %>%
   spread(
@@ -2941,7 +2931,7 @@ table2 %>%
 ```
 
 
-```r
+``` r
 # New way
 table2 %>%
   pivot_wider(
@@ -2977,7 +2967,7 @@ R defines missing values in two ways.
 The example comes from [*R for Data Science*](https://r4ds.had.co.nz/tidy-data.html).
 
 
-```r
+``` r
 stocks <- tibble(
   year = c(2019, 2019, 2019, 2020, 2020, 2020),
   qtr = c(1, 2, 3, 2, 3, 4),
@@ -3004,7 +2994,7 @@ stocks
 -   Does `stocks` have implicit missing values?
 
 
-```r
+``` r
 # implicit missing values become explicit
 stocks %>%
   pivot_wider(
@@ -3030,7 +3020,7 @@ stocks %>%
 -   Could you make `station` a series of dummy variables using `pivot_wider()`?
 
 
-```r
+``` r
 fish_encounters
 ```
 
@@ -3062,7 +3052,7 @@ fish_encounters
 ![Messy Data Case 2 (Source: R for Data Science)](https://garrettgman.github.io/images/tidy-6.png)
 
 
-```r
+``` r
 # Toy example
 df <- data.frame(x = c(NA, "Dad.apple", "Mom.orange", "Daughter.banana"))
 
@@ -3078,7 +3068,7 @@ df
 ```
 
 
-```r
+``` r
 # Separate
 df %>%
   separate(x, into = c("Name", "Preferred_fruit"))
@@ -3092,7 +3082,7 @@ df %>%
 ## 4 Daughter          banana
 ```
 
-```r
+``` r
 # Don't need the first variable
 
 df %>%
@@ -3110,7 +3100,7 @@ df %>%
 **Practice**
 
 
-```r
+``` r
 table3
 ```
 
@@ -3129,7 +3119,7 @@ table3
 -   Note `sep` argument. You can specify how to separate joined values.
 
 
-```r
+``` r
 table3 %>%
   separate(rate,
     into = c("cases", "population"),
@@ -3152,7 +3142,7 @@ table3 %>%
 -   Note `convert` argument. You can specify whether automatically convert the new values or not.
 
 
-```r
+``` r
 table3 %>%
   separate(rate,
     into = c("cases", "population"),
@@ -3180,7 +3170,7 @@ table3 %>%
 `separate()` \<-\> `unite()`
 
 
-```r
+``` r
 # Create a toy example
 df <- data.frame(
   name = c("Jae", "Sun", "Jane", NA),
@@ -3202,7 +3192,7 @@ df %>% unite(
 ## 4     NA_NA
 ```
 
-```r
+``` r
 # Do not include missing values
 df %>% unite("contact",
   c("name", "birthmonth"),
@@ -3223,7 +3213,7 @@ df %>% unite("contact",
 This is a relatively less-known function of the tidyr package. However, I found this function super useful to complete time-series data. For instance, how can you replace NA in the following example (this use case is drawn from the [tidyr package vignette](https://tidyr.tidyverse.org/reference/fill.html).)?
 
 
-```r
+``` r
 # Example
 stock <- tibble::tribble(
   ~quarter, ~year, ~stock_price,
@@ -3257,7 +3247,7 @@ fill(stock, year)
 Let's take a slightly more complex example. 
 
 
-```r
+``` r
 # Example
 yelp_rate <- tibble::tribble(
   ~neighborhood, ~restraurant_type, ~popularity_rate,
@@ -3290,7 +3280,7 @@ fill(yelp_rate, restraurant_type) # default is direction = .down
 ## 9 N1           Mexican                        5
 ```
 
-```r
+``` r
 fill(yelp_rate, restraurant_type, .direction = "up")
 ```
 
@@ -3325,7 +3315,7 @@ fill(yelp_rate, restraurant_type, .direction = "up")
 -   Order rows
 
 
-```r
+``` r
 dplyr::arrange(mtcars, mpg) # Low to High (default)
 ```
 
@@ -3365,7 +3355,7 @@ dplyr::arrange(mtcars, mpg) # Low to High (default)
 ## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
 ```
 
-```r
+``` r
 dplyr::arrange(mtcars, desc(mpg)) # High to Row
 ```
 
@@ -3410,7 +3400,7 @@ dplyr::arrange(mtcars, desc(mpg)) # High to Row
 -   Rename columns
 
 
-```r
+``` r
 df <- tibble(y = c(2011, 2012, 2013))
 
 df %>%
@@ -3436,7 +3426,7 @@ df %>%
 -   Single condition
 
 
-```r
+``` r
 starwars %>%
   dplyr::filter(gender == "feminine") %>%
   arrange(desc(height))
@@ -3447,22 +3437,22 @@ starwars %>%
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
 ##  1 Taun We     213  NA   none       grey       black             NA fema… femin…
-##  2 Adi Gal…    184  50   none       dark       blue              NA fema… femin…
-##  3 Ayla Se…    178  55   none       blue       hazel             48 fema… femin…
-##  4 Shaak Ti    178  57   none       red, blue… black             NA fema… femin…
-##  5 Luminar…    170  56.2 black      yellow     blue              58 fema… femin…
-##  6 Zam Wes…    168  55   blonde     fair, gre… yellow            NA fema… femin…
-##  7 Jocasta…    167  NA   white      fair       blue              NA fema… femin…
-##  8 Barriss…    166  50   black      yellow     blue              40 fema… femin…
-##  9 Beru Wh…    165  75   brown      light      blue              47 fema… femin…
-## 10 Dormé       165  NA   brown      light      brown             NA fema… femin…
-## 11 Padmé A…    165  45   brown      light      brown             46 fema… femin…
+##  2 Padmé A…    185  45   brown      light      brown             46 fema… femin…
+##  3 Adi Gal…    184  50   none       dark       blue              NA fema… femin…
+##  4 Ayla Se…    178  55   none       blue       hazel             48 fema… femin…
+##  5 Shaak Ti    178  57   none       red, blue… black             NA fema… femin…
+##  6 Luminar…    170  56.2 black      yellow     blue              58 fema… femin…
+##  7 Zam Wes…    168  55   blonde     fair, gre… yellow            NA fema… femin…
+##  8 Jocasta…    167  NA   white      fair       blue              NA fema… femin…
+##  9 Barriss…    166  50   black      yellow     blue              40 fema… femin…
+## 10 Beru Wh…    165  75   brown      light      blue              47 fema… femin…
+## 11 Dormé       165  NA   brown      light      brown             NA fema… femin…
 ## 12 Shmi Sk…    163  NA   black      fair       brown             72 fema… femin…
-## 13 Cordé       157  NA   brown      light      brown             NA fema… femin…
-## 14 Leia Or…    150  49   brown      light      brown             19 fema… femin…
-## 15 Mon Mot…    150  NA   auburn     fair       blue              48 fema… femin…
-## 16 R4-P17       96  NA   none       silver, r… red, blue         NA none  femin…
-## 17 Rey          NA  NA   brown      light      hazel             NA fema… femin…
+## 13 Leia Or…    150  49   brown      light      brown             19 fema… femin…
+## 14 Mon Mot…    150  NA   auburn     fair       blue              48 fema… femin…
+## 15 R4-P17       96  NA   none       silver, r… red, blue         NA none  femin…
+## 16 Rey          NA  NA   brown      light      hazel             NA fema… femin…
+## 17 Captain…     NA  NA   none       none       unknown           NA fema… femin…
 ## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
@@ -3472,7 +3462,7 @@ The following filtering example was inspired by [the suzanbert's dplyr blog post
 -   Multiple conditions (numeric)
 
 
-```r
+``` r
 # First example
 starwars %>%
   dplyr::filter(height < 180, height > 160) %>%
@@ -3480,10 +3470,10 @@ starwars %>%
 ```
 
 ```
-## [1] 24
+## [1] 23
 ```
 
-```r
+``` r
 # Same as above
 starwars %>%
   dplyr::filter(height < 180 & height > 160) %>%
@@ -3491,10 +3481,10 @@ starwars %>%
 ```
 
 ```
-## [1] 24
+## [1] 23
 ```
 
-```r
+``` r
 # Not same as above
 starwars %>%
   dplyr::filter(height < 180 | height > 160) %>%
@@ -3512,7 +3502,7 @@ starwars %>%
 -   Minimum reproducible example
 
 
-```r
+``` r
 df <- tibble(
   heights = c(160:180),
   char = rep("none", length(c(160:180)))
@@ -3550,7 +3540,7 @@ df %>%
 -   Multiple conditions (character)
 
 
-```r
+``` r
 # Filter names include ars; `grepl` is a base R function
 
 starwars %>%
@@ -3563,13 +3553,13 @@ starwars %>%
 ##   <chr>      <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
 ## 1 Owen Lars    178   120 brown, gr… light      blue              52 male  mascu…
 ## 2 Beru Whi…    165    75 brown      light      blue              47 fema… femin…
-## 3 Quarsh P…    183    NA black      dark       brown             62 <NA>  <NA>  
+## 3 Quarsh P…    183    NA black      dark       brown             62 male  mascu…
 ## 4 Cliegg L…    183    NA brown      fair       blue              82 male  mascu…
 ## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
-```r
+``` r
 # Or, if you prefer dplyr way
 
 starwars %>%
@@ -3582,13 +3572,13 @@ starwars %>%
 ##   <chr>      <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
 ## 1 Owen Lars    178   120 brown, gr… light      blue              52 male  mascu…
 ## 2 Beru Whi…    165    75 brown      light      blue              47 fema… femin…
-## 3 Quarsh P…    183    NA black      dark       brown             62 <NA>  <NA>  
+## 3 Quarsh P…    183    NA black      dark       brown             62 male  mascu…
 ## 4 Cliegg L…    183    NA brown      fair       blue              82 male  mascu…
 ## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
-```r
+``` r
 # Filter brown and black hair_color
 
 starwars %>%
@@ -3605,7 +3595,7 @@ starwars %>%
 ##  4 Chewbac…    228 112   brown      unknown    blue           200   male  mascu…
 ##  5 Han Solo    180  80   brown      fair       brown           29   male  mascu…
 ##  6 Wedge A…    170  77   brown      fair       hazel           21   male  mascu…
-##  7 Jek Ton…    180 110   brown      fair       blue            NA   male  mascu…
+##  7 Jek Ton…    180 110   brown      fair       blue            NA   <NA>  <NA>  
 ##  8 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…
 ##  9 Lando C…    177  79   black      dark       brown           31   male  mascu…
 ## 10 Arvel C…     NA  NA   brown      fair       brown           NA   male  mascu…
@@ -3621,7 +3611,7 @@ Use `str_detect()` to find characters whose names include "Han".
 -   Choose row by position (row index)
 
 
-```r
+``` r
 starwars %>%
   arrange(desc(height)) %>%
   slice(1:6)
@@ -3644,7 +3634,7 @@ starwars %>%
 -   Sample by a fraction
 
 
-```r
+``` r
 # For reproducibility
 set.seed(1234)
 
@@ -3661,19 +3651,19 @@ starwars %>%
 ##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
 ##   <chr>      <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
 ## 1 Arvel Cr…     NA    NA brown      fair       brown           NA   male  mascu…
-## 2 Sly Moore    178    48 none       pale       white           NA   <NA>  <NA>  
+## 2 Raymus A…    188    79 brown      light      brown           NA   male  mascu…
 ## 3 IG-88        200   140 none       metal      red             15   none  mascu…
 ## 4 Biggs Da…    183    84 black      light      brown           24   male  mascu…
 ## 5 Leia Org…    150    49 brown      light      brown           19   fema… femin…
-## 6 Watto        137    NA black      blue, grey yellow          NA   male  mascu…
+## 6 Ric Olié     183    NA brown      fair       blue            NA   male  mascu…
 ## 7 Jabba De…    175  1358 <NA>       green-tan… orange         600   herm… mascu…
 ## 8 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…
-## 9 Taun We      213    NA none       grey       black           NA   fema… femin…
+## 9 Dexter J…    198   102 none       brown      yellow          NA   male  mascu…
 ## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
-```r
+``` r
 # New way
 
 starwars %>%
@@ -3687,13 +3677,13 @@ starwars %>%
 ## # A tibble: 8 × 14
 ##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
 ##   <chr>      <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-## 1 Raymus A…    188  79   brown      light      brown           NA   male  mascu…
-## 2 Tarfful      234 136   brown      brown      blue            NA   male  mascu…
+## 1 Tarfful      234 136   brown      brown      blue            NA   male  mascu…
+## 2 Grievous     216 159   none       brown, wh… green, y…       NA   male  mascu…
 ## 3 Han Solo     180  80   brown      fair       brown           29   male  mascu…
-## 4 Mas Amed…    196  NA   none       blue       blue            NA   male  mascu…
-## 5 Barriss …    166  50   black      yellow     blue            40   fema… femin…
+## 4 Yarael P…    264  NA   none       white      yellow          NA   male  mascu…
+## 5 Poggle t…    183  80   none       green      yellow          NA   male  mascu…
 ## 6 Darth Va…    202 136   none       white      yellow          41.9 male  mascu…
-## 7 Finn          NA  NA   black      dark       dark            NA   male  mascu…
+## 7 Tion Med…    206  80   none       grey       black           NA   male  mascu…
 ## 8 Boba Fett    183  78.2 black      fair       brown           31.5 male  mascu…
 ## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
@@ -3702,7 +3692,7 @@ starwars %>%
 -   Sample by number
 
 
-```r
+``` r
 # Old way
 
 starwars %>%
@@ -3715,31 +3705,31 @@ starwars %>%
 ## # A tibble: 20 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-##  1 Quarsh …    183    NA black      dark       brown             62 <NA>  <NA>  
-##  2 Poe Dam…     NA    NA brown      light      brown             NA male  mascu…
-##  3 Mas Ame…    196    NA none       blue       blue              NA male  mascu…
-##  4 Zam Wes…    168    55 blonde     fair, gre… yellow            NA fema… femin…
+##  1 Sebulba     112    40 none       grey, red  orange            NA male  mascu…
+##  2 Rey          NA    NA brown      light      hazel             NA fema… femin…
+##  3 Yarael …    264    NA none       white      yellow            NA male  mascu…
+##  4 Bail Pr…    191    NA black      tan        brown             67 male  mascu…
 ##  5 Leia Or…    150    49 brown      light      brown             19 fema… femin…
-##  6 Jango F…    183    79 black      tan        brown             66 male  mascu…
-##  7 Ben Qua…    163    65 none       grey, gre… orange            NA male  mascu…
-##  8 Padmé A…    165    45 brown      light      brown             46 fema… femin…
-##  9 Mace Wi…    188    84 none       dark       brown             72 male  mascu…
+##  6 Dooku       193    80 white      fair       brown            102 male  mascu…
+##  7 Dud Bolt     94    45 none       blue, grey yellow            NA male  mascu…
+##  8 Captain…     NA    NA none       none       unknown           NA fema… femin…
+##  9 Gasgano     122    NA none       white, bl… black             NA male  mascu…
 ## 10 R2-D2        96    32 <NA>       white, bl… red               33 none  mascu…
-## 11 Shmi Sk…    163    NA black      fair       brown             72 fema… femin…
-## 12 Ratts T…     79    15 none       grey, blue unknown           NA male  mascu…
+## 11 Quarsh …    183    NA black      dark       brown             62 male  mascu…
+## 12 Taun We     213    NA none       grey       black             NA fema… femin…
 ## 13 Nute Gu…    191    90 none       mottled g… red               NA male  mascu…
-## 14 Darth M…    175    80 none       red        yellow            54 male  mascu…
-## 15 Bib For…    180    NA none       pale       pink              NA male  mascu…
+## 14 Shmi Sk…    163    NA black      fair       brown             72 fema… femin…
+## 15 Darth M…    175    80 none       red        yellow            54 male  mascu…
 ## 16 C-3PO       167    75 <NA>       gold       yellow           112 none  mascu…
-## 17 Yarael …    264    NA none       white      yellow            NA male  mascu…
-## 18 Ki-Adi-…    198    82 white      pale       yellow            92 male  mascu…
-## 19 BB8          NA    NA none       none       black             NA none  mascu…
-## 20 Eeth Ko…    171    NA black      brown      brown             NA male  mascu…
+## 17 Adi Gal…    184    50 none       dark       blue              NA fema… femin…
+## 18 Ben Qua…    163    65 none       grey, gre… orange            NA male  mascu…
+## 19 Poe Dam…     NA    NA brown      light      brown             NA male  mascu…
+## 20 Ki-Adi-…    198    82 white      pale       yellow            92 male  mascu…
 ## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
 
-```r
+``` r
 # New way
 
 starwars %>%
@@ -3753,26 +3743,26 @@ starwars %>%
 ## # A tibble: 20 × 14
 ##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
 ##    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-##  1 Owen La…    178   120 brown, gr… light      blue              52 male  mascu…
-##  2 Ki-Adi-…    198    82 white      pale       yellow            92 male  mascu…
-##  3 Captain…     NA    NA unknown    unknown    unknown           NA <NA>  <NA>  
-##  4 Gregar …    185    85 black      dark       brown             NA male  mascu…
-##  5 R5-D4        97    32 <NA>       white, red red               NA none  mascu…
-##  6 Ackbar      180    83 none       brown mot… orange            41 male  mascu…
-##  7 Wedge A…    170    77 brown      fair       hazel             21 male  mascu…
-##  8 Dormé       165    NA brown      light      brown             NA fema… femin…
-##  9 Rey          NA    NA brown      light      hazel             NA fema… femin…
-## 10 IG-88       200   140 none       metal      red               15 none  mascu…
-## 11 Roos Ta…    224    82 none       grey       orange            NA male  mascu…
-## 12 Shmi Sk…    163    NA black      fair       brown             72 fema… femin…
-## 13 R2-D2        96    32 <NA>       white, bl… red               33 none  mascu…
-## 14 Poe Dam…     NA    NA brown      light      brown             NA male  mascu…
-## 15 Obi-Wan…    182    77 auburn, w… fair       blue-gray         57 male  mascu…
-## 16 Plo Koon    188    80 none       orange     black             22 male  mascu…
-## 17 Tarfful     234   136 brown      brown      blue              NA male  mascu…
-## 18 Lobot       175    79 none       light      blue              37 male  mascu…
-## 19 San Hill    191    NA none       grey       gold              NA male  mascu…
-## 20 Kit Fis…    196    87 none       green      black             NA male  mascu…
+##  1 Owen La…    178 120   brown, gr… light      blue              52 male  mascu…
+##  2 Ben Qua…    163  65   none       grey, gre… orange            NA male  mascu…
+##  3 BB8          NA  NA   none       none       black             NA none  mascu…
+##  4 Plo Koon    188  80   none       orange     black             22 male  mascu…
+##  5 R5-D4        97  32   <NA>       white, red red               NA none  mascu…
+##  6 Ackbar      180  83   none       brown mot… orange            41 male  mascu…
+##  7 Wedge A…    170  77   brown      fair       hazel             21 male  mascu…
+##  8 Luminar…    170  56.2 black      yellow     blue              58 fema… femin…
+##  9 Finn         NA  NA   black      dark       dark              NA male  mascu…
+## 10 IG-88       200 140   none       metal      red               15 none  mascu…
+## 11 Jar Jar…    196  66   none       orange     orange            52 male  mascu…
+## 12 Quarsh …    183  NA   black      dark       brown             62 male  mascu…
+## 13 R2-D2        96  32   <NA>       white, bl… red               33 none  mascu…
+## 14 Rey          NA  NA   brown      light      hazel             NA fema… femin…
+## 15 Obi-Wan…    182  77   auburn, w… fair       blue-gray         57 male  mascu…
+## 16 Saesee …    188  NA   none       pale       orange            NA male  mascu…
+## 17 Grievous    216 159   none       brown, wh… green, y…         NA male  mascu…
+## 18 Lobot       175  79   none       light      blue              37 male  mascu…
+## 19 Wat Tam…    193  48   none       green, gr… unknown           NA male  mascu…
+## 20 Mace Wi…    188  84   none       dark       brown             72 male  mascu…
 ## # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
 ## #   vehicles <list>, starships <list>
 ```
@@ -3780,7 +3770,7 @@ starwars %>%
 -   Top 10 rows orderd by height
 
 
-```r
+``` r
 # Old way
 starwars %>%
   top_n(10, height)
@@ -3804,7 +3794,7 @@ starwars %>%
 ## #   vehicles <list>, starships <list>
 ```
 
-```r
+``` r
 # New way
 starwars %>%
   slice_max(height, n = 10) # Variable first, Argument second
@@ -3831,7 +3821,7 @@ starwars %>%
 ### Subset variables (columns)
 
 
-```r
+``` r
 names(msleep)
 ```
 
@@ -3844,7 +3834,7 @@ names(msleep)
 -   Select only numeric columns
 
 
-```r
+``` r
 # Only numeric
 msleep %>%
   dplyr::select(where(is.numeric))
@@ -3874,7 +3864,7 @@ Use `select(where())` to find only non-numeric columns
 -   Select the columns that include "sleep" in their names
 
 
-```r
+``` r
 msleep %>%
   dplyr::select(contains("sleep"))
 ```
@@ -3903,7 +3893,7 @@ msleep %>%
 `grepl` is one of the R base pattern matching functions.
 
 
-```r
+``` r
 msleep[grepl("sleep|wt", names(msleep))]
 ```
 
@@ -3931,7 +3921,7 @@ Use `select(match())` to find columns whose names include either "sleep" or "wt"
 -   Select the columns that start with "b"
 
 
-```r
+``` r
 msleep %>%
   dplyr::select(starts_with("b"))
 ```
@@ -3956,7 +3946,7 @@ msleep %>%
 -   Select the columns that end with "wt"
 
 
-```r
+``` r
 msleep %>%
   dplyr::select(ends_with("wt"))
 ```
@@ -3983,7 +3973,7 @@ msleep %>%
 The key idea is you can use Boolean operators (`!`, `&`, `|`)to combine different string pattern matching statements.
 
 
-```r
+``` r
 msleep %>%
   dplyr::select(starts_with("b") & ends_with("wt"))
 ```
@@ -4008,7 +3998,7 @@ msleep %>%
 -   Select the order and move it before everything
 
 
-```r
+``` r
 # By specifying a column
 msleep %>%
   dplyr::select(order, everything())
@@ -4035,7 +4025,7 @@ msleep %>%
 -   Select variables from a character vector.
 
 
-```r
+``` r
 msleep %>%
   dplyr::select(any_of(c("name", "order"))) %>%
   colnames()
@@ -4048,7 +4038,7 @@ msleep %>%
 -   Select the variables named in character + number pattern
 
 
-```r
+``` r
 msleep$week8 <- NA
 
 msleep$week12 <- NA
@@ -4081,7 +4071,7 @@ msleep %>%
 `msleep` data has nicely cleaned column names. But real-world data are usually messier. The `janitor` package is useful to fix this kind of problem.
 
 
-```r
+``` r
 messy_df <- tibble::tribble(
   ~"ColNum1", ~"COLNUM2", ~"COL & NUM3",
   1, 2, 3
@@ -4097,7 +4087,7 @@ messy_df
 ## 1       1       2            3
 ```
 
-```r
+``` r
 pacman::p_load(janitor)
 
 janitor::clean_names(messy_df)
@@ -4113,7 +4103,7 @@ janitor::clean_names(messy_df)
 `janitor::tabyl()` is helpful for doing crosstabulation and a nice alternative to `table()` function. 
 
 
-```r
+``` r
 # Frequency table; The default output class is table
 table(gapminder$country)
 ```
@@ -4218,7 +4208,7 @@ table(gapminder$country)
 ##                       12
 ```
 
-```r
+``` r
 # Frequency table (unique value, n, percentage)
 janitor::tabyl(gapminder$country)
 ```
@@ -4369,7 +4359,7 @@ janitor::tabyl(gapminder$country)
 ##                  Zimbabwe 12 0.007042254
 ```
 
-```r
+``` r
 # If you want to add percentage ...
 gapminder %>%
   tabyl(country) %>%
@@ -4532,7 +4522,7 @@ gapminder %>%
 You can think of `case_when()` (multiple conditions) as an extended version of `ifelse()` (binary conditions). 
 
 
-```r
+``` r
 mtcars <- mtcars %>%
   mutate(cyl_dummy = case_when(
     cyl > median(cyl) ~ "High", # if condition
@@ -4553,7 +4543,7 @@ mtcars %>% pull(cyl_dummy)
 #### Change values manually 
 
 
-```r
+``` r
 mtcars %>%
   mutate(cyl_dummy = recode(cyl_dummy, # Target column
     "High" = "2", # Old - New
@@ -4574,7 +4564,7 @@ mtcars %>%
 -   How many countries are in each continent?
 
 
-```r
+``` r
 gapminder %>%
   count(continent)
 ```
@@ -4593,7 +4583,7 @@ gapminder %>%
 -   Let's arrange the result.
 
 
-```r
+``` r
 # Just add a new argument `sort = TRUE`
 gapminder %>%
   count(continent, sort = TRUE)
@@ -4610,7 +4600,7 @@ gapminder %>%
 ## 5 Oceania      24
 ```
 
-```r
+``` r
 # Same as above; How nice!
 gapminder %>%
   count(continent) %>%
@@ -4639,7 +4629,7 @@ Let's take a deeper look at how things work under the hood.
 -   `count` = `group_by()` + `tally()`
 
 
-```r
+``` r
 gapminder %>%
   tally()
 ```
@@ -4658,7 +4648,7 @@ gapminder %>%
 What does n in the below example represent?
 
 
-```r
+``` r
 gapminder %>%
   dplyr::select(continent, country) %>%
   add_tally()
@@ -4686,7 +4676,7 @@ gapminder %>%
 Add count as a column.
 
 
-```r
+``` r
 # Add count as a column
 gapminder %>%
   group_by(continent) %>%
@@ -4716,7 +4706,7 @@ gapminder %>%
 Do cases 1 and 2 in the below code chunk produce the same outputs? If so, why?
 
 
-```r
+``` r
 # Case 1
 gapminder %>%
   group_by(continent, year) %>%
@@ -4741,7 +4731,7 @@ gapminder %>%
 ## # ℹ 50 more rows
 ```
 
-```r
+``` r
 # Case 2
 gapminder %>%
   group_by(continent) %>%
@@ -4776,7 +4766,7 @@ gapminder %>%
 - Think of `summarise()` as an extended version of `count()`.
 
 
-```r
+``` r
 gapminder %>%
   group_by(continent) %>%
   summarise(
@@ -4797,7 +4787,7 @@ gapminder %>%
 ## 5 Oceania      24   18622.  6359.
 ```
 
-```r
+``` r
 tablea <- gapminder %>%
   group_by(continent) %>%
   summarise(
@@ -4810,7 +4800,7 @@ tablea <- gapminder %>%
 -   Produce publishable tables
 
 
-```r
+``` r
 pacman::p_load(
   kableExtra,
   flextable
@@ -4820,56 +4810,23 @@ pacman::p_load(
 tablea %>% kableExtra::kable()
 ```
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> continent </th>
-   <th style="text-align:right;"> n </th>
-   <th style="text-align:right;"> mean_gdp </th>
-   <th style="text-align:right;"> sd_gdp </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Africa </td>
-   <td style="text-align:right;"> 624 </td>
-   <td style="text-align:right;"> 2193.755 </td>
-   <td style="text-align:right;"> 2827.930 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Americas </td>
-   <td style="text-align:right;"> 300 </td>
-   <td style="text-align:right;"> 7136.110 </td>
-   <td style="text-align:right;"> 6396.764 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Asia </td>
-   <td style="text-align:right;"> 396 </td>
-   <td style="text-align:right;"> 7902.150 </td>
-   <td style="text-align:right;"> 14045.373 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Europe </td>
-   <td style="text-align:right;"> 360 </td>
-   <td style="text-align:right;"> 14469.476 </td>
-   <td style="text-align:right;"> 9355.213 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Oceania </td>
-   <td style="text-align:right;"> 24 </td>
-   <td style="text-align:right;"> 18621.609 </td>
-   <td style="text-align:right;"> 6358.983 </td>
-  </tr>
-</tbody>
-</table>
 
-```r
+
+|continent |   n|  mean_gdp|    sd_gdp|
+|:---------|---:|---------:|---------:|
+|Africa    | 624|  2193.755|  2827.930|
+|Americas  | 300|  7136.110|  6396.764|
+|Asia      | 396|  7902.150| 14045.373|
+|Europe    | 360| 14469.476|  9355.213|
+|Oceania   |  24| 18621.609|  6358.983|
+
+``` r
 # For HTML and MS Office suite
 tablea %>% flextable::flextable()
 ```
 
 ```{=html}
-<div class="tabwid"><style>.cl-9db70752{}.cl-9dae468a{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-9db1ca12{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-9db1ca1c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-9db1e524{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9db1e52e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9db1e52f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9db1e538{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9db1e539{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9db1e542{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-9db70752'><thead><tr style="overflow-wrap:break-word;"><th class="cl-9db1e524"><p class="cl-9db1ca12"><span class="cl-9dae468a">continent</span></p></th><th class="cl-9db1e52e"><p class="cl-9db1ca1c"><span class="cl-9dae468a">n</span></p></th><th class="cl-9db1e52e"><p class="cl-9db1ca1c"><span class="cl-9dae468a">mean_gdp</span></p></th><th class="cl-9db1e52e"><p class="cl-9db1ca1c"><span class="cl-9dae468a">sd_gdp</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-9db1e52f"><p class="cl-9db1ca12"><span class="cl-9dae468a">Africa</span></p></td><td class="cl-9db1e538"><p class="cl-9db1ca1c"><span class="cl-9dae468a">624</span></p></td><td class="cl-9db1e538"><p class="cl-9db1ca1c"><span class="cl-9dae468a">2,193.755</span></p></td><td class="cl-9db1e538"><p class="cl-9db1ca1c"><span class="cl-9dae468a">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9db1e52f"><p class="cl-9db1ca12"><span class="cl-9dae468a">Americas</span></p></td><td class="cl-9db1e538"><p class="cl-9db1ca1c"><span class="cl-9dae468a">300</span></p></td><td class="cl-9db1e538"><p class="cl-9db1ca1c"><span class="cl-9dae468a">7,136.110</span></p></td><td class="cl-9db1e538"><p class="cl-9db1ca1c"><span class="cl-9dae468a">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9db1e52f"><p class="cl-9db1ca12"><span class="cl-9dae468a">Asia</span></p></td><td class="cl-9db1e538"><p class="cl-9db1ca1c"><span class="cl-9dae468a">396</span></p></td><td class="cl-9db1e538"><p class="cl-9db1ca1c"><span class="cl-9dae468a">7,902.150</span></p></td><td class="cl-9db1e538"><p class="cl-9db1ca1c"><span class="cl-9dae468a">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9db1e52f"><p class="cl-9db1ca12"><span class="cl-9dae468a">Europe</span></p></td><td class="cl-9db1e538"><p class="cl-9db1ca1c"><span class="cl-9dae468a">360</span></p></td><td class="cl-9db1e538"><p class="cl-9db1ca1c"><span class="cl-9dae468a">14,469.476</span></p></td><td class="cl-9db1e538"><p class="cl-9db1ca1c"><span class="cl-9dae468a">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9db1e539"><p class="cl-9db1ca12"><span class="cl-9dae468a">Oceania</span></p></td><td class="cl-9db1e542"><p class="cl-9db1ca1c"><span class="cl-9dae468a">24</span></p></td><td class="cl-9db1e542"><p class="cl-9db1ca1c"><span class="cl-9dae468a">18,621.609</span></p></td><td class="cl-9db1e542"><p class="cl-9db1ca1c"><span class="cl-9dae468a">6,358.983</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-23cd1012{}.cl-23ca0462{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-23cb480e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-23cb4818{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-23cb560a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23cb560b{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23cb560c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23cb5614{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23cb5615{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-23cb5616{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-23cd1012'><thead><tr style="overflow-wrap:break-word;"><th class="cl-23cb560a"><p class="cl-23cb480e"><span class="cl-23ca0462">continent</span></p></th><th class="cl-23cb560b"><p class="cl-23cb4818"><span class="cl-23ca0462">n</span></p></th><th class="cl-23cb560b"><p class="cl-23cb4818"><span class="cl-23ca0462">mean_gdp</span></p></th><th class="cl-23cb560b"><p class="cl-23cb4818"><span class="cl-23ca0462">sd_gdp</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-23cb560c"><p class="cl-23cb480e"><span class="cl-23ca0462">Africa</span></p></td><td class="cl-23cb5614"><p class="cl-23cb4818"><span class="cl-23ca0462">624</span></p></td><td class="cl-23cb5614"><p class="cl-23cb4818"><span class="cl-23ca0462">2,193.755</span></p></td><td class="cl-23cb5614"><p class="cl-23cb4818"><span class="cl-23ca0462">2,827.930</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23cb560c"><p class="cl-23cb480e"><span class="cl-23ca0462">Americas</span></p></td><td class="cl-23cb5614"><p class="cl-23cb4818"><span class="cl-23ca0462">300</span></p></td><td class="cl-23cb5614"><p class="cl-23cb4818"><span class="cl-23ca0462">7,136.110</span></p></td><td class="cl-23cb5614"><p class="cl-23cb4818"><span class="cl-23ca0462">6,396.764</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23cb560c"><p class="cl-23cb480e"><span class="cl-23ca0462">Asia</span></p></td><td class="cl-23cb5614"><p class="cl-23cb4818"><span class="cl-23ca0462">396</span></p></td><td class="cl-23cb5614"><p class="cl-23cb4818"><span class="cl-23ca0462">7,902.150</span></p></td><td class="cl-23cb5614"><p class="cl-23cb4818"><span class="cl-23ca0462">14,045.373</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23cb560c"><p class="cl-23cb480e"><span class="cl-23ca0462">Europe</span></p></td><td class="cl-23cb5614"><p class="cl-23cb4818"><span class="cl-23ca0462">360</span></p></td><td class="cl-23cb5614"><p class="cl-23cb4818"><span class="cl-23ca0462">14,469.476</span></p></td><td class="cl-23cb5614"><p class="cl-23cb4818"><span class="cl-23ca0462">9,355.213</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-23cb5615"><p class="cl-23cb480e"><span class="cl-23ca0462">Oceania</span></p></td><td class="cl-23cb5616"><p class="cl-23cb4818"><span class="cl-23ca0462">24</span></p></td><td class="cl-23cb5616"><p class="cl-23cb4818"><span class="cl-23ca0462">18,621.609</span></p></td><td class="cl-23cb5616"><p class="cl-23cb4818"><span class="cl-23ca0462">6,358.983</span></p></td></tr></tbody></table></div>
 ```
 
 #### Scoped summaries
@@ -4879,7 +4836,7 @@ tablea %>% flextable::flextable()
 -   `summarise_all()`
 
 
-```r
+``` r
 # Create a wide-shaped data example
 wide_gapminder <- gapminder %>%
   dplyr::filter(continent == "Europe") %>%
@@ -4910,7 +4867,7 @@ wide_gapminder %>%
 -   `summarise_if()`: using a logical condition
 
 
-```r
+``` r
 wide_gapminder %>%
   summarise_if(is.double, mean, na.rm = TRUE)
 ```
@@ -4933,7 +4890,7 @@ wide_gapminder %>%
 -   `vars() = select()`
 
 
-```r
+``` r
 wide_gapminder %>%
   summarise_at(vars(-c(1:4)),
     mean,
@@ -4954,7 +4911,7 @@ wide_gapminder %>%
 ## #   Switzerland <dbl>, Turkey <dbl>, `United Kingdom` <dbl>
 ```
 
-```r
+``` r
 wide_gapminder %>%
   summarise_at(vars(contains("life")),
     mean,
@@ -4988,7 +4945,7 @@ wide_gapminder %>%
 -   `summarise_all()`
 
 
-```r
+``` r
 wide_gapminder %>%
   summarise(across(Albania:`United Kingdom`, mean, na.rm = TRUE))
 ```
@@ -5020,7 +4977,7 @@ wide_gapminder %>%
 ## #   Switzerland <dbl>, Turkey <dbl>, `United Kingdom` <dbl>
 ```
 
-```r
+``` r
 wide_gapminder %>%
   summarise(across(-c(1:4), mean, na.rm = TRUE))
 ```
@@ -5041,7 +4998,7 @@ wide_gapminder %>%
 -   `summarise_if()`
 
 
-```r
+``` r
 wide_gapminder %>%
   summarise(across(is.double, mean, na.rm = TRUE))
 ```
@@ -5075,7 +5032,7 @@ wide_gapminder %>%
 -   `summarise_at()`
 
 
-```r
+``` r
 wide_gapminder %>%
   summarise(across(-c(1:4),
     mean,
@@ -5096,7 +5053,7 @@ wide_gapminder %>%
 ## #   Switzerland <dbl>, Turkey <dbl>, `United Kingdom` <dbl>
 ```
 
-```r
+``` r
 wide_gapminder %>%
   summarise(across(contains("life"),
     mean,
@@ -5111,7 +5068,7 @@ wide_gapminder %>%
 ## 1    71.9
 ```
 
-```r
+``` r
 wide_gapminder %>%
   summarise(across(contains("A", ignore.case = FALSE)))
 ```
@@ -5119,8 +5076,7 @@ wide_gapminder %>%
 ```
 ## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in dplyr 1.1.0.
 ## ℹ Please use `reframe()` instead.
-## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()` always returns an ungrouped data frame
-##   and adjust accordingly.
+## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()` always returns an ungrouped data frame and adjust accordingly.
 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
@@ -5160,7 +5116,7 @@ Note that this workshop does not cover creating and manipulating variables using
 - Some functions are designed to work together. For instance, the 	`group_by()` function defines the strata you will use for summary statistics. Then, use `summarise()` to obtain summary statistics.
 
 
-```r
+``` r
 gapminder %>%
   group_by(continent) %>% #
   summarise(mean_gdp = mean(gdpPercap))
@@ -5180,7 +5136,7 @@ gapminder %>%
 -   Calculate multiple summary statistics.
 
 
-```r
+``` r
 gapminder %>%
   group_by(continent) %>% #
   summarise(
@@ -5207,7 +5163,7 @@ gapminder %>%
 1.  Measures of spread: `median(x)`, `sd(x)`, `IQR(x)`, `mad(x)` (the median absolute deviation)
 
 
-```r
+``` r
 # The Interquartile Range = The Difference Between 75t and 25t Percentiles
 
 gapminder %>%
@@ -5229,7 +5185,7 @@ gapminder %>%
 2.  Measures of rank: `min(x)`, `quantile(x, 0.25)`, `max(x)`
 
 
-```r
+``` r
 gapminder %>%
   group_by(continent) %>% #
   summarise(
@@ -5252,7 +5208,7 @@ gapminder %>%
 3.  Measures of position: `first(x)`, `last(x)`, `nth(x, 2)`
 
 
-```r
+``` r
 gapminder %>%
   group_by(continent) %>%
   summarise(
@@ -5272,7 +5228,7 @@ gapminder %>%
 ## 5 Oceania      10040.   25185.
 ```
 
-```r
+``` r
 gapminder %>%
   group_by(continent) %>%
   arrange(gdpPercap) %>% # Adding arrange
@@ -5296,7 +5252,7 @@ gapminder %>%
 4.  Measures of counts: `n(x)` (all rows), `sum(!is.na(x))` (only non-missing rows) = `n_distinct(x)`
 
 
-```r
+``` r
 gapminder %>%
   group_by(continent) %>%
   summarise(ns = n())
@@ -5316,7 +5272,7 @@ gapminder %>%
 5.  Counts and proportions of logical values: `sum(condition about x)` (the number of TRUEs in x), `mean(condition about x)` (the proportion of TRUEs in x)
 
 
-```r
+``` r
 gapminder %>%
   group_by(continent) %>%
   summarise(rich_countries = mean(gdpPercap > 20000))
@@ -5338,7 +5294,7 @@ gapminder %>%
 Also, check out window functions such as `cumsum()` and `lag()`. Window functions are a variant of aggregate functions that take a vector as input then return a vector of the same length as an output. 
 
 
-```r
+``` r
 vec <- c(1:10)
 
 # Typical aggregate function
@@ -5349,7 +5305,7 @@ sum(vec) # The output length is one
 ## [1] 55
 ```
 
-```r
+``` r
 # Window function
 cumsum(vec) # The output length is ten
 ```
@@ -5358,7 +5314,7 @@ cumsum(vec) # The output length is ten
 ##  [1]  1  3  6 10 15 21 28 36 45 55
 ```
 
-```r
+``` r
 # Let's compare them side-by-side
 compare(
   sum(vec),
@@ -5382,7 +5338,7 @@ Relational data = multiple tables of data
 - A **primary key** "uniquely identifies an observation in its table"
 
 
-```r
+``` r
 # Example
 planes$tailnum %>% head()
 ```
@@ -5399,7 +5355,7 @@ Verify primary key
 What do you expect the outcome?
 
 
-```r
+``` r
 planes %>%
   count(tailnum) %>%
   dplyr::filter(n > 1)
@@ -5414,7 +5370,7 @@ planes %>%
 If a dataframe doesn't have a primary key, you can add one called a **surrogate** key.
 
 
-```r
+``` r
 # Toy example
 df <- tibble(
   x = c(1:3),
@@ -5428,7 +5384,7 @@ df <- df %>% rowid_to_column("ID")
 - A **foreign** key "uniquely identifies an observation in another table."
 
 
-```r
+``` r
 flights$tailnum %>% head()
 ```
 
@@ -5446,7 +5402,7 @@ Using a simple toy example is great because it is easy to see how things work in
 -   Toy example
 
 
-```r
+``` r
 # Table 1
 x <- tibble(
   key = c(1:4),
@@ -5469,7 +5425,7 @@ y <- tibble(
 What is going to be the shared keys?
 
 
-```r
+``` r
 inner_join(x, y)
 ```
 
@@ -5496,7 +5452,7 @@ inner_join(x, y)
 `left_join()` keeps only the matched observations in the right table.
 
 
-```r
+``` r
 left_join(x, y)
 ```
 
@@ -5519,7 +5475,7 @@ left_join(x, y)
 `right_join()` does the opposite. 
 
 
-```r
+``` r
 right_join(x, y)
 ```
 
@@ -5543,7 +5499,7 @@ right_join(x, y)
 `full_join()` keeps the observations from both tables. NAs were recorded in one of the two tables if they were unmatched.
 
 
-```r
+``` r
 full_join(x, y)
 ```
 
@@ -5573,7 +5529,7 @@ In SQL, this type of query is also called subqueries.
 -   Filtering without joining
 
 
-```r
+``` r
 # Create the list of the top 10 destinations
 top_dest <- flights %>%
   count(dest, sort = TRUE) %>%
@@ -5584,7 +5540,7 @@ top_dest <- flights %>%
 ## Selecting by n
 ```
 
-```r
+``` r
 # Filter
 filtered <- flights %>%
   dplyr::filter(dest %in% top_dest$dest)
@@ -5593,7 +5549,7 @@ filtered <- flights %>%
 -   Using semi join: only keep (INCLUDE) the rows that were matched between the two tables
 
 
-```r
+``` r
 joined <- flights %>%
   semi_join(top_dest)
 ```
@@ -5602,7 +5558,7 @@ joined <- flights %>%
 ## Joining with `by = join_by(dest)`
 ```
 
-```r
+``` r
 head(filtered == joined)
 ```
 
@@ -5635,7 +5591,7 @@ head(filtered == joined)
 `anti_join()` does the opposite. Exclude the rows that were matched between the two tables. A great technique to filter stopwords when you do computational text analysis.
 
 
-```r
+``` r
 flights %>%
   anti_join(planes, by = "tailnum") %>%
   count(tailnum, sort = TRUE)
@@ -5684,7 +5640,7 @@ The following example comes from [R for Data Science](https://r4ds.had.co.nz/man
 Why did we use `country` and `continent` for nesting variables in the following example?
 
 
-```r
+``` r
 nested <- gapminder %>%
   group_by(country, continent) %>%
   nest()
@@ -5705,7 +5661,7 @@ head(nested)
 ## 6 Australia   Oceania   <tibble [12 × 4]>
 ```
 
-```r
+``` r
 nested$data %>% pluck(1)
 ```
 
@@ -5730,7 +5686,7 @@ nested$data %>% pluck(1)
 -   Custom function
 
 
-```r
+``` r
 lm_model <- function(df) {
   lm(lifeExp ~ year, data = df)
 }
@@ -5739,7 +5695,7 @@ lm_model <- function(df) {
 -   Apply function to the nested data
 
 
-```r
+``` r
 # Apply m_model to the nested data
 
 nested <- nested %>%
@@ -5778,7 +5734,7 @@ S3 is part of R's object-oriented systems. If you need further information, chec
 ![Broom: Converting Statistical Models to Tidy Data Frames by David Robinson](https://www.youtube.com/watch?v=7VGPUBWGv6g&ab_channel=Work-Bench)
 
 
-```r
+``` r
 glanced <- nested %>%
   mutate(glance = map(models, broom::glance))
 
@@ -5794,7 +5750,7 @@ glanced$glance %>% pluck(1)
 ## # ℹ 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
-```r
+``` r
 # Pull p.value
 glanced$glance %>%
   pluck(1) %>%
@@ -5809,7 +5765,7 @@ glanced$glance %>%
 `unnest()` unpacks the list objects stored in the `glanced` column
 
 
-```r
+``` r
 glanced %>%
   unnest(glance) %>%
   arrange(r.squared)
@@ -5835,7 +5791,7 @@ glanced %>%
 ## #   BIC <dbl>, deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
-```r
+``` r
 glanced %>%
   unnest(glance) %>%
   ggplot(aes(continent, r.squared)) +
@@ -5847,7 +5803,7 @@ glanced %>%
 - tidy() 
 
 
-```r
+``` r
 nested <- gapminder %>%
   group_by(continent) %>%
   nest()
@@ -5935,7 +5891,7 @@ model_out %>%
 ## [123] "New Zealand"
 ```
 
-```r
+``` r
 model_out %>%
   dplyr::filter(p_threshold == 0) %>%
   pull(term) %>%
@@ -5957,7 +5913,7 @@ model_out %>%
 We tasted a bit of how `map()` function works. Let's dig into it more in-depth, as this family of functions is useful. See Rebecca Barter's excellent tutorial on the `purrr` package for more information. In her words, this is "the tidyverse's answer to apply functions for iteration". `map()` function can take a vector (of any type), a list, and a dataframe for input.
 
 
-```r
+``` r
 multiply <- function(x) {
   x * x
 }
@@ -5986,13 +5942,13 @@ If you want to know more about the power and joy of functional programming in R 
 [Anscombe](https://en.wikipedia.org/wiki/Frank_Anscombe)'s quarter comprises four datasets, which are so alike in terms of their descriptive statistics but quite different when presented graphically.
 
 
-```r
+``` r
 # Set theme
 theme_set(theme_minimal())
 ```
 
 
-```r
+``` r
 # Data
 anscombe
 ```
@@ -6013,7 +5969,7 @@ anscombe
 ```
 
 
-```r
+``` r
 # Correlation
 cor(anscombe)[c(1:4), c(5:8)]
 ```
@@ -6027,7 +5983,7 @@ cor(anscombe)[c(1:4), c(5:8)]
 ```
 
 
-```r
+``` r
 # gather and select
 anscombe_processed <- anscombe %>%
   gather(x_name, x_value, x1:x4) %>%
@@ -6086,7 +6042,7 @@ No worries about new terms. We're going to learn them by actually plotting.
 ### basic aes (x , y)
 
 
-```r
+``` r
 p <- ggplot(
   data = gapminder,
   mapping = aes(x = gdpPercap, y = lifeExp)
@@ -6097,13 +6053,13 @@ p
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-174-1.png" width="672" />
 
-```r
+``` r
 p + geom_point()
 ```
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-174-2.png" width="672" />
 
-```r
+``` r
 p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
 ```
 
@@ -6113,7 +6069,7 @@ p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-174-3.png" width="672" />
 
-```r
+``` r
 # the shaded area is the standard error for the line
 ```
 
@@ -6125,7 +6081,7 @@ p + geom_point() + geom_smooth() # geom_smooth has calculated a smoothed line;
 #### Histogram 
 
 
-```r
+``` r
 data(midwest) # load midwest dataset
 
 midwest
@@ -6155,14 +6111,14 @@ midwest
 ```
 
 
-```r
+``` r
 midwest %>%
   ggplot(aes(x = area)) +
   geom_point() # not working.
 ```
 
 
-```r
+``` r
 midwest %>%
   ggplot(aes(x = area)) +
   geom_histogram() # stat_bin argument picks up 30 bins (or "bucket") by default.
@@ -6174,7 +6130,7 @@ midwest %>%
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-177-1.png" width="672" />
 
-```r
+``` r
 midwest %>%
   ggplot(aes(x = area)) +
   geom_histogram(bins = 10) # only 10 bins.
@@ -6182,7 +6138,7 @@ midwest %>%
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-177-2.png" width="672" />
 
-```r
+``` r
 ggplot(
   data = subset(midwest, state %in% c("OH", "IN")),
   mapping = aes(x = percollege, fill = state)
@@ -6196,7 +6152,7 @@ ggplot(
 #### Density 
 
 
-```r
+``` r
 midwest %>%
   ggplot(aes(x = area, fill = state, color = state)) +
   geom_density(alpha = 0.3) +
@@ -6213,7 +6169,7 @@ midwest %>%
 - The property size/color/fill represents... 
 
 
-```r
+``` r
 ggplot(
   data = gapminder,
   mapping = aes(
@@ -6227,7 +6183,7 @@ ggplot(
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-179-1.png" width="672" />
 
 
-```r
+``` r
 ggplot(
   data = gapminder,
   mapping = aes(
@@ -6243,7 +6199,7 @@ ggplot(
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-180-1.png" width="672" />
 
 
-```r
+``` r
 # try red instead of "red"
 ggplot(
   data = gapminder,
@@ -6261,7 +6217,7 @@ ggplot(
 Aesthetics also can be mapped per Geom. 
 
 
-```r
+``` r
 p + geom_point() +
   geom_smooth()
 ```
@@ -6272,7 +6228,7 @@ p + geom_point() +
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-182-1.png" width="672" />
 
-```r
+``` r
 p + geom_point(alpha = 0.3) + # alpha controls transparency
   geom_smooth(color = "red", se = FALSE, size = 2)
 ```
@@ -6290,7 +6246,7 @@ p + geom_point(alpha = 0.3) + # alpha controls transparency
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-182-2.png" width="672" />
 
-```r
+``` r
 p + geom_point(alpha = 0.3) + # alpha controls transparency
   geom_smooth(color = "red", se = FALSE, size = 2, method = "lm")
 ```
@@ -6302,7 +6258,7 @@ p + geom_point(alpha = 0.3) + # alpha controls transparency
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-182-3.png" width="672" />
 
 
-```r
+``` r
 ggplot(
   data = gapminder,
   mapping = aes(
@@ -6327,7 +6283,7 @@ ggplot(
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-183-1.png" width="672" />
 
-```r
+``` r
 ggplot(
   data = gapminder,
   mapping = aes(
@@ -6358,7 +6314,7 @@ ggplot(
 ### Co-ordinates and scales 
 
 
-```r
+``` r
 p + geom_point() +
   coord_flip() # coord_type
 ```
@@ -6367,20 +6323,20 @@ p + geom_point() +
 
 The data is heavily bunched up against the left side. 
 
-```r
+``` r
 p + geom_point() # without scaling
 ```
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-185-1.png" width="672" />
 
-```r
+``` r
 p + geom_point() +
   scale_x_log10() # scales the axis of a plot to a log 10 basis
 ```
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-185-2.png" width="672" />
 
-```r
+``` r
 p + geom_point() +
   geom_smooth(method = "lm") +
   scale_x_log10()
@@ -6398,7 +6354,7 @@ p + geom_point() +
 `scales` package has some useful premade formatting functions. You can either load scales or just grab the function you need from the library using `scales::` 
 
 
-```r
+``` r
 p + geom_point(alpha = 0.3) +
   geom_smooth(method = "loess", color = "red") +
   scale_x_log10(labels = scales::dollar) +
@@ -6419,7 +6375,7 @@ p + geom_point(alpha = 0.3) +
 
 6. Themes
 
-```r
+``` r
 p + geom_point(alpha = 0.3) +
   geom_smooth(method = "loess", color = "red") +
   scale_x_log10(labels = scales::dollar) +
@@ -6442,7 +6398,7 @@ p + geom_point(alpha = 0.3) +
 ### ggsave 
 
 
-```r
+``` r
 figure_example <- p + geom_point(alpha = 0.3) +
   geom_smooth(method = "gam", color = "red") +
   scale_x_log10(labels = scales::dollar) +
@@ -6470,7 +6426,7 @@ Basic ideas:
 - Can you guess what's wrong?
 
 
-```r
+``` r
 p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
 
 p + geom_point()
@@ -6478,7 +6434,7 @@ p + geom_point()
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-189-1.png" width="672" />
 
-```r
+``` r
 p + geom_line()
 ```
 
@@ -6489,7 +6445,7 @@ p + geom_line()
 You need grouping when the grouping information you need to tell is not built into the mapped variables (like continent).
 
 
-```r
+``` r
 gapminder
 ```
 
@@ -6519,7 +6475,7 @@ Facetting is to make small multiples.
 - `facet_grid`: when you want to cross-classify some data by two categorical variables like `facet_grid(one_cat_variable ~ two_cat_variable)`. 
 
 
-```r
+``` r
 p <- ggplot(gapminder, aes(x = year, y = gdpPercap))
 
 p + geom_line(aes(group = country)) # group by, # The outlier is Kuwait.
@@ -6527,13 +6483,13 @@ p + geom_line(aes(group = country)) # group by, # The outlier is Kuwait.
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-191-1.png" width="672" />
 
-```r
+``` r
 p + geom_line(aes(group = country)) + facet_wrap(~continent) # facetting
 ```
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-191-2.png" width="672" />
 
-```r
+``` r
 p + geom_line(aes(group = country), color = "gray70") +
   geom_smooth(size = 1.1, method = "loess", se = FALSE) +
   scale_y_log10(labels = scales::dollar) +
@@ -6553,7 +6509,7 @@ p + geom_line(aes(group = country), color = "gray70") +
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-191-3.png" width="672" />
 
 
-```r
+``` r
 p + geom_line(aes(group = country), color = "gray70") +
   geom_smooth(size = 1.1, method = "loess", se = FALSE) +
   scale_y_log10(labels = scales::dollar) +
@@ -6582,7 +6538,7 @@ p + geom_line(aes(group = country), color = "gray70") +
 Also, we experiment with bar charts here. By default, `geom_bar` [uses](https://www.rdocumentation.org/packages/ggplot2/versions/1.0.1/topics/geom_bar) stat = "bins", which makes the height of each bar equal to the number of cases in each group. If you have a y column, then you should use `stat = "identity"` argument. Alternatively, you can use `geom_col().`
 
 
-```r
+``` r
 gapminder_formatted <- gapminder %>%
   group_by(continent, year) %>%
   summarize(
@@ -6596,7 +6552,7 @@ gapminder_formatted <- gapminder %>%
 ## `.groups` argument.
 ```
 
-```r
+``` r
 ggplot(data = gapminder_formatted, aes(x = year, y = lifeExp_mean, color = continent)) +
   geom_point() +
   labs(
@@ -6608,7 +6564,7 @@ ggplot(data = gapminder_formatted, aes(x = year, y = lifeExp_mean, color = conti
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-193-1.png" width="672" />
 
-```r
+``` r
 gapminder %>%
   dplyr::filter(continent == "Europe") %>%
   group_by(country, year) %>%
@@ -6633,7 +6589,7 @@ gapminder %>%
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-193-2.png" width="672" />
 
 
-```r
+``` r
 # geom point
 gapminder %>%
   dplyr::filter(continent == "Europe") %>%
@@ -6659,7 +6615,7 @@ gapminder %>%
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-194-1.png" width="672" />
 
-```r
+``` r
 # geom bar
 gapminder %>%
   dplyr::filter(continent == "Europe") %>%
@@ -6685,7 +6641,7 @@ gapminder %>%
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-194-2.png" width="672" />
 
-```r
+``` r
 # no facet
 gapminder %>%
   dplyr::filter(continent == "Europe") %>%
@@ -6711,7 +6667,7 @@ gapminder %>%
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-194-3.png" width="672" />
 
 
-```r
+``` r
 gapminder %>%
   dplyr::filter(continent == "Europe") %>%
   group_by(country, year) %>%
@@ -6737,7 +6693,7 @@ gapminder %>%
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-195-1.png" width="672" />
 
 
-```r
+``` r
 # without ordering
 gapminder %>%
   dplyr::filter(continent == "Europe") %>%
@@ -6763,7 +6719,7 @@ gapminder %>%
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-196-1.png" width="672" />
 
-```r
+``` r
 # reorder
 gapminder %>%
   dplyr::filter(continent == "Europe") %>%
@@ -6792,7 +6748,7 @@ gapminder %>%
 #### Plotting text
 
 
-```r
+``` r
 gapminder %>%
   dplyr::filter(continent == "Asia" | continent == "Americas") %>%
   group_by(continent, country) %>%
@@ -6815,7 +6771,7 @@ gapminder %>%
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-197-1.png" width="672" />
 
 
-```r
+``` r
 # with label
 gapminder %>%
   dplyr::filter(continent == "Asia" | continent == "Americas") %>%
@@ -6839,7 +6795,7 @@ gapminder %>%
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-198-1.png" width="672" />
 
 
-```r
+``` r
 # no overlaps
 gapminder %>%
   dplyr::filter(continent == "Asia" | continent == "Americas") %>%
@@ -6879,7 +6835,7 @@ In plotting models, we extensively use David Robinson's [broom package](https://
 #### Plotting several fits at the same time
 
 
-```r
+``` r
 model_colors <- RColorBrewer::brewer.pal(3, "Set1") # select three qualitatively different colors from a larger palette.
 
 gapminder %>%
@@ -6906,7 +6862,7 @@ gapminder %>%
 #### Extracting model outcomes 
 
 
-```r
+``` r
 # regression model
 out <- lm(
   formula = lifeExp ~ gdpPercap + pop + continent,
@@ -6933,7 +6889,7 @@ The followings are to show your degree of confidence.
 ##### Coefficients
 
 
-```r
+``` r
 # estimates
 out_comp <- tidy(out)
 
@@ -6950,7 +6906,7 @@ p + geom_point() +
 ##### Confidence intervals
 
 
-```r
+``` r
 # plus confidence intervals
 out_conf <- tidy(out, conf.int = TRUE)
 
@@ -6965,7 +6921,7 @@ out_conf %>%
 
 <img src="03_tidy_data_files/figure-html/unnamed-chunk-203-1.png" width="672" />
 
-```r
+``` r
 # another way to do it (errorbar)
 out_conf %>%
   ggplot(aes(x = estimate, y = reorder(term, estimate))) +

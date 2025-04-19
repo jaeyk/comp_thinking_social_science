@@ -1,8 +1,3 @@
-#!/bin/sh
-
-set -ev
-
-Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"
-Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::pdf_book')"
-# Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::epub_book')"
-
+#!/usr/bin/env bash
+# _build.sh — minimal example
+Rscript -e "bookdown::render_book('.', output_format = 'all')"

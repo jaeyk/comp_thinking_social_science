@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.4 Tidying (tidyr) | Computational Thinking for Social Scientists</title>
+  <meta name="description" content="4.4 Tidying (tidyr) | Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.4 Tidying (tidyr) | Computational Thinking for Social Scientists" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="4.4 Tidying (tidyr) | Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists." />
+  <meta name="github-repo" content="jaeyk/PS239T" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.4 Tidying (tidyr) | Computational Thinking for Social Scientists" />
+  <meta name="twitter:site" content="@JaeJaeykim2" />
+  <meta name="twitter:description" content="4.4 Tidying (tidyr) | Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists." />
+  
+
+<meta name="author" content="Jae Yeon Kim" />
+
+
+<meta name="date" content="2025-04-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tidyverse.html"/>
+<link rel="next" href="manipulating-dplyr.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computational Thinking for Social Scientists</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="part-i-fundamentals.html"><a href="part-i-fundamentals.html"><i class="fa fa-check"></i><b>1.1</b> Part I: Fundamentals</a></li>
+<li class="chapter" data-level="1.2" data-path="part-ii-applications.html"><a href="part-ii-applications.html"><i class="fa fa-check"></i><b>1.2</b> Part II: Applications</a></li>
+<li class="chapter" data-level="1.3" data-path="special-thanks.html"><a href="special-thanks.html"><i class="fa fa-check"></i><b>1.3</b> Special Thanks</a></li>
+<li class="chapter" data-level="1.4" data-path="suggestions-questions-or-comments.html"><a href="suggestions-questions-or-comments.html"><i class="fa fa-check"></i><b>1.4</b> Suggestions, Questions, or Comments</a></li>
+<li class="chapter" data-level="1.5" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>1.5</b> License</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>2</b> Computational Thinking</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="why-computational-thinking.html"><a href="why-computational-thinking.html"><i class="fa fa-check"></i><b>2.1</b> Why computational thinking</a></li>
+<li class="chapter" data-level="2.2" data-path="computational-thinking-in-the-age-of-generative-ai.html"><a href="computational-thinking-in-the-age-of-generative-ai.html"><i class="fa fa-check"></i><b>2.2</b> Computational thinking in the age of generative AI</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-teach-and-learn-computational-thinking.html"><a href="how-to-teach-and-learn-computational-thinking.html"><i class="fa fa-check"></i><b>2.3</b> How to teach and learn computational thinking</a></li>
+<li class="chapter" data-level="2.4" data-path="computational-thinking-and-a-career-in-computational-social-science.html"><a href="computational-thinking-and-a-career-in-computational-social-science.html"><i class="fa fa-check"></i><b>2.4</b> Computational thinking and a career in computational social science</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="git_bash.html"><a href="git_bash.html"><i class="fa fa-check"></i><b>3</b> Managing data and code</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="the-command-line.html"><a href="the-command-line.html"><i class="fa fa-check"></i><b>3.1</b> The Command Line</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="the-command-line.html"><a href="the-command-line.html#the-big-picture"><i class="fa fa-check"></i><b>3.1.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.1.2" data-path="the-command-line.html"><a href="the-command-line.html#why-bother-using-the-command-line"><i class="fa fa-check"></i><b>3.1.2</b> Why bother using the command line?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="the-command-line.html"><a href="the-command-line.html#unix-shell"><i class="fa fa-check"></i><b>3.1.3</b> UNIX Shell</a></li>
+<li class="chapter" data-level="3.1.4" data-path="the-command-line.html"><a href="the-command-line.html#references"><i class="fa fa-check"></i><b>3.1.4</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="git-and-github.html"><a href="git-and-github.html"><i class="fa fa-check"></i><b>3.2</b> Git and GitHub</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="git-and-github.html"><a href="git-and-github.html#the-big-picture-1"><i class="fa fa-check"></i><b>3.2.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.2.2" data-path="git-and-github.html"><a href="git-and-github.html#version-control-system"><i class="fa fa-check"></i><b>3.2.2</b> Version control system</a></li>
+<li class="chapter" data-level="3.2.3" data-path="git-and-github.html"><a href="git-and-github.html#setup"><i class="fa fa-check"></i><b>3.2.3</b> Setup</a></li>
+<li class="chapter" data-level="3.2.4" data-path="git-and-github.html"><a href="git-and-github.html#cloning-a-repository"><i class="fa fa-check"></i><b>3.2.4</b> Cloning a repository</a></li>
+<li class="chapter" data-level="3.2.5" data-path="git-and-github.html"><a href="git-and-github.html#making-a-repository"><i class="fa fa-check"></i><b>3.2.5</b> Making a repository</a></li>
+<li class="chapter" data-level="3.2.6" data-path="git-and-github.html"><a href="git-and-github.html#commit-changes"><i class="fa fa-check"></i><b>3.2.6</b> Commit changes</a></li>
+<li class="chapter" data-level="3.2.7" data-path="git-and-github.html"><a href="git-and-github.html#push-and-pull-or-fetch"><i class="fa fa-check"></i><b>3.2.7</b> Push and pull (or fetch)</a></li>
+<li class="chapter" data-level="3.2.8" data-path="git-and-github.html"><a href="git-and-github.html#branching"><i class="fa fa-check"></i><b>3.2.8</b> Branching</a></li>
+<li class="chapter" data-level="3.2.9" data-path="git-and-github.html"><a href="git-and-github.html#other-useful-commands"><i class="fa fa-check"></i><b>3.2.9</b> Other useful commands</a></li>
+<li class="chapter" data-level="3.2.10" data-path="git-and-github.html"><a href="git-and-github.html#collaborations"><i class="fa fa-check"></i><b>3.2.10</b> Collaborations</a></li>
+<li class="chapter" data-level="3.2.11" data-path="git-and-github.html"><a href="git-and-github.html#deployment-github-pages"><i class="fa fa-check"></i><b>3.2.11</b> Deployment: GitHub Pages</a></li>
+<li class="chapter" data-level="3.2.12" data-path="git-and-github.html"><a href="git-and-github.html#tracking-progress-github-issues"><i class="fa fa-check"></i><b>3.2.12</b> Tracking progress: GitHub Issues</a></li>
+<li class="chapter" data-level="3.2.13" data-path="git-and-github.html"><a href="git-and-github.html#project-management-github-dashboards"><i class="fa fa-check"></i><b>3.2.13</b> Project management: GitHub Dashboards</a></li>
+<li class="chapter" data-level="3.2.14" data-path="git-and-github.html"><a href="git-and-github.html#using-git-clients"><i class="fa fa-check"></i><b>3.2.14</b> Using Git clients</a></li>
+<li class="chapter" data-level="3.2.15" data-path="git-and-github.html"><a href="git-and-github.html#the-big-picture-2"><i class="fa fa-check"></i><b>3.2.15</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.2.16" data-path="git-and-github.html"><a href="git-and-github.html#rstudio"><i class="fa fa-check"></i><b>3.2.16</b> RStudio</a></li>
+<li class="chapter" data-level="3.2.17" data-path="git-and-github.html"><a href="git-and-github.html#basic-syntax"><i class="fa fa-check"></i><b>3.2.17</b> Basic Syntax</a></li>
+<li class="chapter" data-level="3.2.18" data-path="git-and-github.html"><a href="git-and-github.html#environment"><i class="fa fa-check"></i><b>3.2.18</b> Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="project-oriented-research.html"><a href="project-oriented-research.html"><i class="fa fa-check"></i><b>3.3</b> Project-oriented research</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="project-oriented-research.html"><a href="project-oriented-research.html#the-big-picture-3"><i class="fa fa-check"></i><b>3.3.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.3.2" data-path="project-oriented-research.html"><a href="project-oriented-research.html#references-1"><i class="fa fa-check"></i><b>3.3.2</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html"><i class="fa fa-check"></i><b>3.4</b> Writing code: How to code like a professional</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html#the-big-picture-4"><i class="fa fa-check"></i><b>3.4.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.4.2" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html#write-readable-code"><i class="fa fa-check"></i><b>3.4.2</b> Write readable code</a></li>
+<li class="chapter" data-level="3.4.3" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html#write-reusable-code"><i class="fa fa-check"></i><b>3.4.3</b> Write reusable code</a></li>
+<li class="chapter" data-level="3.4.4" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html#test-your-code-systematically"><i class="fa fa-check"></i><b>3.4.4</b> Test your code systematically</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="run-tests.html"><a href="run-tests.html"><i class="fa fa-check"></i><b>3.5</b> Run tests</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="run-tests.html"><a href="run-tests.html#asking-questions-minimal-reproducible-example"><i class="fa fa-check"></i><b>3.5.1</b> Asking questions: Minimal reproducible example</a></li>
+<li class="chapter" data-level="3.5.2" data-path="run-tests.html"><a href="run-tests.html#references-2"><i class="fa fa-check"></i><b>3.5.2</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tidy_data.html"><a href="tidy_data.html"><i class="fa fa-check"></i><b>4</b> Tidy data and its friends</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="setup-2.html"><a href="setup-2.html"><i class="fa fa-check"></i><b>4.1</b> Setup</a></li>
+<li class="chapter" data-level="4.2" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html"><i class="fa fa-check"></i><b>4.2</b> Base R data structure</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#d-data-vectors"><i class="fa fa-check"></i><b>4.2.1</b> 1D data: Vectors</a></li>
+<li class="chapter" data-level="4.2.2" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#data-structures"><i class="fa fa-check"></i><b>4.2.2</b> Data structures</a></li>
+<li class="chapter" data-level="4.2.3" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#attributes"><i class="fa fa-check"></i><b>4.2.3</b> Attributes</a></li>
+<li class="chapter" data-level="4.2.4" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#d-data-matrices-and-dataframes"><i class="fa fa-check"></i><b>4.2.4</b> 2D data: Matrices and dataframes</a></li>
+<li class="chapter" data-level="4.2.5" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#subset"><i class="fa fa-check"></i><b>4.2.5</b> Subset</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4.3</b> Tidyverse</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="tidyverse.html"><a href="tidyverse.html#the-big-picture-5"><i class="fa fa-check"></i><b>4.3.1</b> The Big Picture</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="tidying-tidyr.html"><a href="tidying-tidyr.html"><i class="fa fa-check"></i><b>4.4</b> Tidying (tidyr)</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="tidying-tidyr.html"><a href="tidying-tidyr.html#reshaping"><i class="fa fa-check"></i><b>4.4.1</b> Reshaping</a></li>
+<li class="chapter" data-level="4.4.2" data-path="tidying-tidyr.html"><a href="tidying-tidyr.html#filling"><i class="fa fa-check"></i><b>4.4.2</b> Filling</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html"><i class="fa fa-check"></i><b>4.5</b> Manipulating (dplyr)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#rearranging"><i class="fa fa-check"></i><b>4.5.1</b> Rearranging</a></li>
+<li class="chapter" data-level="4.5.2" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#subset-observations-rows"><i class="fa fa-check"></i><b>4.5.2</b> Subset observations (rows)</a></li>
+<li class="chapter" data-level="4.5.3" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#subset-variables-columns"><i class="fa fa-check"></i><b>4.5.3</b> Subset variables (columns)</a></li>
+<li class="chapter" data-level="4.5.4" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#create-variables"><i class="fa fa-check"></i><b>4.5.4</b> Create variables</a></li>
+<li class="chapter" data-level="4.5.5" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#counting"><i class="fa fa-check"></i><b>4.5.5</b> Counting</a></li>
+<li class="chapter" data-level="4.5.6" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#summarizing"><i class="fa fa-check"></i><b>4.5.6</b> Summarizing</a></li>
+<li class="chapter" data-level="4.5.7" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#grouping"><i class="fa fa-check"></i><b>4.5.7</b> Grouping</a></li>
+<li class="chapter" data-level="4.5.8" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#joining"><i class="fa fa-check"></i><b>4.5.8</b> Joining</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="modeling-broom.html"><a href="modeling-broom.html"><i class="fa fa-check"></i><b>4.6</b> Modeling (broom)</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="modeling-broom.html"><a href="modeling-broom.html#nesting"><i class="fa fa-check"></i><b>4.6.1</b> Nesting</a></li>
+<li class="chapter" data-level="4.6.2" data-path="modeling-broom.html"><a href="modeling-broom.html#mapping"><i class="fa fa-check"></i><b>4.6.2</b> Mapping</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html"><i class="fa fa-check"></i><b>4.7</b> Visualizing (ggplot2)</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#motivation-2"><i class="fa fa-check"></i><b>4.7.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.7.2" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>4.7.2</b> The grammar of graphics</a></li>
+<li class="chapter" data-level="4.7.3" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#mapping-and-geom"><i class="fa fa-check"></i><b>4.7.3</b> mapping and geom</a></li>
+<li class="chapter" data-level="4.7.4" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#basic-aes-x-y"><i class="fa fa-check"></i><b>4.7.4</b> basic aes (x , y)</a></li>
+<li class="chapter" data-level="4.7.5" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#univariate-distribution"><i class="fa fa-check"></i><b>4.7.5</b> Univariate distribution</a></li>
+<li class="chapter" data-level="4.7.6" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#advanced-aes-size-color"><i class="fa fa-check"></i><b>4.7.6</b> Advanced aes (size, color)</a></li>
+<li class="chapter" data-level="4.7.7" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#co-ordinates-and-scales"><i class="fa fa-check"></i><b>4.7.7</b> Co-ordinates and scales</a></li>
+<li class="chapter" data-level="4.7.8" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#labels-and-guides"><i class="fa fa-check"></i><b>4.7.8</b> Labels and guides</a></li>
+<li class="chapter" data-level="4.7.9" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#ggsave"><i class="fa fa-check"></i><b>4.7.9</b> ggsave</a></li>
+<li class="chapter" data-level="4.7.10" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#many-plots"><i class="fa fa-check"></i><b>4.7.10</b> Many plots</a></li>
+<li class="chapter" data-level="4.7.11" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#transforming"><i class="fa fa-check"></i><b>4.7.11</b> Transforming</a></li>
+<li class="chapter" data-level="4.7.12" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#ploting-models"><i class="fa fa-check"></i><b>4.7.12</b> Ploting models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functional_programming.html"><a href="functional_programming.html"><i class="fa fa-check"></i><b>5</b> Automating repeated things</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="the-big-picture-6.html"><a href="the-big-picture-6.html"><i class="fa fa-check"></i><b>5.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="5.2" data-path="objectives.html"><a href="objectives.html"><i class="fa fa-check"></i><b>5.2</b> Objectives</a></li>
+<li class="chapter" data-level="5.3" data-path="setup-3.html"><a href="setup-3.html"><i class="fa fa-check"></i><b>5.3</b> Setup</a></li>
+<li class="chapter" data-level="5.4" data-path="flow.html"><a href="flow.html"><i class="fa fa-check"></i><b>5.4</b> Flow control</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="flow.html"><a href="flow.html#if-one-condition"><i class="fa fa-check"></i><b>5.4.1</b> if (one condition)</a></li>
+<li class="chapter" data-level="5.4.2" data-path="flow.html"><a href="flow.html#if-else-two-conditions"><i class="fa fa-check"></i><b>5.4.2</b> if + else (two conditions)</a></li>
+<li class="chapter" data-level="5.4.3" data-path="flow.html"><a href="flow.html#if-else-if-else-three-conditions"><i class="fa fa-check"></i><b>5.4.3</b> if + else if + else (three conditions)</a></li>
+<li class="chapter" data-level="5.4.4" data-path="flow.html"><a href="flow.html#functions"><i class="fa fa-check"></i><b>5.4.4</b> Functions</a></li>
+<li class="chapter" data-level="5.4.5" data-path="flow.html"><a href="flow.html#for-loop"><i class="fa fa-check"></i><b>5.4.5</b> for loop</a></li>
+<li class="chapter" data-level="5.4.6" data-path="flow.html"><a href="flow.html#apply-family"><i class="fa fa-check"></i><b>5.4.6</b> apply family</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="purrr.html"><a href="purrr.html"><i class="fa fa-check"></i><b>5.5</b> purrr</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="purrr.html"><a href="purrr.html#why-map"><i class="fa fa-check"></i><b>5.5.1</b> Why map?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="map2.html"><a href="map2.html"><i class="fa fa-check"></i><b>5.6</b> Automate 2 or 2+ tasks</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="map2.html"><a href="map2.html#objectives-2"><i class="fa fa-check"></i><b>5.6.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.6.2" data-path="map2.html"><a href="map2.html#problem"><i class="fa fa-check"></i><b>5.6.2</b> Problem</a></li>
+<li class="chapter" data-level="5.6.3" data-path="map2.html"><a href="map2.html#for-loop-1"><i class="fa fa-check"></i><b>5.6.3</b> For loop</a></li>
+<li class="chapter" data-level="5.6.4" data-path="map2.html"><a href="map2.html#map2-pmap"><i class="fa fa-check"></i><b>5.6.4</b> map2 &amp; pmap</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="glue.html"><a href="glue.html"><i class="fa fa-check"></i><b>5.7</b> Automate plotting</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="glue.html"><a href="glue.html#objective"><i class="fa fa-check"></i><b>5.7.1</b> Objective</a></li>
+<li class="chapter" data-level="5.7.2" data-path="glue.html"><a href="glue.html#problem-1"><i class="fa fa-check"></i><b>5.7.2</b> Problem</a></li>
+<li class="chapter" data-level="5.7.3" data-path="glue.html"><a href="glue.html#solution"><i class="fa fa-check"></i><b>5.7.3</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="reduce.html"><a href="reduce.html"><i class="fa fa-check"></i><b>5.8</b> Automate joining</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="reduce.html"><a href="reduce.html#objective-1"><i class="fa fa-check"></i><b>5.8.1</b> Objective</a></li>
+<li class="chapter" data-level="5.8.2" data-path="reduce.html"><a href="reduce.html#problem-2"><i class="fa fa-check"></i><b>5.8.2</b> Problem</a></li>
+<li class="chapter" data-level="5.8.3" data-path="reduce.html"><a href="reduce.html#copy-and-paste"><i class="fa fa-check"></i><b>5.8.3</b> Copy and paste</a></li>
+<li class="chapter" data-level="5.8.4" data-path="reduce.html"><a href="reduce.html#reduce-1"><i class="fa fa-check"></i><b>5.8.4</b> reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="speed.html"><a href="speed.html"><i class="fa fa-check"></i><b>5.9</b> Make automation slower or faster</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="speed.html"><a href="speed.html#objectives-3"><i class="fa fa-check"></i><b>5.9.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.9.2" data-path="speed.html"><a href="speed.html#how-to-make-automation-slower"><i class="fa fa-check"></i><b>5.9.2</b> How to Make Automation Slower</a></li>
+<li class="chapter" data-level="5.9.3" data-path="speed.html"><a href="speed.html#how-to-make-automation-faster"><i class="fa fa-check"></i><b>5.9.3</b> How to Make Automation Faster</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="robustness.html"><a href="robustness.html"><i class="fa fa-check"></i><b>5.10</b> Make error handling easier</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="robustness.html"><a href="robustness.html#learning-objective"><i class="fa fa-check"></i><b>5.10.1</b> Learning objective</a></li>
+<li class="chapter" data-level="5.10.2" data-path="robustness.html"><a href="robustness.html#solution-1"><i class="fa fa-check"></i><b>5.10.2</b> Solution</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="products.html"><a href="products.html"><i class="fa fa-check"></i><b>6</b> Developing data products</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="developing-r-packages.html"><a href="developing-r-packages.html"><i class="fa fa-check"></i><b>6.1</b> Developing R packages</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="developing-r-packages.html"><a href="developing-r-packages.html#the-big-picture-7"><i class="fa fa-check"></i><b>6.1.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="6.1.2" data-path="developing-r-packages.html"><a href="developing-r-packages.html#workflow"><i class="fa fa-check"></i><b>6.1.2</b> Workflow</a></li>
+<li class="chapter" data-level="6.1.3" data-path="developing-r-packages.html"><a href="developing-r-packages.html#required-components"><i class="fa fa-check"></i><b>6.1.3</b> Required Components</a></li>
+<li class="chapter" data-level="6.1.4" data-path="developing-r-packages.html"><a href="developing-r-packages.html#optional-components"><i class="fa fa-check"></i><b>6.1.4</b> Optional Components</a></li>
+<li class="chapter" data-level="6.1.5" data-path="developing-r-packages.html"><a href="developing-r-packages.html#building-an-r-package"><i class="fa fa-check"></i><b>6.1.5</b> Building an R package</a></li>
+<li class="chapter" data-level="6.1.6" data-path="developing-r-packages.html"><a href="developing-r-packages.html#distributing-an-r-package"><i class="fa fa-check"></i><b>6.1.6</b> Distributing an R package</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html"><i class="fa fa-check"></i><b>6.2</b> Developing Shiny apps</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html#workflow-1"><i class="fa fa-check"></i><b>6.2.1</b> Workflow</a></li>
+<li class="chapter" data-level="6.2.2" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html#app.r"><i class="fa fa-check"></i><b>6.2.2</b> app.r</a></li>
+<li class="chapter" data-level="6.2.3" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html#deployment"><i class="fa fa-check"></i><b>6.2.3</b> Deployment</a></li>
+<li class="chapter" data-level="6.2.4" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html#references-3"><i class="fa fa-check"></i><b>6.2.4</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="other-useful-data-products.html"><a href="other-useful-data-products.html"><i class="fa fa-check"></i><b>6.3</b> Other useful data products</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="semi_structured_data.html"><a href="semi_structured_data.html"><i class="fa fa-check"></i><b>7</b> Semi-structured data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="setup-4.html"><a href="setup-4.html"><i class="fa fa-check"></i><b>7.1</b> Setup</a></li>
+<li class="chapter" data-level="7.2" data-path="the-big-picture-8.html"><a href="the-big-picture-8.html"><i class="fa fa-check"></i><b>7.2</b> The Big Picture</a></li>
+<li class="chapter" data-level="7.3" data-path="what-is-semi-structured-data.html"><a href="what-is-semi-structured-data.html"><i class="fa fa-check"></i><b>7.3</b> What is semi-structured data?</a></li>
+<li class="chapter" data-level="7.4" data-path="workflow-2.html"><a href="workflow-2.html"><i class="fa fa-check"></i><b>7.4</b> Workflow</a></li>
+<li class="chapter" data-level="7.5" data-path="htmlcss-web-scraping.html"><a href="htmlcss-web-scraping.html"><i class="fa fa-check"></i><b>7.5</b> HTML/CSS: web scraping</a></li>
+<li class="chapter" data-level="7.6" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html"><i class="fa fa-check"></i><b>7.6</b> XML/JSON: government database/social media scraping</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#governemnt-database-xml"><i class="fa fa-check"></i><b>7.6.1</b> Governemnt database (XML)</a></li>
+<li class="chapter" data-level="7.6.2" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#social-media-api-json"><i class="fa fa-check"></i><b>7.6.2</b> Social media API (JSON)</a></li>
+<li class="chapter" data-level="7.6.3" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#next-steps"><i class="fa fa-check"></i><b>7.6.3</b> Next steps</a></li>
+<li class="chapter" data-level="7.6.4" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#rtweet"><i class="fa fa-check"></i><b>7.6.4</b> rtweet</a></li>
+<li class="chapter" data-level="7.6.5" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#hydrating"><i class="fa fa-check"></i><b>7.6.5</b> Hydrating</a></li>
+<li class="chapter" data-level="7.6.6" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#parsing-json"><i class="fa fa-check"></i><b>7.6.6</b> Parsing JSON</a></li>
+<li class="chapter" data-level="7.6.7" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#getting-api-data-from-scratch"><i class="fa fa-check"></i><b>7.6.7</b> Getting API data from scratch</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="machine_learning.html"><a href="machine_learning.html"><i class="fa fa-check"></i><b>8</b> High-dimensional data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="the-big-picture-9.html"><a href="the-big-picture-9.html"><i class="fa fa-check"></i><b>8.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="8.2" data-path="dataset.html"><a href="dataset.html"><i class="fa fa-check"></i><b>8.2</b> Dataset</a></li>
+<li class="chapter" data-level="8.3" data-path="workflow-3.html"><a href="workflow-3.html"><i class="fa fa-check"></i><b>8.3</b> Workflow</a></li>
+<li class="chapter" data-level="8.4" data-path="tidymodels.html"><a href="tidymodels.html"><i class="fa fa-check"></i><b>8.4</b> tidymodels</a></li>
+<li class="chapter" data-level="8.5" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>8.5</b> Pre-processing</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="pre-processing.html"><a href="pre-processing.html#regression-setup"><i class="fa fa-check"></i><b>8.5.1</b> Regression setup</a></li>
+<li class="chapter" data-level="8.5.2" data-path="pre-processing.html"><a href="pre-processing.html#classification-setup"><i class="fa fa-check"></i><b>8.5.2</b> Classification setup</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>8.6</b> Supervised learning</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="supervised-learning.html"><a href="supervised-learning.html#ols-and-lasso"><i class="fa fa-check"></i><b>8.6.1</b> OLS and Lasso</a></li>
+<li class="chapter" data-level="8.6.2" data-path="supervised-learning.html"><a href="supervised-learning.html#decision-tree"><i class="fa fa-check"></i><b>8.6.2</b> Decision tree</a></li>
+<li class="chapter" data-level="8.6.3" data-path="supervised-learning.html"><a href="supervised-learning.html#bagging-random-forest"><i class="fa fa-check"></i><b>8.6.3</b> Bagging (Random forest)</a></li>
+<li class="chapter" data-level="8.6.4" data-path="supervised-learning.html"><a href="supervised-learning.html#boosting-xgboost"><i class="fa fa-check"></i><b>8.6.4</b> Boosting (XGboost)</a></li>
+<li class="chapter" data-level="8.6.5" data-path="supervised-learning.html"><a href="supervised-learning.html#stacking-superlearner"><i class="fa fa-check"></i><b>8.6.5</b> Stacking (SuperLearner)</a></li>
+<li class="chapter" data-level="8.6.6" data-path="supervised-learning.html"><a href="supervised-learning.html#applications-2"><i class="fa fa-check"></i><b>8.6.6</b> Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>8.7</b> Unsupervised learning</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#dimension-reduction"><i class="fa fa-check"></i><b>8.7.1</b> Dimension reduction</a></li>
+<li class="chapter" data-level="8.7.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#topic-modeling"><i class="fa fa-check"></i><b>8.7.2</b> Topic modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="references-4.html"><a href="references-4.html"><i class="fa fa-check"></i><b>8.8</b> References</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="references-4.html"><a href="references-4.html#books"><i class="fa fa-check"></i><b>8.8.1</b> Books</a></li>
+<li class="chapter" data-level="8.8.2" data-path="references-4.html"><a href="references-4.html#lecture-slides"><i class="fa fa-check"></i><b>8.8.2</b> Lecture slides</a></li>
+<li class="chapter" data-level="8.8.3" data-path="references-4.html"><a href="references-4.html#blog-posts"><i class="fa fa-check"></i><b>8.8.3</b> Blog posts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="big_data.html"><a href="big_data.html"><i class="fa fa-check"></i><b>9</b> Big data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="the-big-picture-10.html"><a href="the-big-picture-10.html"><i class="fa fa-check"></i><b>9.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="9.2" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>9.2</b> SQL</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="sql.html"><a href="sql.html#learning-objectives"><i class="fa fa-check"></i><b>9.2.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="9.2.2" data-path="sql.html"><a href="sql.html#sql-and-r"><i class="fa fa-check"></i><b>9.2.2</b> SQL and R</a></li>
+<li class="chapter" data-level="9.2.3" data-path="sql.html"><a href="sql.html#setup-7"><i class="fa fa-check"></i><b>9.2.3</b> Setup</a></li>
+<li class="chapter" data-level="9.2.4" data-path="sql.html"><a href="sql.html#packages-1"><i class="fa fa-check"></i><b>9.2.4</b> Packages</a></li>
+<li class="chapter" data-level="9.2.5" data-path="sql.html"><a href="sql.html#nyc-flights-data"><i class="fa fa-check"></i><b>9.2.5</b> NYC flights data</a></li>
+<li class="chapter" data-level="9.2.6" data-path="sql.html"><a href="sql.html#workflow-4"><i class="fa fa-check"></i><b>9.2.6</b> Workflow</a></li>
+<li class="chapter" data-level="9.2.7" data-path="sql.html"><a href="sql.html#things-we-didnt-cover"><i class="fa fa-check"></i><b>9.2.7</b> Things we didn’t cover</a></li>
+<li class="chapter" data-level="9.2.8" data-path="sql.html"><a href="sql.html#references-5"><i class="fa fa-check"></i><b>9.2.8</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/jaeyk/PS239T" target="_blank">
+  Published with <code>{bookdown}</code></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Thinking for Social Scientists</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tidying-tidyr" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Tidying (tidyr)<a href="tidying-tidyr.html#tidying-tidyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="reshaping" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Reshaping<a href="tidying-tidyr.html#reshaping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Signs of messy datasets</strong></p>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>Column headers are values, not variable names.</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>Multiple variables are not stored in one column.</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li>Variables are stored in both rows and columns.</li>
+</ol></li>
+<li><ol start="4" style="list-style-type: decimal">
+<li>Multiple types of observational units are stored in the same table.</li>
+</ol></li>
+<li><ol start="5" style="list-style-type: decimal">
+<li>A single observational unit is stored in multiple tables.</li>
+</ol></li>
+</ul>
+<p>Let’s take a look at the cases of untidy data.</p>
+<div class="float">
+<img src="https://garrettgman.github.io/images/tidy-5.png" alt="Messy Data Case 1 (Source: R for Data Science)" />
+<div class="figcaption">Messy Data Case 1 (Source: R for Data Science)</div>
+</div>
+<ul>
+<li><p>Make It Longer</p>
+<table>
+<thead>
+<tr class="header">
+<th>Col1</th>
+<th>Col2</th>
+<th>Col3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<p><strong>Challenge</strong>: Why is this data not tidy?</p>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="tidying-tidyr.html#cb519-1" tabindex="-1"></a>table4a</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   country     `1999` `2000`
+##   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766</code></pre>
+<ul>
+<li>Let’s pivot (rotate by 90 degrees).</li>
+</ul>
+<div class="float">
+<img src="https://github.com/rstudio/concept-maps/raw/master/en/pivoting.svg" alt="Concept map for pivoting. By Florian Schmoll, Monica Alonso." />
+<div class="figcaption">Concept map for pivoting. By Florian Schmoll, Monica Alonso.</div>
+</div>
+<ul>
+<li><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html"><code>pivot_longer()</code></a> increases the number of rows (longer) and decreases the number of columns. The inverse function is <code>pivot_wider()</code>. These functions improve the usability of <code>gather()</code> and <code>spread()</code>.</li>
+</ul>
+<div class="float">
+<img src="https://www.storybench.org/wp-content/uploads/2019/08/pivot-longer-image.png" alt="What pivot_longer() does (Source: https://www.storybench.org)" />
+<div class="figcaption">What pivot_longer() does (Source: <a href="https://www.storybench.org" class="uri">https://www.storybench.org</a>)</div>
+</div>
+<div class="float">
+<img src="https://education.rstudio.com/blog/2020/09/concept-maps/pipe-operator.png" alt="Concept map for pipe operator. By Jeroen Janssens, Monica Alonso." />
+<div class="figcaption">Concept map for pipe operator. By Jeroen Janssens, Monica Alonso.</div>
+</div>
+<ul>
+<li>The pipe operator <code>%&gt;%</code> originally comes from the <code>magrittr</code> package. The idea behind the pipe operator is <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">similar to</a> what we learned about chaining functions in high school. f: B -&gt; C and g: A -&gt; B can be expressed as <span class="math inline">\(f(g(x))\)</span>. The pipe operator chains operations. When reading the pipe operator, read as “and then” (Wickham’s recommendation). The keyboard shortcut is ctrl + shift + M. The key idea here is not creating temporary variables and focusing on verbs (functions). We’ll learn more about this functional programming paradigm later on.</li>
+</ul>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="tidying-tidyr.html#cb521-1" tabindex="-1"></a>table4a</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   country     `1999` `2000`
+##   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766</code></pre>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="tidying-tidyr.html#cb523-1" tabindex="-1"></a><span class="co"># Old way, less intuitive</span></span>
+<span id="cb523-2"><a href="tidying-tidyr.html#cb523-2" tabindex="-1"></a>table4a <span class="sc">%&gt;%</span></span>
+<span id="cb523-3"><a href="tidying-tidyr.html#cb523-3" tabindex="-1"></a>  <span class="fu">gather</span>(</span>
+<span id="cb523-4"><a href="tidying-tidyr.html#cb523-4" tabindex="-1"></a>    <span class="at">key =</span> <span class="st">&quot;year&quot;</span>, <span class="co"># Current column names</span></span>
+<span id="cb523-5"><a href="tidying-tidyr.html#cb523-5" tabindex="-1"></a>    <span class="at">value =</span> <span class="st">&quot;cases&quot;</span>, <span class="co"># The values matched to cases</span></span>
+<span id="cb523-6"><a href="tidying-tidyr.html#cb523-6" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">&quot;1999&quot;</span>, <span class="st">&quot;2000&quot;</span>)</span>
+<span id="cb523-7"><a href="tidying-tidyr.html#cb523-7" tabindex="-1"></a>  ) <span class="co"># Selected columns</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   country     year   cases
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;
+## 1 Afghanistan 1999     745
+## 2 Brazil      1999   37737
+## 3 China       1999  212258
+## 4 Afghanistan 2000    2666
+## 5 Brazil      2000   80488
+## 6 China       2000  213766</code></pre>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="tidying-tidyr.html#cb525-1" tabindex="-1"></a><span class="co"># New way, more intuitive</span></span>
+<span id="cb525-2"><a href="tidying-tidyr.html#cb525-2" tabindex="-1"></a>table4a <span class="sc">%&gt;%</span></span>
+<span id="cb525-3"><a href="tidying-tidyr.html#cb525-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb525-4"><a href="tidying-tidyr.html#cb525-4" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;1999&quot;</span>, <span class="st">&quot;2000&quot;</span>), <span class="co"># Selected columns</span></span>
+<span id="cb525-5"><a href="tidying-tidyr.html#cb525-5" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="co"># Shorter columns (the columns going to be in one column called year)</span></span>
+<span id="cb525-6"><a href="tidying-tidyr.html#cb525-6" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;cases&quot;</span></span>
+<span id="cb525-7"><a href="tidying-tidyr.html#cb525-7" tabindex="-1"></a>  ) <span class="co"># Longer rows (the values are going to be in a separate column called named cases)</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   country     year   cases
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;
+## 1 Afghanistan 1999     745
+## 2 Afghanistan 2000    2666
+## 3 Brazil      1999   37737
+## 4 Brazil      2000   80488
+## 5 China       1999  212258
+## 6 China       2000  213766</code></pre>
+<ul>
+<li><p>There’s another problem, did you catch it?</p></li>
+<li><p>The data type of <code>year</code> variable should be <code>numeric</code> not <code>character</code>. By default, <code>pivot_longer()</code> transforms uninformative columns to character.</p></li>
+<li><p>You can fix this problem by using <code>names_transform</code> argument.</p></li>
+</ul>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="tidying-tidyr.html#cb527-1" tabindex="-1"></a>table4a <span class="sc">%&gt;%</span></span>
+<span id="cb527-2"><a href="tidying-tidyr.html#cb527-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb527-3"><a href="tidying-tidyr.html#cb527-3" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;1999&quot;</span>, <span class="st">&quot;2000&quot;</span>), <span class="co"># Put two columns together</span></span>
+<span id="cb527-4"><a href="tidying-tidyr.html#cb527-4" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="co"># Shorter columns (the columns going to be in one column called year)</span></span>
+<span id="cb527-5"><a href="tidying-tidyr.html#cb527-5" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;cases&quot;</span>, <span class="co"># Longer rows (the values are going to be in a separate column called named cases)</span></span>
+<span id="cb527-6"><a href="tidying-tidyr.html#cb527-6" tabindex="-1"></a>    <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">year =</span> readr<span class="sc">::</span>parse_number)</span>
+<span id="cb527-7"><a href="tidying-tidyr.html#cb527-7" tabindex="-1"></a>  ) <span class="co"># Transform the variable</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   country      year  cases
+##   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Afghanistan  1999    745
+## 2 Afghanistan  2000   2666
+## 3 Brazil       1999  37737
+## 4 Brazil       2000  80488
+## 5 China        1999 212258
+## 6 China        2000 213766</code></pre>
+<p><strong>Additional tips</strong></p>
+<p><code>parse_number()</code> also keeps only numeric information in a variable.</p>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="tidying-tidyr.html#cb529-1" tabindex="-1"></a><span class="fu">parse_number</span>(<span class="st">&quot;reply1994&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 1994</code></pre>
+<p>A flat file (e.g., CSV) is a rectangular shaped combination of strings. <a href="https://cran.r-project.org/web/packages/readr/vignettes/readr.html">Parsing</a> determines the type of each column and turns into a vector of a more specific type. Tidyverse has <code>parse_</code> functions (from <code>readr</code> package) that are flexible and fast (e.g., <code>parse_integer()</code>, <code>parse_double()</code>, <code>parse_logical()</code>, <code>parse_datetime()</code>, <code>parse_date()</code>, <code>parse_time()</code>, <code>parse_factor()</code>, etc).</p>
+<ul>
+<li>Let’s do another practice.</li>
+</ul>
+<p><strong>Challenge</strong></p>
+<ol style="list-style-type: decimal">
+<li>Why is this data not tidy? (This exercise comes from <a href="https://tidyr.tidyverse.org/articles/pivot.html"><code>pivot</code> function vigenette</a>.) Too long or too wide?</li>
+</ol>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="tidying-tidyr.html#cb531-1" tabindex="-1"></a>billboard</span></code></pre></div>
+<pre><code>## # A tibble: 317 × 79
+##    artist     track date.entered   wk1   wk2   wk3   wk4   wk5   wk6   wk7   wk8
+##    &lt;chr&gt;      &lt;chr&gt; &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 2 Pac      Baby… 2000-02-26      87    82    72    77    87    94    99    NA
+##  2 2Ge+her    The … 2000-09-02      91    87    92    NA    NA    NA    NA    NA
+##  3 3 Doors D… Kryp… 2000-04-08      81    70    68    67    66    57    54    53
+##  4 3 Doors D… Loser 2000-10-21      76    76    72    69    67    65    55    59
+##  5 504 Boyz   Wobb… 2000-04-15      57    34    25    17    17    31    36    49
+##  6 98^0       Give… 2000-08-19      51    39    34    26    26    19     2     2
+##  7 A*Teens    Danc… 2000-07-08      97    97    96    95   100    NA    NA    NA
+##  8 Aaliyah    I Do… 2000-01-29      84    62    51    41    38    35    35    38
+##  9 Aaliyah    Try … 2000-03-18      59    53    38    28    21    18    16    14
+## 10 Adams, Yo… Open… 2000-08-26      76    76    74    69    68    67    61    58
+## # ℹ 307 more rows
+## # ℹ 68 more variables: wk9 &lt;dbl&gt;, wk10 &lt;dbl&gt;, wk11 &lt;dbl&gt;, wk12 &lt;dbl&gt;,
+## #   wk13 &lt;dbl&gt;, wk14 &lt;dbl&gt;, wk15 &lt;dbl&gt;, wk16 &lt;dbl&gt;, wk17 &lt;dbl&gt;, wk18 &lt;dbl&gt;,
+## #   wk19 &lt;dbl&gt;, wk20 &lt;dbl&gt;, wk21 &lt;dbl&gt;, wk22 &lt;dbl&gt;, wk23 &lt;dbl&gt;, wk24 &lt;dbl&gt;,
+## #   wk25 &lt;dbl&gt;, wk26 &lt;dbl&gt;, wk27 &lt;dbl&gt;, wk28 &lt;dbl&gt;, wk29 &lt;dbl&gt;, wk30 &lt;dbl&gt;,
+## #   wk31 &lt;dbl&gt;, wk32 &lt;dbl&gt;, wk33 &lt;dbl&gt;, wk34 &lt;dbl&gt;, wk35 &lt;dbl&gt;, wk36 &lt;dbl&gt;,
+## #   wk37 &lt;dbl&gt;, wk38 &lt;dbl&gt;, wk39 &lt;dbl&gt;, wk40 &lt;dbl&gt;, wk41 &lt;dbl&gt;, wk42 &lt;dbl&gt;, …</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>How can you fix it? Which pivot?</li>
+</ol>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="tidying-tidyr.html#cb533-1" tabindex="-1"></a><span class="co"># Old way</span></span>
+<span id="cb533-2"><a href="tidying-tidyr.html#cb533-2" tabindex="-1"></a>billboard <span class="sc">%&gt;%</span></span>
+<span id="cb533-3"><a href="tidying-tidyr.html#cb533-3" tabindex="-1"></a>  <span class="fu">gather</span>(</span>
+<span id="cb533-4"><a href="tidying-tidyr.html#cb533-4" tabindex="-1"></a>    <span class="at">key =</span> <span class="st">&quot;week&quot;</span>,</span>
+<span id="cb533-5"><a href="tidying-tidyr.html#cb533-5" tabindex="-1"></a>    <span class="at">value =</span> <span class="st">&quot;rank&quot;</span>,</span>
+<span id="cb533-6"><a href="tidying-tidyr.html#cb533-6" tabindex="-1"></a>    <span class="fu">starts_with</span>(<span class="st">&quot;wk&quot;</span>)</span>
+<span id="cb533-7"><a href="tidying-tidyr.html#cb533-7" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="co"># Use regular expressions</span></span>
+<span id="cb533-8"><a href="tidying-tidyr.html#cb533-8" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="co"># Drop NAs</span></span></code></pre></div>
+<pre><code>## # A tibble: 5,307 × 5
+##    artist         track                   date.entered week   rank
+##    &lt;chr&gt;          &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
+##  1 2 Pac          Baby Don&#39;t Cry (Keep... 2000-02-26   wk1      87
+##  2 2Ge+her        The Hardest Part Of ... 2000-09-02   wk1      91
+##  3 3 Doors Down   Kryptonite              2000-04-08   wk1      81
+##  4 3 Doors Down   Loser                   2000-10-21   wk1      76
+##  5 504 Boyz       Wobble Wobble           2000-04-15   wk1      57
+##  6 98^0           Give Me Just One Nig... 2000-08-19   wk1      51
+##  7 A*Teens        Dancing Queen           2000-07-08   wk1      97
+##  8 Aaliyah        I Don&#39;t Wanna           2000-01-29   wk1      84
+##  9 Aaliyah        Try Again               2000-03-18   wk1      59
+## 10 Adams, Yolanda Open My Heart           2000-08-26   wk1      76
+## # ℹ 5,297 more rows</code></pre>
+<ul>
+<li>Note that <code>pivot_longer()</code> is more versatile than <code>gather()</code>.</li>
+</ul>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="tidying-tidyr.html#cb535-1" tabindex="-1"></a><span class="co"># New way</span></span>
+<span id="cb535-2"><a href="tidying-tidyr.html#cb535-2" tabindex="-1"></a>billboard <span class="sc">%&gt;%</span></span>
+<span id="cb535-3"><a href="tidying-tidyr.html#cb535-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb535-4"><a href="tidying-tidyr.html#cb535-4" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;wk&quot;</span>), <span class="co"># Use regular expressions</span></span>
+<span id="cb535-5"><a href="tidying-tidyr.html#cb535-5" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;week&quot;</span>,</span>
+<span id="cb535-6"><a href="tidying-tidyr.html#cb535-6" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;rank&quot;</span>,</span>
+<span id="cb535-7"><a href="tidying-tidyr.html#cb535-7" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span> <span class="co"># Drop NAs</span></span>
+<span id="cb535-8"><a href="tidying-tidyr.html#cb535-8" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 5,307 × 5
+##    artist  track                   date.entered week   rank
+##    &lt;chr&gt;   &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
+##  1 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk1      87
+##  2 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk2      82
+##  3 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk3      72
+##  4 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk4      77
+##  5 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk5      87
+##  6 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk6      94
+##  7 2 Pac   Baby Don&#39;t Cry (Keep... 2000-02-26   wk7      99
+##  8 2Ge+her The Hardest Part Of ... 2000-09-02   wk1      91
+##  9 2Ge+her The Hardest Part Of ... 2000-09-02   wk2      87
+## 10 2Ge+her The Hardest Part Of ... 2000-09-02   wk3      92
+## # ℹ 5,297 more rows</code></pre>
+<ul>
+<li><p>Make It Wider</p></li>
+<li><p>Why is this data not tidy?</p></li>
+</ul>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="tidying-tidyr.html#cb537-1" tabindex="-1"></a>table2</span></code></pre></div>
+<pre><code>## # A tibble: 12 × 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583</code></pre>
+<ul>
+<li><p>Each observation is spread across two rows.</p></li>
+<li><p>How can you fix it?: <code>pivot_wider()</code>.</p></li>
+</ul>
+<p><strong>Two differences between <code>pivot_longer()</code> and <code>pivot_wider()</code></strong></p>
+<ul>
+<li><p>In <code>pivot_longer()</code>, the arguments are named <code>names_to</code> and <code>values_to</code> (<em>to</em>).</p></li>
+<li><p>In <code>pivot_wider()</code>, this pattern is opposite. The arguments are named <code>names_from</code> and <code>values_from</code> (<em>from</em>).</p></li>
+<li><p>The number of required arguments for <code>pivot_longer()</code> is 3 (col, names_to, values_to).</p></li>
+<li><p>The number of required arguments for <code>pivot_wider()</code> is 2 (names_from, values_from).</p></li>
+</ul>
+<div class="float">
+<img src="https://www.storybench.org/wp-content/uploads/2019/08/pivot-wider-image.png" alt="What pivot_wider() does (Source: https://www.storybench.org)" />
+<div class="figcaption">What pivot_wider() does (Source: <a href="https://www.storybench.org" class="uri">https://www.storybench.org</a>)</div>
+</div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="tidying-tidyr.html#cb539-1" tabindex="-1"></a><span class="co"># Old way</span></span>
+<span id="cb539-2"><a href="tidying-tidyr.html#cb539-2" tabindex="-1"></a>table2 <span class="sc">%&gt;%</span></span>
+<span id="cb539-3"><a href="tidying-tidyr.html#cb539-3" tabindex="-1"></a>  <span class="fu">spread</span>(</span>
+<span id="cb539-4"><a href="tidying-tidyr.html#cb539-4" tabindex="-1"></a>    <span class="at">key =</span> type,</span>
+<span id="cb539-5"><a href="tidying-tidyr.html#cb539-5" tabindex="-1"></a>    <span class="at">value =</span> count</span>
+<span id="cb539-6"><a href="tidying-tidyr.html#cb539-6" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="tidying-tidyr.html#cb541-1" tabindex="-1"></a><span class="co"># New way</span></span>
+<span id="cb541-2"><a href="tidying-tidyr.html#cb541-2" tabindex="-1"></a>table2 <span class="sc">%&gt;%</span></span>
+<span id="cb541-3"><a href="tidying-tidyr.html#cb541-3" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb541-4"><a href="tidying-tidyr.html#cb541-4" tabindex="-1"></a>    <span class="at">names_from =</span> type, <span class="co"># first</span></span>
+<span id="cb541-5"><a href="tidying-tidyr.html#cb541-5" tabindex="-1"></a>    <span class="at">values_from =</span> count <span class="co"># second</span></span>
+<span id="cb541-6"><a href="tidying-tidyr.html#cb541-6" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<p>Sometimes, a consultee came to me and asked: “I don’t have missing values in my original dataframe. Then R said that I had missing values after doing some data transformations. What happened?”</p>
+<p>Here’s an answer.</p>
+<p>R defines missing values in two ways.</p>
+<ul>
+<li><p><em>Implicit missing values</em>: simply not present in the data.</p></li>
+<li><p><em>Explicit missing values</em>: flagged with NA</p></li>
+</ul>
+<p><strong>Challenge</strong></p>
+<p>The example comes from <a href="https://r4ds.had.co.nz/tidy-data.html"><em>R for Data Science</em></a>.</p>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="tidying-tidyr.html#cb543-1" tabindex="-1"></a>stocks <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb543-2"><a href="tidying-tidyr.html#cb543-2" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2019</span>, <span class="dv">2019</span>, <span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2020</span>, <span class="dv">2020</span>),</span>
+<span id="cb543-3"><a href="tidying-tidyr.html#cb543-3" tabindex="-1"></a>  <span class="at">qtr =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb543-4"><a href="tidying-tidyr.html#cb543-4" tabindex="-1"></a>  <span class="at">return =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb543-5"><a href="tidying-tidyr.html#cb543-5" tabindex="-1"></a>)</span>
+<span id="cb543-6"><a href="tidying-tidyr.html#cb543-6" tabindex="-1"></a></span>
+<span id="cb543-7"><a href="tidying-tidyr.html#cb543-7" tabindex="-1"></a>stocks</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##    year   qtr return
+##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2019     1      1
+## 2  2019     2      2
+## 3  2019     3      3
+## 4  2020     2     NA
+## 5  2020     3      2
+## 6  2020     4      3</code></pre>
+<ul>
+<li><p>Where is the explicit missing value?</p></li>
+<li><p>Does <code>stocks</code> have implicit missing values?</p></li>
+</ul>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="tidying-tidyr.html#cb545-1" tabindex="-1"></a><span class="co"># implicit missing values become explicit</span></span>
+<span id="cb545-2"><a href="tidying-tidyr.html#cb545-2" tabindex="-1"></a>stocks <span class="sc">%&gt;%</span></span>
+<span id="cb545-3"><a href="tidying-tidyr.html#cb545-3" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb545-4"><a href="tidying-tidyr.html#cb545-4" tabindex="-1"></a>    <span class="at">names_from =</span> year,</span>
+<span id="cb545-5"><a href="tidying-tidyr.html#cb545-5" tabindex="-1"></a>    <span class="at">values_from =</span> return</span>
+<span id="cb545-6"><a href="tidying-tidyr.html#cb545-6" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 3
+##     qtr `2019` `2020`
+##   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     1      1     NA
+## 2     2      2     NA
+## 3     3      3      2
+## 4     4     NA      3</code></pre>
+<p><strong>Challenge</strong></p>
+<ul>
+<li><p>This exercise comes from <a href="https://tidyr.tidyverse.org/articles/pivot.html"><code>pivot</code> function vigenette</a>.</p></li>
+<li><p>Could you make <code>station</code> a series of dummy variables using <code>pivot_wider()</code>?</p></li>
+</ul>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="tidying-tidyr.html#cb547-1" tabindex="-1"></a>fish_encounters</span></code></pre></div>
+<pre><code>## # A tibble: 114 × 3
+##    fish  station  seen
+##    &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;
+##  1 4842  Release     1
+##  2 4842  I80_1       1
+##  3 4842  Lisbon      1
+##  4 4842  Rstr        1
+##  5 4842  Base_TD     1
+##  6 4842  BCE         1
+##  7 4842  BCW         1
+##  8 4842  BCE2        1
+##  9 4842  BCW2        1
+## 10 4842  MAE         1
+## # ℹ 104 more rows</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Which pivot should you use?</p></li>
+<li><p>Are there explicit missing values?</p></li>
+<li><p>How could you turn these NAs into 0s? Check <code>values_fill</code> argument in the <code>pivot_wider()</code> function.</p></li>
+</ol>
+<ul>
+<li>Separate</li>
+</ul>
+<div class="float">
+<img src="https://garrettgman.github.io/images/tidy-6.png" alt="Messy Data Case 2 (Source: R for Data Science)" />
+<div class="figcaption">Messy Data Case 2 (Source: R for Data Science)</div>
+</div>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="tidying-tidyr.html#cb549-1" tabindex="-1"></a><span class="co"># Toy example</span></span>
+<span id="cb549-2"><a href="tidying-tidyr.html#cb549-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="st">&quot;Dad.apple&quot;</span>, <span class="st">&quot;Mom.orange&quot;</span>, <span class="st">&quot;Daughter.banana&quot;</span>))</span>
+<span id="cb549-3"><a href="tidying-tidyr.html#cb549-3" tabindex="-1"></a></span>
+<span id="cb549-4"><a href="tidying-tidyr.html#cb549-4" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##                 x
+## 1            &lt;NA&gt;
+## 2       Dad.apple
+## 3      Mom.orange
+## 4 Daughter.banana</code></pre>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="tidying-tidyr.html#cb551-1" tabindex="-1"></a><span class="co"># Separate</span></span>
+<span id="cb551-2"><a href="tidying-tidyr.html#cb551-2" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb551-3"><a href="tidying-tidyr.html#cb551-3" tabindex="-1"></a>  <span class="fu">separate</span>(x, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;Preferred_fruit&quot;</span>))</span></code></pre></div>
+<pre><code>##       Name Preferred_fruit
+## 1     &lt;NA&gt;            &lt;NA&gt;
+## 2      Dad           apple
+## 3      Mom          orange
+## 4 Daughter          banana</code></pre>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="tidying-tidyr.html#cb553-1" tabindex="-1"></a><span class="co"># Don&#39;t need the first variable</span></span>
+<span id="cb553-2"><a href="tidying-tidyr.html#cb553-2" tabindex="-1"></a></span>
+<span id="cb553-3"><a href="tidying-tidyr.html#cb553-3" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb553-4"><a href="tidying-tidyr.html#cb553-4" tabindex="-1"></a>  <span class="fu">separate</span>(x, <span class="at">into =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="st">&quot;Preferred_fruit&quot;</span>))</span></code></pre></div>
+<pre><code>##   Preferred_fruit
+## 1            &lt;NA&gt;
+## 2           apple
+## 3          orange
+## 4          banana</code></pre>
+<p><strong>Practice</strong></p>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="tidying-tidyr.html#cb555-1" tabindex="-1"></a>table3</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   country      year rate             
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583</code></pre>
+<ul>
+<li>Note <code>sep</code> argument. You can specify how to separate joined values.</li>
+</ul>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="tidying-tidyr.html#cb557-1" tabindex="-1"></a>table3 <span class="sc">%&gt;%</span></span>
+<span id="cb557-2"><a href="tidying-tidyr.html#cb557-2" tabindex="-1"></a>  <span class="fu">separate</span>(rate,</span>
+<span id="cb557-3"><a href="tidying-tidyr.html#cb557-3" tabindex="-1"></a>    <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>),</span>
+<span id="cb557-4"><a href="tidying-tidyr.html#cb557-4" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;/&quot;</span></span>
+<span id="cb557-5"><a href="tidying-tidyr.html#cb557-5" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   country      year cases  population
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     
+## 1 Afghanistan  1999 745    19987071  
+## 2 Afghanistan  2000 2666   20595360  
+## 3 Brazil       1999 37737  172006362 
+## 4 Brazil       2000 80488  174504898 
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<ul>
+<li>Note <code>convert</code> argument. You can specify whether automatically convert the new values or not.</li>
+</ul>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="tidying-tidyr.html#cb559-1" tabindex="-1"></a>table3 <span class="sc">%&gt;%</span></span>
+<span id="cb559-2"><a href="tidying-tidyr.html#cb559-2" tabindex="-1"></a>  <span class="fu">separate</span>(rate,</span>
+<span id="cb559-3"><a href="tidying-tidyr.html#cb559-3" tabindex="-1"></a>    <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>),</span>
+<span id="cb559-4"><a href="tidying-tidyr.html#cb559-4" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>,</span>
+<span id="cb559-5"><a href="tidying-tidyr.html#cb559-5" tabindex="-1"></a>    <span class="at">convert =</span> <span class="cn">TRUE</span></span>
+<span id="cb559-6"><a href="tidying-tidyr.html#cb559-6" tabindex="-1"></a>  ) <span class="co"># cases and population become integers</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;dbl&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<ul>
+<li>Unite</li>
+</ul>
+<p><code>pivot_longer()</code> &lt;-&gt; <code>pivot_wider()</code></p>
+<p><code>separate()</code> &lt;-&gt; <code>unite()</code></p>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="tidying-tidyr.html#cb561-1" tabindex="-1"></a><span class="co"># Create a toy example</span></span>
+<span id="cb561-2"><a href="tidying-tidyr.html#cb561-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb561-3"><a href="tidying-tidyr.html#cb561-3" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Jae&quot;</span>, <span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Jane&quot;</span>, <span class="cn">NA</span>),</span>
+<span id="cb561-4"><a href="tidying-tidyr.html#cb561-4" tabindex="-1"></a>  <span class="at">birthmonth =</span> <span class="fu">c</span>(<span class="st">&quot;April&quot;</span>, <span class="st">&quot;April&quot;</span>, <span class="st">&quot;June&quot;</span>, <span class="cn">NA</span>)</span>
+<span id="cb561-5"><a href="tidying-tidyr.html#cb561-5" tabindex="-1"></a>)</span>
+<span id="cb561-6"><a href="tidying-tidyr.html#cb561-6" tabindex="-1"></a></span>
+<span id="cb561-7"><a href="tidying-tidyr.html#cb561-7" tabindex="-1"></a><span class="co"># Include missing values</span></span>
+<span id="cb561-8"><a href="tidying-tidyr.html#cb561-8" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">unite</span>(</span>
+<span id="cb561-9"><a href="tidying-tidyr.html#cb561-9" tabindex="-1"></a>  <span class="st">&quot;contact&quot;</span>,</span>
+<span id="cb561-10"><a href="tidying-tidyr.html#cb561-10" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;birthmonth&quot;</span>)</span>
+<span id="cb561-11"><a href="tidying-tidyr.html#cb561-11" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>##     contact
+## 1 Jae_April
+## 2 Sun_April
+## 3 Jane_June
+## 4     NA_NA</code></pre>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="tidying-tidyr.html#cb563-1" tabindex="-1"></a><span class="co"># Do not include missing values</span></span>
+<span id="cb563-2"><a href="tidying-tidyr.html#cb563-2" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">unite</span>(<span class="st">&quot;contact&quot;</span>,</span>
+<span id="cb563-3"><a href="tidying-tidyr.html#cb563-3" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;birthmonth&quot;</span>),</span>
+<span id="cb563-4"><a href="tidying-tidyr.html#cb563-4" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb563-5"><a href="tidying-tidyr.html#cb563-5" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>##     contact
+## 1 Jae_April
+## 2 Sun_April
+## 3 Jane_June
+## 4</code></pre>
+</div>
+<div id="filling" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Filling<a href="tidying-tidyr.html#filling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is a relatively less-known function of the tidyr package. However, I found this function super useful to complete time-series data. For instance, how can you replace NA in the following example (this use case is drawn from the <a href="https://tidyr.tidyverse.org/reference/fill.html">tidyr package vignette</a>.)?</p>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="tidying-tidyr.html#cb565-1" tabindex="-1"></a><span class="co"># Example</span></span>
+<span id="cb565-2"><a href="tidying-tidyr.html#cb565-2" tabindex="-1"></a>stock <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb565-3"><a href="tidying-tidyr.html#cb565-3" tabindex="-1"></a>  <span class="sc">~</span>quarter, <span class="sc">~</span>year, <span class="sc">~</span>stock_price,</span>
+<span id="cb565-4"><a href="tidying-tidyr.html#cb565-4" tabindex="-1"></a>  <span class="st">&quot;Q1&quot;</span>, <span class="dv">2000</span>, <span class="dv">10000</span>,</span>
+<span id="cb565-5"><a href="tidying-tidyr.html#cb565-5" tabindex="-1"></a>  <span class="st">&quot;Q2&quot;</span>, <span class="cn">NA</span>, <span class="dv">10001</span>, <span class="co"># Replace NA with 2000</span></span>
+<span id="cb565-6"><a href="tidying-tidyr.html#cb565-6" tabindex="-1"></a>  <span class="st">&quot;Q3&quot;</span>, <span class="cn">NA</span>, <span class="dv">10002</span>, <span class="co"># Replace NA with 2000</span></span>
+<span id="cb565-7"><a href="tidying-tidyr.html#cb565-7" tabindex="-1"></a>  <span class="st">&quot;Q4&quot;</span>, <span class="cn">NA</span>, <span class="dv">10003</span>, <span class="co"># Replace NA with 2000</span></span>
+<span id="cb565-8"><a href="tidying-tidyr.html#cb565-8" tabindex="-1"></a>  <span class="st">&quot;Q1&quot;</span>, <span class="dv">2001</span>, <span class="dv">10004</span>,</span>
+<span id="cb565-9"><a href="tidying-tidyr.html#cb565-9" tabindex="-1"></a>  <span class="st">&quot;Q2&quot;</span>, <span class="cn">NA</span>, <span class="dv">10005</span>, <span class="co"># Replace NA with 2001</span></span>
+<span id="cb565-10"><a href="tidying-tidyr.html#cb565-10" tabindex="-1"></a>  <span class="st">&quot;Q3&quot;</span>, <span class="cn">NA</span>, <span class="dv">10006</span>, <span class="co"># Replace NA with 2001</span></span>
+<span id="cb565-11"><a href="tidying-tidyr.html#cb565-11" tabindex="-1"></a>  <span class="st">&quot;Q4&quot;</span>, <span class="cn">NA</span>, <span class="dv">10007</span>, <span class="co"># Replace NA with 2001</span></span>
+<span id="cb565-12"><a href="tidying-tidyr.html#cb565-12" tabindex="-1"></a>)</span>
+<span id="cb565-13"><a href="tidying-tidyr.html#cb565-13" tabindex="-1"></a></span>
+<span id="cb565-14"><a href="tidying-tidyr.html#cb565-14" tabindex="-1"></a><span class="fu">fill</span>(stock, year)</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 3
+##   quarter  year stock_price
+##   &lt;chr&gt;   &lt;dbl&gt;       &lt;dbl&gt;
+## 1 Q1       2000       10000
+## 2 Q2       2000       10001
+## 3 Q3       2000       10002
+## 4 Q4       2000       10003
+## 5 Q1       2001       10004
+## 6 Q2       2001       10005
+## 7 Q3       2001       10006
+## 8 Q4       2001       10007</code></pre>
+<p>Let’s take a slightly more complex example.</p>
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="tidying-tidyr.html#cb567-1" tabindex="-1"></a><span class="co"># Example</span></span>
+<span id="cb567-2"><a href="tidying-tidyr.html#cb567-2" tabindex="-1"></a>yelp_rate <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb567-3"><a href="tidying-tidyr.html#cb567-3" tabindex="-1"></a>  <span class="sc">~</span>neighborhood, <span class="sc">~</span>restraurant_type, <span class="sc">~</span>popularity_rate,</span>
+<span id="cb567-4"><a href="tidying-tidyr.html#cb567-4" tabindex="-1"></a>  <span class="st">&quot;N1&quot;</span>, <span class="st">&quot;Chinese&quot;</span>, <span class="dv">5</span>,</span>
+<span id="cb567-5"><a href="tidying-tidyr.html#cb567-5" tabindex="-1"></a>  <span class="st">&quot;N2&quot;</span>, <span class="cn">NA</span>, <span class="dv">4</span>,</span>
+<span id="cb567-6"><a href="tidying-tidyr.html#cb567-6" tabindex="-1"></a>  <span class="st">&quot;N3&quot;</span>, <span class="cn">NA</span>, <span class="dv">3</span>,</span>
+<span id="cb567-7"><a href="tidying-tidyr.html#cb567-7" tabindex="-1"></a>  <span class="st">&quot;N4&quot;</span>, <span class="cn">NA</span>, <span class="dv">2</span>,</span>
+<span id="cb567-8"><a href="tidying-tidyr.html#cb567-8" tabindex="-1"></a>  <span class="st">&quot;N1&quot;</span>, <span class="st">&quot;Indian&quot;</span>, <span class="dv">1</span>,</span>
+<span id="cb567-9"><a href="tidying-tidyr.html#cb567-9" tabindex="-1"></a>  <span class="st">&quot;N2&quot;</span>, <span class="cn">NA</span>, <span class="dv">2</span>,</span>
+<span id="cb567-10"><a href="tidying-tidyr.html#cb567-10" tabindex="-1"></a>  <span class="st">&quot;N3&quot;</span>, <span class="cn">NA</span>, <span class="dv">3</span>,</span>
+<span id="cb567-11"><a href="tidying-tidyr.html#cb567-11" tabindex="-1"></a>  <span class="st">&quot;N4&quot;</span>, <span class="cn">NA</span>, <span class="dv">4</span>,</span>
+<span id="cb567-12"><a href="tidying-tidyr.html#cb567-12" tabindex="-1"></a>  <span class="st">&quot;N1&quot;</span>, <span class="st">&quot;Mexican&quot;</span>, <span class="dv">5</span></span>
+<span id="cb567-13"><a href="tidying-tidyr.html#cb567-13" tabindex="-1"></a>)</span>
+<span id="cb567-14"><a href="tidying-tidyr.html#cb567-14" tabindex="-1"></a></span>
+<span id="cb567-15"><a href="tidying-tidyr.html#cb567-15" tabindex="-1"></a><span class="fu">fill</span>(yelp_rate, restraurant_type) <span class="co"># default is direction = .down</span></span></code></pre></div>
+<pre><code>## # A tibble: 9 × 3
+##   neighborhood restraurant_type popularity_rate
+##   &lt;chr&gt;        &lt;chr&gt;                      &lt;dbl&gt;
+## 1 N1           Chinese                        5
+## 2 N2           Chinese                        4
+## 3 N3           Chinese                        3
+## 4 N4           Chinese                        2
+## 5 N1           Indian                         1
+## 6 N2           Indian                         2
+## 7 N3           Indian                         3
+## 8 N4           Indian                         4
+## 9 N1           Mexican                        5</code></pre>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="tidying-tidyr.html#cb569-1" tabindex="-1"></a><span class="fu">fill</span>(yelp_rate, restraurant_type, <span class="at">.direction =</span> <span class="st">&quot;up&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 9 × 3
+##   neighborhood restraurant_type popularity_rate
+##   &lt;chr&gt;        &lt;chr&gt;                      &lt;dbl&gt;
+## 1 N1           Chinese                        5
+## 2 N2           Indian                         4
+## 3 N3           Indian                         3
+## 4 N4           Indian                         2
+## 5 N1           Indian                         1
+## 6 N2           Mexican                        2
+## 7 N3           Mexican                        3
+## 8 N4           Mexican                        4
+## 9 N1           Mexican                        5</code></pre>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manipulating-dplyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/jaeyk/PS239T/edit/main/03_tidy_data.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["pdf", "PS239T.pdf"],
+    ["epub", "PS239T.epub"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "toolbar": {
+    "position": "fixed"
+  },
+  "code_copy": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

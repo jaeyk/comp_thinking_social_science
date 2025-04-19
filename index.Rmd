@@ -1,4 +1,4 @@
---- 
+---
 knitr: "bookdown::render_book"
 title: "Computational Thinking for Social Scientists"
 author: ["[Jae Yeon Kim](https://jaeyk.github.io/)"]
@@ -13,11 +13,11 @@ bibliography:
   - packages.bib
 biblio-style: apalike
 link-citations: yes
-colorlinks: yes 
-description: "Computational Thinking for Social Scientists. Online textbook for Teaching Computational Tools and Techniques for Social Scientists."
+colorlinks: yes
+description: "Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists."
 ---
 
-# Hello World 
+# Hello, World
 
 ```{r}
 print("Hello, World!")
@@ -25,58 +25,63 @@ print("Hello, World!")
 
 > Make simple things simple, and complex things possible. - [Alan Kay](https://www.quora.com/What-is-the-story-behind-Alan-Kay-s-adage-Simple-things-should-be-simple-complex-things-should-be-possible)
 
-This is the website for *Computational Thinking for Social Scientists*. This open-access book aims to help social scientists think computationally and develop proficiency with computational tools and techniques to research computational social science. Mastering these tools and techniques not only enables social scientists to collect, wrangle, analyze, and interpret data with less pain and more fun, but it also allows them to work on research projects that would previously seem impossible.
+This is the website for *Computational Thinking for Social Scientists*, an open-access book designed to help social scientists think computationally and develop proficiency with modern computational tools and techniques. Mastering these skills enables researchers to collect, wrangle, analyze, and interpret data more efficiently—and with more enjoyment. It also empowers them to pursue research questions that might once have seemed impossible.
 
-Horace Mann, the first great American advocate of public education, claimed that ''Education, then, beyond all other divides of human origin, is a great equalizer of conditions of men—the balance wheel of the social machinery.'' I believe in this potential of education; however, I also fully acknowledge that quality education is not equally accessible. Often, the gap between education and technology is greater among historically disadvantaged groups than advantaged groups. As an educator, this book is my small contribution to making this democratic vision of education possible, at least in the emerging field of computational social science.
+Horace Mann, the first great advocate of public education in the United States, once said:  
+> “Education, then, beyond all other devices of human origin, is a great equalizer of the conditions of men—the balance wheel of the social machinery.”
 
-That said, this book is not intended to be a comprehensive guide for computational social science or any particular programming language, computational tool, or technique. If you are interested in a general introduction to computational social science, I highly recommend [Matthew Salganik](http://www.princeton.edu/~mjs3/)'s [Bit By Bit (2017)](https://www.bitbybitbook.com/). Salganik's book is comprehensive, accessible, and pedagogically friendly. 
+I believe in the transformative power of education. At the same time, I recognize that access to high-quality education remains deeply unequal. Too often, historically disadvantaged groups face greater barriers to both education and technology. This book is my small contribution toward realizing the democratic promise of education—especially in the emerging field of computational social science.
 
-The book comprises two main subjects (fundamentals and applications) and eight main sessions.
+That said, this book is not a comprehensive guide to computational social science or any specific programming language, tool, or technique. For a broader introduction to the field, I highly recommend [Matthew Salganik](http://www.princeton.edu/~mjs3/)'s [*Bit by Bit* (2017)](https://www.bitbybitbook.com/), which is comprehensive, accessible, and pedagogically rich.
 
-## Part I Fundamentals
+This book is organized into two parts—Fundamentals and Applications—and includes eight main sessions:
 
-1. [Why computational thinking](#motivation)
+## Part I: Fundamentals
 
-2. [Best practices in data and code management using Git and Bash](#git_bash)
+1. [Why computational thinking](#motivation)  
+2. [Best practices in data and code management using Git and Bash](#git_bash)  
+3. [How to wrangle, model, and visualize data efficiently](#tidy_data)  
+4. [How to use functional programming to automate repetitive tasks](#functional_programming)  
+5. [How to develop data products (e.g., packages and Shiny apps)](#products)  
 
-3. [How to wrangle, model, and visualize data easier and faster](#tidy_data) 
+## Part II: Applications
 
-4. [How to use functional programming to automate repeated things](#functional_programming) 
+6. [How to collect and parse semi-structured data at scale (e.g., APIs and web scraping)](#semi_structured_data)  
+7. [How to analyze high-dimensional data (e.g., text) using machine learning](#machine_learning)  
+8. [How to access, query, and manage big data using SQL](#big_data)  
 
-5. [How to develop data products (e.g., packages and shiny apps)](#products) 
+This book primarily uses [**R**](https://www.r-project.org/about.html), and occasionally [**bash**](https://www.gnu.org/software/bash/) and [**Python**](https://www.python.org/about/).
 
-## Part II Applications
+- **Why R?**  
+  R is free, accessible (especially thanks to the [`tidyverse`](https://www.tidyverse.org/) and [RStudio](https://posit.co)), and cross-platform (Mac/Windows/Linux). It’s fast (thanks to [`Rcpp`](https://cran.r-project.org/web/packages/Rcpp/index.html)), extensible (with over 16,000 packages on [CRAN](https://cran.r-project.org/web/packages/)), and supported by a large, inclusive community (see [`#rstats`](https://twitter.com/search?q=%23rstats&src=typed_query)).
 
-6. [How to collect and parse semi-structured data at scale (e.g., using APIs and web scraping)](#semi_structured_data) 
+- **Why R + Python + Bash?**  
+  > “For R and Python—Python is first and foremost a programming language. That has many strengths, but it usually means that to do data science in Python, you must first learn to program. With R, you can get up and running faster because a lot is built in—you don’t need to learn as many programming concepts. You can focus on being a great political scientist, or whatever you do, and just learn enough R to get things done.”  
+  > — Hadley Wickham
 
-7. [How to analyze high-dimensional data (e.g., text) using machine learning](#machine_learning) 
+  That said, the R ecosystem presents some challenges:  
+  > “Compared to other programming languages, the R community tends to focus more on results than on process. Software engineering practices such as source control or automated testing are not widely adopted. Inconsistencies persist across contributed packages and even within base R. The language reflects more than 20 years of evolution. R is not particularly fast, and poorly written R code can be painfully slow. It’s also memory-hungry.”  
+  > — Hadley Wickham
 
-8. [How to access, query, and manage big data using SQL](#big_data) 
+  Still, the RStudio (now Posit) and tidyverse teams have made significant progress in addressing these limitations. This book will introduce some of those advances and show how combining R with Python and Bash can enhance your workflow.
 
-The book teaches how to do all of these, mostly in [**R**](https://www.r-project.org/about.html), and sometimes in [**bash**](https://www.gnu.org/software/bash/) and [**Python**](https://www.python.org/about/).
+  If you're serious about programming or software development, I strongly recommend learning Python as well—it can fill important gaps in software engineering that will also improve your R proficiency.
 
-  - Why R? R is free, easy to learn (thanks to [`tidyverse`](https://www.tidyverse.org/) and [RStudio](https://rstudio.com/)), fast (thanks to [`Rcpp`](https://cran.r-project.org/web/packages/Rcpp/index.html)), runs everywhere (Mac/Windows/Linux), open (16,000+ packages; counting only ones [available at CRAN](https://cran.r-project.org/web/packages/)), and has a growing, large, and inclusive community ([`#rstats`](https://twitter.com/search?q=%23rstats&src=typed_query)).
-  
-  - Why R + Python + bash?
+## Special Thanks
 
-       >> "For R and Python, Python is first and foremost a programming language. And that has a lot of good features, but it tends to mean, that if you are going to do data science in Python, you have to first learn how to program in Python. Whereas I think you are going to get up and running faster with R, than with Python because there's just a bunch more stuff built in and you don't have to learn as many programming concepts. You can focus on being a great political scientist or whatever you do and learning enough R that you don't have to become an expert programmer as well to get stuff done." - Hadley Wickham
-  
-      - However, this feature of the R community also raises a challenge. 
-      
-      >> Compared to other programming languages, the R community tends to be more focused on results instead of processes. Knowledge of software engineering best practices is patchy: for instance, not enough R programmers use source code control or automated testing. Inconsistency is rife across contributed packages, even within base R. You are confronted with over 20 years of evolution every time you use R. R is not a particularly fast programming language, and poorly written R code can be terribly slow. R is also a profligate user of memory. - Hadley Wickham
-  
-    - RStudio, especially the tidyverse team, has made heroic efforts to overcome the limitations mentioned above. In this document, readers will learn about these recent advances in the R ecosystem and how to complement R with Python and Bash.
-      
-    - However, if you are serious about programming, I highly recommend learning Python. Learning Python can also help you fill gaps in software engineering that may be useful to become highly proficient in R.
-      
-## Special thanks 
+This book is as much collected as it is authored. It is a remix of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level course in computational methods at UC Berkeley originally developed by [Rochelle Terman](http://rochelleterman.com/) (now Assistant Professor of Political Science at the University of Chicago), and later revised by [Rachel Bernhard](http://rachelbernhard.com/) (now Associate Professor at Nuffield College and the University of Oxford).  
 
-This book is collected as much as it is authored. It is a remix version of [PS239T](https://github.com/rochelleterman/PS239T), a graduate-level computational methods course at UC Berkeley, originally developed by [Rochelle Terman](http://rochelleterman.com/) (Assistant Professor of Political Science, Chicago) then revised by [Rachel Bernhard](http://rachelbernhard.com/) (Associate Professor of Quantitative Political Science Research Methods at Nuffield College and the University of Oxford). I have taught [PS239T](https://github.com/PS239T/spring_2021) as lead instructor in Spring 2019 and TA in Spring 2018 and taught it with [Nick Kuipers](https://nicholaskuipers.com/) (Assistant Professor of Political Science and Presidential Young Professor at the National University of Singapore) in Spring 2020. Other teaching materials draw from the workshops I have created for [D-Lab](https://dlab.berkeley.edu/) and [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley and [the Summer Institute in Computational Social Science hosted by Howard University and Mathematica](https://sicss.io/2021/howard-mathematica/). I have also cited all other references, such as related books, articles, slides, blog posts, and YouTube video clips, whenever I am aware of them.
+I have taught [PS239T](https://github.com/PS239T/spring_2021) as a lead instructor in Spring 2019, a TA in Spring 2018, and a co-instructor with [Nick Kuipers](https://nicholaskuipers.com/) (Assistant Professor of Politics at Princeton) in Spring 2020.
 
-## Suggestions, questions, or comments 
+Other materials are adapted from workshops I developed for [D-Lab](https://dlab.berkeley.edu/), the [Data Science Discovery Program](https://data.berkeley.edu/research/discovery-program-home) at UC Berkeley, and the [Summer Institute in Computational Social Science at Howard University and Mathematica](https://sicss.io/2021/howard-mathematica/).
 
-Please feel free to [create issues](https://github.com/jaeyk/PS239T/issues); If you find any typos, errors, or missing citations, please report them via the GitHub repository associated with this book.
+I have cited all sources—books, articles, slides, blog posts, and videos—whenever I am aware of them.
 
-## License 
+## Suggestions, Questions, or Comments
 
-![](https://licensebuttons.net/l/by/4.0/88x31.png) This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+Please feel free to [create an issue](https://github.com/jaeyk/PS239T/issues) on the GitHub repository. If you find any typos, errors, or missing citations, I’d be grateful if you reported them there.
+
+## License
+
+![](https://licensebuttons.net/l/by/4.0/88x31.png)  
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).

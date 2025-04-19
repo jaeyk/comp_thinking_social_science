@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8.7 Unsupervised learning | Computational Thinking for Social Scientists</title>
+  <meta name="description" content="8.7 Unsupervised learning | Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8.7 Unsupervised learning | Computational Thinking for Social Scientists" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="8.7 Unsupervised learning | Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists." />
+  <meta name="github-repo" content="jaeyk/PS239T" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8.7 Unsupervised learning | Computational Thinking for Social Scientists" />
+  <meta name="twitter:site" content="@JaeJaeykim2" />
+  <meta name="twitter:description" content="8.7 Unsupervised learning | Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists." />
+  
+
+<meta name="author" content="Jae Yeon Kim" />
+
+
+<meta name="date" content="2025-04-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="supervised-learning.html"/>
+<link rel="next" href="references-4.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computational Thinking for Social Scientists</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="part-i-fundamentals.html"><a href="part-i-fundamentals.html"><i class="fa fa-check"></i><b>1.1</b> Part I: Fundamentals</a></li>
+<li class="chapter" data-level="1.2" data-path="part-ii-applications.html"><a href="part-ii-applications.html"><i class="fa fa-check"></i><b>1.2</b> Part II: Applications</a></li>
+<li class="chapter" data-level="1.3" data-path="special-thanks.html"><a href="special-thanks.html"><i class="fa fa-check"></i><b>1.3</b> Special Thanks</a></li>
+<li class="chapter" data-level="1.4" data-path="suggestions-questions-or-comments.html"><a href="suggestions-questions-or-comments.html"><i class="fa fa-check"></i><b>1.4</b> Suggestions, Questions, or Comments</a></li>
+<li class="chapter" data-level="1.5" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>1.5</b> License</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>2</b> Computational Thinking</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="why-computational-thinking.html"><a href="why-computational-thinking.html"><i class="fa fa-check"></i><b>2.1</b> Why computational thinking</a></li>
+<li class="chapter" data-level="2.2" data-path="computational-thinking-in-the-age-of-generative-ai.html"><a href="computational-thinking-in-the-age-of-generative-ai.html"><i class="fa fa-check"></i><b>2.2</b> Computational thinking in the age of generative AI</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-teach-and-learn-computational-thinking.html"><a href="how-to-teach-and-learn-computational-thinking.html"><i class="fa fa-check"></i><b>2.3</b> How to teach and learn computational thinking</a></li>
+<li class="chapter" data-level="2.4" data-path="computational-thinking-and-a-career-in-computational-social-science.html"><a href="computational-thinking-and-a-career-in-computational-social-science.html"><i class="fa fa-check"></i><b>2.4</b> Computational thinking and a career in computational social science</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="git_bash.html"><a href="git_bash.html"><i class="fa fa-check"></i><b>3</b> Managing data and code</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="the-command-line.html"><a href="the-command-line.html"><i class="fa fa-check"></i><b>3.1</b> The Command Line</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="the-command-line.html"><a href="the-command-line.html#the-big-picture"><i class="fa fa-check"></i><b>3.1.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.1.2" data-path="the-command-line.html"><a href="the-command-line.html#why-bother-using-the-command-line"><i class="fa fa-check"></i><b>3.1.2</b> Why bother using the command line?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="the-command-line.html"><a href="the-command-line.html#unix-shell"><i class="fa fa-check"></i><b>3.1.3</b> UNIX Shell</a></li>
+<li class="chapter" data-level="3.1.4" data-path="the-command-line.html"><a href="the-command-line.html#references"><i class="fa fa-check"></i><b>3.1.4</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="git-and-github.html"><a href="git-and-github.html"><i class="fa fa-check"></i><b>3.2</b> Git and GitHub</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="git-and-github.html"><a href="git-and-github.html#the-big-picture-1"><i class="fa fa-check"></i><b>3.2.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.2.2" data-path="git-and-github.html"><a href="git-and-github.html#version-control-system"><i class="fa fa-check"></i><b>3.2.2</b> Version control system</a></li>
+<li class="chapter" data-level="3.2.3" data-path="git-and-github.html"><a href="git-and-github.html#setup"><i class="fa fa-check"></i><b>3.2.3</b> Setup</a></li>
+<li class="chapter" data-level="3.2.4" data-path="git-and-github.html"><a href="git-and-github.html#cloning-a-repository"><i class="fa fa-check"></i><b>3.2.4</b> Cloning a repository</a></li>
+<li class="chapter" data-level="3.2.5" data-path="git-and-github.html"><a href="git-and-github.html#making-a-repository"><i class="fa fa-check"></i><b>3.2.5</b> Making a repository</a></li>
+<li class="chapter" data-level="3.2.6" data-path="git-and-github.html"><a href="git-and-github.html#commit-changes"><i class="fa fa-check"></i><b>3.2.6</b> Commit changes</a></li>
+<li class="chapter" data-level="3.2.7" data-path="git-and-github.html"><a href="git-and-github.html#push-and-pull-or-fetch"><i class="fa fa-check"></i><b>3.2.7</b> Push and pull (or fetch)</a></li>
+<li class="chapter" data-level="3.2.8" data-path="git-and-github.html"><a href="git-and-github.html#branching"><i class="fa fa-check"></i><b>3.2.8</b> Branching</a></li>
+<li class="chapter" data-level="3.2.9" data-path="git-and-github.html"><a href="git-and-github.html#other-useful-commands"><i class="fa fa-check"></i><b>3.2.9</b> Other useful commands</a></li>
+<li class="chapter" data-level="3.2.10" data-path="git-and-github.html"><a href="git-and-github.html#collaborations"><i class="fa fa-check"></i><b>3.2.10</b> Collaborations</a></li>
+<li class="chapter" data-level="3.2.11" data-path="git-and-github.html"><a href="git-and-github.html#deployment-github-pages"><i class="fa fa-check"></i><b>3.2.11</b> Deployment: GitHub Pages</a></li>
+<li class="chapter" data-level="3.2.12" data-path="git-and-github.html"><a href="git-and-github.html#tracking-progress-github-issues"><i class="fa fa-check"></i><b>3.2.12</b> Tracking progress: GitHub Issues</a></li>
+<li class="chapter" data-level="3.2.13" data-path="git-and-github.html"><a href="git-and-github.html#project-management-github-dashboards"><i class="fa fa-check"></i><b>3.2.13</b> Project management: GitHub Dashboards</a></li>
+<li class="chapter" data-level="3.2.14" data-path="git-and-github.html"><a href="git-and-github.html#using-git-clients"><i class="fa fa-check"></i><b>3.2.14</b> Using Git clients</a></li>
+<li class="chapter" data-level="3.2.15" data-path="git-and-github.html"><a href="git-and-github.html#the-big-picture-2"><i class="fa fa-check"></i><b>3.2.15</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.2.16" data-path="git-and-github.html"><a href="git-and-github.html#rstudio"><i class="fa fa-check"></i><b>3.2.16</b> RStudio</a></li>
+<li class="chapter" data-level="3.2.17" data-path="git-and-github.html"><a href="git-and-github.html#basic-syntax"><i class="fa fa-check"></i><b>3.2.17</b> Basic Syntax</a></li>
+<li class="chapter" data-level="3.2.18" data-path="git-and-github.html"><a href="git-and-github.html#environment"><i class="fa fa-check"></i><b>3.2.18</b> Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="project-oriented-research.html"><a href="project-oriented-research.html"><i class="fa fa-check"></i><b>3.3</b> Project-oriented research</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="project-oriented-research.html"><a href="project-oriented-research.html#the-big-picture-3"><i class="fa fa-check"></i><b>3.3.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.3.2" data-path="project-oriented-research.html"><a href="project-oriented-research.html#references-1"><i class="fa fa-check"></i><b>3.3.2</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html"><i class="fa fa-check"></i><b>3.4</b> Writing code: How to code like a professional</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html#the-big-picture-4"><i class="fa fa-check"></i><b>3.4.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.4.2" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html#write-readable-code"><i class="fa fa-check"></i><b>3.4.2</b> Write readable code</a></li>
+<li class="chapter" data-level="3.4.3" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html#write-reusable-code"><i class="fa fa-check"></i><b>3.4.3</b> Write reusable code</a></li>
+<li class="chapter" data-level="3.4.4" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html#test-your-code-systematically"><i class="fa fa-check"></i><b>3.4.4</b> Test your code systematically</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="run-tests.html"><a href="run-tests.html"><i class="fa fa-check"></i><b>3.5</b> Run tests</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="run-tests.html"><a href="run-tests.html#asking-questions-minimal-reproducible-example"><i class="fa fa-check"></i><b>3.5.1</b> Asking questions: Minimal reproducible example</a></li>
+<li class="chapter" data-level="3.5.2" data-path="run-tests.html"><a href="run-tests.html#references-2"><i class="fa fa-check"></i><b>3.5.2</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tidy_data.html"><a href="tidy_data.html"><i class="fa fa-check"></i><b>4</b> Tidy data and its friends</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="setup-2.html"><a href="setup-2.html"><i class="fa fa-check"></i><b>4.1</b> Setup</a></li>
+<li class="chapter" data-level="4.2" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html"><i class="fa fa-check"></i><b>4.2</b> Base R data structure</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#d-data-vectors"><i class="fa fa-check"></i><b>4.2.1</b> 1D data: Vectors</a></li>
+<li class="chapter" data-level="4.2.2" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#data-structures"><i class="fa fa-check"></i><b>4.2.2</b> Data structures</a></li>
+<li class="chapter" data-level="4.2.3" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#attributes"><i class="fa fa-check"></i><b>4.2.3</b> Attributes</a></li>
+<li class="chapter" data-level="4.2.4" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#d-data-matrices-and-dataframes"><i class="fa fa-check"></i><b>4.2.4</b> 2D data: Matrices and dataframes</a></li>
+<li class="chapter" data-level="4.2.5" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#subset"><i class="fa fa-check"></i><b>4.2.5</b> Subset</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4.3</b> Tidyverse</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="tidyverse.html"><a href="tidyverse.html#the-big-picture-5"><i class="fa fa-check"></i><b>4.3.1</b> The Big Picture</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="tidying-tidyr.html"><a href="tidying-tidyr.html"><i class="fa fa-check"></i><b>4.4</b> Tidying (tidyr)</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="tidying-tidyr.html"><a href="tidying-tidyr.html#reshaping"><i class="fa fa-check"></i><b>4.4.1</b> Reshaping</a></li>
+<li class="chapter" data-level="4.4.2" data-path="tidying-tidyr.html"><a href="tidying-tidyr.html#filling"><i class="fa fa-check"></i><b>4.4.2</b> Filling</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html"><i class="fa fa-check"></i><b>4.5</b> Manipulating (dplyr)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#rearranging"><i class="fa fa-check"></i><b>4.5.1</b> Rearranging</a></li>
+<li class="chapter" data-level="4.5.2" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#subset-observations-rows"><i class="fa fa-check"></i><b>4.5.2</b> Subset observations (rows)</a></li>
+<li class="chapter" data-level="4.5.3" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#subset-variables-columns"><i class="fa fa-check"></i><b>4.5.3</b> Subset variables (columns)</a></li>
+<li class="chapter" data-level="4.5.4" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#create-variables"><i class="fa fa-check"></i><b>4.5.4</b> Create variables</a></li>
+<li class="chapter" data-level="4.5.5" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#counting"><i class="fa fa-check"></i><b>4.5.5</b> Counting</a></li>
+<li class="chapter" data-level="4.5.6" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#summarizing"><i class="fa fa-check"></i><b>4.5.6</b> Summarizing</a></li>
+<li class="chapter" data-level="4.5.7" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#grouping"><i class="fa fa-check"></i><b>4.5.7</b> Grouping</a></li>
+<li class="chapter" data-level="4.5.8" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#joining"><i class="fa fa-check"></i><b>4.5.8</b> Joining</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="modeling-broom.html"><a href="modeling-broom.html"><i class="fa fa-check"></i><b>4.6</b> Modeling (broom)</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="modeling-broom.html"><a href="modeling-broom.html#nesting"><i class="fa fa-check"></i><b>4.6.1</b> Nesting</a></li>
+<li class="chapter" data-level="4.6.2" data-path="modeling-broom.html"><a href="modeling-broom.html#mapping"><i class="fa fa-check"></i><b>4.6.2</b> Mapping</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html"><i class="fa fa-check"></i><b>4.7</b> Visualizing (ggplot2)</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#motivation-2"><i class="fa fa-check"></i><b>4.7.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.7.2" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>4.7.2</b> The grammar of graphics</a></li>
+<li class="chapter" data-level="4.7.3" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#mapping-and-geom"><i class="fa fa-check"></i><b>4.7.3</b> mapping and geom</a></li>
+<li class="chapter" data-level="4.7.4" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#basic-aes-x-y"><i class="fa fa-check"></i><b>4.7.4</b> basic aes (x , y)</a></li>
+<li class="chapter" data-level="4.7.5" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#univariate-distribution"><i class="fa fa-check"></i><b>4.7.5</b> Univariate distribution</a></li>
+<li class="chapter" data-level="4.7.6" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#advanced-aes-size-color"><i class="fa fa-check"></i><b>4.7.6</b> Advanced aes (size, color)</a></li>
+<li class="chapter" data-level="4.7.7" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#co-ordinates-and-scales"><i class="fa fa-check"></i><b>4.7.7</b> Co-ordinates and scales</a></li>
+<li class="chapter" data-level="4.7.8" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#labels-and-guides"><i class="fa fa-check"></i><b>4.7.8</b> Labels and guides</a></li>
+<li class="chapter" data-level="4.7.9" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#ggsave"><i class="fa fa-check"></i><b>4.7.9</b> ggsave</a></li>
+<li class="chapter" data-level="4.7.10" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#many-plots"><i class="fa fa-check"></i><b>4.7.10</b> Many plots</a></li>
+<li class="chapter" data-level="4.7.11" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#transforming"><i class="fa fa-check"></i><b>4.7.11</b> Transforming</a></li>
+<li class="chapter" data-level="4.7.12" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#ploting-models"><i class="fa fa-check"></i><b>4.7.12</b> Ploting models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functional_programming.html"><a href="functional_programming.html"><i class="fa fa-check"></i><b>5</b> Automating repeated things</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="the-big-picture-6.html"><a href="the-big-picture-6.html"><i class="fa fa-check"></i><b>5.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="5.2" data-path="objectives.html"><a href="objectives.html"><i class="fa fa-check"></i><b>5.2</b> Objectives</a></li>
+<li class="chapter" data-level="5.3" data-path="setup-3.html"><a href="setup-3.html"><i class="fa fa-check"></i><b>5.3</b> Setup</a></li>
+<li class="chapter" data-level="5.4" data-path="flow.html"><a href="flow.html"><i class="fa fa-check"></i><b>5.4</b> Flow control</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="flow.html"><a href="flow.html#if-one-condition"><i class="fa fa-check"></i><b>5.4.1</b> if (one condition)</a></li>
+<li class="chapter" data-level="5.4.2" data-path="flow.html"><a href="flow.html#if-else-two-conditions"><i class="fa fa-check"></i><b>5.4.2</b> if + else (two conditions)</a></li>
+<li class="chapter" data-level="5.4.3" data-path="flow.html"><a href="flow.html#if-else-if-else-three-conditions"><i class="fa fa-check"></i><b>5.4.3</b> if + else if + else (three conditions)</a></li>
+<li class="chapter" data-level="5.4.4" data-path="flow.html"><a href="flow.html#functions"><i class="fa fa-check"></i><b>5.4.4</b> Functions</a></li>
+<li class="chapter" data-level="5.4.5" data-path="flow.html"><a href="flow.html#for-loop"><i class="fa fa-check"></i><b>5.4.5</b> for loop</a></li>
+<li class="chapter" data-level="5.4.6" data-path="flow.html"><a href="flow.html#apply-family"><i class="fa fa-check"></i><b>5.4.6</b> apply family</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="purrr.html"><a href="purrr.html"><i class="fa fa-check"></i><b>5.5</b> purrr</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="purrr.html"><a href="purrr.html#why-map"><i class="fa fa-check"></i><b>5.5.1</b> Why map?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="map2.html"><a href="map2.html"><i class="fa fa-check"></i><b>5.6</b> Automate 2 or 2+ tasks</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="map2.html"><a href="map2.html#objectives-2"><i class="fa fa-check"></i><b>5.6.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.6.2" data-path="map2.html"><a href="map2.html#problem"><i class="fa fa-check"></i><b>5.6.2</b> Problem</a></li>
+<li class="chapter" data-level="5.6.3" data-path="map2.html"><a href="map2.html#for-loop-1"><i class="fa fa-check"></i><b>5.6.3</b> For loop</a></li>
+<li class="chapter" data-level="5.6.4" data-path="map2.html"><a href="map2.html#map2-pmap"><i class="fa fa-check"></i><b>5.6.4</b> map2 &amp; pmap</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="glue.html"><a href="glue.html"><i class="fa fa-check"></i><b>5.7</b> Automate plotting</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="glue.html"><a href="glue.html#objective"><i class="fa fa-check"></i><b>5.7.1</b> Objective</a></li>
+<li class="chapter" data-level="5.7.2" data-path="glue.html"><a href="glue.html#problem-1"><i class="fa fa-check"></i><b>5.7.2</b> Problem</a></li>
+<li class="chapter" data-level="5.7.3" data-path="glue.html"><a href="glue.html#solution"><i class="fa fa-check"></i><b>5.7.3</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="reduce.html"><a href="reduce.html"><i class="fa fa-check"></i><b>5.8</b> Automate joining</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="reduce.html"><a href="reduce.html#objective-1"><i class="fa fa-check"></i><b>5.8.1</b> Objective</a></li>
+<li class="chapter" data-level="5.8.2" data-path="reduce.html"><a href="reduce.html#problem-2"><i class="fa fa-check"></i><b>5.8.2</b> Problem</a></li>
+<li class="chapter" data-level="5.8.3" data-path="reduce.html"><a href="reduce.html#copy-and-paste"><i class="fa fa-check"></i><b>5.8.3</b> Copy and paste</a></li>
+<li class="chapter" data-level="5.8.4" data-path="reduce.html"><a href="reduce.html#reduce-1"><i class="fa fa-check"></i><b>5.8.4</b> reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="speed.html"><a href="speed.html"><i class="fa fa-check"></i><b>5.9</b> Make automation slower or faster</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="speed.html"><a href="speed.html#objectives-3"><i class="fa fa-check"></i><b>5.9.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.9.2" data-path="speed.html"><a href="speed.html#how-to-make-automation-slower"><i class="fa fa-check"></i><b>5.9.2</b> How to Make Automation Slower</a></li>
+<li class="chapter" data-level="5.9.3" data-path="speed.html"><a href="speed.html#how-to-make-automation-faster"><i class="fa fa-check"></i><b>5.9.3</b> How to Make Automation Faster</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="robustness.html"><a href="robustness.html"><i class="fa fa-check"></i><b>5.10</b> Make error handling easier</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="robustness.html"><a href="robustness.html#learning-objective"><i class="fa fa-check"></i><b>5.10.1</b> Learning objective</a></li>
+<li class="chapter" data-level="5.10.2" data-path="robustness.html"><a href="robustness.html#solution-1"><i class="fa fa-check"></i><b>5.10.2</b> Solution</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="products.html"><a href="products.html"><i class="fa fa-check"></i><b>6</b> Developing data products</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="developing-r-packages.html"><a href="developing-r-packages.html"><i class="fa fa-check"></i><b>6.1</b> Developing R packages</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="developing-r-packages.html"><a href="developing-r-packages.html#the-big-picture-7"><i class="fa fa-check"></i><b>6.1.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="6.1.2" data-path="developing-r-packages.html"><a href="developing-r-packages.html#workflow"><i class="fa fa-check"></i><b>6.1.2</b> Workflow</a></li>
+<li class="chapter" data-level="6.1.3" data-path="developing-r-packages.html"><a href="developing-r-packages.html#required-components"><i class="fa fa-check"></i><b>6.1.3</b> Required Components</a></li>
+<li class="chapter" data-level="6.1.4" data-path="developing-r-packages.html"><a href="developing-r-packages.html#optional-components"><i class="fa fa-check"></i><b>6.1.4</b> Optional Components</a></li>
+<li class="chapter" data-level="6.1.5" data-path="developing-r-packages.html"><a href="developing-r-packages.html#building-an-r-package"><i class="fa fa-check"></i><b>6.1.5</b> Building an R package</a></li>
+<li class="chapter" data-level="6.1.6" data-path="developing-r-packages.html"><a href="developing-r-packages.html#distributing-an-r-package"><i class="fa fa-check"></i><b>6.1.6</b> Distributing an R package</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html"><i class="fa fa-check"></i><b>6.2</b> Developing Shiny apps</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html#workflow-1"><i class="fa fa-check"></i><b>6.2.1</b> Workflow</a></li>
+<li class="chapter" data-level="6.2.2" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html#app.r"><i class="fa fa-check"></i><b>6.2.2</b> app.r</a></li>
+<li class="chapter" data-level="6.2.3" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html#deployment"><i class="fa fa-check"></i><b>6.2.3</b> Deployment</a></li>
+<li class="chapter" data-level="6.2.4" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html#references-3"><i class="fa fa-check"></i><b>6.2.4</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="other-useful-data-products.html"><a href="other-useful-data-products.html"><i class="fa fa-check"></i><b>6.3</b> Other useful data products</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="semi_structured_data.html"><a href="semi_structured_data.html"><i class="fa fa-check"></i><b>7</b> Semi-structured data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="setup-4.html"><a href="setup-4.html"><i class="fa fa-check"></i><b>7.1</b> Setup</a></li>
+<li class="chapter" data-level="7.2" data-path="the-big-picture-8.html"><a href="the-big-picture-8.html"><i class="fa fa-check"></i><b>7.2</b> The Big Picture</a></li>
+<li class="chapter" data-level="7.3" data-path="what-is-semi-structured-data.html"><a href="what-is-semi-structured-data.html"><i class="fa fa-check"></i><b>7.3</b> What is semi-structured data?</a></li>
+<li class="chapter" data-level="7.4" data-path="workflow-2.html"><a href="workflow-2.html"><i class="fa fa-check"></i><b>7.4</b> Workflow</a></li>
+<li class="chapter" data-level="7.5" data-path="htmlcss-web-scraping.html"><a href="htmlcss-web-scraping.html"><i class="fa fa-check"></i><b>7.5</b> HTML/CSS: web scraping</a></li>
+<li class="chapter" data-level="7.6" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html"><i class="fa fa-check"></i><b>7.6</b> XML/JSON: government database/social media scraping</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#governemnt-database-xml"><i class="fa fa-check"></i><b>7.6.1</b> Governemnt database (XML)</a></li>
+<li class="chapter" data-level="7.6.2" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#social-media-api-json"><i class="fa fa-check"></i><b>7.6.2</b> Social media API (JSON)</a></li>
+<li class="chapter" data-level="7.6.3" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#next-steps"><i class="fa fa-check"></i><b>7.6.3</b> Next steps</a></li>
+<li class="chapter" data-level="7.6.4" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#rtweet"><i class="fa fa-check"></i><b>7.6.4</b> rtweet</a></li>
+<li class="chapter" data-level="7.6.5" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#hydrating"><i class="fa fa-check"></i><b>7.6.5</b> Hydrating</a></li>
+<li class="chapter" data-level="7.6.6" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#parsing-json"><i class="fa fa-check"></i><b>7.6.6</b> Parsing JSON</a></li>
+<li class="chapter" data-level="7.6.7" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#getting-api-data-from-scratch"><i class="fa fa-check"></i><b>7.6.7</b> Getting API data from scratch</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="machine_learning.html"><a href="machine_learning.html"><i class="fa fa-check"></i><b>8</b> High-dimensional data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="the-big-picture-9.html"><a href="the-big-picture-9.html"><i class="fa fa-check"></i><b>8.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="8.2" data-path="dataset.html"><a href="dataset.html"><i class="fa fa-check"></i><b>8.2</b> Dataset</a></li>
+<li class="chapter" data-level="8.3" data-path="workflow-3.html"><a href="workflow-3.html"><i class="fa fa-check"></i><b>8.3</b> Workflow</a></li>
+<li class="chapter" data-level="8.4" data-path="tidymodels.html"><a href="tidymodels.html"><i class="fa fa-check"></i><b>8.4</b> tidymodels</a></li>
+<li class="chapter" data-level="8.5" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>8.5</b> Pre-processing</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="pre-processing.html"><a href="pre-processing.html#regression-setup"><i class="fa fa-check"></i><b>8.5.1</b> Regression setup</a></li>
+<li class="chapter" data-level="8.5.2" data-path="pre-processing.html"><a href="pre-processing.html#classification-setup"><i class="fa fa-check"></i><b>8.5.2</b> Classification setup</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>8.6</b> Supervised learning</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="supervised-learning.html"><a href="supervised-learning.html#ols-and-lasso"><i class="fa fa-check"></i><b>8.6.1</b> OLS and Lasso</a></li>
+<li class="chapter" data-level="8.6.2" data-path="supervised-learning.html"><a href="supervised-learning.html#decision-tree"><i class="fa fa-check"></i><b>8.6.2</b> Decision tree</a></li>
+<li class="chapter" data-level="8.6.3" data-path="supervised-learning.html"><a href="supervised-learning.html#bagging-random-forest"><i class="fa fa-check"></i><b>8.6.3</b> Bagging (Random forest)</a></li>
+<li class="chapter" data-level="8.6.4" data-path="supervised-learning.html"><a href="supervised-learning.html#boosting-xgboost"><i class="fa fa-check"></i><b>8.6.4</b> Boosting (XGboost)</a></li>
+<li class="chapter" data-level="8.6.5" data-path="supervised-learning.html"><a href="supervised-learning.html#stacking-superlearner"><i class="fa fa-check"></i><b>8.6.5</b> Stacking (SuperLearner)</a></li>
+<li class="chapter" data-level="8.6.6" data-path="supervised-learning.html"><a href="supervised-learning.html#applications-2"><i class="fa fa-check"></i><b>8.6.6</b> Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>8.7</b> Unsupervised learning</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#dimension-reduction"><i class="fa fa-check"></i><b>8.7.1</b> Dimension reduction</a></li>
+<li class="chapter" data-level="8.7.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#topic-modeling"><i class="fa fa-check"></i><b>8.7.2</b> Topic modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="references-4.html"><a href="references-4.html"><i class="fa fa-check"></i><b>8.8</b> References</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="references-4.html"><a href="references-4.html#books"><i class="fa fa-check"></i><b>8.8.1</b> Books</a></li>
+<li class="chapter" data-level="8.8.2" data-path="references-4.html"><a href="references-4.html#lecture-slides"><i class="fa fa-check"></i><b>8.8.2</b> Lecture slides</a></li>
+<li class="chapter" data-level="8.8.3" data-path="references-4.html"><a href="references-4.html#blog-posts"><i class="fa fa-check"></i><b>8.8.3</b> Blog posts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="big_data.html"><a href="big_data.html"><i class="fa fa-check"></i><b>9</b> Big data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="the-big-picture-10.html"><a href="the-big-picture-10.html"><i class="fa fa-check"></i><b>9.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="9.2" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>9.2</b> SQL</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="sql.html"><a href="sql.html#learning-objectives"><i class="fa fa-check"></i><b>9.2.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="9.2.2" data-path="sql.html"><a href="sql.html#sql-and-r"><i class="fa fa-check"></i><b>9.2.2</b> SQL and R</a></li>
+<li class="chapter" data-level="9.2.3" data-path="sql.html"><a href="sql.html#setup-7"><i class="fa fa-check"></i><b>9.2.3</b> Setup</a></li>
+<li class="chapter" data-level="9.2.4" data-path="sql.html"><a href="sql.html#packages-1"><i class="fa fa-check"></i><b>9.2.4</b> Packages</a></li>
+<li class="chapter" data-level="9.2.5" data-path="sql.html"><a href="sql.html#nyc-flights-data"><i class="fa fa-check"></i><b>9.2.5</b> NYC flights data</a></li>
+<li class="chapter" data-level="9.2.6" data-path="sql.html"><a href="sql.html#workflow-4"><i class="fa fa-check"></i><b>9.2.6</b> Workflow</a></li>
+<li class="chapter" data-level="9.2.7" data-path="sql.html"><a href="sql.html#things-we-didnt-cover"><i class="fa fa-check"></i><b>9.2.7</b> Things we didn’t cover</a></li>
+<li class="chapter" data-level="9.2.8" data-path="sql.html"><a href="sql.html#references-5"><i class="fa fa-check"></i><b>9.2.8</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/jaeyk/PS239T" target="_blank">
+  Published with <code>{bookdown}</code></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Thinking for Social Scientists</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="unsupervised-learning" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Unsupervised learning<a href="unsupervised-learning.html#unsupervised-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>x -&gt; f - &gt; y (not defined)</p>
+<div id="dimension-reduction" class="section level3 hasAnchor" number="8.7.1">
+<h3><span class="header-section-number">8.7.1</span> Dimension reduction<a href="unsupervised-learning.html#dimension-reduction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="float">
+<img src="https://i.stack.imgur.com/Q7HIP.gif" alt="Projecting 2D-data to a line (PCA). From vas3k.com" />
+<div class="figcaption">Projecting 2D-data to a line (PCA). From vas3k.com</div>
+</div>
+<div id="correlation-analysis" class="section level4 hasAnchor" number="8.7.1.1">
+<h4><span class="header-section-number">8.7.1.1</span> Correlation analysis<a href="unsupervised-learning.html#correlation-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This dataset is a good problem for PCA as some features are highly correlated.</p>
+<p>Again, think about what the dataset is about. The following data dictionary comes from <a href="http://rstudio-pubs-static.s3.amazonaws.com/24341_184a58191486470cab97acdbbfe78ed5.html">this site</a>.</p>
+<ul>
+<li>age - age in years</li>
+<li>sex - sex (1 = male; 0 = female)</li>
+<li>cp - chest pain type (1 = typical angina; 2 = atypical angina; 3 = non-anginal pain; 4 = asymptomatic)</li>
+<li>trestbps - resting blood pressure (in mm Hg on admission to the hospital)</li>
+<li>chol - serum cholestoral in mg/dl</li>
+<li>fbs - fasting blood sugar &gt; 120 mg/dl (1 = true; 0 = false)</li>
+<li>restecg - resting electrocardiographic results (0 = normal; 1 = having ST-T; 2 = hypertrophy)</li>
+<li>thalach - maximum heart rate achieved</li>
+<li>exang - exercise induced angina (1 = yes; 0 = no)</li>
+<li>oldpeak - ST depression induced by exercise relative to rest
+slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = downsloping)</li>
+<li>ca - number of major vessels (0-3) colored by flourosopy</li>
+<li>thal - 3 = normal; 6 = fixed defect; 7 = reversable defect</li>
+<li>num - the predicted attribute - diagnosis of heart disease (angiographic disease status) (Value 0 = &lt; 50% diameter narrowing; Value 1 = &gt; 50% diameter narrowing)</li>
+</ul>
+<div class="sourceCode" id="cb1225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1225-1"><a href="unsupervised-learning.html#cb1225-1" tabindex="-1"></a>data_original <span class="sc">%&gt;%</span></span>
+<span id="cb1225-2"><a href="unsupervised-learning.html#cb1225-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>target) <span class="sc">%&gt;%</span></span>
+<span id="cb1225-3"><a href="unsupervised-learning.html#cb1225-3" tabindex="-1"></a>  corrr<span class="sc">::</span><span class="fu">correlate</span>()</span></code></pre></div>
+<pre><code>## Correlation computed with
+## • Method: &#39;pearson&#39;
+## • Missing treated using: &#39;pairwise.complete.obs&#39;</code></pre>
+<pre><code>## # A tibble: 13 × 14
+##    term         age     sex      cp trestbps     chol      fbs restecg  thalach
+##    &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+##  1 age      NA      -0.0984 -0.0687   0.279   0.214    0.121   -0.116  -0.399  
+##  2 sex      -0.0984 NA      -0.0494  -0.0568 -0.198    0.0450  -0.0582 -0.0440 
+##  3 cp       -0.0687 -0.0494 NA        0.0476 -0.0769   0.0944   0.0444  0.296  
+##  4 trestbps  0.279  -0.0568  0.0476  NA       0.123    0.178   -0.114  -0.0467 
+##  5 chol      0.214  -0.198  -0.0769   0.123  NA        0.0133  -0.151  -0.00994
+##  6 fbs       0.121   0.0450  0.0944   0.178   0.0133  NA       -0.0842 -0.00857
+##  7 restecg  -0.116  -0.0582  0.0444  -0.114  -0.151   -0.0842  NA       0.0441 
+##  8 thalach  -0.399  -0.0440  0.296   -0.0467 -0.00994 -0.00857  0.0441 NA      
+##  9 exang     0.0968  0.142  -0.394    0.0676  0.0670   0.0257  -0.0707 -0.379  
+## 10 oldpeak   0.210   0.0961 -0.149    0.193   0.0540   0.00575 -0.0588 -0.344  
+## 11 slope    -0.169  -0.0307  0.120   -0.121  -0.00404 -0.0599   0.0930  0.387  
+## 12 ca        0.276   0.118  -0.181    0.101   0.0705   0.138   -0.0720 -0.213  
+## 13 thal      0.0680  0.210  -0.162    0.0622  0.0988  -0.0320  -0.0120 -0.0964 
+## # ℹ 5 more variables: exang &lt;dbl&gt;, oldpeak &lt;dbl&gt;, slope &lt;dbl&gt;, ca &lt;dbl&gt;,
+## #   thal &lt;dbl&gt;</code></pre>
+</div>
+<div id="descriptive-statistics" class="section level4 hasAnchor" number="8.7.1.2">
+<h4><span class="header-section-number">8.7.1.2</span> Descriptive statistics<a href="unsupervised-learning.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Notice the scaling issues? PCA is not scale-invariant. So, we need to fix this problem.</p>
+<div class="sourceCode" id="cb1228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1228-1"><a href="unsupervised-learning.html#cb1228-1" tabindex="-1"></a>min_max <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb1228-2"><a href="unsupervised-learning.html#cb1228-2" tabindex="-1"></a>  <span class="at">min =</span> <span class="sc">~</span> <span class="fu">min</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1228-3"><a href="unsupervised-learning.html#cb1228-3" tabindex="-1"></a>  <span class="at">max =</span> <span class="sc">~</span> <span class="fu">max</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1228-4"><a href="unsupervised-learning.html#cb1228-4" tabindex="-1"></a>)</span>
+<span id="cb1228-5"><a href="unsupervised-learning.html#cb1228-5" tabindex="-1"></a></span>
+<span id="cb1228-6"><a href="unsupervised-learning.html#cb1228-6" tabindex="-1"></a>data_original <span class="sc">%&gt;%</span></span>
+<span id="cb1228-7"><a href="unsupervised-learning.html#cb1228-7" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>target) <span class="sc">%&gt;%</span></span>
+<span id="cb1228-8"><a href="unsupervised-learning.html#cb1228-8" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), min_max))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 26
+##   age_min age_max sex_min sex_max cp_min cp_max trestbps_min trestbps_max
+##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+## 1      29      77       0       1      0      3           94          200
+## # ℹ 18 more variables: chol_min &lt;dbl&gt;, chol_max &lt;dbl&gt;, fbs_min &lt;dbl&gt;,
+## #   fbs_max &lt;dbl&gt;, restecg_min &lt;dbl&gt;, restecg_max &lt;dbl&gt;, thalach_min &lt;dbl&gt;,
+## #   thalach_max &lt;dbl&gt;, exang_min &lt;dbl&gt;, exang_max &lt;dbl&gt;, oldpeak_min &lt;dbl&gt;,
+## #   oldpeak_max &lt;dbl&gt;, slope_min &lt;dbl&gt;, slope_max &lt;dbl&gt;, ca_min &lt;dbl&gt;,
+## #   ca_max &lt;dbl&gt;, thal_min &lt;dbl&gt;, thal_max &lt;dbl&gt;</code></pre>
+</div>
+<div id="preprocessing" class="section level4 hasAnchor" number="8.7.1.3">
+<h4><span class="header-section-number">8.7.1.3</span> Preprocessing<a href="unsupervised-learning.html#preprocessing" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>recipe</code> is essential for preprocessing multiple features at once.</p>
+<div class="sourceCode" id="cb1230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1230-1"><a href="unsupervised-learning.html#cb1230-1" tabindex="-1"></a>pca_recipe <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="sc">~</span>., <span class="at">data =</span> data_original) <span class="sc">%&gt;%</span></span>
+<span id="cb1230-2"><a href="unsupervised-learning.html#cb1230-2" tabindex="-1"></a>  <span class="co"># Imputing NAs using mean</span></span>
+<span id="cb1230-3"><a href="unsupervised-learning.html#cb1230-3" tabindex="-1"></a>  <span class="fu">step_impute_mean</span>(<span class="fu">all_predictors</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb1230-4"><a href="unsupervised-learning.html#cb1230-4" tabindex="-1"></a>  <span class="co"># Normalize some numeric variabless</span></span>
+<span id="cb1230-5"><a href="unsupervised-learning.html#cb1230-5" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;trestbps&quot;</span>, <span class="st">&quot;chol&quot;</span>, <span class="st">&quot;thalach&quot;</span>, <span class="st">&quot;oldpeak&quot;</span>))</span></code></pre></div>
+</div>
+<div id="pca-analysis" class="section level4 hasAnchor" number="8.7.1.4">
+<h4><span class="header-section-number">8.7.1.4</span> PCA analysis<a href="unsupervised-learning.html#pca-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb1231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1231-1"><a href="unsupervised-learning.html#cb1231-1" tabindex="-1"></a>pca_res <span class="ot">&lt;-</span> pca_recipe <span class="sc">%&gt;%</span></span>
+<span id="cb1231-2"><a href="unsupervised-learning.html#cb1231-2" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_predictors</span>(),</span>
+<span id="cb1231-3"><a href="unsupervised-learning.html#cb1231-3" tabindex="-1"></a>    <span class="at">id =</span> <span class="st">&quot;pca&quot;</span></span>
+<span id="cb1231-4"><a href="unsupervised-learning.html#cb1231-4" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="co"># id argument identifies each PCA step</span></span>
+<span id="cb1231-5"><a href="unsupervised-learning.html#cb1231-5" tabindex="-1"></a>  <span class="fu">prep</span>()</span>
+<span id="cb1231-6"><a href="unsupervised-learning.html#cb1231-6" tabindex="-1"></a></span>
+<span id="cb1231-7"><a href="unsupervised-learning.html#cb1231-7" tabindex="-1"></a>pca_res <span class="sc">%&gt;%</span></span>
+<span id="cb1231-8"><a href="unsupervised-learning.html#cb1231-8" tabindex="-1"></a>  <span class="fu">tidy</span>(<span class="at">id =</span> <span class="st">&quot;pca&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 196 × 4
+##    terms        value component id   
+##    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;
+##  1 age      -0.00101  PC1       pca  
+##  2 sex       0.216    PC1       pca  
+##  3 cp        0.321    PC1       pca  
+##  4 trestbps  0.00118  PC1       pca  
+##  5 chol     -0.000292 PC1       pca  
+##  6 fbs       0.0468   PC1       pca  
+##  7 restecg   0.166    PC1       pca  
+##  8 thalach   0.0137   PC1       pca  
+##  9 exang     0.0962   PC1       pca  
+## 10 oldpeak  -0.00863  PC1       pca  
+## # ℹ 186 more rows</code></pre>
+<div id="screeplot" class="section level5 hasAnchor" number="8.7.1.4.1">
+<h5><span class="header-section-number">8.7.1.4.1</span> Screeplot<a href="unsupervised-learning.html#screeplot" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb1233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1233-1"><a href="unsupervised-learning.html#cb1233-1" tabindex="-1"></a><span class="co"># To avoid conflicts</span></span>
+<span id="cb1233-2"><a href="unsupervised-learning.html#cb1233-2" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<pre><code>## [conflicted] Removing existing preference.
+## [conflicted] Will prefer dplyr::filter over any other package.</code></pre>
+<div class="sourceCode" id="cb1235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1235-1"><a href="unsupervised-learning.html#cb1235-1" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<pre><code>## [conflicted] Will prefer dplyr::select over any other package.</code></pre>
+<div class="sourceCode" id="cb1237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1237-1"><a href="unsupervised-learning.html#cb1237-1" tabindex="-1"></a>pca_recipe <span class="sc">%&gt;%</span></span>
+<span id="cb1237-2"><a href="unsupervised-learning.html#cb1237-2" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_predictors</span>(),</span>
+<span id="cb1237-3"><a href="unsupervised-learning.html#cb1237-3" tabindex="-1"></a>    <span class="at">id =</span> <span class="st">&quot;pca&quot;</span></span>
+<span id="cb1237-4"><a href="unsupervised-learning.html#cb1237-4" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="co"># id argument identifies each PCA step</span></span>
+<span id="cb1237-5"><a href="unsupervised-learning.html#cb1237-5" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1237-6"><a href="unsupervised-learning.html#cb1237-6" tabindex="-1"></a>  <span class="fu">tidy</span>(<span class="at">id =</span> <span class="st">&quot;pca&quot;</span>, <span class="at">type =</span> <span class="st">&quot;variance&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1237-7"><a href="unsupervised-learning.html#cb1237-7" tabindex="-1"></a>  <span class="fu">filter</span>(terms <span class="sc">==</span> <span class="st">&quot;percent variance&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1237-8"><a href="unsupervised-learning.html#cb1237-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> component, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb1237-9"><a href="unsupervised-learning.html#cb1237-9" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb1237-10"><a href="unsupervised-learning.html#cb1237-10" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1237-11"><a href="unsupervised-learning.html#cb1237-11" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;PCAs of heart disease&quot;</span>,</span>
+<span id="cb1237-12"><a href="unsupervised-learning.html#cb1237-12" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;% of variance&quot;</span>,</span>
+<span id="cb1237-13"><a href="unsupervised-learning.html#cb1237-13" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Scree plot&quot;</span></span>
+<span id="cb1237-14"><a href="unsupervised-learning.html#cb1237-14" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+</div>
+<div id="view-factor-loadings" class="section level5 hasAnchor" number="8.7.1.4.2">
+<h5><span class="header-section-number">8.7.1.4.2</span> View factor loadings<a href="unsupervised-learning.html#view-factor-loadings" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Loadings are the covariances between the features and the principal components (=eigenvectors).</p>
+<div class="sourceCode" id="cb1238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1238-1"><a href="unsupervised-learning.html#cb1238-1" tabindex="-1"></a>pca_recipe <span class="sc">%&gt;%</span></span>
+<span id="cb1238-2"><a href="unsupervised-learning.html#cb1238-2" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_predictors</span>(),</span>
+<span id="cb1238-3"><a href="unsupervised-learning.html#cb1238-3" tabindex="-1"></a>    <span class="at">id =</span> <span class="st">&quot;pca&quot;</span></span>
+<span id="cb1238-4"><a href="unsupervised-learning.html#cb1238-4" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="co"># id argument identifies each PCA step</span></span>
+<span id="cb1238-5"><a href="unsupervised-learning.html#cb1238-5" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1238-6"><a href="unsupervised-learning.html#cb1238-6" tabindex="-1"></a>  <span class="fu">tidy</span>(<span class="at">id =</span> <span class="st">&quot;pca&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1238-7"><a href="unsupervised-learning.html#cb1238-7" tabindex="-1"></a>  <span class="fu">filter</span>(component <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;PC1&quot;</span>, <span class="st">&quot;PC2&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1238-8"><a href="unsupervised-learning.html#cb1238-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb1238-9"><a href="unsupervised-learning.html#cb1238-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(terms, value), <span class="at">y =</span> value,</span>
+<span id="cb1238-10"><a href="unsupervised-learning.html#cb1238-10" tabindex="-1"></a>    <span class="at">fill =</span> component</span>
+<span id="cb1238-11"><a href="unsupervised-learning.html#cb1238-11" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb1238-12"><a href="unsupervised-learning.html#cb1238-12" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1238-13"><a href="unsupervised-learning.html#cb1238-13" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb1238-14"><a href="unsupervised-learning.html#cb1238-14" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1238-15"><a href="unsupervised-learning.html#cb1238-15" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Terms&quot;</span>,</span>
+<span id="cb1238-16"><a href="unsupervised-learning.html#cb1238-16" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Contribtutions&quot;</span>,</span>
+<span id="cb1238-17"><a href="unsupervised-learning.html#cb1238-17" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;PCAs&quot;</span></span>
+<span id="cb1238-18"><a href="unsupervised-learning.html#cb1238-18" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p><strong>The key lesson</strong></p>
+<p>You can use these low-dimensional data to solve the curse of dimensionality problem. Compressing feature space via dimension reduction techniques is called feature extraction. PCA is one way of doing this.</p>
+</div>
+</div>
+</div>
+<div id="topic-modeling" class="section level3 hasAnchor" number="8.7.2">
+<h3><span class="header-section-number">8.7.2</span> Topic modeling<a href="unsupervised-learning.html#topic-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="setup-6" class="section level4 hasAnchor" number="8.7.2.1">
+<h4><span class="header-section-number">8.7.2.1</span> Setup<a href="unsupervised-learning.html#setup-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb1239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1239-1"><a href="unsupervised-learning.html#cb1239-1" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb1239-2"><a href="unsupervised-learning.html#cb1239-2" tabindex="-1"></a>  janeaustenr, <span class="co"># example text</span></span>
+<span id="cb1239-3"><a href="unsupervised-learning.html#cb1239-3" tabindex="-1"></a>  tidytext, <span class="co"># tidy text analysis</span></span>
+<span id="cb1239-4"><a href="unsupervised-learning.html#cb1239-4" tabindex="-1"></a>  glue, <span class="co"># paste string and objects</span></span>
+<span id="cb1239-5"><a href="unsupervised-learning.html#cb1239-5" tabindex="-1"></a>  stm, <span class="co"># structural topic modeling</span></span>
+<span id="cb1239-6"><a href="unsupervised-learning.html#cb1239-6" tabindex="-1"></a>  gutenbergr</span>
+<span id="cb1239-7"><a href="unsupervised-learning.html#cb1239-7" tabindex="-1"></a>) <span class="co"># toy datasets</span></span></code></pre></div>
+</div>
+<div id="dataset-1" class="section level4 hasAnchor" number="8.7.2.2">
+<h4><span class="header-section-number">8.7.2.2</span> Dataset<a href="unsupervised-learning.html#dataset-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb1240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1240-1"><a href="unsupervised-learning.html#cb1240-1" tabindex="-1"></a><span class="co"># 1. Load all of Jane Austen&#39;s novels</span></span>
+<span id="cb1240-2"><a href="unsupervised-learning.html#cb1240-2" tabindex="-1"></a>austen_raw <span class="ot">&lt;-</span> <span class="fu">austen_books</span>()</span>
+<span id="cb1240-3"><a href="unsupervised-learning.html#cb1240-3" tabindex="-1"></a></span>
+<span id="cb1240-4"><a href="unsupervised-learning.html#cb1240-4" tabindex="-1"></a><span class="co"># 2. Add a chapter index (so you can facet or group by chapter if desired)</span></span>
+<span id="cb1240-5"><a href="unsupervised-learning.html#cb1240-5" tabindex="-1"></a>austen_chapters <span class="ot">&lt;-</span> austen_raw <span class="sc">%&gt;%</span></span>
+<span id="cb1240-6"><a href="unsupervised-learning.html#cb1240-6" tabindex="-1"></a>  <span class="fu">group_by</span>(book) <span class="sc">%&gt;%</span></span>
+<span id="cb1240-7"><a href="unsupervised-learning.html#cb1240-7" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1240-8"><a href="unsupervised-learning.html#cb1240-8" tabindex="-1"></a>    <span class="at">linenumber =</span> <span class="fu">row_number</span>(),</span>
+<span id="cb1240-9"><a href="unsupervised-learning.html#cb1240-9" tabindex="-1"></a>    <span class="at">chapter    =</span> <span class="fu">cumsum</span>(<span class="fu">str_detect</span>(text, <span class="fu">regex</span>(<span class="st">&quot;^chapter [0-9ivxlc]+&quot;</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb1240-10"><a href="unsupervised-learning.html#cb1240-10" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1240-11"><a href="unsupervised-learning.html#cb1240-11" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb1240-12"><a href="unsupervised-learning.html#cb1240-12" tabindex="-1"></a></span>
+<span id="cb1240-13"><a href="unsupervised-learning.html#cb1240-13" tabindex="-1"></a><span class="co"># 3. Tokenize and count words by book</span></span>
+<span id="cb1240-14"><a href="unsupervised-learning.html#cb1240-14" tabindex="-1"></a>austen_words <span class="ot">&lt;-</span> austen_chapters <span class="sc">%&gt;%</span></span>
+<span id="cb1240-15"><a href="unsupervised-learning.html#cb1240-15" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, text) <span class="sc">%&gt;%</span></span>
+<span id="cb1240-16"><a href="unsupervised-learning.html#cb1240-16" tabindex="-1"></a>  <span class="fu">count</span>(book, word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1240-17"><a href="unsupervised-learning.html#cb1240-17" tabindex="-1"></a>  <span class="fu">group_by</span>(book) <span class="sc">%&gt;%</span></span>
+<span id="cb1240-18"><a href="unsupervised-learning.html#cb1240-18" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1240-19"><a href="unsupervised-learning.html#cb1240-19" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">sum</span>(n),</span>
+<span id="cb1240-20"><a href="unsupervised-learning.html#cb1240-20" tabindex="-1"></a>    <span class="at">freq  =</span> n <span class="sc">/</span> total</span>
+<span id="cb1240-21"><a href="unsupervised-learning.html#cb1240-21" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1240-22"><a href="unsupervised-learning.html#cb1240-22" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb1240-23"><a href="unsupervised-learning.html#cb1240-23" tabindex="-1"></a></span>
+<span id="cb1240-24"><a href="unsupervised-learning.html#cb1240-24" tabindex="-1"></a><span class="fu">head</span>(austen_words)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   book           word      n  total   freq
+##   &lt;fct&gt;          &lt;chr&gt; &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt;
+## 1 Mansfield Park the    6206 160460 0.0387
+## 2 Mansfield Park to     5475 160460 0.0341
+## 3 Mansfield Park and    5438 160460 0.0339
+## 4 Emma           to     5239 160996 0.0325
+## 5 Emma           the    5201 160996 0.0323
+## 6 Emma           and    4896 160996 0.0304</code></pre>
+</div>
+<div id="key-ideas" class="section level4 hasAnchor" number="8.7.2.3">
+<h4><span class="header-section-number">8.7.2.3</span> Key ideas<a href="unsupervised-learning.html#key-ideas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="float">
+<img src="https://paperswithcode.com/media/thumbnails/task/task-0000000179-fd3a1d11_fGQkZCJ.jpg" alt="Source: paperswithcode.com" />
+<div class="figcaption">Source: paperswithcode.com</div>
+</div>
+<ul>
+<li><p>Main papers: See <a href="https://proceedings.neurips.cc/paper/2001/file/296472c9542ad4d4788d543508116cbc-Paper.pdf">Latent Dirichlet Allocation</a> by David M. Blei, Andrew Y. Ng and Michael I. Jordan (then all Berkeley) and this <a href="http://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/latent_dirichlet_allocation.pdf">follow-up paper</a> with the same title.</p></li>
+<li><p>Topics as <strong>distributions</strong> of words (<span class="math inline">\(\beta\)</span> distribution)</p></li>
+<li><p>Documents as <strong>distributions</strong> of topics (<span class="math inline">\(\alpha\)</span> distribution)</p></li>
+<li><p>What distributions?</p>
+<ul>
+<li><p>Probability</p></li>
+<li><p>Multinominal</p></li>
+</ul></li>
+<li><p>Words lie on a lower-dimensional space (dimension reduction akin to PCA)</p></li>
+<li><p>Co-occurrence of words (clustering)</p></li>
+<li><p>Bag of words (feature engineering)</p>
+<ul>
+<li>Upside: easy and fast (also working quite well)</li>
+<li>Downside: ignored grammatical structures and rich interactions among words (Alternative: word embeddings. Please check out <a href="http://text2vec.org/">text2vec</a>)</li>
+</ul></li>
+<li><p>Documents are exchangeable (sequencing won’t matter).</p></li>
+<li><p>Topics are independent (uncorrelated). If you don’t think this assumption holds, use Correlated Topics Models by <a href="https://arxiv.org/pdf/0708.3601.pdf#:~:text=The%20correlated%20topic%20model%20(CTM)%20is%20a%20hierarchical%20model%20of,are%20document%2D%20specific%20random%20variables.">Blei and Lafferty (2007)</a>.</p></li>
+</ul>
+</div>
+<div id="exploratory-data-analysis" class="section level4 hasAnchor" number="8.7.2.4">
+<h4><span class="header-section-number">8.7.2.4</span> Exploratory data analysis<a href="unsupervised-learning.html#exploratory-data-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb1242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1242-1"><a href="unsupervised-learning.html#cb1242-1" tabindex="-1"></a><span class="co"># 1) Tokenize, remove stop words, &amp; count</span></span>
+<span id="cb1242-2"><a href="unsupervised-learning.html#cb1242-2" tabindex="-1"></a>austen_words <span class="ot">&lt;-</span> austen_chapters <span class="sc">%&gt;%</span></span>
+<span id="cb1242-3"><a href="unsupervised-learning.html#cb1242-3" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, text) <span class="sc">%&gt;%</span></span>
+<span id="cb1242-4"><a href="unsupervised-learning.html#cb1242-4" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="st">&quot;word&quot;</span>) <span class="sc">%&gt;%</span>   <span class="co"># remove common stop words</span></span>
+<span id="cb1242-5"><a href="unsupervised-learning.html#cb1242-5" tabindex="-1"></a>  <span class="fu">count</span>(book, word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1242-6"><a href="unsupervised-learning.html#cb1242-6" tabindex="-1"></a>  <span class="fu">group_by</span>(book) <span class="sc">%&gt;%</span></span>
+<span id="cb1242-7"><a href="unsupervised-learning.html#cb1242-7" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1242-8"><a href="unsupervised-learning.html#cb1242-8" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">sum</span>(n),</span>
+<span id="cb1242-9"><a href="unsupervised-learning.html#cb1242-9" tabindex="-1"></a>    <span class="at">freq  =</span> n <span class="sc">/</span> total</span>
+<span id="cb1242-10"><a href="unsupervised-learning.html#cb1242-10" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1242-11"><a href="unsupervised-learning.html#cb1242-11" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb1242-12"><a href="unsupervised-learning.html#cb1242-12" tabindex="-1"></a></span>
+<span id="cb1242-13"><a href="unsupervised-learning.html#cb1242-13" tabindex="-1"></a><span class="co"># 2) Pick top 10 words per book</span></span>
+<span id="cb1242-14"><a href="unsupervised-learning.html#cb1242-14" tabindex="-1"></a>top_words <span class="ot">&lt;-</span> austen_words <span class="sc">%&gt;%</span></span>
+<span id="cb1242-15"><a href="unsupervised-learning.html#cb1242-15" tabindex="-1"></a>  <span class="fu">group_by</span>(book) <span class="sc">%&gt;%</span></span>
+<span id="cb1242-16"><a href="unsupervised-learning.html#cb1242-16" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> freq, <span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1242-17"><a href="unsupervised-learning.html#cb1242-17" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb1242-18"><a href="unsupervised-learning.html#cb1242-18" tabindex="-1"></a></span>
+<span id="cb1242-19"><a href="unsupervised-learning.html#cb1242-19" tabindex="-1"></a><span class="co"># 3) Plot the top words</span></span>
+<span id="cb1242-20"><a href="unsupervised-learning.html#cb1242-20" tabindex="-1"></a><span class="fu">ggplot</span>(top_words, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(word, freq), <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb1242-21"><a href="unsupervised-learning.html#cb1242-21" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb1242-22"><a href="unsupervised-learning.html#cb1242-22" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>book, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb1242-23"><a href="unsupervised-learning.html#cb1242-23" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb1242-24"><a href="unsupervised-learning.html#cb1242-24" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1242-25"><a href="unsupervised-learning.html#cb1242-25" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1242-26"><a href="unsupervised-learning.html#cb1242-26" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Relative frequency&quot;</span></span>
+<span id="cb1242-27"><a href="unsupervised-learning.html#cb1242-27" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1242-28"><a href="unsupervised-learning.html#cb1242-28" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb1242-29"><a href="unsupervised-learning.html#cb1242-29" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+</div>
+<div id="stm" class="section level4 hasAnchor" number="8.7.2.5">
+<h4><span class="header-section-number">8.7.2.5</span> STM<a href="unsupervised-learning.html#stm" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><a href="https://www.structuraltopicmodel.com/">Structural Topic Modeling</a> by Roberts, Stewart, and Tingley helps estimate how topics’ proportions vary by covariates. If you don’t use covariates, this approach is close to CTM. The other useful (and very recent) topic modeling package is Keyword Assisted Topic Models (<a href="https://keyatm.github.io/keyATM/">keyATM</a>) by Shusei, Imai, and Sasaki.</p>
+<p>Also, note that we didn’t cover other important techniques in topic modeling, such as dynamic and hierarchical topic modeling.</p>
+<p><img src="https://warin.ca/shiny/stm/images/fig02.png" /></p>
+<div id="turn-text-into-document-term-matrix" class="section level5 hasAnchor" number="8.7.2.5.1">
+<h5><span class="header-section-number">8.7.2.5.1</span> Turn text into document-term matrix<a href="unsupervised-learning.html#turn-text-into-document-term-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><code>stm</code> package has its preprocessing function.</p>
+<div class="sourceCode" id="cb1243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1243-1"><a href="unsupervised-learning.html#cb1243-1" tabindex="-1"></a>dtm <span class="ot">&lt;-</span> <span class="fu">textProcessor</span>(</span>
+<span id="cb1243-2"><a href="unsupervised-learning.html#cb1243-2" tabindex="-1"></a>  <span class="at">documents =</span> austen_chapters<span class="sc">$</span>text,</span>
+<span id="cb1243-3"><a href="unsupervised-learning.html#cb1243-3" tabindex="-1"></a>  <span class="at">metadata =</span> austen_chapters,</span>
+<span id="cb1243-4"><a href="unsupervised-learning.html#cb1243-4" tabindex="-1"></a>  <span class="at">removestopwords =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1243-5"><a href="unsupervised-learning.html#cb1243-5" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb1243-6"><a href="unsupervised-learning.html#cb1243-6" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="tuning-k" class="section level5 hasAnchor" number="8.7.2.5.2">
+<h5><span class="header-section-number">8.7.2.5.2</span> Tuning K<a href="unsupervised-learning.html#tuning-k" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<ul>
+<li>K is the number of topics.</li>
+<li>Let’s try K = 5, 10, 15.</li>
+</ul>
+<div class="sourceCode" id="cb1244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1244-1"><a href="unsupervised-learning.html#cb1244-1" tabindex="-1"></a>test_res <span class="ot">&lt;-</span> <span class="fu">searchK</span>(</span>
+<span id="cb1244-2"><a href="unsupervised-learning.html#cb1244-2" tabindex="-1"></a>  dtm<span class="sc">$</span>documents,</span>
+<span id="cb1244-3"><a href="unsupervised-learning.html#cb1244-3" tabindex="-1"></a>  dtm<span class="sc">$</span>vocab,</span>
+<span id="cb1244-4"><a href="unsupervised-learning.html#cb1244-4" tabindex="-1"></a>  <span class="at">K =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>),</span>
+<span id="cb1244-5"><a href="unsupervised-learning.html#cb1244-5" tabindex="-1"></a>  <span class="at">prevalence =</span> <span class="sc">~</span>book,</span>
+<span id="cb1244-6"><a href="unsupervised-learning.html#cb1244-6" tabindex="-1"></a>  <span class="at">data =</span> dtm<span class="sc">$</span>meta</span>
+<span id="cb1244-7"><a href="unsupervised-learning.html#cb1244-7" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Beginning Spectral Initialization 
+##   Calculating the gram matrix...
+##   Using only 10000 most frequent terms during initialization...
+##   Finding anchor words...
+##      .....
+##   Recovering initialization...
+##      ...................................................................................................
+## Initialization complete.
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.638) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.517, relative change = 1.595e-02) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.472, relative change = 5.930e-03) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.439, relative change = 4.387e-03) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.417, relative change = 3.013e-03) 
+## Topic 1: much, time, soon, without, noth 
+##  Topic 2: might, say, littl, good, feel 
+##  Topic 3: will, think, everi, can, first 
+##  Topic 4: mrs, must, miss, one, never 
+##  Topic 5: said, know, well, see, now 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.402, relative change = 2.013e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.392, relative change = 1.370e-03) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.385, relative change = 9.556e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.380, relative change = 6.824e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 10 (approx. per word bound = -7.376, relative change = 4.980e-04) 
+## Topic 1: much, time, soon, without, made 
+##  Topic 2: might, say, littl, good, feel 
+##  Topic 3: will, think, everi, can, first 
+##  Topic 4: mrs, must, miss, one, never 
+##  Topic 5: said, know, well, now, see 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 11 (approx. per word bound = -7.373, relative change = 3.706e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 12 (approx. per word bound = -7.371, relative change = 2.808e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 13 (approx. per word bound = -7.370, relative change = 2.160e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 14 (approx. per word bound = -7.368, relative change = 1.685e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 15 (approx. per word bound = -7.367, relative change = 1.331e-04) 
+## Topic 1: much, time, soon, without, made 
+##  Topic 2: might, say, littl, good, feel 
+##  Topic 3: will, think, everi, can, first 
+##  Topic 4: mrs, must, miss, one, never 
+##  Topic 5: said, know, well, now, see 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 16 (approx. per word bound = -7.367, relative change = 1.059e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 17 (approx. per word bound = -7.366, relative change = 8.447e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 18 (approx. per word bound = -7.365, relative change = 6.734e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 19 (approx. per word bound = -7.365, relative change = 5.392e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 20 (approx. per word bound = -7.365, relative change = 4.322e-05) 
+## Topic 1: much, time, soon, without, made 
+##  Topic 2: might, say, littl, good, feel 
+##  Topic 3: will, think, everi, can, first 
+##  Topic 4: mrs, must, miss, one, never 
+##  Topic 5: said, know, now, well, see 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 21 (approx. per word bound = -7.364, relative change = 3.470e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 22 (approx. per word bound = -7.364, relative change = 2.796e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 23 (approx. per word bound = -7.364, relative change = 2.268e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 24 (approx. per word bound = -7.364, relative change = 1.858e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 25 (approx. per word bound = -7.364, relative change = 1.538e-05) 
+## Topic 1: much, time, soon, without, give 
+##  Topic 2: might, say, littl, good, feel 
+##  Topic 3: will, think, everi, can, first 
+##  Topic 4: mrs, must, miss, one, never 
+##  Topic 5: said, know, now, well, see 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 26 (approx. per word bound = -7.364, relative change = 1.288e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 27 (approx. per word bound = -7.364, relative change = 1.096e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Model Converged 
+## Beginning Spectral Initialization 
+##   Calculating the gram matrix...
+##   Using only 10000 most frequent terms during initialization...
+##   Finding anchor words...
+##      ..........
+##   Recovering initialization...
+##      ...................................................................................................
+## Initialization complete.
+## ....................................................................................................
+## Completed E-Step (5 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.692) 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.602, relative change = 1.164e-02) 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.526, relative change = 9.978e-03) 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.478, relative change = 6.434e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.446, relative change = 4.230e-03) 
+## Topic 1: mrs, will, littl, sister, wish 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, walk 
+##  Topic 4: now, thought, seem, appear, call 
+##  Topic 5: much, thing, fanni, almost, moment 
+##  Topic 6: might, without, ladi, emma, long 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: see, good, though, friend, well 
+##  Topic 9: time, everi, first, day, two 
+##  Topic 10: like, certain, parti, well, someth 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.425, relative change = 2.894e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.409, relative change = 2.120e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.397, relative change = 1.605e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.388, relative change = 1.257e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 10 (approx. per word bound = -7.381, relative change = 9.623e-04) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, walk 
+##  Topic 4: now, thought, seem, appear, call 
+##  Topic 5: much, thing, fanni, moment, almost 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: see, good, well, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, certain, someth, parti, sure 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 11 (approx. per word bound = -7.375, relative change = 7.316e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 12 (approx. per word bound = -7.371, relative change = 5.581e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 13 (approx. per word bound = -7.368, relative change = 4.326e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 14 (approx. per word bound = -7.365, relative change = 3.391e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 15 (approx. per word bound = -7.363, relative change = 2.730e-04) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, walk 
+##  Topic 4: now, thought, seem, appear, mariann 
+##  Topic 5: much, thing, fanni, moment, crawford 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: well, see, good, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, sure, certain, someth, parti 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 16 (approx. per word bound = -7.362, relative change = 2.236e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 17 (approx. per word bound = -7.360, relative change = 1.824e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 18 (approx. per word bound = -7.359, relative change = 1.483e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 19 (approx. per word bound = -7.358, relative change = 1.221e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 20 (approx. per word bound = -7.358, relative change = 1.034e-04) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, walk 
+##  Topic 4: now, thought, seem, appear, mariann 
+##  Topic 5: much, thing, fanni, moment, crawford 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: well, see, good, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, sure, certain, someth, parti 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 21 (approx. per word bound = -7.357, relative change = 9.018e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 22 (approx. per word bound = -7.356, relative change = 7.833e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 23 (approx. per word bound = -7.356, relative change = 6.688e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 24 (approx. per word bound = -7.356, relative change = 5.677e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 25 (approx. per word bound = -7.355, relative change = 4.807e-05) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, love 
+##  Topic 4: now, thought, seem, appear, mariann 
+##  Topic 5: much, thing, fanni, believ, moment 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: well, see, good, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, sure, certain, someth, find 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 26 (approx. per word bound = -7.355, relative change = 4.082e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 27 (approx. per word bound = -7.355, relative change = 3.526e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 28 (approx. per word bound = -7.354, relative change = 3.129e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 29 (approx. per word bound = -7.354, relative change = 2.815e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 30 (approx. per word bound = -7.354, relative change = 2.525e-05) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, love 
+##  Topic 4: now, thought, seem, appear, mariann 
+##  Topic 5: much, thing, fanni, believ, moment 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: well, see, good, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, sure, certain, someth, find 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 31 (approx. per word bound = -7.354, relative change = 2.240e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 32 (approx. per word bound = -7.354, relative change = 1.999e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 33 (approx. per word bound = -7.354, relative change = 1.820e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 34 (approx. per word bound = -7.353, relative change = 1.659e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 35 (approx. per word bound = -7.353, relative change = 1.515e-05) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, love 
+##  Topic 4: now, thought, seem, appear, mariann 
+##  Topic 5: much, thing, fanni, believ, moment 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: well, see, good, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, sure, certain, someth, find 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 36 (approx. per word bound = -7.353, relative change = 1.408e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 37 (approx. per word bound = -7.353, relative change = 1.322e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 38 (approx. per word bound = -7.353, relative change = 1.249e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 39 (approx. per word bound = -7.353, relative change = 1.177e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 40 (approx. per word bound = -7.353, relative change = 1.106e-05) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, love 
+##  Topic 4: now, thought, seem, appear, mariann 
+##  Topic 5: much, thing, fanni, believ, moment 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: well, see, good, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, sure, certain, someth, find 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 41 (approx. per word bound = -7.353, relative change = 1.045e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Model Converged 
+## Beginning Spectral Initialization 
+##   Calculating the gram matrix...
+##   Using only 10000 most frequent terms during initialization...
+##   Finding anchor words...
+##      ...............
+##   Recovering initialization...
+##      ...................................................................................................
+## Initialization complete.
+## ....................................................................................................
+## Completed E-Step (6 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.752) 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.618, relative change = 1.727e-02) 
+## ....................................................................................................
+## Completed E-Step (5 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.550, relative change = 8.888e-03) 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.515, relative change = 4.633e-03) 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.489, relative change = 3.454e-03) 
+## Topic 1: one, see, say, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, even 
+##  Topic 4: said, noth, happi, long, love 
+##  Topic 5: reason, began, thoma, elliot, oblig 
+##  Topic 6: thought, well, quit, elizabeth, believ 
+##  Topic 7: miss, great, thing, made, talk 
+##  Topic 8: mrs, now, ladi, can, two 
+##  Topic 9: soon, year, left, known, week 
+##  Topic 10: much, time, everi, inde, heart 
+##  Topic 11: know, hope, ann, miss, give 
+##  Topic 12: without, fanni, appear, acquaint, give 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, emma, seem, last, felt 
+##  Topic 15: think, howev, well, say, quit 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.468, relative change = 2.830e-03) 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.449, relative change = 2.513e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.433, relative change = 2.211e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.419, relative change = 1.906e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 10 (approx. per word bound = -7.407, relative change = 1.613e-03) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, even 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, oblig, reason, wonder 
+##  Topic 6: well, thought, quit, elizabeth, believ 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, can, ladi, good 
+##  Topic 9: soon, year, half, left, told 
+##  Topic 10: much, time, everi, inde, heart 
+##  Topic 11: know, hope, sure, give, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, begin, worth, send 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 11 (approx. per word bound = -7.397, relative change = 1.323e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 12 (approx. per word bound = -7.389, relative change = 1.075e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 13 (approx. per word bound = -7.383, relative change = 8.604e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 14 (approx. per word bound = -7.377, relative change = 6.976e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 15 (approx. per word bound = -7.373, relative change = 5.726e-04) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, even 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, believ 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, inde, heart 
+##  Topic 11: know, hope, give, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, satisfi, begin, equal 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 16 (approx. per word bound = -7.370, relative change = 4.721e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 17 (approx. per word bound = -7.367, relative change = 3.855e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 18 (approx. per word bound = -7.365, relative change = 3.163e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 19 (approx. per word bound = -7.363, relative change = 2.646e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 20 (approx. per word bound = -7.361, relative change = 2.222e-04) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, though 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, believ 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, inde, heart 
+##  Topic 11: know, hope, give, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, equal, satisfi, rather 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 21 (approx. per word bound = -7.360, relative change = 1.853e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 22 (approx. per word bound = -7.359, relative change = 1.542e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 23 (approx. per word bound = -7.358, relative change = 1.304e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 24 (approx. per word bound = -7.357, relative change = 1.117e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 25 (approx. per word bound = -7.356, relative change = 9.624e-05) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, though 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, believ 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, inde, day 
+##  Topic 11: know, give, hope, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, rather, equal, consid 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 26 (approx. per word bound = -7.355, relative change = 8.244e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 27 (approx. per word bound = -7.355, relative change = 6.989e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 28 (approx. per word bound = -7.354, relative change = 5.902e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 29 (approx. per word bound = -7.354, relative change = 5.032e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 30 (approx. per word bound = -7.354, relative change = 4.449e-05) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, though 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, believ 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, day, inde 
+##  Topic 11: know, give, hope, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, rather, consid, equal 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 31 (approx. per word bound = -7.353, relative change = 4.069e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 32 (approx. per word bound = -7.353, relative change = 3.792e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 33 (approx. per word bound = -7.353, relative change = 3.573e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 34 (approx. per word bound = -7.353, relative change = 3.336e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 35 (approx. per word bound = -7.352, relative change = 3.056e-05) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, though 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, hous 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, day, inde 
+##  Topic 11: know, give, hope, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, rather, consid, equal 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 36 (approx. per word bound = -7.352, relative change = 2.688e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 37 (approx. per word bound = -7.352, relative change = 2.339e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 38 (approx. per word bound = -7.352, relative change = 2.104e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 39 (approx. per word bound = -7.352, relative change = 1.934e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 40 (approx. per word bound = -7.352, relative change = 1.770e-05) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, though 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, hous 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, day, inde 
+##  Topic 11: know, give, hope, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, rather, consid, equal 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 41 (approx. per word bound = -7.352, relative change = 1.629e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 42 (approx. per word bound = -7.351, relative change = 1.504e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 43 (approx. per word bound = -7.351, relative change = 1.385e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 44 (approx. per word bound = -7.351, relative change = 1.273e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 45 (approx. per word bound = -7.351, relative change = 1.165e-05) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, though 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, hous 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, day, inde 
+##  Topic 11: know, give, hope, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, rather, consid, equal 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 46 (approx. per word bound = -7.351, relative change = 1.081e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 47 (approx. per word bound = -7.351, relative change = 1.022e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Model Converged</code></pre>
+</div>
+<div id="evaludating-models" class="section level5 hasAnchor" number="8.7.2.5.3">
+<h5><span class="header-section-number">8.7.2.5.3</span> Evaludating models<a href="unsupervised-learning.html#evaludating-models" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Several metrics assess topic models’ performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. Here we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.</p>
+<ul>
+<li><p>Semantic coherence: high probability words for a topic co-occur in documents</p></li>
+<li><p>Exclusivity: keywords of one topic are not likely to appear as keywords in other topics.</p></li>
+</ul>
+<blockquote>
+<p>In Roberts et al. (2014), the authors introduce the semantic coherence metric of Mimno et al. (2011) as a criterion for topic‐model selection. They observe, however, that maximizing semantic coherence alone can be trivial—by allowing a small number of topics to capture the most frequent words. To counteract this, they also develop an <strong>exclusivity</strong> measure.</p>
+<p>This exclusivity measure incorporates word‐frequency information via the FREX metric (implemented in <code>calcfrex</code>), with a default weight of 0.7 placed on exclusivity.</p>
+</blockquote>
+<div class="sourceCode" id="cb1246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1246-1"><a href="unsupervised-learning.html#cb1246-1" tabindex="-1"></a>test_res<span class="sc">$</span>results <span class="sc">%&gt;%</span></span>
+<span id="cb1246-2"><a href="unsupervised-learning.html#cb1246-2" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="fu">c</span>(K, exclus, semcoh)) <span class="sc">%&gt;%</span></span>
+<span id="cb1246-3"><a href="unsupervised-learning.html#cb1246-3" tabindex="-1"></a>  <span class="fu">select</span>(K, exclus, semcoh) <span class="sc">%&gt;%</span></span>
+<span id="cb1246-4"><a href="unsupervised-learning.html#cb1246-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">K =</span> <span class="fu">as.factor</span>(K)) <span class="sc">%&gt;%</span></span>
+<span id="cb1246-5"><a href="unsupervised-learning.html#cb1246-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> exclus, <span class="at">y =</span> semcoh)) <span class="sc">+</span></span>
+<span id="cb1246-6"><a href="unsupervised-learning.html#cb1246-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1246-7"><a href="unsupervised-learning.html#cb1246-7" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb1246-8"><a href="unsupervised-learning.html#cb1246-8" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">glue</span>(<span class="st">&quot;K = {test_res$results$K}&quot;</span>),</span>
+<span id="cb1246-9"><a href="unsupervised-learning.html#cb1246-9" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">5</span>,</span>
+<span id="cb1246-10"><a href="unsupervised-learning.html#cb1246-10" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb1246-11"><a href="unsupervised-learning.html#cb1246-11" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.05</span>, <span class="at">height =</span> <span class="fl">0.05</span>)</span>
+<span id="cb1246-12"><a href="unsupervised-learning.html#cb1246-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1246-13"><a href="unsupervised-learning.html#cb1246-13" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1246-14"><a href="unsupervised-learning.html#cb1246-14" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Exclusivity&quot;</span>,</span>
+<span id="cb1246-15"><a href="unsupervised-learning.html#cb1246-15" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Semantic coherence&quot;</span>,</span>
+<span id="cb1246-16"><a href="unsupervised-learning.html#cb1246-16" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Exclusivity and semantic coherence&quot;</span></span>
+<span id="cb1246-17"><a href="unsupervised-learning.html#cb1246-17" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+</div>
+<div id="finalize" class="section level5 hasAnchor" number="8.7.2.5.4">
+<h5><span class="header-section-number">8.7.2.5.4</span> Finalize<a href="unsupervised-learning.html#finalize" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb1247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1247-1"><a href="unsupervised-learning.html#cb1247-1" tabindex="-1"></a>final_stm <span class="ot">&lt;-</span> <span class="fu">stm</span>(dtm<span class="sc">$</span>documents,</span>
+<span id="cb1247-2"><a href="unsupervised-learning.html#cb1247-2" tabindex="-1"></a>  dtm<span class="sc">$</span>vocab,</span>
+<span id="cb1247-3"><a href="unsupervised-learning.html#cb1247-3" tabindex="-1"></a>  <span class="at">K =</span> <span class="dv">10</span>, <span class="at">prevalence =</span> <span class="sc">~</span>book,</span>
+<span id="cb1247-4"><a href="unsupervised-learning.html#cb1247-4" tabindex="-1"></a>  <span class="at">max.em.its =</span> <span class="dv">75</span>,</span>
+<span id="cb1247-5"><a href="unsupervised-learning.html#cb1247-5" tabindex="-1"></a>  <span class="at">data =</span> dtm<span class="sc">$</span>meta,</span>
+<span id="cb1247-6"><a href="unsupervised-learning.html#cb1247-6" tabindex="-1"></a>  <span class="at">init.type =</span> <span class="st">&quot;Spectral&quot;</span>,</span>
+<span id="cb1247-7"><a href="unsupervised-learning.html#cb1247-7" tabindex="-1"></a>  <span class="at">seed =</span> <span class="dv">1234567</span>,</span>
+<span id="cb1247-8"><a href="unsupervised-learning.html#cb1247-8" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb1247-9"><a href="unsupervised-learning.html#cb1247-9" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="explore-the-results" class="section level5 hasAnchor" number="8.7.2.5.5">
+<h5><span class="header-section-number">8.7.2.5.5</span> Explore the results<a href="unsupervised-learning.html#explore-the-results" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<ul>
+<li>Using the <code>stm</code> package.</li>
+</ul>
+<div class="sourceCode" id="cb1248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1248-1"><a href="unsupervised-learning.html#cb1248-1" tabindex="-1"></a><span class="fu">plot</span>(final_stm)</span></code></pre></div>
+<p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+<ul>
+<li>Using ggplot2</li>
+</ul>
+<p>In LDA distribution, <span class="math inline">\(\alpha\)</span> represents document-topic density and <span class="math inline">\(\beta\)</span> represents topic-word density.</p>
+<div class="sourceCode" id="cb1249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1249-1"><a href="unsupervised-learning.html#cb1249-1" tabindex="-1"></a><span class="co"># tidy</span></span>
+<span id="cb1249-2"><a href="unsupervised-learning.html#cb1249-2" tabindex="-1"></a>tidy_stm <span class="ot">&lt;-</span> <span class="fu">tidy</span>(final_stm)</span>
+<span id="cb1249-3"><a href="unsupervised-learning.html#cb1249-3" tabindex="-1"></a></span>
+<span id="cb1249-4"><a href="unsupervised-learning.html#cb1249-4" tabindex="-1"></a><span class="co"># top terms</span></span>
+<span id="cb1249-5"><a href="unsupervised-learning.html#cb1249-5" tabindex="-1"></a>tidy_stm <span class="sc">%&gt;%</span></span>
+<span id="cb1249-6"><a href="unsupervised-learning.html#cb1249-6" tabindex="-1"></a>  <span class="fu">group_by</span>(topic) <span class="sc">%&gt;%</span></span>
+<span id="cb1249-7"><a href="unsupervised-learning.html#cb1249-7" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, beta) <span class="sc">%&gt;%</span></span>
+<span id="cb1249-8"><a href="unsupervised-learning.html#cb1249-8" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1249-9"><a href="unsupervised-learning.html#cb1249-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">fct_reorder</span>(term, beta), beta, <span class="at">fill =</span> <span class="fu">as.factor</span>(topic))) <span class="sc">+</span></span>
+<span id="cb1249-10"><a href="unsupervised-learning.html#cb1249-10" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1249-11"><a href="unsupervised-learning.html#cb1249-11" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>topic, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1249-12"><a href="unsupervised-learning.html#cb1249-12" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb1249-13"><a href="unsupervised-learning.html#cb1249-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb1249-14"><a href="unsupervised-learning.html#cb1249-14" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code></pre></div>
+<p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="supervised-learning.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/jaeyk/PS239T/edit/main/07_high_dimensional_data.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["pdf", "PS239T.pdf"],
+    ["epub", "PS239T.epub"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "toolbar": {
+    "position": "fixed"
+  },
+  "code_copy": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

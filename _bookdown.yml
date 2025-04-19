@@ -1,8 +1,34 @@
+# --- book identity ----------------------------------------------------------
 book_filename: "PS239T"
+repo: "https://github.com/jaeyk/PS239T"
+
+# --- build targets ----------------------------------------------------------
 output_dir: "docs"
-repo: https://github.com/jaeyk/PS239T
+deploy: "gh-pages"               # ➊ auto‑deploy branch
+
+# --- rendering behaviour ----------------------------------------------------
 new_session: true
 delete_merged_file: true
+rmd_subdir: true                 # ➋ lets you keep chapters in folders
+before_chapter_script: "_common.R"  # ➌ load packages, set options once
+clean: ["*_cache/", "*_files/"]  # ➍ extra cleaning after render
+
+# --- visual & navigation tweaks ---------------------------------------------
 language:
   ui:
     chapter_name: "Chapter "
+    # optional: custom “Figure”, “Table”, etc.
+    # figure: "Fig."
+    # table:  "Tbl."
+
+# --- links & editing helpers -------------------------------------------------
+edit: "https://github.com/jaeyk/PS239T/edit/main/%s"  # ➎ “Edit this page” link
+download:
+  - ["pdf",  "PS239T.pdf"]        # ➏ offer PDF + ePub downloads
+  - ["epub", "PS239T.epub"]
+
+# --- site meta (for bs4_book / gitbook) --------------------------------------
+site:
+  title: "PS 239T: Computational Social Science"
+  description: "Course textbook built with {bookdown}"
+  # twitter-card / open‑graph options if you share links

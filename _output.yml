@@ -1,16 +1,41 @@
+# ── HTML ────────────────────────────────────────────────────────────────────
 bookdown::gitbook:
-  css: style.css
+  css: style.css            # keep your custom styles
+  split_by: section         # lighter pages & faster mobile loads
   config:
     toc:
       before: |
         <li><a href="./">Computational Thinking for Social Scientists</a></li>
       after: |
-        <li><a href="https://github.com/jaeyk/PS239T/" target="blank">Published with bookdown</a></li>
-    download: ["pdf"]
+        <li><a href="https://github.com/jaeyk/PS239T" target="_blank">
+          Published with <code>{bookdown}</code></a></li>
+    download:               # show buttons in the navbar
+      - ["pdf",  "PS239T.pdf"]
+      - ["epub", "PS239T.epub"]
+    search: yes             # adds a live‑search box
+    toolbar:
+      position: fixed       # navbar stays visible when scrolling
+    edit: https://github.com/jaeyk/PS239T/edit/main/%s
+    # enable GitBook’s “copy‑code” button:
+    code_copy: true
+
+# ── PDF ────────────────────────────────────────────────────────────────────
 bookdown::pdf_book:
-  includes:
-    in_header: preamble.tex
   latex_engine: xelatex
   citation_package: natbib
-  keep_tex: yes
-bookdown::epub_book: default
+  includes:
+    in_header:   preamble.tex     # custom LaTeX (fonts, packages, …)
+  number_sections: true           # auto‑number headings
+  fig_caption: true               # “Figure 1:” captions
+  keep_tex: false                 # set to true only when debugging
+  toc: true                       # PDF table of contents
+  toc_depth: 2                    # show up to H2 in TOC
+
+# ── EPUB ───────────────────────────────────────────────────────────────────
+bookdown::epub_book:
+  stylesheet:  style.css          # reuse the HTML CSS for consistent look
+  cover_image: images/cover.png   # optional nice‑looking cover
+  metadata:
+    title:       "PS 239T – Computational Thinking for Social Scientists"
+    creator:     "Jaeyoun Kim"
+    rights:      "© 2025 Jaeyoun Kim"

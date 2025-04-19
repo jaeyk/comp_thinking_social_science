@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.2 Git and GitHub | Computational Thinking for Social Scientists</title>
+  <meta name="description" content="3.2 Git and GitHub | Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.2 Git and GitHub | Computational Thinking for Social Scientists" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="3.2 Git and GitHub | Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists." />
+  <meta name="github-repo" content="jaeyk/PS239T" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.2 Git and GitHub | Computational Thinking for Social Scientists" />
+  <meta name="twitter:site" content="@JaeJaeykim2" />
+  <meta name="twitter:description" content="3.2 Git and GitHub | Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists." />
+  
+
+<meta name="author" content="Jae Yeon Kim" />
+
+
+<meta name="date" content="2025-04-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="the-command-line.html"/>
+<link rel="next" href="project-oriented-research.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Computational Thinking for Social Scientists</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Hello, World</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="part-i-fundamentals.html"><a href="part-i-fundamentals.html"><i class="fa fa-check"></i><b>1.1</b> Part I: Fundamentals</a></li>
+<li class="chapter" data-level="1.2" data-path="part-ii-applications.html"><a href="part-ii-applications.html"><i class="fa fa-check"></i><b>1.2</b> Part II: Applications</a></li>
+<li class="chapter" data-level="1.3" data-path="special-thanks.html"><a href="special-thanks.html"><i class="fa fa-check"></i><b>1.3</b> Special Thanks</a></li>
+<li class="chapter" data-level="1.4" data-path="suggestions-questions-or-comments.html"><a href="suggestions-questions-or-comments.html"><i class="fa fa-check"></i><b>1.4</b> Suggestions, Questions, or Comments</a></li>
+<li class="chapter" data-level="1.5" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>1.5</b> License</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>2</b> Computational Thinking</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="why-computational-thinking.html"><a href="why-computational-thinking.html"><i class="fa fa-check"></i><b>2.1</b> Why computational thinking</a></li>
+<li class="chapter" data-level="2.2" data-path="computational-thinking-in-the-age-of-generative-ai.html"><a href="computational-thinking-in-the-age-of-generative-ai.html"><i class="fa fa-check"></i><b>2.2</b> Computational thinking in the age of generative AI</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-teach-and-learn-computational-thinking.html"><a href="how-to-teach-and-learn-computational-thinking.html"><i class="fa fa-check"></i><b>2.3</b> How to teach and learn computational thinking</a></li>
+<li class="chapter" data-level="2.4" data-path="computational-thinking-and-a-career-in-computational-social-science.html"><a href="computational-thinking-and-a-career-in-computational-social-science.html"><i class="fa fa-check"></i><b>2.4</b> Computational thinking and a career in computational social science</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="git_bash.html"><a href="git_bash.html"><i class="fa fa-check"></i><b>3</b> Managing data and code</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="the-command-line.html"><a href="the-command-line.html"><i class="fa fa-check"></i><b>3.1</b> The Command Line</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="the-command-line.html"><a href="the-command-line.html#the-big-picture"><i class="fa fa-check"></i><b>3.1.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.1.2" data-path="the-command-line.html"><a href="the-command-line.html#why-bother-using-the-command-line"><i class="fa fa-check"></i><b>3.1.2</b> Why bother using the command line?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="the-command-line.html"><a href="the-command-line.html#unix-shell"><i class="fa fa-check"></i><b>3.1.3</b> UNIX Shell</a></li>
+<li class="chapter" data-level="3.1.4" data-path="the-command-line.html"><a href="the-command-line.html#references"><i class="fa fa-check"></i><b>3.1.4</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="git-and-github.html"><a href="git-and-github.html"><i class="fa fa-check"></i><b>3.2</b> Git and GitHub</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="git-and-github.html"><a href="git-and-github.html#the-big-picture-1"><i class="fa fa-check"></i><b>3.2.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.2.2" data-path="git-and-github.html"><a href="git-and-github.html#version-control-system"><i class="fa fa-check"></i><b>3.2.2</b> Version control system</a></li>
+<li class="chapter" data-level="3.2.3" data-path="git-and-github.html"><a href="git-and-github.html#setup"><i class="fa fa-check"></i><b>3.2.3</b> Setup</a></li>
+<li class="chapter" data-level="3.2.4" data-path="git-and-github.html"><a href="git-and-github.html#cloning-a-repository"><i class="fa fa-check"></i><b>3.2.4</b> Cloning a repository</a></li>
+<li class="chapter" data-level="3.2.5" data-path="git-and-github.html"><a href="git-and-github.html#making-a-repository"><i class="fa fa-check"></i><b>3.2.5</b> Making a repository</a></li>
+<li class="chapter" data-level="3.2.6" data-path="git-and-github.html"><a href="git-and-github.html#commit-changes"><i class="fa fa-check"></i><b>3.2.6</b> Commit changes</a></li>
+<li class="chapter" data-level="3.2.7" data-path="git-and-github.html"><a href="git-and-github.html#push-and-pull-or-fetch"><i class="fa fa-check"></i><b>3.2.7</b> Push and pull (or fetch)</a></li>
+<li class="chapter" data-level="3.2.8" data-path="git-and-github.html"><a href="git-and-github.html#branching"><i class="fa fa-check"></i><b>3.2.8</b> Branching</a></li>
+<li class="chapter" data-level="3.2.9" data-path="git-and-github.html"><a href="git-and-github.html#other-useful-commands"><i class="fa fa-check"></i><b>3.2.9</b> Other useful commands</a></li>
+<li class="chapter" data-level="3.2.10" data-path="git-and-github.html"><a href="git-and-github.html#collaborations"><i class="fa fa-check"></i><b>3.2.10</b> Collaborations</a></li>
+<li class="chapter" data-level="3.2.11" data-path="git-and-github.html"><a href="git-and-github.html#deployment-github-pages"><i class="fa fa-check"></i><b>3.2.11</b> Deployment: GitHub Pages</a></li>
+<li class="chapter" data-level="3.2.12" data-path="git-and-github.html"><a href="git-and-github.html#tracking-progress-github-issues"><i class="fa fa-check"></i><b>3.2.12</b> Tracking progress: GitHub Issues</a></li>
+<li class="chapter" data-level="3.2.13" data-path="git-and-github.html"><a href="git-and-github.html#project-management-github-dashboards"><i class="fa fa-check"></i><b>3.2.13</b> Project management: GitHub Dashboards</a></li>
+<li class="chapter" data-level="3.2.14" data-path="git-and-github.html"><a href="git-and-github.html#using-git-clients"><i class="fa fa-check"></i><b>3.2.14</b> Using Git clients</a></li>
+<li class="chapter" data-level="3.2.15" data-path="git-and-github.html"><a href="git-and-github.html#the-big-picture-2"><i class="fa fa-check"></i><b>3.2.15</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.2.16" data-path="git-and-github.html"><a href="git-and-github.html#rstudio"><i class="fa fa-check"></i><b>3.2.16</b> RStudio</a></li>
+<li class="chapter" data-level="3.2.17" data-path="git-and-github.html"><a href="git-and-github.html#basic-syntax"><i class="fa fa-check"></i><b>3.2.17</b> Basic Syntax</a></li>
+<li class="chapter" data-level="3.2.18" data-path="git-and-github.html"><a href="git-and-github.html#environment"><i class="fa fa-check"></i><b>3.2.18</b> Environment</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="project-oriented-research.html"><a href="project-oriented-research.html"><i class="fa fa-check"></i><b>3.3</b> Project-oriented research</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="project-oriented-research.html"><a href="project-oriented-research.html#the-big-picture-3"><i class="fa fa-check"></i><b>3.3.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.3.2" data-path="project-oriented-research.html"><a href="project-oriented-research.html#references-1"><i class="fa fa-check"></i><b>3.3.2</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html"><i class="fa fa-check"></i><b>3.4</b> Writing code: How to code like a professional</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html#the-big-picture-4"><i class="fa fa-check"></i><b>3.4.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="3.4.2" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html#write-readable-code"><i class="fa fa-check"></i><b>3.4.2</b> Write readable code</a></li>
+<li class="chapter" data-level="3.4.3" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html#write-reusable-code"><i class="fa fa-check"></i><b>3.4.3</b> Write reusable code</a></li>
+<li class="chapter" data-level="3.4.4" data-path="writing-code-how-to-code-like-a-professional.html"><a href="writing-code-how-to-code-like-a-professional.html#test-your-code-systematically"><i class="fa fa-check"></i><b>3.4.4</b> Test your code systematically</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="run-tests.html"><a href="run-tests.html"><i class="fa fa-check"></i><b>3.5</b> Run tests</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="run-tests.html"><a href="run-tests.html#asking-questions-minimal-reproducible-example"><i class="fa fa-check"></i><b>3.5.1</b> Asking questions: Minimal reproducible example</a></li>
+<li class="chapter" data-level="3.5.2" data-path="run-tests.html"><a href="run-tests.html#references-2"><i class="fa fa-check"></i><b>3.5.2</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tidy_data.html"><a href="tidy_data.html"><i class="fa fa-check"></i><b>4</b> Tidy data and its friends</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="setup-2.html"><a href="setup-2.html"><i class="fa fa-check"></i><b>4.1</b> Setup</a></li>
+<li class="chapter" data-level="4.2" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html"><i class="fa fa-check"></i><b>4.2</b> Base R data structure</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#d-data-vectors"><i class="fa fa-check"></i><b>4.2.1</b> 1D data: Vectors</a></li>
+<li class="chapter" data-level="4.2.2" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#data-structures"><i class="fa fa-check"></i><b>4.2.2</b> Data structures</a></li>
+<li class="chapter" data-level="4.2.3" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#attributes"><i class="fa fa-check"></i><b>4.2.3</b> Attributes</a></li>
+<li class="chapter" data-level="4.2.4" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#d-data-matrices-and-dataframes"><i class="fa fa-check"></i><b>4.2.4</b> 2D data: Matrices and dataframes</a></li>
+<li class="chapter" data-level="4.2.5" data-path="base-r-data-structure.html"><a href="base-r-data-structure.html#subset"><i class="fa fa-check"></i><b>4.2.5</b> Subset</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4.3</b> Tidyverse</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="tidyverse.html"><a href="tidyverse.html#the-big-picture-5"><i class="fa fa-check"></i><b>4.3.1</b> The Big Picture</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="tidying-tidyr.html"><a href="tidying-tidyr.html"><i class="fa fa-check"></i><b>4.4</b> Tidying (tidyr)</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="tidying-tidyr.html"><a href="tidying-tidyr.html#reshaping"><i class="fa fa-check"></i><b>4.4.1</b> Reshaping</a></li>
+<li class="chapter" data-level="4.4.2" data-path="tidying-tidyr.html"><a href="tidying-tidyr.html#filling"><i class="fa fa-check"></i><b>4.4.2</b> Filling</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html"><i class="fa fa-check"></i><b>4.5</b> Manipulating (dplyr)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#rearranging"><i class="fa fa-check"></i><b>4.5.1</b> Rearranging</a></li>
+<li class="chapter" data-level="4.5.2" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#subset-observations-rows"><i class="fa fa-check"></i><b>4.5.2</b> Subset observations (rows)</a></li>
+<li class="chapter" data-level="4.5.3" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#subset-variables-columns"><i class="fa fa-check"></i><b>4.5.3</b> Subset variables (columns)</a></li>
+<li class="chapter" data-level="4.5.4" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#create-variables"><i class="fa fa-check"></i><b>4.5.4</b> Create variables</a></li>
+<li class="chapter" data-level="4.5.5" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#counting"><i class="fa fa-check"></i><b>4.5.5</b> Counting</a></li>
+<li class="chapter" data-level="4.5.6" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#summarizing"><i class="fa fa-check"></i><b>4.5.6</b> Summarizing</a></li>
+<li class="chapter" data-level="4.5.7" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#grouping"><i class="fa fa-check"></i><b>4.5.7</b> Grouping</a></li>
+<li class="chapter" data-level="4.5.8" data-path="manipulating-dplyr.html"><a href="manipulating-dplyr.html#joining"><i class="fa fa-check"></i><b>4.5.8</b> Joining</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="modeling-broom.html"><a href="modeling-broom.html"><i class="fa fa-check"></i><b>4.6</b> Modeling (broom)</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="modeling-broom.html"><a href="modeling-broom.html#nesting"><i class="fa fa-check"></i><b>4.6.1</b> Nesting</a></li>
+<li class="chapter" data-level="4.6.2" data-path="modeling-broom.html"><a href="modeling-broom.html#mapping"><i class="fa fa-check"></i><b>4.6.2</b> Mapping</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html"><i class="fa fa-check"></i><b>4.7</b> Visualizing (ggplot2)</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#motivation-2"><i class="fa fa-check"></i><b>4.7.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.7.2" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>4.7.2</b> The grammar of graphics</a></li>
+<li class="chapter" data-level="4.7.3" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#mapping-and-geom"><i class="fa fa-check"></i><b>4.7.3</b> mapping and geom</a></li>
+<li class="chapter" data-level="4.7.4" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#basic-aes-x-y"><i class="fa fa-check"></i><b>4.7.4</b> basic aes (x , y)</a></li>
+<li class="chapter" data-level="4.7.5" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#univariate-distribution"><i class="fa fa-check"></i><b>4.7.5</b> Univariate distribution</a></li>
+<li class="chapter" data-level="4.7.6" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#advanced-aes-size-color"><i class="fa fa-check"></i><b>4.7.6</b> Advanced aes (size, color)</a></li>
+<li class="chapter" data-level="4.7.7" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#co-ordinates-and-scales"><i class="fa fa-check"></i><b>4.7.7</b> Co-ordinates and scales</a></li>
+<li class="chapter" data-level="4.7.8" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#labels-and-guides"><i class="fa fa-check"></i><b>4.7.8</b> Labels and guides</a></li>
+<li class="chapter" data-level="4.7.9" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#ggsave"><i class="fa fa-check"></i><b>4.7.9</b> ggsave</a></li>
+<li class="chapter" data-level="4.7.10" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#many-plots"><i class="fa fa-check"></i><b>4.7.10</b> Many plots</a></li>
+<li class="chapter" data-level="4.7.11" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#transforming"><i class="fa fa-check"></i><b>4.7.11</b> Transforming</a></li>
+<li class="chapter" data-level="4.7.12" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#ploting-models"><i class="fa fa-check"></i><b>4.7.12</b> Ploting models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functional_programming.html"><a href="functional_programming.html"><i class="fa fa-check"></i><b>5</b> Automating repeated things</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="the-big-picture-6.html"><a href="the-big-picture-6.html"><i class="fa fa-check"></i><b>5.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="5.2" data-path="objectives.html"><a href="objectives.html"><i class="fa fa-check"></i><b>5.2</b> Objectives</a></li>
+<li class="chapter" data-level="5.3" data-path="setup-3.html"><a href="setup-3.html"><i class="fa fa-check"></i><b>5.3</b> Setup</a></li>
+<li class="chapter" data-level="5.4" data-path="flow.html"><a href="flow.html"><i class="fa fa-check"></i><b>5.4</b> Flow control</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="flow.html"><a href="flow.html#if-one-condition"><i class="fa fa-check"></i><b>5.4.1</b> if (one condition)</a></li>
+<li class="chapter" data-level="5.4.2" data-path="flow.html"><a href="flow.html#if-else-two-conditions"><i class="fa fa-check"></i><b>5.4.2</b> if + else (two conditions)</a></li>
+<li class="chapter" data-level="5.4.3" data-path="flow.html"><a href="flow.html#if-else-if-else-three-conditions"><i class="fa fa-check"></i><b>5.4.3</b> if + else if + else (three conditions)</a></li>
+<li class="chapter" data-level="5.4.4" data-path="flow.html"><a href="flow.html#functions"><i class="fa fa-check"></i><b>5.4.4</b> Functions</a></li>
+<li class="chapter" data-level="5.4.5" data-path="flow.html"><a href="flow.html#for-loop"><i class="fa fa-check"></i><b>5.4.5</b> for loop</a></li>
+<li class="chapter" data-level="5.4.6" data-path="flow.html"><a href="flow.html#apply-family"><i class="fa fa-check"></i><b>5.4.6</b> apply family</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="purrr.html"><a href="purrr.html"><i class="fa fa-check"></i><b>5.5</b> purrr</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="purrr.html"><a href="purrr.html#why-map"><i class="fa fa-check"></i><b>5.5.1</b> Why map?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="map2.html"><a href="map2.html"><i class="fa fa-check"></i><b>5.6</b> Automate 2 or 2+ tasks</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="map2.html"><a href="map2.html#objectives-2"><i class="fa fa-check"></i><b>5.6.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.6.2" data-path="map2.html"><a href="map2.html#problem"><i class="fa fa-check"></i><b>5.6.2</b> Problem</a></li>
+<li class="chapter" data-level="5.6.3" data-path="map2.html"><a href="map2.html#for-loop-1"><i class="fa fa-check"></i><b>5.6.3</b> For loop</a></li>
+<li class="chapter" data-level="5.6.4" data-path="map2.html"><a href="map2.html#map2-pmap"><i class="fa fa-check"></i><b>5.6.4</b> map2 &amp; pmap</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="glue.html"><a href="glue.html"><i class="fa fa-check"></i><b>5.7</b> Automate plotting</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="glue.html"><a href="glue.html#objective"><i class="fa fa-check"></i><b>5.7.1</b> Objective</a></li>
+<li class="chapter" data-level="5.7.2" data-path="glue.html"><a href="glue.html#problem-1"><i class="fa fa-check"></i><b>5.7.2</b> Problem</a></li>
+<li class="chapter" data-level="5.7.3" data-path="glue.html"><a href="glue.html#solution"><i class="fa fa-check"></i><b>5.7.3</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="reduce.html"><a href="reduce.html"><i class="fa fa-check"></i><b>5.8</b> Automate joining</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="reduce.html"><a href="reduce.html#objective-1"><i class="fa fa-check"></i><b>5.8.1</b> Objective</a></li>
+<li class="chapter" data-level="5.8.2" data-path="reduce.html"><a href="reduce.html#problem-2"><i class="fa fa-check"></i><b>5.8.2</b> Problem</a></li>
+<li class="chapter" data-level="5.8.3" data-path="reduce.html"><a href="reduce.html#copy-and-paste"><i class="fa fa-check"></i><b>5.8.3</b> Copy and paste</a></li>
+<li class="chapter" data-level="5.8.4" data-path="reduce.html"><a href="reduce.html#reduce-1"><i class="fa fa-check"></i><b>5.8.4</b> reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="speed.html"><a href="speed.html"><i class="fa fa-check"></i><b>5.9</b> Make automation slower or faster</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="speed.html"><a href="speed.html#objectives-3"><i class="fa fa-check"></i><b>5.9.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.9.2" data-path="speed.html"><a href="speed.html#how-to-make-automation-slower"><i class="fa fa-check"></i><b>5.9.2</b> How to Make Automation Slower</a></li>
+<li class="chapter" data-level="5.9.3" data-path="speed.html"><a href="speed.html#how-to-make-automation-faster"><i class="fa fa-check"></i><b>5.9.3</b> How to Make Automation Faster</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="robustness.html"><a href="robustness.html"><i class="fa fa-check"></i><b>5.10</b> Make error handling easier</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="robustness.html"><a href="robustness.html#learning-objective"><i class="fa fa-check"></i><b>5.10.1</b> Learning objective</a></li>
+<li class="chapter" data-level="5.10.2" data-path="robustness.html"><a href="robustness.html#solution-1"><i class="fa fa-check"></i><b>5.10.2</b> Solution</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="products.html"><a href="products.html"><i class="fa fa-check"></i><b>6</b> Developing data products</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="developing-r-packages.html"><a href="developing-r-packages.html"><i class="fa fa-check"></i><b>6.1</b> Developing R packages</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="developing-r-packages.html"><a href="developing-r-packages.html#the-big-picture-7"><i class="fa fa-check"></i><b>6.1.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="6.1.2" data-path="developing-r-packages.html"><a href="developing-r-packages.html#workflow"><i class="fa fa-check"></i><b>6.1.2</b> Workflow</a></li>
+<li class="chapter" data-level="6.1.3" data-path="developing-r-packages.html"><a href="developing-r-packages.html#required-components"><i class="fa fa-check"></i><b>6.1.3</b> Required Components</a></li>
+<li class="chapter" data-level="6.1.4" data-path="developing-r-packages.html"><a href="developing-r-packages.html#optional-components"><i class="fa fa-check"></i><b>6.1.4</b> Optional Components</a></li>
+<li class="chapter" data-level="6.1.5" data-path="developing-r-packages.html"><a href="developing-r-packages.html#building-an-r-package"><i class="fa fa-check"></i><b>6.1.5</b> Building an R package</a></li>
+<li class="chapter" data-level="6.1.6" data-path="developing-r-packages.html"><a href="developing-r-packages.html#distributing-an-r-package"><i class="fa fa-check"></i><b>6.1.6</b> Distributing an R package</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html"><i class="fa fa-check"></i><b>6.2</b> Developing Shiny apps</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html#workflow-1"><i class="fa fa-check"></i><b>6.2.1</b> Workflow</a></li>
+<li class="chapter" data-level="6.2.2" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html#app.r"><i class="fa fa-check"></i><b>6.2.2</b> app.r</a></li>
+<li class="chapter" data-level="6.2.3" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html#deployment"><i class="fa fa-check"></i><b>6.2.3</b> Deployment</a></li>
+<li class="chapter" data-level="6.2.4" data-path="developing-shiny-apps.html"><a href="developing-shiny-apps.html#references-3"><i class="fa fa-check"></i><b>6.2.4</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="other-useful-data-products.html"><a href="other-useful-data-products.html"><i class="fa fa-check"></i><b>6.3</b> Other useful data products</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="semi_structured_data.html"><a href="semi_structured_data.html"><i class="fa fa-check"></i><b>7</b> Semi-structured data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="setup-4.html"><a href="setup-4.html"><i class="fa fa-check"></i><b>7.1</b> Setup</a></li>
+<li class="chapter" data-level="7.2" data-path="the-big-picture-8.html"><a href="the-big-picture-8.html"><i class="fa fa-check"></i><b>7.2</b> The Big Picture</a></li>
+<li class="chapter" data-level="7.3" data-path="what-is-semi-structured-data.html"><a href="what-is-semi-structured-data.html"><i class="fa fa-check"></i><b>7.3</b> What is semi-structured data?</a></li>
+<li class="chapter" data-level="7.4" data-path="workflow-2.html"><a href="workflow-2.html"><i class="fa fa-check"></i><b>7.4</b> Workflow</a></li>
+<li class="chapter" data-level="7.5" data-path="htmlcss-web-scraping.html"><a href="htmlcss-web-scraping.html"><i class="fa fa-check"></i><b>7.5</b> HTML/CSS: web scraping</a></li>
+<li class="chapter" data-level="7.6" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html"><i class="fa fa-check"></i><b>7.6</b> XML/JSON: government database/social media scraping</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#governemnt-database-xml"><i class="fa fa-check"></i><b>7.6.1</b> Governemnt database (XML)</a></li>
+<li class="chapter" data-level="7.6.2" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#social-media-api-json"><i class="fa fa-check"></i><b>7.6.2</b> Social media API (JSON)</a></li>
+<li class="chapter" data-level="7.6.3" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#next-steps"><i class="fa fa-check"></i><b>7.6.3</b> Next steps</a></li>
+<li class="chapter" data-level="7.6.4" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#rtweet"><i class="fa fa-check"></i><b>7.6.4</b> rtweet</a></li>
+<li class="chapter" data-level="7.6.5" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#hydrating"><i class="fa fa-check"></i><b>7.6.5</b> Hydrating</a></li>
+<li class="chapter" data-level="7.6.6" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#parsing-json"><i class="fa fa-check"></i><b>7.6.6</b> Parsing JSON</a></li>
+<li class="chapter" data-level="7.6.7" data-path="xmljson-government-databasesocial-media-scraping.html"><a href="xmljson-government-databasesocial-media-scraping.html#getting-api-data-from-scratch"><i class="fa fa-check"></i><b>7.6.7</b> Getting API data from scratch</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="machine_learning.html"><a href="machine_learning.html"><i class="fa fa-check"></i><b>8</b> High-dimensional data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="the-big-picture-9.html"><a href="the-big-picture-9.html"><i class="fa fa-check"></i><b>8.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="8.2" data-path="dataset.html"><a href="dataset.html"><i class="fa fa-check"></i><b>8.2</b> Dataset</a></li>
+<li class="chapter" data-level="8.3" data-path="workflow-3.html"><a href="workflow-3.html"><i class="fa fa-check"></i><b>8.3</b> Workflow</a></li>
+<li class="chapter" data-level="8.4" data-path="tidymodels.html"><a href="tidymodels.html"><i class="fa fa-check"></i><b>8.4</b> tidymodels</a></li>
+<li class="chapter" data-level="8.5" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>8.5</b> Pre-processing</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="pre-processing.html"><a href="pre-processing.html#regression-setup"><i class="fa fa-check"></i><b>8.5.1</b> Regression setup</a></li>
+<li class="chapter" data-level="8.5.2" data-path="pre-processing.html"><a href="pre-processing.html#classification-setup"><i class="fa fa-check"></i><b>8.5.2</b> Classification setup</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="supervised-learning.html"><a href="supervised-learning.html"><i class="fa fa-check"></i><b>8.6</b> Supervised learning</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="supervised-learning.html"><a href="supervised-learning.html#ols-and-lasso"><i class="fa fa-check"></i><b>8.6.1</b> OLS and Lasso</a></li>
+<li class="chapter" data-level="8.6.2" data-path="supervised-learning.html"><a href="supervised-learning.html#decision-tree"><i class="fa fa-check"></i><b>8.6.2</b> Decision tree</a></li>
+<li class="chapter" data-level="8.6.3" data-path="supervised-learning.html"><a href="supervised-learning.html#bagging-random-forest"><i class="fa fa-check"></i><b>8.6.3</b> Bagging (Random forest)</a></li>
+<li class="chapter" data-level="8.6.4" data-path="supervised-learning.html"><a href="supervised-learning.html#boosting-xgboost"><i class="fa fa-check"></i><b>8.6.4</b> Boosting (XGboost)</a></li>
+<li class="chapter" data-level="8.6.5" data-path="supervised-learning.html"><a href="supervised-learning.html#stacking-superlearner"><i class="fa fa-check"></i><b>8.6.5</b> Stacking (SuperLearner)</a></li>
+<li class="chapter" data-level="8.6.6" data-path="supervised-learning.html"><a href="supervised-learning.html#applications-2"><i class="fa fa-check"></i><b>8.6.6</b> Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>8.7</b> Unsupervised learning</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#dimension-reduction"><i class="fa fa-check"></i><b>8.7.1</b> Dimension reduction</a></li>
+<li class="chapter" data-level="8.7.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#topic-modeling"><i class="fa fa-check"></i><b>8.7.2</b> Topic modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="references-4.html"><a href="references-4.html"><i class="fa fa-check"></i><b>8.8</b> References</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="references-4.html"><a href="references-4.html#books"><i class="fa fa-check"></i><b>8.8.1</b> Books</a></li>
+<li class="chapter" data-level="8.8.2" data-path="references-4.html"><a href="references-4.html#lecture-slides"><i class="fa fa-check"></i><b>8.8.2</b> Lecture slides</a></li>
+<li class="chapter" data-level="8.8.3" data-path="references-4.html"><a href="references-4.html#blog-posts"><i class="fa fa-check"></i><b>8.8.3</b> Blog posts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="big_data.html"><a href="big_data.html"><i class="fa fa-check"></i><b>9</b> Big data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="the-big-picture-10.html"><a href="the-big-picture-10.html"><i class="fa fa-check"></i><b>9.1</b> The Big Picture</a></li>
+<li class="chapter" data-level="9.2" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>9.2</b> SQL</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="sql.html"><a href="sql.html#learning-objectives"><i class="fa fa-check"></i><b>9.2.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="9.2.2" data-path="sql.html"><a href="sql.html#sql-and-r"><i class="fa fa-check"></i><b>9.2.2</b> SQL and R</a></li>
+<li class="chapter" data-level="9.2.3" data-path="sql.html"><a href="sql.html#setup-7"><i class="fa fa-check"></i><b>9.2.3</b> Setup</a></li>
+<li class="chapter" data-level="9.2.4" data-path="sql.html"><a href="sql.html#packages-1"><i class="fa fa-check"></i><b>9.2.4</b> Packages</a></li>
+<li class="chapter" data-level="9.2.5" data-path="sql.html"><a href="sql.html#nyc-flights-data"><i class="fa fa-check"></i><b>9.2.5</b> NYC flights data</a></li>
+<li class="chapter" data-level="9.2.6" data-path="sql.html"><a href="sql.html#workflow-4"><i class="fa fa-check"></i><b>9.2.6</b> Workflow</a></li>
+<li class="chapter" data-level="9.2.7" data-path="sql.html"><a href="sql.html#things-we-didnt-cover"><i class="fa fa-check"></i><b>9.2.7</b> Things we didn’t cover</a></li>
+<li class="chapter" data-level="9.2.8" data-path="sql.html"><a href="sql.html#references-5"><i class="fa fa-check"></i><b>9.2.8</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/jaeyk/PS239T" target="_blank">
+  Published with <code>{bookdown}</code></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Thinking for Social Scientists</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="git-and-github" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Git and GitHub<a href="git-and-github.html#git-and-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-big-picture-1" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> The Big Picture<a href="git-and-github.html#the-big-picture-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>The most important point</strong></p>
+<ul>
+<li><p>Backup != Version control</p></li>
+<li><p>If you do version control, you need to save your <strong>raw data</strong> in your hard disk, external drive, or cloud, but nothing else. In other words, anything you are going to change should be subject to version control (also, it’s not the same as saving your code with names like 20200120_Kim or something like that). Below, I will explain what version control is and how to do it using Git and GitHub.</p></li>
+</ul>
+<div class="float">
+<img src="https://i2.wp.com/cdn-images-1.medium.com/max/399/1*7HHA_UkjUK7wp7qP4CYu1g.png?zoom=1.75&amp;w=456&amp;ssl=1" alt="Why you should do version control" />
+<div class="figcaption">Why you should do version control</div>
+</div>
+</div>
+<div id="version-control-system" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Version control system<a href="git-and-github.html#version-control-system" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>According to <a href="https://guides.GitHub.com">GitHub Guides</a>, a version control system “tracks the history of changes as people and teams collaborate on projects together.” Specifically, it helps to track the following information:</p>
+<ul>
+<li>Which changes were made?</li>
+<li>Who made the changes?</li>
+<li>When were the changes made?</li>
+<li>Why were changes needed?</li>
+</ul>
+<p>Git is a case of a <a href="https://en.wikipedia.org/wiki/Distributed_version_control">distributed version control system</a>, common in open source and commercial software development. This is no surprise given that Git <a href="https://lkml.org/lkml/2005/4/6/121">was originally created</a> to deal with Linux kernel development.</p>
+<p>The following images, from <a href="git-scm.com">Pro Git</a>, show how a centralized (e.g., CVS, Subversion, and Perforce) and decentralized VCS (e.g., Git, Mercurial, Bazzar or Darcs) works differently.</p>
+<div class="float">
+<img src="https://git-scm.com/book/en/v2/images/centralized.png" alt="Centralized version control system" />
+<div class="figcaption">Centralized version control system</div>
+</div>
+<p>Figure 2. Centralized VCS.</p>
+<div class="float">
+<img src="https://git-scm.com/book/en/v2/images/distributed.png" alt="Decentralized version control system" />
+<div class="figcaption">Decentralized version control system</div>
+</div>
+<p>Figure 3. Decentralized VCS.</p>
+<p>For more information on the varieties of version control systems, please read <a href="https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf">Petr Baudis’s review</a> on that subject.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PFwUHTE6mFc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> Webcast • Introduction to Git and GitHub • Featuring Mehan Jayasuriya, GitHub Training & Guides </p>
+<div class="float">
+<img src="https://plain-text.co/figures/git-basic.png" alt="Figure 2.1. A schematic git workflow from Healy’s “The Plain Person’s Guide to Plain Text Social Science”" />
+<div class="figcaption">Figure 2.1. A schematic git workflow from Healy’s “The Plain Person’s Guide to Plain Text Social Science”</div>
+</div>
+<p>For more information, watch the following video:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/u6G3fbmpWr8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> The Basics of Git and GitHub, GitHub Training & Guides </p>
+</div>
+<div id="setup" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Setup<a href="git-and-github.html#setup" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="signup" class="section level4 hasAnchor" number="3.2.3.1">
+<h4><span class="header-section-number">3.2.3.1</span> Signup<a href="git-and-github.html#signup" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Make sure you have installed Git (<a href="https://happygitwithr.com/install-git.html#install-git">[tutorial]</a>).</li>
+</ol>
+<div class="sourceCode" id="cb53"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb53-1"><a href="git-and-github.html#cb53-1" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span>
+<span id="cb53-2"><a href="git-and-github.html#cb53-2" tabindex="-1"></a><span class="co"># git version 2.xx.x</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>If you haven’t, please sign up for a GitHub account: <a href="https://github.com/" class="uri">https://github.com/</a></li>
+</ol>
+<ul>
+<li>If you’re a student, please also sign up for GitHub Student Developer Pack: <a href="https://education.github.com/pack" class="uri">https://education.github.com/pack</a> Basically, you can get a GitHub pro account for free (so why not?).</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Access GitHub using Hypertext Transfer Protocol Secure (HTTPS) or Secure Shell (SSH).</li>
+</ol>
+<p><strong>HTTPS</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Create a personal access token. Follow this guideline: <a href="https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token" class="uri">https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token</a></p></li>
+<li><p>Store your credential somewhere safe. You can use an R package like this <a href="https://gitcreds.r-lib.org/">gitcreds</a> and <a href="https://docs.ropensci.org/credentials/">credentials</a> to do so.</p></li>
+</ol>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="git-and-github.html#cb54-1" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(gitcreds)</span>
+<span id="cb54-2"><a href="git-and-github.html#cb54-2" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="git-and-github.html#cb54-3" tabindex="-1"></a><span class="co"># First time only</span></span>
+<span id="cb54-4"><a href="git-and-github.html#cb54-4" tabindex="-1"></a><span class="fu">gitcreds_set</span>()</span>
+<span id="cb54-5"><a href="git-and-github.html#cb54-5" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="git-and-github.html#cb54-6" tabindex="-1"></a><span class="co"># Check</span></span>
+<span id="cb54-7"><a href="git-and-github.html#cb54-7" tabindex="-1"></a><span class="fu">gitcreds_get</span>()</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>If you get asked to provide your password when you pull or push, the password should be your GitHub token (to be precise, personal access token).</li>
+</ol>
+<p><strong>SSH</strong></p>
+<p>If possible, I highly recommend using SSH. Using SSH is safer and also makes connecting GitHub easier. SSH has two keys (public and private). The public key could be stored on any server (e.g., GitHub) and the private key could be saved in your client (e.g., your laptop). Only when the two are matched, the system unlocks.</p>
+<ol style="list-style-type: decimal">
+<li><p>First, read <a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">this tutorial</a> and create SSH keys.</p></li>
+<li><p>Second, read <a href="https://happygitwithr.com/ssh-keys.html">this tutorial</a> and check the keys and provide the public key to GitHub and add the private key to ssh-agent.</p></li>
+</ol>
+<p>Next time, if you want to use SSH, remember the following.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb55-1"><a href="git-and-github.html#cb55-1" tabindex="-1"></a><span class="co"># SSH</span></span>
+<span id="cb55-2"><a href="git-and-github.html#cb55-2" tabindex="-1"></a><span class="ex">git@github.com:</span><span class="op">&lt;</span>user<span class="op">&gt;</span>/<span class="op">&lt;</span>repo<span class="op">&gt;</span>.git</span>
+<span id="cb55-3"><a href="git-and-github.html#cb55-3" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="git-and-github.html#cb55-4" tabindex="-1"></a><span class="co"># HTTPS</span></span>
+<span id="cb55-5"><a href="git-and-github.html#cb55-5" tabindex="-1"></a><span class="ex">https://github.com/</span><span class="op">&lt;</span>user<span class="op">&gt;</span>/<span class="op">&lt;</span>repo<span class="op">&gt;</span>.git</span></code></pre></div>
+<p><strong>Additional tips</strong></p>
+<p>When you try to clone a git repo, you can get the links like the above by clicking the CODE action button on GitHub.</p>
+<p><img src="misc/ssh.png" /></p>
+</div>
+<div id="configurations" class="section level4 hasAnchor" number="3.2.3.2">
+<h4><span class="header-section-number">3.2.3.2</span> Configurations<a href="git-and-github.html#configurations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>Method 1: using the terminal</li>
+</ol>
+<div class="sourceCode" id="cb56"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb56-1"><a href="git-and-github.html#cb56-1" tabindex="-1"></a><span class="co"># User name and email</span></span>
+<span id="cb56-2"><a href="git-and-github.html#cb56-2" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.name <span class="st">&quot;Firstname Lastname&quot;</span></span>
+<span id="cb56-3"><a href="git-and-github.html#cb56-3" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.email username@school.extension</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Method 2: using RStudio (if you insist on using R)</li>
+</ol>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="git-and-github.html#cb57-1" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(usethis)</span>
+<span id="cb57-2"><a href="git-and-github.html#cb57-2" tabindex="-1"></a><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">&quot;&lt;Firstname Lastname&gt;&quot;</span>,</span>
+<span id="cb57-3"><a href="git-and-github.html#cb57-3" tabindex="-1"></a>               <span class="at">user.email =</span> <span class="st">&quot;&lt;username@school.extension&gt;&quot;</span>)</span></code></pre></div>
+<p>You’re all set!</p>
+</div>
+</div>
+<div id="cloning-a-repository" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Cloning a repository<a href="git-and-github.html#cloning-a-repository" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s clone a repository. The following address is the course I co-taught in Spring 2021.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb58-1"><a href="git-and-github.html#cb58-1" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/PS239T/spring_2021</span></code></pre></div>
+<p>If you <code>cd spring_2021/</code> you can move to the cloned course repository. Cloning: copying a public GitHub repo (remote) -&gt; Your machine</p>
+<p>If I made some changes in the remote repo, you can apply them to your local copy by typing <code>git pull.</code> You may get promoted to provide a password. Then type the following to switch the remote URL’s address from HTTPS to SSH.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb59-1"><a href="git-and-github.html#cb59-1" tabindex="-1"></a><span class="fu">git</span> remote set-url origin git@github.com:<span class="pp">[</span><span class="ss">user</span><span class="pp">]</span>/<span class="pp">[</span><span class="ss">repo</span><span class="pp">]</span></span></code></pre></div>
+<p>If this doesn’t work and get the following error, try the following (assuming that your SSH key was removed). If you’re using Mac, try this instead: <code>ssh-add -k ~/.ssh/id_rsa</code></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb60-1"><a href="git-and-github.html#cb60-1" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_rsa</span></code></pre></div>
+<p>If you still face difficulties, see <a href="https://stackoverflow.com/questions/13509293/git-fatal-could-not-read-from-remote-repository">this stack overflow thread</a>.</p>
+<p>If you screwed something up in your local copy, you can just overwrite the local copy using the remote repo and make it exactly looks like the latter.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb61-1"><a href="git-and-github.html#cb61-1" tabindex="-1"></a><span class="co"># Download content from a remote repo</span></span>
+<span id="cb61-2"><a href="git-and-github.html#cb61-2" tabindex="-1"></a><span class="fu">git</span> fetch origin</span>
+<span id="cb61-3"><a href="git-and-github.html#cb61-3" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="git-and-github.html#cb61-4" tabindex="-1"></a><span class="co"># Going back to origin/main</span></span>
+<span id="cb61-5"><a href="git-and-github.html#cb61-5" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> origin/main</span>
+<span id="cb61-6"><a href="git-and-github.html#cb61-6" tabindex="-1"></a></span>
+<span id="cb61-7"><a href="git-and-github.html#cb61-7" tabindex="-1"></a><span class="co"># Remove local files</span></span>
+<span id="cb61-8"><a href="git-and-github.html#cb61-8" tabindex="-1"></a><span class="fu">git</span> clean <span class="at">-f</span></span></code></pre></div>
+<p>Note that the default branch name changed from master to main: <a href="https://github.com/github/renaming" class="uri">https://github.com/github/renaming</a> (Finally!) For this reason, if you’re interacting with old repositories, the main branch name is likely to master.</p>
+<p><strong>Additional tips</strong>
+You can see cloning and forking on GitHub, and they sound similar. Let me differentiate them.</p>
+<ul>
+<li><p>Cloning: creating a local copy of a <strong>public</strong> GitHub repo. In this case, you have writing access to the repo.</p></li>
+<li><p>Forking (for open source projects): creating a copy of a <strong>public</strong> GitHub repo to your GitHub account, then you can clone it. In this case, you don’t have writing access to the repo. You need to create pull requests if you want your changes reflected in the original repo. Don’t worry about pull requests, as I will explain the concept shortly. For more information, see <a href="https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/cloning-and-forking-repositories-from-github-desktop">this documentation</a>.</p></li>
+</ul>
+</div>
+<div id="making-a-repository" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Making a repository<a href="git-and-github.html#making-a-repository" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Create a new directory and move there.
+Then initialize</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb62-1"><a href="git-and-github.html#cb62-1" tabindex="-1"></a><span class="co"># new directory</span></span>
+<span id="cb62-2"><a href="git-and-github.html#cb62-2" tabindex="-1"></a><span class="ex">$</span> mkdir code_exercise</span>
+<span id="cb62-3"><a href="git-and-github.html#cb62-3" tabindex="-1"></a><span class="co"># move</span></span>
+<span id="cb62-4"><a href="git-and-github.html#cb62-4" tabindex="-1"></a><span class="ex">$</span> cd code_exercise</span>
+<span id="cb62-5"><a href="git-and-github.html#cb62-5" tabindex="-1"></a><span class="co"># initialize</span></span>
+<span id="cb62-6"><a href="git-and-github.html#cb62-6" tabindex="-1"></a><span class="ex">$</span> git init</span></code></pre></div>
+<p>Alternatively, you can create a Git repository via GitHub and then clone it on your local machine. Perhaps, it is an easier path for new users (I also do this all the time). I highly recommend adding README (more on why we do this in the following subsection).</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb63-1"><a href="git-and-github.html#cb63-1" tabindex="-1"></a><span class="ex">$</span> git clone /path/to/repository</span></code></pre></div>
+<p><strong>Additional tips</strong>
+If you’re unfamiliar with basic Git commands, please refer to <a href="http://rogerdudler.GitHub.io/git-guide/files/git_cheat_sheet.pdf">this Git cheat sheet</a>.</p>
+</div>
+<div id="commit-changes" class="section level3 hasAnchor" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> Commit changes<a href="git-and-github.html#commit-changes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>These features show how Git works as a version control system.</p>
+<p>If you edited files or added new ones, you need to update your repository. In Git terms, this action is called committing changes.</p>
+<p>My current pwd is <code>spring_2021</code>. I created a text file named <code>test</code> containing text <code>jae.</code> You can check the file exists by typing `find “test```.</p>
+<p>The following is a typical workflow to reflect this change to the remote.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb64-1"><a href="git-and-github.html#cb64-1" tabindex="-1"></a><span class="ex">$</span> git status <span class="co"># check what&#39;s changed.</span></span>
+<span id="cb64-2"><a href="git-and-github.html#cb64-2" tabindex="-1"></a><span class="ex">$</span> git add . <span class="co"># update every change. In Git terms, you&#39;re staging.</span></span>
+<span id="cb64-3"><a href="git-and-github.html#cb64-3" tabindex="-1"></a><span class="ex">$</span> git add file_name <span class="co"># or stage a specific file.</span></span>
+<span id="cb64-4"><a href="git-and-github.html#cb64-4" tabindex="-1"></a><span class="ex">$</span> git commit <span class="at">-m</span> <span class="st">&quot;your comment&quot;</span> <span class="co"># your comment for the commit.</span></span>
+<span id="cb64-5"><a href="git-and-github.html#cb64-5" tabindex="-1"></a><span class="ex">$</span> git push origin main <span class="co"># commit the change. Origin is a default name given to a server by Git. `origin main` are optional.</span></span></code></pre></div>
+<p>Another image from <a href="https://git-scm.com/about/staging-area">Pro Git</a> nicely illustrates this process.</p>
+<div class="float">
+<img src="https://git-scm.com/images/about/index1@2x.png" alt="Git Workflow" />
+<div class="figcaption">Git Workflow</div>
+</div>
+<p>If you made a mistake, don’t panic. You can’t revert the process.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb65-1"><a href="git-and-github.html#cb65-1" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--soft</span> HEAD~1 <span class="co"># if you still want to keep the change, but you go back to t-1</span></span>
+<span id="cb65-2"><a href="git-and-github.html#cb65-2" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> HEAD~1 <span class="co"># if you&#39;re sure the change is unnecessary</span></span></code></pre></div>
+<p>Writing an informative commit is essential. To learn how to do this better, see the following video:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/m0t1mOeAJgs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> Your Commits Should Tell a Story • Featuring Eliza Brock Marcum, GitHub Training & Guides </p>
+
+</div>
+<div id="push-and-pull-or-fetch" class="section level3 hasAnchor" number="3.2.7">
+<h3><span class="header-section-number">3.2.7</span> Push and pull (or fetch)<a href="git-and-github.html#push-and-pull-or-fetch" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>These features show how Git works as a collaboration tool.</p>
+<p>If you have not already done it, let’s clone the PS239T directory on your local machine.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb66-1"><a href="git-and-github.html#cb66-1" tabindex="-1"></a><span class="ex">$</span> git clone https://github.com/PS239T/spring_2021 <span class="co"># clone</span></span></code></pre></div>
+<p><strong>Additional tips 1</strong></p>
+<p>If you try to remove <code>spring_2021</code> using <code>rm -r spring_2021/</code>, you will get an error about the write-protected regular file. Then, try <code>rm -rf spring_2021/</code>.</p>
+<p>Then, let’s learn more about the repository.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb67-1"><a href="git-and-github.html#cb67-1" tabindex="-1"></a><span class="ex">$</span> git remote <span class="at">-v</span></span></code></pre></div>
+<p>You should see something like the following:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb68-1"><a href="git-and-github.html#cb68-1" tabindex="-1"></a><span class="ex">origin</span>  git@github.com:PS239T/spring_2021 <span class="er">(</span><span class="ex">fetch</span><span class="kw">)</span></span>
+<span id="cb68-2"><a href="git-and-github.html#cb68-2" tabindex="-1"></a><span class="ex">origin</span>  git@github.com:PS239T/spring_2021 <span class="er">(</span><span class="ex">push</span><span class="kw">)</span></span></code></pre></div>
+<p>If you want to see more information, then type <code>git remote show origin.</code></p>
+<p>Previously, we learned how to send your data to save in the local machine to the remote (the GitHub server). You can do that by editing or creating files, committing, and typing <strong>git push</strong>.</p>
+<p>Instead, if you want to update your local data with the remote data, you can type <strong>git pull origin</strong> (something like pwd in bash). Alternatively, you can use fetch (retrieve data from a remote). Git retrieves the data and merges it into your local data when you do that.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb69-1"><a href="git-and-github.html#cb69-1" tabindex="-1"></a><span class="ex">$</span> git fetch origin</span></code></pre></div>
+<p><strong>Additional tips 2</strong></p>
+<p>Developers usually use PR to refer pull requests. When you are making PRs, it’s recommended to scope down (small PRs) because they are easier on reviewers and to test. To learn about how to accomplish this, see <a href="https://www.netlify.com/blog/2020/03/31/how-to-scope-down-prs/">this blog post</a> by Sarah Drasner.</p>
+</div>
+<div id="branching" class="section level3 hasAnchor" number="3.2.8">
+<h3><span class="header-section-number">3.2.8</span> Branching<a href="git-and-github.html#branching" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It’s an advanced feature of Git’s version control system that allows developers to “diverge from the main line of development and continue to do work without messing with that main line,” according to <a href="https://git-scm.com/book/en/v1/Git-Branching">Scott Chacon and Ben Straub</a>.</p>
+<p>If you start working on a new feature, create a new branch.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb70-1"><a href="git-and-github.html#cb70-1" tabindex="-1"></a><span class="ex">$</span> git branch new_features</span>
+<span id="cb70-2"><a href="git-and-github.html#cb70-2" tabindex="-1"></a><span class="ex">$</span> git checkout new_features</span></code></pre></div>
+<p>You can see the newly created branch by typing <strong>git branch</strong>.</p>
+<p>In short, branching makes Git <a href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics">works like</a> a mini file system.</p>
+</div>
+<div id="other-useful-commands" class="section level3 hasAnchor" number="3.2.9">
+<h3><span class="header-section-number">3.2.9</span> Other useful commands<a href="git-and-github.html#other-useful-commands" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>For tracking history</li>
+</ol>
+<div class="sourceCode" id="cb71"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb71-1"><a href="git-and-github.html#cb71-1" tabindex="-1"></a><span class="ex">$</span> git diff <span class="co"># to see what changed (e.g., inside a file)</span></span>
+<span id="cb71-2"><a href="git-and-github.html#cb71-2" tabindex="-1"></a><span class="ex">$</span> git log <span class="co"># to track who committed what</span></span>
+<span id="cb71-3"><a href="git-and-github.html#cb71-3" tabindex="-1"></a><span class="ex">$</span> git log <span class="at">-S</span> <span class="op">&lt;</span>pattern<span class="op">&gt;</span> <span class="co"># you can find a log that contains the pattern</span></span>
+<span id="cb71-4"><a href="git-and-github.html#cb71-4" tabindex="-1"></a><span class="ex">$</span> git checkout <span class="co"># to recover old files</span></span>
+<span id="cb71-5"><a href="git-and-github.html#cb71-5" tabindex="-1"></a><span class="ex">$</span> git revert <span class="co"># revert to the previous commit</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>For removing and renaming files</li>
+</ol>
+<div class="sourceCode" id="cb72"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb72-1"><a href="git-and-github.html#cb72-1" tabindex="-1"></a><span class="ex">$</span> git rm file_name <span class="co"># remove</span></span>
+<span id="cb72-2"><a href="git-and-github.html#cb72-2" tabindex="-1"></a><span class="ex">$</span> git mv old_file_name new_file_name <span class="co"># rename a file</span></span></code></pre></div>
+<p>How about removing a directory only from GitHub but not local?</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb73-1"><a href="git-and-github.html#cb73-1" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">-r</span> <span class="at">--cached</span> <span class="op">&lt;</span>directory<span class="op">&gt;</span></span>
+<span id="cb73-2"><a href="git-and-github.html#cb73-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;&lt;message&gt;&quot;</span></span>
+<span id="cb73-3"><a href="git-and-github.html#cb73-3" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+</div>
+<div id="collaborations" class="section level3 hasAnchor" number="3.2.10">
+<h3><span class="header-section-number">3.2.10</span> Collaborations<a href="git-and-github.html#collaborations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Two options.</p>
+<ul>
+<li>Sharing a repository (suitable for a private project).</li>
+<li>Fork and pull (suitable for an open-source project).
+​* The one who maintains the repository becomes the maintainer.
+​* The others can <a href="https://help.GitHub.com/articles/about-forks/">fork</a>, make changes, and even <a href="https://help.GitHub.com/articles/about-pull-requests/">pull</a> them back.</li>
+</ul>
+</div>
+<div id="deployment-github-pages" class="section level3 hasAnchor" number="3.2.11">
+<h3><span class="header-section-number">3.2.11</span> Deployment: GitHub Pages<a href="git-and-github.html#deployment-github-pages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Useful to deploy websites. I used the GitHub page to deploy this book.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4TrOCv5Kukk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> Webcast • Get Started with GitHub Pages • Featuring Dani Traphagen, GitHub Training & Guides </p>
+
+</div>
+<div id="tracking-progress-github-issues" class="section level3 hasAnchor" number="3.2.12">
+<h3><span class="header-section-number">3.2.12</span> Tracking progress: GitHub Issues<a href="git-and-github.html#tracking-progress-github-issues" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Useful to collect and respond to questions and suggestions (e.g., bug reports and feature suggestions) on the projects on which you’re working.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TJlYiMp8FuY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> Webcast • GitHub Issues • A Quick Look, GitHub Training & Guides </p>
+
+</div>
+<div id="project-management-github-dashboards" class="section level3 hasAnchor" number="3.2.13">
+<h3><span class="header-section-number">3.2.13</span> Project management: GitHub Dashboards<a href="git-and-github.html#project-management-github-dashboards" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>I use GitHub dashboards for almost every project that I have done.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YxKhb3fxtsU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> GitHub Projects Demo: Automation, Kanban, Scrum, Issues, Pull Request, Milestones, Issues, Tasks by Brandan Jones </p>
+</div>
+<div id="using-git-clients" class="section level3 hasAnchor" number="3.2.14">
+<h3><span class="header-section-number">3.2.14</span> Using Git clients<a href="git-and-github.html#using-git-clients" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Okay. Using command-line Git helps you understand how Git works. Also, you know that I’d love to do almost everything in the terminal if possible. However, using the command-line Git is sometimes too complicated or too buggy. An alternative is using Git clients (GUI).</p>
+<p>I use <a href="https://www.gitkraken.com/">Git Kraken</a> because it’s free, works on almost every OS (Windows, Mac, and Linux), and is quite versatile. It’s instrumental in tracing and understanding your development process (e.g., commits, branches, pull requests, comments). I also heard positive things about <a href="https://desktop.github.com/">GitHub Desktop</a> (Windows and Mac) and <a href="https://www.sourcetreeapp.com/">Sourcetree</a> (Windows).
+## Getting started in R</p>
+</div>
+<div id="the-big-picture-2" class="section level3 hasAnchor" number="3.2.15">
+<h3><span class="header-section-number">3.2.15</span> The Big Picture<a href="git-and-github.html#the-big-picture-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When you are reading this section, please note that you’ve already grasped some key concepts behind R programming language (functions and objects).</p>
+<p>UNIX Commands (<code>cat</code>) = R Functions (<code>print</code>)
+Files = R Objects</p>
+</div>
+<div id="rstudio" class="section level3 hasAnchor" number="3.2.16">
+<h3><span class="header-section-number">3.2.16</span> RStudio<a href="git-and-github.html#rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are two main ways of interacting with R: using the console or using script files (plain text files containing your code).</p>
+<p>If R is ready to accept commands, the R console shows a <code>&gt;</code> prompt. If it receives a command (by typing, copy-pasting, or sent from the script editor using <code>Ctrl-Enter</code>; <code>Command-Enter</code> will also work on Macs), R will try to execute it, and when ready, show the results and come back with a new <code>&gt;</code>-prompt to wait for further commands. This is the equivalent of the <code>$</code> in your terminal.</p>
+</div>
+<div id="basic-syntax" class="section level3 hasAnchor" number="3.2.17">
+<h3><span class="header-section-number">3.2.17</span> Basic Syntax<a href="git-and-github.html#basic-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Comments</strong></p>
+<p>Use <code>#</code> signs to comment. Comment liberally in your R scripts. Anything to the right of a <code>#</code> is ignored by R. For those of you familiar with other languages, there is no doc string, or equivalent to `““``` in R.</p>
+<p><strong>Assignment operator</strong></p>
+<p><code>&lt;-</code> is the assignment operator. It assigns values on the right to objects on the left. So, after executing <code>x &lt;- 3</code>, <code>x</code> value is <code>3</code>. The arrow can be read as 3 <strong>goes into</strong> <code>x</code>. You can also use <code>=</code> for assignments.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="git-and-github.html#cb74-1" tabindex="-1"></a>USweird <span class="ot">&lt;-</span> <span class="st">&quot;Why use lb for pound!&quot;</span> <span class="co"># Use this</span></span>
+<span id="cb74-2"><a href="git-and-github.html#cb74-2" tabindex="-1"></a></span>
+<span id="cb74-3"><a href="git-and-github.html#cb74-3" tabindex="-1"></a><span class="st">&quot;Why use lb for pound!&quot;</span> <span class="ot">=</span> USweird</span></code></pre></div>
+<p>Nonetheless, <em>can</em> does not mean you <em>should</em>. It is good practice to use <code>&lt;-</code> for assignments. <code>=</code> should only be used to specify the values of arguments of functions. This is what Google and Hadley Wickham recommend as well. If they don’t convince you enough, here’s <a href="https://csgillespie.wordpress.com/2010/11/16/assignment-operators-in-r-vs/">a real example</a>.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="git-and-github.html#cb75-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># Does it save x?</span></span></code></pre></div>
+<pre><code>## [1] 5.5</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="git-and-github.html#cb77-1" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
+<pre><code>## Warning in rm(x): object &#39;x&#39; not found</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="git-and-github.html#cb79-1" tabindex="-1"></a><span class="fu">mean</span>(x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># Does it save x?</span></span></code></pre></div>
+<pre><code>## [1] 5.5</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="git-and-github.html#cb81-1" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
+<p><strong>Printing</strong></p>
+<p>In R, an object’s contents can be printed by simply executing the object name or calling the <code>print()</code> function.</p>
+<p><strong>Help</strong></p>
+<ul>
+<li><code>?</code> + object opens a help page for that specific object</li>
+<li><code>??</code> + object searches help pages containing the name of the object</li>
+</ul>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="git-and-github.html#cb82-1" tabindex="-1"></a>?mean</span>
+<span id="cb82-2"><a href="git-and-github.html#cb82-2" tabindex="-1"></a>??mean</span>
+<span id="cb82-3"><a href="git-and-github.html#cb82-3" tabindex="-1"></a><span class="fu">help</span>(mean)</span>
+<span id="cb82-4"><a href="git-and-github.html#cb82-4" tabindex="-1"></a></span>
+<span id="cb82-5"><a href="git-and-github.html#cb82-5" tabindex="-1"></a><span class="co"># The above three will do the same.</span></span>
+<span id="cb82-6"><a href="git-and-github.html#cb82-6" tabindex="-1"></a></span>
+<span id="cb82-7"><a href="git-and-github.html#cb82-7" tabindex="-1"></a><span class="fu">example</span>(ls) <span class="co"># provides an example(s) for how to use ls</span></span>
+<span id="cb82-8"><a href="git-and-github.html#cb82-8" tabindex="-1"></a></span>
+<span id="cb82-9"><a href="git-and-github.html#cb82-9" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">&quot;visualization&quot;</span>) <span class="co"># search functions and packages that have &quot;visualization&quot; in their descriptions</span></span></code></pre></div>
+</div>
+<div id="environment" class="section level3 hasAnchor" number="3.2.18">
+<h3><span class="header-section-number">3.2.18</span> Environment<a href="git-and-github.html#environment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Environment = a collection of pairs</p>
+<div id="objects" class="section level4 hasAnchor" number="3.2.18.1">
+<h4><span class="header-section-number">3.2.18.1</span> Objects<a href="git-and-github.html#objects" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li>List objects in your current environment</li>
+</ul>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="git-and-github.html#cb83-1" tabindex="-1"></a><span class="co"># Create a numeric object</span></span>
+<span id="cb83-2"><a href="git-and-github.html#cb83-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb83-3"><a href="git-and-github.html#cb83-3" tabindex="-1"></a></span>
+<span id="cb83-4"><a href="git-and-github.html#cb83-4" tabindex="-1"></a><span class="co"># List the object</span></span>
+<span id="cb83-5"><a href="git-and-github.html#cb83-5" tabindex="-1"></a><span class="fu">ls</span>()</span>
+<span id="cb83-6"><a href="git-and-github.html#cb83-6" tabindex="-1"></a></span>
+<span id="cb83-7"><a href="git-and-github.html#cb83-7" tabindex="-1"></a><span class="co"># Remove the object</span></span>
+<span id="cb83-8"><a href="git-and-github.html#cb83-8" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
+<ul>
+<li>Remove objects from your current environment</li>
+</ul>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="git-and-github.html#cb84-1" tabindex="-1"></a><span class="co"># Create an object</span></span>
+<span id="cb84-2"><a href="git-and-github.html#cb84-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb84-3"><a href="git-and-github.html#cb84-3" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="git-and-github.html#cb84-4" tabindex="-1"></a><span class="co"># Remove the object</span></span>
+<span id="cb84-5"><a href="git-and-github.html#cb84-5" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
+<ul>
+<li>Remove all objects from your current environment</li>
+</ul>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="git-and-github.html#cb85-1" tabindex="-1"></a><span class="co"># Create an object</span></span>
+<span id="cb85-2"><a href="git-and-github.html#cb85-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb85-3"><a href="git-and-github.html#cb85-3" tabindex="-1"></a></span>
+<span id="cb85-4"><a href="git-and-github.html#cb85-4" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb85-5"><a href="git-and-github.html#cb85-5" tabindex="-1"></a></span>
+<span id="cb85-6"><a href="git-and-github.html#cb85-6" tabindex="-1"></a><span class="co"># Remove the object</span></span>
+<span id="cb85-7"><a href="git-and-github.html#cb85-7" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div>
+<ul>
+<li>Force memory release</li>
+</ul>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="git-and-github.html#cb86-1" tabindex="-1"></a><span class="co"># Garbage collect; for more information, type ?gc()</span></span>
+<span id="cb86-2"><a href="git-and-github.html#cb86-2" tabindex="-1"></a></span>
+<span id="cb86-3"><a href="git-and-github.html#cb86-3" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
+</div>
+<div id="packages" class="section level4 hasAnchor" number="3.2.18.2">
+<h4><span class="header-section-number">3.2.18.2</span> Packages<a href="git-and-github.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>install.packages(package-name)</code> will download a package from one of the CRAN mirrors, assuming that a binary is available for your operating system.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="git-and-github.html#cb87-1" tabindex="-1"></a><span class="co"># From CRAN</span></span>
+<span id="cb87-2"><a href="git-and-github.html#cb87-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb87-3"><a href="git-and-github.html#cb87-3" tabindex="-1"></a></span>
+<span id="cb87-4"><a href="git-and-github.html#cb87-4" tabindex="-1"></a><span class="co"># Load package</span></span>
+<span id="cb87-5"><a href="git-and-github.html#cb87-5" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb87-6"><a href="git-and-github.html#cb87-6" tabindex="-1"></a></span>
+<span id="cb87-7"><a href="git-and-github.html#cb87-7" tabindex="-1"></a><span class="co"># From GitHub</span></span>
+<span id="cb87-8"><a href="git-and-github.html#cb87-8" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_GitHub</span>(<span class="st">&quot;jaeyk/tidytweetjson&quot;</span>) <span class="co"># my own package</span></span>
+<span id="cb87-9"><a href="git-and-github.html#cb87-9" tabindex="-1"></a></span>
+<span id="cb87-10"><a href="git-and-github.html#cb87-10" tabindex="-1"></a><span class="co"># Unload package</span></span>
+<span id="cb87-11"><a href="git-and-github.html#cb87-11" tabindex="-1"></a><span class="co"># detach(&quot;package:stats&quot;, unload=TRUE)</span></span></code></pre></div>
+<p><strong>Tips</strong></p>
+<p>If you have multiple packages to install, then please consider using the <code>pacman</code> package. The following is an example. First, you install <code>pacman</code>. Then, you load several libraries by using <code>p_load()</code> method.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="git-and-github.html#cb88-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb88-2"><a href="git-and-github.html#cb88-2" tabindex="-1"></a></span>
+<span id="cb88-3"><a href="git-and-github.html#cb88-3" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb88-4"><a href="git-and-github.html#cb88-4" tabindex="-1"></a>  ggplot2,</span>
+<span id="cb88-5"><a href="git-and-github.html#cb88-5" tabindex="-1"></a>  dplyr,</span>
+<span id="cb88-6"><a href="git-and-github.html#cb88-6" tabindex="-1"></a>  broom</span>
+<span id="cb88-7"><a href="git-and-github.html#cb88-7" tabindex="-1"></a>)</span></code></pre></div>
+<p>If you don’t like to use <code>pacman,</code> the other option is to create a list (we’re going to learn what is list soon).</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="git-and-github.html#cb89-1" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;broom&quot;</span>)</span>
+<span id="cb89-2"><a href="git-and-github.html#cb89-2" tabindex="-1"></a></span>
+<span id="cb89-3"><a href="git-and-github.html#cb89-3" tabindex="-1"></a><span class="fu">install.packages</span>(pkgs)</span></code></pre></div>
+<p>Still, we have to write two lines. The more straightforward, the better, right? Here’s another approach that can simplify the code further.</p>
+<p>Note that <code>lapply()</code> applies (there’s a family of apply functions) a function to a list. In this case, library to pkgs. <code>apply</code> is an advanced concept related to anonymous functions. We will learn about it later when we study functions.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="git-and-github.html#cb90-1" tabindex="-1"></a>inst <span class="ot">&lt;-</span> <span class="fu">lapply</span>(pkgs, library,</span>
+<span id="cb90-2"><a href="git-and-github.html#cb90-2" tabindex="-1"></a>               <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="the-command-line.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="project-oriented-research.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/jaeyk/PS239T/edit/main/02_intro.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["pdf", "PS239T.pdf"],
+    ["epub", "PS239T.epub"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "toolbar": {
+    "position": "fixed"
+  },
+  "code_copy": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

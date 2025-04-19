@@ -1,3 +1,5 @@
+tab:unnamed-chunk-16
+tab:unnamed-chunk-20
 hello-world
 part-i-fundamentals
 part-ii-applications
@@ -6,7 +8,9 @@ suggestions-questions-or-comments
 license
 motivation
 why-computational-thinking
+computational-thinking-in-the-age-of-generative-ai
 how-to-teach-and-learn-computational-thinking
+computational-thinking-and-a-career-in-computational-social-science
 git_bash
 the-command-line
 the-big-picture
@@ -50,7 +54,6 @@ deployment-github-pages
 tracking-progress-github-issues
 project-management-github-dashboards
 using-git-clients
-getting-started-in-r
 the-big-picture-2
 rstudio
 basic-syntax
@@ -66,7 +69,7 @@ how-to-organize-code-in-an-r-markdown-file
 making-a-project-computationally-reproducible
 references-1
 writing-code-how-to-code-like-a-professional
-the-bic-piture
+the-big-picture-4
 write-readable-code
 write-reusable-code
 test-your-code-systematically
@@ -107,7 +110,7 @@ section
 section-1
 subassignment
 tidyverse
-the-big-picture-4
+the-big-picture-5
 tidying-tidyr
 reshaping
 filling
@@ -157,7 +160,7 @@ extracting-model-outcomes
 coefficients
 confidence-intervals
 functional_programming
-the-big-picture-5
+the-big-picture-6
 objectives
 setup-3
 flow
@@ -195,14 +198,13 @@ map
 how-to-make-automation-faster
 robustness
 learning-objective
-problem-3
 solution-1
 try-catch
 safely
 possibly
 products
 developing-r-packages
-the-big-picture-6
+the-big-picture-7
 workflow
 required-components
 optional-components
@@ -216,7 +218,7 @@ references-3
 other-useful-data-products
 semi_structured_data
 setup-4
-the-big-picture-7
+the-big-picture-8
 what-is-semi-structured-data
 workflow-2
 htmlcss-web-scraping
@@ -245,7 +247,7 @@ dehydrate
 parsing-json
 objectives-6
 chunk-and-pull
-problem-4
+problem-3
 solution-2
 tidyjson
 individual-file
@@ -255,7 +257,7 @@ form-request
 extract-data
 automating-iterations
 machine_learning
-the-big-picture-8
+the-big-picture-9
 dataset
 workflow-3
 tidymodels
@@ -296,7 +298,7 @@ add-these-elements-to-a-workflow-2
 visualize-2
 test-fit-2
 boosting-xgboost
-parsnip-3
+parsnip-model-specification-and-tuning
 yardstick-3
 tune-3
 tune-ingredients-3
@@ -342,7 +344,7 @@ books
 lecture-slides
 blog-posts
 big_data
-the-big-picture-9
+the-big-picture-10
 sql
 learning-objectives
 sql-and-r

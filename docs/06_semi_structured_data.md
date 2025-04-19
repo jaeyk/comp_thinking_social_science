@@ -5,7 +5,7 @@
 ## Setup 
 
 
-```r
+``` r
 # Install packages 
 if (!require("pacman")) install.packages("pacman")
 ```
@@ -14,7 +14,7 @@ if (!require("pacman")) install.packages("pacman")
 ## Loading required package: pacman
 ```
 
-```r
+``` r
 pacman::p_load(tidyverse, # tidyverse pkgs including purrr
                furrr, # parallel processing 
                tictoc, # performance test  
@@ -33,7 +33,7 @@ devtools::install_github("jaeyk/tidytweetjson", dependencies = TRUE) ; library(t
 ```
 
 ```
-## Skipping install of 'tidytweetjson' from a github remote, the SHA1 (9a00ec8a) has not changed since last install.
+## Skipping install of 'tidytweetjson' from a github remote, the SHA1 (464a7799) has not changed since last install.
 ##   Use `force = TRUE` to force installation
 ```
 
@@ -98,7 +98,7 @@ Below is how JSON (tweet) looks like.
 Let's go back to the example we covered in the earlier chapter of the book. 
 
 
-```r
+``` r
 url_list <- c(
   "https://en.wikipedia.org/wiki/University_of_California,_Berkeley",
   "https://en.wikipedia.org/wiki/Stanford_University",
@@ -112,7 +112,7 @@ url_list <- c(
 Examine the Berkeley website so that we could identify a node that indicates the school's motto. Then, if you're using Chrome, draw your interest elements, then `right click > inspect > copy full xpath.`
 
 
-```r
+``` r
 url <- "https://en.wikipedia.org/wiki/University_of_California,_Berkeley"
 
 download.file(url, destfile = "scraped_page.html", quiet = TRUE)
@@ -135,7 +135,7 @@ target %>%
 I highly recommend writing your function working slowly by wrapping the function with [`slowly()`](https://purrr.tidyverse.org/reference/insistently.html).
 
 
-```r
+``` r
 get_table_from_wiki <- function(url){
   
   download.file(url, destfile = "scraped_page.html", quiet = TRUE)
@@ -153,21 +153,21 @@ get_table_from_wiki <- function(url){
 * Step 3: Test
 
 
-```r
+``` r
 get_table_from_wiki(url_list[[2]])
 ```
 
 * Step 4: Automation 
 
 
-```r
+``` r
 map(url_list, get_table_from_wiki)
 ```
 
 * Step 5: Error handling 
 
 
-```r
+``` r
 map(url_lists, safely(get_table_from_wiki)) %>%
   map("result") %>% 
   # = map(function(x) x[["result"]]) = map(~.x[["name"]])
@@ -175,7 +175,7 @@ map(url_lists, safely(get_table_from_wiki)) %>%
 ```
 
 
-```r
+``` r
 # If error occurred, "The URL is broken." will be stored in that element(s).
 out <- map(
   url_list,
@@ -207,7 +207,7 @@ Step1: Get an XML document link
 Step 2: Get the page and parse the XML document. 
 
 
-```r
+``` r
 xml_root <- xml_link %>%
   # Get page and parse xml 
   xmlTreeParse() %>%
@@ -226,7 +226,7 @@ Step 3: Get nodes
 We grab the mission statement of this org from its tax report (990). `//` is an [XPath syntax](https://www.w3schools.com/xml/xpath_syntax.asp) that helps to "select nodes in the document from the current node that matches the selection no matter where they are."
 
 
-```r
+``` r
 xml_root %>%
   purrr::pluck(2) %>% # Second element (Return Data)
   getNodeSet("//MissionDesc") # Mission statement 
@@ -235,7 +235,7 @@ xml_root %>%
 Step 4: Get values 
 
 
-```r
+``` r
 xml_root %>%
   purrr::pluck(2) %>% # Second element (Return Data)
   getNodeSet("//MissionDesc") %>% # Mission statement 
@@ -389,7 +389,7 @@ The first thing you need to do is set up.
 Assuming that you already signed up for a Twitter developer account 
 
 
-```r
+``` r
 app_name <- "YOUR APP NAME"
 consumer_key <- "YOUR CONSUMER KEY"
 consumer_secret <- "YOUR CONSUMER SECRET"
@@ -404,15 +404,43 @@ rtweet::create_token(app = app_name,
 Using **search API**; This API returns a collection of Tweets mentioning a particular query.
 
 
-```r
+``` r
 # Install and load rtweet 
 if (!require(pacman)) {install.packages("pacman")}
 
 pacman::p_load(rtweet)
 ```
 
+```
+## Warning: package 'rtweet' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
-```r
+```
+## Warning: 'BiocManager' not available.  Could not check Bioconductor.
+## 
+## Please use `install.packages('BiocManager')` and then retry.
+```
+
+```
+## Warning in p_install(package, character.only = TRUE, ...):
+```
+
+```
+## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+## logical.return = TRUE, : there is no package called 'rtweet'
+```
+
+```
+## Warning in pacman::p_load(rtweet): Failed to install/load:
+## rtweet
+```
+
+
+``` r
 # The past 6-9 days 
 rt <- search_tweets(q = "#stopasianhate", n = 1000, include_rts = FALSE)
 
@@ -425,14 +453,14 @@ head(rt$text)
 Can you guess what would be the class type of rt?
 
 
-```r
+``` r
 class(rt)
 ```
 
 What would be the number of rows?
 
 
-```r
+``` r
 nrow(rt)
 ```
 
@@ -441,7 +469,7 @@ nrow(rt)
 - Time series analysis 
 
 
-```r
+``` r
 pacman::p_load(ggplot2, ggthemes, rtweet)
 
 ts_plot(rt, "3 hours") +
@@ -456,7 +484,7 @@ ts_plot(rt, "3 hours") +
 - Geographical analysis
 
 
-```r
+``` r
 pacman::p_load(maps)
 
 geocoded <- lat_lng(rt)
@@ -510,7 +538,7 @@ What are the main two types of Twitter's API?
 -   I assume that you have already installed [Python 3](https://www.python.org/download/releases/3.0/).
 
 
-```bash
+``` bash
 pip3 install twarc
 ```
 
@@ -529,19 +557,19 @@ The following examples are created by [the University of Virginia library](http:
 ![You can type commands in the Terminal in R Studio.](https://github.com/jaeyk/digital_data_collection_workshop/raw/master/misc/terminal.png)
 
 
-```bash
+``` bash
 # Key word 
 twarc search blacklivesmatter > blm_tweets.jsonl
 ```
 
 
-```bash
+``` bash
 # Hashtag 
 twarc search '#blacklivesmatter' > blm_tweets_hash.jsonl
 ```
 
 
-```bash
+``` bash
 # Hashtag + Language 
 twarc search '#blacklivesmatter' --lang en > blm_tweets_hash.jsonl
 ```
@@ -553,7 +581,7 @@ twarc search '#blacklivesmatter' --lang en > blm_tweets_hash.jsonl
 -   Download tweets meeting certain conditions as they happen.
 
 
-```bash
+``` bash
 # Key word
 twarc filter blacklivesmatter > blm_tweets.jsonl
 ```
@@ -563,7 +591,7 @@ twarc filter blacklivesmatter > blm_tweets.jsonl
 -   Use Twitter's random sample of recent tweets.
 
 
-```bash
+``` bash
 twarc sample > tweets.jsonl 
 ```
 
@@ -572,7 +600,7 @@ twarc sample > tweets.jsonl
 -   Tweet I.D.s -\> Tweets
 
 
-```bash
+``` bash
 twarc hydrate tweet_ids.txt > tweets.jsonl 
 ```
 
@@ -582,7 +610,7 @@ twarc hydrate tweet_ids.txt > tweets.jsonl
 -   Tweets -\> Tweet I.D.s
 
 
-```bash
+``` bash
 twarc dehydrate tweets.jsonl > tweet_ids.txt
 ```
 
@@ -615,7 +643,7 @@ twarc dehydrate tweets.jsonl > tweet_ids.txt
 Step1: Split the large JSON file in small chunks.
 
 
-```bash
+``` bash
 #Divide the JSON file by 100 lines (tweets)
 
 # Linux and Windows (in Bash)
@@ -630,7 +658,7 @@ $ gsplit -100 search.jsonl
 Step 2: Apply the parsing function to each chunk and pull all of these chunks together.
 
 
-```r
+``` r
 # You need to choose a Tweet JSON file
 filepath <- file.choose()
 
@@ -642,7 +670,7 @@ toc()
 ```
 
 
-```r
+``` r
 # Setup 
 n_cores <- availableCores() - 1
 
@@ -669,7 +697,7 @@ The [`tidyjson`](https://cran.r-project.org/web/packages/tidyjson/vignettes/intr
 -   toy example
 
 
-```r
+``` r
 # JSON collection; nested structure + keys and values 
 worldbank[1]
 ```
@@ -678,7 +706,7 @@ worldbank[1]
 ## [1] "{\"_id\":{\"$oid\":\"52b213b38594d8a2be17c780\"},\"boardapprovaldate\":\"2013-11-12T00:00:00Z\",\"closingdate\":\"2018-07-07T00:00:00Z\",\"countryshortname\":\"Ethiopia\",\"majorsector_percent\":[{\"Name\":\"Education\",\"Percent\":46},{\"Name\":\"Education\",\"Percent\":26},{\"Name\":\"Public Administration, Law, and Justice\",\"Percent\":16},{\"Name\":\"Education\",\"Percent\":12}],\"project_name\":\"Ethiopia General Education Quality Improvement Project II\",\"regionname\":\"Africa\",\"totalamt\":130000000}"
 ```
 
-```r
+``` r
 # Check out keys (objects)
 worldbank %>% 
   as.tbl_json() %>%
@@ -701,7 +729,7 @@ worldbank %>%
 ```
 
 
-```r
+``` r
 # Get the values associated with the keys 
 worldbank %>% 
   as.tbl_json() %>% # Turn JSON into tbl_json object 
@@ -732,7 +760,7 @@ worldbank %>%
 ###### Individual file
 
 
-```r
+``` r
 jsonl_to_df <- function(file_path){
 
 # Save file name 
@@ -794,7 +822,7 @@ outcome %>% select(-c("document.id"))}
 -   Set up parallel processing.
 
 
-```r
+``` r
 n_cores <- availableCores() - 1
 
 n_cores # This number depends on your computer spec.
@@ -810,7 +838,7 @@ plan(multiprocess, # multicore, if supported, otherwise multisession
 There are, at least, three ways you can use function + `purrr::map().`
 
 
-```r
+``` r
 squared <- function(x){
   x*2 
 }
@@ -826,7 +854,7 @@ map(1:3,~.x*2)
 ```
 
 
-```r
+``` r
 # Create a list of file paths 
 filename <- list.files(dir_path,
           pattern = '^x',
@@ -864,14 +892,14 @@ df
 Load packages. For the connection interface, don't use `RCurl,` but I strongly recommend using `httr.` The following code examples draw from my R interface for the New York Times API called [`rnytapi`](https://jaeyk.github.io/rnytapi/).
 
 
-```r
+``` r
 pacman::p_load(httr, jsonlite, purrr, glue)
 ```
 
 #### Form REQUEST 
 
 
-```r
+``` r
 get_request <- function(term, begin_date, end_date, key, page = 1) {
 
     out <- GET("http://api.nytimes.com/svc/search/v2/articlesearch.json",
@@ -889,7 +917,7 @@ get_request <- function(term, begin_date, end_date, key, page = 1) {
 #### Extract data 
 
 
-```r
+``` r
 get_content <- function(term, begin_date, end_date, key, page = 1) {
 
     message(glue("Scraping page {page}"))
@@ -905,7 +933,7 @@ get_content <- function(term, begin_date, end_date, key, page = 1) {
 #### Automating iterations 
 
 
-```r
+``` r
 extract_all <- function(term, begin_date, end_date, key) {
 
     request <- GET("http://api.nytimes.com/svc/search/v2/articlesearch.json",

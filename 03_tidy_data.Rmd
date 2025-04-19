@@ -10,26 +10,27 @@
 -   Check your `dplyr` package is up-to-date by typing `packageVersion("dplyr")`. If the current installed version is less than 1.0, then update by typing `update.packages("dplyr")`. You may need to restart R to make it work.
 
 ```{r}
+# Ensure dplyr ≥ 1.0.0 before we load anything
+if (packageVersion("dplyr") < "1.0.0") {
+  install.packages("dplyr")
+}
 
-ifelse(packageVersion("dplyr") >= 1,
-  "The installed version of dplyr package is greater than or equal to 1.0.0", update.packages("dplyr")
-)
-
-if (!require("pacman")) install.packages("pacman")
+if (!requireNamespace("pacman", quietly = TRUE)) {
+  install.packages("pacman")
+}
 
 pacman::p_load(
-  tidyverse, # the tidyverse framework
-  skimr, # skimming data
-  here, # computational reproducibility
-  #infer, # statistical inference
-  tidymodels, # statistical modeling
-  gapminder, # toy data
-  nycflights13, # for exercise
-  ggthemes, # additional themes
-  ggrepel, # arranging ggplots
-  patchwork, # arranging ggplots
-  broom, # tidying model outputs
-  waldo # side-by-side code comparison
+  tidyverse,      # the tidyverse framework
+  skimr,          # skimming data
+  here,           # reproducibility
+  tidymodels,     # modeling
+  gapminder,      # toy data
+  nycflights13,   # exercises
+  ggthemes,       # extra ggplot themes
+  ggrepel,        # better labels
+  patchwork,      # arrange ggplots
+  broom,          # tidy model outputs
+  waldo           # code comparison
 )
 ```
 

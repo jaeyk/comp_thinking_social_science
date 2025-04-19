@@ -109,7 +109,7 @@ Let's get to work.
 - `pacman::p_load()` reduces steps for installing and loading several packages simultaneously. 
 
 
-```r
+``` r
 # pacman 
 if (!require("pacman")) install.packages("pacman")
 ```
@@ -118,7 +118,7 @@ if (!require("pacman")) install.packages("pacman")
 ## Loading required package: pacman
 ```
 
-```r
+``` r
 # The rest of pkgs 
 pacman::p_load(
  tidyverse, # tidyverse packages 
@@ -198,7 +198,7 @@ INSERT INTO students(name, birth, gpa, grad)
 #### Create a database 
 
 
-```r
+``` r
 # Define a backend engine 
 
 drv <- RSQLite::SQLite()
@@ -221,7 +221,7 @@ dbListTables(con)
 ## character(0)
 ```
 
-```r
+``` r
 # character(0) = NULL
 ```
 
@@ -230,7 +230,7 @@ dbListTables(con)
 #### Copy an object as a table to the database (push)
 
 
-```r
+``` r
 # Copy objects to the data 
 # copy_to() comes from dplyr
 copy_to(dest = con, 
@@ -255,7 +255,7 @@ copy_to(dest = con,
 
 
 
-```r
+``` r
 # Show two tables in the database 
 
 dbListTables(con)
@@ -266,7 +266,7 @@ dbListTables(con)
 ## [6] "weather"
 ```
 
-```r
+``` r
 # Show the columns/attributes/fields of a table 
 
 dbListFields(con, "flights")
@@ -280,7 +280,7 @@ dbListFields(con, "flights")
 ## [17] "hour"           "minute"         "time_hour"
 ```
 
-```r
+``` r
 dbListFields(con, "weather")
 ```
 
@@ -301,7 +301,7 @@ dbListFields(con, "weather")
 - Option 1 
 
 
-```r
+``` r
 DBI::dbGetQuery(con, 
                 "SELECT * FROM flights;") %>% # SQL
   head(10) # dplyr 
@@ -346,7 +346,7 @@ DBI::dbGetQuery(con,
 - Option 2 (works faster)
 
 
-```sql
+``` sql
 
 SELECT * 
 FROM flights 
@@ -359,7 +359,7 @@ LIMIT 10
   - When local variables are updated, the SQL query is also automatically updated. This approach is called [parameterized query](https://www.php.net/manual/en/pdo.prepared-statements.php) (or prepared statement).
 
 
-```r
+``` r
 ######################## PREPARATION ########################
 
 # Local variables 
@@ -409,7 +409,7 @@ Could you remind me how to see the list of attributes of a table? Let's say you 
 - Collect the selected columns and filtered rows 
 
 
-```r
+``` r
 df <- dbGetQuery(con, 
   "SELECT dep_delay, arr_delay FROM flights;") %>%
   head(10) %>%
@@ -421,7 +421,7 @@ df <- dbGetQuery(con,
   - Count all (*)
   
 
-```r
+``` r
 dbGetQuery(con, 
           "SELECT COUNT(*) 
            FROM flights;") 
@@ -433,7 +433,7 @@ dbGetQuery(con,
 ```
   
 
-```r
+``` r
 dbGetQuery(con, 
            "SELECT COUNT(dep_delay)
            FROM flights;")
@@ -447,7 +447,7 @@ dbGetQuery(con,
   - Count distinct values 
   
 
-```r
+``` r
 dbGetQuery(con, 
            "SELECT COUNT(DISTINCT dep_delay)
            FROM flights;")
@@ -465,7 +465,7 @@ Thanks to the `dbplyr` package, you can use the `dplyr` syntax to query SQL.
 - Note that pipe (%) works.
 
 
-```r
+``` r
 # tbl select tables
 flights <- con %>% tbl("flights")
 airports <- con %>% tbl("airports")
@@ -476,14 +476,14 @@ weather <- con %>% tbl("weather")
 - `select` = `SELECT`
 
 
-```r
+``` r
 flights %>% 
   select(contains("delay"))
 ```
 
 ```
 ## # Source:   SQL [?? x 2]
-## # Database: sqlite 3.40.1 [:memory:]
+## # Database: sqlite 3.47.1 [:memory:]
 ##    dep_delay arr_delay
 ##        <dbl>     <dbl>
 ##  1         2        11
@@ -505,7 +505,7 @@ Your turn: write the same code in SQL. Don't forget to add the `connection` argu
 - `mutate` = `SELECT` `AS`
 
 
-```r
+``` r
 flights %>%
   select(distance, air_time) %>%  
   mutate(speed = distance / (air_time / 60)) 
@@ -513,7 +513,7 @@ flights %>%
 
 ```
 ## # Source:   SQL [?? x 3]
-## # Database: sqlite 3.40.1 [:memory:]
+## # Database: sqlite 3.47.1 [:memory:]
 ##    distance air_time speed
 ##       <dbl>    <dbl> <dbl>
 ##  1     1400      227  370.
@@ -536,14 +536,14 @@ Hint: `mutate(new_var = var 1 * var2` (R) = `SELECT var1 * var2 AS near_var` (SQ
 - `filter` = `WHERE` 
 
 
-```r
+``` r
 flights %>% 
   filter(month == 1, day == 1) # filter(month ==1 & day == 1) Both work in the same way.
 ```
 
 ```
 ## # Source:   SQL [?? x 19]
-## # Database: sqlite 3.40.1 [:memory:]
+## # Database: sqlite 3.47.1 [:memory:]
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ##    <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>
 ##  1  2013     1     1      517            515         2      830            819
@@ -572,7 +572,7 @@ Note that R and SQL operators are not exactly alike. R uses `!=` for `Not equal 
 Another pro-tip is [`LIKE` operator](https://www.w3schools.com/sql/sql_like.asp), used in a `WHERE` statement to find values based on string patterns.
 
 
-```sql
+``` sql
 SELECT DISTINCT(origin) -- Distinct values from origin column
 FROM flights
 WHERE origin LIKE 'J%'; -- Find any origin values that start with "J"
@@ -595,7 +595,7 @@ Table: (\#tab:unnamed-chunk-16)1 records
 - `arrange` = `ORDER BY`
 
 
-```r
+``` r
 flights %>% 
   arrange(carrier, desc(arr_delay)) %>%
   show_query()
@@ -603,7 +603,7 @@ flights %>%
 
 ```
 ## <SQL>
-## SELECT *
+## SELECT `flights`.*
 ## FROM `flights`
 ## ORDER BY `carrier`, `arr_delay` DESC
 ```
@@ -615,7 +615,7 @@ Hint: `arrange(var1, desc(var2)` (R) = `ORDER BY var1, var2 DESC` (SQL)
 - `summarise` = `SELECT` `AS` and `group by` = `GROUP BY`
 
 
-```r
+``` r
 flights %>%
   group_by(month, day) %>%
   summarise(delay = mean(dep_delay)) 
@@ -634,7 +634,7 @@ flights %>%
 
 ```
 ## # Source:   SQL [?? x 3]
-## # Database: sqlite 3.40.1 [:memory:]
+## # Database: sqlite 3.47.1 [:memory:]
 ## # Groups:   month
 ##    month   day delay
 ##    <int> <int> <dbl>
@@ -657,7 +657,7 @@ Your turn: write the same code in SQL (hint: in SQL the order should be `SELECT 
 - If you feel too much challenged, here's a help.
 
 
-```r
+``` r
 flights %>%
   group_by(month, day) %>%
   summarise(delay = mean(dep_delay)) %>%
@@ -691,7 +691,7 @@ flights %>%
 `FROM one table LEFT JOIN another table ON condition = condition` (`ON` in SQL = `BY` in R)
 
 
-```sql
+``` sql
 SELECT *
 FROM flights AS f
 LEFT JOIN weather AS w 
@@ -722,7 +722,7 @@ Table: (\#tab:unnamed-chunk-20)Displaying records 1 - 10
 Can anyone explain why SQL query using `dplyr` then translated by `show_query()` looks more complex than the above? ([Hint](https://stackoverflow.com/questions/36808295/how-to-remove-duplicate-columns-from-join-in-sql))
 
 
-```r
+``` r
 flights %>% 
   left_join(weather, by = c("year", "month")) %>%
   show_query()
@@ -780,7 +780,7 @@ flights %>%
 > Error in UseMethod("collect") : no applicable method for 'collect' applied to an object of class "c('LayerInstance', 'Layer', 'ggproto', 'gg')"
 
 
-```r
+``` r
 origin_flights_plot <- flights %>%
   group_by(origin) %>%
   tally() %>%
@@ -792,7 +792,7 @@ origin_flights_plot <- flights %>%
 - This works. 
 
 
-```r
+``` r
 df <- flights %>%
   group_by(origin) %>%
   tally() %>%
@@ -809,7 +809,7 @@ origin_flights_plot
 #### Disconnect 
 
 
-```r
+``` r
 DBI::dbDisconnect(con)
 ```
 
@@ -822,7 +822,7 @@ Subquery = a query nested inside a query
 This hypothetical example is inspired by [dofactory blog post](https://www.dofactory.com/sql/subquery).
 
 
-```sql
+``` sql
 SELECT names  -- Outer query 
 FROM consultants
 WHERE Id IN (SELECT ConsultingId
@@ -835,7 +835,7 @@ WHERE Id IN (SELECT ConsultingId
 This is just a hypothetical example inspired by [James LeDoux's blog post](https://jamesrledoux.com/code/sql-cte-common-table-expressions.
 
 
-```sql
+``` sql
 -- cases about R and SQL from dlab-database 
 WITH r_sql_consulting_cases AS ( -- The name of the CTE expression 
   -- The CTE query 

@@ -88,7 +88,7 @@
 - One of the popular datasets used in machine learning competitions 
 
 
-```r
+``` r
 # Load packages
 
 ## CRAN packages
@@ -113,11 +113,11 @@ remotes::install_github("ck37/ck37r")
 ```
 
 ```
-## Skipping install of 'ck37r' from a github remote, the SHA1 (b5214459) has not changed since last install.
+## Skipping install of 'ck37r' from a github remote, the SHA1 (49c2bf58) has not changed since last install.
 ##   Use `force = TRUE` to force installation
 ```
 
-```r
+``` r
 conflicted::conflict_prefer("filter", "dplyr")
 ```
 
@@ -127,7 +127,7 @@ conflicted::conflict_prefer("filter", "dplyr")
 
 
 
-```r
+``` r
 ## Jae's custom functions
 source(here("functions", "ml_utils.r"))
 
@@ -138,7 +138,7 @@ data_original <- read_csv(here("data", "heart.csv"))
 
 ```
 ## Rows: 303 Columns: 14
-## ── Column specification ────────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## dbl (14): age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpea...
 ## 
@@ -146,7 +146,7 @@ data_original <- read_csv(here("data", "heart.csv"))
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
-```r
+``` r
 glimpse(data_original)
 ```
 
@@ -169,7 +169,7 @@ glimpse(data_original)
 ## $ target   <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
 ```
 
-```r
+``` r
 # Createa a copy
 data <- data_original
 
@@ -252,7 +252,7 @@ In this course, we focus on two preprocessing tasks.
 - One-hot encoding (creating dummy/indicator variables)
 
 
-```r
+``` r
 # Turn selected numeric variables into factor variables
 data <- data %>%
   dplyr::mutate(across(c("sex", "ca", "cp", "slope", "thal"), as.factor))
@@ -281,7 +281,7 @@ glimpse(data)
 - Imputation 
 
 
-```r
+``` r
 # Check missing values
 
 map_df(data, ~ is.na(.) %>% sum())
@@ -295,7 +295,7 @@ map_df(data, ~ is.na(.) %>% sum())
 ## # ℹ 3 more variables: ca <int>, thal <int>, target <int>
 ```
 
-```r
+``` r
 # Add missing values
 
 data$oldpeak[sample(seq(data), size = 10)] <- NA
@@ -315,7 +315,7 @@ data %>%
 ## # ℹ 3 more variables: ca <int>, thal <int>, target <int>
 ```
 
-```r
+``` r
 # Check the rate of missing values
 data %>%
   map_df(~ is.na(.) %>% mean())
@@ -334,7 +334,7 @@ data %>%
 #### Outcome variable 
 
 
-```r
+``` r
 # Continuous variable
 data$age %>% class()
 ```
@@ -346,7 +346,7 @@ data$age %>% class()
 #### Data splitting using random sampling 
 
 
-```r
+``` r
 # for reproducibility
 set.seed(1234)
 
@@ -363,7 +363,7 @@ raw_test_x_reg <- testing(split_reg)
 #### recipe 
 
 
-```r
+``` r
 # Regression recipe
 rec_reg <- raw_train_x_reg %>%
   # Define the outcome variable
@@ -378,7 +378,7 @@ prep_reg <- rec_reg %>% prep(retain = TRUE)
 ```
 
 
-```r
+``` r
 # x features
 train_x_reg <- juice(prep_reg, all_predictors())
 
@@ -402,7 +402,7 @@ names(train_x_reg) # Make sure there's no age variable!
 ## [19] "thal_X1"  "thal_X2"  "thal_X3"
 ```
 
-```r
+``` r
 class(train_y_reg) # Make sure this is a continuous variable!
 ```
 
@@ -412,7 +412,7 @@ class(train_y_reg) # Make sure this is a continuous variable!
 - Note that other imputation methods are also available. 
 
 
-```r
+``` r
 grep("impute", ls("package:recipes"), value = TRUE)
 ```
 
@@ -431,7 +431,7 @@ grep("impute", ls("package:recipes"), value = TRUE)
 #### Outcome variable 
 
 
-```r
+``` r
 data$target %>% class()
 ```
 
@@ -439,7 +439,7 @@ data$target %>% class()
 ## [1] "numeric"
 ```
 
-```r
+``` r
 data$target <- as.factor(data$target)
 
 data$target %>% class()
@@ -452,7 +452,7 @@ data$target %>% class()
 #### Data splitting using stratified random sampling
 
 
-```r
+``` r
 # split
 split_class <- initial_split(data %>%
   mutate(target = as.factor(target)),
@@ -470,7 +470,7 @@ raw_test_x_class <- testing(split_class)
 #### recipe 
 
 
-```r
+``` r
 # Classification recipe
 rec_class <- raw_train_x_class %>%
   # Define the outcome variable
@@ -486,7 +486,7 @@ prep_class <- rec_class %>% prep(retain = TRUE)
 ```
 
 
-```r
+``` r
 # x features
 train_x_class <- juice(prep_class, all_predictors())
 test_x_class <- bake(prep_class, raw_test_x_class, all_predictors())
@@ -506,7 +506,7 @@ names(train_x_class) # Make sure there's no target variable!
 ## [19] "thal_X1"  "thal_X2"  "thal_X3"
 ```
 
-```r
+``` r
 class(train_y_class) # Make sure this is a factor variable!
 ```
 
@@ -529,7 +529,7 @@ x -> f - > y (defined)
 3. Specify a mode 
 
 
-```r
+``` r
 # OLS spec
 ols_spec <- linear_reg() %>% # Specify a model
   set_engine("lm") %>% # Specify an engine: lm, glmnet, stan, keras, spark
@@ -541,7 +541,7 @@ ols_spec <- linear_reg() %>% # Specify a model
 Lasso is one of the regularization techniques along with ridge and elastic-net. 
 
 
-```r
+``` r
 # Lasso spec
 lasso_spec <- linear_reg(
   penalty = 0.1, # tuning hyperparameter
@@ -571,7 +571,7 @@ lasso_spec %>% translate() # See the documentation
 - Fit models 
 
 
-```r
+``` r
 ols_fit <- ols_spec %>%
   fit_xy(x = train_x_reg, y = train_y_reg)
 # fit(train_y_reg ~ ., train_x_reg) # When you data are not preprocessed
@@ -585,7 +585,7 @@ lasso_fit <- lasso_spec %>%
 - Visualize model fits 
 
 
-```r
+``` r
 map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit)
 ```
 
@@ -603,7 +603,7 @@ map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit)
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-19-2.png" width="672" />
 
 
-```r
+``` r
 # Define performance metrics
 metrics <- yardstick::metric_set(rmse, mae, rsq)
 
@@ -641,7 +641,7 @@ evals %>%
 ![](https://www.programmersought.com/images/523/7e44435f20fe514c11ca0d930af8547b.png)
 
 
-```r
+``` r
 # tune() = placeholder
 
 tune_spec <- linear_reg(
@@ -664,7 +664,7 @@ tune_spec
 ## Computational engine: glmnet
 ```
 
-```r
+``` r
 # penalty() searches 50 possible combinations
 
 lambda_grid <- grid_regular(penalty(), levels = 50)
@@ -673,7 +673,7 @@ lambda_grid <- grid_regular(penalty(), levels = 50)
 ![Source: Kaggle](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4788946%2F82b5a41b6693a313b246f02d79e972d5%2FK%20FOLD.png?generation=1608195745131795&alt=media)
 
 
-```r
+``` r
 # 10-fold cross-validation
 
 set.seed(1234) # for reproducibility
@@ -684,7 +684,7 @@ rec_folds <- vfold_cv(train_x_reg %>% bind_cols(tibble(age = train_y_reg)))
 ##### Add these elements to a workflow 
 
 
-```r
+``` r
 # Workflow
 rec_wf <- workflow() %>%
   add_model(tune_spec) %>%
@@ -692,7 +692,7 @@ rec_wf <- workflow() %>%
 ```
 
 
-```r
+``` r
 # Tuning results
 rec_res <- rec_wf %>%
   tune_grid(
@@ -704,7 +704,7 @@ rec_res <- rec_wf %>%
 ##### Visualize 
 
 
-```r
+``` r
 # Visualize
 
 rec_res %>%
@@ -730,8 +730,7 @@ rec_res %>%
 ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `linewidth` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-25-1.png" width="672" />
@@ -739,7 +738,7 @@ rec_res %>%
 ##### Select 
 
 
-```r
+``` r
 conflict_prefer("filter", "dplyr")
 ```
 
@@ -748,7 +747,7 @@ conflict_prefer("filter", "dplyr")
 ## [conflicted] Will prefer dplyr::filter over any other package.
 ```
 
-```r
+``` r
 top_rmse <- show_best(rec_res, metric = "rmse")
 
 best_rmse <- select_best(rec_res, metric = "rmse")
@@ -763,7 +762,7 @@ best_rmse
 ## 1   0.391 Preprocessor1_Model48
 ```
 
-```r
+``` r
 glue('The RMSE of the intiail model is
      {evals %>%
   filter(type == "Lasso", .metric == "rmse") %>%
@@ -773,10 +772,10 @@ glue('The RMSE of the intiail model is
 
 ```
 ## The RMSE of the intiail model is
-##    7.81
+##    7.83
 ```
 
-```r
+``` r
 glue('The RMSE of the tuned model is {rec_res %>%
   collect_metrics() %>%
   filter(.metric == "rmse") %>%
@@ -793,7 +792,7 @@ glue('The RMSE of the tuned model is {rec_res %>%
 - Finalize your workflow and visualize [variable importance](https://koalaverse.github.io/vip/articles/vip.html)
 
 
-```r
+``` r
 finalize_lasso <- rec_wf %>%
   finalize_workflow(best_rmse)
 
@@ -807,8 +806,7 @@ finalize_lasso %>%
 ## Warning: `pull_workflow_fit()` was deprecated in workflows 0.2.3.
 ## ℹ Please use `extract_fit_parsnip()` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-27-1.png" width="672" />
@@ -818,7 +816,7 @@ finalize_lasso %>%
 - Apply the tuned model to the test dataset 
 
 
-```r
+``` r
 test_fit <- finalize_lasso %>%
   fit(test_x_reg %>% bind_cols(tibble(age = test_y_reg)))
 
@@ -829,9 +827,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 × 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.12 
-## 2 mae     standard       5.84 
-## 3 rsq     standard       0.395
+## 1 rmse    standard       7.04 
+## 2 mae     standard       5.78 
+## 3 rsq     standard       0.411
 ```
 
 ### Decision tree 
@@ -845,7 +843,7 @@ evaluate_reg(test_fit)
 3. Specify a mode 
 
 
-```r
+``` r
 # workflow
 tree_wf <- workflow() %>% add_formula(target ~ .)
 
@@ -867,7 +865,7 @@ tree_wf <- tree_wf %>% add_model(tree_spec)
 - Fit a model
 
 
-```r
+``` r
 tree_fit <- tree_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 ```
 
@@ -901,7 +899,7 @@ A confusion matrix is often used to describe the performance of a classification
 -   To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html).
 
 
-```r
+``` r
 # Define performance metrics
 
 metrics <- yardstick::metric_set(accuracy, precision, recall)
@@ -915,7 +913,7 @@ tree_fit_viz_metr
 
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-31-1.png" width="672" />
 
-```r
+``` r
 tree_fit_viz_mat <- visualize_class_conf(tree_fit)
 
 tree_fit_viz_mat
@@ -934,7 +932,7 @@ Decisions trees tend to overfit. We need to consider two things to reduce this p
 - **tree_depth** 
 
 
-```r
+``` r
 tune_spec <- decision_tree(
   cost_complexity = tune(), # how to split
   tree_depth = tune(), # when to stop
@@ -962,7 +960,7 @@ tree_grid %>%
 ## 5         15     5
 ```
 
-```r
+``` r
 # 10-fold cross-validation
 
 set.seed(1234) # for reproducibility
@@ -975,7 +973,7 @@ tree_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class
 ##### Add these elements to a workflow 
 
 
-```r
+``` r
 # Update workflow
 tree_wf <- tree_wf %>% update_model(tune_spec)
 
@@ -996,12 +994,18 @@ tree_res <- tree_wf %>%
   )
 ```
 
+```
+## Warning: ! tune detected a parallel backend registered with foreach but no backend registered with future.
+## ℹ Support for parallel processing with foreach was soft-deprecated in tune 1.2.1.
+## ℹ See ?parallelism (`?tune::parallelism()`) to learn more.
+```
+
 ##### Visualize 
 
 - The following plot draws on the [vignette](https://www.tidymodels.org/start/tuning/) of the tidymodels package. 
 
 
-```r
+``` r
 tree_res %>%
   collect_metrics() %>%
   mutate(tree_depth = factor(tree_depth)) %>%
@@ -1029,9 +1033,9 @@ tree_res %>%
 ##### Select 
 
 
-```r
+``` r
 # Optimal hyperparameter
-best_tree <- select_best(tree_res, "recall")
+best_tree <- tune::select_best(tree_res, metric = "recall")
 
 # Add the hyperparameter to the workflow
 finalize_tree <- tree_wf %>%
@@ -1039,7 +1043,7 @@ finalize_tree <- tree_wf %>%
 ```
 
 
-```r
+``` r
 tree_fit_tuned <- finalize_tree %>%
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
@@ -1049,7 +1053,7 @@ tree_fit_tuned <- finalize_tree %>%
 
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 
-```r
+``` r
 # Confusion matrix
 (tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
 ```
@@ -1059,7 +1063,7 @@ tree_fit_tuned <- finalize_tree %>%
 - Visualize variable importance 
 
 
-```r
+``` r
 tree_fit_tuned %>%
   pull_workflow_fit() %>%
   vip::vip()
@@ -1072,7 +1076,7 @@ tree_fit_tuned %>%
 - Apply the tuned model to the test dataset 
 
 
-```r
+``` r
 test_fit <- finalize_tree %>%
   fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
 
@@ -1133,7 +1137,7 @@ Here we focus on the difference between bagging and boosting. In short, boosting
 3. Specify a mode 
 
 
-```r
+``` r
 # workflow
 rand_wf <- workflow() %>% add_formula(target ~ .)
 
@@ -1160,14 +1164,14 @@ rand_wf <- rand_wf %>% add_model(rand_spec)
 - Fit a model
 
 
-```r
+``` r
 rand_fit <- rand_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 ```
 
 #### yardstick 
 
 
-```r
+``` r
 # Define performance metrics
 metrics <- yardstick::metric_set(accuracy, precision, recall)
 
@@ -1181,7 +1185,7 @@ rand_fit_viz_metr
 - Visualize the confusion matrix. 
   
 
-```r
+``` r
 rand_fit_viz_mat <- visualize_class_conf(rand_fit)
 
 rand_fit_viz_mat
@@ -1200,7 +1204,7 @@ We focus on the following two hyperparameters:
 - `min_n`: The minimum number of data points needed to keep splitting nodes. 
 
 
-```r
+``` r
 tune_spec <-
   rand_forest(
     mode = "classification",
@@ -1235,7 +1239,7 @@ rand_grid %>%
 ```
 
 
-```r
+``` r
 # 10-fold cross-validation
 
 set.seed(1234) # for reproducibility
@@ -1248,7 +1252,7 @@ rand_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class
 ##### Add these elements to a workflow 
 
 
-```r
+``` r
 # Update workflow
 rand_wf <- rand_wf %>% update_model(tune_spec)
 
@@ -1261,10 +1265,16 @@ rand_res <- rand_wf %>%
   )
 ```
 
+```
+## Warning: ! tune detected a parallel backend registered with foreach but no backend registered with future.
+## ℹ Support for parallel processing with foreach was soft-deprecated in tune 1.2.1.
+## ℹ See ?parallelism (`?tune::parallelism()`) to learn more.
+```
+
 ##### Visualize 
 
 
-```r
+``` r
 rand_res %>%
   collect_metrics() %>%
   mutate(min_n = factor(min_n)) %>%
@@ -1292,9 +1302,9 @@ rand_res %>%
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-46-1.png" width="672" />
 
 
-```r
+``` r
 # Optimal hyperparameter
-best_tree <- select_best(rand_res, "accuracy")
+best_tree <- tune::select_best(rand_res, metric = "accuracy")
 
 best_tree
 ```
@@ -1303,17 +1313,17 @@ best_tree
 ## # A tibble: 1 × 3
 ##    mtry min_n .config              
 ##   <int> <int> <chr>                
-## 1     1     4 Preprocessor1_Model06
+## 1     1     6 Preprocessor1_Model11
 ```
 
-```r
+``` r
 # Add the hyperparameter to the workflow
 finalize_tree <- rand_wf %>%
   finalize_workflow(best_tree)
 ```
 
 
-```r
+``` r
 rand_fit_tuned <- finalize_tree %>%
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
@@ -1323,7 +1333,7 @@ rand_fit_tuned <- finalize_tree %>%
 
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-48-1.png" width="672" />
 
-```r
+``` r
 # Confusion matrix
 (rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
 ```
@@ -1333,7 +1343,7 @@ rand_fit_tuned <- finalize_tree %>%
 - Visualize variable importance 
 
 
-```r
+``` r
 rand_fit_tuned %>%
   pull_workflow_fit() %>%
   vip::vip()
@@ -1346,7 +1356,7 @@ rand_fit_tuned %>%
 - Apply the tuned model to the test dataset 
 
 
-```r
+``` r
 test_fit <- finalize_tree %>%
   fit(test_x_class %>%
     bind_cols(tibble(target = test_y_class)))
@@ -1358,74 +1368,105 @@ evaluate_class(test_fit)
 ## # A tibble: 3 × 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.913
-## 2 precision binary         0.905
-## 3 recall    binary         0.905
+## 1 accuracy  binary         0.902
+## 2 precision binary         0.923
+## 3 recall    binary         0.857
 ```
 
 ### Boosting (XGboost)
 
-#### parsnip 
+#### parsnip: Model specification and tuning
 
-- Build a model 
-
-1. Specify a model 
-2. Specify an engine 
-3. Specify a mode 
-
-
-```r
-# workflow
-xg_wf <- workflow() %>% add_formula(target ~ .)
-
-# spec
-xg_spec <- boost_tree(
-
-  # Mode
-  mode = "classification",
-
-  # Tuning hyperparameters
-
-  # The number of trees to fit, aka boosting iterations
-  trees = c(100, 300, 500, 700, 900),
-  # The depth of the decision tree (how many levels of splits).
-  tree_depth = c(1, 6),
-  # Learning rate: lower means the ensemble will adapt more slowly.
-  learn_rate = c(0.0001, 0.01, 0.2),
-  # Stop splitting a tree if we only have this many obs in a tree node.
-  min_n = 10L
-) %>%
-  set_engine("xgboost")
-
-xg_wf <- xg_wf %>% add_model(xg_spec)
-```
-
-- Fit a model
+- **Build and tune a model**  
+  1. Define a workflow with your formula  
+  2. Add a tunable model spec (with `tune()` placeholders)  
+  3. Set the engine and mode  
+  4. Create resamples (e.g. stratified 5‑fold CV)  
+  5. Design a hyperparameter grid  
+  6. Tune across the grid  
 
 
-```r
-xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
-```
+``` r
+# 1) Define the workflow
+xg_wf <- workflow() %>%
+  add_formula(target ~ .) %>% 
+  add_model(
+    boost_tree(
+      trees      = tune(),      # to be tuned
+      tree_depth = tune(),
+      learn_rate = tune()
+    ) %>% 
+    set_engine("xgboost") %>% 
+    set_mode("classification")
+  )
 
-```
-## Warning in is.numeric(args$trees) && args$trees < 0: 'length(x) = 5 > 1' in
-## coercion to 'logical(1)'
+# 2) Create resamples (5-fold CV, stratified by target)
+set.seed(123)
+cv_splits <- vfold_cv(
+  data %>% mutate(target = as.factor(target)),
+  v = 5, 
+  strata = target
+)
+
+# 3) Specify a tuning grid
+xg_grid <- grid_latin_hypercube(
+  trees(range = c(50, 500)),
+  tree_depth(range = c(1, 10)),
+  learn_rate(range = c(0.01, 0.3)),
+  size = 20
+)
 ```
 
 ```
-## Warning in is.numeric(args$tree_depth) && args$tree_depth < 0: 'length(x) = 2 >
-## 1' in coercion to 'logical(1)'
+## Warning: `grid_latin_hypercube()` was deprecated in dials 1.3.0.
+## ℹ Please use `grid_space_filling()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+```
+
+``` r
+# 4) Run tuning
+xg_res <- xg_wf %>%
+  tune_grid(
+    resamples = cv_splits,
+    grid      = xg_grid,
+    metrics   = metric_set(accuracy, recall),
+    control   = control_grid(save_pred = TRUE)
+  )
 ```
 
 ```
-## Warning in begin_iteration:end_iteration: numerical expression has 5 elements:
-## only the first used
+## Warning: ! tune detected a parallel backend registered with foreach but no backend registered with future.
+## ℹ Support for parallel processing with foreach was soft-deprecated in tune 1.2.1.
+## ℹ See ?parallelism (`?tune::parallelism()`) to learn more.
+```
+
+- **Fit the final model**  
+
+  1. Select the best parameters
+  2. Finalize the workflow
+  3. Fit to the training set
+
+
+``` r
+# Select best metrics (name the metric argument explicitly)
+best_params <- select_best(xg_res, metric = "accuracy")
+
+# Finalize the workflow with those parameters
+xg_wf_final <- finalize_workflow(xg_wf, best_params)
+
+# Fit the finalized workflow
+xg_fit <- fit(
+  xg_wf_final,
+  train_x_class %>%
+    bind_cols(tibble(target = train_y_class))
+)
 ```
 
 #### yardstick 
 
 
-```r
+``` r
 metrics <- metric_set(
   yardstick::accuracy,
   yardstick::precision,
@@ -1440,12 +1481,12 @@ evaluate_class(xg_fit)
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
 ## 1 accuracy  binary         0.739
-## 2 precision binary         0.705
-## 3 recall    binary         0.738
+## 2 precision binary         0.725
+## 3 recall    binary         0.690
 ```
 
 
-```r
+``` r
 xg_fit_viz_metr <-
   visualize_class_eval(xg_fit)
 
@@ -1457,7 +1498,7 @@ xg_fit_viz_metr
 - Visualize the confusion matrix. 
   
 
-```r
+``` r
 xg_fit_viz_mat <-
   visualize_class_conf(xg_fit)
 
@@ -1473,7 +1514,7 @@ xg_fit_viz_mat
 - We focus on the following hyperparameters: `trees,` `tree_depth,` `learn_rate,` `min_n,` `mtry,` `loss_reduction,` and `sample_size`
 
 
-```r
+``` r
 tune_spec <-
   xg_spec <- boost_tree(
 
@@ -1522,7 +1563,7 @@ xg_folds <- vfold_cv(train_x_class %>% bind_cols(tibble(target = train_y_class))
 ##### Add these elements to a workflow 
 
 
-```r
+``` r
 # Update workflow
 xg_wf <- xg_wf %>% update_model(tune_spec)
 
@@ -1535,10 +1576,16 @@ xg_res <- xg_wf %>%
   )
 ```
 
+```
+## Warning: ! tune detected a parallel backend registered with foreach but no backend registered with future.
+## ℹ Support for parallel processing with foreach was soft-deprecated in tune 1.2.1.
+## ℹ See ?parallelism (`?tune::parallelism()`) to learn more.
+```
+
 ##### Visualize 
 
 
-```r
+``` r
 conflict_prefer("filter", "dplyr")
 ```
 
@@ -1547,7 +1594,7 @@ conflict_prefer("filter", "dplyr")
 ## [conflicted] Will prefer dplyr::filter over any other package.
 ```
 
-```r
+``` r
 xg_res %>%
   collect_metrics() %>%
   filter(.metric == "roc_auc") %>%
@@ -1567,28 +1614,28 @@ xg_res %>%
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-58-1.png" width="672" />
 
 
-```r
+``` r
 # Optimal hyperparameter
-best_xg <- select_best(xg_res, "roc_auc")
+best_xg <- select_best(xg_res, metric = "roc_auc")
 
 best_xg
 ```
 
 ```
 ## # A tibble: 1 × 8
-##    mtry trees min_n tree_depth    learn_rate loss_reduction sample_size .config 
-##   <int> <int> <int>      <int>         <dbl>          <dbl>       <dbl> <chr>   
-## 1     6  1856     6         10 0.00000000859  0.00000000102       0.681 Preproc…
+##    mtry trees min_n tree_depth learn_rate loss_reduction sample_size .config    
+##   <int> <int> <int>      <int>      <dbl>          <dbl>       <dbl> <chr>      
+## 1     2  1267     2         13    0.00866           5.02       0.668 Preprocess…
 ```
 
-```r
+``` r
 # Add the hyperparameter to the workflow
 finalize_xg <- xg_wf %>%
   finalize_workflow(best_xg)
 ```
 
 
-```r
+``` r
 xg_fit_tuned <- finalize_xg %>%
   fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
 
@@ -1598,7 +1645,7 @@ xg_fit_tuned <- finalize_xg %>%
 
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-60-1.png" width="672" />
 
-```r
+``` r
 # Confusion matrix
 (xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
 ```
@@ -1608,7 +1655,7 @@ xg_fit_tuned <- finalize_xg %>%
 - Visualize variable importance 
 
 
-```r
+``` r
 xg_fit_tuned %>%
   pull_workflow_fit() %>%
   vip::vip()
@@ -1621,7 +1668,7 @@ xg_fit_tuned %>%
 - Apply the tuned model to the test dataset 
 
 
-```r
+``` r
 test_fit <- finalize_xg %>%
   fit(test_x_class %>% bind_cols(tibble(target = test_y_class)))
 
@@ -1632,9 +1679,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 × 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.761
-## 2 precision binary         0.763
-## 3 recall    binary         0.690
+## 1 accuracy  binary         0.826
+## 2 precision binary         0.810
+## 3 recall    binary         0.810
 ```
 
 ### Stacking (SuperLearner)
@@ -1660,7 +1707,7 @@ A "wrapper" is a short function that adapts an algorithm for the SuperLearner pa
 #### Choose algorithms
 
 
-```r
+``` r
 # Review available models
 SuperLearner::listWrappers()
 ```
@@ -1672,18 +1719,18 @@ SuperLearner::listWrappers()
 ```
 ##  [1] "SL.bartMachine"      "SL.bayesglm"         "SL.biglasso"        
 ##  [4] "SL.caret"            "SL.caret.rpart"      "SL.cforest"         
-##  [7] "SL.earth"            "SL.extraTrees"       "SL.gam"             
-## [10] "SL.gbm"              "SL.glm"              "SL.glm.interaction" 
-## [13] "SL.glmnet"           "SL.ipredbagg"        "SL.kernelKnn"       
-## [16] "SL.knn"              "SL.ksvm"             "SL.lda"             
-## [19] "SL.leekasso"         "SL.lm"               "SL.loess"           
-## [22] "SL.logreg"           "SL.mean"             "SL.nnet"            
-## [25] "SL.nnls"             "SL.polymars"         "SL.qda"             
-## [28] "SL.randomForest"     "SL.ranger"           "SL.ridge"           
-## [31] "SL.rpart"            "SL.rpartPrune"       "SL.speedglm"        
-## [34] "SL.speedlm"          "SL.step"             "SL.step.forward"    
-## [37] "SL.step.interaction" "SL.stepAIC"          "SL.svm"             
-## [40] "SL.template"         "SL.xgboost"
+##  [7] "SL.earth"            "SL.gam"              "SL.gbm"             
+## [10] "SL.glm"              "SL.glm.interaction"  "SL.glmnet"          
+## [13] "SL.ipredbagg"        "SL.kernelKnn"        "SL.knn"             
+## [16] "SL.ksvm"             "SL.lda"              "SL.leekasso"        
+## [19] "SL.lm"               "SL.loess"            "SL.logreg"          
+## [22] "SL.mean"             "SL.nnet"             "SL.nnls"            
+## [25] "SL.polymars"         "SL.qda"              "SL.randomForest"    
+## [28] "SL.ranger"           "SL.ridge"            "SL.rpart"           
+## [31] "SL.rpartPrune"       "SL.speedglm"         "SL.speedlm"         
+## [34] "SL.step"             "SL.step.forward"     "SL.step.interaction"
+## [37] "SL.stepAIC"          "SL.svm"              "SL.template"        
+## [40] "SL.xgboost"
 ```
 
 ```
@@ -1699,7 +1746,7 @@ SuperLearner::listWrappers()
 ```
 
 
-```r
+``` r
 # Compile the algorithm wrappers to be used.
 sl_lib <- c(
   "SL.mean", # Marginal mean of the outcome ()
@@ -1715,7 +1762,7 @@ sl_lib <- c(
 Fit the ensemble!
 
 
-```r
+``` r
 # This is a seed that is compatible with multicore parallel processing.
 # See ?set.seed for more information.
 set.seed(1, "L'Ecuyer-CMRG")
@@ -1743,7 +1790,7 @@ Risk is the average loss, and loss is how far off the prediction was for an indi
 * `SL.mean_All` (the weighted mean of $Y$) is a benchmark algorithm (ignoring features). 
 
 
-```r
+``` r
 summary(cv_sl)
 ```
 
@@ -1759,19 +1806,19 @@ summary(cv_sl)
 ## All risk estimates are based on V =  5 
 ## 
 ##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.11277 0.0135685 0.075782 0.14318
-##     Discrete SL 0.11854 0.0145053 0.074937 0.16302
+##   Super Learner 0.11429 0.0136821 0.077962 0.14726
+##     Discrete SL 0.10835 0.0137552 0.075192 0.14726
 ##     SL.mean_All 0.24798 0.0030968 0.247743 0.24895
-##   SL.glmnet_All 0.10735 0.0135893 0.074937 0.14324
-##    SL.rpart_All 0.16730 0.0197985 0.111990 0.22102
-##   SL.ranger_All 0.12566 0.0119774 0.097945 0.15955
-##  SL.xgboost_All 0.13035 0.0149709 0.098472 0.16302
+##   SL.glmnet_All 0.10835 0.0137552 0.075192 0.14726
+##    SL.rpart_All 0.17800 0.0193394 0.134548 0.22803
+##   SL.ranger_All 0.12690 0.0118683 0.098966 0.15981
+##  SL.xgboost_All 0.13570 0.0152786 0.105404 0.16393
 ```
 
 ##### Plot
 
 
-```r
+``` r
 # Plot the cross-validated risk estimate with 95% CIs.
 
 plot(cv_sl)
@@ -1796,25 +1843,25 @@ AUC: Area Under the ROC Curve
 0.5 = no better than chance 
 
 
-```r
+``` r
 ck37r::auc_table(cv_sl)
 ```
 
 ```
 ##                      auc         se  ci_lower  ci_upper      p-value
-## SL.mean_All    0.5000000 0.06912305 0.3645213 0.6354787 5.228498e-10
-## SL.rpart_All   0.8235355 0.03869743 0.7476899 0.8993810 5.550478e-03
-## SL.xgboost_All 0.8850572 0.02430397 0.8374223 0.9326921 6.525143e-02
-## SL.ranger_All  0.9071396 0.02018027 0.8675870 0.9466922 2.336564e-01
-## DiscreteSL     0.9073913 0.02036305 0.8674805 0.9473021 2.394812e-01
-## SuperLearner   0.9167735 0.01947639 0.8786004 0.9549465 3.980169e-01
-## SL.glmnet_All  0.9218078 0.01910904 0.8843548 0.9592608 5.000000e-01
+## SL.mean_All    0.5000000 0.06912305 0.3645213 0.6354787 5.907224e-10
+## SL.rpart_All   0.8226545 0.04111475 0.7420710 0.9032379 8.684877e-03
+## SL.xgboost_All 0.8805950 0.02442463 0.8327236 0.9284664 5.133242e-02
+## SL.ranger_All  0.9075744 0.02036176 0.8676660 0.9474827 2.634583e-01
+## SuperLearner   0.9127002 0.01992026 0.8736572 0.9517432 3.484810e-01
+## SL.glmnet_All  0.9204577 0.01925326 0.8827220 0.9581934 5.000000e-01
+## DiscreteSL     0.9204577 0.01925326 0.8827220 0.9581934 5.000000e-01
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
 
 
-```r
+``` r
 ck37r::plot_roc(cv_sl)
 ```
 
@@ -1823,17 +1870,17 @@ ck37r::plot_roc(cv_sl)
 ##### Review weight distribution for the SuperLearner
 
 
-```r
+``` r
 print(ck37r::cvsl_weights(cv_sl), row.names = FALSE)
 ```
 
 ```
-##  # Learner    Mean      SD     Min     Max
-##  1  glmnet 0.78127 0.23613 0.45149 0.99803
-##  2 xgboost 0.12768 0.19994 0.00000 0.46785
-##  3  ranger 0.07492 0.16644 0.00000 0.37265
-##  4   rpart 0.01613 0.03607 0.00000 0.08065
-##  5    mean 0.00000 0.00000 0.00000 0.00000
+##  # Learner    Mean      SD    Min     Max
+##  1  glmnet 0.77895 0.21717 0.4948 1.00000
+##  2 xgboost 0.12662 0.17591 0.0000 0.41316
+##  3  ranger 0.08619 0.16578 0.0000 0.38013
+##  4   rpart 0.00824 0.01843 0.0000 0.04121
+##  5    mean 0.00000 0.00000 0.0000 0.00000
 ```
 
 The general stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
@@ -1876,7 +1923,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 * num - the predicted attribute - diagnosis of heart disease (angiographic disease status) (Value 0 = < 50% diameter narrowing; Value 1 = > 50% diameter narrowing)
 
 
-```r
+``` r
 data_original %>%
   select(-target) %>%
   corrr::correlate()
@@ -1914,7 +1961,7 @@ data_original %>%
 Notice the scaling issues? PCA is not scale-invariant. So, we need to fix this problem.
 
 
-```r
+``` r
 min_max <- list(
   min = ~ min(.x, na.rm = TRUE),
   max = ~ max(.x, na.rm = TRUE)
@@ -1942,7 +1989,7 @@ data_original %>%
 `recipe` is essential for preprocessing multiple features at once.
 
 
-```r
+``` r
 pca_recipe <- recipe(~., data = data_original) %>%
   # Imputing NAs using mean
   step_impute_mean(all_predictors()) %>%
@@ -1953,7 +2000,7 @@ pca_recipe <- recipe(~., data = data_original) %>%
 #### PCA analysis 
 
 
-```r
+``` r
 pca_res <- pca_recipe %>%
   step_pca(all_predictors(),
     id = "pca"
@@ -1984,7 +2031,7 @@ pca_res %>%
 ##### Screeplot
 
 
-```r
+``` r
 # To avoid conflicts
 conflict_prefer("filter", "dplyr")
 ```
@@ -1994,7 +2041,7 @@ conflict_prefer("filter", "dplyr")
 ## [conflicted] Will prefer dplyr::filter over any other package.
 ```
 
-```r
+``` r
 conflict_prefer("select", "dplyr")
 ```
 
@@ -2002,7 +2049,7 @@ conflict_prefer("select", "dplyr")
 ## [conflicted] Will prefer dplyr::select over any other package.
 ```
 
-```r
+``` r
 pca_recipe %>%
   step_pca(all_predictors(),
     id = "pca"
@@ -2026,7 +2073,7 @@ pca_recipe %>%
 Loadings are the covariances between the features and the principal components (=eigenvectors).
 
 
-```r
+``` r
 pca_recipe %>%
   step_pca(all_predictors(),
     id = "pca"
@@ -2058,8 +2105,9 @@ You can use these low-dimensional data to solve the curse of dimensionality prob
 #### Setup 
 
 
-```r
+``` r
 pacman::p_load(
+  janeaustenr, # example text
   tidytext, # tidy text analysis
   glue, # paste string and objects
   stm, # structural topic modeling
@@ -2069,35 +2117,44 @@ pacman::p_load(
 
 #### Dataset 
 
-The data munging process draws on [Julia Silge's blog post](https://juliasilge.com/blog/sherlock-holmes-stm/).
 
+``` r
+# 1. Load all of Jane Austen's novels
+austen_raw <- austen_books()
 
-```r
-sherlock_raw <- gutenberg_download(1661)
-```
-
-```
-## Determining mirror for Project Gutenberg from https://www.gutenberg.org/robot/harvest
-```
-
-```
-## Using mirror http://aleph.gutenberg.org
-```
-
-```r
-sherlock <- sherlock_raw %>%
-  # Mutate story using a conditional statement
+# 2. Add a chapter index (so you can facet or group by chapter if desired)
+austen_chapters <- austen_raw %>%
+  group_by(book) %>%
   mutate(
-    story = ifelse(str_detect(text, "ADVENTURE"), text, NA)
+    linenumber = row_number(),
+    chapter    = cumsum(str_detect(text, regex("^chapter [0-9ivxlc]+", ignore_case = TRUE)))
   ) %>%
-  # Fill in missing values with next value
-  tidyr::fill(story, .direction = "down") %>%
-  # Filter
-  dplyr::filter(story != "THE ADVENTURES OF SHERLOCK HOLMES") %>%
-  # Factor
-  mutate(story = factor(story, levels = unique(story)))
+  ungroup()
 
-sherlock <- sherlock[, 2:3] # no id
+# 3. Tokenize and count words by book
+austen_words <- austen_chapters %>%
+  unnest_tokens(word, text) %>%
+  count(book, word, sort = TRUE) %>%
+  group_by(book) %>%
+  mutate(
+    total = sum(n),
+    freq  = n / total
+  ) %>%
+  ungroup()
+
+head(austen_words)
+```
+
+```
+## # A tibble: 6 × 5
+##   book           word      n  total   freq
+##   <fct>          <chr> <int>  <int>  <dbl>
+## 1 Mansfield Park the    6206 160460 0.0387
+## 2 Mansfield Park to     5475 160460 0.0341
+## 3 Mansfield Park and    5438 160460 0.0339
+## 4 Emma           to     5239 160996 0.0325
+## 5 Emma           the    5201 160996 0.0323
+## 6 Emma           and    4896 160996 0.0304
 ```
 
 #### Key ideas 
@@ -2132,52 +2189,36 @@ sherlock <- sherlock[, 2:3] # no id
 #### Exploratory data analysis 
 
 
-```r
-sherlock_n <- sherlock %>%
-  unnest_tokens(
-    output = word,
-    input = text
+``` r
+# 1) Tokenize, remove stop words, & count
+austen_words <- austen_chapters %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words, by = "word") %>%   # remove common stop words
+  count(book, word, sort = TRUE) %>%
+  group_by(book) %>%
+  mutate(
+    total = sum(n),
+    freq  = n / total
   ) %>%
-  count(story, word, sort = TRUE)
+  ungroup()
 
-sherlock_total_n <- sherlock_n %>%
-  group_by(story) %>%
-  summarise(total = sum(n))
+# 2) Pick top 10 words per book
+top_words <- austen_words %>%
+  group_by(book) %>%
+  slice_max(order_by = freq, n = 10) %>%
+  ungroup()
 
-sherlock_words <- sherlock_n %>%
-  left_join(sherlock_total_n)
-```
-
-```
-## Joining with `by = join_by(story)`
-```
-
-```r
-sherlock_words %>%
-  mutate(freq = n / total) %>%
-  group_by(story) %>%
-  top_n(10) %>%
-  ggplot(aes(
-    x = fct_reorder(word, freq),
-    y = freq,
-    fill = story
-  )) +
+# 3) Plot the top words
+ggplot(top_words, aes(x = fct_reorder(word, freq), y = freq)) +
   geom_col() +
+  facet_wrap(~book, scales = "free_y", ncol = 2) +
   coord_flip() +
-  facet_wrap(~story,
-    ncol = 2,
-    scales = "free_y"
-  ) +
-  scale_fill_viridis_d() +
   labs(
-    x = "",
-    fill = "Story"
+    x = NULL,
+    y = "Relative frequency"
   ) +
-  theme(legend.position = "bottom")
-```
-
-```
-## Selecting by freq
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "none")
 ```
 
 <img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" width="672" />
@@ -2195,10 +2236,10 @@ Also, note that we didn't cover other important techniques in topic modeling, su
 `stm` package has its preprocessing function.
 
 
-```r
+``` r
 dtm <- textProcessor(
-  documents = sherlock$text,
-  metadata = sherlock,
+  documents = austen_chapters$text,
+  metadata = austen_chapters,
   removestopwords = TRUE,
   verbose = FALSE
 )
@@ -2210,12 +2251,12 @@ dtm <- textProcessor(
 - Let's try K = 5, 10, 15.
 
 
-```r
+``` r
 test_res <- searchK(
   dtm$documents,
   dtm$vocab,
   K = c(5, 10, 15),
-  prevalence = ~story,
+  prevalence = ~book,
   data = dtm$meta
 )
 ```
@@ -2223,161 +2264,738 @@ test_res <- searchK(
 ```
 ## Beginning Spectral Initialization 
 ## 	 Calculating the gram matrix...
+## 	 Using only 10000 most frequent terms during initialization...
 ## 	 Finding anchor words...
 ##  	.....
 ## 	 Recovering initialization...
-##  	..............................................
+##  	...................................................................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 1 (approx. per word bound = -7.627) 
+## Completing Iteration 1 (approx. per word bound = -7.638) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 2 (approx. per word bound = -7.512, relative change = 1.510e-02) 
+## Completing Iteration 2 (approx. per word bound = -7.517, relative change = 1.595e-02) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 3 (approx. per word bound = -7.419, relative change = 1.228e-02) 
+## Completing Iteration 3 (approx. per word bound = -7.472, relative change = 5.930e-03) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 4 (approx. per word bound = -7.381, relative change = 5.151e-03) 
+## Completing Iteration 4 (approx. per word bound = -7.439, relative change = 4.387e-03) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 5 (approx. per word bound = -7.365, relative change = 2.165e-03) 
-## Topic 1: littl, man, see, hand, shall 
-##  Topic 2: upon, holm, think, come, take 
-##  Topic 3: said, will, just, know, word 
-##  Topic 4: one, may, came, tell, ask 
-##  Topic 5: time, sherlock, case, saw, face 
+## Completing Iteration 5 (approx. per word bound = -7.417, relative change = 3.013e-03) 
+## Topic 1: much, time, soon, without, noth 
+##  Topic 2: might, say, littl, good, feel 
+##  Topic 3: will, think, everi, can, first 
+##  Topic 4: mrs, must, miss, one, never 
+##  Topic 5: said, know, well, see, now 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 6 (approx. per word bound = -7.358, relative change = 9.504e-04) 
+## Completing Iteration 6 (approx. per word bound = -7.402, relative change = 2.013e-03) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 7 (approx. per word bound = -7.355, relative change = 4.015e-04) 
+## Completing Iteration 7 (approx. per word bound = -7.392, relative change = 1.370e-03) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 8 (approx. per word bound = -7.354, relative change = 1.580e-04) 
+## Completing Iteration 8 (approx. per word bound = -7.385, relative change = 9.556e-04) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.380, relative change = 6.824e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 10 (approx. per word bound = -7.376, relative change = 4.980e-04) 
+## Topic 1: much, time, soon, without, made 
+##  Topic 2: might, say, littl, good, feel 
+##  Topic 3: will, think, everi, can, first 
+##  Topic 4: mrs, must, miss, one, never 
+##  Topic 5: said, know, well, now, see 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 11 (approx. per word bound = -7.373, relative change = 3.706e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 12 (approx. per word bound = -7.371, relative change = 2.808e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 13 (approx. per word bound = -7.370, relative change = 2.160e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 14 (approx. per word bound = -7.368, relative change = 1.685e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 15 (approx. per word bound = -7.367, relative change = 1.331e-04) 
+## Topic 1: much, time, soon, without, made 
+##  Topic 2: might, say, littl, good, feel 
+##  Topic 3: will, think, everi, can, first 
+##  Topic 4: mrs, must, miss, one, never 
+##  Topic 5: said, know, well, now, see 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 16 (approx. per word bound = -7.367, relative change = 1.059e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 17 (approx. per word bound = -7.366, relative change = 8.447e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 18 (approx. per word bound = -7.365, relative change = 6.734e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 19 (approx. per word bound = -7.365, relative change = 5.392e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 20 (approx. per word bound = -7.365, relative change = 4.322e-05) 
+## Topic 1: much, time, soon, without, made 
+##  Topic 2: might, say, littl, good, feel 
+##  Topic 3: will, think, everi, can, first 
+##  Topic 4: mrs, must, miss, one, never 
+##  Topic 5: said, know, now, well, see 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 21 (approx. per word bound = -7.364, relative change = 3.470e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 22 (approx. per word bound = -7.364, relative change = 2.796e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 23 (approx. per word bound = -7.364, relative change = 2.268e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 24 (approx. per word bound = -7.364, relative change = 1.858e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 25 (approx. per word bound = -7.364, relative change = 1.538e-05) 
+## Topic 1: much, time, soon, without, give 
+##  Topic 2: might, say, littl, good, feel 
+##  Topic 3: will, think, everi, can, first 
+##  Topic 4: mrs, must, miss, one, never 
+##  Topic 5: said, know, now, well, see 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 26 (approx. per word bound = -7.364, relative change = 1.288e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 27 (approx. per word bound = -7.364, relative change = 1.096e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
 ## 	 Calculating the gram matrix...
+## 	 Using only 10000 most frequent terms during initialization...
 ## 	 Finding anchor words...
 ##  	..........
 ## 	 Recovering initialization...
-##  	..............................................
+##  	...................................................................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (5 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 1 (approx. per word bound = -7.699) 
+## Completing Iteration 1 (approx. per word bound = -7.692) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 2 (approx. per word bound = -7.499, relative change = 2.594e-02) 
+## Completing Iteration 2 (approx. per word bound = -7.602, relative change = 1.164e-02) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 3 (approx. per word bound = -7.373, relative change = 1.684e-02) 
+## Completing Iteration 3 (approx. per word bound = -7.526, relative change = 9.978e-03) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 4 (approx. per word bound = -7.287, relative change = 1.172e-02) 
+## Completing Iteration 4 (approx. per word bound = -7.478, relative change = 6.434e-03) 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 5 (approx. per word bound = -7.257, relative change = 4.115e-03) 
-## Topic 1: miss, littl, came, man, good 
-##  Topic 2: said, might, sudden, hous, went 
-##  Topic 3: upon, just, never, right, two 
-##  Topic 4: upon, will, one, see, may 
-##  Topic 5: sherlock, name, think, laugh, holm 
-##  Topic 6: see, hard, night, cri, forward 
-##  Topic 7: littl, stone, becam, whole, sure 
-##  Topic 8: can, know, matter, now, say 
-##  Topic 9: man, hand, knew, one, even 
-##  Topic 10: holm, ask, sat, “pray, long 
+## Completing Iteration 5 (approx. per word bound = -7.446, relative change = 4.230e-03) 
+## Topic 1: mrs, will, littl, sister, wish 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, walk 
+##  Topic 4: now, thought, seem, appear, call 
+##  Topic 5: much, thing, fanni, almost, moment 
+##  Topic 6: might, without, ladi, emma, long 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: see, good, though, friend, well 
+##  Topic 9: time, everi, first, day, two 
+##  Topic 10: like, certain, parti, well, someth 
 ## ....................................................................................................
-## Completed E-Step (0 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 6 (approx. per word bound = -7.248, relative change = 1.256e-03) 
+## Completing Iteration 6 (approx. per word bound = -7.425, relative change = 2.894e-03) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 7 (approx. per word bound = -7.247, relative change = 9.258e-05) 
+## Completing Iteration 7 (approx. per word bound = -7.409, relative change = 2.120e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.397, relative change = 1.605e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.388, relative change = 1.257e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 10 (approx. per word bound = -7.381, relative change = 9.623e-04) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, walk 
+##  Topic 4: now, thought, seem, appear, call 
+##  Topic 5: much, thing, fanni, moment, almost 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: see, good, well, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, certain, someth, parti, sure 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 11 (approx. per word bound = -7.375, relative change = 7.316e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 12 (approx. per word bound = -7.371, relative change = 5.581e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 13 (approx. per word bound = -7.368, relative change = 4.326e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 14 (approx. per word bound = -7.365, relative change = 3.391e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 15 (approx. per word bound = -7.363, relative change = 2.730e-04) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, walk 
+##  Topic 4: now, thought, seem, appear, mariann 
+##  Topic 5: much, thing, fanni, moment, crawford 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: well, see, good, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, sure, certain, someth, parti 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 16 (approx. per word bound = -7.362, relative change = 2.236e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 17 (approx. per word bound = -7.360, relative change = 1.824e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 18 (approx. per word bound = -7.359, relative change = 1.483e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 19 (approx. per word bound = -7.358, relative change = 1.221e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 20 (approx. per word bound = -7.358, relative change = 1.034e-04) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, walk 
+##  Topic 4: now, thought, seem, appear, mariann 
+##  Topic 5: much, thing, fanni, moment, crawford 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: well, see, good, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, sure, certain, someth, parti 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 21 (approx. per word bound = -7.357, relative change = 9.018e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 22 (approx. per word bound = -7.356, relative change = 7.833e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 23 (approx. per word bound = -7.356, relative change = 6.688e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 24 (approx. per word bound = -7.356, relative change = 5.677e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 25 (approx. per word bound = -7.355, relative change = 4.807e-05) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, love 
+##  Topic 4: now, thought, seem, appear, mariann 
+##  Topic 5: much, thing, fanni, believ, moment 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: well, see, good, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, sure, certain, someth, find 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 26 (approx. per word bound = -7.355, relative change = 4.082e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 27 (approx. per word bound = -7.355, relative change = 3.526e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 28 (approx. per word bound = -7.354, relative change = 3.129e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 29 (approx. per word bound = -7.354, relative change = 2.815e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 30 (approx. per word bound = -7.354, relative change = 2.525e-05) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, love 
+##  Topic 4: now, thought, seem, appear, mariann 
+##  Topic 5: much, thing, fanni, believ, moment 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: well, see, good, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, sure, certain, someth, find 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 31 (approx. per word bound = -7.354, relative change = 2.240e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 32 (approx. per word bound = -7.354, relative change = 1.999e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 33 (approx. per word bound = -7.354, relative change = 1.820e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 34 (approx. per word bound = -7.353, relative change = 1.659e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 35 (approx. per word bound = -7.353, relative change = 1.515e-05) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, love 
+##  Topic 4: now, thought, seem, appear, mariann 
+##  Topic 5: much, thing, fanni, believ, moment 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: well, see, good, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, sure, certain, someth, find 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 36 (approx. per word bound = -7.353, relative change = 1.408e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 37 (approx. per word bound = -7.353, relative change = 1.322e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 38 (approx. per word bound = -7.353, relative change = 1.249e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 39 (approx. per word bound = -7.353, relative change = 1.177e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 40 (approx. per word bound = -7.353, relative change = 1.106e-05) 
+## Topic 1: mrs, will, littl, sister, make 
+##  Topic 2: must, think, say, feel, give 
+##  Topic 3: miss, even, soon, quit, love 
+##  Topic 4: now, thought, seem, appear, mariann 
+##  Topic 5: much, thing, fanni, believ, moment 
+##  Topic 6: might, ladi, without, come, emma 
+##  Topic 7: said, one, know, never, look 
+##  Topic 8: well, see, good, though, friend 
+##  Topic 9: time, everi, day, first, two 
+##  Topic 10: like, sure, certain, someth, find 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 41 (approx. per word bound = -7.353, relative change = 1.045e-05) 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
 ## 	 Calculating the gram matrix...
+## 	 Using only 10000 most frequent terms during initialization...
 ## 	 Finding anchor words...
 ##  	...............
 ## 	 Recovering initialization...
-##  	..............................................
+##  	...................................................................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (6 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 1 (approx. per word bound = -7.749) 
-## ....................................................................................................
-## Completed E-Step (5 seconds). 
-## Completed M-Step. 
-## Completing Iteration 2 (approx. per word bound = -7.417, relative change = 4.283e-02) 
-## ....................................................................................................
-## Completed E-Step (5 seconds). 
-## Completed M-Step. 
-## Completing Iteration 3 (approx. per word bound = -7.297, relative change = 1.624e-02) 
+## Completing Iteration 1 (approx. per word bound = -7.752) 
 ## ....................................................................................................
 ## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 4 (approx. per word bound = -7.242, relative change = 7.558e-03) 
+## Completing Iteration 2 (approx. per word bound = -7.618, relative change = 1.727e-02) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (5 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 5 (approx. per word bound = -7.222, relative change = 2.745e-03) 
-## Topic 1: think, holm, turn, now, “ye 
-##  Topic 2: might, dress, hous, place, near 
-##  Topic 3: know, without, now, “’s, money 
-##  Topic 4: open, may, look, much, one 
-##  Topic 5: hand, well, see, way, littl 
-##  Topic 6: question, salesman, told, companion, close 
-##  Topic 7: littl, told, feel, remark, quit 
-##  Topic 8: can, matter, “oh, say, away 
-##  Topic 9: will, shall, must, come, littl 
-##  Topic 10: one, man, light, time, two 
-##  Topic 11: upon, holm, miss, man, sherlock 
-##  Topic 12: room, came, ask, just, hous 
-##  Topic 13: may, tell, sir, find, help 
-##  Topic 14: said, holm, believ, laugh, will 
-##  Topic 15: littl, now, noth, day, saw 
+## Completing Iteration 3 (approx. per word bound = -7.550, relative change = 8.888e-03) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 6 (approx. per word bound = -7.212, relative change = 1.382e-03) 
+## Completing Iteration 4 (approx. per word bound = -7.515, relative change = 4.633e-03) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 7 (approx. per word bound = -7.207, relative change = 5.993e-04) 
+## Completing Iteration 5 (approx. per word bound = -7.489, relative change = 3.454e-03) 
+## Topic 1: one, see, say, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, even 
+##  Topic 4: said, noth, happi, long, love 
+##  Topic 5: reason, began, thoma, elliot, oblig 
+##  Topic 6: thought, well, quit, elizabeth, believ 
+##  Topic 7: miss, great, thing, made, talk 
+##  Topic 8: mrs, now, ladi, can, two 
+##  Topic 9: soon, year, left, known, week 
+##  Topic 10: much, time, everi, inde, heart 
+##  Topic 11: know, hope, ann, miss, give 
+##  Topic 12: without, fanni, appear, acquaint, give 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, emma, seem, last, felt 
+##  Topic 15: think, howev, well, say, quit 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 8 (approx. per word bound = -7.203, relative change = 5.851e-04) 
+## Completing Iteration 6 (approx. per word bound = -7.468, relative change = 2.830e-03) 
 ## ....................................................................................................
-## Completed E-Step (1 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 9 (approx. per word bound = -7.202, relative change = 9.837e-05) 
+## Completing Iteration 7 (approx. per word bound = -7.449, relative change = 2.513e-03) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.433, relative change = 2.211e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.419, relative change = 1.906e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 10 (approx. per word bound = -7.407, relative change = 1.613e-03) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, even 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, oblig, reason, wonder 
+##  Topic 6: well, thought, quit, elizabeth, believ 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, can, ladi, good 
+##  Topic 9: soon, year, half, left, told 
+##  Topic 10: much, time, everi, inde, heart 
+##  Topic 11: know, hope, sure, give, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, begin, worth, send 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 11 (approx. per word bound = -7.397, relative change = 1.323e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 12 (approx. per word bound = -7.389, relative change = 1.075e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 13 (approx. per word bound = -7.383, relative change = 8.604e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 14 (approx. per word bound = -7.377, relative change = 6.976e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 15 (approx. per word bound = -7.373, relative change = 5.726e-04) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, even 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, believ 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, inde, heart 
+##  Topic 11: know, hope, give, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, satisfi, begin, equal 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 16 (approx. per word bound = -7.370, relative change = 4.721e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 17 (approx. per word bound = -7.367, relative change = 3.855e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 18 (approx. per word bound = -7.365, relative change = 3.163e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 19 (approx. per word bound = -7.363, relative change = 2.646e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 20 (approx. per word bound = -7.361, relative change = 2.222e-04) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, though 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, believ 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, inde, heart 
+##  Topic 11: know, hope, give, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, equal, satisfi, rather 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 21 (approx. per word bound = -7.360, relative change = 1.853e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 22 (approx. per word bound = -7.359, relative change = 1.542e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 23 (approx. per word bound = -7.358, relative change = 1.304e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 24 (approx. per word bound = -7.357, relative change = 1.117e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 25 (approx. per word bound = -7.356, relative change = 9.624e-05) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, though 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, believ 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, inde, day 
+##  Topic 11: know, give, hope, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, rather, equal, consid 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 26 (approx. per word bound = -7.355, relative change = 8.244e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 27 (approx. per word bound = -7.355, relative change = 6.989e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 28 (approx. per word bound = -7.354, relative change = 5.902e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 29 (approx. per word bound = -7.354, relative change = 5.032e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 30 (approx. per word bound = -7.354, relative change = 4.449e-05) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, though 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, believ 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, day, inde 
+##  Topic 11: know, give, hope, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, rather, consid, equal 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 31 (approx. per word bound = -7.353, relative change = 4.069e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 32 (approx. per word bound = -7.353, relative change = 3.792e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 33 (approx. per word bound = -7.353, relative change = 3.573e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 34 (approx. per word bound = -7.353, relative change = 3.336e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 35 (approx. per word bound = -7.352, relative change = 3.056e-05) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, though 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, hous 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, day, inde 
+##  Topic 11: know, give, hope, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, rather, consid, equal 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 36 (approx. per word bound = -7.352, relative change = 2.688e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 37 (approx. per word bound = -7.352, relative change = 2.339e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 38 (approx. per word bound = -7.352, relative change = 2.104e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 39 (approx. per word bound = -7.352, relative change = 1.934e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 40 (approx. per word bound = -7.352, relative change = 1.770e-05) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, though 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, hous 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, day, inde 
+##  Topic 11: know, give, hope, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, rather, consid, equal 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 41 (approx. per word bound = -7.352, relative change = 1.629e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 42 (approx. per word bound = -7.351, relative change = 1.504e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 43 (approx. per word bound = -7.351, relative change = 1.385e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 44 (approx. per word bound = -7.351, relative change = 1.273e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 45 (approx. per word bound = -7.351, relative change = 1.165e-05) 
+## Topic 1: one, say, see, sister, make 
+##  Topic 2: might, shall, ever, want, way 
+##  Topic 3: must, littl, look, feel, though 
+##  Topic 4: said, noth, happi, long, elinor 
+##  Topic 5: subject, find, edmund, oblig, reason 
+##  Topic 6: well, thought, quit, elizabeth, hous 
+##  Topic 7: miss, great, thing, made, father 
+##  Topic 8: mrs, now, good, can, ladi 
+##  Topic 9: soon, mani, year, half, left 
+##  Topic 10: much, time, everi, day, inde 
+##  Topic 11: know, give, hope, sure, mean 
+##  Topic 12: without, fanni, appear, acquaint, attent 
+##  Topic 13: will, never, like, come, sir 
+##  Topic 14: first, seem, emma, last, felt 
+##  Topic 15: think, howev, rather, consid, equal 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 46 (approx. per word bound = -7.351, relative change = 1.081e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 47 (approx. per word bound = -7.351, relative change = 1.022e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Model Converged
 ```
@@ -2390,12 +3008,12 @@ Several metrics assess topic models' performance: the held-out likelihood, resid
 
 -   Exclusivity: keywords of one topic are not likely to appear as keywords in other topics.
 
-> In Roberts et al. 2014 we proposed using the Mimno et al. 2011 semantic coherence metric for helping with topic model selection. However, we found that semantic coherence alone is relatively easy to achieve by having only a couple of topics that dominate the most common words. Thus we also proposed an exclusivity measure.
+> In Roberts et al. (2014), the authors introduce the semantic coherence metric of Mimno et al. (2011) as a criterion for topic‐model selection. They observe, however, that maximizing semantic coherence alone can be trivial—by allowing a small number of topics to capture the most frequent words. To counteract this, they also develop an **exclusivity** measure.  
+>
+> This exclusivity measure incorporates word‐frequency information via the FREX metric (implemented in `calcfrex`), with a default weight of 0.7 placed on exclusivity.  
 
-> Our exclusivity measure includes some information on word frequency as well. It is based on the FREX labeling metric (calcfrex) with the weight set to .7 in favor of exclusivity by default.
 
-
-```r
+``` r
 test_res$results %>%
   unnest(c(K, exclus, semcoh)) %>%
   select(K, exclus, semcoh) %>%
@@ -2420,10 +3038,10 @@ test_res$results %>%
 ##### Finalize 
 
 
-```r
+``` r
 final_stm <- stm(dtm$documents,
   dtm$vocab,
-  K = 10, prevalence = ~story,
+  K = 10, prevalence = ~book,
   max.em.its = 75,
   data = dtm$meta,
   init.type = "Spectral",
@@ -2437,7 +3055,7 @@ final_stm <- stm(dtm$documents,
 - Using the `stm` package. 
 
 
-```r
+``` r
 plot(final_stm)
 ```
 
@@ -2448,7 +3066,7 @@ plot(final_stm)
 In LDA distribution, $\alpha$ represents document-topic density and $\beta$ represents topic-word density. 
 
 
-```r
+``` r
 # tidy
 tidy_stm <- tidy(final_stm)
 

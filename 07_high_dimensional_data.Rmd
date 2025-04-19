@@ -778,7 +778,7 @@ tree_res %>%
 ```{r}
 
 # Optimal hyperparameter
-best_tree <- select_best(tree_res, "recall")
+best_tree <- tune::select_best(tree_res, metric = "recall")
 
 # Add the hyperparameter to the workflow
 finalize_tree <- tree_wf %>%
@@ -1004,7 +1004,7 @@ rand_res %>%
 
 ```{r}
 # Optimal hyperparameter
-best_tree <- select_best(rand_res, "accuracy")
+best_tree <- tune::select_best(rand_res, metric = "accuracy")
 
 best_tree
 
@@ -1046,44 +1046,75 @@ evaluate_class(test_fit)
 
 ### Boosting (XGboost)
 
-#### parsnip 
+#### parsnip: Model specification and tuning
 
-- Build a model 
-
-1. Specify a model 
-2. Specify an engine 
-3. Specify a mode 
+- **Build and tune a model**  
+  1. Define a workflow with your formula  
+  2. Add a tunable model spec (with `tune()` placeholders)  
+  3. Set the engine and mode  
+  4. Create resamples (e.g. stratified 5‑fold CV)  
+  5. Design a hyperparameter grid  
+  6. Tune across the grid  
 
 ```{r}
-# workflow
-xg_wf <- workflow() %>% add_formula(target ~ .)
+# 1) Define the workflow
+xg_wf <- workflow() %>%
+  add_formula(target ~ .) %>% 
+  add_model(
+    boost_tree(
+      trees      = tune(),      # to be tuned
+      tree_depth = tune(),
+      learn_rate = tune()
+    ) %>% 
+    set_engine("xgboost") %>% 
+    set_mode("classification")
+  )
 
-# spec
-xg_spec <- boost_tree(
+# 2) Create resamples (5-fold CV, stratified by target)
+set.seed(123)
+cv_splits <- vfold_cv(
+  data %>% mutate(target = as.factor(target)),
+  v = 5, 
+  strata = target
+)
 
-  # Mode
-  mode = "classification",
+# 3) Specify a tuning grid
+xg_grid <- grid_latin_hypercube(
+  trees(range = c(50, 500)),
+  tree_depth(range = c(1, 10)),
+  learn_rate(range = c(0.01, 0.3)),
+  size = 20
+)
 
-  # Tuning hyperparameters
-
-  # The number of trees to fit, aka boosting iterations
-  trees = c(100, 300, 500, 700, 900),
-  # The depth of the decision tree (how many levels of splits).
-  tree_depth = c(1, 6),
-  # Learning rate: lower means the ensemble will adapt more slowly.
-  learn_rate = c(0.0001, 0.01, 0.2),
-  # Stop splitting a tree if we only have this many obs in a tree node.
-  min_n = 10L
-) %>%
-  set_engine("xgboost")
-
-xg_wf <- xg_wf %>% add_model(xg_spec)
+# 4) Run tuning
+xg_res <- xg_wf %>%
+  tune_grid(
+    resamples = cv_splits,
+    grid      = xg_grid,
+    metrics   = metric_set(accuracy, recall),
+    control   = control_grid(save_pred = TRUE)
+  )
 ```
 
-- Fit a model
+- **Fit the final model**  
+
+  1. Select the best parameters
+  2. Finalize the workflow
+  3. Fit to the training set
 
 ```{r}
-xg_fit <- xg_wf %>% fit(train_x_class %>% bind_cols(tibble(target = train_y_class)))
+# Select best metrics (name the metric argument explicitly)
+best_params <- select_best(xg_res, metric = "accuracy")
+
+# Finalize the workflow with those parameters
+xg_wf_final <- finalize_workflow(xg_wf, best_params)
+
+# Fit the finalized workflow
+xg_fit <- fit(
+  xg_wf_final,
+  train_x_class %>%
+    bind_cols(tibble(target = train_y_class))
+)
 ```
 
 #### yardstick 
@@ -1205,7 +1236,7 @@ xg_res %>%
 
 ```{r}
 # Optimal hyperparameter
-best_xg <- select_best(xg_res, "roc_auc")
+best_xg <- select_best(xg_res, metric = "roc_auc")
 
 best_xg
 
@@ -1501,6 +1532,7 @@ You can use these low-dimensional data to solve the curse of dimensionality prob
 
 ```{r}
 pacman::p_load(
+  janeaustenr, # example text
   tidytext, # tidy text analysis
   glue, # paste string and objects
   stm, # structural topic modeling
@@ -1510,24 +1542,31 @@ pacman::p_load(
 
 #### Dataset 
 
-The data munging process draws on [Julia Silge's blog post](https://juliasilge.com/blog/sherlock-holmes-stm/).
-
 ```{r}
-sherlock_raw <- gutenberg_download(1661)
+# 1. Load all of Jane Austen's novels
+austen_raw <- austen_books()
 
-sherlock <- sherlock_raw %>%
-  # Mutate story using a conditional statement
+# 2. Add a chapter index (so you can facet or group by chapter if desired)
+austen_chapters <- austen_raw %>%
+  group_by(book) %>%
   mutate(
-    story = ifelse(str_detect(text, "ADVENTURE"), text, NA)
+    linenumber = row_number(),
+    chapter    = cumsum(str_detect(text, regex("^chapter [0-9ivxlc]+", ignore_case = TRUE)))
   ) %>%
-  # Fill in missing values with next value
-  tidyr::fill(story, .direction = "down") %>%
-  # Filter
-  dplyr::filter(story != "THE ADVENTURES OF SHERLOCK HOLMES") %>%
-  # Factor
-  mutate(story = factor(story, levels = unique(story)))
+  ungroup()
 
-sherlock <- sherlock[, 2:3] # no id
+# 3. Tokenize and count words by book
+austen_words <- austen_chapters %>%
+  unnest_tokens(word, text) %>%
+  count(book, word, sort = TRUE) %>%
+  group_by(book) %>%
+  mutate(
+    total = sum(n),
+    freq  = n / total
+  ) %>%
+  ungroup()
+
+head(austen_words)
 ```
 
 #### Key ideas 
@@ -1562,41 +1601,35 @@ sherlock <- sherlock[, 2:3] # no id
 #### Exploratory data analysis 
 
 ```{r}
-sherlock_n <- sherlock %>%
-  unnest_tokens(
-    output = word,
-    input = text
+# 1) Tokenize, remove stop words, & count
+austen_words <- austen_chapters %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words, by = "word") %>%   # remove common stop words
+  count(book, word, sort = TRUE) %>%
+  group_by(book) %>%
+  mutate(
+    total = sum(n),
+    freq  = n / total
   ) %>%
-  count(story, word, sort = TRUE)
+  ungroup()
 
-sherlock_total_n <- sherlock_n %>%
-  group_by(story) %>%
-  summarise(total = sum(n))
+# 2) Pick top 10 words per book
+top_words <- austen_words %>%
+  group_by(book) %>%
+  slice_max(order_by = freq, n = 10) %>%
+  ungroup()
 
-sherlock_words <- sherlock_n %>%
-  left_join(sherlock_total_n)
-
-sherlock_words %>%
-  mutate(freq = n / total) %>%
-  group_by(story) %>%
-  top_n(10) %>%
-  ggplot(aes(
-    x = fct_reorder(word, freq),
-    y = freq,
-    fill = story
-  )) +
+# 3) Plot the top words
+ggplot(top_words, aes(x = fct_reorder(word, freq), y = freq)) +
   geom_col() +
+  facet_wrap(~book, scales = "free_y", ncol = 2) +
   coord_flip() +
-  facet_wrap(~story,
-    ncol = 2,
-    scales = "free_y"
-  ) +
-  scale_fill_viridis_d() +
   labs(
-    x = "",
-    fill = "Story"
+    x = NULL,
+    y = "Relative frequency"
   ) +
-  theme(legend.position = "bottom")
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "none")
 ```
 
 #### STM
@@ -1613,8 +1646,8 @@ Also, note that we didn't cover other important techniques in topic modeling, su
 
 ```{r}
 dtm <- textProcessor(
-  documents = sherlock$text,
-  metadata = sherlock,
+  documents = austen_chapters$text,
+  metadata = austen_chapters,
   removestopwords = TRUE,
   verbose = FALSE
 )
@@ -1630,7 +1663,7 @@ test_res <- searchK(
   dtm$documents,
   dtm$vocab,
   K = c(5, 10, 15),
-  prevalence = ~story,
+  prevalence = ~book,
   data = dtm$meta
 )
 ```
@@ -1643,9 +1676,9 @@ Several metrics assess topic models' performance: the held-out likelihood, resid
 
 -   Exclusivity: keywords of one topic are not likely to appear as keywords in other topics.
 
-> In Roberts et al. 2014 we proposed using the Mimno et al. 2011 semantic coherence metric for helping with topic model selection. However, we found that semantic coherence alone is relatively easy to achieve by having only a couple of topics that dominate the most common words. Thus we also proposed an exclusivity measure.
-
-> Our exclusivity measure includes some information on word frequency as well. It is based on the FREX labeling metric (calcfrex) with the weight set to .7 in favor of exclusivity by default.
+> In Roberts et al. (2014), the authors introduce the semantic coherence metric of Mimno et al. (2011) as a criterion for topic‐model selection. They observe, however, that maximizing semantic coherence alone can be trivial—by allowing a small number of topics to capture the most frequent words. To counteract this, they also develop an **exclusivity** measure.  
+>
+> This exclusivity measure incorporates word‐frequency information via the FREX metric (implemented in `calcfrex`), with a default weight of 0.7 placed on exclusivity.  
 
 ```{r}
 test_res$results %>%
@@ -1672,7 +1705,7 @@ test_res$results %>%
 ```{r}
 final_stm <- stm(dtm$documents,
   dtm$vocab,
-  K = 10, prevalence = ~story,
+  K = 10, prevalence = ~book,
   max.em.its = 75,
   data = dtm$meta,
   init.type = "Spectral",
