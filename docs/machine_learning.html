@@ -751,7 +751,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1137-4"><a href="machine_learning.html#cb1137-4" tabindex="-1"></a><span class="st">  select(.estimate) %&gt;%</span></span>
 <span id="cb1137-5"><a href="machine_learning.html#cb1137-5" tabindex="-1"></a><span class="st">  round(2)}&#39;</span>)</span></code></pre></div>
 <pre><code>## The RMSE of the intiail model is
-##    7.83</code></pre>
+##    7.82</code></pre>
 <div class="sourceCode" id="cb1139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1139-1"><a href="machine_learning.html#cb1139-1" tabindex="-1"></a><span class="fu">glue</span>(<span class="st">&#39;The RMSE of the tuned model is {rec_res %&gt;%</span></span>
 <span id="cb1139-2"><a href="machine_learning.html#cb1139-2" tabindex="-1"></a><span class="st">  collect_metrics() %&gt;%</span></span>
 <span id="cb1139-3"><a href="machine_learning.html#cb1139-3" tabindex="-1"></a><span class="st">  filter(.metric == &quot;rmse&quot;) %&gt;%</span></span>

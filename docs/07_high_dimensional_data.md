@@ -738,7 +738,7 @@ glue('The RMSE of the intiail model is
 
 ```
 ## The RMSE of the intiail model is
-##    7.83
+##    7.82
 ```
 
 ``` r

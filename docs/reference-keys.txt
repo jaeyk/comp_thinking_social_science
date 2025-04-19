@@ -1,6 +1,13 @@
 tab:unnamed-chunk-16
 tab:unnamed-chunk-20
 welcome
+part-i-fundamentals
+part-ii-applications
+why-r
+why-r-python-bash
+special-thanks
+suggestions-questions-or-comments
+license
 motivation
 why-computational-thinking
 computational-thinking-in-the-age-of-generative-ai

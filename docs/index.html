@@ -196,9 +196,8 @@ is a great equalizer of the conditions of men—the balance wheel of the social 
 <p>I believe in the transformative power of education. At the same time, I recognize that access to high-quality education remains deeply unequal. Too often, historically disadvantaged groups face greater barriers to both education and technology. This book is my small contribution toward realizing the democratic promise of education—especially in the emerging field of computational social science.</p>
 <p>That said, this book is not a comprehensive guide to computational social science or any specific programming language, tool, or technique. For a broader introduction to the field, I highly recommend <a href="http://www.princeton.edu/~mjs3/">Matthew Salganik</a>’s <a href="https://www.bitbybitbook.com/"><em>Bit by Bit</em> (2017)</a>, which is comprehensive, accessible, and pedagogically rich.</p>
 <p>This book is organized into two parts—Fundamentals and Applications—and includes eight main sessions:</p>
-<ul>
-<li>Part I: Fundamentals</li>
-</ul>
+<div id="part-i-fundamentals" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Part I: Fundamentals<a href="index.html#part-i-fundamentals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><a href="motivation.html#motivation">Why computational thinking</a><br />
 </li>
@@ -210,9 +209,9 @@ is a great equalizer of the conditions of men—the balance wheel of the social 
 </li>
 <li><a href="products.html#products">How to develop data products (e.g., packages and Shiny apps)</a></li>
 </ol>
-<ul>
-<li>Part II: Applications</li>
-</ul>
+</div>
+<div id="part-ii-applications" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Part II: Applications<a href="index.html#part-ii-applications" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol start="6" style="list-style-type: decimal">
 <li><a href="semi_structured_data.html#semi_structured_data">How to collect and parse semi-structured data at scale (e.g., APIs and web scraping)</a><br />
 </li>
@@ -221,33 +220,42 @@ is a great equalizer of the conditions of men—the balance wheel of the social 
 <li><a href="big_data.html#big_data">How to access, query, and manage big data using SQL</a></li>
 </ol>
 <p>This book primarily uses <a href="https://www.r-project.org/about.html"><strong>R</strong></a>, and occasionally <a href="https://www.gnu.org/software/bash/"><strong>bash</strong></a> and <a href="https://www.python.org/about/"><strong>Python</strong></a>.</p>
-<ul>
-<li><p><strong>Why R?</strong><br />
-R is free, accessible (especially thanks to the <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> and <a href="https://posit.co">RStudio</a>), and cross-platform (Mac/Windows/Linux). It’s fast (thanks to <a href="https://cran.r-project.org/web/packages/Rcpp/index.html"><code>Rcpp</code></a>), extensible (with over 16,000 packages on <a href="https://cran.r-project.org/web/packages/">CRAN</a>), and supported by a large, inclusive community (see <a href="https://twitter.com/search?q=%23rstats&amp;src=typed_query"><code>#rstats</code></a>).</p></li>
-<li><p><strong>Why R + Python + Bash?</strong><br />
-&gt; “For R and Python—Python is first and foremost a programming language. That has many strengths, but it usually means that to do data science in Python, you must first learn to program. With R, you can get up and running faster because a lot is built in—you don’t need to learn as many programming concepts. You can focus on being a great political scientist, or whatever you do, and just learn enough R to get things done.”<br />
-&gt; — Hadley Wickham</p>
-<p>That said, the R ecosystem presents some challenges:<br />
-&gt; “Compared to other programming languages, the R community tends to focus more on results than on process. Software engineering practices such as source control or automated testing are not widely adopted. Inconsistencies persist across contributed packages and even within base R. The language reflects more than 20 years of evolution. R is not particularly fast, and poorly written R code can be painfully slow. It’s also memory-hungry.”<br />
-&gt; — Hadley Wickham</p>
+</div>
+<div id="why-r" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> <strong>Why R?</strong><a href="index.html#why-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R is free, accessible (especially thanks to the <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> and <a href="https://posit.co">RStudio</a>), and cross-platform (Mac/Windows/Linux). It’s fast (thanks to <a href="https://cran.r-project.org/web/packages/Rcpp/index.html"><code>Rcpp</code></a>), extensible (with over 16,000 packages on <a href="https://cran.r-project.org/web/packages/">CRAN</a>), and supported by a large, inclusive community (see <a href="https://twitter.com/search?q=%23rstats&amp;src=typed_query"><code>#rstats</code></a>).</p>
+</div>
+<div id="why-r-python-bash" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> <strong>Why R + Python + Bash?</strong><a href="index.html#why-r-python-bash" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>“For R and Python—Python is first and foremost a programming language. That has many strengths, but it usually means that to do data science in Python, you must first learn to program. With R, you can get up and running faster because a lot is built in—you don’t need to learn as many programming concepts. You can focus on being a great political scientist, or whatever you do, and just learn enough R to get things done.”<br />
+— Hadley Wickham</p>
+</blockquote>
+<p>That said, the R ecosystem presents some challenges:</p>
+<blockquote>
+<p>“Compared to other programming languages, the R community tends to focus more on results than on process. Software engineering practices such as source control or automated testing are not widely adopted. Inconsistencies persist across contributed packages and even within base R. The language reflects more than 20 years of evolution. R is not particularly fast, and poorly written R code can be painfully slow. It’s also memory-hungry.”<br />
+— Hadley Wickham</p>
+</blockquote>
 <p>Still, the RStudio (now Posit) and tidyverse teams have made significant progress in addressing these limitations. This book will introduce some of those advances and show how combining R with Python and Bash can enhance your workflow.</p>
-<p>If you’re serious about programming or software development, I strongly recommend learning Python as well—it can fill important gaps in software engineering that will also improve your R proficiency.</p></li>
-<li><p>Special Thanks</p></li>
-</ul>
+<p>If you’re serious about programming or software development, I strongly recommend learning Python as well—it can fill important gaps in software engineering that will also improve your R proficiency.</p>
+</div>
+<div id="special-thanks" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Special Thanks<a href="index.html#special-thanks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This book is as much collected as it is authored. It is a remix of <a href="https://github.com/rochelleterman/PS239T">PS239T</a>, a graduate-level course in computational methods at UC Berkeley originally developed by <a href="http://rochelleterman.com/">Rochelle Terman</a> (now Assistant Professor of Political Science at the University of Chicago), and later revised by <a href="http://rachelbernhard.com/">Rachel Bernhard</a> (now Associate Professor at Nuffield College and the University of Oxford).</p>
 <p>I have taught <a href="https://github.com/PS239T/spring_2021">PS239T</a> as a lead instructor in Spring 2019, a TA in Spring 2018, and a co-instructor with <a href="https://nicholaskuipers.com/">Nick Kuipers</a> (now Assistant Professor of Politics at Princeton) in Spring 2020.</p>
 <p>Other materials are adapted from workshops I developed for <a href="https://dlab.berkeley.edu/">D-Lab</a>, the <a href="https://data.berkeley.edu/research/discovery-program-home">Data Science Discovery Program</a> at UC Berkeley, and the <a href="https://sicss.io/2021/howard-mathematica/">Summer Institute in Computational Social Science at Howard University and Mathematica</a>.</p>
 <p>I have cited all sources—books, articles, slides, blog posts, and videos—whenever I am aware of them.</p>
-<ul>
-<li>Suggestions, Questions, or Comments</li>
-</ul>
+</div>
+<div id="suggestions-questions-or-comments" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Suggestions, Questions, or Comments<a href="index.html#suggestions-questions-or-comments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Please feel free to <a href="https://github.com/jaeyk/PS239T/issues">create an issue</a> on the GitHub repository. If you find any typos, errors, or missing citations, I’d be grateful if you reported them there.</p>
-<ul>
-<li>License</li>
-</ul>
+</div>
+<div id="license" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> License<a href="index.html#license" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="https://licensebuttons.net/l/by/4.0/88x31.png" /><br />
 This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
+</div>
 </div>
             </section>
 
