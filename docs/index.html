@@ -4,27 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Practical Data Science for Social Scientists</title>
-  <meta name="description" content="Practical Data Science for Social Scientists" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>Computational Thinking for Social Scientists</title>
+  <meta name="description" content="Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Practical Data Science for Social Scientists" />
+  <meta property="og:title" content="Computational Thinking for Social Scientists" />
   <meta property="og:type" content="book" />
   
-  
-  <meta property="og:description" content="Practical Data Science for Social Scientists" />
-  <meta name="github-repo" content="https://github.com/jaeyk/PS239T" />
+  <meta property="og:description" content="Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists." />
+  <meta name="github-repo" content="jaeyk/PS239T" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Practical Data Science for Social Scientists" />
-  
-  <meta name="twitter:description" content="Practical Data Science for Social Scientists" />
+  <meta name="twitter:title" content="Computational Thinking for Social Scientists" />
+  <meta name="twitter:site" content="@JaeJaeykim2" />
+  <meta name="twitter:description" content="Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists." />
   
 
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2020-09-24" />
+<meta name="date" content="2025-04-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,9 +31,9 @@
   
   
 
-<link rel="next" href="intro.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="next" href="motivation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,14 +49,18 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.1.3/tabwid.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -65,7 +68,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -91,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -104,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -116,6 +119,11 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -131,22 +139,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Computational Thinking for Social Scientists</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
-<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
-<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why This Textbook?</a></li>
+<li class="chapter" data-level="2" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>2</b> Computational Thinking</a></li>
+<li class="chapter" data-level="3" data-path="git_bash.html"><a href="git_bash.html"><i class="fa fa-check"></i><b>3</b> Managing data and code</a></li>
+<li class="chapter" data-level="4" data-path="tidy_data.html"><a href="tidy_data.html"><i class="fa fa-check"></i><b>4</b> Tidy data and its friends</a></li>
+<li class="chapter" data-level="5" data-path="functional_programming.html"><a href="functional_programming.html"><i class="fa fa-check"></i><b>5</b> Automating repeated things</a></li>
+<li class="chapter" data-level="6" data-path="products.html"><a href="products.html"><i class="fa fa-check"></i><b>6</b> Developing data products</a></li>
+<li class="chapter" data-level="7" data-path="semi_structured_data.html"><a href="semi_structured_data.html"><i class="fa fa-check"></i><b>7</b> Semi-structured data</a></li>
+<li class="chapter" data-level="8" data-path="machine_learning.html"><a href="machine_learning.html"><i class="fa fa-check"></i><b>8</b> High-dimensional data</a></li>
+<li class="chapter" data-level="9" data-path="big_data.html"><a href="big_data.html"><i class="fa fa-check"></i><b>9</b> Big data</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li>
+  <a href="https://github.com/jaeyk/PS239T" target="_blank">
+    Published with <code>{bookdown}</code>
+  </a>
+</li>
 
 </ul>
 
@@ -157,7 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Practical Data Science for Social Scientists</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Thinking for Social Scientists</a>
           </h1>
         </div>
 
@@ -166,19 +176,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Practical Data Science for Social Scientists</h1>
-<p class="author"><em>Jae Yeon Kim</em></p>
-<p class="date"><em>2020-09-24</em></p>
+<h1 class="title">Computational Thinking for Social Scientists</h1>
+<p class="author"><em><a href="https://jaeyk.github.io/">Jae Yeon Kim</a></em></p>
+<p class="date"><em>2025-04-19</em></p>
 </div>
-<div id="prerequisites" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Prerequisites</h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports, e.g., a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<p>The <strong>bookdown</strong> package can be installed from CRAN or Github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</span>
-<span id="cb1-2"><a href="index.html#cb1-2"></a><span class="co"># or the development version</span></span>
-<span id="cb1-3"><a href="index.html#cb1-3"></a><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></span></code></pre></div>
-<p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</p>
-<p>To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.name/tinytex/" class="uri">https://yihui.name/tinytex/</a>.</p>
+<div id="why-this-textbook" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Why This Textbook?<a href="index.html#why-this-textbook" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello, World!&quot;</code></pre>
+<blockquote>
+<p>Make simple things simple, and complex things possible. - <a href="https://www.quora.com/What-is-the-story-behind-Alan-Kay-s-adage-Simple-things-should-be-simple-complex-things-should-be-possible">Alan Kay</a></p>
+</blockquote>
+<p>This is the website for <em>Computational Thinking for Social Scientists</em>, an open-access book designed to help social scientists think computationally and develop proficiency with modern computational tools and techniques. Mastering these skills enables researchers to collect, wrangle, analyze, and interpret data more efficiently—and with more enjoyment. It also empowers them to pursue research questions that might once have seemed impossible.</p>
+<p>Horace Mann, the first great advocate of public education in the United States, once said:</p>
+<blockquote>
+<p>“Education, then, beyond all other devices of human origin,<br />
+is a great equalizer of the conditions of men—the balance wheel of the social machinery.”</p>
+</blockquote>
+<p>I believe in the transformative power of education. At the same time, I recognize that access to high-quality education remains deeply unequal. Too often, historically disadvantaged groups face greater barriers to both education and technology. This book is my small contribution toward realizing the democratic promise of education—especially in the emerging field of computational social science.</p>
+<p>That said, this book is not a comprehensive guide to computational social science or any specific programming language, tool, or technique. For a broader introduction to the field, I highly recommend <a href="http://www.princeton.edu/~mjs3/">Matthew Salganik</a>’s <a href="https://www.bitbybitbook.com/"><em>Bit by Bit</em> (2017)</a>, which is comprehensive, accessible, and pedagogically rich.</p>
+<p>This book is organized into two parts—Fundamentals and Applications—and includes eight main sessions:</p>
+<ul>
+<li>Part I: Fundamentals</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><a href="motivation.html#motivation">Why computational thinking</a><br />
+</li>
+<li><a href="git_bash.html#git_bash">Best practices in data and code management using Git and Bash</a><br />
+</li>
+<li><a href="tidy_data.html#tidy_data">How to wrangle, model, and visualize data efficiently</a><br />
+</li>
+<li><a href="functional_programming.html#functional_programming">How to use functional programming to automate repetitive tasks</a><br />
+</li>
+<li><a href="products.html#products">How to develop data products (e.g., packages and Shiny apps)</a></li>
+</ol>
+<ul>
+<li>Part II: Applications</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li><a href="semi_structured_data.html#semi_structured_data">How to collect and parse semi-structured data at scale (e.g., APIs and web scraping)</a><br />
+</li>
+<li><a href="machine_learning.html#machine_learning">How to analyze high-dimensional data (e.g., text) using machine learning</a><br />
+</li>
+<li><a href="big_data.html#big_data">How to access, query, and manage big data using SQL</a></li>
+</ol>
+<p>This book primarily uses <a href="https://www.r-project.org/about.html"><strong>R</strong></a>, and occasionally <a href="https://www.gnu.org/software/bash/"><strong>bash</strong></a> and <a href="https://www.python.org/about/"><strong>Python</strong></a>.</p>
+<ul>
+<li><p><strong>Why R?</strong><br />
+R is free, accessible (especially thanks to the <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> and <a href="https://posit.co">RStudio</a>), and cross-platform (Mac/Windows/Linux). It’s fast (thanks to <a href="https://cran.r-project.org/web/packages/Rcpp/index.html"><code>Rcpp</code></a>), extensible (with over 16,000 packages on <a href="https://cran.r-project.org/web/packages/">CRAN</a>), and supported by a large, inclusive community (see <a href="https://twitter.com/search?q=%23rstats&amp;src=typed_query"><code>#rstats</code></a>).</p></li>
+<li><p><strong>Why R + Python + Bash?</strong><br />
+&gt; “For R and Python—Python is first and foremost a programming language. That has many strengths, but it usually means that to do data science in Python, you must first learn to program. With R, you can get up and running faster because a lot is built in—you don’t need to learn as many programming concepts. You can focus on being a great political scientist, or whatever you do, and just learn enough R to get things done.”<br />
+&gt; — Hadley Wickham</p>
+<p>That said, the R ecosystem presents some challenges:<br />
+&gt; “Compared to other programming languages, the R community tends to focus more on results than on process. Software engineering practices such as source control or automated testing are not widely adopted. Inconsistencies persist across contributed packages and even within base R. The language reflects more than 20 years of evolution. R is not particularly fast, and poorly written R code can be painfully slow. It’s also memory-hungry.”<br />
+&gt; — Hadley Wickham</p>
+<p>Still, the RStudio (now Posit) and tidyverse teams have made significant progress in addressing these limitations. This book will introduce some of those advances and show how combining R with Python and Bash can enhance your workflow.</p>
+<p>If you’re serious about programming or software development, I strongly recommend learning Python as well—it can fill important gaps in software engineering that will also improve your R proficiency.</p></li>
+<li><p>Special Thanks</p></li>
+</ul>
+<p>This book is as much collected as it is authored. It is a remix of <a href="https://github.com/rochelleterman/PS239T">PS239T</a>, a graduate-level course in computational methods at UC Berkeley originally developed by <a href="http://rochelleterman.com/">Rochelle Terman</a> (now Assistant Professor of Political Science at the University of Chicago), and later revised by <a href="http://rachelbernhard.com/">Rachel Bernhard</a> (now Associate Professor at Nuffield College and the University of Oxford).</p>
+<p>I have taught <a href="https://github.com/PS239T/spring_2021">PS239T</a> as a lead instructor in Spring 2019, a TA in Spring 2018, and a co-instructor with <a href="https://nicholaskuipers.com/">Nick Kuipers</a> (now Assistant Professor of Politics at Princeton) in Spring 2020.</p>
+<p>Other materials are adapted from workshops I developed for <a href="https://dlab.berkeley.edu/">D-Lab</a>, the <a href="https://data.berkeley.edu/research/discovery-program-home">Data Science Discovery Program</a> at UC Berkeley, and the <a href="https://sicss.io/2021/howard-mathematica/">Summer Institute in Computational Social Science at Howard University and Mathematica</a>.</p>
+<p>I have cited all sources—books, articles, slides, blog posts, and videos—whenever I am aware of them.</p>
+<ul>
+<li>Suggestions, Questions, or Comments</li>
+</ul>
+<p>Please feel free to <a href="https://github.com/jaeyk/PS239T/issues">create an issue</a> on the GitHub repository. If you find any typos, errors, or missing citations, I’d be grateful if you reported them there.</p>
+<ul>
+<li>License</li>
+</ul>
+<p><img src="https://licensebuttons.net/l/by/4.0/88x31.png" /><br />
+This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
 </div>
             </section>
@@ -187,11 +255,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="motivation.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -202,37 +269,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/jaeyk/PS239T/edit/main/index.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["pdf", "PS239T.pdf"],
+    ["epub", "PS239T.epub"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null,
+    "enabled": true,
+    "highlight": true
+  },
+  "toc": {
+    "collapse": "section"
+  }
 });
 });
 </script>
@@ -243,7 +320,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
