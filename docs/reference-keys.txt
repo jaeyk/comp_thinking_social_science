@@ -1,6 +1,6 @@
 tab:unnamed-chunk-16
 tab:unnamed-chunk-20
-why-this-textbook
+welcome
 motivation
 why-computational-thinking
 computational-thinking-in-the-age-of-generative-ai

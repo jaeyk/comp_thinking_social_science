@@ -1,23 +1,12 @@
 ---
-knitr: "bookdown::render_book"
 title: "Computational Thinking for Social Scientists"
-author: ["[Jae Yeon Kim](https://jaeyk.github.io/)"]
+author: "Jae Yeon Kim"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-github-repo: jaeyk/PS239T
-twitter-handle: JaeJaeykim2
 output: bookdown::gitbook
-documentclass: book
-bibliography:
-  - book.bib
-  - packages.bib
-biblio-style: apalike
-link-citations: yes
-colorlinks: yes
-description: "Computational Thinking for Social Scientists. An online textbook for teaching computational tools and techniques to social scientists."
 ---
 
-# Why This Textbook?
+# Welcome
 
 ```{r}
 print("Hello, World!")
