@@ -23,7 +23,7 @@
 <meta name="author" content="Jae Yeon Kim" />
 
 
-<meta name="date" content="2025-04-19" />
+<meta name="date" content="2025-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -198,10 +198,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Don’t worry if you are worried about memorizing these and more commands. Memorization is a far less important aspect of learning programming. In general, if you don’t know what a command does, just type <code>&lt;command name&gt; --help.</code> You can do <code>man &lt;command name&gt;</code> to obtain further information. Here, <code>man</code> stands for manual. If you need more user-friendly information, please consider using <a href="https://tldr.sh/"><code>tldr</code></a>.</p>
 <p>Let’s make this simple case complex by scaling up. Suppose we want to make 100 duplicates of the <code>test</code> file. Below is the one-line code that performs the task!</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="git_bash.html#cb4-1" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="dt">{</span><span class="dv">1</span><span class="dt">..</span><span class="dv">100</span><span class="dt">}</span><span class="kw">;</span> <span class="cf">do</span> <span class="fu">cp</span> test <span class="st">&quot;test_</span><span class="va">$i</span><span class="st">&quot;</span><span class="kw">;</span> <span class="cf">done</span></span></code></pre></div>
-<p>Let me break down the seemingly complex workflow.
-1. <code>for i in {1..100}.</code> This is for loop. The numbers 1..100 inside the curly braces <code>{}</code> indicates the range of integers from 1 to 100. In R, this is equivalent to for (i in 1:100) {}
-2. <code>;</code> is used to use multiple commands without making line breaks. ; works in the same way in R.
-3. <code>$var</code> returns the value associated with a variable. Type <code>name=&lt;Your name&gt;</code>. Then, type <code>echo $name.</code> You should see your name printed. Variable assignment is one of the most basic things you’ll learn in any programming. In R, we do this by using -&gt;</p>
+<p>Let me break down the seemingly complex workflow.</p>
+<ol style="list-style-type: decimal">
+<li><p><code>for i in {1..100}.</code> This is for loop. The numbers 1..100 inside the curly braces <code>{}</code> indicates the range of integers from 1 to 100. In R, this is equivalent to for (i in 1:100) {}</p></li>
+<li><p><code>;</code> is used to use multiple commands without making line breaks. ; works in the same way in R.</p></li>
+<li><p><code>$var</code> returns the value associated with a variable. Type <code>name=&lt;Your name&gt;</code>. Then, type <code>echo $name.</code> You should see your name printed. Variable assignment is one of the most basic things you’ll learn in any programming. In R, we do this by using <code>-&gt;.</code></p></li>
+</ol>
 <p>If you have zero experience in programming, I might have provided too many concepts too early, like variable assignment and for loop. However, you don’t need to worry about them at this point. We will cover them in the next chapter.</p>
 <p>I will give you one more example to illustrate how powerful the command line is. Suppose we want to find which file contains the character “COVID.” This is equivalent to finding a needle in a haystack. It’s a daunting task for humans, but not for computers. Commands are verbs. So, to express this problem in a language that computers could understand, let’s first find what command we should use. Often, a simple Google or <a href="https://stackoverflow.com/">Stack Overflow</a> search leads to an answer.</p>
 <p>In this case, <code>grep</code> is the answer (there’s also grep in R). This command finds PATTERNS in each file. What follows - are options (called flags): <code>r</code> (recursive), <code>n</code> (line number), <code>w</code> (match only whole words), <code>e</code> (use patterns for matching). <code>rnw</code> are for output control and <code>e</code> is for pattern selection.</p>
@@ -679,19 +681,10 @@ The other cool command for text parsing is <code>awk.</code> This command is han
 </div>
 <p>Figure 3. Decentralized VCS.</p>
 <p>For more information on the varieties of version control systems, please read <a href="https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf">Petr Baudis’s review</a> on that subject.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/PFwUHTE6mFc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> Webcast • Introduction to Git and GitHub • Featuring Mehan Jayasuriya, GitHub Training & Guides </p>
 <div class="float">
 <img src="https://plain-text.co/figures/git-basic.png" alt="Figure 2.1. A schematic git workflow from Healy’s “The Plain Person’s Guide to Plain Text Social Science”" />
 <div class="figcaption">Figure 2.1. A schematic git workflow from Healy’s “The Plain Person’s Guide to Plain Text Social Science”</div>
 </div>
-<p>For more information, watch the following video:</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/u6G3fbmpWr8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> The Basics of Git and GitHub, GitHub Training & Guides </p>
 </div>
 <div id="setup" class="section level3 hasAnchor" number="3.2.3">
 <h3><span class="header-section-number">3.2.3</span> Setup<a href="git_bash.html#setup" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -821,11 +814,6 @@ If you’re unfamiliar with basic Git commands, please refer to <a href="http://
 <div class="sourceCode" id="cb65"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb65-1"><a href="git_bash.html#cb65-1" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--soft</span> HEAD~1 <span class="co"># if you still want to keep the change, but you go back to t-1</span></span>
 <span id="cb65-2"><a href="git_bash.html#cb65-2" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> HEAD~1 <span class="co"># if you&#39;re sure the change is unnecessary</span></span></code></pre></div>
 <p>Writing an informative commit is essential. To learn how to do this better, see the following video:</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m0t1mOeAJgs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> Your Commits Should Tell a Story • Featuring Eliza Brock Marcum, GitHub Training & Guides </p>
-
 </div>
 <div id="push-and-pull-or-fetch" class="section level3 hasAnchor" number="3.2.7">
 <h3><span class="header-section-number">3.2.7</span> Push and pull (or fetch)<a href="git_bash.html#push-and-pull-or-fetch" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -888,28 +876,14 @@ If you’re unfamiliar with basic Git commands, please refer to <a href="http://
 <div id="deployment-github-pages" class="section level3 hasAnchor" number="3.2.11">
 <h3><span class="header-section-number">3.2.11</span> Deployment: GitHub Pages<a href="git_bash.html#deployment-github-pages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Useful to deploy websites. I used the GitHub page to deploy this book.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4TrOCv5Kukk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> Webcast • Get Started with GitHub Pages • Featuring Dani Traphagen, GitHub Training & Guides </p>
-
 </div>
 <div id="tracking-progress-github-issues" class="section level3 hasAnchor" number="3.2.12">
 <h3><span class="header-section-number">3.2.12</span> Tracking progress: GitHub Issues<a href="git_bash.html#tracking-progress-github-issues" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Useful to collect and respond to questions and suggestions (e.g., bug reports and feature suggestions) on the projects on which you’re working.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TJlYiMp8FuY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> Webcast • GitHub Issues • A Quick Look, GitHub Training & Guides </p>
-
 </div>
 <div id="project-management-github-dashboards" class="section level3 hasAnchor" number="3.2.13">
 <h3><span class="header-section-number">3.2.13</span> Project management: GitHub Dashboards<a href="git_bash.html#project-management-github-dashboards" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>I use GitHub dashboards for almost every project that I have done.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/YxKhb3fxtsU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> GitHub Projects Demo: Automation, Kanban, Scrum, Issues, Pull Request, Milestones, Issues, Tasks by Brandan Jones </p>
 </div>
 <div id="using-git-clients" class="section level3 hasAnchor" number="3.2.14">
 <h3><span class="header-section-number">3.2.14</span> Using Git clients<a href="git_bash.html#using-git-clients" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1343,11 +1317,6 @@ allowfullscreen></iframe>
 <li>Spacing</li>
 </ul>
 <p>Some people do spacing by pressing the Tab key, and others do it by pressing the Space key multiple times (and this is a serious subject).</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SsoOG6ZeyUI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> Tabs versus Spaces </p>
-
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="git_bash.html#cb108-1" tabindex="-1"></a><span class="co"># Good</span></span>
 <span id="cb108-2"><a href="git_bash.html#cb108-2" tabindex="-1"></a>x[, <span class="dv">1</span>]</span>
 <span id="cb108-3"><a href="git_bash.html#cb108-3" tabindex="-1"></a></span>

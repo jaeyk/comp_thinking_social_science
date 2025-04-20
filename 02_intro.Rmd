@@ -36,9 +36,12 @@ for i in {1..100}; do cp test "test_$i"; done
 ```
 
 Let me break down the seemingly complex workflow.
+
 1. `for i in {1..100}.` This is for loop. The numbers 1..100 inside the curly braces `{}` indicates the range of integers from 1 to 100. In R, this is equivalent to for (i in 1:100) {}
+
 2. `;` is used to use multiple commands without making line breaks. ; works in the same way in R.
-3. `$var` returns the value associated with a variable. Type `name=<Your name>`. Then, type `echo $name.` You should see your name printed. Variable assignment is one of the most basic things you'll learn in any programming. In R, we do this by using ->
+
+3. `$var` returns the value associated with a variable. Type `name=<Your name>`. Then, type `echo $name.` You should see your name printed. Variable assignment is one of the most basic things you'll learn in any programming. In R, we do this by using `->.`
 
 If you have zero experience in programming, I might have provided too many concepts too early, like variable assignment and for loop. However, you don't need to worry about them at this point. We will cover them in the next chapter.
 
@@ -724,24 +727,7 @@ Figure 3. Decentralized VCS.
 For more information on the varieties of version control systems, please read [Petr Baudis's review](https://pdfs.semanticscholar.org/4490/4c70bc91e1bed4fe02b9e2282f031b7c90ea.pdf) on that subject.
 
 
-```{=html}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/PFwUHTE6mFc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> Webcast • Introduction to Git and GitHub • Featuring Mehan Jayasuriya, GitHub Training & Guides </p>
-```
-
-
 ![Figure 2.1. A schematic git workflow from Healy's "The Plain Person’s Guide to Plain Text Social Science"](https://plain-text.co/figures/git-basic.png)
-
-For more information, watch the following video:
-
-```{=html}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/u6G3fbmpWr8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> The Basics of Git and GitHub, GitHub Training & Guides </p>
-```
 
 ### Setup
 
@@ -921,14 +907,6 @@ git reset --hard HEAD~1 # if you're sure the change is unnecessary
 
 Writing an informative commit is essential. To learn how to do this better, see the following video:
 
-```{=html}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m0t1mOeAJgs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> Your Commits Should Tell a Story • Featuring Eliza Brock Marcum, GitHub Training & Guides </p>
-
-```
-
 ### Push and pull (or fetch)
 
 These features show how Git works as a collaboration tool.
@@ -1026,36 +1004,13 @@ Two options.
 
 Useful to deploy websites. I used the GitHub page to deploy this book.
 
-```{=html}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4TrOCv5Kukk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> Webcast • Get Started with GitHub Pages • Featuring Dani Traphagen, GitHub Training & Guides </p>
-
-```
-
 ### Tracking progress: GitHub Issues
 
 Useful to collect and respond to questions and suggestions (e.g., bug reports and feature suggestions) on the projects on which you're working.
 
-```{=html}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TJlYiMp8FuY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> Webcast • GitHub Issues • A Quick Look, GitHub Training & Guides </p>
-
-```
-
 ### Project management: GitHub Dashboards
 
 I use GitHub dashboards for almost every project that I have done.
-
-```{=html}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/YxKhb3fxtsU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> GitHub Projects Demo: Automation, Kanban, Scrum, Issues, Pull Request, Milestones, Issues, Tasks by Brandan Jones </p>
-```
 
 ### Using Git clients
 
@@ -1607,14 +1562,6 @@ rdd
 - Spacing
 
 Some people do spacing by pressing the Tab key, and others do it by pressing the Space key multiple times (and this is a serious subject).
-
-```{=html}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SsoOG6ZeyUI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p> Tabs versus Spaces </p>
-
-```
 
 
 ```{r, eval = FALSE}

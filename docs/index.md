@@ -1,7 +1,7 @@
 ---
 title: "Computational Thinking for Social Scientists"
 author: "Jae Yeon Kim"
-date: "2025-04-19"
+date: "2025-04-20"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 ---

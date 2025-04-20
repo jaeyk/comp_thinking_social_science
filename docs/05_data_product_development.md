@@ -169,7 +169,7 @@ usethis::use_vignette("rbind_mutate")
 ```r
 title: "Vignette title"
 author: "Vignette author"
-date: "2025-04-19"
+date: "2025-04-20"
 output: rmarkdown::html_vignette
 vignette: blah blah
 ``` 
@@ -266,14 +266,6 @@ To learn more about Shiny applications, see [the Winners of the 2nd Annual Shiny
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Wy3TY0gOmJw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p>Shiny in production: Principles, practices, and tools - Joe Cheng</p>
-
-```
-
-```{=html}
-
-<iframe src="https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.240702211.1091983227.1603295793-100003412.1602392815" style="border: 1px solid #AAA; width: 800px; height: 700px"></iframe>
-
-<p>COVID-19 tracker by Edward Parker</p>
 
 ```
 

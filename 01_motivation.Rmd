@@ -95,7 +95,8 @@ Here’s a short summary of why **inclusive programming instruction** matters:
 
 ## Computational thinking and a career in computational social science
 
-If you are considering a career in **computational social science (CSS)**, take a look at the guide I co‑authored with Aniket Kesari (Fordham Law), Sono Shah (Pew Research Center), Taylor Brown (Meta), Tiago Ventura (Georgetown), and Tina Law (UC Davis).  
+If you are considering a career in **computational social science (CSS)**, take a look at the guide I co‑authored with Aniket Kesari (Fordham Law), Sono Shah (Pew Research Center), Taylor Brown (Meta), Tiago Ventura (Georgetown), and Tina Law (UC Davis). 
+
 Our article in [*PS: Political Science & Politics*](https://www.cambridge.org/core/journals/ps-political-science-and-politics/article/training-computational-social-science-phd-students-for-academic-and-nonacademic-careers/1455690939833B9FFCAC664D4E412057?utm_source=hootsuite&utm_medium=twitter&utm_campaign=PSC_Sep23#article) (2024) recommends that PhD students augment traditional social‑science training with three CSS pillars:
 
 1. **Build data‑science skills** — automate data collection, cleaning, modelling, and visualization.  
