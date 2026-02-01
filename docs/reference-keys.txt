@@ -317,7 +317,7 @@ risk
 summary
 plot
 compute-auc-for-all-estimators
-plot-the-roc-curve-for-the-best-estimator-discretsl
+plot-the-roc-curve-for-the-best-estimator-discrete-sl
 review-weight-distribution-for-the-superlearner
 applications-2
 bandit-algorithm-optimizing-an-experiment
@@ -338,7 +338,7 @@ exploratory-data-analysis
 stm
 turn-text-into-document-term-matrix
 tuning-k
-evaludating-models
+evaluating-models
 finalize
 explore-the-results
 references-4

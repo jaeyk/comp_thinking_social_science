@@ -4,7 +4,7 @@
 
 ## The Big Picture
 
-- The rise of high-dimensional data. The new data frontiers in social sciences---text ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf); [Grimmer and Stewart 2013](https://www.jstor.org/stable/pdf/24572662.pdf?casa_token=SQdSI4R_VdwAAAAA:4QiVLhCXqr9f0qNMM9U75EL5JbDxxnXxUxyIfDf0U8ZzQx9szc0xVqaU6DXG4nHyZiNkvcwGlgD6H0Lxj3y0ULHwgkf1MZt8-9TPVtkEH9I4AHgbTg)) and and image ([Joo and Steinert-Threlkeld 2018](https://arxiv.org/pdf/1810.01544))---are all high-dimensional data. 
+- The rise of high-dimensional data. The new data frontiers in social sciences---text ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf); [Grimmer and Stewart 2013](https://www.jstor.org/stable/pdf/24572662.pdf?casa_token=SQdSI4R_VdwAAAAA:4QiVLhCXqr9f0qNMM9U75EL5JbDxxnXxUxyIfDf0U8ZzQx9szc0xVqaU6DXG4nHyZiNkvcwGlgD6H0Lxj3y0ULHwgkf1MZt8-9TPVtkEH9I4AHgbTg)) and image ([Joo and Steinert-Threlkeld 2018](https://arxiv.org/pdf/1810.01544))---are all high-dimensional data. 
 
     - 1000 common English words for 30-word tweets: $1000^{30}$ similar to N of atoms in the universe ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf))
 
@@ -24,7 +24,7 @@
 
     - $y$ <- unknown <- $x$ 
     
-    - $y$ <-> decision trees, neutral nets <-> $x$
+    - $y$ <-> decision trees, neural nets <-> $x$
         
     - For the main idea behind prediction modeling, see Breiman, Leo (Berkeley stat faculty who passed away in 2005). ["Statistical modeling: The two cultures (with comments and a rejoinder by the author)."](https://projecteuclid.org/euclid.ss/1009213726) *Statistical science* 16, no. 3 (2001): 199-231.
     
@@ -73,13 +73,13 @@
   
     - Prediction problems = Supervised (some $y$ are known) + Unsupervised ($y$ unknown)
     
-![How to teach machines. Based on [vas3k blog](https://vas3k.com/blog/machine_learning/). Many images in this chapter come from vas3k blog.](https://i.vas3k.ru/7w9.jpg)
+<img src="https://i.vas3k.ru/7w9.jpg" alt="How to teach machines. Based on vas3k blog. Many images in this chapter come from vas3k blog." style="max-width:100%;" />
 
-![The main types of machine learning. Based on [vas3k blog](https://vas3k.com/blog/machine_learning/)](https://i.vas3k.ru/7vz.jpg)
+<img src="https://i.vas3k.ru/7vz.jpg" alt="The main types of machine learning. Based on vas3k blog" style="max-width:100%;" />
 
-![The map of the machine learning universe. Based on [vas3k blog](https://vas3k.com/blog/machine_learning/)](https://i.vas3k.ru/7vx.jpg)
+<img src="https://i.vas3k.ru/7vx.jpg" alt="The map of the machine learning universe. Based on vas3k blog" style="max-width:100%;" />
 
-![Classical machine learning. Based on [vas3k blog](https://vas3k.com/blog/machine_learning/)](https://i.vas3k.ru/7w1.jpg)
+<img src="https://i.vas3k.ru/7w1.jpg" alt="Classical machine learning. Based on vas3k blog" style="max-width:100%;" />
 
 ## Dataset  
 
@@ -115,15 +115,7 @@ pacman::p_load(
   SnowballC,    # Stemming (required by stm)
   conflicted    # Explicit conflict resolution for masking functions
 )
-```
 
-```
-## 
-## The downloaded binary packages are in
-## 	/var/folders/wt/b5zf6_0910b4_lsl7k4_jcnm0000gn/T//Rtmp02YRIe/downloaded_packages
-```
-
-``` r
 conflicted::conflict_prefer("filter", "dplyr")
 ```
 
@@ -160,7 +152,7 @@ glimpse(data_original)
 ```
 
 ``` r
-# Createa a copy
+# Create a copy
 data <- data_original
 
 theme_set(theme_minimal())
@@ -189,7 +181,7 @@ theme_set(theme_minimal())
     
     - [`yardstick`](https://github.com/tidymodels/yardstick): for model evaluations 
     
-    - [`workflows`](https://github.com/tidymodels/workflows): for bundling a pieplne that bundles together preprocessing, modeling, and post-processing requests 
+    - [`workflows`](https://github.com/tidymodels/workflows): for bundling a pipeline that bundles together preprocessing, modeling, and post-processing requests 
     
 - Why taking a tidyverse approach to machine learning?
 
@@ -201,13 +193,13 @@ theme_set(theme_minimal())
     
     - Extendable code
 
-![Tidymodels. From RStudio.](https://rviews.rstudio.com/post/2019-06-14-a-gentle-intro-to-tidymodels_files/figure-html/ds.png)
+<img src="https://rviews.rstudio.com/post/2019-06-14-a-gentle-intro-to-tidymodels_files/figure-html/ds.png" alt="Tidymodels. From RStudio." style="max-width:100%;" />
 
 > tidymodels are an **integrated, modular, extensible** set of packages that implement a framework that facilitates creating predicative stochastic models. - Joseph Rickert@RStudio
 
 - Currently, 238 models are [available](https://topepo.github.io/caret/available-models.html) 
 
-- The following materials are based on [the machine learning with tidymodels workshop](https://github.com/dlab-berkeley/Machine-Learning-with-tidymodels) I developed for D-Lab. [The original workshop](https://github.com/dlab-berkeley/Machine-Learning-in-R) was designed by [Chris Kennedy](https://ck37.com/) and [Evan Muzzall](https://dlab.berkeley.edu/people/evan-muzzall.
+- The following materials are based on [the machine learning with tidymodels workshop](https://github.com/dlab-berkeley/Machine-Learning-with-tidymodels) I developed for D-Lab. [The original workshop](https://github.com/dlab-berkeley/Machine-Learning-in-R) was designed by [Chris Kennedy](https://ck37.com/) and [Evan Muzzall](https://dlab.berkeley.edu/people/evan-muzzall).
 
 ## Pre-processing
 
@@ -329,10 +321,6 @@ data %>%
 data$age %>% class()
 ```
 
-```
-## [1] "numeric"
-```
-
 #### Data splitting using random sampling 
 
 
@@ -383,35 +371,14 @@ test_y_reg <- bake(prep_reg, raw_test_x_reg, all_outcomes())$age %>% as.numeric(
 
 # Checks
 names(train_x_reg) # Make sure there's no age variable!
-```
 
-```
-##  [1] "trestbps" "chol"     "fbs"      "restecg"  "thalach"  "exang"   
-##  [7] "oldpeak"  "target"   "sex_X1"   "ca_X1"    "ca_X2"    "ca_X3"   
-## [13] "ca_X4"    "cp_X1"    "cp_X2"    "cp_X3"    "slope_X1" "slope_X2"
-## [19] "thal_X1"  "thal_X2"  "thal_X3"
-```
-
-``` r
 class(train_y_reg) # Make sure this is a continuous variable!
-```
-
-```
-## [1] "numeric"
 ```
 - Note that other imputation methods are also available. 
 
 
 ``` r
 grep("impute", ls("package:recipes"), value = TRUE)
-```
-
-```
-##  [1] "step_bagimpute"     "step_impute_bag"    "step_impute_knn"   
-##  [4] "step_impute_linear" "step_impute_lower"  "step_impute_mean"  
-##  [7] "step_impute_median" "step_impute_mode"   "step_impute_roll"  
-## [10] "step_knnimpute"     "step_lowerimpute"   "step_meanimpute"   
-## [13] "step_medianimpute"  "step_modeimpute"    "step_rollimpute"
 ```
 
 - You can also create your own `step_` functions. For more information, see [tidymodels.org](https://www.tidymodels.org/learn/develop/recipes/).
@@ -423,20 +390,10 @@ grep("impute", ls("package:recipes"), value = TRUE)
 
 ``` r
 data$target %>% class()
-```
 
-```
-## [1] "numeric"
-```
-
-``` r
 data$target <- as.factor(data$target)
 
 data$target %>% class()
-```
-
-```
-## [1] "factor"
 ```
 
 #### Data splitting using stratified random sampling
@@ -487,21 +444,7 @@ test_y_class <- bake(prep_class, raw_test_x_class, all_outcomes())$target %>% as
 
 # Checks
 names(train_x_class) # Make sure there's no target variable!
-```
-
-```
-##  [1] "age"      "trestbps" "chol"     "fbs"      "restecg"  "thalach" 
-##  [7] "exang"    "oldpeak"  "sex_X1"   "ca_X1"    "ca_X2"    "ca_X3"   
-## [13] "ca_X4"    "cp_X1"    "cp_X2"    "cp_X3"    "slope_X1" "slope_X2"
-## [19] "thal_X1"  "thal_X2"  "thal_X3"
-```
-
-``` r
 class(train_y_class) # Make sure this is a factor variable!
-```
-
-```
-## [1] "factor"
 ```
 
 ## Supervised learning
@@ -526,7 +469,7 @@ ols_spec <- linear_reg() %>% # Specify a model
   set_mode("regression") # Declare a mode: regression or classification
 ```
 
-![Source: http://ethen8181.github.io](http://ethen8181.github.io/machine-learning/regularization/images/lasso_ridge_coefficients.png)
+<img src="http://ethen8181.github.io/machine-learning/regularization/images/lasso_ridge_coefficients.png" alt="Source: http://ethen8181.github.io" style="max-width:100%;" />
 
 Lasso is one of the regularization techniques along with ridge and elastic-net. 
 
@@ -539,23 +482,12 @@ lasso_spec <- linear_reg(
 ) %>% # 1 = lasso, 0 = ridge
   set_engine("glmnet") %>%
   set_mode("regression")
+```
 
+
+``` r
 # If you don't understand parsnip arguments
 lasso_spec %>% translate() # See the documentation
-```
-
-```
-## Linear Regression Model Specification (regression)
-## 
-## Main Arguments:
-##   penalty = 0.1
-##   mixture = 1
-## 
-## Computational engine: glmnet 
-## 
-## Model fit template:
-## glmnet::glmnet(x = missing_arg(), y = missing_arg(), weights = missing_arg(), 
-##     alpha = 1, family = "gaussian")
 ```
 
 - Fit models 
@@ -583,14 +515,14 @@ map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit)
 ## [[1]]
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" />
 
 ```
 ## 
 ## [[2]]
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-19-2.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-20-2.png" alt="" width="672" />
 
 
 ``` r
@@ -613,7 +545,7 @@ evals %>%
   facet_wrap(~ glue("{toupper(.metric)}"), scales = "free_y")
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-21-1.png" alt="" width="672" />
 - For more information, read [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
 
 #### tune 
@@ -628,7 +560,7 @@ evals %>%
 
 2. Random search: random sample points from a bounded domain
 
-![](https://www.programmersought.com/images/523/7e44435f20fe514c11ca0d930af8547b.png)
+<img src="https://www.programmersought.com/images/523/7e44435f20fe514c11ca0d930af8547b.png" alt="Grid search vs random search" style="max-width:100%;" />
 
 
 ``` r
@@ -641,26 +573,12 @@ tune_spec <- linear_reg(
   set_engine("glmnet") %>%
   set_mode("regression")
 
-tune_spec
-```
-
-```
-## Linear Regression Model Specification (regression)
-## 
-## Main Arguments:
-##   penalty = tune()
-##   mixture = 1
-## 
-## Computational engine: glmnet
-```
-
-``` r
 # penalty() searches 50 possible combinations
 
 lambda_grid <- grid_regular(penalty(), levels = 50)
 ```
 
-![Source: Kaggle](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4788946%2F82b5a41b6693a313b246f02d79e972d5%2FK%20FOLD.png?generation=1608195745131795&alt=media)
+<img src="https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4788946%2F82b5a41b6693a313b246f02d79e972d5%2FK%20FOLD.png?generation=1608195745131795&alt=media" alt="Source: Kaggle" style="max-width:100%;" />
 
 
 ``` r
@@ -717,7 +635,7 @@ rec_res %>%
   theme(legend.position = "none")
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-25-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" />
 
 ##### Select 
 
@@ -729,17 +647,6 @@ top_rmse <- show_best(rec_res, metric = "rmse")
 
 best_rmse <- select_best(rec_res, metric = "rmse")
 
-best_rmse
-```
-
-```
-## # A tibble: 1 × 2
-##   penalty .config         
-##     <dbl> <chr>           
-## 1   0.391 pre0_mod48_post0
-```
-
-``` r
 glue('The RMSE of the intiail model is
      {evals %>%
   filter(type == "Lasso", .metric == "rmse") %>%
@@ -779,7 +686,7 @@ finalize_lasso %>%
   vip::vip()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-27-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" />
 
 ##### Test fit 
 
@@ -864,7 +771,7 @@ A confusion matrix is often used to describe the performance of a classification
 
 -   `ROC Curve` (receiver operating characteristic curve): a plot that shows the relationship between true and false positive rates at different classification thresholds. y-axis indicates the true positive rate and x-axis indicates the false positive rate. What matters is the AUC (Area under the ROC Curve), which is a cumulative probability function of ranking a random "positive" - "negative" pair (for the probability of AUC, see [this blog post](https://www.alexejgossmann.com/auc/)).
 
-![Source: Google Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/images/ROCCurve.svg)
+<img src="https://developers.google.com/machine-learning/crash-course/images/ROCCurve.svg" alt="Source: Google Machine Learning Crash Course" style="max-width:100%;" />
 
 -   To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html).
 
@@ -881,7 +788,7 @@ tree_fit_viz_metr <- visualize_class_eval(tree_fit)
 tree_fit_viz_metr
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-31-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-32-1.png" alt="" width="672" />
 
 ``` r
 tree_fit_viz_mat <- visualize_class_conf(tree_fit)
@@ -889,7 +796,7 @@ tree_fit_viz_mat <- visualize_class_conf(tree_fit)
 tree_fit_viz_mat
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-31-2.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-32-2.png" alt="" width="672" />
 
 #### tune 
 
@@ -915,22 +822,6 @@ tree_grid <- grid_regular(cost_complexity(),
   levels = 5
 ) # 2 hyperparameters -> 5*5 = 25 combinations
 
-tree_grid %>%
-  count(tree_depth)
-```
-
-```
-## # A tibble: 5 × 2
-##   tree_depth     n
-##        <int> <int>
-## 1          1     5
-## 2          4     5
-## 3          8     5
-## 4         11     5
-## 5         15     5
-```
-
-``` r
 # 10-fold cross-validation
 
 set.seed(1234) # for reproducibility
@@ -992,7 +883,7 @@ tree_res %>%
   coord_flip()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-34-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-35-1.png" alt="" width="672" />
 
 ##### Select 
 
@@ -1015,14 +906,14 @@ tree_fit_tuned <- finalize_tree %>%
 (tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-36-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" alt="" width="672" />
 
 ``` r
 # Confusion matrix
 (tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-36-2.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-37-2.png" alt="" width="672" />
 
 - Visualize variable importance 
 
@@ -1033,7 +924,7 @@ tree_fit_tuned %>%
   vip::vip()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-38-1.png" alt="" width="672" />
 
 ##### Test fit
 
@@ -1076,20 +967,20 @@ Here we focus on the difference between bagging and boosting. In short, boosting
 - Prediction: Simple average of the estimated responses (majority vote system)
 
 
-![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/bagging.png)
+<img src="https://sebastianraschka.com/images/faq/bagging-boosting-rf/bagging.png" alt="From Sebastian Raschka's blog" style="max-width:100%;" />
 
 
-**boosting** 
+**boosting**
 
 
 - Data: Weighted training data will be random sampled
 
-- Learning: Building models sequentially (mispredicted cases would receive more weights) 
+- Learning: Building models sequentially (mispredicted cases would receive more weights)
 
-- Prediction: Weighted average of the estimated responses 
+- Prediction: Weighted average of the estimated responses
 
 
-![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/boosting.png)
+<img src="https://sebastianraschka.com/images/faq/bagging-boosting-rf/boosting.png" alt="From Sebastian Raschka's blog" style="max-width:100%;" />
 
 
 #### parsnip 
@@ -1144,7 +1035,7 @@ rand_fit_viz_metr <- visualize_class_eval(rand_fit)
 rand_fit_viz_metr
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-41-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672" />
 
 - Visualize the confusion matrix. 
   
@@ -1155,7 +1046,7 @@ rand_fit_viz_mat <- visualize_class_conf(rand_fit)
 rand_fit_viz_mat
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-43-1.png" alt="" width="672" />
 
 #### tune 
 
@@ -1186,20 +1077,6 @@ rand_grid <- grid_regular(mtry(range = c(1, 10)),
   min_n(range = c(2, 10)),
   levels = 5
 )
-
-rand_grid %>%
-  count(min_n)
-```
-
-```
-## # A tibble: 5 × 2
-##   min_n     n
-##   <int> <int>
-## 1     2     5
-## 2     4     5
-## 3     6     5
-## 4     8     5
-## 5    10     5
 ```
 
 
@@ -1257,24 +1134,13 @@ rand_res %>%
   theme(legend.position = "bottom")
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-46-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-47-1.png" alt="" width="672" />
 
 
 ``` r
 # Optimal hyperparameter
 best_tree <- tune::select_best(rand_res, metric = "accuracy")
 
-best_tree
-```
-
-```
-## # A tibble: 1 × 3
-##    mtry min_n .config         
-##   <int> <int> <chr>           
-## 1     1     2 pre0_mod01_post0
-```
-
-``` r
 # Add the hyperparameter to the workflow
 finalize_tree <- rand_wf %>%
   finalize_workflow(best_tree)
@@ -1289,14 +1155,14 @@ rand_fit_tuned <- finalize_tree %>%
 (rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-48-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-49-1.png" alt="" width="672" />
 
 ``` r
 # Confusion matrix
 (rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-48-2.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-49-2.png" alt="" width="672" />
 
 - Visualize variable importance 
 
@@ -1307,7 +1173,7 @@ rand_fit_tuned %>%
   vip::vip()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-49-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-50-1.png" alt="" width="672" />
 
 ##### Test fit
 
@@ -1326,9 +1192,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 × 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.946
-## 2 precision binary         0.930
-## 3 recall    binary         0.952
+## 1 accuracy  binary         0.957
+## 2 precision binary         0.932
+## 3 recall    binary         0.976
 ```
 
 ### Boosting (XGboost)
@@ -1434,7 +1300,7 @@ xg_fit_viz_metr <-
 xg_fit_viz_metr
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-54-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-55-1.png" alt="" width="672" />
 
 - Visualize the confusion matrix. 
   
@@ -1446,7 +1312,7 @@ xg_fit_viz_mat <-
 xg_fit_viz_mat
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-55-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-56-1.png" alt="" width="672" />
 
 #### tune 
 
@@ -1539,24 +1405,13 @@ xg_res %>%
   )
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-58-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-59-1.png" alt="" width="672" />
 
 
 ``` r
 # Optimal hyperparameter
 best_xg <- select_best(xg_res, metric = "roc_auc")
 
-best_xg
-```
-
-```
-## # A tibble: 1 × 8
-##    mtry trees min_n tree_depth   learn_rate loss_reduction sample_size .config  
-##   <int> <int> <int>      <int>        <dbl>          <dbl>       <dbl> <chr>    
-## 1     2  1752     4         10 0.0000000458      0.0000507       0.633 pre0_mod…
-```
-
-``` r
 # Add the hyperparameter to the workflow
 finalize_xg <- xg_wf %>%
   finalize_workflow(best_xg)
@@ -1571,14 +1426,14 @@ xg_fit_tuned <- finalize_xg %>%
 (xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-60-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-61-1.png" alt="" width="672" />
 
 ``` r
 # Confusion matrix
 (xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-60-2.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-61-2.png" alt="" width="672" />
 
 - Visualize variable importance 
 
@@ -1589,7 +1444,7 @@ xg_fit_tuned %>%
   vip::vip()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-61-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-62-1.png" alt="" width="672" />
 
 ##### Test fit
 
@@ -1622,7 +1477,7 @@ This stacking part of the book heavily relies on [Chris Kennedy's notebook](http
 
 Wolpert, D.H., 1992. [Stacked generalization](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.56.1533). *Neural networks*, 5(2), pp.241-259.
 
-Breiman, L., 1996. [Stacked regressions]((https://statistics.berkeley.edu/sites/default/files/tech-reports/367.pdf). *Machine learning*, 24(1), pp.49-64.
+Breiman, L., 1996. [Stacked regressions](https://statistics.berkeley.edu/sites/default/files/tech-reports/367.pdf). *Machine learning*, 24(1), pp.49-64.
 
 ##### SuperLearner 
 
@@ -1638,30 +1493,6 @@ A "wrapper" is a short function that adapts an algorithm for the SuperLearner pa
 ``` r
 # Review available models
 SuperLearner::listWrappers()
-```
-
-```
-##  [1] "SL.bartMachine"      "SL.bayesglm"         "SL.biglasso"        
-##  [4] "SL.caret"            "SL.caret.rpart"      "SL.cforest"         
-##  [7] "SL.earth"            "SL.gam"              "SL.gbm"             
-## [10] "SL.glm"              "SL.glm.interaction"  "SL.glmnet"          
-## [13] "SL.ipredbagg"        "SL.kernelKnn"        "SL.knn"             
-## [16] "SL.ksvm"             "SL.lda"              "SL.leekasso"        
-## [19] "SL.lm"               "SL.loess"            "SL.logreg"          
-## [22] "SL.mean"             "SL.nnet"             "SL.nnls"            
-## [25] "SL.polymars"         "SL.qda"              "SL.randomForest"    
-## [28] "SL.ranger"           "SL.ridge"            "SL.rpart"           
-## [31] "SL.rpartPrune"       "SL.speedglm"         "SL.speedlm"         
-## [34] "SL.step"             "SL.step.forward"     "SL.step.interaction"
-## [37] "SL.stepAIC"          "SL.svm"              "SL.template"        
-## [40] "SL.xgboost"
-```
-
-```
-## [1] "All"
-## [1] "screen.corP"           "screen.corRank"        "screen.glmnet"        
-## [4] "screen.randomForest"   "screen.SIS"            "screen.template"      
-## [7] "screen.ttest"          "write.screen.template"
 ```
 
 
@@ -1713,27 +1544,6 @@ Risk is the average loss, and loss is how far off the prediction was for an indi
 summary(cv_sl)
 ```
 
-```
-## 
-## Call:  
-## SuperLearner::CV.SuperLearner(Y = as.numeric(as.character(train_y_class)),  
-##     X = train_x_class, family = binomial(), SL.library = sl_lib, verbose = FALSE,  
-##     cvControl = list(V = 5L, stratifyCV = TRUE)) 
-## 
-## Risk is based on: Mean Squared Error
-## 
-## All risk estimates are based on V =  5 
-## 
-##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.10711 0.0130358 0.077765 0.13232
-##     Discrete SL 0.10576 0.0132606 0.075311 0.13711
-##     SL.mean_All 0.24798 0.0030968 0.247743 0.24895
-##   SL.glmnet_All 0.10576 0.0132606 0.075311 0.13711
-##    SL.rpart_All 0.17087 0.0197376 0.107553 0.24332
-##   SL.ranger_All 0.12434 0.0119150 0.096560 0.15417
-##  SL.xgboost_All 0.13103 0.0150129 0.102165 0.16141
-```
-
 ##### Plot
 
 
@@ -1751,7 +1561,7 @@ plot(cv_sl)
 
 ROC: a ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis). 
 
-![Area Under the ROC Curve](https://developers.google.com/machine-learning/crash-course/images/AUC.svg)
+<img src="https://developers.google.com/machine-learning/crash-course/images/AUC.svg" alt="Area Under the ROC Curve" style="max-width:100%;" />
 
 **AUC** 
 
@@ -1768,28 +1578,7 @@ AUC: Area Under the ROC Curve
 summary(cv_sl)
 ```
 
-```
-## 
-## Call:  
-## SuperLearner::CV.SuperLearner(Y = as.numeric(as.character(train_y_class)),  
-##     X = train_x_class, family = binomial(), SL.library = sl_lib, verbose = FALSE,  
-##     cvControl = list(V = 5L, stratifyCV = TRUE)) 
-## 
-## Risk is based on: Mean Squared Error
-## 
-## All risk estimates are based on V =  5 
-## 
-##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.10711 0.0130358 0.077765 0.13232
-##     Discrete SL 0.10576 0.0132606 0.075311 0.13711
-##     SL.mean_All 0.24798 0.0030968 0.247743 0.24895
-##   SL.glmnet_All 0.10576 0.0132606 0.075311 0.13711
-##    SL.rpart_All 0.17087 0.0197376 0.107553 0.24332
-##   SL.ranger_All 0.12434 0.0119150 0.096560 0.15417
-##  SL.xgboost_All 0.13103 0.0150129 0.102165 0.16141
-```
-
-##### Plot the ROC curve for the best estimator (DiscretSL)
+##### Plot the ROC curve for the best estimator (Discrete SL)
 
 
 ``` r
@@ -1816,7 +1605,7 @@ ggplot(roc_data, aes(x = fpr, y = tpr)) +
   theme_minimal()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-68-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-69-1.png" alt="" width="672" />
 
 ##### Review weight distribution for the SuperLearner
 
@@ -1831,35 +1620,6 @@ sl_weights <- data.frame(
 )
 sl_weights <- sl_weights[order(sl_weights$Weight, decreasing = TRUE), ]
 print(sl_weights, row.names = FALSE)
-```
-
-```
-##       Algorithm Weight
-##   SL.ranger_All 0.9809
-##  SL.xgboost_All 0.8743
-##     SL.mean_All 0.7913
-##   SL.glmnet_All 0.7607
-##    SL.rpart_All 0.7042
-##   SL.glmnet_All 0.2393
-##    SL.rpart_All 0.2377
-##     SL.mean_All 0.2087
-##  SL.xgboost_All 0.1217
-##    SL.rpart_All 0.0582
-##   SL.ranger_All 0.0191
-##  SL.xgboost_All 0.0039
-##     SL.mean_All 0.0000
-##   SL.glmnet_All 0.0000
-##    SL.rpart_All 0.0000
-##   SL.ranger_All 0.0000
-##  SL.xgboost_All 0.0000
-##     SL.mean_All 0.0000
-##   SL.glmnet_All 0.0000
-##   SL.ranger_All 0.0000
-##  SL.xgboost_All 0.0000
-##     SL.mean_All 0.0000
-##   SL.glmnet_All 0.0000
-##    SL.rpart_All 0.0000
-##   SL.ranger_All 0.0000
 ```
 
 The general stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
@@ -1878,7 +1638,7 @@ x -> f - > y (not defined)
 
 ### Dimension reduction
 
-![Projecting 2D-data to a line (PCA). From vas3k.com](https://i.stack.imgur.com/Q7HIP.gif)
+<img src="https://i.stack.imgur.com/Q7HIP.gif" alt="Projecting 2D-data to a line (PCA). From vas3k.com" style="max-width:100%;" />
 
 #### Correlation analysis 
 
@@ -1896,7 +1656,7 @@ Again, think about what the dataset is about. The following data dictionary come
 * thalach - maximum heart rate achieved
 * exang - exercise induced angina (1 = yes; 0 = no)
 * oldpeak - ST depression induced by exercise relative to rest
-slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = downsloping)
+* slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = downsloping)
 * ca - number of major vessels (0-3) colored by flourosopy
 * thal - 3 = normal; 6 = fixed defect; 7 = reversable defect
 * num - the predicted attribute - diagnosis of heart disease (angiographic disease status) (Value 0 = < 50% diameter narrowing; Value 1 = > 50% diameter narrowing)
@@ -1906,27 +1666,6 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 data_original %>%
   select(-target) %>%
   corrr::correlate()
-```
-
-```
-## # A tibble: 13 × 14
-##    term         age     sex      cp trestbps     chol      fbs restecg  thalach
-##    <chr>      <dbl>   <dbl>   <dbl>    <dbl>    <dbl>    <dbl>   <dbl>    <dbl>
-##  1 age      NA      -0.0984 -0.0687   0.279   0.214    0.121   -0.116  -0.399  
-##  2 sex      -0.0984 NA      -0.0494  -0.0568 -0.198    0.0450  -0.0582 -0.0440 
-##  3 cp       -0.0687 -0.0494 NA        0.0476 -0.0769   0.0944   0.0444  0.296  
-##  4 trestbps  0.279  -0.0568  0.0476  NA       0.123    0.178   -0.114  -0.0467 
-##  5 chol      0.214  -0.198  -0.0769   0.123  NA        0.0133  -0.151  -0.00994
-##  6 fbs       0.121   0.0450  0.0944   0.178   0.0133  NA       -0.0842 -0.00857
-##  7 restecg  -0.116  -0.0582  0.0444  -0.114  -0.151   -0.0842  NA       0.0441 
-##  8 thalach  -0.399  -0.0440  0.296   -0.0467 -0.00994 -0.00857  0.0441 NA      
-##  9 exang     0.0968  0.142  -0.394    0.0676  0.0670   0.0257  -0.0707 -0.379  
-## 10 oldpeak   0.210   0.0961 -0.149    0.193   0.0540   0.00575 -0.0588 -0.344  
-## 11 slope    -0.169  -0.0307  0.120   -0.121  -0.00404 -0.0599   0.0930  0.387  
-## 12 ca        0.276   0.118  -0.181    0.101   0.0705   0.138   -0.0720 -0.213  
-## 13 thal      0.0680  0.210  -0.162    0.0622  0.0988  -0.0320  -0.0120 -0.0964 
-## # ℹ 5 more variables: exang <dbl>, oldpeak <dbl>, slope <dbl>, ca <dbl>,
-## #   thal <dbl>
 ```
 
 #### Descriptive statistics 
@@ -1945,18 +1684,6 @@ data_original %>%
   summarise(across(where(is.numeric), min_max))
 ```
 
-```
-## # A tibble: 1 × 26
-##   age_min age_max sex_min sex_max cp_min cp_max trestbps_min trestbps_max
-##     <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>        <dbl>        <dbl>
-## 1      29      77       0       1      0      3           94          200
-## # ℹ 18 more variables: chol_min <dbl>, chol_max <dbl>, fbs_min <dbl>,
-## #   fbs_max <dbl>, restecg_min <dbl>, restecg_max <dbl>, thalach_min <dbl>,
-## #   thalach_max <dbl>, exang_min <dbl>, exang_max <dbl>, oldpeak_min <dbl>,
-## #   oldpeak_max <dbl>, slope_min <dbl>, slope_max <dbl>, ca_min <dbl>,
-## #   ca_max <dbl>, thal_min <dbl>, thal_max <dbl>
-```
-
 #### Preprocessing 
 
 `recipe` is essential for preprocessing multiple features at once.
@@ -1966,7 +1693,7 @@ data_original %>%
 pca_recipe <- recipe(~., data = data_original) %>%
   # Imputing NAs using mean
   step_impute_mean(all_predictors()) %>%
-  # Normalize some numeric variabless
+  # Normalize some numeric variables
   step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak"))
 ```
 
@@ -1982,23 +1709,6 @@ pca_res <- pca_recipe %>%
 
 pca_res %>%
   tidy(id = "pca")
-```
-
-```
-## # A tibble: 196 × 4
-##    terms        value component id   
-##    <chr>        <dbl> <chr>     <chr>
-##  1 age      -0.00101  PC1       pca  
-##  2 sex       0.216    PC1       pca  
-##  3 cp        0.321    PC1       pca  
-##  4 trestbps  0.00118  PC1       pca  
-##  5 chol     -0.000292 PC1       pca  
-##  6 fbs       0.0468   PC1       pca  
-##  7 restecg   0.166    PC1       pca  
-##  8 thalach   0.0137   PC1       pca  
-##  9 exang     0.0962   PC1       pca  
-## 10 oldpeak  -0.00863  PC1       pca  
-## # ℹ 186 more rows
 ```
 
 ##### Screeplot
@@ -2025,7 +1735,7 @@ pca_recipe %>%
   )
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-74-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-75-1.png" alt="" width="672" />
 
 ##### View factor loadings 
 
@@ -2049,12 +1759,12 @@ pca_recipe %>%
   coord_flip() +
   labs(
     x = "Terms",
-    y = "Contribtutions",
+    y = "Contributions",
     fill = "PCAs"
   )
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-75-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-76-1.png" alt="" width="672" />
 
 **The key lesson**
 
@@ -2101,25 +1811,11 @@ austen_words <- austen_chapters %>%
     freq  = n / total
   ) %>%
   ungroup()
-
-head(austen_words)
-```
-
-```
-## # A tibble: 6 × 5
-##   book           word      n  total   freq
-##   <fct>          <chr> <int>  <int>  <dbl>
-## 1 Mansfield Park the    6206 160460 0.0387
-## 2 Mansfield Park to     5475 160460 0.0341
-## 3 Mansfield Park and    5438 160460 0.0339
-## 4 Emma           to     5239 160996 0.0325
-## 5 Emma           the    5201 160996 0.0323
-## 6 Emma           and    4896 160996 0.0304
 ```
 
 #### Key ideas 
 
-![Source: paperswithcode.com](https://paperswithcode.com/media/thumbnails/task/task-0000000179-fd3a1d11_fGQkZCJ.jpg)
+<img src="https://paperswithcode.com/media/thumbnails/task/task-0000000179-fd3a1d11_fGQkZCJ.jpg" alt="Source: paperswithcode.com" style="max-width:100%;" />
 
 -   Main papers: See [Latent Dirichlet Allocation](https://proceedings.neurips.cc/paper/2001/file/296472c9542ad4d4788d543508116cbc-Paper.pdf) by David M. Blei, Andrew Y. Ng and Michael I. Jordan (then all Berkeley) and this [follow-up paper](http://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/latent_dirichlet_allocation.pdf) with the same title.
 
@@ -2131,7 +1827,7 @@ head(austen_words)
 
     -   Probability
 
-    -   Multinominal
+    -   Multinomial
 
 -   Words lie on a lower-dimensional space (dimension reduction akin to PCA)
 
@@ -2184,7 +1880,7 @@ top_words %>%
   theme(legend.position = "none")
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-79-1.png" alt="" width="672" />
 
 #### STM
 
@@ -2192,7 +1888,7 @@ top_words %>%
 
 Also, note that we didn't cover other important techniques in topic modeling, such as dynamic and hierarchical topic modeling.
 
-![](https://warin.ca/shiny/stm/images/fig02.png)
+<img src="https://warin.ca/shiny/stm/images/fig02.png" alt="STM workflow" style="max-width:100%;" />
 
 ##### Turn text into document-term matrix
 
@@ -2238,15 +1934,15 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.740) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.555, relative change = 2.379e-02) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (5 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.482, relative change = 9.775e-03) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.442, relative change = 5.291e-03) 
 ## ....................................................................................................
@@ -2259,7 +1955,7 @@ test_res <- searchK(
 ##  Topic 4: mrs, miss, think, everi, now 
 ##  Topic 5: must, know, well, feel, make 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.405, relative change = 1.866e-03) 
 ## ....................................................................................................
@@ -2271,11 +1967,11 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.391, relative change = 8.019e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.386, relative change = 5.579e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 10 (approx. per word bound = -7.383, relative change = 4.007e-04) 
 ## Topic 1: much, one, never, see, can 
@@ -2296,7 +1992,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 13 (approx. per word bound = -7.378, relative change = 1.710e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 14 (approx. per word bound = -7.377, relative change = 1.333e-04) 
 ## ....................................................................................................
@@ -2317,7 +2013,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 17 (approx. per word bound = -7.375, relative change = 6.850e-05) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 18 (approx. per word bound = -7.375, relative change = 5.602e-05) 
 ## ....................................................................................................
@@ -2334,7 +2030,7 @@ test_res <- searchK(
 ##  Topic 4: mrs, miss, think, everi, now 
 ##  Topic 5: must, know, well, feel, make 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 21 (approx. per word bound = -7.374, relative change = 3.212e-05) 
 ## ....................................................................................................
@@ -2359,7 +2055,7 @@ test_res <- searchK(
 ##  Topic 4: mrs, miss, think, everi, now 
 ##  Topic 5: must, know, well, feel, make 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 26 (approx. per word bound = -7.373, relative change = 1.416e-05) 
 ## ....................................................................................................
@@ -2371,7 +2067,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 28 (approx. per word bound = -7.373, relative change = 1.062e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -2383,7 +2079,7 @@ test_res <- searchK(
 ##  	...................................................................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (6 seconds). 
+## Completed E-Step (5 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.839) 
 ## ....................................................................................................
@@ -2395,7 +2091,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.559, relative change = 1.354e-02) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.504, relative change = 7.255e-03) 
 ## ....................................................................................................
@@ -2413,15 +2109,15 @@ test_res <- searchK(
 ##  Topic 9: will, now, say, never, good 
 ##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
-## Completed E-Step (5 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.443, relative change = 3.389e-03) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.424, relative change = 2.541e-03) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.410, relative change = 1.898e-03) 
 ## ....................................................................................................
@@ -2477,15 +2173,15 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 16 (approx. per word bound = -7.371, relative change = 2.501e-04) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 17 (approx. per word bound = -7.370, relative change = 2.048e-04) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (5 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 18 (approx. per word bound = -7.368, relative change = 1.687e-04) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (6 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 19 (approx. per word bound = -7.367, relative change = 1.397e-04) 
 ## ....................................................................................................
@@ -2507,7 +2203,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 21 (approx. per word bound = -7.366, relative change = 9.714e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 22 (approx. per word bound = -7.365, relative change = 8.281e-05) 
 ## ....................................................................................................
@@ -2537,7 +2233,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 26 (approx. per word bound = -7.363, relative change = 5.088e-05) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 27 (approx. per word bound = -7.363, relative change = 4.614e-05) 
 ## ....................................................................................................
@@ -2545,11 +2241,11 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 28 (approx. per word bound = -7.363, relative change = 4.164e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 29 (approx. per word bound = -7.362, relative change = 3.678e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 30 (approx. per word bound = -7.362, relative change = 3.158e-05) 
 ## Topic 1: much, know, littl, look, wish 
@@ -2567,19 +2263,19 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 31 (approx. per word bound = -7.362, relative change = 2.701e-05) 
 ## ....................................................................................................
-## Completed E-Step (5 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 32 (approx. per word bound = -7.362, relative change = 2.355e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 33 (approx. per word bound = -7.362, relative change = 2.098e-05) 
 ## ....................................................................................................
-## Completed E-Step (5 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 34 (approx. per word bound = -7.362, relative change = 1.895e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 35 (approx. per word bound = -7.361, relative change = 1.699e-05) 
 ## Topic 1: much, know, littl, look, wish 
@@ -2593,7 +2289,7 @@ test_res <- searchK(
 ##  Topic 9: will, now, say, never, good 
 ##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 36 (approx. per word bound = -7.361, relative change = 1.546e-05) 
 ## ....................................................................................................
@@ -2609,7 +2305,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 39 (approx. per word bound = -7.361, relative change = 1.275e-05) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 40 (approx. per word bound = -7.361, relative change = 1.233e-05) 
 ## Topic 1: much, know, littl, look, wish 
@@ -2639,7 +2335,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 44 (approx. per word bound = -7.361, relative change = 1.294e-05) 
 ## ....................................................................................................
-## Completed E-Step (7 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 45 (approx. per word bound = -7.360, relative change = 1.367e-05) 
 ## Topic 1: much, know, littl, look, wish 
@@ -2653,15 +2349,15 @@ test_res <- searchK(
 ##  Topic 9: will, now, say, never, good 
 ##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 46 (approx. per word bound = -7.360, relative change = 1.419e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 47 (approx. per word bound = -7.360, relative change = 1.430e-05) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 48 (approx. per word bound = -7.360, relative change = 1.386e-05) 
 ## ....................................................................................................
@@ -2669,7 +2365,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 49 (approx. per word bound = -7.360, relative change = 1.273e-05) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 50 (approx. per word bound = -7.360, relative change = 1.074e-05) 
 ## Topic 1: much, know, littl, look, wish 
@@ -2683,12 +2379,12 @@ test_res <- searchK(
 ##  Topic 9: will, now, say, never, good 
 ##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Model Converged
 ```
 
-##### Evaludating models 
+##### Evaluating models 
 
 Several metrics assess topic models' performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. Here we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
 
@@ -2721,7 +2417,7 @@ test_res$results %>%
   )
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-81-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-82-1.png" alt="" width="672" />
 
 ##### Finalize 
 
@@ -2748,7 +2444,7 @@ final_stm <- stm(
 plot(final_stm)
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-83-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" alt="" width="672" />
 
 - Using ggplot2 
 
@@ -2774,7 +2470,7 @@ tidy_stm %>%
   scale_fill_viridis_d()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" alt="" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-85-1.png" alt="" width="672" />
 
 ## References
 

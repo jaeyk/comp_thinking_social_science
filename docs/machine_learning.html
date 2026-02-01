@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 8 High-dimensional data | Computational Thinking for Social Scientists</title>
 <meta name="author" content="Jae Yeon Kim">
-<meta name="description" content="8.1 The Big Picture  The rise of high-dimensional data. The new data frontiers in social sciences—text (Gentzkow et al. 2019; Grimmer and Stewart 2013) and and image (Joo and Steinert-Threlkeld...">
+<meta name="description" content="8.1 The Big Picture  The rise of high-dimensional data. The new data frontiers in social sciences—text (Gentzkow et al. 2019; Grimmer and Stewart 2013) and image (Joo and Steinert-Threlkeld...">
 <meta name="generator" content="bookdown 0.46 with bs4_book()">
 <meta property="og:title" content="Chapter 8 High-dimensional data | Computational Thinking for Social Scientists">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://jaeyk.github.io/PS239T/machine_learning.html">
-<meta property="og:description" content="8.1 The Big Picture  The rise of high-dimensional data. The new data frontiers in social sciences—text (Gentzkow et al. 2019; Grimmer and Stewart 2013) and and image (Joo and Steinert-Threlkeld...">
+<meta property="og:description" content="8.1 The Big Picture  The rise of high-dimensional data. The new data frontiers in social sciences—text (Gentzkow et al. 2019; Grimmer and Stewart 2013) and image (Joo and Steinert-Threlkeld...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 8 High-dimensional data | Computational Thinking for Social Scientists">
-<meta name="twitter:description" content="8.1 The Big Picture  The rise of high-dimensional data. The new data frontiers in social sciences—text (Gentzkow et al. 2019; Grimmer and Stewart 2013) and and image (Joo and Steinert-Threlkeld...">
+<meta name="twitter:description" content="8.1 The Big Picture  The rise of high-dimensional data. The new data frontiers in social sciences—text (Gentzkow et al. 2019; Grimmer and Stewart 2013) and image (Joo and Steinert-Threlkeld...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
@@ -73,7 +73,7 @@
 </h2>
 <ul>
 <li>
-<p>The rise of high-dimensional data. The new data frontiers in social sciences—text (<a href="https://web.stanford.edu/~gentzkow/research/text-as-data.pdf">Gentzkow et al. 2019</a>; <a href="https://www.jstor.org/stable/pdf/24572662.pdf?casa_token=SQdSI4R_VdwAAAAA:4QiVLhCXqr9f0qNMM9U75EL5JbDxxnXxUxyIfDf0U8ZzQx9szc0xVqaU6DXG4nHyZiNkvcwGlgD6H0Lxj3y0ULHwgkf1MZt8-9TPVtkEH9I4AHgbTg">Grimmer and Stewart 2013</a>) and and image (<a href="https://arxiv.org/pdf/1810.01544">Joo and Steinert-Threlkeld 2018</a>)—are all high-dimensional data.</p>
+<p>The rise of high-dimensional data. The new data frontiers in social sciences—text (<a href="https://web.stanford.edu/~gentzkow/research/text-as-data.pdf">Gentzkow et al. 2019</a>; <a href="https://www.jstor.org/stable/pdf/24572662.pdf?casa_token=SQdSI4R_VdwAAAAA:4QiVLhCXqr9f0qNMM9U75EL5JbDxxnXxUxyIfDf0U8ZzQx9szc0xVqaU6DXG4nHyZiNkvcwGlgD6H0Lxj3y0ULHwgkf1MZt8-9TPVtkEH9I4AHgbTg">Grimmer and Stewart 2013</a>) and image (<a href="https://arxiv.org/pdf/1810.01544">Joo and Steinert-Threlkeld 2018</a>)—are all high-dimensional data.</p>
 <ul>
 <li><p>1000 common English words for 30-word tweets: <span class="math inline">\(1000^{30}\)</span> similar to N of atoms in the universe (<a href="https://web.stanford.edu/~gentzkow/research/text-as-data.pdf">Gentzkow et al. 2019</a>)</p></li>
 <li><p>Belloni, Alexandre, Victor Chernozhukov, and Christian Hansen. <a href="https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.2.29">“High-dimensional methods and inference on structural and treatment effects.”</a> <em>Journal of Economic Perspectives 28</em>, no. 2 (2014): 29-50.</p></li>
@@ -92,7 +92,7 @@
 <p>Machine learning</p>
 <ul>
 <li><p><span class="math inline">\(y\)</span> &lt;- unknown &lt;- <span class="math inline">\(x\)</span></p></li>
-<li><p><span class="math inline">\(y\)</span> &lt;-&gt; decision trees, neutral nets &lt;-&gt; <span class="math inline">\(x\)</span></p></li>
+<li><p><span class="math inline">\(y\)</span> &lt;-&gt; decision trees, neural nets &lt;-&gt; <span class="math inline">\(x\)</span></p></li>
 <li><p>For the main idea behind prediction modeling, see Breiman, Leo (Berkeley stat faculty who passed away in 2005). <a href="https://projecteuclid.org/euclid.ss/1009213726">“Statistical modeling: The two cultures (with comments and a rejoinder by the author).”</a> <em>Statistical science</em> 16, no. 3 (2001): 199-231.</p></li>
 <li><p>“The problem is to find an algorithm <span class="math inline">\(f(x)\)</span> such that for future <span class="math inline">\(x\)</span> in a test set, <span class="math inline">\(f(x)\)</span> will be a good predictor of <span class="math inline">\(y\)</span>.”</p></li>
 <li><p>“There are <strong>two cultures</strong> in the use of statistical modeling to reach conclusions from data. One assumes that the data are generated by a <strong>given</strong> <strong>stochastic data model</strong>. The other uses <strong>algorithmic models</strong> and treats the data mechanism as <strong>unknown</strong>.”</p></li>
@@ -131,21 +131,10 @@
 </ul>
 </li>
 </ul>
-<div class="float">
-<img src="https://i.vas3k.ru/7w9.jpg" alt="How to teach machines. Based on vas3k blog. Many images in this chapter come from vas3k blog."><div class="figcaption">How to teach machines. Based on <a href="https://vas3k.com/blog/machine_learning/">vas3k blog</a>. Many images in this chapter come from vas3k blog.</div>
-</div>
-<div class="float">
-<img src="https://i.vas3k.ru/7vz.jpg" alt="The main types of machine learning. Based on vas3k blog"><div class="figcaption">The main types of machine learning. Based on <a href="https://vas3k.com/blog/machine_learning/">vas3k blog</a>
-</div>
-</div>
-<div class="float">
-<img src="https://i.vas3k.ru/7vx.jpg" alt="The map of the machine learning universe. Based on vas3k blog"><div class="figcaption">The map of the machine learning universe. Based on <a href="https://vas3k.com/blog/machine_learning/">vas3k blog</a>
-</div>
-</div>
-<div class="float">
-<img src="https://i.vas3k.ru/7w1.jpg" alt="Classical machine learning. Based on vas3k blog"><div class="figcaption">Classical machine learning. Based on <a href="https://vas3k.com/blog/machine_learning/">vas3k blog</a>
-</div>
-</div>
+<div class="inline-figure"><img src="https://i.vas3k.ru/7w9.jpg" alt="How to teach machines. Based on vas3k blog. Many images in this chapter come from vas3k blog." style="max-width:100%;"></div>
+<div class="inline-figure"><img src="https://i.vas3k.ru/7vz.jpg" alt="The main types of machine learning. Based on vas3k blog" style="max-width:100%;"></div>
+<div class="inline-figure"><img src="https://i.vas3k.ru/7vx.jpg" alt="The map of the machine learning universe. Based on vas3k blog" style="max-width:100%;"></div>
+<div class="inline-figure"><img src="https://i.vas3k.ru/7w1.jpg" alt="Classical machine learning. Based on vas3k blog" style="max-width:100%;"></div>
 </div>
 <div id="dataset" class="section level2" number="8.2">
 <h2>
@@ -181,13 +170,10 @@
 <span>  <span class="va">tm</span>,           <span class="co"># Text mining (required by stm)</span></span>
 <span>  <span class="va">SnowballC</span>,    <span class="co"># Stemming (required by stm)</span></span>
 <span>  <span class="va">conflicted</span>    <span class="co"># Explicit conflict resolution for masking functions</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<pre><code>## 
-## The downloaded binary packages are in
-##  /var/folders/wt/b5zf6_0910b4_lsl7k4_jcnm0000gn/T//Rtmp02YRIe/downloaded_packages</code></pre>
-<div class="sourceCode" id="cb1091"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">conflicted</span><span class="fu">::</span><span class="fu"><a href="https://conflicted.r-lib.org/reference/conflict_prefer.html">conflict_prefer</a></span><span class="op">(</span><span class="st">"filter"</span>, <span class="st">"dplyr"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1092"><pre class="downlit sourceCode r">
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">conflicted</span><span class="fu">::</span><span class="fu"><a href="https://conflicted.r-lib.org/reference/conflict_prefer.html">conflict_prefer</a></span><span class="op">(</span><span class="st">"filter"</span>, <span class="st">"dplyr"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1090"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Jae's custom functions</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"functions"</span>, <span class="st">"ml_utils.r"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -212,8 +198,8 @@
 ## $ ca       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0…
 ## $ thal     &lt;dbl&gt; 1, 2, 2, 2, 2, 1, 2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3…
 ## $ target   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</code></pre>
-<div class="sourceCode" id="cb1094"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Createa a copy</span></span>
+<div class="sourceCode" id="cb1092"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create a copy</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">data_original</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/get_theme.html">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -261,7 +247,7 @@
 </ul>
 </li>
 <li><p><a href="https://github.com/tidymodels/yardstick"><code>yardstick</code></a>: for model evaluations</p></li>
-<li><p><a href="https://github.com/tidymodels/workflows"><code>workflows</code></a>: for bundling a pieplne that bundles together preprocessing, modeling, and post-processing requests</p></li>
+<li><p><a href="https://github.com/tidymodels/workflows"><code>workflows</code></a>: for bundling a pipeline that bundles together preprocessing, modeling, and post-processing requests</p></li>
 </ul>
 </li>
 <li><p>Why taking a tidyverse approach to machine learning?</p></li>
@@ -274,15 +260,13 @@
 </ul>
 </li>
 </ul>
-<div class="float">
-<img src="https://rviews.rstudio.com/post/2019-06-14-a-gentle-intro-to-tidymodels_files/figure-html/ds.png" alt="Tidymodels. From RStudio."><div class="figcaption">Tidymodels. From RStudio.</div>
-</div>
+<div class="inline-figure"><img src="https://rviews.rstudio.com/post/2019-06-14-a-gentle-intro-to-tidymodels_files/figure-html/ds.png" alt="Tidymodels. From RStudio." style="max-width:100%;"></div>
 <blockquote>
 <p>tidymodels are an <strong>integrated, modular, extensible</strong> set of packages that implement a framework that facilitates creating predicative stochastic models. - Joseph <a href="mailto:Rickert@RStudio" class="email">Rickert@RStudio</a></p>
 </blockquote>
 <ul>
 <li><p>Currently, 238 models are <a href="https://topepo.github.io/caret/available-models.html">available</a></p></li>
-<li><p>The following materials are based on <a href="https://github.com/dlab-berkeley/Machine-Learning-with-tidymodels">the machine learning with tidymodels workshop</a> I developed for D-Lab. <a href="https://github.com/dlab-berkeley/Machine-Learning-in-R">The original workshop</a> was designed by <a href="https://ck37.com/">Chris Kennedy</a> and [Evan Muzzall](<a href="https://dlab.berkeley.edu/people/evan-muzzall" class="uri">https://dlab.berkeley.edu/people/evan-muzzall</a>.</p></li>
+<li><p>The following materials are based on <a href="https://github.com/dlab-berkeley/Machine-Learning-with-tidymodels">the machine learning with tidymodels workshop</a> I developed for D-Lab. <a href="https://github.com/dlab-berkeley/Machine-Learning-in-R">The original workshop</a> was designed by <a href="https://ck37.com/">Chris Kennedy</a> and <a href="https://dlab.berkeley.edu/people/evan-muzzall">Evan Muzzall</a>.</p></li>
 </ul>
 </div>
 <div id="pre-processing" class="section level2" number="8.5">
@@ -312,7 +296,7 @@
 <ul>
 <li>One-hot encoding (creating dummy/indicator variables)</li>
 </ul>
-<div class="sourceCode" id="cb1095"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1093"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Turn selected numeric variables into factor variables</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sex"</span>, <span class="st">"ca"</span>, <span class="st">"cp"</span>, <span class="st">"slope"</span>, <span class="st">"thal"</span><span class="op">)</span>, <span class="va">as.factor</span><span class="op">)</span><span class="op">)</span></span>
@@ -337,7 +321,7 @@
 <ul>
 <li>Imputation</li>
 </ul>
-<div class="sourceCode" id="cb1097"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1095"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Check missing values</span></span>
 <span></span>
 <span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df</a></span><span class="op">(</span><span class="va">data</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -346,7 +330,7 @@
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt;   &lt;int&gt;   &lt;int&gt; &lt;int&gt;   &lt;int&gt; &lt;int&gt;
 ## 1     0     0     0        0     0     0       0       0     0       0     0
 ## # ℹ 3 more variables: ca &lt;int&gt;, thal &lt;int&gt;, target &lt;int&gt;</code></pre>
-<div class="sourceCode" id="cb1099"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1097"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Add missing values</span></span>
 <span></span>
 <span><span class="va">data</span><span class="op">$</span><span class="va">oldpeak</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
@@ -361,7 +345,7 @@
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt;   &lt;int&gt;   &lt;int&gt; &lt;int&gt;   &lt;int&gt; &lt;int&gt;
 ## 1     0     0     0        0     0     0       0       0     0      10     0
 ## # ℹ 3 more variables: ca &lt;int&gt;, thal &lt;int&gt;, target &lt;int&gt;</code></pre>
-<div class="sourceCode" id="cb1101"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1099"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Check the rate of missing values</span></span>
 <span><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -378,16 +362,15 @@
 <h4>
 <span class="header-section-number">8.5.1.1</span> Outcome variable<a class="anchor" aria-label="anchor" href="#outcome-variable"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1103"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Continuous variable</span></span>
 <span><span class="va">data</span><span class="op">$</span><span class="va">age</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## [1] "numeric"</code></pre>
 </div>
 <div id="data-splitting-using-random-sampling" class="section level4" number="8.5.1.2">
 <h4>
 <span class="header-section-number">8.5.1.2</span> Data splitting using random sampling<a class="anchor" aria-label="anchor" href="#data-splitting-using-random-sampling"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1105"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1102"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># for reproducibility</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
 <span></span>
@@ -404,7 +387,7 @@
 <h4>
 <span class="header-section-number">8.5.1.3</span> recipe<a class="anchor" aria-label="anchor" href="#recipe"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1106"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Regression recipe</span></span>
 <span><span class="va">rec_reg</span> <span class="op">&lt;-</span> <span class="va">raw_train_x_reg</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="co"># Define the outcome variable</span></span>
@@ -416,7 +399,7 @@
 <span></span>
 <span><span class="co"># Prepare a dataset to base each step on</span></span>
 <span><span class="va">prep_reg</span> <span class="op">&lt;-</span> <span class="va">rec_reg</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">prep</span><span class="op">(</span>retain <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1104"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># x features</span></span>
 <span><span class="va">train_x_reg</span> <span class="op">&lt;-</span> <span class="fu">juice</span><span class="op">(</span><span class="va">prep_reg</span>, <span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -430,24 +413,14 @@
 <span><span class="va">test_y_reg</span> <span class="op">&lt;-</span> <span class="fu">bake</span><span class="op">(</span><span class="va">prep_reg</span>, <span class="va">raw_test_x_reg</span>, <span class="fu">all_outcomes</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">age</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Checks</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">train_x_reg</span><span class="op">)</span> <span class="co"># Make sure there's no age variable!</span></span></code></pre></div>
-<pre><code>##  [1] "trestbps" "chol"     "fbs"      "restecg"  "thalach"  "exang"   
-##  [7] "oldpeak"  "target"   "sex_X1"   "ca_X1"    "ca_X2"    "ca_X3"   
-## [13] "ca_X4"    "cp_X1"    "cp_X2"    "cp_X3"    "slope_X1" "slope_X2"
-## [19] "thal_X1"  "thal_X2"  "thal_X3"</code></pre>
-<div class="sourceCode" id="cb1109"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">train_y_reg</span><span class="op">)</span> <span class="co"># Make sure this is a continuous variable!</span></span></code></pre></div>
-<pre><code>## [1] "numeric"</code></pre>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">train_x_reg</span><span class="op">)</span> <span class="co"># Make sure there's no age variable!</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">train_y_reg</span><span class="op">)</span> <span class="co"># Make sure this is a continuous variable!</span></span></code></pre></div>
 <ul>
 <li>Note that other imputation methods are also available.</li>
 </ul>
-<div class="sourceCode" id="cb1111"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"impute"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="st">"package:recipes"</span><span class="op">)</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<pre><code>##  [1] "step_bagimpute"     "step_impute_bag"    "step_impute_knn"   
-##  [4] "step_impute_linear" "step_impute_lower"  "step_impute_mean"  
-##  [7] "step_impute_median" "step_impute_mode"   "step_impute_roll"  
-## [10] "step_knnimpute"     "step_lowerimpute"   "step_meanimpute"   
-## [13] "step_medianimpute"  "step_modeimpute"    "step_rollimpute"</code></pre>
 <ul>
 <li>You can also create your own <code>step_</code> functions. For more information, see <a href="https://www.tidymodels.org/learn/develop/recipes/">tidymodels.org</a>.</li>
 </ul>
@@ -461,20 +434,18 @@
 <h4>
 <span class="header-section-number">8.5.2.1</span> Outcome variable<a class="anchor" aria-label="anchor" href="#outcome-variable-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1113"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data</span><span class="op">$</span><span class="va">target</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## [1] "numeric"</code></pre>
-<div class="sourceCode" id="cb1115"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data</span><span class="op">$</span><span class="va">target</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">target</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data</span><span class="op">$</span><span class="va">target</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">data</span><span class="op">$</span><span class="va">target</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">target</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">data</span><span class="op">$</span><span class="va">target</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## [1] "factor"</code></pre>
 </div>
 <div id="data-splitting-using-stratified-random-sampling" class="section level4" number="8.5.2.2">
 <h4>
 <span class="header-section-number">8.5.2.2</span> Data splitting using stratified random sampling<a class="anchor" aria-label="anchor" href="#data-splitting-using-stratified-random-sampling"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1117"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># split</span></span>
 <span><span class="va">split_class</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>target <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">target</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -492,7 +463,7 @@
 <h4>
 <span class="header-section-number">8.5.2.3</span> recipe<a class="anchor" aria-label="anchor" href="#recipe-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1118"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Classification recipe</span></span>
 <span><span class="va">rec_class</span> <span class="op">&lt;-</span> <span class="va">raw_train_x_class</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="co"># Define the outcome variable</span></span>
@@ -505,7 +476,7 @@
 <span></span>
 <span><span class="co"># Prepare a dataset to base each step on</span></span>
 <span><span class="va">prep_class</span> <span class="op">&lt;-</span> <span class="va">rec_class</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">prep</span><span class="op">(</span>retain <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1119"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># x features</span></span>
 <span><span class="va">train_x_class</span> <span class="op">&lt;-</span> <span class="fu">juice</span><span class="op">(</span><span class="va">prep_class</span>, <span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">test_x_class</span> <span class="op">&lt;-</span> <span class="fu">bake</span><span class="op">(</span><span class="va">prep_class</span>, <span class="va">raw_test_x_class</span>, <span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
@@ -515,14 +486,8 @@
 <span><span class="va">test_y_class</span> <span class="op">&lt;-</span> <span class="fu">bake</span><span class="op">(</span><span class="va">prep_class</span>, <span class="va">raw_test_x_class</span>, <span class="fu">all_outcomes</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">target</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Checks</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">train_x_class</span><span class="op">)</span> <span class="co"># Make sure there's no target variable!</span></span></code></pre></div>
-<pre><code>##  [1] "age"      "trestbps" "chol"     "fbs"      "restecg"  "thalach" 
-##  [7] "exang"    "oldpeak"  "sex_X1"   "ca_X1"    "ca_X2"    "ca_X3"   
-## [13] "ca_X4"    "cp_X1"    "cp_X2"    "cp_X3"    "slope_X1" "slope_X2"
-## [19] "thal_X1"  "thal_X2"  "thal_X3"</code></pre>
-<div class="sourceCode" id="cb1121"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">train_y_class</span><span class="op">)</span> <span class="co"># Make sure this is a factor variable!</span></span></code></pre></div>
-<pre><code>## [1] "factor"</code></pre>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">train_x_class</span><span class="op">)</span> <span class="co"># Make sure there's no target variable!</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">train_y_class</span><span class="op">)</span> <span class="co"># Make sure this is a factor variable!</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -547,42 +512,28 @@
 <li>Specify an engine</li>
 <li>Specify a mode</li>
 </ol>
-<div class="sourceCode" id="cb1123"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># OLS spec</span></span>
 <span><span class="va">ols_spec</span> <span class="op">&lt;-</span> <span class="fu">linear_reg</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># Specify a model</span></span>
 <span>  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"lm"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># Specify an engine: lm, glmnet, stan, keras, spark</span></span>
 <span>  <span class="fu">set_mode</span><span class="op">(</span><span class="st">"regression"</span><span class="op">)</span> <span class="co"># Declare a mode: regression or classification</span></span></code></pre></div>
-<div class="float">
-<img src="http://ethen8181.github.io/machine-learning/regularization/images/lasso_ridge_coefficients.png" alt="Source: http://ethen8181.github.io"><div class="figcaption">Source: <a href="http://ethen8181.github.io" class="uri">http://ethen8181.github.io</a>
-</div>
-</div>
+<div class="inline-figure"><img src="http://ethen8181.github.io/machine-learning/regularization/images/lasso_ridge_coefficients.png" alt="Source: http://ethen8181.github.io" style="max-width:100%;"></div>
 <p>Lasso is one of the regularization techniques along with ridge and elastic-net.</p>
-<div class="sourceCode" id="cb1124"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1111"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Lasso spec</span></span>
 <span><span class="va">lasso_spec</span> <span class="op">&lt;-</span> <span class="fu">linear_reg</span><span class="op">(</span></span>
 <span>  penalty <span class="op">=</span> <span class="fl">0.1</span>, <span class="co"># tuning hyperparameter</span></span>
 <span>  mixture <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># 1 = lasso, 0 = ridge</span></span>
 <span>  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"glmnet"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">set_mode</span><span class="op">(</span><span class="st">"regression"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># If you don't understand parsnip arguments</span></span>
+<span>  <span class="fu">set_mode</span><span class="op">(</span><span class="st">"regression"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1112"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># If you don't understand parsnip arguments</span></span>
 <span><span class="va">lasso_spec</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">translate</span><span class="op">(</span><span class="op">)</span> <span class="co"># See the documentation</span></span></code></pre></div>
-<pre><code>## Linear Regression Model Specification (regression)
-## 
-## Main Arguments:
-##   penalty = 0.1
-##   mixture = 1
-## 
-## Computational engine: glmnet 
-## 
-## Model fit template:
-## glmnet::glmnet(x = missing_arg(), y = missing_arg(), weights = missing_arg(), 
-##     alpha = 1, family = "gaussian")</code></pre>
 <ul>
 <li>Fit models</li>
 </ul>
-<div class="sourceCode" id="cb1126"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ols_fit</span> <span class="op">&lt;-</span> <span class="va">ols_spec</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">fit_xy</span><span class="op">(</span>x <span class="op">=</span> <span class="va">train_x_reg</span>, y <span class="op">=</span> <span class="va">train_y_reg</span><span class="op">)</span></span>
 <span><span class="co"># fit(train_y_reg ~ ., train_x_reg) # When you data are not preprocessed</span></span>
@@ -597,14 +548,14 @@
 <ul>
 <li>Visualize model fits</li>
 </ul>
-<div class="sourceCode" id="cb1127"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">ols_fit</span>, <span class="va">lasso_fit</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"OLS"</span>, <span class="st">"Lasso"</span><span class="op">)</span>, <span class="va">visualize_fit</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [[1]]</code></pre>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672"></div>
 <pre><code>## 
 ## [[2]]</code></pre>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-19-2.png" alt="" width="672"></div>
-<div class="sourceCode" id="cb1130"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-20-2.png" alt="" width="672"></div>
+<div class="sourceCode" id="cb1117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Define performance metrics</span></span>
 <span><span class="va">metrics</span> <span class="op">&lt;-</span> <span class="fu">yardstick</span><span class="fu">::</span><span class="fu"><a href="https://yardstick.tidymodels.org/reference/metric_set.html">metric_set</a></span><span class="op">(</span><span class="va">rmse</span>, <span class="va">mae</span>, <span class="va">rsq</span><span class="op">)</span></span>
 <span></span>
@@ -622,7 +573,7 @@
 <span>    y <span class="op">=</span> <span class="st">"Estimate"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="fu">glue</span><span class="op">(</span><span class="st">"{toupper(.metric)}"</span><span class="op">)</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672">
+<p><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-21-1.png" alt="" width="672">
 - For more information, read <a href="https://www.tmwr.org/">Tidy Modeling with R</a> by Max Kuhn and Julia Silge.</p>
 </div>
 <div id="tune" class="section level4" number="8.6.1.3">
@@ -641,8 +592,8 @@
 <li><p>Grid search: a grid of hyperparameters</p></li>
 <li><p>Random search: random sample points from a bounded domain</p></li>
 </ol>
-<div class="inline-figure"><img src="https://www.programmersought.com/images/523/7e44435f20fe514c11ca0d930af8547b.png"></div>
-<div class="sourceCode" id="cb1131"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="https://www.programmersought.com/images/523/7e44435f20fe514c11ca0d930af8547b.png" alt="Grid search vs random search" style="max-width:100%;"></div>
+<div class="sourceCode" id="cb1118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># tune() = placeholder</span></span>
 <span></span>
 <span><span class="va">tune_spec</span> <span class="op">&lt;-</span> <span class="fu">linear_reg</span><span class="op">(</span></span>
@@ -652,22 +603,11 @@
 <span>  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"glmnet"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">set_mode</span><span class="op">(</span><span class="st">"regression"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">tune_spec</span></span></code></pre></div>
-<pre><code>## Linear Regression Model Specification (regression)
-## 
-## Main Arguments:
-##   penalty = tune()
-##   mixture = 1
-## 
-## Computational engine: glmnet</code></pre>
-<div class="sourceCode" id="cb1133"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># penalty() searches 50 possible combinations</span></span>
+<span><span class="co"># penalty() searches 50 possible combinations</span></span>
 <span></span>
 <span><span class="va">lambda_grid</span> <span class="op">&lt;-</span> <span class="fu">grid_regular</span><span class="op">(</span><span class="fu">penalty</span><span class="op">(</span><span class="op">)</span>, levels <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
-<div class="float">
-<img src="https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4788946%2F82b5a41b6693a313b246f02d79e972d5%2FK%20FOLD.png?generation=1608195745131795&amp;alt=media" alt="Source: Kaggle"><div class="figcaption">Source: Kaggle</div>
-</div>
-<div class="sourceCode" id="cb1134"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4788946%2F82b5a41b6693a313b246f02d79e972d5%2FK%20FOLD.png?generation=1608195745131795&amp;alt=media" alt="Source: Kaggle" style="max-width:100%;"></div>
+<div class="sourceCode" id="cb1119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 10-fold cross-validation</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span> <span class="co"># for reproducibility</span></span>
@@ -678,12 +618,12 @@
 <h5>
 <span class="header-section-number">8.6.1.3.2</span> Add these elements to a workflow<a class="anchor" aria-label="anchor" href="#add-these-elements-to-a-workflow"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1135"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Workflow</span></span>
 <span><span class="va">rec_wf</span> <span class="op">&lt;-</span> <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">add_model</span><span class="op">(</span><span class="va">tune_spec</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">add_formula</span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1136"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Tuning results</span></span>
 <span><span class="va">rec_res</span> <span class="op">&lt;-</span> <span class="va">rec_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">tune_grid</span><span class="op">(</span></span>
@@ -696,7 +636,7 @@
 <h5>
 <span class="header-section-number">8.6.1.3.3</span> Visualize<a class="anchor" aria-label="anchor" href="#visualize"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1137"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1122"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Visualize</span></span>
 <span></span>
 <span><span class="va">rec_res</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -716,33 +656,27 @@
 <span>    nrow <span class="op">=</span> <span class="fl">2</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-25-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672"></div>
 </div>
 <div id="select" class="section level5" number="8.6.1.3.4">
 <h5>
 <span class="header-section-number">8.6.1.3.4</span> Select<a class="anchor" aria-label="anchor" href="#select"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1138"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">conflict_prefer</span><span class="op">(</span><span class="st">"filter"</span>, <span class="st">"dplyr"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">top_rmse</span> <span class="op">&lt;-</span> <span class="fu">show_best</span><span class="op">(</span><span class="va">rec_res</span>, metric <span class="op">=</span> <span class="st">"rmse"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">best_rmse</span> <span class="op">&lt;-</span> <span class="fu">select_best</span><span class="op">(</span><span class="va">rec_res</span>, metric <span class="op">=</span> <span class="st">"rmse"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">best_rmse</span></span></code></pre></div>
-<pre><code>## # A tibble: 1 × 2
-##   penalty .config         
-##     &lt;dbl&gt; &lt;chr&gt;           
-## 1   0.391 pre0_mod48_post0</code></pre>
-<div class="sourceCode" id="cb1140"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">glue</span><span class="op">(</span><span class="st">'The RMSE of the intiail model is</span></span>
+<span><span class="fu">glue</span><span class="op">(</span><span class="st">'The RMSE of the intiail model is</span></span>
 <span><span class="st">     {evals %&gt;%</span></span>
 <span><span class="st">  filter(type == "Lasso", .metric == "rmse") %&gt;%</span></span>
 <span><span class="st">  select(.estimate) %&gt;%</span></span>
 <span><span class="st">  round(2)}'</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## The RMSE of the intiail model is
 ##    7.81</code></pre>
-<div class="sourceCode" id="cb1142"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">glue</span><span class="op">(</span><span class="st">'The RMSE of the tuned model is {rec_res %&gt;%</span></span>
 <span><span class="st">  collect_metrics() %&gt;%</span></span>
 <span><span class="st">  filter(.metric == "rmse") %&gt;%</span></span>
@@ -755,7 +689,7 @@
 <li>Finalize your workflow and visualize <a href="https://koalaverse.github.io/vip/articles/vip.html">variable importance</a>
 </li>
 </ul>
-<div class="sourceCode" id="cb1144"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1127"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">finalize_lasso</span> <span class="op">&lt;-</span> <span class="va">rec_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">finalize_workflow</span><span class="op">(</span><span class="va">best_rmse</span><span class="op">)</span></span>
 <span></span>
@@ -763,7 +697,7 @@
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">train_x_reg</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>age <span class="op">=</span> <span class="va">train_y_reg</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">pull_workflow_fit</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">vip</span><span class="fu">::</span><span class="fu"><a href="https://koalaverse.github.io/vip/reference/vip.html">vip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-27-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672"></div>
 </div>
 <div id="test-fit" class="section level5" number="8.6.1.3.5">
 <h5>
@@ -772,7 +706,7 @@
 <ul>
 <li>Apply the tuned model to the test dataset</li>
 </ul>
-<div class="sourceCode" id="cb1145"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1128"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_fit</span> <span class="op">&lt;-</span> <span class="va">finalize_lasso</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">test_x_reg</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>age <span class="op">=</span> <span class="va">test_y_reg</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -802,7 +736,7 @@
 <li>Specify an engine</li>
 <li>Specify a mode</li>
 </ol>
-<div class="sourceCode" id="cb1147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1130"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># workflow</span></span>
 <span><span class="va">tree_wf</span> <span class="op">&lt;-</span> <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">add_formula</span><span class="op">(</span><span class="va">target</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span>
 <span></span>
@@ -822,7 +756,7 @@
 <ul>
 <li>Fit a model</li>
 </ul>
-<div class="sourceCode" id="cb1148"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1131"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tree_fit</span> <span class="op">&lt;-</span> <span class="va">tree_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">fit</span><span class="op">(</span><span class="va">train_x_class</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>target <span class="op">=</span> <span class="va">train_y_class</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="yardstick-1" class="section level4" number="8.6.2.2">
@@ -865,13 +799,11 @@
 <li><p><code>F-score</code>: A weighted average between precision and recall.</p></li>
 <li><p><code>ROC Curve</code> (receiver operating characteristic curve): a plot that shows the relationship between true and false positive rates at different classification thresholds. y-axis indicates the true positive rate and x-axis indicates the false positive rate. What matters is the AUC (Area under the ROC Curve), which is a cumulative probability function of ranking a random “positive” - “negative” pair (for the probability of AUC, see <a href="https://www.alexejgossmann.com/auc/">this blog post</a>).</p></li>
 </ul>
-<div class="float">
-<img src="https://developers.google.com/machine-learning/crash-course/images/ROCCurve.svg" alt="Source: Google Machine Learning Crash Course"><div class="figcaption">Source: Google Machine Learning Crash Course</div>
-</div>
+<div class="inline-figure"><img src="https://developers.google.com/machine-learning/crash-course/images/ROCCurve.svg" alt="Source: Google Machine Learning Crash Course" style="max-width:100%;"></div>
 <ul>
 <li>To learn more about other metrics, check out the yardstick package <a href="https://yardstick.tidymodels.org/reference/index.html">references</a>.</li>
 </ul>
-<div class="sourceCode" id="cb1149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1132"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Define performance metrics</span></span>
 <span></span>
 <span><span class="va">metrics</span> <span class="op">&lt;-</span> <span class="fu">yardstick</span><span class="fu">::</span><span class="fu"><a href="https://yardstick.tidymodels.org/reference/metric_set.html">metric_set</a></span><span class="op">(</span><span class="va">accuracy</span>, <span class="va">precision</span>, <span class="va">recall</span><span class="op">)</span></span>
@@ -881,12 +813,12 @@
 <span><span class="va">tree_fit_viz_metr</span> <span class="op">&lt;-</span> <span class="fu">visualize_class_eval</span><span class="op">(</span><span class="va">tree_fit</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tree_fit_viz_metr</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-31-1.png" alt="" width="672"></div>
-<div class="sourceCode" id="cb1150"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-32-1.png" alt="" width="672"></div>
+<div class="sourceCode" id="cb1133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tree_fit_viz_mat</span> <span class="op">&lt;-</span> <span class="fu">visualize_class_conf</span><span class="op">(</span><span class="va">tree_fit</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tree_fit_viz_mat</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-31-2.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-32-2.png" alt="" width="672"></div>
 </div>
 <div id="tune-1" class="section level4" number="8.6.2.3">
 <h4>
@@ -901,7 +833,7 @@
 <li><p><strong>complexity parameter</strong>: a high CP means a simple decision tree with few splits.</p></li>
 <li><p><strong>tree_depth</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb1151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1134"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tune_spec</span> <span class="op">&lt;-</span> <span class="fu">decision_tree</span><span class="op">(</span></span>
 <span>  cost_complexity <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>, <span class="co"># how to split</span></span>
 <span>  tree_depth <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>, <span class="co"># when to stop</span></span>
@@ -914,18 +846,7 @@
 <span>  levels <span class="op">=</span> <span class="fl">5</span></span>
 <span><span class="op">)</span> <span class="co"># 2 hyperparameters -&gt; 5*5 = 25 combinations</span></span>
 <span></span>
-<span><span class="va">tree_grid</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">tree_depth</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 5 × 2
-##   tree_depth     n
-##        &lt;int&gt; &lt;int&gt;
-## 1          1     5
-## 2          4     5
-## 3          8     5
-## 4         11     5
-## 5         15     5</code></pre>
-<div class="sourceCode" id="cb1153"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># 10-fold cross-validation</span></span>
+<span><span class="co"># 10-fold cross-validation</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span> <span class="co"># for reproducibility</span></span>
 <span></span>
@@ -937,7 +858,7 @@
 <h5>
 <span class="header-section-number">8.6.2.3.2</span> Add these elements to a workflow<a class="anchor" aria-label="anchor" href="#add-these-elements-to-a-workflow-1"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1154"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Update workflow</span></span>
 <span><span class="va">tree_wf</span> <span class="op">&lt;-</span> <span class="va">tree_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">update_model</span><span class="op">(</span><span class="va">tune_spec</span><span class="op">)</span></span>
 <span></span>
@@ -964,7 +885,7 @@
 <ul>
 <li>The following plot draws on the <a href="https://www.tidymodels.org/start/tuning/">vignette</a> of the tidymodels package.</li>
 </ul>
-<div class="sourceCode" id="cb1155"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tree_res</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>tree_depth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">tree_depth</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -985,38 +906,38 @@
 <span>    y <span class="op">=</span> <span class="cn">NULL</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-34-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-35-1.png" alt="" width="672"></div>
 </div>
 <div id="select-1" class="section level5" number="8.6.2.3.4">
 <h5>
 <span class="header-section-number">8.6.2.3.4</span> Select<a class="anchor" aria-label="anchor" href="#select-1"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1156"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1137"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Optimal hyperparameter</span></span>
 <span><span class="va">best_tree</span> <span class="op">&lt;-</span> <span class="fu">tune</span><span class="fu">::</span><span class="fu"><a href="https://tune.tidymodels.org/reference/show_best.html">select_best</a></span><span class="op">(</span><span class="va">tree_res</span>, metric <span class="op">=</span> <span class="st">"recall"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Add the hyperparameter to the workflow</span></span>
 <span><span class="va">finalize_tree</span> <span class="op">&lt;-</span> <span class="va">tree_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">finalize_workflow</span><span class="op">(</span><span class="va">best_tree</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1157"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1138"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tree_fit_tuned</span> <span class="op">&lt;-</span> <span class="va">finalize_tree</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">train_x_class</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>target <span class="op">=</span> <span class="va">train_y_class</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Metrics</span></span>
 <span><span class="op">(</span><span class="va">tree_fit_viz_metr</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Non-tuned"</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu">visualize_class_eval</span><span class="op">(</span><span class="va">tree_fit_tuned</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Tuned"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-36-1.png" alt="" width="672"></div>
-<div class="sourceCode" id="cb1158"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" alt="" width="672"></div>
+<div class="sourceCode" id="cb1139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Confusion matrix</span></span>
 <span><span class="op">(</span><span class="va">tree_fit_viz_mat</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Non-tuned"</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu">visualize_class_conf</span><span class="op">(</span><span class="va">tree_fit_tuned</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Tuned"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-36-2.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-37-2.png" alt="" width="672"></div>
 <ul>
 <li>Visualize variable importance</li>
 </ul>
-<div class="sourceCode" id="cb1159"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1140"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tree_fit_tuned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">pull_workflow_fit</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">vip</span><span class="fu">::</span><span class="fu"><a href="https://koalaverse.github.io/vip/reference/vip.html">vip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-38-1.png" alt="" width="672"></div>
 </div>
 <div id="test-fit-1" class="section level5" number="8.6.2.3.5">
 <h5>
@@ -1025,7 +946,7 @@
 <ul>
 <li>Apply the tuned model to the test dataset</li>
 </ul>
-<div class="sourceCode" id="cb1160"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_fit</span> <span class="op">&lt;-</span> <span class="va">finalize_tree</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">test_x_class</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>target <span class="op">=</span> <span class="va">test_y_class</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -1054,18 +975,14 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <li><p>Learning: Building models in parallel (independently)</p></li>
 <li><p>Prediction: Simple average of the estimated responses (majority vote system)</p></li>
 </ul>
-<div class="float">
-<img src="https://sebastianraschka.com/images/faq/bagging-boosting-rf/bagging.png" alt="From Sebastian Raschka’s blog"><div class="figcaption">From Sebastian Raschka’s blog</div>
-</div>
+<div class="inline-figure"><img src="https://sebastianraschka.com/images/faq/bagging-boosting-rf/bagging.png" alt="From Sebastian Raschka's blog" style="max-width:100%;"></div>
 <p><strong>boosting</strong></p>
 <ul>
 <li><p>Data: Weighted training data will be random sampled</p></li>
 <li><p>Learning: Building models sequentially (mispredicted cases would receive more weights)</p></li>
 <li><p>Prediction: Weighted average of the estimated responses</p></li>
 </ul>
-<div class="float">
-<img src="https://sebastianraschka.com/images/faq/bagging-boosting-rf/boosting.png" alt="From Sebastian Raschka’s blog"><div class="figcaption">From Sebastian Raschka’s blog</div>
-</div>
+<div class="inline-figure"><img src="https://sebastianraschka.com/images/faq/bagging-boosting-rf/boosting.png" alt="From Sebastian Raschka's blog" style="max-width:100%;"></div>
 <div id="parsnip-2" class="section level4" number="8.6.3.1">
 <h4>
 <span class="header-section-number">8.6.3.1</span> parsnip<a class="anchor" aria-label="anchor" href="#parsnip-2"><i class="fas fa-link"></i></a>
@@ -1078,7 +995,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <li>Specify an engine</li>
 <li>Specify a mode</li>
 </ol>
-<div class="sourceCode" id="cb1162"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># workflow</span></span>
 <span><span class="va">rand_wf</span> <span class="op">&lt;-</span> <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">add_formula</span><span class="op">(</span><span class="va">target</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span>
 <span></span>
@@ -1103,29 +1020,29 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <ul>
 <li>Fit a model</li>
 </ul>
-<div class="sourceCode" id="cb1163"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1144"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rand_fit</span> <span class="op">&lt;-</span> <span class="va">rand_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">fit</span><span class="op">(</span><span class="va">train_x_class</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>target <span class="op">=</span> <span class="va">train_y_class</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="yardstick-2" class="section level4" number="8.6.3.2">
 <h4>
 <span class="header-section-number">8.6.3.2</span> yardstick<a class="anchor" aria-label="anchor" href="#yardstick-2"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Define performance metrics</span></span>
 <span><span class="va">metrics</span> <span class="op">&lt;-</span> <span class="fu">yardstick</span><span class="fu">::</span><span class="fu"><a href="https://yardstick.tidymodels.org/reference/metric_set.html">metric_set</a></span><span class="op">(</span><span class="va">accuracy</span>, <span class="va">precision</span>, <span class="va">recall</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">rand_fit_viz_metr</span> <span class="op">&lt;-</span> <span class="fu">visualize_class_eval</span><span class="op">(</span><span class="va">rand_fit</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">rand_fit_viz_metr</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-41-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672"></div>
 <ul>
 <li>Visualize the confusion matrix.</li>
 </ul>
-<div class="sourceCode" id="cb1165"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rand_fit_viz_mat</span> <span class="op">&lt;-</span> <span class="fu">visualize_class_conf</span><span class="op">(</span><span class="va">rand_fit</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">rand_fit_viz_mat</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-43-1.png" alt="" width="672"></div>
 </div>
 <div id="tune-2" class="section level4" number="8.6.3.3">
 <h4>
@@ -1140,7 +1057,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <li><p><code>mtry</code>: The number of predictors available for splitting at each node.</p></li>
 <li><p><code>min_n</code>: The minimum number of data points needed to keep splitting nodes.</p></li>
 </ul>
-<div class="sourceCode" id="cb1166"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tune_spec</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">rand_forest</span><span class="op">(</span></span>
 <span>    mode <span class="op">=</span> <span class="st">"classification"</span>,</span>
@@ -1157,19 +1074,8 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span><span class="va">rand_grid</span> <span class="op">&lt;-</span> <span class="fu">grid_regular</span><span class="op">(</span><span class="fu">mtry</span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  <span class="fu">min_n</span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  levels <span class="op">=</span> <span class="fl">5</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">rand_grid</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">min_n</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 5 × 2
-##   min_n     n
-##   &lt;int&gt; &lt;int&gt;
-## 1     2     5
-## 2     4     5
-## 3     6     5
-## 4     8     5
-## 5    10     5</code></pre>
-<div class="sourceCode" id="cb1168"><pre class="downlit sourceCode r">
+<span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 10-fold cross-validation</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span> <span class="co"># for reproducibility</span></span>
@@ -1182,7 +1088,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <h5>
 <span class="header-section-number">8.6.3.3.2</span> Add these elements to a workflow<a class="anchor" aria-label="anchor" href="#add-these-elements-to-a-workflow-2"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1169"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1149"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Update workflow</span></span>
 <span><span class="va">rand_wf</span> <span class="op">&lt;-</span> <span class="va">rand_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">update_model</span><span class="op">(</span><span class="va">tune_spec</span><span class="op">)</span></span>
 <span></span>
@@ -1198,7 +1104,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <h5>
 <span class="header-section-number">8.6.3.3.3</span> Visualize<a class="anchor" aria-label="anchor" href="#visualize-2"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1170"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rand_res</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>min_n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">min_n</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1221,39 +1127,33 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span>    y <span class="op">=</span> <span class="cn">NULL</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-46-1.png" alt="" width="672"></div>
-<div class="sourceCode" id="cb1171"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-47-1.png" alt="" width="672"></div>
+<div class="sourceCode" id="cb1151"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Optimal hyperparameter</span></span>
 <span><span class="va">best_tree</span> <span class="op">&lt;-</span> <span class="fu">tune</span><span class="fu">::</span><span class="fu"><a href="https://tune.tidymodels.org/reference/show_best.html">select_best</a></span><span class="op">(</span><span class="va">rand_res</span>, metric <span class="op">=</span> <span class="st">"accuracy"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">best_tree</span></span></code></pre></div>
-<pre><code>## # A tibble: 1 × 3
-##    mtry min_n .config         
-##   &lt;int&gt; &lt;int&gt; &lt;chr&gt;           
-## 1     1     2 pre0_mod01_post0</code></pre>
-<div class="sourceCode" id="cb1173"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Add the hyperparameter to the workflow</span></span>
+<span><span class="co"># Add the hyperparameter to the workflow</span></span>
 <span><span class="va">finalize_tree</span> <span class="op">&lt;-</span> <span class="va">rand_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">finalize_workflow</span><span class="op">(</span><span class="va">best_tree</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1174"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rand_fit_tuned</span> <span class="op">&lt;-</span> <span class="va">finalize_tree</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">train_x_class</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>target <span class="op">=</span> <span class="va">train_y_class</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Metrics</span></span>
 <span><span class="op">(</span><span class="va">rand_fit_viz_metr</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Non-tuned"</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu">visualize_class_eval</span><span class="op">(</span><span class="va">rand_fit_tuned</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Tuned"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-48-1.png" alt="" width="672"></div>
-<div class="sourceCode" id="cb1175"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-49-1.png" alt="" width="672"></div>
+<div class="sourceCode" id="cb1153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Confusion matrix</span></span>
 <span><span class="op">(</span><span class="va">rand_fit_viz_mat</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Non-tuned"</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu">visualize_class_conf</span><span class="op">(</span><span class="va">rand_fit_tuned</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Tuned"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-48-2.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-49-2.png" alt="" width="672"></div>
 <ul>
 <li>Visualize variable importance</li>
 </ul>
-<div class="sourceCode" id="cb1176"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rand_fit_tuned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">pull_workflow_fit</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">vip</span><span class="fu">::</span><span class="fu"><a href="https://koalaverse.github.io/vip/reference/vip.html">vip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-49-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-50-1.png" alt="" width="672"></div>
 </div>
 <div id="test-fit-2" class="section level5" number="8.6.3.3.4">
 <h5>
@@ -1262,7 +1162,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <ul>
 <li>Apply the tuned model to the test dataset</li>
 </ul>
-<div class="sourceCode" id="cb1177"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_fit</span> <span class="op">&lt;-</span> <span class="va">finalize_tree</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">test_x_class</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>target <span class="op">=</span> <span class="va">test_y_class</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -1271,9 +1171,9 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <pre><code>## # A tibble: 3 × 3
 ##   .metric   .estimator .estimate
 ##   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy  binary         0.946
-## 2 precision binary         0.930
-## 3 recall    binary         0.952</code></pre>
+## 1 accuracy  binary         0.957
+## 2 precision binary         0.932
+## 3 recall    binary         0.976</code></pre>
 </div>
 </div>
 </div>
@@ -1303,7 +1203,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 </ol>
 </li>
 </ul>
-<div class="sourceCode" id="cb1179"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 1) Define the workflow</span></span>
 <span><span class="va">xg_wf</span> <span class="op">&lt;-</span> <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">add_formula</span><span class="op">(</span><span class="va">target</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -1349,7 +1249,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 </ol>
 </li>
 </ul>
-<div class="sourceCode" id="cb1180"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Select best metrics (name the metric argument explicitly)</span></span>
 <span><span class="va">best_params</span> <span class="op">&lt;-</span> <span class="fu">select_best</span><span class="op">(</span><span class="va">xg_res</span>, metric <span class="op">=</span> <span class="st">"accuracy"</span><span class="op">)</span></span>
 <span></span>
@@ -1367,7 +1267,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <h4>
 <span class="header-section-number">8.6.4.2</span> yardstick<a class="anchor" aria-label="anchor" href="#yardstick-3"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1181"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">metrics</span> <span class="op">&lt;-</span> <span class="fu">metric_set</span><span class="op">(</span></span>
 <span>  <span class="fu">yardstick</span><span class="fu">::</span><span class="va"><a href="https://yardstick.tidymodels.org/reference/accuracy.html">accuracy</a></span>,</span>
 <span>  <span class="fu">yardstick</span><span class="fu">::</span><span class="va"><a href="https://yardstick.tidymodels.org/reference/precision.html">precision</a></span>,</span>
@@ -1381,21 +1281,21 @@ single learner -&gt; N learners (N &gt; 1)</p>
 ## 1 accuracy  binary         0.739
 ## 2 precision binary         0.725
 ## 3 recall    binary         0.690</code></pre>
-<div class="sourceCode" id="cb1183"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xg_fit_viz_metr</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">visualize_class_eval</span><span class="op">(</span><span class="va">xg_fit</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">xg_fit_viz_metr</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-54-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-55-1.png" alt="" width="672"></div>
 <ul>
 <li>Visualize the confusion matrix.</li>
 </ul>
-<div class="sourceCode" id="cb1184"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xg_fit_viz_mat</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">visualize_class_conf</span><span class="op">(</span><span class="va">xg_fit</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">xg_fit_viz_mat</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-55-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-56-1.png" alt="" width="672"></div>
 </div>
 <div id="tune-3" class="section level4" number="8.6.4.3">
 <h4>
@@ -1409,7 +1309,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <li>We focus on the following hyperparameters: <code>trees,</code> <code>tree_depth,</code> <code>learn_rate,</code> <code>min_n,</code> <code>mtry,</code> <code>loss_reduction,</code> and <code>sample_size</code>
 </li>
 </ul>
-<div class="sourceCode" id="cb1185"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tune_spec</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">xg_spec</span> <span class="op">&lt;-</span> <span class="fu">boost_tree</span><span class="op">(</span></span>
 <span></span>
@@ -1458,7 +1358,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <h5>
 <span class="header-section-number">8.6.4.3.2</span> Add these elements to a workflow<a class="anchor" aria-label="anchor" href="#add-these-elements-to-a-workflow-3"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1186"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Update workflow</span></span>
 <span><span class="va">xg_wf</span> <span class="op">&lt;-</span> <span class="va">xg_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">update_model</span><span class="op">(</span><span class="va">tune_spec</span><span class="op">)</span></span>
 <span></span>
@@ -1474,7 +1374,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <h5>
 <span class="header-section-number">8.6.4.3.3</span> Visualize<a class="anchor" aria-label="anchor" href="#visualize-3"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1187"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">conflict_prefer</span><span class="op">(</span><span class="st">"filter"</span>, <span class="st">"dplyr"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">xg_res</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1491,39 +1391,33 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span>    y <span class="op">=</span> <span class="st">"AUC"</span>,</span>
 <span>    x <span class="op">=</span> <span class="cn">NULL</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-58-1.png" alt="" width="672"></div>
-<div class="sourceCode" id="cb1188"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-59-1.png" alt="" width="672"></div>
+<div class="sourceCode" id="cb1166"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Optimal hyperparameter</span></span>
 <span><span class="va">best_xg</span> <span class="op">&lt;-</span> <span class="fu">select_best</span><span class="op">(</span><span class="va">xg_res</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">best_xg</span></span></code></pre></div>
-<pre><code>## # A tibble: 1 × 8
-##    mtry trees min_n tree_depth   learn_rate loss_reduction sample_size .config  
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;      &lt;int&gt;        &lt;dbl&gt;          &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;    
-## 1     2  1752     4         10 0.0000000458      0.0000507       0.633 pre0_mod…</code></pre>
-<div class="sourceCode" id="cb1190"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Add the hyperparameter to the workflow</span></span>
+<span><span class="co"># Add the hyperparameter to the workflow</span></span>
 <span><span class="va">finalize_xg</span> <span class="op">&lt;-</span> <span class="va">xg_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">finalize_workflow</span><span class="op">(</span><span class="va">best_xg</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1191"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xg_fit_tuned</span> <span class="op">&lt;-</span> <span class="va">finalize_xg</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">train_x_class</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>target <span class="op">=</span> <span class="va">train_y_class</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Metrics</span></span>
 <span><span class="op">(</span><span class="va">xg_fit_viz_metr</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Non-tuned"</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu">visualize_class_eval</span><span class="op">(</span><span class="va">xg_fit_tuned</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Tuned"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-60-1.png" alt="" width="672"></div>
-<div class="sourceCode" id="cb1192"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-61-1.png" alt="" width="672"></div>
+<div class="sourceCode" id="cb1168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Confusion matrix</span></span>
 <span><span class="op">(</span><span class="va">xg_fit_viz_mat</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Non-tuned"</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu">visualize_class_conf</span><span class="op">(</span><span class="va">xg_fit_tuned</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Tuned"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-60-2.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-61-2.png" alt="" width="672"></div>
 <ul>
 <li>Visualize variable importance</li>
 </ul>
-<div class="sourceCode" id="cb1193"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xg_fit_tuned</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">pull_workflow_fit</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">vip</span><span class="fu">::</span><span class="fu"><a href="https://koalaverse.github.io/vip/reference/vip.html">vip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-61-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-62-1.png" alt="" width="672"></div>
 </div>
 <div id="test-fit-3" class="section level5" number="8.6.4.3.4">
 <h5>
@@ -1532,7 +1426,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <ul>
 <li>Apply the tuned model to the test dataset</li>
 </ul>
-<div class="sourceCode" id="cb1194"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_fit</span> <span class="op">&lt;-</span> <span class="va">finalize_xg</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">test_x_class</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>target <span class="op">=</span> <span class="va">test_y_class</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -1560,7 +1454,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span class="header-section-number">8.6.5.1.1</span> Stacking<a class="anchor" aria-label="anchor" href="#stacking"><i class="fas fa-link"></i></a>
 </h5>
 <p>Wolpert, D.H., 1992. <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.56.1533">Stacked generalization</a>. <em>Neural networks</em>, 5(2), pp.241-259.</p>
-<p>Breiman, L., 1996. [Stacked regressions]((<a href="https://statistics.berkeley.edu/sites/default/files/tech-reports/367.pdf" class="uri">https://statistics.berkeley.edu/sites/default/files/tech-reports/367.pdf</a>). <em>Machine learning</em>, 24(1), pp.49-64.</p>
+<p>Breiman, L., 1996. <a href="https://statistics.berkeley.edu/sites/default/files/tech-reports/367.pdf">Stacked regressions</a>. <em>Machine learning</em>, 24(1), pp.49-64.</p>
 </div>
 <div id="superlearner" class="section level5" number="8.6.5.1.2">
 <h5>
@@ -1575,28 +1469,10 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <h4>
 <span class="header-section-number">8.6.5.2</span> Choose algorithms<a class="anchor" aria-label="anchor" href="#choose-algorithms"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1196"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Review available models</span></span>
 <span><span class="fu">SuperLearner</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SuperLearner/man/listWrappers.html">listWrappers</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code>##  [1] "SL.bartMachine"      "SL.bayesglm"         "SL.biglasso"        
-##  [4] "SL.caret"            "SL.caret.rpart"      "SL.cforest"         
-##  [7] "SL.earth"            "SL.gam"              "SL.gbm"             
-## [10] "SL.glm"              "SL.glm.interaction"  "SL.glmnet"          
-## [13] "SL.ipredbagg"        "SL.kernelKnn"        "SL.knn"             
-## [16] "SL.ksvm"             "SL.lda"              "SL.leekasso"        
-## [19] "SL.lm"               "SL.loess"            "SL.logreg"          
-## [22] "SL.mean"             "SL.nnet"             "SL.nnls"            
-## [25] "SL.polymars"         "SL.qda"              "SL.randomForest"    
-## [28] "SL.ranger"           "SL.ridge"            "SL.rpart"           
-## [31] "SL.rpartPrune"       "SL.speedglm"         "SL.speedlm"         
-## [34] "SL.step"             "SL.step.forward"     "SL.step.interaction"
-## [37] "SL.stepAIC"          "SL.svm"              "SL.template"        
-## [40] "SL.xgboost"</code></pre>
-<pre><code>## [1] "All"
-## [1] "screen.corP"           "screen.corRank"        "screen.glmnet"        
-## [4] "screen.randomForest"   "screen.SIS"            "screen.template"      
-## [7] "screen.ttest"          "write.screen.template"</code></pre>
-<div class="sourceCode" id="cb1199"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Compile the algorithm wrappers to be used.</span></span>
 <span><span class="va">sl_lib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>  <span class="st">"SL.mean"</span>, <span class="co"># Marginal mean of the outcome ()</span></span>
@@ -1611,7 +1487,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span class="header-section-number">8.6.5.3</span> Fit model<a class="anchor" aria-label="anchor" href="#fit-model"><i class="fas fa-link"></i></a>
 </h4>
 <p>Fit the ensemble!</p>
-<div class="sourceCode" id="cb1200"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1174"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># This is a seed that is compatible with multicore parallel processing.</span></span>
 <span><span class="co"># See ?set.seed for more information.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span>, <span class="st">"L'Ecuyer-CMRG"</span><span class="op">)</span></span>
@@ -1644,32 +1520,14 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <li>
 <code>SL.mean_All</code> (the weighted mean of <span class="math inline">\(Y\)</span>) is a benchmark algorithm (ignoring features).</li>
 </ul>
-<div class="sourceCode" id="cb1201"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cv_sl</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## 
-## Call:  
-## SuperLearner::CV.SuperLearner(Y = as.numeric(as.character(train_y_class)),  
-##     X = train_x_class, family = binomial(), SL.library = sl_lib, verbose = FALSE,  
-##     cvControl = list(V = 5L, stratifyCV = TRUE)) 
-## 
-## Risk is based on: Mean Squared Error
-## 
-## All risk estimates are based on V =  5 
-## 
-##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.10711 0.0130358 0.077765 0.13232
-##     Discrete SL 0.10576 0.0132606 0.075311 0.13711
-##     SL.mean_All 0.24798 0.0030968 0.247743 0.24895
-##   SL.glmnet_All 0.10576 0.0132606 0.075311 0.13711
-##    SL.rpart_All 0.17087 0.0197376 0.107553 0.24332
-##   SL.ranger_All 0.12434 0.0119150 0.096560 0.15417
-##  SL.xgboost_All 0.13103 0.0150129 0.102165 0.16141</code></pre>
 </div>
 <div id="plot" class="section level5" number="8.6.5.4.2">
 <h5>
 <span class="header-section-number">8.6.5.4.2</span> Plot<a class="anchor" aria-label="anchor" href="#plot"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1203"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1176"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot the cross-validated risk estimate with 95% CIs.</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cv_sl</span><span class="op">)</span></span></code></pre></div>
@@ -1682,40 +1540,20 @@ single learner -&gt; N learners (N &gt; 1)</p>
 </h4>
 <p><strong>ROC</strong></p>
 <p>ROC: a ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis).</p>
-<div class="float">
-<img src="https://developers.google.com/machine-learning/crash-course/images/AUC.svg" alt="Area Under the ROC Curve"><div class="figcaption">Area Under the ROC Curve</div>
-</div>
+<div class="inline-figure"><img src="https://developers.google.com/machine-learning/crash-course/images/AUC.svg" alt="Area Under the ROC Curve" style="max-width:100%;"></div>
 <p><strong>AUC</strong></p>
 <p>AUC: Area Under the ROC Curve</p>
 <p>1 = perfect</p>
 <p>0.5 = no better than chance</p>
-<div class="sourceCode" id="cb1204"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1177"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Summary of cross-validated SuperLearner</span></span>
 <span><span class="co"># Shows risk estimates and coefficients for each learner</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cv_sl</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## 
-## Call:  
-## SuperLearner::CV.SuperLearner(Y = as.numeric(as.character(train_y_class)),  
-##     X = train_x_class, family = binomial(), SL.library = sl_lib, verbose = FALSE,  
-##     cvControl = list(V = 5L, stratifyCV = TRUE)) 
-## 
-## Risk is based on: Mean Squared Error
-## 
-## All risk estimates are based on V =  5 
-## 
-##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.10711 0.0130358 0.077765 0.13232
-##     Discrete SL 0.10576 0.0132606 0.075311 0.13711
-##     SL.mean_All 0.24798 0.0030968 0.247743 0.24895
-##   SL.glmnet_All 0.10576 0.0132606 0.075311 0.13711
-##    SL.rpart_All 0.17087 0.0197376 0.107553 0.24332
-##   SL.ranger_All 0.12434 0.0119150 0.096560 0.15417
-##  SL.xgboost_All 0.13103 0.0150129 0.102165 0.16141</code></pre>
-<div id="plot-the-roc-curve-for-the-best-estimator-discretsl" class="section level5" number="8.6.5.5.1">
+<div id="plot-the-roc-curve-for-the-best-estimator-discrete-sl" class="section level5" number="8.6.5.5.1">
 <h5>
-<span class="header-section-number">8.6.5.5.1</span> Plot the ROC curve for the best estimator (DiscretSL)<a class="anchor" aria-label="anchor" href="#plot-the-roc-curve-for-the-best-estimator-discretsl"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.6.5.5.1</span> Plot the ROC curve for the best estimator (Discrete SL)<a class="anchor" aria-label="anchor" href="#plot-the-roc-curve-for-the-best-estimator-discrete-sl"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1206"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1178"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot ROC curve for SuperLearner</span></span>
 <span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="va">cv_sl</span><span class="op">$</span><span class="va">SL.predict</span></span>
 <span><span class="va">truth</span> <span class="op">&lt;-</span> <span class="va">cv_sl</span><span class="op">$</span><span class="va">Y</span></span>
@@ -1737,13 +1575,13 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span>    y <span class="op">=</span> <span class="st">"True Positive Rate (Sensitivity)"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-68-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-69-1.png" alt="" width="672"></div>
 </div>
 <div id="review-weight-distribution-for-the-superlearner" class="section level5" number="8.6.5.5.2">
 <h5>
 <span class="header-section-number">8.6.5.5.2</span> Review weight distribution for the SuperLearner<a class="anchor" aria-label="anchor" href="#review-weight-distribution-for-the-superlearner"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1207"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Display SuperLearner weights</span></span>
 <span><span class="co"># The coef vector shows the weight assigned to each learner in the ensemble</span></span>
 <span><span class="va">coef_vec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">cv_sl</span><span class="op">$</span><span class="va">coef</span><span class="op">)</span></span>
@@ -1753,32 +1591,6 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <span><span class="op">)</span></span>
 <span><span class="va">sl_weights</span> <span class="op">&lt;-</span> <span class="va">sl_weights</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">sl_weights</span><span class="op">$</span><span class="va">Weight</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, <span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">sl_weights</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<pre><code>##       Algorithm Weight
-##   SL.ranger_All 0.9809
-##  SL.xgboost_All 0.8743
-##     SL.mean_All 0.7913
-##   SL.glmnet_All 0.7607
-##    SL.rpart_All 0.7042
-##   SL.glmnet_All 0.2393
-##    SL.rpart_All 0.2377
-##     SL.mean_All 0.2087
-##  SL.xgboost_All 0.1217
-##    SL.rpart_All 0.0582
-##   SL.ranger_All 0.0191
-##  SL.xgboost_All 0.0039
-##     SL.mean_All 0.0000
-##   SL.glmnet_All 0.0000
-##    SL.rpart_All 0.0000
-##   SL.ranger_All 0.0000
-##  SL.xgboost_All 0.0000
-##     SL.mean_All 0.0000
-##   SL.glmnet_All 0.0000
-##   SL.ranger_All 0.0000
-##  SL.xgboost_All 0.0000
-##     SL.mean_All 0.0000
-##   SL.glmnet_All 0.0000
-##    SL.rpart_All 0.0000
-##   SL.ranger_All 0.0000</code></pre>
 <p>The general stacking approach is available in the tidymodels framework through <a href="https://github.com/tidymodels/stacks"><code>stacks</code></a> package (developmental stage).</p>
 <p>However, SuperLearner is currently not available in the tidymodels framework. You can easily build and add a parsnip model if you’d like to. If you are interested in knowing more about it, please look at <a href="https://www.tidymodels.org/learn/develop/models/">this vignette</a> of the tidymodels.</p>
 </div>
@@ -1809,9 +1621,7 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <h3>
 <span class="header-section-number">8.7.1</span> Dimension reduction<a class="anchor" aria-label="anchor" href="#dimension-reduction"><i class="fas fa-link"></i></a>
 </h3>
-<div class="float">
-<img src="https://i.stack.imgur.com/Q7HIP.gif" alt="Projecting 2D-data to a line (PCA). From vas3k.com"><div class="figcaption">Projecting 2D-data to a line (PCA). From vas3k.com</div>
-</div>
+<div class="inline-figure"><img src="https://i.stack.imgur.com/Q7HIP.gif" alt="Projecting 2D-data to a line (PCA). From vas3k.com" style="max-width:100%;"></div>
 <div id="correlation-analysis" class="section level4" number="8.7.1.1">
 <h4>
 <span class="header-section-number">8.7.1.1</span> Correlation analysis<a class="anchor" aria-label="anchor" href="#correlation-analysis"><i class="fas fa-link"></i></a>
@@ -1828,41 +1638,23 @@ single learner -&gt; N learners (N &gt; 1)</p>
 <li>restecg - resting electrocardiographic results (0 = normal; 1 = having ST-T; 2 = hypertrophy)</li>
 <li>thalach - maximum heart rate achieved</li>
 <li>exang - exercise induced angina (1 = yes; 0 = no)</li>
-<li>oldpeak - ST depression induced by exercise relative to rest
-slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = downsloping)</li>
+<li>oldpeak - ST depression induced by exercise relative to rest</li>
+<li>slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = downsloping)</li>
 <li>ca - number of major vessels (0-3) colored by flourosopy</li>
 <li>thal - 3 = normal; 6 = fixed defect; 7 = reversable defect</li>
 <li>num - the predicted attribute - diagnosis of heart disease (angiographic disease status) (Value 0 = &lt; 50% diameter narrowing; Value 1 = &gt; 50% diameter narrowing)</li>
 </ul>
-<div class="sourceCode" id="cb1209"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_original</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">target</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">corrr</span><span class="fu">::</span><span class="fu"><a href="https://corrr.tidymodels.org/reference/correlate.html">correlate</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 13 × 14
-##    term         age     sex      cp trestbps     chol      fbs restecg  thalach
-##    &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
-##  1 age      NA      -0.0984 -0.0687   0.279   0.214    0.121   -0.116  -0.399  
-##  2 sex      -0.0984 NA      -0.0494  -0.0568 -0.198    0.0450  -0.0582 -0.0440 
-##  3 cp       -0.0687 -0.0494 NA        0.0476 -0.0769   0.0944   0.0444  0.296  
-##  4 trestbps  0.279  -0.0568  0.0476  NA       0.123    0.178   -0.114  -0.0467 
-##  5 chol      0.214  -0.198  -0.0769   0.123  NA        0.0133  -0.151  -0.00994
-##  6 fbs       0.121   0.0450  0.0944   0.178   0.0133  NA       -0.0842 -0.00857
-##  7 restecg  -0.116  -0.0582  0.0444  -0.114  -0.151   -0.0842  NA       0.0441 
-##  8 thalach  -0.399  -0.0440  0.296   -0.0467 -0.00994 -0.00857  0.0441 NA      
-##  9 exang     0.0968  0.142  -0.394    0.0676  0.0670   0.0257  -0.0707 -0.379  
-## 10 oldpeak   0.210   0.0961 -0.149    0.193   0.0540   0.00575 -0.0588 -0.344  
-## 11 slope    -0.169  -0.0307  0.120   -0.121  -0.00404 -0.0599   0.0930  0.387  
-## 12 ca        0.276   0.118  -0.181    0.101   0.0705   0.138   -0.0720 -0.213  
-## 13 thal      0.0680  0.210  -0.162    0.0622  0.0988  -0.0320  -0.0120 -0.0964 
-## # ℹ 5 more variables: exang &lt;dbl&gt;, oldpeak &lt;dbl&gt;, slope &lt;dbl&gt;, ca &lt;dbl&gt;,
-## #   thal &lt;dbl&gt;</code></pre>
 </div>
 <div id="descriptive-statistics" class="section level4" number="8.7.1.2">
 <h4>
 <span class="header-section-number">8.7.1.2</span> Descriptive statistics<a class="anchor" aria-label="anchor" href="#descriptive-statistics"><i class="fas fa-link"></i></a>
 </h4>
 <p>Notice the scaling issues? PCA is not scale-invariant. So, we need to fix this problem.</p>
-<div class="sourceCode" id="cb1211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">min_max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>  min <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">.x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>  max <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">.x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -1871,33 +1663,24 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <span><span class="va">data_original</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">target</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">min_max</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 1 × 26
-##   age_min age_max sex_min sex_max cp_min cp_max trestbps_min trestbps_max
-##     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-## 1      29      77       0       1      0      3           94          200
-## # ℹ 18 more variables: chol_min &lt;dbl&gt;, chol_max &lt;dbl&gt;, fbs_min &lt;dbl&gt;,
-## #   fbs_max &lt;dbl&gt;, restecg_min &lt;dbl&gt;, restecg_max &lt;dbl&gt;, thalach_min &lt;dbl&gt;,
-## #   thalach_max &lt;dbl&gt;, exang_min &lt;dbl&gt;, exang_max &lt;dbl&gt;, oldpeak_min &lt;dbl&gt;,
-## #   oldpeak_max &lt;dbl&gt;, slope_min &lt;dbl&gt;, slope_max &lt;dbl&gt;, ca_min &lt;dbl&gt;,
-## #   ca_max &lt;dbl&gt;, thal_min &lt;dbl&gt;, thal_max &lt;dbl&gt;</code></pre>
 </div>
 <div id="preprocessing" class="section level4" number="8.7.1.3">
 <h4>
 <span class="header-section-number">8.7.1.3</span> Preprocessing<a class="anchor" aria-label="anchor" href="#preprocessing"><i class="fas fa-link"></i></a>
 </h4>
 <p><code>recipe</code> is essential for preprocessing multiple features at once.</p>
-<div class="sourceCode" id="cb1213"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1182"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pca_recipe</span> <span class="op">&lt;-</span> <span class="fu">recipe</span><span class="op">(</span><span class="op">~</span><span class="va">.</span>, data <span class="op">=</span> <span class="va">data_original</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="co"># Imputing NAs using mean</span></span>
 <span>  <span class="fu">step_impute_mean</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="co"># Normalize some numeric variabless</span></span>
+<span>  <span class="co"># Normalize some numeric variables</span></span>
 <span>  <span class="fu">step_normalize</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"trestbps"</span>, <span class="st">"chol"</span>, <span class="st">"thalach"</span>, <span class="st">"oldpeak"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="pca-analysis" class="section level4" number="8.7.1.4">
 <h4>
 <span class="header-section-number">8.7.1.4</span> PCA analysis<a class="anchor" aria-label="anchor" href="#pca-analysis"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1214"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pca_res</span> <span class="op">&lt;-</span> <span class="va">pca_recipe</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">step_pca</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    id <span class="op">=</span> <span class="st">"pca"</span></span>
@@ -1906,25 +1689,11 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <span></span>
 <span><span class="va">pca_res</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">tidy</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"pca"</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 196 × 4
-##    terms        value component id   
-##    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;
-##  1 age      -0.00101  PC1       pca  
-##  2 sex       0.216    PC1       pca  
-##  3 cp        0.321    PC1       pca  
-##  4 trestbps  0.00118  PC1       pca  
-##  5 chol     -0.000292 PC1       pca  
-##  6 fbs       0.0468   PC1       pca  
-##  7 restecg   0.166    PC1       pca  
-##  8 thalach   0.0137   PC1       pca  
-##  9 exang     0.0962   PC1       pca  
-## 10 oldpeak  -0.00863  PC1       pca  
-## # ℹ 186 more rows</code></pre>
 <div id="screeplot" class="section level5" number="8.7.1.4.1">
 <h5>
 <span class="header-section-number">8.7.1.4.1</span> Screeplot<a class="anchor" aria-label="anchor" href="#screeplot"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1216"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1184"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># To avoid conflicts</span></span>
 <span><span class="fu">conflict_prefer</span><span class="op">(</span><span class="st">"filter"</span>, <span class="st">"dplyr"</span><span class="op">)</span></span>
 <span><span class="fu">conflict_prefer</span><span class="op">(</span><span class="st">"select"</span>, <span class="st">"dplyr"</span><span class="op">)</span></span>
@@ -1943,14 +1712,14 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <span>    y <span class="op">=</span> <span class="st">"% of variance"</span>,</span>
 <span>    title <span class="op">=</span> <span class="st">"Scree plot"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-74-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-75-1.png" alt="" width="672"></div>
 </div>
 <div id="view-factor-loadings" class="section level5" number="8.7.1.4.2">
 <h5>
 <span class="header-section-number">8.7.1.4.2</span> View factor loadings<a class="anchor" aria-label="anchor" href="#view-factor-loadings"><i class="fas fa-link"></i></a>
 </h5>
 <p>Loadings are the covariances between the features and the principal components (=eigenvectors).</p>
-<div class="sourceCode" id="cb1217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1185"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pca_recipe</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">step_pca</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    id <span class="op">=</span> <span class="st">"pca"</span></span>
@@ -1967,10 +1736,10 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="st">"Terms"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"Contribtutions"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Contributions"</span>,</span>
 <span>    fill <span class="op">=</span> <span class="st">"PCAs"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-75-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-76-1.png" alt="" width="672"></div>
 <p><strong>The key lesson</strong></p>
 <p>You can use these low-dimensional data to solve the curse of dimensionality problem. Compressing feature space via dimension reduction techniques is called feature extraction. PCA is one way of doing this.</p>
 </div>
@@ -1984,7 +1753,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <h4>
 <span class="header-section-number">8.7.2.1</span> Setup<a class="anchor" aria-label="anchor" href="#setup-6"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1218"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1186"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span></span>
 <span>  <span class="va">janeaustenr</span>, <span class="co"># example text</span></span>
 <span>  <span class="va">tidytext</span>, <span class="co"># tidy text analysis</span></span>
@@ -1997,7 +1766,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <h4>
 <span class="header-section-number">8.7.2.2</span> Dataset<a class="anchor" aria-label="anchor" href="#dataset-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 1. Load all of Jane Austen's novels</span></span>
 <span><span class="va">austen_raw</span> <span class="op">&lt;-</span> <span class="fu">austen_books</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -2019,26 +1788,13 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <span>    total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>,</span>
 <span>    freq  <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="va">total</span></span>
 <span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">austen_words</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## # A tibble: 6 × 5
-##   book           word      n  total   freq
-##   &lt;fct&gt;          &lt;chr&gt; &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt;
-## 1 Mansfield Park the    6206 160460 0.0387
-## 2 Mansfield Park to     5475 160460 0.0341
-## 3 Mansfield Park and    5438 160460 0.0339
-## 4 Emma           to     5239 160996 0.0325
-## 5 Emma           the    5201 160996 0.0323
-## 6 Emma           and    4896 160996 0.0304</code></pre>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="key-ideas" class="section level4" number="8.7.2.3">
 <h4>
 <span class="header-section-number">8.7.2.3</span> Key ideas<a class="anchor" aria-label="anchor" href="#key-ideas"><i class="fas fa-link"></i></a>
 </h4>
-<div class="float">
-<img src="https://paperswithcode.com/media/thumbnails/task/task-0000000179-fd3a1d11_fGQkZCJ.jpg" alt="Source: paperswithcode.com"><div class="figcaption">Source: paperswithcode.com</div>
-</div>
+<div class="inline-figure"><img src="https://paperswithcode.com/media/thumbnails/task/task-0000000179-fd3a1d11_fGQkZCJ.jpg" alt="Source: paperswithcode.com" style="max-width:100%;"></div>
 <ul>
 <li><p>Main papers: See <a href="https://proceedings.neurips.cc/paper/2001/file/296472c9542ad4d4788d543508116cbc-Paper.pdf">Latent Dirichlet Allocation</a> by David M. Blei, Andrew Y. Ng and Michael I. Jordan (then all Berkeley) and this <a href="http://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/latent_dirichlet_allocation.pdf">follow-up paper</a> with the same title.</p></li>
 <li><p>Topics as <strong>distributions</strong> of words (<span class="math inline">\(\beta\)</span> distribution)</p></li>
@@ -2047,7 +1803,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <p>What distributions?</p>
 <ul>
 <li><p>Probability</p></li>
-<li><p>Multinominal</p></li>
+<li><p>Multinomial</p></li>
 </ul>
 </li>
 <li><p>Words lie on a lower-dimensional space (dimension reduction akin to PCA)</p></li>
@@ -2067,7 +1823,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <h4>
 <span class="header-section-number">8.7.2.4</span> Exploratory data analysis<a class="anchor" aria-label="anchor" href="#exploratory-data-analysis"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb1221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1188"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 1) Tokenize, remove stop words, &amp; count</span></span>
 <span><span class="va">austen_words</span> <span class="op">&lt;-</span> <span class="va">austen_chapters</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">unnest_tokens</span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -2100,7 +1856,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-79-1.png" alt="" width="672"></div>
 </div>
 <div id="stm" class="section level4" number="8.7.2.5">
 <h4>
@@ -2108,13 +1864,13 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 </h4>
 <p><a href="https://www.structuraltopicmodel.com/">Structural Topic Modeling</a> by Roberts, Stewart, and Tingley helps estimate how topics’ proportions vary by covariates. If you don’t use covariates, this approach is close to CTM. The other useful (and very recent) topic modeling package is Keyword Assisted Topic Models (<a href="https://keyatm.github.io/keyATM/">keyATM</a>) by Shusei, Imai, and Sasaki.</p>
 <p>Also, note that we didn’t cover other important techniques in topic modeling, such as dynamic and hierarchical topic modeling.</p>
-<div class="inline-figure"><img src="https://warin.ca/shiny/stm/images/fig02.png"></div>
+<div class="inline-figure"><img src="https://warin.ca/shiny/stm/images/fig02.png" alt="STM workflow" style="max-width:100%;"></div>
 <div id="turn-text-into-document-term-matrix" class="section level5" number="8.7.2.5.1">
 <h5>
 <span class="header-section-number">8.7.2.5.1</span> Turn text into document-term matrix<a class="anchor" aria-label="anchor" href="#turn-text-into-document-term-matrix"><i class="fas fa-link"></i></a>
 </h5>
 <p><code>stm</code> package has its preprocessing function.</p>
-<div class="sourceCode" id="cb1222"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dtm</span> <span class="op">&lt;-</span> <span class="fu">textProcessor</span><span class="op">(</span></span>
 <span>  documents <span class="op">=</span> <span class="va">austen_chapters</span><span class="op">$</span><span class="va">text</span>,</span>
 <span>  metadata <span class="op">=</span> <span class="va">austen_chapters</span>,</span>
@@ -2130,7 +1886,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <li>K is the number of topics.</li>
 <li>Let’s try K = 5, 10, 15.</li>
 </ul>
-<div class="sourceCode" id="cb1223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1190"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_res</span> <span class="op">&lt;-</span> <span class="fu">searchK</span><span class="op">(</span></span>
 <span>  <span class="va">dtm</span><span class="op">$</span><span class="va">documents</span>,</span>
 <span>  <span class="va">dtm</span><span class="op">$</span><span class="va">vocab</span>,</span>
@@ -2151,15 +1907,15 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.740) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.555, relative change = 2.379e-02) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (5 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.482, relative change = 9.775e-03) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.442, relative change = 5.291e-03) 
 ## ....................................................................................................
@@ -2172,7 +1928,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ##  Topic 4: mrs, miss, think, everi, now 
 ##  Topic 5: must, know, well, feel, make 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.405, relative change = 1.866e-03) 
 ## ....................................................................................................
@@ -2184,11 +1940,11 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.391, relative change = 8.019e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 9 (approx. per word bound = -7.386, relative change = 5.579e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 10 (approx. per word bound = -7.383, relative change = 4.007e-04) 
 ## Topic 1: much, one, never, see, can 
@@ -2209,7 +1965,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 13 (approx. per word bound = -7.378, relative change = 1.710e-04) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 14 (approx. per word bound = -7.377, relative change = 1.333e-04) 
 ## ....................................................................................................
@@ -2230,7 +1986,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 17 (approx. per word bound = -7.375, relative change = 6.850e-05) 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 18 (approx. per word bound = -7.375, relative change = 5.602e-05) 
 ## ....................................................................................................
@@ -2247,7 +2003,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ##  Topic 4: mrs, miss, think, everi, now 
 ##  Topic 5: must, know, well, feel, make 
 ## ....................................................................................................
-## Completed E-Step (2 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 21 (approx. per word bound = -7.374, relative change = 3.212e-05) 
 ## ....................................................................................................
@@ -2272,7 +2028,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ##  Topic 4: mrs, miss, think, everi, now 
 ##  Topic 5: must, know, well, feel, make 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 26 (approx. per word bound = -7.373, relative change = 1.416e-05) 
 ## ....................................................................................................
@@ -2284,7 +2040,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 28 (approx. per word bound = -7.373, relative change = 1.062e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -2296,7 +2052,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ##      ...................................................................................................
 ## Initialization complete.
 ## ....................................................................................................
-## Completed E-Step (6 seconds). 
+## Completed E-Step (5 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 1 (approx. per word bound = -7.839) 
 ## ....................................................................................................
@@ -2308,7 +2064,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.559, relative change = 1.354e-02) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.504, relative change = 7.255e-03) 
 ## ....................................................................................................
@@ -2326,15 +2082,15 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ##  Topic 9: will, now, say, never, good 
 ##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
-## Completed E-Step (5 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 6 (approx. per word bound = -7.443, relative change = 3.389e-03) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 7 (approx. per word bound = -7.424, relative change = 2.541e-03) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 8 (approx. per word bound = -7.410, relative change = 1.898e-03) 
 ## ....................................................................................................
@@ -2390,15 +2146,15 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 16 (approx. per word bound = -7.371, relative change = 2.501e-04) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 17 (approx. per word bound = -7.370, relative change = 2.048e-04) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (5 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 18 (approx. per word bound = -7.368, relative change = 1.687e-04) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (6 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 19 (approx. per word bound = -7.367, relative change = 1.397e-04) 
 ## ....................................................................................................
@@ -2420,7 +2176,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 21 (approx. per word bound = -7.366, relative change = 9.714e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 22 (approx. per word bound = -7.365, relative change = 8.281e-05) 
 ## ....................................................................................................
@@ -2450,7 +2206,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 26 (approx. per word bound = -7.363, relative change = 5.088e-05) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 27 (approx. per word bound = -7.363, relative change = 4.614e-05) 
 ## ....................................................................................................
@@ -2458,11 +2214,11 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 28 (approx. per word bound = -7.363, relative change = 4.164e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 29 (approx. per word bound = -7.362, relative change = 3.678e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 30 (approx. per word bound = -7.362, relative change = 3.158e-05) 
 ## Topic 1: much, know, littl, look, wish 
@@ -2480,19 +2236,19 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 31 (approx. per word bound = -7.362, relative change = 2.701e-05) 
 ## ....................................................................................................
-## Completed E-Step (5 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 32 (approx. per word bound = -7.362, relative change = 2.355e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 33 (approx. per word bound = -7.362, relative change = 2.098e-05) 
 ## ....................................................................................................
-## Completed E-Step (5 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 34 (approx. per word bound = -7.362, relative change = 1.895e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 35 (approx. per word bound = -7.361, relative change = 1.699e-05) 
 ## Topic 1: much, know, littl, look, wish 
@@ -2506,7 +2262,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ##  Topic 9: will, now, say, never, good 
 ##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 36 (approx. per word bound = -7.361, relative change = 1.546e-05) 
 ## ....................................................................................................
@@ -2522,7 +2278,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 39 (approx. per word bound = -7.361, relative change = 1.275e-05) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 40 (approx. per word bound = -7.361, relative change = 1.233e-05) 
 ## Topic 1: much, know, littl, look, wish 
@@ -2552,7 +2308,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 44 (approx. per word bound = -7.361, relative change = 1.294e-05) 
 ## ....................................................................................................
-## Completed E-Step (7 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 45 (approx. per word bound = -7.360, relative change = 1.367e-05) 
 ## Topic 1: much, know, littl, look, wish 
@@ -2566,15 +2322,15 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ##  Topic 9: will, now, say, never, good 
 ##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 46 (approx. per word bound = -7.360, relative change = 1.419e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 47 (approx. per word bound = -7.360, relative change = 1.430e-05) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 48 (approx. per word bound = -7.360, relative change = 1.386e-05) 
 ## ....................................................................................................
@@ -2582,7 +2338,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ## Completed M-Step. 
 ## Completing Iteration 49 (approx. per word bound = -7.360, relative change = 1.273e-05) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 50 (approx. per word bound = -7.360, relative change = 1.074e-05) 
 ## Topic 1: much, know, littl, look, wish 
@@ -2596,13 +2352,13 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 ##  Topic 9: will, now, say, never, good 
 ##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
 ## Model Converged</code></pre>
 </div>
-<div id="evaludating-models" class="section level5" number="8.7.2.5.3">
+<div id="evaluating-models" class="section level5" number="8.7.2.5.3">
 <h5>
-<span class="header-section-number">8.7.2.5.3</span> Evaludating models<a class="anchor" aria-label="anchor" href="#evaludating-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.7.2.5.3</span> Evaluating models<a class="anchor" aria-label="anchor" href="#evaluating-models"><i class="fas fa-link"></i></a>
 </h5>
 <p>Several metrics assess topic models’ performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. Here we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.</p>
 <ul>
@@ -2613,7 +2369,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <p>In Roberts et al. (2014), the authors introduce the semantic coherence metric of Mimno et al. (2011) as a criterion for topic‐model selection. They observe, however, that maximizing semantic coherence alone can be trivial—by allowing a small number of topics to capture the most frequent words. To counteract this, they also develop an <strong>exclusivity</strong> measure.</p>
 <p>This exclusivity measure incorporates word‐frequency information via the FREX metric (implemented in <code>calcfrex</code>), with a default weight of 0.7 placed on exclusivity.</p>
 </blockquote>
-<div class="sourceCode" id="cb1225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1192"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_res</span><span class="op">$</span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest.html">unnest</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">K</span>, <span class="va">exclus</span>, <span class="va">semcoh</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">K</span>, <span class="va">exclus</span>, <span class="va">semcoh</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -2631,13 +2387,13 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <span>    y <span class="op">=</span> <span class="st">"Semantic coherence"</span>,</span>
 <span>    title <span class="op">=</span> <span class="st">"Exclusivity and semantic coherence"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-81-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-82-1.png" alt="" width="672"></div>
 </div>
 <div id="finalize" class="section level5" number="8.7.2.5.4">
 <h5>
 <span class="header-section-number">8.7.2.5.4</span> Finalize<a class="anchor" aria-label="anchor" href="#finalize"><i class="fas fa-link"></i></a>
 </h5>
-<div class="sourceCode" id="cb1226"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1193"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">final_stm</span> <span class="op">&lt;-</span> <span class="fu">stm</span><span class="op">(</span></span>
 <span>  <span class="va">dtm</span><span class="op">$</span><span class="va">documents</span>, <span class="va">dtm</span><span class="op">$</span><span class="va">vocab</span>,</span>
 <span>  K          <span class="op">=</span> <span class="fl">5</span>,</span>
@@ -2656,14 +2412,14 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <ul>
 <li>Using the <code>stm</code> package.</li>
 </ul>
-<div class="sourceCode" id="cb1227"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1194"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">final_stm</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-83-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" alt="" width="672"></div>
 <ul>
 <li>Using ggplot2</li>
 </ul>
 <p>In LDA distribution, <span class="math inline">\(\alpha\)</span> represents document-topic density and <span class="math inline">\(\beta\)</span> represents topic-word density.</p>
-<div class="sourceCode" id="cb1228"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1195"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># tidy</span></span>
 <span><span class="va">tidy_stm</span> <span class="op">&lt;-</span> <span class="fu">tidy</span><span class="op">(</span><span class="va">final_stm</span><span class="op">)</span></span>
 <span></span>
@@ -2680,7 +2436,7 @@ slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = 
 <span>  <span class="fu">tidytext</span><span class="fu">::</span><span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/reorder_within.html">scale_x_reordered</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" alt="" width="672"></div>
+<div class="inline-figure"><img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-85-1.png" alt="" width="672"></div>
 </div>
 </div>
 </div>

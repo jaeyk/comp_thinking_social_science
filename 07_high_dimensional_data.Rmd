@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 
 ## The Big Picture
 
-- The rise of high-dimensional data. The new data frontiers in social sciences---text ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf); [Grimmer and Stewart 2013](https://www.jstor.org/stable/pdf/24572662.pdf?casa_token=SQdSI4R_VdwAAAAA:4QiVLhCXqr9f0qNMM9U75EL5JbDxxnXxUxyIfDf0U8ZzQx9szc0xVqaU6DXG4nHyZiNkvcwGlgD6H0Lxj3y0ULHwgkf1MZt8-9TPVtkEH9I4AHgbTg)) and and image ([Joo and Steinert-Threlkeld 2018](https://arxiv.org/pdf/1810.01544))---are all high-dimensional data. 
+- The rise of high-dimensional data. The new data frontiers in social sciences---text ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf); [Grimmer and Stewart 2013](https://www.jstor.org/stable/pdf/24572662.pdf?casa_token=SQdSI4R_VdwAAAAA:4QiVLhCXqr9f0qNMM9U75EL5JbDxxnXxUxyIfDf0U8ZzQx9szc0xVqaU6DXG4nHyZiNkvcwGlgD6H0Lxj3y0ULHwgkf1MZt8-9TPVtkEH9I4AHgbTg)) and image ([Joo and Steinert-Threlkeld 2018](https://arxiv.org/pdf/1810.01544))---are all high-dimensional data. 
 
     - 1000 common English words for 30-word tweets: $1000^{30}$ similar to N of atoms in the universe ([Gentzkow et al. 2019](https://web.stanford.edu/~gentzkow/research/text-as-data.pdf))
 
@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
 
     - $y$ <- unknown <- $x$ 
     
-    - $y$ <-> decision trees, neutral nets <-> $x$
+    - $y$ <-> decision trees, neural nets <-> $x$
         
     - For the main idea behind prediction modeling, see Breiman, Leo (Berkeley stat faculty who passed away in 2005). ["Statistical modeling: The two cultures (with comments and a rejoinder by the author)."](https://projecteuclid.org/euclid.ss/1009213726) *Statistical science* 16, no. 3 (2001): 199-231.
     
@@ -82,13 +82,13 @@ knitr::opts_chunk$set(
   
     - Prediction problems = Supervised (some $y$ are known) + Unsupervised ($y$ unknown)
     
-![How to teach machines. Based on [vas3k blog](https://vas3k.com/blog/machine_learning/). Many images in this chapter come from vas3k blog.](https://i.vas3k.ru/7w9.jpg)
+<img src="https://i.vas3k.ru/7w9.jpg" alt="How to teach machines. Based on vas3k blog. Many images in this chapter come from vas3k blog." style="max-width:100%;" />
 
-![The main types of machine learning. Based on [vas3k blog](https://vas3k.com/blog/machine_learning/)](https://i.vas3k.ru/7vz.jpg)
+<img src="https://i.vas3k.ru/7vz.jpg" alt="The main types of machine learning. Based on vas3k blog" style="max-width:100%;" />
 
-![The map of the machine learning universe. Based on [vas3k blog](https://vas3k.com/blog/machine_learning/)](https://i.vas3k.ru/7vx.jpg)
+<img src="https://i.vas3k.ru/7vx.jpg" alt="The map of the machine learning universe. Based on vas3k blog" style="max-width:100%;" />
 
-![Classical machine learning. Based on [vas3k blog](https://vas3k.com/blog/machine_learning/)](https://i.vas3k.ru/7w1.jpg)
+<img src="https://i.vas3k.ru/7w1.jpg" alt="Classical machine learning. Based on vas3k blog" style="max-width:100%;" />
 
 ## Dataset  
 
@@ -139,7 +139,7 @@ data_original <- read_csv(here("data", "heart.csv"))
 
 glimpse(data_original)
 
-# Createa a copy
+# Create a copy
 data <- data_original
 
 theme_set(theme_minimal())
@@ -174,7 +174,7 @@ glue("- {seq(workflow_list)}. {workflow_list}")
     
     - [`yardstick`](https://github.com/tidymodels/yardstick): for model evaluations 
     
-    - [`workflows`](https://github.com/tidymodels/workflows): for bundling a pieplne that bundles together preprocessing, modeling, and post-processing requests 
+    - [`workflows`](https://github.com/tidymodels/workflows): for bundling a pipeline that bundles together preprocessing, modeling, and post-processing requests 
     
 - Why taking a tidyverse approach to machine learning?
 
@@ -186,13 +186,13 @@ glue("- {seq(workflow_list)}. {workflow_list}")
     
     - Extendable code
 
-![Tidymodels. From RStudio.](https://rviews.rstudio.com/post/2019-06-14-a-gentle-intro-to-tidymodels_files/figure-html/ds.png)
+<img src="https://rviews.rstudio.com/post/2019-06-14-a-gentle-intro-to-tidymodels_files/figure-html/ds.png" alt="Tidymodels. From RStudio." style="max-width:100%;" />
 
 > tidymodels are an **integrated, modular, extensible** set of packages that implement a framework that facilitates creating predicative stochastic models. - Joseph Rickert@RStudio
 
 - Currently, 238 models are [available](https://topepo.github.io/caret/available-models.html) 
 
-- The following materials are based on [the machine learning with tidymodels workshop](https://github.com/dlab-berkeley/Machine-Learning-with-tidymodels) I developed for D-Lab. [The original workshop](https://github.com/dlab-berkeley/Machine-Learning-in-R) was designed by [Chris Kennedy](https://ck37.com/) and [Evan Muzzall](https://dlab.berkeley.edu/people/evan-muzzall.
+- The following materials are based on [the machine learning with tidymodels workshop](https://github.com/dlab-berkeley/Machine-Learning-with-tidymodels) I developed for D-Lab. [The original workshop](https://github.com/dlab-berkeley/Machine-Learning-in-R) was designed by [Chris Kennedy](https://ck37.com/) and [Evan Muzzall](https://dlab.berkeley.edu/people/evan-muzzall).
 
 ## Pre-processing
 
@@ -261,7 +261,7 @@ data %>%
 
 #### Outcome variable 
 
-```{r}
+```{r results='hide'}
 
 # Continuous variable
 data$age %>% class()
@@ -301,7 +301,7 @@ rec_reg <- raw_train_x_reg %>%
 prep_reg <- rec_reg %>% prep(retain = TRUE)
 ```
 
-```{r}
+```{r results='hide'}
 
 # x features
 train_x_reg <- juice(prep_reg, all_predictors())
@@ -322,7 +322,7 @@ class(train_y_reg) # Make sure this is a continuous variable!
 ```
 - Note that other imputation methods are also available. 
 
-```{r}
+```{r results='hide'}
 grep("impute", ls("package:recipes"), value = TRUE)
 ```
 
@@ -332,7 +332,7 @@ grep("impute", ls("package:recipes"), value = TRUE)
 
 #### Outcome variable 
 
-```{r}
+```{r results='hide'}
 
 data$target %>% class()
 
@@ -377,7 +377,7 @@ rec_class <- raw_train_x_class %>%
 prep_class <- rec_class %>% prep(retain = TRUE)
 ```
 
-```{r}
+```{r results='hide'}
 
 # x features
 train_x_class <- juice(prep_class, all_predictors())
@@ -413,7 +413,7 @@ ols_spec <- linear_reg() %>% # Specify a model
   set_mode("regression") # Declare a mode: regression or classification
 ```
 
-![Source: http://ethen8181.github.io](http://ethen8181.github.io/machine-learning/regularization/images/lasso_ridge_coefficients.png)
+<img src="http://ethen8181.github.io/machine-learning/regularization/images/lasso_ridge_coefficients.png" alt="Source: http://ethen8181.github.io" style="max-width:100%;" />
 
 Lasso is one of the regularization techniques along with ridge and elastic-net. 
 
@@ -425,7 +425,9 @@ lasso_spec <- linear_reg(
 ) %>% # 1 = lasso, 0 = ridge
   set_engine("glmnet") %>%
   set_mode("regression")
+```
 
+```{r results='hide'}
 # If you don't understand parsnip arguments
 lasso_spec %>% translate() # See the documentation
 ```
@@ -485,7 +487,7 @@ evals %>%
 
 2. Random search: random sample points from a bounded domain
 
-![](https://www.programmersought.com/images/523/7e44435f20fe514c11ca0d930af8547b.png)
+<img src="https://www.programmersought.com/images/523/7e44435f20fe514c11ca0d930af8547b.png" alt="Grid search vs random search" style="max-width:100%;" />
 
 ```{r}
 # tune() = placeholder
@@ -497,14 +499,12 @@ tune_spec <- linear_reg(
   set_engine("glmnet") %>%
   set_mode("regression")
 
-tune_spec
-
 # penalty() searches 50 possible combinations
 
 lambda_grid <- grid_regular(penalty(), levels = 50)
 ```
 
-![Source: Kaggle](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4788946%2F82b5a41b6693a313b246f02d79e972d5%2FK%20FOLD.png?generation=1608195745131795&alt=media)
+<img src="https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4788946%2F82b5a41b6693a313b246f02d79e972d5%2FK%20FOLD.png?generation=1608195745131795&alt=media" alt="Source: Kaggle" style="max-width:100%;" />
 
 ```{r}
 # 10-fold cross-validation
@@ -568,8 +568,6 @@ conflict_prefer("filter", "dplyr")
 top_rmse <- show_best(rec_res, metric = "rmse")
 
 best_rmse <- select_best(rec_res, metric = "rmse")
-
-best_rmse
 
 glue('The RMSE of the intiail model is
      {evals %>%
@@ -673,7 +671,7 @@ A confusion matrix is often used to describe the performance of a classification
 
 -   `ROC Curve` (receiver operating characteristic curve): a plot that shows the relationship between true and false positive rates at different classification thresholds. y-axis indicates the true positive rate and x-axis indicates the false positive rate. What matters is the AUC (Area under the ROC Curve), which is a cumulative probability function of ranking a random "positive" - "negative" pair (for the probability of AUC, see [this blog post](https://www.alexejgossmann.com/auc/)).
 
-![Source: Google Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/images/ROCCurve.svg)
+<img src="https://developers.google.com/machine-learning/crash-course/images/ROCCurve.svg" alt="Source: Google Machine Learning Crash Course" style="max-width:100%;" />
 
 -   To learn more about other metrics, check out the yardstick package [references](https://yardstick.tidymodels.org/reference/index.html).
 
@@ -717,9 +715,6 @@ tree_grid <- grid_regular(cost_complexity(),
   tree_depth(),
   levels = 5
 ) # 2 hyperparameters -> 5*5 = 25 combinations
-
-tree_grid %>%
-  count(tree_depth)
 
 # 10-fold cross-validation
 
@@ -847,20 +842,20 @@ Here we focus on the difference between bagging and boosting. In short, boosting
 - Prediction: Simple average of the estimated responses (majority vote system)
 
 
-![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/bagging.png)
+<img src="https://sebastianraschka.com/images/faq/bagging-boosting-rf/bagging.png" alt="From Sebastian Raschka's blog" style="max-width:100%;" />
 
 
-**boosting** 
+**boosting**
 
 
 - Data: Weighted training data will be random sampled
 
-- Learning: Building models sequentially (mispredicted cases would receive more weights) 
+- Learning: Building models sequentially (mispredicted cases would receive more weights)
 
-- Prediction: Weighted average of the estimated responses 
+- Prediction: Weighted average of the estimated responses
 
 
-![From Sebastian Raschka's blog](https://sebastianraschka.com/images/faq/bagging-boosting-rf/boosting.png)
+<img src="https://sebastianraschka.com/images/faq/bagging-boosting-rf/boosting.png" alt="From Sebastian Raschka's blog" style="max-width:100%;" />
 
 
 #### parsnip 
@@ -953,9 +948,6 @@ rand_grid <- grid_regular(mtry(range = c(1, 10)),
   min_n(range = c(2, 10)),
   levels = 5
 )
-
-rand_grid %>%
-  count(min_n)
 ```
 
 ```{r}
@@ -1014,8 +1006,6 @@ rand_res %>%
 ```{r}
 # Optimal hyperparameter
 best_tree <- tune::select_best(rand_res, metric = "accuracy")
-
-best_tree
 
 # Add the hyperparameter to the workflow
 finalize_tree <- rand_wf %>%
@@ -1245,8 +1235,6 @@ xg_res %>%
 # Optimal hyperparameter
 best_xg <- select_best(xg_res, metric = "roc_auc")
 
-best_xg
-
 # Add the hyperparameter to the workflow
 finalize_xg <- xg_wf %>%
   finalize_workflow(best_xg)
@@ -1292,7 +1280,7 @@ This stacking part of the book heavily relies on [Chris Kennedy's notebook](http
 
 Wolpert, D.H., 1992. [Stacked generalization](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.56.1533). *Neural networks*, 5(2), pp.241-259.
 
-Breiman, L., 1996. [Stacked regressions]((https://statistics.berkeley.edu/sites/default/files/tech-reports/367.pdf). *Machine learning*, 24(1), pp.49-64.
+Breiman, L., 1996. [Stacked regressions](https://statistics.berkeley.edu/sites/default/files/tech-reports/367.pdf). *Machine learning*, 24(1), pp.49-64.
 
 ##### SuperLearner 
 
@@ -1304,7 +1292,7 @@ A "wrapper" is a short function that adapts an algorithm for the SuperLearner pa
 
 #### Choose algorithms
 
-```{r}
+```{r results='hide'}
 # Review available models
 SuperLearner::listWrappers()
 ```
@@ -1351,7 +1339,7 @@ Risk is the average loss, and loss is how far off the prediction was for an indi
 * `SuperLearner` takes a weighted average of the **models** using the coefficients (importance of each learner in the overall ensemble). Coefficient 0 means that learner is not used at all.
 * `SL.mean_All` (the weighted mean of $Y$) is a benchmark algorithm (ignoring features). 
 
-```{r}
+```{r results='hide'}
 summary(cv_sl)
 ```
 
@@ -1369,7 +1357,7 @@ plot(cv_sl)
 
 ROC: a ROC (receiver operating characteristic curve) plots the relationship between True Positive Rate (Y-axis) and FALSE Positive Rate (X-axis). 
 
-![Area Under the ROC Curve](https://developers.google.com/machine-learning/crash-course/images/AUC.svg)
+<img src="https://developers.google.com/machine-learning/crash-course/images/AUC.svg" alt="Area Under the ROC Curve" style="max-width:100%;" />
 
 **AUC** 
 
@@ -1379,13 +1367,13 @@ AUC: Area Under the ROC Curve
 
 0.5 = no better than chance 
 
-```{r}
+```{r results='hide'}
 # Summary of cross-validated SuperLearner
 # Shows risk estimates and coefficients for each learner
 summary(cv_sl)
 ```
 
-##### Plot the ROC curve for the best estimator (DiscretSL)
+##### Plot the ROC curve for the best estimator (Discrete SL)
 
 ```{r}
 # Plot ROC curve for SuperLearner
@@ -1413,7 +1401,7 @@ ggplot(roc_data, aes(x = fpr, y = tpr)) +
 
 ##### Review weight distribution for the SuperLearner
 
-```{r}
+```{r results='hide'}
 # Display SuperLearner weights
 # The coef vector shows the weight assigned to each learner in the ensemble
 coef_vec <- as.numeric(cv_sl$coef)
@@ -1441,7 +1429,7 @@ x -> f - > y (not defined)
 
 ### Dimension reduction
 
-![Projecting 2D-data to a line (PCA). From vas3k.com](https://i.stack.imgur.com/Q7HIP.gif)
+<img src="https://i.stack.imgur.com/Q7HIP.gif" alt="Projecting 2D-data to a line (PCA). From vas3k.com" style="max-width:100%;" />
 
 #### Correlation analysis 
 
@@ -1459,12 +1447,12 @@ Again, think about what the dataset is about. The following data dictionary come
 * thalach - maximum heart rate achieved
 * exang - exercise induced angina (1 = yes; 0 = no)
 * oldpeak - ST depression induced by exercise relative to rest
-slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = downsloping)
+* slope - the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = downsloping)
 * ca - number of major vessels (0-3) colored by flourosopy
 * thal - 3 = normal; 6 = fixed defect; 7 = reversable defect
 * num - the predicted attribute - diagnosis of heart disease (angiographic disease status) (Value 0 = < 50% diameter narrowing; Value 1 = > 50% diameter narrowing)
 
-```{r}
+```{r results='hide'}
 data_original %>%
   select(-target) %>%
   corrr::correlate()
@@ -1474,7 +1462,7 @@ data_original %>%
 
 Notice the scaling issues? PCA is not scale-invariant. So, we need to fix this problem.
 
-```{r}
+```{r results='hide'}
 min_max <- list(
   min = ~ min(.x, na.rm = TRUE),
   max = ~ max(.x, na.rm = TRUE)
@@ -1493,13 +1481,13 @@ data_original %>%
 pca_recipe <- recipe(~., data = data_original) %>%
   # Imputing NAs using mean
   step_impute_mean(all_predictors()) %>%
-  # Normalize some numeric variabless
+  # Normalize some numeric variables
   step_normalize(c("age", "trestbps", "chol", "thalach", "oldpeak"))
 ```
 
 #### PCA analysis 
 
-```{r}
+```{r results='hide'}
 pca_res <- pca_recipe %>%
   step_pca(all_predictors(),
     id = "pca"
@@ -1554,7 +1542,7 @@ pca_recipe %>%
   coord_flip() +
   labs(
     x = "Terms",
-    y = "Contribtutions",
+    y = "Contributions",
     fill = "PCAs"
   )
 ```
@@ -1603,12 +1591,11 @@ austen_words <- austen_chapters %>%
   ) %>%
   ungroup()
 
-head(austen_words)
 ```
 
 #### Key ideas 
 
-![Source: paperswithcode.com](https://paperswithcode.com/media/thumbnails/task/task-0000000179-fd3a1d11_fGQkZCJ.jpg)
+<img src="https://paperswithcode.com/media/thumbnails/task/task-0000000179-fd3a1d11_fGQkZCJ.jpg" alt="Source: paperswithcode.com" style="max-width:100%;" />
 
 -   Main papers: See [Latent Dirichlet Allocation](https://proceedings.neurips.cc/paper/2001/file/296472c9542ad4d4788d543508116cbc-Paper.pdf) by David M. Blei, Andrew Y. Ng and Michael I. Jordan (then all Berkeley) and this [follow-up paper](http://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/latent_dirichlet_allocation.pdf) with the same title.
 
@@ -1620,7 +1607,7 @@ head(austen_words)
 
     -   Probability
 
-    -   Multinominal
+    -   Multinomial
 
 -   Words lie on a lower-dimensional space (dimension reduction akin to PCA)
 
@@ -1678,7 +1665,7 @@ top_words %>%
 
 Also, note that we didn't cover other important techniques in topic modeling, such as dynamic and hierarchical topic modeling.
 
-![](https://warin.ca/shiny/stm/images/fig02.png)
+<img src="https://warin.ca/shiny/stm/images/fig02.png" alt="STM workflow" style="max-width:100%;" />
 
 ##### Turn text into document-term matrix
 
@@ -1708,7 +1695,7 @@ test_res <- searchK(
 )
 ```
 
-##### Evaludating models 
+##### Evaluating models 
 
 Several metrics assess topic models' performance: the held-out likelihood, residuals, semantic coherence, and exclusivity. Here we examine the relationship between semantic coherence and exclusivity to understand the trade-off involved in selecting K.
 

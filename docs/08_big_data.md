@@ -125,12 +125,6 @@ pacman::p_load(
 )
 ```
 
-```
-## 
-## The downloaded binary packages are in
-## 	/var/folders/wt/b5zf6_0910b4_lsl7k4_jcnm0000gn/T//RtmpmPBYNo/downloaded_packages
-```
-
 ### NYC flights data 
 
 - [The flight on-time performance data](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236) from the Bureau of Transportation Statistics of the U.S. government. The data goes back to 1987, and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.
