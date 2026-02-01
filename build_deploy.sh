@@ -49,8 +49,8 @@ build_site() {
   log "Building site..."
   start=$SECONDS
 
-  # ensure bookdown is installed for rendering
-  Rscript --vanilla -e 'if (!requireNamespace("bookdown", quietly=TRUE)) install.packages("bookdown")'
+  # ensure required packages are installed for rendering
+  Rscript --vanilla -e 'options(repos = c(CRAN = "https://cloud.r-project.org")); for (pkg in c("bookdown", "bslib", "downlit")) if (!requireNamespace(pkg, quietly=TRUE)) install.packages(pkg)'
 
   if [[ -f "_quarto.yml" || -f "quarto.yml" ]]; then
     log "Detected Quarto project"
@@ -59,7 +59,7 @@ build_site() {
   elif [[ -f "_bookdown.yml" ]] || grep -q "bookdown::" *.Rmd 2>/dev/null; then
     log "Detected bookdown project"
     ensure_common_r
-    Rscript --vanilla -e "bookdown::render_book('.', output_dir='${SITE_DIR}')"
+    Rscript -e "bookdown::render_book('.', output_dir='${SITE_DIR}')"
 
     # move default _book output
     if [[ -d "_book" ]]; then
