@@ -100,6 +100,8 @@ pacman::p_load(
   doParallel,   # Parallel backend for modeling (foreach, caret, tidymodels)
   patchwork,    # Compose multiple ggplots into one layout
   remotes,      # Install packages from GitHub and other remote sources
+  nnls,         # Non-negative least squares (required by SuperLearner)
+  gam,          # Generalized additive models (required by SuperLearner)
   SuperLearner, # Ensemble learning via stacked generalization
   vip,          # Variable importance plots (model‐agnostic)
   glmnet,       # Regularized regression (lasso, ridge, elastic net)
@@ -108,11 +110,20 @@ pacman::p_load(
   xgboost,      # Gradient boosting (XGBoost)
   rpart,        # Recursive partitioning trees
   ranger,       # Fast random forests with C++ backend
+  corrr,        # Correlation analysis
+  tm,           # Text mining (required by stm)
+  SnowballC,    # Stemming (required by stm)
   conflicted    # Explicit conflict resolution for masking functions
 )
+```
 
-remotes::install_github("ck37/ck37r")
+```
+## 
+## The downloaded binary packages are in
+## 	/var/folders/wt/b5zf6_0910b4_lsl7k4_jcnm0000gn/T//Rtmp02YRIe/downloaded_packages
+```
 
+``` r
 conflicted::conflict_prefer("filter", "dplyr")
 ```
 
@@ -572,14 +583,14 @@ map2(list(ols_fit, lasso_fit), c("OLS", "Lasso"), visualize_fit)
 ## [[1]]
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" />
 
 ```
 ## 
 ## [[2]]
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-19-2.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-19-2.png" alt="" width="672" />
 
 
 ``` r
@@ -593,7 +604,7 @@ evals <- purrr::map(list(ols_fit, lasso_fit), evaluate_reg) %>%
 
 # Visualize the test results
 evals %>%
-  ggplot(aes(x = fct_reorder(type, .estimate), y = .estimate)) +
+  ggplot(aes(x = type, y = .estimate)) +
   geom_point() +
   labs(
     x = "Model",
@@ -602,7 +613,7 @@ evals %>%
   facet_wrap(~ glue("{toupper(.metric)}"), scales = "free_y")
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" />
 - For more information, read [Tidy Modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge.
 
 #### tune 
@@ -706,7 +717,7 @@ rec_res %>%
   theme(legend.position = "none")
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-25-1.png" alt="" width="672" />
 
 ##### Select 
 
@@ -723,9 +734,9 @@ best_rmse
 
 ```
 ## # A tibble: 1 × 2
-##   penalty .config              
-##     <dbl> <chr>                
-## 1   0.391 Preprocessor1_Model48
+##   penalty .config         
+##     <dbl> <chr>           
+## 1   0.391 pre0_mod48_post0
 ```
 
 ``` r
@@ -738,7 +749,7 @@ glue('The RMSE of the intiail model is
 
 ```
 ## The RMSE of the intiail model is
-##    7.82
+##    7.81
 ```
 
 ``` r
@@ -768,7 +779,7 @@ finalize_lasso %>%
   vip::vip()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-27-1.png" alt="" width="672" />
 
 ##### Test fit 
 
@@ -786,9 +797,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 × 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.06 
-## 2 mae     standard       5.80 
-## 3 rsq     standard       0.407
+## 1 rmse    standard       7.12 
+## 2 mae     standard       5.84 
+## 3 rsq     standard       0.394
 ```
 
 ### Decision tree 
@@ -870,7 +881,7 @@ tree_fit_viz_metr <- visualize_class_eval(tree_fit)
 tree_fit_viz_metr
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-31-1.png" alt="" width="672" />
 
 ``` r
 tree_fit_viz_mat <- visualize_class_conf(tree_fit)
@@ -878,7 +889,7 @@ tree_fit_viz_mat <- visualize_class_conf(tree_fit)
 tree_fit_viz_mat
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-31-2.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-31-2.png" alt="" width="672" />
 
 #### tune 
 
@@ -981,7 +992,7 @@ tree_res %>%
   coord_flip()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-34-1.png" alt="" width="672" />
 
 ##### Select 
 
@@ -1004,14 +1015,14 @@ tree_fit_tuned <- finalize_tree %>%
 (tree_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-36-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-36-1.png" alt="" width="672" />
 
 ``` r
 # Confusion matrix
 (tree_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(tree_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-36-2.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-36-2.png" alt="" width="672" />
 
 - Visualize variable importance 
 
@@ -1022,7 +1033,7 @@ tree_fit_tuned %>%
   vip::vip()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-37-1.png" alt="" width="672" />
 
 ##### Test fit
 
@@ -1133,7 +1144,7 @@ rand_fit_viz_metr <- visualize_class_eval(rand_fit)
 rand_fit_viz_metr
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-41-1.png" alt="" width="672" />
 
 - Visualize the confusion matrix. 
   
@@ -1144,7 +1155,7 @@ rand_fit_viz_mat <- visualize_class_conf(rand_fit)
 rand_fit_viz_mat
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672" />
 
 #### tune 
 
@@ -1246,7 +1257,7 @@ rand_res %>%
   theme(legend.position = "bottom")
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-46-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-46-1.png" alt="" width="672" />
 
 
 ``` r
@@ -1258,9 +1269,9 @@ best_tree
 
 ```
 ## # A tibble: 1 × 3
-##    mtry min_n .config              
-##   <int> <int> <chr>                
-## 1     1     4 Preprocessor1_Model06
+##    mtry min_n .config         
+##   <int> <int> <chr>           
+## 1     1     2 pre0_mod01_post0
 ```
 
 ``` r
@@ -1278,14 +1289,14 @@ rand_fit_tuned <- finalize_tree %>%
 (rand_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-48-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-48-1.png" alt="" width="672" />
 
 ``` r
 # Confusion matrix
 (rand_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(rand_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-48-2.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-48-2.png" alt="" width="672" />
 
 - Visualize variable importance 
 
@@ -1296,7 +1307,7 @@ rand_fit_tuned %>%
   vip::vip()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-49-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-49-1.png" alt="" width="672" />
 
 ##### Test fit
 
@@ -1410,9 +1421,9 @@ evaluate_class(xg_fit)
 ## # A tibble: 3 × 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.783
-## 2 precision binary         0.775
-## 3 recall    binary         0.738
+## 1 accuracy  binary         0.739
+## 2 precision binary         0.725
+## 3 recall    binary         0.690
 ```
 
 
@@ -1423,7 +1434,7 @@ xg_fit_viz_metr <-
 xg_fit_viz_metr
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-54-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-54-1.png" alt="" width="672" />
 
 - Visualize the confusion matrix. 
   
@@ -1435,7 +1446,7 @@ xg_fit_viz_mat <-
 xg_fit_viz_mat
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-55-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-55-1.png" alt="" width="672" />
 
 #### tune 
 
@@ -1528,7 +1539,7 @@ xg_res %>%
   )
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-58-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-58-1.png" alt="" width="672" />
 
 
 ``` r
@@ -1540,9 +1551,9 @@ best_xg
 
 ```
 ## # A tibble: 1 × 8
-##    mtry trees min_n tree_depth learn_rate loss_reduction sample_size .config    
-##   <int> <int> <int>      <int>      <dbl>          <dbl>       <dbl> <chr>      
-## 1     5   399     6          7     0.0250        0.00125       0.588 Preprocess…
+##    mtry trees min_n tree_depth   learn_rate loss_reduction sample_size .config  
+##   <int> <int> <int>      <int>        <dbl>          <dbl>       <dbl> <chr>    
+## 1     2  1752     4         10 0.0000000458      0.0000507       0.633 pre0_mod…
 ```
 
 ``` r
@@ -1560,14 +1571,14 @@ xg_fit_tuned <- finalize_xg %>%
 (xg_fit_viz_metr + labs(title = "Non-tuned")) / (visualize_class_eval(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-60-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-60-1.png" alt="" width="672" />
 
 ``` r
 # Confusion matrix
 (xg_fit_viz_mat + labs(title = "Non-tuned")) / (visualize_class_conf(xg_fit_tuned) + labs(title = "Tuned"))
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-60-2.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-60-2.png" alt="" width="672" />
 
 - Visualize variable importance 
 
@@ -1578,7 +1589,7 @@ xg_fit_tuned %>%
   vip::vip()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-61-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-61-1.png" alt="" width="672" />
 
 ##### Test fit
 
@@ -1596,9 +1607,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 × 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.707
-## 2 precision binary         0.692
-## 3 recall    binary         0.643
+## 1 accuracy  binary         0.543
+## 2 precision binary        NA    
+## 3 recall    binary         0
 ```
 
 ### Stacking (SuperLearner)
@@ -1714,13 +1725,13 @@ summary(cv_sl)
 ## All risk estimates are based on V =  5 
 ## 
 ##       Algorithm     Ave        se      Min     Max
-##   Super Learner 0.11351 0.0135381 0.076355 0.14359
-##     Discrete SL 0.11881 0.0144947 0.075055 0.16282
+##   Super Learner 0.10711 0.0130358 0.077765 0.13232
+##     Discrete SL 0.10576 0.0132606 0.075311 0.13711
 ##     SL.mean_All 0.24798 0.0030968 0.247743 0.24895
-##   SL.glmnet_All 0.10761 0.0135766 0.075055 0.14412
-##    SL.rpart_All 0.16942 0.0196963 0.111990 0.23162
-##   SL.ranger_All 0.12469 0.0118153 0.097683 0.15397
-##  SL.xgboost_All 0.12971 0.0148822 0.098472 0.16282
+##   SL.glmnet_All 0.10576 0.0132606 0.075311 0.13711
+##    SL.rpart_All 0.17087 0.0197376 0.107553 0.24332
+##   SL.ranger_All 0.12434 0.0119150 0.096560 0.15417
+##  SL.xgboost_All 0.13103 0.0150129 0.102165 0.16141
 ```
 
 ##### Plot
@@ -1732,7 +1743,7 @@ summary(cv_sl)
 plot(cv_sl)
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/cvsl_review-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/cvsl_review-1.png" alt="" width="672" />
 
 #### Compute AUC for all estimators
 
@@ -1752,43 +1763,103 @@ AUC: Area Under the ROC Curve
 
 
 ``` r
-ck37r::auc_table(cv_sl)
+# Summary of cross-validated SuperLearner
+# Shows risk estimates and coefficients for each learner
+summary(cv_sl)
 ```
 
 ```
-##                      auc         se  ci_lower  ci_upper      p-value
-## SL.mean_All    0.5000000 0.06912305 0.3645213 0.6354787 4.812252e-10
-## SL.rpart_All   0.8178146 0.03940971 0.7405730 0.8950563 3.883950e-03
-## SL.xgboost_All 0.8850572 0.02439939 0.8372353 0.9328791 6.132768e-02
-## DiscreteSL     0.9073913 0.02042505 0.8673590 0.9474237 2.264354e-01
-## SL.ranger_All  0.9076201 0.02042003 0.8675976 0.9476427 2.297666e-01
-## SuperLearner   0.9167735 0.01949192 0.8785700 0.9549769 3.800928e-01
-## SL.glmnet_All  0.9227231 0.01897696 0.8855290 0.9599173 5.000000e-01
+## 
+## Call:  
+## SuperLearner::CV.SuperLearner(Y = as.numeric(as.character(train_y_class)),  
+##     X = train_x_class, family = binomial(), SL.library = sl_lib, verbose = FALSE,  
+##     cvControl = list(V = 5L, stratifyCV = TRUE)) 
+## 
+## Risk is based on: Mean Squared Error
+## 
+## All risk estimates are based on V =  5 
+## 
+##       Algorithm     Ave        se      Min     Max
+##   Super Learner 0.10711 0.0130358 0.077765 0.13232
+##     Discrete SL 0.10576 0.0132606 0.075311 0.13711
+##     SL.mean_All 0.24798 0.0030968 0.247743 0.24895
+##   SL.glmnet_All 0.10576 0.0132606 0.075311 0.13711
+##    SL.rpart_All 0.17087 0.0197376 0.107553 0.24332
+##   SL.ranger_All 0.12434 0.0119150 0.096560 0.15417
+##  SL.xgboost_All 0.13103 0.0150129 0.102165 0.16141
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
 
 
 ``` r
-ck37r::plot_roc(cv_sl)
+# Plot ROC curve for SuperLearner
+pred <- cv_sl$SL.predict
+truth <- cv_sl$Y
+
+# Calculate ROC points
+roc_data <- data.frame(pred = pred, truth = truth) %>%
+  arrange(desc(pred)) %>%
+  mutate(
+    tpr = cumsum(truth) / sum(truth),
+    fpr = cumsum(!truth) / sum(!truth)
+  )
+
+ggplot(roc_data, aes(x = fpr, y = tpr)) +
+  geom_line(color = "blue", linewidth = 1) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "gray") +
+  labs(
+    title = "ROC Curve - SuperLearner",
+    x = "False Positive Rate (1 - Specificity)",
+    y = "True Positive Rate (Sensitivity)"
+  ) +
+  theme_minimal()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-68-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-68-1.png" alt="" width="672" />
 
 ##### Review weight distribution for the SuperLearner
 
 
 ``` r
-print(ck37r::cvsl_weights(cv_sl), row.names = FALSE)
+# Display SuperLearner weights
+# The coef vector shows the weight assigned to each learner in the ensemble
+coef_vec <- as.numeric(cv_sl$coef)
+sl_weights <- data.frame(
+  Algorithm = cv_sl$libraryNames,
+  Weight = round(coef_vec, 4)
+)
+sl_weights <- sl_weights[order(sl_weights$Weight, decreasing = TRUE), ]
+print(sl_weights, row.names = FALSE)
 ```
 
 ```
-##  # Learner    Mean      SD     Min     Max
-##  1  glmnet 0.76420 0.24570 0.44705 0.99058
-##  2 xgboost 0.13366 0.20161 0.00000 0.47300
-##  3  ranger 0.08615 0.19263 0.00000 0.43074
-##  4   rpart 0.01599 0.03575 0.00000 0.07995
-##  5    mean 0.00000 0.00000 0.00000 0.00000
+##       Algorithm Weight
+##   SL.ranger_All 0.9809
+##  SL.xgboost_All 0.8743
+##     SL.mean_All 0.7913
+##   SL.glmnet_All 0.7607
+##    SL.rpart_All 0.7042
+##   SL.glmnet_All 0.2393
+##    SL.rpart_All 0.2377
+##     SL.mean_All 0.2087
+##  SL.xgboost_All 0.1217
+##    SL.rpart_All 0.0582
+##   SL.ranger_All 0.0191
+##  SL.xgboost_All 0.0039
+##     SL.mean_All 0.0000
+##   SL.glmnet_All 0.0000
+##    SL.rpart_All 0.0000
+##   SL.ranger_All 0.0000
+##  SL.xgboost_All 0.0000
+##     SL.mean_All 0.0000
+##   SL.glmnet_All 0.0000
+##   SL.ranger_All 0.0000
+##  SL.xgboost_All 0.0000
+##     SL.mean_All 0.0000
+##   SL.glmnet_All 0.0000
+##    SL.rpart_All 0.0000
+##   SL.ranger_All 0.0000
 ```
 
 The general stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
@@ -1954,7 +2025,7 @@ pca_recipe %>%
   )
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-74-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-74-1.png" alt="" width="672" />
 
 ##### View factor loadings 
 
@@ -1969,8 +2040,9 @@ pca_recipe %>%
   prep() %>%
   tidy(id = "pca") %>%
   filter(component %in% c("PC1", "PC2")) %>%
+  mutate(terms = fct_reorder(terms, abs(value), .fun = max)) %>%
   ggplot(aes(
-    x = fct_reorder(terms, value), y = value,
+    x = terms, y = value,
     fill = component
   )) +
   geom_col(position = "dodge") +
@@ -1982,7 +2054,7 @@ pca_recipe %>%
   )
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-75-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-75-1.png" alt="" width="672" />
 
 **The key lesson**
 
@@ -2097,10 +2169,13 @@ top_words <- austen_words %>%
   ungroup()
 
 # 3) Plot the top words
-ggplot(top_words, aes(x = fct_reorder(word, freq), y = freq)) +
+top_words %>%
+  mutate(word = tidytext::reorder_within(word, freq, book)) %>%
+  ggplot(aes(x = word, y = freq)) +
   geom_col() +
   facet_wrap(~book, scales = "free_y", ncol = 2) +
   coord_flip() +
+  tidytext::scale_x_reordered() +
   labs(
     x = NULL,
     y = "Relative frequency"
@@ -2109,7 +2184,7 @@ ggplot(top_words, aes(x = fct_reorder(word, freq), y = freq)) +
   theme(legend.position = "none")
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-78-1.png" alt="" width="672" />
 
 #### STM
 
@@ -2159,140 +2234,144 @@ test_res <- searchK(
 ##  	...................................................................................................
 ## Initialization complete.
 ## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.740) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.555, relative change = 2.379e-02) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.482, relative change = 9.775e-03) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.442, relative change = 5.291e-03) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.419, relative change = 3.059e-03) 
+## Topic 1: much, one, never, see, can 
+##  Topic 2: look, ladi, thought, alway, howev 
+##  Topic 3: will, said, time, might, good 
+##  Topic 4: mrs, miss, think, everi, now 
+##  Topic 5: must, know, well, feel, make 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 6 (approx. per word bound = -7.405, relative change = 1.866e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 7 (approx. per word bound = -7.396, relative change = 1.197e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 8 (approx. per word bound = -7.391, relative change = 8.019e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.386, relative change = 5.579e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 10 (approx. per word bound = -7.383, relative change = 4.007e-04) 
+## Topic 1: much, one, never, see, can 
+##  Topic 2: look, ladi, thought, alway, howev 
+##  Topic 3: will, said, time, might, good 
+##  Topic 4: mrs, miss, think, everi, now 
+##  Topic 5: must, know, well, feel, make 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 11 (approx. per word bound = -7.381, relative change = 2.955e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 12 (approx. per word bound = -7.380, relative change = 2.227e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 13 (approx. per word bound = -7.378, relative change = 1.710e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 14 (approx. per word bound = -7.377, relative change = 1.333e-04) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 15 (approx. per word bound = -7.377, relative change = 1.055e-04) 
+## Topic 1: much, one, never, see, can 
+##  Topic 2: look, ladi, thought, alway, howev 
+##  Topic 3: will, said, time, might, good 
+##  Topic 4: mrs, miss, think, everi, now 
+##  Topic 5: must, know, well, feel, make 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 16 (approx. per word bound = -7.376, relative change = 8.454e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 17 (approx. per word bound = -7.375, relative change = 6.850e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 18 (approx. per word bound = -7.375, relative change = 5.602e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 19 (approx. per word bound = -7.375, relative change = 4.618e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 20 (approx. per word bound = -7.374, relative change = 3.837e-05) 
+## Topic 1: much, one, never, see, can 
+##  Topic 2: look, ladi, thought, alway, howev 
+##  Topic 3: will, said, time, might, good 
+##  Topic 4: mrs, miss, think, everi, now 
+##  Topic 5: must, know, well, feel, make 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 21 (approx. per word bound = -7.374, relative change = 3.212e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 22 (approx. per word bound = -7.374, relative change = 2.705e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 23 (approx. per word bound = -7.374, relative change = 2.289e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 24 (approx. per word bound = -7.374, relative change = 1.941e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 25 (approx. per word bound = -7.374, relative change = 1.653e-05) 
+## Topic 1: much, one, never, see, can 
+##  Topic 2: look, ladi, thought, alway, howev 
+##  Topic 3: will, said, time, might, good 
+##  Topic 4: mrs, miss, think, everi, now 
+##  Topic 5: must, know, well, feel, make 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 26 (approx. per word bound = -7.373, relative change = 1.416e-05) 
+## ....................................................................................................
+## Completed E-Step (2 seconds). 
+## Completed M-Step. 
+## Completing Iteration 27 (approx. per word bound = -7.373, relative change = 1.223e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 28 (approx. per word bound = -7.373, relative change = 1.062e-05) 
+## ....................................................................................................
 ## Completed E-Step (4 seconds). 
-## Completed M-Step. 
-## Completing Iteration 1 (approx. per word bound = -7.638) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 2 (approx. per word bound = -7.517, relative change = 1.595e-02) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 3 (approx. per word bound = -7.472, relative change = 5.930e-03) 
-## ....................................................................................................
-## Completed E-Step (4 seconds). 
-## Completed M-Step. 
-## Completing Iteration 4 (approx. per word bound = -7.439, relative change = 4.387e-03) 
-## ....................................................................................................
-## Completed E-Step (4 seconds). 
-## Completed M-Step. 
-## Completing Iteration 5 (approx. per word bound = -7.417, relative change = 3.013e-03) 
-## Topic 1: much, time, soon, without, noth 
-##  Topic 2: might, say, littl, good, feel 
-##  Topic 3: will, think, everi, can, first 
-##  Topic 4: mrs, must, miss, one, never 
-##  Topic 5: said, know, well, see, now 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 6 (approx. per word bound = -7.402, relative change = 2.013e-03) 
-## ....................................................................................................
-## Completed E-Step (4 seconds). 
-## Completed M-Step. 
-## Completing Iteration 7 (approx. per word bound = -7.392, relative change = 1.370e-03) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 8 (approx. per word bound = -7.385, relative change = 9.556e-04) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 9 (approx. per word bound = -7.380, relative change = 6.824e-04) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 10 (approx. per word bound = -7.376, relative change = 4.980e-04) 
-## Topic 1: much, time, soon, without, made 
-##  Topic 2: might, say, littl, good, feel 
-##  Topic 3: will, think, everi, can, first 
-##  Topic 4: mrs, must, miss, one, never 
-##  Topic 5: said, know, well, now, see 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 11 (approx. per word bound = -7.373, relative change = 3.706e-04) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 12 (approx. per word bound = -7.371, relative change = 2.808e-04) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 13 (approx. per word bound = -7.370, relative change = 2.160e-04) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 14 (approx. per word bound = -7.368, relative change = 1.685e-04) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 15 (approx. per word bound = -7.367, relative change = 1.331e-04) 
-## Topic 1: much, time, soon, without, made 
-##  Topic 2: might, say, littl, good, feel 
-##  Topic 3: will, think, everi, can, first 
-##  Topic 4: mrs, must, miss, one, never 
-##  Topic 5: said, know, well, now, see 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 16 (approx. per word bound = -7.367, relative change = 1.059e-04) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 17 (approx. per word bound = -7.366, relative change = 8.447e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 18 (approx. per word bound = -7.365, relative change = 6.734e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 19 (approx. per word bound = -7.365, relative change = 5.392e-05) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 20 (approx. per word bound = -7.365, relative change = 4.322e-05) 
-## Topic 1: much, time, soon, without, made 
-##  Topic 2: might, say, littl, good, feel 
-##  Topic 3: will, think, everi, can, first 
-##  Topic 4: mrs, must, miss, one, never 
-##  Topic 5: said, know, now, well, see 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 21 (approx. per word bound = -7.364, relative change = 3.470e-05) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 22 (approx. per word bound = -7.364, relative change = 2.796e-05) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 23 (approx. per word bound = -7.364, relative change = 2.268e-05) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 24 (approx. per word bound = -7.364, relative change = 1.858e-05) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 25 (approx. per word bound = -7.364, relative change = 1.538e-05) 
-## Topic 1: much, time, soon, without, give 
-##  Topic 2: might, say, littl, good, feel 
-##  Topic 3: will, think, everi, can, first 
-##  Topic 4: mrs, must, miss, one, never 
-##  Topic 5: said, know, now, well, see 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 26 (approx. per word bound = -7.364, relative change = 1.288e-05) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
-## Completed M-Step. 
-## Completing Iteration 27 (approx. per word bound = -7.364, relative change = 1.096e-05) 
-## ....................................................................................................
-## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Model Converged 
 ## Beginning Spectral Initialization 
@@ -2304,249 +2383,305 @@ test_res <- searchK(
 ##  	...................................................................................................
 ## Initialization complete.
 ## ....................................................................................................
+## Completed E-Step (6 seconds). 
+## Completed M-Step. 
+## Completing Iteration 1 (approx. per word bound = -7.839) 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 2 (approx. per word bound = -7.662, relative change = 2.250e-02) 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 3 (approx. per word bound = -7.559, relative change = 1.354e-02) 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 4 (approx. per word bound = -7.504, relative change = 7.255e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 5 (approx. per word bound = -7.469, relative change = 4.686e-03) 
+## Topic 1: much, know, littl, look, wish 
+##  Topic 2: sister, think, come, mother, way 
+##  Topic 3: must, feel, can, noth, soon 
+##  Topic 4: make, first, day, happi, elizabeth 
+##  Topic 5: mrs, everi, well, ladi, hope 
+##  Topic 6: miss, see, ever, father, made 
+##  Topic 7: without, fanni, give, sure, room 
+##  Topic 8: said, one, time, might, great 
+##  Topic 9: will, now, say, never, good 
+##  Topic 10: talk, last, better, brother, pleasur 
+## ....................................................................................................
 ## Completed E-Step (5 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 1 (approx. per word bound = -7.692) 
+## Completing Iteration 6 (approx. per word bound = -7.443, relative change = 3.389e-03) 
 ## ....................................................................................................
 ## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 2 (approx. per word bound = -7.602, relative change = 1.164e-02) 
+## Completing Iteration 7 (approx. per word bound = -7.424, relative change = 2.541e-03) 
 ## ....................................................................................................
 ## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 3 (approx. per word bound = -7.526, relative change = 9.978e-03) 
+## Completing Iteration 8 (approx. per word bound = -7.410, relative change = 1.898e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 9 (approx. per word bound = -7.400, relative change = 1.410e-03) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 10 (approx. per word bound = -7.392, relative change = 1.057e-03) 
+## Topic 1: much, know, littl, look, wish 
+##  Topic 2: think, sister, come, way, mother 
+##  Topic 3: must, feel, can, noth, soon 
+##  Topic 4: make, day, first, happi, sir 
+##  Topic 5: mrs, everi, well, ladi, hope 
+##  Topic 6: miss, see, ever, made, father 
+##  Topic 7: without, fanni, give, sure, room 
+##  Topic 8: said, one, time, might, great 
+##  Topic 9: will, now, say, never, good 
+##  Topic 10: talk, last, better, brother, pleasur 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 11 (approx. per word bound = -7.386, relative change = 8.043e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 12 (approx. per word bound = -7.382, relative change = 6.199e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 13 (approx. per word bound = -7.378, relative change = 4.837e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 14 (approx. per word bound = -7.375, relative change = 3.829e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 15 (approx. per word bound = -7.373, relative change = 3.076e-04) 
+## Topic 1: much, know, littl, look, wish 
+##  Topic 2: think, sister, come, way, mother 
+##  Topic 3: must, feel, can, noth, soon 
+##  Topic 4: make, day, first, happi, sir 
+##  Topic 5: mrs, everi, well, ladi, hope 
+##  Topic 6: miss, see, made, ever, father 
+##  Topic 7: without, fanni, give, sure, room 
+##  Topic 8: said, one, time, might, great 
+##  Topic 9: will, now, say, never, good 
+##  Topic 10: talk, last, better, brother, pleasur 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 16 (approx. per word bound = -7.371, relative change = 2.501e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 17 (approx. per word bound = -7.370, relative change = 2.048e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 18 (approx. per word bound = -7.368, relative change = 1.687e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 19 (approx. per word bound = -7.367, relative change = 1.397e-04) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 20 (approx. per word bound = -7.366, relative change = 1.160e-04) 
+## Topic 1: much, know, littl, look, wish 
+##  Topic 2: think, sister, come, way, mother 
+##  Topic 3: must, feel, can, noth, soon 
+##  Topic 4: make, day, first, happi, sir 
+##  Topic 5: mrs, everi, well, ladi, hope 
+##  Topic 6: miss, see, made, ever, father 
+##  Topic 7: without, fanni, give, sure, room 
+##  Topic 8: said, one, time, might, great 
+##  Topic 9: will, now, say, never, good 
+##  Topic 10: talk, last, better, brother, pleasur 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 21 (approx. per word bound = -7.366, relative change = 9.714e-05) 
 ## ....................................................................................................
 ## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 4 (approx. per word bound = -7.478, relative change = 6.434e-03) 
+## Completing Iteration 22 (approx. per word bound = -7.365, relative change = 8.281e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 23 (approx. per word bound = -7.365, relative change = 7.208e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 24 (approx. per word bound = -7.364, relative change = 6.338e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 25 (approx. per word bound = -7.364, relative change = 5.648e-05) 
+## Topic 1: much, know, littl, look, wish 
+##  Topic 2: think, sister, come, way, mother 
+##  Topic 3: must, feel, can, noth, soon 
+##  Topic 4: make, day, first, happi, sir 
+##  Topic 5: mrs, everi, well, ladi, hope 
+##  Topic 6: miss, see, made, ever, father 
+##  Topic 7: without, fanni, give, sure, room 
+##  Topic 8: said, one, time, might, great 
+##  Topic 9: will, now, say, never, good 
+##  Topic 10: talk, last, better, brother, pleasur 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 26 (approx. per word bound = -7.363, relative change = 5.088e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 27 (approx. per word bound = -7.363, relative change = 4.614e-05) 
+## ....................................................................................................
+## Completed E-Step (3 seconds). 
+## Completed M-Step. 
+## Completing Iteration 28 (approx. per word bound = -7.363, relative change = 4.164e-05) 
 ## ....................................................................................................
 ## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 5 (approx. per word bound = -7.446, relative change = 4.230e-03) 
-## Topic 1: mrs, will, littl, sister, wish 
-##  Topic 2: must, think, say, feel, give 
-##  Topic 3: miss, even, soon, quit, walk 
-##  Topic 4: now, thought, seem, appear, call 
-##  Topic 5: much, thing, fanni, almost, moment 
-##  Topic 6: might, without, ladi, emma, long 
-##  Topic 7: said, one, know, never, look 
-##  Topic 8: see, good, though, friend, well 
-##  Topic 9: time, everi, first, day, two 
-##  Topic 10: like, certain, parti, well, someth 
+## Completing Iteration 29 (approx. per word bound = -7.362, relative change = 3.678e-05) 
 ## ....................................................................................................
 ## Completed E-Step (4 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 6 (approx. per word bound = -7.425, relative change = 2.894e-03) 
+## Completing Iteration 30 (approx. per word bound = -7.362, relative change = 3.158e-05) 
+## Topic 1: much, know, littl, look, wish 
+##  Topic 2: think, sister, come, way, mother 
+##  Topic 3: must, feel, can, noth, soon 
+##  Topic 4: make, day, first, happi, sir 
+##  Topic 5: mrs, everi, well, ladi, hope 
+##  Topic 6: miss, see, made, ever, father 
+##  Topic 7: without, fanni, give, sure, room 
+##  Topic 8: said, one, time, might, great 
+##  Topic 9: will, now, say, never, good 
+##  Topic 10: talk, last, better, brother, pleasur 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 31 (approx. per word bound = -7.362, relative change = 2.701e-05) 
+## ....................................................................................................
+## Completed E-Step (5 seconds). 
+## Completed M-Step. 
+## Completing Iteration 32 (approx. per word bound = -7.362, relative change = 2.355e-05) 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 33 (approx. per word bound = -7.362, relative change = 2.098e-05) 
+## ....................................................................................................
+## Completed E-Step (5 seconds). 
+## Completed M-Step. 
+## Completing Iteration 34 (approx. per word bound = -7.362, relative change = 1.895e-05) 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 35 (approx. per word bound = -7.361, relative change = 1.699e-05) 
+## Topic 1: much, know, littl, look, wish 
+##  Topic 2: think, sister, come, way, mother 
+##  Topic 3: must, feel, can, noth, soon 
+##  Topic 4: make, day, first, happi, sir 
+##  Topic 5: mrs, everi, well, ladi, hope 
+##  Topic 6: miss, see, made, ever, father 
+##  Topic 7: without, fanni, give, sure, room 
+##  Topic 8: said, one, time, might, great 
+##  Topic 9: will, now, say, never, good 
+##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 7 (approx. per word bound = -7.409, relative change = 2.120e-03) 
+## Completing Iteration 36 (approx. per word bound = -7.361, relative change = 1.546e-05) 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 8 (approx. per word bound = -7.397, relative change = 1.605e-03) 
+## Completing Iteration 37 (approx. per word bound = -7.361, relative change = 1.433e-05) 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 9 (approx. per word bound = -7.388, relative change = 1.257e-03) 
+## Completing Iteration 38 (approx. per word bound = -7.361, relative change = 1.345e-05) 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 10 (approx. per word bound = -7.381, relative change = 9.623e-04) 
-## Topic 1: mrs, will, littl, sister, make 
-##  Topic 2: must, think, say, feel, give 
-##  Topic 3: miss, even, soon, quit, walk 
-##  Topic 4: now, thought, seem, appear, call 
-##  Topic 5: much, thing, fanni, moment, almost 
-##  Topic 6: might, ladi, without, come, emma 
-##  Topic 7: said, one, know, never, look 
-##  Topic 8: see, good, well, though, friend 
-##  Topic 9: time, everi, day, first, two 
-##  Topic 10: like, certain, someth, parti, sure 
+## Completing Iteration 39 (approx. per word bound = -7.361, relative change = 1.275e-05) 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 11 (approx. per word bound = -7.375, relative change = 7.316e-04) 
+## Completing Iteration 40 (approx. per word bound = -7.361, relative change = 1.233e-05) 
+## Topic 1: much, know, littl, look, wish 
+##  Topic 2: think, sister, come, way, mother 
+##  Topic 3: must, feel, can, noth, soon 
+##  Topic 4: make, day, first, happi, sir 
+##  Topic 5: mrs, everi, well, ladi, hope 
+##  Topic 6: miss, see, made, ever, father 
+##  Topic 7: without, fanni, give, sure, room 
+##  Topic 8: said, one, time, might, great 
+##  Topic 9: will, now, say, never, good 
+##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 12 (approx. per word bound = -7.371, relative change = 5.581e-04) 
+## Completing Iteration 41 (approx. per word bound = -7.361, relative change = 1.218e-05) 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 13 (approx. per word bound = -7.368, relative change = 4.326e-04) 
+## Completing Iteration 42 (approx. per word bound = -7.361, relative change = 1.212e-05) 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 14 (approx. per word bound = -7.365, relative change = 3.391e-04) 
+## Completing Iteration 43 (approx. per word bound = -7.361, relative change = 1.237e-05) 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 15 (approx. per word bound = -7.363, relative change = 2.730e-04) 
-## Topic 1: mrs, will, littl, sister, make 
-##  Topic 2: must, think, say, feel, give 
-##  Topic 3: miss, even, soon, quit, walk 
-##  Topic 4: now, thought, seem, appear, mariann 
-##  Topic 5: much, thing, fanni, moment, crawford 
-##  Topic 6: might, ladi, without, come, emma 
-##  Topic 7: said, one, know, never, look 
-##  Topic 8: well, see, good, though, friend 
-##  Topic 9: time, everi, day, first, two 
-##  Topic 10: like, sure, certain, someth, parti 
+## Completing Iteration 44 (approx. per word bound = -7.361, relative change = 1.294e-05) 
+## ....................................................................................................
+## Completed E-Step (7 seconds). 
+## Completed M-Step. 
+## Completing Iteration 45 (approx. per word bound = -7.360, relative change = 1.367e-05) 
+## Topic 1: much, know, littl, look, wish 
+##  Topic 2: think, sister, come, way, mother 
+##  Topic 3: must, feel, can, noth, soon 
+##  Topic 4: make, day, first, happi, sir 
+##  Topic 5: mrs, everi, well, ladi, hope 
+##  Topic 6: miss, see, made, ever, father 
+##  Topic 7: without, fanni, give, sure, room 
+##  Topic 8: said, one, time, might, great 
+##  Topic 9: will, now, say, never, good 
+##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 16 (approx. per word bound = -7.362, relative change = 2.236e-04) 
+## Completing Iteration 46 (approx. per word bound = -7.360, relative change = 1.419e-05) 
+## ....................................................................................................
+## Completed E-Step (4 seconds). 
+## Completed M-Step. 
+## Completing Iteration 47 (approx. per word bound = -7.360, relative change = 1.430e-05) 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 17 (approx. per word bound = -7.360, relative change = 1.824e-04) 
+## Completing Iteration 48 (approx. per word bound = -7.360, relative change = 1.386e-05) 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 18 (approx. per word bound = -7.359, relative change = 1.483e-04) 
+## Completing Iteration 49 (approx. per word bound = -7.360, relative change = 1.273e-05) 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
-## Completing Iteration 19 (approx. per word bound = -7.358, relative change = 1.221e-04) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 20 (approx. per word bound = -7.358, relative change = 1.034e-04) 
-## Topic 1: mrs, will, littl, sister, make 
-##  Topic 2: must, think, say, feel, give 
-##  Topic 3: miss, even, soon, quit, walk 
-##  Topic 4: now, thought, seem, appear, mariann 
-##  Topic 5: much, thing, fanni, moment, crawford 
-##  Topic 6: might, ladi, without, come, emma 
-##  Topic 7: said, one, know, never, look 
-##  Topic 8: well, see, good, though, friend 
-##  Topic 9: time, everi, day, first, two 
-##  Topic 10: like, sure, certain, someth, parti 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 21 (approx. per word bound = -7.357, relative change = 9.018e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 22 (approx. per word bound = -7.356, relative change = 7.833e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 23 (approx. per word bound = -7.356, relative change = 6.688e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 24 (approx. per word bound = -7.356, relative change = 5.677e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 25 (approx. per word bound = -7.355, relative change = 4.807e-05) 
-## Topic 1: mrs, will, littl, sister, make 
-##  Topic 2: must, think, say, feel, give 
-##  Topic 3: miss, even, soon, quit, love 
-##  Topic 4: now, thought, seem, appear, mariann 
-##  Topic 5: much, thing, fanni, believ, moment 
-##  Topic 6: might, ladi, without, come, emma 
-##  Topic 7: said, one, know, never, look 
-##  Topic 8: well, see, good, though, friend 
-##  Topic 9: time, everi, day, first, two 
-##  Topic 10: like, sure, certain, someth, find 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 26 (approx. per word bound = -7.355, relative change = 4.082e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 27 (approx. per word bound = -7.355, relative change = 3.526e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 28 (approx. per word bound = -7.354, relative change = 3.129e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 29 (approx. per word bound = -7.354, relative change = 2.815e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 30 (approx. per word bound = -7.354, relative change = 2.525e-05) 
-## Topic 1: mrs, will, littl, sister, make 
-##  Topic 2: must, think, say, feel, give 
-##  Topic 3: miss, even, soon, quit, love 
-##  Topic 4: now, thought, seem, appear, mariann 
-##  Topic 5: much, thing, fanni, believ, moment 
-##  Topic 6: might, ladi, without, come, emma 
-##  Topic 7: said, one, know, never, look 
-##  Topic 8: well, see, good, though, friend 
-##  Topic 9: time, everi, day, first, two 
-##  Topic 10: like, sure, certain, someth, find 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 31 (approx. per word bound = -7.354, relative change = 2.240e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 32 (approx. per word bound = -7.354, relative change = 1.999e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 33 (approx. per word bound = -7.354, relative change = 1.820e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 34 (approx. per word bound = -7.353, relative change = 1.659e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 35 (approx. per word bound = -7.353, relative change = 1.515e-05) 
-## Topic 1: mrs, will, littl, sister, make 
-##  Topic 2: must, think, say, feel, give 
-##  Topic 3: miss, even, soon, quit, love 
-##  Topic 4: now, thought, seem, appear, mariann 
-##  Topic 5: much, thing, fanni, believ, moment 
-##  Topic 6: might, ladi, without, come, emma 
-##  Topic 7: said, one, know, never, look 
-##  Topic 8: well, see, good, though, friend 
-##  Topic 9: time, everi, day, first, two 
-##  Topic 10: like, sure, certain, someth, find 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 36 (approx. per word bound = -7.353, relative change = 1.408e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 37 (approx. per word bound = -7.353, relative change = 1.322e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 38 (approx. per word bound = -7.353, relative change = 1.249e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 39 (approx. per word bound = -7.353, relative change = 1.177e-05) 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 40 (approx. per word bound = -7.353, relative change = 1.106e-05) 
-## Topic 1: mrs, will, littl, sister, make 
-##  Topic 2: must, think, say, feel, give 
-##  Topic 3: miss, even, soon, quit, love 
-##  Topic 4: now, thought, seem, appear, mariann 
-##  Topic 5: much, thing, fanni, believ, moment 
-##  Topic 6: might, ladi, without, come, emma 
-##  Topic 7: said, one, know, never, look 
-##  Topic 8: well, see, good, though, friend 
-##  Topic 9: time, everi, day, first, two 
-##  Topic 10: like, sure, certain, someth, find 
-## ....................................................................................................
-## Completed E-Step (3 seconds). 
-## Completed M-Step. 
-## Completing Iteration 41 (approx. per word bound = -7.353, relative change = 1.045e-05) 
+## Completing Iteration 50 (approx. per word bound = -7.360, relative change = 1.074e-05) 
+## Topic 1: much, know, littl, look, wish 
+##  Topic 2: think, sister, come, way, mother 
+##  Topic 3: must, feel, can, noth, soon 
+##  Topic 4: make, day, first, happi, sir 
+##  Topic 5: mrs, everi, well, ladi, hope 
+##  Topic 6: miss, see, made, ever, father 
+##  Topic 7: without, fanni, give, sure, room 
+##  Topic 8: said, one, time, might, great 
+##  Topic 9: will, now, say, never, good 
+##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
 ## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
@@ -2586,7 +2721,7 @@ test_res$results %>%
   )
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-81-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-81-1.png" alt="" width="672" />
 
 ##### Finalize 
 
@@ -2613,7 +2748,7 @@ final_stm <- stm(
 plot(final_stm)
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-83-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-83-1.png" alt="" width="672" />
 
 - Using ggplot2 
 
@@ -2629,15 +2764,17 @@ tidy_stm %>%
   group_by(topic) %>%
   top_n(10, beta) %>%
   ungroup() %>%
-  ggplot(aes(fct_reorder(term, beta), beta, fill = as.factor(topic))) +
+  mutate(term = tidytext::reorder_within(term, beta, topic)) %>%
+  ggplot(aes(term, beta, fill = as.factor(topic))) +
   geom_col(alpha = 0.8, show.legend = FALSE) +
   facet_wrap(~topic, scales = "free_y") +
   coord_flip() +
+  tidytext::scale_x_reordered() +
   scale_y_continuous(labels = scales::percent) +
   scale_fill_viridis_d()
 ```
 
-<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" width="672" />
+<img src="07_high_dimensional_data_files/figure-html/unnamed-chunk-84-1.png" alt="" width="672" />
 
 ## References
 

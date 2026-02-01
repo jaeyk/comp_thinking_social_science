@@ -1,329 +1,208 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Computational Thinking for Social Scientists</title>
-  <meta name="description" content="Computational Thinking for Social Scientists" />
-  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Computational Thinking for Social Scientists" />
-  <meta property="og:type" content="book" />
-  
-  
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Computational Thinking for Social Scientists" />
-  
-  
-  
-
-<meta name="author" content="Jae Yeon Kim" />
-
-
-<meta name="date" content="2025-04-20" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-
-<link rel="next" href="motivation.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
-<script src="libs/tabwid-1.1.3/tabwid.js"></script>
-
-
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 1 Welcome | Computational Thinking for Social Scientists</title>
+<meta name="author" content="Jae Yeon Kim">
+<meta name="description" content="A practical guide to computational thinking and methods for social scientists.">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Chapter 1 Welcome | Computational Thinking for Social Scientists">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://jaeyk.github.io/PS239T/">
+<meta property="og:description" content="A practical guide to computational thinking and methods for social scientists.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 1 Welcome | Computational Thinking for Social Scientists">
+<meta name="twitter:description" content="A practical guide to computational thinking and methods for social scientists.">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
+<link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">Computational Thinking for Social Scientists</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
-<li class="chapter" data-level="2" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>2</b> Computational Thinking</a></li>
-<li class="chapter" data-level="3" data-path="git_bash.html"><a href="git_bash.html"><i class="fa fa-check"></i><b>3</b> Managing data and code</a></li>
-<li class="chapter" data-level="4" data-path="tidy_data.html"><a href="tidy_data.html"><i class="fa fa-check"></i><b>4</b> Tidy data and its friends</a></li>
-<li class="chapter" data-level="5" data-path="functional_programming.html"><a href="functional_programming.html"><i class="fa fa-check"></i><b>5</b> Automating repeated things</a></li>
-<li class="chapter" data-level="6" data-path="products.html"><a href="products.html"><i class="fa fa-check"></i><b>6</b> Developing data products</a></li>
-<li class="chapter" data-level="7" data-path="semi_structured_data.html"><a href="semi_structured_data.html"><i class="fa fa-check"></i><b>7</b> Semi-structured data</a></li>
-<li class="chapter" data-level="8" data-path="machine_learning.html"><a href="machine_learning.html"><i class="fa fa-check"></i><b>8</b> High-dimensional data</a></li>
-<li class="chapter" data-level="9" data-path="big_data.html"><a href="big_data.html"><i class="fa fa-check"></i><b>9</b> Big data</a></li>
-<li class="divider"></li>
-<li>
-  <a href="https://github.com/jaeyk/PS239T" target="_blank">
-    Published with <code>{bookdown}</code>
-  </a>
-</li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Computational Thinking for Social Scientists</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Thinking for Social Scientists</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="active" href="index.html"><span class="header-section-number">1</span> Welcome</a></li>
+<li><a class="" href="motivation.html"><span class="header-section-number">2</span> Computational Thinking</a></li>
+<li><a class="" href="git_bash.html"><span class="header-section-number">3</span> Managing data and code</a></li>
+<li><a class="" href="tidy_data.html"><span class="header-section-number">4</span> Tidy data and its friends</a></li>
+<li><a class="" href="functional_programming.html"><span class="header-section-number">5</span> Automating repeated things</a></li>
+<li><a class="" href="products.html"><span class="header-section-number">6</span> Developing data products</a></li>
+<li><a class="" href="semi_structured_data.html"><span class="header-section-number">7</span> Semi-structured data</a></li>
+<li><a class="" href="machine_learning.html"><span class="header-section-number">8</span> High-dimensional data</a></li>
+<li><a class="" href="big_data.html"><span class="header-section-number">9</span> Big data</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/jaeyk/PS239T">View book source <i class="fab fa-github"></i></a></p>
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Computational Thinking for Social Scientists</h1>
-<p class="author"><em>Jae Yeon Kim</em></p>
-<p class="date"><em>2025-04-20</em></p>
+      </nav>
 </div>
-<div id="welcome" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Welcome<a href="index.html#welcome" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;Hello, World!&quot;</code></pre>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><!--bookdown:title:end--><!--bookdown:title:start--><div id="welcome" class="section level1" number="1">
+<h1>
+<span class="header-section-number">1</span> Welcome<a class="anchor" aria-label="anchor" href="#welcome"><i class="fas fa-link"></i></a>
+</h1>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Hello, World!"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "Hello, World!"</code></pre>
 <blockquote>
 <p>Make simple things simple, and complex things possible. - <a href="https://www.quora.com/What-is-the-story-behind-Alan-Kay-s-adage-Simple-things-should-be-simple-complex-things-should-be-possible">Alan Kay</a></p>
 </blockquote>
 <p>This is the website for <em>Computational Thinking for Social Scientists</em>, an open-access book designed to help social scientists think computationally and develop proficiency with modern computational tools and techniques. Mastering these skills enables researchers to collect, wrangle, analyze, and interpret data more efficiently—and with more enjoyment. It also empowers them to pursue research questions that might once have seemed impossible.</p>
 <p>Horace Mann, the first great advocate of public education in the United States, once said:</p>
 <blockquote>
-<p>“Education, then, beyond all other devices of human origin,<br />
+<p>“Education, then, beyond all other devices of human origin,<br>
 is a great equalizer of the conditions of men—the balance wheel of the social machinery.”</p>
 </blockquote>
 <p>I believe in the transformative power of education. At the same time, I recognize that access to high-quality education remains deeply unequal. Too often, historically disadvantaged groups face greater barriers to both education and technology. This book is my small contribution toward realizing the democratic promise of education—especially in the emerging field of computational social science.</p>
 <p>That said, this book is not a comprehensive guide to computational social science or any specific programming language, tool, or technique. For a broader introduction to the field, I highly recommend <a href="http://www.princeton.edu/~mjs3/">Matthew Salganik</a>’s <a href="https://www.bitbybitbook.com/"><em>Bit by Bit</em> (2017)</a>, which is comprehensive, accessible, and pedagogically rich.</p>
 <p>This book is organized into two parts—Fundamentals and Applications—and includes eight main sessions:</p>
-<div id="part-i-fundamentals" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Part I: Fundamentals<a href="index.html#part-i-fundamentals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="part-i-fundamentals" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> Part I: Fundamentals<a class="anchor" aria-label="anchor" href="#part-i-fundamentals"><i class="fas fa-link"></i></a>
+</h2>
 <ol style="list-style-type: decimal">
-<li><a href="motivation.html#motivation">Why computational thinking</a><br />
+<li>
+<a href="motivation.html#motivation">Why computational thinking</a><br>
 </li>
-<li><a href="git_bash.html#git_bash">Best practices in data and code management using Git and Bash</a><br />
+<li>
+<a href="git_bash.html#git_bash">Best practices in data and code management using Git and Bash</a><br>
 </li>
-<li><a href="tidy_data.html#tidy_data">How to wrangle, model, and visualize data efficiently</a><br />
+<li>
+<a href="tidy_data.html#tidy_data">How to wrangle, model, and visualize data efficiently</a><br>
 </li>
-<li><a href="functional_programming.html#functional_programming">How to use functional programming to automate repetitive tasks</a><br />
+<li>
+<a href="functional_programming.html#functional_programming">How to use functional programming to automate repetitive tasks</a><br>
 </li>
 <li><a href="products.html#products">How to develop data products (e.g., packages and Shiny apps)</a></li>
 </ol>
 </div>
-<div id="part-ii-applications" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Part II: Applications<a href="index.html#part-ii-applications" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="part-ii-applications" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> Part II: Applications<a class="anchor" aria-label="anchor" href="#part-ii-applications"><i class="fas fa-link"></i></a>
+</h2>
 <ol start="6" style="list-style-type: decimal">
-<li><a href="semi_structured_data.html#semi_structured_data">How to collect and parse semi-structured data at scale (e.g., APIs and web scraping)</a><br />
+<li>
+<a href="semi_structured_data.html#semi_structured_data">How to collect and parse semi-structured data at scale (e.g., APIs and web scraping)</a><br>
 </li>
-<li><a href="machine_learning.html#machine_learning">How to analyze high-dimensional data (e.g., text) using machine learning</a><br />
+<li>
+<a href="machine_learning.html#machine_learning">How to analyze high-dimensional data (e.g., text) using machine learning</a><br>
 </li>
 <li><a href="big_data.html#big_data">How to access, query, and manage big data using SQL</a></li>
 </ol>
 <p>This book primarily uses <a href="https://www.r-project.org/about.html"><strong>R</strong></a>, and occasionally <a href="https://www.gnu.org/software/bash/"><strong>bash</strong></a> and <a href="https://www.python.org/about/"><strong>Python</strong></a>.</p>
 </div>
-<div id="why-r" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> <strong>Why R?</strong><a href="index.html#why-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="why-r" class="section level2" number="1.3">
+<h2>
+<span class="header-section-number">1.3</span> <strong>Why R?</strong><a class="anchor" aria-label="anchor" href="#why-r"><i class="fas fa-link"></i></a>
+</h2>
 <p>R is free, accessible (especially thanks to the <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> and <a href="https://posit.co">RStudio</a>), and cross-platform (Mac/Windows/Linux). It’s fast (thanks to <a href="https://cran.r-project.org/web/packages/Rcpp/index.html"><code>Rcpp</code></a>), extensible (with over 16,000 packages on <a href="https://cran.r-project.org/web/packages/">CRAN</a>), and supported by a large, inclusive community (see <a href="https://twitter.com/search?q=%23rstats&amp;src=typed_query"><code>#rstats</code></a>).</p>
 </div>
-<div id="why-r-python-bash" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> <strong>Why R + Python + Bash?</strong><a href="index.html#why-r-python-bash" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="why-r-python-bash" class="section level2" number="1.4">
+<h2>
+<span class="header-section-number">1.4</span> <strong>Why R + Python + Bash?</strong><a class="anchor" aria-label="anchor" href="#why-r-python-bash"><i class="fas fa-link"></i></a>
+</h2>
 <blockquote>
-<p>“For R and Python—Python is first and foremost a programming language. That has many strengths, but it usually means that to do data science in Python, you must first learn to program. With R, you can get up and running faster because a lot is built in—you don’t need to learn as many programming concepts. You can focus on being a great political scientist, or whatever you do, and just learn enough R to get things done.”<br />
+<p>“For R and Python—Python is first and foremost a programming language. That has many strengths, but it usually means that to do data science in Python, you must first learn to program. With R, you can get up and running faster because a lot is built in—you don’t need to learn as many programming concepts. You can focus on being a great political scientist, or whatever you do, and just learn enough R to get things done.”<br>
 — Hadley Wickham</p>
 </blockquote>
 <p>That said, the R ecosystem presents some challenges:</p>
 <blockquote>
-<p>“Compared to other programming languages, the R community tends to focus more on results than on process. Software engineering practices such as source control or automated testing are not widely adopted. Inconsistencies persist across contributed packages and even within base R. The language reflects more than 20 years of evolution. R is not particularly fast, and poorly written R code can be painfully slow. It’s also memory-hungry.”<br />
+<p>“Compared to other programming languages, the R community tends to focus more on results than on process. Software engineering practices such as source control or automated testing are not widely adopted. Inconsistencies persist across contributed packages and even within base R. The language reflects more than 20 years of evolution. R is not particularly fast, and poorly written R code can be painfully slow. It’s also memory-hungry.”<br>
 — Hadley Wickham</p>
 </blockquote>
 <p>Still, the RStudio (now Posit) and tidyverse teams have made significant progress in addressing these limitations. This book will introduce some of those advances and show how combining R with Python and Bash can enhance your workflow.</p>
 <p>If you’re serious about programming or software development, I strongly recommend learning Python as well—it can fill important gaps in software engineering that will also improve your R proficiency.</p>
 </div>
-<div id="special-thanks" class="section level2 hasAnchor" number="1.5">
-<h2><span class="header-section-number">1.5</span> Special Thanks<a href="index.html#special-thanks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="special-thanks" class="section level2" number="1.5">
+<h2>
+<span class="header-section-number">1.5</span> Special Thanks<a class="anchor" aria-label="anchor" href="#special-thanks"><i class="fas fa-link"></i></a>
+</h2>
 <p>This book is as much collected as it is authored. It is a remix of <a href="https://github.com/rochelleterman/PS239T">PS239T</a>, a graduate-level course in computational methods at UC Berkeley originally developed by <a href="http://rochelleterman.com/">Rochelle Terman</a> (now Assistant Professor of Political Science at the University of Chicago), and later revised by <a href="http://rachelbernhard.com/">Rachel Bernhard</a> (now Associate Professor at Nuffield College and the University of Oxford).</p>
 <p>I have taught <a href="https://github.com/PS239T/spring_2021">PS239T</a> as a lead instructor in Spring 2019, a TA in Spring 2018, and a co-instructor with <a href="https://nicholaskuipers.com/">Nick Kuipers</a> (now Assistant Professor of Politics at Princeton) in Spring 2020.</p>
 <p>Other materials are adapted from workshops I developed for <a href="https://dlab.berkeley.edu/">D-Lab</a>, the <a href="https://data.berkeley.edu/research/discovery-program-home">Data Science Discovery Program</a> at UC Berkeley, and the <a href="https://sicss.io/2021/howard-mathematica/">Summer Institute in Computational Social Science at Howard University and Mathematica</a>.</p>
 <p>I have cited all sources—books, articles, slides, blog posts, and videos—whenever I am aware of them.</p>
 </div>
-<div id="suggestions-questions-or-comments" class="section level2 hasAnchor" number="1.6">
-<h2><span class="header-section-number">1.6</span> Suggestions, Questions, or Comments<a href="index.html#suggestions-questions-or-comments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="suggestions-questions-or-comments" class="section level2" number="1.6">
+<h2>
+<span class="header-section-number">1.6</span> Suggestions, Questions, or Comments<a class="anchor" aria-label="anchor" href="#suggestions-questions-or-comments"><i class="fas fa-link"></i></a>
+</h2>
 <p>Please feel free to <a href="https://github.com/jaeyk/PS239T/issues">create an issue</a> on the GitHub repository. If you find any typos, errors, or missing citations, I’d be grateful if you reported them there.</p>
 </div>
-<div id="license" class="section level2 hasAnchor" number="1.7">
-<h2><span class="header-section-number">1.7</span> License<a href="index.html#license" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="https://licensebuttons.net/l/by/4.0/88x31.png" /><br />
+<div id="license" class="section level2" number="1.7">
+<h2>
+<span class="header-section-number">1.7</span> License<a class="anchor" aria-label="anchor" href="#license"><i class="fas fa-link"></i></a>
+</h2>
+<p><img src="https://licensebuttons.net/l/by/4.0/88x31.png"><br>
 This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
 </div>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="empty"></div>
+<div class="next"><a href="motivation.html"><span class="header-section-number">2</span> Computational Thinking</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#welcome"><span class="header-section-number">1</span> Welcome</a></li>
+<li><a class="nav-link" href="#part-i-fundamentals"><span class="header-section-number">1.1</span> Part I: Fundamentals</a></li>
+<li><a class="nav-link" href="#part-ii-applications"><span class="header-section-number">1.2</span> Part II: Applications</a></li>
+<li><a class="nav-link" href="#why-r"><span class="header-section-number">1.3</span> Why R?</a></li>
+<li><a class="nav-link" href="#why-r-python-bash"><span class="header-section-number">1.4</span> Why R + Python + Bash?</a></li>
+<li><a class="nav-link" href="#special-thanks"><span class="header-section-number">1.5</span> Special Thanks</a></li>
+<li><a class="nav-link" href="#suggestions-questions-or-comments"><span class="header-section-number">1.6</span> Suggestions, Questions, or Comments</a></li>
+<li><a class="nav-link" href="#license"><span class="header-section-number">1.7</span> License</a></li>
+</ul>
 
-          </div>
-        </div>
-      </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/jaeyk/PS239T/blob/main/index.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/jaeyk/PS239T/edit/main/index.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
 
-<a href="motivation.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Computational Thinking for Social Scientists</strong>" was written by Jae Yeon Kim. It was last built on 2026-02-01.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-  "sharing": {
-    "github": false,
-    "facebook": true,
-    "twitter": true,
-    "linkedin": false,
-    "weibo": false,
-    "instapaper": false,
-    "vk": false,
-    "whatsapp": false,
-    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-  },
-  "fontsettings": {
-    "theme": "white",
-    "family": "sans",
-    "size": 2
-  },
-  "edit": {
-    "link": "https://github.com/jaeyk/PS239T/edit/main/index.Rmd",
-    "text": "Edit"
-  },
-  "history": {
-    "link": null,
-    "text": null
-  },
-  "view": {
-    "link": null,
-    "text": null
-  },
-  "download": [
-    ["pdf", "PS239T.pdf"],
-    ["epub", "PS239T.epub"]
-  ],
-  "search": {
-    "engine": "fuse",
-    "options": null,
-    "enabled": true,
-    "highlight": true
-  },
-  "toc": {
-    "collapse": "section"
-  }
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -335,7 +214,22 @@ gitbook.start({
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
-
 </html>

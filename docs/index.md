@@ -1,9 +1,11 @@
 ---
 title: "Computational Thinking for Social Scientists"
 author: "Jae Yeon Kim"
-date: "2025-04-20"
+date: "2026-02-01"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+documentclass: book
+url: https://jaeyk.github.io/PS239T/
+description: "A practical guide to computational thinking and methods for social scientists."
 ---
 
 # Welcome

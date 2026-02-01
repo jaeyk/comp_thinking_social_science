@@ -108,6 +108,8 @@ pacman::p_load(
   doParallel,   # Parallel backend for modeling (foreach, caret, tidymodels)
   patchwork,    # Compose multiple ggplots into one layout
   remotes,      # Install packages from GitHub and other remote sources
+  nnls,         # Non-negative least squares (required by SuperLearner)
+  gam,          # Generalized additive models (required by SuperLearner)
   SuperLearner, # Ensemble learning via stacked generalization
   vip,          # Variable importance plots (model‐agnostic)
   glmnet,       # Regularized regression (lasso, ridge, elastic net)
@@ -116,10 +118,11 @@ pacman::p_load(
   xgboost,      # Gradient boosting (XGBoost)
   rpart,        # Recursive partitioning trees
   ranger,       # Fast random forests with C++ backend
+  corrr,        # Correlation analysis
+  tm,           # Text mining (required by stm)
+  SnowballC,    # Stemming (required by stm)
   conflicted    # Explicit conflict resolution for masking functions
 )
-
-remotes::install_github("ck37/ck37r")
 
 conflicted::conflict_prefer("filter", "dplyr")
 ```
@@ -460,7 +463,7 @@ evals <- purrr::map(list(ols_fit, lasso_fit), evaluate_reg) %>%
 
 # Visualize the test results
 evals %>%
-  ggplot(aes(x = fct_reorder(type, .estimate), y = .estimate)) +
+  ggplot(aes(x = type, y = .estimate)) +
   geom_point() +
   labs(
     x = "Model",
@@ -1377,20 +1380,49 @@ AUC: Area Under the ROC Curve
 0.5 = no better than chance 
 
 ```{r}
-
-ck37r::auc_table(cv_sl)
+# Summary of cross-validated SuperLearner
+# Shows risk estimates and coefficients for each learner
+summary(cv_sl)
 ```
 
 ##### Plot the ROC curve for the best estimator (DiscretSL)
 
 ```{r}
-ck37r::plot_roc(cv_sl)
+# Plot ROC curve for SuperLearner
+pred <- cv_sl$SL.predict
+truth <- cv_sl$Y
+
+# Calculate ROC points
+roc_data <- data.frame(pred = pred, truth = truth) %>%
+  arrange(desc(pred)) %>%
+  mutate(
+    tpr = cumsum(truth) / sum(truth),
+    fpr = cumsum(!truth) / sum(!truth)
+  )
+
+ggplot(roc_data, aes(x = fpr, y = tpr)) +
+  geom_line(color = "blue", linewidth = 1) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "gray") +
+  labs(
+    title = "ROC Curve - SuperLearner",
+    x = "False Positive Rate (1 - Specificity)",
+    y = "True Positive Rate (Sensitivity)"
+  ) +
+  theme_minimal()
 ```
 
 ##### Review weight distribution for the SuperLearner
 
 ```{r}
-print(ck37r::cvsl_weights(cv_sl), row.names = FALSE)
+# Display SuperLearner weights
+# The coef vector shows the weight assigned to each learner in the ensemble
+coef_vec <- as.numeric(cv_sl$coef)
+sl_weights <- data.frame(
+  Algorithm = cv_sl$libraryNames,
+  Weight = round(coef_vec, 4)
+)
+sl_weights <- sl_weights[order(sl_weights$Weight, decreasing = TRUE), ]
+print(sl_weights, row.names = FALSE)
 ```
 
 The general stacking approach is available in the tidymodels framework through [`stacks`](https://github.com/tidymodels/stacks) package (developmental stage). 
@@ -1513,8 +1545,9 @@ pca_recipe %>%
   prep() %>%
   tidy(id = "pca") %>%
   filter(component %in% c("PC1", "PC2")) %>%
+  mutate(terms = fct_reorder(terms, abs(value), .fun = max)) %>%
   ggplot(aes(
-    x = fct_reorder(terms, value), y = value,
+    x = terms, y = value,
     fill = component
   )) +
   geom_col(position = "dodge") +
@@ -1624,10 +1657,13 @@ top_words <- austen_words %>%
   ungroup()
 
 # 3) Plot the top words
-ggplot(top_words, aes(x = fct_reorder(word, freq), y = freq)) +
+top_words %>%
+  mutate(word = tidytext::reorder_within(word, freq, book)) %>%
+  ggplot(aes(x = word, y = freq)) +
   geom_col() +
   facet_wrap(~book, scales = "free_y", ncol = 2) +
   coord_flip() +
+  tidytext::scale_x_reordered() +
   labs(
     x = NULL,
     y = "Relative frequency"
@@ -1740,10 +1776,12 @@ tidy_stm %>%
   group_by(topic) %>%
   top_n(10, beta) %>%
   ungroup() %>%
-  ggplot(aes(fct_reorder(term, beta), beta, fill = as.factor(topic))) +
+  mutate(term = tidytext::reorder_within(term, beta, topic)) %>%
+  ggplot(aes(term, beta, fill = as.factor(topic))) +
   geom_col(alpha = 0.8, show.legend = FALSE) +
   facet_wrap(~topic, scales = "free_y") +
   coord_flip() +
+  tidytext::scale_x_reordered() +
   scale_y_continuous(labels = scales::percent) +
   scale_fill_viridis_d()
 ```

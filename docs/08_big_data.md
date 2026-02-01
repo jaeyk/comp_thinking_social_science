@@ -125,6 +125,12 @@ pacman::p_load(
 )
 ```
 
+```
+## 
+## The downloaded binary packages are in
+## 	/var/folders/wt/b5zf6_0910b4_lsl7k4_jcnm0000gn/T//RtmpmPBYNo/downloaded_packages
+```
+
 ### NYC flights data 
 
 - [The flight on-time performance data](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236) from the Bureau of Transportation Statistics of the U.S. government. The data goes back to 1987, and its size is more than 20 gigabytes. For practice, we only use a small subset of the original data (flight data departing NYC in 2013) provided by RStudio.
@@ -478,7 +484,7 @@ flights %>%
 
 ```
 ## # Source:   SQL [?? x 2]
-## # Database: sqlite 3.47.1 [:memory:]
+## # Database: sqlite 3.51.1 [:memory:]
 ##    dep_delay arr_delay
 ##        <dbl>     <dbl>
 ##  1         2        11
@@ -508,7 +514,7 @@ flights %>%
 
 ```
 ## # Source:   SQL [?? x 3]
-## # Database: sqlite 3.47.1 [:memory:]
+## # Database: sqlite 3.51.1 [:memory:]
 ##    distance air_time speed
 ##       <dbl>    <dbl> <dbl>
 ##  1     1400      227  370.
@@ -541,7 +547,7 @@ flights %>%
 
 ```
 ## # Source:   SQL [?? x 19]
-## # Database: sqlite 3.47.1 [:memory:]
+## # Database: sqlite 3.51.1 [:memory:]
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ##    <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>
 ##  1  2013     1     1      517            515         2      830            819
@@ -621,7 +627,7 @@ flights %>%
 
 ```
 ## # Source:   SQL [?? x 3]
-## # Database: sqlite 3.47.1 [:memory:]
+## # Database: sqlite 3.51.1 [:memory:]
 ## # Groups:   month
 ##    month   day delay
 ##    <int> <int> <dbl>
@@ -786,7 +792,7 @@ origin_flights_plot <- ggplot(df) +
 origin_flights_plot
 ```
 
-<img src="08_big_data_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+<img src="08_big_data_files/figure-html/unnamed-chunk-23-1.png" alt="" width="672" />
 
 #### Disconnect 
 

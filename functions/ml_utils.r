@@ -52,14 +52,22 @@ evaluate_class <- function(model) {
     metrics(truth = truth, estimate = .pred_class)
 }
 
-#’ Bar chart of classification metrics
-#’
-#’ @param model A fitted classification model
-#’ @return A ggplot2 bar chart with metric values
+#' Bar chart of classification metrics
+#'
+#' @param model A fitted classification model
+#' @return A ggplot2 bar chart with metric values
 visualize_class_eval <- function(model) {
-  evaluate_class(model) %>%
-    mutate(metric = toupper(.metric)) %>%   # uppercase names
-    ggplot(aes(x = fct_reorder(metric, .estimate), y = .estimate)) +
+  eval_data <- evaluate_class(model) %>%
+    mutate(metric = toupper(.metric))
+
+  # Reorder by estimate value
+
+  eval_data <- eval_data %>%
+    arrange(.estimate) %>%
+    mutate(metric = factor(metric, levels = unique(metric)))
+
+  eval_data %>%
+    ggplot(aes(x = metric, y = .estimate)) +
     geom_col(fill = "steelblue") +
     geom_text(aes(label = scales::percent(.estimate, accuracy = 1)),
               hjust = -0.1, color = "red", size = 3) +

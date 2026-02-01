@@ -1,189 +1,83 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Developing data products | Computational Thinking for Social Scientists</title>
-  <meta name="description" content="Chapter 6 Developing data products | Computational Thinking for Social Scientists" />
-  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Chapter 6 Developing data products | Computational Thinking for Social Scientists" />
-  <meta property="og:type" content="book" />
-  
-  
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Developing data products | Computational Thinking for Social Scientists" />
-  
-  
-  
-
-<meta name="author" content="Jae Yeon Kim" />
-
-
-<meta name="date" content="2025-04-20" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="functional_programming.html"/>
-<link rel="next" href="semi_structured_data.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
-<script src="libs/tabwid-1.1.3/tabwid.js"></script>
-
-
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 6 Developing data products | Computational Thinking for Social Scientists</title>
+<meta name="author" content="Jae Yeon Kim">
+<meta name="description" content="A data product is the production output from a statistical analysis. - Brian Caffo  6.1 Developing R packages  6.1.1 The Big Picture Why develop R packages? Reuse your code Automate your workflow...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Chapter 6 Developing data products | Computational Thinking for Social Scientists">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://jaeyk.github.io/PS239T/products.html">
+<meta property="og:description" content="A data product is the production output from a statistical analysis. - Brian Caffo  6.1 Developing R packages  6.1.1 The Big Picture Why develop R packages? Reuse your code Automate your workflow...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 6 Developing data products | Computational Thinking for Social Scientists">
+<meta name="twitter:description" content="A data product is the production output from a statistical analysis. - Brian Caffo  6.1 Developing R packages  6.1.1 The Big Picture Why develop R packages? Reuse your code Automate your workflow...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
+<link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">Computational Thinking for Social Scientists</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
-<li class="chapter" data-level="2" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>2</b> Computational Thinking</a></li>
-<li class="chapter" data-level="3" data-path="git_bash.html"><a href="git_bash.html"><i class="fa fa-check"></i><b>3</b> Managing data and code</a></li>
-<li class="chapter" data-level="4" data-path="tidy_data.html"><a href="tidy_data.html"><i class="fa fa-check"></i><b>4</b> Tidy data and its friends</a></li>
-<li class="chapter" data-level="5" data-path="functional_programming.html"><a href="functional_programming.html"><i class="fa fa-check"></i><b>5</b> Automating repeated things</a></li>
-<li class="chapter" data-level="6" data-path="products.html"><a href="products.html"><i class="fa fa-check"></i><b>6</b> Developing data products</a></li>
-<li class="chapter" data-level="7" data-path="semi_structured_data.html"><a href="semi_structured_data.html"><i class="fa fa-check"></i><b>7</b> Semi-structured data</a></li>
-<li class="chapter" data-level="8" data-path="machine_learning.html"><a href="machine_learning.html"><i class="fa fa-check"></i><b>8</b> High-dimensional data</a></li>
-<li class="chapter" data-level="9" data-path="big_data.html"><a href="big_data.html"><i class="fa fa-check"></i><b>9</b> Big data</a></li>
-<li class="divider"></li>
-<li>
-  <a href="https://github.com/jaeyk/PS239T" target="_blank">
-    Published with <code>{bookdown}</code>
-  </a>
-</li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Computational Thinking for Social Scientists</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Computational Thinking for Social Scientists</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Welcome</a></li>
+<li><a class="" href="motivation.html"><span class="header-section-number">2</span> Computational Thinking</a></li>
+<li><a class="" href="git_bash.html"><span class="header-section-number">3</span> Managing data and code</a></li>
+<li><a class="" href="tidy_data.html"><span class="header-section-number">4</span> Tidy data and its friends</a></li>
+<li><a class="" href="functional_programming.html"><span class="header-section-number">5</span> Automating repeated things</a></li>
+<li><a class="active" href="products.html"><span class="header-section-number">6</span> Developing data products</a></li>
+<li><a class="" href="semi_structured_data.html"><span class="header-section-number">7</span> Semi-structured data</a></li>
+<li><a class="" href="machine_learning.html"><span class="header-section-number">8</span> High-dimensional data</a></li>
+<li><a class="" href="big_data.html"><span class="header-section-number">9</span> Big data</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/jaeyk/PS239T">View book source <i class="fab fa-github"></i></a></p>
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="products" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Developing data products<a href="products.html#products" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="products" class="section level1" number="6">
+<h1>
+<span class="header-section-number">6</span> Developing data products<a class="anchor" aria-label="anchor" href="#products"><i class="fas fa-link"></i></a>
+</h1>
 <blockquote>
 <p>A data product is the production output from a statistical analysis. - <a href="https://sites.google.com/view/bcaffo/home">Brian Caffo</a></p>
 </blockquote>
-<div id="developing-r-packages" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Developing R packages<a href="products.html#developing-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="the-big-picture-7" class="section level3 hasAnchor" number="6.1.1">
-<h3><span class="header-section-number">6.1.1</span> The Big Picture<a href="products.html#the-big-picture-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="developing-r-packages" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> Developing R packages<a class="anchor" aria-label="anchor" href="#developing-r-packages"><i class="fas fa-link"></i></a>
+</h2>
+<div id="the-big-picture-7" class="section level3" number="6.1.1">
+<h3>
+<span class="header-section-number">6.1.1</span> The Big Picture<a class="anchor" aria-label="anchor" href="#the-big-picture-7"><i class="fas fa-link"></i></a>
+</h3>
 <p>Why develop R packages?</p>
 <ol style="list-style-type: decimal">
 <li>Reuse your code</li>
@@ -191,108 +85,129 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Help others (be part of an open-source development community)</li>
 </ol>
 </div>
-<div id="workflow" class="section level3 hasAnchor" number="6.1.2">
-<h3><span class="header-section-number">6.1.2</span> Workflow<a href="products.html#workflow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="workflow" class="section level3" number="6.1.2">
+<h3>
+<span class="header-section-number">6.1.2</span> Workflow<a class="anchor" aria-label="anchor" href="#workflow"><i class="fas fa-link"></i></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>Create a GitHub repo</li>
 <li>Clone the GitHub repo</li>
-<li>Make the cloned repo R package project using <code>usethis::create_package(here())</code></li>
-<li>Write code in <code>\R</code></li>
+<li>Make the cloned repo R package project using <code>usethis::create_package(here())</code>
+</li>
+<li>Write code in <code>\R</code>
+</li>
 <li>Document code in <code>\man</code> (automated by <code>roxygen2</code> package)</li>
 </ol>
 <ul>
-<li><code>devtools::document()</code></li>
+<li><code><a href="https://devtools.r-lib.org/reference/document.html">devtools::document()</a></code></li>
 </ul>
 <ol start="6" style="list-style-type: decimal">
-<li>Check dependencies in <code>NAMESPACE</code></li>
+<li>Check dependencies in <code>NAMESPACE</code>
+</li>
 </ol>
 <ul>
-<li><code>devtools::update()</code> updates the documentation (if you made changes)</li>
-<li><code>devtools::check()</code> to see whether your package is ready to be submitted to CRAN</li>
+<li>
+<code>devtools::update()</code> updates the documentation (if you made changes)</li>
+<li>
+<code><a href="https://devtools.r-lib.org/reference/check.html">devtools::check()</a></code> to see whether your package is ready to be submitted to CRAN</li>
 </ul>
 <ol start="7" style="list-style-type: decimal">
 <li>Build a package (for more information, read <a href="http://r-pkgs.had.co.nz/package.html">this section</a> in Hadley’s R package development book)</li>
 </ol>
 <ul>
-<li><code>devtools::build()</code></li>
+<li><code><a href="https://devtools.r-lib.org/reference/build.html">devtools::build()</a></code></li>
 </ul>
 <ol start="8" style="list-style-type: decimal">
-<li>(Optional) Test (<code>devtools::test()</code>), teach in <code>\vignettes</code>, and add data in <code>\data</code></li>
+<li>(Optional) Test (<code><a href="https://devtools.r-lib.org/reference/test.html">devtools::test()</a></code>), teach in <code>\vignettes</code>, and add data in <code>\data</code>
+</li>
 <li>Distribute the package either via CRAN or GitHub (don’t forget to make sure your repo is public.)</li>
 </ol>
-<p><img src="http://r-pkgs.had.co.nz/diagrams/package-files.png" /></p>
+<div class="inline-figure"><img src="http://r-pkgs.had.co.nz/diagrams/package-files.png"></div>
 <p>It’s time to learn five R code states: source, bundled, binary, installed, and in-memory.</p>
-<p>If you’re using an R package, you’re only concerned of the last two states: <code>install.packages("pkg")</code> and <code>library(pkg)</code> If you’re developing an R package, you first write source code (<code>*.R</code>), bundle it (compressed file like <code>*.tar.gz</code>; done by <code>devtools::build()</code>), then make it binary (<code>devtools::build(binary = TRUE)</code>; This is how a package is stored in CRAN/GitHub, etc.).</p>
+<p>If you’re using an R package, you’re only concerned of the last two states: <code>install.packages("pkg")</code> and <code><a href="https://rdrr.io/r/base/library.html">library(pkg)</a></code> If you’re developing an R package, you first write source code (<code>*.R</code>), bundle it (compressed file like <code>*.tar.gz</code>; done by <code><a href="https://devtools.r-lib.org/reference/build.html">devtools::build()</a></code>), then make it binary (<code>devtools::build(binary = TRUE)</code>; This is how a package is stored in CRAN/GitHub, etc.).</p>
 </div>
-<div id="required-components" class="section level3 hasAnchor" number="6.1.3">
-<h3><span class="header-section-number">6.1.3</span> Required Components<a href="products.html#required-components" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="required-components" class="section level3" number="6.1.3">
+<h3>
+<span class="header-section-number">6.1.3</span> Required Components<a class="anchor" aria-label="anchor" href="#required-components"><i class="fas fa-link"></i></a>
+</h3>
 <p>The 4 required components are necessary to build and distribute a minimally viable R package. The other steps are optional.</p>
 <ul>
 <li>Package
 <ul>
-<li><code>\R</code>: R functions</li>
-<li><code>\man</code>: function documentations</li>
+<li>
+<code>\R</code>: R functions</li>
+<li>
+<code>\man</code>: function documentations</li>
 <li>DESCRIPTION: provides meta data about the package (e.g., author)</li>
 <li>LICENSE
 <ul>
 <li>GNU, MIT, etc.</li>
-</ul></li>
+</ul>
+</li>
 <li>NAMESPACE: package dependencies (to make your package self-contained)</li>
 <li>README (optional)</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <ol style="list-style-type: decimal">
 <li>Setup (<strong>DESCRIPTION</strong>)</li>
 </ol>
 <p>I assume that you’ve already created and cloned a git repo. Move to your cloned repo file path in the file system.</p>
-<div class="sourceCode" id="cb1012"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1012-1"><a href="products.html#cb1012-1" tabindex="-1"></a><span class="co"># This function creates DESCRIPTION file </span></span>
-<span id="cb1012-2"><a href="products.html#cb1012-2" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="fu">here</span>())</span>
-<span id="cb1012-3"><a href="products.html#cb1012-3" tabindex="-1"></a></span>
-<span id="cb1012-4"><a href="products.html#cb1012-4" tabindex="-1"></a><span class="co"># License the package </span></span>
-<span id="cb1012-5"><a href="products.html#cb1012-5" tabindex="-1"></a><span class="co"># You can use the MIT license by typing devtools::use_mit_license(&quot;author name&quot;). The function produces MIT license-related files (LICENSE, LICENSE.md).</span></span>
-<span id="cb1012-6"><a href="products.html#cb1012-6" tabindex="-1"></a><span class="fu">use_mit_license</span>(<span class="st">&quot;Jae Yeon Kim&quot;</span>)</span>
-<span id="cb1012-7"><a href="products.html#cb1012-7" tabindex="-1"></a></span>
-<span id="cb1012-8"><a href="products.html#cb1012-8" tabindex="-1"></a><span class="co"># Add news (optional) </span></span>
-<span id="cb1012-9"><a href="products.html#cb1012-9" tabindex="-1"></a><span class="co"># Helps track changes </span></span>
-<span id="cb1012-10"><a href="products.html#cb1012-10" tabindex="-1"></a><span class="fu">use_news_md</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb1013"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># This function creates DESCRIPTION file </span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/create_package.html">create_package</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># License the package </span></span>
+<span><span class="co"># You can use the MIT license by typing devtools::use_mit_license("author name"). The function produces MIT license-related files (LICENSE, LICENSE.md).</span></span>
+<span><span class="fu">use_mit_license</span><span class="op">(</span><span class="st">"Jae Yeon Kim"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Add news (optional) </span></span>
+<span><span class="co"># Helps track changes </span></span>
+<span><span class="fu">use_news_md</span><span class="op">(</span><span class="op">)</span> </span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Write code (<strong>R</strong>)</li>
 </ol>
 <p>If you want to turn your R markdown file into R script use `knitr::purl(input = “x.Rmd”,
 output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen package</a> helps to develop an R package based on R markdown files.</p>
-<div class="sourceCode" id="cb1013"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1013-1"><a href="products.html#cb1013-1" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_r</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1014"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1014-1"><a href="products.html#cb1014-1" tabindex="-1"></a><span class="co">#&#39; Add two numbers</span></span>
-<span id="cb1014-2"><a href="products.html#cb1014-2" tabindex="-1"></a><span class="co">#&#39;</span></span>
-<span id="cb1014-3"><a href="products.html#cb1014-3" tabindex="-1"></a><span class="co">#&#39; @param x A number</span></span>
-<span id="cb1014-4"><a href="products.html#cb1014-4" tabindex="-1"></a><span class="co">#&#39; @param y A number</span></span>
-<span id="cb1014-5"><a href="products.html#cb1014-5" tabindex="-1"></a><span class="co">#&#39; @return The sum of x and y </span></span>
-<span id="cb1014-6"><a href="products.html#cb1014-6" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
-<span id="cb1014-7"><a href="products.html#cb1014-7" tabindex="-1"></a></span>
-<span id="cb1014-8"><a href="products.html#cb1014-8" tabindex="-1"></a>add <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
-<span id="cb1014-9"><a href="products.html#cb1014-9" tabindex="-1"></a>  </span>
-<span id="cb1014-10"><a href="products.html#cb1014-10" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
-<span id="cb1014-11"><a href="products.html#cb1014-11" tabindex="-1"></a>  </span>
-<span id="cb1014-12"><a href="products.html#cb1014-12" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1014"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_r.html">use_r</a></span><span class="op">(</span><span class="st">"rbind_mutate"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1015"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Add two numbers</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @param x A number</span></span>
+<span><span class="co">#' @param y A number</span></span>
+<span><span class="co">#' @return The sum of x and y </span></span>
+<span><span class="co">#' @export</span></span>
+<span></span>
+<span><span class="va">add</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="va">x</span> <span class="op">+</span> <span class="va">y</span></span>
+<span>  </span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>If you used a function from other packages, you need to reference it in the following way: <code>#' @importFrom &lt;package&gt; &lt;function&gt;</code></p>
-<p>Many of us use <code>%&gt;%</code> operator in the code. If you want to add this to your documentation, do <code>usethis::use_pipe()</code>.</p>
+<p>Many of us use <code>%&gt;%</code> operator in the code. If you want to add this to your documentation, do <code><a href="https://usethis.r-lib.org/reference/use_pipe.html">usethis::use_pipe()</a></code>.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Document (<strong>man</strong>)</li>
 </ol>
 <p>This documentation is for the function manual.</p>
-<div class="sourceCode" id="cb1015"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1015-1"><a href="products.html#cb1015-1" tabindex="-1"></a><span class="co"># Document </span></span>
-<span id="cb1015-2"><a href="products.html#cb1015-2" tabindex="-1"></a><span class="co"># The function creates documentation related files (NAMESPACE, function_name.rd)</span></span>
-<span id="cb1015-3"><a href="products.html#cb1015-3" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span>
-<span id="cb1015-4"><a href="products.html#cb1015-4" tabindex="-1"></a></span>
-<span id="cb1015-5"><a href="products.html#cb1015-5" tabindex="-1"></a><span class="co"># Check; updates the documentation; builds and checks the package </span></span>
-<span id="cb1015-6"><a href="products.html#cb1015-6" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1016"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Document </span></span>
+<span><span class="co"># The function creates documentation related files (NAMESPACE, function_name.rd)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/document.html">document</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Check; updates the documentation; builds and checks the package </span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/check.html">check</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Organize (<strong>NAMESPACE</strong>)</li>
 </ol>
 <p>This documentation is for <a href="https://en.wikipedia.org/wiki/Namespace">namespace</a>.</p>
-<div class="sourceCode" id="cb1016"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1016-1"><a href="products.html#cb1016-1" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1017"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_package.html">use_package</a></span><span class="op">(</span><span class="st">"dplyr"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="optional-components" class="section level3 hasAnchor" number="6.1.4">
-<h3><span class="header-section-number">6.1.4</span> Optional Components<a href="products.html#optional-components" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="optional-components" class="section level3" number="6.1.4">
+<h3>
+<span class="header-section-number">6.1.4</span> Optional Components<a class="anchor" aria-label="anchor" href="#optional-components"><i class="fas fa-link"></i></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>Test (<strong>test</strong>)</li>
 </ol>
@@ -300,75 +215,88 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <ul>
 <li>Setup</li>
 </ul>
-<div class="sourceCode" id="cb1017"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1017-1"><a href="products.html#cb1017-1" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_testthat</span>()</span>
-<span id="cb1017-2"><a href="products.html#cb1017-2" tabindex="-1"></a></span>
-<span id="cb1017-3"><a href="products.html#cb1017-3" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1018"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_testthat.html">use_testthat</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_r.html">use_test</a></span><span class="op">(</span><span class="st">"rbind_mutate"</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>Testing</li>
 </ul>
-<div class="sourceCode" id="cb1018"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1018-1"><a href="products.html#cb1018-1" tabindex="-1"></a><span class="co"># Make changes </span></span>
-<span id="cb1018-2"><a href="products.html#cb1018-2" tabindex="-1"></a></span>
-<span id="cb1018-3"><a href="products.html#cb1018-3" tabindex="-1"></a><span class="co"># Load functions </span></span>
-<span id="cb1018-4"><a href="products.html#cb1018-4" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span>
-<span id="cb1018-5"><a href="products.html#cb1018-5" tabindex="-1"></a></span>
-<span id="cb1018-6"><a href="products.html#cb1018-6" tabindex="-1"></a><span class="co"># Test </span></span>
-<span id="cb1018-7"><a href="products.html#cb1018-7" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">test</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1019"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Make changes </span></span>
+<span></span>
+<span><span class="co"># Load functions </span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/load_all.html">load_all</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Test </span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/test.html">test</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Add data (<strong>data</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb1019"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1019-1"><a href="products.html#cb1019-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;Jae&quot;</span></span>
-<span id="cb1019-2"><a href="products.html#cb1019-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">&quot;Sun&quot;</span></span>
-<span id="cb1019-3"><a href="products.html#cb1019-3" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="st">&quot;Jane&quot;</span></span>
-<span id="cb1019-4"><a href="products.html#cb1019-4" tabindex="-1"></a></span>
-<span id="cb1019-5"><a href="products.html#cb1019-5" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_data</span>(x, y, z, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1020"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"Jae"</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="st">"Sun"</span></span>
+<span><span class="va">z</span> <span class="op">&lt;-</span> <span class="st">"Jane"</span></span>
+<span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_data.html">use_data</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">z</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Teach (<strong>vignetts</strong>)</li>
 </ol>
-<div class="sourceCode" id="cb1020"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1020-1"><a href="products.html#cb1020-1" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_vignette</span>(<span class="st">&quot;rbind_mutate&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1021"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1021-1"><a href="products.html#cb1021-1" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Vignette title&quot;</span></span>
-<span id="cb1021-2"><a href="products.html#cb1021-2" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Vignette author&quot;</span></span>
-<span id="cb1021-3"><a href="products.html#cb1021-3" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;2025-04-20&quot;</span></span>
-<span id="cb1021-4"><a href="products.html#cb1021-4" tabindex="-1"></a>output<span class="sc">:</span> rmarkdown<span class="sc">::</span>html_vignette</span>
-<span id="cb1021-5"><a href="products.html#cb1021-5" tabindex="-1"></a>vignette<span class="sc">:</span> blah blah</span></code></pre></div>
+<div class="sourceCode" id="cb1021"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_vignette.html">use_vignette</a></span><span class="op">(</span><span class="st">"rbind_mutate"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1022"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1022-1"><a href="products.html#cb1022-1" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">"Vignette title"</span></span>
+<span id="cb1022-2"><a href="products.html#cb1022-2" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">"Vignette author"</span></span>
+<span id="cb1022-3"><a href="products.html#cb1022-3" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">"2026-02-01"</span></span>
+<span id="cb1022-4"><a href="products.html#cb1022-4" tabindex="-1"></a>output<span class="sc">:</span> rmarkdown<span class="sc">::</span>html_vignette</span>
+<span id="cb1022-5"><a href="products.html#cb1022-5" tabindex="-1"></a>vignette<span class="sc">:</span> blah blah</span></code></pre></div>
 <ul>
-<li>You can build a package website using <code>pkgdown</code></li>
+<li>You can build a package website using <code>pkgdown</code>
+</li>
 </ul>
-<div class="sourceCode" id="cb1022"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1022-1"><a href="products.html#cb1022-1" tabindex="-1"></a><span class="co"># install.packages(&quot;pkgdown&quot;)</span></span>
-<span id="cb1022-2"><a href="products.html#cb1022-2" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_pkgdown</span>()</span>
-<span id="cb1022-3"><a href="products.html#cb1022-3" tabindex="-1"></a>pkgdown<span class="sc">::</span><span class="fu">build_site</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1023"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("pkgdown")</span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_pkgdown.html">use_pkgdown</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">pkgdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgdown.r-lib.org/reference/build_site.html">build_site</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>A package site includes information on METADATA, Function references, Articles, News, etc.</li>
 </ul>
 </div>
-<div id="building-an-r-package" class="section level3 hasAnchor" number="6.1.5">
-<h3><span class="header-section-number">6.1.5</span> Building an R package<a href="products.html#building-an-r-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="building-an-r-package" class="section level3" number="6.1.5">
+<h3>
+<span class="header-section-number">6.1.5</span> Building an R package<a class="anchor" aria-label="anchor" href="#building-an-r-package"><i class="fas fa-link"></i></a>
+</h3>
 <ul>
 <li>CMD (in the terminal)</li>
 </ul>
 <p>You can run R commands in the terminal using R CMD.</p>
-<div class="sourceCode" id="cb1023"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1023-1"><a href="products.html#cb1023-1" tabindex="-1"></a><span class="ex">R</span> CMD build mypkg </span>
-<span id="cb1023-2"><a href="products.html#cb1023-2" tabindex="-1"></a><span class="ex">R</span> CMD INSTALL mypkg </span></code></pre></div>
+<div class="sourceCode" id="cb1024"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1024-1"><a href="products.html#cb1024-1" tabindex="-1"></a><span class="ex">R</span> CMD build mypkg </span>
+<span id="cb1024-2"><a href="products.html#cb1024-2" tabindex="-1"></a><span class="ex">R</span> CMD INSTALL mypkg </span></code></pre></div>
 <ul>
 <li>devtools</li>
 </ul>
-<div class="sourceCode" id="cb1024"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1024-1"><a href="products.html#cb1024-1" tabindex="-1"></a><span class="co"># Build </span></span>
-<span id="cb1024-2"><a href="products.html#cb1024-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">build</span>()</span>
-<span id="cb1024-3"><a href="products.html#cb1024-3" tabindex="-1"></a></span>
-<span id="cb1024-4"><a href="products.html#cb1024-4" tabindex="-1"></a><span class="co"># Install </span></span>
-<span id="cb1024-5"><a href="products.html#cb1024-5" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1025"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Build </span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/build.html">build</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Install </span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install.html">install</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="distributing-an-r-package" class="section level3 hasAnchor" number="6.1.6">
-<h3><span class="header-section-number">6.1.6</span> Distributing an R package<a href="products.html#distributing-an-r-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb1025"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1025-1"><a href="products.html#cb1025-1" tabindex="-1"></a><span class="co"># Version update </span></span>
-<span id="cb1025-2"><a href="products.html#cb1025-2" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_version</span>()</span>
-<span id="cb1025-3"><a href="products.html#cb1025-3" tabindex="-1"></a></span>
-<span id="cb1025-4"><a href="products.html#cb1025-4" tabindex="-1"></a><span class="co"># Spell check</span></span>
-<span id="cb1025-5"><a href="products.html#cb1025-5" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_spell_check</span>()</span></code></pre></div>
+<div id="distributing-an-r-package" class="section level3" number="6.1.6">
+<h3>
+<span class="header-section-number">6.1.6</span> Distributing an R package<a class="anchor" aria-label="anchor" href="#distributing-an-r-package"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb1026"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Version update </span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_version.html">use_version</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Spell check</span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_spell_check.html">use_spell_check</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><a href="https://cran.r-project.org/">CRAN (The Comprehensive R Archive Network)</a></li>
 </ol>
 <ul>
-<li>R package submission should comply with <a href="https://cran.r-project.org/">the CRAN Repository Policy</a></li>
+<li>R package submission should comply with <a href="https://cran.r-project.org/">the CRAN Repository Policy</a>
+</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li>GitHub</li>
@@ -376,23 +304,26 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <ul>
 <li>Push everything to the Git repository (you can do it using command-line interface or RStudio).</li>
 </ul>
-<div class="sourceCode" id="cb1026"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1026-1"><a href="products.html#cb1026-1" tabindex="-1"></a><span class="fu">git</span> add . </span>
-<span id="cb1026-2"><a href="products.html#cb1026-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;first push&quot;</span></span>
-<span id="cb1026-3"><a href="products.html#cb1026-3" tabindex="-1"></a><span class="fu">git</span> push </span></code></pre></div>
+<div class="sourceCode" id="cb1027"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1027-1"><a href="products.html#cb1027-1" tabindex="-1"></a><span class="fu">git</span> add . </span>
+<span id="cb1027-2"><a href="products.html#cb1027-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"first push"</span></span>
+<span id="cb1027-3"><a href="products.html#cb1027-3" tabindex="-1"></a><span class="fu">git</span> push </span></code></pre></div>
 <ul>
 <li><p>Don’t forget that your repository should be <code>public</code>.</p></li>
 <li><p>I highly recommend connecting GitHub with SSH. For more information, visit <a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">this link</a>.</p></li>
 </ul>
-<div class="sourceCode" id="cb1027"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1027-1"><a href="products.html#cb1027-1" tabindex="-1"></a><span class="fu">git</span> remote set-url origin git@github.com:user/repo </span></code></pre></div>
+<div class="sourceCode" id="cb1028"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1028-1"><a href="products.html#cb1028-1" tabindex="-1"></a><span class="fu">git</span> remote set-url origin git@github.com:user/repo </span></code></pre></div>
 <p><strong>Additional tips</strong></p>
 <p>Sometimes, you get the following error: “Undefined global functions or variables” If you experience this problem, save the following script as <code>globals.r.</code></p>
-<div class="sourceCode" id="cb1028"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1028-1"><a href="products.html#cb1028-1" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">globalVariables</span>(<span class="fu">c</span>(<span class="st">&quot;&lt;undefined variable name1&gt;&quot;</span>, <span class="st">&quot;&lt;undefined variable name2&gt;&quot;</span>, <span class="st">&quot;&lt;undefinedvariable name3&quot;</span>))</span></code></pre></div>
-<pre><code>## [1] &quot;&lt;undefined variable name1&gt;&quot; &quot;&lt;undefined variable name2&gt;&quot;
-## [3] &quot;&lt;undefinedvariable name3&quot;</code></pre>
+<div class="sourceCode" id="cb1029"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/globalVariables.html">globalVariables</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&lt;undefined variable name1&gt;"</span>, <span class="st">"&lt;undefined variable name2&gt;"</span>, <span class="st">"&lt;undefinedvariable name3"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "&lt;undefined variable name1&gt;" "&lt;undefined variable name2&gt;"
+## [3] "&lt;undefinedvariable name3"</code></pre>
 </div>
 </div>
-<div id="developing-shiny-apps" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Developing Shiny apps<a href="products.html#developing-shiny-apps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="developing-shiny-apps" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> Developing Shiny apps<a class="anchor" aria-label="anchor" href="#developing-shiny-apps"><i class="fas fa-link"></i></a>
+</h2>
 <p><a href="https://shiny.rstudio.com/">Shiny</a> is a “framework for creating web applications using R code” (<a href="https://mastering-shiny.org/">Wickham 2021</a>). You can create a <a href="https://rstudio.github.io/shinydashboard/">dashboard</a> or an <a href="https://rviews.rstudio.com/2019/10/09/building-interactive-world-maps-in-shiny/">interactive map</a> without knowing anything about HTML, CSS, or JavaScript. Developing a shiny app helps people with little technical expertise learn from your data analysis intuitively and interactively.</p>
 <p>To learn more about Shiny applications, see <a href="https://blog.rstudio.com/2020/07/13/winners-of-the-2nd-shiny-contest/">the Winners of the 2nd Annual Shiny Contest</a> hosted by RStudio.</p>
 
@@ -400,13 +331,16 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 
 <p>Shiny in production: Principles, practices, and tools - Joe Cheng</p>
 
-<div id="workflow-1" class="section level3 hasAnchor" number="6.2.1">
-<h3><span class="header-section-number">6.2.1</span> Workflow<a href="products.html#workflow-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="workflow-1" class="section level3" number="6.2.1">
+<h3>
+<span class="header-section-number">6.2.1</span> Workflow<a class="anchor" aria-label="anchor" href="#workflow-1"><i class="fas fa-link"></i></a>
+</h3>
 <p>The workflow follows what Hadley Wickham recommended in his book on mastering shiny.</p>
 <ol style="list-style-type: decimal">
 <li>Install libraries</li>
 </ol>
-<div class="sourceCode" id="cb1030"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1030-1"><a href="products.html#cb1030-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1031"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"shiny"</span><span class="op">)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Create app directory and file</li>
 </ol>
@@ -414,171 +348,172 @@ output = “x.R”). The <a href="https://thinkr-open.github.io/fusen/">fusen pa
 <p>The key objective here is defining your UI (User interface; how the app looks; front-end = INPUT) (defined in object <code>ui</code>) and server (how the app works; back-end = OUTPUT) (defined in object <code>server</code>). Shiny uses <strong>reactive programming</strong>. So if you change inputs on the user side, outputs will be automatically updated on the server end.</p>
 <p>If you’re creating a complex app, you can achieve the same goal with two files: <code>ui.R</code> and <code>server.R.</code></p>
 </div>
-<div id="app.r" class="section level3 hasAnchor" number="6.2.2">
-<h3><span class="header-section-number">6.2.2</span> app.r<a href="products.html#app.r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="app.r" class="section level3" number="6.2.2">
+<h3>
+<span class="header-section-number">6.2.2</span> app.r<a class="anchor" aria-label="anchor" href="#app.r"><i class="fas fa-link"></i></a>
+</h3>
 <ul>
 <li>Front-end</li>
 </ul>
-<div class="sourceCode" id="cb1031"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1031-1"><a href="products.html#cb1031-1" tabindex="-1"></a><span class="co"># Load packages </span></span>
-<span id="cb1031-2"><a href="products.html#cb1031-2" tabindex="-1"></a><span class="co"># Do not use install.packages(), pacman::p_load(), or library() if you intend to deploy the app using shinyapps.io </span></span>
-<span id="cb1031-3"><a href="products.html#cb1031-3" tabindex="-1"></a></span>
-<span id="cb1031-4"><a href="products.html#cb1031-4" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;wordcloud2&quot;</span>)</span>
-<span id="cb1031-5"><a href="products.html#cb1031-5" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;shiny&quot;</span>)</span>
-<span id="cb1031-6"><a href="products.html#cb1031-6" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;shinydashboard&quot;</span>)</span>
-<span id="cb1031-7"><a href="products.html#cb1031-7" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;colourpicker&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1032"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1032-1"><a href="products.html#cb1032-1" tabindex="-1"></a><span class="co"># Load data </span></span>
-<span id="cb1032-2"><a href="products.html#cb1032-2" tabindex="-1"></a></span>
-<span id="cb1032-3"><a href="products.html#cb1032-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">&quot;https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv&quot;</span>))[,<span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
-<p><code>fluidPage()</code>: provides the layout for the UI</p>
-<p><code>sliderInput()</code>: one of the input controls (e.g., <code>selectInput()</code>, <code>textInput()</code>, <code>numericInput()</code>)</p>
-<p><code>wordcloud2Output()</code> one of the output controls (e.g., <code>tableOutput()</code>)</p>
-<div class="sourceCode" id="cb1033"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1033-1"><a href="products.html#cb1033-1" tabindex="-1"></a><span class="co"># Defines the user interface; how the app looks</span></span>
-<span id="cb1033-2"><a href="products.html#cb1033-2" tabindex="-1"></a></span>
-<span id="cb1033-3"><a href="products.html#cb1033-3" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb1033-4"><a href="products.html#cb1033-4" tabindex="-1"></a>  </span>
-<span id="cb1033-5"><a href="products.html#cb1033-5" tabindex="-1"></a>    <span class="co"># Application title </span></span>
-<span id="cb1033-6"><a href="products.html#cb1033-6" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">&quot;Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan&quot;</span>),</span>
-<span id="cb1033-7"><a href="products.html#cb1033-7" tabindex="-1"></a>  </span>
-<span id="cb1033-8"><a href="products.html#cb1033-8" tabindex="-1"></a>    <span class="fu">h4</span>(tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">&quot;https://jaeyk.github.io/&quot;</span>, <span class="st">&quot;Developer: Jae Yeon Kim&quot;</span>)),</span>
-<span id="cb1033-9"><a href="products.html#cb1033-9" tabindex="-1"></a>            </span>
-<span id="cb1033-10"><a href="products.html#cb1033-10" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
-<span id="cb1033-11"><a href="products.html#cb1033-11" tabindex="-1"></a>      </span>
-<span id="cb1033-12"><a href="products.html#cb1033-12" tabindex="-1"></a>      <span class="co"># Sidebar with sliders </span></span>
-<span id="cb1033-13"><a href="products.html#cb1033-13" tabindex="-1"></a>      <span class="fu">sidebarPanel</span>(</span>
-<span id="cb1033-14"><a href="products.html#cb1033-14" tabindex="-1"></a>        <span class="fu">sliderInput</span>(<span class="st">&quot;size&quot;</span>, <span class="co"># Input ID: input$size </span></span>
-<span id="cb1033-15"><a href="products.html#cb1033-15" tabindex="-1"></a>                    <span class="st">&quot;Font size:&quot;</span>,</span>
-<span id="cb1033-16"><a href="products.html#cb1033-16" tabindex="-1"></a>                    <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">10</span>,</span>
-<span id="cb1033-17"><a href="products.html#cb1033-17" tabindex="-1"></a>                    <span class="at">value =</span> <span class="dv">2</span>)</span>
-<span id="cb1033-18"><a href="products.html#cb1033-18" tabindex="-1"></a>      ),</span>
-<span id="cb1033-19"><a href="products.html#cb1033-19" tabindex="-1"></a>    </span>
-<span id="cb1033-20"><a href="products.html#cb1033-20" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb1033-21"><a href="products.html#cb1033-21" tabindex="-1"></a>          </span>
-<span id="cb1033-22"><a href="products.html#cb1033-22" tabindex="-1"></a>          <span class="fu">wordcloud2Output</span>(<span class="st">&quot;cloud&quot;</span>),</span>
-<span id="cb1033-23"><a href="products.html#cb1033-23" tabindex="-1"></a>        </span>
-<span id="cb1033-24"><a href="products.html#cb1033-24" tabindex="-1"></a>        )</span>
-<span id="cb1033-25"><a href="products.html#cb1033-25" tabindex="-1"></a>    </span>
-<span id="cb1033-26"><a href="products.html#cb1033-26" tabindex="-1"></a>    )</span>
-<span id="cb1033-27"><a href="products.html#cb1033-27" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1032"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Load packages </span></span>
+<span><span class="co"># Do not use install.packages(), pacman::p_load(), or library() if you intend to deploy the app using shinyapps.io </span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://github.com/lchiffon/wordcloud2">"wordcloud2"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://shiny.posit.co/">"shiny"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://rstudio.github.io/shinydashboard/">"shinydashboard"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://github.com/daattali/colourpicker">"colourpicker"</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1033"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Load data </span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/jaeyk/covid19antiasian/raw/master/processed_data/hash_counts.csv"</span><span class="op">)</span><span class="op">)</span><span class="op">[</span>,<span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></code></pre></div>
+<p><code><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage()</a></code>: provides the layout for the UI</p>
+<p><code><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput()</a></code>: one of the input controls (e.g., <code><a href="https://rdrr.io/pkg/shiny/man/selectInput.html">selectInput()</a></code>, <code><a href="https://rdrr.io/pkg/shiny/man/textInput.html">textInput()</a></code>, <code><a href="https://rdrr.io/pkg/shiny/man/numericInput.html">numericInput()</a></code>)</p>
+<p><code>wordcloud2Output()</code> one of the output controls (e.g., <code><a href="https://rdrr.io/pkg/shiny/man/renderTable.html">tableOutput()</a></code>)</p>
+<div class="sourceCode" id="cb1034"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Defines the user interface; how the app looks</span></span>
+<span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span></span>
+<span>  </span>
+<span>    <span class="co"># Application title </span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html">titlePanel</a></span><span class="op">(</span><span class="st">"Word Cloud on the Hashtags of the Tweets related to COVID-19 &amp; Asian|Chinese|Wuhan"</span><span class="op">)</span>,</span>
+<span>  </span>
+<span>    <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html">h4</a></span><span class="op">(</span><span class="va">tags</span><span class="op">$</span><span class="fu">a</span><span class="op">(</span>href <span class="op">=</span> <span class="st">"https://jaeyk.github.io/"</span>, <span class="st">"Developer: Jae Yeon Kim"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>            </span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarLayout</a></span><span class="op">(</span></span>
+<span>      </span>
+<span>      <span class="co"># Sidebar with sliders </span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarPanel</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span><span class="st">"size"</span>, <span class="co"># Input ID: input$size </span></span>
+<span>                    <span class="st">"Font size:"</span>,</span>
+<span>                    min <span class="op">=</span> <span class="fl">1</span>, max <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>                    value <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>    </span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">mainPanel</a></span><span class="op">(</span></span>
+<span>          </span>
+<span>          <span class="fu">wordcloud2Output</span><span class="op">(</span><span class="st">"cloud"</span><span class="op">)</span>,</span>
+<span>        </span>
+<span>        <span class="op">)</span></span>
+<span>    </span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>Back-end</li>
 </ul>
-<div class="sourceCode" id="cb1034"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1034-1"><a href="products.html#cb1034-1" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb1034-2"><a href="products.html#cb1034-2" tabindex="-1"></a>  </span>
-<span id="cb1034-3"><a href="products.html#cb1034-3" tabindex="-1"></a>  output<span class="sc">$</span>cloud <span class="ot">&lt;-</span> <span class="fu">renderWordcloud2</span>({ </span>
-<span id="cb1034-4"><a href="products.html#cb1034-4" tabindex="-1"></a>    </span>
-<span id="cb1034-5"><a href="products.html#cb1034-5" tabindex="-1"></a>    <span class="fu">wordcloud2</span>(df, </span>
-<span id="cb1034-6"><a href="products.html#cb1034-6" tabindex="-1"></a>               <span class="at">size =</span> input<span class="sc">$</span>size, </span>
-<span id="cb1034-7"><a href="products.html#cb1034-7" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;random-dark&quot;</span>) </span>
-<span id="cb1034-8"><a href="products.html#cb1034-8" tabindex="-1"></a>    </span>
-<span id="cb1034-9"><a href="products.html#cb1034-9" tabindex="-1"></a>    })</span>
-<span id="cb1034-10"><a href="products.html#cb1034-10" tabindex="-1"></a></span>
-<span id="cb1034-11"><a href="products.html#cb1034-11" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb1035"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">cloud</span> <span class="op">&lt;-</span> <span class="fu">renderWordcloud2</span><span class="op">(</span><span class="op">{</span> </span>
+<span>    </span>
+<span>    <span class="fu">wordcloud2</span><span class="op">(</span><span class="va">df</span>, </span>
+<span>               size <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">size</span>, </span>
+<span>               color <span class="op">=</span> <span class="st">"random-dark"</span><span class="op">)</span> </span>
+<span>    </span>
+<span>    <span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="op">}</span></span></code></pre></div>
 <ul>
 <li>Build a shiny app</li>
 </ul>
-<div class="sourceCode" id="cb1035"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1035-1"><a href="products.html#cb1035-1" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+<div class="sourceCode" id="cb1036"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="deployment" class="section level3 hasAnchor" number="6.2.3">
-<h3><span class="header-section-number">6.2.3</span> Deployment<a href="products.html#deployment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="deployment" class="section level3" number="6.2.3">
+<h3>
+<span class="header-section-number">6.2.3</span> Deployment<a class="anchor" aria-label="anchor" href="#deployment"><i class="fas fa-link"></i></a>
+</h3>
 <ul>
-<li>Deploy to <a href="https://www.shinyapps.io/?_ga=2.5503866.871102833.1602978469-100003412.1602392815">the shinyapps.io cloud</a></li>
+<li>Deploy to <a href="https://www.shinyapps.io/?_ga=2.5503866.871102833.1602978469-100003412.1602392815">the shinyapps.io cloud</a>
+</li>
 </ul>
-<div class="sourceCode" id="cb1036"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1036-1"><a href="products.html#cb1036-1" tabindex="-1"></a><span class="co"># Install packages </span></span>
-<span id="cb1036-2"><a href="products.html#cb1036-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rsconnect&quot;</span>)</span>
-<span id="cb1036-3"><a href="products.html#cb1036-3" tabindex="-1"></a><span class="fu">library</span>(rsconnect)</span>
-<span id="cb1036-4"><a href="products.html#cb1036-4" tabindex="-1"></a></span>
-<span id="cb1036-5"><a href="products.html#cb1036-5" tabindex="-1"></a><span class="co"># Setup </span></span>
-<span id="cb1036-6"><a href="products.html#cb1036-6" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">setAccountInfo</span>(<span class="at">name =</span> <span class="st">&quot;&lt;Account name&gt;&quot;</span>, </span>
-<span id="cb1036-7"><a href="products.html#cb1036-7" tabindex="-1"></a>                          <span class="at">token =</span> <span class="st">&quot;&lt;Token&gt;&quot;</span>,</span>
-<span id="cb1036-8"><a href="products.html#cb1036-8" tabindex="-1"></a>                          <span class="at">secret =</span> <span class="st">&quot;&lt;Secret&gt;&quot;</span>)</span>
-<span id="cb1036-9"><a href="products.html#cb1036-9" tabindex="-1"></a></span>
-<span id="cb1036-10"><a href="products.html#cb1036-10" tabindex="-1"></a>rsconnect<span class="sc">::</span><span class="fu">deployApp</span>(<span class="at">appNames =</span> <span class="st">&quot;&lt;App name&gt;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1037"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Install packages </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rsconnect"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/rsconnect/">rsconnect</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Setup </span></span>
+<span><span class="fu">rsconnect</span><span class="fu">::</span><span class="fu">setAccountInfo</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"&lt;Account name&gt;"</span>, </span>
+<span>                          token <span class="op">=</span> <span class="st">"&lt;Token&gt;"</span>,</span>
+<span>                          secret <span class="op">=</span> <span class="st">"&lt;Secret&gt;"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">rsconnect</span><span class="fu">::</span><span class="fu">deployApp</span><span class="op">(</span>appNames <span class="op">=</span> <span class="st">"&lt;App name&gt;"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="references-3" class="section level3 hasAnchor" number="6.2.4">
-<h3><span class="header-section-number">6.2.4</span> References<a href="products.html#references-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="references-3" class="section level3" number="6.2.4">
+<h3>
+<span class="header-section-number">6.2.4</span> References<a class="anchor" aria-label="anchor" href="#references-3"><i class="fas fa-link"></i></a>
+</h3>
 <p><a href="https://mastering-shiny.org/">Mastering Shiny</a> by Hadley Wickham. For newbies.</p>
 <p><a href="https://bookdown.org/yihui/rmarkdown/shiny-documents.html">Shiny Documents</a> by Yihui Xie</p>
 <p><a href="https://engineering-shiny.org/">Engineering Production-Grade Shiny Apps</a> by Colin Fay, Sébastien Rochette, Vincent Guyader, Cervan Girard.</p>
 <p><a href="https://stat545.com/shiny-tutorial.html">Building Shiny Apps</a> by Dean Attali.</p>
 </div>
 </div>
-<div id="other-useful-data-products" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> Other useful data products<a href="products.html#other-useful-data-products" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="other-useful-data-products" class="section level2" number="6.3">
+<h2>
+<span class="header-section-number">6.3</span> Other useful data products<a class="anchor" aria-label="anchor" href="#other-useful-data-products"><i class="fas fa-link"></i></a>
+</h2>
 <ul>
 <li>Automating data reports using rmarkdown (called <a href="https://rmarkdown.rstudio.com/developer_parameterized_reports.html%23parameter_types%2F">parameterized reports</a>)</li>
-<li>Automating R presentation using <a href="http://slidify.org/index.html">slidify</a></li>
-<li>Creating interactive web apps using <a href="https://rstudio.github.io/leaflet/">leaflet</a></li>
+<li>Automating R presentation using <a href="http://slidify.org/index.html">slidify</a>
+</li>
+<li>Creating interactive web apps using <a href="https://rstudio.github.io/leaflet/">leaflet</a>
+</li>
+</ul>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="functional_programming.html"><span class="header-section-number">5</span> Automating repeated things</a></div>
+<div class="next"><a href="semi_structured_data.html"><span class="header-section-number">7</span> Semi-structured data</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#products"><span class="header-section-number">6</span> Developing data products</a></li>
+<li>
+<a class="nav-link" href="#developing-r-packages"><span class="header-section-number">6.1</span> Developing R packages</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#the-big-picture-7"><span class="header-section-number">6.1.1</span> The Big Picture</a></li>
+<li><a class="nav-link" href="#workflow"><span class="header-section-number">6.1.2</span> Workflow</a></li>
+<li><a class="nav-link" href="#required-components"><span class="header-section-number">6.1.3</span> Required Components</a></li>
+<li><a class="nav-link" href="#optional-components"><span class="header-section-number">6.1.4</span> Optional Components</a></li>
+<li><a class="nav-link" href="#building-an-r-package"><span class="header-section-number">6.1.5</span> Building an R package</a></li>
+<li><a class="nav-link" href="#distributing-an-r-package"><span class="header-section-number">6.1.6</span> Distributing an R package</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#developing-shiny-apps"><span class="header-section-number">6.2</span> Developing Shiny apps</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#workflow-1"><span class="header-section-number">6.2.1</span> Workflow</a></li>
+<li><a class="nav-link" href="#app.r"><span class="header-section-number">6.2.2</span> app.r</a></li>
+<li><a class="nav-link" href="#deployment"><span class="header-section-number">6.2.3</span> Deployment</a></li>
+<li><a class="nav-link" href="#references-3"><span class="header-section-number">6.2.4</span> References</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#other-useful-data-products"><span class="header-section-number">6.3</span> Other useful data products</a></li>
 </ul>
 
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/jaeyk/PS239T/blob/main/05_data_product_development.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/jaeyk/PS239T/edit/main/05_data_product_development.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
 </div>
+    </nav>
 </div>
-            </section>
 
-          </div>
-        </div>
-      </div>
-<a href="functional_programming.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="semi_structured_data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Computational Thinking for Social Scientists</strong>" was written by Jae Yeon Kim. It was last built on 2026-02-01.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-  "sharing": {
-    "github": false,
-    "facebook": true,
-    "twitter": true,
-    "linkedin": false,
-    "weibo": false,
-    "instapaper": false,
-    "vk": false,
-    "whatsapp": false,
-    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-  },
-  "fontsettings": {
-    "theme": "white",
-    "family": "sans",
-    "size": 2
-  },
-  "edit": {
-    "link": "https://github.com/jaeyk/PS239T/edit/main/05_data_product_development.Rmd",
-    "text": "Edit"
-  },
-  "history": {
-    "link": null,
-    "text": null
-  },
-  "view": {
-    "link": null,
-    "text": null
-  },
-  "download": [
-    ["pdf", "PS239T.pdf"],
-    ["epub", "PS239T.epub"]
-  ],
-  "search": {
-    "engine": "fuse",
-    "options": null,
-    "enabled": true,
-    "highlight": true
-  },
-  "toc": {
-    "collapse": "section"
-  }
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -590,7 +525,22 @@ gitbook.start({
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
-
 </html>
