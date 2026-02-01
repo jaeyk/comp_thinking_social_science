@@ -30,7 +30,8 @@ Please feel free to [create issues](https://github.com/jaeyk/PS239T/issues) if y
 
 ## Contact
 
-Content developer: [Jae Yeon Kim](https://jaeyk.github.io/): jaekim@unc.edu
+Content developer: [Jae Yeon Kim](https://jaeyk.github.io/). Assistant Professor of Public Policy at the University of North Carolina at Chapel Hill. 
+Email: jaekim@unc.edu
 
 ## Special thanks 
 
