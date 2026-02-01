@@ -1,53 +1,162 @@
-/* Adopted CSS from https://github.com/jtleek/ads2020/blob/master/style.css */
+/* Modern styling for Computational Thinking for Social Scientists */
 
-/* -----------div tips------------- */
+/* ============================================
+   Custom callout boxes
+   ============================================ */
 
+.homework {
+  padding: 1.25rem 1.25rem 1.25rem 1rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid #0d6efd;
+  border-radius: 0.5rem;
+  background-color: #e7f1ff;
+  color: #052c65;
+}
 
-  .homework {
-    padding: 1em;
-    margin: 1em 0;
-    padding-left: 100px;
-    background-size: 70px;
-    background-repeat: no-repeat;
-    background-position: 15px center;
-    min-height: 120px;
-    color: #03537B ;
-      background-color: #CDE7F5;
-      border: solid 5px #03537B;
-  }
-
+.homework::before {
+  content: "📝 Exercise";
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #0d6efd;
+}
 
 .resources {
-  padding: 1em;
-  margin: 1em 0;
-  padding-left: 100px;
-  background-size: 70px;
-  background-repeat: no-repeat;
-  background-position: 15px center;
-  min-height: 120px;
-  color: #443F1F;
-    background-color: #e5d468;
-    border: solid 5px #443F1F;
+  padding: 1.25rem 1.25rem 1.25rem 1rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid #ffc107;
+  border-radius: 0.5rem;
+  background-color: #fff9e6;
+  color: #664d03;
 }
 
-
-
-.keyidea{
-  padding: 1em;
-  margin: 1em 0;
-  padding-left: 100px;
-  background-size: 70px;
-  background-repeat: no-repeat;
-  background-position: 15px center;
-  min-height: 120px;
-  color: #441F29;
-    background-color: #E56889;
-    border: solid 5px #441F29;
+.resources::before {
+  content: "📚 Resources";
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #997404;
 }
+
+.keyidea {
+  padding: 1.25rem 1.25rem 1.25rem 1rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid #dc3545;
+  border-radius: 0.5rem;
+  background-color: #fcebec;
+  color: #58151c;
+}
+
+.keyidea::before {
+  content: "💡 Key Idea";
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #dc3545;
+}
+
+/* ============================================
+   Code block enhancements
+   ============================================ */
+
+pre {
+  border-radius: 0.5rem;
+  border: 1px solid #e9ecef;
+}
+
+pre code {
+  font-size: 0.9rem;
+}
+
+code {
+  color: #d63384;
+  background-color: #f8f9fa;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+pre code {
+  color: inherit;
+  background-color: transparent;
+  padding: 0;
+}
+
+/* ============================================
+   Typography refinements
+   ============================================ */
+
+.chapter h1 {
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.chapter h2 {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
+}
+
+/* ============================================
+   Figure captions
+   ============================================ */
+
+.figure {
+  margin: 2rem 0;
+}
+
+.figure img {
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+p.caption, .caption {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-style: italic;
+  margin-top: 0.75rem;
+}
+
+/* ============================================
+   Tables
+   ============================================ */
+
+table {
+  margin: 1.5rem 0;
+}
+
+.table {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* ============================================
+   Utility classes
+   ============================================ */
 
 .center {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  text-align: center;
+}
+
+/* ============================================
+   Sidebar refinements
+   ============================================ */
+
+.book-summary {
+  font-size: 0.95rem;
+}
+
+/* ============================================
+   Responsive adjustments
+   ============================================ */
+
+@media (max-width: 768px) {
+  .homework,
+  .resources,
+  .keyidea {
+    padding: 1rem;
+  }
 }

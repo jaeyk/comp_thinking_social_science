@@ -1,35 +1,15 @@
-bookdown::gitbook:
-  # 1. Load your custom CSS
+bookdown::bs4_book:
+  theme:
+    primary: "#0d6efd"
+    base_font:
+      google: "Source Sans Pro"
+    code_font:
+      google: "JetBrains Mono"
   css: style.css
+  repo:
+    base: https://github.com/jaeyk/PS239T
+    branch: main
 
-  # 2. Only show top‐level chapters in the sidebar, and make deeper headings collapsible
-  toc_depth: 1
-  config:
-    toc:
-      collapse: section
-      before: |
-        <li><a href="./">Computational Thinking for Social Scientists</a></li>
-      after: |
-        <li>
-          <a href="https://github.com/jaeyk/PS239T" target="_blank">
-            Published with <code>{bookdown}</code>
-          </a>
-        </li>
-
-    # 3. Show PDF / EPUB buttons in the top nav
-    download:
-      - ["pdf",  "PS239T.pdf"]
-      - ["epub", "PS239T.epub"]
-
-    # 4. Enable live search
-    search:
-      enabled: true
-      highlight: true
-
-  # 5. Add “copy code” button to every code chunk
-  code_copy: true
-
-# For PDF output tweaks
 bookdown::pdf_book:
   latex_engine: xelatex
   citation_package: natbib
@@ -40,14 +20,13 @@ bookdown::pdf_book:
   includes:
     in_header: preamble.tex
 
-# For EPUB output tweaks
 bookdown::epub_book:
-  stylesheet:  style.css
+  stylesheet: style.css
   cover_image: images/cover.png
   metadata:
-    title:   "PS 239T – Computational Thinking for Social Scientists"
-    creator: "Jae Yeon Kim"
-    rights:  |
-      © 2025 Jae Yeon Kim. Licensed under a
+    title: "PS 239T – Computational Thinking for Social Scientists"
+    creator: "Jae Yeon Kim"
+    rights: |
+      © 2025 Jae Yeon Kim. Licensed under a
       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-      CC BY‑NC‑SA 4.0</a> International License.
+      CC BY‑NC‑SA 4.0</a> International License.
