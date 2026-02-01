@@ -704,9 +704,9 @@ evaluate_reg(test_fit)
 ## # A tibble: 3 × 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       7.12 
-## 2 mae     standard       5.84 
-## 3 rsq     standard       0.394
+## 1 rmse    standard       7.11 
+## 2 mae     standard       5.83 
+## 3 rsq     standard       0.397
 ```
 
 ### Decision tree 
@@ -1192,9 +1192,9 @@ evaluate_class(test_fit)
 ## # A tibble: 3 × 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.957
-## 2 precision binary         0.932
-## 3 recall    binary         0.976
+## 1 accuracy  binary         0.946
+## 2 precision binary         0.930
+## 3 recall    binary         0.952
 ```
 
 ### Boosting (XGboost)
@@ -1287,9 +1287,9 @@ evaluate_class(xg_fit)
 ## # A tibble: 3 × 3
 ##   .metric   .estimator .estimate
 ##   <chr>     <chr>          <dbl>
-## 1 accuracy  binary         0.739
-## 2 precision binary         0.725
-## 3 recall    binary         0.690
+## 1 accuracy  binary         0.728
+## 2 precision binary         0.718
+## 3 recall    binary         0.667
 ```
 
 
@@ -1938,11 +1938,11 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 2 (approx. per word bound = -7.555, relative change = 2.379e-02) 
 ## ....................................................................................................
-## Completed E-Step (5 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 3 (approx. per word bound = -7.482, relative change = 9.775e-03) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 4 (approx. per word bound = -7.442, relative change = 5.291e-03) 
 ## ....................................................................................................
@@ -1988,11 +1988,11 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 12 (approx. per word bound = -7.380, relative change = 2.227e-04) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 13 (approx. per word bound = -7.378, relative change = 1.710e-04) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 14 (approx. per word bound = -7.377, relative change = 1.333e-04) 
 ## ....................................................................................................
@@ -2013,7 +2013,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 17 (approx. per word bound = -7.375, relative change = 6.850e-05) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 18 (approx. per word bound = -7.375, relative change = 5.602e-05) 
 ## ....................................................................................................
@@ -2038,7 +2038,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 22 (approx. per word bound = -7.374, relative change = 2.705e-05) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 23 (approx. per word bound = -7.374, relative change = 2.289e-05) 
 ## ....................................................................................................
@@ -2063,7 +2063,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 27 (approx. per word bound = -7.373, relative change = 1.223e-05) 
 ## ....................................................................................................
-## Completed E-Step (3 seconds). 
+## Completed E-Step (2 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 28 (approx. per word bound = -7.373, relative change = 1.062e-05) 
 ## ....................................................................................................
@@ -2173,15 +2173,15 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 16 (approx. per word bound = -7.371, relative change = 2.501e-04) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 17 (approx. per word bound = -7.370, relative change = 2.048e-04) 
 ## ....................................................................................................
-## Completed E-Step (5 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 18 (approx. per word bound = -7.368, relative change = 1.687e-04) 
 ## ....................................................................................................
-## Completed E-Step (6 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 19 (approx. per word bound = -7.367, relative change = 1.397e-04) 
 ## ....................................................................................................
@@ -2233,7 +2233,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 26 (approx. per word bound = -7.363, relative change = 5.088e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 27 (approx. per word bound = -7.363, relative change = 4.614e-05) 
 ## ....................................................................................................
@@ -2259,7 +2259,7 @@ test_res <- searchK(
 ##  Topic 9: will, now, say, never, good 
 ##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 31 (approx. per word bound = -7.362, relative change = 2.701e-05) 
 ## ....................................................................................................
@@ -2289,7 +2289,7 @@ test_res <- searchK(
 ##  Topic 9: will, now, say, never, good 
 ##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 36 (approx. per word bound = -7.361, relative change = 1.546e-05) 
 ## ....................................................................................................
@@ -2305,7 +2305,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 39 (approx. per word bound = -7.361, relative change = 1.275e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 40 (approx. per word bound = -7.361, relative change = 1.233e-05) 
 ## Topic 1: much, know, littl, look, wish 
@@ -2335,7 +2335,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 44 (approx. per word bound = -7.361, relative change = 1.294e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 45 (approx. per word bound = -7.360, relative change = 1.367e-05) 
 ## Topic 1: much, know, littl, look, wish 
@@ -2349,7 +2349,7 @@ test_res <- searchK(
 ##  Topic 9: will, now, say, never, good 
 ##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 46 (approx. per word bound = -7.360, relative change = 1.419e-05) 
 ## ....................................................................................................
@@ -2357,7 +2357,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 47 (approx. per word bound = -7.360, relative change = 1.430e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 48 (approx. per word bound = -7.360, relative change = 1.386e-05) 
 ## ....................................................................................................
@@ -2365,7 +2365,7 @@ test_res <- searchK(
 ## Completed M-Step. 
 ## Completing Iteration 49 (approx. per word bound = -7.360, relative change = 1.273e-05) 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Completing Iteration 50 (approx. per word bound = -7.360, relative change = 1.074e-05) 
 ## Topic 1: much, know, littl, look, wish 
@@ -2379,7 +2379,7 @@ test_res <- searchK(
 ##  Topic 9: will, now, say, never, good 
 ##  Topic 10: talk, last, better, brother, pleasur 
 ## ....................................................................................................
-## Completed E-Step (4 seconds). 
+## Completed E-Step (3 seconds). 
 ## Completed M-Step. 
 ## Model Converged
 ```

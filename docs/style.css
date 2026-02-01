@@ -98,14 +98,41 @@ pre code {
 }
 
 /* ============================================
+   Images - constrain to content width
+   ============================================ */
+
+img {
+  max-width: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  display: block;
+}
+
+.inline-figure {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+.inline-figure img {
+  max-width: 100% !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+/* ============================================
    Figure captions
    ============================================ */
 
 .figure {
   margin: 2rem 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .figure img {
+  max-width: 100%;
+  height: auto;
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
